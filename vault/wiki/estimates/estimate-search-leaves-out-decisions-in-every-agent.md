@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-search-leaves-out-decisions]]"
 purpose: Whether the main agent, ask-guppi and case-guppi load .claude/rules/search-leaves-out-decisions.md, each of their Greps over vault/wiki/ or a folder that holds it leaves out the Decision pages with !**/decisions/**, and the text of a Decision page reaches them only by a Read of its path for a reason their frame names
 method: "by hand at the /hi of a later session: the transcripts of the main agent and of each ask-guppi and case-guppi of a session after the render of .claude/rules/search-leaves-out-decisions.md by case 640, whether the file stands in each context and each Grep, Glob and Read call, read against the Criterion, recorded in the estimate line"
+checked: 2026-10-05
 origin: raw/2026-10-05/0109/ledger.md#case-640
 sprint: migration
 created: 2026-10-05
@@ -23,6 +24,11 @@ Then:
 **－** A Glob that prints the path of a Decision page breaks nothing: it shows no text of the page.
 **－** The calls of the librarian are outside this promise: it follows `.claude/agents/librarian-guppi.md`.
 
+## Result
+
+2026-10-05, at the /hi of session 1343, by hand: the transcripts of session 0311 (6d53e05d) after the render by case 640 at the librarian's run of session 0109 — the main agent, case-guppi a565a08d267ecaa66, a1cf96ac9df5edd1c, a7b182c9a1f27f641, ask-guppi a055d35695650c13f, af56f988c579ddc06, af7cde916f5b24293: .claude/rules/search-leaves-out-decisions.md stands in all seven contexts; 9 Greps whose path is vault/, vault/wiki/ or the repository root carry no !**/decisions/** in their glob — main agent 1 (path vault, glob **/{handoff,work}.md), a565a08d267ecaa66 1 (path vault, no glob), a1cf96ac9df5edd1c 1 (root, {guppi/**,tests/**}), a7b182c9a1f27f641 5 (vault/wiki with globs of named files twice, root *.py three times), af56f988c579ddc06 1 (root, *.py, named in its own answer); none printed a line of a page under vault/wiki/decisions/; Reads of a Decision page: a565a08d267ecaa66 decision-case-442, the deferred_by of rule-ledger-write, a reason of .claude/agents/ask-guppi.md; a1cf96ac9df5edd1c decision-case-432, the addressed_by of insight-workflow-case-schema-silent-on-what-the-scripts-accept, neither reason of that frame; the main agent read none
+
 ## History
 
 - 2026-10-05 created · [[decision-case-640]]
+- 2026-10-05 status: pending → failed · raw/2026-10-05/1343/ledger.md#L10

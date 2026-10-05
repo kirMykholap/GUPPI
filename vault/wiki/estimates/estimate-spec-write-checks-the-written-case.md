@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: Each Case the Stop hook writes into the plan is checked at once, and a finding comes back to the agent
 method: uv run pytest tests/test_ratified.py -k checks_the_written; by hand, a ratification of a session
-checked: 2026-09-27
+checked: 2026-10-05
 origin: raw/2026-09-25/0051/ledger.md#case-414.1
 sprint: migration
 created: 2026-09-25
@@ -30,7 +30,7 @@ The hook runs the checks of `prespec --check` on each Case it wrote in this run 
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_ratified.py -k checks_the_written: 5 passed; by hand, session 1819: the re-ratification of Case 460 was refused by the Stop hook with "ratified: case 460.2: line [update][estimate-ledger-write-lifts] has no item in the plan", the finding naming its Case, the written Cases kept in the plan
+2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py -k checks_the_written 5 passed; the ratifications of 650–656, first and again: `uv run guppi ratified` ran with no error after each; `uv run guppi prespec --check` over the plan they wrote printed notes only, exit 0; after the re-ratification at 15:48:36 the check printed three findings, all on 653.1 and 653.2, Cases not written in that run, and the hook reported none of them; not exercised: a finding of a Case written in the run, a missed or doubled anchor, the Cyrillic and unparsed-line clauses
 
 ## History
 
@@ -42,3 +42,4 @@ The hook runs the checks of `prespec --check` on each Case it wrote in this run 
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L31
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-05 updated: the Criterion replaced whole — with stop_hook_active set the hook checks as without it, each finding once a stretch (case 644.3) · [[decision-case-644.3]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L33

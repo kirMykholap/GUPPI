@@ -47,3 +47,4 @@ It puts each option the person chose in its rounds, or the person's own words wh
 - 2026-10-05 updated: the Criterion replaced whole — each search the context names is run again just before the answer, and its files and counts come from that run (case 636) · [[decision-case-636]]
 - 2026-10-05 status: pending → failed · raw/2026-10-05/0109/ledger.md#L22
 - 2026-10-05 deferred · [[decision-case-647]]
+- 2026-10-05 deferred · [[decision-case-657]]

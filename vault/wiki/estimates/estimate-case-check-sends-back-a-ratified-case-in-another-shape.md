@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: A Case that has decision lines in the session and comes back from case-guppi in another shape under its old number goes back to case-guppi with a new number to build it under
 method: uv run pytest tests/test_casecheck.py -k shape
@@ -29,7 +29,7 @@ For a file that holds a top-level Case N, the hook reads the decision lines of a
 
 ## Result
 
-2026-10-05, at the /hi of session 0109: uv run pytest -q tests/test_casecheck.py -k shape 8 passed, 122 deselected
+2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k shape 8 passed, 127 deselected
 
 ## History
 
@@ -38,3 +38,4 @@ For a file that holds a top-level Case N, the hook reads the decision lines of a
 - 2026-10-05 updated: the method is pytest alone; the live send-back is no longer waited for (case 637.1) · [[decision-case-637.1]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/0109/ledger.md#L6
 - 2026-10-05 updated: the Criterion replaced whole — the Cases are read from the file case-guppi wrote (case 645.15) · [[decision-case-645.15]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L7

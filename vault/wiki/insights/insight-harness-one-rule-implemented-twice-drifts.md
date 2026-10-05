@@ -1,9 +1,9 @@
 ---
 type: insight
 pattern: A judgment the pipeline makes in two places is implemented twice — a check re-states what a writer, a ticker or another check does — and the two copies drift apart, with no test about the difference between them.
-status: actioned
-children: ["[[lesson-prespec-a-second-copy-of-a-matching-rule-drifts]]", "[[lesson-lint-decision-target-archived-counts-as-missing]]"]
-severity: 0
+status: open
+children: ["[[lesson-prespec-a-second-copy-of-a-matching-rule-drifts]]", "[[lesson-lint-decision-target-archived-counts-as-missing]]", "[[lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases]]"]
+severity: 1
 addressed_by: "[[decision-case-360]]"
 origin: raw/2026-09-22/2046/ledger.md#L37
 sprint: migration
@@ -46,3 +46,4 @@ Neither half is decided here.
 
 - 2026-09-23 created · raw/2026-09-22/2046/ledger.md#L37
 - 2026-09-23 updated: actioned by rule-one-judgment-one-implementation (case 360) · [[decision-case-360]]
+- 2026-10-05 updated: child lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases added, reopened (synthesis) · raw/2026-10-05/1343/ledger.md#L42

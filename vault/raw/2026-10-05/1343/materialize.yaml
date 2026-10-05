@@ -1,0 +1,2776 @@
+date: '2026-10-05'
+sprint: migration
+ledger: vault/raw/2026-10-05/1343/ledger.md
+spec:
+- vault/raw/2026-10-05/1343/spec.md
+entries:
+- line: 1
+  text: 'estimate[estimate-spec-write-exits-2-on-an-error][passed] 2026-10-05, at the /hi of session 1343:
+    uv run pytest -q tests/test_ratified.py 106 passed'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-exits-2-on-an-error
+  status: passed
+  result: '2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_ratified.py 106 passed'
+  origin: raw/2026-10-05/1343/ledger.md#L1
+  applied: '16:08:37'
+- line: 2
+  text: 'estimate[estimate-spec-write-tells-each-reason-once][passed] 2026-10-05, at the /hi of session
+    1343: uv run pytest -q tests/test_ratified.py -k tells_each_reason_once 4 passed, 102 deselected'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-tells-each-reason-once
+  status: passed
+  result: '2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_ratified.py -k tells_each_reason_once
+    4 passed, 102 deselected'
+  origin: raw/2026-10-05/1343/ledger.md#L2
+  applied: '16:08:37'
+- line: 3
+  text: 'estimate[estimate-spec-write-refuses-a-changed-case-file][passed] 2026-10-05, at the /hi of session
+    1343: uv run pytest -q tests/test_ratified.py -k changed_file 2 passed, 104 deselected'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-refuses-a-changed-case-file
+  status: passed
+  result: '2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_ratified.py -k changed_file
+    2 passed, 104 deselected'
+  origin: raw/2026-10-05/1343/ledger.md#L3
+  applied: '16:08:37'
+- line: 4
+  text: 'estimate[estimate-case-check-refuses-a-changed-case-file][passed] 2026-10-05, at the /hi of session
+    1343: uv run pytest -q tests/test_casecheck.py -k changed_file 4 passed, 131 deselected'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-check-refuses-a-changed-case-file
+  status: passed
+  result: '2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k changed_file
+    4 passed, 131 deselected'
+  origin: raw/2026-10-05/1343/ledger.md#L4
+  applied: '16:08:37'
+- line: 5
+  text: 'estimate[estimate-case-check-refuses-a-letter-outside-the-script][passed] 2026-10-05, at the
+    /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k script 10 passed, 125 deselected'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-check-refuses-a-letter-outside-the-script
+  status: passed
+  result: '2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k script
+    10 passed, 125 deselected'
+  origin: raw/2026-10-05/1343/ledger.md#L5
+  applied: '16:08:37'
+- line: 6
+  text: 'estimate[estimate-case-check-sends-back-a-case-number-held-by-another-agent][passed] 2026-10-05,
+    at the /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k subagent_clash 3 passed, 132
+    deselected'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-check-sends-back-a-case-number-held-by-another-agent
+  status: passed
+  result: '2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k subagent_clash
+    3 passed, 132 deselected'
+  origin: raw/2026-10-05/1343/ledger.md#L6
+  applied: '16:08:37'
+- line: 7
+  text: 'estimate[estimate-case-check-sends-back-a-ratified-case-in-another-shape][passed] 2026-10-05,
+    at the /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k shape 8 passed, 127 deselected'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-check-sends-back-a-ratified-case-in-another-shape
+  status: passed
+  result: '2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k shape 8
+    passed, 127 deselected'
+  origin: raw/2026-10-05/1343/ledger.md#L7
+  applied: '16:08:37'
+- line: 8
+  text: 'estimate[estimate-case-protocol-example-passes-the-check][passed] 2026-10-05, at the /hi of session
+    1343: uv run pytest -q -rs tests/test_case_schema.py 2 passed, none skipped'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-protocol-example-passes-the-check
+  status: passed
+  result: '2026-10-05, at the /hi of session 1343: uv run pytest -q -rs tests/test_case_schema.py 2 passed,
+    none skipped'
+  origin: raw/2026-10-05/1343/ledger.md#L8
+  applied: '16:08:37'
+- line: 9
+  text: 'estimate[estimate-ask-finds][passed] 2026-10-05, at the /hi of session 1343, by hand: the first
+    answers of the three ask-guppi runs at the /pre-spec of session 0311 (transcript 6d53e05d, agent a055d35695650c13f
+    on Case 644, af56f988c579ddc06 on 645, af7cde916f5b24293 on 646; event log `04:50:14 6d53e05d tool
+    Agent: ask-guppi`, three times), after the render by case 639 at the librarian''s run of session 0109:
+    each opens with one line on the plan file and the Cases it checked; three numbered lists in the order
+    of the questions (644: 3, none, none; 645: 6, 4, 2; 646: 3, 2, none), each finding names its Case
+    and the page or Cases it bears on, a question with no finding says "none", no sentence of what holds
+    under a question; then a list of what was not checked, whose last lines in 644 and 645 name the search
+    rule broken and say whether a finding rests on it, then the list of files read; not exercised: a finding
+    that names a page carrying deferred_by'
+  kind: estimate
+  category: estimates
+  slug: estimate-ask-finds
+  status: passed
+  result: '2026-10-05, at the /hi of session 1343, by hand: the first answers of the three ask-guppi runs
+    at the /pre-spec of session 0311 (transcript 6d53e05d, agent a055d35695650c13f on Case 644, af56f988c579ddc06
+    on 645, af7cde916f5b24293 on 646; event log `04:50:14 6d53e05d tool Agent: ask-guppi`, three times),
+    after the render by case 639 at the librarian''s run of session 0109: each opens with one line on
+    the plan file and the Cases it checked; three numbered lists in the order of the questions (644: 3,
+    none, none; 645: 6, 4, 2; 646: 3, 2, none), each finding names its Case and the page or Cases it bears
+    on, a question with no finding says "none", no sentence of what holds under a question; then a list
+    of what was not checked, whose last lines in 644 and 645 name the search rule broken and say whether
+    a finding rests on it, then the list of files read; not exercised: a finding that names a page carrying
+    deferred_by'
+  origin: raw/2026-10-05/1343/ledger.md#L9
+  applied: '16:08:37'
+- line: 10
+  text: 'estimate[estimate-search-leaves-out-decisions-in-every-agent][failed] 2026-10-05, at the /hi
+    of session 1343, by hand: the transcripts of session 0311 (6d53e05d) after the render by case 640
+    at the librarian''s run of session 0109 — the main agent, case-guppi a565a08d267ecaa66, a1cf96ac9df5edd1c,
+    a7b182c9a1f27f641, ask-guppi a055d35695650c13f, af56f988c579ddc06, af7cde916f5b24293: .claude/rules/search-leaves-out-decisions.md
+    stands in all seven contexts; 9 Greps whose path is vault/, vault/wiki/ or the repository root carry
+    no !**/decisions/** in their glob — main agent 1 (path vault, glob **/{handoff,work}.md), a565a08d267ecaa66
+    1 (path vault, no glob), a1cf96ac9df5edd1c 1 (root, {guppi/**,tests/**}), a7b182c9a1f27f641 5 (vault/wiki
+    with globs of named files twice, root *.py three times), af56f988c579ddc06 1 (root, *.py, named in
+    its own answer); none printed a line of a page under vault/wiki/decisions/; Reads of a Decision page:
+    a565a08d267ecaa66 decision-case-442, the deferred_by of rule-ledger-write, a reason of .claude/agents/ask-guppi.md;
+    a1cf96ac9df5edd1c decision-case-432, the addressed_by of insight-workflow-case-schema-silent-on-what-the-scripts-accept,
+    neither reason of that frame; the main agent read none'
+  kind: estimate
+  category: estimates
+  slug: estimate-search-leaves-out-decisions-in-every-agent
+  status: failed
+  result: '2026-10-05, at the /hi of session 1343, by hand: the transcripts of session 0311 (6d53e05d)
+    after the render by case 640 at the librarian''s run of session 0109 — the main agent, case-guppi
+    a565a08d267ecaa66, a1cf96ac9df5edd1c, a7b182c9a1f27f641, ask-guppi a055d35695650c13f, af56f988c579ddc06,
+    af7cde916f5b24293: .claude/rules/search-leaves-out-decisions.md stands in all seven contexts; 9 Greps
+    whose path is vault/, vault/wiki/ or the repository root carry no !**/decisions/** in their glob —
+    main agent 1 (path vault, glob **/{handoff,work}.md), a565a08d267ecaa66 1 (path vault, no glob), a1cf96ac9df5edd1c
+    1 (root, {guppi/**,tests/**}), a7b182c9a1f27f641 5 (vault/wiki with globs of named files twice, root
+    *.py three times), af56f988c579ddc06 1 (root, *.py, named in its own answer); none printed a line
+    of a page under vault/wiki/decisions/; Reads of a Decision page: a565a08d267ecaa66 decision-case-442,
+    the deferred_by of rule-ledger-write, a reason of .claude/agents/ask-guppi.md; a1cf96ac9df5edd1c decision-case-432,
+    the addressed_by of insight-workflow-case-schema-silent-on-what-the-scripts-accept, neither reason
+    of that frame; the main agent read none'
+  origin: raw/2026-10-05/1343/ledger.md#L10
+  applied: '16:08:37'
+- line: 11
+  text: decision[case 650.1][create][estimate-spec-reconcile-refuses-a-case-file-another-agent-holds]{ref:rule-spec-reconcile}{tags:hooks,harness,workflow}
+  case: '650.1'
+  kind: create
+  slug: estimate-spec-reconcile-refuses-a-case-file-another-agent-holds
+  origin: raw/2026-10-05/1343/ledger.md#case-650.1
+  decision: decision-case-650.1
+  ref: rule-spec-reconcile
+  tags:
+  - hooks
+  - harness
+  - workflow
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether the first call of case-guppi on the file of a Case holds its number in the store,
+      and a call of another case-guppi on that file is refused with a free number
+    method: uv run pytest tests/test_ratified.py -k number_held; by hand in a session after the work,
+      the entry of the store that the first Write of a live case-guppi wrote, holding its agent_id
+    tags:
+    - hooks
+    - harness
+    - workflow
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      `case-guppi` calls `Edit`, `Write` or `MultiEdit` on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and
+      `uv run guppi ratified --guard` on `PreToolUse` reads the path, the agent type and the `agent_id`
+      of the call from the hook input, and `<plan>.checked.json` beside the plan file of the session.
+
+
+      Then:
+
+      The call is refused when `<plan>.checked.json` holds Case N, or a sub-case of it, under its number
+      alone with an `agent_id` other than the one of the call: exit 2 with the reason on stderr, and the
+      call does not run.
+
+      **＋** The reason names the file and a free number, and tells `case-guppi` to build its Case under
+      that number.
+
+      **＋** The holder is judged by `clashes` and the free number is counted by `new_number` of `guppi/casecheck.py`,
+      the judgments that the check of `rule-case-check` runs.
+
+      **＋** A call that passes while `<plan>.checked.json` holds no entry under N alone writes there,
+      under N, an entry with the `agent_id` of the call and the time, and no text, so the number is held
+      before the agent stops.
+
+      **＋** A refusal writes one line of the refusal to the day''s event log.
+
+      **－** A call whose `agent_id` is the one of the entry under N, and an entry with no `agent_id`,
+      are not refused by this check.
+
+      **－** A call with no `agent_id`, a file whose name gives no number, and a session with no plan file
+      are not judged by this check, and nothing is written into `<plan>.checked.json`.
+
+      **－** An error of the guard while it finds the plan file or reads or writes `<plan>.checked.json`
+      lets the call run: exit 0 with one line on stderr, as `estimate-spec-write-exits-2-on-an-error`
+      sets it for the guard.'
+  applied: '16:08:37'
+- line: 12
+  text: decision[case 650.1][update][rule-spec-reconcile]{ref:rule-spec-reconcile}
+  case: '650.1'
+  kind: update
+  slug: rule-spec-reconcile
+  origin: raw/2026-10-05/1343/ledger.md#case-650.1
+  decision: decision-case-650.1
+  ref: rule-spec-reconcile
+  category: rules
+  replace:
+  - old: unless `case-guppi` makes it (cases 453, 645.3);
+    new: unless `case-guppi` makes it and no other agent holds the number of that Case (cases 453, 645.3,
+      650.1);
+  - old: 'and every `Edit`, `Write` and `MultiEdit` that names `case-guppi` on a file outside such a folder:
+      exit 2'
+    new: 'and every `Edit`, `Write` and `MultiEdit` that names `case-guppi` on a file outside such a folder,
+      or on the file `case-<N>.md` of a Case when the store holds Case N, or a sub-case of it, under its
+      number alone from another `agent_id` (case 650.1): exit 2'
+  - old: The exceptions are an `Edit`, `Write` or `MultiEdit` of `case-guppi` under `cases/`, and
+    new: The exceptions are an `Edit`, `Write` or `MultiEdit` of `case-guppi` under `cases/` on a file
+      `case-<N>.md` when the store holds neither Case N nor a sub-case of it under its number alone from
+      another `agent_id` — when the store holds no entry under N, N the number of the file `case-<N>.md`,
+      the call writes its `agent_id` there, so the number is held before the agent stops, and a refusal
+      names a free number counted as the check of `rule-case-check` counts one, by the functions of `guppi/casecheck.py`
+      the check runs (case 650.1) —, and
+  - old: The hooks of `rule-spec-write` and `rule-case-check` write the plan and the store with no tool
+      call,
+    new: The hooks of `rule-spec-write` and `rule-case-check` write the plan and the store with no tool
+      call, and so does this hook for the entry that holds a number,
+  change: the first write of case-guppi on the file of a Case holds its number in the store, and a write
+    of another case-guppi on that file is refused with a free number (case 650.1)
+  applied: '16:08:37'
+- line: 13
+  text: decision[case 650.2][update][estimate-spec-reconcile-refuses-an-edit-of-the-plan]{ref:rule-spec-reconcile}
+  case: '650.2'
+  kind: update
+  slug: estimate-spec-reconcile-refuses-an-edit-of-the-plan
+  origin: raw/2026-10-05/1343/ledger.md#case-650.2
+  decision: decision-case-650.2
+  ref: rule-spec-reconcile
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a call of case-guppi under cases/ passes unless another agent
+    holds the number of the file, the promise of estimate-spec-reconcile-refuses-a-case-file-another-agent-holds
+    (case 650.2)
+  sections:
+    Criterion: 'When:
+
+      An agent calls `Edit`, `Write` or `MultiEdit` on a file, and `uv run guppi ratified --guard` on
+      `PreToolUse` reads the path, the content and the agent type of the call from the hook input.
+
+
+      Then:
+
+      The hook refuses every `Edit` and `MultiEdit` of a plan file, and every `Write` of a plan file that
+      exists: exit 2 with the reason on stderr, which Claude Code shows the agent, and the call does not
+      run.
+
+      **＋** A `Write` of a plan file that does not exist is let through when its content, trimmed, is
+      one line that opens with `# `; a `Write` with any other content is refused the same way.
+
+      **＋** Every `Edit`, `Write` or `MultiEdit` of a store `<plan>.checked.json` is refused the same
+      way.
+
+      **＋** An `Edit`, `Write` or `MultiEdit` of a file under the `cases/` folder of a session folder
+      `vault/raw/<date>/<HHMM>/`, whatever its name and whether it exists or not, is refused the same
+      way when the hook input does not name `case-guppi` as the agent type; the reason names the file
+      and says that `case-guppi` alone writes it.
+
+      **＋** An `Edit`, `Write` or `MultiEdit` whose hook input names `case-guppi` on a file outside such
+      a `cases/` folder is refused the same way.
+
+      **＋** A file under that folder is judged by `is_case_file` of `guppi/casecheck.py`, which the check
+      of the file uses too; a plan file is a `.md` file under `.claude/plans/`, judged by `is_plan_file`
+      of `guppi/ledger.py`, which `plan_path` uses too.
+
+      **＋** A refusal writes one line of the refusal to the day''s event log and no `tool` line, so `plan_path`
+      of `guppi/ledger.py` still names the plan file.
+
+      **－** A call whose hook input names `case-guppi` on a file under such a `cases/` folder is let through
+      unless `<plan>.checked.json` holds the number of the file from another agent, as `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+      sets it.
+
+      **－** An edit of a file outside `.claude/plans/` and outside such a `cases/` folder by any agent
+      but `case-guppi` is not judged by this hook.
+
+      **－** A payload the hook cannot read: exit 0 with one line on stderr.
+
+      **－** No `PostToolUse` hook compares an edit of the plan.'
+  applied: '16:08:37'
+- line: 14
+  text: decision[case 651.1][update][rule-orchestration]{ref:rule-orchestration}
+  case: '651.1'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-10-05/1343/ledger.md#case-651.1
+  decision: decision-case-651.1
+  ref: rule-orchestration
+  category: rules
+  replace:
+  - old: the main agent shows that answer translated into {{chat_lang}}
+    new: the main agent shows that reply translated into {{chat_lang}}
+  - old: The agent shows the Case of the answer at every showing
+    new: The agent shows the Case `case-guppi` built at every showing
+  - old: an item per Case and sub-case of the answer, its id
+    new: an item per Case and sub-case of the summary, its id
+  - old: of every Case of the list as the answer holds them, never its
+    new: of every Case of the list as the summary holds them, never its
+  - old: an answer in which a Case gives no such Estimate goes back
+    new: a summary in which a Case gives no such Estimate goes back
+  - old: shows the `ratification` as the answer holds it (case 452.4)
+    new: shows the `ratification` as the summary holds it (case 452.4)
+  - old: an answer with no first line
+    new: a reply of `case-guppi` with no first line
+  - old: with the number of the answer
+    new: with the number the round gives it
+  - old: Its new answer is sent again whole, in its file
+    new: Its new file is sent again whole
+  - old: writes a Case only from its stored answer after a reply
+    new: writes a Case only from the text the check of `rule-case-check` stored from its file after a
+      reply
+  - old: a round of questions of `case-guppi`, translated from the answer,
+    new: a round of questions of `case-guppi`, translated,
+  - old: the ledger lines of `ratification` stand in the chat as the answer holds them
+    new: the ledger lines of `ratification` stand in the chat as the summary holds them
+  - old: while an answer is out
+    new: while a `case-guppi` of the batch has not replied
+  - old: a round may come at the first answer on an item
+    new: a round may come at the first reply on an item
+  change: the reply of case-guppi is named the summary, the Case sent is its file, and the Spec hook reads
+    the text the check stored from that file (case 651.1)
+  applied: '16:08:37'
+- line: 15
+  text: decision[case 651.2][create][estimate-orchestration-showing-example-passes-the-check]{ref:rule-orchestration}{tags:session,workflow,harness}
+  case: '651.2'
+  kind: create
+  slug: estimate-orchestration-showing-example-passes-the-check
+  origin: raw/2026-10-05/1343/ledger.md#case-651.2
+  decision: decision-case-651.2
+  ref: rule-orchestration
+  tags:
+  - session
+  - workflow
+  - harness
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether the example of a showing in orchestration.md passes the Stop check of a reply that
+      shows a Case, so the form the main agent copies stays a form the check accepts
+    method: uv run pytest tests/test_orchestration.py -k showing_example, passed and not skipped
+    tags:
+    - session
+    - workflow
+    - harness
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      `tests/test_orchestration.py` runs under `uv run pytest`. It reads the block tagged `showing` in
+      `vault/wiki/orchestration.md`, rendered from `rule-orchestration`, and runs over it the functions
+      of `guppi/casecheck.py` that the `Stop` check of `rule-case-check` runs over a reply that shows
+      a Case, with a store whose sub-cases hold the ledger lines the example''s `ratification` gives them.
+
+
+      Then:
+
+      `vault/wiki/orchestration.md` holds, under its own heading at the end of `## Showing and signing
+      a Case`, one block tagged `showing`: a reply that shows a Case with two sub-cases, its heading,
+      one list with an item per sub-case, one `ratification` and the agent''s own text after one horizontal
+      rule.
+
+      **＋** The `ratification` of the example is a quote block: the line `> **ratification:**`, then the
+      fence and the ledger lines of both sub-cases, each line opening with `> `.
+
+      **＋** The example is in English; the paragraph before the block says that in the chat the heading,
+      the names and the short texts stand in the language of the chat, that the file goes by `SendUserFile`
+      in the same reply, and that the example passes the `Stop` check of `rule-case-check`, which is the
+      source of the limits; it lists no other limit.
+
+      **＋** The check finds no text outside the list and the `ratification`, reads the `ratification`
+      as the showing of each sub-case it names, and finds no difference from the store, and the test passes.
+
+      **＋** The example with the lines of its fence not quoted gives the finding of a text outside the
+      list, and the test asserts it.
+
+      **＋** The test reads the example from `vault/wiki/orchestration.md` and the checks from `guppi/casecheck.py`,
+      and holds no copy of either.
+
+      **－** While `vault/wiki/orchestration.md` holds no block tagged `showing`, the test is skipped with
+      a reason that names the file; a Case of a later session removes the skip after the reading of `estimate-orchestration-showing-example-passes-the-check`
+      passes.'
+  applied: '16:08:37'
+- line: 16
+  text: decision[case 651.2][update][rule-orchestration]{ref:rule-orchestration}
+  case: '651.2'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-10-05/1343/ledger.md#case-651.2
+  decision: decision-case-651.2
+  ref: rule-orchestration
+  category: rules
+  replace:
+  - old: Retro counts the unticked (case 59.3).
+    new: 'Retro counts the unticked (case 59.3).
+
+
+      ### A showing, by example
+
+
+      The block below is the text of a reply that shows a Case with two sub-cases, written after the `SendUserFile`
+      call that sends its file. Its `ratification` is a quote block: the fence and each ledger line stand
+      on lines that open with `> `, while the summary of `case-guppi` gives the same lines in a plain
+      fence. In the chat the heading, the names and the short texts stand in {{chat_lang}}; the example
+      is in {{documentation_lang}}, as the vault is. A test runs over the example the functions that the
+      `Stop` check of `rule-case-check` runs over a reply that shows a Case, and fails on any refusal,
+      so the example keeps to that check as the check stands (case 651.2). Copy its form; a refusal of
+      the check names the limit a showing broke.
+
+
+      ````showing
+
+      ## Case 7 — Members get a reminder before a booking
+
+
+      - 7.1 — The reminder goes out a day before. Done when `estimate-booking-sends-a-reminder` passes:
+      a test books a slot and finds one reminder queued a day before it.
+
+      - 7.2 — A cancelled booking sends no reminder. Done when `estimate-booking-skips-a-cancelled-reminder`
+      passes: a test cancels a booked slot and finds no reminder queued.
+
+
+      > **ratification:**
+
+      > ```
+
+      > - decision[case 7.1][create][estimate-booking-sends-a-reminder]{ref:entity-booking}{tags:booking,email}
+
+      > - decision[case 7.1][update][entity-booking]{ref:entity-booking}
+
+      > - decision[case 7.2][create][estimate-booking-skips-a-cancelled-reminder]{ref:entity-booking}{tags:booking,email}
+
+      > ```
+
+
+      ---
+
+
+      Do you ratify 7.1 and 7.2, or only some of them?
+
+      ````'
+  change: the reply that shows a Case has an example that a test runs the Stop check of rule-case-check
+    over (case 651.2)
+  applied: '16:08:37'
+- line: 17
+  text: decision[case 651.3][create][estimate-orchestration-defer-example-passes-the-hook]{ref:rule-orchestration}{tags:session,workflow,harness}
+  case: '651.3'
+  kind: create
+  slug: estimate-orchestration-defer-example-passes-the-hook
+  origin: raw/2026-10-05/1343/ledger.md#case-651.3
+  decision: decision-case-651.3
+  ref: rule-orchestration
+  tags:
+  - session
+  - workflow
+  - harness
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether the example of a short-form defer in orchestration.md passes the Stop hook that writes
+      a defer-only Case into the Spec, so the form the main agent copies stays a form the hook accepts
+    method: uv run pytest tests/test_orchestration.py -k defer_example, passed and not skipped
+    tags:
+    - session
+    - workflow
+    - harness
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      `tests/test_orchestration.py` runs under `uv run pytest`. It reads the block tagged `defer` in `vault/wiki/orchestration.md`,
+      rendered from `rule-orchestration`, and runs over it, as the text of a reply, the functions of `guppi/ratified.py`
+      that the `Stop` hook of `rule-spec-write` runs over a defer-only Case, in a temporary project that
+      holds the schema files of the vault and a plan file, with one `defer` record for each item of the
+      example.
+
+
+      Then:
+
+      `vault/wiki/orchestration.md` holds, under its own heading at the end of `## The short form — deferred
+      decisions`, one block tagged `defer`: a Case in the short form with its heading, `context`, `problem`
+      and a fence tagged `then` whose `defer:` holds a list, one item per target, each item opening with
+      `- slug:` and carrying `type` and `purpose`.
+
+      **＋** The paragraph before the block says that the reply that shows the Case carries its `LEDGER`
+      block with one `defer` line per item, and that the example passes the `Stop` hook of `rule-spec-write`,
+      which is the source of the limits; it lists no other limit.
+
+      **＋** The hook writes the example under `## Deferred` of the plan file with no error, and the test
+      passes.
+
+      **＋** The example with its `defer:` items written as one mapping gives the error that no fence tagged
+      `then` holds its `defer` items, and the test asserts it.
+
+      **＋** The test reads the example from `vault/wiki/orchestration.md` and the hook from `guppi/ratified.py`,
+      and holds no copy of either.
+
+      **＋** `insight-workflow-case-schema-silent-on-what-the-scripts-accept` stands `actioned`, addressed
+      by this Case.
+
+      **－** While `vault/wiki/orchestration.md` holds no block tagged `defer`, the test is skipped with
+      a reason that names the file; a Case of a later session removes the skip after the reading of `estimate-orchestration-defer-example-passes-the-hook`
+      passes.'
+  applied: '16:08:37'
+- line: 18
+  text: decision[case 651.3][update][rule-orchestration]{ref:rule-orchestration}
+  case: '651.3'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-10-05/1343/ledger.md#case-651.3
+  decision: decision-case-651.3
+  ref: rule-orchestration
+  category: rules
+  replace:
+  - old: A `create`, `update` or `delete` at Retro waits for the next Plan Mode (cases 52.2, 56, 59.5).
+    new: "A `create`, `update` or `delete` at Retro waits for the next Plan Mode (cases 52.2, 56, 59.5).\n\
+      \n### A short-form defer, by example\n\nThe block below is a deferred decision in the short form\
+      \ as a reply shows it; the same reply carries its `LEDGER` block, with one `defer` line per item.\
+      \ A test runs over the example the functions that the `Stop` hook of `rule-spec-write` runs over\
+      \ a defer-only Case, and fails on any error, so the example keeps to that hook as the hook stands\
+      \ (case 651.3). Copy its form; an error of the hook names the limit a short Case broke.\n\n````defer\n\
+      ## Case 8 — The export of old bookings put off\n\n> **context:**\n> The person put off the export\
+      \ of bookings older than a year at the close of Plan Mode. No Case of this session sets the form\
+      \ of the export.\n\n> **problem:**\n> No Case of this session decides how an owner exports old bookings.\n\
+      \n```then\ndefer:\n  - slug: entity-booking-export\n    type: entity\n    purpose: \"Lets an owner\
+      \ export the bookings older than a year; put off at the close of Plan Mode\"\n```\n````"
+  change: the short form of a defer has an example that a test runs the Stop hook of rule-spec-write over
+    (case 651.3)
+  applied: '16:08:37'
+- line: 19
+  text: decision[case 651.3][update][insight-workflow-case-schema-silent-on-what-the-scripts-accept]{ref:insight-workflow-case-schema-silent-on-what-the-scripts-accept}
+  case: '651.3'
+  kind: update
+  slug: insight-workflow-case-schema-silent-on-what-the-scripts-accept
+  origin: raw/2026-10-05/1343/ledger.md#case-651.3
+  decision: decision-case-651.3
+  ref: insight-workflow-case-schema-silent-on-what-the-scripts-accept
+  category: insights
+  set:
+    status: actioned
+    addressed_by: decision-case-651.3
+  change: 'actioned: case-schema.md and orchestration.md show the forms case-guppi and the main agent
+    write by examples that a test runs the checks over (cases 646, 651)'
+  applied: '16:08:37'
+- line: 20
+  text: decision[case 652][update][estimate-case-protocol-example-passes-the-check]{ref:rule-case-protocol}
+  case: '652'
+  kind: update
+  slug: estimate-case-protocol-example-passes-the-check
+  origin: raw/2026-10-05/1343/ledger.md#case-652
+  decision: decision-case-652
+  ref: rule-case-protocol
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the test fails, not skips, when case-schema.md holds no block
+    tagged case (case 652)
+  sections:
+    Criterion: 'When:
+
+      `tests/test_case_schema.py` runs under `uv run pytest`. It reads the block tagged `case` in `vault/wiki/case-schema.md`,
+      rendered from `rule-case-protocol`, and runs over it the function of `guppi/casecheck.py` that the
+      `SubagentStop` hook of `rule-case-check` runs over the Cases of a file. It runs in a temporary project
+      that holds the schema files of the vault and the pages the example updates.
+
+
+      Then:
+
+      `vault/wiki/case-schema.md` holds, under its own heading after its `## Language` section, one block
+      tagged `case`: one Case with sub-cases, in the chat form that `case-guppi` writes into its file.
+
+      **＋** The example holds a `create` and an `update` with their sub-points, a `replace` pair whose
+      values hold a backtick in spans padded by one space, a `set` in a fenced block, an `update` of an
+      Estimate whose Criterion it replaces, a read line for each Estimate it creates or replaces, and
+      its ledger lines in a quoted fence under `ratification`.
+
+      **＋** The example''s `context` says what the sentence around the match of its `replace` pair names.
+
+      **＋** The paragraph before the block says that the example passes the check of the `SubagentStop`
+      hook of `rule-case-check`, and that the check, not the paragraph, is the source of the limits; it
+      lists no limit.
+
+      **＋** The check gives the example no finding and no note, and the test passes.
+
+      **＋** A change of the check that gives the example a finding or a note fails the test, which prints
+      it.
+
+      **＋** The test reads the example from `vault/wiki/case-schema.md` and the checks from `guppi/casecheck.py`,
+      and holds no copy of either.
+
+      **－** While `vault/wiki/case-schema.md` holds no block tagged `case`, both tests of `tests/test_case_schema.py`
+      fail with a message that names the file; no test of the file is skipped.
+
+      **－** The Spec example and the limits that the prose of `vault/wiki/case-schema.md` already states
+      stay as they are.'
+  applied: '16:08:37'
+- line: 21
+  text: decision[case 653.1][update][estimate-case-check-sends-back-a-faulty-case]{ref:rule-case-check}
+  case: '653.1'
+  kind: update
+  slug: estimate-case-check-sends-back-a-faulty-case
+  origin: raw/2026-10-05/1343/ledger.md#case-653.1
+  decision: decision-case-653.1
+  ref: rule-case-check
+  category: estimates
+  superseded_by: '659'
+- line: 22
+  text: decision[case 653.1][update][rule-spec-reconcile]{ref:rule-spec-reconcile}
+  case: '653.1'
+  kind: update
+  slug: rule-spec-reconcile
+  origin: raw/2026-10-05/1343/ledger.md#case-653.1
+  decision: decision-case-653.1
+  ref: rule-spec-reconcile
+  category: rules
+  superseded_by: '659'
+- line: 23
+  text: decision[case 653.2][update][estimate-case-check-sends-back-a-ratified-case-in-another-shape]{ref:rule-case-check}
+  case: '653.2'
+  kind: update
+  slug: estimate-case-check-sends-back-a-ratified-case-in-another-shape
+  origin: raw/2026-10-05/1343/ledger.md#case-653.2
+  decision: decision-case-653.2
+  ref: rule-case-check
+  category: estimates
+  superseded_by: '659'
+- line: 24
+  text: decision[case 654][update][estimate-synthesis-clusters]{ref:rule-synthesis}
+  case: '654'
+  kind: update
+  slug: estimate-synthesis-clusters
+  origin: raw/2026-10-05/1343/ledger.md#case-654
+  decision: decision-case-654
+  ref: rule-synthesis
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a page is named in the report when it is opened to judge a shared
+    cause; a read of only its status, insight, children and tags is not (case 654)
+  sections:
+    Criterion: 'When:
+
+      `librarian-guppi` does the synthesis in a live run whose `materialize.yaml` holds at least two lesson
+      entries.
+
+
+      Then:
+
+      The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `vault/wiki/lessons/`
+      and `^(pattern|deferred_by):` over `vault/wiki/insights/`, with the number of lines each printed.
+
+      **＋** The brief gives one line for each lesson entry: its slug and the lesson or Insight it joined,
+      or none and a few words on why no index line of either Grep shares its root cause.
+
+      **＋** Two lessons with one root cause and no Insight give one `create` of an Insight with `pattern`,
+      both children, the union of their tags, `Pattern` and `Proposal`, and one `update` per lesson with
+      `set: {status: clustered, insight: <slug>}`.
+
+      **＋** A lesson whose root cause matches the pattern of a live Insight gives an `update` of that
+      Insight with the lesson added to its `children`, and an `update` of the lesson.
+
+      **＋** Every entry the synthesis adds carries `librarian: synthesis`.
+
+      **＋** Every page the librarian opens at synthesis to judge whether a lesson shares its root cause
+      is named in the report with the outcome: the Insight it joined, or none and why. A read of its Trigger,
+      Root cause, `root_cause`, Pattern or `pattern` outside the two Greps is such an opening.
+
+      **＋** A lesson without a pair stays `new`, and its line in the brief is no flag.
+
+      **－** A read at synthesis of only the fields `status`, `insight`, `children` and `tags` of a page
+      under `vault/wiki/lessons/` or `vault/wiki/insights/`, made to learn which lessons are grouped or
+      which lessons an Insight holds, is not named in the report and fails nothing here.
+
+      **－** A read of another session''s `materialize.yaml` or of a page under `vault/archive/` fails
+      nothing here: an actioned Insight stays live with its pattern in its index line until the close
+      of its sprint, and the flag of such a read is the promise of `estimate-documentation-completes`.'
+  applied: '16:08:37'
+- line: 25
+  text: decision[case 655][update][estimate-ask-searches-at-prespec]{ref:rule-ask}{supersedes:case 649}
+  case: '655'
+  kind: update
+  slug: estimate-ask-searches-at-prespec
+  origin: raw/2026-10-05/1343/ledger.md#case-655
+  decision: decision-case-655
+  ref: rule-ask
+  supersedes:
+  - '649'
+  category: estimates
+  set:
+    status: pending
+    purpose: Whether ask-guppi at /pre-spec starts with the Grep of the rules and one Grep per other category,
+      then greps and reads as each finding needs, a count over Decision pages not run again
+    method: 'by hand at the /hi of a later session: the Grep, Glob and Read calls of ask-guppi at a /pre-spec
+      after the render of .claude/agents/ask-guppi.md, read in its agent transcript against the Criterion,
+      recorded in the estimate line'
+  change: the Criterion replaced whole — the clause on Decision pages left to estimate-search-leaves-out-decisions-in-every-agent;
+    purpose and method set anew (case 655)
+  sections:
+    Criterion: 'When:
+
+      At the first run of `/pre-spec` in a session, the main agent dispatches `ask-guppi` through the
+      `Agent` tool with the plan file and the questions of `.claude/skills/pre-spec/SKILL.md`, and the
+      agent follows `.claude/agents/ask-guppi.md` as rendered from `rule-ask`.
+
+
+      Then:
+
+      The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then runs one
+      Grep per other category the question touches.
+
+      **＋** After those Greps it runs further Greps and Reads as a finding needs, including the search
+      behind a count that a `context` states.
+
+      **＋** A count of a `context` whose search covers `vault/wiki/decisions/` is not run again and is
+      no finding.
+
+      **－** Whether a Grep or Read of the agent reaches `vault/wiki/decisions/` is outside this promise:
+      `estimate-search-leaves-out-decisions-in-every-agent` reads it.'
+  applied: '16:08:37'
+- line: 26
+  text: decision[case 656][update][rule-permissions]{ref:rule-permissions}
+  case: '656'
+  kind: update
+  slug: rule-permissions
+  origin: raw/2026-10-05/1343/ledger.md#case-656
+  decision: decision-case-656
+  ref: rule-permissions
+  category: rules
+  set:
+    purpose: Lets the session write its own working files and read this project's saved transcripts without
+      asking, and nothing else
+  replace:
+  - old: Lets the session write its own working files without asking, and nothing else.
+    new: Lets the session write its own working files and read this project's saved transcripts without
+      asking, and nothing else.
+  - old: and the guard of `rule-spec-reconcile` keeps it inside `cases/` (case 645.16).
+    new: 'and the guard of `rule-spec-reconcile` keeps it inside `cases/` (case 645.16). The saved transcripts
+      of this project, under `~/.claude/projects/c--PROJECTS-GUPPI/` outside the repository, are on the
+      list for reading only: `case-guppi` checks a past reading in them, and a prompt on each of its searches
+      buys nothing; the rule covers every agent of the project, and Claude Code applies a `Read` rule
+      to Grep and Glob best-effort, and whether a search there still asks is the person''s word (case
+      656).'
+  - old: '"Write(vault/wiki/brief.md)"'
+    new: "\"Write(vault/wiki/brief.md)\",\n      \"Read(~/.claude/projects/c--PROJECTS-GUPPI/**)\""
+  change: this project's saved transcripts under ~/.claude/projects join the allow list for reading, so
+    a search of case-guppi there does not ask (case 656)
+  applied: '16:08:37'
+- line: 27
+  text: decision[case 656][update][estimate-permissions]{ref:rule-permissions}
+  case: '656'
+  kind: update
+  slug: estimate-permissions
+  origin: raw/2026-10-05/1343/ledger.md#case-656
+  decision: decision-case-656
+  ref: rule-permissions
+  category: estimates
+  set:
+    status: pending
+    method: the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case
+      of tests/test_render.py; the live probes are the person's word on the client's prompt at a Write
+      of work.md in Work Mode, and at a Read, Grep or Glob of case-guppi under ~/.claude/projects/c--PROJECTS-GUPPI/
+      in a session after the render, each recorded in the estimate line — never the agent's, which cannot
+      see the prompt
+  change: the Criterion replaced whole — the allow list holds a Read rule for this project's saved transcripts,
+    and a search of case-guppi there runs with no prompt (case 656)
+  sections:
+    Criterion: 'When:
+
+      The agent writes or edits a working file of the session — `frontier.md`, `spec.md`, `handoff.md`,
+      `work.md` or `carry.md` under `vault/raw/**` — or `vault/wiki/brief.md`; or `case-guppi` writes
+      the file of its Case.
+
+      **＋** Or `case-guppi` calls Read, Grep or Glob on a saved transcript of this project under `~/.claude/projects/c--PROJECTS-GUPPI/`.
+
+
+      Then:
+
+      The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`, `spec.md`, `handoff.md`
+      and `work.md` under `vault/raw/**`, Write for `carry.md` under `vault/raw/**`, Edit and Write for
+      `vault/wiki/brief.md`, and `Read(~/.claude/projects/c--PROJECTS-GUPPI/**)`.
+
+      **＋** `.claude/settings.json` is rendered from `rule-permissions`; the JSON case of `tests/test_render.py`
+      fixes the shape of the block.
+
+      **＋** Whether the client asked is seen by the person only; the agent''s reply does not tell an approved
+      call from one not asked.
+
+      **＋** The client''s prompt is the person''s word: the reading line records whether the client asked,
+      from the person, never from the agent.
+
+      **＋** In Plan Mode the client asks before every edit of the main agent outside the plan file, allow
+      list or not.
+
+      **＋** `case-guppi` writes the file of its Case in the mode `permissionMode: acceptEdits` of `.claude/agents/case-guppi.md`,
+      with no prompt in Plan Mode, and the guard of `rule-spec-reconcile` keeps it inside `cases/`.
+
+      **＋** A Read, Grep or Glob of `case-guppi` under `~/.claude/projects/c--PROJECTS-GUPPI/` runs with
+      no prompt, in Plan Mode too.
+
+      **－** A prompt in Plan Mode on an edit of the main agent, approved by the person, is not a finding
+      and not a `failed`.
+
+      **－** `deny` and `ask` are empty; nothing else under `wiki/` is allowed, no path under `cases/`
+      is on the allow list, no other path outside the project is on it, and no Edit or Write rule names
+      `~/.claude/projects/c--PROJECTS-GUPPI/`.'
+  applied: '16:08:37'
+- line: 28
+  text: decision[case 657][defer][estimate-case-build-checks-the-finished-case]{ref:estimate-case-build-checks-the-finished-case}
+  case: '657'
+  kind: defer
+  slug: estimate-case-build-checks-the-finished-case
+  origin: raw/2026-10-05/1343/ledger.md#case-657
+  decision: decision-case-657
+  ref: estimate-case-build-checks-the-finished-case
+  category: estimates
+  fields:
+    type: estimate
+    purpose: Whether case-guppi checks its finished Case before it answers, counted by what ask-guppi
+      still finds at pre-spec; failed at L22 of session 0109, put off by sessions 0311 and 1343
+  exists: true
+  applied: '16:08:37'
+- line: 29
+  text: decision[case 658][defer][estimate-case-check-sends-back-a-faulty-case]{ref:estimate-case-check-sends-back-a-faulty-case}{supersedes:case
+    653}
+  case: '658'
+  kind: defer
+  slug: estimate-case-check-sends-back-a-faulty-case
+  origin: raw/2026-10-05/1343/ledger.md#case-658
+  decision: decision-case-658
+  ref: estimate-case-check-sends-back-a-faulty-case
+  supersedes:
+  - '653'
+  category: estimates
+  exists: true
+  superseded_by: '659'
+- line: 30
+  text: decision[case 656][update][rule-settings]{ref:rule-settings}
+  case: '656'
+  kind: update
+  slug: rule-settings
+  origin: raw/2026-10-05/1343/ledger.md#case-656
+  decision: decision-case-656
+  ref: rule-settings
+  category: rules
+  replace:
+  - old: what may be written without a question
+    new: what may be written or read without a question
+  change: the block of rule-permissions also carries what may be read without a question (case 656)
+  applied: '16:08:37'
+- line: 31
+  text: decision[case 659][defer][estimate-case-check-sends-back-a-faulty-case]{ref:estimate-case-check-sends-back-a-faulty-case}{supersedes:case
+    658}{supersedes:case 653}{supersedes:case 653.1}{supersedes:case 653.2}
+  case: '659'
+  kind: defer
+  slug: estimate-case-check-sends-back-a-faulty-case
+  origin: raw/2026-10-05/1343/ledger.md#case-659
+  decision: decision-case-659
+  ref: estimate-case-check-sends-back-a-faulty-case
+  supersedes:
+  - '658'
+  - '653'
+  - '653.1'
+  - '653.2'
+  category: estimates
+  fields:
+    type: estimate
+    purpose: A Case of case-guppi that the checks refuse goes back to it before the main agent sees it;
+      the removal of the old path of guppi casecheck --subagent, taken by Case 653 and put off by session
+      1343 until estimate-case-build-writes-the-case passes live
+  exists: true
+  applied: '16:08:37'
+- line: 32
+  text: 'estimate[estimate-spec-write-copies-the-ratified-case][passed] 2026-10-05, by hand at the Work
+    readings of session 1343: uv run pytest -q tests/test_ratified.py -k write 61 passed; the plan file
+    after the first ratification of the session, Case 650 (reply at 14:05:55, ledger L11–L13), read in
+    the ask-guppi read of 15:25:20 before any later write of Case 650: the section `## Case 650` with
+    650.1 and 650.2 equals the case file case-guppi wrote (its Write and Edit) in heading, context, problem,
+    recommend, given, when and then; a `then` block built from the sub-points of `tasks` (the create with
+    ref, kind, purpose, method, tags; four old/new pairs and change; set and change on 650.2), padded
+    backtick spans read as YAML values, a `tasks` block of task lines without sub-points, no `ratification`
+    in the plan; fences of five backticks around lines of four in 651.2 and 651.3; not exercised: a sub-case
+    with its own recommend and every refusal clause'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-copies-the-ratified-case
+  status: passed
+  result: '2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py
+    -k write 61 passed; the plan file after the first ratification of the session, Case 650 (reply at
+    14:05:55, ledger L11–L13), read in the ask-guppi read of 15:25:20 before any later write of Case 650:
+    the section `## Case 650` with 650.1 and 650.2 equals the case file case-guppi wrote (its Write and
+    Edit) in heading, context, problem, recommend, given, when and then; a `then` block built from the
+    sub-points of `tasks` (the create with ref, kind, purpose, method, tags; four old/new pairs and change;
+    set and change on 650.2), padded backtick spans read as YAML values, a `tasks` block of task lines
+    without sub-points, no `ratification` in the plan; fences of five backticks around lines of four in
+    651.2 and 651.3; not exercised: a sub-case with its own recommend and every refusal clause'
+  origin: raw/2026-10-05/1343/ledger.md#L32
+  applied: '16:08:37'
+- line: 33
+  text: 'estimate[estimate-spec-write-checks-the-written-case][passed] 2026-10-05, by hand at the Work
+    readings of session 1343: uv run pytest -q tests/test_ratified.py -k checks_the_written 5 passed;
+    the ratifications of 650–656, first and again: `uv run guppi ratified` ran with no error after each;
+    `uv run guppi prespec --check` over the plan they wrote printed notes only, exit 0; after the re-ratification
+    at 15:48:36 the check printed three findings, all on 653.1 and 653.2, Cases not written in that run,
+    and the hook reported none of them; not exercised: a finding of a Case written in the run, a missed
+    or doubled anchor, the Cyrillic and unparsed-line clauses'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-checks-the-written-case
+  status: passed
+  result: '2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py
+    -k checks_the_written 5 passed; the ratifications of 650–656, first and again: `uv run guppi ratified`
+    ran with no error after each; `uv run guppi prespec --check` over the plan they wrote printed notes
+    only, exit 0; after the re-ratification at 15:48:36 the check printed three findings, all on 653.1
+    and 653.2, Cases not written in that run, and the hook reported none of them; not exercised: a finding
+    of a Case written in the run, a missed or doubled anchor, the Cyrillic and unparsed-line clauses'
+  origin: raw/2026-10-05/1343/ledger.md#L33
+  applied: '16:08:37'
+- line: 34
+  text: 'estimate[estimate-spec-write-writes-a-defer][passed] 2026-10-05, by hand at the Work readings
+    of session 1343: uv run pytest -q tests/test_ratified.py -k defer 14 passed; the defers 657, 658 and
+    659 the person asked for, written while spec.md did not stand: 657 under `## Deferred` after Case
+    656, its section equal to the reply''s text before its LEDGER block; 658 appended after 657; 659 refused
+    once at the reply that carried only its line ("case 659: no fence tagged then with its defer items"),
+    then written at the next reply that showed the short form and repeated the line, its section equal
+    to that showing, one `## Deferred` heading; not exercised: a defer shown again, the key and YAML-comment
+    refusals, the write into spec.md'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-writes-a-defer
+  status: passed
+  result: '2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py
+    -k defer 14 passed; the defers 657, 658 and 659 the person asked for, written while spec.md did not
+    stand: 657 under `## Deferred` after Case 656, its section equal to the reply''s text before its LEDGER
+    block; 658 appended after 657; 659 refused once at the reply that carried only its line ("case 659:
+    no fence tagged then with its defer items"), then written at the next reply that showed the short
+    form and repeated the line, its section equal to that showing, one `## Deferred` heading; not exercised:
+    a defer shown again, the key and YAML-comment refusals, the write into spec.md'
+  origin: raw/2026-10-05/1343/ledger.md#L34
+  applied: '16:08:37'
+- line: 35
+  text: 'estimate[estimate-spec-write-removes-a-superseded-case][passed] 2026-10-05, by hand at the Work
+    readings of session 1343: uv run pytest -q tests/test_ratified.py -k superseded 7 passed; the plan
+    held `## Case 653`, `### Case 653.1` and `### Case 653.2` at 15:25:20; after the reply of Case 658
+    with {supersedes:case 653} the heading listing at 15:48:46 holds `## Case 658` and no heading of 653,
+    653.1 or 653.2; after Case 659 with {supersedes:case 658}{supersedes:case 653}{supersedes:case 653.1}{supersedes:case
+    653.2} the plan holds `## Case 659` and no `## Case 658`; marks on Cases the plan no longer held,
+    and {supersedes:case 649} of session 0311 on Case 655, gave no refusal; not exercised: the removal
+    from spec.md and a sub-case mark whose parent stands'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-removes-a-superseded-case
+  status: passed
+  result: '2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py
+    -k superseded 7 passed; the plan held `## Case 653`, `### Case 653.1` and `### Case 653.2` at 15:25:20;
+    after the reply of Case 658 with {supersedes:case 653} the heading listing at 15:48:46 holds `## Case
+    658` and no heading of 653, 653.1 or 653.2; after Case 659 with {supersedes:case 658}{supersedes:case
+    653}{supersedes:case 653.1}{supersedes:case 653.2} the plan holds `## Case 659` and no `## Case 658`;
+    marks on Cases the plan no longer held, and {supersedes:case 649} of session 0311 on Case 655, gave
+    no refusal; not exercised: the removal from spec.md and a sub-case mark whose parent stands'
+  origin: raw/2026-10-05/1343/ledger.md#L35
+  applied: '16:08:37'
+- line: 36
+  text: 'estimate[estimate-orchestration-shows-the-built-case][failed] 2026-10-05, by hand at the Work
+    readings of session 1343, Cases 650–656 against transcript f5706873: the plan file was written with
+    its title line before the first dispatch; seven case-guppi dispatched with the Case id, the Frontier
+    item, its source and the person''s words; twelve rounds sent back by SendMessage verbatim and shown
+    in Russian in order, first rounds with their Context; eight showings, each by SendUserFile display
+    render of its case file, a Russian heading, one list per Case and sub-case of the summary with what
+    done means and its Estimate, the ledger lines as the summary held them, the agent''s text after one
+    rule; no Stop refusal of a showing; failed on one clause: the heading of Case 653 rendered Frontier
+    item C3, not the Case''s name, its summary holding items for 653.1 and 653.2 only; the first showing
+    of 650 put the ratification under a bare `**ratification:**` line with a plain fence, later ones as
+    a quote block; not exercised: a plain explanation, a Fact reply, an `**Other Case:**` line, a Stop
+    refusal of a showing'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-shows-the-built-case
+  status: failed
+  result: '2026-10-05, by hand at the Work readings of session 1343, Cases 650–656 against transcript
+    f5706873: the plan file was written with its title line before the first dispatch; seven case-guppi
+    dispatched with the Case id, the Frontier item, its source and the person''s words; twelve rounds
+    sent back by SendMessage verbatim and shown in Russian in order, first rounds with their Context;
+    eight showings, each by SendUserFile display render of its case file, a Russian heading, one list
+    per Case and sub-case of the summary with what done means and its Estimate, the ledger lines as the
+    summary held them, the agent''s text after one rule; no Stop refusal of a showing; failed on one clause:
+    the heading of Case 653 rendered Frontier item C3, not the Case''s name, its summary holding items
+    for 653.1 and 653.2 only; the first showing of 650 put the ratification under a bare `**ratification:**`
+    line with a plain fence, later ones as a quote block; not exercised: a plain explanation, a Fact reply,
+    an `**Other Case:**` line, a Stop refusal of a showing'
+  origin: raw/2026-10-05/1343/ledger.md#L36
+  applied: '16:08:37'
+- line: 37
+  text: 'estimate[estimate-case-check-notes-a-criterion-line-not-carried][passed] 2026-10-05, by hand
+    at the Work readings of session 1343: uv run pytest -q tests/test_casecheck.py tests/test_prespec.py
+    -k note 16 passed; the first note of the session came from `uv run guppi casecheck --subagent` on
+    case-guppi of Case 650 (agent a8b021dff7985c631) after its first Write of cases/case-650.md: three
+    notes and no finding, the first naming case 650.2, `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+    and the line not carried; the agent kept its change and added a context paragraph saying why; its
+    next stop got no feedback, the notes not sent again; the store holds the three notes under `650.2`
+    in `notes`, apart from `findings: []`; the showing passed the Stop check; `uv run guppi prespec --check`
+    printed the same note among 19 `note:` lines, exit 0'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-check-notes-a-criterion-line-not-carried
+  status: passed
+  result: '2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_casecheck.py
+    tests/test_prespec.py -k note 16 passed; the first note of the session came from `uv run guppi casecheck
+    --subagent` on case-guppi of Case 650 (agent a8b021dff7985c631) after its first Write of cases/case-650.md:
+    three notes and no finding, the first naming case 650.2, `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+    and the line not carried; the agent kept its change and added a context paragraph saying why; its
+    next stop got no feedback, the notes not sent again; the store holds the three notes under `650.2`
+    in `notes`, apart from `findings: []`; the showing passed the Stop check; `uv run guppi prespec --check`
+    printed the same note among 19 `note:` lines, exit 0'
+  origin: raw/2026-10-05/1343/ledger.md#L37
+  applied: '16:08:37'
+- line: 38
+  text: 'estimate[estimate-case-protocol-case-form][failed] 2026-10-05, by hand at the Work readings of
+    session 1343, cases/case-650.md to case-656.md against vault/wiki/case-schema.md: headings, sub-cases
+    in one file, sections in the order of the table each one blockquote, context opening with the mechanism,
+    recommend as the table sets, ＋/－ lines, tasks naming each Estimate with sub-points and no by-hand
+    box after Work Mode, one untagged fence of ledger lines, a plain question at each showing, no complaint
+    of the person; failed: `given` holds two things on a line in 650.1, 650.2 (`guppi/ratified.py` and
+    `tests/test_ratified.py`), 653.1 and 654, and states state in 656 ("on the allow list", "with `permissionMode:
+    acceptEdits`") and 653.1; `then` of 652 holds a count ("both tests of `tests/test_case_schema.py`
+    fail"); the passed reading of 2026-10-03 accepted paired `given` lines of the same form in cases 607–610'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-protocol-case-form
+  status: failed
+  result: '2026-10-05, by hand at the Work readings of session 1343, cases/case-650.md to case-656.md
+    against vault/wiki/case-schema.md: headings, sub-cases in one file, sections in the order of the table
+    each one blockquote, context opening with the mechanism, recommend as the table sets, ＋/－ lines, tasks
+    naming each Estimate with sub-points and no by-hand box after Work Mode, one untagged fence of ledger
+    lines, a plain question at each showing, no complaint of the person; failed: `given` holds two things
+    on a line in 650.1, 650.2 (`guppi/ratified.py` and `tests/test_ratified.py`), 653.1 and 654, and states
+    state in 656 ("on the allow list", "with `permissionMode: acceptEdits`") and 653.1; `then` of 652
+    holds a count ("both tests of `tests/test_case_schema.py` fail"); the passed reading of 2026-10-03
+    accepted paired `given` lines of the same form in cases 607–610'
+  origin: raw/2026-10-05/1343/ledger.md#L38
+  applied: '16:08:37'
+- line: 39
+  text: 'estimate[estimate-case-build-answers-what-done-means][passed] 2026-10-05, by hand at the Work
+    readings of session 1343: each Case and sub-case of 650–656 names in its file and in every summary
+    the Estimate that checks it — created (650.1, 651.2, 651.3), replaced (650.2, 652, 653.1, 653.2, 654,
+    655, 656) or named in context as already checking it with its Criterion standing (651.1); rounds asked
+    how the change is checked before the Case was written (650 Q3, 651 Q5, 653 Q3), each in its recommend;
+    the short-form defers 657–659 are the main agent''s and carry none'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-build-answers-what-done-means
+  status: passed
+  result: '2026-10-05, by hand at the Work readings of session 1343: each Case and sub-case of 650–656
+    names in its file and in every summary the Estimate that checks it — created (650.1, 651.2, 651.3),
+    replaced (650.2, 652, 653.1, 653.2, 654, 655, 656) or named in context as already checking it with
+    its Criterion standing (651.1); rounds asked how the change is checked before the Case was written
+    (650 Q3, 651 Q5, 653 Q3), each in its recommend; the short-form defers 657–659 are the main agent''s
+    and carry none'
+  origin: raw/2026-10-05/1343/ledger.md#L39
+  applied: '16:08:37'
+- line: 40
+  text: 'estimate[estimate-case-build-records-the-rounds-in-recommend][passed] 2026-10-05, by hand at
+    the Work readings of session 1343, the case files 650–656 of the first session after the render of
+    session 0311 against the rounds in transcript f5706873: 21 questions in the rounds and 21 items in
+    the recommend of their parents (650 Q1–Q3, 651 Q1–Q8, 652 Q1, 653 Q1–Q3, 654 Q1, 655 Q1–Q3, 656 Q1–Q2),
+    each with the question''s title in bold, `Recommended:` matching the ➡️ choice and `Answer:` in English,
+    the person''s condition on 651 Q7 and the choice against the recommendation on 655 Q2 kept, no quotation
+    of the person; not exercised: a question left unanswered, a `**Change**` item, an item under a sub-case'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-build-records-the-rounds-in-recommend
+  status: passed
+  result: '2026-10-05, by hand at the Work readings of session 1343, the case files 650–656 of the first
+    session after the render of session 0311 against the rounds in transcript f5706873: 21 questions in
+    the rounds and 21 items in the recommend of their parents (650 Q1–Q3, 651 Q1–Q8, 652 Q1, 653 Q1–Q3,
+    654 Q1, 655 Q1–Q3, 656 Q1–Q2), each with the question''s title in bold, `Recommended:` matching the
+    ➡️ choice and `Answer:` in English, the person''s condition on 651 Q7 and the choice against the recommendation
+    on 655 Q2 kept, no quotation of the person; not exercised: a question left unanswered, a `**Change**`
+    item, an item under a sub-case'
+  origin: raw/2026-10-05/1343/ledger.md#L40
+  applied: '16:08:37'
+- line: 41
+  text: 'estimate[estimate-prespec-confirms-the-findings-once][failed] 2026-10-05, by hand at the Work
+    readings of session 1343, the /pre-spec of session 1343 after the render by case 638 (commit 7b089086):
+    seven ask-guppi in one message; the findings to six case-guppi in one message (653 put off by the
+    person''s answer); the six runs whose findings sent a Case back asked in one message only whether
+    each finding is closed; each made one Read of its case file, no Grep and no new finding; a verdict
+    line under each finding; one list of what was not checked and the files read; finding 656-1.1 not
+    closed put to the person as a grill-me question, left by the person; the six Cases shown in one reply
+    for one ratification; no second dispatch; failed: under one finding each, the runs on 650 (3.1), 652
+    (1.1) and 654 (1.1) wrote four sentences, more than the three allowed'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-confirms-the-findings-once
+  status: failed
+  result: '2026-10-05, by hand at the Work readings of session 1343, the /pre-spec of session 1343 after
+    the render by case 638 (commit 7b089086): seven ask-guppi in one message; the findings to six case-guppi
+    in one message (653 put off by the person''s answer); the six runs whose findings sent a Case back
+    asked in one message only whether each finding is closed; each made one Read of its case file, no
+    Grep and no new finding; a verdict line under each finding; one list of what was not checked and the
+    files read; finding 656-1.1 not closed put to the person as a grill-me question, left by the person;
+    the six Cases shown in one reply for one ratification; no second dispatch; failed: under one finding
+    each, the runs on 650 (3.1), 652 (1.1) and 654 (1.1) wrote four sentences, more than the three allowed'
+  origin: raw/2026-10-05/1343/ledger.md#L41
+  applied: '16:08:37'
+- line: 42
+  text: 'lesson[error][lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases]{tags:session,workflow}
+    trigger: at the /pre-spec of session 1343 the main agent put off Case 653 by the short-form Case 658
+    with one mark {supersedes:case 653}; the decision lines of Case 653 were those of 653.1 and 653.2,
+    so `guppi prespec --check` printed three findings "no Case 653.x heading in the plan", and `materialize`
+    would have applied the three updates the person put off; Case 659 carried a mark for each number.
+    root_cause: the agent wrote the mark of the parent from the words of the short form and did not check
+    how the scripts read it; the Spec hook removes a parent with its sub-cases, while `prespec.superseded_in_window`
+    and `materialize.mark_superseded` mark only the number named, two readings of one mark'
+  kind: lesson
+  category: lessons
+  slug: lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases
+  origin: raw/2026-10-05/1343/ledger.md#L42
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the agent wrote the mark of the parent from the words of the short form and did not check
+      how the scripts read it; the Spec hook removes a parent with its sub-cases, while `prespec.superseded_in_window`
+      and `materialize.mark_superseded` mark only the number named, two readings of one mark
+  sections:
+    Trigger: at the /pre-spec of session 1343 the main agent put off Case 653 by the short-form Case 658
+      with one mark {supersedes:case 653}; the decision lines of Case 653 were those of 653.1 and 653.2,
+      so `guppi prespec --check` printed three findings "no Case 653.x heading in the plan", and `materialize`
+      would have applied the three updates the person put off; Case 659 carried a mark for each number.
+    Root cause: the agent wrote the mark of the parent from the words of the short form and did not check
+      how the scripts read it; the Spec hook removes a parent with its sub-cases, while `prespec.superseded_in_window`
+      and `materialize.mark_superseded` mark only the number named, two readings of one mark
+  tags:
+  - session
+  - workflow
+  applied: '16:08:37'
+- line: 43
+  text: 'lesson[error][lesson-orchestration-defer-acknowledged-without-its-short-form]{tags:session,workflow}
+    trigger: in session 1343 the main agent showed the short-form Case 659 in a reply that asked the person,
+    then acknowledged the person''s yes with the LEDGER line alone; the Stop hook of rule-spec-write refused
+    it with "case 659: no fence tagged then with its defer items", and a further reply showed the short
+    form again with the line. root_cause: the agent took the earlier showing as enough, while the hook
+    writes a short form only from the reply that carries both its `then` fence and its ledger line'
+  kind: lesson
+  category: lessons
+  slug: lesson-orchestration-defer-acknowledged-without-its-short-form
+  origin: raw/2026-10-05/1343/ledger.md#L43
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the agent took the earlier showing as enough, while the hook writes a short form only
+      from the reply that carries both its `then` fence and its ledger line
+  sections:
+    Trigger: 'in session 1343 the main agent showed the short-form Case 659 in a reply that asked the
+      person, then acknowledged the person''s yes with the LEDGER line alone; the Stop hook of rule-spec-write
+      refused it with "case 659: no fence tagged then with its defer items", and a further reply showed
+      the short form again with the line.'
+    Root cause: the agent took the earlier showing as enough, while the hook writes a short form only
+      from the reply that carries both its `then` fence and its ledger line
+  tags:
+  - session
+  - workflow
+  applied: '16:08:37'
+- line: 44
+  text: 'lesson[error][lesson-orchestration-case-heading-named-from-the-frontier-item]{tags:session,workflow}
+    trigger: in session 1343 the main agent showed Case 653 under a Russian heading of the Frontier item
+    C3, not of the Case''s name "The check of case-guppi drops the old path of a Case given as text",
+    and the reading of estimate-orchestration-shows-the-built-case failed on it. root_cause: the summary
+    of case-guppi held items for 653.1 and 653.2 and no line for the top-level Case, and the agent filled
+    the heading from the item it dispatched instead of asking the case file''s heading'
+  kind: lesson
+  category: lessons
+  slug: lesson-orchestration-case-heading-named-from-the-frontier-item
+  origin: raw/2026-10-05/1343/ledger.md#L44
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the summary of case-guppi held items for 653.1 and 653.2 and no line for the top-level
+      Case, and the agent filled the heading from the item it dispatched instead of asking the case file's
+      heading
+  sections:
+    Trigger: in session 1343 the main agent showed Case 653 under a Russian heading of the Frontier item
+      C3, not of the Case's name "The check of case-guppi drops the old path of a Case given as text",
+      and the reading of estimate-orchestration-shows-the-built-case failed on it.
+    Root cause: the summary of case-guppi held items for 653.1 and 653.2 and no line for the top-level
+      Case, and the agent filled the heading from the item it dispatched instead of asking the case file's
+      heading
+  tags:
+  - session
+  - workflow
+  applied: '16:08:37'
+- kind: update
+  category: insights
+  slug: insight-harness-one-rule-implemented-twice-drifts
+  origin: raw/2026-10-05/1343/ledger.md#L42
+  set:
+    children:
+    - lesson-prespec-a-second-copy-of-a-matching-rule-drifts
+    - lesson-lint-decision-target-archived-counts-as-missing
+    - lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases
+    status: open
+  change: child lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases added, reopened (synthesis)
+  librarian: synthesis
+  applied: '16:08:37'
+- kind: update
+  category: lessons
+  slug: lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases
+  origin: raw/2026-10-05/1343/ledger.md#L42
+  set:
+    status: clustered
+    insight: insight-harness-one-rule-implemented-twice-drifts
+  change: clustered under insight-harness-one-rule-implemented-twice-drifts (synthesis)
+  librarian: synthesis
+  applied: '16:08:37'
+- kind: update
+  category: insights
+  slug: insight-workflow-case-schema-silent-on-what-the-scripts-accept
+  origin: raw/2026-10-05/1343/ledger.md#L43
+  set:
+    children:
+    - lesson-sub-case-given-the-parents-plus-lines-has-no-form
+    - lesson-generate-replace-anchor-stays-in-one-section
+    - lesson-spec-write-sub-point-opening-with-a-code-span-unpadded
+    - lesson-prespec-read-line-of-a-renamed-estimate
+    - lesson-prespec-wikilink-to-a-decision-page-not-yet-written
+    - lesson-case-build-closes-a-sprint-item-without-the-sprint-page
+    - lesson-case-build-splits-a-case-whose-line-stands
+    - lesson-case-showing-ratification-fence-outside-the-blockquote
+    - lesson-orchestration-short-defer-then-block-written-as-a-mapping
+    - lesson-case-build-replace-pair-value-unpadded-and-paths-off-given
+    - lesson-orchestration-defer-acknowledged-without-its-short-form
+  change: child lesson-orchestration-defer-acknowledged-without-its-short-form added (synthesis)
+  librarian: synthesis
+  applied: '16:08:37'
+- kind: update
+  category: lessons
+  slug: lesson-orchestration-defer-acknowledged-without-its-short-form
+  origin: raw/2026-10-05/1343/ledger.md#L43
+  set:
+    status: clustered
+    insight: insight-workflow-case-schema-silent-on-what-the-scripts-accept
+  change: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis)
+  librarian: synthesis
+  applied: '16:08:37'
+- kind: update
+  category: insights
+  slug: insight-case-show-built-case-retyped-by-hand
+  origin: raw/2026-10-05/1343/ledger.md#L44
+  set:
+    children:
+    - lesson-case-show-sub-case-ratification-retyped
+    - lesson-case-show-ref-of-a-ratification-line-retyped
+    - lesson-case-show-grill-round-reformatted-in-translation
+    - lesson-orchestration-case-heading-named-from-the-frontier-item
+    status: open
+  change: child lesson-orchestration-case-heading-named-from-the-frontier-item added, reopened (synthesis)
+  librarian: synthesis
+  applied: '16:08:37'
+- kind: update
+  category: lessons
+  slug: lesson-orchestration-case-heading-named-from-the-frontier-item
+  origin: raw/2026-10-05/1343/ledger.md#L44
+  set:
+    status: clustered
+    insight: insight-case-show-built-case-retyped-by-hand
+  change: clustered under insight-case-show-built-case-retyped-by-hand (synthesis)
+  librarian: synthesis
+  applied: '16:08:37'
+decisions:
+- case: '650.1'
+  decision: decision-case-650.1
+  origin: raw/2026-10-05/1343/ledger.md#case-650.1
+  targets:
+  - kind: create
+    category: estimates
+    slug: estimate-spec-reconcile-refuses-a-case-file-another-agent-holds
+    ref: rule-spec-reconcile
+  - kind: update
+    category: rules
+    slug: rule-spec-reconcile
+    ref: rule-spec-reconcile
+  tags:
+  - hooks
+  - harness
+  - workflow
+  case_text:
+    given: '`estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`: the new check of a call
+      on a file whose number another agent holds.
+
+      **＋** `rule-spec-reconcile`: the rule of the guard.
+
+      **＋** `guppi/ratified.py` and `tests/test_ratified.py`: the guard and its tests.
+
+      **＋** `guppi/casecheck.py`: `clashes`, `new_number` and `case_file`, the judgments of the check
+      of `rule-case-check`, unchanged in what they judge.
+
+      **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the file of a built Case.
+
+      **＋** `<plan>.checked.json`: the store beside the plan file.
+
+      **＋** `estimate-spec-write-exits-2-on-an-error`: the guard keeps exit 0 on its own error. Unchanged.
+
+      **＋** `.claude/settings.json`: the `PreToolUse` registration of the guard. Unchanged.'
+    when: '`case-guppi` calls `Edit`, `Write` or `MultiEdit` on `raw/<date>/<hi HHMM>/cases/case-<N>.md`,
+      and `uv run guppi ratified --guard` on `PreToolUse` reads the path, the agent type and the `agent_id`
+      of the call from the hook input, and `<plan>.checked.json` beside the plan file of the session.'
+    then: 'The call is refused when `<plan>.checked.json` holds Case N, or a sub-case of it, under its
+      number alone with an `agent_id` other than the one of the call: exit 2 with the reason on stderr,
+      and the call does not run.
+
+      **＋** The reason names the file and a free number, and tells `case-guppi` to build its Case under
+      that number.
+
+      **＋** The holder is judged by `clashes` and the free number is counted by `new_number` of `guppi/casecheck.py`,
+      the judgments that the check of `rule-case-check` runs.
+
+      **＋** A call that passes while `<plan>.checked.json` holds no entry under N alone writes there,
+      under N, an entry with the `agent_id` of the call and the time, and no text, so the number is held
+      before the agent stops.
+
+      **＋** A refusal writes one line of the refusal to the day''s event log.
+
+      **－** A call whose `agent_id` is the one of the entry under N, and an entry with no `agent_id`,
+      are not refused by this check.
+
+      **－** A call with no `agent_id`, a file whose name gives no number, and a session with no plan file
+      are not judged by this check, and nothing is written into `<plan>.checked.json`.
+
+      **－** An error of the guard while it finds the plan file or reads or writes `<plan>.checked.json`
+      lets the call run: exit 0 with one line on stderr, as `estimate-spec-write-exits-2-on-an-error`
+      sets it for the guard.'
+    context: 'Each Case is built by its own `case-guppi`, which writes it into `raw/<date>/<hi HHMM>/cases/case-<N>.md`.
+      When the agent stops, the check of `rule-case-check` reads the file and stores each Case in `<plan>.checked.json`
+      with the `agent_id` of the agent. Since case 645.3 the guard of `rule-spec-reconcile` lets any `case-guppi`
+      write any file under `cases/`. Two agents can hold one number: the main agent gives a number twice,
+      or the check gives the same free number to two agents it sends back at about the same time (the
+      clash that case 610.2 counts numbers for). Then the second agent''s `Write` replaces the first agent''s
+      file before the check sends the second agent back. The `Stop` comparison refuses the showing of
+      the first Case, and nothing tells its agent to write the Case again (the handoff of session 0311,
+      from the Not done of Case 645). The person chose a guard that claims the number at the first write.
+      When the store holds no entry under the number of the file, the first call of a `case-guppi` on
+      that file writes its `agent_id` there. A call of another agent on that file is refused with a free
+      number, and that agent builds its Case under the free number. The holder is judged by `clashes`
+      and the number is counted by `new_number` of `guppi/casecheck.py`. These are the judgments the check
+      runs, so the guard and the check share one function. Case 650.1 creates the Estimate of this promise.
+      The Criterion of `estimate-spec-reconcile-refuses-an-edit-of-the-plan` says that a call that names
+      `case-guppi` under `cases/` is let through. That line becomes false, so Case 650.2 replaces the
+      Criterion whole, and its line on `case-guppi` becomes an exception that names the new Estimate.
+      Its `purpose` and `method` do not say that a call of `case-guppi` passes, so they stand. The Purpose
+      and How it works of `rule-spec-reconcile` say that every write of `case-guppi` under `cases/` is
+      an exception, and that only the hooks of `rule-spec-write` and `rule-case-check` write the store.
+      Four pairs in Case 650.1 fix those sentences. Both Estimates carry a `ref`, so the vault query of
+      `ask-guppi` was not run. A Glob `vault/**/*another-agent-holds*` printed nothing, so the new slug
+      is free.
+
+
+      What the frame showed, by these searches. A Grep of `checked\.json` over `vault/wiki/`, with `*.md
+      !**/decisions/**`, printed 15 files. `rule-spec-reconcile` and `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+      enter the Case. Ten files read the text, findings or notes of an entry that the check stores: `rule-spec-write`,
+      `estimate-spec-write-refuses-a-changed-case-file`, `estimate-spec-write-copies-the-ratified-case`,
+      `estimate-case-check-refuses-a-changed-case-file`, `estimate-case-check-shows-only-the-checked-case`,
+      `estimate-case-check-sends-back-a-faulty-case`, `estimate-case-check-notes-a-criterion-line-not-carried`,
+      `estimate-case-check-refuses-a-letter-outside-the-script`, `estimate-case-check-requires-each-question-of-the-rounds`
+      and `estimate-case-check-sends-back-a-clash-with-another-case`. They stand. The check replaces the
+      entry of a held number with the Case of the same agent. Until then the entry holds no text, so the
+      Spec hook and the `Stop` comparison refuse a showing, as they refuse one that differs from the store.
+      `estimate-case-check-sends-back-a-ratified-case-in-another-shape` stands: it counts the keys of
+      the store, and a held number is one of them, so the check does not give out a held number. `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+      stands: it judges an entry by its `agent_id`, so an answer of the old path under a held number is
+      sent back, as the person chose. Its words "from an answer" name the entry of the agent that holds
+      the number. `lesson-hooks-subagentstop-reads-the-last-text-not-the-handback` records a past session.
+      A Grep of `PreToolUse` over `vault/wiki/rules/` printed 14 files, and over `.claude/` it printed
+      `.claude/settings.json`. Only `rule-spec-reconcile` sets what happens at an `Edit` or `Write` of
+      a file under `cases/`. `rule-governed-files-hook` runs `uv run guppi guard` on the same event, for
+      rendered harness files only. `rule-hook-registry` and `.claude/settings.json` keep the registration
+      of the guard as it is. The other hits name other tools or quote an example.
+
+
+      `rule-case-build` stands. Its agent file says that the file of its Case is the one file the guard
+      lets the agent write, and that stays true. The refusal itself tells the agent to build under the
+      free number, as the finding of the check has done since case 610.1. In Work Mode, a new agent dispatched
+      to build again a Case that another agent holds is refused. The check of case 610.2 already sends
+      such an agent back. The guard reads entries that the check already writes with an `agent_id`, and
+      an entry with no `agent_id` is not compared, so the guard needs no old form.
+
+
+      Pre-spec raised three findings, and this build answers them. The pairs on `rule-spec-reconcile`
+      now match the `then` lines: the first write passes when no other agent holds the number, and a number
+      counts as held when the store holds Case N or a sub-case of it from another agent, as `clashes`
+      judges it. On its own error the guard keeps exit 0 and lets the call run, as the existing rule of
+      the guard sets it in `estimate-spec-write-exits-2-on-an-error`. That Criterion stays true, and 650.1
+      names the error in a `－` line. A store that cannot be read or written then holds no number, and
+      the check of `rule-case-check` still sends back a number held by another agent when the agent stops.
+      The guard reads `agent_id` from the `PreToolUse` input. The handoff of session 0311 records this
+      field in the probe of 645.3: "the `PreToolUse` input held `agent_id` and `agent_type` (`claude`)".
+      So this Case adds no probe. The method of the new Estimate adds a reading by hand of the entry that
+      a live `case-guppi` writes with its first `Write`.
+
+
+      The check sent back notes, and they stand. In Case 650.2, the old line that let a call of `case-guppi`
+      under `cases/` through is not carried word for word. It changed on purpose: it is now a line on
+      the other agents and an exception that names the new Estimate. Two `then` lines of 650.2 share many
+      words with 650.1, the refusal under `cases/` and the line of the event log. Each sub-case still
+      sets its own promise: 650.2 the refusal of an agent that is not `case-guppi`, 650.1 the refusal
+      of a `case-guppi` whose number another agent holds.
+
+
+      Not done: the guard and the check each read the store whole and write it whole. Two writes at the
+      same instant can still lose one of them, and this Case does not lock the store.'
+  parent: decision-case-650
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '650.2'
+  decision: decision-case-650.2
+  origin: raw/2026-10-05/1343/ledger.md#case-650.2
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-spec-reconcile-refuses-an-edit-of-the-plan
+    ref: rule-spec-reconcile
+  tags: []
+  case_text:
+    given: '`estimate-spec-reconcile-refuses-an-edit-of-the-plan`: its Criterion is replaced whole.
+
+      **＋** `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`: the promise of a call of
+      `case-guppi` on a file whose number another agent holds.
+
+      **＋** `rule-spec-reconcile`: the rule of the guard.
+
+      **＋** `guppi/ratified.py` and `tests/test_ratified.py`: the guard and its tests.
+
+      **＋** `guppi/casecheck.py`: `is_case_file`, the judgment of a file under the `cases/` folder of
+      a session folder `vault/raw/<date>/<HHMM>/`.
+
+      **＋** `guppi/ledger.py`: `is_plan_file` and `plan_path`, the judgment of a plan file under `.claude/plans/`.
+
+      **＋** `<plan>.checked.json`: the store beside the plan file.'
+    when: An agent calls `Edit`, `Write` or `MultiEdit` on a file, and `uv run guppi ratified --guard`
+      on `PreToolUse` reads the path, the content and the agent type of the call from the hook input.
+    then: 'The hook refuses every `Edit` and `MultiEdit` of a plan file, and every `Write` of a plan file
+      that exists: exit 2 with the reason on stderr, which Claude Code shows the agent, and the call does
+      not run.
+
+      **＋** A `Write` of a plan file that does not exist is let through when its content, trimmed, is
+      one line that opens with `# `; a `Write` with any other content is refused the same way.
+
+      **＋** Every `Edit`, `Write` or `MultiEdit` of a store `<plan>.checked.json` is refused the same
+      way.
+
+      **＋** An `Edit`, `Write` or `MultiEdit` of a file under the `cases/` folder of a session folder
+      `vault/raw/<date>/<HHMM>/`, whatever its name and whether it exists or not, is refused the same
+      way when the hook input does not name `case-guppi` as the agent type; the reason names the file
+      and says that `case-guppi` alone writes it.
+
+      **＋** An `Edit`, `Write` or `MultiEdit` whose hook input names `case-guppi` on a file outside such
+      a `cases/` folder is refused the same way.
+
+      **＋** A file under that folder is judged by `is_case_file` of `guppi/casecheck.py`, which the check
+      of the file uses too; a plan file is a `.md` file under `.claude/plans/`, judged by `is_plan_file`
+      of `guppi/ledger.py`, which `plan_path` uses too.
+
+      **＋** A refusal writes one line of the refusal to the day''s event log and no `tool` line, so `plan_path`
+      of `guppi/ledger.py` still names the plan file.
+
+      **－** A call whose hook input names `case-guppi` on a file under such a `cases/` folder is let through
+      unless `<plan>.checked.json` holds the number of the file from another agent, as `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+      sets it.
+
+      **－** An edit of a file outside `.claude/plans/` and outside such a `cases/` folder by any agent
+      but `case-guppi` is not judged by this hook.
+
+      **－** A payload the hook cannot read: exit 0 with one line on stderr.
+
+      **－** No `PostToolUse` hook compares an edit of the plan.'
+    context: 'Each Case is built by its own `case-guppi`, which writes it into `raw/<date>/<hi HHMM>/cases/case-<N>.md`.
+      When the agent stops, the check of `rule-case-check` reads the file and stores each Case in `<plan>.checked.json`
+      with the `agent_id` of the agent. Since case 645.3 the guard of `rule-spec-reconcile` lets any `case-guppi`
+      write any file under `cases/`. Two agents can hold one number: the main agent gives a number twice,
+      or the check gives the same free number to two agents it sends back at about the same time (the
+      clash that case 610.2 counts numbers for). Then the second agent''s `Write` replaces the first agent''s
+      file before the check sends the second agent back. The `Stop` comparison refuses the showing of
+      the first Case, and nothing tells its agent to write the Case again (the handoff of session 0311,
+      from the Not done of Case 645). The person chose a guard that claims the number at the first write.
+      When the store holds no entry under the number of the file, the first call of a `case-guppi` on
+      that file writes its `agent_id` there. A call of another agent on that file is refused with a free
+      number, and that agent builds its Case under the free number. The holder is judged by `clashes`
+      and the number is counted by `new_number` of `guppi/casecheck.py`. These are the judgments the check
+      runs, so the guard and the check share one function. Case 650.1 creates the Estimate of this promise.
+      The Criterion of `estimate-spec-reconcile-refuses-an-edit-of-the-plan` says that a call that names
+      `case-guppi` under `cases/` is let through. That line becomes false, so Case 650.2 replaces the
+      Criterion whole, and its line on `case-guppi` becomes an exception that names the new Estimate.
+      Its `purpose` and `method` do not say that a call of `case-guppi` passes, so they stand. The Purpose
+      and How it works of `rule-spec-reconcile` say that every write of `case-guppi` under `cases/` is
+      an exception, and that only the hooks of `rule-spec-write` and `rule-case-check` write the store.
+      Four pairs in Case 650.1 fix those sentences. Both Estimates carry a `ref`, so the vault query of
+      `ask-guppi` was not run. A Glob `vault/**/*another-agent-holds*` printed nothing, so the new slug
+      is free.
+
+
+      What the frame showed, by these searches. A Grep of `checked\.json` over `vault/wiki/`, with `*.md
+      !**/decisions/**`, printed 15 files. `rule-spec-reconcile` and `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+      enter the Case. Ten files read the text, findings or notes of an entry that the check stores: `rule-spec-write`,
+      `estimate-spec-write-refuses-a-changed-case-file`, `estimate-spec-write-copies-the-ratified-case`,
+      `estimate-case-check-refuses-a-changed-case-file`, `estimate-case-check-shows-only-the-checked-case`,
+      `estimate-case-check-sends-back-a-faulty-case`, `estimate-case-check-notes-a-criterion-line-not-carried`,
+      `estimate-case-check-refuses-a-letter-outside-the-script`, `estimate-case-check-requires-each-question-of-the-rounds`
+      and `estimate-case-check-sends-back-a-clash-with-another-case`. They stand. The check replaces the
+      entry of a held number with the Case of the same agent. Until then the entry holds no text, so the
+      Spec hook and the `Stop` comparison refuse a showing, as they refuse one that differs from the store.
+      `estimate-case-check-sends-back-a-ratified-case-in-another-shape` stands: it counts the keys of
+      the store, and a held number is one of them, so the check does not give out a held number. `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+      stands: it judges an entry by its `agent_id`, so an answer of the old path under a held number is
+      sent back, as the person chose. Its words "from an answer" name the entry of the agent that holds
+      the number. `lesson-hooks-subagentstop-reads-the-last-text-not-the-handback` records a past session.
+      A Grep of `PreToolUse` over `vault/wiki/rules/` printed 14 files, and over `.claude/` it printed
+      `.claude/settings.json`. Only `rule-spec-reconcile` sets what happens at an `Edit` or `Write` of
+      a file under `cases/`. `rule-governed-files-hook` runs `uv run guppi guard` on the same event, for
+      rendered harness files only. `rule-hook-registry` and `.claude/settings.json` keep the registration
+      of the guard as it is. The other hits name other tools or quote an example.
+
+
+      `rule-case-build` stands. Its agent file says that the file of its Case is the one file the guard
+      lets the agent write, and that stays true. The refusal itself tells the agent to build under the
+      free number, as the finding of the check has done since case 610.1. In Work Mode, a new agent dispatched
+      to build again a Case that another agent holds is refused. The check of case 610.2 already sends
+      such an agent back. The guard reads entries that the check already writes with an `agent_id`, and
+      an entry with no `agent_id` is not compared, so the guard needs no old form.
+
+
+      Pre-spec raised three findings, and this build answers them. The pairs on `rule-spec-reconcile`
+      now match the `then` lines: the first write passes when no other agent holds the number, and a number
+      counts as held when the store holds Case N or a sub-case of it from another agent, as `clashes`
+      judges it. On its own error the guard keeps exit 0 and lets the call run, as the existing rule of
+      the guard sets it in `estimate-spec-write-exits-2-on-an-error`. That Criterion stays true, and 650.1
+      names the error in a `－` line. A store that cannot be read or written then holds no number, and
+      the check of `rule-case-check` still sends back a number held by another agent when the agent stops.
+      The guard reads `agent_id` from the `PreToolUse` input. The handoff of session 0311 records this
+      field in the probe of 645.3: "the `PreToolUse` input held `agent_id` and `agent_type` (`claude`)".
+      So this Case adds no probe. The method of the new Estimate adds a reading by hand of the entry that
+      a live `case-guppi` writes with its first `Write`.
+
+
+      The check sent back notes, and they stand. In Case 650.2, the old line that let a call of `case-guppi`
+      under `cases/` through is not carried word for word. It changed on purpose: it is now a line on
+      the other agents and an exception that names the new Estimate. Two `then` lines of 650.2 share many
+      words with 650.1, the refusal under `cases/` and the line of the event log. Each sub-case still
+      sets its own promise: 650.2 the refusal of an agent that is not `case-guppi`, 650.1 the refusal
+      of a `case-guppi` whose number another agent holds.
+
+
+      Not done: the guard and the check each read the store whole and write it whole. Two writes at the
+      same instant can still lose one of them, and this Case does not lock the store.'
+  parent: decision-case-650
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '651.1'
+  decision: decision-case-651.1
+  origin: raw/2026-10-05/1343/ledger.md#case-651.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  tags: []
+  case_text:
+    given: '`rule-orchestration`: the rule whose Render is `vault/wiki/orchestration.md`.
+
+      **＋** `vault/wiki/orchestration.md`: what the main agent does, loaded by `/hi`.
+
+      **＋** `rule-case-build`: the summary, the round and the `**Fact:**` reply of `case-guppi`. Unchanged.
+
+      **＋** `rule-case-check`: its check stores the text of the file of a Case. Unchanged.
+
+      **＋** `rule-spec-write`: its hook writes a Case from that stored text. Unchanged.
+
+      **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the file of a built Case.'
+    when: The main agent reads `vault/wiki/orchestration.md`, rendered from `rule-orchestration`, to show
+      a summary, a round or a `**Fact:**` reply of `case-guppi`.
+    then: 'The page calls the reply of `case-guppi` that opens with `**Built:**` the summary, and the
+      main agent writes the list and the `ratification` of a showing from the summary and sends back a
+      summary in which a Case gives no Estimate.
+
+      **＋** The page calls the Case sent at a showing and at a showing again the file `raw/<date>/<hi
+      HHMM>/cases/case-<N>.md`, and what the hook of `rule-spec-write` writes the text the check of `rule-case-check`
+      stored from that file.
+
+      **＋** A reply of `case-guppi` with no first line `**Built:**` and no first line `**Fact:**` is a
+      round, and the page names it so.
+
+      **－** No sentence of `vault/wiki/orchestration.md` calls a reply of `case-guppi` the answer; the
+      person''s answers keep that word.'
+    context: '`orchestration.md` tells the main agent what to do in a session. It still calls the reply
+      of `case-guppi` "the answer", from the time that reply held the whole Case. Since case 645, `case-guppi`
+      writes the Case into its file and replies with a summary: the path, and for each Case its id, name,
+      Estimate and ledger lines in a plain fence. Now "the answer" can mean the summary, the file or the
+      text the check stored. The page also leaves out two exact forms that the checks read. It says that
+      the `ratification` of a showing holds the ledger lines "as the answer holds them". The `Stop` check
+      reads only the quote block under `> **ratification:**`, so in session 1834 of 2026-10-02 the main
+      agent put the fence outside the quote and the check refused the showing (`lesson-case-showing-ratification-fence-outside-the-blockquote`).
+      The page says the `then` block of a short-form defer carries "slug, type and purpose". The hook
+      of `rule-spec-write` reads only a list of items, so in session 0109 of 2026-10-05 a single mapping
+      was refused twice (`lesson-orchestration-short-defer-then-block-written-as-a-mapping`). Both lessons
+      are children of `insight-workflow-case-schema-silent-on-what-the-scripts-accept`. Case 646 left
+      that Insight open until a later Case covered the forms the main agent writes.
+
+
+      The person chose the following. Each meaning gets its own word: the summary, the file, and the text
+      the check stored. Only `orchestration.md` changes. The two forms are shown by examples that a test
+      runs the checks over, as case 646 did for `case-schema.md`. Only the two forms of the lessons are
+      covered. The work is three sub-cases. The tests skip until the librarian''s render. The example
+      of a showing is a parent with two sub-cases, and its heading is in English because the page is documentation.
+      The Insight is set `actioned` by this Case. A Grep of `answer` over `vault/wiki/rules/rule-orchestration.md`
+      counted 8 lines. The hits on lines 38, 42, 44 and 46 that name a reply of `case-guppi`, the file
+      it writes, or what the check stored from that file enter Case 651.1 as fourteen `replace` pairs,
+      the first reply on an item from which a round may come among them. Line 32 names the person''s answer
+      and line 56 the main agent''s answer to a refusal, so they stand. Lines 84 and 94 are History. The
+      other hits on lines 38 and 46 name the person''s answers, `case-guppi` answering as a verb, or the
+      recommended answer of a question, the option a round recommends, and they stand.
+
+
+      What the frame showed. `estimate-orchestration-shows-the-built-case` already calls the reply "the
+      summary" and reads the showing that the new words describe, so it checks 651.1 and its Criterion
+      stands. `estimate-orchestration-defers-in-one-reply` speaks of "a fence tagged `then` with one `defer`
+      item per target", which the example of 651.3 bears out, so it stands. `estimate-orchestration-signs-a-batch-together`
+      keeps its own words "an answer of a `case-guppi`", which the new page text does not make false,
+      and `estimate-orchestration-forwards-a-discussion-question` keeps "the answer" for the `**Fact:**`
+      reply the page now calls "that reply", with the same meaning. `estimate-prespec-gathers-the-answers-after-findings`
+      sets the loop of `rule-prespec` whose steps the batch sentence of `orchestration.md` takes, which
+      651.1 rewords. Its words "while an answer is out" and "until every `case-guppi` it sent has answered
+      with its Case" keep their meaning beside the new words of the page. Its line on "the showing that
+      `vault/wiki/orchestration.md` sets" stays true, and that is the showing the example of 651.2 shows.
+      So its Criterion stands. `estimate-guppi-tests-green` says that a skipped test is not a failure,
+      so `make test` stays green while the new tests of `tests/test_orchestration.py` skip, and it stands.
+      `estimate-orchestration-loaded`, `estimate-case-protocol-loaded` and `estimate-ratification-loaded`
+      say that no paragraph of `orchestration.md` repeats one of `case-schema.md` or `ratification.md`.
+      The new paragraphs and examples are worded apart from the example of `case-schema.md`, with another
+      subject and other ledger lines. The checks the examples pass are not changed: `estimate-case-check-refuses-text-outside-the-list`
+      and `estimate-spec-write-writes-a-defer` stand. The tests read text that lands only at the librarian''s
+      generate and render. `rule-retro` lets no red test pass, so, as the person chose and as `tests/test_case_schema.py`
+      does, each test skips with a reason while the page holds no block of its tag. A Case of a later
+      session removes the skips after the readings pass.
+
+
+      The searches this Case rests on. A Grep of `rule-orchestration|orchestration\.md` over the repository
+      root, with the glob `!**/decisions/** !**/raw/** !**/archive/** !**/log.md !**/brief.md`, printed
+      38 files. I read each hit outside History lines, and none says something that this Case makes false.
+      A Grep of `short form|the summary` over `vault/wiki/rules/` printed 6 files: `rule-orchestration`,
+      `rule-case-protocol`, `rule-spec-write`, `rule-case-build`, `rule-decisions-schema` and `rule-compact-recall`.
+      Over `.claude/` it printed `.claude/agents/case-guppi.md`. `rule-spec-write` sets how the hook reads
+      a short-form defer, and it is named in `given` of 651.3 and unchanged. `rule-case-build` and the
+      agent file set the summary that `case-guppi` writes, a moment before the main agent''s showing,
+      and they stand. `rule-case-protocol` and `rule-decisions-schema` point to `orchestration.md` for
+      the short form, and `rule-compact-recall` speaks of the summary of a compaction. A Glob `vault/**/*example*`
+      printed `vault/wiki/lessons/lesson-wait-what-invents-an-example.md` and `vault/wiki/estimates/estimate-case-protocol-example-passes-the-check.md`,
+      so both new slugs are free. Both new Estimates carry a `ref`, so the vault query of `ask-guppi`
+      was not run. The Insight is set `actioned` with `addressed_by: decision-case-651.3`, the bare form
+      that case 636 used. The cascade of `generate` then archives its `clustered` children, among them
+      `lesson-case-build-closes-a-sprint-item-without-the-sprint-page` and `lesson-case-build-splits-a-case-whose-line-stands`.
+      A new lesson of the same kind reopens it.
+
+
+      The check sent back notes, and they stand. Three `then` lines of 651.3 share most of their words
+      with 651.2: the paragraph before the block, the test that holds no copy, and the skip. Each sub-case
+      still sets its own promise. 651.2 covers the block tagged `showing` and the `Stop` check of `rule-case-check`.
+      651.3 covers the block tagged `defer` and the hook of `rule-spec-write`.
+
+
+      Not done:
+
+      - `rule-case-check`, `rule-spec-write`, the other Estimates and the code keep the word "answer",
+      the refusal of the `Stop` comparison included.
+
+      - The acknowledging reply gets no example.
+
+      - The tests keep their skips until a Case of a later session removes them.'
+  parent: decision-case-651
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '651.2'
+  decision: decision-case-651.2
+  origin: raw/2026-10-05/1343/ledger.md#case-651.2
+  targets:
+  - kind: create
+    category: estimates
+    slug: estimate-orchestration-showing-example-passes-the-check
+    ref: rule-orchestration
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  tags:
+  - session
+  - workflow
+  - harness
+  case_text:
+    given: '`estimate-orchestration-showing-example-passes-the-check`: the new check of the example of
+      a showing.
+
+      **＋** `rule-orchestration`: the rule whose Render is `vault/wiki/orchestration.md`.
+
+      **＋** `vault/wiki/orchestration.md`: the page that holds the example.
+
+      **＋** `tests/test_orchestration.py`: the new test that runs the check over the example.
+
+      **＋** `guppi/casecheck.py`: `outside_the_list`, `showings` and `against_store`, the functions the
+      `Stop` check runs over a reply that shows a Case.
+
+      **＋** `rule-case-check`: its `Stop` check of a showing. Unchanged.
+
+      **＋** `rule-one-judgment-one-implementation`: one test runs the example and the check over the same
+      input.'
+    when: '`tests/test_orchestration.py` runs under `uv run pytest`. It reads the block tagged `showing`
+      in `vault/wiki/orchestration.md`, rendered from `rule-orchestration`, and runs over it the functions
+      of `guppi/casecheck.py` that the `Stop` check of `rule-case-check` runs over a reply that shows
+      a Case, with a store whose sub-cases hold the ledger lines the example''s `ratification` gives them.'
+    then: '`vault/wiki/orchestration.md` holds, under its own heading at the end of `## Showing and signing
+      a Case`, one block tagged `showing`: a reply that shows a Case with two sub-cases, its heading,
+      one list with an item per sub-case, one `ratification` and the agent''s own text after one horizontal
+      rule.
+
+      **＋** The `ratification` of the example is a quote block: the line `> **ratification:**`, then the
+      fence and the ledger lines of both sub-cases, each line opening with `> `.
+
+      **＋** The example is in English; the paragraph before the block says that in the chat the heading,
+      the names and the short texts stand in the language of the chat, that the file goes by `SendUserFile`
+      in the same reply, and that the example passes the `Stop` check of `rule-case-check`, which is the
+      source of the limits; it lists no other limit.
+
+      **＋** The check finds no text outside the list and the `ratification`, reads the `ratification`
+      as the showing of each sub-case it names, and finds no difference from the store, and the test passes.
+
+      **＋** The example with the lines of its fence not quoted gives the finding of a text outside the
+      list, and the test asserts it.
+
+      **＋** The test reads the example from `vault/wiki/orchestration.md` and the checks from `guppi/casecheck.py`,
+      and holds no copy of either.
+
+      **－** While `vault/wiki/orchestration.md` holds no block tagged `showing`, the test is skipped with
+      a reason that names the file; a Case of a later session removes the skip after the reading of `estimate-orchestration-showing-example-passes-the-check`
+      passes.'
+    context: '`orchestration.md` tells the main agent what to do in a session. It still calls the reply
+      of `case-guppi` "the answer", from the time that reply held the whole Case. Since case 645, `case-guppi`
+      writes the Case into its file and replies with a summary: the path, and for each Case its id, name,
+      Estimate and ledger lines in a plain fence. Now "the answer" can mean the summary, the file or the
+      text the check stored. The page also leaves out two exact forms that the checks read. It says that
+      the `ratification` of a showing holds the ledger lines "as the answer holds them". The `Stop` check
+      reads only the quote block under `> **ratification:**`, so in session 1834 of 2026-10-02 the main
+      agent put the fence outside the quote and the check refused the showing (`lesson-case-showing-ratification-fence-outside-the-blockquote`).
+      The page says the `then` block of a short-form defer carries "slug, type and purpose". The hook
+      of `rule-spec-write` reads only a list of items, so in session 0109 of 2026-10-05 a single mapping
+      was refused twice (`lesson-orchestration-short-defer-then-block-written-as-a-mapping`). Both lessons
+      are children of `insight-workflow-case-schema-silent-on-what-the-scripts-accept`. Case 646 left
+      that Insight open until a later Case covered the forms the main agent writes.
+
+
+      The person chose the following. Each meaning gets its own word: the summary, the file, and the text
+      the check stored. Only `orchestration.md` changes. The two forms are shown by examples that a test
+      runs the checks over, as case 646 did for `case-schema.md`. Only the two forms of the lessons are
+      covered. The work is three sub-cases. The tests skip until the librarian''s render. The example
+      of a showing is a parent with two sub-cases, and its heading is in English because the page is documentation.
+      The Insight is set `actioned` by this Case. A Grep of `answer` over `vault/wiki/rules/rule-orchestration.md`
+      counted 8 lines. The hits on lines 38, 42, 44 and 46 that name a reply of `case-guppi`, the file
+      it writes, or what the check stored from that file enter Case 651.1 as fourteen `replace` pairs,
+      the first reply on an item from which a round may come among them. Line 32 names the person''s answer
+      and line 56 the main agent''s answer to a refusal, so they stand. Lines 84 and 94 are History. The
+      other hits on lines 38 and 46 name the person''s answers, `case-guppi` answering as a verb, or the
+      recommended answer of a question, the option a round recommends, and they stand.
+
+
+      What the frame showed. `estimate-orchestration-shows-the-built-case` already calls the reply "the
+      summary" and reads the showing that the new words describe, so it checks 651.1 and its Criterion
+      stands. `estimate-orchestration-defers-in-one-reply` speaks of "a fence tagged `then` with one `defer`
+      item per target", which the example of 651.3 bears out, so it stands. `estimate-orchestration-signs-a-batch-together`
+      keeps its own words "an answer of a `case-guppi`", which the new page text does not make false,
+      and `estimate-orchestration-forwards-a-discussion-question` keeps "the answer" for the `**Fact:**`
+      reply the page now calls "that reply", with the same meaning. `estimate-prespec-gathers-the-answers-after-findings`
+      sets the loop of `rule-prespec` whose steps the batch sentence of `orchestration.md` takes, which
+      651.1 rewords. Its words "while an answer is out" and "until every `case-guppi` it sent has answered
+      with its Case" keep their meaning beside the new words of the page. Its line on "the showing that
+      `vault/wiki/orchestration.md` sets" stays true, and that is the showing the example of 651.2 shows.
+      So its Criterion stands. `estimate-guppi-tests-green` says that a skipped test is not a failure,
+      so `make test` stays green while the new tests of `tests/test_orchestration.py` skip, and it stands.
+      `estimate-orchestration-loaded`, `estimate-case-protocol-loaded` and `estimate-ratification-loaded`
+      say that no paragraph of `orchestration.md` repeats one of `case-schema.md` or `ratification.md`.
+      The new paragraphs and examples are worded apart from the example of `case-schema.md`, with another
+      subject and other ledger lines. The checks the examples pass are not changed: `estimate-case-check-refuses-text-outside-the-list`
+      and `estimate-spec-write-writes-a-defer` stand. The tests read text that lands only at the librarian''s
+      generate and render. `rule-retro` lets no red test pass, so, as the person chose and as `tests/test_case_schema.py`
+      does, each test skips with a reason while the page holds no block of its tag. A Case of a later
+      session removes the skips after the readings pass.
+
+
+      The searches this Case rests on. A Grep of `rule-orchestration|orchestration\.md` over the repository
+      root, with the glob `!**/decisions/** !**/raw/** !**/archive/** !**/log.md !**/brief.md`, printed
+      38 files. I read each hit outside History lines, and none says something that this Case makes false.
+      A Grep of `short form|the summary` over `vault/wiki/rules/` printed 6 files: `rule-orchestration`,
+      `rule-case-protocol`, `rule-spec-write`, `rule-case-build`, `rule-decisions-schema` and `rule-compact-recall`.
+      Over `.claude/` it printed `.claude/agents/case-guppi.md`. `rule-spec-write` sets how the hook reads
+      a short-form defer, and it is named in `given` of 651.3 and unchanged. `rule-case-build` and the
+      agent file set the summary that `case-guppi` writes, a moment before the main agent''s showing,
+      and they stand. `rule-case-protocol` and `rule-decisions-schema` point to `orchestration.md` for
+      the short form, and `rule-compact-recall` speaks of the summary of a compaction. A Glob `vault/**/*example*`
+      printed `vault/wiki/lessons/lesson-wait-what-invents-an-example.md` and `vault/wiki/estimates/estimate-case-protocol-example-passes-the-check.md`,
+      so both new slugs are free. Both new Estimates carry a `ref`, so the vault query of `ask-guppi`
+      was not run. The Insight is set `actioned` with `addressed_by: decision-case-651.3`, the bare form
+      that case 636 used. The cascade of `generate` then archives its `clustered` children, among them
+      `lesson-case-build-closes-a-sprint-item-without-the-sprint-page` and `lesson-case-build-splits-a-case-whose-line-stands`.
+      A new lesson of the same kind reopens it.
+
+
+      The check sent back notes, and they stand. Three `then` lines of 651.3 share most of their words
+      with 651.2: the paragraph before the block, the test that holds no copy, and the skip. Each sub-case
+      still sets its own promise. 651.2 covers the block tagged `showing` and the `Stop` check of `rule-case-check`.
+      651.3 covers the block tagged `defer` and the hook of `rule-spec-write`.
+
+
+      Not done:
+
+      - `rule-case-check`, `rule-spec-write`, the other Estimates and the code keep the word "answer",
+      the refusal of the `Stop` comparison included.
+
+      - The acknowledging reply gets no example.
+
+      - The tests keep their skips until a Case of a later session removes them.'
+  parent: decision-case-651
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '651.3'
+  decision: decision-case-651.3
+  origin: raw/2026-10-05/1343/ledger.md#case-651.3
+  targets:
+  - kind: create
+    category: estimates
+    slug: estimate-orchestration-defer-example-passes-the-hook
+    ref: rule-orchestration
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  - kind: update
+    category: insights
+    slug: insight-workflow-case-schema-silent-on-what-the-scripts-accept
+    ref: insight-workflow-case-schema-silent-on-what-the-scripts-accept
+  tags:
+  - session
+  - workflow
+  - harness
+  case_text:
+    given: '`estimate-orchestration-defer-example-passes-the-hook`: the new check of the example of a
+      short-form defer.
+
+      **＋** `rule-orchestration`: the rule whose Render is `vault/wiki/orchestration.md`.
+
+      **＋** `vault/wiki/orchestration.md`: the page that holds the example.
+
+      **＋** `tests/test_orchestration.py`: the test that runs the hook over the example.
+
+      **＋** `guppi/ratified.py`: `write_defers` and `key_judge`, what the `Stop` hook runs over a defer-only
+      Case.
+
+      **＋** `rule-spec-write`: its hook writes a short-form defer under `## Deferred`. Unchanged.
+
+      **＋** `insight-workflow-case-schema-silent-on-what-the-scripts-accept`: the Insight this Case acts
+      on.'
+    when: '`tests/test_orchestration.py` runs under `uv run pytest`. It reads the block tagged `defer`
+      in `vault/wiki/orchestration.md`, rendered from `rule-orchestration`, and runs over it, as the text
+      of a reply, the functions of `guppi/ratified.py` that the `Stop` hook of `rule-spec-write` runs
+      over a defer-only Case, in a temporary project that holds the schema files of the vault and a plan
+      file, with one `defer` record for each item of the example.'
+    then: '`vault/wiki/orchestration.md` holds, under its own heading at the end of `## The short form
+      — deferred decisions`, one block tagged `defer`: a Case in the short form with its heading, `context`,
+      `problem` and a fence tagged `then` whose `defer:` holds a list, one item per target, each item
+      opening with `- slug:` and carrying `type` and `purpose`.
+
+      **＋** The paragraph before the block says that the reply that shows the Case carries its `LEDGER`
+      block with one `defer` line per item, and that the example passes the `Stop` hook of `rule-spec-write`,
+      which is the source of the limits; it lists no other limit.
+
+      **＋** The hook writes the example under `## Deferred` of the plan file with no error, and the test
+      passes.
+
+      **＋** The example with its `defer:` items written as one mapping gives the error that no fence tagged
+      `then` holds its `defer` items, and the test asserts it.
+
+      **＋** The test reads the example from `vault/wiki/orchestration.md` and the hook from `guppi/ratified.py`,
+      and holds no copy of either.
+
+      **＋** `insight-workflow-case-schema-silent-on-what-the-scripts-accept` stands `actioned`, addressed
+      by this Case.
+
+      **－** While `vault/wiki/orchestration.md` holds no block tagged `defer`, the test is skipped with
+      a reason that names the file; a Case of a later session removes the skip after the reading of `estimate-orchestration-defer-example-passes-the-hook`
+      passes.'
+    context: '`orchestration.md` tells the main agent what to do in a session. It still calls the reply
+      of `case-guppi` "the answer", from the time that reply held the whole Case. Since case 645, `case-guppi`
+      writes the Case into its file and replies with a summary: the path, and for each Case its id, name,
+      Estimate and ledger lines in a plain fence. Now "the answer" can mean the summary, the file or the
+      text the check stored. The page also leaves out two exact forms that the checks read. It says that
+      the `ratification` of a showing holds the ledger lines "as the answer holds them". The `Stop` check
+      reads only the quote block under `> **ratification:**`, so in session 1834 of 2026-10-02 the main
+      agent put the fence outside the quote and the check refused the showing (`lesson-case-showing-ratification-fence-outside-the-blockquote`).
+      The page says the `then` block of a short-form defer carries "slug, type and purpose". The hook
+      of `rule-spec-write` reads only a list of items, so in session 0109 of 2026-10-05 a single mapping
+      was refused twice (`lesson-orchestration-short-defer-then-block-written-as-a-mapping`). Both lessons
+      are children of `insight-workflow-case-schema-silent-on-what-the-scripts-accept`. Case 646 left
+      that Insight open until a later Case covered the forms the main agent writes.
+
+
+      The person chose the following. Each meaning gets its own word: the summary, the file, and the text
+      the check stored. Only `orchestration.md` changes. The two forms are shown by examples that a test
+      runs the checks over, as case 646 did for `case-schema.md`. Only the two forms of the lessons are
+      covered. The work is three sub-cases. The tests skip until the librarian''s render. The example
+      of a showing is a parent with two sub-cases, and its heading is in English because the page is documentation.
+      The Insight is set `actioned` by this Case. A Grep of `answer` over `vault/wiki/rules/rule-orchestration.md`
+      counted 8 lines. The hits on lines 38, 42, 44 and 46 that name a reply of `case-guppi`, the file
+      it writes, or what the check stored from that file enter Case 651.1 as fourteen `replace` pairs,
+      the first reply on an item from which a round may come among them. Line 32 names the person''s answer
+      and line 56 the main agent''s answer to a refusal, so they stand. Lines 84 and 94 are History. The
+      other hits on lines 38 and 46 name the person''s answers, `case-guppi` answering as a verb, or the
+      recommended answer of a question, the option a round recommends, and they stand.
+
+
+      What the frame showed. `estimate-orchestration-shows-the-built-case` already calls the reply "the
+      summary" and reads the showing that the new words describe, so it checks 651.1 and its Criterion
+      stands. `estimate-orchestration-defers-in-one-reply` speaks of "a fence tagged `then` with one `defer`
+      item per target", which the example of 651.3 bears out, so it stands. `estimate-orchestration-signs-a-batch-together`
+      keeps its own words "an answer of a `case-guppi`", which the new page text does not make false,
+      and `estimate-orchestration-forwards-a-discussion-question` keeps "the answer" for the `**Fact:**`
+      reply the page now calls "that reply", with the same meaning. `estimate-prespec-gathers-the-answers-after-findings`
+      sets the loop of `rule-prespec` whose steps the batch sentence of `orchestration.md` takes, which
+      651.1 rewords. Its words "while an answer is out" and "until every `case-guppi` it sent has answered
+      with its Case" keep their meaning beside the new words of the page. Its line on "the showing that
+      `vault/wiki/orchestration.md` sets" stays true, and that is the showing the example of 651.2 shows.
+      So its Criterion stands. `estimate-guppi-tests-green` says that a skipped test is not a failure,
+      so `make test` stays green while the new tests of `tests/test_orchestration.py` skip, and it stands.
+      `estimate-orchestration-loaded`, `estimate-case-protocol-loaded` and `estimate-ratification-loaded`
+      say that no paragraph of `orchestration.md` repeats one of `case-schema.md` or `ratification.md`.
+      The new paragraphs and examples are worded apart from the example of `case-schema.md`, with another
+      subject and other ledger lines. The checks the examples pass are not changed: `estimate-case-check-refuses-text-outside-the-list`
+      and `estimate-spec-write-writes-a-defer` stand. The tests read text that lands only at the librarian''s
+      generate and render. `rule-retro` lets no red test pass, so, as the person chose and as `tests/test_case_schema.py`
+      does, each test skips with a reason while the page holds no block of its tag. A Case of a later
+      session removes the skips after the readings pass.
+
+
+      The searches this Case rests on. A Grep of `rule-orchestration|orchestration\.md` over the repository
+      root, with the glob `!**/decisions/** !**/raw/** !**/archive/** !**/log.md !**/brief.md`, printed
+      38 files. I read each hit outside History lines, and none says something that this Case makes false.
+      A Grep of `short form|the summary` over `vault/wiki/rules/` printed 6 files: `rule-orchestration`,
+      `rule-case-protocol`, `rule-spec-write`, `rule-case-build`, `rule-decisions-schema` and `rule-compact-recall`.
+      Over `.claude/` it printed `.claude/agents/case-guppi.md`. `rule-spec-write` sets how the hook reads
+      a short-form defer, and it is named in `given` of 651.3 and unchanged. `rule-case-build` and the
+      agent file set the summary that `case-guppi` writes, a moment before the main agent''s showing,
+      and they stand. `rule-case-protocol` and `rule-decisions-schema` point to `orchestration.md` for
+      the short form, and `rule-compact-recall` speaks of the summary of a compaction. A Glob `vault/**/*example*`
+      printed `vault/wiki/lessons/lesson-wait-what-invents-an-example.md` and `vault/wiki/estimates/estimate-case-protocol-example-passes-the-check.md`,
+      so both new slugs are free. Both new Estimates carry a `ref`, so the vault query of `ask-guppi`
+      was not run. The Insight is set `actioned` with `addressed_by: decision-case-651.3`, the bare form
+      that case 636 used. The cascade of `generate` then archives its `clustered` children, among them
+      `lesson-case-build-closes-a-sprint-item-without-the-sprint-page` and `lesson-case-build-splits-a-case-whose-line-stands`.
+      A new lesson of the same kind reopens it.
+
+
+      The check sent back notes, and they stand. Three `then` lines of 651.3 share most of their words
+      with 651.2: the paragraph before the block, the test that holds no copy, and the skip. Each sub-case
+      still sets its own promise. 651.2 covers the block tagged `showing` and the `Stop` check of `rule-case-check`.
+      651.3 covers the block tagged `defer` and the hook of `rule-spec-write`.
+
+
+      Not done:
+
+      - `rule-case-check`, `rule-spec-write`, the other Estimates and the code keep the word "answer",
+      the refusal of the `Stop` comparison included.
+
+      - The acknowledging reply gets no example.
+
+      - The tests keep their skips until a Case of a later session removes them.'
+  parent: decision-case-651
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '652'
+  decision: decision-case-652
+  origin: raw/2026-10-05/1343/ledger.md#case-652
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-case-protocol-example-passes-the-check
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    context: '`tests/test_case_schema.py` reads the example Case from `vault/wiki/case-schema.md` and
+      runs over it the check that the `SubagentStop` hook of `rule-case-check` runs over the file of a
+      Case. Case 646 made the test skip, with a reason that names the file, while the page held no block
+      tagged `case`, because the example reached the page only at the librarian''s render. The render
+      has put the example there, and at the `/hi` of this session the reading of `estimate-case-protocol-example-passes-the-check`
+      passed with both tests run and none skipped. The skip still stands in the code. A skip leaves `make
+      test` green, so a later render that lost the block or changed its tag would leave the example unchecked
+      with no one told. The person chose that the test fails, with a message that names the file, when
+      the page holds no block tagged `case`.
+
+
+      The last `－` line of the Criterion of `estimate-case-protocol-example-passes-the-check` says the
+      test skips, so this Case makes it false and replaces the Criterion whole: the same lines, with that
+      line rewritten to say both tests fail and none is skipped. The page goes `pending`. The reading
+      is taken at the `/hi` of a later session, since the ledger hook refuses a reading of an Estimate
+      that a decision line of this session updates (case 428.1). Its `purpose` says nothing of the skip
+      and stands. Its `method` reads "passed and not skipped", which stays true when no skip remains,
+      so it stands. The test only goes red and loses nothing, so it keeps no old form. `estimate-guppi-tests-green`
+      says that a skipped test is not a failure, and that line stands: after this Case the test fails
+      rather than skips, which is the behaviour the person chose. Case 651 of this session gives `tests/test_orchestration.py`
+      skips of the same kind. This Case does not touch them, and it does not change `rule-case-protocol`
+      or the page.
+
+
+      The search this Case rests on. A Grep of `test_case_schema|estimate-case-protocol-example-passes-the-check`
+      over the repository root, with the glob `!**/decisions/** !**/raw/** !**/log.md !**/brief.md`, printed
+      3 files: `vault/wiki/rules/rule-case-protocol.md`, `vault/wiki/estimates/estimate-case-protocol-example-passes-the-check.md`
+      and `tests/test_case_schema.py`. On `rule-case-protocol` the hits are the `estimates` field and
+      a History line, which stand. The other two enter the Case.
+
+
+      Not done:
+
+      - The skips of `tests/test_orchestration.py` that Case 651 sets stay until a later Case removes
+      them.'
+    problem: '`tests/test_case_schema.py` still skips when `vault/wiki/case-schema.md` holds no example,
+      though the example now stands there and its reading passed. A lost example would go unchecked while
+      the tests stay green. The question was what the test does when the page holds no example.'
+    recommend: "- **What the test does when the page holds no example**\n  - Recommended: (a) fail, with\
+      \ a message that names the file.\n  - Answer: agreed, (a)."
+    given: '`tests/test_case_schema.py`: the test that runs the check over the example.
+
+      **＋** `estimate-case-protocol-example-passes-the-check`: its Criterion is replaced whole.
+
+      **＋** `vault/wiki/case-schema.md`: the page that holds the example, rendered from `rule-case-protocol`.
+      Unchanged.
+
+      **＋** `rule-case-protocol`: the rule whose Render is that page. Unchanged.
+
+      **＋** `guppi/casecheck.py`: the check of the Cases of a file, which the test imports. Unchanged.
+
+      **＋** `rule-case-check`: its `SubagentStop` hook runs that check over the file of a Case. Unchanged.'
+    when: '`tests/test_case_schema.py` runs under `uv run pytest`. It reads the block tagged `case` in
+      `vault/wiki/case-schema.md`, rendered from `rule-case-protocol`, and runs over it the function of
+      `guppi/casecheck.py` that the `SubagentStop` hook of `rule-case-check` runs over the Cases of a
+      file. It runs in a temporary project that holds the schema files of the vault and the pages the
+      example updates.'
+    then: '`vault/wiki/case-schema.md` holds, under its own heading after its `## Language` section, one
+      block tagged `case`: one Case with sub-cases, in the chat form that `case-guppi` writes into its
+      file.
+
+      **＋** The example holds a `create` and an `update` with their sub-points, a `replace` pair whose
+      values hold a backtick in spans padded by one space, a `set` in a fenced block, an `update` of an
+      Estimate whose Criterion it replaces, a read line for each Estimate it creates or replaces, and
+      its ledger lines in a quoted fence under `ratification`.
+
+      **＋** The example''s `context` says what the sentence around the match of its `replace` pair names.
+
+      **＋** The paragraph before the block says that the example passes the check of the `SubagentStop`
+      hook of `rule-case-check`, and that the check, not the paragraph, is the source of the limits; it
+      lists no limit.
+
+      **＋** The check gives the example no finding and no note, and the test passes.
+
+      **＋** A change of the check that gives the example a finding or a note fails the test, which prints
+      it.
+
+      **＋** The test reads the example from `vault/wiki/case-schema.md` and the checks from `guppi/casecheck.py`,
+      and holds no copy of either.
+
+      **－** While `vault/wiki/case-schema.md` holds no block tagged `case`, both tests of `tests/test_case_schema.py`
+      fail with a message that names the file; no test of the file is skipped.
+
+      **－** The Spec example and the limits that the prose of `vault/wiki/case-schema.md` already states
+      stay as they are.'
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '653.1'
+  decision: decision-case-653.1
+  origin: raw/2026-10-05/1343/ledger.md#case-653.1
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-case-check-sends-back-a-faulty-case
+    ref: rule-case-check
+  - kind: update
+    category: rules
+    slug: rule-spec-reconcile
+    ref: rule-spec-reconcile
+  tags: []
+  parent: decision-case-653
+  superseded_by:
+  - decision-case-659
+  applied: '16:08:37'
+- case: '653.2'
+  decision: decision-case-653.2
+  origin: raw/2026-10-05/1343/ledger.md#case-653.2
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-case-check-sends-back-a-ratified-case-in-another-shape
+    ref: rule-case-check
+  tags: []
+  parent: decision-case-653
+  superseded_by:
+  - decision-case-659
+  applied: '16:08:37'
+- case: '654'
+  decision: decision-case-654
+  origin: raw/2026-10-05/1343/ledger.md#case-654
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-synthesis-clusters
+    ref: rule-synthesis
+  tags: []
+  case_text:
+    context: 'At the synthesis the librarian compares the `root_cause` of each new lesson with the index
+      lines of the lessons and the Insights, and groups the lessons that share a cause. `estimate-synthesis-clusters`
+      checks this step. Its reading at the `/hi` of session 0311 (line L1 of `raw/2026-10-05/0311/ledger.md`)
+      failed on one clause, which says every lesson page read at synthesis is named in the report with
+      its outcome. In the librarian run of session 0109, call 13 printed the frontmatter fields of six
+      lesson pages and three Insights: their `status`, `insight`, `children` and `tags`, without `root_cause`
+      or `pattern` and without the text of any section. The librarian used these fields to see which lessons
+      were already grouped and which lessons each Insight holds, and its report named none of the six
+      lesson pages. The frame of the librarian, the Render of `rule-documentation`, names a page in the
+      report only when the librarian opens it to judge a duplicate, a shared root cause or a failed script,
+      and says a page opened for any other need is not named (case 567.1). The `－` clause of `estimate-documentation-completes`
+      says the same of a page read for its field names or any other need. The clause that failed asks
+      for more than the frame does. The person chose to narrow the check: the report names a page whose
+      text is read to judge a shared cause, and a read of frontmatter fields alone is not named. The new
+      Criterion leaves out on purpose the clause that names every lesson page read at synthesis. In its
+      place, a page is named when the librarian opens it to judge a shared root cause, which is the reason
+      the frame gives. A read of the Trigger, Root cause, `root_cause`, Pattern or `pattern` of a page
+      outside the two Greps counts as such an opening, whether the librarian reads the body or the frontmatter.
+      A `－` line stands beside it: a read of only `status`, `insight`, `children` and `tags`, made to
+      learn which lessons are grouped or which lessons an Insight holds, is not named. The pre-spec run
+      found that a first wording judged only by which part of the page was read. Under that wording a
+      read of `root_cause` alone, made to judge a shared cause, went unnamed, although the frame names
+      it. The present wording judges by the reason, as the frame does, and lists the fields that need
+      no name. Every other line is carried word for word. The Render of `rule-synthesis` already asks
+      the librarian to read the Trigger and Root cause of a candidate and name the page with its outcome,
+      so it agrees with the new clause and stands. The frame of `rule-documentation` and the Criterion
+      of `estimate-documentation-completes` stand for the same reason. The Criterion of `estimate-synthesis-keeps-actioned-by-the-mark`
+      is about `addressed_by` and `status` on an Insight, not about reads, so it stands. The Case creates
+      no page, so no vault query is needed. A Grep `estimate-synthesis-clusters` over the repository,
+      with the glob `!**/decisions/** !vault/archive/** !vault/raw/**`, printed 4 files: `vault/wiki/brief.md`,
+      `vault/wiki/log.md`, `vault/wiki/rules/rule-synthesis.md` and `vault/wiki/insights/insight-librarian-frame-omits-required-reads.md`.
+      The hit in `rule-synthesis` is its `estimates` field, which stands. The hit in the Insight is its
+      Proposal, which names a past reading of the Estimate and stays true. The brief and the log are not
+      read. The page has no `purpose` field, and its `method` names only when the reading is taken, not
+      the old promise, so neither is set anew.'
+    problem: The Criterion of `estimate-synthesis-clusters` asks the librarian to name in its report every
+      lesson page it reads at synthesis. The frame of the librarian and `estimate-documentation-completes`
+      say a page read for anything but a judgment is not named. The check fails a run that kept its frame.
+    recommend: "- **How the clash between the check and the librarian's instructions is settled**\n  -\
+      \ Recommended: (a) narrow the check: name only a page whose text is read to judge a shared cause,\
+      \ a lesson's Trigger and Root cause or an Insight's Pattern; a read of frontmatter fields alone\
+      \ is not named; only the Criterion of `estimate-synthesis-clusters` changes.\n  - Answer: agreed,\
+      \ (a)."
+    given: '`estimate-synthesis-clusters`: its Criterion is replaced whole.
+
+      **＋** `rule-synthesis`: the rule the Estimate checks, whose Render asks for the Trigger and Root
+      cause of a candidate.
+
+      **＋** `rule-documentation`: the frame of the librarian, in `.claude/agents/librarian-guppi.md`,
+      which says which reads the report names.
+
+      **＋** `estimate-documentation-completes`: its clause on the reads that need no name stands.
+
+      **＋** `vault/wiki/lessons/` and `vault/wiki/insights/`: the pages the synthesis compares and reads.
+
+      **＋** `vault/archive/`: the archive the synthesis does not need.'
+    when: '`librarian-guppi` does the synthesis in a live run whose `materialize.yaml` holds at least
+      two lesson entries.'
+    then: 'The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `vault/wiki/lessons/`
+      and `^(pattern|deferred_by):` over `vault/wiki/insights/`, with the number of lines each printed.
+
+      **＋** The brief gives one line for each lesson entry: its slug and the lesson or Insight it joined,
+      or none and a few words on why no index line of either Grep shares its root cause.
+
+      **＋** Two lessons with one root cause and no Insight give one `create` of an Insight with `pattern`,
+      both children, the union of their tags, `Pattern` and `Proposal`, and one `update` per lesson with
+      `set: {status: clustered, insight: <slug>}`.
+
+      **＋** A lesson whose root cause matches the pattern of a live Insight gives an `update` of that
+      Insight with the lesson added to its `children`, and an `update` of the lesson.
+
+      **＋** Every entry the synthesis adds carries `librarian: synthesis`.
+
+      **＋** Every page the librarian opens at synthesis to judge whether a lesson shares its root cause
+      is named in the report with the outcome: the Insight it joined, or none and why. A read of its Trigger,
+      Root cause, `root_cause`, Pattern or `pattern` outside the two Greps is such an opening.
+
+      **＋** A lesson without a pair stays `new`, and its line in the brief is no flag.
+
+      **－** A read at synthesis of only the fields `status`, `insight`, `children` and `tags` of a page
+      under `vault/wiki/lessons/` or `vault/wiki/insights/`, made to learn which lessons are grouped or
+      which lessons an Insight holds, is not named in the report and fails nothing here.
+
+      **－** A read of another session''s `materialize.yaml` or of a page under `vault/archive/` fails
+      nothing here: an actioned Insight stays live with its pattern in its index line until the close
+      of its sprint, and the flag of such a read is the promise of `estimate-documentation-completes`.'
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '655'
+  decision: decision-case-655
+  origin: raw/2026-10-05/1343/ledger.md#case-655
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-ask-searches-at-prespec
+    ref: rule-ask
+  tags: []
+  case_text:
+    context: 'At `/pre-spec` the main agent sends the plan to `ask-guppi`, which searches the vault for
+      findings. `estimate-ask-searches-at-prespec` checks how it searches: the Grep of the rules first,
+      one Grep per other category, then further searches as each finding needs, a count over Decision
+      pages not run again, and no search that reaches `vault/wiki/decisions/` but for the two reasons
+      of its frame. The reading at the `/hi` of session 0109 (L9 of `raw/2026-10-05/0109/ledger.md`) failed:
+      call 16 of agent a390781c7f1241c18 ran a Grep over `vault/wiki` with the glob `!decisions/**`, which
+      left nothing out, and printed 29 lines of Decision pages. Case 640 put `.claude/rules/search-leaves-out-decisions.md`
+      in place with a glob that works and created `estimate-search-leaves-out-decisions-in-every-agent`,
+      which reads the same promise for the main agent, `ask-guppi` and `case-guppi` under the stricter
+      letter of that file. Case 649 deferred this Estimate in session 0311. The `/pre-spec` of session
+      0311 (transcript 6d53e05d) was the first after both renders. Its three ask-guppi runs, a055d35695650c13f,
+      af56f988c579ddc06 and af7cde916f5b24293, each opened with the Grep `^(purpose|deferred_by):` over
+      `vault/wiki/rules/` and then grepped the other categories, as `case-guppi` saw in their transcripts.
+      The only reading of `estimate-search-leaves-out-decisions-in-every-agent`, at the `/hi` of this
+      session (L10 of `raw/2026-10-05/1343/ledger.md`), found that no Grep of these runs printed a line
+      of a Decision page, and failed. Among its causes, ask-guppi af56f988c579ddc06 ran a Grep at the
+      repository root with the glob `*.py` and no `!**/decisions/**`, and case-guppi a1cf96ac9df5edd1c
+      read `decision-case-432` for neither reason of its frame; the rest were Greps of the main agent
+      and of case-guppi without the exclusion. The clause this Case hands to that Estimate is thus read
+      there under a stricter letter, and that Estimate stands failed until a Case of its own. The person
+      chose to drop the clause on Decision pages from this Estimate and leave it to `estimate-search-leaves-out-decisions-in-every-agent`,
+      whose Criterion already covers `ask-guppi` and stands. The Criterion is replaced whole: its `when`
+      and its first three lines of `then` are carried word for word, and the old `－` line, that no Grep
+      or Read of the agent reaches `vault/wiki/decisions/` but for the two reasons, is left out on purpose;
+      a new `－` line says that clause is outside this promise. The `purpose` and the `method` of the Estimate
+      state the old promise and the old runs, so the same `update` sets both anew. A reading of an Estimate
+      that a decision line of this session updates waits for a later session, and the ledger hook refuses
+      it (case 428.1). So the reading is taken at the `/hi` of the next session. The new `method` names
+      its moment by its kind, as `rule-estimates-schema` asks of a method by hand: the calls of ask-guppi
+      at a `/pre-spec` after the render, read at the `/hi` of a later session. The first reading takes
+      the three ask-guppi runs of the `/pre-spec` of session 0311, as the person chose. The decision line
+      carries `{supersedes:case 649}`, which retires the defer. `.claude/agents/ask-guppi.md` and the
+      Render of `rule-ask` still forbid a search of Decision pages but for the two reasons; the Case does
+      not touch them, and they stay true. The Criterion of `estimate-ask-finds` is about the form of the
+      answer, not the searches, and stands. The Case creates no page, so no vault query is run. A Grep
+      `estimate-ask-searches-at-prespec` over `vault/wiki` with the glob `!**/decisions/**` printed 4
+      files: `vault/wiki/brief.md`, `vault/wiki/log.md`, `vault/wiki/estimates/estimate-ask-finds.md`
+      and `vault/wiki/rules/rule-ask.md`. The hit in `estimate-ask-finds` is a History line. The hits
+      in `rule-ask` are its `estimates` field, which stands, and a History line. The brief and the log
+      are not read.'
+    problem: '`estimate-ask-searches-at-prespec` stands failed and deferred. Its clause on Decision pages
+      repeats the promise of `estimate-search-leaves-out-decisions-in-every-agent`, and its reading after
+      the fix by case 640 has not been taken.'
+    recommend: "- **Which runs the new reading reads**\n  - Recommended: (a) the runs of the previous\
+      \ session's `/pre-spec`, read in this session.\n  - Answer: (a), the runs of the previous session;\
+      \ the time of the reading is set by the later question When the reading is taken, and over which\
+      \ runs.\n- **Whether the check keeps its clause on Decision pages**\n  - Recommended: (a) keep the\
+      \ clause as it stands.\n  - Answer: (b), drop the clause and leave Decision pages to `estimate-search-leaves-out-decisions-in-every-agent`.\n\
+      - **When the reading is taken, and over which runs**\n  - Recommended: (a) the `/hi` of the next\
+      \ session reads the runs of the previous session's `/pre-spec`.\n  - Answer: agreed, (a)."
+    given: '`estimate-ask-searches-at-prespec`: its Criterion is replaced whole, its `purpose` and `method`
+      set anew.
+
+      **＋** `rule-ask`: the rule the Estimate checks, rendered into `.claude/agents/ask-guppi.md`.
+
+      **＋** `.claude/agents/ask-guppi.md`: the frame of `ask-guppi`, which the Criterion reads.
+
+      **＋** `.claude/skills/pre-spec/SKILL.md`: the skill whose questions the main agent sends.
+
+      **＋** `estimate-search-leaves-out-decisions-in-every-agent`: the check that keeps the clause on
+      Decision pages.
+
+      **＋** `rule-estimates-schema`: the rule on how a method by hand names its moment.
+
+      **＋** `vault/wiki/rules/`: the folder of the rules, whose Grep the agent runs first.
+
+      **＋** `vault/wiki/decisions/`: the folder of the Decision pages, left to the other check.'
+    when: At the first run of `/pre-spec` in a session, the main agent dispatches `ask-guppi` through
+      the `Agent` tool with the plan file and the questions of `.claude/skills/pre-spec/SKILL.md`, and
+      the agent follows `.claude/agents/ask-guppi.md` as rendered from `rule-ask`.
+    then: 'The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then runs
+      one Grep per other category the question touches.
+
+      **＋** After those Greps it runs further Greps and Reads as a finding needs, including the search
+      behind a count that a `context` states.
+
+      **＋** A count of a `context` whose search covers `vault/wiki/decisions/` is not run again and is
+      no finding.
+
+      **－** Whether a Grep or Read of the agent reaches `vault/wiki/decisions/` is outside this promise:
+      `estimate-search-leaves-out-decisions-in-every-agent` reads it.'
+  spec: vault/raw/2026-10-05/1343/spec.md
+  supersedes:
+  - decision-case-649
+  applied: '16:08:37'
+- case: '656'
+  decision: decision-case-656
+  origin: raw/2026-10-05/1343/ledger.md#case-656
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-permissions
+    ref: rule-permissions
+  - kind: update
+    category: estimates
+    slug: estimate-permissions
+    ref: rule-permissions
+  - kind: update
+    category: rules
+    slug: rule-settings
+    ref: rule-settings
+  tags: []
+  case_text:
+    context: '`case-guppi` builds each Case in the mode `permissionMode: acceptEdits` of its agent file,
+      set by case 645.1, so it writes the file of its Case with no prompt while the session is in Plan
+      Mode. The allow list of `.claude/settings.json`, the Render of `rule-permissions`, holds only Edit
+      and Write rules for the session''s working files, and no rule for a read outside the project. Claude
+      Code keeps the transcripts of past sessions outside the project, under `~/.claude/projects/c--PROJECTS-GUPPI/`.
+      In this session, as the main agent read in the subagent transcripts, the builders of Cases 654 and
+      655 searched the transcripts of sessions 0109 and 0311 there to check a past reading, and the person
+      was asked to allow those searches. The person first proposed to remove `acceptEdits`, since the
+      builder ran with no mode line before. Before case 645.1 the builder wrote no file. Without the line
+      it runs in Plan Mode, where Claude Code lets an agent change only its plan file, so its write of
+      the Case file would ask or be refused. The person then chose to keep `acceptEdits` and allow reads
+      of this project''s transcript folder alone.
+
+
+      The Case adds `Read(~/.claude/projects/c--PROJECTS-GUPPI/**)` to the allow list. This rests on the
+      Claude Code docs as a guide agent paraphrased them for the main agent; this Case fetched nothing.
+      On that reading, an allow rule with a home path `~/` is valid, a `Read` rule applies to Grep and
+      Glob best-effort, and the docs do not say whether `acceptEdits` alone asks before a read outside
+      the working folder. So the live check is the person''s word in the next session on whether a search
+      of `case-guppi` in that folder asked. If it still asks, the person''s word fails the reading, and
+      a later Case can add the folder through `permissions.additionalDirectories` instead. The rule applies
+      to every agent of this project, the main agent too. The `/hi` step that takes a reading from the
+      transcript of an earlier session reads the same folder. The person chose a check on the searches
+      of the builder, so the new Criterion judges only those, and the new sentence of `rule-permissions`
+      gives the builder''s searches as the reason and says only that the rule covers the other agents
+      too. Whether a read of the main agent at `/hi` still asks is left unchecked, and this Case does
+      not promise it. The Criterion of `estimate-hi-takes-its-readings` judges what `/hi` reads and writes,
+      not whether the client asked, so it stands. The Purpose of `rule-settings` says the file carries
+      what may be written without a question, which the block of `rule-permissions` owns; a pair on it
+      adds reads, as the ask-guppi run at pre-spec found. The purpose of `rule-permissions` and the first
+      sentence of its Purpose say that the list allows writes of the session''s working files and nothing
+      else, so this Case sets the purpose anew and adds a sentence on the transcripts. The Criterion of
+      `estimate-permissions` lists the allow list whole, so it is replaced whole. Its `method` names one
+      live probe, a Write of `work.md`, so the same `update` sets the method anew with the new probe.
+      The page has no `purpose` field. The Case leaves `rule-case-build` and `estimate-case-build-writes-the-case`
+      as they stand, because the mode line stays `acceptEdits`. The Case also leaves the guard of Case
+      650, because it judges only writes. The Case creates no page, so no vault query was run.
+
+
+      The searches this Case rests on. A Grep of `rule-permissions` over the repository, with the glob
+      `!**/decisions/** !vault/archive/** !vault/raw/**`, printed 9 files: `vault/wiki/brief.md`, `.claude/skills/hi/SKILL.md`,
+      `vault/wiki/log.md`, `vault/wiki/insights/insight-session-vault-knowledge-not-loaded.md`, `vault/wiki/rules/rule-permissions.md`,
+      `vault/wiki/rules/rule-settings.md`, `vault/wiki/rules/rule-skill-hi.md`, `vault/wiki/estimates/estimate-permissions.md`
+      and `vault/wiki/estimates/estimate-settings.md`. `rule-permissions` and `estimate-permissions` enter
+      the Case. `.claude/skills/hi/SKILL.md` and its Render page `rule-skill-hi` name the rule for the
+      write of `frontier.md` in Plan Mode, which stays true. The hits in `rule-settings` and `estimate-settings`
+      name the rule as a child of `settings.json` and its place in the order, which stays true; the Purpose
+      of `rule-settings` enters the Case for the reason above. The hit in the Insight is a History line.
+      The brief and the log are not read. A Grep of `\.claude/projects|\.claude\\\\projects` over the
+      repository, with the glob `{vault/wiki/rules/**,.claude/**} !**/decisions/**`, printed nothing,
+      so no rule or harness file sets what happens at a read of that folder.
+
+
+      The check sent back notes, and they stand. Three lines of the old Criterion of `estimate-permissions`
+      are not carried word for word, and each changed on purpose. The line on the allow list now ends
+      with the new `Read` rule. The line on a prompt in Plan Mode was a `＋` line and is now a `－` line,
+      and it names an edit of the main agent, so that a prompt on a search of `case-guppi` in the transcript
+      folder fails the reading. The line on `deny` and `ask` now also says that no other path outside
+      the project is on the list, and that no Edit or Write rule names the transcript folder.
+
+
+      Not done: the folder name holds the path of this project on this machine; a clone at another path
+      would need the rule changed.'
+    problem: A builder that searches the saved transcripts of past sessions stops on a permission prompt
+      for each call. The question was how those reads stop asking, and whether the mode line of the builder
+      stays.
+    recommend: "- **How the builder's reads of past transcripts stop asking you**\n  - Recommended: (a)\
+      \ allow reading this project's transcript folder by one allow rule in the project settings, and\
+      \ keep `acceptEdits`.\n  - Answer: none of the options; the person proposed to remove `acceptEdits`,\
+      \ since the builder ran with no mode line before and nothing asked, and to check that. The later\
+      \ question Whether to remove the builder's mode line, given that the builder now writes its own\
+      \ file took this up.\n- **Whether to remove the builder's mode line, given that the builder now\
+      \ writes its own file**\n  - Recommended: (b) keep the line and allow reading this project's transcript\
+      \ folder; the check is the person's word in the next session on whether a builder's search of past\
+      \ transcripts asked.\n  - Answer: agreed, (b)."
+    given: '`rule-permissions`: the allow list of `.claude/settings.json` and why it holds what it holds.
+
+      **＋** `estimate-permissions`: its Criterion is replaced whole.
+
+      **＋** `.claude/settings.json`: the rendered settings of the project.
+
+      **＋** `~/.claude/projects/c--PROJECTS-GUPPI/`: the saved transcripts of this project.
+
+      **＋** `Read(~/.claude/projects/c--PROJECTS-GUPPI/**)`: the new allow rule for reading that folder.
+
+      **＋** `.claude/agents/case-guppi.md`: the agent file with `permissionMode: acceptEdits`. Unchanged.
+
+      **＋** `vault/raw/**`: the session folders that hold the working files on the allow list. Unchanged.
+
+      **＋** `vault/wiki/brief.md`: the brief, on the allow list. Unchanged.
+
+      **＋** `wiki/`: the live pages, none of them allowed but the brief. Unchanged.
+
+      **＋** `cases/`: the folder of the Case files, off the allow list. Unchanged.
+
+      **＋** `rule-spec-reconcile`: the guard that keeps the writes of `case-guppi` inside `cases/`. Unchanged.
+
+      **＋** `tests/test_render.py`: the JSON case that fixes the shape of the block. Unchanged.
+
+      **＋** `rule-settings`: its Purpose names what the block of `rule-permissions` carries.
+
+      **＋** `estimate-hi-takes-its-readings`: the check of the reads of `/hi` from past transcripts. Unchanged.'
+    when: 'The agent writes or edits a working file of the session — `frontier.md`, `spec.md`, `handoff.md`,
+      `work.md` or `carry.md` under `vault/raw/**` — or `vault/wiki/brief.md`; or `case-guppi` writes
+      the file of its Case.
+
+      **＋** Or `case-guppi` calls Read, Grep or Glob on a saved transcript of this project under `~/.claude/projects/c--PROJECTS-GUPPI/`.'
+    then: 'The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`, `spec.md`,
+      `handoff.md` and `work.md` under `vault/raw/**`, Write for `carry.md` under `vault/raw/**`, Edit
+      and Write for `vault/wiki/brief.md`, and `Read(~/.claude/projects/c--PROJECTS-GUPPI/**)`.
+
+      **＋** `.claude/settings.json` is rendered from `rule-permissions`; the JSON case of `tests/test_render.py`
+      fixes the shape of the block.
+
+      **＋** Whether the client asked is seen by the person only; the agent''s reply does not tell an approved
+      call from one not asked.
+
+      **＋** The client''s prompt is the person''s word: the reading line records whether the client asked,
+      from the person, never from the agent.
+
+      **＋** In Plan Mode the client asks before every edit of the main agent outside the plan file, allow
+      list or not.
+
+      **＋** `case-guppi` writes the file of its Case in the mode `permissionMode: acceptEdits` of `.claude/agents/case-guppi.md`,
+      with no prompt in Plan Mode, and the guard of `rule-spec-reconcile` keeps it inside `cases/`.
+
+      **＋** A Read, Grep or Glob of `case-guppi` under `~/.claude/projects/c--PROJECTS-GUPPI/` runs with
+      no prompt, in Plan Mode too.
+
+      **－** A prompt in Plan Mode on an edit of the main agent, approved by the person, is not a finding
+      and not a `failed`.
+
+      **－** `deny` and `ask` are empty; nothing else under `wiki/` is allowed, no path under `cases/`
+      is on the allow list, no other path outside the project is on it, and no Edit or Write rule names
+      `~/.claude/projects/c--PROJECTS-GUPPI/`.'
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '657'
+  decision: decision-case-657
+  origin: raw/2026-10-05/1343/ledger.md#case-657
+  targets:
+  - kind: defer
+    category: estimates
+    slug: estimate-case-build-checks-the-finished-case
+    ref: estimate-case-build-checks-the-finished-case
+  tags: []
+  case_text:
+    context: '`estimate-case-build-checks-the-finished-case` failed at the Work Mode of session 0109 (L22)
+      and was put off by Case 647 of session 0311. Session 1343 took Cases 650–656 and closed Plan Mode
+      at the person''s word with this item still open.'
+    problem: No Case of session 1343 decides whether the frame of `case-guppi` or the Criterion of this
+      Estimate changes.
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '658'
+  decision: decision-case-658
+  origin: raw/2026-10-05/1343/ledger.md#case-658
+  targets:
+  - kind: defer
+    category: estimates
+    slug: estimate-case-check-sends-back-a-faulty-case
+    ref: estimate-case-check-sends-back-a-faulty-case
+  tags: []
+  supersedes:
+  - decision-case-653
+  superseded_by:
+  - decision-case-659
+  applied: '16:08:37'
+- case: '659'
+  decision: decision-case-659
+  origin: raw/2026-10-05/1343/ledger.md#case-659
+  targets:
+  - kind: defer
+    category: estimates
+    slug: estimate-case-check-sends-back-a-faulty-case
+    ref: estimate-case-check-sends-back-a-faulty-case
+  tags: []
+  case_text:
+    context: Case 658 put off Case 653 with one mark, `{supersedes:case 653}`. Case 653 has no decision
+      line of its own; its lines are those of 653.1 and 653.2. `materialize` and the pre-spec check mark
+      superseded only the entries that carry the named Case, so the three lines of 653.1 and 653.2 stand
+      unsuperseded, and `uv run guppi prespec --check` prints three findings "no Case 653.x heading in
+      the plan".
+    problem: Case 658 does not supersede the decision lines of 653.1 and 653.2, so the librarian would
+      apply the updates the person put off.
+  spec: vault/raw/2026-10-05/1343/spec.md
+  supersedes:
+  - decision-case-658
+  - decision-case-653
+  - decision-case-653.1
+  - decision-case-653.2
+  applied: '16:08:37'
+- case: '650'
+  decision: decision-case-650
+  origin: raw/2026-10-05/1343/ledger.md#case-650
+  children:
+  - decision-case-650.1
+  - decision-case-650.2
+  tags:
+  - hooks
+  - harness
+  - workflow
+  case_text:
+    context: 'Each Case is built by its own `case-guppi`, which writes it into `raw/<date>/<hi HHMM>/cases/case-<N>.md`.
+      When the agent stops, the check of `rule-case-check` reads the file and stores each Case in `<plan>.checked.json`
+      with the `agent_id` of the agent. Since case 645.3 the guard of `rule-spec-reconcile` lets any `case-guppi`
+      write any file under `cases/`. Two agents can hold one number: the main agent gives a number twice,
+      or the check gives the same free number to two agents it sends back at about the same time (the
+      clash that case 610.2 counts numbers for). Then the second agent''s `Write` replaces the first agent''s
+      file before the check sends the second agent back. The `Stop` comparison refuses the showing of
+      the first Case, and nothing tells its agent to write the Case again (the handoff of session 0311,
+      from the Not done of Case 645). The person chose a guard that claims the number at the first write.
+      When the store holds no entry under the number of the file, the first call of a `case-guppi` on
+      that file writes its `agent_id` there. A call of another agent on that file is refused with a free
+      number, and that agent builds its Case under the free number. The holder is judged by `clashes`
+      and the number is counted by `new_number` of `guppi/casecheck.py`. These are the judgments the check
+      runs, so the guard and the check share one function. Case 650.1 creates the Estimate of this promise.
+      The Criterion of `estimate-spec-reconcile-refuses-an-edit-of-the-plan` says that a call that names
+      `case-guppi` under `cases/` is let through. That line becomes false, so Case 650.2 replaces the
+      Criterion whole, and its line on `case-guppi` becomes an exception that names the new Estimate.
+      Its `purpose` and `method` do not say that a call of `case-guppi` passes, so they stand. The Purpose
+      and How it works of `rule-spec-reconcile` say that every write of `case-guppi` under `cases/` is
+      an exception, and that only the hooks of `rule-spec-write` and `rule-case-check` write the store.
+      Four pairs in Case 650.1 fix those sentences. Both Estimates carry a `ref`, so the vault query of
+      `ask-guppi` was not run. A Glob `vault/**/*another-agent-holds*` printed nothing, so the new slug
+      is free.
+
+
+      What the frame showed, by these searches. A Grep of `checked\.json` over `vault/wiki/`, with `*.md
+      !**/decisions/**`, printed 15 files. `rule-spec-reconcile` and `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+      enter the Case. Ten files read the text, findings or notes of an entry that the check stores: `rule-spec-write`,
+      `estimate-spec-write-refuses-a-changed-case-file`, `estimate-spec-write-copies-the-ratified-case`,
+      `estimate-case-check-refuses-a-changed-case-file`, `estimate-case-check-shows-only-the-checked-case`,
+      `estimate-case-check-sends-back-a-faulty-case`, `estimate-case-check-notes-a-criterion-line-not-carried`,
+      `estimate-case-check-refuses-a-letter-outside-the-script`, `estimate-case-check-requires-each-question-of-the-rounds`
+      and `estimate-case-check-sends-back-a-clash-with-another-case`. They stand. The check replaces the
+      entry of a held number with the Case of the same agent. Until then the entry holds no text, so the
+      Spec hook and the `Stop` comparison refuse a showing, as they refuse one that differs from the store.
+      `estimate-case-check-sends-back-a-ratified-case-in-another-shape` stands: it counts the keys of
+      the store, and a held number is one of them, so the check does not give out a held number. `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+      stands: it judges an entry by its `agent_id`, so an answer of the old path under a held number is
+      sent back, as the person chose. Its words "from an answer" name the entry of the agent that holds
+      the number. `lesson-hooks-subagentstop-reads-the-last-text-not-the-handback` records a past session.
+      A Grep of `PreToolUse` over `vault/wiki/rules/` printed 14 files, and over `.claude/` it printed
+      `.claude/settings.json`. Only `rule-spec-reconcile` sets what happens at an `Edit` or `Write` of
+      a file under `cases/`. `rule-governed-files-hook` runs `uv run guppi guard` on the same event, for
+      rendered harness files only. `rule-hook-registry` and `.claude/settings.json` keep the registration
+      of the guard as it is. The other hits name other tools or quote an example.
+
+
+      `rule-case-build` stands. Its agent file says that the file of its Case is the one file the guard
+      lets the agent write, and that stays true. The refusal itself tells the agent to build under the
+      free number, as the finding of the check has done since case 610.1. In Work Mode, a new agent dispatched
+      to build again a Case that another agent holds is refused. The check of case 610.2 already sends
+      such an agent back. The guard reads entries that the check already writes with an `agent_id`, and
+      an entry with no `agent_id` is not compared, so the guard needs no old form.
+
+
+      Pre-spec raised three findings, and this build answers them. The pairs on `rule-spec-reconcile`
+      now match the `then` lines: the first write passes when no other agent holds the number, and a number
+      counts as held when the store holds Case N or a sub-case of it from another agent, as `clashes`
+      judges it. On its own error the guard keeps exit 0 and lets the call run, as the existing rule of
+      the guard sets it in `estimate-spec-write-exits-2-on-an-error`. That Criterion stays true, and 650.1
+      names the error in a `－` line. A store that cannot be read or written then holds no number, and
+      the check of `rule-case-check` still sends back a number held by another agent when the agent stops.
+      The guard reads `agent_id` from the `PreToolUse` input. The handoff of session 0311 records this
+      field in the probe of 645.3: "the `PreToolUse` input held `agent_id` and `agent_type` (`claude`)".
+      So this Case adds no probe. The method of the new Estimate adds a reading by hand of the entry that
+      a live `case-guppi` writes with its first `Write`.
+
+
+      The check sent back notes, and they stand. In Case 650.2, the old line that let a call of `case-guppi`
+      under `cases/` through is not carried word for word. It changed on purpose: it is now a line on
+      the other agents and an exception that names the new Estimate. Two `then` lines of 650.2 share many
+      words with 650.1, the refusal under `cases/` and the line of the event log. Each sub-case still
+      sets its own promise: 650.2 the refusal of an agent that is not `case-guppi`, 650.1 the refusal
+      of a `case-guppi` whose number another agent holds.
+
+
+      Not done: the guard and the check each read the store whole and write it whole. Two writes at the
+      same instant can still lose one of them, and this Case does not lock the store.'
+    problem: A second `case-guppi` that builds under a number another agent holds replaces that agent's
+      file before any check runs. The first Case can no longer be shown until its agent writes it again,
+      and nothing tells that agent to do so. The question was whether a guard stops the second write and
+      how it knows that a number is taken, what the refused agent does, and how done is checked.
+    recommend: "- **Whether a guard stops the second write, and how it knows the number is taken**\n \
+      \ - Recommended: (a) the guard claims the number at the first write: the first builder whose write\
+      \ creates the file is recorded in the store as the holder of the number at once, and a write or\
+      \ edit of that file by any other builder is refused before it runs, with a free number counted as\
+      \ the check counts one; this covers the time between the first builder's write and its stop.\n \
+      \ - Answer: agreed, (a).\n- **What the refused builder does next**\n  - Recommended: (a) it builds\
+      \ under the free number the refusal names, counted as the check counts one, and the main agent learns\
+      \ the number from the summary.\n  - Answer: agreed, (a).\n- **How the new refusal is checked**\n\
+      \  - Recommended: (a) a new check for the claim under the guard's rule, and the old check of the\
+      \ guard replaced whole, its line on builders now naming a number held by another builder as the\
+      \ exception; two sub-cases.\n  - Answer: agreed, (a)."
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '651'
+  decision: decision-case-651
+  origin: raw/2026-10-05/1343/ledger.md#case-651
+  children:
+  - decision-case-651.1
+  - decision-case-651.2
+  - decision-case-651.3
+  tags:
+  - session
+  - workflow
+  - harness
+  case_text:
+    context: '`orchestration.md` tells the main agent what to do in a session. It still calls the reply
+      of `case-guppi` "the answer", from the time that reply held the whole Case. Since case 645, `case-guppi`
+      writes the Case into its file and replies with a summary: the path, and for each Case its id, name,
+      Estimate and ledger lines in a plain fence. Now "the answer" can mean the summary, the file or the
+      text the check stored. The page also leaves out two exact forms that the checks read. It says that
+      the `ratification` of a showing holds the ledger lines "as the answer holds them". The `Stop` check
+      reads only the quote block under `> **ratification:**`, so in session 1834 of 2026-10-02 the main
+      agent put the fence outside the quote and the check refused the showing (`lesson-case-showing-ratification-fence-outside-the-blockquote`).
+      The page says the `then` block of a short-form defer carries "slug, type and purpose". The hook
+      of `rule-spec-write` reads only a list of items, so in session 0109 of 2026-10-05 a single mapping
+      was refused twice (`lesson-orchestration-short-defer-then-block-written-as-a-mapping`). Both lessons
+      are children of `insight-workflow-case-schema-silent-on-what-the-scripts-accept`. Case 646 left
+      that Insight open until a later Case covered the forms the main agent writes.
+
+
+      The person chose the following. Each meaning gets its own word: the summary, the file, and the text
+      the check stored. Only `orchestration.md` changes. The two forms are shown by examples that a test
+      runs the checks over, as case 646 did for `case-schema.md`. Only the two forms of the lessons are
+      covered. The work is three sub-cases. The tests skip until the librarian''s render. The example
+      of a showing is a parent with two sub-cases, and its heading is in English because the page is documentation.
+      The Insight is set `actioned` by this Case. A Grep of `answer` over `vault/wiki/rules/rule-orchestration.md`
+      counted 8 lines. The hits on lines 38, 42, 44 and 46 that name a reply of `case-guppi`, the file
+      it writes, or what the check stored from that file enter Case 651.1 as fourteen `replace` pairs,
+      the first reply on an item from which a round may come among them. Line 32 names the person''s answer
+      and line 56 the main agent''s answer to a refusal, so they stand. Lines 84 and 94 are History. The
+      other hits on lines 38 and 46 name the person''s answers, `case-guppi` answering as a verb, or the
+      recommended answer of a question, the option a round recommends, and they stand.
+
+
+      What the frame showed. `estimate-orchestration-shows-the-built-case` already calls the reply "the
+      summary" and reads the showing that the new words describe, so it checks 651.1 and its Criterion
+      stands. `estimate-orchestration-defers-in-one-reply` speaks of "a fence tagged `then` with one `defer`
+      item per target", which the example of 651.3 bears out, so it stands. `estimate-orchestration-signs-a-batch-together`
+      keeps its own words "an answer of a `case-guppi`", which the new page text does not make false,
+      and `estimate-orchestration-forwards-a-discussion-question` keeps "the answer" for the `**Fact:**`
+      reply the page now calls "that reply", with the same meaning. `estimate-prespec-gathers-the-answers-after-findings`
+      sets the loop of `rule-prespec` whose steps the batch sentence of `orchestration.md` takes, which
+      651.1 rewords. Its words "while an answer is out" and "until every `case-guppi` it sent has answered
+      with its Case" keep their meaning beside the new words of the page. Its line on "the showing that
+      `vault/wiki/orchestration.md` sets" stays true, and that is the showing the example of 651.2 shows.
+      So its Criterion stands. `estimate-guppi-tests-green` says that a skipped test is not a failure,
+      so `make test` stays green while the new tests of `tests/test_orchestration.py` skip, and it stands.
+      `estimate-orchestration-loaded`, `estimate-case-protocol-loaded` and `estimate-ratification-loaded`
+      say that no paragraph of `orchestration.md` repeats one of `case-schema.md` or `ratification.md`.
+      The new paragraphs and examples are worded apart from the example of `case-schema.md`, with another
+      subject and other ledger lines. The checks the examples pass are not changed: `estimate-case-check-refuses-text-outside-the-list`
+      and `estimate-spec-write-writes-a-defer` stand. The tests read text that lands only at the librarian''s
+      generate and render. `rule-retro` lets no red test pass, so, as the person chose and as `tests/test_case_schema.py`
+      does, each test skips with a reason while the page holds no block of its tag. A Case of a later
+      session removes the skips after the readings pass.
+
+
+      The searches this Case rests on. A Grep of `rule-orchestration|orchestration\.md` over the repository
+      root, with the glob `!**/decisions/** !**/raw/** !**/archive/** !**/log.md !**/brief.md`, printed
+      38 files. I read each hit outside History lines, and none says something that this Case makes false.
+      A Grep of `short form|the summary` over `vault/wiki/rules/` printed 6 files: `rule-orchestration`,
+      `rule-case-protocol`, `rule-spec-write`, `rule-case-build`, `rule-decisions-schema` and `rule-compact-recall`.
+      Over `.claude/` it printed `.claude/agents/case-guppi.md`. `rule-spec-write` sets how the hook reads
+      a short-form defer, and it is named in `given` of 651.3 and unchanged. `rule-case-build` and the
+      agent file set the summary that `case-guppi` writes, a moment before the main agent''s showing,
+      and they stand. `rule-case-protocol` and `rule-decisions-schema` point to `orchestration.md` for
+      the short form, and `rule-compact-recall` speaks of the summary of a compaction. A Glob `vault/**/*example*`
+      printed `vault/wiki/lessons/lesson-wait-what-invents-an-example.md` and `vault/wiki/estimates/estimate-case-protocol-example-passes-the-check.md`,
+      so both new slugs are free. Both new Estimates carry a `ref`, so the vault query of `ask-guppi`
+      was not run. The Insight is set `actioned` with `addressed_by: decision-case-651.3`, the bare form
+      that case 636 used. The cascade of `generate` then archives its `clustered` children, among them
+      `lesson-case-build-closes-a-sprint-item-without-the-sprint-page` and `lesson-case-build-splits-a-case-whose-line-stands`.
+      A new lesson of the same kind reopens it.
+
+
+      The check sent back notes, and they stand. Three `then` lines of 651.3 share most of their words
+      with 651.2: the paragraph before the block, the test that holds no copy, and the skip. Each sub-case
+      still sets its own promise. 651.2 covers the block tagged `showing` and the `Stop` check of `rule-case-check`.
+      651.3 covers the block tagged `defer` and the hook of `rule-spec-write`.
+
+
+      Not done:
+
+      - `rule-case-check`, `rule-spec-write`, the other Estimates and the code keep the word "answer",
+      the refusal of the `Stop` comparison included.
+
+      - The acknowledging reply gets no example.
+
+      - The tests keep their skips until a Case of a later session removes them.'
+    problem: '`orchestration.md` calls the reply of `case-guppi` "the answer" while that reply is now
+      a summary, and it states the `ratification` of a showing and the `then` block of a short-form defer
+      in words that the main agent has twice read into a form the checks refuse. The question was which
+      words replace "the answer", how far the change reaches, how the two forms are shown and checked,
+      and what happens to the Insight.'
+    recommend: "- **Which word replaces \"the answer\"**\n  - Recommended: (a) a word for each meaning:\
+      \ the summary where the main agent reads the reply of `case-guppi`, the file where the Case is sent,\
+      \ and the text the check stored where the Spec hook reads; a round and a Fact reply keep their names.\n\
+      \  - Answer: agreed, (a).\n- **How far the change reaches**\n  - Recommended: (a) only `orchestration.md`;\
+      \ the other pages and the code keep their words.\n  - Answer: agreed, (a).\n- **How the page states\
+      \ the two forms**\n  - Recommended: (b) an example checked by a test that runs the checks over it\
+      \ and fails on any refusal.\n  - Answer: agreed, (b).\n- **Which forms the page covers**\n  - Recommended:\
+      \ (a) the `ratification` of a showing and the `then` block of a short-form defer, the two the lessons\
+      \ name.\n  - Answer: agreed, (a).\n- **One check or one per form**\n  - Recommended: (a) three sub-cases:\
+      \ the rewording, checked by `estimate-orchestration-shows-the-built-case` as it stands; the example\
+      \ of a showing with a new Estimate; the example of a short-form defer with a new Estimate.\n  -\
+      \ Answer: agreed, (a).\n- **What the test does before the page holds the example**\n  - Recommended:\
+      \ (a) skip until the render, with a reason that names `orchestration.md`; a Case of a later session\
+      \ removes the skip after the readings pass.\n  - Answer: agreed, (a).\n- **What the example of a\
+      \ showing shows**\n  - Recommended: (a) a parent with two sub-cases: the heading, a list of two\
+      \ items, one `ratification` quote block with the lines of both, the horizontal rule and the agent's\
+      \ own text.\n  - Answer: agreed, (a), with the heading of the example in English, since the example\
+      \ is part of the documentation.\n- **What happens to the open Insight**\n  - Recommended: (a) mark\
+      \ it `actioned`, addressed by this Case.\n  - Answer: agreed, (a)."
+  spec: vault/raw/2026-10-05/1343/spec.md
+  applied: '16:08:37'
+- case: '653'
+  decision: decision-case-653
+  origin: raw/2026-10-05/1343/ledger.md#case-653
+  children:
+  - decision-case-653.1
+  - decision-case-653.2
+  tags: []
+  case_text: {}
+  incomplete:
+  - context
+  - problem
+  superseded_by:
+  - decision-case-658
+  - decision-case-659
+  applied: '16:08:37'
+unparsed: []
+session: '1343'

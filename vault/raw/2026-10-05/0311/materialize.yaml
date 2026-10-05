@@ -1523,6 +1523,7 @@ entries:
       a /pre-spec after the render by case 640; put off by session 0311
   exists: true
   applied: 05:45:18
+  superseded_by: '655'
 - line: 31
   text: 'lesson[error][lesson-session-frontier-closer-appended-box-left-open]{tags:session,workflow} trigger:
     at the close of Plan Mode of session 0311 the main agent closed C2 and C5 of frontier.md by an Edit
@@ -4803,6 +4804,8 @@ decisions:
       again.
   spec: vault/raw/2026-10-05/0311/spec.md
   applied: 05:45:18
+  superseded_by:
+  - decision-case-655
 - case: '644.8'
   decision: decision-case-644.8
   origin: raw/2026-10-05/0311/ledger.md#case-644.8

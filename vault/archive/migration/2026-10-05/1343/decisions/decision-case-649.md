@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "649"
-status: current
+status: archived
 defer: ["[[estimate-ask-searches-at-prespec]]"]
+superseded_by: ["[[decision-case-655]]"]
 origin: raw/2026-10-05/0311/ledger.md#case-649
 sprint: migration
 created: 2026-10-05
@@ -26,3 +27,6 @@ Whether ask-guppi at /pre-spec greps the rules first and leaves vault/wiki/decis
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/0311/ledger.md#case-649
+- 2026-10-05 superseded by decision-case-655 · [[decision-case-655]]
+- 2026-10-05 archived · superseded
+- 2026-10-05 archived · cleanup

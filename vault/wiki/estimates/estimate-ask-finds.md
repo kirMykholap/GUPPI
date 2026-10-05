@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi answers the questions of /pre-spec with one line on what it read, one numbered list of findings under each question and nothing else under it, each finding naming its Case and the page or Cases it bears on, then a list of what it did not check ending with a line per search rule it broke, of its frame or of .claude/rules/search-leaves-out-decisions.md, and a list of the paths of the files it read, and nothing else
 method: "by hand at the /hi of a later session: the answer of ask-guppi at a /pre-spec after the render of .claude/agents/ask-guppi.md by case 639, read in its agent transcript against the event log, recorded in the estimate line"
@@ -31,7 +31,7 @@ The answer opens with one line that names what the agent read: the plan file, or
 
 ## Result
 
-2026-10-05, at the /hi of session 0109, by hand: the first answers of the two ask-guppi runs at the /pre-spec of session 2245 (transcript 7086b96c, agent aab5addf1e347ccb8 on Case 636 and agent a390781c7f1241c18 on Case 637; event log `23:55:12 7086b96c tool Agent: ask-guppi`, twice), after the render of .claude/agents/ask-guppi.md by case 633.1 in commit 3b31fb80: each opens with one line on the plan file and the Cases it checked; three numbered lists stand in the order of the questions (636: none, 1, 2 findings; 637: 1, 1, 2), each finding names its Case and the page or Cases it bears on, a question with no finding says "none"; a list of what was not checked, then the list of files read; but under question 1 both answers hold a paragraph of what holds, which the Criterion excludes — 636 after "none" ("The `old` text of the `replace` on `rule-case-build` ... stands word for word in its Render ..."), 637 after its finding ("No clash found between Case 637 and Case 636. They change different pages ..."); not exercised: a finding that names a page carrying deferred_by
+2026-10-05, at the /hi of session 1343, by hand: the first answers of the three ask-guppi runs at the /pre-spec of session 0311 (transcript 6d53e05d, agent a055d35695650c13f on Case 644, af56f988c579ddc06 on 645, af7cde916f5b24293 on 646; event log `04:50:14 6d53e05d tool Agent: ask-guppi`, three times), after the render by case 639 at the librarian's run of session 0109: each opens with one line on the plan file and the Cases it checked; three numbered lists in the order of the questions (644: 3, none, none; 645: 6, 4, 2; 646: 3, 2, none), each finding names its Case and the page or Cases it bears on, a question with no finding says "none", no sentence of what holds under a question; then a list of what was not checked, whose last lines in 644 and 645 name the search rule broken and say whether a finding rests on it, then the list of files read; not exercised: a finding that names a page carrying deferred_by
 
 ## History
 
@@ -51,3 +51,4 @@ The answer opens with one line that names what the agent read: the plan file, or
 - 2026-10-04 updated: the Criterion replaced whole — one line on what was read before the findings, a list of what was not checked after them and before the paths, no summary and no list of what holds; the line on the searches moved to estimate-ask-searches-at-prespec (case 633.1) · [[decision-case-633.1]]
 - 2026-10-05 status: pending → failed · raw/2026-10-05/0109/ledger.md#L8
 - 2026-10-05 updated: the Criterion replaced whole — only findings or "none" under a question, no sentence on a clash not found; the list of what was not checked ends with a line per search rule broken, of the frame or of .claude/rules/search-leaves-out-decisions.md (case 639) · [[decision-case-639]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L9

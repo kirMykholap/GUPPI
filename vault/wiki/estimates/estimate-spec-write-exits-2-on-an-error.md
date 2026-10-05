@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: Whether the Spec hook exits 2 with the error on stderr when its Stop run raises after reading the payload, once a stretch for the same error, exits 0 and prints nothing with stop_hook_active set and a transcript it cannot read, and exits 0 on an error while reading the payload and in the guard
 method: uv run pytest tests/test_ratified.py — piped payloads, a function of the hook patched to raise
-checked: 2026-10-01
+checked: 2026-10-05
 origin: raw/2026-09-30/2042/ledger.md#case-554
 sprint: migration
 created: 2026-09-30
@@ -29,10 +29,11 @@ The hook exits 2. Its stderr holds `ratified: not done: <error>` and the advice 
 
 ## Result
 
-2026-10-01, uv run pytest tests/test_ratified.py: 89 passed (-k error: 4 passed)
+2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_ratified.py 106 passed
 
 ## History
 
 - 2026-09-30 created · [[decision-case-554]]
 - 2026-10-01 status: pending → passed · raw/2026-09-30/2356/ledger.md#L43
 - 2026-10-05 updated: the Criterion replaced whole — an error is told once a stretch, judged by the hook's own refusals in the transcript, and with stop_hook_active set and a transcript it cannot read the hook exits 0 silent; the purpose follows (case 644.7) · [[decision-case-644.7]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L1

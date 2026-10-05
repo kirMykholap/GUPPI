@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-synthesis]]"
 method: one reading by hand of the yaml and the report after a live librarian run whose yaml holds at least two lesson entries
 checked: 2026-10-05
@@ -22,8 +22,9 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 **＋** Two lessons with one root cause and no Insight give one `create` of an Insight with `pattern`, both children, the union of their tags, `Pattern` and `Proposal`, and one `update` per lesson with `set: {status: clustered, insight: <slug>}`.
 **＋** A lesson whose root cause matches the pattern of a live Insight gives an `update` of that Insight with the lesson added to its `children`, and an `update` of the lesson.
 **＋** Every entry the synthesis adds carries `librarian: synthesis`.
-**＋** Every lesson page read at synthesis is named in the report with the outcome: the Insight it joined, or none and why.
+**＋** Every page the librarian opens at synthesis to judge whether a lesson shares its root cause is named in the report with the outcome: the Insight it joined, or none and why. A read of its Trigger, Root cause, `root_cause`, Pattern or `pattern` outside the two Greps is such an opening.
 **＋** A lesson without a pair stays `new`, and its line in the brief is no flag.
+**－** A read at synthesis of only the fields `status`, `insight`, `children` and `tags` of a page under `vault/wiki/lessons/` or `vault/wiki/insights/`, made to learn which lessons are grouped or which lessons an Insight holds, is not named in the report and fails nothing here.
 **－** A read of another session's `materialize.yaml` or of a page under `vault/archive/` fails nothing here: an actioned Insight stays live with its pattern in its index line until the close of its sprint, and the flag of such a read is the promise of `estimate-documentation-completes`.
 
 ## Result
@@ -49,3 +50,4 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0317/ledger.md#L1
 - 2026-10-04 updated: the Criterion replaced whole — an actioned Insight stays live until the close of its sprint (case 627.5) · [[decision-case-627.5]]
 - 2026-10-05 status: pending → failed · raw/2026-10-05/0311/ledger.md#L1
+- 2026-10-05 updated: the Criterion replaced whole — a page is named in the report when it is opened to judge a shared cause; a read of only its status, insight, children and tags is not (case 654) · [[decision-case-654]]

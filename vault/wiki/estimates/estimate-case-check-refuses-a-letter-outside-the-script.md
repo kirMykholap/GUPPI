@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi whose name, context or problem holds a letter outside the script of the documentation language, a Latin letter in a code span excepted, is a finding of the check, and the Case is not shown or written into the Spec while it stands
 method: uv run pytest tests/test_casecheck.py -k script
-checked: 2026-10-02
+checked: 2026-10-05
 origin: raw/2026-09-30/0248/ledger.md#case-537
 sprint: migration
 created: 2026-09-30
@@ -29,7 +29,7 @@ A name, `context` or `problem` of a Case of the file that holds, outside a code 
 
 ## Result
 
-2026-10-02, uv run pytest tests/test_casecheck.py -k script: 9 passed
+2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k script 10 passed, 125 deselected
 
 ## History
 
@@ -38,3 +38,4 @@ A name, `context` or `problem` of a Case of the file that holds, outside a code 
 - 2026-10-02 updated: the Criterion replaced whole — a Latin letter in a code span is no finding, any other letter there is judged as in prose (case 589.2) · [[decision-case-589.2]]
 - 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L36
 - 2026-10-05 updated: the Criterion replaced whole — the check reads the file case-guppi wrote, and a finding holds the Case back from the showing and the Spec instead of keeping a file unwritten; the purpose follows (case 645.7) · [[decision-case-645.7]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L5

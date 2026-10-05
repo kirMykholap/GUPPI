@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the frame of case-guppi does not carry the pre-spec rule that a Case which closes a sprint item also updates the sprint page (case 314.2).
-status: clustered
+status: archived
 insight: "[[insight-workflow-case-schema-silent-on-what-the-scripts-accept]]"
 origin: raw/2026-09-29/1432/ledger.md#L32
 sprint: migration
@@ -22,3 +22,5 @@ the frame of case-guppi does not carry the pre-spec rule that a Case which close
 
 - 2026-09-29 created · raw/2026-09-29/1432/ledger.md#L32
 - 2026-09-29 updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-09-29/1432/ledger.md#L32
+- 2026-10-05 archived · insight actioned
+- 2026-10-05 archived · cleanup

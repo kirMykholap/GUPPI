@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: A line of a Criterion replaced whole that the new Criterion does not carry goes back to case-guppi once as a note, and pre-spec prints it, with no Case held back
 method: uv run pytest tests/test_casecheck.py tests/test_prespec.py -k note, then by hand the first note the hook sends back to case-guppi
-checked: 2026-09-28
+checked: 2026-10-05
 origin: raw/2026-09-28/0000/ledger.md#case-472.1
 sprint: migration
 created: 2026-09-28
@@ -30,10 +30,11 @@ The old Criterion is the `## Criterion` of the Estimate page as it stands. The n
 
 ## Result
 
-2026-09-28, uv run pytest tests/test_casecheck.py tests/test_prespec.py -k note: 14 passed; by hand, session 2000: the answer of case-guppi on Case 482 kept its change and said why in context after the notes, the plan's checked.json holds notes, and prespec --check printed 74 note: lines with exit 0
+2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_casecheck.py tests/test_prespec.py -k note 16 passed; the first note of the session came from `uv run guppi casecheck --subagent` on case-guppi of Case 650 (agent a8b021dff7985c631) after its first Write of cases/case-650.md: three notes and no finding, the first naming case 650.2, `estimate-spec-reconcile-refuses-an-edit-of-the-plan` and the line not carried; the agent kept its change and added a context paragraph saying why; its next stop got no feedback, the notes not sent again; the store holds the three notes under `650.2` in `notes`, apart from `findings: []`; the showing passed the Stop check; `uv run guppi prespec --check` printed the same note among 19 `note:` lines, exit 0
 
 ## History
 
 - 2026-09-28 created · [[decision-case-472.1]]
 - 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L22
 - 2026-10-05 updated: the Criterion replaced whole — the note goes back on the file case-guppi wrote, and a note writes no file since the hook writes none (case 645.8) · [[decision-case-645.8]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L37

@@ -107,7 +107,7 @@ update:
 - [x] update `estimate-prespec-confirms-the-findings-once`
 - [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] read `estimate-prespec-confirms-the-findings-once`
+- [x] read `estimate-prespec-confirms-the-findings-once`
 ```
 
 ## Case 639 — ask-guppi's first answer at /pre-spec has only findings or "none" under each question, and a line for each search rule it broke
@@ -193,7 +193,7 @@ update:
 - [x] update `rule-ask`
 - [x] update `estimate-ask-finds`
 - [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] read `estimate-ask-finds`
+- [x] read `estimate-ask-finds`
 ```
 
 ## Case 640 — A file under `.claude/rules/` keeps the text of Decision pages out of the searches of the main agent, `ask-guppi` and `case-guppi`
@@ -352,7 +352,7 @@ update:
 - [x] update `rule-harness`
 - [x] update `estimate-ask-searches-at-prespec`
 - [x] `uv run guppi render`: `.claude/rules/search-leaves-out-decisions.md`
-- [ ] read `estimate-search-leaves-out-decisions-in-every-agent`
+- [x] read `estimate-search-leaves-out-decisions-in-every-agent`
 ```
 
 ## Case 641 — The session's Estimate names a make target over the phases' tests

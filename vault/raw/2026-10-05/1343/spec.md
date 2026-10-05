@@ -82,8 +82,8 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
-- [ ] update `rule-spec-reconcile`
+- [x] create `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+- [x] update `rule-spec-reconcile`
 - [x] `guppi/casecheck.py`: one function reads N from the name `case-<N>.md`, beside `case_file`; the module docstring says that the guard writes the entry of a held number, with an `agent_id` and no text, which the check replaces.
 - [x] `guppi/ratified.py`: the guard finds the plan file of the session and its store; it refuses a call of `case-guppi` on `case-<N>.md` when `clashes` finds another holder, the reason naming the file and the number of `new_number`; a call that passes with no entry under N writes the entry of the held number; the module docstring and the docstring of `guard_refusal` say the same.
 - [x] `tests/test_ratified.py`: tests `-k number_held` — a first `Write` of `case-guppi` passes and writes the entry with its `agent_id`; a `Write` and an `Edit` of another `agent_id` on that file are refused, the reason naming a free number, and the event log holds the refusal; the same `agent_id` passes; an entry with no `agent_id`, a call with no `agent_id` and a session with no plan file are let through and write nothing; a store that cannot be read or written lets the call through with exit 0 and one line on stderr.
@@ -126,7 +126,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+- [x] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
 - [ ] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
 ```
 
@@ -232,8 +232,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 ```
 
 ### Case 651.2 — orchestration.md shows a showing by an example the Stop check passes
@@ -302,8 +302,8 @@ update:
 `````
 
 ```tasks
-- [ ] create `estimate-orchestration-showing-example-passes-the-check`
-- [ ] update `rule-orchestration`
+- [x] create `estimate-orchestration-showing-example-passes-the-check`
+- [x] update `rule-orchestration`
 - [x] `tests/test_orchestration.py`: reads the first block tagged `showing` from `vault/wiki/orchestration.md` by `fence_opening` and `closes_fence` of `guppi/materialize.py`, its lines as they stand, and skips with a reason that names the file while it holds none. It builds a store whose entry for each sub-case id that a ledger line of the example names holds that sub-case's heading and a `ratification` of its own lines, read by `fence_ledger_lines`. Tests `-k showing_example`: `outside_the_list` finds nothing; `showings` reads a showing for each sub-case id and `against_store` finds no difference for each; the example with the `> ` taken off the lines of its fence makes `outside_the_list` return a line.
 - [ ] read `estimate-orchestration-showing-example-passes-the-check`
 ```
@@ -378,9 +378,9 @@ update:
 `````
 
 ```tasks
-- [ ] create `estimate-orchestration-defer-example-passes-the-hook`
-- [ ] update `rule-orchestration`
-- [ ] update `insight-workflow-case-schema-silent-on-what-the-scripts-accept`
+- [x] create `estimate-orchestration-defer-example-passes-the-hook`
+- [x] update `rule-orchestration`
+- [x] update `insight-workflow-case-schema-silent-on-what-the-scripts-accept`
 - [x] `tests/test_orchestration.py`: reads the first block tagged `defer` from `vault/wiki/orchestration.md` the same way, and skips with a reason that names the file while it holds none. It seeds a temporary project with the `schema.yaml` files of `vault/wiki/` and an empty plan file, and builds one `defer` record of the Case of the example for each slug of its `then` items. Tests `-k defer_example`: `write_defers` with `key_judge` returns no error and the plan file holds the Case under `## Deferred`; the example with its items rewritten as one mapping under `defer:` returns the error `no fence tagged then with its defer items`.
 - [ ] read `estimate-orchestration-defer-example-passes-the-hook`
 ```
@@ -436,7 +436,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-example-passes-the-check`
+- [x] update `estimate-case-protocol-example-passes-the-check`
 - [x] `tests/test_case_schema.py`: `example` calls `pytest.fail` with a message that names the file, in place of `pytest.skip`, when the page holds no block tagged `case`; the module docstring says the test fails then and drops the sentence on the skip.
 - [ ] read `estimate-case-protocol-example-passes-the-check`, at the `/hi` of a later session
 ```
@@ -485,7 +485,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-synthesis-clusters`
+- [x] update `estimate-synthesis-clusters`
 - [ ] read `estimate-synthesis-clusters`
 ```
 
@@ -538,7 +538,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-searches-at-prespec`
+- [x] update `estimate-ask-searches-at-prespec`
 - [ ] read `estimate-ask-searches-at-prespec`
 ```
 
@@ -625,10 +625,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-permissions`
-- [ ] update `estimate-permissions`
-- [ ] update `rule-settings`
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] update `rule-permissions`
+- [x] update `estimate-permissions`
+- [x] update `rule-settings`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-permissions`
 ```
 

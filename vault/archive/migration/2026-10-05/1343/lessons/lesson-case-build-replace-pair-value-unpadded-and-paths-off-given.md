@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-schema.md stated both rules in prose but showed no example of the form case-guppi writes, and a fix after a finding meant a whole new answer
-status: clustered
+status: archived
 insight: "[[insight-workflow-case-schema-silent-on-what-the-scripts-accept]]"
 origin: raw/2026-10-05/0311/ledger.md#L40
 sprint: migration
@@ -22,3 +22,5 @@ case-schema.md stated both rules in prose but showed no example of the form case
 
 - 2026-10-05 created · raw/2026-10-05/0311/ledger.md#L40
 - 2026-10-05 updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-10-05/0311/ledger.md#L40
+- 2026-10-05 archived · insight actioned
+- 2026-10-05 archived · cleanup

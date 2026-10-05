@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the frame of case-guppi does not say that a Case shown again after its ratification keeps the ids of the ledger lines it already wrote.
-status: clustered
+status: archived
 insight: "[[insight-workflow-case-schema-silent-on-what-the-scripts-accept]]"
 origin: raw/2026-09-29/1432/ledger.md#L35
 sprint: migration
@@ -22,3 +22,5 @@ the frame of case-guppi does not say that a Case shown again after its ratificat
 
 - 2026-09-29 created · raw/2026-09-29/1432/ledger.md#L35
 - 2026-09-29 updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-09-29/1432/ledger.md#L35
+- 2026-10-05 archived · insight actioned
+- 2026-10-05 archived · cleanup

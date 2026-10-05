@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the Stop check refuses a showing of a Case whose file under cases/ differs from the text the store holds for it
 method: uv run pytest tests/test_casecheck.py -k changed_file
+checked: 2026-10-05
 origin: raw/2026-10-05/0311/ledger.md#case-645.4
 sprint: migration
 created: 2026-10-05
@@ -23,6 +24,11 @@ The hook reads the Cases of that file by `split_cases` of `guppi/materialize.py`
 **－** A heading with no section, a fence tagged `DIFF` and a deferred decision in the short form are not compared, and no file is read for them.
 **－** On the re-fire (`stop_hook_active`) it exits 0, as the other checks of the same run do.
 
+## Result
+
+2026-10-05, at the /hi of session 1343: uv run pytest -q tests/test_casecheck.py -k changed_file 4 passed, 131 deselected
+
 ## History
 
 - 2026-10-05 created · [[decision-case-645.4]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L4

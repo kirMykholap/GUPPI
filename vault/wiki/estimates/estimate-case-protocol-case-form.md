@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-protocol]]"
 purpose: A built Case carries the whole contract in given, when and then, in the file the person is sent
 method: one reading by hand of the Cases of a session, at its close
-checked: 2026-10-03
+checked: 2026-10-05
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -31,7 +31,7 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 
 ## Result
 
-2026-10-03, session 0115, by hand at its close, cases/case-607.md, case-609.md and case-610.md: each opens with `## Case N — name`, sub-cases with `### Case N.M — name` under the parent in one file, the sections in the order of the table each one blockquote opened by `**name:**`; given one thing per line, given, when and then lines after the first opened with ＋ or －, then behaviour only with no count of items; tasks name each Estimate by slug with its content as sub-points and hold no by hand box; ratification one untagged fence of ledger lines; the person raised no complaint on the length or clarity of a context or problem (the one request for a plainer text was on a round of Case 608)
+2026-10-05, by hand at the Work readings of session 1343, cases/case-650.md to case-656.md against vault/wiki/case-schema.md: headings, sub-cases in one file, sections in the order of the table each one blockquote, context opening with the mechanism, recommend as the table sets, ＋/－ lines, tasks naming each Estimate with sub-points and no by-hand box after Work Mode, one untagged fence of ledger lines, a plain question at each showing, no complaint of the person; failed: `given` holds two things on a line in 650.1, 650.2 (`guppi/ratified.py` and `tests/test_ratified.py`), 653.1 and 654, and states state in 656 ("on the allow list", "with `permissionMode: acceptEdits`") and 653.1; `then` of 652 holds a count ("both tests of `tests/test_case_schema.py` fail"); the passed reading of 2026-10-03 accepted paired `given` lines of the same form in cases 607–610
 
 ## History
 
@@ -65,3 +65,4 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-10-03 updated: the Criterion replaced whole — tasks hold no by hand box whose moment comes after Work Mode of the Case's session; the other lines as case 544.11 left them (case 606.1) · [[decision-case-606.1]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0115/ledger.md#L17
 - 2026-10-05 updated: the Criterion replaced whole — case-guppi writes the file of the Case and the hook checks it (case 645.10) · [[decision-case-645.10]]
+- 2026-10-05 status: pending → failed · raw/2026-10-05/1343/ledger.md#L38

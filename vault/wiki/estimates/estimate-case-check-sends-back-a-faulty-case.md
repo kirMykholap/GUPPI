@@ -45,3 +45,4 @@ Then:
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0112/ledger.md#L13
 - 2026-10-05 updated: the Criterion replaced whole — the check reads the file case-guppi wrote, whole, and keeps the old path until the writer is live; the method follows (case 645.2) · [[decision-case-645.2]]
+- 2026-10-05 deferred · [[decision-case-659]]

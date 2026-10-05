@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether the recommend of each Case case-guppi builds holds one item per question of its rounds — the title, the recommendation and the answer in English as they stood when the person answered it, or a note that it was not answered — each item on the parent or under the one sub-case its answer changed, and a sub-case with no problem
 method: "by hand: the Case files of a later session after the render, each recommend read against the rounds of its Case in the chat"
-checked: 2026-10-01
+checked: 2026-10-05
 origin: raw/2026-09-30/1306/ledger.md#case-544.2
 sprint: migration
 created: 2026-09-30
@@ -31,7 +31,7 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 
 ## Result
 
-2026-10-01, by hand, the Case files cases/case-577.md to case-581.md of session 1441, after the render of session 1237, each recommend read against the rounds in the chat: 577 holds one item per question Q1-Q5 with its title as the round wrote it, Recommended and an Answer in English, and one Change item with Asked and Taken for the finding of /pre-spec the person answered; 578 Q1-Q2, 579 Q1-Q5 with the answer to Q1 outside the options paraphrased in English, 581 Q1-Q4 of the rounds of 580; every item on the parent, problem on the parent only; no item quotes the person word for word; not exercised: a question replaced, a question left unanswered, a Case with no round
+2026-10-05, by hand at the Work readings of session 1343, the case files 650–656 of the first session after the render of session 0311 against the rounds in transcript f5706873: 21 questions in the rounds and 21 items in the recommend of their parents (650 Q1–Q3, 651 Q1–Q8, 652 Q1, 653 Q1–Q3, 654 Q1, 655 Q1–Q3, 656 Q1–Q2), each with the question's title in bold, `Recommended:` matching the ➡️ choice and `Answer:` in English, the person's condition on 651 Q7 and the choice against the recommendation on 655 Q2 kept, no quotation of the person; not exercised: a question left unanswered, a `**Change**` item, an item under a sub-case
 
 ## History
 
@@ -42,3 +42,4 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 - 2026-10-01 updated: the Criterion replaced whole — an item whose answer changed only one sub-case may stand on the parent or under that sub-case (case 568) · [[decision-case-568]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1441/ledger.md#L34
 - 2026-10-05 updated: the Criterion replaced whole — its moment is the Case written into its file (case 645.13) · [[decision-case-645.13]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L40

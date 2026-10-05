@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-ask]]"
-purpose: Whether ask-guppi at /pre-spec starts with the Grep of the rules and one Grep per other category, then greps and reads as each finding needs, and leaves vault/wiki/decisions/ out of every search but the two reasons its frame names, a count over Decision pages not run again
-method: "by hand at the /hi of a later session: the Grep, Glob and Read calls of ask-guppi at a /pre-spec after the render of .claude/agents/ask-guppi.md by case 633.2 and of .claude/rules/search-leaves-out-decisions.md by case 640, read in its agent transcript against the Criterion, recorded in the estimate line"
+purpose: Whether ask-guppi at /pre-spec starts with the Grep of the rules and one Grep per other category, then greps and reads as each finding needs, a count over Decision pages not run again
+method: "by hand at the /hi of a later session: the Grep, Glob and Read calls of ask-guppi at a /pre-spec after the render of .claude/agents/ask-guppi.md, read in its agent transcript against the Criterion, recorded in the estimate line"
 checked: 2026-10-05
 origin: raw/2026-10-04/2041/ledger.md#case-633.2
 sprint: migration
@@ -21,7 +21,7 @@ Then:
 The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then runs one Grep per other category the question touches.
 **＋** After those Greps it runs further Greps and Reads as a finding needs, including the search behind a count that a `context` states.
 **＋** A count of a `context` whose search covers `vault/wiki/decisions/` is not run again and is no finding.
-**－** No Grep or Read of the agent reaches `vault/wiki/decisions/`, except for the `## Problem` of a Decision that a `deferred_by` names and a Decision reached through a page's `origin` when the question asks why something was decided.
+**－** Whether a Grep or Read of the agent reaches `vault/wiki/decisions/` is outside this promise: `estimate-search-leaves-out-decisions-in-every-agent` reads it.
 
 ## Result
 
@@ -33,3 +33,4 @@ The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/
 - 2026-10-05 status: pending → failed · raw/2026-10-05/0109/ledger.md#L9
 - 2026-10-05 updated: the method names the render of .claude/rules/search-leaves-out-decisions.md by case 640; the Criterion stands · [[decision-case-640]]
 - 2026-10-05 deferred · [[decision-case-649]]
+- 2026-10-05 updated: the Criterion replaced whole — the clause on Decision pages left to estimate-search-leaves-out-decisions-in-every-agent; purpose and method set anew (case 655) · [[decision-case-655]]

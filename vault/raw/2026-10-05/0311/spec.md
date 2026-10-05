@@ -160,7 +160,7 @@ update:
 ```tasks
 - [x] update `estimate-spec-write-copies-the-ratified-case`
 - [x] `tests/test_ratified.py`: `test_write_nothing_outside_a_working_session_and_nothing_on_the_re_fire` rewritten — nothing outside a working session; a flagged reply writes the Case.
-- [ ] read `estimate-spec-write-copies-the-ratified-case`
+- [x] read `estimate-spec-write-copies-the-ratified-case`
 ```
 
 ### Case 644.3 — The check after the write runs with the flag set
@@ -196,7 +196,7 @@ update:
 ```tasks
 - [x] update `estimate-spec-write-checks-the-written-case`
 - [x] `tests/test_ratified.py`: `test_checks_the_written_case_the_re_fire_checks_nothing` rewritten — a flagged reply checks the written Case.
-- [ ] read `estimate-spec-write-checks-the-written-case`
+- [x] read `estimate-spec-write-checks-the-written-case`
 ```
 
 ### Case 644.4 — A defer is written with the flag set
@@ -232,7 +232,7 @@ update:
 ```tasks
 - [x] update `estimate-spec-write-writes-a-defer`
 - [x] `tests/test_ratified.py`: a test `-k defer` — a short-form defer refused, then shown again fixed on a flagged reply, is written under `## Deferred`.
-- [ ] read `estimate-spec-write-writes-a-defer`
+- [x] read `estimate-spec-write-writes-a-defer`
 ```
 
 ### Case 644.5 — The approved Spec takes a Case with the flag set
@@ -300,7 +300,7 @@ update:
 ```tasks
 - [x] update `estimate-spec-write-removes-a-superseded-case`
 - [x] `tests/test_ratified.py`: a test `-k superseded` — a flagged reply removes the superseded Case.
-- [ ] read `estimate-spec-write-removes-a-superseded-case`
+- [x] read `estimate-spec-write-removes-a-superseded-case`
 ```
 
 ### Case 644.7 — An error of the hook is told once a stretch, with the flag set or not
@@ -336,7 +336,7 @@ update:
 ```tasks
 - [x] update `estimate-spec-write-exits-2-on-an-error`
 - [x] `tests/test_ratified.py`: `test_error_the_re_fire_exits_0_and_writes_nothing` rewritten — a new error on a flagged reply exits 2; the same error already in a refusal of the stretch exits 0 silent; an error with the flag set and an unreadable transcript exits 0 silent.
-- [ ] read `estimate-spec-write-exits-2-on-an-error`
+- [x] read `estimate-spec-write-exits-2-on-an-error`
 ```
 
 ### Case 644.8 — The hook gives each reason once a stretch
@@ -376,7 +376,7 @@ create:
 - [x] `guppi/ratified.py`: the reasons of `stop` and the error of `main` pass through `own_refusals` and `untold` of `guppi/ledger.py` with the command `uv run guppi ratified`; the module docstring says the same.
 - [x] `guppi/ledger.py`: the docstring of `refusals` names `guppi ratified` among the hooks that read their own refusals through it.
 - [x] `tests/test_ratified.py`: tests `-k tells_each_reason_once` — a reason already in a refusal of the stretch exits 0 silent; a new reason beside it exits 2 with only the new one; the flag set with no readable transcript exits 0 silent; a reason given before the person's last message is given again.
-- [ ] read `estimate-spec-write-tells-each-reason-once`
+- [x] read `estimate-spec-write-tells-each-reason-once`
 ```
 
 ## Case 645 — case-guppi writes its own Case file, and the hooks check it
@@ -708,7 +708,7 @@ create:
 - [x] create `estimate-case-check-refuses-a-changed-case-file`
 - [x] `guppi/casecheck.py`: one function compares the Cases of a case file with the store; `stop` refuses a showing whose file differs; the module docstring says the same.
 - [x] `tests/test_casecheck.py`: tests `-k changed_file` — a file equal to the store passes; a line changed after the store is refused with the Case and the file named; a Case of the file the store lacks is refused.
-- [ ] read `estimate-case-check-refuses-a-changed-case-file`
+- [x] read `estimate-case-check-refuses-a-changed-case-file`
 ```
 
 ### Case 645.5 — The Spec hook writes nothing from a file changed after its check
@@ -766,7 +766,7 @@ update:
 - [x] update `rule-spec-write`
 - [x] `guppi/ratified.py`: before it writes Case N, the hook compares its case file with the store by the function of `guppi/casecheck.py`; the module docstring says the same.
 - [x] `tests/test_ratified.py`: tests `-k changed_file` — a ratified Case whose file equals the store is written; a file changed after the store writes nothing and exits 2.
-- [ ] read `estimate-spec-write-refuses-a-changed-case-file`
+- [x] read `estimate-spec-write-refuses-a-changed-case-file`
 ```
 
 ### Case 645.6 — The main agent shows a Case from the summary
@@ -819,7 +819,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] update `estimate-orchestration-shows-the-built-case`
 - [x] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```
 
 ### Case 645.7 — A letter outside the script holds a Case back from the showing and the Spec
@@ -859,7 +859,7 @@ update:
 ```tasks
 - [x] update `estimate-case-check-refuses-a-letter-outside-the-script`
 - [x] `tests/test_casecheck.py`: tests `-k script` read a temp case file in place of an answer text.
-- [ ] read `estimate-case-check-refuses-a-letter-outside-the-script`
+- [x] read `estimate-case-check-refuses-a-letter-outside-the-script`
 ```
 
 ### Case 645.8 — A note on a Criterion line goes back on the file
@@ -897,7 +897,7 @@ update:
 ```tasks
 - [x] update `estimate-case-check-notes-a-criterion-line-not-carried`
 - [x] `tests/test_casecheck.py`: tests `-k note` read a temp case file in place of an answer text.
-- [ ] read `estimate-case-check-notes-a-criterion-line-not-carried`
+- [x] read `estimate-case-check-notes-a-criterion-line-not-carried`
 ```
 
 ### Case 645.9 — A number held by another agent is judged on the file
@@ -932,7 +932,7 @@ update:
 ```tasks
 - [x] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
 - [x] `tests/test_casecheck.py`: tests `-k subagent_clash` read a temp case file in place of an answer text.
-- [ ] read `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] read `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
 ```
 
 ### Case 645.10 — The form of a Case stands in the file case-guppi writes
@@ -971,7 +971,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-protocol-case-form`
-- [ ] read `estimate-case-protocol-case-form`
+- [x] read `estimate-case-protocol-case-form`
 ```
 
 ### Case 645.11 — A showing passes only when its file equals the store
@@ -1039,7 +1039,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-build-answers-what-done-means`
-- [ ] read `estimate-case-build-answers-what-done-means`
+- [x] read `estimate-case-build-answers-what-done-means`
 ```
 
 ### Case 645.13 — The recommend of a Case written into its file records the rounds
@@ -1078,7 +1078,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-build-records-the-rounds-in-recommend`
-- [ ] read `estimate-case-build-records-the-rounds-in-recommend`
+- [x] read `estimate-case-build-records-the-rounds-in-recommend`
 ```
 
 ### Case 645.14 — A backlog item is judged on the file
@@ -1146,7 +1146,7 @@ update:
 ```tasks
 - [x] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
 - [x] `tests/test_casecheck.py`: tests `-k shape` read a temp case file in place of an answer text.
-- [ ] read `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- [x] read `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
 ```
 
 ### Case 645.16 — The prompt in Plan Mode binds the main agent, not case-guppi
@@ -1389,7 +1389,7 @@ update:
 - [x] create `estimate-case-protocol-example-passes-the-check`
 - [x] `tests/test_case_schema.py`: reads the block tagged `case` from `vault/wiki/case-schema.md`, and skips with a reason that names the file while it holds none. It seeds a temporary project with the `schema.yaml` files of `vault/wiki/`, an `entity-checkout` page that holds the anchor of the example's pair, and an `estimate-checkout-orders-the-steps` page whose Criterion holds only lines that the example's `when` and `then` carry. It runs the function of `guppi/casecheck.py` that the `SubagentStop` check runs over the Cases of a file (today `check_answer`) and asserts no finding and no note, printing them when any stands. A second test makes one padded span of the example unpadded and asserts the finding.
 - [x] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-protocol-example-passes-the-check`
+- [x] read `estimate-case-protocol-example-passes-the-check`
 ```
 
 ## Deferred

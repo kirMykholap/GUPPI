@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: The Case schema does not say how the scripts read the text a Case writes — which forms they resolve, how far an edit pair reaches — so the agent writes a form the scripts do not handle, and only the pre-spec check finds it.
-status: open
-children: ["[[lesson-sub-case-given-the-parents-plus-lines-has-no-form]]", "[[lesson-generate-replace-anchor-stays-in-one-section]]", "[[lesson-spec-write-sub-point-opening-with-a-code-span-unpadded]]", "[[lesson-prespec-read-line-of-a-renamed-estimate]]", "[[lesson-prespec-wikilink-to-a-decision-page-not-yet-written]]", "[[lesson-case-build-closes-a-sprint-item-without-the-sprint-page]]", "[[lesson-case-build-splits-a-case-whose-line-stands]]", "[[lesson-case-showing-ratification-fence-outside-the-blockquote]]", "[[lesson-orchestration-short-defer-then-block-written-as-a-mapping]]", "[[lesson-case-build-replace-pair-value-unpadded-and-paths-off-given]]"]
-severity: 5
-addressed_by: "[[decision-case-432]]"
+status: actioned
+children: ["[[lesson-sub-case-given-the-parents-plus-lines-has-no-form]]", "[[lesson-generate-replace-anchor-stays-in-one-section]]", "[[lesson-spec-write-sub-point-opening-with-a-code-span-unpadded]]", "[[lesson-prespec-read-line-of-a-renamed-estimate]]", "[[lesson-prespec-wikilink-to-a-decision-page-not-yet-written]]", "[[lesson-case-build-closes-a-sprint-item-without-the-sprint-page]]", "[[lesson-case-build-splits-a-case-whose-line-stands]]", "[[lesson-case-showing-ratification-fence-outside-the-blockquote]]", "[[lesson-orchestration-short-defer-then-block-written-as-a-mapping]]", "[[lesson-case-build-replace-pair-value-unpadded-and-paths-off-given]]", "[[lesson-orchestration-defer-acknowledged-without-its-short-form]]"]
+severity: 0
+addressed_by: "[[decision-case-651.3]]"
 origin: raw/2026-09-23/1355/ledger.md#L36
 sprint: migration
 created: 2026-09-23
@@ -30,3 +30,5 @@ A suggestion, not a decision: the Case schema of `rule-case-protocol` could stat
 - 2026-10-02 updated: child lesson-case-showing-ratification-fence-outside-the-blockquote added (synthesis) · raw/2026-10-02/1834/ledger.md#L40
 - 2026-10-05 updated: child lesson-orchestration-short-defer-then-block-written-as-a-mapping added (synthesis) · raw/2026-10-05/0109/ledger.md#L23
 - 2026-10-05 updated: child lesson-case-build-replace-pair-value-unpadded-and-paths-off-given added (synthesis) · raw/2026-10-05/0311/ledger.md#L40
+- 2026-10-05 updated: actioned: case-schema.md and orchestration.md show the forms case-guppi and the main agent write by examples that a test runs the checks over (cases 646, 651) · [[decision-case-651.3]]
+- 2026-10-05 updated: child lesson-orchestration-defer-acknowledged-without-its-short-form added (synthesis) · raw/2026-10-05/1343/ledger.md#L43

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: The ratified Case enters the plan file in the words of the stored answer of case-guppi, the then block built from the sub-points, each block fenced by its content
 method: uv run pytest tests/test_ratified.py -k write; the live reading by hand, the plan file after the first ratification of a session
-checked: 2026-09-30
+checked: 2026-10-05
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
@@ -31,7 +31,7 @@ The hook writes the text stored under Case N into the plan file `plan_path` find
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_ratified.py -k write: 50 passed; by hand, the plan file after the ratification of Case 547 in session 1736: the heading, context, problem, recommend, given, when and then as the answer held them, a then block built from the sub-points of tasks (the replace pair, change, the fields of the create), a tasks block without sub-points, no ratification
+2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py -k write 61 passed; the plan file after the first ratification of the session, Case 650 (reply at 14:05:55, ledger L11–L13), read in the ask-guppi read of 15:25:20 before any later write of Case 650: the section `## Case 650` with 650.1 and 650.2 equals the case file case-guppi wrote (its Write and Edit) in heading, context, problem, recommend, given, when and then; a `then` block built from the sub-points of `tasks` (the create with ref, kind, purpose, method, tags; four old/new pairs and change; set and change on 650.2), padded backtick spans read as YAML values, a `tasks` block of task lines without sub-points, no `ratification` in the plan; fences of five backticks around lines of four in 651.2 and 651.3; not exercised: a sub-case with its own recommend and every refusal clause
 
 ## History
 
@@ -51,3 +51,4 @@ The hook writes the text stored under Case N into the plan file `plan_path` find
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L29
 - 2026-09-30 status: passed → passed · raw/2026-09-30/1736/ledger.md#L30
 - 2026-10-05 updated: the Criterion replaced whole — the text stored under Case N in place of the answer of case-guppi; with stop_hook_active set the hook writes and refuses as without it, each reason once a stretch (case 644.2) · [[decision-case-644.2]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L32

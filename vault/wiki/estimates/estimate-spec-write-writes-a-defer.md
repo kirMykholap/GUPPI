@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run pytest tests/test_ratified.py -k defer, then by hand a defer the person asks for
-checked: 2026-10-01
+checked: 2026-10-05
 origin: raw/2026-09-25/1228/ledger.md#case-421.1
 sprint: migration
 created: 2026-09-25
@@ -30,7 +30,7 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 
 ## Result
 
-2026-10-01, uv run pytest tests/test_ratified.py -k defer: 13 passed, 76 deselected; by hand, the seven short-form defers 570 to 576 of session 1237, shown in the reply of 14:08:36 with one LEDGER block (ledger lines 21-27): each stands under the Deferred heading of the plan file linear-soaring-fairy.md (line 374, 7 Case headings) and of raw/2026-10-01/1237/spec.md (line 376), each with its heading, context, problem and a then fence holding one defer item with its slug; the agent wrote none of them, and the reading of estimate-case-protocol-defers-in-one-reply in the same session (ledger line 31) records that the Spec hook wrote the seven; not exercised: an error of the hook on a malformed line
+2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py -k defer 14 passed; the defers 657, 658 and 659 the person asked for, written while spec.md did not stand: 657 under `## Deferred` after Case 656, its section equal to the reply's text before its LEDGER block; 658 appended after 657; 659 refused once at the reply that carried only its line ("case 659: no fence tagged then with its defer items"), then written at the next reply that showed the short form and repeated the line, its section equal to that showing, one `## Deferred` heading; not exercised: a defer shown again, the key and YAML-comment refusals, the write into spec.md
 
 ## History
 
@@ -46,3 +46,4 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-10-01 status: failed → passed · raw/2026-10-01/1441/ledger.md#L21
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-05 updated: the Criterion replaced whole — with stop_hook_active set the hook writes and refuses a defer as without it, each reason once a stretch (case 644.4) · [[decision-case-644.4]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L34

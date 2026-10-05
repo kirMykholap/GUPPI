@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the main agent wrote the list showing from the words "one ratification section whose fence holds the ledger lines" without the chat form of a section, a blockquote whose fence lines are quoted too, so the check read no ledger line of the sub-cases and compared the parent's lines instead
-status: clustered
+status: archived
 insight: "[[insight-workflow-case-schema-silent-on-what-the-scripts-accept]]"
 origin: raw/2026-10-02/1834/ledger.md#L40
 sprint: migration
@@ -22,3 +22,5 @@ the main agent wrote the list showing from the words "one ratification section w
 
 - 2026-10-02 created · raw/2026-10-02/1834/ledger.md#L40
 - 2026-10-02 updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-10-02/1834/ledger.md#L40
+- 2026-10-05 archived · insight actioned
+- 2026-10-05 archived · cleanup

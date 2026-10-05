@@ -5,6 +5,7 @@ status: pending
 target: "[[rule-case-protocol]]"
 purpose: Whether the example Case of case-schema.md, in the chat form case-guppi writes, passes the check the SubagentStop hook runs over the file of a Case, so the form it shows stays a form the scripts accept
 method: uv run pytest tests/test_case_schema.py, passed and not skipped
+checked: 2026-10-05
 origin: raw/2026-10-05/0311/ledger.md#case-646
 sprint: migration
 created: 2026-10-05
@@ -24,9 +25,15 @@ Then:
 **＋** The check gives the example no finding and no note, and the test passes.
 **＋** A change of the check that gives the example a finding or a note fails the test, which prints it.
 **＋** The test reads the example from `vault/wiki/case-schema.md` and the checks from `guppi/casecheck.py`, and holds no copy of either.
-**－** While `vault/wiki/case-schema.md` holds no block tagged `case`, the test is skipped with a reason that names the file; a Case of a later session removes the skip after the reading of `estimate-case-protocol-example-passes-the-check` passes.
+**－** While `vault/wiki/case-schema.md` holds no block tagged `case`, both tests of `tests/test_case_schema.py` fail with a message that names the file; no test of the file is skipped.
 **－** The Spec example and the limits that the prose of `vault/wiki/case-schema.md` already states stay as they are.
+
+## Result
+
+2026-10-05, at the /hi of session 1343: uv run pytest -q -rs tests/test_case_schema.py 2 passed, none skipped
 
 ## History
 
 - 2026-10-05 created · [[decision-case-646]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L8
+- 2026-10-05 updated: the Criterion replaced whole — the test fails, not skips, when case-schema.md holds no block tagged case (case 652) · [[decision-case-652]]

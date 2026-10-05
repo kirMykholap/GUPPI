@@ -6499,3 +6499,97 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-05 rules/rule-spec-reconcile status: built → draft · cascade · generate
 - 2026-10-05 estimates/estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent archived · cleanup
 - 2026-10-05 rules/rule-case-check estimate estimate-case-check-judges-a-lone-sub-case-with-its-stored-parent archived · cleanup
+- 2026-10-05 estimates/estimate-spec-write-exits-2-on-an-error status: pending → passed · raw/2026-10-05/1343/ledger.md#L1 · generate
+- 2026-10-05 estimates/estimate-spec-write-tells-each-reason-once status: pending → passed · raw/2026-10-05/1343/ledger.md#L2 · generate
+- 2026-10-05 estimates/estimate-spec-write-refuses-a-changed-case-file status: pending → passed · raw/2026-10-05/1343/ledger.md#L3 · generate
+- 2026-10-05 estimates/estimate-case-check-refuses-a-changed-case-file status: pending → passed · raw/2026-10-05/1343/ledger.md#L4 · generate
+- 2026-10-05 estimates/estimate-case-check-refuses-a-letter-outside-the-script status: pending → passed · raw/2026-10-05/1343/ledger.md#L5 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent status: pending → passed · raw/2026-10-05/1343/ledger.md#L6 · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape status: pending → passed · raw/2026-10-05/1343/ledger.md#L7 · generate
+- 2026-10-05 estimates/estimate-case-protocol-example-passes-the-check status: pending → passed · raw/2026-10-05/1343/ledger.md#L8 · generate
+- 2026-10-05 estimates/estimate-ask-finds status: pending → passed · raw/2026-10-05/1343/ledger.md#L9 · generate
+- 2026-10-05 estimates/estimate-search-leaves-out-decisions-in-every-agent status: pending → failed · raw/2026-10-05/1343/ledger.md#L10 · generate
+- 2026-10-05 decisions/decision-case-650 created · raw/2026-10-05/1343/ledger.md#case-650 · generate
+- 2026-10-05 decisions/decision-case-650.1 created · raw/2026-10-05/1343/ledger.md#case-650.1 · generate
+- 2026-10-05 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds created · [[decision-case-650.1]] · generate
+- 2026-10-05 rules/rule-spec-reconcile estimate estimate-spec-reconcile-refuses-a-case-file-another-agent-holds added · [[decision-case-650.1]] · generate
+- 2026-10-05 rules/rule-spec-reconcile updated: the first write of case-guppi on the file of a Case holds its number in the store, and a write of another case-guppi on that file is refused with a free number (case 650.1) · [[decision-case-650.1]] · generate
+- 2026-10-05 decisions/decision-case-650.2 created · raw/2026-10-05/1343/ledger.md#case-650.2 · generate
+- 2026-10-05 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan updated: the Criterion replaced whole — a call of case-guppi under cases/ passes unless another agent holds the number of the file, the promise of estimate-spec-reconcile-refuses-a-case-file-another-agent-holds (case 650.2) · [[decision-case-650.2]] · generate
+- 2026-10-05 decisions/decision-case-651 created · raw/2026-10-05/1343/ledger.md#case-651 · generate
+- 2026-10-05 decisions/decision-case-651.1 created · raw/2026-10-05/1343/ledger.md#case-651.1 · generate
+- 2026-10-05 rules/rule-orchestration updated: the reply of case-guppi is named the summary, the Case sent is its file, and the Spec hook reads the text the check stored from that file (case 651.1) · [[decision-case-651.1]] · generate
+- 2026-10-05 decisions/decision-case-651.2 created · raw/2026-10-05/1343/ledger.md#case-651.2 · generate
+- 2026-10-05 estimates/estimate-orchestration-showing-example-passes-the-check created · [[decision-case-651.2]] · generate
+- 2026-10-05 rules/rule-orchestration estimate estimate-orchestration-showing-example-passes-the-check added · [[decision-case-651.2]] · generate
+- 2026-10-05 rules/rule-orchestration updated: the reply that shows a Case has an example that a test runs the Stop check of rule-case-check over (case 651.2) · [[decision-case-651.2]] · generate
+- 2026-10-05 decisions/decision-case-651.3 created · raw/2026-10-05/1343/ledger.md#case-651.3 · generate
+- 2026-10-05 estimates/estimate-orchestration-defer-example-passes-the-hook created · [[decision-case-651.3]] · generate
+- 2026-10-05 rules/rule-orchestration estimate estimate-orchestration-defer-example-passes-the-hook added · [[decision-case-651.3]] · generate
+- 2026-10-05 rules/rule-orchestration updated: the short form of a defer has an example that a test runs the Stop hook of rule-spec-write over (case 651.3) · [[decision-case-651.3]] · generate
+- 2026-10-05 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: actioned: case-schema.md and orchestration.md show the forms case-guppi and the main agent write by examples that a test runs the checks over (cases 646, 651) · [[decision-case-651.3]] · generate
+- 2026-10-05 decisions/decision-case-652 created · raw/2026-10-05/1343/ledger.md#case-652 · generate
+- 2026-10-05 estimates/estimate-case-protocol-example-passes-the-check updated: the Criterion replaced whole — the test fails, not skips, when case-schema.md holds no block tagged case (case 652) · [[decision-case-652]] · generate
+- 2026-10-05 decisions/decision-case-653 created · raw/2026-10-05/1343/ledger.md#case-653 · generate
+- 2026-10-05 decisions/decision-case-653.1 created · raw/2026-10-05/1343/ledger.md#case-653.1 · generate
+- 2026-10-05 decisions/decision-case-653.2 created · raw/2026-10-05/1343/ledger.md#case-653.2 · generate
+- 2026-10-05 decisions/decision-case-654 created · raw/2026-10-05/1343/ledger.md#case-654 · generate
+- 2026-10-05 estimates/estimate-synthesis-clusters updated: the Criterion replaced whole — a page is named in the report when it is opened to judge a shared cause; a read of only its status, insight, children and tags is not (case 654) · [[decision-case-654]] · generate
+- 2026-10-05 decisions/decision-case-655 created · raw/2026-10-05/1343/ledger.md#case-655 · generate
+- 2026-10-05 decisions/decision-case-649 superseded by decision-case-655 · [[decision-case-655]] · generate
+- 2026-10-05 estimates/estimate-ask-searches-at-prespec updated: the Criterion replaced whole — the clause on Decision pages left to estimate-search-leaves-out-decisions-in-every-agent; purpose and method set anew (case 655) · [[decision-case-655]] · generate
+- 2026-10-05 decisions/decision-case-656 created · raw/2026-10-05/1343/ledger.md#case-656 · generate
+- 2026-10-05 rules/rule-permissions updated: this project's saved transcripts under ~/.claude/projects join the allow list for reading, so a search of case-guppi there does not ask (case 656) · [[decision-case-656]] · generate
+- 2026-10-05 estimates/estimate-permissions updated: the Criterion replaced whole — the allow list holds a Read rule for this project's saved transcripts, and a search of case-guppi there runs with no prompt (case 656) · [[decision-case-656]] · generate
+- 2026-10-05 decisions/decision-case-657 created · raw/2026-10-05/1343/ledger.md#case-657 · generate
+- 2026-10-05 estimates/estimate-case-build-checks-the-finished-case deferred · [[decision-case-657]] · generate
+- 2026-10-05 decisions/decision-case-658 created · raw/2026-10-05/1343/ledger.md#case-658 · generate
+- 2026-10-05 decisions/decision-case-653 superseded by decision-case-658 · [[decision-case-658]] · generate
+- 2026-10-05 rules/rule-settings updated: the block of rule-permissions also carries what may be read without a question (case 656) · [[decision-case-656]] · generate
+- 2026-10-05 decisions/decision-case-659 created · raw/2026-10-05/1343/ledger.md#case-659 · generate
+- 2026-10-05 decisions/decision-case-658 superseded by decision-case-659 · [[decision-case-659]] · generate
+- 2026-10-05 decisions/decision-case-653 superseded by decision-case-659 · [[decision-case-659]] · generate
+- 2026-10-05 decisions/decision-case-653.1 superseded by decision-case-659 · [[decision-case-659]] · generate
+- 2026-10-05 decisions/decision-case-653.2 superseded by decision-case-659 · [[decision-case-659]] · generate
+- 2026-10-05 estimates/estimate-case-check-sends-back-a-faulty-case deferred · [[decision-case-659]] · generate
+- 2026-10-05 estimates/estimate-spec-write-copies-the-ratified-case status: pending → passed · raw/2026-10-05/1343/ledger.md#L32 · generate
+- 2026-10-05 estimates/estimate-spec-write-checks-the-written-case status: pending → passed · raw/2026-10-05/1343/ledger.md#L33 · generate
+- 2026-10-05 estimates/estimate-spec-write-writes-a-defer status: pending → passed · raw/2026-10-05/1343/ledger.md#L34 · generate
+- 2026-10-05 estimates/estimate-spec-write-removes-a-superseded-case status: pending → passed · raw/2026-10-05/1343/ledger.md#L35 · generate
+- 2026-10-05 estimates/estimate-orchestration-shows-the-built-case status: pending → failed · raw/2026-10-05/1343/ledger.md#L36 · generate
+- 2026-10-05 estimates/estimate-case-check-notes-a-criterion-line-not-carried status: pending → passed · raw/2026-10-05/1343/ledger.md#L37 · generate
+- 2026-10-05 estimates/estimate-case-protocol-case-form status: pending → failed · raw/2026-10-05/1343/ledger.md#L38 · generate
+- 2026-10-05 estimates/estimate-case-build-answers-what-done-means status: pending → passed · raw/2026-10-05/1343/ledger.md#L39 · generate
+- 2026-10-05 estimates/estimate-case-build-records-the-rounds-in-recommend status: pending → passed · raw/2026-10-05/1343/ledger.md#L40 · generate
+- 2026-10-05 estimates/estimate-prespec-confirms-the-findings-once status: pending → failed · raw/2026-10-05/1343/ledger.md#L41 · generate
+- 2026-10-05 lessons/lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases created · raw/2026-10-05/1343/ledger.md#L42 · generate
+- 2026-10-05 lessons/lesson-orchestration-defer-acknowledged-without-its-short-form created · raw/2026-10-05/1343/ledger.md#L43 · generate
+- 2026-10-05 lessons/lesson-orchestration-case-heading-named-from-the-frontier-item created · raw/2026-10-05/1343/ledger.md#L44 · generate
+- 2026-10-05 insights/insight-harness-one-rule-implemented-twice-drifts updated: child lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases added, reopened (synthesis) · raw/2026-10-05/1343/ledger.md#L42 · generate
+- 2026-10-05 lessons/lesson-orchestration-defer-supersedes-a-parent-without-its-sub-cases updated: clustered under insight-harness-one-rule-implemented-twice-drifts (synthesis) · raw/2026-10-05/1343/ledger.md#L42 · generate
+- 2026-10-05 insights/insight-workflow-case-schema-silent-on-what-the-scripts-accept updated: child lesson-orchestration-defer-acknowledged-without-its-short-form added (synthesis) · raw/2026-10-05/1343/ledger.md#L43 · generate
+- 2026-10-05 lessons/lesson-orchestration-defer-acknowledged-without-its-short-form updated: clustered under insight-workflow-case-schema-silent-on-what-the-scripts-accept (synthesis) · raw/2026-10-05/1343/ledger.md#L43 · generate
+- 2026-10-05 insights/insight-case-show-built-case-retyped-by-hand updated: child lesson-orchestration-case-heading-named-from-the-frontier-item added, reopened (synthesis) · raw/2026-10-05/1343/ledger.md#L44 · generate
+- 2026-10-05 lessons/lesson-orchestration-case-heading-named-from-the-frontier-item updated: clustered under insight-case-show-built-case-retyped-by-hand (synthesis) · raw/2026-10-05/1343/ledger.md#L44 · generate
+- 2026-10-05 decisions/decision-case-649 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-653.1 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-653.2 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-653 archived · superseded · generate
+- 2026-10-05 decisions/decision-case-658 archived · superseded · generate
+- 2026-10-05 lessons/lesson-case-build-closes-a-sprint-item-without-the-sprint-page archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-case-build-splits-a-case-whose-line-stands archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-case-showing-ratification-fence-outside-the-blockquote archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-orchestration-short-defer-then-block-written-as-a-mapping archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-case-build-replace-pair-value-unpadded-and-paths-off-given archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-orchestration-defer-acknowledged-without-its-short-form archived · insight actioned · generate
+- 2026-10-05 lessons/lesson-case-build-closes-a-sprint-item-without-the-sprint-page archived · cleanup
+- 2026-10-05 lessons/lesson-case-build-replace-pair-value-unpadded-and-paths-off-given archived · cleanup
+- 2026-10-05 lessons/lesson-case-build-splits-a-case-whose-line-stands archived · cleanup
+- 2026-10-05 lessons/lesson-case-showing-ratification-fence-outside-the-blockquote archived · cleanup
+- 2026-10-05 lessons/lesson-orchestration-defer-acknowledged-without-its-short-form archived · cleanup
+- 2026-10-05 lessons/lesson-orchestration-short-defer-then-block-written-as-a-mapping archived · cleanup
+- 2026-10-05 decisions/decision-case-649 archived · cleanup
+- 2026-10-05 decisions/decision-case-653.1 archived · cleanup
+- 2026-10-05 decisions/decision-case-653.2 archived · cleanup
+- 2026-10-05 decisions/decision-case-653 archived · cleanup
+- 2026-10-05 decisions/decision-case-658 archived · cleanup

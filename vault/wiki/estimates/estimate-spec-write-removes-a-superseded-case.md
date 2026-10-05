@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-write]]"
 purpose: A Case superseded by a decision line of the reply leaves the plan file and spec.md, with its sub-cases
 method: uv run pytest tests/test_ratified.py -k superseded; by hand, a supersedes of a Case of the same session
-checked: 2026-09-27
+checked: 2026-10-05
 origin: raw/2026-09-26/1745/ledger.md#case-441.7
 sprint: migration
 created: 2026-09-26
@@ -28,7 +28,7 @@ The hook removes the section of Case N — its heading, its sections, its `then`
 
 ## Result
 
-2026-09-27, uv run pytest tests/test_ratified.py -k superseded: 5 passed; by hand, session 1819: after the ratification of Case 460.5 with {supersedes:case 460.2}, the heading and sections of Case 460.2 were gone from the plan file and 460.5 stood whole
+2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py -k superseded 7 passed; the plan held `## Case 653`, `### Case 653.1` and `### Case 653.2` at 15:25:20; after the reply of Case 658 with {supersedes:case 653} the heading listing at 15:48:46 holds `## Case 658` and no heading of 653, 653.1 or 653.2; after Case 659 with {supersedes:case 658}{supersedes:case 653}{supersedes:case 653.1}{supersedes:case 653.2} the plan holds `## Case 659` and no `## Case 658`; marks on Cases the plan no longer held, and {supersedes:case 649} of session 0311 on Case 655, gave no refusal; not exercised: the removal from spec.md and a sub-case mark whose parent stands
 
 ## History
 
@@ -37,3 +37,4 @@ The hook removes the section of Case N — its heading, its sections, its `then`
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L32
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-05 updated: the Criterion replaced whole — with stop_hook_active set the hook removes a superseded Case as without it (case 644.6) · [[decision-case-644.6]]
+- 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L35

@@ -1,0 +1,316 @@
+<!-- approved 22:11:58 · session 3f595730 -->
+
+# Spec — session 2103, 2026-10-05
+
+## Case 672 — A decision that closes an Estimate ticks its read lines
+
+> **context:**
+> After a session, the librarian runs `guppi generate`, which writes the pages and ticks the boxes of the Specs. It ticks the `read` lines of an Estimate across the live Specs of `vault/raw/` only for a reading, a `create` with a folded reading, or a `delete` (cases 270.1, 463). Case 669 of session 1831 set fifteen Estimates `passed` by the person's decision, through `update` items that set `status` and write the Criterion back (case 669.16). No reading of them stands in a ledger after the Cases that wrote their open `read` lines, so `generate` ticked none of their `read` lines, and nothing ever will. The brief lists such lines among the unticked boxes of the Specs, so they come back at every session.
+> A Grep of the pattern that opens with `^- \[ \] read`, a space and a backtick, followed by the fifteen slugs of Cases 669.1 to 669.15 as alternatives in one group and a backtick, over `vault/raw/` printed eleven lines in two files: `vault/raw/2026-10-05/1616/spec.md` and `vault/raw/2026-10-05/0311/spec.md`. The person chose two things. First, `generate` ticks the `read` lines of an Estimate when it applies an `update` that sets the Estimate `passed` or `failed`, by the walk and the skips of a reading. Second, Work Mode of this session ticks the eleven lines once by hand, since the 669 entries are already applied and no run applies them again. A ticked line stays a plain `- [x]`: the `## Result` of each page already opens with the person's decision. The code judges the entry by its `set.status` alone. By `case-schema.md`, only an `update` by the person's decision sets an Estimate `passed` or `failed`. An `update` that sets `pending` keeps its `read` line open for its reading, as today.
+> The promise is `estimate-generate-ticks-the-spec`. Its Criterion lists the entries that tick a `read` line, so this Case replaces it whole. The new Criterion keeps every old line as it stood, but for the lines that name the entries that tick a `read` line, the skip by `line`, the page and `read` lines of a `delete`, a repeat and a failed entry, which add the `update`. The `when` names `rule-page-generation` besides. Its `purpose` states the old list, so the same `update` sets a new one. Its `method` adds a reading of the Spec after the librarian's run, which `case-schema.md` no longer allows (case 670.4), so the new `method` is the tests alone, read at Retro of this session. By the person's answer, the one-time ticking has no Estimate. A `by hand` box of Work Mode checks it: the same Grep, over the two Specs alone, prints nothing. It runs over those two files because Case 674.2 of this session writes a `read` line of one of the fifteen slugs into this session's Spec, which stays open until Retro. The person judged that whether these boxes are ticked is not critical. At pre-spec the person called the hand ticking a one-time exception to the rule that Work Mode ticks no `read` line, and asked that it not be documented, so no rule changes for it.
+> The pages. The Purpose of `rule-page-generation` names the entries that tick `read` lines, and the skip of a Case ratified after the reading or the `delete`. Two pairs add the `update`. A Grep of `ticks? (the |every |each |its )?(unticked )?`?read`? (line|box)|read` lines? whose|reading stands in the ledger` over `vault/wiki/`, `.claude/`, `guppi/` and `CLAUDE.md` printed `vault/wiki/orchestration.md`, `vault/wiki/log.md`, `.claude/skills/retro/SKILL.md`, `guppi/prespec.py`, `vault/wiki/rules/rule-retro.md`, `guppi/generate.py`, `vault/wiki/rules/rule-page-generation.md`, `vault/wiki/rules/rule-orchestration.md` and `vault/wiki/estimates/estimate-generate-ticks-the-spec.md`. The hits in `log.md` and in History lines are records. The Render of `rule-orchestration`, rendered to `orchestration.md`, says that `generate` ticks the `read` lines whose reading stands in the ledger. That would be false, so a pair rewrites it and the render follows. `estimate-orchestration-loaded` promises that the file equals the Render, is loaded, holds what the main agent alone does and is repeated by no other loaded file, none of which this sentence changes, so its Criterion stands (case 378.5). The docstring of `guppi/generate.py` changes with the code. The docstring of `estimates_to_read` in `guppi/prespec.py` says that `tick_read` ticks the `read` line of a renamed Estimate, which stays true. The Render of `rule-retro`, rendered to `.claude/skills/retro/SKILL.md`, counts as debt a `read` line with no reading in the Tail. A Case that closes an Estimate by decision writes no `read` line, so only a `read` line of an earlier Case of the same session meets this. Retro counts that line as debt, and the librarian's run then ticks it. Its text stays true, so it stands and is not changed here.
+> A Grep of `rule-page-generation` over `vault/wiki/`, `guppi/`, `tests/`, `.claude/` and `CLAUDE.md` printed 17 files. The hits outside `log.md`, `brief.md` and History are the `target` of its Estimates, the `children` of `rule-documentation`, the backlog line, the pointer of `guppi/generate.py` to the page, and an exception of `estimate-sprint-items-move-only-by-a-case` on the moves of a sprint line. None speaks of ticking, so all stand. A Grep of `tick` over `vault/wiki/estimates/` with the glob `estimate-generate-*.md` printed only `estimate-generate-ticks-the-spec.md`, so no other Estimate of `rule-page-generation` speaks of the change. The defer of decision 469 on `rule-page-generation` concerns a supersede of an archived Decision. This Case does not take it up, and it stands. The Frontier line of this item has the source `brief`, not `backlog`, so no supersede mark is due.
+
+> **problem:**
+> When the person closes an Estimate as passed or failed by decision, `generate` leaves its `read` lines open in every Spec, and no later run ticks them. Eleven such lines stand open now in two Specs of earlier sessions, and the brief brings them back as work at every session.
+
+> **recommend:**
+> - **Whether the script ticks a read line when a decision sets the state of a check**
+>   - Recommended: (a) a change that sets a check `passed` or `failed` ticks every open `read` line of that check in every live plan under `vault/raw/`, by the walk and the skips of a reading; a change that sets `pending` ticks nothing.
+>   - Answer: agreed, (a).
+> - **What happens to the eleven lines open now**
+>   - Recommended: (a) Work Mode of this session ticks them once by hand, and no other line changes.
+>   - Answer: agreed, (a).
+> - **Whether a ticked line shows that no reading was taken**
+>   - Recommended: (a) a plain tick; the page of the check records the decision.
+>   - Answer: agreed, (a).
+> - **How the one-time ticking of the eleven lines is checked**
+>   - Recommended: (a) a new check, read in Work Mode of this session by one search that must print nothing.
+>   - Answer: (b): no new checks are needed; whether the boxes are ticked or not is not critical. A `by hand` box in Work Mode runs the search.
+> - **Change**
+>   - Asked: at pre-spec the hand ticking was found to break the rule that Work Mode ticks no `read` line; the person answered that it is a one-time exception that needs no documenting.
+>   - Taken: the hand-ticking task stays, no rule or Estimate of Work Mode is named or changed, and `context` records the exception; the `by hand` search now runs over the two Specs alone, with the backtick before each slug.
+
+> **given:**
+> `estimate-generate-ticks-the-spec`: the check of the ticks of `generate`, its Criterion, `purpose` and `method` replaced.
+> **＋** `rule-page-generation`: the rule of `generate`, whose Purpose names the entries that tick `read` lines.
+> **＋** `guppi/generate.py`: `Vault.tick`, `tick_read` and the docstring of the module.
+> **＋** `tests/test_generate.py`: the tests of the ticks.
+> **＋** `rule-orchestration`: its Render says who ticks which box.
+> **＋** `vault/wiki/orchestration.md`: the file rendered from `rule-orchestration`.
+> **＋** `vault/raw/2026-10-05/0311/spec.md` and `vault/raw/2026-10-05/1616/spec.md`: the Specs with open `read` lines of Estimates closed by decision.
+> **＋** `vault/archive/`: the archive, whose Specs `generate` does not read.
+
+> **when:**
+> `uv run guppi generate` of `rule-page-generation` marks an entry of `materialize.yaml` `applied`. Either it applied the entry, or it found the entry to be a repeat: a `create`, `update`, `delete` or `defer` entry whose `case`, `kind` and `slug` match those of an entry of the same `materialize.yaml` already marked `applied`.
+
+> **then:**
+> For a `create`, `update`, `delete` or `defer` entry that was applied, in the `spec.md` of the same unit, the first unticked line `` - [ ] <kind> `<slug>` `` in the section of the entry's Case becomes `- [x]`. Nothing else in the file changes.
+> **＋** For an `estimate` entry, a `create` entry with `folded`, a `delete` entry and an `update` entry whose `set` gives `status` the value `passed` or `failed`, every unticked line `` - [ ] read `<slug>` `` of every `spec.md` under `vault/raw/` becomes `- [x]`. The Spec beside the yaml comes first, then the Specs of the other session folders, oldest first.
+> **＋** In the Spec beside the yaml, for an `estimate` entry, a `delete` entry or such an `update` entry, a `read` line in the section of a Case whose first decision entry carries a `line` greater than the entry's `line` is not the entry's line, and the search goes on.
+> **＋** In any Spec, a `read` line in the section of a Case whose entries are marked `superseded_by` is not the entry's line. For the Spec beside the yaml, the marks come from the run's entries. For another Spec, they come from the `materialize.yaml` beside it. With no yaml beside a Spec, nothing is skipped there.
+> **＋** A `create` entry with `folded` ticks both its page line and its `read` line. The filter by `line` does not apply to it, and the filter by `superseded_by` does.
+> **＋** A `delete` entry, and an `update` entry whose `set` gives `status` the value `passed` or `failed`, tick both the page line in their own Case and the `read` lines of their slug.
+> **－** An `update` entry whose `set` gives no `status`, or the value `pending`, ticks no `read` line.
+> **－** A repeat ticks no line in any `spec.md`. A second line `` - [ ] <kind> `<slug>` `` in the section of its Case stays unticked, and a repeated `delete` or `update` leaves the `read` lines of its slug as they stand.
+> **－** A line, a section or a Spec not found raises no error and prints nothing on stderr. The entry is `applied` all the same.
+> **－** A `lesson` entry and an entry marked `failed` tick no line. A `delete` or an `update` that fails leaves the `read` lines of its slug as they stand.
+> **－** A `spec.md` under `vault/archive/` is not read.
+
+```then
+update:
+- slug: rule-page-generation
+  replace:
+  - old: an `estimate` entry, a `create` with a folded reading, or a `delete`, whose Estimate no reading will ever reach (case 463), every unticked
+    new: an `estimate` entry, a `create` with a folded reading, a `delete`, whose Estimate no reading will ever reach (case 463), or an `update` that sets an Estimate `passed` or `failed` by the person's decision, which no reading follows (case 672), every unticked
+  - old: stands after the reading or the `delete` in the ledger, a Case ratified after it
+    new: stands after the reading, the `delete` or the `update` in the ledger, a Case ratified after it
+  change: an update that sets an Estimate passed or failed by the person's decision ticks its read lines across the live Specs, with the skips of a reading (case 672)
+- slug: rule-orchestration
+  replace:
+  - old: '`generate` ticks the page lines and the `read` lines whose reading stands in the ledger,'
+    new: '`generate` ticks the page lines and the `read` lines of an Estimate that a reading in the ledger, a `delete` or an `update` that sets it `passed` or `failed` by the person''s decision closes (case 672),'
+  change: generate ticks the read lines of an Estimate a delete or a decision closes too (case 672)
+- slug: estimate-generate-ticks-the-spec
+  set:
+    status: pending
+    purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading, of a deleted Estimate or of an Estimate an update sets passed or failed, across the Specs of raw/ — never a line of a later or a superseded Case
+    method: uv run pytest tests/test_generate.py
+  change: the Criterion replaced whole — an update that sets passed or failed ticks the read lines of its slug, with the skips of a reading; the method the tests alone (case 672)
+```
+
+```tasks
+- [x] `guppi/generate.py`: `Vault.tick` ticks the `read` lines of an applied `update` entry whose `set` gives `status` the value `passed` or `failed`, by `tick_read` with the skips of an `estimate` entry; the docstring of the module and of `Vault.tick` say so.
+- [x] `tests/test_generate.py`: an `update` that sets `passed`, and one that sets `failed`, tick the `read` lines of their slug beside the yaml and in an older Spec; one that sets `pending` or no status ticks none; one skips the `read` line of a Case ratified after it and of a superseded Case; a repeated one and a failed one tick none.
+- [ ] update `rule-page-generation`
+- [ ] update `rule-orchestration`
+- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [ ] update `estimate-generate-ticks-the-spec`
+- [x] `vault/raw/2026-10-05/0311/spec.md` and `vault/raw/2026-10-05/1616/spec.md`: each open `read` line of an Estimate that Cases 669.1 to 669.15 set `passed` becomes `- [x]`; no other line changes.
+- [x] by hand: a Grep of the pattern that opens with `^- \[ \] read`, a space and a backtick, followed by the fifteen slugs of Cases 669.1 to 669.15 as alternatives in one group and a backtick, over `vault/raw/2026-10-05/0311/spec.md` and `vault/raw/2026-10-05/1616/spec.md` prints nothing.
+- [ ] read `estimate-generate-ticks-the-spec`
+```
+
+## Case 673 — A decision line that gains a mark stands beside the first
+
+> **context:**
+> When the person ratifies a Case again in its session, the reply that acknowledges it carries all of its decision lines again (case 390). The ledger hook skips a line it already holds word for word. A line that gained a mark is new text, so the ledger keeps both lines. In session 1831, lines L16, L17 and L20 of Cases 669.6, 669.7 and 669.10 were written again as L41, L42 and L43, each with `{supersedes:case …}` marks added. `guppi generate` applied the first line of each pair and printed for the second that it repeats the first, with nothing applied. The marks still retired 659, 630, 617 and 622, since `materialize` puts the marks of every line of a Case into the record of that Case, and `generate` writes the Decision page from that record before it judges a repeat. The log of the vault shows the four pages superseded and archived, and the brief says that the three pages changed once. Nothing went wrong. The handoff of 1831 noted that no check catches the pair, and the brief made it a Frontier item.
+> The Purpose of `rule-page-generation` already says that a Case approved again in its session, with its lines written again and a mark added, changes each page once (cases 514, 522). The main agent does not load that page. It loads `vault/wiki/orchestration.md`, whose paragraph on the acknowledging reply says only that the ledger hook does not append a line it already holds. The person chose one sentence there, and no new check. The sentence changes no behaviour, so no Estimate is created or replaced. `estimate-generate-fails-alone` checks the repeat that changes no page, and `estimate-materialize-marks-superseded` checks that the record of a Case lists every Case its lines name; their Criteria state what the sentence says, so they stand. `estimate-generate-writes-the-decision-page` checks that a `supersedes` sets the earlier page `superseded`, which is how the mark retires the earlier decision. `estimate-ledger-write-lifts` checks that a body already in the ledger is not written again, which is why a marked line, a new body, is written. Their Criteria stay true, so they stand. `estimate-orchestration-acknowledging-reply` says that the ledger hook does not append a repeated decision line a second time; a line with a mark added is not a repeat of the first line's text, so that line stays true and the Criterion stands. `estimate-orchestration-loaded` promises that the file equals the Render, that it holds what the main agent alone does, and that `CLAUDE.md`, `case-schema.md` and `ratification.md` repeat no paragraph of it. The new sentence keeps all three true, so its Criterion stands (case 378.5).
+> A Grep of `with a mark added|re-ratification` over `vault/wiki/rules/` printed `rule-spec-write.md`, `rule-page-generation.md`, `rule-orchestration.md`, `rule-case-protocol.md` and `rule-prespec-onward.md`. The hits in `rule-spec-write.md`, `rule-case-protocol.md` and `rule-prespec-onward.md` are History lines. The hit in `rule-page-generation.md` is the sentence above, which stays true. The hit in `rule-orchestration.md` is the paragraph this Case extends. A Grep of `ratified again|re-ratification|mark added` over `.claude/` printed nothing, so no harness file sets a form for these lines. Case 672 of this session changes another paragraph of `rule-orchestration`, the one on who ticks which box, and renders the same file; the two new texts do not touch the same sentence and do not contradict each other. The near backlog item `rule-ledger-write` carries the defer of decision 442, on a lesson line with no mark; this Case does not take it up, and it stands. The Frontier line of this item has the source `brief`, so no supersede mark is due.
+
+> **problem:**
+> A Case ratified again with a mark added to a decision line leaves two lines for one decision in the ledger. The rule of `generate` says that this is expected and harmless, but the main agent does not read that rule. So the handoff reports the pair as a gap, and the pair comes back as a Frontier item.
+
+> **recommend:**
+> - **Whether anything changes for a ledger line written again with a mark added**
+>   - Recommended: (a) one sentence in the orchestration file the main agent loads: the marked line stands beside the first, the page changes once, and the mark still retires the older decision; no new check.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `rule-orchestration`: its Render says what the reply that acknowledges a re-ratification carries.
+> **＋** `vault/wiki/orchestration.md`: the file rendered from `rule-orchestration`.
+> **＋** `rule-page-generation`: the rule of `generate`, whose repeat changes a page once.
+
+> **when:**
+> The main agent reads `vault/wiki/orchestration.md`, rendered from `rule-orchestration`, after the person ratified again a Case whose decision line gained a mark.
+
+> **then:**
+> The file says that the ledger keeps the marked line beside the first line of the same Case, kind and target.
+> **＋** The file says that `guppi generate` of `rule-page-generation` changes the target page once and takes the marked line for a repeat.
+> **＋** The file says that the mark still retires the earlier decision.
+> **－** No check reports the two lines.
+> **－** Case 673 does not change `rule-page-generation`.
+
+```then
+update:
+- slug: rule-orchestration
+  replace:
+  - old: writes a Case into the Spec only after a reply that carries its lines (case 390).
+    new: 'writes a Case into the Spec only after a reply that carries its lines (case 390). A decision line that gained a mark, such as `{supersedes:case N}`, is new text: the ledger keeps it beside the first line, `generate` changes the page once and takes the marked line for a repeat, and the mark still retires the earlier decision, since the record of a Case takes the marks of all its lines (`rule-page-generation`, case 673).'
+  change: a decision line that gains a mark at a re-ratification stands beside the first; the page changes once and the mark still applies (case 673)
+```
+
+```tasks
+- [ ] update `rule-orchestration`
+- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+```
+
+## Case 674 — Pre-spec goes back to one ask-guppi run over the whole Spec
+
+> **context:**
+> At its first run in a session, `/pre-spec` sends `ask-guppi` to read the ratified Cases against the vault. Until case 634.1 it sent one run over the whole plan. `lesson-prespec-one-ask-guppi-run-samples-the-spec` records why that changed: one run over the Spec of session 1439, about twenty sub-cases, found 10 findings, and a later run over the same Spec found 12 more, 8 of them in sub-cases the first run had read. Since case 634.1 the skill sends one run per top-level Case, all at once; each judges its own Case and reads the others only for a clash. At the `/pre-spec` of session 0109 the person said that the check of the whole plan worked better, and case 643 put the question off as the placeholder `rule-prespec-judges-the-spec-whole`. In this session the person weighed the two ways. No record measures the cost of the per-Case runs or compares the two ways on one Spec; the vault records two costs of a single run only, 88 728 tokens in 204 s and 95 tool calls in about eight minutes. The person judged the per-Case runs too costly for an unclear benefit, chose to go back to one run, and said to think further later.
+> The person chose the three questions of the single run as they stand, no question on what the Cases leave open together, a report that still never says the whole Spec is checked, and the placeholder kept in the backlog with its purpose rewritten for the later thought. The Case is cut by `rule-atomicity`: 674.1 changes the skill and the agent frame and replaces the Criterion of `estimate-prespec-reconciles`; 674.2 changes the one sentence of `rule-orchestration` and replaces the Criterion of `estimate-orchestration-shows-the-built-case`, whose line on the dispatch it makes false; 674.3 keeps the placeholder. No measurement of the cost of a run is added, and none is done.
+> The vault's answer: the Case creates no page, so no vault query on a `create` ran. The Frontier line has the source `backlog`, and `rule-prespec-judges-the-spec-whole` carries `deferred_by` the Decision of case 643, whose page holds no `## Problem`. 674.3 names the page on an `update` that carries `{supersedes:case 643}`, and defers it again by its own `defer` line; `guppi generate` adds the new Decision to `deferred_by` and clears only the Decision of case 643 from it, so the page stays in `## Deferred` of the backlog. `estimate-backlog-renders` checks that a page with `deferred_by` stands there with its `purpose`; its Criterion does not change, so it stands and checks 674.3.
+> The frame. A Grep of `per top-level Case|for each top-level Case|ask-guppi` runs?|ask-guppi runs?|find a clash` over `vault/wiki/` printed 16 files: `backlog.md`, `orchestration.md`, `log.md`, `rules/rule-prespec.md`, `rules/rule-orchestration.md`, `rules/rule-ask.md`, `rules/rule-prespec-judges-the-spec-whole.md`, `estimates/estimate-prespec-confirms-the-findings-once.md`, `estimates/estimate-case-build-checks-the-finished-case.md`, `estimates/estimate-orchestration-shows-the-built-case.md`, `estimates/estimate-ask-finds.md`, `estimates/estimate-prespec-reconciles.md`, `estimates/estimate-orchestration-asks-in-the-grill-me-shape.md`, `lessons/lesson-ask-search-exclusion-of-decisions-left-to-each-agent.md`, `lessons/lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run.md` and `lessons/lesson-prespec-confirmation-prompt-invites-a-new-finding.md`. Over `.claude/` it printed `.claude/skills/pre-spec/SKILL.md` and `.claude/agents/ask-guppi.md`, and over `guppi/` it printed `guppi/casecheck.py`. The rules, their rendered files, the placeholder, and the `method` of `estimate-case-build-checks-the-finished-case` enter the Case; `backlog.md` is written by `guppi backlog`, and `log.md` was not read. The three lessons and the Result line of `estimate-ask-finds` record past runs, and the hit in `guppi/casecheck.py` speaks of the top-level Cases of an answer of `case-guppi`; they stand. Step 6 of the skill and `estimate-prespec-confirms-the-findings-once` send each run whose findings sent a Case back its Cases built again; with one run that is the one run, so both stay true and the Criterion stands. `estimate-orchestration-asks-in-the-grill-me-shape` names the question after the runs confirm their findings; it speaks of the shape of that question, not of the number of runs, so it stands. `estimate-ask-finds` promises the form of the answer, whose first line names the Cases the run checked; that stays true of one run, so it stands.
+> The other rules of the moment of `/pre-spec`, `rule-prespec-hook` and `rule-prespec-onward`, act on the check and the exit, not on the dispatch, and this Case does not cover them. Cases 672 and 673 of this session update other paragraphs of `rule-orchestration`, on who ticks which box and on the acknowledging reply; 674.2 changes neither paragraph. The skill and agent texts change at the librarian's render, so the `/pre-spec` of this session still sends one run per Case. By case 670 the Retro of this session reads `estimate-prespec-reconciles` and `estimate-orchestration-shows-the-built-case` on the new text of the Spec. Their old `method` lines read a live `/pre-spec` and the transcript of a session's close, which in this session still show one run per Case; by case 670.4 a method holds only what runs in the Case's own session, so both are set anew to a reading at Retro of the new Render in the Spec, as Case 672 does for its Estimate. The `purpose` of `estimate-orchestration-shows-the-built-case` does not state the number of runs, and `estimate-prespec-reconciles` has no `purpose`, so neither is set anew.
+
+> **problem:**
+> `/pre-spec` sends one `ask-guppi` run per top-level Case. The person judges that cost too high for an unclear benefit, and wants one run over the whole Spec again. The question of what one run misses on a large Spec, and of what the Cases leave open together, stays open for later.
+
+> **recommend:**
+> - **How pre-spec checks the Spec**
+>   - Recommended: (b) keep the per-Case runs and add one run over the whole Spec that asks only about the Cases together.
+>   - Answer: after asking to weigh the pros and cons, the person said the per-Case runs are rather expensive and their benefit is unclear, and chose (a): back to one check of the whole Spec, to be thought over further later.
+> - **What the single check asks**
+>   - Recommended: (a) the same three questions as before the per-Case runs.
+>   - Answer: agreed, (a).
+> - **What happens to the backlog page**
+>   - Recommended: (b) keep the placeholder as a draft, its purpose rewritten for what is left to think over, in the backlog as a reminder.
+>   - Answer: agreed, (b).
+> - **What the report says about how much was checked**
+>   - Recommended: (a) keep the warning: the report gives the run's list of what it did not check and never says the whole Spec is checked.
+>   - Answer: agreed, (a).
+
+### Case 674.1 — Pre-spec sends one ask-guppi over the whole plan
+
+> **given:**
+> `rule-prespec`: the rule of the skill, whose Render sets the dispatch of `ask-guppi` and the report.
+> **＋** `.claude/skills/pre-spec/SKILL.md`: the skill rendered from `rule-prespec`.
+> **＋** `rule-ask`: the rule of the agent `ask-guppi`, whose Purpose and Render name its runs at pre-spec.
+> **＋** `.claude/agents/ask-guppi.md`: the agent file rendered from `rule-ask`.
+> **＋** `estimate-prespec-reconciles`: the check of pre-spec, its Criterion replaced whole.
+> **＋** `estimate-case-build-checks-the-finished-case`: the check of the build of a Case, its `method` set anew.
+> **＋** `rule-spec-write`: the hook that writes a Case ratified again into the plan.
+> **＋** `vault/raw/<date>/<hi HHMM>/frontier.md`: the Frontier of the session, which the check reads.
+> **＋** `rule-skill-hi`: the rule that sets the title line of the plan.
+
+> **when:**
+> The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved, with `.claude/skills/pre-spec/SKILL.md` rendered from `rule-prespec` and `.claude/agents/ask-guppi.md` rendered from `rule-ask`.
+
+> **then:**
+> The agent runs `uv run guppi prespec --check` on the plan file with `--session <id>`, the eight-character id of the `hi:` line, and reads the first line of the output before the exit code — "no hi recorded for session …; nothing checked" means the wrong value; nothing is translated before the run.
+> **＋** A finding in a Case — in its prose or in its body, a wrong fact of its `context` included — goes to the `case-guppi` of that Case by `SendMessage`; its new answer is shown and ratified again, and the hook of `rule-spec-write` writes it into the plan; the agent does not edit the text of a Case in the plan file.
+> **＋** A finding in `vault/raw/<date>/<hi HHMM>/frontier.md` or in a line of the session's ledger is fixed there, and the command runs again until it prints no finding.
+> **＋** At the first run of `/pre-spec` in the session, the agent dispatches one `ask-guppi` over the plan, or over the conserved Spec that the plan's title line names, as `rule-skill-hi` sets that line, with the absolute path of the plan file, the instruction to judge every Case outside `## Deferred` with its sub-cases, and the instruction to read for each such Case its `context`, `when`, `then` and `then` block and, for an `update` of a rule or an entity, the page's `estimates`; of a Case under `## Deferred` it reads only the slugs of its `defer` items.
+> **＋** Three questions: which decisions contradict a page of the vault, a rule of the vault, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact of a `context` — a page's status, a count, a case number, a claim that no page holds a thing — the vault does not bear out.
+> **＋** The agent answers the findings with one report before any Case is sent back: the list of what the `ask-guppi` run did not check; each finding numbered, with the fix it proposes or why it is already known, the findings that need the person apart from those that do not, and the decisions it needs from the person; after the Cases built again on the findings are ratified, it does not call `/pre-spec` again, but runs the check, fixes what it prints, and exits Plan Mode when the check prints no finding.
+> **＋** `guppi gate` writes the stamped `prespec` line on the Skill call.
+> **－** No second `ask-guppi` is dispatched at the first run, and a later run of `/pre-spec` in the session dispatches none.
+> **－** The report never says that the whole Spec is checked.
+> **－** The agent writes no list of the decisions: the plan is the list.
+> **－** The body of a deferred decision is not read; a Case that changes a page another Case of the plan defers is still a finding.
+
+```then
+update:
+- slug: rule-prespec
+  replace:
+  - old: dispatch one `ask-guppi` agent for each top-level Case outside the `## Deferred` heading — of the plan, or, when the plan's title line names a conserved Spec, of that Spec — all in one message, each with the absolute path of the plan file, the id of the Case it judges — that Case and its sub-cases, the other Cases read only to find a clash with them (case 634.1) — and the instruction to read
+    new: dispatch one `ask-guppi` agent over the plan, or, when the plan's title line names a conserved Spec, over that Spec, with the absolute path of the plan file, the instruction to judge every Case outside the `## Deferred` heading with its sub-cases (case 674.1), and the instruction to read
+  - old: for each `ask-guppi` run, the Case it judged and its list of what it did not check, with no claim that the whole Spec is checked (case 634.1);
+    new: the list of what the `ask-guppi` run did not check, with no claim that the whole Spec is checked, since one run over a large Spec returns only part of the findings (cases 634.1, 674.1);
+  change: the first run of /pre-spec sends one ask-guppi over the whole plan or the conserved Spec its title line names; the report gives what that run did not check and never says the whole Spec is checked (case 674.1)
+- slug: rule-ask
+  replace:
+  - old: The main agent asks at pre-spec, one run for each top-level Case of the set of ratified Cases (case 634.1);
+    new: The main agent asks at pre-spec, one run over the whole set of ratified Cases (case 674.1);
+  - old: the main agent asks at pre-spec, one run per top-level Case of the set;
+    new: the main agent asks at pre-spec, one run over the whole set;
+  - old: where the caller names the Case you judge — that Case and its sub-cases, the other Cases of the plan read only to find a clash with them (case 634.1) — and asks
+    new: where the caller asks you to judge every Case of the plan with its sub-cases (case 674.1), and asks
+  change: at pre-spec one ask-guppi run judges every Case of the plan with its sub-cases (case 674.1)
+- slug: estimate-prespec-reconciles
+  set:
+    status: pending
+    method: 'by hand at Retro of the session that changes it: the new Render of rule-prespec and rule-ask in the Spec, read against the Criterion, recorded in the estimate line'
+  change: the Criterion replaced whole — one ask-guppi over the whole plan at the first run, the report giving what that run did not check; the method a reading of the new Render in the Spec at Retro (case 674.1)
+- slug: estimate-case-build-checks-the-finished-case
+  set:
+    method: 'by hand: at /pre-spec, the findings of ask-guppi, read for each Case case-guppi built — a Case that departs from a chosen option, a page naming a changed slug that the Case misses, a rule acting at the same moment that the Case misses, a Case of the session named in the prompt whose page or moment the Case clashes with, an Estimate whose purpose or method still states the promise its replaced Criterion dropped, a claim of context that its search did not print, a search in context that the Case does not rest on, two sub-cases whose texts on one page contradict; the count of each in the reading line'
+  change: the method reads the findings of ask-guppi at pre-spec, no longer one run per top-level Case (case 674.1)
+```
+
+```tasks
+- [ ] update `rule-prespec`
+- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [ ] update `rule-ask`
+- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [ ] update `estimate-prespec-reconciles`
+- [ ] update `estimate-case-build-checks-the-finished-case`
+- [ ] read `estimate-prespec-reconciles`
+```
+
+### Case 674.2 — The orchestration file names one ask-guppi run at pre-spec
+
+> **given:**
+> `rule-orchestration`: its Render says when the main agent dispatches `ask-guppi`.
+> **＋** `vault/wiki/orchestration.md`: the file rendered from `rule-orchestration`.
+> **＋** `estimate-orchestration-shows-the-built-case`: the check of the dispatch and the showing, its Criterion replaced whole.
+> **＋** `.claude/skills/wait-what/SKILL.md`: the skill by which the main agent explains its own text.
+> **＋** `.claude/skills/grill-me/SKILL.md`: the shape of a question of a round.
+> **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the file of a Case that the main agent sends.
+> **＋** `rule-case-check`: the hook that checks the file of a Case and the reply that shows it.
+
+> **when:**
+> The main agent takes up a Frontier item, the person answers a round of questions, answers a shown Case with a question or a change, or asks for a plain explanation of the agent's text — by `/wait-what` on `UserPromptSubmit` or in words — or a ratified Case changes and is shown again, in Plan Mode or in Work Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
+
+> **then:**
+> The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source, and the person's words on it, in the prompt of the call, after the plan file stands with its title line; nothing of the Case stands in the chat before the answer.
+> **＋** The person's answers to a round go to the same `case-guppi` by `SendMessage`, verbatim and untranslated, and so does a question or a change of the person on a shown Case that is not a request for a plain explanation.
+> **＋** A request for a plain explanation of a round, of the short text on a Case or of a reply the main agent answers itself by `.claude/skills/wait-what/SKILL.md`; it sends the `case-guppi` of the Case a `SendMessage` only to ask for a fact of the Case, and `case-guppi` answers with the fact alone, under a first line `**Fact:**` and with no Case heading.
+> **＋** An answer with no first line `**Built:**` and no first line `**Fact:**` is a round of questions: the main agent shows it in the chat translated into Russian line by line, slugs, paths and quotations unchanged, each quotation in its blockquote — the `**Context:**` paragraph that opens the first round on an item translated in place before the first question, each question in the order and with the number of the answer, opening with its `❓ **Qn** - **<title>**:` line of `.claude/skills/grill-me/SKILL.md` and closing with its `➡️` line, its title, body and recommended answer translated in place, nothing merged, dropped or added between the questions, the agent's own text after the last question and one horizontal rule; no Case is shown, no file is sent, and no step of confirmation follows the last round.
+> **＋** The main agent shows a built Case at every showing by `SendUserFile` with `display: render` on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, the file `case-guppi` wrote and the hook of `rule-case-check` checked. In the same reply it writes the heading of the top-level Case: its id, and its name in Russian translated from the `**Case:**` line of the summary `case-guppi` answered with. Under the heading it writes one list with an item per Case and sub-case of the summary: its id, its name in Russian, and a short text in Russian on what done means and how it is checked, taken from the Estimate the summary names for it. Then it writes one `ratification` with the ledger lines of every Case of the list as the summary holds them, and its own text after one horizontal rule. A summary in which a Case names no such Estimate goes back to its `case-guppi` by `SendMessage` before the Case is shown.
+> **＋** A Case whose item in the summary carries a line `**Other Case:**` is shown as it stands, and the main agent asks the person whether that other Case is built again.
+> **＋** A reply that shows a Case and that the `Stop` check of `rule-case-check` refuses is followed, before the person answers, by a reply that sends the file and shows the `ratification` as the summary holds it; a reply that shows a round and that the `Stop` check refuses is followed, before the person answers, by a reply that shows the round again with nothing before its `**Context:**` paragraph or its first question.
+> **＋** A ratified Case that changes — in its prose or in its body — changes through its `case-guppi`, and its new file is sent and ratified again; the main agent edits no Case in the plan file or under `cases/`.
+> **＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches `ask-guppi` only at pre-spec, one run over the whole plan at its first run, never to build a Case, and asks that run again only to confirm its own findings.
+> **－** The main agent writes the heading, the list, the `ratification` and the question on another Case from the summary, and does not read the file of the Case.
+> **－** The heading carries no name of the main agent's own and not the words of the Frontier item.
+> **－** The main agent writes no context of its own before the first question of a round.
+> **－** The main agent writes no `given`, `when`, `then` or `tasks` of a built Case into the chat.
+> **－** A deferred decision in the short form is written by the main agent in English in the chat, with no dispatch and no file.
+
+```then
+update:
+- slug: rule-orchestration
+  replace:
+  - old: the agent dispatches `ask-guppi` only at pre-spec, one run per top-level Case at its first run, and asks a run again only to confirm its own findings, as `rule-prespec` sets it (case 634.3).
+    new: the agent dispatches `ask-guppi` only at pre-spec, one run over the whole plan at its first run, and asks that run again only to confirm its own findings, as `rule-prespec` sets it (cases 634.3, 674.2).
+  change: ask-guppi is dispatched only at pre-spec, one run over the whole plan, and asked again only to confirm its findings (case 674.2)
+- slug: estimate-orchestration-shows-the-built-case
+  set:
+    status: pending
+    method: 'by hand at Retro of the session that changes it: the new Render of rule-orchestration in the Spec, read against the Criterion, recorded in the estimate line'
+  change: the Criterion replaced whole — ask-guppi only at pre-spec, one run over the whole plan, asked again only to confirm its findings; the method a reading of the new Render in the Spec at Retro (case 674.2)
+```
+
+```tasks
+- [ ] update `rule-orchestration`
+- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [ ] update `estimate-orchestration-shows-the-built-case`
+- [ ] read `estimate-orchestration-shows-the-built-case`
+```
+
+### Case 674.3 — The placeholder of the whole-Spec check stays in the backlog for later
+
+> **given:**
+> `rule-prespec-judges-the-spec-whole`: the placeholder page of the backlog item, kept and put off again.
+> **＋** `rule-page-generation`: the rule of `guppi generate`, which clears the defer this Case supersedes and writes the new one.
+> **＋** `vault/wiki/backlog.md`: the backlog that lists a deferred page with its purpose.
+
+> **when:**
+> `guppi generate` of `rule-page-generation` applies the decisions of this Case, and `guppi backlog` writes `vault/wiki/backlog.md`.
+
+> **then:**
+> `rule-prespec-judges-the-spec-whole` stays a `draft` rule whose `purpose` and Purpose name what is left to think over: the problems the one `ask-guppi` run misses on a large Spec, and a question on what the Cases leave open together.
+> **＋** Its `deferred_by` names the Decision page of this Case, and no longer the Decision page of case 643.
+> **＋** `vault/wiki/backlog.md` lists it under `## Deferred` with its new purpose.
+> **－** No harness file changes, and the `ask-guppi` run of pre-spec asks no question on what the Cases leave open together.
+
+```then
+update:
+- slug: rule-prespec-judges-the-spec-whole
+  set:
+    purpose: Prevents a large Spec from being approved with problems that the one ask-guppi run of /pre-spec did not return, and holds open whether that run also asks what the Cases together leave unanswered; left by the person to think over (case 674.3)
+  sections:
+    Purpose: Prevents a large Spec from being approved with problems that the one ask-guppi run of /pre-spec did not return, and holds open whether that run also asks what the Cases together leave unanswered; left by the person to think over (case 674.3)
+  change: the purpose rewritten for what is left to think over after pre-spec went back to one ask-guppi run; the defer of case 643 retired and the page put off again (case 674.3)
+defer:
+- slug: rule-prespec-judges-the-spec-whole
+  type: rule
+  purpose: Prevents a large Spec from being approved with problems that the one ask-guppi run of /pre-spec did not return, and holds open whether that run also asks what the Cases together leave unanswered; left by the person to think over (case 674.3)
+```
+
+```tasks
+- [ ] update `rule-prespec-judges-the-spec-whole`
+- [ ] defer `rule-prespec-judges-the-spec-whole`
+```

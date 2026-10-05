@@ -1,0 +1,48 @@
+- 18:37:31 estimate[estimate-orchestration-showing-example-passes-the-check][passed] 2026-10-05, /hi of 1831, uv run pytest tests/test_orchestration.py -rs; 6 passed, none skipped
+- 18:37:31 estimate[estimate-orchestration-defer-example-passes-the-hook][passed] 2026-10-05, /hi of 1831, uv run pytest tests/test_orchestration.py -rs; 6 passed, none skipped
+- 18:37:31 estimate[estimate-case-check-sends-back-a-summary-without-the-case-name][passed] 2026-10-05, /hi of 1831, uv run pytest tests/test_casecheck.py -k summary_names_the_case; 10 passed
+- 18:37:31 estimate[estimate-search-leaves-out-decisions-by-the-grep-hook][passed] 2026-10-05, /hi of 1831, uv run pytest tests/test_grepguard.py 15 passed; a Grep ^status: current over vault/wiki with no glob printed 0 files in the main agent and 0 in a general-purpose subagent, while the same Grep with path vault/wiki/decisions counted 1146 files, unchanged by the hook; uv run guppi grepguard registered on PreToolUse of Grep in .claude/settings.json
+- 18:37:31 estimate[estimate-materialize-marks-superseded][passed] 2026-10-05, /hi of 1831, uv run pytest tests/test_materialize.py 129 passed; live: the 1616 librarian transcript shows guppi materialize exit=0; raw/2026-10-05/1616/materialize.yaml L25, L26, L27, L36 (case 663) carry superseded_by 668, L37-L39 carry supersedes ['663'] as a list, the decisions record 663 carries superseded_by [decision-case-668] with no case_text and no incomplete, the 1343 records 653, 653.1, 653.2 carry decision-case-658 beside decision-case-659, no entry without case carries a mark; L25 and L36 carry incomplete: [criterion], not [then]
+- 18:37:31 estimate[estimate-generate-writes-the-decision-page][passed] 2026-10-05, /hi of 1831, uv run pytest tests/test_generate.py 106 passed; live: the 1616 librarian transcript shows guppi generate exit=0, 59 pages for 1616; decision-case-660 carries children of four sub-case pages, no kind list, Problem and Recommend; decision-case-660.1 carries parent and no Problem; decision-case-665 carries Context, Problem and Deferred with the purpose; decision-case-668 carries supersedes; decision-case-663 superseded_by decision-case-668 with the two-line body, archived under vault/archive/migration/2026-10-05/1616/decisions/; no superseded parent with children was met
+- 18:37:31 estimate[estimate-spec-reconcile-refuses-a-case-file-another-agent-holds][passed] 2026-10-05, /hi of 1831, uv run pytest tests/test_ratified.py -k number_held 11 passed; live, session 1616 after the work of 1343: each of the 18 entries of misty-forging-robin.checked.json carries an agent_id, entry 668 that of case-guppi a382aa98b80f9e598, the builder of 663 that built 668 by SendMessage
+- 18:37:31 estimate[estimate-ask-searches-at-prespec][failed] 2026-10-05, /hi of 1831, the ask-guppi transcripts of the /pre-spec of 1616 (6360af9f, 17:39) and 1343 (f5706873, 15:25), after the render of ask-guppi.md at 03:09; every run opened with the Grep ^(purpose|deferred_by): over vault/wiki/rules/; in 1616 the run on 664 Read rule pages and Estimates and ran no Grep of lessons, insights or entities, the run on 661 grepped insights alone; in 1343 the runs on 650, 651, 652, 653 and 656 ran Reads of rule and estimate pages before their last category Grep
+- 18:38:42 estimate[estimate-permissions][passed] 2026-10-05, the person's word at /hi of session 1831: the client did not ask for permission at a Read, Grep or Glob of case-guppi under ~/.claude/projects/c--PROJECTS-GUPPI/ in a session after the render; the rendered .claude/settings.json: the allow list holds Edit and Write for frontier.md, spec.md, handoff.md and work.md under vault/raw/**, Write for carry.md under vault/raw/**, Edit and Write for vault/wiki/brief.md and Read(~/.claude/projects/c--PROJECTS-GUPPI/**), no deny and no ask; .claude/agents/case-guppi.md carries permissionMode: acceptEdits; uv run pytest tests/test_render.py -k "json or permission": 4 passed
+- 19:09:22 lesson[error][lesson-orchestration-two-cases-built-side-by-side]{tags:workflow,session} trigger: at session 1831 the main agent dispatched case-guppi for Cases 669 and 670 at once and showed their rounds and the built Case 669 in turn, so a question of 670 stood beside the showing of 669 and the person lost which question belonged to which Case. root_cause: the main agent started a second Case before the first was ratified, outside the two side-by-side forms rule-orchestration allows (the loop after the findings of /pre-spec and a batch), and numbered a question of one Case with no Case id.
+- 19:14:04 decision[case 669.1][update][estimate-prespec-catches-a-superseded-case]{ref:rule-prespec}
+- 19:14:04 decision[case 669.2][update][estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case]{ref:rule-retro}
+- 19:14:04 decision[case 669.3][update][estimate-synthesis-reads-the-status-its-yaml-sets]{ref:rule-synthesis}
+- 19:14:04 decision[case 669.4][update][estimate-case-check-requires-a-backlog-item-decided-on-its-page]{ref:rule-case-check}
+- 19:14:04 decision[case 669.5][update][estimate-case-check-shows-only-the-checked-case]{ref:rule-case-check}
+- 19:14:04 decision[case 669.6][update][estimate-case-check-sends-back-a-faulty-case]{ref:rule-case-check}
+- 19:14:04 decision[case 669.7][update][estimate-spec-write-reaches-the-approved-spec]{ref:rule-spec-write}
+- 19:14:04 decision[case 669.8][update][estimate-ask-query-before-a-create]{ref:rule-ask}
+- 19:14:04 decision[case 669.9][update][estimate-case-build-writes-the-case]{ref:rule-case-build}
+- 19:14:04 decision[case 669.10][update][estimate-orchestration-shows-the-built-case]{ref:rule-orchestration}
+- 19:14:04 decision[case 669.11][update][estimate-search-leaves-out-decisions-in-every-agent]{ref:rule-search-leaves-out-decisions}
+- 19:14:04 decision[case 669.12][update][estimate-case-build-checks-the-finished-case]{ref:rule-case-build}{supersedes:case 647}{supersedes:case 657}{supersedes:case 667}
+- 19:14:04 decision[case 669.13][update][estimate-case-protocol-case-form]{ref:rule-case-protocol}{supersedes:case 665}
+- 19:14:04 decision[case 669.14][update][estimate-prespec-confirms-the-findings-once]{ref:rule-prespec}{supersedes:case 666}
+- 19:14:04 decision[case 669.15][update][estimate-ask-searches-at-prespec]{ref:rule-ask}
+- 19:26:35 decision[case 670.1][update][rule-ledger-write]{ref:rule-ledger-write}
+- 19:26:35 decision[case 670.1][update][rule-orchestration]{ref:rule-orchestration}
+- 19:26:35 decision[case 670.1][update][estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]{ref:rule-ledger-write}
+- 19:26:35 decision[case 670.2][update][rule-retro]{ref:rule-retro}
+- 19:26:35 decision[case 670.2][update][estimate-retro-loads]{ref:rule-retro}
+- 19:26:35 decision[case 670.3][update][rule-handoff]{ref:rule-handoff}
+- 19:26:35 decision[case 670.3][update][estimate-handoff-holds-each-fact-once]{ref:rule-handoff}
+- 19:26:35 decision[case 670.4][update][rule-case-protocol]{ref:rule-case-protocol}
+- 19:26:35 decision[case 670.4][create][estimate-prespec-hook-reports-a-method-that-waits-for-another-session]{ref:rule-prespec-hook}{tags:harness,workflow}
+- 19:26:35 decision[case 670.5][update][rule-skill-hi]{ref:rule-skill-hi}
+- 19:26:35 decision[case 670.5][update][estimate-hi-takes-its-readings]{ref:rule-skill-hi}
+- 19:38:52 decision[case 671.1][create][estimate-case-check-sends-back-a-ratified-case-without-a-target]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 19:38:52 decision[case 671.1][update][insight-ledger-ratified-line-never-withdrawn]{ref:insight-ledger-ratified-line-never-withdrawn}
+- 19:38:52 decision[case 671.2][update][rule-case-protocol]{ref:rule-case-protocol}
+- 19:38:52 decision[case 671.2][delete][rule-ledger-line-withdrawn-on-re-ratification]{ref:rule-ledger-line-withdrawn-on-re-ratification}{supersedes:case 594}
+- 20:11:00 decision[case 669.6][update][estimate-case-check-sends-back-a-faulty-case]{ref:rule-case-check}{supersedes:case 659}
+- 20:11:00 decision[case 669.7][update][estimate-spec-write-reaches-the-approved-spec]{ref:rule-spec-write}{supersedes:case 630}
+- 20:11:00 decision[case 669.10][update][estimate-orchestration-shows-the-built-case]{ref:rule-orchestration}{supersedes:case 617}{supersedes:case 622}
+- 20:11:00 decision[case 669.16][update][rule-case-protocol]{ref:rule-case-protocol}
+- 20:11:00 decision[case 669.16][update][rule-estimates-schema]{ref:rule-estimates-schema}
+- 20:11:00 decision[case 670.6][update][estimate-hi-writes-frontier]{ref:rule-skill-hi}
+- 20:11:00 decision[case 670.7][update][rule-work-mode]{ref:rule-work-mode}
+- 20:11:00 decision[case 670.7][update][estimate-work-mode-takes-the-work-readings]{ref:rule-work-mode}

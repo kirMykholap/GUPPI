@@ -6956,3 +6956,106 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-06 decisions/decision-case-674.3 archived · cleanup
 - 2026-10-06 decisions/decision-case-681 archived · cleanup
 - 2026-10-06 decisions/decision-case-674 child decision-case-674.3 archived · cleanup
+- 2026-10-06 decisions/decision-case-685 created · raw/2026-10-06/0104/ledger.md#case-685 · generate
+- 2026-10-06 decisions/decision-case-685.1 created · raw/2026-10-06/0104/ledger.md#case-685.1 · generate
+- 2026-10-06 rules/rule-ledger-write updated: the hook writes the decision lines after an unmarked lesson and reminds the agent of the addresses mark (case 685.1) · [[decision-case-685.1]] · generate
+- 2026-10-06 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line created · [[decision-case-685.1]] · generate
+- 2026-10-06 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line status: pending → passed · raw/2026-10-06/0104/ledger.md#L33 · generate
+- 2026-10-06 rules/rule-ledger-write estimate estimate-ledger-write-reminds-of-the-mark-on-a-decision-line added · [[decision-case-685.1]] · generate
+- 2026-10-06 rules/rule-orchestration updated: the reply that answers the ledger hook's reminder writes one decision line again with the addresses mark (case 685.1) · [[decision-case-685.1]] · generate
+- 2026-10-06 decisions/decision-case-685.2 created · raw/2026-10-06/0104/ledger.md#case-685.2 · generate
+- 2026-10-06 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson updated: the Criterion replaced whole — a decision line after an unmarked lesson is written and left to the reminder (case 685.2) · [[decision-case-685.2]] · generate
+- 2026-10-06 decisions/decision-case-686 created · raw/2026-10-06/0104/ledger.md#case-686 · generate
+- 2026-10-06 decisions/decision-case-686.1 created · raw/2026-10-06/0104/ledger.md#case-686.1 · generate
+- 2026-10-06 decisions/decision-case-648 superseded by decision-case-686.1 · [[decision-case-686.1]] · generate
+- 2026-10-06 rules/rule-prespec-onward defer by decision-case-648 superseded · [[decision-case-686.1]] · generate
+- 2026-10-06 rules/rule-prespec-onward updated: after /pre-spec the hook sends the agent to the check and the exit only when a Case file was written after the prespec mark, and on with the loop after the findings otherwise; it sends the agent on again after a line the ledger hook held and after its reminder of a lesson with no mark, as after a refused line; the defer of case 648 retired (case 686.1) · [[decision-case-686.1]] · generate
+- 2026-10-06 estimates/estimate-prespec-onward-tells-the-loop-from-its-end created · [[decision-case-686.1]] · generate
+- 2026-10-06 estimates/estimate-prespec-onward-tells-the-loop-from-its-end status: pending → passed · raw/2026-10-06/0104/ledger.md#L35 · generate
+- 2026-10-06 rules/rule-prespec-onward estimate estimate-prespec-onward-tells-the-loop-from-its-end added · [[decision-case-686.1]] · generate
+- 2026-10-06 rules/rule-prespec updated: the hook of rule-prespec-onward sends the agent on with the loop after a reply with a LEDGER block before any Case is built again (case 686.1) · [[decision-case-686.1]] · generate
+- 2026-10-06 rules/rule-orchestration updated: a defer after /pre-spec is sent on with the loop after its findings (case 686.1) · [[decision-case-686.1]] · generate
+- 2026-10-06 decisions/decision-case-686.2 created · raw/2026-10-06/0104/ledger.md#case-686.2 · generate
+- 2026-10-06 estimates/estimate-prespec-onward-sends-the-agent-on updated: the Criterion replaced whole — after /pre-spec the reason sends the agent to the check and the exit, or on with the loop, as estimate-prespec-onward-tells-the-loop-from-its-end sets it; purpose and method set anew (case 686.2) · [[decision-case-686.2]] · generate
+- 2026-10-06 decisions/decision-case-687 created · raw/2026-10-06/0104/ledger.md#case-687 · generate
+- 2026-10-06 insights/insight-prespec-after-findings-loop-unruled updated: actioned again: the skill of rule-prespec sets the loop after the findings (cases 561.2, 595.1, 634.2); the report lists what the one ask-guppi run did not check and the person kept one run (cases 674.1, 675); the confirmation message asks only whether each finding is closed (case 638) (case 687) · [[decision-case-687]] · generate
+- 2026-10-06 decisions/decision-case-688 created · raw/2026-10-06/0104/ledger.md#case-688 · generate
+- 2026-10-06 decisions/decision-case-688.1 created · raw/2026-10-06/0104/ledger.md#case-688.1 · generate
+- 2026-10-06 rules/rule-case-check updated: the Stop run judges every reply whatever stop_hook_active says, a reason of one Case given at most three times a stretch; purpose set anew (case 688.1) · [[decision-case-688.1]] · generate
+- 2026-10-06 estimates/estimate-case-check-judges-a-showing-after-a-refusal created · [[decision-case-688.1]] · generate
+- 2026-10-06 estimates/estimate-case-check-judges-a-showing-after-a-refusal status: pending → passed · raw/2026-10-06/0104/ledger.md#L37 · generate
+- 2026-10-06 rules/rule-case-check estimate estimate-case-check-judges-a-showing-after-a-refusal added · [[decision-case-688.1]] · generate
+- 2026-10-06 decisions/decision-case-688.2 created · raw/2026-10-06/0104/ledger.md#case-688.2 · generate
+- 2026-10-06 estimates/estimate-case-check-shows-only-the-checked-case updated: the Criterion replaced whole — the comparison runs whatever stop_hook_active says, its reasons given as the loop guard sets it; purpose set anew (case 688.2) · [[decision-case-688.2]] · generate
+- 2026-10-06 decisions/decision-case-688.3 created · raw/2026-10-06/0104/ledger.md#case-688.3 · generate
+- 2026-10-06 estimates/estimate-case-check-refuses-a-changed-case-file updated: the Criterion replaced whole — the file is compared whatever stop_hook_active says, its reason given as the loop guard sets it (case 688.3) · [[decision-case-688.3]] · generate
+- 2026-10-06 decisions/decision-case-688.4 created · raw/2026-10-06/0104/ledger.md#case-688.4 · generate
+- 2026-10-06 estimates/estimate-case-check-exits-2-on-an-error updated: the Criterion replaced whole — an error blocks whatever stop_hook_active says, at most three times a stretch; purpose set anew (case 688.4) · [[decision-case-688.4]] · generate
+- 2026-10-06 decisions/decision-case-688.5 created · raw/2026-10-06/0104/ledger.md#case-688.5 · generate
+- 2026-10-06 estimates/estimate-case-check-refuses-text-before-a-round updated: the Criterion replaced whole — a round shown again after a refusal is judged again, its reason given as the loop guard sets it; method set to the tests, which run in the session (case 688.5) · [[decision-case-688.5]] · generate
+- 2026-10-06 decisions/decision-case-688.6 created · raw/2026-10-06/0104/ledger.md#case-688.6 · generate
+- 2026-10-06 estimates/estimate-case-check-refuses-text-outside-the-list updated: the Criterion replaced whole — a Case shown again after a refusal is judged again, its reason given as the loop guard sets it; method set to the tests, which run in the session (case 688.6) · [[decision-case-688.6]] · generate
+- 2026-10-06 decisions/decision-case-688.7 created · raw/2026-10-06/0104/ledger.md#case-688.7 · generate
+- 2026-10-06 rules/rule-ledger-write updated: the hook holds a decision line that is not a line of the stored ratification of its Case, every time it differs (case 688.7) · [[decision-case-688.7]] · generate
+- 2026-10-06 estimates/estimate-ledger-write-holds-a-decision-line-off-the-stored-case created · [[decision-case-688.7]] · generate
+- 2026-10-06 estimates/estimate-ledger-write-holds-a-decision-line-off-the-stored-case status: pending → passed · raw/2026-10-06/0104/ledger.md#L34 · generate
+- 2026-10-06 rules/rule-ledger-write estimate estimate-ledger-write-holds-a-decision-line-off-the-stored-case added · [[decision-case-688.7]] · generate
+- 2026-10-06 rules/rule-orchestration updated: the reply that answers a held decision line copies it again from the summary of case-guppi, and a held line is not written at the Stop that another hook refuses (case 688.7) · [[decision-case-688.7]] · generate
+- 2026-10-06 decisions/decision-case-688.8 created · raw/2026-10-06/0104/ledger.md#case-688.8 · generate
+- 2026-10-06 insights/insight-case-show-built-case-retyped-by-hand updated: actioned: the check of a showing judges every reply and stops after three refusals of one Case (case 688.1), and the ledger hook holds a decision line that is not a line of the stored ratification (case 688.7); the heading of a showing comes from the checked Case line (case 662) (case 688.8) · [[decision-case-688.8]] · generate
+- 2026-10-06 decisions/decision-case-689 created · raw/2026-10-06/0104/ledger.md#case-689 · generate
+- 2026-10-06 decisions/decision-case-689.1 created · raw/2026-10-06/0104/ledger.md#case-689.1 · generate
+- 2026-10-06 rules/rule-internal-context updated: /hi loads where-to-stop.md after orchestration.md (case 689.1) · [[decision-case-689.1]] · generate
+- 2026-10-06 estimates/estimate-internal-context-loaded updated: the Criterion replaced whole — where-to-stop.md loaded after orchestration.md; purpose and method set anew (case 689.1) · [[decision-case-689.1]] · generate
+- 2026-10-06 rules/rule-where-to-stop updated: /hi loads the file for Plan Mode (case 689.1) · [[decision-case-689.1]] · generate
+- 2026-10-06 rules/rule-orchestration updated: the opening line names where-to-stop.md among the files /hi loads (case 689.1) · [[decision-case-689.1]] · generate
+- 2026-10-06 decisions/decision-case-689.2 created · raw/2026-10-06/0104/ledger.md#case-689.2 · generate
+- 2026-10-06 insights/insight-session-vault-knowledge-not-loaded updated: actioned: /hi loads where-to-stop.md, so Plan Mode holds the stops of the run after it (case 689.1); the short brief keeps the Work list since case 538.1 (case 689.2) · [[decision-case-689.2]] · generate
+- 2026-10-06 decisions/decision-case-690 created · raw/2026-10-06/0104/ledger.md#case-690 · generate
+- 2026-10-06 decisions/decision-case-690.1 created · raw/2026-10-06/0104/ledger.md#case-690.1 · generate
+- 2026-10-06 rules/rule-case-build updated: a fact of the prompt besides the person's words enters the Case only after case-guppi reads it at its source (case 690.1) · [[decision-case-690.1]] · generate
+- 2026-10-06 estimates/estimate-case-build-reads-a-prompt-fact-at-its-source created · [[decision-case-690.1]] · generate
+- 2026-10-06 estimates/estimate-case-build-reads-a-prompt-fact-at-its-source status: pending → passed · raw/2026-10-06/0104/ledger.md#L45 · generate
+- 2026-10-06 rules/rule-case-build estimate estimate-case-build-reads-a-prompt-fact-at-its-source added · [[decision-case-690.1]] · generate
+- 2026-10-06 decisions/decision-case-690.2 created · raw/2026-10-06/0104/ledger.md#case-690.2 · generate
+- 2026-10-06 rules/rule-orchestration updated: the paragraph Changes: says that a rendered file changes at the librarian's render (case 690.2) · [[decision-case-690.2]] · generate
+- 2026-10-06 estimates/estimate-orchestration-says-when-a-rendered-change-lands created · [[decision-case-690.2]] · generate
+- 2026-10-06 estimates/estimate-orchestration-says-when-a-rendered-change-lands status: pending → passed · raw/2026-10-06/0104/ledger.md#L46 · generate
+- 2026-10-06 rules/rule-orchestration estimate estimate-orchestration-says-when-a-rendered-change-lands added · [[decision-case-690.2]] · generate
+- 2026-10-06 decisions/decision-case-690.3 created · raw/2026-10-06/0104/ledger.md#case-690.3 · generate
+- 2026-10-06 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: actioned: case-guppi reads a fact of its prompt at its source (case 690.1), and the acknowledging reply says that a rendered file changes at the librarian's render (case 690.2) (case 690.3) · [[decision-case-690.3]] · generate
+- 2026-10-06 decisions/decision-case-688.9 created · raw/2026-10-06/0104/ledger.md#case-688.9 · generate
+- 2026-10-06 estimates/estimate-orchestration-acknowledging-reply updated: the Criterion replaced whole — the LEDGER block stands written after a refusal of another hook, but for a decision line the ledger hook holds (case 688.9) · [[decision-case-688.9]] · generate
+- 2026-10-06 estimates/estimate-prespec-onward-sends-the-agent-on status: pending → passed · raw/2026-10-06/0104/ledger.md#L36 · generate
+- 2026-10-06 estimates/estimate-case-check-shows-only-the-checked-case status: pending → passed · raw/2026-10-06/0104/ledger.md#L38 · generate
+- 2026-10-06 estimates/estimate-case-check-refuses-a-changed-case-file status: pending → passed · raw/2026-10-06/0104/ledger.md#L39 · generate
+- 2026-10-06 estimates/estimate-case-check-exits-2-on-an-error status: pending → passed · raw/2026-10-06/0104/ledger.md#L40 · generate
+- 2026-10-06 estimates/estimate-case-check-refuses-text-before-a-round status: pending → passed · raw/2026-10-06/0104/ledger.md#L41 · generate
+- 2026-10-06 estimates/estimate-case-check-refuses-text-outside-the-list status: pending → passed · raw/2026-10-06/0104/ledger.md#L42 · generate
+- 2026-10-06 estimates/estimate-orchestration-acknowledging-reply status: pending → passed · raw/2026-10-06/0104/ledger.md#L43 · generate
+- 2026-10-06 estimates/estimate-internal-context-loaded status: pending → passed · raw/2026-10-06/0104/ledger.md#L44 · generate
+- 2026-10-06 lessons/lesson-orchestration-batch-rounds-headed-by-own-text created · raw/2026-10-06/0104/ledger.md#L47 · generate
+- 2026-10-06 lessons/lesson-case-build-related-cases-same-sentence-missed created · raw/2026-10-06/0104/ledger.md#L48 · generate
+- 2026-10-06 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson status: pending → passed · raw/2026-10-06/0104/ledger.md#L49 · generate
+- 2026-10-06 insights/insight-orchestration-items-taken-together-unruled updated: child lesson-orchestration-batch-rounds-headed-by-own-text added, reopened from actioned (synthesis) · raw/2026-10-06/0104/ledger.md#L47 · generate
+- 2026-10-06 lessons/lesson-orchestration-batch-rounds-headed-by-own-text updated: clustered under insight-orchestration-items-taken-together-unruled (synthesis) · raw/2026-10-06/0104/ledger.md#L47 · generate
+- 2026-10-06 insights/insight-workflow-edit-pair-signed-from-a-grep-fragment updated: child lesson-case-build-related-cases-same-sentence-missed added, reopened from actioned (synthesis) · raw/2026-10-06/0104/ledger.md#L48 · generate
+- 2026-10-06 lessons/lesson-case-build-related-cases-same-sentence-missed updated: clustered under insight-workflow-edit-pair-signed-from-a-grep-fragment (synthesis) · raw/2026-10-06/0104/ledger.md#L48 · generate
+- 2026-10-06 decisions/decision-case-648 archived · superseded · generate
+- 2026-10-06 lessons/lesson-orchestration-case-heading-named-from-the-frontier-item archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-orchestration-heading-of-a-showing-composed-by-the-main-agent archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-prespec-one-ask-guppi-run-samples-the-spec archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-prespec-confirmation-prompt-invites-a-new-finding archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-carry-short-brief-drops-the-work-list archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-work-mode-a-staged-moment-promised-inside-a-run-with-no-stop archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-orchestration-a-ratified-render-change-claimed-live-before-the-render archived · insight actioned · generate
+- 2026-10-06 lessons/lesson-carry-short-brief-drops-the-work-list archived · cleanup
+- 2026-10-06 lessons/lesson-orchestration-a-ratified-render-change-claimed-live-before-the-render archived · cleanup
+- 2026-10-06 lessons/lesson-orchestration-case-heading-named-from-the-frontier-item archived · cleanup
+- 2026-10-06 lessons/lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run archived · cleanup
+- 2026-10-06 lessons/lesson-orchestration-heading-of-a-showing-composed-by-the-main-agent archived · cleanup
+- 2026-10-06 lessons/lesson-prespec-confirmation-prompt-invites-a-new-finding archived · cleanup
+- 2026-10-06 lessons/lesson-prespec-one-ask-guppi-run-samples-the-spec archived · cleanup
+- 2026-10-06 lessons/lesson-work-mode-a-staged-moment-promised-inside-a-run-with-no-stop archived · cleanup
+- 2026-10-06 decisions/decision-case-648 archived · cleanup

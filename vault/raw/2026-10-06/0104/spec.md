@@ -82,14 +82,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
-- [ ] update `rule-orchestration`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
+- [x] update `rule-orchestration`
 - [x] `guppi/materialize.py`: beside `marks_without_decision`, one function judges over ledger lines in their order which lesson lines no mark links to a Case — no `{addressed_by:...}` on the line and no decision line after it with `{addresses:<slug>}` — each line read by `parse_line`.
 - [x] `guppi/ledger.py`: a function takes, from that function of `guppi/materialize.py` over the session's ledger followed by the lines the `Stop` writes, each unlinked lesson that fresh decision lines of the reply just finished follow; `run` writes the lines first, then prints its reminder by `untold`, and the docstring says so.
 - [x] `tests/test_ledger.py`: tests of the reminder after the write, of the Cases it names, of the repeat told once, of the decision line written again with the mark, of a `defer` line, of a lesson after every decision line, of a lesson already marked, of a fresh lesson the same `Stop` holds back, without `hi` and with the flag and an unreadable transcript.
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
 ```
 
 ### Case 685.2 — The hold of a lesson leaves the decision line to the reminder
@@ -122,8 +122,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
-- [ ] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] update `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
 ```
 
 ## Case 686 — The hook of Plan Mode tells the loop after the findings from its end
@@ -222,16 +222,16 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] create `estimate-prespec-onward-tells-the-loop-from-its-end`
-- [ ] update `rule-prespec`
-- [ ] update `rule-orchestration`
+- [x] update `rule-prespec-onward`
+- [x] create `estimate-prespec-onward-tells-the-loop-from-its-end`
+- [x] update `rule-prespec`
+- [x] update `rule-orchestration`
 - [x] `guppi/prespec.py`: one function gives the date and time of the last `prespec` line of the session after its `hi`; `window` finds the line through it.
 - [x] `guppi/onward.py`: `plan_onward` sends `TO_EXIT` when a file under `cases/` is newer than that moment, and a new reason that sends the agent on with the loop otherwise; the docstring says so.
 - [x] `tests/test_onward.py`: tests of a reply with a `LEDGER` block after `/pre-spec` with no file under `cases/` written after the `prespec` line, with one written after it and ratified, with one written after it and not ratified, with only files older than the line, of a session across midnight, and of the reply after a reminder of the ledger hook with a `LEDGER` block and with none.
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-prespec-onward-tells-the-loop-from-its-end`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-prespec-onward-tells-the-loop-from-its-end`
 ```
 
 ### Case 686.2 — The check of the hook points to the new judgment after /pre-spec
@@ -273,8 +273,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-onward-sends-the-agent-on`
-- [ ] read `estimate-prespec-onward-sends-the-agent-on`
+- [x] update `estimate-prespec-onward-sends-the-agent-on`
+- [x] read `estimate-prespec-onward-sends-the-agent-on`
 ```
 
 ## Case 687 — The Insight on the loop after the pre-spec findings is answered again
@@ -322,7 +322,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-prespec-after-findings-loop-unruled`
+- [x] update `insight-prespec-after-findings-loop-unruled`
 ```
 
 ## Case 688 — The checks catch a showing and a ledger line copied wrong after a refusal
@@ -408,11 +408,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-judges-a-showing-after-a-refusal`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-judges-a-showing-after-a-refusal`
 - [x] `guppi/casecheck.py`: `stop` no longer returns at `stop_hook_active`; it reads its own refusals in the stretch by `refusals` of `guppi/ledger.py` and keeps each reason under the count; the error path of `run` keeps the same count; the docstring says so.
 - [x] `tests/test_casecheck.py`: tests of a showing refused after a refusal of another `Stop` hook, of the same wrong showing refused three times and let through the fourth time with its stderr line, of two Cases counted apart, of a reason with no Case, of an error repeated, and of the flag with an unreadable transcript; the tests of the re-fire changed to the count.
-- [ ] read `estimate-case-check-judges-a-showing-after-a-refusal`
+- [x] read `estimate-case-check-judges-a-showing-after-a-refusal`
 ```
 
 ### Case 688.2 — The comparison of a showing runs after a refusal
@@ -450,8 +450,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-shows-only-the-checked-case`
-- [ ] read `estimate-case-check-shows-only-the-checked-case`
+- [x] update `estimate-case-check-shows-only-the-checked-case`
+- [x] read `estimate-case-check-shows-only-the-checked-case`
 ```
 
 ### Case 688.3 — The check of the file of a shown Case runs after a refusal
@@ -484,8 +484,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-refuses-a-changed-case-file`
-- [ ] read `estimate-case-check-refuses-a-changed-case-file`
+- [x] update `estimate-case-check-refuses-a-changed-case-file`
+- [x] read `estimate-case-check-refuses-a-changed-case-file`
 ```
 
 ### Case 688.4 — An error of the check of a showing blocks at most three times
@@ -516,8 +516,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-exits-2-on-an-error`
-- [ ] read `estimate-case-check-exits-2-on-an-error`
+- [x] update `estimate-case-check-exits-2-on-an-error`
+- [x] read `estimate-case-check-exits-2-on-an-error`
 ```
 
 ### Case 688.5 — The check of how a round opens runs after a refusal
@@ -557,8 +557,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-refuses-text-before-a-round`
-- [ ] read `estimate-case-check-refuses-text-before-a-round`
+- [x] update `estimate-case-check-refuses-text-before-a-round`
+- [x] read `estimate-case-check-refuses-text-before-a-round`
 ```
 
 ### Case 688.6 — The check of the layout of a showing runs after a refusal
@@ -593,8 +593,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-refuses-text-outside-the-list`
-- [ ] read `estimate-case-check-refuses-text-outside-the-list`
+- [x] update `estimate-case-check-refuses-text-outside-the-list`
+- [x] read `estimate-case-check-refuses-text-outside-the-list`
 ```
 
 ### Case 688.7 — The ledger hook holds a decision line that the stored Case does not hold
@@ -661,13 +661,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
-- [ ] update `rule-orchestration`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
+- [x] update `rule-orchestration`
 - [x] `guppi/ledger.py`: a function judges each fresh decision line other than a `defer` against the stored `ratification` of its Case, read through `guppi/casecheck.py` inside the function; `run` keeps a held line out and prints its reason by `untold`; the docstring says so.
 - [x] `tests/test_ledger.py`: tests of a line equal to the store, of a line that differs, of a Case with no stored text, of no plan file, of a line written again equal, of a line with `{addresses:<slug>}` added, of a `defer` line, of a held line from an earlier text, of the reason told once, and of the flag with an unreadable transcript.
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
 ```
 
 ### Case 688.8 — The Insight on the retyped showing closes
@@ -696,7 +696,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-case-show-built-case-retyped-by-hand`
+- [x] update `insight-case-show-built-case-retyped-by-hand`
 ```
 
 ### Case 688.9 — The acknowledging reply keeps a held decision line out of the ledger
@@ -734,8 +734,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-acknowledging-reply`
-- [ ] read `estimate-orchestration-acknowledging-reply`
+- [x] update `estimate-orchestration-acknowledging-reply`
+- [x] read `estimate-orchestration-acknowledging-reply`
 ```
 
 ## Case 689 — /hi loads the stop rules of the run after Plan Mode
@@ -813,13 +813,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-internal-context`
-- [ ] update `estimate-internal-context-loaded`
-- [ ] update `rule-where-to-stop`
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-internal-context-loaded`
+- [x] update `rule-internal-context`
+- [x] update `estimate-internal-context-loaded`
+- [x] update `rule-where-to-stop`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-internal-context-loaded`
 ```
 
 ### Case 689.2 — The Insight on vault knowledge not loaded closes
@@ -848,7 +848,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-session-vault-knowledge-not-loaded`
+- [x] update `insight-session-vault-knowledge-not-loaded`
 ```
 
 ## Case 690 — A fact of a dispatch prompt and a ratified render change are no longer claimed unchecked
@@ -912,10 +912,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] create `estimate-case-build-reads-a-prompt-fact-at-its-source`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-reads-a-prompt-fact-at-its-source`
+- [x] update `rule-case-build`
+- [x] create `estimate-case-build-reads-a-prompt-fact-at-its-source`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-reads-a-prompt-fact-at-its-source`
 ```
 
 ### Case 690.2 — The acknowledging reply says when a rendered change lands
@@ -953,10 +953,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-orchestration-says-when-a-rendered-change-lands`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-says-when-a-rendered-change-lands`
+- [x] update `rule-orchestration`
+- [x] create `estimate-orchestration-says-when-a-rendered-change-lands`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-says-when-a-rendered-change-lands`
 ```
 
 ### Case 690.3 — The Insight on facts signed from a narrower check closes
@@ -985,5 +985,5 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`
+- [x] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`
 ```

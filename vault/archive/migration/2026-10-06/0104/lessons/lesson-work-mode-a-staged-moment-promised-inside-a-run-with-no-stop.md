@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent planned an action of the person inside the stretch from the approved Spec to the librarian, which where-to-stop.md runs with no person and no stop, without reading where-to-stop.md before it promised that moment
-status: clustered
+status: archived
 insight: "[[insight-session-vault-knowledge-not-loaded]]"
 origin: raw/2026-10-04/0112/ledger.md#L14
 sprint: migration
@@ -22,3 +22,5 @@ the agent planned an action of the person inside the stretch from the approved S
 
 - 2026-10-04 created · raw/2026-10-04/0112/ledger.md#L14
 - 2026-10-04 updated: clustered under insight-session-vault-knowledge-not-loaded (synthesis) · raw/2026-10-04/0112/ledger.md#L14
+- 2026-10-06 archived · insight actioned
+- 2026-10-06 archived · cleanup

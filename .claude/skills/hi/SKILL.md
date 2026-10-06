@@ -9,6 +9,7 @@ allowed-tools: Bash(uv run guppi render --sync), Bash(git branch --show-current)
 @vault/wiki/backlog.md
 @vault/wiki/brief.md
 @vault/wiki/orchestration.md
+@vault/wiki/where-to-stop.md
 @vault/wiki/ratification.md
 @vault/wiki/glossary.md
 <!-- /rule-internal-context -->

@@ -4,9 +4,9 @@ kind: Leaf
 purpose: Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened
 status: built
 enforcement: hook
-implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
+implementation_ref: [guppi/ledger.py, guppi/materialize.py, guppi/gate.py, guppi/casecheck.py, tests/test_ledger.py, tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]", "[[estimate-ledger-write-refuses-a-lesson-without-its-prefix]]", "[[estimate-ledger-write-refuses-a-mark-with-no-decision-line]]", "[[estimate-ledger-write-refuses-a-line-it-cannot-read]]", "[[estimate-ledger-write-exits-2-on-an-error]]", "[[estimate-ledger-write-names-the-kind-of-a-user-record]]", "[[estimate-ledger-write-asks-for-the-mark-of-a-lesson]]"]
+estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]", "[[estimate-ledger-write-refuses-a-lesson-without-its-prefix]]", "[[estimate-ledger-write-refuses-a-mark-with-no-decision-line]]", "[[estimate-ledger-write-refuses-a-line-it-cannot-read]]", "[[estimate-ledger-write-exits-2-on-an-error]]", "[[estimate-ledger-write-names-the-kind-of-a-user-record]]", "[[estimate-ledger-write-asks-for-the-mark-of-a-lesson]]", "[[estimate-ledger-write-reminds-of-the-mark-on-a-decision-line]]", "[[estimate-ledger-write-holds-a-decision-line-off-the-stored-case]]"]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -20,7 +20,7 @@ Prevents a ratified line from existing only in a chat reply, or landing in a ses
 `- lesson[...]` lines lives in `ratification.md` and `orchestration.md`, the Renders of `rule-ratification` and `rule-orchestration` that `/hi` loads (cases 273, 595), so a session without `/hi` produces none — and would produce them in *any* session
 if the instruction stood in `CLAUDE.md` again, including one with no sprint, no branch context and no brief. Without this hook's check the
 ledger would silently gain a session that was never a working session, and the librarian
-would materialize pages from it the next day. It also refuses, while no live page `vault/wiki/entities/entity-sprint-<id>.md` stands, every decision line of the session but a `defer`, until the session's ledger or the same reply holds a `create` decision line of an `entity-sprint-` slug, with one stderr line that names the opening of the next sprint, so that the session after the close of a sprint opens the next sprint first (`rule-sprint-close`, case 628.3). It holds once a lesson line with no `{addressed_by:case N}` written after a decision line of the session, and asks the agent whether a Case of the session closed its cause: the line written again with the mark, or unchanged, is written (case 682.1).
+would materialize pages from it the next day. It also refuses, while no live page `vault/wiki/entities/entity-sprint-<id>.md` stands, every decision line of the session but a `defer`, until the session's ledger or the same reply holds a `create` decision line of an `entity-sprint-` slug, with one stderr line that names the opening of the next sprint, so that the session after the close of a sprint opens the next sprint first (`rule-sprint-close`, case 628.3). It holds a decision line other than a `defer` that is not a line of the `ratification` of the Case `case-guppi` stored for it, a `{addresses:<slug>}` mark set aside, and tells the agent once a stretch to copy it again from the summary of `case-guppi`; the line never lands while it differs, since `generate` takes the ref and the tags of a page from it (case 688.7). It holds once a lesson line with no `{addressed_by:case N}` written after a decision line of the session, and asks the agent whether a Case of the session closed its cause: the line written again with the mark, or unchanged, is written (case 682.1). It writes the decision lines of a reply that follow a lesson of the session no mark links to a Case, and then reminds the agent once a stretch: the Case that fixed the cause writes one of its decision lines again with `{addresses:<lesson slug>}` (case 685.1).
 
 ## History
 
@@ -83,3 +83,7 @@ would materialize pages from it the next day. It also refuses, while no live pag
 - 2026-10-06 defer by decision-case-442 superseded · [[decision-case-682.1]]
 - 2026-10-06 updated: the hook holds once a lesson line with no addressed_by mark written after a decision line of the session, and asks for the mark (case 682.1) · [[decision-case-682.1]]
 - 2026-10-06 estimate estimate-ledger-write-asks-for-the-mark-of-a-lesson added · [[decision-case-682.1]]
+- 2026-10-06 updated: the hook writes the decision lines after an unmarked lesson and reminds the agent of the addresses mark (case 685.1) · [[decision-case-685.1]]
+- 2026-10-06 estimate estimate-ledger-write-reminds-of-the-mark-on-a-decision-line added · [[decision-case-685.1]]
+- 2026-10-06 updated: the hook holds a decision line that is not a line of the stored ratification of its Case, every time it differs (case 688.7) · [[decision-case-688.7]]
+- 2026-10-06 estimate estimate-ledger-write-holds-a-decision-line-off-the-stored-case added · [[decision-case-688.7]]

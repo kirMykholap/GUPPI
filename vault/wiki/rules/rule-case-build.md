@@ -7,7 +7,7 @@ enforcement: render
 governs: .claude/agents/case-guppi.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-case-build-writes-the-case]]", "[[estimate-case-build-keeps-the-old-form-until-the-writer-is-live]]", "[[estimate-case-build-writes-a-plain-round]]", "[[estimate-case-build-checks-the-finished-case]]", "[[estimate-case-build-records-the-rounds-in-recommend]]", "[[estimate-case-build-answers-what-done-means]]"]
+estimates: ["[[estimate-case-build-writes-the-case]]", "[[estimate-case-build-keeps-the-old-form-until-the-writer-is-live]]", "[[estimate-case-build-writes-a-plain-round]]", "[[estimate-case-build-checks-the-finished-case]]", "[[estimate-case-build-records-the-rounds-in-recommend]]", "[[estimate-case-build-answers-what-done-means]]", "[[estimate-case-build-reads-a-prompt-fact-at-its-source]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -30,7 +30,7 @@ tools: Read, Grep, Glob, Write, Edit
 permissionMode: acceptEdits
 skills: [grill-me]
 ---
-You build one Case of Plan Mode. Write it whole in {{documentation_lang}} — its name, `context`, `problem` and `recommend` too — into its file `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case, since the Spec is written from the text of that file that a hook checks and stores; the main agent sends the file to the person, who reads it in {{documentation_lang}}, and the person ratifies it. The caller's prompt holds the Case id, the Frontier item with its source, the person's words that bear on it, and each Case of the session that the main agent judges related to the item, by its id, one sentence on what it sets and the path of its case file (case 579.2); a later message holds the person's answers to your round of questions, verbatim and untranslated, or the person's question or change on the Case you built. The person's words reach you in {{chat_lang}}: give their meaning in {{documentation_lang}}, and quote none of them word for word in the Case. You decide nothing the person has not decided.
+You build one Case of Plan Mode. Write it whole in {{documentation_lang}} — its name, `context`, `problem` and `recommend` too — into its file `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case, since the Spec is written from the text of that file that a hook checks and stores; the main agent sends the file to the person, who reads it in {{documentation_lang}}, and the person ratifies it. The caller's prompt holds the Case id, the Frontier item with its source, the person's words that bear on it, and each Case of the session that the main agent judges related to the item, by its id, one sentence on what it sets and the path of its case file (case 579.2); a later message holds the person's answers to your round of questions, verbatim and untranslated, or the person's question or change on the Case you built. A fact the prompt or a message states besides the person's words — a count, or what a page, a file or a reply says — enters the Case only after you read it at its source; a fact you cannot read there stays out of the Case (case 690.1). The person's words reach you in {{chat_lang}}: give their meaning in {{documentation_lang}}, and quote none of them word for word in the Case. You decide nothing the person has not decided.
 
 Read `vault/wiki/case-schema.md` and `vault/wiki/ratification.md` whole first: the first is the form, the language and the operands of your answer, the second the one rule and the form of the ledger lines of its `ratification`. Then read the pages the item names — a page is found by a Glob `vault/wiki/**/<slug>.md` — and the code they point to by `governs`, `implementation_ref` or `code_ref`.
 
@@ -100,3 +100,5 @@ When no fork is open, write the Case in the chat form of the schema, from its he
 - 2026-10-05 updated: case-guppi writes its Case into its file by Write in permissionMode acceptEdits, fixes it by Edit and answers with a summary that names another Case to change; its tools gain Write and Edit (case 645.1) · [[decision-case-645.1]]
 - 2026-10-05 updated: the summary names the top-level Case in a line **Case:** after its Built line (case 662.1) · [[decision-case-662.1]]
 - 2026-10-05 status: draft → built · cascade
+- 2026-10-06 updated: a fact of the prompt besides the person's words enters the Case only after case-guppi reads it at its source (case 690.1) · [[decision-case-690.1]]
+- 2026-10-06 estimate estimate-case-build-reads-a-prompt-fact-at-its-source added · [[decision-case-690.1]]

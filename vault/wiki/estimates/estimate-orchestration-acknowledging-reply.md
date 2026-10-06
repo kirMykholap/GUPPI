@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session, and of the first reply that acknowledges Cases ratified together in one answer
-checked: 2026-10-03
+checked: 2026-10-06
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -27,11 +27,11 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 **＋** The headings and labels are in the language of the chat.
 **＋** No tool call follows the `LEDGER` block in the same reply.
 **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
-**－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply with exit 2, the agent's answer to the refusal is a reply of its own and may call tools. The `LEDGER` block stands written.
+**－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply with exit 2, the agent's answer to the refusal is a reply of its own and may call tools. The `LEDGER` block stands written, but for a decision line the ledger hook holds, as `estimate-ledger-write-holds-a-decision-line-off-the-stored-case` sets it.
 
 ## Result
 
-2026-10-03, by hand in the transcript of session 2300: the first acknowledging reply (Case 601) and the reply that acknowledged 601.1–601.5, 602, 603.1, 603.2 and 605 ratified in one answer each open with the LEDGER block, then one heading naming the ids, Changes:, Notes:, the Frontier with the closed lines folded into one and the open W lines into one; the first ends with the question which item is next, the batch reply ends with the Frontier while no Cases line was open; re-ratified Cases carry their lines again; headings in Russian; no tool call after the block
+2026-10-06, by hand in session 0104: the first acknowledging reply (Case 685) and the reply for Cases 686 and 687 ratified together each hold one LEDGER block first, one heading naming the ids, one Changes paragraph, no Notes, the Frontier with closed and W lines folded, then the question; the re-ratification of 685–690 carried every decision line and the hook appended only the new 688.9 line (L32) after onward --plan refused it; the exception for a held decision line had no case live, the hold landing in d6b5fa50
 
 ## History
 
@@ -54,3 +54,5 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 - 2026-10-02 updated: moved to rule-orchestration; the Criterion replaced whole - the reply as orchestration.md sets it (case 595.8) · [[decision-case-595.8]]
 - 2026-10-02 updated: the Criterion replaced whole — one reply acknowledges every Case ratified in one answer (case 598.2) · [[decision-case-598.2]]
 - 2026-10-03 status: pending → passed · raw/2026-10-02/2300/ledger.md#L23
+- 2026-10-06 updated: the Criterion replaced whole — the LEDGER block stands written after a refusal of another hook, but for a decision line the ledger hook holds (case 688.9) · [[decision-case-688.9]]
+- 2026-10-06 status: pending → passed · raw/2026-10-06/0104/ledger.md#L43

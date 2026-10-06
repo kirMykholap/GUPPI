@@ -15,7 +15,7 @@ tags: [session, workflow, harness, render]
 
 ## Purpose
 
-Prevents the run from /work to the librarian from stopping where the person is not needed, or going on where only the person can decide. The person keeps three questions: what to do, the Cases of Plan Mode; what done means and how to check it, the Estimates; and where to stop, this page (case 531.7). `/work` and `/box` load its text by an import of `vault/wiki/where-to-stop.md` (case 591), and the refusal of `rule-retro-onward` names the file. A hook on a single action, such as a push, may enforce a condition later; until then the text in the context is the guard.
+Prevents the run from /work to the librarian from stopping where the person is not needed, or going on where only the person can decide. The person keeps three questions: what to do, the Cases of Plan Mode; what done means and how to check it, the Estimates; and where to stop, this page (case 531.7). `/work` and `/box` load its text by an import of `vault/wiki/where-to-stop.md` (case 591), `/hi` loads it for Plan Mode too, so the main agent promises the person no turn the run does not give (case 689.1), and the refusal of `rule-retro-onward` names the file. A hook on a single action, such as a push, may enforce a condition later; until then the text in the context is the guard.
 
 ## Render
 
@@ -42,3 +42,4 @@ To stop, end the reply with the question to the person. From the call of `/retro
 - 2026-10-02 updated: /box imports the file, and its stops — a reason of its check, a fast-forward merge that refuses — are condition 6 (case 591.10) · [[decision-case-591.10]]
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-04 status: draft → built · cascade
+- 2026-10-06 updated: /hi loads the file for Plan Mode (case 689.1) · [[decision-case-689.1]]

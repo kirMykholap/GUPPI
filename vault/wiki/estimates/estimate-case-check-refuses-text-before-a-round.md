@@ -4,8 +4,8 @@ kind: QA
 status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the Stop run of the Case check refuses a reply that shows a round of case-guppi after a text of the main agent's own, judges only the first line of the reply after pre-spec, and leaves a turn with no round alone
-method: uv run pytest tests/test_casecheck.py -k round; by hand in a later session, the first rounds of case-guppi shown before and after pre-spec, the replies and the hook's refusals read in the transcript
-checked: 2026-10-03
+method: uv run pytest tests/test_casecheck.py -k round
+checked: 2026-10-06
 origin: raw/2026-09-30/2356/ledger.md#case-562
 sprint: migration
 created: 2026-09-30
@@ -26,12 +26,12 @@ When the turn of the reply, the records after the last `user` record that the fu
 **＋** The check runs in the same `Stop` run as the comparison of shown Cases, and a reply that both refuse gives both reasons.
 **－** Once the session's event log holds a `prespec` line of this session after its `hi`, text before the last tool call of the turn is not judged, and a reply of the loop after the findings of `/pre-spec` is judged only by its first line; in that loop each answer of a `case-guppi` comes back in a turn of its own, and the text the main agent writes there is set by `rule-prespec`.
 **－** A turn with no round of `case-guppi` is not judged: the main agent's own questions in the report of `/pre-spec`, at `/hi` or at a stop of Work Mode, a `**Fact:**` answer shown with the question that stood open, and a re-pitch by `.claude/skills/wait-what/SKILL.md`.
-**－** On the re-fire (`stop_hook_active`) it exits 0, so the round shown again after a refusal is not judged again.
+**－** With `stop_hook_active` set a round shown again after a refusal is judged again, and the reason is given as `estimate-case-check-judges-a-showing-after-a-refusal` sets it.
 **－** It stores nothing and writes no file.
 
 ## Result
 
-2026-10-03, session 0115, `uv run pytest tests/test_casecheck.py -k round` 31 passed; by hand in the transcript: the rounds of case-guppi shown before /pre-spec (Cases 607, 608 twice, 609) opened with the Context label or the first question and were not refused; after /pre-spec the reply that showed round 608.Q1 under a sentence of its own was refused with the reason quoting that sentence and telling the agent to show the round again with nothing before it, the round shown again passed on the re-fire, and the second round 608.Q1 opened with its question and passed; a turn with no round (the answer to the person's question with the Waiting line) was not judged; a reply refused by both checks did not occur
+2026-10-06, uv run pytest tests/test_casecheck.py -k round within the 157 passed; a round shown after own text with the flag set after another hook's refusal is refused again
 
 ## History
 
@@ -41,3 +41,5 @@ When the turn of the reply, the records after the last `user` record that the fu
 - 2026-10-02 updated: the Criterion replaced whole — the turn of the reply starts at the person's message or a returned answer, by the function of guppi/ledger.py (case 590.3) · [[decision-case-590.3]]
 - 2026-10-03 updated: the Criterion replaced whole — a round is known by is_round, the one test of a round (case 601.4) · [[decision-case-601.4]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0115/ledger.md#L15
+- 2026-10-06 updated: the Criterion replaced whole — a round shown again after a refusal is judged again, its reason given as the loop guard sets it; method set to the tests, which run in the session (case 688.5) · [[decision-case-688.5]]
+- 2026-10-06 status: pending → passed · raw/2026-10-06/0104/ledger.md#L41

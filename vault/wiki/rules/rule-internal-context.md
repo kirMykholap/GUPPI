@@ -27,6 +27,7 @@ one rule rather than two.
 @vault/wiki/backlog.md
 @vault/wiki/brief.md
 @vault/wiki/orchestration.md
+@vault/wiki/where-to-stop.md
 @vault/wiki/ratification.md
 @vault/wiki/glossary.md
 <!-- /rule-internal-context -->
@@ -36,7 +37,7 @@ one rule rather than two.
 `orchestration.md` and `ratification.md` are listed since case 595, in place of `case-schema.md`, listed from case 273: they reach a working session here and not through `CLAUDE.md`, so a session without `/hi` carries none of their text, and the form of a Case, `case-schema.md`, reaches only `case-guppi`, which reads it itself. `glossary.md` is listed since case 288.1: it left the `@` import of `CLAUDE.md`,
 which every subagent loads and none of them needs. The category schemas are not listed:
 they are read when a page of their category is written. After a compaction `guppi recall`
-prints the paths of these lines back (case 287).
+prints the paths of these lines back (case 287). `where-to-stop.md` is listed after `orchestration.md` since case 689.1: the run from the approved Spec to the librarian stops for the person only on its conditions, and Plan Mode, which plans that run with the person, holds the same list, so the main agent promises no turn of the person inside it.
 
 ## History
 
@@ -54,3 +55,4 @@ prints the paths of these lines back (case 287).
 - 2026-10-02 updated: /hi loads orchestration.md and ratification.md in place of case-schema.md (case 595.4) · [[decision-case-595.4]]
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-02 status: draft → built · cascade
+- 2026-10-06 updated: /hi loads where-to-stop.md after orchestration.md (case 689.1) · [[decision-case-689.1]]

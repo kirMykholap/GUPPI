@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "648"
-status: current
+status: archived
 defer: ["[[rule-prespec-onward]]"]
+superseded_by: ["[[decision-case-686.1]]"]
 origin: raw/2026-10-05/0311/ledger.md#case-648
 sprint: migration
 created: 2026-10-05
@@ -26,3 +27,6 @@ Prevents Plan Mode from stopping where no person is needed; its hook guppi onwar
 ## History
 
 - 2026-10-05 created · raw/2026-10-05/0311/ledger.md#case-648
+- 2026-10-06 superseded by decision-case-686.1 · [[decision-case-686.1]]
+- 2026-10-06 archived · superseded
+- 2026-10-06 archived · cleanup

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the main agent wrote the confirmation message from its own sense of what would be useful, not from the text of step 6 of the pre-spec skill and the Criterion it renders, which say the answer names no new finding
-status: clustered
+status: archived
 insight: "[[insight-prespec-after-findings-loop-unruled]]"
 origin: raw/2026-10-04/2245/ledger.md#L18
 sprint: migration
@@ -22,3 +22,5 @@ the main agent wrote the confirmation message from its own sense of what would b
 
 - 2026-10-05 created · raw/2026-10-04/2245/ledger.md#L18
 - 2026-10-05 updated: clustered under insight-prespec-after-findings-loop-unruled (synthesis) · raw/2026-10-04/2245/ledger.md#L18
+- 2026-10-06 archived · insight actioned
+- 2026-10-06 archived · cleanup

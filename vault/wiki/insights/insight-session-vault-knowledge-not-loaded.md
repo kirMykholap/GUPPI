@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: A fact the vault holds does not reach the session that needs it; only brief.md, CLAUDE.md, the skills and the agent frames are loaded, and everything else waits for a read the agent must first think to make.
-status: open
+status: actioned
 children: ["[[lesson-readings-after-librarian-invisible-to-next-hi]]", "[[lesson-vault-lesson-absent-at-the-moment-it-applies]]", "[[lesson-heredoc-trap-hit-twice-with-its-lesson-live]]", "[[lesson-heredoc-trap-hit-a-third-time-in-work-mode]]", "[[lesson-heredoc-trap-hit-a-fourth-time-in-the-session-that-ratified-its-hook]]", "[[lesson-spec-render-line-form-unmatched-by-the-ticker]]", "[[lesson-plan-mode-frontier-refused-at-hi-again]]", "[[lesson-carry-short-brief-drops-the-work-list]]", "[[lesson-work-mode-a-staged-moment-promised-inside-a-run-with-no-stop]]"]
-severity: 2
-addressed_by: "[[decision-case-377.1]]"
+severity: 0
+addressed_by: "[[decision-case-689.2]]"
 origin: raw/2026-09-12/ledger.md#L210
 sprint: migration
 created: 2026-09-12
@@ -38,3 +38,4 @@ A suggestion, not a decision. Give the session a second channel beside the brief
 - 2026-09-23 updated: actioned: the seventh child closed in its own session by case 363, the leave of plan mode in the text of /hi; the /hi of session 1355 wrote frontier.md in plan mode with no refusal (case 377.1) · [[decision-case-377.1]]
 - 2026-09-30 updated: child lesson-carry-short-brief-drops-the-work-list added, reopened (synthesis) · raw/2026-09-30/0138/ledger.md#L1
 - 2026-10-04 updated: child lesson-work-mode-a-staged-moment-promised-inside-a-run-with-no-stop added (synthesis) · raw/2026-10-04/0112/ledger.md#L14
+- 2026-10-06 updated: actioned: /hi loads where-to-stop.md, so Plan Mode holds the stops of the run after it (case 689.1); the short brief keeps the Work list since case 538.1 (case 689.2) · [[decision-case-689.2]]

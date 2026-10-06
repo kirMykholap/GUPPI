@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the summary of case-guppi held items for 653.1 and 653.2 and no line for the top-level Case, and the agent filled the heading from the item it dispatched instead of asking the case file's heading
-status: clustered
+status: archived
 insight: "[[insight-case-show-built-case-retyped-by-hand]]"
 origin: raw/2026-10-05/1343/ledger.md#L44
 sprint: migration
@@ -22,3 +22,5 @@ the summary of case-guppi held items for 653.1 and 653.2 and no line for the top
 
 - 2026-10-05 created · raw/2026-10-05/1343/ledger.md#L44
 - 2026-10-05 updated: clustered under insight-case-show-built-case-retyped-by-hand (synthesis) · raw/2026-10-05/1343/ledger.md#L44
+- 2026-10-06 archived · insight actioned
+- 2026-10-06 archived · cleanup

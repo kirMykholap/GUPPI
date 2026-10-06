@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-case-check]]"
-purpose: The main agent shows a Case only as case-guppi answered it and the checks passed it
+purpose: Whether the Stop check refuses a showing of a Case that differs from the answer of case-guppi or that the checks did not pass, after a refusal of any Stop hook too, while fewer than three refusals of that Case stand since the person's last message
 method: uv run pytest tests/test_casecheck.py -k stop, then by hand the first reply the hook refuses
-checked: 2026-10-05
+checked: 2026-10-06
 origin: raw/2026-09-25/1228/ledger.md#case-419.4
 sprint: migration
 created: 2026-09-25
@@ -26,11 +26,11 @@ Then:
 **＋** A parent shown with its sub-cases is compared part by part, as the store holds each.
 **＋** The Spec hook `guppi/ratified.py` judges a showing by the same comparison, and a sending by the same reading of the transcript, both imported from `guppi/casecheck.py`.
 **－** A heading with no section, as in the acknowledging reply, a fence tagged `DIFF`, and a deferred decision in the short form — `context`, `problem` and a fence tagged `then` with `defer` items, no `given` and no `when` — are not compared and need no sending.
-**－** On the re-fire (`stop_hook_active`) it exits 0.
+**－** With `stop_hook_active` set the comparison runs the same, so a Case shown again after a refusal is compared again; its reasons are given as `estimate-case-check-judges-a-showing-after-a-refusal` sets it.
 
 ## Result
 
-2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson. The last reading before it, which left the page pending: 2026-10-02, uv run pytest tests/test_casecheck.py -k stop: 25 passed; by hand, session 1834: the Stop check refused the first showing of case 595, whose ratification fence stood outside the quoted section, with "case 595: its ratification differ from the answer of case-guppi"; the showing again with the fence inside the blockquote passed
+2026-10-06, uv run pytest tests/test_casecheck.py: 157 passed, the stop tests among them, test_stop_the_re_fire_is_compared_again for the flag; by hand: no showing was refused in session 0104 — its one refusal by casecheck, of the batch round of 686 and 687, was a round, read under 688.5
 
 ## History
 
@@ -42,3 +42,5 @@ Then:
 - 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L39
 - 2026-10-05 updated: the Criterion replaced whole — a showing passes only when the file of the Case equals the store too (case 645.11) · [[decision-case-645.11]]
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.5]]
+- 2026-10-06 updated: the Criterion replaced whole — the comparison runs whatever stop_hook_active says, its reasons given as the loop guard sets it; purpose set anew (case 688.2) · [[decision-case-688.2]]
+- 2026-10-06 status: pending → passed · raw/2026-10-06/0104/ledger.md#L38

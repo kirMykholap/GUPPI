@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the summary named only the Cases with an Estimate and ledger lines, so a parent with sub-cases had no name in it, and the main agent, barred from the case file, filled the gap itself
-status: clustered
+status: archived
 insight: "[[insight-case-show-built-case-retyped-by-hand]]"
 origin: raw/2026-10-05/1616/ledger.md#L42
 sprint: migration
@@ -22,3 +22,5 @@ the summary named only the Cases with an Estimate and ledger lines, so a parent 
 
 - 2026-10-05 created · raw/2026-10-05/1616/ledger.md#L42
 - 2026-10-05 updated: clustered under insight-case-show-built-case-retyped-by-hand (synthesis) · raw/2026-10-05/1616/ledger.md#L42
+- 2026-10-06 archived · insight actioned
+- 2026-10-06 archived · cleanup

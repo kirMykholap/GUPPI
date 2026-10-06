@@ -5,6 +5,7 @@ status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook holds once a lesson line with no addressed_by mark written after a decision line of the session, asks for the mark, and then writes the line written again
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+checked: 2026-10-06
 origin: raw/2026-10-05/2249/ledger.md#case-682.1
 sprint: migration
 created: 2026-10-05
@@ -23,15 +24,17 @@ At the `Stop` of the reply that carries it, the hook holds the line back once, u
 **＋** The line lands as it stands once the hook's question about it stands in a refusal since the person's last message, or when it stands only in an earlier text of the transcript.
 **＋** A held line keeps back no other line: the rest of that `Stop` lands in the ledger.
 **－** An unmarked line never lands beside a marked one: `{addressed_by:...}` on a `lesson[<slug>]` line in the session's ledger, or in that `Stop`, drops the unmarked line of the slug.
-**－** The hook asks nothing about a lesson that precedes every decision line of the session, about a line it refuses for its prefix or cannot parse, or about a line that the ledger of some session already holds.
-**－** The hook never asks for `{addresses:...}` on a decision line.
+**－** The hook holds no lesson line that precedes every decision line of the session, no line it refuses for its prefix or cannot parse, and no line that the ledger of some session already holds.
+**－** The hook never holds a decision line for its `{addresses:...}`: it writes it, and the reminder after the write is `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`.
 **－** A session with no `hi` gets no question. The flag `stop_hook_active` changes nothing here, but when it is set and the transcript is unreadable, the hook lets the line land as it stands.
 
 ## Result
 
-2026-10-06, uv run pytest tests/test_ledger.py; 96 passed: the hold once, the stderr line, the Cases in the order first seen, the line written again unchanged, the line from an earlier text, the drop beside a marked line, no other line kept back, no question before every decision line, on a line refused for its prefix or unread by the grammar, without hi, and with the flag and an unreadable transcript
+2026-10-06, uv run pytest tests/test_ledger.py: 119 passed; the 682.1 tests hold an unmarked lesson after a decision line as before, and a lesson before every decision line is not held and gets only the reminder of case 685.1
 
 ## History
 
 - 2026-10-06 created · [[decision-case-682.1]]
 - 2026-10-06 status: pending → passed · raw/2026-10-05/2249/ledger.md#L20
+- 2026-10-06 updated: the Criterion replaced whole — a decision line after an unmarked lesson is written and left to the reminder (case 685.2) · [[decision-case-685.2]]
+- 2026-10-06 status: pending → passed · raw/2026-10-06/0104/ledger.md#L49

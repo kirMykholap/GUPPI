@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-permissions]]"
-method: the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of tests/test_render.py; the live probes are the person's word on the client's prompt at a Write of work.md in Work Mode, and at a Read, Grep or Glob of case-guppi under ~/.claude/projects/c--PROJECTS-GUPPI/ in a session after the render, each recorded in the estimate line — never the agent's, which cannot see the prompt
+method: the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of tests/test_render.py; the live probe is the person's word on the client's prompt at a Write of work.md in Work Mode, recorded in the estimate line; the live probe of the transcripts is the person's word on the client's prompt, in a session after the librarian's render, at a Grep of a subagent whose path is the folder ~/.claude/projects/c--PROJECTS-GUPPI itself and at one whose path is a file under it, recorded in the estimate line — never the agent's, which cannot see the prompt; the Estimate stays pending until the person gives that word
 checked: 2026-10-05
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
@@ -15,18 +15,18 @@ tags: [harness, session]
 
 When:
 The agent writes or edits a working file of the session — `frontier.md`, `spec.md`, `handoff.md`, `work.md` or `carry.md` under `vault/raw/**` — or `vault/wiki/brief.md`; or `case-guppi` writes the file of its Case.
-**＋** Or `case-guppi` calls Read, Grep or Glob on a saved transcript of this project under `~/.claude/projects/c--PROJECTS-GUPPI/`.
+**＋** Or an agent of the session, `case-guppi` among them, calls Read, Grep or Glob with the folder `~/.claude/projects/c--PROJECTS-GUPPI` itself as its path, or a path under it.
 
 Then:
-The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`, `spec.md`, `handoff.md` and `work.md` under `vault/raw/**`, Write for `carry.md` under `vault/raw/**`, Edit and Write for `vault/wiki/brief.md`, and `Read(~/.claude/projects/c--PROJECTS-GUPPI/**)`.
+The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`, `spec.md`, `handoff.md` and `work.md` under `vault/raw/**`, Write for `carry.md` under `vault/raw/**`, Edit and Write for `vault/wiki/brief.md`, `Read(~/.claude/projects/c--PROJECTS-GUPPI)` and `Read(~/.claude/projects/c--PROJECTS-GUPPI/**)`.
 **＋** `.claude/settings.json` is rendered from `rule-permissions`; the JSON case of `tests/test_render.py` fixes the shape of the block.
 **＋** Whether the client asked is seen by the person only; the agent's reply does not tell an approved call from one not asked.
 **＋** The client's prompt is the person's word: the reading line records whether the client asked, from the person, never from the agent.
 **＋** In Plan Mode the client asks before every edit of the main agent outside the plan file, allow list or not.
 **＋** `case-guppi` writes the file of its Case in the mode `permissionMode: acceptEdits` of `.claude/agents/case-guppi.md`, with no prompt in Plan Mode, and the guard of `rule-spec-reconcile` keeps it inside `cases/`.
-**＋** A Read, Grep or Glob of `case-guppi` under `~/.claude/projects/c--PROJECTS-GUPPI/` runs with no prompt, in Plan Mode too.
+**＋** A Read, Grep or Glob whose path is `~/.claude/projects/c--PROJECTS-GUPPI` itself or a path under it runs with no prompt, in Plan Mode too.
 **－** A prompt in Plan Mode on an edit of the main agent, approved by the person, is not a finding and not a `failed`.
-**－** `deny` and `ask` are empty; nothing else under `wiki/` is allowed, no path under `cases/` is on the allow list, no other path outside the project is on it, and no Edit or Write rule names `~/.claude/projects/c--PROJECTS-GUPPI/`.
+**－** `deny` and `ask` are empty; nothing else under `wiki/` is allowed, no path under `cases/` is on the allow list, no other path outside the project is on it, and no Edit or Write rule names `~/.claude/projects/c--PROJECTS-GUPPI`.
 
 ## Result
 
@@ -47,3 +47,4 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 - 2026-10-05 updated: the Criterion replaced whole — the prompt in Plan Mode binds the main agent, and case-guppi writes its Case file with no prompt and no allow rule (case 645.16) · [[decision-case-645.16]]
 - 2026-10-05 updated: the Criterion replaced whole — the allow list holds a Read rule for this project's saved transcripts, and a search of case-guppi there runs with no prompt (case 656) · [[decision-case-656]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L9
+- 2026-10-07 updated: the Criterion replaced whole — the allow list also names the folder of the saved transcripts itself, and a search with that folder as its path runs with no prompt · [[decision-case-693]]

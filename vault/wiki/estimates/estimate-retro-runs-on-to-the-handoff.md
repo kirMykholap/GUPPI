@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-retro]]"
-purpose: Whether /retro reviews the session with no report and no approval, writes every reading and lesson of the turn in one reply and a line the ledger hook refused again in one reply that holds only it, commits on green and calls /handoff in the same turn, writes no defer, and stops only on a condition of vault/wiki/where-to-stop.md
+purpose: Whether /retro reviews the session with no report and no approval, writes every reading and lesson of the turn in one reply and each refused record line of a refusal of the ledger hook again in one reply that holds only them, a refused line that is no record left out, commits on green and calls /handoff in the same turn, writes no defer, and stops only on a condition of vault/wiki/where-to-stop.md
 method: "by hand at a run from /work to the librarian: the replies of the turn, the ledger, git log and handoff.md read against the Criterion, recorded in the estimate line"
-checked: 2026-10-04
+checked: 2026-10-07
 origin: raw/2026-09-23/1355/ledger.md#case-376
 sprint: migration
 created: 2026-09-23
@@ -23,7 +23,8 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 **＋** The agent commits the work when `make style` is clean and `make test` is green, except for the tests that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` holds.
 **＋** One reply ends Retro: one sentence in the language of the chat that names the commit of the work, then one `LEDGER` block with every reading and lesson of `/work` and Retro; it asks the person nothing.
 **－** That reply shows the person no report: no heading, no list and no other paragraph stands before or after the block, since `raw/<date>/<hi HHMM>/handoff.md` is the report of Retro.
-**＋** When the ledger hook refuses a line of that reply, the agent answers with a reply that holds only a `LEDGER` block with the refused lines written again. No other `LEDGER` block follows the reply that ends Retro.
+**＋** When the ledger hook refuses a line of that reply, the agent answers with a reply that holds only a `LEDGER` block with each refused record line written again; a refused line of the block that is no record, one that does not open with `- decision[`, `- estimate[` or `- lesson[`, is left out. No other `LEDGER` block follows the reply that ends Retro.
+**＋** When no refused line is left to write, that answer holds no `LEDGER` block, and in it the agent commits the session folder and calls `/handoff`.
 **＋** After that reply, or after the reply that answers a refusal of the ledger hook, in the same turn, the agent commits the session folder and calls `/handoff`.
 **－** Retro writes no short defer and ratifies no decision: what needs a decision is a line of `## For the next session` of `raw/<date>/<hi HHMM>/handoff.md`.
 **－** Retro stops for the person only on a condition of `vault/wiki/where-to-stop.md`, with a reply that opens with `STOP:` and asks the person instead. The answer to a refusal of the ledger hook is no stop.
@@ -31,7 +32,7 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 
 ## Result
 
-2026-10-04, session 0004, by hand: the runs from /work to the librarian of sessions 0317 (transcript 5b311f89) and 1416 (transcript 682b0e2f): Retro asked for no approval; work.md was written by the agent in the same turn, at 04:58:07 and 05:02:37, and at 14:38:15; the work was committed as 783d24e5 and bda8f3f4, each on make style clean and make test 1129 passed; one reply ended each Retro, at 05:05:59 and 14:40:43: one sentence in Russian naming the commit, then one LEDGER block with every reading and lesson of the run, nothing after it and no question; after the refusal of guppi onward the session folder was committed and /handoff called in the same turn; no defer, no decision and no stop; what needs a decision stands under For the next session of handoff.md, and its Ask the person is empty in 0317 and "None" in 1416; not exercised: a red test saved as a patch, a refusal of the ledger hook — the person's word in this session: not met for long, a lesson if it comes —, a stop opening with STOP:
+2026-10-07, the new text of the Render of rule-retro in spec.md of session 1448 (Case 695.2) read against its Criterion: the answer to a refusal of the ledger hook writes the refused record lines again, leaves out a refused line that is no record, and with nothing left holds no LEDGER block and commits the session folder and calls /handoff; the rest of the Render stands as the Criterion carries it
 
 ## History
 
@@ -50,3 +51,5 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L16
 - 2026-10-04 updated: method names no Retro at which the ledger hook refuses a line, a moment no one brings on (case 625) · [[decision-case-625]]
+- 2026-10-07 updated: the Criterion replaced whole — a refused line that is no record is left out of the answer to a refusal of the ledger hook, and with nothing left the answer calls /handoff · [[decision-case-695.2]]
+- 2026-10-07 status: pending → passed · raw/2026-10-06/1448/ledger.md#L23

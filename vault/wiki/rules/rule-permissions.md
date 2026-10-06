@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Lets the session write its own working files and read this project's saved transcripts without asking, and nothing else
-status: built
+status: draft
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -18,7 +18,7 @@ tags: [harness, session]
 
 Lets the session write its own working files and read this project's saved transcripts without asking, and nothing else. The Frontier, the Spec, the work file, the handoff, the carry mark and the brief of `/carry` are the session's own record of itself: `/hi` writes the Frontier, every closed item edits it, Work Mode ticks the boxes of the Spec and writes `work.md` (case 479.5), `/handoff` writes the note, `/carry` writes `carry.md` and rewrites `brief.md` (case 200.5). A question before each of those writes buys
 nothing — the content is the agent's own, and the person reads it in the reply
-anyway. The list states that intent; in Plan Mode the client asks before every edit of the main agent outside the plan file all the same, the person approves, and whether it asked is the person's word, never the agent's, which cannot see the prompt (case 237). The file of a built Case under `cases/` is not on the list: `case-guppi` writes it in the mode `permissionMode: acceptEdits` of its agent file, which Claude Code keeps for a subagent while the session is in Plan Mode, and the guard of `rule-spec-reconcile` keeps it inside `cases/` (case 645.16). The saved transcripts of this project, under `~/.claude/projects/c--PROJECTS-GUPPI/` outside the repository, are on the list for reading only: `case-guppi` checks a past reading in them, and a prompt on each of its searches buys nothing; the rule covers every agent of the project, and Claude Code applies a `Read` rule to Grep and Glob best-effort, and whether a search there still asks is the person's word (case 656).
+anyway. The list states that intent; in Plan Mode the client asks before every edit of the main agent outside the plan file all the same, the person approves, and whether it asked is the person's word, never the agent's, which cannot see the prompt (case 237). The file of a built Case under `cases/` is not on the list: `case-guppi` writes it in the mode `permissionMode: acceptEdits` of its agent file, which Claude Code keeps for a subagent while the session is in Plan Mode, and the guard of `rule-spec-reconcile` keeps it inside `cases/` (case 645.16). The saved transcripts of this project, under `~/.claude/projects/c--PROJECTS-GUPPI/` outside the repository, are on the list for reading only: `case-guppi` checks a past reading in them, and a prompt on each of its searches buys nothing; the rule covers every agent of the project, and Claude Code applies a `Read` rule to Grep and Glob best-effort, and whether a search there still asks is the person's word (case 656). A Grep whose path was that folder itself asked all the same in session 1448, so a second rule names the folder itself beside the rule for what lies inside it (case 693). The folder name follows where this repository sits on the person's disk: another install needs its own name in both rules, and that is not done here; it waits for [[rule-morph]], whose initiation at install sets the folder name (case 693).
 
 What stays outside the list is the point of the list. `ledger.md` and
 `event_log.md` are written by hooks, `materialize.yaml` by a script, and a harness
@@ -41,6 +41,7 @@ a refusal that matters has a hook behind it (case 85.5).
       "Write(vault/raw/**/carry.md)",
       "Edit(vault/wiki/brief.md)",
       "Write(vault/wiki/brief.md)",
+      "Read(~/.claude/projects/c--PROJECTS-GUPPI)",
       "Read(~/.claude/projects/c--PROJECTS-GUPPI/**)"
     ]
 <!-- /rule-permissions -->
@@ -61,3 +62,5 @@ a refusal that matters has a hook behind it (case 85.5).
 - 2026-10-05 status: built → draft · cascade
 - 2026-10-05 updated: this project's saved transcripts under ~/.claude/projects join the allow list for reading, so a search of case-guppi there does not ask (case 656) · [[decision-case-656]]
 - 2026-10-05 status: draft → built · cascade
+- 2026-10-07 updated: the folder of the saved transcripts itself joins the allow list for reading, beside what lies inside it; another install needs its own folder name, left to rule-morph · [[decision-case-693]]
+- 2026-10-07 status: built → draft · cascade

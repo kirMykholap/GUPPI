@@ -7059,3 +7059,42 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-06 lessons/lesson-prespec-one-ask-guppi-run-samples-the-spec archived · cleanup
 - 2026-10-06 lessons/lesson-work-mode-a-staged-moment-promised-inside-a-run-with-no-stop archived · cleanup
 - 2026-10-06 decisions/decision-case-648 archived · cleanup
+- 2026-10-07 lessons/lesson-hooks-a-mod-draws-nothing-in-the-mobile-code-tab created · raw/2026-10-06/1448/ledger.md#L1 · generate
+- 2026-10-07 lessons/lesson-case-check-round-refused-for-an-own-text-no-showing-clears created · raw/2026-10-06/1448/ledger.md#L2 · generate
+- 2026-10-07 decisions/decision-case-691 created · raw/2026-10-06/1448/ledger.md#case-691 · generate
+- 2026-10-07 decisions/decision-case-692 created · raw/2026-10-06/1448/ledger.md#case-692 · generate
+- 2026-10-07 decisions/decision-case-692.1 created · raw/2026-10-06/1448/ledger.md#case-692.1 · generate
+- 2026-10-07 estimates/estimate-case-check-refuses-text-before-a-round updated: the Criterion replaced whole — only texts written after the round came back and after the last refusal of the check are judged, so one showing again clears a refusal · [[decision-case-692.1]] · generate
+- 2026-10-07 rules/rule-case-check updated: the check judges a text before a round or a Case only after the round or the summary came back and after its last refusal in the turn · [[decision-case-692.1]] · generate
+- 2026-10-07 decisions/decision-case-692.2 created · raw/2026-10-06/1448/ledger.md#case-692.2 · generate
+- 2026-10-07 estimates/estimate-case-check-refuses-text-outside-the-list updated: the Criterion replaced whole — only texts written after the summary came back and after the last refusal of the check are judged, so one showing again clears a refusal · [[decision-case-692.2]] · generate
+- 2026-10-07 decisions/decision-case-693 created · raw/2026-10-06/1448/ledger.md#case-693 · generate
+- 2026-10-07 rules/rule-permissions updated: the folder of the saved transcripts itself joins the allow list for reading, beside what lies inside it; another install needs its own folder name, left to rule-morph · [[decision-case-693]] · generate
+- 2026-10-07 estimates/estimate-permissions updated: the Criterion replaced whole — the allow list also names the folder of the saved transcripts itself, and a search with that folder as its path runs with no prompt · [[decision-case-693]] · generate
+- 2026-10-07 decisions/decision-case-694 created · raw/2026-10-06/1448/ledger.md#case-694 · generate
+- 2026-10-07 decisions/decision-case-694.1 created · raw/2026-10-06/1448/ledger.md#case-694.1 · generate
+- 2026-10-07 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson updated: the Criterion replaced whole — the question of the hold names no Case · [[decision-case-694.1]] · generate
+- 2026-10-07 decisions/decision-case-694.2 created · raw/2026-10-06/1448/ledger.md#case-694.2 · generate
+- 2026-10-07 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line updated: the Criterion replaced whole — the reminder names no Case · [[decision-case-694.2]] · generate
+- 2026-10-07 decisions/decision-case-695 created · raw/2026-10-06/1448/ledger.md#case-695 · generate
+- 2026-10-07 decisions/decision-case-695.1 created · raw/2026-10-06/1448/ledger.md#case-695.1 · generate
+- 2026-10-07 decisions/decision-case-691 superseded by decision-case-695.1 · [[decision-case-695.1]] · generate
+- 2026-10-07 rules/rule-ledger-write updated: the hook refuses aloud a non-blank line of a LEDGER block that is no record line · [[decision-case-695.1]] · generate
+- 2026-10-07 estimates/estimate-ledger-write-refuses-a-line-that-is-no-record created · [[decision-case-695.1]] · generate
+- 2026-10-07 estimates/estimate-ledger-write-refuses-a-line-that-is-no-record status: pending → passed · raw/2026-10-06/1448/ledger.md#L18 · generate
+- 2026-10-07 rules/rule-ledger-write estimate estimate-ledger-write-refuses-a-line-that-is-no-record added · [[decision-case-695.1]] · generate
+- 2026-10-07 decisions/decision-case-695.2 created · raw/2026-10-06/1448/ledger.md#case-695.2 · generate
+- 2026-10-07 decisions/decision-case-691 superseded by decision-case-695.2 · [[decision-case-695.2]] · generate
+- 2026-10-07 rules/rule-retro updated: the answer to a refusal of the ledger hook after Retro leaves out a refused line that is no record, and goes on to /handoff when nothing is left to write · [[decision-case-695.2]] · generate
+- 2026-10-07 rules/rule-retro-onward updated: the answer to a refusal of the ledger hook may write no line and call /handoff itself when only lines that are no record were refused · [[decision-case-695.2]] · generate
+- 2026-10-07 estimates/estimate-retro-runs-on-to-the-handoff updated: the Criterion replaced whole — a refused line that is no record is left out of the answer to a refusal of the ledger hook, and with nothing left the answer calls /handoff · [[decision-case-695.2]] · generate
+- 2026-10-07 rules/rule-morph updated: the initiation at install also sets the name of the transcripts folder in the read rules of rule-permissions · [[decision-case-693]] · generate
+- 2026-10-07 estimates/estimate-case-check-refuses-text-before-a-round status: pending → passed · raw/2026-10-06/1448/ledger.md#L19 · generate
+- 2026-10-07 estimates/estimate-case-check-refuses-text-outside-the-list status: pending → passed · raw/2026-10-06/1448/ledger.md#L20 · generate
+- 2026-10-07 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson status: pending → passed · raw/2026-10-06/1448/ledger.md#L21 · generate
+- 2026-10-07 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line status: pending → passed · raw/2026-10-06/1448/ledger.md#L22 · generate
+- 2026-10-07 estimates/estimate-retro-runs-on-to-the-handoff status: pending → passed · raw/2026-10-06/1448/ledger.md#L23 · generate
+- 2026-10-07 lessons/lesson-prespec-onward-a-reminder-answer-ends-the-run created · raw/2026-10-06/1448/ledger.md#L24 · generate
+- 2026-10-07 rules/rule-permissions status: built → draft · cascade · generate
+- 2026-10-07 decisions/decision-case-691 archived · superseded · generate
+- 2026-10-07 decisions/decision-case-691 archived · cleanup

@@ -67,12 +67,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-refuses-text-before-a-round`
-- [ ] update `rule-case-check`
+- [x] update `estimate-case-check-refuses-text-before-a-round`
+- [x] update `rule-case-check`
 - [x] `guppi/casecheck.py`: one function gives the texts the main agent wrote in the turn before its last tool call, after the first text given back that a predicate finds and after the reply that the last refusal of `uv run guppi casecheck` follows, by `refusals` of `guppi/ledger.py`; `round_opening` calls it with `is_round`, in place of `texts_before_last_call`; the module docstring and the docstring of `round_opening` say so.
 - [x] `guppi/casecheck.py`: `LEDGER_LINE` goes, and its two readers import `PREFIXES` of `guppi/ledger.py`.
 - [x] `tests/test_casecheck.py`: a text before the `Agent` call that brought the round back passes; a text after the round came back and before a later tool call is refused; a round shown again with nothing before it after a refusal of the check passes; a reply that opens with a line of its own after a refusal is refused; a round given back in the returned answer that opens the turn leaves every text of the turn judged.
-- [ ] read `estimate-case-check-refuses-text-before-a-round`
+- [x] read `estimate-case-check-refuses-text-before-a-round`
 ```
 
 ### Case 692.2 — A shown Case is judged by the texts after its summary came back and after the last refusal
@@ -112,10 +112,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-refuses-text-outside-the-list`
+- [x] update `estimate-case-check-refuses-text-outside-the-list`
 - [x] `guppi/casecheck.py`: one function tells a summary of `case-guppi`, a text whose first line that is not blank opens with `**Built:**`, and `summary_findings` calls it in place of its own test; `showing_layout` calls the function of Case 692.1 with it, in place of `texts_before_last_call`, which goes; its reason tells the agent to show the Case again with nothing of its own before it and its own text after the horizontal rule; the module docstring and the docstring of `showing_layout` say so.
 - [x] `tests/test_casecheck.py`: a text before the call that brought the summary back passes; a text after the summary came back and before the sending is refused; a Case shown again with nothing of its own before the last tool call after a refusal of the check passes; a turn with no summary judges no text before its last tool call.
-- [ ] read `estimate-case-check-refuses-text-outside-the-list`
+- [x] read `estimate-case-check-refuses-text-outside-the-list`
 ```
 
 ## Case 693 — The read rule for the saved transcripts covers their folder itself
@@ -197,10 +197,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-permissions`
-- [ ] update `estimate-permissions`
-- [ ] update `rule-morph`
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] update `rule-permissions`
+- [x] update `estimate-permissions`
+- [x] update `rule-morph`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-permissions`
 ```
 
@@ -254,10 +254,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] update `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
 - [x] `guppi/ledger.py`: `held_message` takes the slug alone and asks whether a Case of this session fixed the cause; `named_cases` goes once no caller is left; the module docstring and the docstring of `held_message` say that the stderr line names no Case.
 - [x] `tests/test_ledger.py`: the held line's stderr line names no Case with decision lines of several Cases before it; the test of the Cases named in first-seen order goes; the other tests of the hold build the message from the slug alone.
-- [ ] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
 ```
 
 ### Case 694.2 — The reminder of an unmarked lesson names no Case
@@ -291,10 +291,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
+- [x] update `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
 - [x] `guppi/ledger.py`: `reminder_message` takes the slug alone and asks whether a Case of this session fixed the cause; `unaddressed` still finds the lessons that fresh decision lines follow; the module docstring and the docstrings of `unaddressed` and `reminder_message` say that the stderr line names no Case and is told once a stretch.
 - [x] `tests/test_ledger.py`: the reminder names no Case with fresh decision lines of several Cases after the lesson; the tests of the Cases named in first-seen order and of a reminder told again for other Cases in one stretch go; the other tests of the reminder build the message from the slug alone.
-- [ ] read `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
+- [x] read `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
 ```
 
 ## Case 695 — The ledger hook refuses aloud a line of a LEDGER block that is no record
@@ -366,11 +366,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-refuses-a-line-that-is-no-record`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-refuses-a-line-that-is-no-record`
 - [x] `guppi/ledger.py`: one function beside `ledger_lines`, judged by its `PREFIXES` and the fence functions of `guppi/materialize.py`, gives the non-blank lines of `LEDGER` blocks that are no record; the hook judges them after the `hi` check, also when no fresh record line stands, and prints the stderr line through `untold`; the docstring gains a paragraph.
 - [x] `tests/test_ledger.py`: a near-miss line and a note in the reply just finished are refused aloud, a block with only such a line too; a line of an earlier text is silent; the record lines beside it land; a blank line and a line of an untagged block pass; a repeat already told is silent.
-- [ ] read `estimate-ledger-write-refuses-a-line-that-is-no-record`
+- [x] read `estimate-ledger-write-refuses-a-line-that-is-no-record`
 ```
 
 ### Case 695.2 — Retro leaves out a refused line that is no record
@@ -420,9 +420,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] update `rule-retro-onward`
-- [ ] update `estimate-retro-runs-on-to-the-handoff`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] read `estimate-retro-runs-on-to-the-handoff`
+- [x] update `rule-retro`
+- [x] update `rule-retro-onward`
+- [x] update `estimate-retro-runs-on-to-the-handoff`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] read `estimate-retro-runs-on-to-the-handoff`
 ```

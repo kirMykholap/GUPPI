@@ -13,6 +13,7 @@
       "Write(vault/raw/**/carry.md)",
       "Edit(vault/wiki/brief.md)",
       "Write(vault/wiki/brief.md)",
+      "Read(~/.claude/projects/c--PROJECTS-GUPPI)",
       "Read(~/.claude/projects/c--PROJECTS-GUPPI/**)"
     ]
   },

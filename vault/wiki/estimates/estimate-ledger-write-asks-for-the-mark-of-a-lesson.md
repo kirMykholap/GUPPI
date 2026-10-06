@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook holds once a lesson line with no addressed_by mark written after a decision line of the session, asks for the mark, and then writes the line written again
 method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
-checked: 2026-10-06
+checked: 2026-10-07
 origin: raw/2026-10-05/2249/ledger.md#case-682.1
 sprint: migration
 created: 2026-10-05
@@ -19,8 +19,8 @@ The `Stop` hook `uv run guppi ledger` of `guppi/ledger.py` finds a fresh `lesson
 
 Then:
 At the `Stop` of the reply that carries it, the hook holds the line back once, unless it already asked about it since the person's last message.
-**＋** For each held line the hook exits 2 and prints: "ledger: lesson[<slug>] held — did case <N> or case <M> fix its cause? Then add {addressed_by:case <N>}, the Case or sub-case that fixed it, and repeat the line; otherwise repeat it unchanged."
-**＋** The Cases the stderr line names are those whose decision lines stand before the lesson line, in the order first seen.
+**＋** For each held line the hook exits 2 and prints: "ledger: lesson[<slug>] held — did a Case of this session fix its cause? Then add {addressed_by:case <N>}, the Case or sub-case that fixed it, and repeat the line; otherwise repeat it unchanged."
+**＋** The stderr line names no Case, however many decision lines stand before the lesson line.
 **＋** The line lands as it stands once the hook's question about it stands in a refusal since the person's last message, or when it stands only in an earlier text of the transcript.
 **＋** A held line keeps back no other line: the rest of that `Stop` lands in the ledger.
 **－** An unmarked line never lands beside a marked one: `{addressed_by:...}` on a `lesson[<slug>]` line in the session's ledger, or in that `Stop`, drops the unmarked line of the slug.
@@ -30,7 +30,7 @@ At the `Stop` of the reply that carries it, the hook holds the line back once, u
 
 ## Result
 
-2026-10-06, uv run pytest tests/test_ledger.py: 119 passed; the 682.1 tests hold an unmarked lesson after a decision line as before, and a lesson before every decision line is not held and gets only the reminder of case 685.1
+2026-10-07, uv run pytest tests/test_ledger.py: 126 passed; the held line's stderr line asks whether a Case of this session fixed its cause and names no Case with decision lines of cases 8.2, 8.1 and 9 before it; the hold lands the line written again and keeps back no other line
 
 ## History
 
@@ -38,3 +38,5 @@ At the `Stop` of the reply that carries it, the hook holds the line back once, u
 - 2026-10-06 status: pending → passed · raw/2026-10-05/2249/ledger.md#L20
 - 2026-10-06 updated: the Criterion replaced whole — a decision line after an unmarked lesson is written and left to the reminder (case 685.2) · [[decision-case-685.2]]
 - 2026-10-06 status: pending → passed · raw/2026-10-06/0104/ledger.md#L49
+- 2026-10-07 updated: the Criterion replaced whole — the question of the hold names no Case · [[decision-case-694.1]]
+- 2026-10-07 status: pending → passed · raw/2026-10-06/1448/ledger.md#L21

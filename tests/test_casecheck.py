@@ -1260,12 +1260,48 @@ def test_layout_a_section_other_than_ratification_is_refused(working):
     assert code == 2 and LAYOUT in err and "> **given:**" in err
 
 
-def test_layout_a_text_before_the_last_tool_call_is_refused(working):
+def summary_turn(working, before="", after=""):
+    """A turn that dispatches `case-guppi`, takes its summary back and sends the file of Case
+    7, with `before` written before the dispatch and `after` before the sending."""
+    dispatch = assistant(*([said(before)] if before else []), agent_call())
+    call = sending(case_path(working, "7"))
+    if after:
+        call["message"]["content"].insert(0, said(after))
+    summary = f"**Built:** {case_path(working, '7')}\n**Case:** 7 — example"
+    return [prompt(), dispatch, agent_result(summary), call, result()]
+
+
+def test_layout_a_text_after_the_summary_came_back_is_refused(working):
+    # case 692.2
+    answer(working, ANSWER)
+    records = summary_turn(working, after="Showing the Case.")
+    code, err = show(working, SHORT_SHOWING, records=records)
+    assert code == 2 and LAYOUT in err and "Showing the Case." in err
+    assert "nothing of your own before it" in err
+
+
+def test_layout_a_text_before_the_call_that_brought_the_summary_passes(working):
+    # case 692.2: a text written before the summary came back cannot be taken back
+    answer(working, ANSWER)
+    records = summary_turn(working, before="Dispatching case-guppi.")
+    assert show(working, SHORT_SHOWING, records=records) == (0, "")
+
+
+def test_layout_a_case_shown_again_after_a_refusal_passes(working):
+    # case 692.2: after a refusal only what follows it is judged
+    answer(working, ANSWER)
+    records = summary_turn(working, after="Showing the Case.")
+    _, err = show(working, SHORT_SHOWING, records=records)
+    again = [*records, own_refusal(err), sending(case_path(working, "7")), result()]
+    assert show(working, SHORT_SHOWING, records=again, stop_hook_active=True) == (0, "")
+
+
+def test_layout_a_turn_with_no_summary_judges_no_text_before_its_last_call(working):
+    # case 692.2
     answer(working, ANSWER)
     call = sending(case_path(working, "7"))
     call["message"]["content"].insert(0, said("Showing the Case."))
-    code, err = show(working, SHORT_SHOWING, records=[prompt(), call, result()])
-    assert code == 2 and LAYOUT in err and "Showing the Case." in err
+    assert show(working, SHORT_SHOWING, records=[prompt(), call, result()]) == (0, "")
 
 
 def test_layout_the_acknowledging_reply_is_not_judged_and_the_re_fire_is(working):
@@ -1338,14 +1374,59 @@ def test_round_a_reply_that_opens_with_a_line_of_its_own_is_refused(working):
     assert code == 2 and "Case-guppi asks a round." in err and "nothing before it" in err
 
 
-def test_round_before_prespec_a_text_before_the_agent_call_is_refused(working):
+def test_round_before_prespec_a_text_before_the_agent_call_passes(working):
+    # case 692.1: the note of session 1448 stood before the call that brought the round back
     records = [
         prompt(),
         assistant(said("Dispatching case-guppi."), agent_call()),
         agent_result(ROUND),
     ]
+    assert show(working, SHOWN_ROUND, records=records) == (0, "")
+
+
+def round_then_text(note="The round came back."):
+    """A turn whose round came back, then a text of the main agent before a later call."""
+    later = {"type": "tool_use", "id": "toolu_b", "name": "Read", "input": {}}
+    block = {"type": "tool_result", "tool_use_id": "toolu_b", "content": "read"}
+    read_result = {"type": "user", "isSidechain": False, "message": {"content": [block]}}
+    return [
+        prompt(),
+        assistant(agent_call()),
+        agent_result(ROUND),
+        assistant(said(note), later),
+        read_result,
+    ]
+
+
+def test_round_before_prespec_a_text_after_the_round_came_back_is_refused(working):
+    # case 692.1
+    code, err = show(working, SHOWN_ROUND, records=round_then_text())
+    assert code == 2 and "The round came back." in err
+
+
+def test_round_shown_again_with_nothing_before_it_after_a_refusal_passes(working):
+    # case 692.1: after a refusal only what follows it is judged
+    records = round_then_text()
+    _, err = show(working, SHOWN_ROUND, records=records)
+    again = [*records, own_refusal(err)]
+    assert show(working, SHOWN_ROUND, records=again, stop_hook_active=True) == (0, "")
+
+
+def test_round_a_reply_that_opens_with_a_line_of_its_own_after_a_refusal_is_refused(working):
+    # case 692.1: the first line is judged always
+    records = round_then_text()
+    _, err = show(working, SHOWN_ROUND, records=records)
+    reply = "Again.\n\n" + SHOWN_ROUND
+    code, err = show(working, reply, records=[*records, own_refusal(err)], stop_hook_active=True)
+    assert code == 2 and "Again." in err
+
+
+def test_round_given_back_in_the_opening_answer_leaves_every_text_judged(working):
+    # case 692.1: the returned answer that opens the turn stands before every text of it
+    send = {"type": "tool_use", "id": "toolu_s", "name": "SendMessage", "input": {}}
+    records = [notification(ROUND), assistant(said("Both answered."), send), result()]
     code, err = show(working, SHOWN_ROUND, records=records)
-    assert code == 2 and "Dispatching case-guppi." in err
+    assert code == 2 and "Both answered." in err
 
 
 def test_round_after_prespec_a_text_before_the_call_with_a_question_line_passes(working):

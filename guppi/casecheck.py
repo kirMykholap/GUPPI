@@ -189,7 +189,11 @@ when the first line of the reply that is not blank opens neither with `❓ ` nor
 label that ends in a colon — the label of the Context paragraph, translated — and, while the
 session's event log holds no `prespec` line of this session after its `hi`, judged by
 `prespec.window`, the function the `ExitPlanMode` hook judges by, imported, when the main
-agent wrote text in the turn before its last tool call; after `/pre-spec` that text is not
+agent wrote text in the turn after the first round came back and before its last tool call,
+by `texts_after`; a text written before the round came back cannot be taken back and is not
+judged, and when the turn holds a refusal of the check, by `refusals` of `guppi/ledger.py`,
+only the texts after the reply that the last such refusal follows are judged (`last_refused`),
+so a round shown again with nothing before it passes (case 692.1); after `/pre-spec` that text is not
 judged, since in the loop after its findings each answer of a `case-guppi` comes back in a
 turn of its own and the text the main agent writes there is set by `rule-prespec` (case
 581.2). The reason quotes the text
@@ -215,12 +219,16 @@ the next one or the horizontal rule, a line stands that is not blank, not a list
 that opens with `- `, `* ` or a number and `. ` — not a line indented under a list item, and
 not a line of the `ratification` blockquote, its `RATIFICATION_HEAD` and the `>` lines after
 it, or when `quoted_sections` reads there a section other than `ratification`; and when the
-main agent wrote text in the turn before its last tool call, by `texts_before_last_call`, the
-judgment of the check of a round, with no second copy (`outside_the_list`, `showing_layout`).
-The reason quotes the first such text and tells the agent to show the Case again with that
-text moved after the horizontal rule; it is joined with the reasons of the comparison and of
-the opening of a round. Text after the horizontal rule is not judged, and the check stores
-nothing. The comparison above still compares the sections a reply shows; this check refuses
+main agent wrote text in the turn after the first summary of `case-guppi` came back — a text
+given back whose first line that is not blank opens with `**Built:**`, by `is_summary`, the
+test `summary_findings` shares — and before its last tool call, by `texts_after`, the
+judgment of the check of a round, after the reply the last refusal of the check follows, with
+no second copy (`outside_the_list`, `showing_layout`, case 692.2). A text written before the
+summary came back, and every text of a turn with no summary, is not judged. The reason quotes
+the first such text and tells the agent to show the Case again with nothing of its own before
+it and its own text after the horizontal rule; it is joined with the reasons of the comparison
+and of the opening of a round. Text after the horizontal rule is not judged, and the check
+stores nothing. The comparison above still compares the sections a reply shows; this check refuses
 the showing of any but `ratification`.
 
 A sending. The transcript is JSONL (`ledger.read_records`); a `SendUserFile` call stands in an
@@ -258,6 +266,7 @@ from guppi.event import project_root, read_payload, session_stamp
 from guppi.generate import DAY, FRONTIER_LINE, FRONTIER_SEPARATOR, SESSION
 from guppi.ledger import (
     ANSWER,
+    PREFIXES,
     opens_turn,
     plan_path,
     read_records,
@@ -265,6 +274,7 @@ from guppi.ledger import (
     reply_text,
     session_dir,
     session_event_logs,
+    stretch,
     transcript_records,
     user_kind,
 )
@@ -307,7 +317,6 @@ SEND = "SendUserFile"  # the tool that sends the person a file (case 452.2)
 STORE_SUFFIX = ".checked.json"
 CASES = "cases"  # the folder of the files of built Cases in a session folder (case 452.1)
 RULE = "---"  # the horizontal rule after which the agent's own text stands
-LEDGER_LINE = ("- decision[", "- estimate[", "- lesson[")
 # The parts of a shown Case compared with its stored answer, each only when the reply shows
 # it (452.2); the heading name and the prose — `context`, `problem`, `recommend` — are free.
 MECHANICAL = ("given", "when", "then", "tasks", "ratification")
@@ -553,7 +562,7 @@ def form_findings(case: str, lines: list[str], cases: dict) -> list[str]:
             and opening is not None
             and opening[2] == ""
             and closes_fence(body[-1], opening)
-            and all(line.startswith(LEDGER_LINE) for line in body[1:-1])
+            and all(line.startswith(PREFIXES) for line in body[1:-1])
         ):
             findings.append(
                 f"case {case}: ratification holds one untagged fence of ledger lines and "
@@ -1047,6 +1056,14 @@ CASE_LABEL = "**Case:**"  # the line that names the top-level Case it built (cas
 NAME_DASH = " — "  # between the id and the name, in a heading and in the line alike
 
 
+def is_summary(text: str) -> bool:
+    """A summary of `case-guppi`, the one test of it that `summary_findings` and the check of
+    a showing share (case 692.2): its first line that is not blank opens with `**Built:**`.
+    The lines are read with their indent set aside: the harness indents a hand-back."""
+    first = next((line.strip() for line in text.splitlines() if line.strip()), "")
+    return first.startswith(BUILT_LABEL)
+
+
 def top_heading(text: str) -> tuple[str, str] | None:
     """The id and the name of the first Case heading of a file of a Case, found by
     `CASE_HEADING` of `guppi/materialize.py` — the top-level Case of the file (case 662.3);
@@ -1086,8 +1103,7 @@ def summary_findings(payload: dict, files: list[Path], store: dict) -> list[str]
     if not texts or not files:
         return []
     newest = texts[-1]
-    first = next((line.strip() for line in newest.splitlines() if line.strip()), "")
-    if not first.startswith(BUILT_LABEL):
+    if not is_summary(newest):
         return []
     names = summary_names(newest)
     repeated = any(spaces_aside(text) == spaces_aside(newest) for text in texts[:-1])
@@ -1355,7 +1371,7 @@ def fence_ledger_lines(lines: list[str]) -> list[str]:
             break
         kept.append(line)
     text = quoted_sections(kept, ("ratification",)).get("ratification", "")
-    return [line.strip() for line in text.splitlines() if line.strip().startswith(LEDGER_LINE)]
+    return [line.strip() for line in text.splitlines() if line.strip().startswith(PREFIXES)]
 
 
 def list_showing(case: str, lines: list[str]) -> dict[str, list[str]]:
@@ -1494,18 +1510,22 @@ def outside_the_list(reply: str) -> str | None:
     return other_section() if seen_heading else None
 
 
-def showing_layout(records: list[dict], reply: str) -> str | None:
+def showing_layout(records: list[dict], reply: str, since: int = -1) -> str | None:
     """Case 611: the reason a reply that shows a Case is refused for a text of the main
-    agent's own outside its list and `ratification`, or None — a text before the last tool
-    call of the turn, by `texts_before_last_call`, the judgment the check of a round uses
-    (case 562), or a line of the reply by `outside_the_list`."""
-    before = texts_before_last_call(records)
+    agent's own outside its list and `ratification`, or None — a text written in the turn
+    after the first summary of `case-guppi` came back, by `is_summary`, and before the last
+    tool call, by `texts_after`, the judgment the check of a round uses, after the reply that
+    the last refusal of the check follows, `since` (case 692.2); or a line of the reply by
+    `outside_the_list`. A text written before the summary came back, and every text of a turn
+    with no summary, is not judged, so one showing again clears a refusal."""
+    before = texts_after(records, is_summary, since)
     quoted = before[0] if before else outside_the_list(reply)
     if quoted is None:
         return None
     return (
         f"a Case is shown with a text of your own outside its list and ratification: "
-        f"{quoted[:120]!r} — show the Case again with that text moved after the horizontal rule"
+        f"{quoted[:120]!r} — show the Case again with nothing of your own before it and your "
+        "own text after the horizontal rule"
     )
 
 
@@ -1538,32 +1558,49 @@ def block_text(content) -> str:
     )
 
 
-def given_back(records: list[dict]) -> list[str]:
-    """The texts subagents gave back in the turn of the reply (measured 2026-10-01, session
-    2356): the answer to an `Agent` call stands in the `tool_result` of that call, inside
-    the turn; the answer to a `SendMessage` comes back after the turn has ended, as a `user`
-    record with `origin.kind` `task-notification` whose content is a string holding the
-    answer between `<result>` and `</result>` — a returned answer by `user_kind` of
-    `guppi/ledger.py`, which opens the turn, so it is read here as the turn's opener
-    (case 592)."""
-    texts: list[str] = []
+def turn_blocks(records: list[dict]):
+    """`(index, position, record, block)` for each block of each record of the turn of the
+    reply, in order: `index` the record's place in `records`, `position` the block's place in
+    the turn, counted from 1 — the one numbering of `given_back_at` and `texts_after`."""
+    turn = turn_of_reply(records)
+    offset = len(records) - len(turn)
+    position = 0
+    for index, record in enumerate(turn, start=offset):
+        message = record.get("message")
+        content = message.get("content") if isinstance(message, dict) else None
+        for block in content if isinstance(content, list) else []:
+            position += 1
+            if isinstance(block, dict):
+                yield index, position, record, block
+
+
+def given_back_at(records: list[dict]) -> list[tuple[int, str]]:
+    """`(position, text)` for each text subagents gave back in the turn of the reply, by
+    `turn_blocks` (measured 2026-10-01, session 2356): the answer to an `Agent` call stands in
+    the `tool_result` of that call, inside the turn, at the position of that block; the answer
+    to a `SendMessage` comes back after the turn has ended, as a `user` record with
+    `origin.kind` `task-notification` whose content is a string holding the answer between
+    `<result>` and `</result>` — a returned answer by `user_kind` of `guppi/ledger.py`, which
+    opens the turn, so it is read here as the turn's opener, at position 0, before every text
+    of the turn (case 592)."""
+    texts: list[tuple[int, str]] = []
     opener = opening_record(records)
     if isinstance(opener, dict) and user_kind(opener) == ANSWER:
         message = opener.get("message")
         content = message.get("content") if isinstance(message, dict) else None
-        texts += RESULT.findall(content) if isinstance(content, str) else []
+        texts += [(0, text) for text in RESULT.findall(content)] if isinstance(content, str) else []
     agent_calls = set()
-    for record in turn_of_reply(records):
-        message = record.get("message")
-        content = message.get("content") if isinstance(message, dict) else None
-        for block in content if isinstance(content, list) else []:
-            if not isinstance(block, dict):
-                continue
-            if block.get("type") == "tool_use" and block.get("name") == "Agent":
-                agent_calls.add(block.get("id"))
-            elif block.get("type") == "tool_result" and block.get("tool_use_id") in agent_calls:
-                texts.append(block_text(block.get("content")))
+    for _, position, _, block in turn_blocks(records):
+        if block.get("type") == "tool_use" and block.get("name") == "Agent":
+            agent_calls.add(block.get("id"))
+        elif block.get("type") == "tool_result" and block.get("tool_use_id") in agent_calls:
+            texts.append((position, block_text(block.get("content"))))
     return texts
+
+
+def given_back(records: list[dict]) -> list[str]:
+    """The texts subagents gave back in the turn of the reply, by `given_back_at`."""
+    return [text for _, text in given_back_at(records)]
 
 
 def is_round(text: str) -> bool:
@@ -1593,40 +1630,47 @@ def is_fact(text: str) -> bool:
     return False
 
 
-def texts_before_last_call(records: list[dict]) -> list[str]:
-    """The texts the main agent wrote in the turn before its last tool call."""
+def texts_after(records: list[dict], finds, since: int = -1) -> list[str]:
+    """The texts the main agent wrote in the turn of the reply before its last tool call,
+    after the first text given back in the turn that `finds` finds — a round by `is_round`, a
+    summary by `is_summary` — and in a record after `since`, the index in `records` of the
+    reply that the last refusal of the check follows (`last_refused`), -1 for none (case
+    692). A text written before that text came back cannot be taken back, so it is not judged;
+    a text given back in the returned answer that opens the turn stands before every text of
+    the turn. Empty when no text given back is one that `finds` finds."""
+    start = next((at for at, text in given_back_at(records) if finds(text)), None)
+    if start is None:
+        return []
     texts: list[tuple[int, str]] = []
     last_call = -1
-    position = 0
-    for record in turn_of_reply(records):
+    for index, position, record, block in turn_blocks(records):
         if record.get("type") != "assistant":
             continue
-        message = record.get("message")
-        content = message.get("content") if isinstance(message, dict) else None
-        for block in content if isinstance(content, list) else []:
-            position += 1
-            if not isinstance(block, dict):
-                continue
-            if block.get("type") == "text" and str(block.get("text") or "").strip():
+        if block.get("type") == "text" and str(block.get("text") or "").strip():
+            if position > start and index > since:
                 texts.append((position, str(block["text"]).strip()))
-            elif block.get("type") == "tool_use":
-                last_call = position
+        elif block.get("type") == "tool_use":
+            last_call = position
     return [text for at, text in texts if at < last_call]
 
 
-def round_opening(records: list[dict], reply: str, after_prespec: bool) -> str | None:
+def round_opening(
+    records: list[dict], reply: str, after_prespec: bool, since: int = -1
+) -> str | None:
     """Case 562: the reason a reply that shows a round of `case-guppi` is refused, or None.
     The turn holds a round when a text given back in it, by `given_back`, is one by
     `is_round`. Before `/pre-spec` — no `prespec` line of the session after its `hi` — a
-    text of the main agent before the last tool call of the turn is refused; always, a reply
-    whose first line that is not blank opens neither with `❓ ` nor with a bold label that
-    ends in a colon. After `/pre-spec` only the first line is judged: in the loop over its
-    findings each answer of a `case-guppi` comes back in a turn of its own, and the text the
-    main agent writes there is set by `rule-prespec` (case 581.2). Text after the last
-    question is not judged."""
+    text of the main agent written after the first round of the turn came back and before
+    the last tool call, by `texts_after`, is refused, and only after the reply that the last
+    refusal of the check follows, `since`, so a round shown again with nothing before it
+    passes (case 692.1); always, a reply whose first line that is not blank opens neither with
+    `❓ ` nor with a bold label that ends in a colon. After `/pre-spec` only the first line is
+    judged: in the loop over its findings each answer of a `case-guppi` comes back in a turn
+    of its own, and the text the main agent writes there is set by `rule-prespec` (case
+    581.2). Text after the last question is not judged."""
     if not any(is_round(text) for text in given_back(records)):
         return None
-    before = [] if after_prespec else texts_before_last_call(records)
+    before = [] if after_prespec else texts_after(records, is_round, since)
     first = next((line.strip() for line in reply.splitlines() if line.strip()), "")
     if not before and (first.startswith("❓ ") or LABEL_LINE.match(first)):
         return None
@@ -1649,6 +1693,18 @@ def own_told(payload: dict) -> list[str] | None:
     when the transcript cannot be read (case 688.1)."""
     found = refusals(payload, COMMAND)
     return None if found is None else [text for _, text in found[COMMAND]]
+
+
+def last_refused(payload: dict, records: list[dict]) -> int:
+    """The index in `records`, the main-agent records of the transcript, of the reply that
+    the last refusal of the `Stop` run in the stretch follows, by `refusals` and `stretch` of
+    `guppi/ledger.py` — the one judgment of the refusals and of the stretch; -1 when none
+    stands (case 692)."""
+    found = refusals(payload, COMMAND)
+    span = stretch(payload)
+    if not found or not found[COMMAND] or span is None:
+        return -1
+    return len(records) - len(span) + found[COMMAND][-1][0]
 
 
 def times_given(reason: str, told: list[str]) -> int:
@@ -1696,7 +1752,8 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     logs = session_event_logs(project_dir, now, stamp)
     turn_records = transcript_records(payload)
     _, after_prespec = prespec_window("".join(text for _, text in logs), stamp)
-    opening = round_opening(turn_records, reply, after_prespec)
+    since = last_refused(payload, turn_records)
+    opening = round_opening(turn_records, reply, after_prespec, since)
     if not shown:
         return give([opening] if opening else [], told, stderr)
     store = read_store(plan_path(logs, stamp))
@@ -1710,7 +1767,7 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
             problems.append(changed)
     if opening:
         problems.append(opening)
-    if layout := showing_layout(turn_records, reply):
+    if layout := showing_layout(turn_records, reply, since):
         problems.append(layout)
     turn = turn_of_reply(turn_records)
     unsent: dict[Path, list[str]] = {}

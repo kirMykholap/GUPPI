@@ -416,10 +416,10 @@ def write_transcript(tmp_path, *lines):
     return str(path)
 
 
-def asked(project_dir, cases=("10",), slug="lesson-x"):
+def asked(project_dir, slug="lesson-x"):
     """A stretch in which the hook already asked for the mark of `lesson[<slug>]` (case
     682.1): the unmarked line written again lands as it stands."""
-    held = ledger.held_message(slug, list(cases))
+    held = ledger.held_message(slug)
     return write_transcript(project_dir, person(), own_refusal(held))
 
 
@@ -579,7 +579,7 @@ def seed_ledger(project_dir, *lines):
 def test_a_reading_of_a_slug_the_session_changes_is_refused(working, decision, case):
     seed_ledger(working, decision)
     reply = ledger_block(READ_X, LESSON)
-    path = asked(working, (case,))
+    path = asked(working)
     code, err = run(payload(last_assistant_message=reply, transcript_path=path), working)
     assert (code, err) == (2, REFUSAL.format(case))
     assert ledger_text(working).splitlines() == [f"- 15:01:50 {decision[2:]}", timed(LESSON)]
@@ -1092,7 +1092,7 @@ def without_sprint(tmp_path):
 def test_sprint_missing_refuses_a_decision_line_and_passes_a_defer_a_reading_a_lesson(tmp_path):
     without_sprint(tmp_path)
     reply = ledger_block(DECISION, DEFER, ESTIMATE, LESSON)
-    path = asked(tmp_path, ("10", "11"))
+    path = asked(tmp_path)
     code, err = run(payload(last_assistant_message=reply, transcript_path=path), tmp_path)
     assert code == 2
     assert err.count("no sprint is open") == 1 and "rule-ledger-write" in err
@@ -1128,8 +1128,8 @@ SUB_2 = "- decision[case 8.2][update][rule-y]{ref:rule-y}"
 LESSON_MARKED = "- lesson[error][lesson-x]{addressed_by:case 10} trigger: a root_cause: b"
 
 
-def held_refusal(cases, slug="lesson-x"):
-    return ledger.held_message(slug, list(cases)) + "\n"
+def held_refusal(slug="lesson-x"):
+    return ledger.held_message(slug) + "\n"
 
 
 def asking(project_dir, reply):
@@ -1139,22 +1139,23 @@ def asking(project_dir, reply):
 
 def test_an_unmarked_lesson_after_a_decision_line_is_held_once_and_asked(working):
     code, err = run(asking(working, ledger_block(DECISION, LESSON, ESTIMATE)), working)
-    assert (code, err) == (2, held_refusal(["10"]))
+    assert (code, err) == (2, held_refusal())
     assert err == (
-        "ledger: lesson[lesson-x] held — did case 10 fix its cause? Then add "
+        "ledger: lesson[lesson-x] held — did a Case of this session fix its cause? Then add "
         "{addressed_by:case <N>}, the Case or sub-case that fixed it, and repeat the line; "
         "otherwise repeat it unchanged.\n"
     )
     assert ledger_text(working).splitlines() == [timed(DECISION), timed(ESTIMATE)]
 
 
-def test_the_question_names_the_cases_before_the_lesson_in_the_order_first_seen(working):
+def test_the_question_names_no_case_with_several_cases_before_the_lesson(working):
+    """Case 694.1."""
     seed_ledger(working, SUB_2)
     other = SUB_1.replace("rule-x", "rule-w")
     store_cases(working, SUB_1, other)
     code, err = run(asking(working, ledger_block(SUB_1, CASE_9, other, LESSON, DECISION)), working)
-    assert (code, err) == (2, held_refusal(["8.2", "8.1", "9"]))
-    assert "did case 8.2, case 8.1 or case 9 fix its cause?" in err
+    assert (code, err) == (2, held_refusal())
+    assert "case 8" not in err and "case 9" not in err
 
 
 def test_the_lesson_written_again_unchanged_lands_as_it_stands(working):
@@ -1170,7 +1171,7 @@ def test_the_lesson_written_again_with_its_mark_drops_the_unmarked_line(working)
         working,
         person(),
         transcript_line(ledger_block(LESSON)),
-        own_refusal(held_refusal(["10"]).rstrip("\n")),
+        own_refusal(held_refusal().rstrip("\n")),
     )
     reply = ledger_block(LESSON_MARKED)
     assert run(payload(last_assistant_message=reply, transcript_path=path), working) == (0, "")
@@ -1196,7 +1197,7 @@ def test_a_lesson_from_an_earlier_text_lands_without_a_word(working):
 def test_a_lesson_before_every_decision_line_is_not_asked(working):
     """It is not held; the reminder after the write is case 685.1."""
     code, err = run(asking(working, ledger_block(LESSON, DECISION)), working)
-    assert (code, err) == (2, ledger.reminder_message("lesson-x", ["10"]) + "\n")
+    assert (code, err) == (2, ledger.reminder_message("lesson-x") + "\n")
     assert ledger_text(working).splitlines() == [timed(LESSON), timed(DECISION)]
 
 
@@ -1230,7 +1231,7 @@ def test_with_the_flag_and_no_readable_transcript_the_lesson_lands(working):
 
 def test_with_the_flag_and_a_readable_transcript_the_lesson_is_still_asked(working):
     code, err = run(flagged(working, ledger_block(DECISION, LESSON)), working)
-    assert (code, err) == (2, held_refusal(["10"]))
+    assert (code, err) == (2, held_refusal())
     assert ledger_text(working) == f"{timed(DECISION)}\n"
 
 
@@ -1240,36 +1241,39 @@ def test_with_the_flag_and_a_readable_transcript_the_lesson_is_still_asked(worki
 MARKED_AGAIN = DECISION + "{addresses:lesson-x}"
 
 
-def reminder(slug, cases):
-    return ledger.reminder_message(slug, list(cases)) + "\n"
+def reminder(slug):
+    return ledger.reminder_message(slug) + "\n"
 
 
 def test_reminder_comes_after_the_write(working):
     seed_ledger(working, LESSON)
     code, err = run(asking(working, ledger_block(DECISION)), working)
-    assert (code, err) == (2, reminder("lesson-x", ["10"]))
+    assert (code, err) == (2, reminder("lesson-x"))
     assert err == (
-        "ledger: lesson[lesson-x] has no mark — did case 10 fix its cause? Then write the "
+        "ledger: lesson[lesson-x] has no mark — did a Case of this session fix its cause? Then write the "
         "decision line of the Case or sub-case that fixed it again with "
         "{addresses:lesson-x} added, alone in a LEDGER block; otherwise go on without it.\n"
     )
     assert ledger_text(working).splitlines() == [f"- 15:01:50 {LESSON[2:]}", timed(DECISION)]
 
 
-def test_reminder_names_the_cases_of_the_fresh_lines_in_the_order_first_seen(working):
+def test_reminder_names_no_case_with_fresh_lines_of_several_cases(working):
+    """Case 694.2."""
     seed_ledger(working, SUB_2, LESSON)
     code, err = run(asking(working, ledger_block(CASE_9, SUB_1, CASE_9)), working)
-    assert (code, err) == (2, reminder("lesson-x", ["9", "8.1"]))
+    assert (code, err) == (2, reminder("lesson-x"))
 
 
-def test_reminder_is_told_once_a_stretch_and_again_for_other_cases(working):
+def test_reminder_is_told_once_a_stretch(working):
+    """Case 694.2: with no Case named, a ratification of other Cases in the same stretch
+    gives the same line, already told."""
     seed_ledger(working, LESSON)
-    path = stretch(working, own_refusal(reminder("lesson-x", ["10"]).rstrip("\n")))
+    path = stretch(working, own_refusal(reminder("lesson-x").rstrip("\n")))
     assert run(
         payload(last_assistant_message=ledger_block(DECISION), transcript_path=path), working
     ) == (0, "")
     stdin = payload(last_assistant_message=ledger_block(CASE_9), transcript_path=path)
-    assert run(stdin, working) == (2, reminder("lesson-x", ["9"]))
+    assert run(stdin, working) == (0, "")
 
 
 def test_reminder_ends_once_a_decision_line_carries_the_mark(working):
@@ -1311,7 +1315,7 @@ def test_reminder_not_for_a_lesson_already_marked(working):
 
 def test_reminder_not_for_a_fresh_lesson_the_same_stop_holds_back(working):
     code, err = run(asking(working, ledger_block(SUB_1, LESSON, CASE_9)), working)
-    assert (code, err) == (2, held_refusal(["8.1"]))
+    assert (code, err) == (2, held_refusal())
     assert ledger_text(working).splitlines() == [timed(SUB_1), timed(CASE_9)]
 
 
@@ -1433,3 +1437,61 @@ def test_copy_with_the_flag_and_no_readable_transcript_stays_out_silently(workin
 
 def test_copy_with_the_flag_and_a_readable_transcript_is_still_held(working):
     assert run(flagged(working, ledger_block(WRONG)), working) == (2, held_copy("10"))
+
+
+# --- case 695.1: a line of a LEDGER block that is no record is refused aloud ---------------
+# `estimate-ledger-write-refuses-a-line-that-is-no-record`
+
+NEAR_MISS = "- estimate-hi-no-read-calls[passed] all five"
+NOTE = "A note of my own."
+
+
+def stray(line):
+    return ledger.stray_message(line) + "\n"
+
+
+def test_stray_a_near_miss_and_a_note_are_refused_aloud_and_the_records_land(working):
+    reply = ledger_block(ESTIMATE, NEAR_MISS, NOTE)
+    code, err = run(asking(working, reply), working)
+    assert (code, err) == (2, stray(NEAR_MISS) + stray(NOTE))
+    assert err.startswith(
+        "ledger: line not written — a LEDGER block holds only lines that open with - decision[, "
+        "- estimate[ or - lesson[: - estimate-hi-no-read-calls[passed] all five. Write it again "
+        "with that opening, or leave it out."
+    )
+    assert ledger_text(working).splitlines() == [timed(ESTIMATE)]
+
+
+def test_stray_a_block_with_no_record_line_is_refused_too(working):
+    code, err = run(asking(working, ledger_block(NEAR_MISS)), working)
+    assert (code, err) == (2, stray(NEAR_MISS))
+    assert not ledger_file(working).exists()
+
+
+def test_stray_a_line_of_an_earlier_text_is_silent(working):
+    path = write_transcript(working, person(), transcript_line(ledger_block(ESTIMATE, NEAR_MISS)))
+    stdin = payload(last_assistant_message="Done.", transcript_path=path)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(ESTIMATE)]
+
+
+def test_stray_a_blank_line_and_an_untagged_block_pass(working):
+    reply = ledger_block(ESTIMATE, "", "   ") + "\n```\n" + NOTE + "\n```\n"
+    assert run(asking(working, reply), working) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(ESTIMATE)]
+
+
+def test_stray_a_repeat_already_told_is_silent(working):
+    path = stretch(working, own_refusal(stray(NOTE).rstrip("\n")))
+    stdin = payload(last_assistant_message=ledger_block(NOTE), transcript_path=path)
+    assert run(stdin, working) == (0, "")
+
+
+def test_stray_without_a_hi_no_line_is_judged(tmp_path):
+    assert run(asking(tmp_path, ledger_block(NOTE)), tmp_path) == (0, "")
+
+
+def test_stray_and_record_lines_share_one_reading_of_the_block():
+    text = ledger_block(ESTIMATE, NEAR_MISS, "", NOTE) + "```\n" + NOTE + "\n```\n"
+    assert ledger.ledger_lines(text) == [ESTIMATE]
+    assert ledger.stray_lines(text) == [NEAR_MISS, NOTE]

@@ -46,9 +46,18 @@ held counts as ratified for the rest of the session, after a later message of th
 too; its own refusal, `uv run guppi onward --plan`, is not spent, as above
 (case 597.1), the flag counting only when the transcript cannot be read; and the reply does
 not open with `STOP:`. With no
-`prespec` line of this session after its `hi`, by `prespec.window`, its reason sends the
-agent to `/pre-spec`; with the line, to run `uv run guppi prespec --check` on the plan file
-and call `ExitPlanMode` when it prints no finding. Each reason adds that, when only the
+`prespec` line of this session after its `hi`, by `prespec.prespec_mark` — the one reading
+of the line, through which `prespec.window` finds it too — its reason sends the agent to
+`/pre-spec`. With the line, when a file under `cases/` was written after the last `prespec`
+line, its time read on the date of the event log that holds it (`built_after`, case 686.1),
+it tells the agent that the Cases built again on the findings are ratified, to run
+`uv run guppi prespec --check` on the plan file and call `ExitPlanMode` when it prints no
+finding; when no file was written after that line — a defer or a lesson in answer to the
+report of `/pre-spec`, before any Case is built again — it sends the agent on with the loop
+after the findings: to send each finding in a Case to its `case-guppi`, or, when no Case
+goes back, to run the check and exit. After a reply the ledger hook sent back — a line it
+refused or held, or its reminder of a lesson with no mark (cases 685.1, 688.7) — `spent`
+lets it fire again at the next reply that carries a `LEDGER` block. Each reason adds that, when only the
 person can go on, the agent opens its reply with `STOP:` and asks the person. The time of a
 line of `ledger.md` is read on the `hi` date and rolls to the next date when it runs
 backwards, so a session across midnight keeps its order; a decision line of the reply
@@ -101,6 +110,12 @@ TO_EXIT = (
     "onward: the Cases built again on the findings of /pre-spec are ratified. Run uv run "
     "guppi prespec --check on the plan file with --session <id>, fix what it prints, and "
     "call ExitPlanMode when it prints no finding." + ONLY_THE_PERSON
+)
+TO_LOOP = (
+    "onward: no Case has been built again on the findings of /pre-spec yet. Go on with the "
+    "loop after its findings: send each finding in a Case to its case-guppi; when no Case "
+    "goes back, run uv run guppi prespec --check on the plan file with --session <id>, fix "
+    "what it prints, and call ExitPlanMode when it prints no finding." + ONLY_THE_PERSON
 )
 CASE_FILE = "case-"
 
@@ -226,7 +241,7 @@ def case_out(folder: Path, reply: list[str], now, payload: dict | None = None) -
 
 def plan_onward(payload: dict, project_dir: Path, now) -> str | None:
     """The reason `--plan` refuses the end of a reply with, or None (case 561.5)."""
-    from guppi.prespec import open_case_items, window
+    from guppi.prespec import open_case_items, prespec_mark
 
     reply = reply_text(payload)
     if reply.lstrip().startswith(STOP):
@@ -241,9 +256,26 @@ def plan_onward(payload: dict, project_dir: Path, now) -> str | None:
     lines = ledger_lines(reply)
     if not lines or case_out(folder, lines, now, payload):
         return None
-    logs = session_event_logs(project_dir, now, stamp)
-    _, done = window("".join(text for _, text in logs), stamp)
-    return TO_EXIT if done else TO_PRESPEC
+    mark = prespec_mark(session_event_logs(project_dir, now, stamp), stamp)
+    if mark is None:
+        return TO_PRESPEC
+    return TO_EXIT if built_after(folder, mark, now) else TO_LOOP
+
+
+def built_after(folder: Path, mark: tuple[str, str], now) -> bool:
+    """Whether a file under `cases/` was written after the `prespec` line at `mark`, its time
+    read on the date of its log in the zone of `now`, as `last_decisions` reads the times of
+    `ledger.md` (case 686.1): a Case built again on the findings. A mark whose time cannot be
+    read counts as none built."""
+    cases = folder / "cases"
+    try:
+        day, clock = date.fromisoformat(mark[0]), time.fromisoformat(mark[1])
+    except ValueError:
+        return False
+    moment = datetime.combine(day, clock, tzinfo=now.tzinfo).timestamp()
+    return cases.is_dir() and any(
+        path.stat().st_mtime > moment for path in cases.glob(f"{CASE_FILE}*.md")
+    )
 
 
 def told(payload: dict, command: str = COMMAND) -> bool:

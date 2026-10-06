@@ -110,8 +110,32 @@ The line written again unchanged, or a line that stands only in an earlier text,
 it stands; with `stop_hook_active` set and a transcript the hook cannot read, too. An
 unmarked line is never written beside a `lesson[<slug>]` line with the mark in the session's
 ledger or in the same `Stop`: it is dropped without a word. A line refused for its prefix is
-not asked; a lesson before every decision line is not asked; `{addresses:...}` on a decision
-line is not judged. Judged by `unmarked_lessons`, over lines read by `parse_line`.
+not asked; a lesson before every decision line is not asked, and a decision line is never held
+for its `{addresses:...}`. Judged by `unmarked_lessons`, over lines read by `parse_line`.
+
+A lesson before a Case is reminded of its mark (case 685.1). The hook writes the lines of the
+`Stop` first; then, for each lesson of the session that no mark links to a Case — no
+`{addressed_by:...}` on a line of its slug and no decision line after it with
+`{addresses:<slug>}`, judged by `unlinked_lessons` of `guppi/materialize.py` over the
+session's ledger followed by the lines this `Stop` writes — that fresh decision lines of the
+reply just finished follow, a `defer` and a line of an earlier text left out, it exits 2 with
+one stderr line naming the Cases of those lines and asking for one of them written again with
+`{addresses:<slug>}`, alone in a `LEDGER` block (`unaddressed`, `reminder_message`). The
+reminder is told once a stretch, by `untold`, so a later ratification of other Cases reminds
+again, and a decision line written again with the mark ends it. A line held back or refused
+at the same `Stop` is not written, so it brings no reminder.
+
+A decision line is a copy of the stored Case (case 688.7). A fresh decision line other than
+a `defer` is not written while it is not a line of the `ratification` stored for its Case id
+alone in `<plan>.checked.json`, the plan file read by `plan_path`: a `{addresses:<slug>}`
+block and trailing spaces set aside, it is compared with the lines `fence_ledger_lines` of
+`guppi/casecheck.py` reads from the stored text, the reading of the `Stop` check of a
+showing (`off_store`). A line of a Case the store holds no text for, and every such line of a
+session with no plan file, is held too. A line the grammar cannot read, or one refused while
+no live sprint page stands, gets that refusal alone. For a held line of the reply just finished the hook
+exits 2 with one stderr line per Case, told once a stretch; a held line of an earlier text is
+judged again at every `Stop` and never lands while it differs, and a copy equal to a stored
+line lands.
 
 No sprint, no decision (case 628.3). While no live page `vault/wiki/entities/entity-sprint-<id>.md`
 stands — after the close of a sprint — a fresh decision line other than a `defer` is not
@@ -598,15 +622,109 @@ def unmarked_lessons(
     return found
 
 
+def named_cases(cases: list[str]) -> str:
+    """The Cases a question names: `case 10`, or `case 8.1, case 8.2 or case 9`."""
+    named = [f"case {case}" for case in cases]
+    return named[0] if len(named) == 1 else ", ".join(named[:-1]) + f" or {named[-1]}"
+
+
 def held_message(slug: str, cases: list[str]) -> str:
     """The stderr line of a held lesson line (case 682.1): the Cases it names, then the two
     ways to write it again."""
-    named = [f"case {case}" for case in cases]
-    asked = named[0] if len(named) == 1 else ", ".join(named[:-1]) + f" or {named[-1]}"
     return (
-        f"ledger: lesson[{slug}] held — did {asked} fix its cause? Then add "
+        f"ledger: lesson[{slug}] held — did {named_cases(cases)} fix its cause? Then add "
         f"{{addressed_by:case <N>}}, the Case or sub-case that fixed it, and repeat the line; "
         "otherwise repeat it unchanged."
+    )
+
+
+def unaddressed(
+    written: list[str], landed: list[str], finished: set[str]
+) -> list[tuple[str, list[str]]]:
+    """`(slug, cases)` of each lesson of the session that no mark links to a Case and that
+    fresh decision lines of the reply just finished follow (case 685.1), over the session's
+    ledger `written` followed by the lines this `Stop` writes, `landed`: a line held back or
+    refused is not among them, so it brings no reminder. `cases` are the Cases of those
+    decision lines after the lesson — a `defer` and a line of an earlier text left out — in
+    the order first seen. Judged by `unlinked_lessons` of `guppi/materialize.py`, the one
+    judgment of the link; imported here, since `materialize` imports this module."""
+    from guppi.materialize import parse_line, unlinked_lessons
+
+    ordered = [f"- {body(line)}" for line in written + landed]
+    records = [parse_line(line) for line in ordered]
+    found: list[tuple[str, list[str]]] = []
+    for index in unlinked_lessons(ordered):
+        cases: list[str] = []
+        for at in range(index + 1, len(ordered)):
+            record = records[at]
+            if (
+                record
+                and record["record"] == "decision"
+                and record["kind"] != "defer"
+                and at >= len(written)
+                and body(ordered[at]) in finished
+                and record["case"] not in cases
+            ):
+                cases.append(record["case"])
+        if cases:
+            found.append((records[index]["slug"], cases))
+    return found
+
+
+def reminder_message(slug: str, cases: list[str]) -> str:
+    """The stderr line of the reminder of a lesson with no mark (case 685.1): the Cases of the
+    fresh decision lines after it, then how to mark it."""
+    return (
+        f"ledger: lesson[{slug}] has no mark — did {named_cases(cases)} fix its cause? Then "
+        f"write the decision line of the Case or sub-case that fixed it again with "
+        f"{{addresses:{slug}}} added, alone in a LEDGER block; otherwise go on without it."
+    )
+
+
+ADDRESSES_MARK = re.compile(r"\{addresses:[^}]*\}")
+
+
+def off_store(project_dir: Path, now, stamp: str, fresh: list[str]) -> list[tuple[str, str]]:
+    """`(line, case)` of each fresh decision line other than a `defer` that is not a line of
+    the `ratification` stored for its Case id alone in `<plan>.checked.json` (case 688.7): a
+    `{addresses:<slug>}` block and trailing spaces set aside, it is compared with the ledger
+    lines `fence_ledger_lines` of `guppi/casecheck.py` reads from the stored text — the
+    reading of the `Stop` check of a showing. A line of a Case the store holds no text for,
+    and every such line of a session with no plan file, is held too. The store is read
+    through `guppi/casecheck.py` here, since that module imports this one."""
+    from guppi.casecheck import fence_ledger_lines, read_store
+    from guppi.materialize import parse_line
+
+    decisions = [
+        (line, record)
+        for line in fresh
+        if (record := parse_line(f"- {body(line)}"))
+        and record["record"] == "decision"
+        and record["kind"] != "defer"
+    ]
+    if not decisions:
+        return []
+    store = read_store(plan_path(session_event_logs(project_dir, now, stamp), stamp))
+    held: list[tuple[str, str]] = []
+    for line, record in decisions:
+        case = str(record["case"])
+        entry = store.get(case)
+        text = str(entry.get("text") or "") if isinstance(entry, dict) else ""
+        stored = {
+            ADDRESSES_MARK.sub("", s).rstrip() for s in fence_ledger_lines(text.splitlines()[1:])
+        }
+        if ADDRESSES_MARK.sub("", f"- {body(line)}").rstrip() not in stored:
+            held.append((line, case))
+    return held
+
+
+def off_store_message(case: str) -> str:
+    """The stderr line of a held decision line (case 688.7)."""
+    return (
+        f"ledger: decision[case {case}] not written — it is not a line of the ratification "
+        f"case-guppi stored for case {case}: copy it again as the summary of case-guppi holds "
+        "it, alone in a LEDGER block, or send the Case back to its case-guppi when the stored "
+        "line is wrong."
     )
 
 
@@ -681,6 +799,9 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         lessons = refused_lessons(fresh)
         marks = refused_marks(fresh, written, {line for line, _ in lessons})  # case 497.1
         unopened = refused_without_sprint(project_dir, fresh, written)  # case 628.3
+        copied = off_store(  # case 688.7: a line the sprint refuses gets that refusal alone
+            project_dir, now, stamp, [line for line in fresh if line not in set(unopened)]
+        )
         finished = {body(line) for line in ledger_lines(reply_text(payload))}
         held: list[tuple[str, str]] = []  # case 682.1: asked once, then written as it stands
         dropped: set[str] = set()
@@ -698,11 +819,15 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             | {line for line, _, _, _ in marks}
             | set(unopened)
             | {line for line, _ in held}
+            | {line for line, _ in copied}
             | dropped
         )
         fresh = [line for line in fresh if line not in out]
         if fresh:
             append(path, fresh)
+        reminders = [  # case 685.1: after the write, once a stretch
+            reminder_message(slug, cases) for slug, cases in unaddressed(written, fresh, finished)
+        ]
         messages = [
             "ledger: line not written — the grammar of a ledger line does not read it: "
             f"{body(line)}. Write it again in the form of the table in ratification.md."
@@ -741,6 +866,12 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                     "the line; a defer, a reading and a lesson pass."
                 )
         messages += [message for _, message in held]
+        messages += list(  # case 688.7: one line per held Case
+            dict.fromkeys(
+                off_store_message(case) for line, case in copied if body(line) in finished
+            )
+        )
+        messages += reminders
         loud = untold(messages, told, payload)  # case 577.3: each refused line once a stretch
         for message in loud:
             print(message, file=stderr)

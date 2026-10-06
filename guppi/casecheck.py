@@ -165,8 +165,20 @@ the store does not hold, by `changed_file`, the one judgment the Spec hook impor
 645.4, 645.11). A heading with no
 section — the acknowledging reply — a fence tagged `DIFF`, and a deferred decision in the
 short form — `context`, `problem` and a fence tagged `then` with `defer` items, no `given` and
-no `when` — are not compared and need no sending. On the re-fire exit 0; outside a working
-session — no `hi` — nothing is done.
+no `when` — are not compared and need no sending. Outside a working session — no `hi` —
+nothing is done.
+
+The loop guard (case 688.1). The `Stop` run judges every reply whether `stop_hook_active`
+is set or not, since Claude Code keeps the flag set from a refusal of any `Stop` hook until
+the person's next message, so a showing written again after a refusal is judged again. It
+guards its own loop by its refusals in the stretch — the transcript after the person's last
+message — read by `refusals` of `guppi/ledger.py`, the judgment `guppi onward` calls
+(`own_told`): a reason that names a Case, opening with `case <id>:`, is given while fewer than
+`LIMIT`, three, of its refusals hold a reason of that Case, and any other reason — the
+opening of a round, the layout of a showing, an error of its own — while fewer than three
+hold the same reason (`times_given`, `give`). When no reason is left to give it exits 0 and
+prints one line per Case it lets through, which the Spec hook compares at ratification. With
+the flag set and a transcript it cannot read it exits 0 and prints nothing.
 
 How a round opens (case 562). The same `Stop` run judges a reply whose turn holds a round
 of `case-guppi`: a text a subagent gave back in the turn, by `given_back`, that `is_round`
@@ -226,7 +238,8 @@ follows. A transcript with neither kind is read whole as the turn.
 
 The payload is read as UTF-8; the hook never raises. An error of its own after it has read the
 payload exits 2 on `Stop`, with the error and the advice to show the Case again on stderr, so
-the agent sees it; an error while it reads the payload, and any error of the `--subagent` run,
+the agent sees it, under the count of the loop guard: at most three times a stretch for the
+same error, flag or not (case 688.4); an error while it reads the payload, and any error of the `--subagent` run,
 exits 0 with the error on stderr, since a send-back to `case-guppi` is not ended by
 `stop_hook_active` and would loop; a Case its error left with no file is refused later by the
 `Stop` check (case 555.1). The text of this docstring holds what the `## How it works` of
@@ -248,6 +261,7 @@ from guppi.ledger import (
     opens_turn,
     plan_path,
     read_records,
+    refusals,
     reply_text,
     session_dir,
     session_event_logs,
@@ -1624,9 +1638,53 @@ def round_opening(records: list[dict], reply: str, after_prespec: bool) -> str |
     )
 
 
-def stop(payload: dict, project_dir: Path, now, stderr) -> int:
-    if payload.get("stop_hook_active"):
+COMMAND = "uv run guppi casecheck"  # the command of the `Stop` run, as its refusal names it
+LIMIT = 3  # the refusals of one Case, or of one other reason, a stretch (case 688.1)
+REASON_CASE = re.compile(r"^(case [^:]+):")
+
+
+def own_told(payload: dict) -> list[str] | None:
+    """The text of each refusal of the `Stop` run in the stretch, by `refusals` of
+    `guppi/ledger.py` — the one judgment of the refusals, which `guppi onward` calls; None
+    when the transcript cannot be read (case 688.1)."""
+    found = refusals(payload, COMMAND)
+    return None if found is None else [text for _, text in found[COMMAND]]
+
+
+def times_given(reason: str, told: list[str]) -> int:
+    """How many refusals of the stretch hold a reason of the Case `reason` names — any reason
+    that opens with the same `case <id>:` — or, for a reason that names no Case, the same
+    reason (case 688.1)."""
+    match = REASON_CASE.match(reason)
+    key = match.group(0) if match else reason
+    return sum(1 for text in told if f"casecheck: {key}" in text or f"; {key}" in text)
+
+
+def give(problems: list[str], told: list[str], stderr) -> int:
+    """The reasons of the `Stop` run under the count (case 688.1): each reason still given
+    fewer than `LIMIT` times in the stretch exits 2 on stderr; when none is left, the run
+    exits 0 with one line per Case it lets through, which the Spec hook compares at
+    ratification."""
+    if not problems:
         return 0
+    left = [problem for problem in problems if times_given(problem, told) < LIMIT]
+    if left:
+        print("casecheck: " + "; ".join(left), file=stderr)
+        return 2
+    for case in dict.fromkeys(m.group(1) for p in problems if (m := REASON_CASE.match(p))):
+        print(
+            f"casecheck: {case} shown unchecked after three refusals; the Spec hook compares it "
+            "at ratification",
+            file=stderr,
+        )
+    return 0
+
+
+def stop(payload: dict, project_dir: Path, now, stderr) -> int:
+    told = own_told(payload)
+    if told is None and payload.get("stop_hook_active"):
+        return 0  # the flag set and no transcript to count by: it cannot tell its own loop
+    told = told or []
     stamp = session_stamp(None, payload)
     folder = session_dir(project_dir, now, stamp)
     if folder is None:
@@ -1640,10 +1698,7 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     _, after_prespec = prespec_window("".join(text for _, text in logs), stamp)
     opening = round_opening(turn_records, reply, after_prespec)
     if not shown:
-        if opening:
-            print(f"casecheck: {opening}", file=stderr)
-            return 2
-        return 0
+        return give([opening] if opening else [], told, stderr)
     store = read_store(plan_path(logs, stamp))
     problems = [
         problem
@@ -1668,10 +1723,7 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
             f"case {', '.join(ids)}: no {SEND} call on {path} in the turn of this reply — "
             "send the file"
         )
-    if problems:
-        print("casecheck: " + "; ".join(problems), file=stderr)
-        return 2
-    return 0
+    return give(problems, told, stderr)
 
 
 def run(
@@ -1696,10 +1748,13 @@ def run(
             print(f"casecheck: not checked: {exc}", file=stderr)
             return 0
     try:
-        return stop(payload, project_dir, now, stderr)  # a re-fire returns 0 before any read
+        return stop(payload, project_dir, now, stderr)
     except Exception as exc:  # noqa: BLE001 — shown to the agent, not swallowed (case 555.1)
-        print(
-            f"casecheck: not checked: {exc}. Fix the cause, then show the Case again.",
-            file=stderr,
-        )
-        return 2
+        reason = f"not checked: {exc}. Fix the cause, then show the Case again."
+        try:
+            told = own_told(payload)
+        except Exception:  # noqa: BLE001 — judged as a transcript it cannot read
+            told = None
+        if told is None and payload.get("stop_hook_active"):
+            return 0
+        return give([reason], told or [], stderr)  # at most three times a stretch (688.4)

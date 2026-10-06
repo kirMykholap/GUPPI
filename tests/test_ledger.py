@@ -41,6 +41,18 @@ EVENT_LOG_WITH_HI = """- 15:01:00 44c1aae1 session-start startup
 - 15:01:30 44c1aae1 hi
 - 15:02:00 44c1aae1 tool Bash: git status --short
 """
+# The decision lines of these tests, each a line of the Case `case-guppi` stored (case 688.7).
+STORED = (
+    DECISION,
+    PREVIEW,
+    "- decision[case 3][create][estimate-x-holds]{ref:rule-x}{tags:harness}",
+    "- decision[case 4][update][estimate-x-holds]{ref:estimate-x-holds}",
+    "- decision[case 7][create][z-holds]{ref:rule-x}",
+    "- decision[case 8.1][update][rule-x]{ref:rule-x}",
+    "- decision[case 8.2][update][rule-y]{ref:rule-y}",
+    "- decision[case 9][update][rule-z]{ref:rule-z}",
+    "- decision[case 12][create][entity-sprint-next]{ref:entity-sprint}{tags:sprint}",
+)
 
 
 def timed(line):
@@ -60,8 +72,34 @@ def payload(**fields):
 def write_event_log(project_dir, text, day=TODAY):
     path = project_dir / "vault" / "raw" / day.isoformat() / "event_log.md"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    plan = project_dir / ".claude" / "plans" / "plan.md"
+    path.write_text(text + f"- 15:01:40 44c1aae1 tool Write: {plan}\n", encoding="utf-8")
     sprint_page(project_dir)
+    store_cases(project_dir, *STORED)
+
+
+def store_cases(project_dir, *lines):
+    """The plan file of the session and its store `<plan>.checked.json`, one entry per Case
+    holding these decision lines in its `ratification`, so the hook writes them (case 688.7)."""
+    from guppi.casecheck import read_store, store_of
+
+    plan = project_dir / ".claude" / "plans" / "plan.md"
+    plan.parent.mkdir(parents=True, exist_ok=True)
+    if not plan.exists():
+        plan.write_text("# Spec\n", encoding="utf-8")
+    cases: dict[str, list[str]] = {}
+    for line in lines:
+        cases.setdefault(ledger.BRACKET.search(line).group(1)[5:], []).append(line)
+    store = read_store(plan)
+    for case, own in cases.items():
+        fence = "\n".join(f"> {line}" for line in own)
+        store[case] = {
+            "text": f"### Case {case} — x\n\n> **ratification:**\n> ```\n{fence}\n> ```",
+            "findings": [],
+            "agent_id": "a",
+        }
+    store_of(plan).write_text(json.dumps(store, ensure_ascii=False), encoding="utf-8")
+    return plan
 
 
 def sprint_page(project_dir, slug="entity-sprint-migration"):
@@ -1113,6 +1151,7 @@ def test_an_unmarked_lesson_after_a_decision_line_is_held_once_and_asked(working
 def test_the_question_names_the_cases_before_the_lesson_in_the_order_first_seen(working):
     seed_ledger(working, SUB_2)
     other = SUB_1.replace("rule-x", "rule-w")
+    store_cases(working, SUB_1, other)
     code, err = run(asking(working, ledger_block(SUB_1, CASE_9, other, LESSON, DECISION)), working)
     assert (code, err) == (2, held_refusal(["8.2", "8.1", "9"]))
     assert "did case 8.2, case 8.1 or case 9 fix its cause?" in err
@@ -1155,7 +1194,9 @@ def test_a_lesson_from_an_earlier_text_lands_without_a_word(working):
 
 
 def test_a_lesson_before_every_decision_line_is_not_asked(working):
-    assert run(asking(working, ledger_block(LESSON, DECISION)), working) == (0, "")
+    """It is not held; the reminder after the write is case 685.1."""
+    code, err = run(asking(working, ledger_block(LESSON, DECISION)), working)
+    assert (code, err) == (2, ledger.reminder_message("lesson-x", ["10"]) + "\n")
     assert ledger_text(working).splitlines() == [timed(LESSON), timed(DECISION)]
 
 
@@ -1191,3 +1232,204 @@ def test_with_the_flag_and_a_readable_transcript_the_lesson_is_still_asked(worki
     code, err = run(flagged(working, ledger_block(DECISION, LESSON)), working)
     assert (code, err) == (2, held_refusal(["10"]))
     assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+# --- case 685.1: a lesson before a Case is reminded of its mark ---------------------------
+# `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
+
+MARKED_AGAIN = DECISION + "{addresses:lesson-x}"
+
+
+def reminder(slug, cases):
+    return ledger.reminder_message(slug, list(cases)) + "\n"
+
+
+def test_reminder_comes_after_the_write(working):
+    seed_ledger(working, LESSON)
+    code, err = run(asking(working, ledger_block(DECISION)), working)
+    assert (code, err) == (2, reminder("lesson-x", ["10"]))
+    assert err == (
+        "ledger: lesson[lesson-x] has no mark — did case 10 fix its cause? Then write the "
+        "decision line of the Case or sub-case that fixed it again with "
+        "{addresses:lesson-x} added, alone in a LEDGER block; otherwise go on without it.\n"
+    )
+    assert ledger_text(working).splitlines() == [f"- 15:01:50 {LESSON[2:]}", timed(DECISION)]
+
+
+def test_reminder_names_the_cases_of_the_fresh_lines_in_the_order_first_seen(working):
+    seed_ledger(working, SUB_2, LESSON)
+    code, err = run(asking(working, ledger_block(CASE_9, SUB_1, CASE_9)), working)
+    assert (code, err) == (2, reminder("lesson-x", ["9", "8.1"]))
+
+
+def test_reminder_is_told_once_a_stretch_and_again_for_other_cases(working):
+    seed_ledger(working, LESSON)
+    path = stretch(working, own_refusal(reminder("lesson-x", ["10"]).rstrip("\n")))
+    assert run(
+        payload(last_assistant_message=ledger_block(DECISION), transcript_path=path), working
+    ) == (0, "")
+    stdin = payload(last_assistant_message=ledger_block(CASE_9), transcript_path=path)
+    assert run(stdin, working) == (2, reminder("lesson-x", ["9"]))
+
+
+def test_reminder_ends_once_a_decision_line_carries_the_mark(working):
+    from guppi import materialize
+
+    seed_ledger(working, LESSON, DECISION)
+    code, err = run(asking(working, ledger_block(MARKED_AGAIN)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(MARKED_AGAIN)
+    assert run(asking(working, ledger_block(CASE_9)), working) == (0, "")
+    lines = ledger_text(working).splitlines()
+    assert materialize.unlinked_lessons(lines) == []
+    record = materialize.parse_line(lines[0])
+    assert record["slug"] == "lesson-x" and not record["addressed_by"]
+
+
+def test_reminder_not_for_a_defer_line(working):
+    seed_ledger(working, LESSON)
+    defer = "- decision[case 5][defer][estimate-x-holds]"
+    assert run(asking(working, ledger_block(defer)), working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(defer)
+
+
+def test_reminder_not_for_a_lesson_after_every_decision_line(working):
+    code, err = run(
+        payload(
+            last_assistant_message=ledger_block(DECISION, LESSON), transcript_path=asked(working)
+        ),
+        working,
+    )
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON)]
+
+
+def test_reminder_not_for_a_lesson_already_marked(working):
+    seed_ledger(working, DECISION, LESSON_MARKED)
+    assert run(asking(working, ledger_block(CASE_9)), working) == (0, "")
+
+
+def test_reminder_not_for_a_fresh_lesson_the_same_stop_holds_back(working):
+    code, err = run(asking(working, ledger_block(SUB_1, LESSON, CASE_9)), working)
+    assert (code, err) == (2, held_refusal(["8.1"]))
+    assert ledger_text(working).splitlines() == [timed(SUB_1), timed(CASE_9)]
+
+
+def test_reminder_not_for_a_decision_line_of_an_earlier_text(working):
+    seed_ledger(working, LESSON)
+    path = write_transcript(working, person(), transcript_line(ledger_block(DECISION)))
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=path)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(DECISION)
+
+
+def test_reminder_not_without_hi(tmp_path):
+    write_event_log(tmp_path, "- 15:01:00 44c1aae1 session-start startup\n")
+    code, err = run(asking(tmp_path, ledger_block(LESSON, DECISION)), tmp_path)
+    assert code == 2 and "no /hi recorded" in err and "has no mark" not in err
+
+
+def test_reminder_with_the_flag_and_no_readable_transcript_says_nothing(working):
+    seed_ledger(working, LESSON)
+    stdin = payload(last_assistant_message=ledger_block(DECISION), stop_hook_active=True)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(DECISION)
+
+
+def test_unlinked_lessons_reads_the_marks_of_both_kinds():
+    from guppi.materialize import unlinked_lessons
+
+    lines = [
+        LESSON,
+        DECISION,
+        LESSON.replace("lesson-x", "lesson-y"),
+        MARKED_AGAIN,
+        LESSON_MARKED.replace("lesson-x", "lesson-z"),
+    ]
+    assert unlinked_lessons(lines) == [2]
+    assert unlinked_lessons([LESSON, LESSON_MARKED]) == []
+
+
+# --- case 688.7: a decision line is a copy of the stored Case -----------------------------
+# `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
+
+WRONG = DECISION.replace("{ref:rule-session-start}", "{ref:rule-ledger-write}")
+
+
+def held_copy(case):
+    return ledger.off_store_message(case) + "\n"
+
+
+def test_copy_equal_to_the_store_lands(working):
+    assert run(asking(working, ledger_block(DECISION, SUB_1)), working) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(SUB_1)]
+
+
+def test_copy_that_differs_is_held_and_the_rest_lands(working):
+    code, err = run(asking(working, ledger_block(WRONG, SUB_1, ESTIMATE)), working)
+    assert (code, err) == (2, held_copy("10"))
+    assert err == (
+        "ledger: decision[case 10] not written — it is not a line of the ratification "
+        "case-guppi stored for case 10: copy it again as the summary of case-guppi holds it, "
+        "alone in a LEDGER block, or send the Case back to its case-guppi when the stored line "
+        "is wrong.\n"
+    )
+    assert ledger_text(working).splitlines() == [timed(SUB_1), timed(ESTIMATE)]
+
+
+def test_copy_of_a_case_the_store_holds_no_text_for_is_held(working):
+    line = "- decision[case 77][update][rule-q]{ref:rule-q}"
+    assert run(asking(working, ledger_block(line)), working) == (2, held_copy("77"))
+    assert not ledger_file(working).exists()
+
+
+def test_copy_of_a_session_with_no_plan_file_is_held(tmp_path):
+    path = tmp_path / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    path.parent.mkdir(parents=True)
+    path.write_text(EVENT_LOG_WITH_HI, encoding="utf-8")
+    sprint_page(tmp_path)
+    code, err = run(asking(tmp_path, ledger_block(DECISION, ESTIMATE)), tmp_path)
+    assert (code, err) == (2, held_copy("10"))
+    assert ledger_text(tmp_path) == f"{timed(ESTIMATE)}\n"
+
+
+def test_copy_written_again_equal_lands(working):
+    path = write_transcript(working, person(), transcript_line(ledger_block(WRONG)))
+    stdin = payload(last_assistant_message=ledger_block(DECISION), transcript_path=path)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working) == f"{timed(DECISION)}\n"
+
+
+def test_copy_with_the_addresses_mark_added_lands(working):
+    assert run(asking(working, ledger_block(MARKED_AGAIN)), working) == (0, "")
+    assert ledger_text(working) == f"{timed(MARKED_AGAIN)}\n"
+
+
+def test_copy_rule_does_not_judge_a_defer_line(working):
+    defer = "- decision[case 5][defer][estimate-x-holds]"
+    assert run(asking(working, ledger_block(defer)), working) == (0, "")
+    assert ledger_text(working) == f"{timed(defer)}\n"
+
+
+def test_copy_held_in_an_earlier_text_stays_out_without_a_word(working):
+    path = write_transcript(working, person(), transcript_line(ledger_block(WRONG)))
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=path)
+    assert run(stdin, working) == (0, "")
+    assert not ledger_file(working).exists()
+
+
+def test_copy_reason_is_told_once_a_stretch(working):
+    path = stretch(working, own_refusal(held_copy("10").rstrip("\n")))
+    stdin = payload(last_assistant_message=ledger_block(WRONG), transcript_path=path)
+    assert run(stdin, working) == (0, "")
+    assert not ledger_file(working).exists()
+
+
+def test_copy_with_the_flag_and_no_readable_transcript_stays_out_silently(working):
+    stdin = payload(last_assistant_message=ledger_block(WRONG, ESTIMATE), stop_hook_active=True)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working) == f"{timed(ESTIMATE)}\n"
+
+
+def test_copy_with_the_flag_and_a_readable_transcript_is_still_held(working):
+    assert run(flagged(working, ledger_block(WRONG)), working) == (2, held_copy("10"))

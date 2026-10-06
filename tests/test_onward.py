@@ -299,11 +299,79 @@ def test_plan_the_last_ratification_sends_the_agent_to_prespec(tmp_path):
 
 
 def test_plan_after_prespec_sends_the_agent_to_the_check_and_the_exit(tmp_path):
-    plan_session(tmp_path, log=START + HI + PRESPEC)
+    """A Case built again after the `prespec` line and ratified now (case 686.1)."""
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC)
+    with_case_file(folder, "7", datetime(2026, 9, 30, 11, 30, 0, tzinfo=UTC))
     code, err = run_plan(payload(RATIFIED), tmp_path)
     assert code == 2
     assert err == onward.TO_EXIT + "\n"
     assert "prespec --check" in err and "ExitPlanMode" in err
+
+
+# --- case 686.1: the loop after the findings told from its end --------------------------
+# `estimate-prespec-onward-tells-the-loop-from-its-end`
+
+
+def test_loop_no_case_file_after_prespec_sends_the_agent_on_with_the_loop(tmp_path):
+    plan_session(tmp_path, log=START + HI + PRESPEC)
+    code, err = run_plan(payload(RATIFIED), tmp_path)
+    assert (code, err) == (2, onward.TO_LOOP + "\n")
+    assert "case-guppi" in err and "prespec --check" in err and "ratified" not in err
+
+
+def test_loop_only_case_files_older_than_the_prespec_line_send_it_on_with_the_loop(tmp_path):
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC)
+    with_case_file(folder, "7", datetime(2026, 9, 30, 10, 50, 0, tzinfo=UTC))
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.TO_LOOP + "\n")
+
+
+def test_loop_a_case_built_again_and_not_ratified_keeps_it_silent(tmp_path):
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC)
+    with_case_file(folder, "8", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
+    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+
+
+def test_loop_the_last_prespec_line_counts(tmp_path):
+    later = "- 11:40:00 19037d1c prespec\n"
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC + later)
+    with_case_file(folder, "7", datetime(2026, 9, 30, 11, 30, 0, tzinfo=UTC))
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.TO_LOOP + "\n")
+
+
+@pytest.mark.parametrize(
+    "mtime, reason",
+    [
+        (datetime(2026, 9, 30, 0, 20, 0, tzinfo=UTC), onward.TO_EXIT),
+        (datetime(2026, 9, 29, 23, 59, 0, tzinfo=UTC), onward.TO_LOOP),
+    ],
+)
+def test_loop_a_session_across_midnight_reads_the_line_on_its_date(tmp_path, mtime, reason):
+    first = tmp_path / "vault" / "raw" / "2026-09-29"
+    first.mkdir(parents=True)
+    (first / "event_log.md").write_text(
+        "- 23:20:00 19037d1c session-start startup\n- 23:30:00 19037d1c hi\n", encoding="utf-8"
+    )
+    with_event_log(tmp_path, "- 00:10:00 19037d1c prespec\n")
+    folder = first / "2330"
+    folder.mkdir()
+    (folder / "frontier.md").write_text(CLOSED, encoding="utf-8")
+    with_case_file(folder, "7", mtime)
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, reason + "\n")
+
+
+@pytest.mark.parametrize("block, code", [(True, 2), (False, 0)])
+def test_loop_the_reply_after_a_reminder_of_the_ledger_hook(tmp_path, block, code):
+    """Its reason and the reminder of case 685.1 stand at the same `Stop`; the answer with a
+    `LEDGER` block is sent on again, the answer with none is not."""
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC)
+    with_case_file(folder, "7", datetime(2026, 9, 30, 11, 30, 0, tzinfo=UTC))
+    reminded = "ledger: lesson[lesson-x] has no mark — did case 7 fix its cause?"
+    records = [human(), reply(), refusal(LEDGER, reminded), refusal(PLAN, onward.TO_EXIT)]
+    path = transcript(tmp_path, *records, reply())
+    marked = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}{addresses:lesson-x}\n```\n"
+    text = marked if block else "Case 7 fixed no cause of it."
+    stdin = payload(text, stop_hook_active=True, transcript_path=path)
+    assert run_plan(stdin, tmp_path)[0] == code
 
 
 def test_plan_an_open_cases_line_is_silent(tmp_path):

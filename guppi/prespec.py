@@ -246,18 +246,35 @@ def window(event_log: str, stamp: str) -> tuple[bool, bool]:
     """`(hi, prespec)`: whether the log holds a `hi` of this session's stamp, and a `prespec`
     of the same stamp after it (case 136.2). A mark of another stamp or `--------` does not
     count, and a `session-start` of another session resets nothing: the marks bind by stamp,
-    not by position."""
-    seen_hi = seen_prespec = False
-    for line in event_log.splitlines():
-        parts = line.split(" ", 3)
-        if len(parts) < 4 or parts[0] != "-" or parts[2] != stamp:
-            continue
-        event = parts[3].split(" ", 1)[0]
-        if event == "hi":
-            seen_hi = True
-        elif event == "prespec" and seen_hi:
-            seen_prespec = True
-    return seen_hi, seen_prespec
+    not by position. The `prespec` line is found by `prespec_mark`, the one reading of it."""
+    seen_hi = any(
+        len(parts) == 4
+        and parts[0] == "-"
+        and parts[2] == stamp
+        and parts[3].split(" ", 1)[0] == "hi"
+        for parts in (line.split(" ", 3) for line in event_log.splitlines())
+    )
+    return seen_hi, prespec_mark([("", event_log)], stamp) is not None
+
+
+def prespec_mark(logs: list[tuple[str, str]], stamp: str) -> tuple[str, str] | None:
+    """`(date, time)` of the last `prespec` line of this session's stamp after its first
+    `hi`, over the `(date, text)` event logs in date order; None when none stands (cases
+    136.2, 686.1). The one reading of the line: `window` finds it through this function, and
+    `guppi onward --plan` reads its time to tell the loop after the findings from its end."""
+    seen_hi = False
+    mark = None
+    for day, text in logs:
+        for line in text.splitlines():
+            parts = line.split(" ", 3)
+            if len(parts) < 4 or parts[0] != "-" or parts[2] != stamp:
+                continue
+            event = parts[3].split(" ", 1)[0]
+            if event == "hi":
+                seen_hi = True
+            elif event == "prespec" and seen_hi:
+                mark = (day, parts[1])
+    return mark
 
 
 # --- the session's window -------------------------------------------------------------

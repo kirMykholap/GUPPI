@@ -328,6 +328,29 @@ def marks_without_decision(lines: list[str]) -> list[int]:
     return orphans
 
 
+def unlinked_lessons(lines: list[str]) -> list[int]:
+    """The index of each lesson line among `lines` that no mark links to a Case (case 685.1):
+    the line carries no `{addressed_by:...}`, no `lesson[<slug>]` line of the same slug
+    carries one, and no decision line after it carries `{addresses:<slug>}`. The one judgment
+    of the link, read over the lines in their order by `parse_line`, a line it does not read
+    skipped, beside `marks_without_decision`, the judgment of the other mark: `lift_line`
+    links such a lesson to no Case, and the ledger hook `guppi ledger` reminds the agent of
+    it after the fresh decision lines that follow it."""
+    records = [parse_line(line) for line in lines]
+    marked = {r["slug"] for r in records if r and r["record"] == "lesson" and r.get("addressed_by")}
+    unlinked: list[int] = []
+    for index, record in enumerate(records):
+        if record is None or record["record"] != "lesson" or record["slug"] in marked:
+            continue
+        if any(
+            later and later["record"] == "decision" and record["slug"] in later["addresses"]
+            for later in records[index + 1 :]
+        ):
+            continue
+        unlinked.append(index)
+    return unlinked
+
+
 def cases_of(value) -> list[str]:
     """The Cases an entry's `supersedes` names: a list since case 429, one value in a yaml
     written before it."""

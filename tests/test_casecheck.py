@@ -1091,8 +1091,79 @@ def test_stop_a_parent_is_compared_part_by_part(working):
     assert code == 2 and "case 9.1: its then differ" in err
 
 
-def test_stop_the_re_fire_passes(working):
-    assert show(working, ANSWER, stop_hook_active=True) == (0, "")
+def test_stop_the_re_fire_is_compared_again(working):
+    """Case 688.2: the flag set after another hook's refusal changes nothing."""
+    files = [case_path(working, "7")]
+    records = [prompt(), sending(*files), result(), other_refusal()]
+    code, err = show(working, ANSWER, records=records, stop_hook_active=True)
+    assert code == 2 and "case 7: not built and checked by case-guppi" in err
+
+
+# --- the loop guard of the Stop run (case 688.1) ----------------------------------------
+# `estimate-case-check-judges-a-showing-after-a-refusal`
+
+
+def own_refusal(text):
+    """A refusal of the `Stop` run, as Claude Code records it (sessions 1237, 1441)."""
+    content = f"Stop hook feedback:\n[{casecheck.COMMAND}]: {text.rstrip()}"
+    return {"type": "user", "isMeta": True, "message": {"content": content}}
+
+
+def other_refusal():
+    content = "Stop hook feedback:\n[uv run guppi onward --plan]: onward: go on"
+    return {"type": "user", "isMeta": True, "message": {"content": content}}
+
+
+def after_refusals(project, reply, *refused, **fields):
+    """The `Stop` run on `reply`, its turn sending the files of its Cases, after `refused`."""
+    files = sorted({case_path(project, c) for c in casecheck.split_cases(reply)})
+    records = [prompt(), sending(*files), result(), *refused]
+    return show(project, reply, records=records, **fields)
+
+
+def test_guard_a_showing_after_another_hooks_refusal_is_refused(working):
+    code, err = after_refusals(working, ANSWER, other_refusal(), stop_hook_active=True)
+    assert code == 2 and err.startswith("casecheck: case 7: not built")
+
+
+def test_guard_the_same_wrong_showing_is_refused_three_times_then_let_through(working):
+    _, first = show(working, ANSWER)
+    refused = [own_refusal(first)]
+    for _ in range(2):
+        code, err = after_refusals(working, ANSWER, *refused, stop_hook_active=True)
+        assert (code, err) == (2, first)
+        refused.append(own_refusal(err))
+    code, err = after_refusals(working, ANSWER, *refused, stop_hook_active=True)
+    unchecked = (
+        "casecheck: case 7 shown unchecked after three refusals; the Spec hook compares it at "
+        "ratification\n"
+    )
+    assert (code, err) == (0, unchecked)
+
+
+def test_guard_two_cases_are_counted_apart(working):
+    other = ANSWER.replace("## Case 7 —", "## Case 8 —")
+    refused = [own_refusal("casecheck: case 7: not built and checked by case-guppi")] * 3
+    code, err = after_refusals(working, ANSWER + "\n" + other, *refused)
+    assert code == 2 and "case 8:" in err and "case 7:" not in err
+
+
+def test_guard_a_reason_with_no_case_is_counted_by_its_text(working):
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    reply = "A line of my own.\n\n" + SHOWN_ROUND
+    code, err = show(working, reply, records=records)
+    assert code == 2
+    assert show(working, reply, records=records + [own_refusal(err)] * 2)[0] == 2
+    assert show(working, reply, records=records + [own_refusal(err)] * 3) == (0, "")
+
+
+def test_guard_the_flag_with_an_unreadable_transcript_passes_silently(working):
+    assert show(
+        working, ANSWER, transcript_path=str(working / "none.jsonl"), stop_hook_active=True
+    ) == (
+        0,
+        "",
+    )
 
 
 # --- a list showing under the heading of a top-level Case (case 561.10) -----------------
@@ -1197,12 +1268,13 @@ def test_layout_a_text_before_the_last_tool_call_is_refused(working):
     assert code == 2 and LAYOUT in err and "Showing the Case." in err
 
 
-def test_layout_the_acknowledging_reply_and_the_re_fire_are_not_judged(working):
+def test_layout_the_acknowledging_reply_is_not_judged_and_the_re_fire_is(working):
     answer(working, ANSWER)
     ack = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Case 7 — ratified\n\n**Changes:** x.\n"
     assert show(working, "A line.\n\n" + ack, sent=[]) == (0, "")
     noted = "Here is the Case.\n\n" + SHORT_SHOWING
-    assert show(working, noted, stop_hook_active=True) == (0, "")
+    code, err = after_refusals(working, noted, other_refusal(), stop_hook_active=True)
+    assert code == 2 and LAYOUT in err  # case 688.6
 
 
 # --- how a round of case-guppi opens (case 562) -----------------------------------------
@@ -1330,10 +1402,12 @@ def test_round_a_round_whose_title_line_lacks_its_colon_is_a_round(working):
     assert code == 2 and "A line of my own." in err
 
 
-def test_round_the_re_fire_passes(working):
-    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+def test_round_the_re_fire_is_judged_again(working):
+    """Case 688.5: a round shown again after a refusal is judged again."""
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND), other_refusal()]
     reply = "A line.\n\n" + SHOWN_ROUND
-    assert show(working, reply, records=records, stop_hook_active=True) == (0, "")
+    code, err = show(working, reply, records=records, stop_hook_active=True)
+    assert code == 2 and "A line." in err
 
 
 def test_stop_list_the_file_of_the_top_level_case_must_be_sent(working):
@@ -1513,10 +1587,24 @@ def test_error_an_error_of_the_stop_run_exits_2_with_the_advice(working, monkeyp
     assert "show the Case again" in err
 
 
-def test_error_the_re_fire_exits_0(working, monkeypatch):
+def test_error_the_re_fire_blocks_until_three_refusals_hold_it(working, monkeypatch):
+    """Case 688.4: the same error blocks at each Stop, flag or not, at most three times."""
     answer(working, ANSWER)
     monkeypatch.setattr(casecheck, "against_store", boom)
-    assert show(working, ANSWER, stop_hook_active=True) == (0, "")
+    code, err = after_refusals(working, ANSWER, other_refusal(), stop_hook_active=True)
+    assert code == 2 and err.startswith("casecheck: not checked: boom")
+    assert after_refusals(working, ANSWER, *[own_refusal(err)] * 2, stop_hook_active=True)[0] == 2
+    assert after_refusals(working, ANSWER, *[own_refusal(err)] * 3, stop_hook_active=True) == (
+        0,
+        "",
+    )
+
+
+def test_error_with_the_flag_and_no_readable_transcript_exits_0(working, monkeypatch):
+    answer(working, ANSWER)
+    monkeypatch.setattr(casecheck, "against_store", boom)
+    stdin_fields = {"transcript_path": str(working / "none.jsonl"), "stop_hook_active": True}
+    assert show(working, ANSWER, **stdin_fields) == (0, "")
 
 
 def test_error_an_empty_payload_exits_0_with_its_line(working):

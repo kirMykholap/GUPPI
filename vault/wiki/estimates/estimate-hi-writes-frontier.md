@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-skill-hi]]"
-method: "the person's answer at the /hi of the session after the close of a sprint, on whether the Frontier came out as the Criterion says, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
+method: "by hand: the person's answer at the /hi of the session after the close of a sprint, on whether the Frontier came out as the Criterion says, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
 checked: 2026-09-30
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
@@ -19,6 +19,7 @@ The person invokes `/hi` of `rule-skill-hi`. The agent assembles the Frontier fr
 Then:
 The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## Cases`, with lines `- [ ] C<n> — <title> · <source>`, `## Work`, with lines `- [ ] W<n> — <title> · <source>`, and `## Ask`, with lines `` - [ ] A<n> — `<slug>` — <question> · brief ``. The title of a line of the current milestone or of the backlog opens with the slug of each of its pages in a code span.
 **＋** The kind comes from the source. Cases: first, when the first line of the `Cases` of the brief's Next session opens with `open the next sprint`, that line; then, on a plan branch, the unfinished plan and each conserved Spec of `vault/wiki/backlog.md`, with the source `backlog`; then the items of the current milestone; the `Cases` list of the brief's Next session; a hand edit shown by `Render:`; a `failed` reading or a lesson of the ledger's Tail; an open `W` line whose reading cannot run now, written by the reading step of `/hi`; an item the person adds. Work: the `Work` list of the brief's Next session; a dirty tree by `git status`. Ask: the `Ask the person` list of the brief's Next session.
+**＋** A line of the `Cases` of the brief's Next session that names the same item as a line of the current milestone makes no line of its own. The milestone line stands as the sprint page gives it, with the source `sprint` alone. The agent judges the sameness by meaning from the sprint page and the brief in its context, with no page opened.
 **＋** The other items of the backlog are not lines. `## Cases` ends with the line `Backlog: N items`, where N is the count in `vault/wiki/backlog.md`. Under a Cases line, an indented line `- near` names by slug each backlog item whose `purpose` is near that line in meaning. The agent judges this from the loaded file, with no `ask-guppi`. An item the person brings onto the Frontier becomes a Cases line with the source `backlog`.
 **＋** A line closes by appending the closer and keeping the source. An item ended closes `[x] … · case N` when decided, or `[x] … · work` when done with no decision. A line of the sprint page left for a later session closes `[-] … · sprint · defer`. An item of the backlog left as it stands closes `[-] … · backlog · kept`. A decision of any other source put off closes `[-] … · defer case N`.
 **＋** An item closed `defer` or `kept` has no short Case and no ledger line, but for the short Case of a take-back of a ratified Case, as `vault/wiki/orchestration.md` sets it. A sprint item never closes `· defer case N`.
@@ -65,3 +66,5 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 - 2026-10-04 updated: the Criterion replaced whole — no conserved Spec is a Cases line while the opening of the next sprint stands (case 632.6) · [[decision-case-632.6]]
 - 2026-10-05 updated: the Criterion replaced whole — an open W line whose reading cannot run now is a source of a Cases line (case 670.6) · [[decision-case-670.6]]
 - 2026-10-07 updated: the Criterion replaced whole — an item closed defer or kept has no short Case but for the short Case of a take-back; the reading by hand is the person's answer at that /hi (case 723.3) · [[decision-case-723.3]]
+- 2026-10-08 updated: the Criterion replaced whole — a brief line that repeats an item of the current milestone makes no line of its own (case 729) · [[decision-case-729]]
+- 2026-10-08 updated: the method opens with "by hand", the one spelling of a reading, so lint reads it as one (case 731) · [[decision-case-731]]

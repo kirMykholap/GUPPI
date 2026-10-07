@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: once Cases 722 and 723 left their batch, the main agent showed the Case that came back first instead of holding it until the open round of the other Case was answered, so one reply asked two things
-status: clustered
+status: archived
 insight: "[[insight-orchestration-items-taken-together-unruled]]"
 origin: raw/2026-10-07/2114/ledger.md#L29
 sprint: migration
@@ -22,3 +22,5 @@ once Cases 722 and 723 left their batch, the main agent showed the Case that cam
 
 - 2026-10-07 created · raw/2026-10-07/2114/ledger.md#L29
 - 2026-10-07 updated: clustered under insight-orchestration-items-taken-together-unruled (synthesis) · raw/2026-10-07/2114/ledger.md#L29
+- 2026-10-08 archived · insight actioned
+- 2026-10-08 archived · cleanup

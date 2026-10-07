@@ -172,6 +172,7 @@ entries:
   change: the Splitting section says the Spec hook removes a parent whose every sub-case is retired (case
     722.3)
   applied: '22:45:11'
+  superseded_by: '727'
 - line: 6
   text: decision[case 722.3][defer][rule-case-protocol]{ref:rule-case-protocol}
   case: '722.3'
@@ -188,6 +189,7 @@ entries:
       retires decision-case-721 on this page for the sentence on the Spec hook
   exists: true
   applied: '22:45:11'
+  superseded_by: '727'
 - line: 7
   text: decision[case 723.1][update][rule-orchestration]{ref:rule-orchestration}{supersedes:case 713}{supersedes:case
     721}
@@ -1535,6 +1537,8 @@ decisions:
   supersedes:
   - decision-case-721
   applied: '22:45:11'
+  superseded_by:
+  - decision-case-727
 - case: '723.1'
   decision: decision-case-723.1
   origin: raw/2026-10-07/2114/ledger.md#case-723.1

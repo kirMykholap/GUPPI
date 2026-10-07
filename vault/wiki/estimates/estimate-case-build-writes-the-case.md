@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-case-build]]"
 purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame, writes it into its file and answers with a short summary, empties the file of a Case it drops, and undoes a change the person dropped on a ratified Case
 method: by hand, the text of .claude/agents/case-guppi.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec, read against the Criterion; the tokens and seconds of each dispatch of case-guppi in that session, when there was one, in the estimate line
-checked: 2026-10-07
+checked: 2026-10-08
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -28,6 +28,7 @@ Then:
 **＋** When no fork is open, it writes the Case whole in English in the chat form of `vault/wiki/case-schema.md`, its ledger lines in the form of `vault/wiki/ratification.md`, from the heading to the fence of `ratification` and nothing else, into `raw/<date>/<hi HHMM>/cases/case-<N>.md` by `Write`, N the id of the top-level Case.
 **＋** Its answer is then a summary alone: a first line `**Built:**` and the path of the file; a second line `**Case:**` with the id and the name of the top-level Case as the heading of the file writes them, a Case with sub-cases included; then one list item per Case and sub-case with its id and name, the Estimate that checks it and one line on what that Estimate checks, and under the item its ledger lines in an untagged fence, as the file holds them.
 **＋** When the `context` of a Case says that another Case of the session should change instead, the item of that Case in the summary carries a line `**Other Case:**` that names the other Case and the change it needs.
+**＋** Where an Estimate that the Case creates, or whose Criterion it replaces, already makes the promise behind that change, the change it names is a pointer to that Estimate, never that promise written again.
 **＋** Sent findings by the hook on the file, or asked for a change by a message, it changes the file by `Edit` of the lines that change and answers with the summary again; sent a finding on its summary alone, it answers with the summary again and leaves the file as it stands; asked by a message that opens a fork, it answers with a round.
 **＋** Asked, by a message or by a finding of `/pre-spec`, for a fix that adds a second behaviour with a promise of its own to a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md` and no sub-cases, it builds that behaviour as a new top-level Case beside it, in its own file and with no `{supersedes:case N}` mark. The number of the new Case is one above the highest number of the files under `raw/<date>/<hi HHMM>/cases/` and of the decision lines of that ledger, or the free number that the guard of `guppi/ratified.py` names when it refuses that number. The ratified Case and its file stay as they are, and its summary names the new Case.
 **＋** A pair of that new Case whose sentence the ratified Case changed takes that sentence as the ratified Case leaves it.
@@ -45,7 +46,7 @@ Then:
 
 ## Result
 
-2026-10-07, Retro of session 2114, by hand: the new Render of rule-case-build in the Spec (case 725.1, three replace pairs) read against the Criterion — a second behaviour with a promise of its own of a ratified Case with no sub-cases built as a new top-level Case beside it, no supersedes mark, its number one above the files and the ledger or the guard's free number, the ratified Case and its file left as they stand, a pair taking the sentence as the ratified Case leaves it, a fix that changes what the ratified Case set built again under a new number, a file left behind emptied only when its Case has no decision line, the file of a new Case beside a ratified one among the files it writes; the lines of the Criterion the pairs do not touch stand in the Render as read at L22 of session 1804; dispatches of case-guppi in session 2114, subagent tokens and seconds per answer: Case 722 60143/93, 73468/50, 85471/36, 92507/29, 156595/283, 191816/65, 206205/44, 214191/63; Case 723 88299/137, 125617/51, 132350/47, 156203/170, 157539/21, 162711/31; Case 725 86371/156, 133297/247, 133560/11; Case 726 71825/69, 74918/22, 110348/146, 110065/5
+2026-10-08, Retro of session 0050, the new Render of rule-case-build in spec.md (Case 730.3, its replace anchor found once in rule-case-build.md) against the Criterion of Case 730.3: the instruction to name in context the other Case and the change it needs now says that, where an Estimate its own Case creates or whose Criterion it replaces already makes the promise, the change is a pointer to that Estimate, never that promise written again; the other lines of the Criterion are carried word for word from the Criterion the Render already met
 
 ## History
 
@@ -73,3 +74,5 @@ Then:
 - 2026-10-07 status: pending → passed · raw/2026-10-07/1804/ledger.md#L22
 - 2026-10-07 updated: the Criterion replaced whole — a second behaviour of a ratified Case is a new Case beside it, and the file of a ratified Case left behind is not emptied (case 725.1) · [[decision-case-725.1]]
 - 2026-10-07 status: pending → passed · raw/2026-10-07/2114/ledger.md#L23
+- 2026-10-08 updated: the Criterion replaced whole — the change another Case needs is a pointer to an Estimate of the Case that names it, when that Estimate already makes its promise (case 730.3) · [[decision-case-730.3]]
+- 2026-10-08 status: pending → passed · raw/2026-10-08/0050/ledger.md#L15

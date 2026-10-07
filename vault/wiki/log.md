@@ -7425,3 +7425,39 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-07 decisions/decision-case-713 archived · cleanup
 - 2026-10-07 decisions/decision-case-720 archived · cleanup
 - 2026-10-07 decisions/decision-case-721 archived · cleanup
+- 2026-10-08 decisions/decision-case-727 created · raw/2026-10-08/0050/ledger.md#case-727 · generate
+- 2026-10-08 decisions/decision-case-722.3 superseded by decision-case-727 · [[decision-case-727]] · generate
+- 2026-10-08 rules/rule-case-protocol defer by decision-case-722.3 superseded · [[decision-case-727]] · generate
+- 2026-10-08 rules/rule-case-protocol updated: the take-back is an exception to the Frontier line closed again by the superseding Case, its closer set in orchestration.md (case 727, supersedes the defer of 722.3) · [[decision-case-727]] · generate
+- 2026-10-08 decisions/decision-case-728 created · raw/2026-10-08/0050/ledger.md#case-728 · generate
+- 2026-10-08 estimates/estimate-orchestration-defers-in-one-reply updated: the method reads the new Render of rule-orchestration in the Spec at Retro; passed by the person's decision, the Criterion written back unchanged (case 728) · [[decision-case-728]] · generate
+- 2026-10-08 decisions/decision-case-729 created · raw/2026-10-08/0050/ledger.md#case-729 · generate
+- 2026-10-08 rules/rule-skill-hi updated: a line of the brief's Next session that repeats an item of the current milestone makes no Frontier line of its own (case 729) · [[decision-case-729]] · generate
+- 2026-10-08 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — a brief line that repeats an item of the current milestone makes no line of its own (case 729) · [[decision-case-729]] · generate
+- 2026-10-08 decisions/decision-case-730 created · raw/2026-10-08/0050/ledger.md#case-730 · generate
+- 2026-10-08 decisions/decision-case-730.1 created · raw/2026-10-08/0050/ledger.md#case-730.1 · generate
+- 2026-10-08 rules/rule-orchestration updated: Cases out at the same time by any route are a batch, so no Case is shown while a round of another Case stands unanswered (case 730.1) · [[decision-case-730.1]] · generate
+- 2026-10-08 estimates/estimate-orchestration-batches-cases-out-at-once created · [[decision-case-730.1]] · generate
+- 2026-10-08 estimates/estimate-orchestration-batches-cases-out-at-once status: pending → passed · raw/2026-10-08/0050/ledger.md#L13 · generate
+- 2026-10-08 rules/rule-orchestration estimate estimate-orchestration-batches-cases-out-at-once added · [[decision-case-730.1]] · generate
+- 2026-10-08 insights/insight-orchestration-items-taken-together-unruled updated: actioned: Cases out at the same time by any route are a batch, so no Case is shown while a round of another Case stands unanswered (case 730.1) · [[decision-case-730.1]] · generate
+- 2026-10-08 decisions/decision-case-730.2 created · raw/2026-10-08/0050/ledger.md#case-730.2 · generate
+- 2026-10-08 estimates/estimate-orchestration-signs-a-batch-together updated: the Criterion replaced whole — a Case is shown again alone only when no other Case is out, and otherwise as estimate-orchestration-batches-cases-out-at-once sets it; the method reads the new Render at Retro (case 730.2) · [[decision-case-730.2]] · generate
+- 2026-10-08 decisions/decision-case-730.3 created · raw/2026-10-08/0050/ledger.md#case-730.3 · generate
+- 2026-10-08 rules/rule-case-build updated: the change another Case needs is a pointer to an Estimate of the Case that names it, when that Estimate already makes its promise (case 730.3) · [[decision-case-730.3]] · generate
+- 2026-10-08 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — the change another Case needs is a pointer to an Estimate of the Case that names it, when that Estimate already makes its promise (case 730.3) · [[decision-case-730.3]] · generate
+- 2026-10-08 insights/insight-workflow-case-written-without-reading-the-pages-it-changes updated: actioned: case-guppi words the change another Case needs as a pointer to its own Estimate when that Estimate already makes the promise (case 730.3) · [[decision-case-730.3]] · generate
+- 2026-10-08 decisions/decision-case-731 created · raw/2026-10-08/0050/ledger.md#case-731 · generate
+- 2026-10-08 estimates/estimate-hi-writes-frontier updated: the method opens with "by hand", the one spelling of a reading, so lint reads it as one (case 731) · [[decision-case-731]] · generate
+- 2026-10-08 estimates/estimate-orchestration-signs-a-batch-together status: pending → passed · raw/2026-10-08/0050/ledger.md#L14 · generate
+- 2026-10-08 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-10-08/0050/ledger.md#L15 · generate
+- 2026-10-08 lessons/lesson-hi-repeats-a-sprint-item-the-brief-carries created · raw/2026-10-08/0050/ledger.md#L16 · generate
+- 2026-10-08 lessons/lesson-case-build-finds-the-sentences-it-changes-by-their-words created · raw/2026-10-08/0050/ledger.md#L17 · generate
+- 2026-10-08 insights/insight-workflow-case-written-without-reading-the-pages-it-changes updated: child lesson-case-build-finds-the-sentences-it-changes-by-their-words added, reopened from actioned by case 730.3 of this run (synthesis) · raw/2026-10-08/0050/ledger.md#L17 · generate
+- 2026-10-08 lessons/lesson-case-build-finds-the-sentences-it-changes-by-their-words updated: clustered under insight-workflow-case-written-without-reading-the-pages-it-changes (synthesis) · raw/2026-10-08/0050/ledger.md#L17 · generate
+- 2026-10-08 rules/rule-orchestration status: draft → built · cascade · generate
+- 2026-10-08 decisions/decision-case-722.3 archived · superseded · generate
+- 2026-10-08 lessons/lesson-orchestration-showed-a-case-while-a-round-stood-open archived · insight actioned · generate
+- 2026-10-08 lessons/lesson-orchestration-showed-a-case-while-a-round-stood-open archived · cleanup
+- 2026-10-08 decisions/decision-case-722.3 archived · cleanup
+- 2026-10-08 decisions/decision-case-722 child decision-case-722.3 archived · cleanup

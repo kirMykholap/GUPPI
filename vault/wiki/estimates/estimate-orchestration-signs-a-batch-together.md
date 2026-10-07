@@ -4,8 +4,8 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether, when the person's word asks that a ratified Case change while another Case is built, the main agent sends it back and shows the two Cases together for one ratification, with the rounds gathered and the waits marked as after the findings of pre-spec
-method: "by hand at a Plan Mode of a later session in which the person's word asks that a ratified Case change: the SendMessage calls and the replies from that word to the acknowledging reply, read in the transcript"
-checked: 2026-10-04
+method: "by hand at Retro of the session that changes it: the new Render of rule-orchestration in the Spec, read against the Criterion, recorded in the estimate line"
+checked: 2026-10-08
 origin: raw/2026-10-02/2049/ledger.md#case-598.1
 sprint: migration
 created: 2026-10-02
@@ -23,16 +23,18 @@ The main agent sends the ratified Case back to its `case-guppi` by `SendMessage`
 **＋** While an answer of a `case-guppi` of the batch is out, the main agent ends each turn with one line that opens with the bold label `**Waiting:**`, translated, and names the Cases that have answered and those still out. It writes nothing else in the chat, and `rule-case-check` refuses no such reply.
 **＋** It shows one list of every round that came back, each question in the shape of `.claude/skills/grill-me/SKILL.md` and numbered `<Case id>.Q<n>`. It sends each answer to the `case-guppi` of its Case, all in one message, until every `case-guppi` of the batch has answered with its Case.
 **＋** It shows every Case of the batch in one reply, each in the showing that `vault/wiki/orchestration.md` sets, for one ratification.
-**＋** The person ratifies the batch at once or names the ids. A Case the person questions or changes goes back to its `case-guppi` and is shown again, alone or in a new batch with each Case it asks to change.
+**＋** The person ratifies the batch at once or names the ids. A Case the person questions or changes goes back to its `case-guppi` and is shown again, alone only when no other Case of the session is out, or in a new batch with each Case it asks to change; while another Case is out, it is shown as `estimate-orchestration-batches-cases-out-at-once` sets it.
 **－** Outside a batch and the loop after the findings of `/pre-spec`, the main agent does not take up the next item of `raw/<date>/<hi HHMM>/frontier.md` before the shown Case is ratified or deferred.
 **－** The loop after the findings of `/pre-spec` stays as `rule-prespec` sets it.
 
 ## Result
 
-2026-10-04, at the /hi of session 1934, by hand: transcript 8b8ce20f of session 1439: the person's word at 17:45:25 asked a change of the ratified Case 627 while Case 628 was built; the main agent sent 627 back to its case-guppi by SendMessage at 17:46:32 and showed neither Case alone; the six turns while an answer was out (17:46:34, 17:47:21, 17:52:03, 18:04:06, 18:05:56, 18:11:22) each held one line opening with **Waiting:** naming who answered and who was out, and the Stop hooks refused none; the rounds of 628 were shown numbered 628.Q1–Q4, 628.Q5, 628.Q6, 628.Q11, each answer sent to the case-guppi of 628 verbatim; at 18:19:51 both case files went by one SendUserFile and the reply of 18:20:18 showed both Cases under their Russian headings with one ratification fence; the person ratified both with one word; the second batch, 627.1 with 628.1 at 18:28:39–18:31:55, took the same steps; the reply of 18:23:19, after the hook ratified refused 628.1, held text before its Waiting line, a send-back by the hook and not by the person's word, so outside the When; not exercised: a third Case joining a batch, rounds of two Cases out at once, a Case the person questions inside a batch
+2026-10-08, Retro of session 0050, the new Render of rule-orchestration in spec.md (Case 730.1) against the Criterion of Case 730.2: the ratified Case sent back and the Case being built are one batch, a Case asked to change in the same way joins it, the Waiting line, one list of rounds numbered <Case id>.Q<n>, every Case shown in one reply, the person ratifies at once or names ids; a Case questioned or changed is shown again alone only when no other Case of the session is out, otherwise in a batch per the new route; no next item before the shown Case is ratified or deferred outside a batch; the loop after /pre-spec unchanged
 
 ## History
 
 - 2026-10-02 created · [[decision-case-598.1]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/1934/ledger.md#L2
+- 2026-10-08 updated: the Criterion replaced whole — a Case is shown again alone only when no other Case is out, and otherwise as estimate-orchestration-batches-cases-out-at-once sets it; the method reads the new Render at Retro (case 730.2) · [[decision-case-730.2]]
+- 2026-10-08 status: pending → passed · raw/2026-10-08/0050/ledger.md#L14

@@ -41,8 +41,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 728 — The check of the put-off reply reads the new Render at Retro
@@ -105,7 +105,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-defers-in-one-reply`
+- [x] update `estimate-orchestration-defers-in-one-reply`
 ```
 
 ## Case 729 — A brief line that repeats a sprint item makes no second Frontier line
@@ -170,9 +170,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `estimate-hi-writes-frontier`
+- [x] update `rule-skill-hi`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `estimate-hi-writes-frontier`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -267,11 +267,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] create `estimate-orchestration-batches-cases-out-at-once`
-- [ ] update `insight-orchestration-items-taken-together-unruled`
-- [ ] read `estimate-orchestration-batches-cases-out-at-once`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] create `estimate-orchestration-batches-cases-out-at-once`
+- [x] update `insight-orchestration-items-taken-together-unruled`
+- [x] read `estimate-orchestration-batches-cases-out-at-once`
 ```
 
 ### Case 730.2 — A Case shown again alone only when no other Case is out
@@ -312,8 +312,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-signs-a-batch-together`
-- [ ] read `estimate-orchestration-signs-a-batch-together`
+- [x] update `estimate-orchestration-signs-a-batch-together`
+- [x] read `estimate-orchestration-signs-a-batch-together`
 ```
 
 ### Case 730.3 — A change asked of another Case points to the promise
@@ -381,11 +381,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] update `insight-workflow-case-written-without-reading-the-pages-it-changes`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] update `insight-workflow-case-written-without-reading-the-pages-it-changes`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ## Case 731 — The method of the Frontier check is spelled as a reading by hand
@@ -434,5 +434,5 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hi-writes-frontier`
+- [x] update `estimate-hi-writes-frontier`
 ```

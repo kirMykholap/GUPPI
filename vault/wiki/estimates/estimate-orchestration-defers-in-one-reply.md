@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-orchestration]]"
 purpose: A decision the person asks to put off in Plan Mode, from a source other than the sprint or the backlog, is shown as a short-form Case and written in the reply that shows it, with no round of ratification; when the item has a Case built and not ratified, that reply comes in the turn that the answer Dropped of its case-guppi opens
-method: by hand, a decision the person asks to put off, its line of frontier.md closed [-] … · defer case N, in a reply that leaves no line under the Cases heading of frontier.md open; a sprint item put off or a backlog item kept is not this reading
-checked: 2026-10-07
+method: "by hand at Retro of the session that changes it: the new Render of rule-orchestration in the Spec, read against the Criterion, recorded in the estimate line"
+checked: 2026-10-08
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
 created: 2026-09-24
@@ -33,6 +33,7 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 
 ## Result
 
+2026-10-08, the person's decision, case 728: the Render of rule-orchestration as it stands read against the Criterion; each line of the Criterion is stated in it
 2026-10-07, Retro, not read: its method needs a decision of a source other than the sprint or the backlog put off with its line closed [-] … · defer case N; in session 2114 only the sprint items C1 and C2 were put off, closed · sprint · defer, which the method excludes
 
 ## History
@@ -60,3 +61,4 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-10-07 status: failed → passed · raw/2026-10-07/0636/ledger.md#L13
 - 2026-10-07 updated: the Criterion replaced whole — a sprint or backlog item takes no short Case but for the short Case of a take-back (case 723.2) · [[decision-case-723.2]]
 - 2026-10-07 status: pending → failed · raw/2026-10-07/2114/ledger.md#L22
+- 2026-10-08 updated: the method reads the new Render of rule-orchestration in the Spec at Retro; passed by the person's decision, the Criterion written back unchanged (case 728) · [[decision-case-728]]

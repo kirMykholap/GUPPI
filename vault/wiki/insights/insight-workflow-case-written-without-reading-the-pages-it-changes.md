@@ -2,8 +2,8 @@
 type: insight
 pattern: A Case is composed from what the agent has in view — the dialogue, the rule page, the code — and the pages it changes or runs beside are not read against it before it is shown, so a contradiction with them is found only by a later check, pre-task or pre-spec.
 status: open
-children: ["[[lesson-plan-mode-contract-change-skips-the-estimates-blocks]]", "[[lesson-case-designed-in-dialogue-not-checked-against-its-rules]]", "[[lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits]]", "[[lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice]]"]
-severity: 1
+children: ["[[lesson-plan-mode-contract-change-skips-the-estimates-blocks]]", "[[lesson-case-designed-in-dialogue-not-checked-against-its-rules]]", "[[lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits]]", "[[lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice]]", "[[lesson-case-build-finds-the-sentences-it-changes-by-their-words]]"]
+severity: 2
 addressed_by: "[[decision-case-391.2]]"
 origin: raw/2026-09-23/1859/ledger.md#L30
 sprint: migration
@@ -25,3 +25,5 @@ A suggestion, not a decision: before a Case that changes a contract or adds a ho
 - 2026-09-24 updated: actioned: the frame of a Case is checked by frame-guppi before the showing (case 391.2) · [[decision-case-391.2]]
 - 2026-09-24 updated: lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits added to children by the librarian's synthesis; addressed_by decision-case-391.2 stands (the lesson names the same case) · raw/2026-09-24/1303/ledger.md#L25
 - 2026-10-07 updated: child lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice added; open again, the pattern came back after case 391.2 (synthesis) · raw/2026-10-07/2114/ledger.md#L30
+- 2026-10-08 updated: actioned: case-guppi words the change another Case needs as a pointer to its own Estimate when that Estimate already makes the promise (case 730.3) · [[decision-case-730.3]]
+- 2026-10-08 updated: child lesson-case-build-finds-the-sentences-it-changes-by-their-words added, reopened from actioned by case 730.3 of this run (synthesis) · raw/2026-10-08/0050/ledger.md#L17

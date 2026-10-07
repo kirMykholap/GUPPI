@@ -2,7 +2,7 @@
 type: decision
 case: "722"
 status: current
-children: ["[[decision-case-722.1]]", "[[decision-case-722.2]]", "[[decision-case-722.3]]"]
+children: ["[[decision-case-722.1]]", "[[decision-case-722.2]]"]
 origin: raw/2026-10-07/2114/ledger.md#case-722
 sprint: migration
 created: 2026-10-07
@@ -52,3 +52,4 @@ A part of a Case that a later build or a later Case left behind stays live. The 
 ## History
 
 - 2026-10-07 created · raw/2026-10-07/2114/ledger.md#case-722
+- 2026-10-08 child decision-case-722.3 archived · cleanup

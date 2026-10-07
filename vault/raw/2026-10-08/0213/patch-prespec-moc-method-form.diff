@@ -1,0 +1,262 @@
+diff --git a/guppi/lint.py b/guppi/lint.py
+index a10ca3b2..1ad4b101 100644
+--- a/guppi/lint.py
++++ b/guppi/lint.py
+@@ -42,7 +42,9 @@ Estimates of a child with `enforcement: render` are not counted, since that chil
+ is part of the parent's file and its Estimate promises the child's own behaviour, case 459;
+ for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
+ the one spelling since case 330.1; the four forms are one predicate, `names_a_form`, which
+-`pre-spec` calls over the plan, case 331), `moment` (an Estimate whose `method` ties a
++`pre-spec` calls over the plan, case 331, and the two forms of a MOC's Estimate, a `make
++<target>` or a reading, are one predicate too, `names_a_moc_form`, which `pre-spec` calls
++as well, case 733), `moment` (an Estimate whose `method` ties a
+ reading by hand to the first of something after the render or after the change — a part of
+ the `method` between two `;` that holds `by hand` and the first of something after the
+ render or the change; a reading names the kind of its moment, and any such moment counts,
+@@ -580,6 +582,15 @@ def names_a_form(method: str) -> bool:
+     )
+ 
+ 
++def names_a_moc_form(method: str) -> bool:
++    """Whether the `method` of a MOC's Estimate names one of the two forms a MOC takes: a
++    `make <target>` or the words `by hand`; a `tests/` path or the word `pytest` alone is
++    no form on a MOC. The one predicate of this form, which `check_method` and `pre-spec`
++    call; whether the Makefile holds the target and whether the children's Estimates are
++    readings is judged by `check_method` alone (case 733)."""
++    return bool(MAKE_TARGET.search(method) or is_reading(method))
++
++
+ FIRST_AFTER = re.compile(r"\bfirst\b.*?\bafter the (?:render|change)\b")
+ CLAUSE = ";"  # a `method` joins its parts by `;`, such as a test run and a reading
+ 
+@@ -700,8 +711,9 @@ def sibling_names_a_target(page: Page, target: Page, by_slug: dict[str, Page], t
+ 
+ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> list[Finding]:
+     """The `method` field of an Estimate (case 506.3):
+-    for a MOC's Estimate a `make <target>` of the Makefile passes whatever else it says,
+-    without one "by hand" passes when every counted Estimate of the children is a reading
++    for a MOC's Estimate one that names neither a `make <target>` nor "by hand", by
++    `names_a_moc_form`, is a finding (case 733), a `make <target>` of the Makefile passes
++    whatever else it says, without one "by hand" passes when every counted Estimate of the children is a reading
+     (case 112.1) or when a sibling Estimate of the MOC names a `make <target>` of the Makefile
+     (case 212); on a MOC with `render_mode: full` the Estimates of a child with `enforcement:
+     render` are not counted (`children_estimates`, case 459);
+@@ -717,16 +729,16 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
+     text = makefile.read_text(encoding="utf-8") if makefile.exists() else ""
+     match = MAKE_TARGET.search(method)  # the target first (case 112.1)
+     if str(target.props.get("kind")) == "MOC":
+-        if not match and is_reading(method) and sibling_names_a_target(page, target, by_slug, text):
++        if not names_a_moc_form(method):  # case 733
++            return [Finding(page, "method", "a MOC's Estimate names no `make <target>`")]
++        if not match and sibling_names_a_target(page, target, by_slug, text):
+             return []  # the pipeline is a sibling Estimate's; nothing is hidden (case 212)
+-        if not match and is_reading(method):
++        if not match:
+             return [
+                 Finding(page, "method", f"says by hand while {child.slug} names a test file")
+                 for child in children_estimates(target, by_slug)
+                 if not is_reading(method_of(child) or "")
+             ][:1]
+-        if not match:
+-            return [Finding(page, "method", "a MOC's Estimate names no `make <target>`")]
+         if not re.search(rf"^{re.escape(match.group(1))}:", text, re.MULTILINE):
+             return [Finding(page, "method", f"the Makefile has no target {match.group(1)}")]
+         return []
+diff --git a/guppi/prespec.py b/guppi/prespec.py
+index 46e8b939..e330759d 100644
+--- a/guppi/prespec.py
++++ b/guppi/prespec.py
+@@ -81,7 +81,10 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
+   an Estimate, or an `update` carrying `set: {method: …}`, whose `method` names none of the
+   four forms lint classifies — by `lint.names_a_form`, the one predicate, the existence of
+   the file and of the target left to lint — and a `create` with no `method` at all (case
+-  331); and one whose `method` ties its reading by hand to the first moment after the
++  331); on the Estimate of a MOC as the plan leaves it — the live page, or a `create` or an
++  `update` of the plan that writes `kind: MOC` — one that names neither a `make <target>`
++  nor `by hand`, by `lint.names_a_moc_form`, which `check_method` of lint calls too, in
++  place of the line of no form, the Makefile and the children left to lint (case 733); and one whose `method` ties its reading by hand to the first moment after the
+   render or the change — by `lint.tied_to_a_one_off_moment`, the one predicate of the class
+   `moment` of lint (case 613.1); and one whose `method` waits for another session — a part
+   that names a later session, the next session, a session after another, the librarian or
+@@ -216,6 +219,7 @@ from guppi.lint import (
+     load_schema,
+     method_of,
+     names_a_form,
++    names_a_moc_form,
+     tied_to_a_one_off_moment,
+     unmet_conditions,
+     waits_for_another_session,
+@@ -818,6 +822,7 @@ def live_page(project_dir: Path, slug: str) -> bool:
+ 
+ 
+ NO_FORM = 'method names no form — a make target, pytest, a tests/ file or "by hand"'
++MOC_NO_FORM = "method of a MOC's Estimate names no make target and is not a reading"
+ MOMENT = (
+     "method ties its reading by hand to the first moment after the render or the change — "
+     "the method names the kind of its moment"
+@@ -1152,8 +1157,12 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
+     is left to lint, since the test file is written in Work Mode (case 331). Such a `method`
+     that ties its reading by hand to the first moment after the render or the change, by
+     `lint.tied_to_a_one_off_moment`, is a finding as well (case 613.1), and so is one that
+-    waits for another session, by `lint.waits_for_another_session` (case 670.4). The branch
+-    of a MOC stays with lint."""
++    waits for another session, by `lint.waits_for_another_session` (case 670.4). When the
++    target of the Estimate is a MOC as the plan leaves it — by `plan_kind` — a `method` that
++    names neither a `make <target>` nor "by hand", by `lint.names_a_moc_form`, the one
++    predicate `check_method` of lint calls too, is a finding in place of the line of no form;
++    whether the Makefile holds the target and whether the children's Estimates are readings
++    stays with lint (case 733)."""
+     findings: list[str] = []
+     created = {  # the rules and entities the plan itself creates (case 221)
+         str(item.get("slug"))
+@@ -1161,6 +1170,12 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
+         for item in block.get("create") or []
+         if isinstance(item, dict) and category_of(str(item.get("slug") or "")) in LEAF_CATEGORIES
+     }
++
++    def form_finding(target: str, method: str) -> str | None:
++        if plan_kind(blocks, target, project_dir) == "MOC":  # case 733
++            return None if names_a_moc_form(method) else MOC_NO_FORM
++        return None if names_a_form(method) else NO_FORM  # case 331
++
+     for case, block in blocks.items():
+         promises = 0
+         for item in block.get("create") or []:
+@@ -1173,8 +1188,8 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
+                 live_page(project_dir, ref) or ref in created
+             ):
+                 findings.append(f"case {case}: create {slug}: ref {ref or '?'} names no live page")
+-            if not names_a_form(str(item.get("method") or "")):  # case 331
+-                findings.append(f"case {case}: create {slug}: {NO_FORM}")
++            if no_form := form_finding(ref, str(item.get("method") or "")):
++                findings.append(f"case {case}: create {slug}: {no_form}")
+             if tied_to_a_one_off_moment(str(item.get("method") or "")):  # case 613.1
+                 findings.append(f"case {case}: create {slug}: {MOMENT}")
+             if waits_for_another_session(str(item.get("method") or "")):  # case 670.4
+@@ -1189,8 +1204,10 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
+             if not live_page(project_dir, slug):
+                 findings.append(f"case {case}: update {slug}: no such Estimate page")
+             method = set_fields.get("method") if isinstance(set_fields, dict) else None
+-            if method is not None and not names_a_form(str(method)):  # case 331
+-                findings.append(f"case {case}: update {slug}: {NO_FORM}")
++            if method is not None and (
++                no_form := form_finding(estimate_target(item, project_dir), str(method))
++            ):
++                findings.append(f"case {case}: update {slug}: {no_form}")
+             if method is not None and tied_to_a_one_off_moment(str(method)):  # case 613.1
+                 findings.append(f"case {case}: update {slug}: {MOMENT}")
+             if method is not None and waits_for_another_session(str(method)):  # case 670.4
+@@ -1202,6 +1219,40 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
+     return findings
+ 
+ 
++def plan_kind(blocks: dict, slug: str, project_dir: Path) -> str:
++    """Case 733: the `kind` of a rule or an entity as the plan leaves it — the last `create`
++    of the plan that writes `kind`, or `update` whose `set` gives it, else the `kind` of the
++    live page; empty when none gives one."""
++    kind = ""
++    for block in blocks.values():
++        for item in block.get("create") or []:
++            if isinstance(item, dict) and item.get("slug") == slug and item.get("kind"):
++                kind = str(item["kind"])
++        for item in block.get("update") or []:
++            sets = item.get("set") if isinstance(item, dict) else None
++            if item.get("slug") == slug and isinstance(sets, dict) and sets.get("kind"):
++                kind = str(sets["kind"])
++    if kind:
++        return kind
++    category = category_of(slug)
++    path = wiki_root(project_dir) / category / f"{slug}.md"
++    if category not in LEAF_CATEGORIES or not path.is_file():
++        return ""
++    return str(read_page(path, category).props.get("kind") or "")
++
++
++def estimate_target(item: dict, project_dir: Path) -> str:
++    """Case 733: the target of the Estimate an `update` item names — the `target` its `set`
++    gives, else the `target` of the live page; empty when neither gives one."""
++    sets = item.get("set") if isinstance(item.get("set"), dict) else {}
++    if sets.get("target"):
++        return str(sets["target"])
++    path = wiki_root(project_dir) / "estimates" / f"{item.get('slug')}.md"
++    if not path.is_file():
++        return ""
++    return str(read_page(path, "estimates").props.get("target") or "")
++
++
+ def kept_method_waits(item: dict, project_dir: Path) -> bool:
+     """Case 715: whether an `update` of an Estimate replaces its Criterion whole — it names
+     no part of the page, by `materialize.names_a_part` — writes no `method`, sets no status
+diff --git a/tests/test_prespec.py b/tests/test_prespec.py
+index 2775ed94..ebb96099 100644
+--- a/tests/test_prespec.py
++++ b/tests/test_prespec.py
+@@ -1062,6 +1062,68 @@ def test_an_estimate_update_setting_a_method_without_a_form_is_a_finding(tmp_pat
+     assert out.splitlines() == [NO_FORM.replace("create estimate-x-again", "update estimate-x")]
+ 
+ 
++MOC_NO_FORM = (
++    "case 1: create estimate-x-again: method of a MOC's Estimate names no make target "
++    "and is not a reading"
++)
++
++
++def test_a_moc_estimate_naming_a_test_file_or_pytest_alone_is_a_finding(tmp_path):
++    # case 733: on a MOC only a make target or by hand is a form; one line, in place of no form
++    with_page(tmp_path, "rules", "rule-x", kind="MOC")
++    for method in ("tests/test_x.py, one case per defect", "pytest over the suite"):
++        item = NO_FORM_CREATE.replace("Run it and look", method)
++        code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
++        assert (code, out.splitlines()) == (1, [MOC_NO_FORM]), method
++    code, out, _ = check(tmp_path, plan=create_plan(NO_FORM_CREATE), ledger=CREATE_LINE)
++    assert (code, out.splitlines()) == (1, [MOC_NO_FORM])
++    for method in ("make test-x, the pipeline", "read by hand at the Retro of this session"):
++        item = NO_FORM_CREATE.replace("Run it and look", method)
++        assert check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE) == (0, "", ""), method
++
++
++def test_a_moc_estimate_update_judged_by_the_live_target(tmp_path):
++    with_page(tmp_path, "rules", "rule-x", kind="MOC")
++    with_estimate(tmp_path)
++    item = "update:\n  - slug: estimate-x\n    set: {method: pytest over the suite}\n    change: recut\n"
++    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=UPDATE_LINE)
++    assert code == 1
++    assert out.splitlines() == [MOC_NO_FORM.replace("create estimate-x-again", "update estimate-x")]
++    # an update that writes no method gives no line of the form of a MOC's method
++    item = {"slug": "estimate-x", "set": {"status": "pending"}, "change": "recut"}
++    assert prespec.check_form({"1": {"update": [item]}}, tmp_path) == []
++
++
++def test_a_moc_is_judged_as_the_plan_leaves_it(tmp_path):
++    with_page(tmp_path, "rules", "rule-x")  # a live Leaf
++    create = {"slug": "estimate-x-again", "ref": "rule-x", "method": "pytest over the suite"}
++    leaf = {"1": {"create": [create]}}
++    assert prespec.check_form(leaf, tmp_path) == []
++    turned = {"1": {"create": [create]}, "2": {"update": [{"slug": "rule-x", "set": {"kind": "MOC"}}]}}
++    assert prespec.check_form(turned, tmp_path) == [
++        "case 1: create estimate-x-again: " + prespec.MOC_NO_FORM
++    ]
++    made = {"1": {"create": [{"slug": "rule-y", "kind": "MOC"}, dict(create, ref="rule-y")]}}
++    findings = prespec.check_form(made, tmp_path)
++    assert "case 1: create estimate-x-again: " + prespec.MOC_NO_FORM in findings
++    assert prespec.plan_kind(made, "rule-y", tmp_path) == "MOC"
++    assert prespec.plan_kind(leaf, "rule-x", tmp_path) == "Leaf"
++
++
++def test_the_moc_form_is_one_predicate_lint_and_prespec_share(tmp_path):
++    # case 733: lint's check_method and pre-spec answer alike by names_a_moc_form
++    from guppi import lint
++
++    assert prespec.names_a_moc_form is lint.names_a_moc_form
++    for method, form in (
++        ("make test-x", True),
++        ("read by hand", True),
++        ("tests/test_x.py", False),
++        ("pytest over the suite", False),
++    ):
++        assert lint.names_a_moc_form(method) is form, method
++
++
+ MOMENT = (
+     "method ties its reading by hand to the first moment after the render or the change — "
+     "the method names the kind of its moment"

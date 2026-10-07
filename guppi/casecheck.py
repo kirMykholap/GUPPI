@@ -46,9 +46,13 @@ the whole file of a Case (case 645.2). The Cases of the answer are judged with t
 other Cases of the session by `prespec.check_same_target`, imported: each Case of the plan
 file, then each entry of the store under the number alone that the plan does not hold, its
 section built by `ratified.case_section` — leaving out an entry with findings, a Case a
-`{supersedes}` mark of the session's ledger names, a Case the answer holds, the family of
-a top-level Case the answer holds and a dropped Case, whose file holds nothing but blank
-space by `dropped` (case 701.7) — and the answer's Cases last; a clash is a finding of the
+`{supersedes}` mark of the session's ledger names, a Case a `{supersedes}` mark on a
+decision line of the answer's own `ratification` names, read by `ratification_records`, a
+mark on a sub-case leaving out that sub-case alone (case 725.2), a Case the answer holds,
+the family of a top-level Case the answer holds, a dropped Case, whose file holds nothing
+but blank space by `dropped` (case 701.7), and an entry whose top-level Case file holds text
+but no heading of its id, a part a Case built again no longer holds, by `left_by_its_file`,
+its entry kept in the store (case 722.1) — and the answer's Cases last; a clash is a finding of the
 Case of the answer it opens with, and a clash inside the answer, which `judge` gives, or
 between two other Cases is none (`other_blocks`, `session_clashes`, case 629.1). It runs over the same
 Spec text the language finding of `/pre-spec`,
@@ -421,6 +425,17 @@ def dropped(path) -> bool:
     `/pre-spec`, and of `other_blocks` (cases 701.1, 701.2, 701.7)."""
     path = Path(str(path))
     return path.is_file() and not path.read_text(encoding="utf-8").strip()
+
+
+def left_by_its_file(path, case: str) -> bool:
+    """Whether the file `path` of the top-level Case of `case` stands and holds text but no
+    heading of `case`: a part that the Case built again no longer holds, which is no other
+    Case of the session for `other_blocks` (case 722.1). An empty file is `dropped`."""
+    path = Path(str(path))
+    if not path.is_file():
+        return False
+    text = path.read_text(encoding="utf-8")
+    return bool(text.strip()) and case not in split_cases(text)
 
 
 CASE_NAME = re.compile(r"^case-(\d+)\.md$")  # the name `case_file` gives
@@ -840,11 +855,17 @@ def other_blocks(
     order they are judged: each Case of the plan, then each entry of the store under the
     number alone that the plan does not hold — its section built by `ratified.case_section` —
     leaving out an entry with findings, a Case a `{supersedes}` mark of the ledger names, a
-    Case the answer holds, the family of a top-level Case the answer holds, and an entry
-    whose top-level Case file in the session folder `folder` stands and holds nothing but
-    blank space, a dropped Case, by `dropped` (case 701.7)."""
+    Case a `{supersedes}` mark on a decision line of the answer's own `ratification` names,
+    read by `ratification_records` — a mark on a sub-case leaves out that sub-case alone
+    (case 725.2) —, a Case the answer holds, the family of a top-level Case the answer holds,
+    an entry whose top-level Case file in the session folder `folder` stands and holds
+    nothing but blank space, a dropped Case, by `dropped` (case 701.7), and an entry whose
+    top-level Case file stands and holds text but no heading of its id, a part a Case built
+    again no longer holds, by `left_by_its_file` (case 722.1); the store keeps that entry."""
     tops = [case for case in cases if "." not in case]
-    retired = superseded_cases(window)
+    retired = superseded_cases(window) + [
+        n for record in ratification_records(cases) for n in record.get("supersedes") or []
+    ]
 
     def left_out(case: str) -> bool:
         return (
@@ -866,6 +887,8 @@ def other_blocks(
             continue
         if folder is not None and dropped(case_file(folder, key)):
             continue  # a dropped Case is no other Case of the session (case 701.7)
+        if folder is not None and left_by_its_file(case_file(folder, key), key):
+            continue  # a part its Case built again no longer holds (case 722.1)
         chat = split_cases(entry["text"]).get(key)
         if chat is None:
             continue

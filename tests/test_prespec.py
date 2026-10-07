@@ -2624,3 +2624,47 @@ def test_condition_created_page_answers_as_generate_writes_it(tmp_path):
         assert sections == set(page.sections), item["slug"]
         for field in ("type", "status", "parent", "target", "kind", "children"):
             assert props.get(field) == page.props.get(field), (item["slug"], field)
+
+
+# --- a page one Case changes and another puts off (case 726.1) ---------------------------
+# `estimate-prespec-notes-a-page-another-case-defers`
+
+DEFERS_X = "note: case 1: rule-x: changed while case 2 puts it off\n"
+DEFER_X_LINE = DEFER_LINE.replace("rule-later", "rule-x")
+
+
+def test_defers_a_page_an_update_and_a_defer_under_two_cases_give_one_note(tmp_path):
+    plan = PLAN + DEFERRED_CASE.replace("## Deferred\n", "").replace("rule-later", "rule-x")
+    code, out, _ = check(
+        tmp_path, plan=plan, ledger=LINE + DEFER_X_LINE, frontier=FRONTIER_WITH_DEFER
+    )
+    assert (code, out) == (0, DEFERS_X)
+
+
+def test_defers_a_page_a_short_case_under_deferred_gives_the_same_note(tmp_path):
+    plan = PLAN + DEFERRED_CASE.replace("rule-later", "rule-x")
+    code, out, _ = check(
+        tmp_path, plan=plan, ledger=LINE + DEFER_X_LINE, frontier=FRONTIER_WITH_DEFER
+    )
+    assert (code, out) == (0, DEFERS_X)
+
+
+def test_defers_a_page_two_sub_cases_of_one_case_give_none():
+    cases = {
+        "1": [],
+        "1.1": ["```then", "update:", "  - slug: rule-x", "    change: one line", "```"],
+        "1.2": ["```then", "defer:", "  - slug: rule-x", "    type: rule", "```"],
+    }
+    assert prespec.defer_notes(cases) == []
+    cases["2"] = cases.pop("1.2")
+    assert prespec.defer_notes(cases) == [
+        "note: case 1.1: rule-x: changed while case 2 puts it off"
+    ]
+
+
+def test_defers_a_page_only_defer_items_give_none(tmp_path):
+    plan = PLAN + DEFERRED_CASE
+    code, out, _ = check(
+        tmp_path, plan=plan, ledger=LINE + DEFER_LINE, frontier=FRONTIER_WITH_DEFER
+    )
+    assert (code, out) == (0, "")

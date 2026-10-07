@@ -465,6 +465,54 @@ def test_superseded_a_sub_case_leaves_alone(working):
     assert "### Case 5.1" not in text and "## Case 5 — old" in text and "### Case 5.2" in text
 
 
+def session_ledger(project, *lines):
+    path = project / "vault" / "raw" / TODAY.isoformat() / "1501" / "ledger.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("".join(f"- 15:20:00 {line}\n" for line in lines), encoding="utf-8")
+
+
+SUB_LINES = (
+    "decision[case 5.1][update][rule-a]{ref:rule-a}",
+    "decision[case 5.2][update][rule-b]{ref:rule-b}",
+)
+ACK_5_1 = ACK.replace("{ref:rule-x}\n", "{ref:rule-x}{supersedes:case 5.1}\n", 1)
+
+
+def test_superseded_the_last_sub_case_of_a_parent_takes_the_parent_with_it(working):
+    """Case 722.2: the ledger retired 5.2, the reply retires 5.1, the last sub-case of 5
+    with a decision line, so 5 leaves the plan and `spec.md`."""
+    spec = seed_old(working)
+    session_ledger(
+        working, *SUB_LINES, "decision[case 6][update][rule-c]{ref:rule-c}{supersedes:case 5.2}"
+    )
+    assert stop(working, ACK_5_1, SHOWING, ACK_5_1) == (0, "")
+    for path in (plan_of(working), spec):
+        text = path.read_text(encoding="utf-8")
+        assert "Case 5" not in text and "## Case 7 —" in text, path
+
+
+def test_superseded_a_sub_case_with_a_decision_line_left_keeps_the_parent(working):
+    seed_old(working)
+    session_ledger(working, *SUB_LINES)
+    assert stop(working, ACK_5_1, SHOWING, ACK_5_1) == (0, "")
+    text = plan_of(working).read_text(encoding="utf-8")
+    assert "### Case 5.1" not in text and "## Case 5 — old" in text and "### Case 5.2" in text
+
+
+def test_superseded_a_parent_with_a_line_of_its_own_stays(working):
+    spec = seed_old(working)
+    session_ledger(
+        working,
+        "decision[case 5][create][rule-p]{ref:rule-p}",
+        *SUB_LINES,
+        "decision[case 6][update][rule-c]{ref:rule-c}{supersedes:case 5.2}",
+    )
+    assert stop(working, ACK_5_1, SHOWING, ACK_5_1) == (0, "")
+    for path in (plan_of(working), spec):
+        text = path.read_text(encoding="utf-8")
+        assert "## Case 5 — old" in text and "### Case 5.1" not in text, path
+
+
 def test_superseded_a_section_under_deferred_leaves(working):
     seed_old(working, "## Deferred\n\n## Case 5 — deferred\n\n```then\ndefer: []\n```\n")
     assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")

@@ -1861,6 +1861,35 @@ def test_subagent_session_clash_none_with_a_stored_case_whose_file_is_empty(work
     assert answer(working, setting(7, "draft")) == (0, "")
 
 
+def stored_part(project, file_text):
+    """Case 722.1: the store holds sub-case 6.1 alone, built from `setting(6, "built")`, and
+    the file of its top-level Case 6 holds `file_text`."""
+    assert answer(project, setting(6, "built")) == (0, "")
+    entry = store(project)["6"]
+    entry["text"] = (
+        entry["text"].replace("## Case 6 —", "## Case 6.1 —").replace("[case 6]", "[case 6.1]")
+    )
+    path = casecheck.store_of(project / ".claude" / "plans" / "plan.md")
+    path.write_text(json.dumps({"6.1": entry}), encoding="utf-8")
+    case_path(project, "6").write_text(file_text, encoding="utf-8")
+    return entry["text"]
+
+
+def test_subagent_session_clash_none_with_a_stored_part_its_file_no_longer_holds(working):
+    """Case 722.1: a stored sub-case whose top-level file holds the Case without it is no
+    other Case of the session, and its entry stays in the store."""
+    stored_part(working, "## Case 6 — example\n\n> **context:**\n> Built again whole.\n")
+    assert answer(working, setting(7, "draft")) == (0, "")
+    assert "6.1" in store(working)
+
+
+def test_subagent_session_clash_with_a_stored_part_its_file_still_holds(working):
+    text = stored_part(working, "")
+    case_path(working, "6").write_text(text, encoding="utf-8")
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 6.1" in err
+
+
 def test_subagent_session_clash_with_the_same_entry_and_a_file_of_text(working):
     assert answer(working, setting(6, "built")) == (0, "")
     assert case_path(working, "6").read_text(encoding="utf-8").strip()
@@ -1877,6 +1906,41 @@ def test_subagent_session_clash_none_between_two_other_cases(working):
     plan_with(working, PLANNED_5)
     assert answer(working, setting(6, "draft"))[0] == 2  # 6 clashes with the plan's 5
     assert answer(working, ANSWER) == (0, "")  # 7 sets nothing; 5 and 6 are not its finding
+
+
+# --- a Case the file of the answer supersedes (case 725.2) ------------------------------------
+# `estimate-case-check-leaves-out-a-case-the-file-supersedes`
+
+
+def marked(text, case, mark):
+    """`text`, the Case `case` of it, its `update` line of `rule-x` carrying `mark`."""
+    line = f"- decision[case {case}][update][rule-x]{{ref:rule-x}}"
+    assert line in text
+    return text.replace(line, line + mark)
+
+
+def test_superseded_by_the_file_a_case_of_the_plan_gives_no_clash(working):
+    plan_with(working, PLANNED_5)
+    assert answer(working, marked(setting(7, "draft"), 7, "{supersedes:case 5}")) == (0, "")
+
+
+def test_superseded_by_the_file_a_case_of_the_plan_gives_no_pair_finding(working):
+    plan_with(working, planned(5, "the `old` text", "the rewritten text"))
+    code, err = answer(working, marked(ANSWER, 7, "{supersedes:case 5}"))
+    assert MISSES not in err and code == 0
+
+
+def test_superseded_by_the_file_a_mark_on_a_sub_case_leaves_its_parent_compared(working):
+    sub = "### Case 5.1 — sub\n\n```then\nupdate:\n- slug: rule-z\n  set:\n    status: built\n```\n"
+    plan_with(working, PLANNED_5 + "\n" + sub)
+    code, err = answer(working, marked(setting(7, "draft"), 7, "{supersedes:case 5.1}"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 5" in err
+
+
+def test_superseded_by_the_file_without_the_mark_the_clash_stands(working):
+    plan_with(working, PLANNED_5)
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 5" in err
 
 
 def test_subagent_session_clash_the_judgment_is_the_one_of_prespec():

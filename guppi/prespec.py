@@ -160,7 +160,11 @@ aside; the new Criterion is the one the item writes under `sections`, else the `
 `then` of its Case, and a Case that gives none is not compared. And each pair of `then`
 lines of two sibling sub-cases whose shared words — runs of four or more letters and digits,
 case set aside — make 60 percent or more of the words of the shorter line, named on the
-later sibling.
+later sibling. And, by `defer_notes`, one note per page and pair of Cases where a `create`,
+`update` or `delete` item of one Case and a `defer` item of another top-level Case name the
+same page, a short Case under `## Deferred` included; a change and a defer inside one
+top-level Case give none (case 726.1). `plan_findings` alone prints it: the check of the
+answer of `case-guppi` imports `promise_notes`, not this one.
 
 The sentence of a pair (cases 711.2, 711.3). `check_pairs` records the span each pair writes
 into a section, with its Case. Given the Cases of an answer of `case-guppi` as `own`, it
@@ -1510,6 +1514,30 @@ def sibling_notes(cases: dict) -> list[str]:
     return notes
 
 
+def defer_notes(cases: dict) -> list[str]:
+    """726.1: one note per page and pair of Cases, where a `create`, `update` or `delete`
+    item of one Case and a `defer` item of another top-level Case name the same page, a short
+    Case under `## Deferred` included; a Case and its sub-cases are one Case here, and a page
+    only `defer` items name gives none. A note, not a finding."""
+    changes: list[tuple[str, str]] = []
+    defers: list[tuple[str, str]] = []
+    for case, lines in cases.items():
+        block = then_blocks(lines)[0]
+        for kind in DECISION_KINDS:
+            for item in block.get(kind) or []:
+                if isinstance(item, dict) and item.get("slug"):
+                    (defers if kind == "defer" else changes).append((case, str(item["slug"])))
+    notes: list[str] = []
+    for case, slug in changes:
+        for other, deferred in defers:
+            if deferred != slug or other.split(".")[0] == case.split(".")[0]:
+                continue
+            note = f"note: case {case}: {slug}: changed while case {other} puts it off"
+            if note not in notes:
+                notes.append(note)
+    return notes
+
+
 def promise_notes(plan: str, project_dir: Path) -> list[str]:
     """The notes of the promise lines of the plan's Cases (cases 472.1, 472.2) — printed by
     `--check`, and sent back once by the check of the answer of `case-guppi`, which imports
@@ -1643,7 +1671,11 @@ def plan_findings(
     relative = folder.relative_to(project_dir).as_posix() + "/frontier.md"
     findings = judge(plan, project_dir, records, lines, (folder / "frontier.md", relative))
     findings += check_untranslated(plan, project_dir)
-    notes = chain_notes(split_cases(plan)) + promise_notes(plan, project_dir)
+    notes = (
+        chain_notes(split_cases(plan))
+        + promise_notes(plan, project_dir)
+        + defer_notes(split_cases(plan))
+    )
     return findings, notes
 
 

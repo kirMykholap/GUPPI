@@ -51,7 +51,10 @@ sub-point that holds a shorter fence of the same character is read whole (case 4
 The removal (case 441.7). After the writes, a decision line of the reply that carries
 `{supersedes:case N}`, its own Case written in this run, removes the sections of Case N and of
 its sub-cases — or of `N.M` alone — from the plan and `spec.md` when it stands, under
-`## Deferred` too; a Case N neither holds is no refusal (case 445.3).
+`## Deferred` too; a Case N neither holds is no refusal (case 445.3). A parent of such an `N.M`
+leaves with it once the marks of the session's ledger and of the reply retire each of its
+sub-cases with a decision line, by `prespec.retired_whole`, imported, and the parent holds no
+decision line of its own; a parent with a line of its own stays (case 722.2).
 
 The defer (case 421.1). A Case whose lines in the reply are all `defer` — beside the lines of
 other Cases or alone — is written from the same reply, which shows it in the short form: the
@@ -716,16 +719,39 @@ def write_defers(
     return problems
 
 
-def remove_superseded(records: list[dict], written: set[str], targets: list[Path]) -> None:
+def ancestors(case: str) -> list[str]:
+    """The parents of `case` up to its top-level Case: `5.1` and `5` of `5.1.2`."""
+    parts = case.split(".")
+    return [".".join(parts[:i]) for i in range(len(parts) - 1, 0, -1)]
+
+
+def remove_superseded(
+    records: list[dict], written: set[str], targets: list[Path], session: list[dict] = ()
+) -> None:
     """Each Case a `{supersedes:case N}` of a decision line names, the line's own Case
     written in this run, out of every target that stands — the plan and `spec.md`, no copy
-    (cases 441.7, 445.3); a Case no target holds is no refusal."""
+    (cases 441.7, 445.3); a Case no target holds is no refusal. A parent of such a Case
+    leaves too once the marks of the decision lines of the session's ledger `session` and of
+    `records` retire each of its sub-cases with a decision line, by `prespec.retired_whole`,
+    and it holds no decision line of its own (case 722.2)."""
     doomed = [
-        earlier
+        str(earlier)
         for record in records
         if record["case"] in written
         for earlier in record.get("supersedes") or []
     ]
+    if doomed:
+        from guppi.prespec import retired_whole, superseded_in_window  # it imports this module
+
+        every = [r for r in [*session, *records] if r.get("record") == "decision"]
+        superseded = superseded_in_window(every)
+        own = {str(r["case"]) for r in every}
+        parents = {parent for case in doomed for parent in ancestors(case)}
+        doomed += sorted(
+            parent
+            for parent in parents
+            if parent not in own and retired_whole(parent, superseded, every)
+        )
     for path in targets:
         if not doomed or not path.is_file():
             continue
@@ -1034,7 +1060,10 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
         else:
             problems += write_defers(reply, records, target, keys_for, written)
     targets = [approved] + ([plan] if plan is not None else [])
-    remove_superseded(records, written, targets)  # cases 441.7, 445.3
+    from guppi.casecheck import ledger_of, ledger_records  # it imports this module
+
+    session = ledger_records(ledger_of(folder))
+    remove_superseded(records, written, targets, session)  # cases 441.7, 445.3, 722.2
     if checked:
         from guppi import prespec  # it imports this module at load (case 414.1)
 

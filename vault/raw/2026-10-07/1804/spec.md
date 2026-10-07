@@ -41,8 +41,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-insights-schema`
-- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+- [x] update `rule-insights-schema`
+- [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
 ```
 
 ## Case 713 — The person takes back a ratified Case by a short Case that supersedes it
@@ -134,10 +134,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-orchestration-takes-back-a-ratified-case`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-takes-back-a-ratified-case`
+- [x] update `rule-orchestration`
+- [x] create `estimate-orchestration-takes-back-a-ratified-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-takes-back-a-ratified-case`
 ```
 
 ## Case 714 — Pre-spec reports a Case that breaks a condition of a schema
@@ -205,11 +205,11 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-hook-reports-a-schema-condition-not-met`
+- [x] create `estimate-prespec-hook-reports-a-schema-condition-not-met`
 - [x] `guppi/lint.py`: one function gives each condition of a schema that a set of fields and sections does not meet; `check_schema` calls it, and its findings stay as they are.
 - [x] `guppi/prespec.py`: a check in `judge`, after the check of the keys and with its `schema_free`, builds for each `create` and `update` the page as the plan leaves it — the live page, the fields and sections of the items of earlier Cases and of the item, and the fields `generate` fills from the item — and calls the function of `guppi/lint.py` only for a `create`, or for an `update` whose `set` gives the value a condition starts on; a `defer` is not judged; the module docstring gains the finding in its list.
 - [x] `tests/test_prespec.py` and `tests/test_lint.py`: a `create` of a rule with `enforcement: hook` and no `implementation_ref`, an `update` that sets an Insight `actioned` with no `addressed_by`, and an `update` that sets an Estimate `passed` with no `## Result` each give a finding; the same with the field or section in the item, on the page or in an earlier Case of the plan, a Leaf Entity whose `parent` comes from `ref`, an `update` with only `change` on a page that already breaks a condition, a category in `schema_free` and a `defer` give none; lint gives the same findings on a page as before.
-- [ ] read `estimate-prespec-hook-reports-a-schema-condition-not-met`
+- [x] read `estimate-prespec-hook-reports-a-schema-condition-not-met`
 ```
 
 ## Case 715 — Pre-spec reports a replaced Criterion whose kept method waits for another session
@@ -267,10 +267,10 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
+- [x] create `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
 - [x] `guppi/prespec.py`: in `check_form`, an `update` of an Estimate that names no part by `materialize.names_a_part`, carries no `set.method` and sets no `status` of `passed` or `failed` reads the `method` of the live page by `lint.method_of` and, when `lint.waits_for_another_session` holds, gives the line of the `then`; the module docstring gains the finding in its list.
 - [x] `tests/test_prespec.py`: tests named `kept_method`: a Criterion replaced with a page `method` that names a later session, the librarian or /hi gives the line; the same with `set: {method: …}` in the item, with `status: passed` or `failed` set by the person's decision, with only a `replace` pair or a `set` of another field, and with a page `method` that names the person or no other session gives none.
-- [ ] read `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
+- [x] read `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
 ```
 
 ## Case 716 — The checks of `case-guppi` are read at the Retro of the session that changes them
@@ -355,8 +355,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 716.2 — `estimate-case-build-checks-the-finished-case` is read at the Retro of the session that changes it
@@ -403,8 +403,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] read `estimate-case-build-checks-the-finished-case`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] read `estimate-case-build-checks-the-finished-case`
 ```
 
 ## Case 717 — A dispatch of `case-guppi` reads less and keeps its cache longer
@@ -756,14 +756,14 @@ delete:
 `````
 
 ```tasks
-- [ ] create `rule-case-example`
-- [ ] create `estimate-case-example-passes-the-check`
-- [ ] update `rule-case-protocol`
-- [ ] delete `estimate-case-protocol-example-passes-the-check`
+- [x] create `rule-case-example`
+- [x] create `estimate-case-example-passes-the-check`
+- [x] update `rule-case-protocol`
+- [x] delete `estimate-case-protocol-example-passes-the-check`
 - [x] `tests/test_case_schema.py`: the test reads the first block tagged `case` of `vault/wiki/case-example.md`, or of `vault/wiki/case-schema.md` while `case-example.md` does not stand; its message names the file it read; its docstring names `estimate-case-example-passes-the-check` and case 717.1.
-- [ ] `uv run guppi render`: `vault/wiki/case-example.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-example-passes-the-check`
+- [x] `uv run guppi render`: `vault/wiki/case-example.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] read `estimate-case-example-passes-the-check`
 ```
 
 ### Case 717.2 — `case-guppi` reads by need and in parts, and keeps its cache for an hour
@@ -811,10 +811,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] create `estimate-case-build-reads-by-need-and-in-parts`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-reads-by-need-and-in-parts`
+- [x] update `rule-case-build`
+- [x] create `estimate-case-build-reads-by-need-and-in-parts`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-reads-by-need-and-in-parts`
 ```
 
 ### Case 717.3 — The check of an unread sentence names the example in its new file
@@ -853,8 +853,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
-- [ ] read `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+- [x] update `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+- [x] read `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
 ```
 
 ## Deferred

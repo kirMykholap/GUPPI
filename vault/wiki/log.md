@@ -7298,3 +7298,64 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-07 lessons/lesson-session-frontier-rewritten-through-powershell archived · cleanup
 - 2026-10-07 lessons/lesson-work-mode-code-rewritten-through-python-write-text archived · cleanup
 - 2026-10-07 lessons/lesson-work-mode-file-changed-through-a-bash-heredoc archived · cleanup
+- 2026-10-07 decisions/decision-case-712 created · raw/2026-10-07/1804/ledger.md#case-712 · generate
+- 2026-10-07 rules/rule-insights-schema updated: a Case names a decision of its own session in addressed_by by the bare slug; generate adds the brackets (case 712) · [[decision-case-712]] · generate
+- 2026-10-07 decisions/decision-case-713 created · raw/2026-10-07/1804/ledger.md#case-713 · generate
+- 2026-10-07 rules/rule-orchestration updated: the person takes back a ratified Case, or one of its sub-cases, in Plan Mode by a short Case whose defer lines supersede it, and the line of its item closes as its source is put off (case 713) · [[decision-case-713]] · generate
+- 2026-10-07 estimates/estimate-orchestration-takes-back-a-ratified-case created · [[decision-case-713]] · generate
+- 2026-10-07 estimates/estimate-orchestration-takes-back-a-ratified-case status: pending → passed · raw/2026-10-07/1804/ledger.md#L19 · generate
+- 2026-10-07 rules/rule-orchestration estimate estimate-orchestration-takes-back-a-ratified-case added · [[decision-case-713]] · generate
+- 2026-10-07 decisions/decision-case-714 created · raw/2026-10-07/1804/ledger.md#case-714 · generate
+- 2026-10-07 estimates/estimate-prespec-hook-reports-a-schema-condition-not-met created · [[decision-case-714]] · generate
+- 2026-10-07 estimates/estimate-prespec-hook-reports-a-schema-condition-not-met status: pending → passed · raw/2026-10-07/1804/ledger.md#L20 · generate
+- 2026-10-07 rules/rule-prespec-hook estimate estimate-prespec-hook-reports-a-schema-condition-not-met added · [[decision-case-714]] · generate
+- 2026-10-07 decisions/decision-case-715 created · raw/2026-10-07/1804/ledger.md#case-715 · generate
+- 2026-10-07 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session created · [[decision-case-715]] · generate
+- 2026-10-07 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session status: pending → passed · raw/2026-10-07/1804/ledger.md#L21 · generate
+- 2026-10-07 rules/rule-prespec-hook estimate estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session added · [[decision-case-715]] · generate
+- 2026-10-07 decisions/decision-case-716 created · raw/2026-10-07/1804/ledger.md#case-716 · generate
+- 2026-10-07 decisions/decision-case-716.1 created · raw/2026-10-07/1804/ledger.md#case-716.1 · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case updated: the method reads the Render of rule-case-build against the Criterion at the Retro of the session that changes it, with the tokens and seconds of that session's dispatches; the Criterion written back unchanged; pending again (case 716) · [[decision-case-716.1]] · generate
+- 2026-10-07 decisions/decision-case-716.2 created · raw/2026-10-07/1804/ledger.md#case-716.2 · generate
+- 2026-10-07 estimates/estimate-case-build-checks-the-finished-case updated: the method reads the Render of rule-case-build against the Criterion at the Retro of the session that changes it, with the count of the findings of ask-guppi at that session's /pre-spec; the Criterion written back unchanged; pending again (case 716) · [[decision-case-716.2]] · generate
+- 2026-10-07 decisions/decision-case-717 created · raw/2026-10-07/1804/ledger.md#case-717 · generate
+- 2026-10-07 decisions/decision-case-717.1 created · raw/2026-10-07/1804/ledger.md#case-717.1 · generate
+- 2026-10-07 rules/rule-case-example created · [[decision-case-717.1]] · generate
+- 2026-10-07 rules/rule-plan-mode child rule-case-example added · [[decision-case-717.1]] · generate
+- 2026-10-07 estimates/estimate-case-example-passes-the-check created · [[decision-case-717.1]] · generate
+- 2026-10-07 estimates/estimate-case-example-passes-the-check status: pending → passed · raw/2026-10-07/1804/ledger.md#L24 · generate
+- 2026-10-07 rules/rule-case-example estimate estimate-case-example-passes-the-check added · [[decision-case-717.1]] · generate
+- 2026-10-07 rules/rule-case-protocol updated: the example Case and the example of the then block move to case-example.md, the Render of rule-case-example; the schema names that file; estimate-case-protocol-example-passes-the-check leaves the estimates (case 717.1) · [[decision-case-717.1]] · generate
+- 2026-10-07 estimates/estimate-case-protocol-example-passes-the-check deleted · [[decision-case-717.1]] · generate
+- 2026-10-07 decisions/decision-case-717.2 created · raw/2026-10-07/1804/ledger.md#case-717.2 · generate
+- 2026-10-07 rules/rule-case-build updated: case-guppi reads case-example.md just before it first writes a Case file, reads whole only the pages the Case changes, the Criteria of their Estimates and the case files of the related Cases, reads the rest in parts, makes independent calls in one turn, and keeps its cache for an hour (case 717.2) · [[decision-case-717.2]] · generate
+- 2026-10-07 estimates/estimate-case-build-reads-by-need-and-in-parts created · [[decision-case-717.2]] · generate
+- 2026-10-07 estimates/estimate-case-build-reads-by-need-and-in-parts status: pending → passed · raw/2026-10-07/1804/ledger.md#L25 · generate
+- 2026-10-07 rules/rule-case-build estimate estimate-case-build-reads-by-need-and-in-parts added · [[decision-case-717.2]] · generate
+- 2026-10-07 decisions/decision-case-717.3 created · raw/2026-10-07/1804/ledger.md#case-717.3 · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read updated: the Criterion written back with the example of tests/test_case_schema.py in vault/wiki/case-example.md (case 717.3) · [[decision-case-717.3]] · generate
+- 2026-10-07 decisions/decision-case-718 created · raw/2026-10-07/1804/ledger.md#case-718 · generate
+- 2026-10-07 rules/rule-sprint-close deferred · [[decision-case-718]] · generate
+- 2026-10-07 decisions/decision-case-720 created · raw/2026-10-07/1804/ledger.md#case-720 · generate
+- 2026-10-07 rules/rule-case-check deferred · [[decision-case-720]] · generate
+- 2026-10-07 decisions/decision-case-721 created · raw/2026-10-07/1804/ledger.md#case-721 · generate
+- 2026-10-07 rules/rule-orchestration deferred · [[decision-case-721]] · generate
+- 2026-10-07 rules/rule-case-protocol deferred · [[decision-case-721]] · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-10-07/1804/ledger.md#L22 · generate
+- 2026-10-07 estimates/estimate-case-build-checks-the-finished-case status: pending → passed · raw/2026-10-07/1804/ledger.md#L23 · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read status: pending → passed · raw/2026-10-07/1804/ledger.md#L26 · generate
+- 2026-10-07 lessons/lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped created · raw/2026-10-07/1804/ledger.md#L27 · generate
+- 2026-10-07 lessons/lesson-case-build-splits-a-ratified-leaf-case created · raw/2026-10-07/1804/ledger.md#L28 · generate
+- 2026-10-07 lessons/lesson-orchestration-prompt-named-unrelated-cases created · raw/2026-10-07/1804/ledger.md#L29 · generate
+- 2026-10-07 lessons/lesson-permissions-auto-mode-refuses-editing-the-case-check-store created · raw/2026-10-07/1804/ledger.md#L30 · generate
+- 2026-10-07 insights/insight-case-check-a-case-id-leaves-only-by-a-supersedes-line created · raw/2026-10-07/1804/ledger.md#L27 · generate
+- 2026-10-07 lessons/lesson-prespec-parent-of-superseded-sub-cases updated: clustered under insight-case-check-a-case-id-leaves-only-by-a-supersedes-line (synthesis) · raw/2026-10-07/1804/ledger.md#L27 · generate
+- 2026-10-07 lessons/lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped updated: clustered under insight-case-check-a-case-id-leaves-only-by-a-supersedes-line (synthesis) · raw/2026-10-07/1804/ledger.md#L27 · generate
+- 2026-10-07 insights/insight-ledger-ratified-line-never-withdrawn updated: child lesson-case-build-splits-a-ratified-leaf-case added; open again, the pattern came back after case 671.1 (synthesis) · raw/2026-10-07/1804/ledger.md#L28 · generate
+- 2026-10-07 lessons/lesson-case-build-splits-a-ratified-leaf-case updated: clustered under insight-ledger-ratified-line-never-withdrawn (synthesis) · raw/2026-10-07/1804/ledger.md#L28 · generate
+- 2026-10-07 insights/insight-permissions-classifier-weighs-the-rules-not-the-persons-word created · raw/2026-10-07/1804/ledger.md#L30 · generate
+- 2026-10-07 lessons/lesson-permissions-auto-mode-refuses-a-remote-change-despite-the-chat updated: clustered under insight-permissions-classifier-weighs-the-rules-not-the-persons-word (synthesis) · raw/2026-10-07/1804/ledger.md#L30 · generate
+- 2026-10-07 lessons/lesson-permissions-auto-mode-refuses-editing-the-case-check-store updated: clustered under insight-permissions-classifier-weighs-the-rules-not-the-persons-word (synthesis) · raw/2026-10-07/1804/ledger.md#L30 · generate
+- 2026-10-07 rules/rule-case-build status: draft → built · cascade · generate
+- 2026-10-07 rules/rule-case-example status: draft → built · cascade · generate
+- 2026-10-07 estimates/estimate-case-protocol-example-passes-the-check archived · cleanup

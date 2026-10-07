@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-case-build]]"
 purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame, writes it into its file and answers with a short summary, empties the file of a Case it drops, and undoes a change the person dropped on a ratified Case
-method: "by hand: live dispatches in a session after the render — one item with a fork, answered by a round and then the Case written into its file and a summary, one Case with a create without a ref, one that changes a hook, a Case the hook sent back and fixed by Edit, a change the person asked for on one sub-case, made by Edit of that sub-case, a Case dropped by a message of the main agent, its file emptied and its answer opening with Dropped, and a change dropped on a ratified Case, its edits undone by Edit but for one Change item in recommend and its answer a summary, the file written in Plan Mode with no prompt; the tokens and seconds of each dispatch in the estimate line"
+method: by hand, the text of .claude/agents/case-guppi.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec, read against the Criterion; the tokens and seconds of each dispatch of case-guppi in that session, when there was one, in the estimate line
 checked: 2026-10-07
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
@@ -42,7 +42,7 @@ Then:
 
 ## Result
 
-2026-10-07, Retro, not read: the undo of a dropped change of case 705.1 reaches .claude/agents/case-guppi.md only at the librarian's render of this session, and the person chose to take the reading whole in the next session
+2026-10-07, Retro, by hand: the Render of rule-case-build as Case 717.2 leaves it (.claude/agents/case-guppi.md and the two pairs of 717.2 in the Spec) read against the Criterion — case-schema.md and ratification.md read whole first, the vault query before a create without ref, the frame, rounds with a Context paragraph, the file by Write, the summary under Built and Case, Other Case, fixes by Edit, Dropped, the undo of a dropped change with a Change item, model opus, effort medium, permissionMode auto: each set. Dispatches of the session, context tokens at the end of each call and seconds: 712 — 71119/91, 86871/75; 713 then 719 — 74217/93, 88419/72, 100252/55, 139282/215, 153608/95, 156077/25, 232507/399, 238110/21, 238672/6; 714 — 74060/59, 83643/44, 105429/101; 715 — 76304/84, 93847/51, 118427/108; 716 — 86597/154, 89661/25, 124701/171, 142844/38, 144932/16; 717 — 79325/147, 182165/574, 184815/30, 195722/64
 
 ## History
 
@@ -66,3 +66,5 @@ Then:
 - 2026-10-07 status: pending → failed · raw/2026-10-07/0425/ledger.md#L24
 - 2026-10-07 updated: the Criterion replaced whole — case-guppi undoes a change the person dropped on a ratified Case and answers with the summary again (case 705.1) · [[decision-case-705.1]]
 - 2026-10-07 status: pending → failed · raw/2026-10-07/0636/ledger.md#L37
+- 2026-10-07 updated: the method reads the Render of rule-case-build against the Criterion at the Retro of the session that changes it, with the tokens and seconds of that session's dispatches; the Criterion written back unchanged; pending again (case 716) · [[decision-case-716.1]]
+- 2026-10-07 status: pending → passed · raw/2026-10-07/1804/ledger.md#L22

@@ -38,7 +38,7 @@ fields:
   severity: |
     required; integer. `count(children where status != archived)`. Recomputed by the cascade of `generate` (case 104.3), a child read in `wiki/lessons/` or in the archive (case 110), never written by hand (case 110.1).
   addressed_by: |
-    required on `actioned`; decision quoted wikilink `"[[slug]]"`. The ratified decision that fixed the pattern, or rejected it (case 124) — one, the latest; a list is not a shape of this field, and of two Cases of one plan only one actions the Insight (case 361). The field is the link; no body section repeats it (case 166.1).
+    required on `actioned`; decision quoted wikilink `"[[slug]]"`. The ratified decision that fixed the pattern, or rejected it (case 124) — one, the latest; a list is not a shape of this field, and of two Cases of one plan only one actions the Insight (case 361). A Case that actions the Insight by a decision of its own session writes the bare slug, decision-case-<N>, since that decision page is written only at the librarian's run and the checks before ratification refuse a link to a page that does not exist yet; generate writes the field on the page as the quoted wikilink (case 712). The field is the link; no body section repeats it (case 166.1).
   deferred_by: |
     optional; list of decision quoted wikilinks `"[[slug]]"`. The `defer` decisions that postponed it; set by `generate` and cleared by it on a later `supersedes`, under the condition that `rule-case-protocol` sets (case 124.2).
   origin: |

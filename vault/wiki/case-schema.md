@@ -29,95 +29,9 @@ Short sentences. One idea per sentence. Active voice. A common word over a term.
 
 The story sections — `context`, `problem`, `recommend` — name the slug of the thing described only; no count of sentences, the shape of each bounds it: `context` is prose: it opens with the mechanism in plain words — what the thing does today and where it goes wrong — for a reader who has not opened the pages, and closes with the state of the pages the Case changes, the vault's answer, what `case-guppi` found in the frame, and why an Estimate of the rule is not touched; the list of what the Case touches is `given` (case 378.1); `context`, `problem` and `recommend` explain briefly — a sentence per part where one is enough, a part with nothing to say left out — and may name a case number as the source of a claim; no script judges their text but for the titles of the items of `recommend`, which the hook of `rule-case-check` compares with the questions of the rounds (case 544.3): the person does, and a complaint of their length or clarity is what changes them (case 449); `problem` says what is wrong, or the question answered, in one paragraph; `recommend` is a list, one item per question of the rounds: its first line the title of the question in bold as the round wrote it, then a sub-item `Recommended:` and a sub-item `Answer:`, the person's answer in English, both as they stood when the person answered that question; a later question that replaced an earlier one is an item of its own, a question asked in more than one round is one item, of the last round in which the person answered it, and a question never answered says so in its `Answer:` sub-item (case 557.2); a change the person asked for on the shown Case is an item `**Change**` with the lines `Asked:` and `Taken:`; a Case with no round has one item, a line `Recommended:` and the line `Answer: ratified as built` (case 544.2). `given` holds the frame, one thing per line: the pages, modules, files and tests the Case touches and the rule that constrains; no state, no history, no quotation (case 378.1). `then` holds behaviour only; the bookkeeping is `tasks`. `given`, `when` and `then` hold no count of items — pages, lines, Estimates, Cases, tests — since `when` and `then` become the Criterion of an Estimate and a count goes stale there first; a number that states a condition or a limit, such as more than 400 000 tokens, stands (case 449). Slugs, file names and field values sit in code spans; bold is for section labels and operands only, and for the title of a question of a round and the title of an item of `recommend`, as the grill-me template sets it (case 544.2). The Spec keeps its form — the blockquotes in English, the `then` and `tasks` blocks — and the hook of `rule-spec-write` reads the chat form: a task line opening with `create`, `update`, `delete` or `defer` and the slug in its first code span is an item of the `then` block, its sub-points its keys — `old` and `new` in pairs, `reword old` and `reword new`, `set`, `change`, `rename`, `sections.<Name>`, the fields of a `create` — each value one code span, with as many backticks as the value needs — a value that holds a backtick takes its outer span padded by one space on each side, and the hook refuses one unpadded (case 402) — or a fenced block under the sub-point, its opening fence longer than any fence of the same character inside it (case 444.3); a task line that opens with `tag` and the tag in its first code span, with the sub-points `meaning` and `aliases`, each one code span, declares a new tag: the hook makes it an entry of `new_tags` in the `then` block and leaves it out of the `tasks` block, since it is no task (case 702); a Case off this form is not written, and the hook says why (cases 159, 387.2).
 
-## The chat form, by example
+## The chat form
 
-The Case below is written in the chat form that `case-guppi` writes into its file. A test runs over it the check that the `SubagentStop` hook of `rule-case-check` runs over that file, and fails on any finding or note, so the example passes that check as the check stands (case 646). The limits a form must keep are those of the check, not of this paragraph: copy the form of the example, and read a finding of the check as the limit it names.
-
-````case
-## Case 1 — The cart stands before payment
-
-> **context:**
-> Until now items went straight from the catalogue to payment, and a buyer could not review an order. The person chose a cart between the two. The pair on `entity-checkout` changes the one sentence of its Purpose that names where the buyer pays; there it names the payment step, which now follows the cart. The Criterion of `estimate-checkout-orders-the-steps` speaks of the order of the steps, so Case 1.1 replaces it. A Glob `vault/**/*cart*` printed nothing, so both new slugs are free.
-
-> **problem:**
-> A buyer pays for an order without seeing it whole.
-
-> **recommend:**
-> - **Where the cart stands**
->   - Recommended: (a) between the catalogue and payment.
->   - Answer: agreed, (a).
-
-### Case 1.1 — The cart stands before payment
-
-> **given:**
-> `entity-cart`: the new page of the cart.
-> **＋** `entity-checkout`: the page of payment, which names the cart.
-> **＋** `estimate-checkout-orders-the-steps`: its Criterion is replaced whole.
-
-> **when:**
-> A buyer with items in `entity-cart` opens `entity-checkout`.
-
-> **then:**
-> The buyer sees each item of the order and its price.
-> **＋** The buyer pays only after the cart is shown.
-> **－** An empty cart does not open `entity-checkout`.
-
-> **tasks:**
-> - [ ] create `entity-cart`
->   - type: `entity`
->   - kind: `MOC`
->   - purpose: `Lets a buyer review an order before paying`
->   - tags: `[cart, checkout]`
->   - sections.Purpose: `Until now items went straight from the catalogue to payment.`
-> - [ ] update `entity-checkout`
->   - old: `` the buyer pays at `/checkout/pay` ``
->   - new: `` the buyer reviews the cart, then pays at `/checkout/pay` ``
->   - set:
->     ```
->     tags: [cart, checkout, payment]
->     ```
->   - change: `the cart precedes payment`
-> - [ ] update `estimate-checkout-orders-the-steps`
->   - set: `{status: pending}`
->   - change: `the Criterion replaced whole — the cart precedes payment`
-> - [ ] read `estimate-checkout-orders-the-steps`
-
-> **ratification:**
-> ```
-> - decision[case 1.1][create][entity-cart]{tags:cart,checkout}
-> - decision[case 1.1][update][entity-checkout]{ref:entity-checkout}
-> - decision[case 1.1][update][estimate-checkout-orders-the-steps]{ref:entity-checkout}
-> ```
-
-### Case 1.2 — The cart renders in time
-
-> **given:**
-> `estimate-cart-renders-in-time`: the new check of the time the cart takes to show.
-> **＋** `entity-cart`: the page of the cart.
-> **＋** `src/cart/view.py`: the view of the cart.
-
-> **when:**
-> A buyer opens the cart of `src/cart/view.py` with 10, 50 or 200 items.
-
-> **then:**
-> The cart shows all its items within 200 ms.
-> **－** A cart of more than 200 items is not bound by this time.
-
-> **tasks:**
-> - [ ] create `estimate-cart-renders-in-time`
->   - ref: `entity-cart`
->   - kind: `QA`
->   - purpose: `Whether the cart shows its items within 200 ms`
->   - method: `uv run pytest tests/test_cart_view.py -k render_time`
->   - tags: `[cart, performance]`
-> - [ ] `src/cart/view.py`: the cart reads its items in one query.
-> - [ ] read `estimate-cart-renders-in-time`
-
-> **ratification:**
-> ```
-> - decision[case 1.2][create][estimate-cart-renders-in-time]{ref:entity-cart}{tags:cart,performance}
-> ```
-````
+`case-guppi` writes a Case into its file in the chat form that the sections, the operands and the language above set. `vault/wiki/case-example.md`, the Render of `rule-case-example`, shows that form by an example Case that passes the check of the `SubagentStop` hook of `rule-case-check`, and `case-guppi` reads it once in a dispatch, just before it first writes the file of a Case (cases 646, 717.1). The limits a form must keep are those of the check: read a finding of the check as the limit it names.
 
 ## `when` and `then` are the Criterion
 
@@ -125,33 +39,7 @@ The Case that creates an Estimate writes its Criterion; the Case that changes a 
 
 ## The `then` block lives in the Spec
 
-Ratifying "create entity-x" without seeing what that page will claim is an empty ratification. The human signs content, not the fact that a decision occurred. The content is a YAML block tagged `then` under the Case in the Spec — the plan the human approves at the end of Plan Mode — not in the chat, where its content stands as sub-points of `tasks` (case 370). A list under each decision type present, one entry per target, `slug` first.
-
-```then
-create:
-  - slug: entity-cart
-    type: entity
-    kind: MOC
-    purpose: Lets a buyer review an order before paying
-    tags: [cart, checkout]
-    sections:
-      Purpose: |
-        Until now items went straight from the catalogue to payment.
-  - slug: estimate-cart-renders-in-time
-    type: estimate
-    ref: entity-cart
-    kind: Research
-    purpose: Whether the cart renders within 200ms, and what dominates the time if not
-    method: measure the render at 10, 50 and 200 line items, against a seeded database
-    tags: [cart, performance]
-update:
-  - slug: entity-checkout
-    set: {tags: [cart, checkout, payment]}
-    change: the cart precedes payment
-  - slug: estimate-checkout-orders-the-steps
-    set: {status: pending}
-    change: the Criterion replaced whole — the cart precedes payment
-```
+Ratifying "create entity-x" without seeing what that page will claim is an empty ratification. The human signs content, not the fact that a decision occurred. The content is a YAML block tagged `then` under the Case in the Spec — the plan the human approves at the end of Plan Mode — not in the chat, where its content stands as sub-points of `tasks` (case 370). A list under each decision type present, one entry per target, `slug` first; `vault/wiki/case-example.md` shows one.
 
 A `create` holds the fields the target schema needs a judgment for; prose for a body section goes under `sections`, keyed by the section name. A new promise is an explicit `create` of an Estimate: its own item, `ref` naming the target, its slug written in the Case — `estimate-<target minus its prefix>-<promise>` — with `kind`, `purpose`, `method` and `tags`; its Criterion is the Case's `when` and `then`, lifted by the scripts, or the text the item writes under `sections: Criterion` (cases 188, 194.1). Its `method` holds only what runs in the Case's own session — a test, a command, a probe, or the reading of the Spec at Retro — or the person's answer; a problem seen live in a later session is a lesson, and pre-spec reports a `method` that waits for a later session, the librarian or a `/hi` (case 670.4). A rule with several promises is a parent Case that creates the rule and one sub-case per Estimate. An `update` holds `set` (fields), `sections` (the whole new text of a section), `replace` (a list of `{old, new}` pairs, each `old` replaced by its `new` inside the body; one pair is a list of one, and a mapping under `replace` is a shape `generate` rejects; an `old` matches inside one `##` section of the page — a render block is one section with its headings — never in History, a line break matching any whitespace, and hits the page once: an anchor that crosses a section heading never matches, and one that misses or hits twice fails the entry; an `old` that opens with spaces or tabs takes the spaces and tabs before its first word on the page too, so the indent of `new` replaces them, and a `new` that opens with spaces or tabs takes an `old` that opens with them, or pre-spec reports the pair — case 543), `reword` (a list of `{old, new}` pairs replaced as whole words over every live page of `wiki/`, the page of the item being the owner, for a word that changes everywhere — a slug goes through `rename`, case 274.1), `change` (one line for History) and, when the page changes its slug, `rename` (the new slug, the same category prefix; the page moves and every link to it in the live pages follows, `origin`, History and Result kept — case 258.1). An `update` of an Estimate carries `slug`, `set: {status: pending}` and `change`; the scripts replace its Criterion with the Case's `when` and `then`, or keep the text the item wrote under `sections: Criterion` (case 204). By the person's decision a Case may instead set an Estimate `passed` or `failed`: its `update` carries `set: {status: passed, checked: <date>}`, or `failed`, the page's Criterion written back unchanged under `sections: Criterion`, and `sections: Result`, whose first line is the date and the place of the decision — `the person's decision, case N` — before the last reading the page held; `checked` is the date of the decision (case 669.16). An `update` that names a part alone — a field under `set` other than `status`, a `replace` pair, a section other than `Criterion` — carries no `set.status`: the scripts change that part, and the Criterion and the status stand; a part inside the Criterion is refused — a promise changes only whole, by a Criterion replaced whole (case 378.4). A pair under `replace` or `reword` is signed only after the sentence around every match is read whole and what it names there is said, never from the line a grep printed (case 353). A Case that changes the behaviour of an existing page reads the page's `estimates` and gives an `update` to each one whose Criterion speaks of the change — read as the `then` block is written, not at pre-spec; an Estimate whose Criterion speaks of something else is left alone, since naming a spare one replaces a sound Criterion (cases 53.2, 353). One promise per Case or sub-case: two touched promises are two sub-cases, and pre-spec asks for the split. A `delete` holds `impact`, a `defer` a `type` and a `purpose`. `CLAUDE.md`, this file, `orchestration.md` and `ratification.md` are rendered from `rule-claude-md`, `rule-case-protocol`, `rule-orchestration` and `rule-ratification` and change by an `update` of one of them (cases 59.8, 273.1, 595). New tags are declared under `new_tags` with a meaning and a Russian alias, under any Case of the Spec (case 61); in the file of a Case by a task line `tag` with the sub-points `meaning` and `aliases`, which the hook of `rule-spec-write` turns into that entry (case 702).
 

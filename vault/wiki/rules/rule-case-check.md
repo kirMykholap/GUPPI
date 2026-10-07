@@ -7,6 +7,7 @@ enforcement: hook
 implementation_ref: [guppi/casecheck.py, guppi/tags.py, tests/test_casecheck.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-case-check-sends-back-a-faulty-case]]", "[[estimate-case-check-shows-only-the-checked-case]]", "[[estimate-case-check-requires-a-backlog-item-decided-on-its-page]]", "[[estimate-case-check-notes-a-criterion-line-not-carried]]", "[[estimate-case-check-notes-a-then-line-shared-by-siblings]]", "[[estimate-case-check-refuses-a-letter-outside-the-script]]", "[[estimate-case-check-requires-each-question-of-the-rounds]]", "[[estimate-case-check-refuses-a-problem-in-a-sub-case]]", "[[estimate-case-check-exits-2-on-an-error]]", "[[estimate-case-check-refuses-text-before-a-round]]", "[[estimate-case-check-sends-back-a-faulty-round]]", "[[estimate-case-check-sends-back-a-ratified-case-in-another-shape]]", "[[estimate-case-check-sends-back-a-case-number-held-by-another-agent]]", "[[estimate-case-check-refuses-text-outside-the-list]]", "[[estimate-case-check-sends-back-a-clash-with-another-case]]", "[[estimate-case-check-refuses-a-changed-case-file]]", "[[estimate-case-check-sends-back-a-summary-without-the-case-name]]", "[[estimate-case-check-sends-back-a-ratified-case-without-a-target]]", "[[estimate-case-check-judges-a-showing-after-a-refusal]]", "[[estimate-case-check-sends-back-an-unlisted-tag]]", "[[estimate-case-check-applies-the-pairs-of-the-session-in-order]]", "[[estimate-case-check-notes-a-sentence-two-cases-change]]", "[[estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read]]"]
+deferred_by: ["[[decision-case-720]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-419.3
 sprint: migration
 created: 2026-09-25
@@ -82,3 +83,4 @@ Prevents a Case from being shown to the person in a form the checks of pre-spec 
 - 2026-10-07 updated: the check of the file of a Case notes a sentence that a pair of the file and a pair of another Case change (case 711.2) · [[decision-case-711.2]]
 - 2026-10-07 estimate estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read added · [[decision-case-711.3]]
 - 2026-10-07 updated: the check of the file of a Case sends back a pair whose sentence no Read call of case-guppi returned whole (case 711.3) · [[decision-case-711.3]]
+- 2026-10-07 deferred · [[decision-case-720]]

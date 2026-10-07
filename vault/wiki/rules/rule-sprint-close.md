@@ -7,6 +7,7 @@ enforcement: check
 implementation_ref: [guppi/sprint_close.py, tests/test_sprint_close.py]
 estimates: ["[[estimate-sprint-close-archives-the-decisions]]", "[[estimate-sprint-close-archives-done-insights-and-lone-lessons]]", "[[estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest]]", "[[estimate-sprint-close-settles-unread-estimates]]", "[[estimate-sprint-close-runs-in-the-librarian-run]]", "[[estimate-sprint-close-takes-the-readings-in-groups]]", "[[estimate-sprint-close-next-session-opens-the-sprint]]"]
 applies_to: ["[[entity-sprint]]"]
+deferred_by: ["[[decision-case-718]]"]
 origin: raw/2026-10-03/0317/ledger.md#case-612.1
 sprint: migration
 created: 2026-10-03
@@ -30,3 +31,4 @@ Prevents a closed sprint from leaving its finished work among the live pages, so
 - 2026-10-04 estimate estimate-sprint-close-takes-the-readings-in-groups added · [[decision-case-628.2]]
 - 2026-10-04 estimate estimate-sprint-close-next-session-opens-the-sprint added · [[decision-case-628.3]]
 - 2026-10-04 updated: ## How it works left the Leaf: the mechanism in the docstring of guppi/sprint_close.py, the closing session in orchestration.md; the Purpose states the failure it prevents (case 632.1) · [[decision-case-632.1]]
+- 2026-10-07 deferred · [[decision-case-718]]

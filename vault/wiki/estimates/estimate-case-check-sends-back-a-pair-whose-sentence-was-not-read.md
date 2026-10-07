@@ -5,6 +5,7 @@ status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the check of the file of a Case sends back a pair whose sentence around a match no Read call of case-guppi on the page file, or on the file of the other Case that wrote into it, returned whole
 method: uv run pytest tests/test_casecheck.py -k unread_sentence
+checked: 2026-10-07
 origin: raw/2026-10-07/0636/ledger.md#case-711.3
 sprint: migration
 created: 2026-10-07
@@ -23,13 +24,15 @@ For each match of each pair of the Cases of the file — the one match of a `rep
 **＋** A sentence not read is a finding of its Case: "case <N>: <slug>: the sentence around a pair was not read whole: <opening>: Read the page around it, and the file of each other Case that wrote into it, and check the pair."
 **－** The output of a `Grep` call, or of any other tool than `Read`, is no read.
 **－** A part of the sentence that a pair of the Cases of the file wrote is not judged.
-**－** A transcript the hook cannot read, and a call of the check with no record of an agent, such as `tests/test_case_schema.py` over the example of `vault/wiki/case-schema.md`, judge no read.
+**－** A transcript the hook cannot read, and a call of the check with no record of an agent, such as `tests/test_case_schema.py` over the example of `vault/wiki/case-example.md`, judge no read.
 
 ## Result
 
-2026-10-07, Retro of session 0636, uv run pytest tests/test_casecheck.py -k unread_sentence; 6 passed
+2026-10-07, uv run pytest tests/test_casecheck.py -k unread_sentence: 6 passed, 192 deselected; tests/test_case_schema.py, a call with no record of an agent, gives the example no note: 2 passed
 
 ## History
 
 - 2026-10-07 created · [[decision-case-711.3]]
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0636/ledger.md#L35
+- 2026-10-07 updated: the Criterion written back with the example of tests/test_case_schema.py in vault/wiki/case-example.md (case 717.3) · [[decision-case-717.3]]
+- 2026-10-07 status: pending → passed · raw/2026-10-07/1804/ledger.md#L26

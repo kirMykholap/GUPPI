@@ -181,6 +181,7 @@ from guppi.materialize import (
     yaml_path,
 )
 from guppi.pages import HISTORY, REF_FIELDS, Page, read_page, slug_of, wiki_root
+from guppi.tags import registered_tags
 
 KEY_ORDER = {
     "rules": [
@@ -244,7 +245,6 @@ REWORD_CATEGORIES = ("rules", "entities", "estimates")  # not the journal, not t
 REWORD_FIELDS = ("purpose", "method")
 NEEDS_QUOTE = re.compile(r"""^[\s\[\]{}"'&*!|>%@,#`-]|: | #|:$|\s$|\n""")
 LOOKS_SPECIAL = re.compile(r"^(true|false|null|yes|no|on|off|~|[-+]?\d[\d.]*)$", re.IGNORECASE)
-TAG_ROW = re.compile(r"^\|\s*([\w-]+)\s*\|")
 READING_DATE = re.compile(r"^\s*(\d{4}-\d\d-\d\d)\b")  # a Result opens with its date (case 199)
 
 
@@ -366,6 +366,13 @@ def replace_hits(page: Page, old: str) -> list[tuple[str, re.Match]]:
         if key != HISTORY
         for m in pattern.finditer(text)
     ]
+
+
+def reword_pattern(old: str) -> re.Pattern:
+    """`old` as a whole word: no word character or hyphen on either side — the one matching
+    rule of a `reword` pair, which `reword_text`, `reword_pairs` and the simulation of
+    `pre-spec` share (cases 274.1, 711.2)."""
+    return re.compile(rf"(?<![\w-]){re.escape(old)}(?![\w-])")
 
 
 def replace_once(page: Page, old: str, new: str) -> int:
@@ -870,7 +877,7 @@ class Vault:
     def reword(page: Page, old: str, new: str) -> bool:
         """The old slug as a whole word becomes the new one in the ref fields and in every
         section but History and Result; True when anything changed."""
-        word = re.compile(rf"(?<![\w-]){re.escape(old)}(?![\w-])")
+        word = reword_pattern(old)
         changed = False
         for key in REF_FIELDS:
             value = page.props.get(key)
@@ -920,7 +927,7 @@ class Vault:
     def reword_text(page: Page, old: str, new: str) -> int:
         """`old` as a whole word becomes `new` in `purpose`, `method` and every section but
         History and Result; the number of replacements."""
-        word = re.compile(rf"(?<![\w-]){re.escape(old)}(?![\w-])")
+        word = reword_pattern(old)
         count = 0
         for key in REWORD_FIELDS:
             value = page.props.get(key)
@@ -962,7 +969,7 @@ class Vault:
                 if not other.error:
                     pages.append(other)
         for pair in pairs:  # every pair must hit before any is written
-            word = re.compile(rf"(?<![\w-]){re.escape(str(pair['old']))}(?![\w-])")
+            word = reword_pattern(str(pair["old"]))
             hit = any(
                 word.search(str(page.props.get(k) or "")) for page in pages for k in REWORD_FIELDS
             ) or any(
@@ -1313,8 +1320,7 @@ class Vault:
     def register_tags(self, new_tags: list[dict]) -> None:
         path = self.wiki / "tags.md"
         text = path.read_text(encoding="utf-8") if path.exists() else ""
-        known = {m.group(1) for m in map(TAG_ROW.match, text.splitlines()) if m}
-        known.discard("tag")
+        known = registered_tags(path) or set()  # the one reading of tags.md (case 703.1)
         rows = []
         for item in new_tags or []:
             tag = str(item.get("tag", "")).strip()

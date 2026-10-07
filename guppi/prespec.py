@@ -151,6 +151,14 @@ aside; the new Criterion is the one the item writes under `sections`, else the `
 lines of two sibling sub-cases whose shared words — runs of four or more letters and digits,
 case set aside — make 60 percent or more of the words of the shorter line, named on the
 later sibling.
+
+The sentence of a pair (cases 711.2, 711.3). `check_pairs` records the span each pair writes
+into a section, with its Case. Given the Cases of an answer of `case-guppi` as `own`, it
+gives a note when a pair of `own` changes a sentence — by `sentence_around`, to a full stop
+that a space and a capital letter follow or to the end of the paragraph — into which a pair
+of another Case wrote, and it traces, for each match of a pair of `own`, the sentence around
+it cut into the parts the pairs wrote and the rest. The check of the file of a Case in
+`guppi/casecheck.py` passes `own`; `--check` does not, so it prints no such note.
 """
 
 import argparse
@@ -168,10 +176,13 @@ from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 3
     FRONTIER_LINE,
     FRONTIER_SEPARATOR,
     READ_LINE,
+    RESULT,
     Vault,
     as_list,
     indent_added_twice,
+    replace_hits,
     replace_once,
+    reword_pattern,
 )
 from guppi.ledger import (
     hi_moment,
@@ -208,7 +219,7 @@ from guppi.materialize import (
     then_blocks,
     touches_criterion,
 )
-from guppi.pages import CATEGORIES, Page, read_category, read_page, wiki_root
+from guppi.pages import CATEGORIES, HISTORY, Page, read_category, read_page, wiki_root
 
 TOOL = "ExitPlanMode"
 TIMED_RECORD = re.compile(r"^- (\d\d:\d\d:\d\d) (decision|estimate|lesson)\[")
@@ -793,7 +804,82 @@ MOMENT = (
 WAITS = "method waits for another session — a method holds only what runs in its own session"
 
 
-def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
+SENTENCE_STOP = re.compile(r"\.[ \t\n]+(?=[A-ZА-ЯЁ])")  # a full stop, a space, a capital
+
+
+def sentence_around(text: str, start: int, end: int) -> tuple[int, int]:
+    """The sentence around the place `start`–`end` of a section's text: back to the last full
+    stop before it that a space and a capital letter follow, or to the start of its
+    paragraph, and on to the next such full stop or to the end of its paragraph; a paragraph
+    ends at a blank line. The one reading of a sentence, which the note of a sentence two
+    Cases change and the check of the read share (cases 711.2, 711.3)."""
+    head = text.rfind("\n\n", 0, start)
+    head = 0 if head < 0 else head + 2
+    tail = text.find("\n\n", end)
+    tail = len(text) if tail < 0 else tail
+    begin, finish = head, tail
+    for stop in SENTENCE_STOP.finditer(text, head, tail):
+        if stop.end() <= start:
+            begin = stop.end()
+        elif stop.start() + 1 >= end:
+            finish = stop.start() + 1
+            break
+    return begin, finish
+
+
+def shift_spans(spans: list[list], start: int, end: int, length: int) -> None:
+    """The spans written into one section before, moved for `start`–`end` replaced by a text
+    of `length`; a span the replacement overlaps is widened over it."""
+    delta = length - (end - start)
+    for span in spans:
+        if span[1] <= start:
+            continue
+        if span[0] >= end:
+            span[0], span[1] = span[0] + delta, span[1] + delta
+        else:
+            span[0] = min(span[0], start)
+            span[1] = max(span[0], span[1] + delta if span[1] > end else start + length)
+
+
+def sentence_parts(
+    text: str, begin: int, finish: int, spans: list[list]
+) -> list[tuple[str, str | None]]:
+    """The sentence `begin`–`finish` of `text` cut into its parts: each part a pair wrote,
+    with its Case, and each part between them, with None."""
+    cuts = sorted(
+        (max(begin, s), min(finish, e), case) for s, e, case in spans if s < finish and e > begin
+    )
+    parts: list[tuple[str, str | None]] = []
+    at = begin
+    for s, e, case in cuts:
+        if s > at:
+            parts.append((text[at:s], None))
+        if e > max(s, at):
+            parts.append((text[max(s, at) : e], case))
+        at = max(at, e)
+    if at < finish:
+        parts.append((text[at:finish], None))
+    return [(part, case) for part, case in parts if part.strip()]
+
+
+def shared_sentence_note(case: str, slug: str, other: str, sentence: str) -> str:
+    """The note of a pair that changes a sentence another Case's pair wrote into (case
+    711.2)."""
+    return (
+        f"note: case {case}: {slug}: a pair changes a sentence that case {other} changes too: "
+        f"{preview(sentence)}: read both new texts side by side, and fix the pair or say in "
+        "context why the two fit."
+    )
+
+
+def check_pairs(
+    cases: dict,
+    blocks: dict,
+    project_dir: Path,
+    own: set[str] | None = None,
+    notes: list[str] | None = None,
+    trace: list[dict] | None = None,
+) -> list[str]:
     """The `replace` and `reword` pairs of every Case of the plan, applied in entry order to
     copies of the pages in memory by `generate`'s own matching rule — `replace_once`, the
     tokens of the anchor joined by one `\\s+` — and nothing written to disk. A `replace`
@@ -807,10 +893,53 @@ def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
     `create` or an `update`, judged on its own and not applied to the copies (case 487.1). A
     `replace` pair whose `new` opens with a space or a tab while its `old` opens with neither
     is one finding too, by `indent_added_twice` of `guppi/generate.py`: the page keeps its own
-    indent before the match, and the indent of `new` would stand after it (case 543.4)."""
+    indent before the match, and the indent of `new` would stand after it (case 543.4).
+
+    The span each pair writes is recorded with its Case, the places found by `replace_hits`
+    and `reword_pattern` of `guppi/generate.py`, imported (case 711.2). `own`, the Cases of an
+    answer of `case-guppi`, with `notes`, a list: a pair of a Case of `own` whose sentence
+    around its match, by `sentence_around`, holds a span a pair of a Case outside `own` wrote
+    adds one note to `notes`, by `shared_sentence_note`; two pairs of `own`, or two of other
+    Cases, give none, and `--check` passes no `own`. With `trace`, a list, each match of a
+    pair of a Case of `own` adds `{case, slug, path, parts}`: the page file and the sentence
+    around the match as the earlier pairs leave it, cut by `sentence_parts` into the parts a
+    pair wrote, with its Case, and the rest, with None — what the check of the read judges
+    (case 711.3)."""
     findings: list[str] = []
     pages: dict[str, Page | None] = {}
     every_page = False
+    written: dict[tuple[str, str], list[list]] = {}  # (slug, section) → [start, end, case]
+
+    def observe(case: str, page: Page, name: str, start: int, end: int) -> None:
+        if own is None or case not in own:
+            return
+        text = page.sections[name]
+        spans = written.get((page.slug, name), [])
+        begin, finish = sentence_around(text, start, end)
+        if notes is not None:
+            others = [
+                span[2]
+                for span in spans
+                if span[0] < finish and span[1] > begin and span[2] not in own
+            ]
+            for other in dict.fromkeys(others):
+                note = shared_sentence_note(case, page.slug, other, text[begin:finish])
+                if note not in notes:
+                    notes.append(note)
+        if trace is not None:
+            trace.append(
+                {
+                    "case": case,
+                    "slug": page.slug,
+                    "path": page.path,
+                    "parts": sentence_parts(text, begin, finish, spans),
+                }
+            )
+
+    def record(case: str, page: Page, name: str, start: int, end: int, length: int) -> None:
+        spans = written.setdefault((page.slug, name), [])
+        shift_spans(spans, start, end, length)
+        spans.append([start, start + length, case])
 
     def fence_findings(case: str, slug: str, before: dict[str, dict[str, str]]) -> None:
         for page_slug, sections in before.items():
@@ -870,10 +999,15 @@ def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
                 if page is None or page.error or not old:
                     continue
                 before = {slug: dict(page.sections)}
-                hits = replace_once(page, old, new)
-                if hits == 1:
+                found = replace_hits(page, old)
+                if len(found) == 1:
+                    name, match = found[0]
+                    observe(case, page, name, match.start(), match.end())
+                    replace_once(page, old, new)
+                    record(case, page, name, match.start(), match.end(), len(new))
                     fence_findings(case, slug, before)
                     continue
+                hits = len(found)
                 what = "is not in the page" if not hits else f"hits {hits} times"
                 findings.append(f"case {case}: {slug}: a replace anchor {what}: {preview(old)}")
             for pair in item.get("reword") or []:
@@ -884,7 +1018,20 @@ def check_pairs(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
                     continue
                 load_every()
                 before = {s: dict(p.sections) for s, p in pages.items() if p}
+                word = reword_pattern(old)
+                places = [
+                    (page, name, match.start(), match.end())
+                    for page in pages.values()
+                    if page
+                    for name, text in page.sections.items()
+                    if name not in (HISTORY, RESULT)
+                    for match in word.finditer(text)
+                ]
+                for page, name, start, end in places:
+                    observe(case, page, name, start, end)
                 touched = sum(Vault.reword_text(page, old, new) for page in pages.values() if page)
+                for page, name, start, end in reversed(places):  # later places first
+                    record(case, page, name, start, end, len(new))
                 if not touched:
                     findings.append(
                         f"case {case}: {slug}: a reword pair hits no live page: {preview(old)}"

@@ -91,6 +91,32 @@ the new one does not carry, a `then` line shared by two siblings, named on the l
 findings, and sent back once by exit 2 beside any findings; a note is no finding, and `stop`
 refuses no showing for it.
 
+The tags (case 703.1). A tag in the `tags` of a `create`, in `tags` under the `set` of an
+`update`, or in a `{tags:...}` block of a decision line of the answer is a finding of its Case
+when no row of `vault/wiki/tags.md` holds it, no tag line of the answer declares it, and no tag
+line of a Case of the session with a decision line in the session's ledger declares it, that
+Case read from the store (`unlisted_tags`). The rows and the tag lines are read by
+`registered_tags`, `declared_tags` and `ratified_tags` of `guppi/tags.py`, the reading the
+ledger hook and `register_tags` of `guppi/generate.py` share; with no `tags.md` no tag is
+judged. This check is the hook's own, not one of `/pre-spec`.
+
+The pairs of the session (cases 711.1–711.3). When the session holds other Cases, by
+`other_blocks`, the hook runs `prespec.check_pairs`, imported, over their `then` blocks first
+and those of the answer last, to copies of the pages in memory; it keeps the findings that
+open with a Case of the answer and leaves out the pair findings `judge` gave on the answer
+alone, so an old text another Case already rewrote, or that then hits twice, goes back, and
+one that hits only after another Case's pair is no finding (case 711.1). The same run gives a
+note, sent once beside the notes of `promise_notes`, for a pair of the answer whose sentence
+another Case's pair wrote into; the Cases of the answer and of its family are its own and
+give none (case 711.2). And it traces the sentence around each match of a pair of the answer,
+on the page as the earlier pairs leave it: `read_outputs` reads the outputs of the `Read`
+calls of the subagent in `agent_transcript_path` — the tool use and its tool result, keyed by
+the file, line numbers set aside — and `unread_sentences` gives a finding of its Case when a
+part no pair wrote did not come back whole from a read of the page file, or a part another
+Case wrote from a read of that Case's file; a part the answer wrote is not judged, the output
+of a `Grep` is no read, and a transcript the hook cannot read judges no read (case 711.3).
+This check of the read is the hook's own, not one of `/pre-spec`.
+
 The file (case 645.2). `case-guppi` writes its Case into
 `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case, named by
 `case_file`, and fixes it by `Edit`. The hook takes each file under the `cases/` folder of a
@@ -310,12 +336,14 @@ from guppi.prespec import (
     BACKLOG_SOURCE,
     FINDING_CASE,
     NOTE_CASE,
+    check_pairs,
     check_same_target,
     check_untranslated,
     decided_on_its_page,
     deferred_pages,
     judge,
     line_has_item,
+    preview,
     promise_notes,
 )
 from guppi.prespec import window as prespec_window
@@ -326,6 +354,7 @@ from guppi.ratified import (
     key_judge,
     place,
 )
+from guppi.tags import declared_tags, ratified_tags, registered_tags, tags_file
 
 AGENT = "case-guppi"
 HANDBACK = "SubagentHandback"  # the tool a subagent gives its report through (case 434)
@@ -846,6 +875,135 @@ def other_blocks(
     return blocks
 
 
+def as_tags(value) -> list[str]:
+    """The tags of a `tags` value: a list, or one string of tags split by commas."""
+    if isinstance(value, str):
+        value = value.split(",")
+    return (
+        [str(tag).strip() for tag in value or [] if str(tag).strip()]
+        if isinstance(value, (list, tuple))
+        else []
+    )
+
+
+def unlisted_tags(
+    answer: dict[str, dict], records: list[dict], listed: set[str] | None
+) -> list[tuple[str, str]]:
+    """Case 703.1: `(case, finding)` for each tag of a `create`, of `tags` under the `set` of
+    an `update` and of a `{tags:...}` block of a decision line of the answer that `listed`
+    does not hold — the rows of `tags.md` by `registered_tags` of `guppi/tags.py`, the tag
+    lines of the answer and of the Cases of the session with a decision line in its ledger.
+    None, no `tags.md`: no tag is judged."""
+    if listed is None:
+        return []
+    used: list[tuple[str, str]] = []
+    for case, block in answer.items():
+        for item in block.get("create") or []:
+            if isinstance(item, dict):
+                used += [(case, tag) for tag in as_tags(item.get("tags"))]
+        for item in block.get("update") or []:
+            values = item.get("set") if isinstance(item, dict) else None
+            if isinstance(values, dict):
+                used += [(case, tag) for tag in as_tags(values.get("tags"))]
+    used += [(str(r.get("case")), tag) for r in records for tag in as_tags(r.get("tags"))]
+    advice = "use a tag of tags.md, or declare it by a tag line in this Case."
+    return [
+        (case, f"case {case}: tag {tag} is not in tags.md: {advice}")
+        for case, tag in dict.fromkeys(used)
+        if tag not in listed
+    ]
+
+
+READ = "Read"  # the one tool whose output counts as a read of a sentence (case 711.3)
+NUMBERED = re.compile(r"^\s*\d+[\t→]", re.MULTILINE)  # the line number a Read output opens with
+
+
+def path_key(path) -> str:
+    """A path as the read check compares it: resolved, the case of a Windows path ignored."""
+    try:
+        return os.path.normcase(os.path.abspath(str(path)))
+    except (OSError, ValueError):
+        return str(path)
+
+
+def flat(text: str) -> str:
+    """`text` with its whitespace collapsed, so a part is found across the lines of a file."""
+    return " ".join(text.split())
+
+
+def result_text(content) -> str:
+    """The text of the content of a tool result: a string, or a list of text blocks."""
+    if isinstance(content, str):
+        return content
+    blocks = content if isinstance(content, list) else []
+    return "\n".join(
+        str(block.get("text") or "")
+        for block in blocks
+        if isinstance(block, dict) and block.get("type") == "text"
+    )
+
+
+def read_outputs(payload: dict) -> dict[str, str] | None:
+    """Case 711.3: the outputs of the `Read` calls of the subagent in `agent_transcript_path`,
+    by the tool use and the tool result that answers it, keyed by the file by `path_key`; the
+    line numbers set aside and the whitespace collapsed, all the reads of one file joined.
+    None when the transcript cannot be read: no read is judged then."""
+    records = read_records(payload.get("agent_transcript_path"))
+    if records is None:
+        return None
+    calls: dict[str, str] = {}
+    outputs_of: dict[str, list[str]] = {}
+    for record in records:
+        message = record.get("message") if isinstance(record, dict) else None
+        content = message.get("content") if isinstance(message, dict) else None
+        for block in content if isinstance(content, list) else []:
+            if not isinstance(block, dict):
+                continue
+            if block.get("type") == "tool_use" and block.get("name") == READ:
+                data = block.get("input")
+                if isinstance(data, dict) and data.get("file_path"):
+                    calls[str(block.get("id"))] = path_key(data["file_path"])
+            elif block.get("type") == "tool_result" and str(block.get("tool_use_id")) in calls:
+                text = NUMBERED.sub("", result_text(block.get("content")))
+                outputs_of.setdefault(calls[str(block["tool_use_id"])], []).append(flat(text))
+    return {key: "\n".join(texts) for key, texts in outputs_of.items()}
+
+
+def unread_sentences(
+    trace: list[dict], reads: dict[str, str], folder: Path | None, own: set[str]
+) -> list[tuple[str, str]]:
+    """Case 711.3: `(case, finding)` for each sentence around a match of a pair of the answer
+    whose parts did not come back whole from a `Read`: a part no pair wrote from a read of the
+    page file, a part another Case's pair wrote from a read of that Case's file
+    `raw/<date>/<hi HHMM>/cases/case-<N>.md`, whitespace and line numbers set aside. A part a
+    pair of the answer wrote is not judged; the output of a search or any other tool is no
+    read. One finding per Case, page and sentence."""
+    found: list[tuple[str, str]] = []
+    for item in trace:
+        missing = False
+        for part, writer in item["parts"]:
+            if writer in own:
+                continue
+            if writer is None:
+                source = path_key(item["path"])
+            elif folder is not None:
+                source = path_key(case_file(folder, writer))
+            else:
+                continue
+            if flat(part) not in reads.get(source, ""):
+                missing = True
+                break
+        if missing:
+            sentence = "".join(part for part, _ in item["parts"])
+            finding = (
+                f"case {item['case']}: {item['slug']}: the sentence around a pair was not read "
+                f"whole: {preview(sentence)}: Read the page around it, and the file of each "
+                "other Case that wrote into it, and check the pair."
+            )
+            found.append((item["case"], finding))
+    return list(dict.fromkeys(found))
+
+
 def session_clashes(answer: dict[str, dict], others: dict[str, dict]) -> list[str]:
     """Case 629.1: the clashes of the answer's Cases with the other Cases of the session, by
     `prespec.check_same_target`, imported — the one judgment `/pre-spec` and the check after
@@ -874,6 +1032,7 @@ def check_answer(
     store: dict | None = None,
     plan: str = "",
     folder: Path | None = None,
+    reads: dict[str, str] | None = None,
 ) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     """Case id → its findings, and case id → its notes, for every Case of an answer of
     `case-guppi`. The categories whose schema rule the lines of the `ratification` fences or
@@ -921,10 +1080,36 @@ def check_answer(
         for case, lines in split_cases(spec_text).items()
         if case in cases
     }
+    listed = registered_tags(tags_file(project_dir))  # case 703.1: None, no tag judged
+    if listed is not None:
+        listed |= ratified_tags(store, ledger_records(list(window)))
+        for block in answer.values():
+            listed |= declared_tags(block)
+    for case, finding in unlisted_tags(answer, records, listed):
+        found[case if case in found else next(iter(cases))].append(finding)
+    others: dict[str, dict] = {}
     if store is not None:  # case 629.1: the other Cases of the session
         others = other_blocks(cases, plan, store, window, folder)
         for finding in session_clashes(answer, others):
             found[FINDING_CASE.match(finding).group(1)].append(finding)
+    tops = {top_case(case) for case in answer}  # the family of the file is its own
+    own = set(answer) | {case for case in others if top_case(case) in tops}
+    pair_notes: list[str] = []  # case 711.2
+    trace: list[dict] = []  # case 711.3
+    if others:  # case 711.1: the pairs of the session first, those of the answer last
+        alone = set(check_pairs(answer, answer, project_dir))  # what `judge` gave
+        for case, held in found.items():
+            found[case] = [f for f in held if f not in alone]
+        combined = {**others, **answer}
+        for finding in check_pairs(combined, combined, project_dir, own, pair_notes, trace):
+            match = FINDING_CASE.match(finding)
+            if match and match.group(1) in found:
+                found[match.group(1)].append(finding)
+    elif reads is not None:
+        check_pairs(answer, answer, project_dir, own, pair_notes, trace)
+    if reads is not None:
+        for case, finding in unread_sentences(trace, reads, folder, own):
+            found[case if case in found else next(iter(cases))].append(finding)
     shapes = []
     if store is not None:  # cases 610.1, 671.1
         ledger = ledger_records(window)
@@ -939,7 +1124,7 @@ def check_answer(
         family = [c for c in found if c == top or c.startswith(f"{top}.")]
         found[family[0] if family else next(iter(cases))].append(finding)
     notes: dict[str, list[str]] = {case: [] for case in cases}
-    for note in promise_notes(spec_text, project_dir):
+    for note in promise_notes(spec_text, project_dir) + pair_notes:
         match = NOTE_CASE.match(note)
         case = match.group(1) if match else ""
         if case in notes or not match:
@@ -1298,7 +1483,15 @@ def judge_and_store(
     the store as it is, findings and all (cases 434, 472.1, 610.2)."""
     cases = split_cases(text)
     found, notes = check_answer(
-        text, project_dir, window, frontier, round_titles(payload), store, plan_text, folder
+        text,
+        project_dir,
+        window,
+        frontier,
+        round_titles(payload),
+        store,
+        plan_text,
+        folder,
+        read_outputs(payload),  # case 711.3: None, no transcript, no read judged
     )
     agent_id = str(payload.get("agent_id") or "")
     apart = clashes(cases, store, agent_id)  # a number another agent holds (case 610.2)

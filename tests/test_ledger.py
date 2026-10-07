@@ -703,6 +703,143 @@ def test_an_estimate_or_decision_line_without_a_prefix_is_not_refused_by_this_ch
     assert ledger_text(working).splitlines() == [timed(estimate), timed(decision)]
 
 
+# --- a lesson takes a tag of tags.md (case 703.2) ------------------------------------------
+# `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
+
+TAGGED = "- lesson[error][lesson-t-u]{tags:hooks,nope} trigger: t root_cause: r"
+LISTED = "- lesson[error][lesson-t-v]{tags:hooks} trigger: t root_cause: r"
+DECLARE = "- decision[case 20][update][rule-x]{ref:rule-x}"
+DECLARING_CASE = """## Case 20 — a tag declared
+
+> **context:**
+> Context.
+
+> **problem:**
+> Problem.
+
+> **recommend:**
+> Advice.
+
+> **given:**
+> `rule-x` — the rule.
+
+> **when:**
+> The agent runs `guppi x`.
+
+> **then:**
+> The page changes.
+
+> **tasks:**
+> - [ ] update `rule-x`
+>   - change: `the tag nope declared (case 20)`
+> - [ ] tag `nope`
+>   - meaning: `a tag declared in the session`
+>   - aliases: `тег`
+
+> **ratification:**
+> ```
+> - decision[case 20][update][rule-x]{ref:rule-x}
+> ```"""
+
+
+def tags_md(project_dir, *tags):
+    path = project_dir / "vault" / "wiki" / "tags.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    rows = "".join(f"| {tag} | a tag | тег |\n" for tag in tags)
+    path.write_text(f"# Tags\n\n| tag | meaning | aliases (ru) |\n|---|---|---|\n{rows}", "utf-8")
+
+
+def declaring_case(project_dir):
+    """The store holds Case 20, whose tag line declares `nope`."""
+    from guppi.casecheck import read_store, store_of
+
+    plan = project_dir / ".claude" / "plans" / "plan.md"
+    store = read_store(plan)
+    store["20"] = {"text": DECLARING_CASE, "findings": [], "agent_id": "a"}
+    store_of(plan).write_text(json.dumps(store, ensure_ascii=False), encoding="utf-8")
+
+
+def test_unlisted_tag_in_the_finished_reply_is_refused_aloud_and_the_rest_lands(working):
+    tags_md(working, "hooks")
+    code, err = run(payload(last_assistant_message=ledger_block(ESTIMATE, TAGGED, LISTED)), working)
+    assert (code, err) == (2, ledger.tag_message("lesson-t-u", ["nope"]) + "\n")
+    assert "from /work to the end of Retro the new tag goes as a line of the handoff" in err
+    assert ledger_text(working).splitlines() == [timed(ESTIMATE), timed(LISTED)]
+
+
+def test_unlisted_tag_in_an_earlier_text_waits_without_a_word_then_lands(working):
+    tags_md(working, "hooks")
+    transcript = write_transcript(working, transcript_line(ledger_block(TAGGED)))
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert not ledger_file(working).exists()
+    declaring_case(working)
+    seed_ledger(working, DECLARE)
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(TAGGED)
+
+
+def test_unlisted_tag_declared_by_a_case_ratified_in_the_same_stop_passes(working):
+    tags_md(working, "hooks")
+    declaring_case(working)
+    reply = ledger_block(DECLARE, TAGGED)
+    code, err = run(
+        payload(last_assistant_message=reply, transcript_path=asked(working, "lesson-t-u")), working
+    )
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECLARE), timed(TAGGED)]
+
+
+def test_unlisted_tag_declared_by_a_case_with_no_decision_line_is_refused(working):
+    tags_md(working, "hooks")
+    declaring_case(working)
+    code, err = run(payload(last_assistant_message=ledger_block(TAGGED)), working)
+    assert (code, err) == (2, ledger.tag_message("lesson-t-u", ["nope"]) + "\n")
+
+
+def test_unlisted_tag_a_line_refused_for_its_prefix_gets_that_refusal_alone(working):
+    tags_md(working, "hooks")
+    bare = "- lesson[knowledge][harness-x-renders-y]{tags:nope} trigger: a root_cause: b"
+    code, err = run(payload(last_assistant_message=ledger_block(bare)), working)
+    assert code == 2 and "starts with lesson-" in err and "tags.md" not in err
+
+
+def test_unlisted_tag_no_tags_md_refuses_no_lesson(working):
+    assert run(payload(last_assistant_message=ledger_block(TAGGED)), working) == (0, "")
+    assert ledger_text(working) == f"{timed(TAGGED)}\n"
+
+
+def test_unlisted_tag_estimate_and_decision_lines_are_not_judged(working):
+    tags_md(working, "hooks")
+    code, err = run(payload(last_assistant_message=ledger_block(ESTIMATE, PREVIEW)), working)
+    assert (code, err) == (0, "")
+
+
+# --- a lesson refused for its tag is not held for its mark (case 703.3) ----------------------
+# `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+
+
+def test_unlisted_tag_after_a_decision_line_is_not_held_and_does_not_land_again(working):
+    tags_md(working, "hooks")
+    seed_ledger(working, DECISION)
+    code, err = run(payload(last_assistant_message=ledger_block(TAGGED)), working)
+    assert (code, err) == (2, ledger.tag_message("lesson-t-u", ["nope"]) + "\n")
+    assert ledger.held_message("lesson-t-u") not in err
+    again = payload(
+        last_assistant_message=ledger_block(TAGGED), transcript_path=asked(working, "lesson-t-u")
+    )
+    assert run(again, working)[0] == 2
+    assert timed(TAGGED) not in ledger_text(working)
+
+
+def test_unlisted_tag_a_listed_unmarked_lesson_is_held_as_before(working):
+    tags_md(working, "hooks")
+    seed_ledger(working, DECISION)
+    code, err = run(payload(last_assistant_message=ledger_block(LISTED)), working)
+    assert (code, err) == (2, ledger.held_message("lesson-t-v") + "\n")
+
+
 # --- a lesson's mark names a decision line before it (case 497.1) -------------------------
 # `estimate-ledger-write-refuses-a-mark-with-no-decision-line`
 

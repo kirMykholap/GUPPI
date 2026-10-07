@@ -138,10 +138,10 @@ def case_path(project, case):
     return casecheck.case_file(project.joinpath(*FOLDER), case)
 
 
-def answer_file(project, content, **fields):
+def answer_file(project, content, reads=None, **fields):
     """`case-guppi` writes `content` into the file of its top-level Case by `Write` and
     answers with a summary: the check reads the file in place of an answer text (case
-    645.2)."""
+    645.2). It read the page of `rule-x` before, or the transcript lines `reads` give."""
     first = next(iter(casecheck.split_cases(content)), "0")
     path = case_path(project, first)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -151,7 +151,7 @@ def answer_file(project, content, **fields):
     named = f"\n**Case:** {heading[0]} — {heading[1]}" if heading else ""  # case 662.1
     summary = {"type": "text", "text": f"**Built:** {path}{named}"}
     agent = project / "agent-file.jsonl"
-    lines = [
+    lines = (rule_x_read(project) if reads is None else list(reads)) + [
         json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": [block]}})
         for block in (call, summary)
     ]
@@ -293,10 +293,32 @@ def test_subagent_a_finding_is_sent_back_whatever_stop_hook_active_says(working)
     assert store(working)["7"]["findings"] == ["case 7: estimate-x-works has no task line"]
 
 
-def transcript(project, *records):
-    """A subagent transcript of assistant records, each a list of content blocks."""
+def read_lines(path, content=None, call_id="toolu_read"):
+    """A `Read` call of the subagent on `path` and the tool result that answers it, in the
+    shape Claude Code writes it — the content a string of lines `<n>\\t<line>` (measured
+    2026-10-07, session 0636) — as two transcript lines (case 711.3)."""
+    if content is None:
+        content = path.read_text(encoding="utf-8")
+    numbered = "\n".join(f"{n}\t{line}" for n, line in enumerate(content.splitlines(), 1))
+    use = {"type": "tool_use", "id": call_id, "name": "Read", "input": {"file_path": str(path)}}
+    result = {"type": "tool_result", "tool_use_id": call_id, "content": numbered}
+    return [
+        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": [use]}}),
+        json.dumps({"type": "user", "isSidechain": True, "message": {"content": [result]}}),
+    ]
+
+
+def rule_x_read(project):
+    """`case-guppi` read the page of `rule-x`, the page the pair of ANSWER changes."""
+    return read_lines(project / "vault" / "wiki" / "rules" / "rule-x.md")
+
+
+def transcript(project, *records, reads=None):
+    """A subagent transcript of assistant records, each a list of content blocks, after the
+    `Read` of the page of `rule-x` — or the transcript lines `reads` give."""
     path = project / "agent.jsonl"
-    lines = [
+    lines = rule_x_read(project) if reads is None else list(reads)
+    lines += [
         json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": blocks}})
         for blocks in records
     ]
@@ -1260,7 +1282,8 @@ def test_layout_a_list_showing_and_text_after_the_rule_pass(working):
 
 def test_layout_a_batch_of_list_showings_passes(working):
     built_family(working)
-    answer(working, ANSWER)
+    no_pair = ANSWER.replace(">   - old: `` the `old` text ``\n>   - new: `the new text`\n", "")
+    assert answer(working, no_pair) == (0, "")  # 9.1 rewrote the old text (case 711.1)
     batch = SHORT_SHOWING.split("\n---\n")[0] + "\n" + list_showing(*LINES_9_1, *LINES_9_2)
     assert show(working, batch) == (0, "")
 
@@ -1892,6 +1915,128 @@ def test_tag_a_case_file_with_a_tag_line_off_the_form_gives_the_hooks_refusal(wo
     assert code == 2 and "case 7: tag orchestration: no `aliases`" in err
 
 
+# --- case 703.1: a tag that tags.md does not hold ---------------------------------------------
+# `estimate-case-check-sends-back-an-unlisted-tag`
+
+TAGS_MD = "# Tags\n\n| tag | meaning | aliases (ru) |\n|---|---|---|\n| {} | a tag | тег |\n"
+
+
+def tags_md(project, *tags):
+    path = project / "vault" / "wiki" / "tags.md"
+    rows = "".join(f"| {tag} | a tag | тег |\n" for tag in tags)
+    path.write_text(TAGS_MD.format("session") + rows, encoding="utf-8")
+
+
+def unlisted(case, tag):
+    return (
+        f"case {case}: tag {tag} is not in tags.md: use a tag of tags.md, or declare it by a "
+        "tag line in this Case."
+    )
+
+
+CASE_6_TAGGED = """## Case 6 — a tag declared
+
+> **context:**
+> Context.
+
+> **problem:**
+> Problem.
+
+> **recommend:**
+> Advice.
+
+> **given:**
+> `rule-x` — the rule.
+> **＋** `estimate-x-tagged` — its Estimate.
+
+> **when:**
+> The agent runs `guppi y`.
+
+> **then:**
+> The estimate is written.
+
+> **tasks:**
+> - [ ] create `estimate-x-tagged`
+>   - type: `estimate`
+>   - kind: `QA`
+>   - purpose: `X is tagged`
+>   - method: `uv run pytest tests/test_y.py`
+>   - tags: `[harness]`
+> - [ ] tag `orchestration`
+>   - meaning: `the order of the main agent`
+>   - aliases: `оркестровка`
+> - [ ] read `estimate-x-tagged`
+
+> **ratification:**
+> ```
+> - decision[case 6][create][estimate-x-tagged]{ref:rule-x}{tags:harness}
+> ```
+"""
+
+
+def test_unlisted_tag_on_a_create_and_a_decision_line_is_a_finding(working):
+    tags_md(working, "workflow")
+    code, err = answer_file(working, ANSWER)
+    assert code == 2 and unlisted("7", "harness") in err
+    assert err.count("tag harness is not in tags.md") == 1  # the create and its line, once
+
+
+def test_unlisted_tag_on_a_set_of_tags_is_a_finding(working):
+    tags_md(working, "harness")
+    tagged = ANSWER.replace(
+        ">   - change: `the text changed",
+        ">   - set: `{tags: [hooks]}`\n>   - change: `the text changed",
+    )
+    code, err = answer_file(working, tagged)
+    assert code == 2 and unlisted("7", "hooks") in err
+
+
+def test_unlisted_tag_a_listed_tag_passes(working):
+    tags_md(working, "harness")
+    assert answer_file(working, ANSWER) == (0, "")
+
+
+def test_unlisted_tag_declared_by_a_tag_line_of_the_same_file_passes(working):
+    tags_md(working, "harness")
+    tagged = ANSWER.replace(">   - change: `the text changed (case 7)`\n", TAG_LINE).replace(
+        "{tags:harness}", "{tags:harness,orchestration}"
+    )
+    assert answer_file(working, tagged) == (0, "")
+
+
+def test_unlisted_tag_declared_by_a_ratified_case_of_the_session_passes(working):
+    tags_md(working, "harness")
+    assert answer(working, CASE_6_TAGGED) == (0, "")
+    ledger(working, "decision[case 6][create][estimate-x-tagged]{ref:rule-x}{tags:harness}")
+    uses = ANSWER.replace("{tags:harness}", "{tags:orchestration}").replace(
+        "`[harness]`", "`[orchestration]`"
+    )
+    assert answer_file(working, uses) == (0, "")
+
+
+def test_unlisted_tag_declared_by_a_case_with_no_decision_line_is_a_finding(working):
+    tags_md(working, "harness")
+    stored = answer(working, CASE_6_TAGGED)
+    assert stored == (0, ""), stored[1]
+    uses = ANSWER.replace("{tags:harness}", "{tags:orchestration}").replace(
+        "`[harness]`", "`[orchestration]`"
+    )
+    code, err = answer_file(working, uses)
+    assert code == 2 and unlisted("7", "orchestration") in err
+
+
+def test_unlisted_tag_no_tags_md_judges_no_tag(working):
+    assert not (working / "vault" / "wiki" / "tags.md").exists()
+    assert answer_file(working, ANSWER) == (0, "")
+
+
+def test_unlisted_tag_the_reading_of_tags_md_is_the_one_of_generate():
+    from guppi import generate, tags
+
+    assert generate.registered_tags is tags.registered_tags
+    assert tags.rows_of(TAGS_MD.format("harness")) == {"harness"}
+
+
 # --- the file case-guppi writes (case 645.2) -------------------------------------------------
 
 
@@ -2080,3 +2225,205 @@ def test_subagent_summary_names_the_case_a_round_or_fact_is_not_judged(working, 
 def test_subagent_summary_names_the_case_no_file_written_is_not_judged(working):
     agent = transcript(working, [summary_of("nowhere")])
     assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+
+
+# --- the pairs of the session in order (case 711.1) -------------------------------------------
+# `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+
+TWO_PARAGRAPHS = RULE_X.replace(
+    "Prevents x: the `old` text stands here.\n",
+    "Prevents x: the `old` text stands here. Another sentence follows.\n\n"
+    "A second paragraph holds other words.\n",
+)
+MISSES = "case 7: rule-x: a replace anchor is not in the page: the `old` text"
+
+
+def planned(case, old, new):
+    """A Case of the plan, in the Spec form, with one `replace` pair on `rule-x`."""
+    return (
+        f"## Case {case} — planned\n\n```then\nupdate:\n- slug: rule-x\n  replace:\n"
+        f"  - old: {json.dumps(old)}\n    new: {json.dumps(new)}\n```\n\n"
+    )
+
+
+def two_paragraphs(project):
+    path = project / "vault" / "wiki" / "rules" / "rule-x.md"
+    path.write_text(TWO_PARAGRAPHS, encoding="utf-8")
+
+
+def test_session_pairs_an_old_text_another_case_of_the_plan_rewrote_is_a_finding(working):
+    plan_with(working, planned(5, "the `old` text", "the rewritten text"))
+    code, err = answer(working, ANSWER)
+    assert code == 2 and MISSES in err
+
+
+def test_session_pairs_an_old_text_a_stored_case_rewrote_is_a_finding(working):
+    rewrites = setting(6, "built").replace("`the new text`", "`the newer text`")
+    assert answer(working, rewrites)[0] == 0
+    code, err = answer(working, ANSWER)
+    assert code == 2 and MISSES in err
+
+
+def test_session_pairs_an_old_text_that_hits_only_after_another_pair_is_none(working):
+    plan_with(working, planned(5, "stands here.", "stands here. It holds the fresh words."))
+    fresh = ANSWER.replace("`` the `old` text ``", "`the fresh words`")
+    code, err = answer(working, fresh)
+    assert "is not in the page" not in err
+    assert store(working)["7"]["findings"] == []
+    assert code == 2 and "note: case 7: rule-x: a pair changes a sentence that case 5" in err
+
+
+def test_session_pairs_a_miss_between_two_other_cases_is_none(working):
+    two_paragraphs(working)
+    plan_with(
+        working,
+        planned(5, "A second paragraph", "One second paragraph")
+        + planned(6, "A second paragraph", "Two second paragraphs"),
+    )
+    assert answer(working, ANSWER) == (0, "")
+
+
+def test_session_pairs_a_dropped_case_and_a_retired_case_are_not_applied(working):
+    rewrites = setting(6, "built")
+    assert answer(working, rewrites) == (0, "")
+    case_path(working, "6").write_text("", encoding="utf-8")  # dropped (case 701.7)
+    assert answer(working, ANSWER) == (0, "")
+    ledger(working, "decision[case 8][update][rule-y]{ref:rule-y}{supersedes:case 6}")
+    case_path(working, "6").write_text(rewrites, encoding="utf-8")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    assert answer(working, ANSWER.replace("Context.", "Context again."), now=later) == (0, "")
+
+
+def test_session_pairs_with_no_other_case_judges_the_page_on_disk(working):
+    assert answer(working, ANSWER) == (0, "")
+    gone = ANSWER.replace("`` the `old` text ``", "`words not on the page`")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    code, err = answer(working, gone, now=later)
+    assert code == 2 and "a replace anchor is not in the page: words not on the page" in err
+
+
+# --- a sentence two Cases change (case 711.2) ---------------------------------------------------
+# `estimate-case-check-notes-a-sentence-two-cases-change`
+
+SHARED = "note: case 7: rule-x: a pair changes a sentence that case 5 changes too: Prevents x:"
+
+
+def test_shared_sentence_a_pair_in_a_sentence_another_case_wrote_into_is_noted_once(working):
+    plan_with(working, planned(5, "stands here", "stands right here"))
+    code, err = answer(working, ANSWER)
+    assert code == 2 and SHARED in err
+    assert "read both new texts side by side" in err
+    assert store(working)["7"]["findings"] == []  # the note is no finding
+    assert answer(working, ANSWER) == (0, "")  # sent once
+
+
+def test_shared_sentence_another_sentence_of_the_same_paragraph_gives_none(working):
+    two_paragraphs(working)
+    plan_with(working, planned(5, "Another sentence follows", "Another sentence comes"))
+    assert answer(working, ANSWER) == (0, "")
+
+
+def test_shared_sentence_two_pairs_of_the_answer_in_one_sentence_give_none(working):
+    two_paragraphs(working)
+    plan_with(working, planned(5, "A second paragraph", "One second paragraph"))
+    both = ANSWER.replace(
+        ">   - change: `the text changed",
+        ">   - old: `Prevents x:`\n>   - new: `Keeps x out:`\n>   - change: `the text changed",
+    )
+    assert answer(working, both) == (0, "")
+
+
+def test_shared_sentence_the_sentence_runs_to_a_full_stop_and_a_capital():
+    from guppi.prespec import sentence_around
+
+    text = "One here. Two holds x and y. three stays.\n\nNext paragraph."
+    start = text.index("x")
+    begin, finish = sentence_around(text, start, start + 1)
+    assert text[begin:finish] == "Two holds x and y. three stays."
+    begin, finish = sentence_around(text, text.index("Next"), text.index("Next") + 4)
+    assert text[begin:finish] == "Next paragraph."
+
+
+def test_shared_sentence_prespec_check_prints_no_note(working):
+    from guppi import prespec
+
+    blocks = {
+        "5": {"update": [{"slug": "rule-x", "replace": [{"old": "stands here", "new": "stands"}]}]},
+        "7": {"update": [{"slug": "rule-x", "replace": [{"old": "Prevents x:", "new": "Keeps:"}]}]},
+    }
+    assert prespec.check_pairs(blocks, blocks, working) == []
+
+
+# --- the read of the sentence around a pair (case 711.3) -----------------------------------------
+# `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+
+UNREAD = "the sentence around a pair was not read whole"
+
+
+def grep_lines(project, line):
+    """A `Grep` call of the subagent and its output: the line of the page it printed."""
+    use = {"type": "tool_use", "id": "toolu_grep", "name": "Grep", "input": {"pattern": "old"}}
+    page = project / "vault" / "wiki" / "rules" / "rule-x.md"
+    result = {"type": "tool_result", "tool_use_id": "toolu_grep", "content": f"{page}:9:{line}"}
+    return [
+        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": [use]}}),
+        json.dumps({"type": "user", "isSidechain": True, "message": {"content": [result]}}),
+    ]
+
+
+def test_unread_sentence_a_read_of_the_page_passes(working):
+    assert answer_file(working, ANSWER) == (0, "")
+
+
+def test_unread_sentence_only_a_grep_output_is_a_finding(working):
+    code, err = answer_file(
+        working, ANSWER, reads=grep_lines(working, "Prevents x: the `old` text stands here.")
+    )
+    assert code == 2 and f"case 7: rule-x: {UNREAD}: Prevents x: the `old` text stands here." in err
+    assert "Read the page around it" in err
+
+
+def test_unread_sentence_a_reword_match_on_a_page_not_read_is_a_finding(working):
+    other = working / "vault" / "wiki" / "rules" / "rule-z.md"
+    other.write_text(RULE_X.replace("Prevents x: the `old` text", "Prevents z: it"), "utf-8")
+    reword = ANSWER.replace(
+        ">   - old: `` the `old` text ``\n>   - new: `the new text`\n",
+        ">   - reword old: `stands`\n>   - reword new: `rests`\n",
+    )
+    code, err = answer_file(working, reword)
+    assert code == 2 and f"case 7: rule-z: {UNREAD}" in err
+    assert f"case 7: rule-x: {UNREAD}" not in err  # rule-x was read
+    reads = rule_x_read(working) + read_lines(other, call_id="toolu_z")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    assert answer_file(working, reword, reads=reads, now=later) == (0, "")
+
+
+def test_unread_sentence_a_part_another_case_wrote_needs_a_read_of_its_file(working):
+    plan_with(working, planned(5, "stands here", "stands right here"))
+    file_5 = case_path(working, "5")
+    file_5.parent.mkdir(parents=True, exist_ok=True)
+    file_5.write_text("> - new: `stands right here`\n", encoding="utf-8")
+    code, err = answer_file(working, ANSWER)
+    assert code == 2 and UNREAD in err
+    reads = rule_x_read(working) + read_lines(file_5, call_id="toolu_5")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    _, err = answer_file(
+        working, ANSWER.replace("Context.", "Context again."), reads=reads, now=later
+    )
+    assert UNREAD not in err
+
+
+def test_unread_sentence_a_part_the_answer_wrote_is_not_judged(working):
+    both = ANSWER.replace(
+        ">   - change: `the text changed",
+        ">   - old: `stands here`\n>   - new: `stands right here`\n>   - change: `the text changed",
+    )
+    assert answer_file(working, both) == (0, "")
+
+
+def test_unread_sentence_no_transcript_judges_no_read(working):
+    assert answer(working, ANSWER) == (0, "")
+    missing = str(working / "none.jsonl")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    changed = ANSWER.replace("Context.", "Context again.")
+    assert answer(working, changed, agent_transcript_path=missing, now=later) == (0, "")

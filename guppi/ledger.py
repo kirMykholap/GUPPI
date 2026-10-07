@@ -98,6 +98,21 @@ line per refused line only when the line stands in the reply just finished, and 
 older one without a word. A line already in a ledger is not fresh and is not judged again;
 `estimate` and `decision` lines are not judged by their prefix.
 
+A lesson takes a listed tag (case 703.2). A fresh `lesson[...]` line whose `{tags:...}` holds
+a tag that no row of `vault/wiki/tags.md` holds and that no tag line of a Case of the session
+declares — a decision line of that Case standing in the session's ledger or among the lines
+of the same `Stop`, the Case read from `<plan>.checked.json` — is not written; the rows and the
+tag lines are read by `registered_tags` and `ratified_tags` of `guppi/tags.py`, the reading of
+the check of a Case file (`refused_tags`). A line refused for its prefix or its grammar is not
+judged for its tags, `estimate` and `decision` lines are not judged, and with no `tags.md` no
+line is. The hook exits 2 with one stderr line per refused line only when the line stands in
+the reply just finished (`tag_message`): it asks for a tag of `tags.md`, and says that in Plan
+Mode a Case may first declare the tag and that from `/work` to the end of Retro, where no Case
+is ratified, the new tag goes as a line of the handoff. A refused line from an earlier text is
+judged again at every `Stop` without a word, and is written at the first `Stop` where each of
+its tags is listed. A line refused for its tags is not held for its mark (case 703.3): it is
+passed to `unmarked_lessons` beside the lines refused for their prefix.
+
 A mark names a decision line before it (case 497.1). A fresh `lesson[...]` line whose
 `{addressed_by:case N}` has no decision line of Case N before it — in the session's ledger,
 or earlier among the lines of the same `Stop` — is not written, since `materialize` links a
@@ -636,6 +651,56 @@ def refused_lessons(lines: list[str]) -> list[tuple[str, str]]:
     return refused
 
 
+def refused_tags(
+    project_dir: Path, now, stamp: str, fresh: list[str], written: list[str], skip: set[str]
+) -> list[tuple[str, str, list[str]]]:
+    """`(line, slug, tags)` of each fresh `lesson[...]` line whose `{tags:...}` holds a tag
+    that no row of `vault/wiki/tags.md` holds and no tag line of a Case of the session
+    declares, a decision line of that Case standing in the session's ledger `written` or among
+    the lines of the same `Stop` (case 703.2); `tags` are those tags. A line in `skip`,
+    refused for its prefix, is not judged, and with no `tags.md` no line is. The rows and the
+    tag lines are read by `registered_tags` and `ratified_tags` of `guppi/tags.py`, the
+    reading the check of a Case file shares; the store through `guppi/casecheck.py`, imported
+    here, since that module imports this one."""
+    from guppi.casecheck import read_store
+    from guppi.materialize import parse_line
+    from guppi.tags import ratified_tags, registered_tags, tags_file
+
+    registered = registered_tags(tags_file(project_dir))
+    if registered is None:
+        return []
+    lessons = [
+        (line, record)
+        for line in fresh
+        if line not in skip
+        and (record := parse_line(f"- {body(line)}"))
+        and record["record"] == "lesson"
+        and record.get("tags")
+    ]
+    if not lessons:
+        return []
+    records = [r for line in written + fresh if (r := parse_line(f"- {body(line)}"))]
+    store = read_store(plan_path(session_event_logs(project_dir, now, stamp), stamp))
+    listed = registered | ratified_tags(store, records)
+    refused: list[tuple[str, str, list[str]]] = []
+    for line, record in lessons:
+        missing = [tag for tag in record["tags"] if tag not in listed]
+        if missing:
+            refused.append((line, record["slug"], missing))
+    return refused
+
+
+def tag_message(slug: str, tags: list[str]) -> str:
+    """The stderr line of a lesson line refused for its tags (case 703.2): from `/work` to the
+    end of Retro no Case is ratified, so the new tag waits for a later session."""
+    return (
+        f"ledger: lesson[{slug}] not written — tag {', '.join(tags)} is not in tags.md and no "
+        "ratified Case of this session declares it: write the line again with a tag of "
+        "tags.md; in Plan Mode a Case may first declare the tag by a tag line, and from /work "
+        "to the end of Retro the new tag goes as a line of the handoff to a later session."
+    )
+
+
 def refused_marks(
     fresh: list[str], written: list[str], skip: set[str]
 ) -> list[tuple[str, str, str, list[str]]]:
@@ -872,7 +937,9 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             stamp,
         )
         lessons = refused_lessons(fresh)
-        marks = refused_marks(fresh, written, {line for line, _ in lessons})  # case 497.1
+        prefixed = {line for line, _ in lessons}
+        tagged = refused_tags(project_dir, now, stamp, fresh, written, prefixed)  # case 703.2
+        marks = refused_marks(fresh, written, prefixed)  # case 497.1
         unopened = refused_without_sprint(project_dir, fresh, written)  # case 628.3
         copied = off_store(  # case 688.7: a line the sprint refuses gets that refusal alone
             project_dir, now, stamp, [line for line in fresh if line not in set(unopened)]
@@ -880,8 +947,8 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         finished = {body(line) for line in ledger_lines(reply_text(payload))}
         held: list[tuple[str, str]] = []  # case 682.1: asked once, then written as it stands
         dropped: set[str] = set()
-        for line, slug, cases, beside in unmarked_lessons(
-            fresh, written, {line for line, _ in lessons}
+        for line, slug, cases, beside in unmarked_lessons(  # case 703.3: no hold for a tag
+            fresh, written, prefixed | {line for line, _, _ in tagged}
         ):
             message = held_message(slug)
             if beside:
@@ -891,6 +958,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         out = (
             {line for line, _, _ in refused}
             | {line for line, _ in lessons}
+            | {line for line, _, _ in tagged}
             | {line for line, _, _, _ in marks}
             | set(unopened)
             | {line for line, _ in held}
@@ -924,6 +992,9 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                     f"ledger: lesson[{slug}] not written — a lesson slug starts with lesson-, "
                     "then the area, then the cause: write the line again with the prefix."
                 )
+        messages += [  # case 703.2
+            tag_message(slug, tags) for line, slug, tags in tagged if body(line) in finished
+        ]
         for line, slug, case, subs in marks:
             if body(line) in finished:
                 named = (

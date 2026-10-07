@@ -1,0 +1,908 @@
+<!-- approved 20:52:17 · session d70b04ed -->
+
+# Spec — session 1804, 2026-10-07
+
+## Case 712 — A Case names a decision of its own session in addressed_by by the bare slug
+
+> **context:**
+> An `actioned` Insight names in `addressed_by` the decision that fixed it, and the field description of `rule-insights-schema` asks for a quoted wikilink. A Case that actions an Insight in its own session names its own decision, whose page `generate` writes only at the librarian's run. Until then the link check of `guppi/prespec.py`, which the check of the Case file shares, refuses it: in session 0636 it printed `casecheck: case 710.2: [[decision-case-710.1]] outside a code span names no page`, so Cases 710.2 and 711.3 wrote the bare slug against the words of the schema. The pages came out right all the same: `frontmatter` of `guppi/generate.py` writes every ref field as a quoted wikilink, whatever form the entry holds (case 148.1), and both Insights now hold `"[[decision-case-710.1]]"` and `"[[decision-case-711.3]]"`. The same fact answers the flag of the brief that the handoff said bare and the disk says quoted. The librarian's synthesis writes the field bare too, by `estimate-synthesis-reads-the-status-its-yaml-sets`. So only the words are wrong: the person chose to say in the field description that such a Case writes the bare slug and `generate` adds the brackets, and to leave the link check as it is, so that it still catches a link to a page that will never exist. `estimate-generate-writes` already checks that every ref field is written as a quoted wikilink, and its Criterion stands. `estimate-insights-schema-checked` checks that `vault/wiki/insights/schema.yaml` equals the Render and that `fields.addressed_by` names one decision; both stay true, so its Criterion stands. `estimate-prespec-catches-bare-wikilinks` speaks of the link check, which does not change.
+
+> **problem:**
+> The schema asks a Case for a quoted wikilink in `addressed_by`, and the checks before ratification refuse that link when the decision is of the same session; a Case cannot follow both.
+
+> **recommend:**
+> - **Which side changes so that a Case can name a decision of its own session**
+>   - Recommended: (a) change the words of the Insight schema: the field description says that the page holds the quoted wikilink, that a Case writes the bare decision slug, and that the page writer adds the brackets; no code changes.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `rule-insights-schema`: the schema whose field description of `addressed_by` gains the sentence.
+> **＋** `vault/wiki/insights/schema.yaml`: the Render of the schema, written again by the render.
+> **＋** `guppi/generate.py`: writes every ref field as a quoted wikilink. Unchanged.
+> **＋** `guppi/prespec.py`: the link check that refuses a link to a page that does not exist. Unchanged.
+> **＋** `estimate-generate-writes`: checks the quoted wikilink of every ref field. Its Criterion is unchanged.
+> **＋** `estimate-insights-schema-checked`: checks the Render of the schema. Its Criterion is unchanged.
+
+> **when:**
+> `case-guppi` reads the field description of `addressed_by` in `vault/wiki/insights/schema.yaml` to write a Case that sets an Insight `actioned` by a decision of its own session.
+
+> **then:**
+> The description says that such a Case writes the bare slug of the decision, and that `guppi/generate.py` writes the field on the page as the quoted wikilink.
+> **＋** The description still says that the page holds the quoted wikilink.
+> **－** The link check of `guppi/prespec.py` does not change.
+
+```then
+update:
+- slug: rule-insights-schema
+  replace:
+  - old: a list is not a shape of this field, and of two Cases of one plan only one actions the Insight (case 361).
+    new: a list is not a shape of this field, and of two Cases of one plan only one actions the Insight (case 361). A Case that actions the Insight by a decision of its own session writes the bare slug, decision-case-<N>, since that decision page is written only at the librarian's run and the checks before ratification refuse a link to a page that does not exist yet; generate writes the field on the page as the quoted wikilink (case 712).
+  change: a Case names a decision of its own session in addressed_by by the bare slug; generate adds the brackets (case 712)
+```
+
+```tasks
+- [ ] update `rule-insights-schema`
+- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+```
+
+## Case 713 — The person takes back a ratified Case by a short Case that supersedes it
+
+> **context:**
+> A ratified Case has decision lines in the ledger of the session, and the ledger only grows. Only a `{supersedes:case N}` mark on a line of a newer Case retires it: the `Stop` hook of `rule-spec-write` then removes Case N from the plan, `/pre-spec` asks no item for its lines, and the hook of `rule-prespec-onward` never counts it as out. Case 705 set how a dropped change to a ratified Case is undone, and left the take-back of a whole ratified Case not done; the handoff of session 0636 and the brief carry it. Today no rule sets it: `case-guppi` answers a drop of a ratified Case under `**Fact:**` that it is ratified, and the Case stays in the plan, where Work Mode would build it. The person chose that the main agent writes, with no dispatch, a short Case in the form of a deferred decision whose `defer` lines carry the mark; that this holds in Plan Mode only; that it may name one sub-case; that the line of the item in `frontier.md` closes as its source is put off; and that a new Estimate checks it.
+>
+> The frame changed one choice. `guppi/generate.py` marks `deferred_by`, and so the backlog, only on rule, entity and insight pages (`DEFERRABLE`); a `defer` of an existing Estimate writes one History line, and a `defer` of a missing Estimate writes a placeholder with no `target`, `method` or Criterion, which `vault/wiki/estimates/schema.yaml` requires. So the person chose that the short Case puts off each rule, entity and insight page, each Estimate the Case updates, and, for each Estimate it creates, the page that Estimate checks; its `context` names the Estimates left out. For a page that exists, `defer` sets no field: the `type` and `purpose` of its item reach only the `## Deferred` list of the Decision page. A `defer` line passes the hold of the ledger hook, which judges only lines of another kind.
+>
+> `guppi/prespec.py` reports a line closed `case N` whose heading left the plan, and a line closed `defer case N` whose source is `sprint` or `backlog`. So the line of the item changes from `[x] … · case N` to the closer of its source. Two sentences of the Render of `rule-orchestration` say that such closers come with no Case: the sprint closer has no Case, and an item of `backlog.md` kept has no short Case and no ledger line. The Case rewords both, and the sentence that gives the short form one moment. The sentence of `case-schema.md` that a Frontier line closed by a superseded Case is closed again by the superseding Case stays true: the line closes again in the reply of the short Case.
+>
+> A Grep for `(?i)\bdrop(s|ped)? (that|the|its|your|a) (ratified )?Case|take(s|n)? back` over `vault/wiki/rules/` printed `rule-case-build.md` and `rule-orchestration.md`, and over `.claude/` printed `.claude/agents/case-guppi.md`. The hit in `rule-orchestration.md` is the paragraph of the drop, which this Case extends. The hit in `rule-case-build.md`, rendered into `.claude/agents/case-guppi.md`, sets the answer of `case-guppi` to the drop of a ratified Case. It stands, since at a take-back the main agent sends `case-guppi` no message. A Glob `vault/**/*take*back*` printed nothing, so the new slug is free.
+>
+> Of the Estimates of `rule-orchestration`, `estimate-orchestration-defers-in-one-reply` checks the reply that puts off an item not yet decided. Its line that a sprint item put off or a backlog item kept takes no short Case stands: its `when` is that moment, and the take-back is the moment of the new Estimate. `estimate-orchestration-shows-the-frontier-after-a-closed-line` covers only a reply with no defer, and `estimate-orchestration-shows-the-built-case` says that the file of a Case with a decision line is never emptied, which still holds. `estimate-spec-write-removes-a-superseded-case` already checks the removal by the hook. No code changes. The rendered `orchestration.md` changes at the librarian's render. Until then the main agent has no rule for a take-back, and no hook refuses anything in between.
+
+> **problem:**
+> The person cannot take back a ratified Case in its session. The Case stays in the plan, and Work Mode would build it.
+
+> **recommend:**
+> - **What does taking back an approved Case leave behind?**
+>   - Recommended: (a) a short "put off" Case replaces it; its line carries the mark that replaces the old Case, and its pages go to the backlog.
+>   - Answer: agreed, (a).
+> - **When can an approved Case be taken back?**
+>   - Recommended: (a) in Plan Mode only; in Work Mode the agent tells the person that the Case is already being built.
+>   - Answer: agreed, (a).
+> - **Can a take-back name a single sub-case?**
+>   - Recommended: (a) the whole Case or one sub-case.
+>   - Answer: agreed, (a).
+> - **How does the item's Frontier line close after a whole take-back?**
+>   - Recommended: (a) close it the way its source is put off: put off by the short Case, a sprint item put off, or a backlog item kept.
+>   - Answer: agreed, (a).
+> - **Which pages does the short Case put off?**
+>   - Recommended: (a) every page of the approved Case, Estimates included.
+>   - Answer: agreed, (a); the Estimates were then settled by the question on the Estimates of the approved Case.
+> - **Which check proves that the take-back works?**
+>   - Recommended: (a) a new Estimate for the take-back; the put-off check stays as it is.
+>   - Answer: agreed, (a).
+> - **What happens to the Estimates of the approved Case when it is taken back?**
+>   - Recommended: (a) put off each rule, entity and insight page and each Estimate the Case updates, and for each Estimate it creates the page that Estimate would check; the short Case names the Estimates left out.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `rule-orchestration`: its Render sets the take-back of a ratified Case and the closers of the Frontier.
+> **＋** `estimate-orchestration-takes-back-a-ratified-case`: the new check of the take-back.
+> **＋** `vault/wiki/orchestration.md`: the file rendered from `rule-orchestration`.
+> **＋** `rule-spec-write`: the hook that writes a short Case and removes the Case its `{supersedes:case N}` names.
+> **＋** `rule-prespec-onward`: the hook that never counts a Case retired by such a mark as out.
+> **＋** `guppi/generate.py`: a `defer` marks only rule, entity and insight pages.
+> **＋** `/pre-spec` and `rule-prespec`: the check that reads the closers of the Frontier and the end of Plan Mode.
+> **＋** `raw/<date>/<hi HHMM>/frontier.md`, `raw/<date>/<hi HHMM>/ledger.md` and `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the Frontier, the ledger and the file of a Case.
+
+> **when:**
+> In Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`, the person asks in the chat to take back a Case of the session that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`, whole or one of its sub-cases.
+
+> **then:**
+> In the same reply the main agent shows a short Case of its own in the form of a deferred decision, with no dispatch of `case-guppi`, and carries its `LEDGER` block, with no tool call after it.
+> **＋** The block holds one `defer` line for each rule, entity and insight page the Case taken back names, one for each Estimate it updates, and one for the page that each Estimate it creates would check, once per page; each line carries `{supersedes:case N}` for the Case or sub-case taken back.
+> **＋** The `context` of the short Case names the Case taken back and each Estimate that Case creates.
+> **＋** The person's words asking for the take-back are its ratification: no question asks for it.
+> **＋** The `Stop` hook of `rule-spec-write` writes the short Case under `## Deferred` and removes the Case taken back from the plan file.
+> **＋** When no part of the Case stays in the plan, the line of its item in `raw/<date>/<hi HHMM>/frontier.md` changes in the same reply from `[x] … · case N` to `[-] … · sprint · defer` for an item of the sprint, `[-] … · backlog · kept` for an item of the backlog, or `[-] … · defer case M` of the short Case for any other source.
+> **＋** The reply ends as the reply that carries a defer: the Frontier, then the question which open item is next, or before `/pre-spec` the question whether to go on to `/pre-spec`, or after `/pre-spec` no question.
+> **－** The file of the Case taken back under `raw/<date>/<hi HHMM>/cases/` is not emptied, and no `case-guppi` undoes it.
+> **－** In Work Mode no Case is taken back: the main agent tells the person that the ratified Case stands, and that a Case of a later session may replace it.
+
+```then
+create:
+- slug: estimate-orchestration-takes-back-a-ratified-case
+  ref: rule-orchestration
+  kind: QA
+  purpose: A ratified Case the person takes back in Plan Mode is retired by a short Case of the main agent whose defer lines supersede it, and the line of its item closes as its source is put off
+  method: 'by hand at Retro of the session that changes it: the new Render of rule-orchestration in the Spec, read against the Criterion, recorded in the estimate line'
+  tags:
+  - session
+  - workflow
+  - ledger
+update:
+- slug: rule-orchestration
+  replace:
+  - old: '`[-] … · sprint · defer` for an item of the sprint left for later — no Case, never `· defer case N` (case 356.2)'
+    new: '`[-] … · sprint · defer` for an item of the sprint left for later — no Case but the short Case of a take-back (case 713), never `· defer case N` (case 356.2)'
+  - old: so that the hook of `rule-prespec-onward` counts the Case as ratified (case 705.2).
+    new: so that the hook of `rule-prespec-onward` counts the Case as ratified (case 705.2). When, in Plan Mode, the person takes back a ratified Case whole, or one of its sub-cases, the agent dispatches no `case-guppi` and shows in its reply a short Case of its own, in the form of `## The short form — deferred decisions`, whose `LEDGER` block holds one `defer` line for each rule, entity and insight page the Case taken back names, one for each Estimate it updates, and one for the page that each Estimate it creates would check, once per page, each line carrying `{supersedes:case N}` for the Case or sub-case taken back, and whose `context` names the Case taken back and each Estimate that Case creates; the person's words are its ratification, the `Stop` hook of `rule-spec-write` removes the Case taken back from the plan, and its file under `cases/` stands; when no part of the Case stays in the plan, the line of its item in `frontier.md` changes in the same reply from `[x] … · case N` to the closer of its source put off — `[-] … · sprint · defer` for an item of the sprint, `[-] … · backlog · kept` for an item of `backlog.md`, and `[-] … · defer case M` of the short Case for any other source — and the reply ends as the reply that carries a defer; in Work Mode no Case is taken back, and the agent tells the person that the ratified Case stands and that a Case of a later session may replace it (case 713).
+  - old: 'It has one moment: the close of Plan Mode, when the person defers the items left open;'
+    new: 'It has two moments: the close of Plan Mode, when the person defers the items left open, and the take-back of a ratified Case in Plan Mode, as `## Showing and signing a Case` sets it (case 713);'
+  - old: 'An item of `backlog.md` left as it stands is no decision: no short Case, no ledger line;'
+    new: 'An item of `backlog.md` left as it stands is no decision: no short Case, no ledger line, but for the short Case of a take-back, whose item closes the same way and whose `defer` lines add to its source (case 713);'
+  change: the person takes back a ratified Case, or one of its sub-cases, in Plan Mode by a short Case whose defer lines supersede it, and the line of its item closes as its source is put off (case 713)
+```
+
+```tasks
+- [ ] update `rule-orchestration`
+- [ ] create `estimate-orchestration-takes-back-a-ratified-case`
+- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [ ] read `estimate-orchestration-takes-back-a-ratified-case`
+```
+
+## Case 714 — Pre-spec reports a Case that breaks a condition of a schema
+
+> **context:**
+> The `schema.yaml` of a page category can make a field or a section required once another field holds a given value: an `actioned` Insight requires `addressed_by`, for example. Today only `make lint` of `guppi/lint.py` reads these conditions, by `check_schema`, on the live pages at the librarian's run. `judge` of `guppi/prespec.py`, which `/pre-spec`, the check of the Case file of `rule-case-check` and the check after ratification of `rule-spec-write` run, does not. So Case 701.1 set `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out` `actioned` with no `addressed_by`, was ratified, and `make lint` then reported the missing field; Case 706 of the next session fixed that one field and left this check not done, and the handoff of session 0636 and the brief carry it. The person chose a check of every condition of every schema, inside `judge`, so that all three places run it; a finding only for the Case that causes the break; only the page and the Cases judged together, so the check of one Case file does not see a field another Case of the session sets; the same skip as the check of the keys for a category whose schema rule the session changes; and a new Estimate on `rule-prespec-hook`, checked by tests.
+>
+> The page as the Case leaves it counts a field that `guppi/generate.py` fills from the item itself, such as `parent` from `ref`, since `case-schema.md` says a Case does not write derivable fields. Case 712 of this session says that a Case writes `addressed_by` as the bare slug of a decision of its own session; the new check counts the field as present in any form, so the two agree. The Purpose of `rule-case-check` says the checks of a Case are those of pre-spec and of the Spec hook, imported, and `estimate-case-check-sends-back-a-faulty-case` says the check of the file runs `judge`; both stay true, so neither changes. The Purpose of `rule-prespec-hook` says the list of what `--check` compares stands in the docstring of `guppi/prespec.py`, which this Case extends, so the page stands. A Grep for `(?i)conditional` over `vault/wiki/estimates/` printed `schema.yaml`, `estimate-insights-schema-checked.md`, `estimate-estimates-schema-checked.md`, `estimate-rules-schema-checked.md`, `estimate-lessons-schema-checked.md`, `estimate-entities-schema-checked.md` and `estimate-lint-catches.md`. `schema.yaml` holds the conditions of an Estimate, which this Case reads and does not change; the Criterion of each of the six Estimates speaks of what `make lint` reports on a page, which does not change since lint calls the shared function, so each Criterion stands. The new code runs from the working tree at once and reads the `schema.yaml` files, which this Case does not change; a refused Case goes back to `case-guppi` and loses nothing, so no old form is kept.
+
+> **problem:**
+> A Case can break a condition of a schema, such as an `actioned` Insight with no `addressed_by`, and no check before ratification sends it back; `make lint` reports it only after the librarian's run.
+
+> **recommend:**
+> - **What should a check before ratification cover?**
+>   - Recommended: (b) every such condition of every schema, on the page as the Case leaves it, through the code of `make lint`.
+>   - Answer: agreed, (b).
+> - **Where should the check run?**
+>   - Recommended: (a) inside the shared function of `guppi/prespec.py`, so `/pre-spec`, the check of the Case file and the check after ratification all run it.
+>   - Answer: agreed, (a).
+> - **Which Case does the check send back?**
+>   - Recommended: (a) only the Case that causes the break: a `create` that breaks a condition, or a `set` of the value that starts one with no required field or section on the page or in the Case.
+>   - Answer: agreed, (a).
+> - **Do the fields set by another Case of the same session count?**
+>   - Recommended: (a) only the page and the Cases checked together.
+>   - Answer: agreed, (a).
+> - **What happens when the same session changes the schema itself?**
+>   - Recommended: (a) skip that page type, as the key check does.
+>   - Answer: agreed, (a).
+> - **How is the check proven to work?**
+>   - Recommended: (a) a new Estimate on `rule-prespec-hook`, checked by tests.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `guppi/prespec.py`: `judge`, the shared check of a plan, and its docstring.
+> **＋** `guppi/lint.py`: `check_schema`, whose judgment of a condition becomes one shared function.
+> **＋** `tests/test_prespec.py` and `tests/test_lint.py`: the tests of the check and of lint.
+> **＋** `estimate-prespec-hook-reports-a-schema-condition-not-met`: the new check of the finding.
+> **＋** `rule-prespec-hook`: the rule of `/pre-spec`, the target of the Estimate. Unchanged.
+> **＋** `rule-case-check` and `rule-spec-write`: the checks of a Case file and after ratification, which run `judge`. Unchanged.
+> **＋** `guppi/generate.py`: fills derivable fields, such as `parent` from `ref`. Unchanged.
+
+> **when:**
+> `judge` of `guppi/prespec.py` — run by `uv run guppi prespec --check <plan> --session <id>`, by the check of a Case file of `rule-case-check` or by the check after ratification of `rule-spec-write` — reads a `create` or an `update` item of the `then` blocks, and the page it names, by the `schema.yaml` of the category of its slug.
+
+> **then:**
+> A `create` that leaves its page without a field or section that a condition of the schema requires, or an `update` whose `set` gives the value a condition starts on while neither the page nor the Cases judged hold what it requires, gives one finding that names the Case, the slug, the missing field or section and the condition.
+> **＋** The judgment of a condition is one function of `guppi/lint.py`, which `check_schema` and `guppi/prespec.py` both call, and `make lint` reports what it reported before.
+> **＋** A field that `guppi/generate.py` fills from the item, such as `parent` from `ref`, counts as present, and so does a field or section that an earlier Case of the plan writes on the same page.
+> **－** An `update` that sets no value a condition starts on gives no such finding, even when the page already breaks a condition.
+> **－** A category whose schema rule a Case of the session changes is not judged, as for the check of the keys.
+> **－** In the check of a Case file of `rule-case-check`, a field that only a Case of the session outside the file writes does not count.
+> **－** A `defer` item is not judged.
+
+```then
+create:
+- slug: estimate-prespec-hook-reports-a-schema-condition-not-met
+  ref: rule-prespec-hook
+  kind: QA
+  purpose: Whether pre-spec reports a Case whose create or set leaves a page short of what a condition of its schema requires, by one function of guppi/lint.py, and leaves alone a Case that does not cause the break
+  method: uv run pytest tests/test_prespec.py tests/test_lint.py -k condition
+  tags:
+  - harness
+  - workflow
+  - schema
+```
+
+```tasks
+- [ ] create `estimate-prespec-hook-reports-a-schema-condition-not-met`
+- [x] `guppi/lint.py`: one function gives each condition of a schema that a set of fields and sections does not meet; `check_schema` calls it, and its findings stay as they are.
+- [x] `guppi/prespec.py`: a check in `judge`, after the check of the keys and with its `schema_free`, builds for each `create` and `update` the page as the plan leaves it — the live page, the fields and sections of the items of earlier Cases and of the item, and the fields `generate` fills from the item — and calls the function of `guppi/lint.py` only for a `create`, or for an `update` whose `set` gives the value a condition starts on; a `defer` is not judged; the module docstring gains the finding in its list.
+- [x] `tests/test_prespec.py` and `tests/test_lint.py`: a `create` of a rule with `enforcement: hook` and no `implementation_ref`, an `update` that sets an Insight `actioned` with no `addressed_by`, and an `update` that sets an Estimate `passed` with no `## Result` each give a finding; the same with the field or section in the item, on the page or in an earlier Case of the plan, a Leaf Entity whose `parent` comes from `ref`, an `update` with only `change` on a page that already breaks a condition, a category in `schema_free` and a `defer` give none; lint gives the same findings on a page as before.
+- [ ] read `estimate-prespec-hook-reports-a-schema-condition-not-met`
+```
+
+## Case 715 — Pre-spec reports a replaced Criterion whose kept method waits for another session
+
+> **context:**
+> An Estimate is read through its `method`. Since case 670.4, `guppi/prespec.py` reports a `method` that waits for another session, but only one the plan writes: a `create`, or an `update` with `set: {method: …}`. A Case that replaces the Criterion of an Estimate whole and writes no `method` keeps the `method` on the page, and the page goes `pending`. When that `method` names a later session, the Retro of the Case's own session cannot read it, and the Estimate is left `failed`. This happened to `estimate-orchestration-shows-the-frontier-after-a-closed-line`: case 701.6 replaced its Criterion in session 0425, and the Retro of that session wrote it `failed`, not read (`raw/2026-10-07/0425/ledger.md`, L26). The handoff of session 0636 and the brief carry it as C7. The person chose a report at pre-spec for every Estimate rather than a new `method` for this one; a new Estimate on `rule-prespec-hook`; and no report for an `update` that sets an Estimate `passed` or `failed` by the person's decision, since no reading follows it.
+>
+> So `estimate-orchestration-shows-the-frontier-after-a-closed-line` keeps its `method`, and the next Case that replaces its Criterion gets the report and must write a `method` that runs in its own session. A Grep for `^method:.*(?i)((later|next)\s+session|session\s+after|librarian|[^\w/]/hi\b)` over `vault/wiki/estimates/` printed 85 files, this Estimate among them; the pattern is close to the predicate of `guppi/lint.py` but does not leave out a part that names the person. These pages stay as they are; the report reaches each one when a Case replaces its Criterion.
+>
+> The new check sits in `check_form` of `guppi/prespec.py`, inside `judge`, so `/pre-spec`, the check of a Case file of `rule-case-check` and the check after ratification of `rule-spec-write` all run it. It runs from the working tree at once; a Case it refuses goes back to `case-guppi`, and nothing is lost, so no old form is kept. Case 714 of this session adds another finding to `judge` and to the same docstring list; the two findings judge different things and do not clash. The Criterion of `estimate-prespec-hook-reports-a-method-that-waits-for-another-session` reads only the `method` a plan writes, and each of its lines stays true, so it stands; the new branch can fail while that one passes, and its fix differs, so it is a new Estimate. A Grep for `(?i)waits? for (another|a later) session` over `vault/wiki/rules/` printed `rule-case-protocol.md`, and over `.claude/` printed nothing. Its sentence in the Render, that pre-spec reports a `method` that waits for a later session, the librarian or a /hi, stays true and stands. Not done: a `method` that another item of the same plan sets on the page is not read in place of the page's `method`. A Glob `vault/**/*kept-method*` printed nothing, so the new slug is free.
+
+> **problem:**
+> A Case that replaces the Criterion of an Estimate whole and keeps a `method` that waits for another session passes pre-spec with no report, and its own Retro leaves the Estimate `failed`.
+
+> **recommend:**
+> - **What should the fix cover?**
+>   - Recommended: (b) a `/pre-spec` report for every check: a Case that replaces a Criterion with no new `method`, while the page's `method` waits for another session, gets a report; this Estimate's `method` stays until the next Case changes its Criterion.
+>   - Answer: agreed, (b).
+> - **Which check confirms the new report?**
+>   - Recommended: (a) a new check page, `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`, read by a test; the existing check page stays as it is.
+>   - Answer: agreed, (a).
+> - **Does a Case that sets a check passed or failed by your decision get the report?**
+>   - Recommended: (a) no report for it; only a Case that leaves the page `pending` gets the report.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`: the new check of the report.
+> **＋** `rule-prespec-hook`: the rule of pre-spec, the target of the Estimate. Unchanged.
+> **＋** `guppi/prespec.py`: `check_form`, inside `judge`, and the module docstring.
+> **＋** `guppi/lint.py`: `waits_for_another_session` and `method_of`, the predicate and the reader of the field. Unchanged.
+> **＋** `tests/test_prespec.py`: the tests of the report.
+> **＋** `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`: the check of a `method` the plan writes. Unchanged.
+> **＋** `raw/2026-10-07/1804/cases/case-714.md`: adds another finding to `judge` and to the same docstring list.
+
+> **when:**
+> `uv run guppi prespec --check <plan> --session <id>` of `guppi/prespec.py` reads an `update` of an Estimate in the `then` blocks of the plan file that replaces its Criterion whole and carries no `set: {method: …}`, and the `method` of that Estimate's live page.
+
+> **then:**
+> When a part of that `method` between two `;` names a later session, the next session, a session after another, the librarian or /hi, and does not name the person, the check gives one line `case N: update <slug>: the method on the page waits for another session — set a method that runs in this session`.
+> **＋** The judgment is `waits_for_another_session` of `guppi/lint.py`, the same predicate that judges a `method` the plan writes.
+> **－** An `update` that sets the Estimate `passed` or `failed` by the person's decision gives no such line.
+> **－** An `update` that names a part of the page alone, such as a `set` of another field or a `replace` pair, gives no such line.
+> **－** A `method` on the page that waits for no other session, or whose part names the person, gives no such line.
+
+```then
+create:
+- slug: estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session
+  ref: rule-prespec-hook
+  kind: QA
+  purpose: Whether pre-spec reports a Case that replaces the Criterion of an Estimate whole, writes no method and keeps one on the page that waits for another session, by the one predicate of guppi/lint.py
+  method: uv run pytest tests/test_prespec.py -k kept_method
+  tags:
+  - harness
+  - workflow
+```
+
+```tasks
+- [ ] create `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
+- [x] `guppi/prespec.py`: in `check_form`, an `update` of an Estimate that names no part by `materialize.names_a_part`, carries no `set.method` and sets no `status` of `passed` or `failed` reads the `method` of the live page by `lint.method_of` and, when `lint.waits_for_another_session` holds, gives the line of the `then`; the module docstring gains the finding in its list.
+- [x] `tests/test_prespec.py`: tests named `kept_method`: a Criterion replaced with a page `method` that names a later session, the librarian or /hi gives the line; the same with `set: {method: …}` in the item, with `status: passed` or `failed` set by the person's decision, with only a `replace` pair or a `set` of another field, and with a page `method` that names the person or no other session gives none.
+- [ ] read `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
+```
+
+## Case 716 — The checks of `case-guppi` are read at the Retro of the session that changes them
+
+> **context:**
+> The person asked whether any change to a rule or an entity sets every Estimate of it `pending`, even an Estimate nobody touched. The scripts do not do that. `lift_criterion` of `guppi/materialize.py` sets `pending` only on an `update` of an Estimate that a Case names and whose Criterion it writes; an `update` of a rule touches no Estimate (case 378.5). Three rules make an Estimate hang. A Case names each Estimate whose Criterion speaks of its change, and `/pre-spec` reports one it missed. A Criterion changes only whole (case 378.4). Retro reads each Estimate its session updates, or sets it `failed` (`rule-retro`, case 670.2). While an Estimate is not `passed`, the cascade of `guppi/generate.py` keeps its target `draft`, and `make lint` gives an `unread` finding for it. `estimate-case-build-writes-the-case` shows the cost. Its Criterion holds almost every behaviour of `case-guppi`, so almost every Case on that agent names it. Case 698 changed one line of it, and its History says "the other lines stand". The `method` waits for live dispatches after the render, and for rare kinds of dispatch. So the Retro of each such session could not read it and wrote it `failed`, after cases 698, 701.3 and 705.1. `estimate-case-build-checks-the-finished-case` hangs the same way: its `method` waits for a `/pre-spec` after the render. The brief carries both, as C7 and C8 of this session.
+>
+> The person chose to change the `method` of these two Estimates only, and not to split them. Each sub-case updates one of the two pages, which are two promises. Their `then` lines share most of their words because both pages take the same form of reading, as the person chose for both. The check of the file notes this overlap, and it stands. A rule that lets unchanged lines keep their last reading was not chosen. The new `method` follows the form of `estimate-retro-loads`. The reading is the Render of `rule-case-build`, read against the Criterion: the new text in the Spec when a Case of the session changes it, and `.claude/agents/case-guppi.md` otherwise. The Render paragraph of `rule-retro` and the Criterion of `estimate-retro-loads` already set that reading of a changed Render. `estimate-case-build-writes-the-case` keeps the tokens and seconds of each dispatch of the session. So the sentence of the Purpose of `rule-case-build` that gives the cost question to the `method` of its Estimate stays true. `estimate-case-build-checks-the-finished-case` keeps its count of the findings of `ask-guppi` at the session's own `/pre-spec`, which runs before Retro, in the same way as the cost line. That `method` no longer waits for another session. Its `purpose` still says that the check is counted by what `ask-guppi` finds at pre-spec, which stays true, so it stands. The person chose that each Criterion is written back word for word and that each page goes back to `pending`. The Retro of this session then reads both on the new `method`, and that reading is the check of this Case. This Case does not change the behaviour of `case-guppi`, so no Criterion changes and no other Estimate of `rule-case-build` is touched. The new `method` names no later session, no session after another, no librarian and no `/hi`. So neither the check of a `method` the plan writes nor the check that Case 715 adds reports it. Case 717.2 of this session changes the Render of `rule-case-build`. It adds `cacheTtl: "1h"` under `experimental` to the frontmatter of the agent, and says what the agent reads whole and what in parts. So the Retro reading that this Case sets reads the new text of the Render in the Spec, as Case 717.2 leaves it. That text keeps each line of both Criteria true. The agent still reads `case-schema.md` and `ratification.md` whole and reads each page and file the `given` names, and its model, effort, tools and mode stand. It reads whole the case file of each Case of the session that the prompt of its call names, or that the check of its file names in a finding or a note. It reads in parts only the case file of a Case of an earlier session. The context of Case 717 judges the same and names Case 716.1. No other Case of this session changes `rule-case-build` or these two pages.
+>
+> A Grep for `estimate-case-build-(writes-the-case|checks-the-finished-case)` over `vault/wiki/`, `guppi/`, `tests/` and `.claude/` printed `guppi/casecheck.py`, `vault/wiki/brief.md`, `vault/wiki/log.md`, `vault/wiki/rules/rule-case-build.md`, `vault/wiki/estimates/estimate-case-check-sends-back-a-faulty-case.md`, `vault/wiki/estimates/estimate-materialize-assembles.md` and `vault/wiki/estimates/estimate-skill-grill-me-asks-in-rounds.md`. I did not read `brief.md` or `log.md`. The hit in `estimate-skill-grill-me-asks-in-rounds` is a History line. The hit in `estimate-materialize-assembles` is a Result, the record of a past reading. The hit in `rule-case-build` is its `estimates` list. All three stand. `guppi/casecheck.py` and the Criterion of `estimate-case-check-sends-back-a-faulty-case` keep an old path of the hook until a reading of `estimate-case-build-writes-the-case` passes live, and a Case of a later session removes that path. The new `method` gives no live reading, so that condition will no longer come by itself, and the old path stays until a Case removes it. The sentence stays true, and both Case 716.1 and `estimate-case-check-sends-back-a-faulty-case` leave it as it stands. Its Criterion speaks of a reading of the Estimate that 716.1 changes, so 716.1 names it in `given`, unchanged. Not done: the removal of that old path, a split of the large Criterion, and a rule that keeps the reading of an unchanged line for every Estimate.
+
+> **problem:**
+> The two Estimates of `case-guppi` stand `failed` after every Case that changes them. Their `method` waits for dispatches or a `/pre-spec` after the render, which come only in a later session, and partly for kinds of dispatch that seldom happen.
+
+> **recommend:**
+> - **How wide should the fix be?**
+>   - Recommended: (a) fix this check's method only: Retro reads the new text of the agent's instructions against the promise, in the session that changes it.
+>   - Answer: agreed, (a).
+> - **Does the fix also cover the second hanging check of `case-guppi`?**
+>   - Recommended: (a) yes, one Case fixes both checks.
+>   - Answer: agreed, (a).
+> - **How does the check leave `failed` now?**
+>   - Recommended: (a) set it back to `pending` with its promise unchanged, and this session's Retro reads it.
+>   - Answer: agreed, (a).
+> - **Does the check still record the tokens and seconds of each call?**
+>   - Recommended: (a) keep it: the reading line also gives the tokens and seconds of this session's calls, when there were any.
+>   - Answer: agreed, (a).
+
+### Case 716.1 — `estimate-case-build-writes-the-case` is read at the Retro of the session that changes it
+
+> **given:**
+> `estimate-case-build-writes-the-case`: its `method` is set anew, its Criterion written back unchanged.
+> **＋** `rule-case-build`: the rule whose Render is the agent file of `case-guppi`.
+> **＋** `.claude/agents/case-guppi.md`: the agent file rendered from `rule-case-build`.
+> **＋** `rule-retro`: Retro reads each Estimate its session updates, and the new Render in the Spec.
+> **＋** `raw/2026-10-07/1804/cases/case-717.md`: Case 717.2 changes the Render of `rule-case-build` that the reading reads.
+> **＋** `estimate-case-check-sends-back-a-faulty-case`: its Criterion keeps an old path until a live reading of `estimate-case-build-writes-the-case`; unchanged.
+> **＋** `guppi/casecheck.py`: the hook that keeps that old path; unchanged.
+
+> **when:**
+> The Retro of a session whose Spec updates `estimate-case-build-writes-the-case` takes its reading by its `method`.
+
+> **then:**
+> The reading reads the Render of `rule-case-build` against the Criterion: its new text in the Spec when a Case of that session changes it, and `.claude/agents/case-guppi.md` otherwise.
+> **＋** The estimate line gives the tokens and seconds of each dispatch of `case-guppi` in that session, when there was one.
+> **－** The reading waits for no dispatch of `case-guppi` after the render of `rule-case-build`, and for no kind of dispatch that the session did not hold.
+
+```then
+update:
+- slug: estimate-case-build-writes-the-case
+  set:
+    status: pending
+    method: by hand, the text of .claude/agents/case-guppi.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec, read against the Criterion; the tokens and seconds of each dispatch of case-guppi in that session, when there was one, in the estimate line
+  sections:
+    Criterion: |-
+      When:
+      The main agent dispatches `case-guppi` with a Case id, a Frontier item and its source, and the person's words on it; or sends it by `SendMessage` the person's answers to a round, or the person's question or change on a Case it built.
+      **＋** Or the hook of `rule-case-check` sends it findings on the file of its Case or on its summary.
+      **＋** Or the main agent sends it by `SendMessage` the drop of the Case it built, or the drop of a change to that Case.
+
+      Then:
+      `case-guppi` starts with `.claude/skills/grill-me/SKILL.md` in its context by `skills: [grill-me]` in `.claude/agents/case-guppi.md`, and reads `vault/wiki/case-schema.md` and `vault/wiki/ratification.md` whole before it answers.
+      **＋** Before a `create` without a `ref`, it runs the vault query of `.claude/agents/ask-guppi.md` itself, and the `context` of the Case gives the answer.
+      **＋** It reads each page and file the `given` names, the Criterion of each Estimate such a page lists, and, for a Case that adds or changes a hook, the hooks on the same event in `.claude/settings.json`; each contradiction is fixed in the Case, or the `context` says why it stands.
+      **＋** While a fork is open — the bound, the alternative, the promise, the split, the exceptions or what is left not done — its answer is a round of questions in the form of `.claude/skills/grill-me/SKILL.md`, in English, with no Case heading and nothing else but the context of a first round.
+      **＋** The first round on an item opens, before its first question, with one prose paragraph under the label `**Context:**`: what the item is about, what the thing does today and where it goes wrong, and what the round decides — a sentence per part where one is enough, a part with nothing to say left out.
+      **＋** When no fork is open, it writes the Case whole in English in the chat form of `vault/wiki/case-schema.md`, its ledger lines in the form of `vault/wiki/ratification.md`, from the heading to the fence of `ratification` and nothing else, into `raw/<date>/<hi HHMM>/cases/case-<N>.md` by `Write`, N the id of the top-level Case.
+      **＋** Its answer is then a summary alone: a first line `**Built:**` and the path of the file; a second line `**Case:**` with the id and the name of the top-level Case as the heading of the file writes them, a Case with sub-cases included; then one list item per Case and sub-case with its id and name, the Estimate that checks it and one line on what that Estimate checks, and under the item its ledger lines in an untagged fence, as the file holds them.
+      **＋** When the `context` of a Case says that another Case of the session should change instead, the item of that Case in the summary carries a line `**Other Case:**` that names the other Case and the change it needs.
+      **＋** Sent findings by the hook on the file, or asked for a change by a message, it changes the file by `Edit` of the lines that change and answers with the summary again; sent a finding on its summary alone, it answers with the summary again and leaves the file as it stands; asked by a message that opens a fork, it answers with a round.
+      **＋** A round may come at the first answer on an item, after a message on a Case it built, and in Work Mode when a ratified Case is built again.
+      **＋** It runs on `model: opus` with `effort: medium`, the tools Read, Grep, Glob, Write and Edit, and `permissionMode: auto`, so it writes its file with no prompt while the session is in Plan Mode.
+      **＋** Sent the drop of its Case, which has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, it writes empty text into the file of that Case by `Write` and answers with a first line `**Dropped:**` and the path of the file, and nothing else. A file of its own that it leaves behind, when it builds the Case again under another number, it empties the same way.
+      **＋** Sent the drop of a change to its Case, which has a decision line in `raw/<date>/<hi HHMM>/ledger.md` and which it changed after the Case was last ratified, it undoes by `Edit` each edit it made since then in every section but `recommend`. `recommend` keeps its items and gains one item `**Change**`: its `Asked:` line says that the person dropped the change, and its `Taken:` line says that the Case went back to its ratified form. It answers with the summary again, so that the check of `rule-case-check` finds an item for each question of its rounds.
+      **－** The `**Case:**` line is no Markdown heading, so the hook of `rule-case-check` does not read the summary as a Case.
+      **－** It does not write the whole Case again to fix a finding, make a change or undo a change.
+      **－** A later round on the item, a round after a message on a Case it built and a round in Work Mode carry no context.
+      **－** The context carries no Case heading, so the hook of `rule-case-check` neither checks nor stores the round as a Case; it judges only the form of the questions of the round, not its context.
+      **－** It writes no file but the file of its Case, the file it leaves behind under an earlier number of the same Case included, and no ledger line.
+      **－** It empties no file of a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`: sent the drop of such a Case that it did not change after the Case was last ratified, it answers under a first line `**Fact:**` that the Case is ratified, and the file stands.
+  change: the method reads the Render of rule-case-build against the Criterion at the Retro of the session that changes it, with the tokens and seconds of that session's dispatches; the Criterion written back unchanged; pending again (case 716)
+```
+
+```tasks
+- [ ] update `estimate-case-build-writes-the-case`
+- [ ] read `estimate-case-build-writes-the-case`
+```
+
+### Case 716.2 — `estimate-case-build-checks-the-finished-case` is read at the Retro of the session that changes it
+
+> **given:**
+> `estimate-case-build-checks-the-finished-case`: its `method` is set anew, its Criterion written back unchanged.
+> **＋** `rule-case-build`: the rule whose Render is the agent file of `case-guppi`.
+> **＋** `.claude/agents/case-guppi.md`: the agent file rendered from `rule-case-build`.
+> **＋** `.claude/agents/ask-guppi.md`: the agent whose findings at `/pre-spec` the estimate line counts.
+> **＋** `rule-retro`: Retro reads each Estimate its session updates, and the new Render in the Spec.
+> **＋** `raw/2026-10-07/1804/cases/case-717.md`: Case 717.2 changes the Render of `rule-case-build` that the reading reads.
+
+> **when:**
+> The Retro of a session whose Spec updates `estimate-case-build-checks-the-finished-case` takes its reading by its `method`.
+
+> **then:**
+> The reading reads the Render of `rule-case-build` against the Criterion: its new text in the Spec when a Case of that session changes it, and `.claude/agents/case-guppi.md` otherwise.
+> **＋** The estimate line gives the count of each kind of finding of `ask-guppi` at the `/pre-spec` of that session on the Cases `case-guppi` built, when that `/pre-spec` ran.
+> **－** The reading waits for no `/pre-spec` after the render of `rule-case-build`.
+
+```then
+update:
+- slug: estimate-case-build-checks-the-finished-case
+  set:
+    status: pending
+    method: by hand, the text of .claude/agents/case-guppi.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec, read against the Criterion; the findings of ask-guppi at the /pre-spec of that session, when it ran, read for each Case case-guppi built — a Case that departs from a chosen option, a page naming a changed slug that the Case misses, a rule acting at the same moment that the Case misses, a Case of the session named in the prompt whose page or moment the Case clashes with, an Estimate whose purpose or method still states the promise its replaced Criterion dropped, a claim of context that its search did not print, a search in context that the Case does not rest on, two sub-cases whose texts on one page contradict — the count of each in the estimate line
+  sections:
+    Criterion: |-
+      When:
+      `case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, has built a Case and is about to answer with it.
+
+      Then:
+      It puts each option the person chose in its rounds, or the person's own words where they answered outside the options, beside the `then` and `recommend` of the Case, and the Case holds each one; where the frame shows after a round that a chosen option cannot hold as written, its answer is a round on that point, not a Case with another behaviour.
+      **＋** For each page whose text the change makes false, it searches the live pages of the vault, leaving out the Decision pages, and the code, for the page's slug, and reads each hit that `given` does not name around the line of the hit; for a fact that no slug marks, it reads the index lines of the recipe of `.claude/agents/ask-guppi.md` and judges them by meaning.
+      **＋** When the change sets what happens at a moment — a reply, a hook event, a command — it searches `vault/wiki/rules/` and `.claude/` for the words that name that moment, reads each passage of each hit that sets a form or a behaviour at that moment, and the Case either does not cover that moment or names the other rule in `given`.
+      **＋** It reads the case file `raw/<date>/<hi HHMM>/cases/case-<N>.md` of each Case of the session that the prompt of its call names, and of each Case of the session that the check of `rule-case-check` names in a finding or a note on its file, and no other Case of the session; where that Case changes a page the Case changes or sets what happens at the same moment, the Case does not cover that moment or names the case file in `given`, and its new text of that page does not contradict the text of that Case.
+      **＋** When the Case replaces the Criterion of an Estimate, it reads the `purpose` and `method` of that Estimate, and the same `update` sets anew each one that states the old promise.
+      **＋** Each hit that the change makes false enters the Case, or its `context` says why it stands.
+      **＋** The `context` names a search only when the Case rests on it: a search with a hit that enters the Case, a search with a hit that stands and needs the reason why, or a search that a claim that no text says something rests on; a search that found nothing to change and that no claim rests on is left out.
+      **＋** A claim of `context` about a text names the search it rests on: its pattern, the paths it ran over, and each file the search printed, a file it does not read included, or the count it printed; just before it answers, it runs each search that `context` names again, with the pattern and the paths that `context` writes, and the files and counts in `context` are the ones that run printed, not the files it read during the build; it claims nothing the search did not print.
+      **＋** It reads side by side the finished new texts of all its sub-cases that change one page, and the Case holds no contradiction between them.
+      **－** A hit in a History line, in `log.md` or in `brief.md` is not read.
+  change: the method reads the Render of rule-case-build against the Criterion at the Retro of the session that changes it, with the count of the findings of ask-guppi at that session's /pre-spec; the Criterion written back unchanged; pending again (case 716)
+```
+
+```tasks
+- [ ] update `estimate-case-build-checks-the-finished-case`
+- [ ] read `estimate-case-build-checks-the-finished-case`
+```
+
+## Case 717 — A dispatch of `case-guppi` reads less and keeps its cache longer
+
+> **context:**
+> Each dispatch of `case-guppi` reads `vault/wiki/case-schema.md` whole, and that file holds two examples: a whole example Case in the chat form, which `tests/test_case_schema.py` runs the check of `rule-case-check` over, and an example of the `then` block of the Spec, which the agent never writes. The agent reads every other source whole too, and each later turn reads the whole context again from the cache. The cache of a subagent lives five minutes, so an answer after a longer pause, or the findings `/pre-spec` sends back, writes the whole context into the cache again. The main agent measured these costs on the dispatches of this session and reported them; I could not read those transcripts, so no number of theirs stands in this Case.
+>
+> The person chose the following. Both examples move to a new file, `vault/wiki/case-example.md`, the Render of a new rule `rule-case-example` (Case 717.1). The agent reads that file once in a dispatch, just before its first `Write` of a Case file. It reads whole `case-schema.md`, `ratification.md`, each page the Case changes, the Criterion of each Estimate of such a page, and the case file of each Case of the session that the prompt or a finding of the check names; it reads the rest in parts, a case file of an earlier session included, and makes independent calls in one turn. Its cache lives one hour, set in its agent file only (Case 717.2). The setting `cacheTtl: "1h"` under `experimental` comes from the main agent's report of the documentation of Claude Code; I could not open that documentation. The estimate line of `estimate-case-build-reads-by-need-and-in-parts` records the cache writes of each dispatch by their time to live, and that shows whether the setting takes effect.
+>
+> Case 717.1 creates `estimate-case-example-passes-the-check` on the new rule with the promise of `estimate-case-protocol-example-passes-the-check`, and deletes the old page: `generate` writes the `estimates` backlink of a target only on a `create`, so the old page cannot move to the new rule. `rule-case-protocol` drops it from its `estimates` by a `set`. The test reads the new file from Work Mode, but the file stands only after the librarian's render, and Retro fixes or reverts a red test (`rule-retro`). So the test reads `case-schema.md` while `case-example.md` does not stand, and a Case of a later session removes that path. The sentences of `rule-case-protocol` that say `case-guppi` reads `case-schema.md` whole stay true. The Criterion of `estimate-case-protocol-loaded` names the section of the `then` block, which stays, and the example is not part of it, so that Criterion stands. Its `purpose` says that the form of a Case stands in one text, the Render of `rule-case-protocol`. That stays true: every rule of the form stays in `case-schema.md`, and `case-example.md` holds only samples that follow those rules and set no rule of their own.
+>
+> The person chose to write the new reading into the promise of the agent's work, `estimate-case-build-writes-the-case`. Case 716.1 of this session already writes that Criterion back unchanged and sets its `method`, and the check of the file refuses a second wording of one promise in a session. So Case 717.2 creates `estimate-case-build-reads-by-need-and-in-parts` on `rule-case-build` for the new lines, with no limit on tokens, as the person chose. Its `method` follows the method of 716.1, and adds the tool calls and the cache writes. The Criterion of `estimate-case-build-writes-the-case` stays true. The agent still reads `case-schema.md` and `ratification.md` whole and reads each page and file the `given` names, and the new `experimental` field leaves its line on the frontmatter true. Case 716.1 needs no change. The Criterion of `estimate-case-build-checks-the-finished-case` says the agent reads the case file of each Case of the session that the prompt names. The `/pre-spec` check found that a search first would miss a related Case that sets the same moment in other words. The person chose that those case files stay read whole, so that Criterion stays true, and the paragraph of `rule-case-build` on them does not change. The hook of case 711.3 counts only a `Read` of the sentence around a pair as read. A page the Case changes is read whole, and so is the file of each related Case that writes into the same page, so the hook still finds its reads. No other Estimate of `rule-case-build` speaks of what the agent reads in parts. A Glob `vault/**/*reads-by-need*` printed nothing, so that slug is free.
+>
+> A Glob `vault/**/*case-example*` printed nothing, so `rule-case-example` and `estimate-case-example-passes-the-check` are free. A Grep for `estimate-case-protocol-example-passes-the-check` over `vault/wiki/`, `guppi/`, `tests/` and `.claude/` printed `vault/wiki/log.md`, `vault/wiki/rules/rule-case-protocol.md` and `tests/test_case_schema.py`. I did not read `log.md`. The hit in `rule-case-protocol` is its `estimates` field, which Case 717.1 sets, and the hit in the test is its docstring, which Case 717.1 changes. A Grep for `test_case_schema` over `vault/wiki/`, `guppi/` and `.claude/` printed `vault/wiki/estimates/estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read.md`, `vault/wiki/estimates/estimate-case-protocol-case-form.md` and `vault/wiki/estimates/estimate-case-protocol-example-passes-the-check.md`. The first names the example of `case-schema.md` in its Criterion, so Case 717.3 writes it back with the new file. The hit in `estimate-case-protocol-case-form` is a Result, the record of a past reading, and it stands. The third is the page Case 717.1 deletes. Not done: a limit on the tokens of a dispatch, since only a later session can measure one, and the removal of the old path of the test.
+
+> **problem:**
+> A dispatch of `case-guppi` costs more than its work needs. It reads examples it does not use, it reads background sources whole when it needs only a few lines, and it writes its whole context into the cache again after each pause longer than five minutes.
+
+> **recommend:**
+> - **Where do the examples of the Case form go?**
+>   - Recommended: (a) both examples go to a new file, made from a new rule page; `case-schema.md` keeps all its rules and points to the new file, and the test of the sample Case reads it from there.
+>   - Answer: agreed, (a).
+> - **When does the agent read the examples file?**
+>   - Recommended: (a) once in a dispatch, just before it first writes a Case file; a dispatch that only asks questions never reads it.
+>   - Answer: agreed, (a).
+> - **What does the agent read whole, and what in parts?**
+>   - Recommended: (a) whole: `case-schema.md`, `ratification.md`, each page the Case changes and the promise text of each Estimate of such a page; in parts: case files of other Cases (searched first, read whole on a hit), the brief, the handoff, background pages and code (the functions the Case changes and the places that use them); independent reads in one turn.
+>   - Answer: agreed, (a).
+> - **Does the cache of `case-guppi` last longer than 5 minutes?**
+>   - Recommended: (a) one hour for `case-guppi` only, set in its agent file.
+>   - Answer: agreed, (a).
+> - **How do we check that the change works?**
+>   - Recommended: (a) rewrite the promise of the agent's work and the promise of the sample Case; no limit on tokens; the tokens of each run are recorded as before.
+>   - Answer: agreed, (a).
+> - **How does the agent read the case files of the related Cases the main agent names?**
+>   - Recommended: (a) whole for the Cases the prompt names and the Cases a finding of the check names; a search first, then the whole file on a hit, for other case files.
+>   - Answer: agreed, (a).
+
+### Case 717.1 — The examples of the Case form stand in their own file
+
+> **given:**
+> `estimate-case-example-passes-the-check`: the new check that the example Case passes the check of a Case file.
+> **＋** `rule-case-example`: the new rule whose Render is the file of examples.
+> **＋** `vault/wiki/case-example.md`: the file of examples rendered from `rule-case-example`.
+> **＋** `rule-case-protocol`: the rule whose Render loses the examples and points to the new file.
+> **＋** `vault/wiki/case-schema.md`: the form of a Case rendered from `rule-case-protocol`.
+> **＋** `estimate-case-protocol-example-passes-the-check`: the old check of the example, deleted.
+> **＋** `tests/test_case_schema.py`: the test that runs the check over the example.
+> **＋** `guppi/casecheck.py`: the check of the `SubagentStop` hook of `rule-case-check`.
+
+> **when:**
+> `tests/test_case_schema.py` runs under `uv run pytest`. It reads the block tagged `case` in `vault/wiki/case-example.md`, rendered from `rule-case-example`, and runs over it the function of `guppi/casecheck.py` that the `SubagentStop` hook of `rule-case-check` runs over the Cases of a file, in a temporary project that holds the schema files of the vault and the pages the example updates.
+
+> **then:**
+> `vault/wiki/case-example.md` holds one block tagged `case`, one Case with sub-cases in the chat form that `case-guppi` writes into its file, and after it one block tagged `then`.
+> **＋** The example holds a `create` and an `update` with their sub-points, a `replace` pair whose values hold a backtick in spans padded by one space, a `set` in a fenced block, an `update` of an Estimate whose Criterion it replaces, a read line for each Estimate it creates or replaces, and its ledger lines in a quoted fence under `ratification`.
+> **＋** The example's `context` says what the sentence around the match of its `replace` pair names.
+> **＋** The paragraph before the block says that the example passes the check of the `SubagentStop` hook of `rule-case-check`, and that the check, not the paragraph, is the source of the limits; it lists no limit.
+> **＋** `vault/wiki/case-schema.md`, rendered from `rule-case-protocol`, holds no example block and names `vault/wiki/case-example.md` where it sets the chat form and the `then` block.
+> **＋** The check gives the example no finding and no note, and the test passes; a change of the check that gives the example a finding or a note fails the test, which prints it.
+> **＋** The test reads the example from the file and the checks from `guppi/casecheck.py`, and holds no copy of either.
+> **－** While `vault/wiki/case-example.md` does not stand, the test reads the block tagged `case` of `vault/wiki/case-schema.md`; a Case of a later session removes that path.
+> **－** While the file the test reads holds no block tagged `case`, both tests of `tests/test_case_schema.py` fail with a message that names the file; no test of the file is skipped.
+
+`````then
+create:
+- slug: rule-case-example
+  ref: rule-plan-mode
+  kind: Leaf
+  purpose: Prevents a Case from being written in a form the check of its file refuses because the agent that writes it saw no example of the form
+  enforcement: render
+  governs: vault/wiki/case-example.md
+  render_mode: full
+  tags:
+  - session
+  - workflow
+  - harness
+  sections:
+    Purpose: Prevents a Case from being written in a form the check of its file refuses because the agent that writes it saw no example of the form. Until case 717.1 the examples stood in `case-schema.md`, the Render of [[rule-case-protocol]], which `case-guppi` reads whole on every dispatch, a dispatch that answers only with rounds included, and every later turn of the dispatch read them again from the cache. Here they stand apart, and `case-guppi` reads them once in a dispatch, just before it first writes the file of a Case ([[rule-case-build]]). The example Case passes the check of `rule-case-check`, and the test of its Estimate runs that check over it (case 646).
+    Render: |-
+      <!-- rule-case-example -->
+      # Case — examples
+
+      `wiki/case-example.md` — the Render of `rule-case-example`: two examples of the forms that `case-schema.md` sets. `case-guppi` reads this file once in a dispatch, just before it first writes the file of a Case; the rules of the form stand in `case-schema.md` (case 717.1).
+
+      ## The chat form, by example
+
+      The Case below is written in the chat form that `case-guppi` writes into its file. A test runs over it the check that the `SubagentStop` hook of `rule-case-check` runs over that file, and fails on any finding or note, so the example passes that check as the check stands (case 646). The limits a form must keep are those of the check, not of this paragraph: copy the form of the example, and read a finding of the check as the limit it names.
+
+      ````case
+      ## Case 1 — The cart stands before payment
+
+      > **context:**
+      > Until now items went straight from the catalogue to payment, and a buyer could not review an order. The person chose a cart between the two. The pair on `entity-checkout` changes the one sentence of its Purpose that names where the buyer pays; there it names the payment step, which now follows the cart. The Criterion of `estimate-checkout-orders-the-steps` speaks of the order of the steps, so Case 1.1 replaces it. A Glob `vault/**/*cart*` printed nothing, so both new slugs are free.
+
+      > **problem:**
+      > A buyer pays for an order without seeing it whole.
+
+      > **recommend:**
+      > - **Where the cart stands**
+      >   - Recommended: (a) between the catalogue and payment.
+      >   - Answer: agreed, (a).
+
+      ### Case 1.1 — The cart stands before payment
+
+      > **given:**
+      > `entity-cart`: the new page of the cart.
+      > **＋** `entity-checkout`: the page of payment, which names the cart.
+      > **＋** `estimate-checkout-orders-the-steps`: its Criterion is replaced whole.
+
+      > **when:**
+      > A buyer with items in `entity-cart` opens `entity-checkout`.
+
+      > **then:**
+      > The buyer sees each item of the order and its price.
+      > **＋** The buyer pays only after the cart is shown.
+      > **－** An empty cart does not open `entity-checkout`.
+
+      > **tasks:**
+      > - [ ] create `entity-cart`
+      >   - type: `entity`
+      >   - kind: `MOC`
+      >   - purpose: `Lets a buyer review an order before paying`
+      >   - tags: `[cart, checkout]`
+      >   - sections.Purpose: `Until now items went straight from the catalogue to payment.`
+      > - [ ] update `entity-checkout`
+      >   - old: `` the buyer pays at `/checkout/pay` ``
+      >   - new: `` the buyer reviews the cart, then pays at `/checkout/pay` ``
+      >   - set:
+      >     ```
+      >     tags: [cart, checkout, payment]
+      >     ```
+      >   - change: `the cart precedes payment`
+      > - [ ] update `estimate-checkout-orders-the-steps`
+      >   - set: `{status: pending}`
+      >   - change: `the Criterion replaced whole — the cart precedes payment`
+      > - [ ] read `estimate-checkout-orders-the-steps`
+
+      > **ratification:**
+      > ```
+      > - decision[case 1.1][create][entity-cart]{tags:cart,checkout}
+      > - decision[case 1.1][update][entity-checkout]{ref:entity-checkout}
+      > - decision[case 1.1][update][estimate-checkout-orders-the-steps]{ref:entity-checkout}
+      > ```
+
+      ### Case 1.2 — The cart renders in time
+
+      > **given:**
+      > `estimate-cart-renders-in-time`: the new check of the time the cart takes to show.
+      > **＋** `entity-cart`: the page of the cart.
+      > **＋** `src/cart/view.py`: the view of the cart.
+
+      > **when:**
+      > A buyer opens the cart of `src/cart/view.py` with 10, 50 or 200 items.
+
+      > **then:**
+      > The cart shows all its items within 200 ms.
+      > **－** A cart of more than 200 items is not bound by this time.
+
+      > **tasks:**
+      > - [ ] create `estimate-cart-renders-in-time`
+      >   - ref: `entity-cart`
+      >   - kind: `QA`
+      >   - purpose: `Whether the cart shows its items within 200 ms`
+      >   - method: `uv run pytest tests/test_cart_view.py -k render_time`
+      >   - tags: `[cart, performance]`
+      > - [ ] `src/cart/view.py`: the cart reads its items in one query.
+      > - [ ] read `estimate-cart-renders-in-time`
+
+      > **ratification:**
+      > ```
+      > - decision[case 1.2][create][estimate-cart-renders-in-time]{ref:entity-cart}{tags:cart,performance}
+      > ```
+      ````
+
+      ## The `then` block, by example
+
+      The block below is a `then` block of the Spec in the form that `case-schema.md` sets: a list under each decision type present, one entry per target, `slug` first.
+
+      ```then
+      create:
+        - slug: entity-cart
+          type: entity
+          kind: MOC
+          purpose: Lets a buyer review an order before paying
+          tags: [cart, checkout]
+          sections:
+            Purpose: |
+              Until now items went straight from the catalogue to payment.
+        - slug: estimate-cart-renders-in-time
+          type: estimate
+          ref: entity-cart
+          kind: Research
+          purpose: Whether the cart renders within 200ms, and what dominates the time if not
+          method: measure the render at 10, 50 and 200 line items, against a seeded database
+          tags: [cart, performance]
+      update:
+        - slug: entity-checkout
+          set: {tags: [cart, checkout, payment]}
+          change: the cart precedes payment
+        - slug: estimate-checkout-orders-the-steps
+          set: {status: pending}
+          change: the Criterion replaced whole — the cart precedes payment
+      ```
+      <!-- /rule-case-example -->
+- slug: estimate-case-example-passes-the-check
+  ref: rule-case-example
+  kind: QA
+  purpose: Whether the example Case of case-example.md, in the chat form case-guppi writes, passes the check the SubagentStop hook runs over the file of a Case, so the form it shows stays a form the scripts accept
+  method: uv run pytest tests/test_case_schema.py, passed and not skipped; at the Retro of the session that creates it, the new Renders of rule-case-example and rule-case-protocol in the Spec read against the Criterion
+  tags:
+  - session
+  - workflow
+  - harness
+update:
+- slug: rule-case-protocol
+  replace:
+  - old: |-
+      ## The chat form, by example
+
+      The Case below is written in the chat form that `case-guppi` writes into its file. A test runs over it the check that the `SubagentStop` hook of `rule-case-check` runs over that file, and fails on any finding or note, so the example passes that check as the check stands (case 646). The limits a form must keep are those of the check, not of this paragraph: copy the form of the example, and read a finding of the check as the limit it names.
+
+      ````case
+      ## Case 1 — The cart stands before payment
+
+      > **context:**
+      > Until now items went straight from the catalogue to payment, and a buyer could not review an order. The person chose a cart between the two. The pair on `entity-checkout` changes the one sentence of its Purpose that names where the buyer pays; there it names the payment step, which now follows the cart. The Criterion of `estimate-checkout-orders-the-steps` speaks of the order of the steps, so Case 1.1 replaces it. A Glob `vault/**/*cart*` printed nothing, so both new slugs are free.
+
+      > **problem:**
+      > A buyer pays for an order without seeing it whole.
+
+      > **recommend:**
+      > - **Where the cart stands**
+      >   - Recommended: (a) between the catalogue and payment.
+      >   - Answer: agreed, (a).
+
+      ### Case 1.1 — The cart stands before payment
+
+      > **given:**
+      > `entity-cart`: the new page of the cart.
+      > **＋** `entity-checkout`: the page of payment, which names the cart.
+      > **＋** `estimate-checkout-orders-the-steps`: its Criterion is replaced whole.
+
+      > **when:**
+      > A buyer with items in `entity-cart` opens `entity-checkout`.
+
+      > **then:**
+      > The buyer sees each item of the order and its price.
+      > **＋** The buyer pays only after the cart is shown.
+      > **－** An empty cart does not open `entity-checkout`.
+
+      > **tasks:**
+      > - [ ] create `entity-cart`
+      >   - type: `entity`
+      >   - kind: `MOC`
+      >   - purpose: `Lets a buyer review an order before paying`
+      >   - tags: `[cart, checkout]`
+      >   - sections.Purpose: `Until now items went straight from the catalogue to payment.`
+      > - [ ] update `entity-checkout`
+      >   - old: `` the buyer pays at `/checkout/pay` ``
+      >   - new: `` the buyer reviews the cart, then pays at `/checkout/pay` ``
+      >   - set:
+      >     ```
+      >     tags: [cart, checkout, payment]
+      >     ```
+      >   - change: `the cart precedes payment`
+      > - [ ] update `estimate-checkout-orders-the-steps`
+      >   - set: `{status: pending}`
+      >   - change: `the Criterion replaced whole — the cart precedes payment`
+      > - [ ] read `estimate-checkout-orders-the-steps`
+
+      > **ratification:**
+      > ```
+      > - decision[case 1.1][create][entity-cart]{tags:cart,checkout}
+      > - decision[case 1.1][update][entity-checkout]{ref:entity-checkout}
+      > - decision[case 1.1][update][estimate-checkout-orders-the-steps]{ref:entity-checkout}
+      > ```
+
+      ### Case 1.2 — The cart renders in time
+
+      > **given:**
+      > `estimate-cart-renders-in-time`: the new check of the time the cart takes to show.
+      > **＋** `entity-cart`: the page of the cart.
+      > **＋** `src/cart/view.py`: the view of the cart.
+
+      > **when:**
+      > A buyer opens the cart of `src/cart/view.py` with 10, 50 or 200 items.
+
+      > **then:**
+      > The cart shows all its items within 200 ms.
+      > **－** A cart of more than 200 items is not bound by this time.
+
+      > **tasks:**
+      > - [ ] create `estimate-cart-renders-in-time`
+      >   - ref: `entity-cart`
+      >   - kind: `QA`
+      >   - purpose: `Whether the cart shows its items within 200 ms`
+      >   - method: `uv run pytest tests/test_cart_view.py -k render_time`
+      >   - tags: `[cart, performance]`
+      > - [ ] `src/cart/view.py`: the cart reads its items in one query.
+      > - [ ] read `estimate-cart-renders-in-time`
+
+      > **ratification:**
+      > ```
+      > - decision[case 1.2][create][estimate-cart-renders-in-time]{ref:entity-cart}{tags:cart,performance}
+      > ```
+      ````
+    new: |-
+      ## The chat form
+
+      `case-guppi` writes a Case into its file in the chat form that the sections, the operands and the language above set. `vault/wiki/case-example.md`, the Render of `rule-case-example`, shows that form by an example Case that passes the check of the `SubagentStop` hook of `rule-case-check`, and `case-guppi` reads it once in a dispatch, just before it first writes the file of a Case (cases 646, 717.1). The limits a form must keep are those of the check: read a finding of the check as the limit it names.
+  - old: |-
+      A list under each decision type present, one entry per target, `slug` first.
+
+      ```then
+      create:
+        - slug: entity-cart
+          type: entity
+          kind: MOC
+          purpose: Lets a buyer review an order before paying
+          tags: [cart, checkout]
+          sections:
+            Purpose: |
+              Until now items went straight from the catalogue to payment.
+        - slug: estimate-cart-renders-in-time
+          type: estimate
+          ref: entity-cart
+          kind: Research
+          purpose: Whether the cart renders within 200ms, and what dominates the time if not
+          method: measure the render at 10, 50 and 200 line items, against a seeded database
+          tags: [cart, performance]
+      update:
+        - slug: entity-checkout
+          set: {tags: [cart, checkout, payment]}
+          change: the cart precedes payment
+        - slug: estimate-checkout-orders-the-steps
+          set: {status: pending}
+          change: the Criterion replaced whole — the cart precedes payment
+      ```
+    new: A list under each decision type present, one entry per target, `slug` first; `vault/wiki/case-example.md` shows one.
+  set:
+    estimates:
+    - '[[estimate-case-protocol-loaded]]'
+    - '[[estimate-case-protocol-case-form]]'
+  change: the example Case and the example of the then block move to case-example.md, the Render of rule-case-example; the schema names that file; estimate-case-protocol-example-passes-the-check leaves the estimates (case 717.1)
+delete:
+- slug: estimate-case-protocol-example-passes-the-check
+  impact: Its promise moves with the example to estimate-case-example-passes-the-check on rule-case-example; tests/test_case_schema.py stays its test (case 717.1)
+`````
+
+```tasks
+- [ ] create `rule-case-example`
+- [ ] create `estimate-case-example-passes-the-check`
+- [ ] update `rule-case-protocol`
+- [ ] delete `estimate-case-protocol-example-passes-the-check`
+- [x] `tests/test_case_schema.py`: the test reads the first block tagged `case` of `vault/wiki/case-example.md`, or of `vault/wiki/case-schema.md` while `case-example.md` does not stand; its message names the file it read; its docstring names `estimate-case-example-passes-the-check` and case 717.1.
+- [ ] `uv run guppi render`: `vault/wiki/case-example.md`
+- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [ ] read `estimate-case-example-passes-the-check`
+```
+
+### Case 717.2 — `case-guppi` reads by need and in parts, and keeps its cache for an hour
+
+> **given:**
+> `rule-case-build`: the rule whose Render is the agent file of `case-guppi`.
+> **＋** `.claude/agents/case-guppi.md`: the agent file rendered from `rule-case-build`.
+> **＋** `estimate-case-build-reads-by-need-and-in-parts`: the new check of what the agent reads, when, and how its cache lives.
+> **＋** `vault/wiki/case-example.md`: the file of examples the agent reads before it writes.
+
+> **when:**
+> The main agent dispatches `case-guppi` by `.claude/agents/case-guppi.md`, rendered from `rule-case-build`, or sends it a message by `SendMessage`.
+
+> **then:**
+> `case-guppi` reads `vault/wiki/case-example.md` once in a dispatch, just before its first `Write` of the file of a Case.
+> **＋** It reads whole each page the Case changes and the Criterion of each Estimate such a page lists.
+> **＋** It reads in parts, by a Grep with lines of context or a Read with `offset` and `limit`, the case file of a Case of an earlier session, the brief and the handoff of the session, a page it reads only for background, and a module of code, of which it reads the functions the Case changes and the places that call them.
+> **＋** It reads whole the case file of each Case of the session that the prompt of its call names, and of each Case of the session that the check of its file names in a finding or a note.
+> **＋** It makes the tool calls that do not wait on each other's output in one turn.
+> **＋** `.claude/agents/case-guppi.md` sets the cache of the agent to live one hour, by `cacheTtl: "1h"` under `experimental`.
+> **－** A dispatch that answers only with rounds does not read `vault/wiki/case-example.md`.
+
+```then
+create:
+- slug: estimate-case-build-reads-by-need-and-in-parts
+  ref: rule-case-build
+  kind: QA
+  purpose: Whether case-guppi reads the examples only before it writes a Case, reads whole only the pages the Case changes, the Criteria of their Estimates and the case files of the related Cases, reads the rest in parts, makes independent calls in one turn, and keeps its cache for an hour
+  method: by hand, the text of .claude/agents/case-guppi.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec, read against the Criterion; the tool calls, the tokens and the cache writes by their time to live of each dispatch of case-guppi in that session, when there was one, in the estimate line
+  tags:
+  - session
+  - workflow
+  - harness
+update:
+- slug: rule-case-build
+  replace:
+  - old: 'skills: [grill-me]'
+    new: |-
+      skills: [grill-me]
+      experimental:
+        cacheTtl: "1h"
+  - old: Then read the pages the item names — a page is found by a Glob `vault/wiki/**/<slug>.md` — and the code they point to by `governs`, `implementation_ref` or `code_ref`.
+    new: 'Read `vault/wiki/case-example.md` once in a dispatch, just before you first write the file of a Case: it shows the chat form by an example that passes the check of your file; a dispatch that answers only with rounds does not read it (case 717.2). Then read the pages the item names — a page is found by a Glob `vault/wiki/**/<slug>.md` — and the code they point to by `governs`, `implementation_ref` or `code_ref`. Read whole each page the Case changes, the `## Criterion` of each Estimate such a page lists, and the case file of each Case of the session that the paragraphs below name. Read the rest in parts, by a Grep with lines of context or a Read with `offset` and `limit`: the case file of a Case of an earlier session, the brief and the handoff of the session, a page you read only for background, and a module of code, of which you read the functions the Case changes and the places that call them. Make the tool calls that do not wait on each other''s output in one turn.'
+  change: case-guppi reads case-example.md just before it first writes a Case file, reads whole only the pages the Case changes, the Criteria of their Estimates and the case files of the related Cases, reads the rest in parts, makes independent calls in one turn, and keeps its cache for an hour (case 717.2)
+```
+
+```tasks
+- [ ] update `rule-case-build`
+- [ ] create `estimate-case-build-reads-by-need-and-in-parts`
+- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [ ] read `estimate-case-build-reads-by-need-and-in-parts`
+```
+
+### Case 717.3 — The check of an unread sentence names the example in its new file
+
+> **given:**
+> `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`: its Criterion written back with the new file of the example.
+> **＋** `guppi/casecheck.py`: the check of the `SubagentStop` hook of `rule-case-check`.
+> **＋** `tests/test_case_schema.py`: the test that runs the check with no record of an agent.
+> **＋** `vault/wiki/case-example.md`: the file whose example the test checks.
+
+> **when:**
+> `tests/test_case_schema.py` runs the check of `guppi/casecheck.py` over the example of `vault/wiki/case-example.md`, with no record of an agent.
+
+> **then:**
+> The check judges no read for the example.
+
+```then
+update:
+- slug: estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read
+  set:
+    status: pending
+  sections:
+    Criterion: |-
+      When:
+      The `SubagentStop` hook `uv run guppi casecheck --subagent` of `guppi/casecheck.py` checks a file `raw/<date>/<hi HHMM>/cases/case-<N>.md` whose Case carries a `replace` or `reword` pair on a page that stands on disk, and reads the record of the subagent at `agent_transcript_path`.
+
+      Then:
+      For each match of each pair of the Cases of the file — the one match of a `replace`, and each match of a `reword` on each live page — the hook takes the sentence around it on the page as the earlier pairs leave it, by the function of the sentence of `guppi/prespec.py`.
+      **＋** The sentence counts as read when each part of it that no pair wrote stands whole in the outputs of the `Read` calls of the subagent on the page file, the line numbers of the output and the whitespace set aside.
+      **＋** A part of the sentence that a pair of another Case of the session wrote counts as read when it stands whole in the outputs of the `Read` calls of the subagent on the file `raw/<date>/<hi HHMM>/cases/case-<N>.md` of that Case.
+      **＋** A sentence not read is a finding of its Case: "case <N>: <slug>: the sentence around a pair was not read whole: <opening>: Read the page around it, and the file of each other Case that wrote into it, and check the pair."
+      **－** The output of a `Grep` call, or of any other tool than `Read`, is no read.
+      **－** A part of the sentence that a pair of the Cases of the file wrote is not judged.
+      **－** A transcript the hook cannot read, and a call of the check with no record of an agent, such as `tests/test_case_schema.py` over the example of `vault/wiki/case-example.md`, judge no read.
+  change: the Criterion written back with the example of tests/test_case_schema.py in vault/wiki/case-example.md (case 717.3)
+```
+
+```tasks
+- [ ] update `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+- [ ] read `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+```
+
+## Deferred
+
+## Case 718 — The close of the migration sprint put off
+
+> **context:**
+> The person put off the close of the sprint `migration` at the close of Plan Mode of session 1804. The session that closes a sprint is a session of its own (case 628.1), and this session ratified Cases 712–717, none of which prepares the close. The sprint items `rule-sprint-close` and the close of migration were left for later as sprint items.
+
+> **problem:**
+> No Case of this session decides what the close of a sprint moves to the archive and what it keeps, or runs the close of `migration`.
+
+```then
+defer:
+  - slug: rule-sprint-close
+    type: rule
+    purpose: "Prevents a closed sprint from leaving its finished work among the live pages, so that the vault does not only grow; put off at the close of Plan Mode of session 1804 for the session that closes the sprint"
+```
+
+## Case 720 — The stale store entries of the Case-file check put off
+
+> **context:**
+> At the `/pre-spec` of session 1804 the `case-guppi` of Case 713 first split the ratified Case 713 into 713.1 and 713.2, and the check of `rule-case-check` stored both in `adaptive-gathering-dewdrop.checked.json`; it then went back to the ratified text of 713 and built Case 719 to supersede it. The store kept 713.1 and 713.2, which no file and no plan holds and which have no decision line; `other_blocks` of `guppi/casecheck.py` counts them as other Cases of the session until a `{supersedes:case 713}` mark stands in the ledger, so the check refused the showing of 719 for pairs that only those entries hold. The person put the problem off to the next session.
+
+> **problem:**
+> No Case of this session decides how the store of the Case-file check drops the entries of sub-cases that a Case built again no longer holds.
+
+```then
+defer:
+  - slug: rule-case-check
+    type: rule
+    purpose: "The store of the Case-file check keeps the sub-cases of a Case built again without them, and they clash with the Case that supersedes it; put off at the pre-spec of session 1804"
+```
+
+## Case 721 — The pre-spec fixes of the take-back Case put off
+
+> **context:**
+> At the `/pre-spec` of session 1804 `ask-guppi` found five faults in Case 713, the take-back of a ratified Case, which stays ratified as it was: the take-back stands under the short-form paragraph of `rule-orchestration` whose closer is `[-] … · defer case N` (F2); the same sentence says the `defer` lines add to the source and that the source stays as it is (F3); a take-back of a Case whose only targets are existing Estimates leaves nothing in `backlog.md`, against `rule-backlog` (F4); `rule-case-protocol` says a Frontier line is closed again by the superseding Case, which the closer of a sprint or backlog item does not name (F5); the Criterion of `estimate-orchestration-defers-in-one-reply` says a sprint or backlog item takes no short Case (F6). Case 719, built to fix them by superseding 713, was dropped: the store of the Case-file check kept stale sub-cases 713.1 and 713.2 and refused its showing (Case 720). The person put the fixes off to the next session. `estimate-orchestration-defers-in-one-reply` is an Estimate, which a `defer` does not mark; its fault is named here.
+
+> **problem:**
+> No Case of this session fixes the faults the pre-spec found in the take-back of a ratified Case.
+
+```then
+defer:
+  - slug: rule-orchestration
+    type: rule
+    purpose: "The take-back of a ratified Case as Case 713 sets it holds the pre-spec faults F2–F6 of session 1804: two closers for one reply, a sentence that contradicts itself, a take-back that leaves nothing in backlog.md, and the Criterion of estimate-orchestration-defers-in-one-reply left unchanged"
+  - slug: rule-case-protocol
+    type: rule
+    purpose: "A Frontier line closed again by the superseding Case does not hold for a sprint or backlog item whose Case is taken back (pre-spec F5 of session 1804)"
+```

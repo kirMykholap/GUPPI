@@ -2,8 +2,8 @@
 type: insight
 pattern: The agent changes a file through a shell command instead of the Edit or Write tool, and the Windows tool on the way rewrites the file's bytes, its encoding or its line endings
 status: open
-children: ["[[lesson-session-frontier-rewritten-through-powershell]]", "[[lesson-work-mode-file-changed-through-a-bash-heredoc]]"]
-severity: 2
+children: ["[[lesson-session-frontier-rewritten-through-powershell]]", "[[lesson-work-mode-file-changed-through-a-bash-heredoc]]", "[[lesson-work-mode-code-rewritten-through-python-write-text]]"]
+severity: 3
 origin: raw/2026-10-07/0211/ledger.md#L49
 sprint: migration
 created: 2026-10-07
@@ -21,3 +21,4 @@ A suggestion: let the bashguard guard judge any shell command that writes a file
 ## History
 
 - 2026-10-07 created · raw/2026-10-07/0211/ledger.md#L49
+- 2026-10-07 updated: child lesson-work-mode-code-rewritten-through-python-write-text added (synthesis) · raw/2026-10-07/0425/ledger.md#L27

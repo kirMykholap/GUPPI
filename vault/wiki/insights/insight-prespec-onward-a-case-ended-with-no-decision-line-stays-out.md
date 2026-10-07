@@ -1,9 +1,9 @@
 ---
 type: insight
 pattern: case_out of the hook of rule-prespec-onward takes a Case file written after the last decision line it reads as a Case still out, and a Case can end with no decision line after its file, ratified again with unchanged lines or built and dropped, so the hook stays silent for the rest of Plan Mode
-status: open
+status: actioned
 children: ["[[lesson-prespec-onward-re-ratification-out-after-its-stretch]]", "[[lesson-prespec-onward-an-empty-case-file-keeps-it-silent]]"]
-severity: 2
+severity: 0
 origin: raw/2026-10-07/0211/ledger.md#L48
 sprint: migration
 created: 2026-10-07
@@ -21,3 +21,4 @@ A suggestion: let the end of a Case that writes no new decision line, a re-ratif
 ## History
 
 - 2026-10-07 created · raw/2026-10-07/0211/ledger.md#L48
+- 2026-10-07 updated: actioned: case 604 counts a re-ratification with unchanged lines for the rest of the session, and case 701 makes the emptied file of a dropped Case count as no Case · [[decision-case-701.1]]

@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: failed
 target: "[[rule-orchestration]]"
-purpose: A decision the person asks to put off in Plan Mode, from a source other than the sprint or the backlog, is shown as a short-form Case and written in the same reply, with no round of ratification
+purpose: A decision the person asks to put off in Plan Mode, from a source other than the sprint or the backlog, is shown as a short-form Case and written in the reply that shows it, with no round of ratification; when the item has a Case built and not ratified, that reply comes in the turn that the answer Dropped of its case-guppi opens
 method: by hand, a decision the person asks to put off, its line of frontier.md closed [-] … · defer case N, in a reply that leaves no line under the Cases heading of frontier.md open; a sprint item put off or a backlog item kept is not this reading
 checked: 2026-10-07
 origin: raw/2026-09-24/1916/ledger.md#case-405
@@ -26,13 +26,14 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 **＋** When no line under `## Cases` is open before `/pre-spec`, the question whether to go on to `/pre-spec` follows the Frontier and ends the reply. The agent calls `/pre-spec` only after the person says to go on.
 **＋** When no line under `## Cases` is open after `/pre-spec`, no question follows: the reply ends with the Frontier, and the hook of `rule-prespec-onward` sends the agent on with the loop after the findings.
 **＋** A wording the person corrects is a new short Case with `{supersedes:case N}` on its line, shown the same way.
+**＋** When the item has a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, the drop goes to that `case-guppi` first and the turn of the person's words ends with one `**Waiting:**` line; the short Case, its `LEDGER` block and the Frontier come in the turn that the answer `**Dropped:**` opens.
 **－** No text follows the question, or the Frontier when no question stands.
 **－** Retro writes no short defer: what it would put off is a line of `## For the next session` of `raw/<date>/<hi HHMM>/handoff.md`.
 **－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-] … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`, are not this moment: they take no short Case and no ledger line, and a reply that closes only such lines is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.
 
 ## Result
 
-2026-10-07, Retro, the new Render of rule-orchestration in the Spec (case 697.3): its anchor stands once; the defer reply on an empty Frontier before /pre-spec ends with the question whether to go on, with no text after it, as the Criterion sets
+2026-10-07, Retro, not read: its method needs a decision the person puts off by hand, and in session 0425 no decision was put off; the drop that case 701.5 adds reaches orchestration.md only at the librarian's render after this session
 
 ## History
 
@@ -54,3 +55,5 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L5
 - 2026-10-07 updated: the Criterion replaced whole — on an empty Frontier before /pre-spec the defer reply asks whether to go on · [[decision-case-697.3]]
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L38
+- 2026-10-07 updated: the Criterion replaced whole — the short Case of an item whose built Case is dropped comes in the turn of the answer Dropped · [[decision-case-701.5]]
+- 2026-10-07 status: pending → failed · raw/2026-10-07/0425/ledger.md#L25

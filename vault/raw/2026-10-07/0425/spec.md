@@ -81,13 +81,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] update `estimate-prespec-onward-reads-the-decisions-of-the-session`
-- [ ] update `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`
+- [x] update `rule-prespec-onward`
+- [x] update `estimate-prespec-onward-reads-the-decisions-of-the-session`
+- [x] update `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`
 - [x] `guppi/casecheck.py`: one function judges whether a file under `cases/` holds nothing but blank space, beside `is_case_file` and `case_file`.
 - [x] `guppi/onward.py`: `case_out` imports that function and skips such a file; the docstring of `--plan` says so.
 - [x] `tests/test_onward.py`: an empty file and a file of blank space with no decision line leave `case_out` False; a file with text and no decision line keeps it True; an empty file written after the last decision line of its Case leaves it False.
-- [ ] read `estimate-prespec-onward-reads-the-decisions-of-the-session`
+- [x] read `estimate-prespec-onward-reads-the-decisions-of-the-session`
 ```
 
 ### Case 701.2 — An emptied Case file is no Case built again after /pre-spec
@@ -130,11 +130,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] update `estimate-prespec-onward-tells-the-loop-from-its-end`
+- [x] update `rule-prespec-onward`
+- [x] update `estimate-prespec-onward-tells-the-loop-from-its-end`
 - [x] `guppi/onward.py`: `built_after` skips a file that holds nothing but blank space, by the function of `guppi/casecheck.py` of Case 701.1.
 - [x] `tests/test_onward.py`: an empty file written after the `prespec` line, alone, gives the reason of the loop; with a file of text written after it, the reason of the check and the exit.
-- [ ] read `estimate-prespec-onward-tells-the-loop-from-its-end`
+- [x] read `estimate-prespec-onward-tells-the-loop-from-its-end`
 ```
 
 ### Case 701.3 — case-guppi empties the file of a Case it drops
@@ -191,10 +191,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 701.4 — The main agent sends the drop of a Case to its case-guppi
@@ -248,10 +248,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```
 
 ### Case 701.5 — The short Case of a dropped item comes in the turn of the answer Dropped
@@ -297,9 +297,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-defers-in-one-reply`
-- [ ] read `estimate-orchestration-defers-in-one-reply`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-defers-in-one-reply`
+- [x] read `estimate-orchestration-defers-in-one-reply`
 ```
 
 ### Case 701.6 — A line closed with no defer after a drop comes in the turn of the answer Dropped
@@ -344,9 +344,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-shows-the-frontier-after-a-closed-line`
-- [ ] read `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+- [x] read `estimate-orchestration-shows-the-frontier-after-a-closed-line`
 ```
 
 ### Case 701.7 — The check of a Case compares it with no dropped Case
@@ -389,11 +389,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-sends-back-a-clash-with-another-case`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-sends-back-a-clash-with-another-case`
 - [x] `guppi/casecheck.py`: `other_blocks` takes the session folder and skips a store entry whose top-level Case file stands and holds nothing but blank space, by the function of Case 701.1; its docstring says so.
 - [x] `tests/test_casecheck.py`: a store entry whose Case file is empty gives no clash; the same entry with a file of text gives one.
-- [ ] read `estimate-case-check-sends-back-a-clash-with-another-case`
+- [x] read `estimate-case-check-sends-back-a-clash-with-another-case`
 ```
 
 ## Case 702 — A Case file declares a new tag on a tag line
@@ -478,12 +478,12 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-spec-write-reads-a-new-tag`
-- [ ] update `rule-spec-write`
-- [ ] update `rule-case-protocol`
+- [x] create `estimate-spec-write-reads-a-new-tag`
+- [x] update `rule-spec-write`
+- [x] update `rule-case-protocol`
 - [x] `guppi/ratified.py`: `read_tasks` reads a task line `` tag `<tag>` `` and its sub-points `meaning` and `aliases` into an entry of `new_tags`, keeps the line out of the task lines, and refuses a missing or a foreign sub-point; the docstring says so.
 - [x] `tests/test_ratified.py`: a Case with two tag lines writes two entries of `new_tags` in the `then` block in their order and no tag line in the `tasks` block; a tag line with `aliases` missing, with a foreign sub-point, or with a value that is not one code span is refused and writes nothing; a sub-point under a plain task line is still refused.
 - [x] `tests/test_casecheck.py`: the check of a Case file with a tag line passes with no finding, and one with a tag line off the form gives the refusal of the hook as a finding.
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-spec-write-reads-a-new-tag`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] read `estimate-spec-write-reads-a-new-tag`
 ```

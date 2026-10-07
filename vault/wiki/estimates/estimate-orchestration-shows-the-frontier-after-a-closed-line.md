@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: failed
 target: "[[rule-orchestration]]"
 purpose: Whether a reply after the first reply of /hi that closes a Frontier line in Plan Mode with no ratification and no defer ends with the Frontier and the question which item is next
 method: "by hand, in a later session: the first reply in Plan Mode after the first reply of /hi that closes a line of frontier.md with no ratification and no defer, read against the Criterion"
@@ -26,6 +26,7 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 **＋** When no line under `## Cases` is open before `/pre-spec`, the question whether to go on to `/pre-spec` follows the Frontier and ends the reply, with a `LEDGER` block or without one. The agent calls `/pre-spec` only after the person says to go on.
 **＋** When no line under `## Cases` is open after `/pre-spec`, no question follows the Frontier. A reply with a `LEDGER` block ends with the Frontier, for the hook of `rule-prespec-onward` to send the agent on. A reply with no `LEDGER` block goes on by itself after the Frontier, to the check and the exit or on with the loop after the findings, as `rule-prespec` sets it.
 **＋** A reply that closes several lines shows one Frontier, after its `LEDGER` block when it carries one.
+**＋** When the line it closes is the item of a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, the turn of the person's words ends with one `**Waiting:**` line once the drop has gone to that `case-guppi`, and this reply comes in the turn that its answer `**Dropped:**` opens.
 **－** The first reply of `/hi` keeps the form that `rule-skill-hi` sets, the lines it closes included.
 **－** The reply that takes a conserved Spec and closes the other lines goes on to `/pre-spec` with no question, as `rule-skill-hi` sets it.
 **－** A line closed in Work Mode or at Retro shows no Frontier.
@@ -33,7 +34,7 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 
 ## Result
 
-2026-10-07, Retro, the new Render of rule-orchestration in the Spec (case 697.2): its anchor stands once; before /pre-spec the reply asks whether to go on, with a LEDGER block or without, the conserved Spec taken at /hi excepted; after /pre-spec a reply with no block goes on by itself, as the Criterion sets
+2026-10-07, Retro, not read: its method reads the reply in a later session, and the wait for **Dropped:** that case 701.6 adds reaches orchestration.md only at the librarian's render after this session
 
 ## History
 
@@ -48,3 +49,5 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 - 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L22
 - 2026-10-07 updated: the Criterion replaced whole — on an empty Frontier before /pre-spec the reply asks whether to go on · [[decision-case-697.2]]
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L37
+- 2026-10-07 updated: the Criterion replaced whole — a line closed with no defer after the drop of its built Case is closed in the turn of the answer Dropped · [[decision-case-701.6]]
+- 2026-10-07 status: pending → failed · raw/2026-10-07/0425/ledger.md#L26

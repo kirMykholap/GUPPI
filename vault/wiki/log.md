@@ -7180,3 +7180,47 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-07 lessons/lesson-orchestration-batch-rounds-headed-by-their-case archived · insight actioned · generate
 - 2026-10-07 lessons/lesson-orchestration-batch-rounds-headed-by-own-text archived · cleanup
 - 2026-10-07 lessons/lesson-orchestration-batch-rounds-headed-by-their-case archived · cleanup
+- 2026-10-07 decisions/decision-case-701 created · raw/2026-10-07/0425/ledger.md#case-701 · generate
+- 2026-10-07 decisions/decision-case-701.1 created · raw/2026-10-07/0425/ledger.md#case-701.1 · generate
+- 2026-10-07 rules/rule-prespec-onward updated: a Case file that holds nothing but blank space, the file of a dropped Case, is never out (case 701.1) · [[decision-case-701.1]] · generate
+- 2026-10-07 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session updated: the Criterion replaced whole — a Case file that holds nothing but blank space, the file of a dropped Case, is never out (case 701.1) · [[decision-case-701.1]] · generate
+- 2026-10-07 insights/insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out updated: actioned: case 604 counts a re-ratification with unchanged lines for the rest of the session, and case 701 makes the emptied file of a dropped Case count as no Case · [[decision-case-701.1]] · generate
+- 2026-10-07 decisions/decision-case-701.2 created · raw/2026-10-07/0425/ledger.md#case-701.2 · generate
+- 2026-10-07 estimates/estimate-prespec-onward-tells-the-loop-from-its-end updated: the Criterion replaced whole — the emptied file of a dropped Case is no Case built again after /pre-spec (case 701.2) · [[decision-case-701.2]] · generate
+- 2026-10-07 decisions/decision-case-701.3 created · raw/2026-10-07/0425/ledger.md#case-701.3 · generate
+- 2026-10-07 rules/rule-case-build updated: case-guppi empties the file of a Case it drops, when the Case has no decision line, and answers with a first line Dropped (case 701.3) · [[decision-case-701.3]] · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — case-guppi empties the file of a Case it drops and answers with a first line Dropped (case 701.3) · [[decision-case-701.3]] · generate
+- 2026-10-07 decisions/decision-case-701.4 created · raw/2026-10-07/0425/ledger.md#case-701.4 · generate
+- 2026-10-07 rules/rule-orchestration updated: the main agent sends the drop of a Case not ratified to its case-guppi and waits for its answer Dropped before it goes on with the item (case 701.4) · [[decision-case-701.4]] · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — an answer that opens with Dropped is no round, and the drop of a Case not ratified goes to its case-guppi, the agent waiting for its answer before it goes on with the item · [[decision-case-701.4]] · generate
+- 2026-10-07 decisions/decision-case-702 created · raw/2026-10-07/0425/ledger.md#case-702 · generate
+- 2026-10-07 estimates/estimate-spec-write-reads-a-new-tag created · [[decision-case-702]] · generate
+- 2026-10-07 estimates/estimate-spec-write-reads-a-new-tag status: pending → passed · raw/2026-10-07/0425/ledger.md#L22 · generate
+- 2026-10-07 rules/rule-spec-write estimate estimate-spec-write-reads-a-new-tag added · [[decision-case-702]] · generate
+- 2026-10-07 rules/rule-spec-write updated: a task line tag with the sub-points meaning and aliases declares a new tag into new_tags of the then block and stands in no tasks block (case 702) · [[decision-case-702]] · generate
+- 2026-10-07 rules/rule-case-protocol updated: a Case file declares a new tag by a task line tag with the sub-points meaning and aliases (case 702) · [[decision-case-702]] · generate
+- 2026-10-07 rules/rule-prespec-onward updated: the emptied file of a dropped Case is no Case built again after /pre-spec (case 701.2) · [[decision-case-701.2]] · generate
+- 2026-10-07 decisions/decision-case-701.5 created · raw/2026-10-07/0425/ledger.md#case-701.5 · generate
+- 2026-10-07 rules/rule-orchestration updated: the short Case of an item whose built Case is dropped comes in the turn of the answer Dropped (case 701.5) · [[decision-case-701.5]] · generate
+- 2026-10-07 estimates/estimate-orchestration-defers-in-one-reply updated: the Criterion replaced whole — the short Case of an item whose built Case is dropped comes in the turn of the answer Dropped · [[decision-case-701.5]] · generate
+- 2026-10-07 decisions/decision-case-701.6 created · raw/2026-10-07/0425/ledger.md#case-701.6 · generate
+- 2026-10-07 rules/rule-orchestration updated: a line closed with no defer after the drop of its built Case is closed in the turn of the answer Dropped (case 701.6) · [[decision-case-701.6]] · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line updated: the Criterion replaced whole — a line closed with no defer after the drop of its built Case is closed in the turn of the answer Dropped · [[decision-case-701.6]] · generate
+- 2026-10-07 decisions/decision-case-701.7 created · raw/2026-10-07/0425/ledger.md#case-701.7 · generate
+- 2026-10-07 rules/rule-case-check updated: the check of a Case compares it with no dropped Case, whose file is empty (case 701.7) · [[decision-case-701.7]] · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-a-clash-with-another-case updated: the Criterion replaced whole — a dropped Case, whose file is empty, is not compared (case 701.7) · [[decision-case-701.7]] · generate
+- 2026-10-07 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session status: pending → passed · raw/2026-10-07/0425/ledger.md#L19 · generate
+- 2026-10-07 estimates/estimate-prespec-onward-tells-the-loop-from-its-end status: pending → passed · raw/2026-10-07/0425/ledger.md#L20 · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-a-clash-with-another-case status: pending → passed · raw/2026-10-07/0425/ledger.md#L21 · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-built-case status: pending → passed · raw/2026-10-07/0425/ledger.md#L23 · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case status: pending → failed · raw/2026-10-07/0425/ledger.md#L24 · generate
+- 2026-10-07 estimates/estimate-orchestration-defers-in-one-reply status: pending → failed · raw/2026-10-07/0425/ledger.md#L25 · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line status: pending → failed · raw/2026-10-07/0425/ledger.md#L26 · generate
+- 2026-10-07 lessons/lesson-work-mode-code-rewritten-through-python-write-text created · raw/2026-10-07/0425/ledger.md#L27 · generate
+- 2026-10-07 insights/insight-workflow-file-changed-through-a-shell-command updated: child lesson-work-mode-code-rewritten-through-python-write-text added (synthesis) · raw/2026-10-07/0425/ledger.md#L27 · generate
+- 2026-10-07 lessons/lesson-work-mode-code-rewritten-through-python-write-text updated: clustered under insight-workflow-file-changed-through-a-shell-command (synthesis) · raw/2026-10-07/0425/ledger.md#L27 · generate
+- 2026-10-07 rules/rule-orchestration status: built → draft · cascade · generate
+- 2026-10-07 lessons/lesson-prespec-onward-re-ratification-out-after-its-stretch archived · insight actioned · generate
+- 2026-10-07 lessons/lesson-prespec-onward-an-empty-case-file-keeps-it-silent archived · insight actioned · generate
+- 2026-10-07 lessons/lesson-prespec-onward-an-empty-case-file-keeps-it-silent archived · cleanup
+- 2026-10-07 lessons/lesson-prespec-onward-re-ratification-out-after-its-stretch archived · cleanup

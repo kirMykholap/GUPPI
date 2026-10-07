@@ -25,7 +25,7 @@
         "hooks": [ { "type": "command", "command": "uv run guppi recall", "timeout": 30 } ] }
 ],
 "UserPromptSubmit": [
-  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi context --prompt", "timeout": 30 },
+  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi context --prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck --prompt", "timeout": 30 },
                { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
 ],
 "PreToolUse": [

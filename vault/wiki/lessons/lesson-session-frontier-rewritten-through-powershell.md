@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: the main agent changed a file through a shell command instead of the Edit tool, and Windows PowerShell 5.1 reads a UTF-8 file with no BOM in the ANSI code page and writes utf8 with a BOM
-status: new
+status: clustered
+insight: "[[insight-workflow-file-changed-through-a-shell-command]]"
 origin: raw/2026-10-03/0115/ledger.md#L19
 sprint: migration
 created: 2026-10-03
@@ -20,3 +21,4 @@ the main agent changed a file through a shell command instead of the Edit tool, 
 ## History
 
 - 2026-10-03 created · raw/2026-10-03/0115/ledger.md#L19
+- 2026-10-07 updated: clustered under insight-workflow-file-changed-through-a-shell-command (synthesis) · raw/2026-10-07/0211/ledger.md#L49

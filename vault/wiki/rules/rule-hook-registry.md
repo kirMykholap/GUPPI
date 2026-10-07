@@ -36,7 +36,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
         "hooks": [ { "type": "command", "command": "uv run guppi recall", "timeout": 30 } ] }
 ],
 "UserPromptSubmit": [
-  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi context --prompt", "timeout": 30 },
+  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi context --prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck --prompt", "timeout": 30 },
                { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
 ],
 "PreToolUse": [
@@ -102,3 +102,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-09-30 updated: the Purpose no longer counts the rules that share .claude/settings.json; rule-python-utf8 joined them · [[decision-case-534.1]]
 - 2026-10-01 updated: guppi onward --plan registered on Stop after guppi onward (case 561.5) · [[decision-case-561.5]]
 - 2026-10-05 updated: the hook grepguard registered on PreToolUse of Grep (case 664.1) · [[decision-case-664.1]]
+- 2026-10-07 updated: uv run guppi casecheck --prompt registered on UserPromptSubmit (case 699.1) · [[decision-case-699.1]]

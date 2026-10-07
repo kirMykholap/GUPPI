@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-prespec-onward]]"
 purpose: Whether guppi onward --plan judges a Case out by the decision lines of ledger.md and of every reply of the main agent in the transcript, each at the time of its record, so that a re-ratification with lines the ledger already held counts at every later reply of the session
 method: "uv run pytest tests/test_onward.py; by hand at a Case ratified again with unchanged decision lines in Plan Mode, at the reply that closes the last line under Cases after a later message of the person: the transcript, ledger.md and the times of the files under cases/, recorded in the estimate line"
-checked: 2026-10-03
+checked: 2026-10-07
 origin: raw/2026-10-02/2049/ledger.md#case-597.2
 sprint: migration
 created: 2026-10-02
@@ -24,13 +24,15 @@ A Case N is still out when a file `case-<N>.md` under `raw/<date>/<hi HHMM>/case
 **＋** A line of a reply of the transcript counts at the time of its record, read by `moment` of `guppi/casecheck.py`. A line of the reply that ended counts as written now.
 **＋** A line of `ledger.md` counts at its time on the `hi` date, rolled to the next date when the time runs backwards.
 **＋** So a Case built again and ratified by a reply whose decision lines the ledger already held is not out after that reply, and not at any later reply of the session, after a later message of the person too. This includes the reply that writes again a line the ledger hook refused.
-**－** A file of a Case with no decision line is out.
+**＋** A Case N is not out, whenever its file was written, when a `{supersedes:case N}` mark of one of those decision lines, read by `parse_line` of `guppi/materialize.py`, retires N, or when such marks retire each sub-case of N that has a decision line. The marks are judged by `superseded_in_window` and `retired_by` of `guppi/prespec.py`, and the judgment of a parent by one function of the same module. So a Case that the person replaced by a Case under a new number, whole or sub-case by sub-case, does not keep the hook silent.
+**－** Marks that retire some sub-cases of N, but not each one that has a decision line, leave the file `case-<N>.md` judged as before.
+**－** A file of a Case with no decision line is out, unless such a mark retires the Case.
 **－** A record whose time cannot be read counts none of its lines. A transcript that cannot be read leaves `ledger.md` and the reply that ended as the only sources.
 **－** Its own refusals and those of the ledger hook are still judged in the stretch, by `refusals` of `guppi/ledger.py`.
 
 ## Result
 
-2026-10-03, session 0115, `uv run pytest tests/test_onward.py` 45 passed; by hand: ledger.md holds the lines of 607.1 and 607.2 at 01:27:40 and of 609 at 02:30:30, cases/case-607.md was written at 02:39:07 and case-609.md at 02:38:01 when the Cases were built again at /pre-spec, the reply that ratified them again at about 02:59 carried their unchanged lines in its LEDGER block and the ledger hook appended none of them again, and the hook of onward --plan after that reply reported no Case out and sent the agent to `guppi prespec --check`; a later message of the person in Plan Mode after that reply did not occur
+2026-10-07, uv run pytest tests/test_onward.py: 62 passed, the supersede tests among them (a mark in ledger.md, in a reply of the transcript, in the reply that ended; marks on both sub-cases with lines retire the parent, a mark on one of two does not); the by-hand part of its method was not taken under the new code
 
 ## History
 
@@ -39,3 +41,5 @@ A Case N is still out when a file `case-<N>.md` under `raw/<date>/<hi HHMM>/case
 - 2026-10-03 updated: renamed; the Criterion, purpose and method replaced — the decision lines of every reply of the transcript count, not only those of the stretch (case 604) · [[decision-case-604]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/0115/ledger.md#L16
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-07 updated: the Criterion replaced whole — a Case that a supersedes mark retires, whole or sub-case by sub-case, is not out · [[decision-case-696.1]]
+- 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L34

@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session, and of the first reply that acknowledges Cases ratified together in one answer
-checked: 2026-10-06
+checked: 2026-10-07
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -21,7 +21,9 @@ Then:
 The reply has four parts, in this order. First, the `LEDGER` block. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist.
 **＋** In the checklist the closed lines are folded into one line, and the lines put off stand as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
 **＋** The open `W` lines are folded into one line that lists their ids, and each other open line stands on its own line with a short title.
-**＋** While a line under `## Cases` is open, the question which item is next ends the reply; when none is open, the reply ends with the Frontier and asks nothing, and the hook of `rule-prespec-onward` sends the agent on.
+**＋** While a line under `## Cases` is open, the question which item is next ends the reply.
+**＋** When none is open before `/pre-spec`, the question whether to go on to `/pre-spec` ends the reply, in the plain form of the question which item is next. The agent calls `/pre-spec` only after the person says to go on. A reply that answers a question of the person instead ends with the same question again.
+**＋** When none is open after `/pre-spec`, the reply ends with the Frontier and asks nothing, and the hook of `rule-prespec-onward` sends the agent on.
 **＋** One reply acknowledges every Case and sub-case ratified in one answer, a Case with its sub-cases or Cases shown together for one ratification: one `LEDGER` block with all their lines, one heading `## Case N — ratified` that names their ids, one paragraph `Changes:`, one Frontier.
 **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision lines of each Case ratified again, as at its first ratification.
 **＋** The headings and labels are in the language of the chat.
@@ -31,7 +33,7 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 
 ## Result
 
-2026-10-06, by hand in session 0104: the first acknowledging reply (Case 685) and the reply for Cases 686 and 687 ratified together each hold one LEDGER block first, one heading naming the ids, one Changes paragraph, no Notes, the Frontier with closed and W lines folded, then the question; the re-ratification of 685–690 carried every decision line and the hook appended only the new 688.9 line (L32) after onward --plan refused it; the exception for a held decision line had no case live, the hold landing in d6b5fa50
+2026-10-07, Retro, the new Render of rule-orchestration in raw/2026-10-07/0211/spec.md (case 697.1): its replace anchor stands once on the page, and the new text ends the reply on an empty Frontier before /pre-spec with the question whether to go on, the Frontier with no question after /pre-spec, as the Criterion sets
 
 ## History
 
@@ -56,3 +58,5 @@ The reply has four parts, in this order. First, the `LEDGER` block. Second, the 
 - 2026-10-03 status: pending → passed · raw/2026-10-02/2300/ledger.md#L23
 - 2026-10-06 updated: the Criterion replaced whole — the LEDGER block stands written after a refusal of another hook, but for a decision line the ledger hook holds (case 688.9) · [[decision-case-688.9]]
 - 2026-10-06 status: pending → passed · raw/2026-10-06/0104/ledger.md#L43
+- 2026-10-07 updated: the Criterion replaced whole — on an empty Frontier before /pre-spec the reply asks whether to go on · [[decision-case-697.1]]
+- 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L36

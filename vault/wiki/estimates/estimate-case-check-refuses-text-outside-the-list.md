@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-case-check]]"
-purpose: Whether the Stop run of the Case check refuses a reply that shows a Case with a text of the main agent's own before its first Case heading, under a heading outside the list and the ratification, or written after the summary of case-guppi came back and before the last tool call of the turn, judging only what follows its last refusal in the turn
+purpose: Whether the Stop run of the Case check lets through a reply that shows a Case with a text of the main agent's own before its first Case heading, outside its list and its ratification, or written after the summary of case-guppi came back, and the run on UserPromptSubmit tells the agent of it at the person's next message, judging only what follows the last refusal in the turn
 method: uv run pytest tests/test_casecheck.py
 checked: 2026-10-07
 origin: raw/2026-10-03/0317/ledger.md#case-611
@@ -15,24 +15,21 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-`Stop` fires after a reply of the main agent that shows a Case under `## Case N —` or `### Case N.M —` with at least one of its sections, not a deferred decision in the short form, and `uv run guppi casecheck` runs on it, as `.claude/settings.json` registers it.
+A reply of the main agent shows a Case under `## Case N —` or `### Case N.M —` with at least one of its sections, not a deferred decision in the short form. `Stop` fires and `uv run guppi casecheck` of `guppi/casecheck.py` runs on it. Then the person sends a message, and `uv run guppi casecheck --prompt` runs on `UserPromptSubmit`, as `.claude/settings.json` registers it.
 
 Then:
-`uv run guppi casecheck` exits 2 when a line that is not blank stands in the reply before its first Case heading.
-**＋** It exits 2 when a line stands between a Case heading and the next Case heading or the horizontal rule `---` that is not blank, not a list item — a line that opens with `- `, `* ` or a number and `. ` — not a line indented under a list item, and not a line of the `ratification` blockquote, its `> **ratification:**` line and the `>` lines after it.
-**＋** It exits 2 when the main agent wrote text in the turn of the reply after the first summary of `case-guppi` came back and before its last tool call; a summary is a text given back to an `Agent` or `SendMessage` call whose first line that is not blank opens with `**Built:**`, in the `tool_result` of an `Agent` call or in the returned answer that opens the turn.
-**＋** When the turn holds a refusal of `uv run guppi casecheck`, judged by `refusals` of `guppi/ledger.py`, it judges only the texts after the last such refusal, so a Case shown again with no text of its own before its last tool call passes.
-**＋** Its reason on stderr quotes the first such text and tells the agent to show the Case again with nothing of its own before it and its own text after the horizontal rule.
-**＋** The check runs in the same `Stop` run as the comparison of shown Cases with the stored answer and the check of how a round opens, and a reply that more than one of them refuse gives each reason.
-**－** A text the main agent wrote in the turn before the first summary came back is not judged, and a turn with no summary judges no text before its last tool call.
-**－** Text after the horizontal rule is not judged.
-**－** A reply with no Case heading that holds a section, the acknowledging reply among them, a fence tagged `DIFF`, and a deferred decision in the short form are not judged.
-**－** With `stop_hook_active` set a Case shown again after a refusal is judged again, and the reason is given as `estimate-case-check-judges-a-showing-after-a-refusal` sets it.
-**－** It stores nothing and writes no file.
+At `Stop`, `uv run guppi casecheck` refuses no showing for a text of the main agent's own before its first Case heading, outside its list and its `ratification`, or written after the summary of `case-guppi` came back.
+**＋** It still refuses a shown Case that differs from the checked text, or whose file was not sent or differs from the store, as `estimate-case-check-shows-only-the-checked-case` sets it.
+**＋** On `UserPromptSubmit`, `uv run guppi casecheck --prompt` judges the last reply of the main agent before the person's message, and the turn that reply ends, when that reply shows a Case.
+**＋** It finds a fault when a line that is not blank stands before the first Case heading. It finds a fault when a line between a Case heading and the next Case heading or the horizontal rule `---` is not blank, not a list item — a line that opens with `- `, `* ` or a number and `. ` — not a line indented under a list item, and not a line of the `ratification` blockquote. It finds a fault when the main agent wrote text in the turn after the first summary of `case-guppi` came back — a text given back whose first line that is not blank opens with `**Built:**` — and before its last tool call. It judges only the texts after the reply that the last refusal of `uv run guppi casecheck` in the turn follows, judged by `refusals` of `guppi/ledger.py`.
+**＋** On a fault it prints one line to stdout, which reaches the agent's context. The line quotes the first such text, says that the Case stands as shown and is not shown again, and tells the agent to write nothing of its own before the Case and to keep its own text after the horizontal rule at the next showing.
+**－** A text written before the first summary came back, text after the horizontal rule, a reply with no Case heading that holds a section, a fence tagged `DIFF` and a deferred decision in the short form are not judged, and it prints nothing for them.
+**－** It exits 0 always and never blocks the person's message. An error of its own goes to stderr.
+**－** The person sees nothing of the note. It stores nothing and writes no file.
 
 ## Result
 
-2026-10-07, uv run pytest tests/test_casecheck.py: 164 passed; a text after the summary came back is refused with the reason to show the Case again with nothing of your own before it, a text before the call that brought the summary passes, a Case shown again after a refusal passes, a turn with no summary judges no text before its last call; the layout tests pass as before
+2026-10-07, uv run pytest tests/test_casecheck.py: 169 passed; a text before the heading, outside the list or after the summary came back passes the Stop run and gets the note of casecheck --prompt; a showing with no file sent is still refused at Stop
 
 ## History
 
@@ -42,3 +39,5 @@ Then:
 - 2026-10-06 status: pending → passed · raw/2026-10-06/0104/ledger.md#L42
 - 2026-10-07 updated: the Criterion replaced whole — only texts written after the summary came back and after the last refusal of the check are judged, so one showing again clears a refusal · [[decision-case-692.2]]
 - 2026-10-07 status: pending → passed · raw/2026-10-06/1448/ledger.md#L20
+- 2026-10-07 updated: the Criterion replaced whole — the Stop run lets a layout fault of a Case through, and casecheck --prompt tells the agent at the next message; purpose set anew · [[decision-case-699.2]]
+- 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L42

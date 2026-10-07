@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-orchestration]]"
 purpose: A decision the person asks to put off in Plan Mode, from a source other than the sprint or the backlog, is shown as a short-form Case and written in the same reply, with no round of ratification
 method: by hand, a decision the person asks to put off, its line of frontier.md closed [-] … · defer case N, in a reply that leaves no line under the Cases heading of frontier.md open; a sprint item put off or a backlog item kept is not this reading
-checked: 2026-10-03
+checked: 2026-10-07
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
 created: 2026-09-24
@@ -23,7 +23,8 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 **＋** The person's words asking for the defer are its ratification: no question asks for it.
 **＋** The reply shows the Frontier of `raw/<date>/<hi HHMM>/frontier.md` after the Case, with the line of the item closed `[-] … · defer case N`.
 **＋** While a line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` is open, a question follows the Frontier and ends the reply: which open item is next.
-**＋** When no line under `## Cases` is open, no question follows: the reply ends with the Frontier, and the hook of `rule-prespec-onward` sends the agent on.
+**＋** When no line under `## Cases` is open before `/pre-spec`, the question whether to go on to `/pre-spec` follows the Frontier and ends the reply. The agent calls `/pre-spec` only after the person says to go on.
+**＋** When no line under `## Cases` is open after `/pre-spec`, no question follows: the reply ends with the Frontier, and the hook of `rule-prespec-onward` sends the agent on with the loop after the findings.
 **＋** A wording the person corrects is a new short Case with `{supersedes:case N}` on its line, shown the same way.
 **－** No text follows the question, or the Frontier when no question stands.
 **－** Retro writes no short defer: what it would put off is a line of `## For the next session` of `raw/<date>/<hi HHMM>/handoff.md`.
@@ -31,7 +32,7 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 
 ## Result
 
-2026-10-03, at the /hi of session 1416, by hand, session 1341 (transcript 26e79919), the reply of 14:08:30 to the person's word putting the rest off: Cases 615–618 each in the short form, context, problem and a then fence with one defer item, no other section; one LEDGER block of four defer lines, no tool call after it, the ledger holding them at 14:08:32; the two tool calls before it read an earlier Spec and closed lines of frontier.md, neither wrote the plan file, and spec.md holds the four under `## Deferred`; no question asked for the defers; the Frontier shows C3–C6 closed `· defer case 615` to `618` and C1, C2 `· sprint · defer`; with no line under Cases open the reply ended with the Frontier and `uv run guppi onward --plan` sent the agent on to /pre-spec at 14:08:32; not exercised: a corrected wording with supersedes
+2026-10-07, Retro, the new Render of rule-orchestration in the Spec (case 697.3): its anchor stands once; the defer reply on an empty Frontier before /pre-spec ends with the question whether to go on, with no text after it, as the Criterion sets
 
 ## History
 
@@ -51,3 +52,5 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-10-03 updated: the Criterion replaced whole — the trigger is a decision put off, not an item of the sprint or the backlog; their closers are not this moment (case 609) · [[decision-case-609]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L5
+- 2026-10-07 updated: the Criterion replaced whole — on an empty Frontier before /pre-spec the defer reply asks whether to go on · [[decision-case-697.3]]
+- 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L38

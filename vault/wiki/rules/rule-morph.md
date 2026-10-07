@@ -16,3 +16,4 @@ The initiation at install: the person sets the category set of the project — t
 
 - 2026-09-18 deferred, placeholder · [[decision-case-239]]
 - 2026-10-07 updated: the initiation at install also sets the name of the transcripts folder in the read rules of rule-permissions · [[decision-case-693]]
+- 2026-10-07 updated: the read rules of rule-permissions that its initiation at install names stay, beside the mode auto of case-guppi; no text changes (case 698) · [[decision-case-698.2]]

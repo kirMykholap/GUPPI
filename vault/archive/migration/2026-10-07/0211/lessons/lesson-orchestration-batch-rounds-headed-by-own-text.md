@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: orchestration.md sets one list of every round of a batch, each question numbered <Case id>.Q<n>, but gives no form for where the Context paragraph of the second Case's round stands, so the agent marked the rounds apart with headings
-status: clustered
+status: archived
 insight: "[[insight-orchestration-items-taken-together-unruled]]"
 origin: raw/2026-10-06/0104/ledger.md#L47
 sprint: migration
@@ -22,3 +22,5 @@ orchestration.md sets one list of every round of a batch, each question numbered
 
 - 2026-10-06 created · raw/2026-10-06/0104/ledger.md#L47
 - 2026-10-06 updated: clustered under insight-orchestration-items-taken-together-unruled (synthesis) · raw/2026-10-06/0104/ledger.md#L47
+- 2026-10-07 archived · insight actioned
+- 2026-10-07 archived · cleanup

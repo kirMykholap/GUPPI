@@ -72,13 +72,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] update `estimate-prespec-onward-reads-the-decisions-of-the-session`
+- [x] update `rule-prespec-onward`
+- [x] update `estimate-prespec-onward-reads-the-decisions-of-the-session`
 - [x] `guppi/prespec.py`: one function beside `retired_by` tells whether a Case is retired whole — `retired_by` covers N, or it covers each sub-case of N among the decision records given — and its docstring says that `guppi onward --plan` imports it.
 - [x] `guppi/onward.py`: `case_out` reads the decision records of `ledger.md`, of the replies of the transcript and of the reply that ended by `parse_line`, takes `superseded_in_window` of them, and leaves out the file of each Case that the function of `guppi/prespec.py` finds retired whole; no judgment of a mark is written in this module; the module docstring says so.
 - [x] `tests/test_onward.py`: after a `prespec` line, a file of Case N written after its last decision line keeps the hook silent; with a decision line of another Case that carries `{supersedes:case N}` in `ledger.md`, in a reply of the transcript or in the reply that ended, the hook sends the agent on; marks that retire both N.1 and N.2, the only sub-cases with lines, send it on; a mark that retires only N.1 of the two keeps it silent.
 - [x] `uv run pytest tests/test_onward.py`
-- [ ] read `estimate-prespec-onward-reads-the-decisions-of-the-session`
+- [x] read `estimate-prespec-onward-reads-the-decisions-of-the-session`
 ```
 
 ### Case 696.2 — The hook speaks after `/pre-spec` only, and after the answer to a reply sent back
@@ -136,12 +136,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] update `estimate-prespec-onward-sends-the-agent-on`
+- [x] update `rule-prespec-onward`
+- [x] update `estimate-prespec-onward-sends-the-agent-on`
 - [x] `guppi/onward.py`: `TO_PRESPEC` goes, and `plan_onward` returns no reason with no `prespec` line; `plan_onward` goes on with a reply that holds no `LEDGER` block when a refusal of the ledger hook in the stretch follows the reply of the main agent that ended just before it, read by `refusals` of `guppi/ledger.py`; on its own error, `run` exits 0 unless `prespec_mark` reads a `prespec` line of this session, and its advice names the loop after the findings and the check and the exit, not `/pre-spec`; the module docstring says so.
 - [x] `tests/test_onward.py`: the tests that expect `onward.TO_PRESPEC` expect exit 0 and no output with no `prespec` line; in `test_loop_the_reply_after_a_reminder_of_the_ledger_hook` the answer with no `LEDGER` block exits 2 too; a reply with no block after a reply the ledger hook did not send back exits 0; the reply after its own reason at that answer exits 0; an error of its own after a `prespec` line exits 2 with advice that names no `/pre-spec`, and before it exits 0.
 - [x] `uv run pytest tests/test_onward.py tests/test_ledger.py`
-- [ ] read `estimate-prespec-onward-sends-the-agent-on`
+- [x] read `estimate-prespec-onward-sends-the-agent-on`
 ```
 
 ## Case 697 — On an empty Frontier the agent asks before it goes on to `/pre-spec`
@@ -222,10 +222,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-acknowledging-reply`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-acknowledging-reply`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-acknowledging-reply`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-acknowledging-reply`
 ```
 
 ### Case 697.2 — A reply that closes the last line with no ratification asks before `/pre-spec`
@@ -272,9 +272,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-shows-the-frontier-after-a-closed-line`
-- [ ] read `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+- [x] read `estimate-orchestration-shows-the-frontier-after-a-closed-line`
 ```
 
 ### Case 697.3 — The defer reply asks before `/pre-spec`
@@ -320,9 +320,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-defers-in-one-reply`
-- [ ] read `estimate-orchestration-defers-in-one-reply`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-defers-in-one-reply`
+- [x] read `estimate-orchestration-defers-in-one-reply`
 ```
 
 ### Case 697.4 — The question whether to go on keeps its own form
@@ -365,9 +365,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-asks-in-the-grill-me-shape`
-- [ ] read `estimate-orchestration-asks-in-the-grill-me-shape`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-asks-in-the-grill-me-shape`
+- [x] read `estimate-orchestration-asks-in-the-grill-me-shape`
 ```
 
 ## Case 698 — `case-guppi` reads the saved transcripts in its own permission mode
@@ -460,10 +460,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 698.2 — The read rules stay beside the mode `auto`
@@ -518,10 +518,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-permissions`
-- [ ] update `estimate-permissions`
-- [ ] update `rule-morph`
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] update `rule-permissions`
+- [x] update `estimate-permissions`
+- [x] update `rule-morph`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-permissions`
 ```
 
@@ -605,14 +605,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-refuses-text-before-a-round`
-- [ ] update `rule-hook-registry`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-refuses-text-before-a-round`
+- [x] update `rule-hook-registry`
 - [x] `guppi/casecheck.py`: `stop` no longer adds the reason of `round_opening`; `run` takes `--prompt`, which reads the transcript of the `UserPromptSubmit` payload, leaves out the person's message when the transcript holds it, judges the last reply of the main agent and its turn by `round_opening`, prints the note on stdout and exits 0 always, its own error on stderr; the module docstring says so.
 - [x] `tests/test_casecheck.py`: the tests of a round expect the `Stop` run to exit 0 on a layout fault; new tests whose names hold `round` run `--prompt` over a transcript whose last reply opens with a line of its own, or with text written after the round came back, and find the note on stdout and exit 0; a round with nothing before it, a turn with no round and an unreadable payload print nothing and exit 0.
 - [x] `uv run pytest tests/test_casecheck.py`
-- [ ] `uv run guppi render`: `.claude/settings.json`
-- [ ] read `estimate-case-check-refuses-text-before-a-round`
+- [x] `uv run guppi render`: `.claude/settings.json`
+- [x] read `estimate-case-check-refuses-text-before-a-round`
 ```
 
 ### Case 699.2 — A layout fault of a shown Case is told at the next message
@@ -656,12 +656,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-refuses-text-outside-the-list`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-refuses-text-outside-the-list`
 - [x] `guppi/casecheck.py`: `stop` no longer adds the reason of `showing_layout`; `--prompt` judges the last reply of the main agent and its turn by `showing_layout` when that reply shows a Case, and prints the note on stdout; the module docstring says so.
 - [x] `tests/test_casecheck.py`: the layout tests expect the `Stop` run to exit 0 on a text before the heading, outside the list or after the summary came back; new tests run `--prompt` over a transcript whose last reply shows such a Case and find the note on stdout and exit 0; a showing with no file sent is still refused at `Stop`.
 - [x] `uv run pytest tests/test_casecheck.py`
-- [ ] read `estimate-case-check-refuses-text-outside-the-list`
+- [x] read `estimate-case-check-refuses-text-outside-the-list`
 ```
 
 ### Case 699.3 — The count of the refusals holds only the reasons left to the `Stop` run
@@ -695,10 +695,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-judges-a-showing-after-a-refusal`
+- [x] update `estimate-case-check-judges-a-showing-after-a-refusal`
 - [x] `tests/test_casecheck.py`: a test of the count whose reason is a text before a round or outside the list gives a reason of a shown Case instead, such as a file not sent.
 - [x] `uv run pytest tests/test_casecheck.py`
-- [ ] read `estimate-case-check-judges-a-showing-after-a-refusal`
+- [x] read `estimate-case-check-judges-a-showing-after-a-refusal`
 ```
 
 ### Case 699.4 — A round or a Case with a layout fault is not shown again
@@ -749,10 +749,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```
 
 ### Case 699.5 — The Context label marks the round of each Case of a batch
@@ -799,10 +799,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-orchestration-marks-each-round-of-a-batch`
-- [ ] update `insight-orchestration-items-taken-together-unruled`
-- [ ] read `estimate-orchestration-marks-each-round-of-a-batch`
+- [x] update `rule-orchestration`
+- [x] create `estimate-orchestration-marks-each-round-of-a-batch`
+- [x] update `insight-orchestration-items-taken-together-unruled`
+- [x] read `estimate-orchestration-marks-each-round-of-a-batch`
 ```
 
 ### Case 699.6 — The showing example passes both runs of the check
@@ -844,10 +844,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-showing-example-passes-the-check`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-showing-example-passes-the-check`
 - [x] `uv run pytest tests/test_orchestration.py`
-- [ ] read `estimate-orchestration-showing-example-passes-the-check`
+- [x] read `estimate-orchestration-showing-example-passes-the-check`
 ```
 
 ### Case 699.7 — The Context label marks the round of each Case after the findings of `/pre-spec`
@@ -892,8 +892,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-gathers-the-answers-after-findings`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-gathers-the-answers-after-findings`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-gathers-the-answers-after-findings`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-gathers-the-answers-after-findings`
 ```

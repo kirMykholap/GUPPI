@@ -7098,3 +7098,85 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-07 rules/rule-permissions status: built → draft · cascade · generate
 - 2026-10-07 decisions/decision-case-691 archived · superseded · generate
 - 2026-10-07 decisions/decision-case-691 archived · cleanup
+- 2026-10-07 decisions/decision-case-696 created · raw/2026-10-07/0211/ledger.md#case-696 · generate
+- 2026-10-07 decisions/decision-case-696.1 created · raw/2026-10-07/0211/ledger.md#case-696.1 · generate
+- 2026-10-07 rules/rule-prespec-onward updated: a Case that a supersedes mark retires, whole or sub-case by sub-case, is not out, so a Case replaced under a new number no longer keeps the hook silent (case 696.1) · [[decision-case-696.1]] · generate
+- 2026-10-07 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session updated: the Criterion replaced whole — a Case that a supersedes mark retires, whole or sub-case by sub-case, is not out · [[decision-case-696.1]] · generate
+- 2026-10-07 decisions/decision-case-696.2 created · raw/2026-10-07/0211/ledger.md#case-696.2 · generate
+- 2026-10-07 rules/rule-prespec-onward updated: the hook sends the agent on at the end of the answer to a reply the ledger hook sent back, an answer with no LEDGER block too, and no longer sends it to /pre-spec (case 696.2) · [[decision-case-696.2]] · generate
+- 2026-10-07 estimates/estimate-prespec-onward-sends-the-agent-on updated: the Criterion replaced whole — silent before /pre-spec, and the answer with no LEDGER block to a reply the ledger hook sent back is sent on too; purpose set anew · [[decision-case-696.2]] · generate
+- 2026-10-07 decisions/decision-case-697 created · raw/2026-10-07/0211/ledger.md#case-697 · generate
+- 2026-10-07 decisions/decision-case-697.1 created · raw/2026-10-07/0211/ledger.md#case-697.1 · generate
+- 2026-10-07 rules/rule-orchestration updated: before /pre-spec the acknowledging reply on an empty Frontier asks whether to go on, and the agent calls /pre-spec only on the person's word (case 697.1) · [[decision-case-697.1]] · generate
+- 2026-10-07 estimates/estimate-orchestration-acknowledging-reply updated: the Criterion replaced whole — on an empty Frontier before /pre-spec the reply asks whether to go on · [[decision-case-697.1]] · generate
+- 2026-10-07 decisions/decision-case-697.2 created · raw/2026-10-07/0211/ledger.md#case-697.2 · generate
+- 2026-10-07 rules/rule-orchestration updated: before /pre-spec a reply that closes the last Cases line with no ratification asks whether to go on, a conserved Spec taken at /hi excepted (case 697.2) · [[decision-case-697.2]] · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line updated: the Criterion replaced whole — on an empty Frontier before /pre-spec the reply asks whether to go on · [[decision-case-697.2]] · generate
+- 2026-10-07 decisions/decision-case-697.3 created · raw/2026-10-07/0211/ledger.md#case-697.3 · generate
+- 2026-10-07 rules/rule-orchestration updated: before /pre-spec the defer reply on an empty Frontier asks whether to go on (case 697.3) · [[decision-case-697.3]] · generate
+- 2026-10-07 estimates/estimate-orchestration-defers-in-one-reply updated: the Criterion replaced whole — on an empty Frontier before /pre-spec the defer reply asks whether to go on · [[decision-case-697.3]] · generate
+- 2026-10-07 decisions/decision-case-698 created · raw/2026-10-07/0211/ledger.md#case-698 · generate
+- 2026-10-07 decisions/decision-case-698.1 created · raw/2026-10-07/0211/ledger.md#case-698.1 · generate
+- 2026-10-07 rules/rule-case-build updated: case-guppi runs in permissionMode auto instead of acceptEdits, so that a call no rule of the allow list matches is judged by that mode with no prompt (case 698) · [[decision-case-698.1]] · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — case-guppi runs in permissionMode auto; the other lines stand (case 698) · [[decision-case-698.1]] · generate
+- 2026-10-07 decisions/decision-case-698.2 created · raw/2026-10-07/0211/ledger.md#case-698.2 · generate
+- 2026-10-07 rules/rule-permissions updated: case-guppi runs in permissionMode auto; the read rules of the saved transcripts stay, and a call they do not match is judged by that mode (case 698) · [[decision-case-698.2]] · generate
+- 2026-10-07 estimates/estimate-permissions updated: the Criterion replaced whole — case-guppi runs in permissionMode auto beside the read rules of the saved transcripts, and a call they do not match is judged by that mode with no prompt (case 698) · [[decision-case-698.2]] · generate
+- 2026-10-07 rules/rule-morph updated: the read rules of rule-permissions that its initiation at install names stay, beside the mode auto of case-guppi; no text changes (case 698) · [[decision-case-698.2]] · generate
+- 2026-10-07 lessons/lesson-orchestration-batch-rounds-headed-by-their-case created · raw/2026-10-07/0211/ledger.md#L16 · generate
+- 2026-10-07 decisions/decision-case-699 created · raw/2026-10-07/0211/ledger.md#case-699 · generate
+- 2026-10-07 decisions/decision-case-699.1 created · raw/2026-10-07/0211/ledger.md#case-699.1 · generate
+- 2026-10-07 rules/rule-case-check updated: a layout fault of a shown round passes the Stop run and is told to the agent at the person's next message by casecheck --prompt (case 699.1) · [[decision-case-699.1]] · generate
+- 2026-10-07 estimates/estimate-case-check-refuses-text-before-a-round updated: the Criterion replaced whole — the Stop run lets a layout fault of a round through, and casecheck --prompt tells the agent at the next message; purpose set anew · [[decision-case-699.1]] · generate
+- 2026-10-07 rules/rule-hook-registry updated: uv run guppi casecheck --prompt registered on UserPromptSubmit (case 699.1) · [[decision-case-699.1]] · generate
+- 2026-10-07 decisions/decision-case-699.2 created · raw/2026-10-07/0211/ledger.md#case-699.2 · generate
+- 2026-10-07 rules/rule-case-check updated: a layout fault of a shown Case passes the Stop run and is told to the agent at the person's next message; a file not sent or a showing that differs from the store is still refused (case 699.2) · [[decision-case-699.2]] · generate
+- 2026-10-07 estimates/estimate-case-check-refuses-text-outside-the-list updated: the Criterion replaced whole — the Stop run lets a layout fault of a Case through, and casecheck --prompt tells the agent at the next message; purpose set anew · [[decision-case-699.2]] · generate
+- 2026-10-07 decisions/decision-case-699.3 created · raw/2026-10-07/0211/ledger.md#case-699.3 · generate
+- 2026-10-07 estimates/estimate-case-check-judges-a-showing-after-a-refusal updated: the Criterion replaced whole — a text of the agent's own before a round or outside the list is no reason of the Stop run · [[decision-case-699.3]] · generate
+- 2026-10-07 decisions/decision-case-699.4 created · raw/2026-10-07/0211/ledger.md#case-699.4 · generate
+- 2026-10-07 rules/rule-orchestration updated: a round or a Case shown with a layout fault is not shown again; the check tells the agent at the person's next message; the Context label of a round in a batch names its Case (case 699.4) · [[decision-case-699.4]] · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — a round or a Case with a layout fault is not shown again, and the Context label of a round in a batch names its Case · [[decision-case-699.4]] · generate
+- 2026-10-07 decisions/decision-case-699.5 created · raw/2026-10-07/0211/ledger.md#case-699.5 · generate
+- 2026-10-07 rules/rule-orchestration updated: the Context label of each first round of a batch names its Case and its item, and no heading of the agent's own marks a round (case 699.5) · [[decision-case-699.5]] · generate
+- 2026-10-07 estimates/estimate-orchestration-marks-each-round-of-a-batch created · [[decision-case-699.5]] · generate
+- 2026-10-07 estimates/estimate-orchestration-marks-each-round-of-a-batch status: pending → passed · raw/2026-10-07/0211/ledger.md#L45 · generate
+- 2026-10-07 rules/rule-orchestration estimate estimate-orchestration-marks-each-round-of-a-batch added · [[decision-case-699.5]] · generate
+- 2026-10-07 decisions/decision-case-699.6 created · raw/2026-10-07/0211/ledger.md#case-699.6 · generate
+- 2026-10-07 rules/rule-orchestration updated: the showing example is tested by the functions of both runs of the check (case 699.6) · [[decision-case-699.6]] · generate
+- 2026-10-07 estimates/estimate-orchestration-showing-example-passes-the-check updated: the Criterion replaced whole — the example passes the comparison of the Stop run and the layout judgment of the run at the next message; purpose set anew · [[decision-case-699.6]] · generate
+- 2026-10-07 decisions/decision-case-697.4 created · raw/2026-10-07/0211/ledger.md#case-697.4 · generate
+- 2026-10-07 rules/rule-orchestration updated: the question whether to go on to /pre-spec on an empty Frontier keeps its own form (case 697.4) · [[decision-case-697.4]] · generate
+- 2026-10-07 estimates/estimate-orchestration-asks-in-the-grill-me-shape updated: the Criterion replaced whole — the question whether to go on to /pre-spec keeps its own form · [[decision-case-697.4]] · generate
+- 2026-10-07 insights/insight-orchestration-items-taken-together-unruled updated: actioned: the Context label of each first round of a batch names its Case, so no heading of the agent's own marks a round (case 699.5) · [[decision-case-699.5]] · generate
+- 2026-10-07 decisions/decision-case-699.7 created · raw/2026-10-07/0211/ledger.md#case-699.7 · generate
+- 2026-10-07 rules/rule-prespec updated: in the list of the rounds after the findings, the Context label of each first round names its Case (case 699.7) · [[decision-case-699.7]] · generate
+- 2026-10-07 estimates/estimate-prespec-gathers-the-answers-after-findings updated: the Criterion replaced whole — the Context label of each first round in the list names its Case; method set to the reading of the Spec at Retro · [[decision-case-699.7]] · generate
+- 2026-10-07 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session status: pending → passed · raw/2026-10-07/0211/ledger.md#L34 · generate
+- 2026-10-07 estimates/estimate-prespec-onward-sends-the-agent-on status: pending → passed · raw/2026-10-07/0211/ledger.md#L35 · generate
+- 2026-10-07 estimates/estimate-orchestration-acknowledging-reply status: pending → passed · raw/2026-10-07/0211/ledger.md#L36 · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line status: pending → passed · raw/2026-10-07/0211/ledger.md#L37 · generate
+- 2026-10-07 estimates/estimate-orchestration-defers-in-one-reply status: pending → passed · raw/2026-10-07/0211/ledger.md#L38 · generate
+- 2026-10-07 estimates/estimate-orchestration-asks-in-the-grill-me-shape status: pending → passed · raw/2026-10-07/0211/ledger.md#L39 · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case status: pending → failed · raw/2026-10-07/0211/ledger.md#L40 · generate
+- 2026-10-07 estimates/estimate-case-check-refuses-text-before-a-round status: pending → passed · raw/2026-10-07/0211/ledger.md#L41 · generate
+- 2026-10-07 estimates/estimate-case-check-refuses-text-outside-the-list status: pending → passed · raw/2026-10-07/0211/ledger.md#L42 · generate
+- 2026-10-07 estimates/estimate-case-check-judges-a-showing-after-a-refusal status: pending → passed · raw/2026-10-07/0211/ledger.md#L43 · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-built-case status: pending → passed · raw/2026-10-07/0211/ledger.md#L44 · generate
+- 2026-10-07 estimates/estimate-orchestration-showing-example-passes-the-check status: pending → passed · raw/2026-10-07/0211/ledger.md#L46 · generate
+- 2026-10-07 estimates/estimate-prespec-gathers-the-answers-after-findings status: pending → passed · raw/2026-10-07/0211/ledger.md#L47 · generate
+- 2026-10-07 lessons/lesson-prespec-onward-an-empty-case-file-keeps-it-silent created · raw/2026-10-07/0211/ledger.md#L48 · generate
+- 2026-10-07 lessons/lesson-work-mode-file-changed-through-a-bash-heredoc created · raw/2026-10-07/0211/ledger.md#L49 · generate
+- 2026-10-07 insights/insight-orchestration-items-taken-together-unruled updated: child lesson-orchestration-batch-rounds-headed-by-their-case added, addressed_by decision-case-699.5, the Case of this unit that closed its cause, later than case 684.1 (synthesis) · raw/2026-10-07/0211/ledger.md#L16 · generate
+- 2026-10-07 lessons/lesson-orchestration-batch-rounds-headed-by-their-case updated: clustered under insight-orchestration-items-taken-together-unruled (synthesis) · raw/2026-10-07/0211/ledger.md#L16 · generate
+- 2026-10-07 insights/insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out created · raw/2026-10-07/0211/ledger.md#L48 · generate
+- 2026-10-07 lessons/lesson-prespec-onward-re-ratification-out-after-its-stretch updated: clustered under insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out (synthesis) · raw/2026-10-07/0211/ledger.md#L48 · generate
+- 2026-10-07 lessons/lesson-prespec-onward-an-empty-case-file-keeps-it-silent updated: clustered under insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out (synthesis) · raw/2026-10-07/0211/ledger.md#L48 · generate
+- 2026-10-07 insights/insight-workflow-file-changed-through-a-shell-command created · raw/2026-10-07/0211/ledger.md#L49 · generate
+- 2026-10-07 lessons/lesson-session-frontier-rewritten-through-powershell updated: clustered under insight-workflow-file-changed-through-a-shell-command (synthesis) · raw/2026-10-07/0211/ledger.md#L49 · generate
+- 2026-10-07 lessons/lesson-work-mode-file-changed-through-a-bash-heredoc updated: clustered under insight-workflow-file-changed-through-a-shell-command (synthesis) · raw/2026-10-07/0211/ledger.md#L49 · generate
+- 2026-10-07 rules/rule-case-build status: built → draft · cascade · generate
+- 2026-10-07 lessons/lesson-orchestration-batch-rounds-headed-by-own-text archived · insight actioned · generate
+- 2026-10-07 lessons/lesson-orchestration-batch-rounds-headed-by-their-case archived · insight actioned · generate
+- 2026-10-07 lessons/lesson-orchestration-batch-rounds-headed-by-own-text archived · cleanup
+- 2026-10-07 lessons/lesson-orchestration-batch-rounds-headed-by-their-case archived · cleanup

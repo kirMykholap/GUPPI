@@ -268,7 +268,7 @@ OPEN = "# Frontier\n\n## Cases\n\n- [ ] C1 — one · brief\n"
 RATIFIED = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Frontier"
 
 
-def plan_session(project_dir, frontier=CLOSED, log=START + HI, ledger=""):
+def plan_session(project_dir, frontier=CLOSED, log=START + HI + PRESPEC, ledger=""):
     day = with_event_log(project_dir, log)
     folder = day / FOLDER[1]
     folder.mkdir(exist_ok=True)
@@ -290,12 +290,11 @@ def with_case_file(folder, case, mtime):
     os.utime(path, (mtime.timestamp(), mtime.timestamp()))
 
 
-def test_plan_the_last_ratification_sends_the_agent_to_prespec(tmp_path):
-    plan_session(tmp_path)
-    code, err = run_plan(payload(RATIFIED), tmp_path)
-    assert code == 2
-    assert err == onward.TO_PRESPEC + "\n"
-    assert "/pre-spec" in err and "STOP:" in err
+def test_plan_before_prespec_the_last_ratification_is_silent(tmp_path):
+    """Case 696.2: before `/pre-spec` the person speaks first; the hook sends nowhere."""
+    plan_session(tmp_path, log=START + HI)
+    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+    assert not hasattr(onward, "TO_PRESPEC")
 
 
 def test_plan_after_prespec_sends_the_agent_to_the_check_and_the_exit(tmp_path):
@@ -359,19 +358,89 @@ def test_loop_a_session_across_midnight_reads_the_line_on_its_date(tmp_path, mti
     assert run_plan(payload(RATIFIED), tmp_path) == (2, reason + "\n")
 
 
-@pytest.mark.parametrize("block, code", [(True, 2), (False, 0)])
+@pytest.mark.parametrize("block, code", [(True, 2), (False, 2)])
 def test_loop_the_reply_after_a_reminder_of_the_ledger_hook(tmp_path, block, code):
-    """Its reason and the reminder of case 685.1 stand at the same `Stop`; the answer with a
-    `LEDGER` block is sent on again, the answer with none is not."""
+    """Its reason and the reminder of case 685.1 stand at the same `Stop`; the answer is sent
+    on again, with a `LEDGER` block or with none (case 696.2)."""
     folder = plan_session(tmp_path, log=START + HI + PRESPEC)
     with_case_file(folder, "7", datetime(2026, 9, 30, 11, 30, 0, tzinfo=UTC))
     reminded = "ledger: lesson[lesson-x] has no mark — did case 7 fix its cause?"
-    records = [human(), reply(), refusal(LEDGER, reminded), refusal(PLAN, onward.TO_EXIT)]
+    ratified = reply(RATIFIED, "2026-09-30T11:40:00Z")  # the ratification the reminder followed
+    records = [human(), ratified, refusal(LEDGER, reminded), refusal(PLAN, onward.TO_EXIT)]
     path = transcript(tmp_path, *records, reply())
     marked = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}{addresses:lesson-x}\n```\n"
     text = marked if block else "Case 7 fixed no cause of it."
     stdin = payload(text, stop_hook_active=True, transcript_path=path)
     assert run_plan(stdin, tmp_path)[0] == code
+
+
+def test_loop_an_answer_with_no_block_after_its_own_reason_at_it_is_silent(tmp_path):
+    """Case 696.2: once it sent on the answer to the reminder, the next reply is spent."""
+    folder = plan_session(tmp_path)
+    with_case_file(folder, "7", datetime(2026, 9, 30, 11, 30, 0, tzinfo=UTC))
+    reminded = "ledger: lesson[lesson-x] has no mark — did case 7 fix its cause?"
+    records = [human(), reply(), refusal(LEDGER, reminded), reply("no Case fixed it")]
+    path = transcript(tmp_path, *records, refusal(PLAN, onward.TO_EXIT), reply("go on"))
+    stdin = payload("go on", stop_hook_active=True, transcript_path=path)
+    assert run_plan(stdin, tmp_path) == (0, "")
+
+
+def test_loop_an_answer_with_no_block_after_a_reply_not_sent_back_is_silent(tmp_path):
+    """Case 696.2: a refusal of another hook, or a ledger refusal of an earlier reply, does
+    not send on a reply with no `LEDGER` block."""
+    plan_session(tmp_path)
+    earlier = [human(), reply(), refusal(LEDGER, "ledger: held"), reply("again")]
+    path = transcript(tmp_path, *earlier, refusal("uv run guppi casecheck"), reply("shown"))
+    stdin = payload("shown", stop_hook_active=True, transcript_path=path)
+    assert run_plan(stdin, tmp_path) == (0, "")
+
+
+# --- case 696.1: a Case a supersedes mark retires is not out ------------------------------
+# `estimate-prespec-onward-reads-the-decisions-of-the-session`
+
+REPLACED = "- 11:10:00 decision[case 5][update][rule-y]{ref:rule-y}\n"
+BY_6 = "decision[case 6][update][rule-y]{ref:rule-y}{supersedes:case 5}"
+
+
+def replaced_session(tmp_path, ledger=REPLACED):
+    folder = plan_session(tmp_path, ledger=ledger)
+    with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
+    return folder
+
+
+def test_supersede_a_case_file_after_its_last_line_keeps_it_silent(tmp_path):
+    replaced_session(tmp_path)
+    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+
+
+def test_supersede_a_mark_in_ledger_md_sends_it_on(tmp_path):
+    replaced_session(tmp_path, REPLACED + f"- 11:30:00 {BY_6}\n")
+    assert run_plan(payload(RATIFIED), tmp_path)[0] == 2
+
+
+def test_supersede_a_mark_in_a_reply_of_the_transcript_sends_it_on(tmp_path):
+    replaced_session(tmp_path)
+    marked = f"```LEDGER\n- {BY_6}\n```"
+    path = transcript(tmp_path, human(), reply(marked, "2026-09-30T11:30:00Z"))
+    assert run_plan(payload(LESSON, transcript_path=path), tmp_path)[0] == 2
+
+
+def test_supersede_a_mark_in_the_reply_that_ended_sends_it_on(tmp_path):
+    replaced_session(tmp_path)
+    assert run_plan(payload(f"```LEDGER\n- {BY_6}\n```\n## Frontier"), tmp_path)[0] == 2
+
+
+@pytest.mark.parametrize(
+    "marks, code", [("{supersedes:case 5.1}{supersedes:case 5.2}", 2), ("{supersedes:case 5.1}", 0)]
+)
+def test_supersede_marks_on_each_sub_case_with_lines_retire_the_parent(tmp_path, marks, code):
+    ledger = (
+        "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
+        "- 11:10:00 decision[case 5.2][update][rule-z]{ref:rule-z}\n"
+        f"- 11:30:00 decision[case 6][update][rule-y]{{ref:rule-y}}{marks}\n"
+    )
+    replaced_session(tmp_path, ledger)
+    assert run_plan(payload(RATIFIED), tmp_path)[0] == code
 
 
 def test_plan_an_open_cases_line_is_silent(tmp_path):
@@ -417,24 +486,24 @@ def test_plan_the_flag_and_another_hooks_refusal_send_it_on(tmp_path):
     plan_session(tmp_path)
     path = transcript(tmp_path, human(), reply(), refusal("uv run guppi casecheck"), reply())
     code, err = run_plan(payload(RATIFIED, stop_hook_active=True, transcript_path=path), tmp_path)
-    assert (code, err) == (2, onward.TO_PRESPEC + "\n")
+    assert (code, err) == (2, onward.TO_LOOP + "\n")
 
 
 @pytest.mark.parametrize("later", [False, True])
 def test_plan_a_ledger_refusal_after_its_own_sends_it_on_again(tmp_path, later):
     plan_session(tmp_path)
     records = [human(), reply(), refusal(LEDGER, "ledger: lesson[x] not written")]
-    records.append(refusal(PLAN, onward.TO_PRESPEC))
+    records.append(refusal(PLAN, onward.TO_LOOP))
     if later:
         records[2:4] = [records[3], reply("the rewrite"), records[2]]
     path = transcript(tmp_path, *records, reply())
     code, err = run_plan(payload(RATIFIED, stop_hook_active=True, transcript_path=path), tmp_path)
-    assert (code, err) == (2, onward.TO_PRESPEC + "\n")
+    assert (code, err) == (2, onward.TO_LOOP + "\n")
 
 
 def test_plan_its_own_refusal_with_no_later_ledger_refusal_is_silent(tmp_path):
     plan_session(tmp_path)
-    path = transcript(tmp_path, human(), reply(), refusal(PLAN, onward.TO_PRESPEC), reply())
+    path = transcript(tmp_path, human(), reply(), refusal(PLAN, onward.TO_LOOP), reply())
     assert run_plan(payload(RATIFIED, stop_hook_active=True, transcript_path=path), tmp_path) == (
         0,
         "",
@@ -511,7 +580,15 @@ def test_plan_an_error_of_its_own_exits_2_with_the_advice(tmp_path, monkeypatch)
     monkeypatch.setattr(onward, "plan_onward", boom)
     code, err = run_plan(payload(RATIFIED), tmp_path)
     assert code == 2
-    assert err.startswith("onward: not checked: boom") and "/pre-spec" in err
+    assert err.startswith("onward: not checked: boom") and "/pre-spec" not in err
+    assert "loop after the findings" in err and "exit Plan Mode" in err
+
+
+def test_plan_an_error_of_its_own_before_prespec_exits_0(tmp_path, monkeypatch):
+    """Case 696.2: before `/pre-spec` its own error sends no reply back."""
+    plan_session(tmp_path, log=START + HI)
+    monkeypatch.setattr(onward, "plan_onward", boom)
+    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
 
 
 def test_plan_the_run_without_the_flag_is_unchanged(tmp_path):

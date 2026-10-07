@@ -415,6 +415,18 @@ def retired_by(case: str, superseded: dict[str, str]) -> str | None:
     return None
 
 
+def retired_whole(case: str, superseded: dict[str, str], records: list[dict]) -> bool:
+    """Whether the Case `case` is retired whole: `retired_by` covers it, or it covers each
+    sub-case of it among the decision `records`, at least one standing there. Marks that
+    retire some sub-cases, not each one with a decision line, leave it standing.
+    `guppi onward --plan` imports it, so a Case replaced under a new number, whole or sub-case
+    by sub-case, does not keep that hook silent (case 696.1)."""
+    if retired_by(case, superseded) is not None:
+        return True
+    subs = {str(r["case"]) for r in records if in_family(str(r["case"]), case)} - {case}
+    return bool(subs) and all(retired_by(sub, superseded) is not None for sub in subs)
+
+
 def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     """59.1: every line has its item under its own Case; every item has its line, a nested
     estimate through its parent's create line. 299.2: a Case superseded by a line of the

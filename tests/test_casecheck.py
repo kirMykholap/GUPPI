@@ -214,6 +214,29 @@ def show(project, reply, sent=None, records=None, **fields):
     return code, err.getvalue()
 
 
+def noted(project, reply, sent=None, records=None):
+    """The `--prompt` run on `UserPromptSubmit` (cases 699.1, 699.2): the turn, built as `show`
+    builds it, ends with `reply`, and the person's next message follows it in the transcript;
+    `(code, stdout)`."""
+    if records is None:
+        cases = casecheck.split_cases(reply)
+        files = sent if sent is not None else sorted({case_path(project, c) for c in cases})
+        records = [prompt(), sending(*files), result()] if files else [prompt()]
+    turn = [*records, assistant(said(reply)), prompt("Next.")]
+    payload = {
+        "session_id": SESSION,
+        "transcript_path": main_transcript(project, turn),
+        "prompt": "Next.",
+    }
+    out, err = io.StringIO(), io.StringIO()
+    stdin = io.StringIO(json.dumps(payload, ensure_ascii=False))
+    code = casecheck.run(
+        ["--prompt"], stdin=stdin, stdout=out, stderr=err, project_dir=project, now=NOW
+    )
+    assert err.getvalue() == ""
+    return code, out.getvalue()
+
+
 # --- the check on SubagentStop (case 419.3) ---------------------------------------------
 
 
@@ -898,11 +921,9 @@ LAYOUT = "outside its list and ratification"
 
 
 def compared_alike(result):
-    """A showing of the sections under the heading is refused for its layout (case 611); the
-    comparison passes when the layout is the only reason given."""
-    code, err = result
-    reasons = ("differ", "not built and checked", "no SendUserFile", "its check found")
-    return code == 2 and LAYOUT in err and not any(reason in err for reason in reasons)
+    """A showing of the sections under the heading breaks the layout (case 611), which the
+    `Stop` run no longer refuses (case 699.2); the comparison passes when it gives no reason."""
+    return result == (0, "")
 
 
 def test_stop_the_checked_case_shown_unchanged_passes(working):
@@ -1148,13 +1169,22 @@ def test_guard_two_cases_are_counted_apart(working):
     assert code == 2 and "case 8:" in err and "case 7:" not in err
 
 
-def test_guard_a_reason_with_no_case_is_counted_by_its_text(working):
+def test_guard_a_file_not_sent_is_counted_three_times(working):
+    # case 699.3: a text of the agent's own before a round is no reason of the Stop run, so
+    # the count is read on a reason of a shown Case
+    answer(working, ANSWER)
+    code, err = show(working, SHORT_SHOWING, sent=[])
+    assert code == 2 and "no SendUserFile call on" in err
+    records = [prompt()]
+    assert show(working, SHORT_SHOWING, records=records + [own_refusal(err)] * 2)[0] == 2
+    code, err = show(working, SHORT_SHOWING, records=records + [own_refusal(err)] * 3)
+    assert code == 0 and "shown unchecked after three refusals" in err
+
+
+def test_guard_a_text_before_a_round_is_no_reason_of_the_stop_run(working):
+    # case 699.3
     records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
-    reply = "A line of my own.\n\n" + SHOWN_ROUND
-    code, err = show(working, reply, records=records)
-    assert code == 2
-    assert show(working, reply, records=records + [own_refusal(err)] * 2)[0] == 2
-    assert show(working, reply, records=records + [own_refusal(err)] * 3) == (0, "")
+    assert show(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records) == (0, "")
 
 
 def test_guard_the_flag_with_an_unreadable_transcript_passes_silently(working):
@@ -1235,29 +1265,45 @@ def test_layout_a_batch_of_list_showings_passes(working):
     assert show(working, batch) == (0, "")
 
 
-def test_layout_a_sentence_between_the_heading_and_the_list_is_refused(working):
-    # the showing of Case 610 in session 0115
+def test_layout_a_sentence_between_the_heading_and_the_list_is_told_at_the_next_message(working):
+    # the showing of Case 610 in session 0115; case 699.2
     answer(working, ANSWER)
-    noted = SHORT_SHOWING.replace(
+    shown = SHORT_SHOWING.replace(
         "## Case 7 — example\n\n", "## Case 7 — example\n\nCase 608 is renumbered.\n\n"
     )
-    code, err = show(working, noted)
-    assert code == 2 and LAYOUT in err and "Case 608 is renumbered." in err
-    assert "after the horizontal rule" in err
+    assert show(working, shown) == (0, "")
+    code, out = noted(working, shown)
+    assert code == 0 and LAYOUT in out and "Case 608 is renumbered." in out
+    assert "not shown again" in out and "after the horizontal rule" in out
 
 
-def test_layout_a_text_before_the_first_heading_is_refused(working):
+def test_layout_a_text_before_the_first_heading_is_told_at_the_next_message(working):
     answer(working, ANSWER)
-    code, err = show(working, "Here is the Case.\n\n" + SHORT_SHOWING)
-    assert code == 2 and LAYOUT in err and "Here is the Case." in err
+    shown = "Here is the Case.\n\n" + SHORT_SHOWING
+    assert show(working, shown) == (0, "")
+    code, out = noted(working, shown)
+    assert code == 0 and LAYOUT in out and "Here is the Case." in out
 
 
-def test_layout_a_section_other_than_ratification_is_refused(working):
+def test_layout_a_section_other_than_ratification_is_told_at_the_next_message(working):
     answer(working, ANSWER)
     given = "> **given:**\n> `estimate-x-works` — its Estimate.\n\n"
     shown = SHORT_SHOWING.replace("> **ratification:**", given + "> **ratification:**", 1)
-    code, err = show(working, shown)
-    assert code == 2 and LAYOUT in err and "> **given:**" in err
+    assert LAYOUT not in show(working, shown)[1]  # its comparison is the Stop run's own
+    code, out = noted(working, shown)
+    assert code == 0 and LAYOUT in out and "> **given:**" in out
+
+
+def test_layout_a_list_showing_gives_no_note(working):
+    answer(working, ANSWER)
+    assert noted(working, SHORT_SHOWING) == (0, "")
+
+
+def test_layout_a_showing_with_no_file_sent_is_still_refused_at_stop(working):
+    # case 699.2: the file not sent is still a reason of the Stop run
+    answer(working, ANSWER)
+    code, err = show(working, "Here is the Case.\n\n" + SHORT_SHOWING, sent=[])
+    assert code == 2 and "no SendUserFile call on" in err and LAYOUT not in err
 
 
 def summary_turn(working, before="", after=""):
@@ -1271,29 +1317,30 @@ def summary_turn(working, before="", after=""):
     return [prompt(), dispatch, agent_result(summary), call, result()]
 
 
-def test_layout_a_text_after_the_summary_came_back_is_refused(working):
-    # case 692.2
+def test_layout_a_text_after_the_summary_came_back_is_told_at_the_next_message(working):
+    # cases 692.2, 699.2
     answer(working, ANSWER)
     records = summary_turn(working, after="Showing the Case.")
-    code, err = show(working, SHORT_SHOWING, records=records)
-    assert code == 2 and LAYOUT in err and "Showing the Case." in err
-    assert "nothing of your own before it" in err
+    assert show(working, SHORT_SHOWING, records=records) == (0, "")
+    code, out = noted(working, SHORT_SHOWING, records=records)
+    assert code == 0 and LAYOUT in out and "Showing the Case." in out
+    assert "nothing of your own before the Case" in out
 
 
-def test_layout_a_text_before_the_call_that_brought_the_summary_passes(working):
+def test_layout_a_text_before_the_call_that_brought_the_summary_gives_no_note(working):
     # case 692.2: a text written before the summary came back cannot be taken back
     answer(working, ANSWER)
     records = summary_turn(working, before="Dispatching case-guppi.")
-    assert show(working, SHORT_SHOWING, records=records) == (0, "")
+    assert noted(working, SHORT_SHOWING, records=records) == (0, "")
 
 
-def test_layout_a_case_shown_again_after_a_refusal_passes(working):
+def test_layout_a_case_shown_again_after_a_refusal_gives_no_note(working):
     # case 692.2: after a refusal only what follows it is judged
     answer(working, ANSWER)
     records = summary_turn(working, after="Showing the Case.")
-    _, err = show(working, SHORT_SHOWING, records=records)
-    again = [*records, own_refusal(err), sending(case_path(working, "7")), result()]
-    assert show(working, SHORT_SHOWING, records=again, stop_hook_active=True) == (0, "")
+    refused = own_refusal("casecheck: case 7: no SendUserFile call on it — send the file")
+    again = [*records, refused, sending(case_path(working, "7")), result()]
+    assert noted(working, SHORT_SHOWING, records=again) == (0, "")
 
 
 def test_layout_a_turn_with_no_summary_judges_no_text_before_its_last_call(working):
@@ -1301,16 +1348,18 @@ def test_layout_a_turn_with_no_summary_judges_no_text_before_its_last_call(worki
     answer(working, ANSWER)
     call = sending(case_path(working, "7"))
     call["message"]["content"].insert(0, said("Showing the Case."))
-    assert show(working, SHORT_SHOWING, records=[prompt(), call, result()]) == (0, "")
+    assert noted(working, SHORT_SHOWING, records=[prompt(), call, result()]) == (0, "")
 
 
 def test_layout_the_acknowledging_reply_is_not_judged_and_the_re_fire_is(working):
     answer(working, ANSWER)
     ack = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Case 7 — ratified\n\n**Changes:** x.\n"
-    assert show(working, "A line.\n\n" + ack, sent=[]) == (0, "")
-    noted = "Here is the Case.\n\n" + SHORT_SHOWING
-    code, err = after_refusals(working, noted, other_refusal(), stop_hook_active=True)
-    assert code == 2 and LAYOUT in err  # case 688.6
+    assert noted(working, "A line.\n\n" + ack, sent=[]) == (0, "")
+    shown = "Here is the Case.\n\n" + SHORT_SHOWING
+    files = [case_path(working, "7")]
+    records = [prompt(), sending(*files), result(), other_refusal()]
+    code, out = noted(working, shown, records=records)
+    assert code == 0 and LAYOUT in out  # case 688.6
 
 
 # --- how a round of case-guppi opens (case 562) -----------------------------------------
@@ -1368,10 +1417,14 @@ def with_prespec(working):
     log.write_text(log.read_text(encoding="utf-8") + PRESPEC_MARK, encoding="utf-8")
 
 
-def test_round_a_reply_that_opens_with_a_line_of_its_own_is_refused(working):
+def test_round_a_reply_that_opens_with_a_line_of_its_own_is_told_at_the_next_message(working):
+    # case 699.1: the Stop run lets it through, the run at the next message gives the note
     records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
-    code, err = show(working, "Case-guppi asks a round.\n\n" + SHOWN_ROUND, records=records)
-    assert code == 2 and "Case-guppi asks a round." in err and "nothing before it" in err
+    reply = "Case-guppi asks a round.\n\n" + SHOWN_ROUND
+    assert show(working, reply, records=records) == (0, "")
+    code, out = noted(working, reply, records=records)
+    assert code == 0 and "Case-guppi asks a round." in out and "nothing before it" in out
+    assert "not shown again" in out and out.count("\n") == 1
 
 
 def test_round_before_prespec_a_text_before_the_agent_call_passes(working):
@@ -1381,7 +1434,27 @@ def test_round_before_prespec_a_text_before_the_agent_call_passes(working):
         assistant(said("Dispatching case-guppi."), agent_call()),
         agent_result(ROUND),
     ]
-    assert show(working, SHOWN_ROUND, records=records) == (0, "")
+    assert noted(working, SHOWN_ROUND, records=records) == (0, "")
+
+
+def test_round_the_prompt_run_on_an_unreadable_payload_prints_nothing(working):
+    out, err = io.StringIO(), io.StringIO()
+    stdin = io.StringIO("not json")
+    code = casecheck.run(
+        ["--prompt"], stdin=stdin, stdout=out, stderr=err, project_dir=working, now=NOW
+    )
+    assert (code, out.getvalue(), err.getvalue()) == (0, "", "")
+
+
+def test_round_the_prompt_run_reads_a_transcript_without_the_new_message(working):
+    # the transcript may not hold the person's new message yet
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    turn = [*records, assistant(said("Mine.\n\n" + SHOWN_ROUND))]
+    payload = {"session_id": SESSION, "transcript_path": main_transcript(working, turn)}
+    out = io.StringIO()
+    stdin = io.StringIO(json.dumps(payload, ensure_ascii=False))
+    assert casecheck.run(["--prompt"], stdin=stdin, stdout=out, project_dir=working, now=NOW) == 0
+    assert "Mine." in out.getvalue()
 
 
 def round_then_text(note="The round came back."):
@@ -1398,55 +1471,54 @@ def round_then_text(note="The round came back."):
     ]
 
 
-def test_round_before_prespec_a_text_after_the_round_came_back_is_refused(working):
+def test_round_before_prespec_a_text_after_the_round_came_back_is_told(working):
     # case 692.1
-    code, err = show(working, SHOWN_ROUND, records=round_then_text())
-    assert code == 2 and "The round came back." in err
+    assert show(working, SHOWN_ROUND, records=round_then_text()) == (0, "")
+    code, out = noted(working, SHOWN_ROUND, records=round_then_text())
+    assert code == 0 and "The round came back." in out
 
 
-def test_round_shown_again_with_nothing_before_it_after_a_refusal_passes(working):
+def test_round_shown_after_a_refusal_with_nothing_before_it_gives_no_note(working):
     # case 692.1: after a refusal only what follows it is judged
-    records = round_then_text()
-    _, err = show(working, SHOWN_ROUND, records=records)
-    again = [*records, own_refusal(err)]
-    assert show(working, SHOWN_ROUND, records=again, stop_hook_active=True) == (0, "")
+    records = [*round_then_text(), own_refusal("casecheck: case 7: no SendUserFile call")]
+    assert noted(working, SHOWN_ROUND, records=records) == (0, "")
 
 
-def test_round_a_reply_that_opens_with_a_line_of_its_own_after_a_refusal_is_refused(working):
+def test_round_a_reply_that_opens_with_a_line_of_its_own_after_a_refusal_is_told(working):
     # case 692.1: the first line is judged always
-    records = round_then_text()
-    _, err = show(working, SHOWN_ROUND, records=records)
-    reply = "Again.\n\n" + SHOWN_ROUND
-    code, err = show(working, reply, records=[*records, own_refusal(err)], stop_hook_active=True)
-    assert code == 2 and "Again." in err
+    records = [*round_then_text(), own_refusal("casecheck: case 7: no SendUserFile call")]
+    code, out = noted(working, "Again.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "Again." in out
 
 
 def test_round_given_back_in_the_opening_answer_leaves_every_text_judged(working):
     # case 692.1: the returned answer that opens the turn stands before every text of it
     send = {"type": "tool_use", "id": "toolu_s", "name": "SendMessage", "input": {}}
     records = [notification(ROUND), assistant(said("Both answered."), send), result()]
-    code, err = show(working, SHOWN_ROUND, records=records)
-    assert code == 2 and "Both answered." in err
+    code, out = noted(working, SHOWN_ROUND, records=records)
+    assert code == 0 and "Both answered." in out
 
 
 def test_round_after_prespec_a_text_before_the_call_with_a_question_line_passes(working):
     with_prespec(working)
     send = {"type": "tool_use", "id": "toolu_s", "name": "SendMessage", "input": {}}
     records = [notification(ROUND), assistant(said("The report."), send), result()]
-    assert show(working, "❓ **561.Q1** - **Какой путь?**:\n", records=records) == (0, "")
+    assert noted(working, "❓ **561.Q1** - **Какой путь?**:\n", records=records) == (0, "")
 
 
-def test_round_after_prespec_a_reply_that_opens_with_a_line_of_its_own_is_refused(working):
+def test_round_after_prespec_a_reply_that_opens_with_a_line_of_its_own_is_told(working):
     with_prespec(working)
-    code, err = show(working, "Both answered.\n\n" + SHOWN_ROUND, records=[notification(ROUND)])
-    assert code == 2 and "Both answered." in err
+    code, out = noted(working, "Both answered.\n\n" + SHOWN_ROUND, records=[notification(ROUND)])
+    assert code == 0 and "Both answered." in out
 
 
 def test_round_a_reply_that_opens_with_the_context_label_or_the_question_passes(working):
     records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
-    assert show(working, SHOWN_ROUND, records=records) == (0, "")
+    assert noted(working, SHOWN_ROUND, records=records) == (0, "")
     question = SHOWN_ROUND[SHOWN_ROUND.index("❓") :]
-    assert show(working, question, records=records) == (0, "")
+    assert noted(working, question, records=records) == (0, "")
+    labelled = SHOWN_ROUND.replace("**Контекст:**", "**Контекст — Case 7 (C2):**")
+    assert noted(working, labelled, records=records) == (0, "")  # case 699.5
 
 
 @pytest.mark.parametrize(
@@ -1460,6 +1532,7 @@ def test_round_a_reply_that_opens_with_the_context_label_or_the_question_passes(
 def test_round_a_turn_with_no_round_is_not_judged(working, records):
     own_question = "Мой вопрос.\n\n❓ **Q1** - **Мой?**:\n"
     assert show(working, own_question, records=records, sent=[]) == (0, "")
+    assert noted(working, own_question, records=records) == (0, "")
 
 
 def test_round_a_record_with_no_origin_opens_no_turn(working):
@@ -1471,24 +1544,23 @@ def test_round_a_record_with_no_origin_opens_no_turn(working):
         "message": {"role": "user", "content": "<command-name>/clear</command-name>"},
     }
     records = [prompt(), assistant(agent_call()), agent_result(ROUND), clear]
-    code, err = show(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records)
-    assert code == 2 and "A line of my own." in err
+    code, out = noted(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "A line of my own." in out
 
 
 def test_round_a_round_whose_title_line_lacks_its_colon_is_a_round(working):
-    # case 601.4: the Stop run knows a round by `is_round`, the mark alone, not QUESTION_LINE
+    # case 601.4: the check knows a round by `is_round`, the mark alone, not QUESTION_LINE
     no_colon = ROUND.replace("**Which way?**:", "**Which way?**")
     records = [prompt(), assistant(agent_call()), agent_result(no_colon)]
-    code, err = show(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records)
-    assert code == 2 and "A line of my own." in err
+    code, out = noted(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "A line of my own." in out
 
 
-def test_round_the_re_fire_is_judged_again(working):
-    """Case 688.5: a round shown again after a refusal is judged again."""
+def test_round_a_refusal_of_another_hook_leaves_the_reply_judged(working):
+    """Case 688.5: a round shown after a refusal of another hook is judged."""
     records = [prompt(), assistant(agent_call()), agent_result(ROUND), other_refusal()]
-    reply = "A line.\n\n" + SHOWN_ROUND
-    code, err = show(working, reply, records=records, stop_hook_active=True)
-    assert code == 2 and "A line." in err
+    code, out = noted(working, "A line.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "A line." in out
 
 
 def test_stop_list_the_file_of_the_top_level_case_must_be_sent(working):

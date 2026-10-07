@@ -261,7 +261,14 @@ def stretch(payload: dict) -> list[dict] | None:
     records = read_records(payload.get("transcript_path"))
     if records is None:
         return None
-    main = [r for r in records if is_main(r)]
+    return stretch_of([r for r in records if is_main(r)])
+
+
+def stretch_of(main: list[dict]) -> list[dict]:
+    """The stretch of the main-agent records `main`: those after the last person's message,
+    by `user_kind` — the reading `stretch` makes of a transcript, for a caller that holds the
+    records, such as `guppi casecheck --prompt` with the person's new message left out
+    (case 699.1)."""
     start = 0
     for index, record in enumerate(main):
         if user_kind(record) == PERSON:
@@ -280,9 +287,27 @@ def refusals(payload: dict, *commands: str) -> dict[str, list[tuple[int, str]]] 
     refusals, which `guppi onward` uses for its own and for those of the ledger hook, and
     `guppi ratified`, through `own_refusals`, for its own (case 644.8)."""
     records = stretch(payload)
-    if records is None:
-        return None
+    return None if records is None else refusals_in(records, *commands)
+
+
+def refusals_in(records: list[dict], *commands: str) -> dict[str, list[tuple[int, str]]]:
+    """The refusals of each `Stop` hook `command` among the stretch `records`, as `refusals`
+    reads them from a transcript, for a caller that holds the stretch."""
     found: dict[str, list[tuple[int, str]]] = {command: [] for command in commands}
+    for reply, text in refusal_records(records):
+        for command in commands:
+            prefix = f"[{command}]: "
+            at = text.find("\n" + prefix)
+            if at >= 0:
+                found[command].append((reply, text[at + 1 + len(prefix) :]))
+    return found
+
+
+def refusal_records(records: list[dict]) -> list[tuple[int, str]]:
+    """Each refusal record of a `Stop` hook among `records`, whatever its hook, with the reply
+    it follows — the index of the last `assistant` record before it, -1 when none — and its
+    text: the reading `refusals` makes of each record."""
+    found: list[tuple[int, str]] = []
     reply = -1
     for index, record in enumerate(records):
         if record.get("type") == "assistant":
@@ -291,14 +316,29 @@ def refusals(payload: dict, *commands: str) -> dict[str, list[tuple[int, str]]] 
         if record.get("type") != "user" or not record.get("isMeta"):
             continue
         text = record_text(record)
-        if not text.startswith(REFUSAL_HEAD):
-            continue
-        for command in commands:
-            prefix = f"[{command}]: "
-            at = text.find("\n" + prefix)
-            if at >= 0:
-                found[command].append((reply, text[at + 1 + len(prefix) :]))
+        if text.startswith(REFUSAL_HEAD):
+            found.append((reply, text))
     return found
+
+
+def sent_back_last(payload: dict, command: str) -> bool | None:
+    """Whether the `Stop` hook `command` refused the reply of the agent that ended just
+    before the reply now ending: in the stretch, a `Stop` that passes ends the turn, so the
+    ended replies of the turn are those its refusals follow, and the last of them is the one
+    `command` must have refused; no turn opens after that refusal. None when the transcript
+    cannot be read. `guppi onward --plan` sends on an answer with no `LEDGER` block to a reply
+    the ledger hook sent back by it (case 696.2)."""
+    records = stretch(payload)
+    if records is None:
+        return None
+    found = refusal_records(records)
+    if not found:
+        return False
+    last = max(reply for reply, _ in found)
+    prefix = f"\n[{command}]: "
+    if not any(reply == last and prefix in text for reply, text in found):
+        return False
+    return not any(opens_turn(record) for record in records[last + 1 :])
 
 
 def own_refusals(payload: dict, command: str) -> list[str] | None:

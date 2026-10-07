@@ -1,7 +1,10 @@
 """`guppi casecheck --subagent` — the `SubagentStop` hook that checks the Case `case-guppi`
 wrote into its file, or answered with on the old path, before the main agent sees it (cases
 419.3, 645.2); `guppi casecheck` — the `Stop` hook
-that compares each Case the main agent shows with the one the check stored (case 419.4).
+that compares each Case the main agent shows with the one the check stored (case 419.4);
+`guppi casecheck --prompt` — the `UserPromptSubmit` hook that tells the agent, at the
+person's next message, of a round or a Case its last reply showed after a text of its own
+(cases 699.1, 699.2).
 
 The check. For an answer of `case-guppi` (`agent_type`), the hook takes as the answer the
 newest output of the subagent in `agent_transcript_path` that holds a Case heading, that
@@ -174,17 +177,23 @@ the person's next message, so a showing written again after a refusal is judged 
 guards its own loop by its refusals in the stretch — the transcript after the person's last
 message — read by `refusals` of `guppi/ledger.py`, the judgment `guppi onward` calls
 (`own_told`): a reason that names a Case, opening with `case <id>:`, is given while fewer than
-`LIMIT`, three, of its refusals hold a reason of that Case, and any other reason — the
-opening of a round, the layout of a showing, an error of its own — while fewer than three
-hold the same reason (`times_given`, `give`). When no reason is left to give it exits 0 and
+`LIMIT`, three, of its refusals hold a reason of that Case, and any other reason — an error
+of its own — while fewer than three hold the same reason (`times_given`, `give`). The
+opening of a round and the layout of a showing are no reasons of it: the `--prompt` run
+tells them and counts nothing (case 699.3). When no reason is left to give it exits 0 and
 prints one line per Case it lets through, which the Spec hook compares at ratification. With
 the flag set and a transcript it cannot read it exits 0 and prints nothing.
 
-How a round opens (case 562). The same `Stop` run judges a reply whose turn holds a round
-of `case-guppi`: a text a subagent gave back in the turn, by `given_back`, that `is_round`
-finds a round — the one test of a round, a line that opens with `❓`, no Case heading and no
-`**Fact:**` line before it, not a `QUESTION_LINE` match, so a round whose title line lacks
-its colon is judged too (case 601.4). It exits 2
+How a round opens (case 562). `guppi casecheck --prompt`, the run on `UserPromptSubmit`,
+judges the last reply of the main agent before the person's message — the transcript's
+main-agent records, the person's new message left out when the transcript holds it
+(`before_message`), the reply the text blocks of its turn after the last tool call
+(`last_reply`) — when its turn holds a round of `case-guppi`: a text a subagent gave back in
+the turn, by `given_back`, that `is_round` finds a round — the one test of a round, a line
+that opens with `❓`, no Case heading and no `**Fact:**` line before it, not a
+`QUESTION_LINE` match, so a round whose title line lacks its colon is judged too (case
+601.4). The `Stop` run no longer refuses a reply for it, so a round is not shown twice (case
+699.1). It finds a fault
 when the first line of the reply that is not blank opens neither with `❓ ` nor with a bold
 label that ends in a colon — the label of the Context paragraph, translated — and, while the
 session's event log holds no `prespec` line of this session after its `hi`, judged by
@@ -196,9 +205,11 @@ only the texts after the reply that the last such refusal follows are judged (`l
 so a round shown again with nothing before it passes (case 692.1); after `/pre-spec` that text is not
 judged, since in the loop after its findings each answer of a `case-guppi` comes back in a
 turn of its own and the text the main agent writes there is set by `rule-prespec` (case
-581.2). The reason quotes the text
-before the round and tells the agent to show the round again with nothing before it; it is
-joined with the reasons of the comparison. Text after the last question is not judged, a
+581.2). On a fault it prints one line to stdout, which reaches the agent's context: it
+quotes the text before the round, says the round stands as shown and is not shown again, and
+tells the agent to open the next round with its Context paragraph or its first question,
+with nothing before it. It exits 0 always and never blocks the message; its own error goes
+to stderr, and an unreadable payload prints nothing. Text after the last question is not judged, a
 turn with no round — the main agent's own questions, a `**Fact:**` answer, a re-pitch by
 `wait-what` — is not judged, and the check stores nothing. Where an answer stands was
 measured on the transcript of session 2356 (2026-10-01): the answer to an `Agent` call in
@@ -209,10 +220,12 @@ answer between `<result>` and `</result>` — a returned answer by `user_kind` o
 opener (case 592). A notification carries no agent type; the question line is what marks a
 round.
 
-The layout of a showing (case 611). The same `Stop` run judges a reply that shows a Case —
-one that `showings` reads, so not the acknowledging reply, a fence tagged `DIFF` or the short
-form — against the layout `orchestration.md` sets: the heading, one list under it, one
-`ratification`, and the agent's own text only after the horizontal rule. It exits 2 when a
+The layout of a showing (case 611). The same `--prompt` run judges the last reply when it
+shows a Case — one that `showings` reads, so not the acknowledging reply, a fence tagged
+`DIFF` or the short form — against the layout `orchestration.md` sets: the heading, one list
+under it, one `ratification`, and the agent's own text only after the horizontal rule; the
+`Stop` run no longer refuses a showing for it, while it still refuses a Case that differs
+from the store or whose file was not sent (case 699.2). It finds a fault when a
 line that is not blank stands before the first Case heading (`CASE_HEADING` of
 `guppi/materialize.py`, `## Case N —` or `### Case N.M —`); when, between a Case heading and
 the next one or the horizontal rule, a line stands that is not blank, not a list item — one
@@ -224,11 +237,11 @@ given back whose first line that is not blank opens with `**Built:**`, by `is_su
 test `summary_findings` shares — and before its last tool call, by `texts_after`, the
 judgment of the check of a round, after the reply the last refusal of the check follows, with
 no second copy (`outside_the_list`, `showing_layout`, case 692.2). A text written before the
-summary came back, and every text of a turn with no summary, is not judged. The reason quotes
-the first such text and tells the agent to show the Case again with nothing of its own before
-it and its own text after the horizontal rule; it is joined with the reasons of the comparison
-and of the opening of a round. Text after the horizontal rule is not judged, and the check
-stores nothing. The comparison above still compares the sections a reply shows; this check refuses
+summary came back, and every text of a turn with no summary, is not judged. The note quotes
+the first such text, says the Case stands as shown and is not shown again, and tells the
+agent to write nothing of its own before the Case and to keep its own text after the
+horizontal rule at the next showing; it is joined with the note on the opening of a round.
+Text after the horizontal rule is not judged, and the check stores nothing. The comparison above still compares the sections a reply shows; this check refuses
 the showing of any but `ratification`.
 
 A sending. The transcript is JSONL (`ledger.read_records`); a `SendUserFile` call stands in an
@@ -266,15 +279,17 @@ from guppi.event import project_root, read_payload, session_stamp
 from guppi.generate import DAY, FRONTIER_LINE, FRONTIER_SEPARATOR, SESSION
 from guppi.ledger import (
     ANSWER,
+    PERSON,
     PREFIXES,
     opens_turn,
     plan_path,
     read_records,
     refusals,
+    refusals_in,
     reply_text,
     session_dir,
     session_event_logs,
-    stretch,
+    stretch_of,
     transcript_records,
     user_kind,
 )
@@ -1511,20 +1526,22 @@ def outside_the_list(reply: str) -> str | None:
 
 
 def showing_layout(records: list[dict], reply: str, since: int = -1) -> str | None:
-    """Case 611: the reason a reply that shows a Case is refused for a text of the main
-    agent's own outside its list and `ratification`, or None — a text written in the turn
-    after the first summary of `case-guppi` came back, by `is_summary`, and before the last
-    tool call, by `texts_after`, the judgment the check of a round uses, after the reply that
-    the last refusal of the check follows, `since` (case 692.2); or a line of the reply by
+    """Case 611: the note on a reply that showed a Case with a text of the main agent's own
+    outside its list and `ratification`, or None — a text written in the turn after the first
+    summary of `case-guppi` came back, by `is_summary`, and before the last tool call, by
+    `texts_after`, the judgment the check of a round uses, after the reply that the last
+    refusal of the check follows, `since` (case 692.2); or a line of the reply by
     `outside_the_list`. A text written before the summary came back, and every text of a turn
-    with no summary, is not judged, so one showing again clears a refusal."""
+    with no summary, is not judged. The `--prompt` run gives it at the person's next message,
+    and the Case is not shown again (case 699.2)."""
     before = texts_after(records, is_summary, since)
     quoted = before[0] if before else outside_the_list(reply)
     if quoted is None:
         return None
     return (
-        f"a Case is shown with a text of your own outside its list and ratification: "
-        f"{quoted[:120]!r} — show the Case again with nothing of your own before it and your "
+        f"casecheck: your last reply showed a Case with a text of your own outside its list "
+        f"and ratification: {quoted[:120]!r} — the Case stands as shown and is not shown "
+        "again; at the next showing write nothing of your own before the Case and keep your "
         "own text after the horizontal rule"
     )
 
@@ -1657,17 +1674,18 @@ def texts_after(records: list[dict], finds, since: int = -1) -> list[str]:
 def round_opening(
     records: list[dict], reply: str, after_prespec: bool, since: int = -1
 ) -> str | None:
-    """Case 562: the reason a reply that shows a round of `case-guppi` is refused, or None.
-    The turn holds a round when a text given back in it, by `given_back`, is one by
-    `is_round`. Before `/pre-spec` — no `prespec` line of the session after its `hi` — a
-    text of the main agent written after the first round of the turn came back and before
-    the last tool call, by `texts_after`, is refused, and only after the reply that the last
-    refusal of the check follows, `since`, so a round shown again with nothing before it
-    passes (case 692.1); always, a reply whose first line that is not blank opens neither with
-    `❓ ` nor with a bold label that ends in a colon. After `/pre-spec` only the first line is
-    judged: in the loop over its findings each answer of a `case-guppi` comes back in a turn
-    of its own, and the text the main agent writes there is set by `rule-prespec` (case
-    581.2). Text after the last question is not judged."""
+    """Case 562: the note on a reply that showed a round of `case-guppi` after a text of the
+    main agent's own, or None. The turn holds a round when a text given back in it, by
+    `given_back`, is one by `is_round`. Before `/pre-spec` — no `prespec` line of the session
+    after its `hi` — a text of the main agent written after the first round of the turn came
+    back and before the last tool call, by `texts_after`, is a fault, and only after the reply
+    that the last refusal of the check follows, `since` (case 692.1); always, a reply whose
+    first line that is not blank opens neither with `❓ ` nor with a bold label that ends in a
+    colon. After `/pre-spec` only the first line is judged: in the loop over its findings each
+    answer of a `case-guppi` comes back in a turn of its own, and the text the main agent
+    writes there is set by `rule-prespec` (case 581.2). Text after the last question is not
+    judged. The `--prompt` run gives the note at the person's next message, and the round is
+    not shown again (case 699.1)."""
     if not any(is_round(text) for text in given_back(records)):
         return None
     before = [] if after_prespec else texts_after(records, is_round, since)
@@ -1676,9 +1694,9 @@ def round_opening(
         return None
     quoted = before[0] if before else first
     return (
-        f"a round of case-guppi is shown after a text of your own: {quoted[:120]!r} — show the "
-        "round again, opening with its Context paragraph or its first question, with nothing "
-        "before it"
+        f"casecheck: your last reply showed a round of case-guppi after a text of your own: "
+        f"{quoted[:120]!r} — the round stands as shown and is not shown again; open the next "
+        "round with its Context paragraph or its first question, with nothing before it"
     )
 
 
@@ -1695,16 +1713,14 @@ def own_told(payload: dict) -> list[str] | None:
     return None if found is None else [text for _, text in found[COMMAND]]
 
 
-def last_refused(payload: dict, records: list[dict]) -> int:
+def last_refused(records: list[dict]) -> int:
     """The index in `records`, the main-agent records of the transcript, of the reply that
-    the last refusal of the `Stop` run in the stretch follows, by `refusals` and `stretch` of
-    `guppi/ledger.py` — the one judgment of the refusals and of the stretch; -1 when none
-    stands (case 692)."""
-    found = refusals(payload, COMMAND)
-    span = stretch(payload)
-    if not found or not found[COMMAND] or span is None:
-        return -1
-    return len(records) - len(span) + found[COMMAND][-1][0]
+    the last refusal of the `Stop` run in their stretch follows, by `stretch_of` and
+    `refusals_in` of `guppi/ledger.py` — the one judgment of the refusals and of the stretch;
+    -1 when none stands (case 692)."""
+    span = stretch_of(records)
+    found = refusals_in(span, COMMAND)[COMMAND]
+    return len(records) - len(span) + found[-1][0] if found else -1
 
 
 def times_given(reason: str, told: list[str]) -> int:
@@ -1751,11 +1767,8 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     shown = showings(cases)
     logs = session_event_logs(project_dir, now, stamp)
     turn_records = transcript_records(payload)
-    _, after_prespec = prespec_window("".join(text for _, text in logs), stamp)
-    since = last_refused(payload, turn_records)
-    opening = round_opening(turn_records, reply, after_prespec, since)
-    if not shown:
-        return give([opening] if opening else [], told, stderr)
+    if not shown:  # a layout fault is told at the next message (cases 699.1, 699.2)
+        return 0
     store = read_store(plan_path(logs, stamp))
     problems = [
         problem
@@ -1765,10 +1778,6 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     for top in dict.fromkeys(top_case(case) for case in shown):  # case 645.4
         if folder is not None and (changed := changed_file(folder, top, store)):
             problems.append(changed)
-    if opening:
-        problems.append(opening)
-    if layout := showing_layout(turn_records, reply, since):
-        problems.append(layout)
     turn = turn_of_reply(turn_records)
     unsent: dict[Path, list[str]] = {}
     for case in shown:  # the file of its top-level Case, sent in this turn (case 452.2)
@@ -1783,20 +1792,83 @@ def stop(payload: dict, project_dir: Path, now, stderr) -> int:
     return give(problems, told, stderr)
 
 
+PROMPT_FLAG = "--prompt"
+
+
+def before_message(records: list[dict]) -> list[dict]:
+    """The main-agent records before the person's message the `UserPromptSubmit` payload
+    carries: the records from the last person's message on, by `user_kind` of
+    `guppi/ledger.py`, are left out when no reply of the agent follows it — the transcript
+    may hold that message already."""
+    for index in range(len(records) - 1, -1, -1):
+        if records[index].get("type") == "assistant":
+            return records
+        if user_kind(records[index]) == PERSON:
+            return records[:index]
+    return records
+
+
+def last_reply(records: list[dict]) -> str:
+    """The text of the last reply of the main agent: the text blocks of the turn, by
+    `turn_blocks`, after its last tool call."""
+    texts: list[str] = []
+    for _, _, record, block in turn_blocks(records):
+        if record.get("type") != "assistant":
+            continue
+        if block.get("type") == "tool_use":
+            texts = []
+        elif block.get("type") == "text" and str(block.get("text") or "").strip():
+            texts.append(str(block["text"]))
+    return "\n\n".join(texts)
+
+
+def prompt_note(payload: dict, project_dir: Path, now) -> str | None:
+    """Cases 699.1, 699.2: the note on the layout of the last reply of the main agent before
+    the person's message, or None — `round_opening` when its turn holds a round, and
+    `showing_layout` when the reply shows a Case by `showings`; each judges only what follows
+    the reply the last refusal of the `Stop` run follows, `last_refused`."""
+    records = before_message(transcript_records(payload))
+    reply = last_reply(records)
+    if not reply:
+        return None
+    stamp = session_stamp(None, payload)
+    logs = session_event_logs(project_dir, now, stamp)
+    _, after_prespec = prespec_window("".join(text for _, text in logs), stamp)
+    since = last_refused(records)
+    notes = [round_opening(records, reply, after_prespec, since)]
+    if showings(split_cases(reply)):
+        notes.append(showing_layout(records, reply, since))
+    found = [note for note in notes if note]
+    return "; ".join(found) if found else None
+
+
 def run(
     argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None = None, now=None
 ) -> int:
     stdin = sys.stdin if stdin is None else stdin
+    stdout = sys.stdout if stdout is None else stdout
     stderr = sys.stderr if stderr is None else stderr
     project_dir = project_root() if project_dir is None else Path(project_dir)
     now = datetime.now().astimezone() if now is None else now
+    argv = argv or []
     try:
         payload = read_payload(stdin)
     except Exception as exc:  # noqa: BLE001 — no payload, no way to tell a re-fire (case 555.1)
-        print(f"casecheck: not checked: {exc}", file=stderr)
+        if PROMPT_FLAG not in argv:
+            print(f"casecheck: not checked: {exc}", file=stderr)
         return 0
     if not payload:
-        print("casecheck: payload not readable, nothing checked", file=stderr)
+        if PROMPT_FLAG not in argv:
+            print("casecheck: payload not readable, nothing checked", file=stderr)
+        return 0
+    if PROMPT_FLAG in argv:  # never blocks the person's message (case 699.1)
+        try:
+            note = prompt_note(payload, project_dir, now)
+        except Exception as exc:  # noqa: BLE001 — its own error goes to stderr
+            print(f"casecheck: not checked: {exc}", file=stderr)
+            return 0
+        if note:
+            print(note, file=stdout)
         return 0
     if "--subagent" in argv:
         try:

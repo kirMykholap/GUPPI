@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "713"
-status: current
+status: archived
 create: ["[[estimate-orchestration-takes-back-a-ratified-case]]"]
 update: ["[[rule-orchestration]]"]
+superseded_by: ["[[decision-case-723.1]]"]
 origin: raw/2026-10-07/1804/ledger.md#case-713
 sprint: migration
 created: 2026-10-07
@@ -41,3 +42,6 @@ The person cannot take back a ratified Case in its session. The Case stays in th
 ## History
 
 - 2026-10-07 created · raw/2026-10-07/1804/ledger.md#case-713
+- 2026-10-07 superseded by decision-case-723.1 · [[decision-case-723.1]]
+- 2026-10-07 archived · superseded
+- 2026-10-07 archived · cleanup

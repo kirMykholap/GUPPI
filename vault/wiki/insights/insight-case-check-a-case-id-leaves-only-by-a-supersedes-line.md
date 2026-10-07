@@ -2,8 +2,8 @@
 type: insight
 pattern: A check of the Cases of a session leaves a Case id out only when a {supersedes:case N} line of the ledger names it, so an id that no such line names, a parent Case with no lines of its own or a sub-case that a rebuild dropped, stays a finding, and nothing else clears it.
 status: open
-children: ["[[lesson-prespec-parent-of-superseded-sub-cases]]", "[[lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped]]"]
-severity: 2
+children: ["[[lesson-prespec-parent-of-superseded-sub-cases]]", "[[lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped]]", "[[lesson-case-check-refuses-a-rebuild-under-a-new-number]]"]
+severity: 3
 origin: raw/2026-10-07/1804/ledger.md#L27
 sprint: migration
 created: 2026-10-07
@@ -21,3 +21,4 @@ A suggestion, not a decision. Let the checks leave out a Case id that the curren
 ## History
 
 - 2026-10-07 created · raw/2026-10-07/1804/ledger.md#L27
+- 2026-10-07 updated: child lesson-case-check-refuses-a-rebuild-under-a-new-number added (synthesis) · raw/2026-10-07/2114/ledger.md#L28

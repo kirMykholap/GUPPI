@@ -1,0 +1,2770 @@
+date: '2026-10-07'
+sprint: migration
+ledger: vault/raw/2026-10-07/2114/ledger.md
+spec:
+- vault/raw/2026-10-07/2114/spec.md
+entries:
+- line: 1
+  text: decision[case 722.1][update][rule-case-check]{ref:rule-case-check}{supersedes:case 720}
+  case: '722.1'
+  kind: update
+  slug: rule-case-check
+  origin: raw/2026-10-07/2114/ledger.md#case-722.1
+  decision: decision-case-722.1
+  ref: rule-case-check
+  supersedes:
+  - '720'
+  category: rules
+  replace:
+  - old: compares its Cases with the other Cases of the session, ratified or not, a dropped Case whose
+      file is empty aside (case 701.7)
+    new: compares its Cases with the other Cases of the session, ratified or not, a dropped Case whose
+      file is empty and a stored Case that the file of its top-level Case no longer holds aside (cases
+      701.7, 722.1)
+  change: the check of the file of a Case leaves out a stored Case that the file of its top-level Case
+    no longer holds (case 722.1)
+  applied: '22:45:11'
+- line: 2
+  text: decision[case 722.1][update][estimate-case-check-sends-back-a-clash-with-another-case]{ref:rule-case-check}
+  case: '722.1'
+  kind: update
+  slug: estimate-case-check-sends-back-a-clash-with-another-case
+  origin: raw/2026-10-07/2114/ledger.md#case-722.1
+  decision: decision-case-722.1
+  ref: rule-case-check
+  category: estimates
+  set:
+    status: pending
+    purpose: Whether the check of an answer of case-guppi sends back a Case that sets one field, writes
+      one section or replaces one Criterion that another Case of the session, ratified or only stored,
+      sets, writes or replaces too; a dropped Case, whose file is empty, a stored Case that the file of
+      its top-level Case no longer holds, and a Case left out as estimate-case-check-leaves-out-a-case-the-file-supersedes
+      sets are no such other Case
+  change: the Criterion replaced whole — a stored Case that the file of its top-level Case no longer holds
+    is not compared (case 722.1)
+  sections:
+    Criterion: 'When:
+
+      `SubagentStop` fires when `case-guppi` answers with a Case, and `uv run guppi casecheck --subagent`
+      reads the Cases of the answer, the plan file of the session, `<plan>.checked.json` beside it and
+      the session''s `raw/<date>/<hi HHMM>/ledger.md`.
+
+      **＋** Or `tests/test_casecheck.py` runs it over a made-up plan file, store and ledger.
+
+
+      Then:
+
+      The hook judges the Cases of the answer together with the other Cases of the session by `check_same_target`
+      of `guppi/prespec.py`, imported, not copied: each Case of the plan file, and each entry of `<plan>.checked.json`
+      under its number alone whose id the plan file does not hold.
+
+      **＋** A Case of the answer whose `update` of a page sets one field to another value than another
+      Case, writes a section that another Case writes, or replaces whole the Criterion of an Estimate
+      that another Case replaces whole, gets a finding that names both Cases, the page and the field or
+      the section.
+
+      **＋** The finding is stored with the Case, the hook exits 2, and `case-guppi` answers again before
+      the main agent shows the Case.
+
+      **－** A stored Case that has findings, an entry joined with an agent id, a Case whose number a `{supersedes:case
+      N}` mark of the session''s ledger names, and a Case left out as `estimate-case-check-leaves-out-a-case-the-file-supersedes`
+      sets are not compared.
+
+      **－** A stored Case whose top-level file `raw/<date>/<hi HHMM>/cases/case-<N>.md` holds nothing
+      but blank space is a dropped Case and is not compared, judged by the one function of `guppi/casecheck.py`
+      that the hook of `rule-prespec-onward` uses too.
+
+      **－** A stored Case whose top-level file `raw/<date>/<hi HHMM>/cases/case-<N>.md` holds text but
+      no heading of its id is a part that a Case built again no longer holds, and is not compared; its
+      entry stays in the store.
+
+      **－** A Case whose id the answer holds is compared only as the answer holds it, and an answer that
+      holds a top-level Case is compared with no part of that Case''s family in the plan file or the store.
+
+      **－** Two other Cases that clash with each other give this answer no finding.
+
+      **－** The `Stop` hook `uv run guppi ratified` keeps its check of the Cases it writes, by the same
+      function.'
+  applied: '22:45:11'
+- line: 3
+  text: decision[case 722.2][update][rule-spec-write]{ref:rule-spec-write}
+  case: '722.2'
+  kind: update
+  slug: rule-spec-write
+  origin: raw/2026-10-07/2114/ledger.md#case-722.2
+  decision: decision-case-722.2
+  ref: rule-spec-write
+  category: rules
+  replace:
+  - old: removes the section of Case N — with its sub-cases, or `### Case N.M` alone when the line names
+      a sub-case — from the plan file
+    new: removes the section of Case N — with its sub-cases, or `### Case N.M` alone when the line names
+      a sub-case, and then its parent too once the marks of the session's ledger and of the reply retire
+      each sub-case of that parent with a decision line, by `retired_whole` of `guppi/prespec.py`, and
+      the parent holds no decision line of its own that no mark retires (case 722.2) — from the plan file
+  change: the Spec hook removes a parent whose every sub-case with a decision line is retired (case 722.2)
+  applied: '22:45:11'
+- line: 4
+  text: decision[case 722.2][update][estimate-spec-write-removes-a-superseded-case]{ref:rule-spec-write}
+  case: '722.2'
+  kind: update
+  slug: estimate-spec-write-removes-a-superseded-case
+  origin: raw/2026-10-07/2114/ledger.md#case-722.2
+  decision: decision-case-722.2
+  ref: rule-spec-write
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a parent whose every sub-case is retired leaves the plan and
+    spec.md (case 722.2)
+  sections:
+    Criterion: 'When:
+
+      The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds a decision
+      line carrying `{supersedes:case N}`, and it has written the Case of that line in the same run.
+
+
+      Then:
+
+      The hook removes the section of Case N — its heading, its sections, its `then` and `tasks` blocks,
+      and the sections of its sub-cases — from the plan file.
+
+      **＋** Once `raw/<hi date>/<hi HHMM>/spec.md` stands, it removes every section of Case N and of its
+      sub-cases from it too.
+
+      **＋** A `{supersedes:case N.M}` removes the section of that sub-case alone while another sub-case
+      of its parent with a decision line is not retired; the parent and those other sub-cases stay.
+
+      **＋** When the marks of the session''s `raw/<date>/<hi HHMM>/ledger.md` and of the reply retire
+      each sub-case of a parent that has a decision line, judged by `retired_whole` of `guppi/prespec.py`,
+      imported, not copied, and the parent holds no decision line of its own that no mark retires, the
+      hook removes the section of that parent too.
+
+      **－** A parent with a decision line of its own that no mark retires stays in the plan file and in
+      `raw/<hi date>/<hi HHMM>/spec.md`, though each of its sub-cases is retired.
+
+      **＋** A section of Case N under `## Deferred` is removed the same way.
+
+      **＋** With `stop_hook_active` set, the hook removes as without it, as `estimate-spec-write-answers-a-refusal`
+      sets it.
+
+      **－** A Case N that neither file holds — a Case of an earlier session, a defer taken up — is no
+      refusal, and nothing is removed.
+
+      **－** A line whose own Case the hook refused or did not write removes nothing.'
+  applied: '22:45:11'
+- line: 5
+  text: decision[case 722.3][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 721}
+  case: '722.3'
+  kind: update
+  slug: rule-case-protocol
+  origin: raw/2026-10-07/2114/ledger.md#case-722.3
+  decision: decision-case-722.3
+  ref: rule-case-protocol
+  supersedes:
+  - '721'
+  category: rules
+  replace:
+  - old: a mark on a sub-case removes that sub-case alone,
+    new: a mark on a sub-case removes that sub-case alone, and the parent with it once a mark retires
+      each sub-case of the parent that has a decision line and the parent holds no decision line of its
+      own that no mark retires (case 722.2),
+  change: the Splitting section says the Spec hook removes a parent whose every sub-case is retired (case
+    722.3)
+  applied: '22:45:11'
+- line: 6
+  text: decision[case 722.3][defer][rule-case-protocol]{ref:rule-case-protocol}
+  case: '722.3'
+  kind: defer
+  slug: rule-case-protocol
+  origin: raw/2026-10-07/2114/ledger.md#case-722.3
+  decision: decision-case-722.3
+  ref: rule-case-protocol
+  category: rules
+  fields:
+    type: rule
+    purpose: A Frontier line closed again by the superseding Case does not hold for a sprint or backlog
+      item whose Case is taken back (pre-spec F5 of session 1804); put off again by Case 722.3, which
+      retires decision-case-721 on this page for the sentence on the Spec hook
+  exists: true
+  applied: '22:45:11'
+- line: 7
+  text: decision[case 723.1][update][rule-orchestration]{ref:rule-orchestration}{supersedes:case 713}{supersedes:case
+    721}
+  case: '723.1'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-10-07/2114/ledger.md#case-723.1
+  decision: decision-case-723.1
+  ref: rule-orchestration
+  supersedes:
+  - '713'
+  - '721'
+  category: rules
+  replace:
+  - old: one for each Estimate it updates, and one for the page that each Estimate it creates would check,
+      once per page,
+    new: one for each Estimate it updates, and one for the page that each Estimate it updates checks or
+      each Estimate it creates would check, once per page, so that each such page enters `backlog.md`
+      through its `deferred_by` (case 723.1),
+  - old: then the Frontier with the line closed `[-] … · defer case N` and, last,
+    new: then the Frontier with the line closed `[-] … · defer case N`, or, in the reply of a take-back,
+      by the closer of its source that `## Showing and signing a Case` sets (case 723.1), and, last,
+  - old: whose item closes the same way and whose `defer` lines add to its source (case 713); its Frontier
+      line closes `[-] … · backlog · kept`, its source stays as it is
+    new: whose `defer` lines add the short Case to the `deferred_by` of each page they name (cases 713,
+      723.1); its Frontier line closes `[-] … · backlog · kept`, and, with no take-back, its source stays
+      as it is
+  change: the take-back also puts off the page each updated Estimate checks, its reply closes the line
+    by the closer of its source, and the source of a backlog item stays as it is only with no take-back
+    (case 723.1)
+  applied: '22:45:11'
+- line: 8
+  text: decision[case 723.1][update][estimate-orchestration-takes-back-a-ratified-case]{ref:rule-orchestration}
+  case: '723.1'
+  kind: update
+  slug: estimate-orchestration-takes-back-a-ratified-case
+  origin: raw/2026-10-07/2114/ledger.md#case-723.1
+  decision: decision-case-723.1
+  ref: rule-orchestration
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the page each updated Estimate checks is put off too, and the
+    reply closes the line by the closer of its source (case 723.1)
+  sections:
+    Criterion: 'When:
+
+      In Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`, the person
+      asks in the chat to take back a Case of the session that has a decision line in `raw/<date>/<hi
+      HHMM>/ledger.md`, whole or one of its sub-cases.
+
+
+      Then:
+
+      In the same reply the main agent shows a short Case of its own in the form of a deferred decision,
+      with no dispatch of `case-guppi`, and carries its `LEDGER` block, with no tool call after it.
+
+      **＋** The block holds one `defer` line for each rule, entity and insight page the Case taken back
+      names, one for each Estimate it updates, and one for the page that each Estimate it updates checks
+      or each Estimate it creates would check, once per page; each line carries `{supersedes:case N}`
+      for the Case or sub-case taken back.
+
+      **＋** At the librarian''s run, `guppi/generate.py` adds the short Case to the `deferred_by` of each
+      rule, entity and insight page a `defer` line names, and each such page stands in `vault/wiki/backlog.md`,
+      also when the Case taken back changed only existing Estimates.
+
+      **＋** The `context` of the short Case names the Case taken back and each Estimate that Case creates;
+      the person''s words asking for the take-back are its ratification, and no question asks for it.
+
+      **＋** The `Stop` hook of `rule-spec-write` writes the short Case under `## Deferred` and removes
+      the Case taken back from the plan file.
+
+      **＋** When no part of the Case stays in the plan, the line of its item in `raw/<date>/<hi HHMM>/frontier.md`
+      changes in the same reply from `[x] … · case N` to `[-] … · sprint · defer` for an item of the sprint,
+      `[-] … · backlog · kept` for an item of the backlog, or `[-] … · defer case M` of the short Case
+      for any other source.
+
+      **＋** The reply ends as the reply that carries a defer: the Frontier with the line closed by that
+      closer, then the question which open item is next, or before `/pre-spec` the question whether to
+      go on to `/pre-spec`, or after `/pre-spec` no question.
+
+      **－** The file of the Case taken back under `raw/<date>/<hi HHMM>/cases/` is not emptied, and no
+      `case-guppi` undoes it.
+
+      **－** In Work Mode no Case is taken back: the main agent tells the person that the ratified Case
+      stands, and that a Case of a later session may replace it.'
+  applied: '22:45:11'
+- line: 9
+  text: decision[case 723.2][update][estimate-orchestration-defers-in-one-reply]{ref:rule-orchestration}
+  case: '723.2'
+  kind: update
+  slug: estimate-orchestration-defers-in-one-reply
+  origin: raw/2026-10-07/2114/ledger.md#case-723.2
+  decision: decision-case-723.2
+  ref: rule-orchestration
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a sprint or backlog item takes no short Case but for the short
+    Case of a take-back (case 723.2)
+  sections:
+    Criterion: 'When:
+
+      In Plan Mode, the person asks in the chat to put off a decision: an item of `raw/<date>/<hi HHMM>/frontier.md`
+      whose source is neither the sprint nor the backlog, with `vault/wiki/orchestration.md` rendered
+      from `rule-orchestration`.
+
+
+      Then:
+
+      In the same reply the agent shows the Case in the short form — `context`, `problem` and a fence
+      tagged `then` with one `defer` item per target, no other section — and carries its `LEDGER` block,
+      one `defer` line per target, with no tool call after it.
+
+      **＋** The agent writes nothing of the Case into the plan file: the `Stop` hook of `rule-spec-write`
+      writes it.
+
+      **＋** The person''s words asking for the defer are its ratification: no question asks for it.
+
+      **＋** The reply shows the Frontier of `raw/<date>/<hi HHMM>/frontier.md` after the Case, with the
+      line of the item closed `[-] … · defer case N`.
+
+      **＋** While a line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` is open, a question follows
+      the Frontier and ends the reply: which open item is next.
+
+      **＋** When no line under `## Cases` is open before `/pre-spec`, the question whether to go on to
+      `/pre-spec` follows the Frontier and ends the reply. The agent calls `/pre-spec` only after the
+      person says to go on.
+
+      **＋** When no line under `## Cases` is open after `/pre-spec`, no question follows: the reply ends
+      with the Frontier, and the hook of `rule-prespec-onward` sends the agent on with the loop after
+      the findings.
+
+      **＋** A wording the person corrects is a new short Case with `{supersedes:case N}` on its line,
+      shown the same way.
+
+      **＋** When the item has a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi
+      HHMM>/ledger.md`, the drop goes to that `case-guppi` first and the turn of the person''s words ends
+      with one `**Waiting:**` line; the short Case, its `LEDGER` block and the Frontier come in the turn
+      that the answer `**Dropped:**` opens.
+
+      **－** No text follows the question, or the Frontier when no question stands.
+
+      **－** Retro writes no short defer: what it would put off is a line of `## For the next session`
+      of `raw/<date>/<hi HHMM>/handoff.md`.
+
+      **－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-]
+      … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`,
+      are not this moment: they take no short Case and no ledger line but for the short Case of a take-back
+      of a ratified Case, which is the moment of `estimate-orchestration-takes-back-a-ratified-case`,
+      and a reply that closes only such lines with no take-back is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.'
+  applied: '22:45:11'
+- line: 10
+  text: decision[case 723.3][update][rule-skill-hi]{ref:rule-skill-hi}
+  case: '723.3'
+  kind: update
+  slug: rule-skill-hi
+  origin: raw/2026-10-07/2114/ledger.md#case-723.3
+  decision: decision-case-723.3
+  ref: rule-skill-hi
+  category: rules
+  replace:
+  - old: no Case, no ledger line, no `deferred_by`, never `· defer case N` (cases 310.5, 356.2)
+    new: no Case, no ledger line, no `deferred_by`, but for the short Case of a take-back that `orchestration.md`
+      sets, never `· defer case N` (cases 310.5, 356.2, 723.3)
+  - old: left as it stands — no Case, no ledger line, it stays in the backlog
+    new: left as it stands — no Case, no ledger line, but for the short Case of a take-back that `orchestration.md`
+      sets, it stays in the backlog (case 723.3)
+  change: a sprint item put off and a backlog item kept take no Case but for the short Case of a take-back
+    (case 723.3)
+  applied: '22:45:11'
+- line: 11
+  text: decision[case 723.3][update][estimate-hi-writes-frontier]{ref:rule-skill-hi}
+  case: '723.3'
+  kind: update
+  slug: estimate-hi-writes-frontier
+  origin: raw/2026-10-07/2114/ledger.md#case-723.3
+  decision: decision-case-723.3
+  ref: rule-skill-hi
+  category: estimates
+  set:
+    status: pending
+    method: 'the person''s answer at the /hi of the session after the close of a sprint, on whether the
+      Frontier came out as the Criterion says, written into the estimate line; unit: the frontier findings
+      of guppi prespec --check in tests/test_prespec.py'
+  change: the Criterion replaced whole — an item closed defer or kept has no short Case but for the short
+    Case of a take-back; the reading by hand is the person's answer at that /hi (case 723.3)
+  sections:
+    Criterion: 'When:
+
+      The person invokes `/hi` of `rule-skill-hi`. The agent assembles the Frontier from `vault/wiki/sprint.md`,
+      `vault/wiki/brief.md`, `vault/wiki/backlog.md` and the output of the skill''s commands, and closes
+      its lines in Plan Mode.
+
+
+      Then:
+
+      The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## Cases`, with lines
+      `- [ ] C<n> — <title> · <source>`, `## Work`, with lines `- [ ] W<n> — <title> · <source>`, and
+      `## Ask`, with lines `` - [ ] A<n> — `<slug>` — <question> · brief ``. The title of a line of the
+      current milestone or of the backlog opens with the slug of each of its pages in a code span.
+
+      **＋** The kind comes from the source. Cases: first, when the first line of the `Cases` of the brief''s
+      Next session opens with `open the next sprint`, that line; then, on a plan branch, the unfinished
+      plan and each conserved Spec of `vault/wiki/backlog.md`, with the source `backlog`; then the items
+      of the current milestone; the `Cases` list of the brief''s Next session; a hand edit shown by `Render:`;
+      a `failed` reading or a lesson of the ledger''s Tail; an open `W` line whose reading cannot run
+      now, written by the reading step of `/hi`; an item the person adds. Work: the `Work` list of the
+      brief''s Next session; a dirty tree by `git status`. Ask: the `Ask the person` list of the brief''s
+      Next session.
+
+      **＋** The other items of the backlog are not lines. `## Cases` ends with the line `Backlog: N items`,
+      where N is the count in `vault/wiki/backlog.md`. Under a Cases line, an indented line `- near` names
+      by slug each backlog item whose `purpose` is near that line in meaning. The agent judges this from
+      the loaded file, with no `ask-guppi`. An item the person brings onto the Frontier becomes a Cases
+      line with the source `backlog`.
+
+      **＋** A line closes by appending the closer and keeping the source. An item ended closes `[x] …
+      · case N` when decided, or `[x] … · work` when done with no decision. A line of the sprint page
+      left for a later session closes `[-] … · sprint · defer`. An item of the backlog left as it stands
+      closes `[-] … · backlog · kept`. A decision of any other source put off closes `[-] … · defer case
+      N`.
+
+      **＋** An item closed `defer` or `kept` has no short Case and no ledger line, but for the short Case
+      of a take-back of a ratified Case, as `vault/wiki/orchestration.md` sets it. A sprint item never
+      closes `· defer case N`.
+
+      **＋** Only the current milestone gives items. A later milestone and Closed give none, and the sprint
+      page''s Backlog reaches the Frontier only through the backlog. A decision line of the Tail is not
+      an item.
+
+      **＋** In the chat the Cases are shown as a checklist. Each line stands as `raw/<date>/<hi HHMM>/frontier.md`
+      holds it, `- [ ] C<n> — <title> · <source>`, with its detail on an indented line under it and the
+      `- near` line under that, and the line `Backlog: N items` comes last. The Work is shown as one block.
+      Only Cases are cut into sub-cases. A `W` that turns out to need a decision closes `· case N`. A
+      `C` that needs none closes `· work`.
+
+      **－** While the first line of the `Cases` of the brief''s Next session opens with `open the next
+      sprint`, no conserved Spec and no item of the current milestone is a Cases line, and each conserved
+      Spec stays in `vault/wiki/backlog.md`.
+
+      **－** At `/hi` no Case stands in the chat as a bold line, and no Case has its detail as a paragraph.
+
+      **－** Pre-spec finds an open line under `## Cases`. A `W` or an `A` line stands open until its work
+      is done and closes `· work` where that work is done: at `/hi`, in Work Mode or at Retro. Claude
+      Code''s plan mode does not stop the agent from writing `frontier.md`.'
+  applied: '22:45:11'
+- line: 12
+  text: decision[case 725.1][update][rule-case-build]{ref:rule-case-build}
+  case: '725.1'
+  kind: update
+  slug: rule-case-build
+  origin: raw/2026-10-07/2114/ledger.md#case-725.1
+  decision: decision-case-725.1
+  ref: rule-case-build
+  category: rules
+  replace:
+  - old: Asked again by a message, change the file as asked, by `Edit` of the lines that change, and answer
+      with the summary again, or answer with a round when the message opens a fork (case 645.1).
+    new: Asked again by a message, change the file as asked, by `Edit` of the lines that change, and answer
+      with the summary again, or answer with a round when the message opens a fork (case 645.1). A fix,
+      asked by a message or by a finding of `/pre-spec`, that adds a second behaviour with a promise of
+      its own to a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md` and no sub-cases,
+      you build as a new top-level Case beside it, in its own file and with no `{supersedes:case N}` mark,
+      under a number one above the highest number of the files under `raw/<date>/<hi HHMM>/cases/` and
+      of the decision lines of that ledger, or the free number that the guard of a case file names when
+      it refuses yours; the ratified Case and its file stay as they are, a pair of the new Case whose
+      sentence the ratified Case changed takes that sentence as the ratified Case leaves it, and your
+      summary names the new Case; a fix that changes what the ratified Case already set you build again
+      under a new number, as `vault/wiki/case-schema.md` sets it (case 725.1).
+  - old: a file of yours that you leave behind when you build the Case again under another number you
+      empty the same way, since the hook of `rule-prespec-onward` takes an empty file for no Case;
+    new: a file of yours that you leave behind when you build the Case again under another number you
+      empty the same way only when that Case has no decision line, since the hook of `rule-prespec-onward`
+      takes an empty file for no Case, and the file of a Case with a decision line stands, since it keeps
+      the `context` and `given` that its Decision page leaves there (case 725.1);
+  - old: Write no file but the file of your Case, the file you leave behind under an earlier number of
+      the same Case included, and no ledger line.
+    new: Write no file but the file of your Case, the file you leave behind under an earlier number of
+      the same Case included, and the file of a new Case you build beside a ratified Case (case 725.1),
+      and no ledger line.
+  change: case-guppi builds a second behaviour of a ratified Case with no sub-cases as a new Case beside
+    it, and empties a file left behind under another number only when its Case has no decision line (case
+    725.1)
+  applied: '22:45:11'
+- line: 13
+  text: decision[case 725.1][update][estimate-case-build-writes-the-case]{ref:rule-case-build}
+  case: '725.1'
+  kind: update
+  slug: estimate-case-build-writes-the-case
+  origin: raw/2026-10-07/2114/ledger.md#case-725.1
+  decision: decision-case-725.1
+  ref: rule-case-build
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a second behaviour of a ratified Case is a new Case beside it,
+    and the file of a ratified Case left behind is not emptied (case 725.1)
+  sections:
+    Criterion: 'When:
+
+      The main agent dispatches `case-guppi` with a Case id, a Frontier item and its source, and the person''s
+      words on it; or sends it by `SendMessage` the person''s answers to a round, or the person''s question
+      or change on a Case it built.
+
+      **＋** Or the hook of `rule-case-check` sends it findings on the file of its Case or on its summary.
+
+      **＋** Or the main agent sends it by `SendMessage` the drop of the Case it built, the drop of a change
+      to that Case, or a finding of `/pre-spec` on that Case.
+
+
+      Then:
+
+      `case-guppi` starts with `.claude/skills/grill-me/SKILL.md` in its context by `skills: [grill-me]`
+      in `.claude/agents/case-guppi.md`, and reads `vault/wiki/case-schema.md` and `vault/wiki/ratification.md`
+      whole before it answers.
+
+      **＋** Before a `create` without a `ref`, it runs the vault query of `.claude/agents/ask-guppi.md`
+      itself, and the `context` of the Case gives the answer.
+
+      **＋** It reads each page and file the `given` names, the Criterion of each Estimate such a page
+      lists, and, for a Case that adds or changes a hook, the hooks on the same event in `.claude/settings.json`;
+      each contradiction is fixed in the Case, or the `context` says why it stands.
+
+      **＋** While a fork is open — the bound, the alternative, the promise, the split, the exceptions
+      or what is left not done — its answer is a round of questions in the form of `.claude/skills/grill-me/SKILL.md`,
+      in English, with no Case heading and nothing else but the context of a first round.
+
+      **＋** The first round on an item opens, before its first question, with one prose paragraph under
+      the label `**Context:**`: what the item is about, what the thing does today and where it goes wrong,
+      and what the round decides — a sentence per part where one is enough, a part with nothing to say
+      left out.
+
+      **＋** When no fork is open, it writes the Case whole in English in the chat form of `vault/wiki/case-schema.md`,
+      its ledger lines in the form of `vault/wiki/ratification.md`, from the heading to the fence of `ratification`
+      and nothing else, into `raw/<date>/<hi HHMM>/cases/case-<N>.md` by `Write`, N the id of the top-level
+      Case.
+
+      **＋** Its answer is then a summary alone: a first line `**Built:**` and the path of the file; a
+      second line `**Case:**` with the id and the name of the top-level Case as the heading of the file
+      writes them, a Case with sub-cases included; then one list item per Case and sub-case with its id
+      and name, the Estimate that checks it and one line on what that Estimate checks, and under the item
+      its ledger lines in an untagged fence, as the file holds them.
+
+      **＋** When the `context` of a Case says that another Case of the session should change instead,
+      the item of that Case in the summary carries a line `**Other Case:**` that names the other Case
+      and the change it needs.
+
+      **＋** Sent findings by the hook on the file, or asked for a change by a message, it changes the
+      file by `Edit` of the lines that change and answers with the summary again; sent a finding on its
+      summary alone, it answers with the summary again and leaves the file as it stands; asked by a message
+      that opens a fork, it answers with a round.
+
+      **＋** Asked, by a message or by a finding of `/pre-spec`, for a fix that adds a second behaviour
+      with a promise of its own to a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`
+      and no sub-cases, it builds that behaviour as a new top-level Case beside it, in its own file and
+      with no `{supersedes:case N}` mark. The number of the new Case is one above the highest number of
+      the files under `raw/<date>/<hi HHMM>/cases/` and of the decision lines of that ledger, or the free
+      number that the guard of `guppi/ratified.py` names when it refuses that number. The ratified Case
+      and its file stay as they are, and its summary names the new Case.
+
+      **＋** A pair of that new Case whose sentence the ratified Case changed takes that sentence as the
+      ratified Case leaves it.
+
+      **＋** A round may come at the first answer on an item, after a message on a Case it built, and in
+      Work Mode when a ratified Case is built again.
+
+      **＋** It runs on `model: opus` with `effort: medium`, the tools Read, Grep, Glob, Write and Edit,
+      and `permissionMode: auto`, so it writes its file with no prompt while the session is in Plan Mode.
+
+      **＋** Sent the drop of its Case, which has no decision line in `raw/<date>/<hi HHMM>/ledger.md`,
+      it writes empty text into the file of that Case by `Write` and answers with a first line `**Dropped:**`
+      and the path of the file, and nothing else. A file of its own that it leaves behind, when it builds
+      the Case again under another number, it empties the same way only when that Case has no decision
+      line in that ledger.
+
+      **＋** Sent the drop of a change to its Case, which has a decision line in `raw/<date>/<hi HHMM>/ledger.md`
+      and which it changed after the Case was last ratified, it undoes by `Edit` each edit it made since
+      then in every section but `recommend`. `recommend` keeps its items and gains one item `**Change**`:
+      its `Asked:` line says that the person dropped the change, and its `Taken:` line says that the Case
+      went back to its ratified form. It answers with the summary again, so that the check of `rule-case-check`
+      finds an item for each question of its rounds.
+
+      **－** A fix that changes what the ratified Case already set is not built beside it: `case-guppi`
+      builds the Case again under a new number, as `vault/wiki/case-schema.md` sets it.
+
+      **－** The `**Case:**` line is no Markdown heading, so the hook of `rule-case-check` does not read
+      the summary as a Case.
+
+      **－** It does not write the whole Case again to fix a finding, make a change or undo a change.
+
+      **－** A later round on the item, a round after a message on a Case it built and a round in Work
+      Mode carry no context.
+
+      **－** The context carries no Case heading, so the hook of `rule-case-check` neither checks nor stores
+      the round as a Case; it judges only the form of the questions of the round, not its context.
+
+      **－** It writes no file but the file of its Case, the file it leaves behind under an earlier number
+      of the same Case, and the file of a new Case it builds beside a ratified Case, and no ledger line.
+
+      **－** It empties no file of a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`,
+      the file it leaves behind when it builds that Case again under a new number included: sent the drop
+      of such a Case that it did not change after the Case was last ratified, it answers under a first
+      line `**Fact:**` that the Case is ratified, and the file stands.'
+  applied: '22:45:11'
+- line: 14
+  text: decision[case 725.2][update][rule-case-check]{ref:rule-case-check}
+  case: '725.2'
+  kind: update
+  slug: rule-case-check
+  origin: raw/2026-10-07/2114/ledger.md#case-725.2
+  decision: decision-case-725.2
+  ref: rule-case-check
+  category: rules
+  replace:
+  - old: so a Case that writes what another Case writes goes back to `case-guppi` before the person first
+      sees it (case 629.1).
+    new: so a Case that writes what another Case writes goes back to `case-guppi` before the person first
+      sees it (case 629.1); a Case that a `{supersedes:case N}` mark on a decision line of the file itself
+      names is no such other Case, so a Case built again under a new number passes the check while the
+      build it replaces stands in the plan (case 725.2).
+  change: the check of the file of a Case leaves out a Case that a supersedes mark of the file itself
+    names (case 725.2)
+  applied: '22:45:11'
+- line: 15
+  text: decision[case 725.2][create][estimate-case-check-leaves-out-a-case-the-file-supersedes]{ref:rule-case-check}{tags:hooks,harness,workflow}
+  case: '725.2'
+  kind: create
+  slug: estimate-case-check-leaves-out-a-case-the-file-supersedes
+  origin: raw/2026-10-07/2114/ledger.md#case-725.2
+  decision: decision-case-725.2
+  ref: rule-case-check
+  tags:
+  - hooks
+  - harness
+  - workflow
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether the check of an answer of case-guppi leaves out of the other Cases of the session
+      a Case that a supersedes mark on a decision line of the answer's own file names, so that a Case
+      built again under a new number passes while the build it replaces stands in the plan
+    method: uv run pytest tests/test_casecheck.py -k superseded_by_the_file
+    tags:
+    - hooks
+    - harness
+    - workflow
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      `SubagentStop` fires when `case-guppi` answers with a Case whose file `raw/<date>/<hi HHMM>/cases/case-<N>.md`
+      holds a decision line that carries `{supersedes:case M}`, and `uv run guppi casecheck --subagent`
+      reads the Cases of the answer, the plan file of the session, `<plan>.checked.json` beside it and
+      the session''s `raw/<date>/<hi HHMM>/ledger.md`, while the plan file or the store holds Case M.
+
+      **＋** Or `tests/test_casecheck.py` runs it over a made-up file, plan file, store and ledger.
+
+
+      Then:
+
+      The hook leaves Case M and its sub-cases out of the other Cases of the session, by `other_blocks`
+      of `guppi/casecheck.py`, as it leaves out a Case that a mark of the session''s ledger names; a mark
+      on a sub-case leaves out that sub-case alone.
+
+      **＋** Case M is not judged with the Cases of the answer by `check_same_target` of `guppi/prespec.py`,
+      and its pairs are not applied before theirs by `check_pairs`, so a Case built again under a new
+      number gets no clash and no pair finding from the build it replaces while that build stands in the
+      plan file or the store.
+
+      **＋** The marks are read from the decision lines of the `ratification` fences of the answer by `ratification_records`
+      of `guppi/casecheck.py`, the one reading of those lines in the hook.
+
+      **＋** A clash or a pair finding with any other Case of the session stays a finding.
+
+      **－** The mark removes nothing from the plan file or the store: the `Stop` hook of `rule-spec-write`
+      removes Case M only when the Case that carries the mark is ratified.
+
+      **－** The findings on a Case ratified in the session and built again under its old number, in another
+      shape or without a target, still read the decision lines of the session''s ledger.'
+  status: passed
+  result: '2026-10-07, Retro of session 2114: uv run pytest tests/test_casecheck.py -k superseded_by_the_file
+    4 passed — a Case of the plan that a {supersedes} mark of the answer''s file names gives no clash
+    and no pair finding, a mark on a sub-case leaves its parent compared, the same answer without the
+    mark gives the clash; on the code of HEAD before the change the first two failed'
+  folded:
+  - 24
+  applied: '22:45:11'
+- line: 16
+  text: decision[case 726.1][create][estimate-prespec-notes-a-page-another-case-defers]{ref:rule-prespec}{tags:session,workflow,harness}
+  case: '726.1'
+  kind: create
+  slug: estimate-prespec-notes-a-page-another-case-defers
+  origin: raw/2026-10-07/2114/ledger.md#case-726.1
+  decision: decision-case-726.1
+  ref: rule-prespec
+  tags:
+  - session
+  - workflow
+  - harness
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether guppi prespec --check prints a note, at every run and without blocking, for a page
+      that one Case of the plan changes and another top-level Case of the plan puts off
+    method: uv run pytest tests/test_prespec.py -k defers_a_page
+    tags:
+    - session
+    - workflow
+    - harness
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      `uv run guppi prespec --check` reads the plan file of the session, where the `then` block of one
+      Case holds a `defer` item of a page and the `then` block of another top-level Case holds a `create`,
+      `update` or `delete` item of the same page.
+
+      **＋** Or `tests/test_prespec.py` runs it over a made-up plan.
+
+
+      Then:
+
+      The check prints one line that opens with `note:` for each page and pair of Cases, and it names
+      the Case that changes the page, the page and the Case that puts it off.
+
+      **＋** A short Case under `## Deferred` of the plan file counts as a Case that puts the page off.
+
+      **＋** The note is no finding: it does not change the exit code, and the hook of `rule-prespec-hook`
+      does not block the exit from Plan Mode on it.
+
+      **＋** The agent answers the note in one line in the chat, and the person may change a Case or keep
+      the pair.
+
+      **－** A Case and its sub-cases are one Case here: a change and a defer of one page inside one top-level
+      Case give no note.
+
+      **－** A page that only `defer` items name gives no note.
+
+      **－** The check of the file of a Case by `guppi/casecheck.py` prints no such note.'
+  status: passed
+  result: '2026-10-07, Retro of session 2114: uv run pytest tests/test_prespec.py -k defers_a_page 4 passed
+    — an update and a defer of one page under two Cases give one note and exit 0, a short Case under Deferred
+    gives the same note, two sub-cases of one Case give none, a page only defer items name gives none;
+    guppi/casecheck.py imports promise_notes and not defer_notes, so the check of the file of a Case prints
+    no such note'
+  folded:
+  - 25
+  applied: '22:45:11'
+- line: 17
+  text: decision[case 726.2][update][rule-prespec]{ref:rule-prespec}
+  case: '726.2'
+  kind: update
+  slug: rule-prespec
+  origin: raw/2026-10-07/2114/ledger.md#case-726.2
+  decision: decision-case-726.2
+  ref: rule-prespec
+  category: rules
+  replace:
+  - old: A Case of this plan that changes a page another Case of this plan defers is still a finding (case
+      186.2).
+    new: 'A Case of this plan that changes a page another Case of this plan defers is no question for
+      `ask-guppi`: the check prints such a pair as a `note:` line at every run, a change and a defer inside
+      one top-level Case aside (cases 186.2, 726.1).'
+  change: a page one Case changes and another Case puts off is a note of the check, no longer a finding
+    of ask-guppi (case 726.2)
+  applied: '22:45:11'
+- line: 18
+  text: decision[case 726.2][update][estimate-prespec-reconciles]{ref:rule-prespec}
+  case: '726.2'
+  kind: update
+  slug: estimate-prespec-reconciles
+  origin: raw/2026-10-07/2114/ledger.md#case-726.2
+  decision: decision-case-726.2
+  ref: rule-prespec
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — ask-guppi is not asked about a page one Case changes and another
+    puts off; the check notes it (case 726.2)
+  sections:
+    Criterion: 'When:
+
+      The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved, with
+      `.claude/skills/pre-spec/SKILL.md` rendered from `rule-prespec` and `.claude/agents/ask-guppi.md`
+      rendered from `rule-ask`.
+
+
+      Then:
+
+      The agent runs `uv run guppi prespec --check` on the plan file with `--session <id>`, the eight-character
+      id of the `hi:` line, and reads the first line of the output before the exit code — "no hi recorded
+      for session …; nothing checked" means the wrong value; nothing is translated before the run.
+
+      **＋** A finding in a Case — in its prose or in its body, a wrong fact of its `context` included
+      — goes to the `case-guppi` of that Case by `SendMessage`; its new answer is shown and ratified again,
+      and the hook of `rule-spec-write` writes it into the plan; the agent does not edit the text of a
+      Case in the plan file.
+
+      **＋** A finding in `vault/raw/<date>/<hi HHMM>/frontier.md` or in a line of the session''s ledger
+      is fixed there, and the command runs again until it prints no finding.
+
+      **＋** At the first run of `/pre-spec` in the session, the agent dispatches one `ask-guppi` over
+      the plan, or over the conserved Spec that the plan''s title line names, as `rule-skill-hi` sets
+      that line, with the absolute path of the plan file, the instruction to judge every Case outside
+      `## Deferred` with its sub-cases, and the instruction to read for each such Case its `context`,
+      `when`, `then` and `then` block and, for an `update` of a rule or an entity, the page''s `estimates`;
+      of a Case under `## Deferred` it reads only the slugs of its `defer` items.
+
+      **＋** Three questions: which decisions contradict a page of the vault, a rule of the vault, or each
+      other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact
+      of a `context` — a page''s status, a count, a case number, a claim that no page holds a thing —
+      the vault does not bear out.
+
+      **＋** The agent answers the findings with one report before any Case is sent back: the list of what
+      the `ask-guppi` run did not check; each finding numbered, with the fix it proposes or why it is
+      already known, the findings that need the person apart from those that do not, and the decisions
+      it needs from the person; after the Cases built again on the findings are ratified, it does not
+      call `/pre-spec` again, but runs the check, fixes what it prints, and exits Plan Mode when the check
+      prints no finding.
+
+      **＋** `guppi gate` writes the stamped `prespec` line on the Skill call.
+
+      **－** No second `ask-guppi` is dispatched at the first run, and a later run of `/pre-spec` in the
+      session dispatches none.
+
+      **－** The report never says that the whole Spec is checked.
+
+      **－** The agent writes no list of the decisions: the plan is the list.
+
+      **－** The body of a deferred decision is not read, and `ask-guppi` is not asked whether a Case changes
+      a page that another Case of the plan defers: `uv run guppi prespec --check` notes such a pair at
+      every run, as `estimate-prespec-notes-a-page-another-case-defers` sets it.'
+  applied: '22:45:11'
+- line: 19
+  text: 'estimate[estimate-case-check-sends-back-a-clash-with-another-case][passed] 2026-10-07, Retro
+    of session 2114: uv run pytest tests/test_casecheck.py -k session_clash 12 passed; the tests cover
+    each then line of case 722.1 — a clash with a Case of the plan and with a stored Case, none with an
+    entry with findings, an entry joined with an agent id, a Case a ledger mark names, a dropped Case,
+    a stored part whose top-level file holds the Case without it (its entry stays in the store), the answer''s
+    own earlier version, and between two other Cases; the stored part with its heading in the file still
+    clashes'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-check-sends-back-a-clash-with-another-case
+  status: passed
+  result: '2026-10-07, Retro of session 2114: uv run pytest tests/test_casecheck.py -k session_clash 12
+    passed; the tests cover each then line of case 722.1 — a clash with a Case of the plan and with a
+    stored Case, none with an entry with findings, an entry joined with an agent id, a Case a ledger mark
+    names, a dropped Case, a stored part whose top-level file holds the Case without it (its entry stays
+    in the store), the answer''s own earlier version, and between two other Cases; the stored part with
+    its heading in the file still clashes'
+  origin: raw/2026-10-07/2114/ledger.md#L19
+  applied: '22:45:11'
+- line: 20
+  text: 'estimate[estimate-spec-write-removes-a-superseded-case][passed] 2026-10-07, Retro of session
+    2114: uv run pytest tests/test_ratified.py -k superseded 10 passed — a Case and its sub-cases leave
+    the plan and spec.md, a sub-case leaves alone while another with a decision line stands, the last
+    sub-case retired by the ledger and the reply takes its parent out of the plan and spec.md, a parent
+    with a create line of its own stays, a section under Deferred leaves, a flagged reply removes, a refused
+    Case removes nothing; not exercised by hand: no supersedes of a Case of the same session occurred
+    in this session'
+  kind: estimate
+  category: estimates
+  slug: estimate-spec-write-removes-a-superseded-case
+  status: passed
+  result: '2026-10-07, Retro of session 2114: uv run pytest tests/test_ratified.py -k superseded 10 passed
+    — a Case and its sub-cases leave the plan and spec.md, a sub-case leaves alone while another with
+    a decision line stands, the last sub-case retired by the ledger and the reply takes its parent out
+    of the plan and spec.md, a parent with a create line of its own stays, a section under Deferred leaves,
+    a flagged reply removes, a refused Case removes nothing; not exercised by hand: no supersedes of a
+    Case of the same session occurred in this session'
+  origin: raw/2026-10-07/2114/ledger.md#L20
+  applied: '22:45:11'
+- line: 21
+  text: 'estimate[estimate-orchestration-takes-back-a-ratified-case][passed] 2026-10-07, Retro of session
+    2114, by hand: the new Render of rule-orchestration in the Spec (case 723.1, three replace pairs over
+    the take-back of case 713 as orchestration.md holds it) read against the Criterion — the short Case
+    with no dispatch and its LEDGER block with no tool call after it; one defer line per rule, entity
+    and insight page, per updated Estimate, and per page an updated or created Estimate checks, each with
+    {supersedes:case N}, so the page enters backlog.md through deferred_by; the context naming the Case
+    and its created Estimates; the person''s words as ratification; the Stop hook writing the short Case
+    and removing the Case taken back; the file not emptied; the Frontier line changed to the closer of
+    its source; the reply ending as a defer reply by that closer; no take-back in Work Mode — every then
+    line is set'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-takes-back-a-ratified-case
+  status: passed
+  result: '2026-10-07, Retro of session 2114, by hand: the new Render of rule-orchestration in the Spec
+    (case 723.1, three replace pairs over the take-back of case 713 as orchestration.md holds it) read
+    against the Criterion — the short Case with no dispatch and its LEDGER block with no tool call after
+    it; one defer line per rule, entity and insight page, per updated Estimate, and per page an updated
+    or created Estimate checks, each with {supersedes:case N}, so the page enters backlog.md through deferred_by;
+    the context naming the Case and its created Estimates; the person''s words as ratification; the Stop
+    hook writing the short Case and removing the Case taken back; the file not emptied; the Frontier line
+    changed to the closer of its source; the reply ending as a defer reply by that closer; no take-back
+    in Work Mode — every then line is set'
+  origin: raw/2026-10-07/2114/ledger.md#L21
+  applied: '22:45:11'
+- line: 22
+  text: 'estimate[estimate-orchestration-defers-in-one-reply][failed] 2026-10-07, Retro, not read: its
+    method needs a decision of a source other than the sprint or the backlog put off with its line closed
+    [-] … · defer case N; in session 2114 only the sprint items C1 and C2 were put off, closed · sprint
+    · defer, which the method excludes'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-defers-in-one-reply
+  status: failed
+  result: '2026-10-07, Retro, not read: its method needs a decision of a source other than the sprint
+    or the backlog put off with its line closed [-] … · defer case N; in session 2114 only the sprint
+    items C1 and C2 were put off, closed · sprint · defer, which the method excludes'
+  origin: raw/2026-10-07/2114/ledger.md#L22
+  applied: '22:45:11'
+- line: 23
+  text: 'estimate[estimate-case-build-writes-the-case][passed] 2026-10-07, Retro of session 2114, by hand:
+    the new Render of rule-case-build in the Spec (case 725.1, three replace pairs) read against the Criterion
+    — a second behaviour with a promise of its own of a ratified Case with no sub-cases built as a new
+    top-level Case beside it, no supersedes mark, its number one above the files and the ledger or the
+    guard''s free number, the ratified Case and its file left as they stand, a pair taking the sentence
+    as the ratified Case leaves it, a fix that changes what the ratified Case set built again under a
+    new number, a file left behind emptied only when its Case has no decision line, the file of a new
+    Case beside a ratified one among the files it writes; the lines of the Criterion the pairs do not
+    touch stand in the Render as read at L22 of session 1804; dispatches of case-guppi in session 2114,
+    subagent tokens and seconds per answer: Case 722 60143/93, 73468/50, 85471/36, 92507/29, 156595/283,
+    191816/65, 206205/44, 214191/63; Case 723 88299/137, 125617/51, 132350/47, 156203/170, 157539/21,
+    162711/31; Case 725 86371/156, 133297/247, 133560/11; Case 726 71825/69, 74918/22, 110348/146, 110065/5'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-build-writes-the-case
+  status: passed
+  result: '2026-10-07, Retro of session 2114, by hand: the new Render of rule-case-build in the Spec (case
+    725.1, three replace pairs) read against the Criterion — a second behaviour with a promise of its
+    own of a ratified Case with no sub-cases built as a new top-level Case beside it, no supersedes mark,
+    its number one above the files and the ledger or the guard''s free number, the ratified Case and its
+    file left as they stand, a pair taking the sentence as the ratified Case leaves it, a fix that changes
+    what the ratified Case set built again under a new number, a file left behind emptied only when its
+    Case has no decision line, the file of a new Case beside a ratified one among the files it writes;
+    the lines of the Criterion the pairs do not touch stand in the Render as read at L22 of session 1804;
+    dispatches of case-guppi in session 2114, subagent tokens and seconds per answer: Case 722 60143/93,
+    73468/50, 85471/36, 92507/29, 156595/283, 191816/65, 206205/44, 214191/63; Case 723 88299/137, 125617/51,
+    132350/47, 156203/170, 157539/21, 162711/31; Case 725 86371/156, 133297/247, 133560/11; Case 726 71825/69,
+    74918/22, 110348/146, 110065/5'
+  origin: raw/2026-10-07/2114/ledger.md#L23
+  applied: '22:45:11'
+- line: 26
+  text: 'estimate[estimate-prespec-reconciles][passed] 2026-10-07, Retro of session 2114, by hand: the
+    new Render of rule-prespec in the Spec (case 726.2, one replace pair over .claude/skills/pre-spec/SKILL.md
+    as loaded in this session) read against the Criterion — the check with --session and its first line,
+    a finding in a Case to its case-guppi, a Frontier or ledger finding fixed and the check run again,
+    one ask-guppi at the first run with its reading instructions and three questions, one report before
+    any Case goes back, no second ask-guppi, no claim of the whole Spec, no list of decisions, the body
+    of a deferred decision not read and ask-guppi not asked about a page one Case changes and another
+    defers, which the check notes; rule-ask is not changed by this session'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-reconciles
+  status: passed
+  result: '2026-10-07, Retro of session 2114, by hand: the new Render of rule-prespec in the Spec (case
+    726.2, one replace pair over .claude/skills/pre-spec/SKILL.md as loaded in this session) read against
+    the Criterion — the check with --session and its first line, a finding in a Case to its case-guppi,
+    a Frontier or ledger finding fixed and the check run again, one ask-guppi at the first run with its
+    reading instructions and three questions, one report before any Case goes back, no second ask-guppi,
+    no claim of the whole Spec, no list of decisions, the body of a deferred decision not read and ask-guppi
+    not asked about a page one Case changes and another defers, which the check notes; rule-ask is not
+    changed by this session'
+  origin: raw/2026-10-07/2114/ledger.md#L26
+  applied: '22:45:11'
+- line: 27
+  text: 'lesson[error][lesson-case-build-emptied-the-file-of-a-ratified-case]{tags:harness,workflow}{addressed_by:case
+    725.1} trigger: asked to build ratified Case 722 again without one ledger line, case-guppi emptied
+    case-722.md, moved the Case to the new number 724, and wrote case-722.md back from the store only
+    when the person dropped the change root_cause: the Render of rule-case-build told case-guppi to empty
+    a file it leaves behind under another number whatever its Case, against the rule of rule-orchestration
+    that the file of a Case with a decision line is never emptied'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-build-emptied-the-file-of-a-ratified-case
+  origin: raw/2026-10-07/2114/ledger.md#L27
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the Render of rule-case-build told case-guppi to empty a file it leaves behind under another
+      number whatever its Case, against the rule of rule-orchestration that the file of a Case with a
+      decision line is never emptied
+  sections:
+    Trigger: asked to build ratified Case 722 again without one ledger line, case-guppi emptied case-722.md,
+      moved the Case to the new number 724, and wrote case-722.md back from the store only when the person
+      dropped the change
+    Root cause: the Render of rule-case-build told case-guppi to empty a file it leaves behind under another
+      number whatever its Case, against the rule of rule-orchestration that the file of a Case with a
+      decision line is never emptied
+  tags:
+  - harness
+  - workflow
+  addressed_by: decision-case-725.1
+  applied: '22:45:11'
+- line: 28
+  text: 'lesson[error][lesson-case-check-refuses-a-rebuild-under-a-new-number]{tags:harness,workflow}{addressed_by:case
+    725.2} trigger: case-guppi of Case 722 could not get a build under a new number past the check of
+    its file while the first build stood in the plan (722.Q8), and the person kept the first build root_cause:
+    the check of the file of a Case left out only Cases that a supersedes mark already in the ledger names,
+    and the mark of a build under a new number reaches the ledger only when that build is ratified'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-check-refuses-a-rebuild-under-a-new-number
+  origin: raw/2026-10-07/2114/ledger.md#L28
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the check of the file of a Case left out only Cases that a supersedes mark already in
+      the ledger names, and the mark of a build under a new number reaches the ledger only when that build
+      is ratified
+  sections:
+    Trigger: case-guppi of Case 722 could not get a build under a new number past the check of its file
+      while the first build stood in the plan (722.Q8), and the person kept the first build
+    Root cause: the check of the file of a Case left out only Cases that a supersedes mark already in
+      the ledger names, and the mark of a build under a new number reaches the ledger only when that build
+      is ratified
+  tags:
+  - harness
+  - workflow
+  addressed_by: decision-case-725.2
+  applied: '22:45:11'
+- line: 29
+  text: 'lesson[error][lesson-orchestration-showed-a-case-while-a-round-stood-open]{tags:orchestration,workflow}
+    trigger: the main agent showed Case 722 for ratification in the same reply that asked question Q5
+    of Case 723, and the person asked why a Case was shown before the question was answered root_cause:
+    once Cases 722 and 723 left their batch, the main agent showed the Case that came back first instead
+    of holding it until the open round of the other Case was answered, so one reply asked two things'
+  kind: lesson
+  category: lessons
+  slug: lesson-orchestration-showed-a-case-while-a-round-stood-open
+  origin: raw/2026-10-07/2114/ledger.md#L29
+  fields:
+    type: lesson
+    kind: error
+    root_cause: once Cases 722 and 723 left their batch, the main agent showed the Case that came back
+      first instead of holding it until the open round of the other Case was answered, so one reply asked
+      two things
+  sections:
+    Trigger: the main agent showed Case 722 for ratification in the same reply that asked question Q5
+      of Case 723, and the person asked why a Case was shown before the question was answered
+    Root cause: once Cases 722 and 723 left their batch, the main agent showed the Case that came back
+      first instead of holding it until the open round of the other Case was answered, so one reply asked
+      two things
+  tags:
+  - orchestration
+  - workflow
+  applied: '22:45:11'
+- line: 30
+  text: 'lesson[error][lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice]{tags:orchestration,workflow}
+    trigger: on the main agent''s recommendation Case 722.1 was built again to list the exception of 725.2
+    in its Criterion, and ask-guppi at pre-spec found the promise signed twice, which a second rebuild
+    turned into a pointer root_cause: the main agent recommended adding the exception to a Criterion without
+    checking it against the rule of rule-case-protocol that nothing is signed twice, while 725.2 already
+    created an Estimate for that exception'
+  kind: lesson
+  category: lessons
+  slug: lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice
+  origin: raw/2026-10-07/2114/ledger.md#L30
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the main agent recommended adding the exception to a Criterion without checking it against
+      the rule of rule-case-protocol that nothing is signed twice, while 725.2 already created an Estimate
+      for that exception
+  sections:
+    Trigger: on the main agent's recommendation Case 722.1 was built again to list the exception of 725.2
+      in its Criterion, and ask-guppi at pre-spec found the promise signed twice, which a second rebuild
+      turned into a pointer
+    Root cause: the main agent recommended adding the exception to a Criterion without checking it against
+      the rule of rule-case-protocol that nothing is signed twice, while 725.2 already created an Estimate
+      for that exception
+  tags:
+  - orchestration
+  - workflow
+  applied: '22:45:11'
+- kind: update
+  category: insights
+  slug: insight-case-check-a-case-id-leaves-only-by-a-supersedes-line
+  origin: raw/2026-10-07/2114/ledger.md#L28
+  set:
+    children:
+    - lesson-prespec-parent-of-superseded-sub-cases
+    - lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped
+    - lesson-case-check-refuses-a-rebuild-under-a-new-number
+  change: child lesson-case-check-refuses-a-rebuild-under-a-new-number added (synthesis)
+  librarian: synthesis
+  applied: '22:45:11'
+- kind: update
+  category: lessons
+  slug: lesson-case-check-refuses-a-rebuild-under-a-new-number
+  origin: raw/2026-10-07/2114/ledger.md#L28
+  set:
+    status: clustered
+    insight: insight-case-check-a-case-id-leaves-only-by-a-supersedes-line
+  change: clustered under insight-case-check-a-case-id-leaves-only-by-a-supersedes-line (synthesis)
+  librarian: synthesis
+  applied: '22:45:11'
+- kind: update
+  category: insights
+  slug: insight-orchestration-items-taken-together-unruled
+  origin: raw/2026-10-07/2114/ledger.md#L29
+  set:
+    children:
+    - lesson-orchestration-two-cases-built-side-by-side
+    - lesson-orchestration-parallel-cases-shown-one-by-one
+    - lesson-orchestration-batch-rounds-headed-by-own-text
+    - lesson-orchestration-batch-rounds-headed-by-their-case
+    - lesson-orchestration-showed-a-case-while-a-round-stood-open
+    status: open
+  change: child lesson-orchestration-showed-a-case-while-a-round-stood-open added; open again, the pattern
+    came back after case 699.5 (synthesis)
+  librarian: synthesis
+  applied: '22:45:11'
+- kind: update
+  category: lessons
+  slug: lesson-orchestration-showed-a-case-while-a-round-stood-open
+  origin: raw/2026-10-07/2114/ledger.md#L29
+  set:
+    status: clustered
+    insight: insight-orchestration-items-taken-together-unruled
+  change: clustered under insight-orchestration-items-taken-together-unruled (synthesis)
+  librarian: synthesis
+  applied: '22:45:11'
+- kind: update
+  category: insights
+  slug: insight-workflow-case-written-without-reading-the-pages-it-changes
+  origin: raw/2026-10-07/2114/ledger.md#L30
+  set:
+    children:
+    - lesson-plan-mode-contract-change-skips-the-estimates-blocks
+    - lesson-case-designed-in-dialogue-not-checked-against-its-rules
+    - lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits
+    - lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice
+    status: open
+  change: child lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice added; open again,
+    the pattern came back after case 391.2 (synthesis)
+  librarian: synthesis
+  applied: '22:45:11'
+- kind: update
+  category: lessons
+  slug: lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice
+  origin: raw/2026-10-07/2114/ledger.md#L30
+  set:
+    status: clustered
+    insight: insight-workflow-case-written-without-reading-the-pages-it-changes
+  change: clustered under insight-workflow-case-written-without-reading-the-pages-it-changes (synthesis)
+  librarian: synthesis
+  applied: '22:45:11'
+decisions:
+- case: '722.1'
+  decision: decision-case-722.1
+  origin: raw/2026-10-07/2114/ledger.md#case-722.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-check
+    ref: rule-case-check
+  - kind: update
+    category: estimates
+    slug: estimate-case-check-sends-back-a-clash-with-another-case
+    ref: rule-case-check
+  tags: []
+  case_text:
+    given: '`rule-case-check`: the rule of the check of the file of a Case, whose Purpose names what the
+      check leaves out.
+
+      **＋** `estimate-case-check-sends-back-a-clash-with-another-case`: its Criterion is replaced whole.
+
+      **＋** `guppi/casecheck.py`: `other_blocks`, which picks the other Cases of the session.
+
+      **＋** `tests/test_casecheck.py`: the tests of a clash with another Case.
+
+      **＋** `guppi/prespec.py`: `check_same_target`, the judgment of a clash.
+
+      **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the file of a Case, read for the headings it holds.
+
+      **＋** `raw/<date>/<hi HHMM>/ledger.md`: the ledger of the session, whose marks retire a Case.
+
+      **＋** `rule-prespec-onward`: the rule whose hook judges a dropped Case by the same function.
+
+      **＋** `estimate-case-check-leaves-out-a-case-the-file-supersedes`: the promise of Case 725.2 on
+      a Case that a mark of the answer''s own file names.'
+    when: '`SubagentStop` fires when `case-guppi` answers with a Case, and `uv run guppi casecheck --subagent`
+      reads the Cases of the answer, the plan file of the session, `<plan>.checked.json` beside it and
+      the session''s `raw/<date>/<hi HHMM>/ledger.md`.
+
+      **＋** Or `tests/test_casecheck.py` runs it over a made-up plan file, store and ledger.'
+    then: 'The hook judges the Cases of the answer together with the other Cases of the session by `check_same_target`
+      of `guppi/prespec.py`, imported, not copied: each Case of the plan file, and each entry of `<plan>.checked.json`
+      under its number alone whose id the plan file does not hold.
+
+      **＋** A Case of the answer whose `update` of a page sets one field to another value than another
+      Case, writes a section that another Case writes, or replaces whole the Criterion of an Estimate
+      that another Case replaces whole, gets a finding that names both Cases, the page and the field or
+      the section.
+
+      **＋** The finding is stored with the Case, the hook exits 2, and `case-guppi` answers again before
+      the main agent shows the Case.
+
+      **－** A stored Case that has findings, an entry joined with an agent id, a Case whose number a `{supersedes:case
+      N}` mark of the session''s ledger names, and a Case left out as `estimate-case-check-leaves-out-a-case-the-file-supersedes`
+      sets are not compared.
+
+      **－** A stored Case whose top-level file `raw/<date>/<hi HHMM>/cases/case-<N>.md` holds nothing
+      but blank space is a dropped Case and is not compared, judged by the one function of `guppi/casecheck.py`
+      that the hook of `rule-prespec-onward` uses too.
+
+      **－** A stored Case whose top-level file `raw/<date>/<hi HHMM>/cases/case-<N>.md` holds text but
+      no heading of its id is a part that a Case built again no longer holds, and is not compared; its
+      entry stays in the store.
+
+      **－** A Case whose id the answer holds is compared only as the answer holds it, and an answer that
+      holds a top-level Case is compared with no part of that Case''s family in the plan file or the store.
+
+      **－** Two other Cases that clash with each other give this answer no finding.
+
+      **－** The `Stop` hook `uv run guppi ratified` keeps its check of the Cases it writes, by the same
+      function.'
+    context: 'The check that runs when `case-guppi` stops saves the text of each Case it checks in a store,
+      `<plan>.checked.json`, beside the plan file of the session. It compares a new Case with the other
+      Cases of the session: those of the plan and those that only the store holds. Today a stored entry
+      leaves that comparison only when it has findings, when its top-level Case file is empty, or when
+      a `{supersedes:case N}` mark of the ledger names it. At the pre-spec of session 1804, Case 713 was
+      built as 713.1 and 713.2 and then whole again. The store kept the two sub-cases, and the check refused
+      the showing of Case 719 twice on clashes that only they held (`lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped`,
+      Case 720). `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line` shows the same root on
+      the side of the plan. When a later Case retires each sub-case of a parent, the Spec hook of `rule-spec-write`
+      removes only the sub-cases that the marks name, by `remove_superseded` of `guppi/ratified.py`. So
+      the heading and the story of the parent stay in the plan and in `spec.md` with no sub-case under
+      them. The check of `/pre-spec` that once reported such a parent, `check_ratified` in `lesson-prespec-parent-of-superseded-sub-cases`,
+      is gone: the docstring of `guppi/prespec.py` says the plan is compared with no other file since
+      case 445.2. `retired_whole` of `guppi/prespec.py` already judges a parent retired sub-case by sub-case,
+      for `guppi/onward.py` (case 696.1).
+
+
+      Case 722.1 leaves out of the comparison a stored Case whose top-level file stands, holds text and
+      holds no heading of its id. The entry stays in the store, and the test stands beside the test for
+      a dropped Case of case 701.7. The two leftover entries 713.1 and 713.2 of `adaptive-gathering-dewdrop.checked.json`
+      stay. A Grep of `store_of|read_store\(|STORE_SUFFIX` over `guppi/` printed `guppi/ledger.py`, `guppi/casecheck.py`
+      and `guppi/ratified.py`. Each of them reads the store of the plan file that `plan_path` gives for
+      the current session, so no later session reads that store. Case 722.2 makes the Spec hook remove
+      a parent whose every sub-case with a decision line is retired, by `retired_whole`. Case 722.3 fixes
+      the sentence of the `## Splitting` section of `rule-case-protocol` that says a mark on a sub-case
+      removes that sub-case alone. Case 722.3 carries `{supersedes:case 721}`, since `rule-case-protocol`
+      holds `decision-case-721` in `deferred_by` and the check of `rule-case-check` requires that mark
+      (case 467). Case 722.1 carries `{supersedes:case 720}` for `rule-case-check` for the same reason.
+      `generate` clears a defer only from the pages that the superseding Case names (case 467.3, the docstring
+      of `guppi/generate.py`). So `rule-orchestration` keeps `decision-case-721`, and Frontier item C4
+      can still take it up with the same mark. `decision-case-721` also held a fault of `rule-case-protocol`:
+      a Frontier line closed again by the superseding Case does not hold for a sprint or backlog item
+      whose Case is taken back. This Case does not fix that fault, so Case 722.3 puts `rule-case-protocol`
+      off again for it. The skill `/pre-spec` calls it a finding when a Case of the plan changes a page
+      that another Case of the plan defers (case 186.2). Here the update and the defer stand in the same
+      sub-case.
+
+
+      Case 722.1 replaces the Criterion of `estimate-case-check-sends-back-a-clash-with-another-case`
+      and sets its `purpose` anew, since the purpose lists what is no other Case. `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+      speaks of the same `other_blocks`. Its Criterion stands: it takes the other Cases from `other_blocks`,
+      its list of what that function leaves out is not closed, and its promise is the order of the pairs.
+      Case 722.2 replaces the Criterion of `estimate-spec-write-removes-a-superseded-case`, whose line
+      on a sub-case mark said the parent stays. Its `purpose` and `method` do not state that line and
+      stand. Case 722.3 changes a Render. `estimate-spec-write-removes-a-superseded-case` checks the behaviour
+      that the changed sentence describes, and `estimate-case-protocol-loaded` checks the render (case
+      378.5). A Grep of `sub-case alone|removes that sub-case|its parent and its other sub-cases` over
+      `vault/wiki/` printed `case-schema.md`, `rules/rule-case-protocol.md`, `estimates/estimate-spec-write-removes-a-superseded-case.md`
+      and `estimates/estimate-materialize-marks-superseded.md`. The last one stands: it says how `guppi
+      materialize` marks the entries of a superseded sub-case, and a parent with no decision line of its
+      own has no entry. A Grep of `(removes|leaves the Spec|leaves the plan|out of the plan|from the plan)`
+      over `vault/wiki/orchestration.md` and `vault/wiki/rules/rule-orchestration.md` printed the sentence
+      on a Case taken back in both files. It says that the line of the item changes when no part of the
+      Case stays in the plan. That sentence stays true and now also holds when the marks retire each sub-case.
+      The insight and the two lessons are not changed by this Case.
+
+
+      Case 725.2 of this session makes the same check leave out a Case that a `{supersedes:case N}` mark
+      on a decision line of the answer''s own file names, under its own Estimate `estimate-case-check-leaves-out-a-case-the-file-supersedes`.
+      So the Criterion that Case 722.1 writes, and the `purpose` it sets, name such a Case only as a Case
+      left out as that Estimate sets, a pointer and no promise of their own, so that one promise is signed
+      in one wording (cases 72.1, 188).
+
+
+      `retired_whole` takes the parent out of the sub-cases it judges and does not read the decision lines
+      of the parent itself, and a parent may hold a decision line of its own, such as the `create` of
+      a rule whose promises are its sub-cases. So Case 722.2 removes a parent only when it also holds
+      no decision line of its own that no mark retires; otherwise its line would stay with no heading
+      in the plan, which `prespec --check` reports. `estimate-prespec-catches-a-superseded-case` says
+      that a `{supersedes:case N.M}` covers Case N.M and its own sub-cases, and that the parent with its
+      other sub-cases stays. Its Criterion stands: it says which Cases a mark covers in the findings of
+      `prespec --check`, and the mark still covers no parent. The Spec hook removes the parent by another
+      judgment, and a parent no longer in the plan gives `prespec --check` no finding, since the parent
+      carries no decision line that stays unretired. The clause that Case 725.2 adds to the Purpose of
+      `rule-case-check` follows the end of the sentence whose start Case 722.1 rewrites, and the two new
+      texts read side by side as one sentence.'
+  parent: decision-case-722
+  spec: vault/raw/2026-10-07/2114/spec.md
+  supersedes:
+  - decision-case-720
+  applied: '22:45:11'
+- case: '722.2'
+  decision: decision-case-722.2
+  origin: raw/2026-10-07/2114/ledger.md#case-722.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-spec-write
+    ref: rule-spec-write
+  - kind: update
+    category: estimates
+    slug: estimate-spec-write-removes-a-superseded-case
+    ref: rule-spec-write
+  tags: []
+  case_text:
+    given: '`rule-spec-write`: the rule of the `Stop` hook that writes a ratified Case into the Spec and
+      removes a superseded one.
+
+      **＋** `estimate-spec-write-removes-a-superseded-case`: its Criterion is replaced whole.
+
+      **＋** `estimate-spec-write-answers-a-refusal`: the promise of the hook with `stop_hook_active` set.
+
+      **＋** `guppi/ratified.py`: `remove_superseded`, which removes a superseded Case.
+
+      **＋** `tests/test_ratified.py`: the tests of the removal of a superseded Case.
+
+      **＋** `guppi/prespec.py`: `retired_whole`, the judgment of a parent retired sub-case by sub-case.
+
+      **＋** `raw/<date>/<hi HHMM>/ledger.md`: the ledger of the session, whose marks retire a Case.
+
+      **＋** `raw/<hi date>/<hi HHMM>/spec.md`: the approved Spec of the session.'
+    when: The `Stop` hook `uv run guppi ratified` runs after a reply whose `LEDGER` block holds a decision
+      line carrying `{supersedes:case N}`, and it has written the Case of that line in the same run.
+    then: 'The hook removes the section of Case N — its heading, its sections, its `then` and `tasks`
+      blocks, and the sections of its sub-cases — from the plan file.
+
+      **＋** Once `raw/<hi date>/<hi HHMM>/spec.md` stands, it removes every section of Case N and of its
+      sub-cases from it too.
+
+      **＋** A `{supersedes:case N.M}` removes the section of that sub-case alone while another sub-case
+      of its parent with a decision line is not retired; the parent and those other sub-cases stay.
+
+      **＋** When the marks of the session''s `raw/<date>/<hi HHMM>/ledger.md` and of the reply retire
+      each sub-case of a parent that has a decision line, judged by `retired_whole` of `guppi/prespec.py`,
+      imported, not copied, and the parent holds no decision line of its own that no mark retires, the
+      hook removes the section of that parent too.
+
+      **－** A parent with a decision line of its own that no mark retires stays in the plan file and in
+      `raw/<hi date>/<hi HHMM>/spec.md`, though each of its sub-cases is retired.
+
+      **＋** A section of Case N under `## Deferred` is removed the same way.
+
+      **＋** With `stop_hook_active` set, the hook removes as without it, as `estimate-spec-write-answers-a-refusal`
+      sets it.
+
+      **－** A Case N that neither file holds — a Case of an earlier session, a defer taken up — is no
+      refusal, and nothing is removed.
+
+      **－** A line whose own Case the hook refused or did not write removes nothing.'
+    context: 'The check that runs when `case-guppi` stops saves the text of each Case it checks in a store,
+      `<plan>.checked.json`, beside the plan file of the session. It compares a new Case with the other
+      Cases of the session: those of the plan and those that only the store holds. Today a stored entry
+      leaves that comparison only when it has findings, when its top-level Case file is empty, or when
+      a `{supersedes:case N}` mark of the ledger names it. At the pre-spec of session 1804, Case 713 was
+      built as 713.1 and 713.2 and then whole again. The store kept the two sub-cases, and the check refused
+      the showing of Case 719 twice on clashes that only they held (`lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped`,
+      Case 720). `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line` shows the same root on
+      the side of the plan. When a later Case retires each sub-case of a parent, the Spec hook of `rule-spec-write`
+      removes only the sub-cases that the marks name, by `remove_superseded` of `guppi/ratified.py`. So
+      the heading and the story of the parent stay in the plan and in `spec.md` with no sub-case under
+      them. The check of `/pre-spec` that once reported such a parent, `check_ratified` in `lesson-prespec-parent-of-superseded-sub-cases`,
+      is gone: the docstring of `guppi/prespec.py` says the plan is compared with no other file since
+      case 445.2. `retired_whole` of `guppi/prespec.py` already judges a parent retired sub-case by sub-case,
+      for `guppi/onward.py` (case 696.1).
+
+
+      Case 722.1 leaves out of the comparison a stored Case whose top-level file stands, holds text and
+      holds no heading of its id. The entry stays in the store, and the test stands beside the test for
+      a dropped Case of case 701.7. The two leftover entries 713.1 and 713.2 of `adaptive-gathering-dewdrop.checked.json`
+      stay. A Grep of `store_of|read_store\(|STORE_SUFFIX` over `guppi/` printed `guppi/ledger.py`, `guppi/casecheck.py`
+      and `guppi/ratified.py`. Each of them reads the store of the plan file that `plan_path` gives for
+      the current session, so no later session reads that store. Case 722.2 makes the Spec hook remove
+      a parent whose every sub-case with a decision line is retired, by `retired_whole`. Case 722.3 fixes
+      the sentence of the `## Splitting` section of `rule-case-protocol` that says a mark on a sub-case
+      removes that sub-case alone. Case 722.3 carries `{supersedes:case 721}`, since `rule-case-protocol`
+      holds `decision-case-721` in `deferred_by` and the check of `rule-case-check` requires that mark
+      (case 467). Case 722.1 carries `{supersedes:case 720}` for `rule-case-check` for the same reason.
+      `generate` clears a defer only from the pages that the superseding Case names (case 467.3, the docstring
+      of `guppi/generate.py`). So `rule-orchestration` keeps `decision-case-721`, and Frontier item C4
+      can still take it up with the same mark. `decision-case-721` also held a fault of `rule-case-protocol`:
+      a Frontier line closed again by the superseding Case does not hold for a sprint or backlog item
+      whose Case is taken back. This Case does not fix that fault, so Case 722.3 puts `rule-case-protocol`
+      off again for it. The skill `/pre-spec` calls it a finding when a Case of the plan changes a page
+      that another Case of the plan defers (case 186.2). Here the update and the defer stand in the same
+      sub-case.
+
+
+      Case 722.1 replaces the Criterion of `estimate-case-check-sends-back-a-clash-with-another-case`
+      and sets its `purpose` anew, since the purpose lists what is no other Case. `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+      speaks of the same `other_blocks`. Its Criterion stands: it takes the other Cases from `other_blocks`,
+      its list of what that function leaves out is not closed, and its promise is the order of the pairs.
+      Case 722.2 replaces the Criterion of `estimate-spec-write-removes-a-superseded-case`, whose line
+      on a sub-case mark said the parent stays. Its `purpose` and `method` do not state that line and
+      stand. Case 722.3 changes a Render. `estimate-spec-write-removes-a-superseded-case` checks the behaviour
+      that the changed sentence describes, and `estimate-case-protocol-loaded` checks the render (case
+      378.5). A Grep of `sub-case alone|removes that sub-case|its parent and its other sub-cases` over
+      `vault/wiki/` printed `case-schema.md`, `rules/rule-case-protocol.md`, `estimates/estimate-spec-write-removes-a-superseded-case.md`
+      and `estimates/estimate-materialize-marks-superseded.md`. The last one stands: it says how `guppi
+      materialize` marks the entries of a superseded sub-case, and a parent with no decision line of its
+      own has no entry. A Grep of `(removes|leaves the Spec|leaves the plan|out of the plan|from the plan)`
+      over `vault/wiki/orchestration.md` and `vault/wiki/rules/rule-orchestration.md` printed the sentence
+      on a Case taken back in both files. It says that the line of the item changes when no part of the
+      Case stays in the plan. That sentence stays true and now also holds when the marks retire each sub-case.
+      The insight and the two lessons are not changed by this Case.
+
+
+      Case 725.2 of this session makes the same check leave out a Case that a `{supersedes:case N}` mark
+      on a decision line of the answer''s own file names, under its own Estimate `estimate-case-check-leaves-out-a-case-the-file-supersedes`.
+      So the Criterion that Case 722.1 writes, and the `purpose` it sets, name such a Case only as a Case
+      left out as that Estimate sets, a pointer and no promise of their own, so that one promise is signed
+      in one wording (cases 72.1, 188).
+
+
+      `retired_whole` takes the parent out of the sub-cases it judges and does not read the decision lines
+      of the parent itself, and a parent may hold a decision line of its own, such as the `create` of
+      a rule whose promises are its sub-cases. So Case 722.2 removes a parent only when it also holds
+      no decision line of its own that no mark retires; otherwise its line would stay with no heading
+      in the plan, which `prespec --check` reports. `estimate-prespec-catches-a-superseded-case` says
+      that a `{supersedes:case N.M}` covers Case N.M and its own sub-cases, and that the parent with its
+      other sub-cases stays. Its Criterion stands: it says which Cases a mark covers in the findings of
+      `prespec --check`, and the mark still covers no parent. The Spec hook removes the parent by another
+      judgment, and a parent no longer in the plan gives `prespec --check` no finding, since the parent
+      carries no decision line that stays unretired. The clause that Case 725.2 adds to the Purpose of
+      `rule-case-check` follows the end of the sentence whose start Case 722.1 rewrites, and the two new
+      texts read side by side as one sentence.'
+  parent: decision-case-722
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '722.3'
+  decision: decision-case-722.3
+  origin: raw/2026-10-07/2114/ledger.md#case-722.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  - kind: defer
+    category: rules
+    slug: rule-case-protocol
+    ref: rule-case-protocol
+  tags: []
+  case_text:
+    given: '`rule-case-protocol`: the page whose Render changes, put off again for another fault.
+
+      **＋** `vault/wiki/case-schema.md`: the Render, read by `case-guppi`.
+
+      **＋** `rule-spec-write`: the hook whose removal of a superseded Case the sentence describes.'
+    when: '`case-guppi` reads the section `## Splitting` of `vault/wiki/case-schema.md`, the Render of
+      `rule-case-protocol`.'
+    then: 'The section says that the hook of `rule-spec-write` drops the section of a sub-case its mark
+      names, and the section of the parent as well once no sub-case of that parent with a decision line
+      stays unretired and no line of the parent''s own stays unretired.
+
+      **－** The sentence of `vault/wiki/case-schema.md` on a Frontier line closed again by the superseding
+      Case stays as it stands.'
+    context: 'The check that runs when `case-guppi` stops saves the text of each Case it checks in a store,
+      `<plan>.checked.json`, beside the plan file of the session. It compares a new Case with the other
+      Cases of the session: those of the plan and those that only the store holds. Today a stored entry
+      leaves that comparison only when it has findings, when its top-level Case file is empty, or when
+      a `{supersedes:case N}` mark of the ledger names it. At the pre-spec of session 1804, Case 713 was
+      built as 713.1 and 713.2 and then whole again. The store kept the two sub-cases, and the check refused
+      the showing of Case 719 twice on clashes that only they held (`lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped`,
+      Case 720). `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line` shows the same root on
+      the side of the plan. When a later Case retires each sub-case of a parent, the Spec hook of `rule-spec-write`
+      removes only the sub-cases that the marks name, by `remove_superseded` of `guppi/ratified.py`. So
+      the heading and the story of the parent stay in the plan and in `spec.md` with no sub-case under
+      them. The check of `/pre-spec` that once reported such a parent, `check_ratified` in `lesson-prespec-parent-of-superseded-sub-cases`,
+      is gone: the docstring of `guppi/prespec.py` says the plan is compared with no other file since
+      case 445.2. `retired_whole` of `guppi/prespec.py` already judges a parent retired sub-case by sub-case,
+      for `guppi/onward.py` (case 696.1).
+
+
+      Case 722.1 leaves out of the comparison a stored Case whose top-level file stands, holds text and
+      holds no heading of its id. The entry stays in the store, and the test stands beside the test for
+      a dropped Case of case 701.7. The two leftover entries 713.1 and 713.2 of `adaptive-gathering-dewdrop.checked.json`
+      stay. A Grep of `store_of|read_store\(|STORE_SUFFIX` over `guppi/` printed `guppi/ledger.py`, `guppi/casecheck.py`
+      and `guppi/ratified.py`. Each of them reads the store of the plan file that `plan_path` gives for
+      the current session, so no later session reads that store. Case 722.2 makes the Spec hook remove
+      a parent whose every sub-case with a decision line is retired, by `retired_whole`. Case 722.3 fixes
+      the sentence of the `## Splitting` section of `rule-case-protocol` that says a mark on a sub-case
+      removes that sub-case alone. Case 722.3 carries `{supersedes:case 721}`, since `rule-case-protocol`
+      holds `decision-case-721` in `deferred_by` and the check of `rule-case-check` requires that mark
+      (case 467). Case 722.1 carries `{supersedes:case 720}` for `rule-case-check` for the same reason.
+      `generate` clears a defer only from the pages that the superseding Case names (case 467.3, the docstring
+      of `guppi/generate.py`). So `rule-orchestration` keeps `decision-case-721`, and Frontier item C4
+      can still take it up with the same mark. `decision-case-721` also held a fault of `rule-case-protocol`:
+      a Frontier line closed again by the superseding Case does not hold for a sprint or backlog item
+      whose Case is taken back. This Case does not fix that fault, so Case 722.3 puts `rule-case-protocol`
+      off again for it. The skill `/pre-spec` calls it a finding when a Case of the plan changes a page
+      that another Case of the plan defers (case 186.2). Here the update and the defer stand in the same
+      sub-case.
+
+
+      Case 722.1 replaces the Criterion of `estimate-case-check-sends-back-a-clash-with-another-case`
+      and sets its `purpose` anew, since the purpose lists what is no other Case. `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+      speaks of the same `other_blocks`. Its Criterion stands: it takes the other Cases from `other_blocks`,
+      its list of what that function leaves out is not closed, and its promise is the order of the pairs.
+      Case 722.2 replaces the Criterion of `estimate-spec-write-removes-a-superseded-case`, whose line
+      on a sub-case mark said the parent stays. Its `purpose` and `method` do not state that line and
+      stand. Case 722.3 changes a Render. `estimate-spec-write-removes-a-superseded-case` checks the behaviour
+      that the changed sentence describes, and `estimate-case-protocol-loaded` checks the render (case
+      378.5). A Grep of `sub-case alone|removes that sub-case|its parent and its other sub-cases` over
+      `vault/wiki/` printed `case-schema.md`, `rules/rule-case-protocol.md`, `estimates/estimate-spec-write-removes-a-superseded-case.md`
+      and `estimates/estimate-materialize-marks-superseded.md`. The last one stands: it says how `guppi
+      materialize` marks the entries of a superseded sub-case, and a parent with no decision line of its
+      own has no entry. A Grep of `(removes|leaves the Spec|leaves the plan|out of the plan|from the plan)`
+      over `vault/wiki/orchestration.md` and `vault/wiki/rules/rule-orchestration.md` printed the sentence
+      on a Case taken back in both files. It says that the line of the item changes when no part of the
+      Case stays in the plan. That sentence stays true and now also holds when the marks retire each sub-case.
+      The insight and the two lessons are not changed by this Case.
+
+
+      Case 725.2 of this session makes the same check leave out a Case that a `{supersedes:case N}` mark
+      on a decision line of the answer''s own file names, under its own Estimate `estimate-case-check-leaves-out-a-case-the-file-supersedes`.
+      So the Criterion that Case 722.1 writes, and the `purpose` it sets, name such a Case only as a Case
+      left out as that Estimate sets, a pointer and no promise of their own, so that one promise is signed
+      in one wording (cases 72.1, 188).
+
+
+      `retired_whole` takes the parent out of the sub-cases it judges and does not read the decision lines
+      of the parent itself, and a parent may hold a decision line of its own, such as the `create` of
+      a rule whose promises are its sub-cases. So Case 722.2 removes a parent only when it also holds
+      no decision line of its own that no mark retires; otherwise its line would stay with no heading
+      in the plan, which `prespec --check` reports. `estimate-prespec-catches-a-superseded-case` says
+      that a `{supersedes:case N.M}` covers Case N.M and its own sub-cases, and that the parent with its
+      other sub-cases stays. Its Criterion stands: it says which Cases a mark covers in the findings of
+      `prespec --check`, and the mark still covers no parent. The Spec hook removes the parent by another
+      judgment, and a parent no longer in the plan gives `prespec --check` no finding, since the parent
+      carries no decision line that stays unretired. The clause that Case 725.2 adds to the Purpose of
+      `rule-case-check` follows the end of the sentence whose start Case 722.1 rewrites, and the two new
+      texts read side by side as one sentence.'
+  parent: decision-case-722
+  spec: vault/raw/2026-10-07/2114/spec.md
+  supersedes:
+  - decision-case-721
+  applied: '22:45:11'
+- case: '723.1'
+  decision: decision-case-723.1
+  origin: raw/2026-10-07/2114/ledger.md#case-723.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  - kind: update
+    category: estimates
+    slug: estimate-orchestration-takes-back-a-ratified-case
+    ref: rule-orchestration
+  tags: []
+  case_text:
+    given: '`rule-orchestration`: its Render sets the take-back of a ratified Case and the put-off reply.
+
+      **＋** `vault/wiki/orchestration.md`: the file rendered from `rule-orchestration`.
+
+      **＋** `estimate-orchestration-takes-back-a-ratified-case`: its Criterion is replaced whole.
+
+      **＋** `rule-spec-write`: the hook that writes the short Case and removes the Case its mark names.
+
+      **＋** `guppi/generate.py` and `vault/wiki/backlog.md`: a `defer` marks `deferred_by` only on rule,
+      entity and insight pages, and `rule-backlog` lists them from it.
+
+      **＋** `/pre-spec`: the check whose moment the question after the Frontier names.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`, `raw/<date>/<hi HHMM>/ledger.md` and `raw/<date>/<hi HHMM>/cases/case-<N>.md`:
+      the Frontier, the ledger and the file of a Case.'
+    when: In Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`, the person
+      asks in the chat to take back a Case of the session that has a decision line in `raw/<date>/<hi
+      HHMM>/ledger.md`, whole or one of its sub-cases.
+    then: 'In the same reply the main agent shows a short Case of its own in the form of a deferred decision,
+      with no dispatch of `case-guppi`, and carries its `LEDGER` block, with no tool call after it.
+
+      **＋** The block holds one `defer` line for each rule, entity and insight page the Case taken back
+      names, one for each Estimate it updates, and one for the page that each Estimate it updates checks
+      or each Estimate it creates would check, once per page; each line carries `{supersedes:case N}`
+      for the Case or sub-case taken back.
+
+      **＋** At the librarian''s run, `guppi/generate.py` adds the short Case to the `deferred_by` of each
+      rule, entity and insight page a `defer` line names, and each such page stands in `vault/wiki/backlog.md`,
+      also when the Case taken back changed only existing Estimates.
+
+      **＋** The `context` of the short Case names the Case taken back and each Estimate that Case creates;
+      the person''s words asking for the take-back are its ratification, and no question asks for it.
+
+      **＋** The `Stop` hook of `rule-spec-write` writes the short Case under `## Deferred` and removes
+      the Case taken back from the plan file.
+
+      **＋** When no part of the Case stays in the plan, the line of its item in `raw/<date>/<hi HHMM>/frontier.md`
+      changes in the same reply from `[x] … · case N` to `[-] … · sprint · defer` for an item of the sprint,
+      `[-] … · backlog · kept` for an item of the backlog, or `[-] … · defer case M` of the short Case
+      for any other source.
+
+      **＋** The reply ends as the reply that carries a defer: the Frontier with the line closed by that
+      closer, then the question which open item is next, or before `/pre-spec` the question whether to
+      go on to `/pre-spec`, or after `/pre-spec` no question.
+
+      **－** The file of the Case taken back under `raw/<date>/<hi HHMM>/cases/` is not emptied, and no
+      `case-guppi` undoes it.
+
+      **－** In Work Mode no Case is taken back: the main agent tells the person that the ratified Case
+      stands, and that a Case of a later session may replace it.'
+    context: 'In Plan Mode the person can take back a Case already ratified in the session. The main agent
+      then writes a short put-off Case of its own, whose `defer` lines carry `{supersedes:case N}` and
+      so retire the Case. It closes the Frontier line of the item by the closer of its source: `[-] …
+      · sprint · defer` for a sprint item, `[-] … · backlog · kept` for a backlog item, and `[-] … · defer
+      case M` for any other source. Case 713 of session 1804 set this in the Render of `rule-orchestration`.
+      The pre-spec of that session found faults F2–F6 in it, and Case 721 put `rule-orchestration` and
+      `rule-case-protocol` off for them. F2: the short-form paragraph, which the take-back reply follows,
+      names only the closer `[-] … · defer case N`, which `guppi/prespec.py` reports after the source
+      `sprint` or `backlog`. F3: one sentence says both that the `defer` lines of a take-back add to the
+      source of a backlog item and that its source stays as it is. F4: a take-back of a Case whose only
+      targets are existing Estimates leaves nothing in `backlog.md`, since `guppi/generate.py` marks `deferred_by`
+      only on rule, entity and insight pages. F5: `rule-case-protocol` says that a Frontier line is closed
+      again by the superseding Case, which a sprint or backlog closer does not name. F6: the Criterion
+      of `estimate-orchestration-defers-in-one-reply` says that a sprint or backlog item takes no short
+      Case.
+
+
+      Case 723.1 fixes F2, F3 and F4 in the Render of `rule-orchestration` and replaces the Criterion
+      of `estimate-orchestration-takes-back-a-ratified-case` whole, so that the take-back stands whole
+      in this Case. It carries `{supersedes:case 713}`, which sets `decision-case-713` `superseded`, and
+      `{supersedes:case 721}`, since `rule-orchestration` holds `decision-case-721` in `deferred_by` and
+      `generate` clears a defer only from the pages the superseding Case names (case 467.3). The new Criterion
+      rewords four lines of the old one on purpose. The `defer` line also names the page each updated
+      Estimate checks. The line on the `context` of the short Case and the line on the person''s words
+      stand as one line. The line on the end of the reply names the closer of the source. Case 723.2 fixes
+      F6: the last `－` line of the Criterion of `estimate-orchestration-defers-in-one-reply` is reworded
+      on purpose to add the take-back as an exception, and Case 723.3 rewords the line of `estimate-hi-writes-frontier`
+      on an item closed `defer` or `kept` in the same way. F5 stays: Case 722.3 of this session puts `rule-case-protocol`
+      off again for that sentence, and a mark that retired 722.3 would remove its fix of the same page
+      from the plan. The frame showed the same fault as F6 in `rule-skill-hi` and its check `estimate-hi-writes-frontier`,
+      which the pre-spec of session 1804 did not find, and Case 723.3 fixes it. The `method` of that check
+      waited for the `/hi` after the close of a sprint, which the check of the Case file refuses for a
+      Criterion replaced whole (case 715). The person chose to keep that moment, with the reading by hand
+      made the person''s answer there, and the unit tests kept.
+
+
+      A Grep of `no short Case|take no short Case|has no short Case` over `vault/wiki/**/*.md` and `.claude/**/*.md`
+      printed `vault/wiki/brief.md`, `vault/wiki/orchestration.md`, `vault/wiki/estimates/estimate-hi-writes-frontier.md`,
+      `vault/wiki/rules/rule-orchestration.md` and `vault/wiki/estimates/estimate-orchestration-defers-in-one-reply.md`.
+      The brief names F6, `orchestration.md` is the Render, and the other hits enter this Case. A Grep
+      of `sprint · defer` over `vault/wiki/rules/*.md` and `.claude/**/*.md` printed `.claude/skills/hi/SKILL.md`,
+      `vault/wiki/rules/rule-orchestration.md`, `vault/wiki/rules/rule-skill-hi.md` and `vault/wiki/rules/rule-case-protocol.md`.
+      The hit in `rule-case-protocol.md` is a History line. `SKILL.md` is the Render of `rule-skill-hi`.
+      A Grep of `sprint · defer|backlog · kept` over `vault/wiki/estimates/` printed `estimate-hi-writes-frontier.md`,
+      `estimate-hi-takes-a-conserved-spec.md`, `estimate-orchestration-takes-back-a-ratified-case.md`,
+      `estimate-orchestration-shows-the-frontier-after-a-closed-line.md`, `estimate-orchestration-shows-the-built-case.md`,
+      `estimate-orchestration-defers-in-one-reply.md`, `estimate-orchestration-acknowledging-reply.md`
+      and `estimate-prespec-binds-a-sprint-line.md`. The ones this Case does not name stand. They list
+      the closers, judge where a closer may stand, or speak of a reply that carries no defer or of a Case
+      with no decision line, and none says that such a line has no short Case. A Grep of `take-back|taken
+      back|takes back|take back` over `vault/wiki/` printed `orchestration.md`, `log.md`, `rules/rule-orchestration.md`
+      and `estimates/estimate-orchestration-takes-back-a-ratified-case.md`, and over `.claude/` it printed
+      nothing. No code reads the changed texts. `orchestration.md` and `.claude/skills/hi/SKILL.md` change
+      at the librarian''s render.'
+  parent: decision-case-723
+  spec: vault/raw/2026-10-07/2114/spec.md
+  supersedes:
+  - decision-case-713
+  - decision-case-721
+  applied: '22:45:11'
+- case: '723.2'
+  decision: decision-case-723.2
+  origin: raw/2026-10-07/2114/ledger.md#case-723.2
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-orchestration-defers-in-one-reply
+    ref: rule-orchestration
+  tags: []
+  case_text:
+    given: '`estimate-orchestration-defers-in-one-reply`: its Criterion is replaced whole.
+
+      **＋** `rule-orchestration`: its Render sets the put-off reply.
+
+      **＋** `vault/wiki/orchestration.md`: the file rendered from `rule-orchestration`.
+
+      **＋** `rule-spec-write`: the hook that writes the short Case into the plan file.
+
+      **＋** `estimate-orchestration-takes-back-a-ratified-case` and `estimate-orchestration-shows-the-frontier-after-a-closed-line`:
+      the checks of the moments this check leaves out.
+
+      **＋** `/pre-spec` and `rule-prespec-onward`: the check whose moment the question after the Frontier
+      names, and the hook that sends the agent on after it.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`, `raw/<date>/<hi HHMM>/ledger.md` and `raw/<date>/<hi HHMM>/handoff.md`:
+      the Frontier, the ledger and the handoff of the session.'
+    when: 'In Plan Mode, the person asks in the chat to put off a decision: an item of `raw/<date>/<hi
+      HHMM>/frontier.md` whose source is neither the sprint nor the backlog, with `vault/wiki/orchestration.md`
+      rendered from `rule-orchestration`.'
+    then: 'In the same reply the agent shows the Case in the short form — `context`, `problem` and a fence
+      tagged `then` with one `defer` item per target, no other section — and carries its `LEDGER` block,
+      one `defer` line per target, with no tool call after it.
+
+      **＋** The agent writes nothing of the Case into the plan file: the `Stop` hook of `rule-spec-write`
+      writes it.
+
+      **＋** The person''s words asking for the defer are its ratification: no question asks for it.
+
+      **＋** The reply shows the Frontier of `raw/<date>/<hi HHMM>/frontier.md` after the Case, with the
+      line of the item closed `[-] … · defer case N`.
+
+      **＋** While a line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` is open, a question follows
+      the Frontier and ends the reply: which open item is next.
+
+      **＋** When no line under `## Cases` is open before `/pre-spec`, the question whether to go on to
+      `/pre-spec` follows the Frontier and ends the reply. The agent calls `/pre-spec` only after the
+      person says to go on.
+
+      **＋** When no line under `## Cases` is open after `/pre-spec`, no question follows: the reply ends
+      with the Frontier, and the hook of `rule-prespec-onward` sends the agent on with the loop after
+      the findings.
+
+      **＋** A wording the person corrects is a new short Case with `{supersedes:case N}` on its line,
+      shown the same way.
+
+      **＋** When the item has a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi
+      HHMM>/ledger.md`, the drop goes to that `case-guppi` first and the turn of the person''s words ends
+      with one `**Waiting:**` line; the short Case, its `LEDGER` block and the Frontier come in the turn
+      that the answer `**Dropped:**` opens.
+
+      **－** No text follows the question, or the Frontier when no question stands.
+
+      **－** Retro writes no short defer: what it would put off is a line of `## For the next session`
+      of `raw/<date>/<hi HHMM>/handoff.md`.
+
+      **－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-]
+      … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`,
+      are not this moment: they take no short Case and no ledger line but for the short Case of a take-back
+      of a ratified Case, which is the moment of `estimate-orchestration-takes-back-a-ratified-case`,
+      and a reply that closes only such lines with no take-back is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.'
+    context: 'In Plan Mode the person can take back a Case already ratified in the session. The main agent
+      then writes a short put-off Case of its own, whose `defer` lines carry `{supersedes:case N}` and
+      so retire the Case. It closes the Frontier line of the item by the closer of its source: `[-] …
+      · sprint · defer` for a sprint item, `[-] … · backlog · kept` for a backlog item, and `[-] … · defer
+      case M` for any other source. Case 713 of session 1804 set this in the Render of `rule-orchestration`.
+      The pre-spec of that session found faults F2–F6 in it, and Case 721 put `rule-orchestration` and
+      `rule-case-protocol` off for them. F2: the short-form paragraph, which the take-back reply follows,
+      names only the closer `[-] … · defer case N`, which `guppi/prespec.py` reports after the source
+      `sprint` or `backlog`. F3: one sentence says both that the `defer` lines of a take-back add to the
+      source of a backlog item and that its source stays as it is. F4: a take-back of a Case whose only
+      targets are existing Estimates leaves nothing in `backlog.md`, since `guppi/generate.py` marks `deferred_by`
+      only on rule, entity and insight pages. F5: `rule-case-protocol` says that a Frontier line is closed
+      again by the superseding Case, which a sprint or backlog closer does not name. F6: the Criterion
+      of `estimate-orchestration-defers-in-one-reply` says that a sprint or backlog item takes no short
+      Case.
+
+
+      Case 723.1 fixes F2, F3 and F4 in the Render of `rule-orchestration` and replaces the Criterion
+      of `estimate-orchestration-takes-back-a-ratified-case` whole, so that the take-back stands whole
+      in this Case. It carries `{supersedes:case 713}`, which sets `decision-case-713` `superseded`, and
+      `{supersedes:case 721}`, since `rule-orchestration` holds `decision-case-721` in `deferred_by` and
+      `generate` clears a defer only from the pages the superseding Case names (case 467.3). The new Criterion
+      rewords four lines of the old one on purpose. The `defer` line also names the page each updated
+      Estimate checks. The line on the `context` of the short Case and the line on the person''s words
+      stand as one line. The line on the end of the reply names the closer of the source. Case 723.2 fixes
+      F6: the last `－` line of the Criterion of `estimate-orchestration-defers-in-one-reply` is reworded
+      on purpose to add the take-back as an exception, and Case 723.3 rewords the line of `estimate-hi-writes-frontier`
+      on an item closed `defer` or `kept` in the same way. F5 stays: Case 722.3 of this session puts `rule-case-protocol`
+      off again for that sentence, and a mark that retired 722.3 would remove its fix of the same page
+      from the plan. The frame showed the same fault as F6 in `rule-skill-hi` and its check `estimate-hi-writes-frontier`,
+      which the pre-spec of session 1804 did not find, and Case 723.3 fixes it. The `method` of that check
+      waited for the `/hi` after the close of a sprint, which the check of the Case file refuses for a
+      Criterion replaced whole (case 715). The person chose to keep that moment, with the reading by hand
+      made the person''s answer there, and the unit tests kept.
+
+
+      A Grep of `no short Case|take no short Case|has no short Case` over `vault/wiki/**/*.md` and `.claude/**/*.md`
+      printed `vault/wiki/brief.md`, `vault/wiki/orchestration.md`, `vault/wiki/estimates/estimate-hi-writes-frontier.md`,
+      `vault/wiki/rules/rule-orchestration.md` and `vault/wiki/estimates/estimate-orchestration-defers-in-one-reply.md`.
+      The brief names F6, `orchestration.md` is the Render, and the other hits enter this Case. A Grep
+      of `sprint · defer` over `vault/wiki/rules/*.md` and `.claude/**/*.md` printed `.claude/skills/hi/SKILL.md`,
+      `vault/wiki/rules/rule-orchestration.md`, `vault/wiki/rules/rule-skill-hi.md` and `vault/wiki/rules/rule-case-protocol.md`.
+      The hit in `rule-case-protocol.md` is a History line. `SKILL.md` is the Render of `rule-skill-hi`.
+      A Grep of `sprint · defer|backlog · kept` over `vault/wiki/estimates/` printed `estimate-hi-writes-frontier.md`,
+      `estimate-hi-takes-a-conserved-spec.md`, `estimate-orchestration-takes-back-a-ratified-case.md`,
+      `estimate-orchestration-shows-the-frontier-after-a-closed-line.md`, `estimate-orchestration-shows-the-built-case.md`,
+      `estimate-orchestration-defers-in-one-reply.md`, `estimate-orchestration-acknowledging-reply.md`
+      and `estimate-prespec-binds-a-sprint-line.md`. The ones this Case does not name stand. They list
+      the closers, judge where a closer may stand, or speak of a reply that carries no defer or of a Case
+      with no decision line, and none says that such a line has no short Case. A Grep of `take-back|taken
+      back|takes back|take back` over `vault/wiki/` printed `orchestration.md`, `log.md`, `rules/rule-orchestration.md`
+      and `estimates/estimate-orchestration-takes-back-a-ratified-case.md`, and over `.claude/` it printed
+      nothing. No code reads the changed texts. `orchestration.md` and `.claude/skills/hi/SKILL.md` change
+      at the librarian''s render.'
+  parent: decision-case-723
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '723.3'
+  decision: decision-case-723.3
+  origin: raw/2026-10-07/2114/ledger.md#case-723.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-skill-hi
+    ref: rule-skill-hi
+  - kind: update
+    category: estimates
+    slug: estimate-hi-writes-frontier
+    ref: rule-skill-hi
+  tags: []
+  case_text:
+    given: '`rule-skill-hi`: its Render sets the closers of a Frontier line.
+
+      **＋** `.claude/skills/hi/SKILL.md`: the file rendered from `rule-skill-hi`.
+
+      **＋** `estimate-hi-writes-frontier`: its Criterion is replaced whole and its `method` set anew.
+
+      **＋** `vault/wiki/orchestration.md`: the Render of `rule-orchestration`, which sets the take-back.
+
+      **＋** `vault/wiki/sprint.md`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`: the sources of
+      the Frontier.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`: the Frontier of the session.'
+    when: The person invokes `/hi` of `rule-skill-hi`. The agent assembles the Frontier from `vault/wiki/sprint.md`,
+      `vault/wiki/brief.md`, `vault/wiki/backlog.md` and the output of the skill's commands, and closes
+      its lines in Plan Mode.
+    then: 'The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## Cases`, with
+      lines `- [ ] C<n> — <title> · <source>`, `## Work`, with lines `- [ ] W<n> — <title> · <source>`,
+      and `## Ask`, with lines `` - [ ] A<n> — `<slug>` — <question> · brief ``. The title of a line of
+      the current milestone or of the backlog opens with the slug of each of its pages in a code span.
+
+      **＋** The kind comes from the source. Cases: first, when the first line of the `Cases` of the brief''s
+      Next session opens with `open the next sprint`, that line; then, on a plan branch, the unfinished
+      plan and each conserved Spec of `vault/wiki/backlog.md`, with the source `backlog`; then the items
+      of the current milestone; the `Cases` list of the brief''s Next session; a hand edit shown by `Render:`;
+      a `failed` reading or a lesson of the ledger''s Tail; an open `W` line whose reading cannot run
+      now, written by the reading step of `/hi`; an item the person adds. Work: the `Work` list of the
+      brief''s Next session; a dirty tree by `git status`. Ask: the `Ask the person` list of the brief''s
+      Next session.
+
+      **＋** The other items of the backlog are not lines. `## Cases` ends with the line `Backlog: N items`,
+      where N is the count in `vault/wiki/backlog.md`. Under a Cases line, an indented line `- near` names
+      by slug each backlog item whose `purpose` is near that line in meaning. The agent judges this from
+      the loaded file, with no `ask-guppi`. An item the person brings onto the Frontier becomes a Cases
+      line with the source `backlog`.
+
+      **＋** A line closes by appending the closer and keeping the source. An item ended closes `[x] …
+      · case N` when decided, or `[x] … · work` when done with no decision. A line of the sprint page
+      left for a later session closes `[-] … · sprint · defer`. An item of the backlog left as it stands
+      closes `[-] … · backlog · kept`. A decision of any other source put off closes `[-] … · defer case
+      N`.
+
+      **＋** An item closed `defer` or `kept` has no short Case and no ledger line, but for the short Case
+      of a take-back of a ratified Case, as `vault/wiki/orchestration.md` sets it. A sprint item never
+      closes `· defer case N`.
+
+      **＋** Only the current milestone gives items. A later milestone and Closed give none, and the sprint
+      page''s Backlog reaches the Frontier only through the backlog. A decision line of the Tail is not
+      an item.
+
+      **＋** In the chat the Cases are shown as a checklist. Each line stands as `raw/<date>/<hi HHMM>/frontier.md`
+      holds it, `- [ ] C<n> — <title> · <source>`, with its detail on an indented line under it and the
+      `- near` line under that, and the line `Backlog: N items` comes last. The Work is shown as one block.
+      Only Cases are cut into sub-cases. A `W` that turns out to need a decision closes `· case N`. A
+      `C` that needs none closes `· work`.
+
+      **－** While the first line of the `Cases` of the brief''s Next session opens with `open the next
+      sprint`, no conserved Spec and no item of the current milestone is a Cases line, and each conserved
+      Spec stays in `vault/wiki/backlog.md`.
+
+      **－** At `/hi` no Case stands in the chat as a bold line, and no Case has its detail as a paragraph.
+
+      **－** Pre-spec finds an open line under `## Cases`. A `W` or an `A` line stands open until its work
+      is done and closes `· work` where that work is done: at `/hi`, in Work Mode or at Retro. Claude
+      Code''s plan mode does not stop the agent from writing `frontier.md`.'
+    context: 'In Plan Mode the person can take back a Case already ratified in the session. The main agent
+      then writes a short put-off Case of its own, whose `defer` lines carry `{supersedes:case N}` and
+      so retire the Case. It closes the Frontier line of the item by the closer of its source: `[-] …
+      · sprint · defer` for a sprint item, `[-] … · backlog · kept` for a backlog item, and `[-] … · defer
+      case M` for any other source. Case 713 of session 1804 set this in the Render of `rule-orchestration`.
+      The pre-spec of that session found faults F2–F6 in it, and Case 721 put `rule-orchestration` and
+      `rule-case-protocol` off for them. F2: the short-form paragraph, which the take-back reply follows,
+      names only the closer `[-] … · defer case N`, which `guppi/prespec.py` reports after the source
+      `sprint` or `backlog`. F3: one sentence says both that the `defer` lines of a take-back add to the
+      source of a backlog item and that its source stays as it is. F4: a take-back of a Case whose only
+      targets are existing Estimates leaves nothing in `backlog.md`, since `guppi/generate.py` marks `deferred_by`
+      only on rule, entity and insight pages. F5: `rule-case-protocol` says that a Frontier line is closed
+      again by the superseding Case, which a sprint or backlog closer does not name. F6: the Criterion
+      of `estimate-orchestration-defers-in-one-reply` says that a sprint or backlog item takes no short
+      Case.
+
+
+      Case 723.1 fixes F2, F3 and F4 in the Render of `rule-orchestration` and replaces the Criterion
+      of `estimate-orchestration-takes-back-a-ratified-case` whole, so that the take-back stands whole
+      in this Case. It carries `{supersedes:case 713}`, which sets `decision-case-713` `superseded`, and
+      `{supersedes:case 721}`, since `rule-orchestration` holds `decision-case-721` in `deferred_by` and
+      `generate` clears a defer only from the pages the superseding Case names (case 467.3). The new Criterion
+      rewords four lines of the old one on purpose. The `defer` line also names the page each updated
+      Estimate checks. The line on the `context` of the short Case and the line on the person''s words
+      stand as one line. The line on the end of the reply names the closer of the source. Case 723.2 fixes
+      F6: the last `－` line of the Criterion of `estimate-orchestration-defers-in-one-reply` is reworded
+      on purpose to add the take-back as an exception, and Case 723.3 rewords the line of `estimate-hi-writes-frontier`
+      on an item closed `defer` or `kept` in the same way. F5 stays: Case 722.3 of this session puts `rule-case-protocol`
+      off again for that sentence, and a mark that retired 722.3 would remove its fix of the same page
+      from the plan. The frame showed the same fault as F6 in `rule-skill-hi` and its check `estimate-hi-writes-frontier`,
+      which the pre-spec of session 1804 did not find, and Case 723.3 fixes it. The `method` of that check
+      waited for the `/hi` after the close of a sprint, which the check of the Case file refuses for a
+      Criterion replaced whole (case 715). The person chose to keep that moment, with the reading by hand
+      made the person''s answer there, and the unit tests kept.
+
+
+      A Grep of `no short Case|take no short Case|has no short Case` over `vault/wiki/**/*.md` and `.claude/**/*.md`
+      printed `vault/wiki/brief.md`, `vault/wiki/orchestration.md`, `vault/wiki/estimates/estimate-hi-writes-frontier.md`,
+      `vault/wiki/rules/rule-orchestration.md` and `vault/wiki/estimates/estimate-orchestration-defers-in-one-reply.md`.
+      The brief names F6, `orchestration.md` is the Render, and the other hits enter this Case. A Grep
+      of `sprint · defer` over `vault/wiki/rules/*.md` and `.claude/**/*.md` printed `.claude/skills/hi/SKILL.md`,
+      `vault/wiki/rules/rule-orchestration.md`, `vault/wiki/rules/rule-skill-hi.md` and `vault/wiki/rules/rule-case-protocol.md`.
+      The hit in `rule-case-protocol.md` is a History line. `SKILL.md` is the Render of `rule-skill-hi`.
+      A Grep of `sprint · defer|backlog · kept` over `vault/wiki/estimates/` printed `estimate-hi-writes-frontier.md`,
+      `estimate-hi-takes-a-conserved-spec.md`, `estimate-orchestration-takes-back-a-ratified-case.md`,
+      `estimate-orchestration-shows-the-frontier-after-a-closed-line.md`, `estimate-orchestration-shows-the-built-case.md`,
+      `estimate-orchestration-defers-in-one-reply.md`, `estimate-orchestration-acknowledging-reply.md`
+      and `estimate-prespec-binds-a-sprint-line.md`. The ones this Case does not name stand. They list
+      the closers, judge where a closer may stand, or speak of a reply that carries no defer or of a Case
+      with no decision line, and none says that such a line has no short Case. A Grep of `take-back|taken
+      back|takes back|take back` over `vault/wiki/` printed `orchestration.md`, `log.md`, `rules/rule-orchestration.md`
+      and `estimates/estimate-orchestration-takes-back-a-ratified-case.md`, and over `.claude/` it printed
+      nothing. No code reads the changed texts. `orchestration.md` and `.claude/skills/hi/SKILL.md` change
+      at the librarian''s render.'
+  parent: decision-case-723
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '725.1'
+  decision: decision-case-725.1
+  origin: raw/2026-10-07/2114/ledger.md#case-725.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-build
+    ref: rule-case-build
+  - kind: update
+    category: estimates
+    slug: estimate-case-build-writes-the-case
+    ref: rule-case-build
+  tags: []
+  case_text:
+    given: '`rule-case-build`: the rule of `case-guppi`, whose Render changes.
+
+      **＋** `.claude/agents/case-guppi.md`: the file rendered from `rule-case-build`.
+
+      **＋** `estimate-case-build-writes-the-case`: its Criterion is replaced whole.
+
+      **＋** `vault/wiki/case-schema.md`, `vault/wiki/ratification.md` and `vault/wiki/orchestration.md`:
+      the form of a Case, the ledger lines, and the rule that the file of a Case with a decision line
+      is never emptied.
+
+      **＋** `.claude/skills/grill-me/SKILL.md`, `.claude/agents/ask-guppi.md` and `.claude/settings.json`:
+      the template of a round, the vault query and the hooks the frame reads.
+
+      **＋** `rule-case-check` and `/pre-spec`: the hook that checks the file of a Case, and the check
+      whose findings reach `case-guppi`.
+
+      **＋** `guppi/ratified.py`: the guard of the files under `raw/<date>/<hi HHMM>/cases/`.
+
+      **＋** `raw/<date>/<hi HHMM>/ledger.md` and `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the ledger
+      of the session and the file of a Case.'
+    when: 'The main agent dispatches `case-guppi` with a Case id, a Frontier item and its source, and
+      the person''s words on it; or sends it by `SendMessage` the person''s answers to a round, or the
+      person''s question or change on a Case it built.
+
+      **＋** Or the hook of `rule-case-check` sends it findings on the file of its Case or on its summary.
+
+      **＋** Or the main agent sends it by `SendMessage` the drop of the Case it built, the drop of a change
+      to that Case, or a finding of `/pre-spec` on that Case.'
+    then: '`case-guppi` starts with `.claude/skills/grill-me/SKILL.md` in its context by `skills: [grill-me]`
+      in `.claude/agents/case-guppi.md`, and reads `vault/wiki/case-schema.md` and `vault/wiki/ratification.md`
+      whole before it answers.
+
+      **＋** Before a `create` without a `ref`, it runs the vault query of `.claude/agents/ask-guppi.md`
+      itself, and the `context` of the Case gives the answer.
+
+      **＋** It reads each page and file the `given` names, the Criterion of each Estimate such a page
+      lists, and, for a Case that adds or changes a hook, the hooks on the same event in `.claude/settings.json`;
+      each contradiction is fixed in the Case, or the `context` says why it stands.
+
+      **＋** While a fork is open — the bound, the alternative, the promise, the split, the exceptions
+      or what is left not done — its answer is a round of questions in the form of `.claude/skills/grill-me/SKILL.md`,
+      in English, with no Case heading and nothing else but the context of a first round.
+
+      **＋** The first round on an item opens, before its first question, with one prose paragraph under
+      the label `**Context:**`: what the item is about, what the thing does today and where it goes wrong,
+      and what the round decides — a sentence per part where one is enough, a part with nothing to say
+      left out.
+
+      **＋** When no fork is open, it writes the Case whole in English in the chat form of `vault/wiki/case-schema.md`,
+      its ledger lines in the form of `vault/wiki/ratification.md`, from the heading to the fence of `ratification`
+      and nothing else, into `raw/<date>/<hi HHMM>/cases/case-<N>.md` by `Write`, N the id of the top-level
+      Case.
+
+      **＋** Its answer is then a summary alone: a first line `**Built:**` and the path of the file; a
+      second line `**Case:**` with the id and the name of the top-level Case as the heading of the file
+      writes them, a Case with sub-cases included; then one list item per Case and sub-case with its id
+      and name, the Estimate that checks it and one line on what that Estimate checks, and under the item
+      its ledger lines in an untagged fence, as the file holds them.
+
+      **＋** When the `context` of a Case says that another Case of the session should change instead,
+      the item of that Case in the summary carries a line `**Other Case:**` that names the other Case
+      and the change it needs.
+
+      **＋** Sent findings by the hook on the file, or asked for a change by a message, it changes the
+      file by `Edit` of the lines that change and answers with the summary again; sent a finding on its
+      summary alone, it answers with the summary again and leaves the file as it stands; asked by a message
+      that opens a fork, it answers with a round.
+
+      **＋** Asked, by a message or by a finding of `/pre-spec`, for a fix that adds a second behaviour
+      with a promise of its own to a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`
+      and no sub-cases, it builds that behaviour as a new top-level Case beside it, in its own file and
+      with no `{supersedes:case N}` mark. The number of the new Case is one above the highest number of
+      the files under `raw/<date>/<hi HHMM>/cases/` and of the decision lines of that ledger, or the free
+      number that the guard of `guppi/ratified.py` names when it refuses that number. The ratified Case
+      and its file stay as they are, and its summary names the new Case.
+
+      **＋** A pair of that new Case whose sentence the ratified Case changed takes that sentence as the
+      ratified Case leaves it.
+
+      **＋** A round may come at the first answer on an item, after a message on a Case it built, and in
+      Work Mode when a ratified Case is built again.
+
+      **＋** It runs on `model: opus` with `effort: medium`, the tools Read, Grep, Glob, Write and Edit,
+      and `permissionMode: auto`, so it writes its file with no prompt while the session is in Plan Mode.
+
+      **＋** Sent the drop of its Case, which has no decision line in `raw/<date>/<hi HHMM>/ledger.md`,
+      it writes empty text into the file of that Case by `Write` and answers with a first line `**Dropped:**`
+      and the path of the file, and nothing else. A file of its own that it leaves behind, when it builds
+      the Case again under another number, it empties the same way only when that Case has no decision
+      line in that ledger.
+
+      **＋** Sent the drop of a change to its Case, which has a decision line in `raw/<date>/<hi HHMM>/ledger.md`
+      and which it changed after the Case was last ratified, it undoes by `Edit` each edit it made since
+      then in every section but `recommend`. `recommend` keeps its items and gains one item `**Change**`:
+      its `Asked:` line says that the person dropped the change, and its `Taken:` line says that the Case
+      went back to its ratified form. It answers with the summary again, so that the check of `rule-case-check`
+      finds an item for each question of its rounds.
+
+      **－** A fix that changes what the ratified Case already set is not built beside it: `case-guppi`
+      builds the Case again under a new number, as `vault/wiki/case-schema.md` sets it.
+
+      **－** The `**Case:**` line is no Markdown heading, so the hook of `rule-case-check` does not read
+      the summary as a Case.
+
+      **－** It does not write the whole Case again to fix a finding, make a change or undo a change.
+
+      **－** A later round on the item, a round after a message on a Case it built and a round in Work
+      Mode carry no context.
+
+      **－** The context carries no Case heading, so the hook of `rule-case-check` neither checks nor stores
+      the round as a Case; it judges only the form of the questions of the round, not its context.
+
+      **－** It writes no file but the file of its Case, the file it leaves behind under an earlier number
+      of the same Case, and the file of a new Case it builds beside a ratified Case, and no ledger line.
+
+      **－** It empties no file of a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`,
+      the file it leaves behind when it builds that Case again under a new number included: sent the drop
+      of such a Case that it did not change after the Case was last ratified, it answers under a first
+      line `**Fact:**` that the Case is ratified, and the file stands.'
+    context: 'The ledger only grows. A Case ratified in the session keeps its decision lines under its
+      number, so a ratified Case with no sub-cases cannot become a parent under that number. The `## Splitting`
+      section of `vault/wiki/case-schema.md` sends a Case built again in another shape to a new number
+      whose decision lines carry `{supersedes:case N}` (cases 610.1, 671.1). At the `/pre-spec` of session
+      1804, finding F6 asked ratified Case 713 to replace one more Criterion. Its `case-guppi` split 713
+      into 713.1 and 713.2 under the old number, then built Case 719 to supersede it, and the check of
+      the Case file refused 719 (ledger lines 27 and 28 of that session, `lesson-case-build-splits-a-ratified-leaf-case`).
+      Case 722.1 of this session sets the fix of the stale store entries behind that refusal. A second
+      cause stands: `other_blocks` of `guppi/casecheck.py` leaves out only a Case that a mark of the session''s
+      ledger names. A mark reaches the ledger only when the new build is ratified, so a new build is compared
+      with the first build while it stands in the plan. The pairs of the first build are applied first,
+      and the new build''s old texts then miss. The `recommend` of Case 722 records the same refusal.
+      The rule of `case-guppi` also contradicts itself. One sentence tells it to empty a file it leaves
+      behind under another number. Another sentence says that it empties no file of a Case with a decision
+      line. `rule-orchestration` says that such a file is never emptied (case 701.4). This session the
+      file of ratified Case 722 was emptied that way and written back.
+
+
+      Case 725.1 has `case-guppi` build a second behaviour as a Case of its own beside the ratified Case,
+      with no mark, and empty a file left behind only when its Case has no decision line. It replaces
+      the Criterion of `estimate-case-build-writes-the-case` whole. That Criterion held more than seven
+      lines before this Case and is carried whole but for four lines that this Case changes. Those are
+      the third `when` line, which adds a finding of `/pre-spec`; the line on the drop of a Case, whose
+      file left behind is now emptied only with no decision line; the line on the files `case-guppi` writes,
+      which adds the file of a new Case; and the line on the files it never empties, which now names the
+      file left behind. Its `purpose` and `method` do not state the changed lines and stand. A Grep of
+      `under another number` over `vault/wiki/` and `.claude/` printed `vault/wiki/rules/rule-case-build.md`,
+      `vault/wiki/estimates/estimate-case-build-writes-the-case.md` and `.claude/agents/case-guppi.md`,
+      its Render, and each enters this Case. The `## Splitting` section of `rule-case-protocol` stays
+      true: it sets the path for a fix that changes what a ratified Case already set. It is not changed
+      here, since Case 722.3 of this session puts `rule-case-protocol` off, and `/pre-spec` reports a
+      Case that changes a page another Case of the plan puts off (case 186.2). `vault/wiki/orchestration.md`
+      says the main agent dispatches `case-guppi` with the Case id. A new Case whose number `case-guppi`
+      picks stands beside that, as a number the check gives does (case 610.1).
+
+
+      Case 725.2 makes the check leave out a Case that a mark on a decision line of the answer''s own
+      file names. A Grep of `other_blocks\(` over `guppi/` printed `guppi/casecheck.py` alone. Case 722.1
+      replaces the Criterion of `estimate-case-check-sends-back-a-clash-with-another-case` whole and rewrites
+      a clause of the Purpose of `rule-case-check`. So Case 725.2 creates its own Estimate and adds its
+      clause to the end of the sentence of that Purpose whose start 722.1 rewrites. The two new texts
+      fit side by side. The text of 722.1 names the Cases the check leaves aside: a dropped Case and a
+      stored Case that the file of its top-level Case no longer holds. The clause of 725.2 comes after
+      the end of that sentence, which 722.1 leaves as it stands, and it adds a Case that a mark of the
+      file itself names. The first `then` line of Case 722.1 says that each Case of the plan file is judged,
+      and its exceptions list only the marks of the ledger. Case 722.1 should add to that exception a
+      Case that a mark on a decision line of the answer''s own file names. The Criterion of `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+      leaves out a Case that any mark names, and stands.'
+  parent: decision-case-725
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '725.2'
+  decision: decision-case-725.2
+  origin: raw/2026-10-07/2114/ledger.md#case-725.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-check
+    ref: rule-case-check
+  - kind: create
+    category: estimates
+    slug: estimate-case-check-leaves-out-a-case-the-file-supersedes
+    ref: rule-case-check
+  tags:
+  - hooks
+  - harness
+  - workflow
+  case_text:
+    given: '`rule-case-check`: the rule of the check of the file of a Case, whose Purpose says which Cases
+      the check compares.
+
+      **＋** `estimate-case-check-leaves-out-a-case-the-file-supersedes`: the new check of this exception.
+
+      **＋** `guppi/casecheck.py`: `other_blocks`, which picks the other Cases of the session, and `ratification_records`,
+      which reads the decision lines of the answer; it imports `check_same_target` and `check_pairs` of
+      `guppi/prespec.py`.
+
+      **＋** `tests/test_casecheck.py`: the tests of a clash with another Case.
+
+      **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the file of a Case.
+
+      **＋** `raw/<date>/<hi HHMM>/ledger.md` and `rule-spec-write`: the ledger whose marks retire a Case,
+      and the hook that removes a retired Case from the plan file at ratification.
+
+      **＋** `raw/2026-10-07/2114/cases/case-722.md`: Case 722.1, which changes the Purpose of `rule-case-check`
+      and the Criterion of its clash check.'
+    when: '`SubagentStop` fires when `case-guppi` answers with a Case whose file `raw/<date>/<hi HHMM>/cases/case-<N>.md`
+      holds a decision line that carries `{supersedes:case M}`, and `uv run guppi casecheck --subagent`
+      reads the Cases of the answer, the plan file of the session, `<plan>.checked.json` beside it and
+      the session''s `raw/<date>/<hi HHMM>/ledger.md`, while the plan file or the store holds Case M.
+
+      **＋** Or `tests/test_casecheck.py` runs it over a made-up file, plan file, store and ledger.'
+    then: 'The hook leaves Case M and its sub-cases out of the other Cases of the session, by `other_blocks`
+      of `guppi/casecheck.py`, as it leaves out a Case that a mark of the session''s ledger names; a mark
+      on a sub-case leaves out that sub-case alone.
+
+      **＋** Case M is not judged with the Cases of the answer by `check_same_target` of `guppi/prespec.py`,
+      and its pairs are not applied before theirs by `check_pairs`, so a Case built again under a new
+      number gets no clash and no pair finding from the build it replaces while that build stands in the
+      plan file or the store.
+
+      **＋** The marks are read from the decision lines of the `ratification` fences of the answer by `ratification_records`
+      of `guppi/casecheck.py`, the one reading of those lines in the hook.
+
+      **＋** A clash or a pair finding with any other Case of the session stays a finding.
+
+      **－** The mark removes nothing from the plan file or the store: the `Stop` hook of `rule-spec-write`
+      removes Case M only when the Case that carries the mark is ratified.
+
+      **－** The findings on a Case ratified in the session and built again under its old number, in another
+      shape or without a target, still read the decision lines of the session''s ledger.'
+    context: 'The ledger only grows. A Case ratified in the session keeps its decision lines under its
+      number, so a ratified Case with no sub-cases cannot become a parent under that number. The `## Splitting`
+      section of `vault/wiki/case-schema.md` sends a Case built again in another shape to a new number
+      whose decision lines carry `{supersedes:case N}` (cases 610.1, 671.1). At the `/pre-spec` of session
+      1804, finding F6 asked ratified Case 713 to replace one more Criterion. Its `case-guppi` split 713
+      into 713.1 and 713.2 under the old number, then built Case 719 to supersede it, and the check of
+      the Case file refused 719 (ledger lines 27 and 28 of that session, `lesson-case-build-splits-a-ratified-leaf-case`).
+      Case 722.1 of this session sets the fix of the stale store entries behind that refusal. A second
+      cause stands: `other_blocks` of `guppi/casecheck.py` leaves out only a Case that a mark of the session''s
+      ledger names. A mark reaches the ledger only when the new build is ratified, so a new build is compared
+      with the first build while it stands in the plan. The pairs of the first build are applied first,
+      and the new build''s old texts then miss. The `recommend` of Case 722 records the same refusal.
+      The rule of `case-guppi` also contradicts itself. One sentence tells it to empty a file it leaves
+      behind under another number. Another sentence says that it empties no file of a Case with a decision
+      line. `rule-orchestration` says that such a file is never emptied (case 701.4). This session the
+      file of ratified Case 722 was emptied that way and written back.
+
+
+      Case 725.1 has `case-guppi` build a second behaviour as a Case of its own beside the ratified Case,
+      with no mark, and empty a file left behind only when its Case has no decision line. It replaces
+      the Criterion of `estimate-case-build-writes-the-case` whole. That Criterion held more than seven
+      lines before this Case and is carried whole but for four lines that this Case changes. Those are
+      the third `when` line, which adds a finding of `/pre-spec`; the line on the drop of a Case, whose
+      file left behind is now emptied only with no decision line; the line on the files `case-guppi` writes,
+      which adds the file of a new Case; and the line on the files it never empties, which now names the
+      file left behind. Its `purpose` and `method` do not state the changed lines and stand. A Grep of
+      `under another number` over `vault/wiki/` and `.claude/` printed `vault/wiki/rules/rule-case-build.md`,
+      `vault/wiki/estimates/estimate-case-build-writes-the-case.md` and `.claude/agents/case-guppi.md`,
+      its Render, and each enters this Case. The `## Splitting` section of `rule-case-protocol` stays
+      true: it sets the path for a fix that changes what a ratified Case already set. It is not changed
+      here, since Case 722.3 of this session puts `rule-case-protocol` off, and `/pre-spec` reports a
+      Case that changes a page another Case of the plan puts off (case 186.2). `vault/wiki/orchestration.md`
+      says the main agent dispatches `case-guppi` with the Case id. A new Case whose number `case-guppi`
+      picks stands beside that, as a number the check gives does (case 610.1).
+
+
+      Case 725.2 makes the check leave out a Case that a mark on a decision line of the answer''s own
+      file names. A Grep of `other_blocks\(` over `guppi/` printed `guppi/casecheck.py` alone. Case 722.1
+      replaces the Criterion of `estimate-case-check-sends-back-a-clash-with-another-case` whole and rewrites
+      a clause of the Purpose of `rule-case-check`. So Case 725.2 creates its own Estimate and adds its
+      clause to the end of the sentence of that Purpose whose start 722.1 rewrites. The two new texts
+      fit side by side. The text of 722.1 names the Cases the check leaves aside: a dropped Case and a
+      stored Case that the file of its top-level Case no longer holds. The clause of 725.2 comes after
+      the end of that sentence, which 722.1 leaves as it stands, and it adds a Case that a mark of the
+      file itself names. The first `then` line of Case 722.1 says that each Case of the plan file is judged,
+      and its exceptions list only the marks of the ledger. Case 722.1 should add to that exception a
+      Case that a mark on a decision line of the answer''s own file names. The Criterion of `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+      leaves out a Case that any mark names, and stands.'
+  parent: decision-case-725
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '726.1'
+  decision: decision-case-726.1
+  origin: raw/2026-10-07/2114/ledger.md#case-726.1
+  targets:
+  - kind: create
+    category: estimates
+    slug: estimate-prespec-notes-a-page-another-case-defers
+    ref: rule-prespec
+  tags:
+  - session
+  - workflow
+  - harness
+  case_text:
+    given: '`estimate-prespec-notes-a-page-another-case-defers`: the new check of this note.
+
+      **＋** `rule-prespec`: the rule of `/pre-spec`, whose check prints the notes.
+
+      **＋** `guppi/prespec.py`: `plan_findings`, which gathers the notes of `--check`, and the module
+      docstring, which says what the check compares.
+
+      **＋** `tests/test_prespec.py`: the tests of the check on a made-up plan.
+
+      **＋** `rule-prespec-hook`: the `ExitPlanMode` hook, which a note does not block.
+
+      **＋** `guppi/casecheck.py`: the check of the file of a Case, which imports other notes of `guppi/prespec.py`.'
+    when: '`uv run guppi prespec --check` reads the plan file of the session, where the `then` block of
+      one Case holds a `defer` item of a page and the `then` block of another top-level Case holds a `create`,
+      `update` or `delete` item of the same page.
+
+      **＋** Or `tests/test_prespec.py` runs it over a made-up plan.'
+    then: 'The check prints one line that opens with `note:` for each page and pair of Cases, and it names
+      the Case that changes the page, the page and the Case that puts it off.
+
+      **＋** A short Case under `## Deferred` of the plan file counts as a Case that puts the page off.
+
+      **＋** The note is no finding: it does not change the exit code, and the hook of `rule-prespec-hook`
+      does not block the exit from Plan Mode on it.
+
+      **＋** The agent answers the note in one line in the chat, and the person may change a Case or keep
+      the pair.
+
+      **－** A Case and its sub-cases are one Case here: a change and a defer of one page inside one top-level
+      Case give no note.
+
+      **－** A page that only `defer` items name gives no note.
+
+      **－** The check of the file of a Case by `guppi/casecheck.py` prints no such note.'
+    context: 'At `/pre-spec` one `ask-guppi` agent reads the plan once, at the first run of the session.
+      The Render of `rule-prespec` tells it that a Case of the plan that changes a page another Case of
+      the plan defers is a finding (case 186.2). A later run dispatches no `ask-guppi`, and `guppi prespec
+      --check` has no such check. At the `/pre-spec` of session 1804 the person put off Cases 720 and
+      721 during the loop, after the one `ask-guppi` run, as the handoff of that session records. Case
+      721 put off `rule-orchestration` and `rule-case-protocol`, which Cases 713 and 717.1 of the same
+      plan update, and nothing reported the pair. The handoff told the librarian to apply the updates
+      and let the defer add `deferred_by`, so the pair did no harm there. In this session Case 722.3 updates
+      `rule-case-protocol` and puts it off again in the same sub-case, on purpose.
+
+
+      Case 726.1 makes `guppi prespec --check` print a `note:` line for such a pair at every run, a change
+      and a defer inside one top-level Case aside. A note sets no exit code, so the hook of `rule-prespec-hook`
+      does not block the exit on it. `split_cases` of `guppi/materialize.py` reads every Case heading
+      of the plan, so a short Case under `## Deferred` is read too. The note is printed by `plan_findings`
+      of `guppi/prespec.py` alone. `guppi/casecheck.py` imports `promise_notes`, not the new judgment,
+      so the check of the file of a Case prints no such note. With the one exception, the plan of this
+      session gives no such note: 722.3 holds both its change and its defer. Case 726.1 creates its own
+      Estimate. `estimate-prespec-notes-a-long-chain` checks another note, and `estimate-prespec-hook-gates`
+      says only that a `note:` line does not block; its Criterion stands.
+
+
+      Case 726.2 takes the pair off the list of what `ask-guppi` judges. It rewrites the sentence of the
+      Render of `rule-prespec`, and it replaces whole the Criterion of `estimate-prespec-reconciles`,
+      whose last line says the pair is still a finding. That Criterion is carried whole but for that line,
+      which the check of this file notes as not carried. The same check notes that the dispatch line of
+      726.2 shares most of the words of two `then` lines of 726.1. All three lines speak of `## Deferred`
+      and of `defer` items, but the dispatch line sets what `ask-guppi` reads and the two lines set what
+      the script notes, so they stay as they are. Its `method` reads the new Render against the Criterion
+      and does not state the old promise, so it stands; the page has no `purpose` field. The dispatch
+      keeps the instruction that `ask-guppi` reads the slugs of the `defer` items of a Case under `##
+      Deferred`, since its first question still asks whether the Cases contradict each other. A Grep of
+      `another Case of (this|the) plan defers` over `vault/wiki/` printed `vault/wiki/rules/rule-prespec.md`
+      and `vault/wiki/estimates/estimate-prespec-reconciles.md`, and over `.claude/` it printed `.claude/skills/pre-spec/SKILL.md`,
+      the Render of `rule-prespec`. Each enters this Case. The `context` of Case 722 and of Case 725 of
+      this session say that `/pre-spec` calls such a pair a finding. They stand: they give the reason
+      for a choice made under the rule as it stood, and a note still shows such a pair.'
+  parent: decision-case-726
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '726.2'
+  decision: decision-case-726.2
+  origin: raw/2026-10-07/2114/ledger.md#case-726.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-reconciles
+    ref: rule-prespec
+  tags: []
+  case_text:
+    given: '`rule-prespec`: its Render sets what `ask-guppi` judges at `/pre-spec`.
+
+      **＋** `.claude/skills/pre-spec/SKILL.md`: the file rendered from `rule-prespec`.
+
+      **＋** `estimate-prespec-reconciles`: its Criterion is replaced whole.
+
+      **＋** `rule-ask` and `.claude/agents/ask-guppi.md`: the agent dispatched at the first run, and its
+      rendered file.
+
+      **＋** `rule-spec-write` and `vault/raw/<date>/<hi HHMM>/frontier.md`: the hook that writes a Case
+      built again into the plan, and the Frontier of the session.
+
+      **＋** `rule-skill-hi`: the rule that sets the title line of a plan that names a conserved Spec.
+
+      **＋** `estimate-prespec-notes-a-page-another-case-defers`: the check of the note that now holds
+      the pair.'
+    when: The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved, with
+      `.claude/skills/pre-spec/SKILL.md` rendered from `rule-prespec` and `.claude/agents/ask-guppi.md`
+      rendered from `rule-ask`.
+    then: 'The agent runs `uv run guppi prespec --check` on the plan file with `--session <id>`, the eight-character
+      id of the `hi:` line, and reads the first line of the output before the exit code — "no hi recorded
+      for session …; nothing checked" means the wrong value; nothing is translated before the run.
+
+      **＋** A finding in a Case — in its prose or in its body, a wrong fact of its `context` included
+      — goes to the `case-guppi` of that Case by `SendMessage`; its new answer is shown and ratified again,
+      and the hook of `rule-spec-write` writes it into the plan; the agent does not edit the text of a
+      Case in the plan file.
+
+      **＋** A finding in `vault/raw/<date>/<hi HHMM>/frontier.md` or in a line of the session''s ledger
+      is fixed there, and the command runs again until it prints no finding.
+
+      **＋** At the first run of `/pre-spec` in the session, the agent dispatches one `ask-guppi` over
+      the plan, or over the conserved Spec that the plan''s title line names, as `rule-skill-hi` sets
+      that line, with the absolute path of the plan file, the instruction to judge every Case outside
+      `## Deferred` with its sub-cases, and the instruction to read for each such Case its `context`,
+      `when`, `then` and `then` block and, for an `update` of a rule or an entity, the page''s `estimates`;
+      of a Case under `## Deferred` it reads only the slugs of its `defer` items.
+
+      **＋** Three questions: which decisions contradict a page of the vault, a rule of the vault, or each
+      other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact
+      of a `context` — a page''s status, a count, a case number, a claim that no page holds a thing —
+      the vault does not bear out.
+
+      **＋** The agent answers the findings with one report before any Case is sent back: the list of what
+      the `ask-guppi` run did not check; each finding numbered, with the fix it proposes or why it is
+      already known, the findings that need the person apart from those that do not, and the decisions
+      it needs from the person; after the Cases built again on the findings are ratified, it does not
+      call `/pre-spec` again, but runs the check, fixes what it prints, and exits Plan Mode when the check
+      prints no finding.
+
+      **＋** `guppi gate` writes the stamped `prespec` line on the Skill call.
+
+      **－** No second `ask-guppi` is dispatched at the first run, and a later run of `/pre-spec` in the
+      session dispatches none.
+
+      **－** The report never says that the whole Spec is checked.
+
+      **－** The agent writes no list of the decisions: the plan is the list.
+
+      **－** The body of a deferred decision is not read, and `ask-guppi` is not asked whether a Case changes
+      a page that another Case of the plan defers: `uv run guppi prespec --check` notes such a pair at
+      every run, as `estimate-prespec-notes-a-page-another-case-defers` sets it.'
+    context: 'At `/pre-spec` one `ask-guppi` agent reads the plan once, at the first run of the session.
+      The Render of `rule-prespec` tells it that a Case of the plan that changes a page another Case of
+      the plan defers is a finding (case 186.2). A later run dispatches no `ask-guppi`, and `guppi prespec
+      --check` has no such check. At the `/pre-spec` of session 1804 the person put off Cases 720 and
+      721 during the loop, after the one `ask-guppi` run, as the handoff of that session records. Case
+      721 put off `rule-orchestration` and `rule-case-protocol`, which Cases 713 and 717.1 of the same
+      plan update, and nothing reported the pair. The handoff told the librarian to apply the updates
+      and let the defer add `deferred_by`, so the pair did no harm there. In this session Case 722.3 updates
+      `rule-case-protocol` and puts it off again in the same sub-case, on purpose.
+
+
+      Case 726.1 makes `guppi prespec --check` print a `note:` line for such a pair at every run, a change
+      and a defer inside one top-level Case aside. A note sets no exit code, so the hook of `rule-prespec-hook`
+      does not block the exit on it. `split_cases` of `guppi/materialize.py` reads every Case heading
+      of the plan, so a short Case under `## Deferred` is read too. The note is printed by `plan_findings`
+      of `guppi/prespec.py` alone. `guppi/casecheck.py` imports `promise_notes`, not the new judgment,
+      so the check of the file of a Case prints no such note. With the one exception, the plan of this
+      session gives no such note: 722.3 holds both its change and its defer. Case 726.1 creates its own
+      Estimate. `estimate-prespec-notes-a-long-chain` checks another note, and `estimate-prespec-hook-gates`
+      says only that a `note:` line does not block; its Criterion stands.
+
+
+      Case 726.2 takes the pair off the list of what `ask-guppi` judges. It rewrites the sentence of the
+      Render of `rule-prespec`, and it replaces whole the Criterion of `estimate-prespec-reconciles`,
+      whose last line says the pair is still a finding. That Criterion is carried whole but for that line,
+      which the check of this file notes as not carried. The same check notes that the dispatch line of
+      726.2 shares most of the words of two `then` lines of 726.1. All three lines speak of `## Deferred`
+      and of `defer` items, but the dispatch line sets what `ask-guppi` reads and the two lines set what
+      the script notes, so they stay as they are. Its `method` reads the new Render against the Criterion
+      and does not state the old promise, so it stands; the page has no `purpose` field. The dispatch
+      keeps the instruction that `ask-guppi` reads the slugs of the `defer` items of a Case under `##
+      Deferred`, since its first question still asks whether the Cases contradict each other. A Grep of
+      `another Case of (this|the) plan defers` over `vault/wiki/` printed `vault/wiki/rules/rule-prespec.md`
+      and `vault/wiki/estimates/estimate-prespec-reconciles.md`, and over `.claude/` it printed `.claude/skills/pre-spec/SKILL.md`,
+      the Render of `rule-prespec`. Each enters this Case. The `context` of Case 722 and of Case 725 of
+      this session say that `/pre-spec` calls such a pair a finding. They stand: they give the reason
+      for a choice made under the rule as it stood, and a note still shows such a pair.'
+  parent: decision-case-726
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '722'
+  decision: decision-case-722
+  origin: raw/2026-10-07/2114/ledger.md#case-722
+  children:
+  - decision-case-722.1
+  - decision-case-722.2
+  - decision-case-722.3
+  tags: []
+  case_text:
+    context: 'The check that runs when `case-guppi` stops saves the text of each Case it checks in a store,
+      `<plan>.checked.json`, beside the plan file of the session. It compares a new Case with the other
+      Cases of the session: those of the plan and those that only the store holds. Today a stored entry
+      leaves that comparison only when it has findings, when its top-level Case file is empty, or when
+      a `{supersedes:case N}` mark of the ledger names it. At the pre-spec of session 1804, Case 713 was
+      built as 713.1 and 713.2 and then whole again. The store kept the two sub-cases, and the check refused
+      the showing of Case 719 twice on clashes that only they held (`lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped`,
+      Case 720). `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line` shows the same root on
+      the side of the plan. When a later Case retires each sub-case of a parent, the Spec hook of `rule-spec-write`
+      removes only the sub-cases that the marks name, by `remove_superseded` of `guppi/ratified.py`. So
+      the heading and the story of the parent stay in the plan and in `spec.md` with no sub-case under
+      them. The check of `/pre-spec` that once reported such a parent, `check_ratified` in `lesson-prespec-parent-of-superseded-sub-cases`,
+      is gone: the docstring of `guppi/prespec.py` says the plan is compared with no other file since
+      case 445.2. `retired_whole` of `guppi/prespec.py` already judges a parent retired sub-case by sub-case,
+      for `guppi/onward.py` (case 696.1).
+
+
+      Case 722.1 leaves out of the comparison a stored Case whose top-level file stands, holds text and
+      holds no heading of its id. The entry stays in the store, and the test stands beside the test for
+      a dropped Case of case 701.7. The two leftover entries 713.1 and 713.2 of `adaptive-gathering-dewdrop.checked.json`
+      stay. A Grep of `store_of|read_store\(|STORE_SUFFIX` over `guppi/` printed `guppi/ledger.py`, `guppi/casecheck.py`
+      and `guppi/ratified.py`. Each of them reads the store of the plan file that `plan_path` gives for
+      the current session, so no later session reads that store. Case 722.2 makes the Spec hook remove
+      a parent whose every sub-case with a decision line is retired, by `retired_whole`. Case 722.3 fixes
+      the sentence of the `## Splitting` section of `rule-case-protocol` that says a mark on a sub-case
+      removes that sub-case alone. Case 722.3 carries `{supersedes:case 721}`, since `rule-case-protocol`
+      holds `decision-case-721` in `deferred_by` and the check of `rule-case-check` requires that mark
+      (case 467). Case 722.1 carries `{supersedes:case 720}` for `rule-case-check` for the same reason.
+      `generate` clears a defer only from the pages that the superseding Case names (case 467.3, the docstring
+      of `guppi/generate.py`). So `rule-orchestration` keeps `decision-case-721`, and Frontier item C4
+      can still take it up with the same mark. `decision-case-721` also held a fault of `rule-case-protocol`:
+      a Frontier line closed again by the superseding Case does not hold for a sprint or backlog item
+      whose Case is taken back. This Case does not fix that fault, so Case 722.3 puts `rule-case-protocol`
+      off again for it. The skill `/pre-spec` calls it a finding when a Case of the plan changes a page
+      that another Case of the plan defers (case 186.2). Here the update and the defer stand in the same
+      sub-case.
+
+
+      Case 722.1 replaces the Criterion of `estimate-case-check-sends-back-a-clash-with-another-case`
+      and sets its `purpose` anew, since the purpose lists what is no other Case. `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+      speaks of the same `other_blocks`. Its Criterion stands: it takes the other Cases from `other_blocks`,
+      its list of what that function leaves out is not closed, and its promise is the order of the pairs.
+      Case 722.2 replaces the Criterion of `estimate-spec-write-removes-a-superseded-case`, whose line
+      on a sub-case mark said the parent stays. Its `purpose` and `method` do not state that line and
+      stand. Case 722.3 changes a Render. `estimate-spec-write-removes-a-superseded-case` checks the behaviour
+      that the changed sentence describes, and `estimate-case-protocol-loaded` checks the render (case
+      378.5). A Grep of `sub-case alone|removes that sub-case|its parent and its other sub-cases` over
+      `vault/wiki/` printed `case-schema.md`, `rules/rule-case-protocol.md`, `estimates/estimate-spec-write-removes-a-superseded-case.md`
+      and `estimates/estimate-materialize-marks-superseded.md`. The last one stands: it says how `guppi
+      materialize` marks the entries of a superseded sub-case, and a parent with no decision line of its
+      own has no entry. A Grep of `(removes|leaves the Spec|leaves the plan|out of the plan|from the plan)`
+      over `vault/wiki/orchestration.md` and `vault/wiki/rules/rule-orchestration.md` printed the sentence
+      on a Case taken back in both files. It says that the line of the item changes when no part of the
+      Case stays in the plan. That sentence stays true and now also holds when the marks retire each sub-case.
+      The insight and the two lessons are not changed by this Case.
+
+
+      Case 725.2 of this session makes the same check leave out a Case that a `{supersedes:case N}` mark
+      on a decision line of the answer''s own file names, under its own Estimate `estimate-case-check-leaves-out-a-case-the-file-supersedes`.
+      So the Criterion that Case 722.1 writes, and the `purpose` it sets, name such a Case only as a Case
+      left out as that Estimate sets, a pointer and no promise of their own, so that one promise is signed
+      in one wording (cases 72.1, 188).
+
+
+      `retired_whole` takes the parent out of the sub-cases it judges and does not read the decision lines
+      of the parent itself, and a parent may hold a decision line of its own, such as the `create` of
+      a rule whose promises are its sub-cases. So Case 722.2 removes a parent only when it also holds
+      no decision line of its own that no mark retires; otherwise its line would stay with no heading
+      in the plan, which `prespec --check` reports. `estimate-prespec-catches-a-superseded-case` says
+      that a `{supersedes:case N.M}` covers Case N.M and its own sub-cases, and that the parent with its
+      other sub-cases stays. Its Criterion stands: it says which Cases a mark covers in the findings of
+      `prespec --check`, and the mark still covers no parent. The Spec hook removes the parent by another
+      judgment, and a parent no longer in the plan gives `prespec --check` no finding, since the parent
+      carries no decision line that stays unretired. The clause that Case 725.2 adds to the Purpose of
+      `rule-case-check` follows the end of the sentence whose start Case 722.1 rewrites, and the two new
+      texts read side by side as one sentence.'
+    problem: A part of a Case that a later build or a later Case left behind stays live. The store of
+      the Case-file check keeps a sub-case that a Case built again no longer holds, and it clashes with
+      the Cases that come after it. The Spec hook keeps a parent whose every sub-case is retired, and
+      the schema says that a mark on a sub-case removes that sub-case alone.
+    recommend: "- **The two leftover entries of last session**\n  - Recommended: (a) leave them; nothing\
+      \ reads that store any more.\n  - Answer: agreed, (a).\n- **How the check leaves out a sub-case\
+      \ its rebuilt Case no longer holds**\n  - Recommended: (a) leave it out when reading: the check\
+      \ leaves out each stored entry whose top-level Case file stands and holds no section under its id;\
+      \ nothing is deleted.\n  - Answer: agreed, (a).\n- **The pre-spec half of the same pattern**\n \
+      \ - Recommended: (a) this Case covers the store only.\n  - Answer: (b), a second sub-case for the\
+      \ pre-spec half too. The frame then showed that `/pre-spec` no longer reports such a parent, and\
+      \ the question \"Where the pre-spec half is fixed\" replaced this one.\n- **What checks that it\
+      \ works**\n  - Recommended: (a) replace the Criterion of `estimate-case-check-sends-back-a-clash-with-another-case`\
+      \ with one more exception line.\n  - Answer: agreed, (a).\n- **Where the pre-spec half is fixed**\n\
+      \  - Recommended: (a) the Spec hook removes a parent whose every sub-case is retired, by `retired_whole`;\
+      \ the second sub-case changes `rule-spec-write`.\n  - Answer: agreed, (a).\n- **The sentence of\
+      \ the Case schema that the second sub-case makes false**\n  - Recommended: (a) leave the sentence\
+      \ to the waiting item on the defers of Case 713.\n  - Answer: (b), fix the sentence in this Case,\
+      \ in a third sub-case that carries the mark of the put-off decision.\n- **The other fault put off\
+      \ on `rule-case-protocol`**\n  - Recommended: (b) put the page off again for that fault, by a new\
+      \ defer line in this Case.\n  - Answer: (b).\n- **How the new build gets past the check while the\
+      \ first build stands in the plan**\n  - Recommended: (a) the main agent first takes back the first\
+      \ build by a short Case, and the new build is shown after it.\n  - Answer: neither option as such.\
+      \ The person agreed with the main agent's proposal: this Case stays as first ratified, its put-off\
+      \ line included, and Case 723 does not touch the sentence on a Frontier line closed again by the\
+      \ superseding Case.\n- **Change**\n  - Asked: the person dropped the change that built this Case\
+      \ again without the put-off line of Case 722.3.\n  - Taken: the Case went back to its ratified form;\
+      \ the build under the number 724 was emptied.\n- **Change**\n  - Asked: the person had Case 722.1\
+      \ built again, so that its Criterion also leaves out a Case that a supersedes mark on a decision\
+      \ line of the answer's own file names, as Case 725.2 sets it.\n  - Taken: the exception line of\
+      \ 722.1 on marks now names a mark of the answer's own file beside a mark of the session's ledger;\
+      \ the number and the ledger lines of Case 722 stay.\n- **Change**\n  - Asked: at `/pre-spec`, the\
+      \ person agreed that 722.1 names a Case that a mark of the answer's own file names only as a pointer\
+      \ to `estimate-case-check-leaves-out-a-case-the-file-supersedes`, in its Criterion and its `purpose`,\
+      \ and the findings asked that a parent with a decision line of its own is not removed and that `context`\
+      \ names `estimate-prespec-catches-a-superseded-case`.\n  - Taken: the exception line and the `purpose`\
+      \ of 722.1 point to that Estimate; 722.2 and 722.3 remove a parent only when no line of its own\
+      \ stays unretired, with a new exception line and test; `context` says why the Criterion of `estimate-prespec-catches-a-superseded-case`\
+      \ stands."
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '723'
+  decision: decision-case-723
+  origin: raw/2026-10-07/2114/ledger.md#case-723
+  children:
+  - decision-case-723.1
+  - decision-case-723.2
+  - decision-case-723.3
+  tags: []
+  case_text:
+    context: 'In Plan Mode the person can take back a Case already ratified in the session. The main agent
+      then writes a short put-off Case of its own, whose `defer` lines carry `{supersedes:case N}` and
+      so retire the Case. It closes the Frontier line of the item by the closer of its source: `[-] …
+      · sprint · defer` for a sprint item, `[-] … · backlog · kept` for a backlog item, and `[-] … · defer
+      case M` for any other source. Case 713 of session 1804 set this in the Render of `rule-orchestration`.
+      The pre-spec of that session found faults F2–F6 in it, and Case 721 put `rule-orchestration` and
+      `rule-case-protocol` off for them. F2: the short-form paragraph, which the take-back reply follows,
+      names only the closer `[-] … · defer case N`, which `guppi/prespec.py` reports after the source
+      `sprint` or `backlog`. F3: one sentence says both that the `defer` lines of a take-back add to the
+      source of a backlog item and that its source stays as it is. F4: a take-back of a Case whose only
+      targets are existing Estimates leaves nothing in `backlog.md`, since `guppi/generate.py` marks `deferred_by`
+      only on rule, entity and insight pages. F5: `rule-case-protocol` says that a Frontier line is closed
+      again by the superseding Case, which a sprint or backlog closer does not name. F6: the Criterion
+      of `estimate-orchestration-defers-in-one-reply` says that a sprint or backlog item takes no short
+      Case.
+
+
+      Case 723.1 fixes F2, F3 and F4 in the Render of `rule-orchestration` and replaces the Criterion
+      of `estimate-orchestration-takes-back-a-ratified-case` whole, so that the take-back stands whole
+      in this Case. It carries `{supersedes:case 713}`, which sets `decision-case-713` `superseded`, and
+      `{supersedes:case 721}`, since `rule-orchestration` holds `decision-case-721` in `deferred_by` and
+      `generate` clears a defer only from the pages the superseding Case names (case 467.3). The new Criterion
+      rewords four lines of the old one on purpose. The `defer` line also names the page each updated
+      Estimate checks. The line on the `context` of the short Case and the line on the person''s words
+      stand as one line. The line on the end of the reply names the closer of the source. Case 723.2 fixes
+      F6: the last `－` line of the Criterion of `estimate-orchestration-defers-in-one-reply` is reworded
+      on purpose to add the take-back as an exception, and Case 723.3 rewords the line of `estimate-hi-writes-frontier`
+      on an item closed `defer` or `kept` in the same way. F5 stays: Case 722.3 of this session puts `rule-case-protocol`
+      off again for that sentence, and a mark that retired 722.3 would remove its fix of the same page
+      from the plan. The frame showed the same fault as F6 in `rule-skill-hi` and its check `estimate-hi-writes-frontier`,
+      which the pre-spec of session 1804 did not find, and Case 723.3 fixes it. The `method` of that check
+      waited for the `/hi` after the close of a sprint, which the check of the Case file refuses for a
+      Criterion replaced whole (case 715). The person chose to keep that moment, with the reading by hand
+      made the person''s answer there, and the unit tests kept.
+
+
+      A Grep of `no short Case|take no short Case|has no short Case` over `vault/wiki/**/*.md` and `.claude/**/*.md`
+      printed `vault/wiki/brief.md`, `vault/wiki/orchestration.md`, `vault/wiki/estimates/estimate-hi-writes-frontier.md`,
+      `vault/wiki/rules/rule-orchestration.md` and `vault/wiki/estimates/estimate-orchestration-defers-in-one-reply.md`.
+      The brief names F6, `orchestration.md` is the Render, and the other hits enter this Case. A Grep
+      of `sprint · defer` over `vault/wiki/rules/*.md` and `.claude/**/*.md` printed `.claude/skills/hi/SKILL.md`,
+      `vault/wiki/rules/rule-orchestration.md`, `vault/wiki/rules/rule-skill-hi.md` and `vault/wiki/rules/rule-case-protocol.md`.
+      The hit in `rule-case-protocol.md` is a History line. `SKILL.md` is the Render of `rule-skill-hi`.
+      A Grep of `sprint · defer|backlog · kept` over `vault/wiki/estimates/` printed `estimate-hi-writes-frontier.md`,
+      `estimate-hi-takes-a-conserved-spec.md`, `estimate-orchestration-takes-back-a-ratified-case.md`,
+      `estimate-orchestration-shows-the-frontier-after-a-closed-line.md`, `estimate-orchestration-shows-the-built-case.md`,
+      `estimate-orchestration-defers-in-one-reply.md`, `estimate-orchestration-acknowledging-reply.md`
+      and `estimate-prespec-binds-a-sprint-line.md`. The ones this Case does not name stand. They list
+      the closers, judge where a closer may stand, or speak of a reply that carries no defer or of a Case
+      with no decision line, and none says that such a line has no short Case. A Grep of `take-back|taken
+      back|takes back|take back` over `vault/wiki/` printed `orchestration.md`, `log.md`, `rules/rule-orchestration.md`
+      and `estimates/estimate-orchestration-takes-back-a-ratified-case.md`, and over `.claude/` it printed
+      nothing. No code reads the changed texts. `orchestration.md` and `.claude/skills/hi/SKILL.md` change
+      at the librarian''s render.'
+    problem: The take-back of a ratified Case, as Case 713 set it, gives two closers for one reply and
+      holds a sentence that contradicts itself. It leaves nothing in the backlog when the Case taken back
+      changed only existing Estimates. The check of the put-off reply and the rule of `/hi` with its check
+      still say that a sprint or backlog item never takes a short Case.
+    recommend: "- **Does this Case retire last session's take-back decision?**\n  - Recommended: (a) retire\
+      \ it: this Case carries the retiring mark and restates the whole take-back rule.\n  - Answer: agreed,\
+      \ (a).\n- **What reaches the backlog when the Case taken back changed only existing checks?**\n\
+      \  - Recommended: (a) also put off the page each changed check checks, once per page.\n  - Answer:\
+      \ agreed, (a).\n- **The fault in the Case schema that the C3 Case put off again**\n  - Recommended:\
+      \ (b) fix it here; the C3 Case drops its put-off.\n  - Answer: first agreed, (b); then (a), leave\
+      \ it out: Case 722 stays as first ratified, its put-off of `rule-case-protocol` for this sentence\
+      \ included, and this Case changes only `rule-orchestration`, its Estimates, and the rule of `/hi`\
+      \ with its Estimate.\n- **The same wrong sentence in the rule of `/hi` and its check**\n  - Recommended:\
+      \ (a) fix it here.\n  - Answer: agreed, (a).\n- **When the `/hi` check is read after its wording\
+      \ changes**\n  - Recommended: (b) keep the reading after the sprint close.\n  - Answer: (b); the\
+      \ check of the Case file then refused the kept `method`, and the question \"How the `/hi` check\
+      \ is read, now that keeping its old reading is refused\" replaced this one.\n- **How the `/hi` check\
+      \ is read, now that keeping its old reading is refused**\n  - Recommended: (b) the person's answer\
+      \ at the `/hi` after the sprint close, with the unit tests.\n  - Answer: agreed, (b)."
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '725'
+  decision: decision-case-725
+  origin: raw/2026-10-07/2114/ledger.md#case-725
+  children:
+  - decision-case-725.1
+  - decision-case-725.2
+  tags:
+  - hooks
+  - harness
+  - workflow
+  case_text:
+    context: 'The ledger only grows. A Case ratified in the session keeps its decision lines under its
+      number, so a ratified Case with no sub-cases cannot become a parent under that number. The `## Splitting`
+      section of `vault/wiki/case-schema.md` sends a Case built again in another shape to a new number
+      whose decision lines carry `{supersedes:case N}` (cases 610.1, 671.1). At the `/pre-spec` of session
+      1804, finding F6 asked ratified Case 713 to replace one more Criterion. Its `case-guppi` split 713
+      into 713.1 and 713.2 under the old number, then built Case 719 to supersede it, and the check of
+      the Case file refused 719 (ledger lines 27 and 28 of that session, `lesson-case-build-splits-a-ratified-leaf-case`).
+      Case 722.1 of this session sets the fix of the stale store entries behind that refusal. A second
+      cause stands: `other_blocks` of `guppi/casecheck.py` leaves out only a Case that a mark of the session''s
+      ledger names. A mark reaches the ledger only when the new build is ratified, so a new build is compared
+      with the first build while it stands in the plan. The pairs of the first build are applied first,
+      and the new build''s old texts then miss. The `recommend` of Case 722 records the same refusal.
+      The rule of `case-guppi` also contradicts itself. One sentence tells it to empty a file it leaves
+      behind under another number. Another sentence says that it empties no file of a Case with a decision
+      line. `rule-orchestration` says that such a file is never emptied (case 701.4). This session the
+      file of ratified Case 722 was emptied that way and written back.
+
+
+      Case 725.1 has `case-guppi` build a second behaviour as a Case of its own beside the ratified Case,
+      with no mark, and empty a file left behind only when its Case has no decision line. It replaces
+      the Criterion of `estimate-case-build-writes-the-case` whole. That Criterion held more than seven
+      lines before this Case and is carried whole but for four lines that this Case changes. Those are
+      the third `when` line, which adds a finding of `/pre-spec`; the line on the drop of a Case, whose
+      file left behind is now emptied only with no decision line; the line on the files `case-guppi` writes,
+      which adds the file of a new Case; and the line on the files it never empties, which now names the
+      file left behind. Its `purpose` and `method` do not state the changed lines and stand. A Grep of
+      `under another number` over `vault/wiki/` and `.claude/` printed `vault/wiki/rules/rule-case-build.md`,
+      `vault/wiki/estimates/estimate-case-build-writes-the-case.md` and `.claude/agents/case-guppi.md`,
+      its Render, and each enters this Case. The `## Splitting` section of `rule-case-protocol` stays
+      true: it sets the path for a fix that changes what a ratified Case already set. It is not changed
+      here, since Case 722.3 of this session puts `rule-case-protocol` off, and `/pre-spec` reports a
+      Case that changes a page another Case of the plan puts off (case 186.2). `vault/wiki/orchestration.md`
+      says the main agent dispatches `case-guppi` with the Case id. A new Case whose number `case-guppi`
+      picks stands beside that, as a number the check gives does (case 610.1).
+
+
+      Case 725.2 makes the check leave out a Case that a mark on a decision line of the answer''s own
+      file names. A Grep of `other_blocks\(` over `guppi/` printed `guppi/casecheck.py` alone. Case 722.1
+      replaces the Criterion of `estimate-case-check-sends-back-a-clash-with-another-case` whole and rewrites
+      a clause of the Purpose of `rule-case-check`. So Case 725.2 creates its own Estimate and adds its
+      clause to the end of the sentence of that Purpose whose start 722.1 rewrites. The two new texts
+      fit side by side. The text of 722.1 names the Cases the check leaves aside: a dropped Case and a
+      stored Case that the file of its top-level Case no longer holds. The clause of 725.2 comes after
+      the end of that sentence, which 722.1 leaves as it stands, and it adds a Case that a mark of the
+      file itself names. The first `then` line of Case 722.1 says that each Case of the plan file is judged,
+      and its exceptions list only the marks of the ledger. Case 722.1 should add to that exception a
+      Case that a mark on a decision line of the answer''s own file names. The Criterion of `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+      leaves out a Case that any mark names, and stands.'
+    problem: A fix that adds a second behaviour to a ratified Case with no sub-cases has no step in the
+      rule of `case-guppi`. A Case built again under a new number is refused by the check while the build
+      it replaces stands in the plan. The rule also tells `case-guppi` to empty the file of a ratified
+      Case that it leaves behind under the old number.
+    recommend: "- **Where the second behaviour of a ratified Case with no sub-cases goes**\n  - Recommended:\
+      \ (a) a Case of its own under a new number beside the ratified one, with no retiring mark; a build\
+      \ under a new number stays only for a fix that changes what the ratified Case already set.\n  -\
+      \ Answer: agreed, (a).\n- **Whether this Case also fixes the check's refusal of a build under a\
+      \ new number**\n  - Recommended: (a) fix it here, in a sub-case: the check also leaves out each\
+      \ Case that a retiring mark on a ledger line of the answer's own file names, checked by a new Estimate.\n\
+      \  - Answer: agreed, (a).\n- **What happens to the file left behind under the old number**\n  -\
+      \ Recommended: (a) empty only the file of a Case with no ledger line; the file of a ratified Case\
+      \ stays, and the Criterion of `estimate-case-build-writes-the-case` is replaced.\n  - Answer: agreed,\
+      \ (a)."
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+- case: '726'
+  decision: decision-case-726
+  origin: raw/2026-10-07/2114/ledger.md#case-726
+  children:
+  - decision-case-726.1
+  - decision-case-726.2
+  tags:
+  - session
+  - workflow
+  - harness
+  case_text:
+    context: 'At `/pre-spec` one `ask-guppi` agent reads the plan once, at the first run of the session.
+      The Render of `rule-prespec` tells it that a Case of the plan that changes a page another Case of
+      the plan defers is a finding (case 186.2). A later run dispatches no `ask-guppi`, and `guppi prespec
+      --check` has no such check. At the `/pre-spec` of session 1804 the person put off Cases 720 and
+      721 during the loop, after the one `ask-guppi` run, as the handoff of that session records. Case
+      721 put off `rule-orchestration` and `rule-case-protocol`, which Cases 713 and 717.1 of the same
+      plan update, and nothing reported the pair. The handoff told the librarian to apply the updates
+      and let the defer add `deferred_by`, so the pair did no harm there. In this session Case 722.3 updates
+      `rule-case-protocol` and puts it off again in the same sub-case, on purpose.
+
+
+      Case 726.1 makes `guppi prespec --check` print a `note:` line for such a pair at every run, a change
+      and a defer inside one top-level Case aside. A note sets no exit code, so the hook of `rule-prespec-hook`
+      does not block the exit on it. `split_cases` of `guppi/materialize.py` reads every Case heading
+      of the plan, so a short Case under `## Deferred` is read too. The note is printed by `plan_findings`
+      of `guppi/prespec.py` alone. `guppi/casecheck.py` imports `promise_notes`, not the new judgment,
+      so the check of the file of a Case prints no such note. With the one exception, the plan of this
+      session gives no such note: 722.3 holds both its change and its defer. Case 726.1 creates its own
+      Estimate. `estimate-prespec-notes-a-long-chain` checks another note, and `estimate-prespec-hook-gates`
+      says only that a `note:` line does not block; its Criterion stands.
+
+
+      Case 726.2 takes the pair off the list of what `ask-guppi` judges. It rewrites the sentence of the
+      Render of `rule-prespec`, and it replaces whole the Criterion of `estimate-prespec-reconciles`,
+      whose last line says the pair is still a finding. That Criterion is carried whole but for that line,
+      which the check of this file notes as not carried. The same check notes that the dispatch line of
+      726.2 shares most of the words of two `then` lines of 726.1. All three lines speak of `## Deferred`
+      and of `defer` items, but the dispatch line sets what `ask-guppi` reads and the two lines set what
+      the script notes, so they stay as they are. Its `method` reads the new Render against the Criterion
+      and does not state the old promise, so it stands; the page has no `purpose` field. The dispatch
+      keeps the instruction that `ask-guppi` reads the slugs of the `defer` items of a Case under `##
+      Deferred`, since its first question still asks whether the Cases contradict each other. A Grep of
+      `another Case of (this|the) plan defers` over `vault/wiki/` printed `vault/wiki/rules/rule-prespec.md`
+      and `vault/wiki/estimates/estimate-prespec-reconciles.md`, and over `.claude/` it printed `.claude/skills/pre-spec/SKILL.md`,
+      the Render of `rule-prespec`. Each enters this Case. The `context` of Case 722 and of Case 725 of
+      this session say that `/pre-spec` calls such a pair a finding. They stand: they give the reason
+      for a choice made under the rule as it stood, and a note still shows such a pair.'
+    problem: A Case that changes a page which another Case of the same plan puts off is judged only by
+      the one `ask-guppi` run at the first `/pre-spec`. A defer added later in the loop is never checked,
+      and a pair the person wants is called a finding.
+    recommend: "- **Who reports a page that one Case changes and another Case puts off**\n  - Recommended:\
+      \ (b) the script reports it as a note at every run; it does not block the exit from Plan Mode.\n\
+      \  - Answer: agreed, (b).\n- **A Case that changes a page and puts the same page off itself**\n\
+      \  - Recommended: (a) no note when the change and the put-off stand in one Case; a Case with sub-cases\
+      \ counts as one.\n  - Answer: agreed, (a).\n- **Whether the helper agent still judges the pair**\n\
+      \  - Recommended: (a) only the script judges it; the sentence leaves the instructions of the helper\
+      \ agent, and its check gets its last line rewritten.\n  - Answer: agreed, (a).\n- **What checks\
+      \ that the note works**\n  - Recommended: (a) a new check of its own, `estimate-prespec-notes-a-page-another-case-defers`,\
+      \ read by a test in this session.\n  - Answer: agreed, (a)."
+  spec: vault/raw/2026-10-07/2114/spec.md
+  applied: '22:45:11'
+unparsed: []
+session: '2114'

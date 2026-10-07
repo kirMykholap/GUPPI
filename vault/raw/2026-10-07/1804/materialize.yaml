@@ -65,6 +65,7 @@ entries:
   change: the person takes back a ratified Case, or one of its sub-cases, in Plan Mode by a short Case
     whose defer lines supersede it, and the line of its item closes as its source is put off (case 713)
   applied: '21:06:47'
+  superseded_by: '723.1'
 - line: 3
   text: decision[case 713][create][estimate-orchestration-takes-back-a-ratified-case]{ref:rule-orchestration}{tags:session,workflow,ledger}
   case: '713'
@@ -139,6 +140,7 @@ entries:
   folded:
   - 19
   applied: '21:06:47'
+  superseded_by: '723.1'
 - line: 4
   text: decision[case 714][create][estimate-prespec-hook-reports-a-schema-condition-not-met]{ref:rule-prespec-hook}{tags:harness,workflow,schema}
   case: '714'
@@ -994,6 +996,7 @@ entries:
       and they clash with the Case that supersedes it; put off at the pre-spec of session 1804
   exists: true
   applied: '21:06:47'
+  superseded_by: '722.1'
 - line: 17
   text: decision[case 721][defer][rule-orchestration]{ref:rule-orchestration}
   case: '721'
@@ -1010,6 +1013,7 @@ entries:
       nothing in backlog.md, and the Criterion of estimate-orchestration-defers-in-one-reply left unchanged'
   exists: true
   applied: '21:06:47'
+  superseded_by: '723.1'
 - line: 18
   text: decision[case 721][defer][rule-case-protocol]{ref:rule-case-protocol}
   case: '721'
@@ -1025,6 +1029,7 @@ entries:
       item whose Case is taken back (pre-spec F5 of session 1804)
   exists: true
   applied: '21:06:47'
+  superseded_by: '723.1'
 - line: 22
   text: 'estimate[estimate-case-build-writes-the-case][passed] 2026-10-07, Retro, by hand: the Render
     of rule-case-build as Case 717.2 leaves it (.claude/agents/case-guppi.md and the two pairs of 717.2
@@ -1514,6 +1519,8 @@ decisions:
       stands, and that a Case of a later session may replace it.'
   spec: vault/raw/2026-10-07/1804/spec.md
   applied: '21:06:47'
+  superseded_by:
+  - decision-case-723.1
 - case: '714'
   decision: decision-case-714
   origin: raw/2026-10-07/1804/ledger.md#case-714
@@ -2295,6 +2302,8 @@ decisions:
       sub-cases that a Case built again no longer holds.
   spec: vault/raw/2026-10-07/1804/spec.md
   applied: '21:06:47'
+  superseded_by:
+  - decision-case-722.1
 - case: '721'
   decision: decision-case-721
   origin: raw/2026-10-07/1804/ledger.md#case-721
@@ -2324,6 +2333,9 @@ decisions:
       Case.
   spec: vault/raw/2026-10-07/1804/spec.md
   applied: '21:06:47'
+  superseded_by:
+  - decision-case-722.3
+  - decision-case-723.1
 - case: '716'
   decision: decision-case-716
   origin: raw/2026-10-07/1804/ledger.md#case-716

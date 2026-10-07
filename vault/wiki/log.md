@@ -7359,3 +7359,69 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-07 rules/rule-case-build status: draft → built · cascade · generate
 - 2026-10-07 rules/rule-case-example status: draft → built · cascade · generate
 - 2026-10-07 estimates/estimate-case-protocol-example-passes-the-check archived · cleanup
+- 2026-10-07 decisions/decision-case-722 created · raw/2026-10-07/2114/ledger.md#case-722 · generate
+- 2026-10-07 decisions/decision-case-722.1 created · raw/2026-10-07/2114/ledger.md#case-722.1 · generate
+- 2026-10-07 decisions/decision-case-720 superseded by decision-case-722.1 · [[decision-case-722.1]] · generate
+- 2026-10-07 rules/rule-case-check defer by decision-case-720 superseded · [[decision-case-722.1]] · generate
+- 2026-10-07 rules/rule-case-check updated: the check of the file of a Case leaves out a stored Case that the file of its top-level Case no longer holds (case 722.1) · [[decision-case-722.1]] · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-a-clash-with-another-case updated: the Criterion replaced whole — a stored Case that the file of its top-level Case no longer holds is not compared (case 722.1) · [[decision-case-722.1]] · generate
+- 2026-10-07 decisions/decision-case-722.2 created · raw/2026-10-07/2114/ledger.md#case-722.2 · generate
+- 2026-10-07 rules/rule-spec-write updated: the Spec hook removes a parent whose every sub-case with a decision line is retired (case 722.2) · [[decision-case-722.2]] · generate
+- 2026-10-07 estimates/estimate-spec-write-removes-a-superseded-case updated: the Criterion replaced whole — a parent whose every sub-case is retired leaves the plan and spec.md (case 722.2) · [[decision-case-722.2]] · generate
+- 2026-10-07 decisions/decision-case-722.3 created · raw/2026-10-07/2114/ledger.md#case-722.3 · generate
+- 2026-10-07 decisions/decision-case-721 superseded by decision-case-722.3 · [[decision-case-722.3]] · generate
+- 2026-10-07 rules/rule-case-protocol defer by decision-case-721 superseded · [[decision-case-722.3]] · generate
+- 2026-10-07 rules/rule-case-protocol updated: the Splitting section says the Spec hook removes a parent whose every sub-case is retired (case 722.3) · [[decision-case-722.3]] · generate
+- 2026-10-07 rules/rule-case-protocol deferred · [[decision-case-722.3]] · generate
+- 2026-10-07 decisions/decision-case-723 created · raw/2026-10-07/2114/ledger.md#case-723 · generate
+- 2026-10-07 decisions/decision-case-723.1 created · raw/2026-10-07/2114/ledger.md#case-723.1 · generate
+- 2026-10-07 decisions/decision-case-713 superseded by decision-case-723.1 · [[decision-case-723.1]] · generate
+- 2026-10-07 decisions/decision-case-721 superseded by decision-case-723.1 · [[decision-case-723.1]] · generate
+- 2026-10-07 rules/rule-orchestration defer by decision-case-721 superseded · [[decision-case-723.1]] · generate
+- 2026-10-07 rules/rule-orchestration updated: the take-back also puts off the page each updated Estimate checks, its reply closes the line by the closer of its source, and the source of a backlog item stays as it is only with no take-back (case 723.1) · [[decision-case-723.1]] · generate
+- 2026-10-07 estimates/estimate-orchestration-takes-back-a-ratified-case updated: the Criterion replaced whole — the page each updated Estimate checks is put off too, and the reply closes the line by the closer of its source (case 723.1) · [[decision-case-723.1]] · generate
+- 2026-10-07 decisions/decision-case-723.2 created · raw/2026-10-07/2114/ledger.md#case-723.2 · generate
+- 2026-10-07 estimates/estimate-orchestration-defers-in-one-reply updated: the Criterion replaced whole — a sprint or backlog item takes no short Case but for the short Case of a take-back (case 723.2) · [[decision-case-723.2]] · generate
+- 2026-10-07 decisions/decision-case-723.3 created · raw/2026-10-07/2114/ledger.md#case-723.3 · generate
+- 2026-10-07 rules/rule-skill-hi updated: a sprint item put off and a backlog item kept take no Case but for the short Case of a take-back (case 723.3) · [[decision-case-723.3]] · generate
+- 2026-10-07 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — an item closed defer or kept has no short Case but for the short Case of a take-back; the reading by hand is the person's answer at that /hi (case 723.3) · [[decision-case-723.3]] · generate
+- 2026-10-07 decisions/decision-case-725 created · raw/2026-10-07/2114/ledger.md#case-725 · generate
+- 2026-10-07 decisions/decision-case-725.1 created · raw/2026-10-07/2114/ledger.md#case-725.1 · generate
+- 2026-10-07 rules/rule-case-build updated: case-guppi builds a second behaviour of a ratified Case with no sub-cases as a new Case beside it, and empties a file left behind under another number only when its Case has no decision line (case 725.1) · [[decision-case-725.1]] · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — a second behaviour of a ratified Case is a new Case beside it, and the file of a ratified Case left behind is not emptied (case 725.1) · [[decision-case-725.1]] · generate
+- 2026-10-07 decisions/decision-case-725.2 created · raw/2026-10-07/2114/ledger.md#case-725.2 · generate
+- 2026-10-07 rules/rule-case-check updated: the check of the file of a Case leaves out a Case that a supersedes mark of the file itself names (case 725.2) · [[decision-case-725.2]] · generate
+- 2026-10-07 estimates/estimate-case-check-leaves-out-a-case-the-file-supersedes created · [[decision-case-725.2]] · generate
+- 2026-10-07 estimates/estimate-case-check-leaves-out-a-case-the-file-supersedes status: pending → passed · raw/2026-10-07/2114/ledger.md#L24 · generate
+- 2026-10-07 rules/rule-case-check estimate estimate-case-check-leaves-out-a-case-the-file-supersedes added · [[decision-case-725.2]] · generate
+- 2026-10-07 decisions/decision-case-726 created · raw/2026-10-07/2114/ledger.md#case-726 · generate
+- 2026-10-07 decisions/decision-case-726.1 created · raw/2026-10-07/2114/ledger.md#case-726.1 · generate
+- 2026-10-07 estimates/estimate-prespec-notes-a-page-another-case-defers created · [[decision-case-726.1]] · generate
+- 2026-10-07 estimates/estimate-prespec-notes-a-page-another-case-defers status: pending → passed · raw/2026-10-07/2114/ledger.md#L25 · generate
+- 2026-10-07 rules/rule-prespec estimate estimate-prespec-notes-a-page-another-case-defers added · [[decision-case-726.1]] · generate
+- 2026-10-07 decisions/decision-case-726.2 created · raw/2026-10-07/2114/ledger.md#case-726.2 · generate
+- 2026-10-07 rules/rule-prespec updated: a page one Case changes and another Case puts off is a note of the check, no longer a finding of ask-guppi (case 726.2) · [[decision-case-726.2]] · generate
+- 2026-10-07 estimates/estimate-prespec-reconciles updated: the Criterion replaced whole — ask-guppi is not asked about a page one Case changes and another puts off; the check notes it (case 726.2) · [[decision-case-726.2]] · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-a-clash-with-another-case status: pending → passed · raw/2026-10-07/2114/ledger.md#L19 · generate
+- 2026-10-07 estimates/estimate-spec-write-removes-a-superseded-case status: pending → passed · raw/2026-10-07/2114/ledger.md#L20 · generate
+- 2026-10-07 estimates/estimate-orchestration-takes-back-a-ratified-case status: pending → passed · raw/2026-10-07/2114/ledger.md#L21 · generate
+- 2026-10-07 estimates/estimate-orchestration-defers-in-one-reply status: pending → failed · raw/2026-10-07/2114/ledger.md#L22 · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-10-07/2114/ledger.md#L23 · generate
+- 2026-10-07 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-10-07/2114/ledger.md#L26 · generate
+- 2026-10-07 lessons/lesson-case-build-emptied-the-file-of-a-ratified-case created · raw/2026-10-07/2114/ledger.md#L27 · generate
+- 2026-10-07 lessons/lesson-case-check-refuses-a-rebuild-under-a-new-number created · raw/2026-10-07/2114/ledger.md#L28 · generate
+- 2026-10-07 lessons/lesson-orchestration-showed-a-case-while-a-round-stood-open created · raw/2026-10-07/2114/ledger.md#L29 · generate
+- 2026-10-07 lessons/lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice created · raw/2026-10-07/2114/ledger.md#L30 · generate
+- 2026-10-07 insights/insight-case-check-a-case-id-leaves-only-by-a-supersedes-line updated: child lesson-case-check-refuses-a-rebuild-under-a-new-number added (synthesis) · raw/2026-10-07/2114/ledger.md#L28 · generate
+- 2026-10-07 lessons/lesson-case-check-refuses-a-rebuild-under-a-new-number updated: clustered under insight-case-check-a-case-id-leaves-only-by-a-supersedes-line (synthesis) · raw/2026-10-07/2114/ledger.md#L28 · generate
+- 2026-10-07 insights/insight-orchestration-items-taken-together-unruled updated: child lesson-orchestration-showed-a-case-while-a-round-stood-open added; open again, the pattern came back after case 699.5 (synthesis) · raw/2026-10-07/2114/ledger.md#L29 · generate
+- 2026-10-07 lessons/lesson-orchestration-showed-a-case-while-a-round-stood-open updated: clustered under insight-orchestration-items-taken-together-unruled (synthesis) · raw/2026-10-07/2114/ledger.md#L29 · generate
+- 2026-10-07 insights/insight-workflow-case-written-without-reading-the-pages-it-changes updated: child lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice added; open again, the pattern came back after case 391.2 (synthesis) · raw/2026-10-07/2114/ledger.md#L30 · generate
+- 2026-10-07 lessons/lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice updated: clustered under insight-workflow-case-written-without-reading-the-pages-it-changes (synthesis) · raw/2026-10-07/2114/ledger.md#L30 · generate
+- 2026-10-07 rules/rule-orchestration status: built → draft · cascade · generate
+- 2026-10-07 decisions/decision-case-713 archived · superseded · generate
+- 2026-10-07 decisions/decision-case-720 archived · superseded · generate
+- 2026-10-07 decisions/decision-case-721 archived · superseded · generate
+- 2026-10-07 decisions/decision-case-713 archived · cleanup
+- 2026-10-07 decisions/decision-case-720 archived · cleanup
+- 2026-10-07 decisions/decision-case-721 archived · cleanup

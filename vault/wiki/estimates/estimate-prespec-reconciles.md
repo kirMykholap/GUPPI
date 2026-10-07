@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 method: "by hand at Retro of the session that changes it: the new Render of rule-prespec and rule-ask in the Spec, read against the Criterion, recorded in the estimate line"
-checked: 2026-10-05
+checked: 2026-10-07
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -27,11 +27,11 @@ The agent runs `uv run guppi prespec --check` on the plan file with `--session <
 **－** No second `ask-guppi` is dispatched at the first run, and a later run of `/pre-spec` in the session dispatches none.
 **－** The report never says that the whole Spec is checked.
 **－** The agent writes no list of the decisions: the plan is the list.
-**－** The body of a deferred decision is not read; a Case that changes a page another Case of the plan defers is still a finding.
+**－** The body of a deferred decision is not read, and `ask-guppi` is not asked whether a Case changes a page that another Case of the plan defers: `uv run guppi prespec --check` notes such a pair at every run, as `estimate-prespec-notes-a-page-another-case-defers` sets it.
 
 ## Result
 
-2026-10-05, at the Retro of session 2103, by hand, the new Render of rule-prespec and rule-ask in raw/2026-10-05/2103/spec.md against the Criterion of case 674.1: the first run dispatches one ask-guppi over the plan or the conserved Spec its title line names, with the path, the instruction to judge every Case outside ## Deferred with its sub-cases and the reading instructions kept; the report gives the list of what that run did not check and never says the whole Spec is checked; a later run dispatches none, the three questions, the check, the frontier fix, the loop and the gate stand as before; each replace old string occurs once in its page
+2026-10-07, Retro of session 2114, by hand: the new Render of rule-prespec in the Spec (case 726.2, one replace pair over .claude/skills/pre-spec/SKILL.md as loaded in this session) read against the Criterion — the check with --session and its first line, a finding in a Case to its case-guppi, a Frontier or ledger finding fixed and the check run again, one ask-guppi at the first run with its reading instructions and three questions, one report before any Case goes back, no second ask-guppi, no claim of the whole Spec, no list of decisions, the body of a deferred decision not read and ask-guppi not asked about a page one Case changes and another defers, which the check notes; rule-ask is not changed by this session
 
 ## History
 
@@ -78,3 +78,5 @@ The agent runs `uv run guppi prespec --check` on the plan file with `--session <
 - 2026-10-05 status: pending → passed · raw/2026-10-04/2245/ledger.md#L15
 - 2026-10-05 updated: the Criterion replaced whole — one ask-guppi over the whole plan at the first run, the report giving what that run did not check; the method a reading of the new Render in the Spec at Retro (case 674.1) · [[decision-case-674.1]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L21
+- 2026-10-07 updated: the Criterion replaced whole — ask-guppi is not asked about a page one Case changes and another puts off; the check notes it (case 726.2) · [[decision-case-726.2]]
+- 2026-10-07 status: pending → passed · raw/2026-10-07/2114/ledger.md#L26

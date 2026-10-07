@@ -96,11 +96,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-sends-back-a-clash-with-another-case`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-sends-back-a-clash-with-another-case`
 - [x] `guppi/casecheck.py`: `other_blocks` leaves out an entry of the store whose top-level Case file stands, holds text and holds no heading of its id; its docstring and the module docstring say so.
 - [x] `tests/test_casecheck.py`: a `session_clash` test where a stored sub-case whose top-level file holds the Case whole without it gives no clash, and the same entry with its heading in the file gives one.
-- [ ] read `estimate-case-check-sends-back-a-clash-with-another-case`
+- [x] read `estimate-case-check-sends-back-a-clash-with-another-case`
 ```
 
 ### Case 722.2 — The Spec hook removes a parent whose every sub-case is retired
@@ -143,11 +143,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] update `estimate-spec-write-removes-a-superseded-case`
+- [x] update `rule-spec-write`
+- [x] update `estimate-spec-write-removes-a-superseded-case`
 - [x] `guppi/ratified.py`: `remove_superseded` also removes each parent that `retired_whole` of `guppi/prespec.py` finds retired by the marks of the session's ledger and of the reply, when the parent holds no decision line of its own that no mark retires; the module docstring says so.
 - [x] `tests/test_ratified.py`: `superseded` tests for a mark that retires the last sub-case of a parent, which removes the parent from the plan and from `spec.md`; a mark that leaves a sub-case with a decision line, which keeps the parent; and a parent with a `create` line of its own that no mark retires, which stays when its last sub-case is retired.
-- [ ] read `estimate-spec-write-removes-a-superseded-case`
+- [x] read `estimate-spec-write-removes-a-superseded-case`
 ```
 
 ### Case 722.3 — The Case schema says the parent leaves with its last sub-case
@@ -178,9 +178,9 @@ defer:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] defer `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] defer `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 723 — The take-back of a ratified Case without the faults pre-spec found
@@ -258,10 +258,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-takes-back-a-ratified-case`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-takes-back-a-ratified-case`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-takes-back-a-ratified-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-takes-back-a-ratified-case`
 ```
 
 ### Case 723.2 — The check of the put-off reply names the short Case of a take-back
@@ -301,8 +301,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-defers-in-one-reply`
-- [ ] read `estimate-orchestration-defers-in-one-reply`
+- [x] update `estimate-orchestration-defers-in-one-reply`
+- [x] read `estimate-orchestration-defers-in-one-reply`
 ```
 
 ### Case 723.3 — The rule of `/hi` names the short Case of a take-back
@@ -347,9 +347,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] update `estimate-hi-writes-frontier`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi`
+- [x] update `estimate-hi-writes-frontier`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -435,10 +435,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 725.2 — The check leaves out a Case the file of the answer supersedes
@@ -484,11 +484,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-leaves-out-a-case-the-file-supersedes`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-leaves-out-a-case-the-file-supersedes`
 - [x] `guppi/casecheck.py`: `other_blocks` also leaves out each Case, with its sub-cases, that a mark of `ratification_records` of the answer names; its docstring and the module docstring say so.
 - [x] `tests/test_casecheck.py`: `superseded_by_the_file` tests — a Case of the plan that a mark of the file names gives no clash and no pair finding; a mark on a sub-case leaves its parent compared; the same file without the mark gives the clash.
-- [ ] read `estimate-case-check-leaves-out-a-case-the-file-supersedes`
+- [x] read `estimate-case-check-leaves-out-a-case-the-file-supersedes`
 ```
 
 ## Case 726 — The check of pre-spec notes a page that one Case changes and another puts off
@@ -554,10 +554,10 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-notes-a-page-another-case-defers`
+- [x] create `estimate-prespec-notes-a-page-another-case-defers`
 - [x] `guppi/prespec.py`: a note function, called by `plan_findings`, prints one `note:` line per page that a `defer` item of one top-level Case and a `create`, `update` or `delete` item of another top-level Case name; the module docstring says so under its notes.
 - [x] `tests/test_prespec.py`: `defers_a_page` tests — an update of a page and a defer of it under two Cases give one note and exit 0; a short Case under `## Deferred` gives the same note; an update and a defer under two sub-cases of one Case give none.
-- [ ] read `estimate-prespec-notes-a-page-another-case-defers`
+- [x] read `estimate-prespec-notes-a-page-another-case-defers`
 ```
 
 ### Case 726.2 — ask-guppi no longer judges a page one Case changes and another puts off
@@ -601,8 +601,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-reconciles`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-reconciles`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-reconciles`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-reconciles`
 ```

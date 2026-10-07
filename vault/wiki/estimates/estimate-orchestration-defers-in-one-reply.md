@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: failed
 target: "[[rule-orchestration]]"
 purpose: A decision the person asks to put off in Plan Mode, from a source other than the sprint or the backlog, is shown as a short-form Case and written in the reply that shows it, with no round of ratification; when the item has a Case built and not ratified, that reply comes in the turn that the answer Dropped of its case-guppi opens
 method: by hand, a decision the person asks to put off, its line of frontier.md closed [-] … · defer case N, in a reply that leaves no line under the Cases heading of frontier.md open; a sprint item put off or a backlog item kept is not this reading
@@ -29,11 +29,11 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 **＋** When the item has a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, the drop goes to that `case-guppi` first and the turn of the person's words ends with one `**Waiting:**` line; the short Case, its `LEDGER` block and the Frontier come in the turn that the answer `**Dropped:**` opens.
 **－** No text follows the question, or the Frontier when no question stands.
 **－** Retro writes no short defer: what it would put off is a line of `## For the next session` of `raw/<date>/<hi HHMM>/handoff.md`.
-**－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-] … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`, are not this moment: they take no short Case and no ledger line, and a reply that closes only such lines is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.
+**－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-] … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`, are not this moment: they take no short Case and no ledger line but for the short Case of a take-back of a ratified Case, which is the moment of `estimate-orchestration-takes-back-a-ratified-case`, and a reply that closes only such lines with no take-back is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.
 
 ## Result
 
-2026-10-07, Plan Mode of session 0636, by the person's word; Case 709 dropped by the person's choice (b); no decision was put off in this session or in session 0425, so no reply that puts off a decision was read against the Criterion; the person: "Я считаю что passed. Все было окей в прошлой сессии"
+2026-10-07, Retro, not read: its method needs a decision of a source other than the sprint or the backlog put off with its line closed [-] … · defer case N; in session 2114 only the sprint items C1 and C2 were put off, closed · sprint · defer, which the method excludes
 
 ## History
 
@@ -58,3 +58,5 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-10-07 updated: the Criterion replaced whole — the short Case of an item whose built Case is dropped comes in the turn of the answer Dropped · [[decision-case-701.5]]
 - 2026-10-07 status: pending → failed · raw/2026-10-07/0425/ledger.md#L25
 - 2026-10-07 status: failed → passed · raw/2026-10-07/0636/ledger.md#L13
+- 2026-10-07 updated: the Criterion replaced whole — a sprint or backlog item takes no short Case but for the short Case of a take-back (case 723.2) · [[decision-case-723.2]]
+- 2026-10-07 status: pending → failed · raw/2026-10-07/2114/ledger.md#L22

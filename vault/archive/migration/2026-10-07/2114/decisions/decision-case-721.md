@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "721"
-status: current
+status: archived
 defer: ["[[rule-orchestration]]", "[[rule-case-protocol]]"]
+superseded_by: ["[[decision-case-722.3]]", "[[decision-case-723.1]]"]
 origin: raw/2026-10-07/1804/ledger.md#case-721
 sprint: migration
 created: 2026-10-07
@@ -30,3 +31,7 @@ A Frontier line closed again by the superseding Case does not hold for a sprint 
 ## History
 
 - 2026-10-07 created · raw/2026-10-07/1804/ledger.md#case-721
+- 2026-10-07 superseded by decision-case-722.3 · [[decision-case-722.3]]
+- 2026-10-07 superseded by decision-case-723.1 · [[decision-case-723.1]]
+- 2026-10-07 archived · superseded
+- 2026-10-07 archived · cleanup

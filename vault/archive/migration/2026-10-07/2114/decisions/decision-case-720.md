@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "720"
-status: current
+status: archived
 defer: ["[[rule-case-check]]"]
+superseded_by: ["[[decision-case-722.1]]"]
 origin: raw/2026-10-07/1804/ledger.md#case-720
 sprint: migration
 created: 2026-10-07
@@ -26,3 +27,6 @@ The store of the Case-file check keeps the sub-cases of a Case built again witho
 ## History
 
 - 2026-10-07 created · raw/2026-10-07/1804/ledger.md#case-720
+- 2026-10-07 superseded by decision-case-722.1 · [[decision-case-722.1]]
+- 2026-10-07 archived · superseded
+- 2026-10-07 archived · cleanup

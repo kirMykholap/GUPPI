@@ -1,0 +1,840 @@
+<!-- approved 17:31:13 · session b4700a41 -->
+
+# Spec — session 0636, 2026-10-07
+
+## Case 703 — An unlisted tag is stopped where its line is born
+
+> **context:**
+> A tag reaches a page from a lesson line, from the `tags` of a `create`, or from a `set` of `tags` in an `update`. No check compares it with `vault/wiki/tags.md`, the list of tags a Case ratified. `register_tags` of `guppi/generate.py` prints a warning that a tag is used but not registered only in the librarian's run, after the page is written. A Grep for `\{tags:[^}]*orchestration` over `vault/raw/2026-10-07/0211/ledger.md` printed a count of 2: two lesson lines carried `orchestration`, which the list does not hold, and the brief flagged it only after the run. Case 702 gave the Case file a tag line that declares a new tag, and its Q2 (a) left this check out. The person chose two checks, one where each line is born. The check of the Case file in `guppi/casecheck.py` sends back a Case whose `create`, `set` of `tags` or decision line carries an unlisted tag, so `case-guppi` declares the tag or picks a listed one before the person sees the Case (Case 703.1). The ledger hook in `guppi/ledger.py` refuses a fresh lesson line with an unlisted tag (Case 703.2). A tag counts as listed when a row of `tags.md` holds it, when a tag line of the same Case file declares it, or when a tag line of a Case of the session with a decision line in the session's ledger declares it. Both checks, and `register_tags`, read the rows through one new module, `guppi/tags.py`. Where `tags.md` does not stand, no tag is judged: the seed of `tests/test_case_schema.py` writes no `tags.md`, and the example Case of `case-schema.md` carries `cart`, `checkout`, `payment` and `performance`. So the example and `estimate-case-protocol-example-passes-the-check` stand. The tags of an Insight that the librarian takes from its lessons are not checked, since the lessons that give them are checked.
+>
+> Both readers run from the working tree as soon as Work Mode changes them. The text they read, `tags.md`, changes at the librarian's run of this session only by Case 704, which declares `orchestration` by a tag line. That only widens what passes, and once Case 704 is ratified its tag line already counts as declared in this session. A Case that is sent back is fixed by `case-guppi`. A refused lesson line stays in the transcript and is judged again at each `Stop`. In Plan Mode a Case may first declare the new tag. From `/work` to the end of Retro, `rule-orchestration` puts the lesson lines in the one reply that ends Retro, where no Case is ratified. There, by the person's answer to a finding of `/pre-spec`, the lesson takes a tag of `tags.md` and the new tag goes as a line of the handoff to a later session, and the stderr line says so. So a refusal loses no lesson, only its new tag waits for a later session, and no old form is kept. The lesson lines that already stand in a ledger are not fresh and are not judged. Case 704 registers `orchestration`, which `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out` carries.
+>
+> The Criterion of `estimate-case-check-sends-back-a-faulty-case` lists the checks of a file without saying it lists all of them, so it stands, and the new finding is the promise of a new Estimate. `estimate-spec-write-reads-a-new-tag` says that `guppi/casecheck.py` reads the tag line by the same function of `guppi/ratified.py`. Case 703.1 takes the tags declared in the same file from that reading, so the Criterion stays true and stands. Its method, `-k tag` over `tests/test_casecheck.py`, also selects the new tests whose names hold `unlisted_tag`, and they pass when Case 703.1 holds. Among the Estimates of `rule-ledger-write`, `estimate-ledger-write-lifts` says that a line any refusal of the rule refuses does not land. `estimate-ledger-write-refuses-a-lesson-without-its-prefix` says that a line refused for its prefix gets that refusal, and `estimate-ledger-write-refuses-a-line-it-cannot-read` says that a line the grammar does not read gets no other refusal. Case 703.2 judges neither kind of line for its tags, so both Criteria stand. `estimate-ledger-write-refuses-a-mark-with-no-decision-line` says that a line whose mark has a decision line before it is written as before. The other refusals of the hook already stood beside it, and the Criterion of `estimate-ledger-write-lifts` bounds it, so it stands. `estimate-ledger-write-asks-for-the-mark-of-a-lesson` says that an unmarked line lands as it stands when it is written again or stands only in an earlier text, and it lists the lines it does not hold. Case 703.2 keeps a line refused for its tag out, and Case 703.3 says that such a line is not held. So Case 703.3 replaces that Criterion whole, keeps its lines, and adds one line for each, and it sets anew its `purpose`, which states that the line written again is written. `estimate-generate-writes` says that a used and undeclared tag goes to stderr, and that stays true.
+>
+> Case 711 of this session changes `rule-case-check` and `guppi/casecheck.py` too. Its pairs anchor on other sentences of the Purpose than the sentence that ends with case 688.1, after which Case 703.1 adds its own. Read side by side, the new texts do not contradict each other. The Purpose sentence that the checks of a Case are those of pre-spec and of the Spec hook, imported, not copied, is made false by Case 703.1 too, since the tag check is the hook's own. Case 711.3 rewords that sentence to name the check of the read of the pairs as an exception, and it should name the tag check of Case 703.1 as a second exception. This Case leaves that sentence to Case 711.3, so that two Cases do not change one sentence.
+
+> **problem:**
+> A tag that `tags.md` does not hold can reach a page through a lesson line or a Case, and nothing stops it before the librarian's run.
+
+> **recommend:**
+> - **Whether a check stops an unlisted tag, and where**
+>   - Recommended: (a) two checks: the check of the Case file sends back a `create` with an unlisted tag, and the ledger hook refuses a new lesson line with one; both read the list through one shared function.
+>   - Answer: agreed, (a).
+> - **Which tags count as listed**
+>   - Recommended: (a) a row of `tags.md`, or a tag declared by a `tag` line of a Case of this session.
+>   - Answer: agreed, (a).
+> - **What happens to a line with an unlisted tag**
+>   - Recommended: (a) refuse the line until the tag is fixed: exit 2 with one stderr line, or a finding sent back to `case-guppi`.
+>   - Answer: agreed, (a).
+> - **Which lines the check covers**
+>   - Recommended: (a) lesson lines, `create` lines and a `set` of `tags` in an `update`; the tags of an Insight are left out.
+>   - Answer: agreed, (a).
+> - **One promise or two**
+>   - Recommended: (a) two sub-cases, each with a new Estimate: `estimate-case-check-sends-back-an-unlisted-tag` and `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`.
+>   - Answer: agreed, (a).
+> - **Which `tag` lines of this session count as declared**
+>   - Recommended: (a) a `tag` line in the same Case file, or in a Case of this session that is already approved, a decision line of it standing in the session's ledger.
+>   - Answer: agreed, (a).
+> - **What the checks do when `tags.md` is missing**
+>   - Recommended: (a) no `tags.md`, no tag judged.
+>   - Answer: agreed, (a).
+> - **Change**
+>   - Asked: from `/work` to the end of Retro no Case is ratified, so a lesson there takes a tag of `tags.md`, and the new tag goes as a line of the handoff to a later session; the stderr line says so, and `context` no longer claims without that condition that no refusal loses a line.
+>   - Taken: the stderr line of Case 703.2 and the new text of `rule-ledger-write` say so, and `context` says that only the new tag waits.
+
+### Case 703.1 — The check of a Case file sends back an unlisted tag
+
+> **given:**
+> `rule-case-check`: the rule of the check of the file of a Case, whose Purpose gains the finding.
+> **＋** `guppi/casecheck.py`: `check_answer` gives the finding.
+> **＋** `guppi/tags.py`: the new module that reads the rows of `tags.md` and the tags that tag lines declare, which `register_tags` of `guppi/generate.py` also uses.
+> **＋** `vault/wiki/tags.md`: the list of registered tags.
+> **＋** `tests/test_casecheck.py`: the tests of the finding.
+> **＋** `estimate-case-check-sends-back-an-unlisted-tag`: the new check of the finding.
+> **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the file of a Case.
+> **＋** `raw/2026-10-07/0636/cases/case-711.md`: Case 711 changes the same hook and other sentences of the Purpose of `rule-case-check`.
+
+> **when:**
+> The `SubagentStop` hook `uv run guppi casecheck --subagent` of `guppi/casecheck.py` checks a file `raw/<date>/<hi HHMM>/cases/case-<N>.md` whose Case carries a tag in the `tags` of a `create`, in `tags` under the `set` of an `update`, or in a `{tags:...}` block of a decision line of its `ratification`.
+
+> **then:**
+> A tag that no row of `vault/wiki/tags.md` holds is a finding of its Case: "case <N>: tag <tag> is not in tags.md: use a tag of tags.md, or declare it by a tag line in this Case."
+> **＋** A tag that a `tag` line of the same file declares is no finding.
+> **＋** A tag that a `tag` line of another Case of the session declares is no finding when a decision line of that Case stands in the session's ledger; the hook reads that tag line from the text of that Case as the check stored it.
+> **＋** `guppi/casecheck.py` and `guppi/generate.py` read the rows of `vault/wiki/tags.md` by one function of `guppi/tags.py`.
+> **－** A tag line of a Case of the session with no decision line in the session's ledger does not make a tag listed.
+> **－** Where `vault/wiki/tags.md` does not stand, no tag is judged.
+
+```then
+create:
+- slug: estimate-case-check-sends-back-an-unlisted-tag
+  ref: rule-case-check
+  kind: QA
+  purpose: Whether the check of the file of a Case sends back a Case whose create, set of tags or decision line carries a tag that tags.md does not hold and no tag line of the file or of a ratified Case of the session declares
+  method: uv run pytest tests/test_casecheck.py -k unlisted_tag
+  tags:
+  - hooks
+  - harness
+  - workflow
+update:
+- slug: rule-case-check
+  replace:
+  - old: the Spec hook comparing it at ratification (case 688.1).
+    new: the Spec hook comparing it at ratification (case 688.1). The check of the file of a Case also sends back a Case whose `create`, `set` of `tags` in an `update` or decision line carries a tag that no row of `vault/wiki/tags.md` holds and that no tag line of the same file, or of a Case of the session with a decision line in the session's ledger, declares, so that an unlisted tag reaches no page through a Case; with no `tags.md` no tag is judged, and the rows are read by `guppi/tags.py`, the one reading that `guppi/ledger.py` and `guppi/generate.py` share (case 703.1).
+  set:
+    implementation_ref:
+    - guppi/casecheck.py
+    - guppi/tags.py
+    - tests/test_casecheck.py
+    - .claude/settings.json
+  change: the check of the file of a Case sends back a tag that tags.md does not hold and no tag line declares (case 703.1)
+```
+
+```tasks
+- [ ] create `estimate-case-check-sends-back-an-unlisted-tag`
+- [ ] update `rule-case-check`
+- [x] `guppi/tags.py`: `registered_tags` reads the rows of `vault/wiki/tags.md`, empty or None when the file does not stand; `declared_tags` gives the tags of the `new_tags` of a `then` block, read by `read_tasks` of `guppi/ratified.py`; `ratified_tags` gives the tags declared by the stored Cases whose decision line stands in a list of ledger lines; the docstring says that the checks and `generate` share them.
+- [x] `guppi/casecheck.py`: `check_answer` gives the finding for each tag of a `create`, of a `set` of `tags` and of a `{tags:...}` block of a decision line that `registered_tags`, the tag lines of the answer and `ratified_tags` over the session's ledger do not hold; no finding when `tags.md` does not stand.
+- [x] `guppi/generate.py`: `register_tags` reads the known rows by `registered_tags` of `guppi/tags.py`.
+- [x] `tests/test_casecheck.py`: an unlisted tag on a `create`, on a `set` of `tags` and on a decision line is a finding; a tag declared by a tag line of the same file, or of a Case of the session with a decision line in the ledger, is none; a tag declared by a Case with no decision line is a finding; no `tags.md`, no finding.
+- [ ] read `estimate-case-check-sends-back-an-unlisted-tag`
+```
+
+### Case 703.2 — The ledger hook refuses a lesson with an unlisted tag
+
+> **given:**
+> `rule-ledger-write`: the rule of the ledger hook, whose Purpose gains the refusal.
+> **＋** `guppi/ledger.py`: the hook that refuses the line.
+> **＋** `guppi/tags.py`: the module that reads the rows of `tags.md` and the tag lines of the Cases that `guppi/casecheck.py` stored.
+> **＋** `vault/wiki/tags.md`: the list of registered tags.
+> **＋** `tests/test_ledger.py`: the tests of the refusal.
+> **＋** `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`: the new check of the refusal.
+> **＋** `rule-orchestration`: lesson lines from `/work` to the end of Retro stand in the one reply that ends Retro.
+
+> **when:**
+> The `Stop` hook `uv run guppi ledger` of `guppi/ledger.py` finds a fresh `lesson[<slug>]` line in a `LEDGER` block of the session whose `{tags:...}` holds a tag.
+
+> **then:**
+> A fresh lesson line stays out of the ledger while its `{tags:...}` names something outside `vault/wiki/tags.md`.
+> **＋** Such a line lands once this session ratified a Case declaring each such name, the decision line of that Case written earlier or in the same `Stop`.
+> **＋** The other lines of the `Stop` are written as before.
+> **＋** When the refused line stands in the reply just finished, the hook exits 2 with one stderr line per refused line: "ledger: lesson[<slug>] not written — tag <tag> is not in tags.md and no ratified Case of this session declares it: write the line again with a tag of tags.md; in Plan Mode a Case may first declare the tag by a tag line, and from /work to the end of Retro the new tag goes as a line of the handoff to a later session."
+> **＋** A refused line from an earlier text of the transcript is judged again at every `Stop` without a word, and is written at the first `Stop` where each of its tags is listed.
+> **＋** The ledger hook takes its known tags from `guppi/tags.py`, the same source as `guppi/casecheck.py`.
+> **－** A line that the hook cannot read, or refuses for its prefix, is not judged for its tags.
+> **－** `estimate[...]` and `decision[...]` lines are not judged for their tags, and a line already in the ledger of any session is not judged again.
+> **－** In a project with no `vault/wiki/tags.md`, the ledger hook refuses no lesson for its tags.
+
+```then
+create:
+- slug: estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag
+  ref: rule-ledger-write
+  kind: QA
+  purpose: Whether the ledger hook refuses a fresh lesson line with a tag that tags.md does not hold and no ratified Case of the session declares, and says why only for the reply just finished
+  method: uv run pytest tests/test_ledger.py -k unlisted_tag
+  tags:
+  - session
+  - hooks
+  - harness
+  - ledger
+update:
+- slug: rule-ledger-write
+  replace:
+  - old: so a record with a broken opening is not lost unseen (case 695.1).
+    new: so a record with a broken opening is not lost unseen (case 695.1). It refuses a fresh lesson line whose `{tags:...}` holds a tag that no row of `vault/wiki/tags.md` holds and that no tag line of a Case of the session declares, a decision line of that Case standing in the session's ledger or in the same `Stop`, read by `guppi/tags.py`, the reading the check of `rule-case-check` shares, so that an unlisted tag reaches no page through a lesson; from `/work` to the end of Retro, where no Case is ratified, its stderr line asks for a tag of `tags.md` and for the new tag as a line of the handoff to a later session; with no `tags.md` no tag is judged (case 703.2).
+  set:
+    implementation_ref:
+    - guppi/ledger.py
+    - guppi/materialize.py
+    - guppi/gate.py
+    - guppi/casecheck.py
+    - guppi/tags.py
+    - tests/test_ledger.py
+    - tests/test_gate.py
+    - .claude/settings.json
+  change: the ledger hook refuses a lesson line with a tag that tags.md does not hold and no ratified Case of the session declares (case 703.2)
+```
+
+```tasks
+- [ ] create `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
+- [ ] update `rule-ledger-write`
+- [x] `guppi/ledger.py`: a function beside `refused_lessons` gives each fresh lesson line, not refused for its prefix or its grammar, with a tag that `registered_tags` and `ratified_tags` of `guppi/tags.py` over the session's ledger and the lines of the `Stop` do not hold; `run` keeps it out and prints its stderr line only for the reply just finished; the module docstring says so.
+- [x] `tests/test_ledger.py`: an unlisted tag in the reply just finished is refused aloud and the other lines land; one in an earlier text is skipped without a word and lands once a ratified Case declares the tag; a tag declared by a Case with a decision line in the ledger or in the same `Stop` passes; a line refused for its prefix gets that refusal alone; no `tags.md`, no refusal.
+- [ ] read `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
+```
+
+### Case 703.3 — A lesson refused for its tag is not held for its mark
+
+> **given:**
+> `estimate-ledger-write-asks-for-the-mark-of-a-lesson`: its Criterion is replaced whole.
+> **＋** `rule-ledger-write`: the rule of the ledger hook.
+> **＋** `guppi/ledger.py`: `run` leaves a line refused for its tag out of the lines held for their mark.
+> **＋** `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`: the Estimate of the refusal for a tag.
+> **＋** `tests/test_ledger.py`: the tests of the hold.
+> **＋** `estimate-ledger-write-lifts`: the Estimate of the lines any refusal of the rule keeps out.
+> **＋** `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`: the Estimate of the reminder after the write.
+
+> **when:**
+> The `Stop` hook `uv run guppi ledger` of `guppi/ledger.py` finds a fresh `lesson[<slug>]` line in a `LEDGER` block of the session that carries no `{addressed_by:...}`, and a decision line of the session stands before it, in the session's ledger or earlier among the lines of the same `Stop`.
+
+> **then:**
+> At the `Stop` of the reply that carries it, the hook holds the line back once, unless it already asked about it since the person's last message.
+> **＋** For each held line the hook exits 2 and prints: "ledger: lesson[<slug>] held — did a Case of this session fix its cause? Then add {addressed_by:case <N>}, the Case or sub-case that fixed it, and repeat the line; otherwise repeat it unchanged."
+> **＋** The stderr line names no Case, however many decision lines stand before the lesson line.
+> **＋** The line lands as it stands once the hook's question about it stands in a refusal since the person's last message, or when it stands only in an earlier text of the transcript.
+> **＋** Neither way lands it while another refusal of the hook keeps it out, as `estimate-ledger-write-lifts` sets it.
+> **＋** A held line keeps back no other line: the rest of that `Stop` lands in the ledger.
+> **－** An unmarked line never lands beside a marked one: `{addressed_by:...}` on a `lesson[<slug>]` line in the session's ledger, or in that `Stop`, drops the unmarked line of the slug.
+> **－** The hook holds no lesson line that precedes every decision line of the session, no line it refuses for its prefix or cannot parse, and no line that the ledger of some session already holds.
+> **－** Nor is a line held that `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag` keeps out.
+> **－** The hook never holds a decision line for its `{addresses:...}`: it writes it, and the reminder after the write is `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`.
+> **－** A session with no `hi` gets no question. The flag `stop_hook_active` changes nothing here, but when it is set and the transcript is unreadable, the hook lets the line land as it stands.
+
+```then
+update:
+- slug: estimate-ledger-write-asks-for-the-mark-of-a-lesson
+  set:
+    status: pending
+    purpose: Whether the ledger hook holds once a lesson line with no addressed_by mark written after a decision line of the session, asks for the mark, and then writes the line written again unless another refusal of the hook keeps it out
+  change: the Criterion replaced whole — a line refused for a tag outside tags.md is not held for its mark and does not land (case 703.3)
+```
+
+```tasks
+- [ ] update `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] `guppi/ledger.py`: `run` passes the lines refused for their tags to `unmarked_lessons` beside those refused for their prefix, so they are not held; the module docstring says so.
+- [x] `tests/test_ledger.py`: an unmarked lesson refused for its tag after a decision line is not held for its mark and does not land when written again; an unmarked lesson with listed tags is held as before.
+- [ ] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+```
+
+## Case 704 — The tag orchestration enters tags.md
+
+> **context:**
+> The insight `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out` carries the tag `orchestration`, and `vault/wiki/tags.md` holds no row for it. `register_tags` of `guppi/generate.py` adds a row only for an entry of `new_tags`, and for each tag that a page written in the run carries and the list does not hold, it prints that the tag is used but not registered. Case 702 gave the Case file a tag line, which the Spec hook of `rule-spec-write` turns into an entry of `new_tags`, and it left the declaration of `orchestration` to this session (Case 702, Q4 (a)). The Spec hook writes a Case only after a reply that carries a decision line, so this Case also changes a page. The person chose a meaning that follows the purpose of `rule-orchestration`, and an `update` of the insight with only `change`, which `generate` turns into one History line. The insight's missing `addressed_by` stays out of this Case. Case 706 of this session sets `addressed_by` on the same insight in the same run, with a History line of its own. So the `－` line of `then` holds for this Case alone: this Case sets no field and no section of the page, and the two Cases do not clash. This Case changes no code, so no reader goes ahead of its text and no old form is kept.
+>
+> The Case adds no Estimate, by the person's choice. Three Estimates already check the path from a tag line to a row. `estimate-spec-write-reads-a-new-tag` checks that the Spec hook turns a tag line into an entry of `new_tags`. `estimate-materialize-assembles` checks that the `new_tags` of any Case reach the yaml. `estimate-generate-writes` checks that a tag of `new_tags` lands in `tags.md`. This Case uses that path and changes no step of it, so their Criteria stand. An Insight has no Estimates. Case 703 of this session changes `rule-case-check` and `rule-ledger-write`, which this Case does not change. Once its checks stand, the tag line of this ratified Case makes `orchestration` count as declared in this session, as Case 703.1 and 703.2 set.
+
+> **problem:**
+> The tag `orchestration` stands on a live page but not in `tags.md`, and the librarian's run warns about it.
+
+> **recommend:**
+> - **What the tag `orchestration` means**
+>   - Recommended: (a) the main agent's own work in a session, as in `rule-orchestration`: the Frontier, the dispatch of case-guppi, the showing and signing of a Case, the defers; aliases `оркестрация, оркестровка`.
+>   - Answer: agreed, (a).
+> - **Which page carries the decision line**
+>   - Recommended: (a) the insight `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`, with only `change`; its missing `addressed_by` stays a separate item.
+>   - Answer: agreed, (a).
+> - **What checks that the tag was added**
+>   - Recommended: (a) no new Estimate; `context` names `estimate-spec-write-reads-a-new-tag`, `estimate-materialize-assembles` and `estimate-generate-writes` and says why their Criteria stand.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `vault/wiki/tags.md`: the list of registered tags, which gains the row.
+> **＋** `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`: the page that carries the tag, whose History gains a line.
+> **＋** `rule-spec-write`: the rule of the Spec hook, which turns the tag line into an entry of `new_tags`.
+> **＋** `guppi/generate.py`: `register_tags` writes the row and warns about a used tag the list does not hold.
+
+> **when:**
+> The librarian's run applies the yaml of this session by `guppi/generate.py`.
+
+> **then:**
+> `vault/wiki/tags.md` holds a row for `orchestration`, its meaning the main agent's own work in a session, and its aliases `оркестрация, оркестровка`.
+> **＋** `guppi/generate.py` prints no warning that `orchestration` is used but not registered.
+> **＋** The History of `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out` gains one line that its tag `orchestration` is registered.
+> **－** This Case changes no field or section of `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`.
+
+```then
+new_tags:
+- tag: orchestration
+  meaning: 'the main agent''s own work in a session: the Frontier, the dispatch of case-guppi, the showing and signing of a Case, the defers'
+  aliases: оркестрация, оркестровка
+update:
+- slug: insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out
+  change: its tag orchestration is registered in tags.md (case 704)
+```
+
+```tasks
+- [ ] update `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`
+```
+
+## Case 705 — A dropped change takes a ratified Case back to its ratified form
+
+> **context:**
+> After `/pre-spec`, the hook of `rule-prespec-onward` sends the agent on by itself only when no Case is still out. `case_out` of `guppi/onward.py` counts a Case as out when its file under `cases/` was written after its last decision line, and it skips a file that holds nothing but blank space, the file of a dropped Case (case 701.1). Case 701 lets `case-guppi` empty only the file of a Case with no decision line, since `guppi/generate.py` leaves the `context` and `given` of a ratified Case in its Case file. So when the person ratifies a Case, sends it back for a change, and then drops the change, the file holds a changed text that nobody ratified, written after the last decision line. The hook stays silent for the rest of Plan Mode, and the Case file that the Decision page points to holds the wrong text. The handoff of session 0425 left this not done. The person chose that dropping a ratified Case after a change means dropping the change, so the Case stays ratified in the form the person ratified. The main agent sends the drop to the `case-guppi` of the Case. `case-guppi` undoes its edits, and the Case is shown again and ratified again, the reply carrying the same decision lines. Taking back the whole decision of a ratified Case is left not done; no rule sets it today, and the handoff carries it to a later session.
+>
+> The hook needs no change. `last_decisions` of `guppi/onward.py` reads the decision lines of every reply of the main agent in the transcript at the time of its record, so a reply that carries lines the ledger already holds makes the Case ratified again (case 604); `estimate-prespec-onward-reads-the-decisions-of-the-session` already checks this, so its Criterion stands. The hook of `rule-spec-write` writes the restored text from the store after the reply that sends the file and carries the lines, as for any Case ratified again. The check of `rule-case-check` sends back a Case whose `recommend` has no item for a question of the earlier rounds of `case-guppi`, as `estimate-case-check-requires-each-question-of-the-rounds` says. So a full undo would fail the check when the change came with a round, and the person chose that `recommend` keeps its items and gains one `**Change**` item that records the drop. A Case built again under a new number keeps its old file untouched; dropping the new Case empties the new file by Case 701, and the old file stays older than its decision lines, so it is not out. The Criterion of `estimate-case-build-writes-the-case` says that `case-guppi` answers the drop of a ratified Case with `**Fact:**`, and the Criterion of `estimate-orchestration-shows-the-built-case` says that a Case with a decision line gets no drop message; Case 705.1 and Case 705.2 replace them. The purpose and method of the first state the old promise, so 705.1 sets them anew. The purpose and method of the second state no part of it and stand. Each replaced Criterion keeps its old lines word for word, except the lines that change on purpose. In 705.1 these are the `when` line of the drop, which gains the drop of a change, the line that bars writing the whole Case again, which gains the undo, and the line that bars emptying a ratified Case, which now holds only for a Case not changed since its ratification. In 705.2 it is the line that a Case with a decision line gets no drop message, which now says only that its file is never emptied. No promise is lost: the drop of a Case and the bar on writing the whole Case again stay, each with one more case added, and a ratified Case is still never emptied. Only two answers change on purpose: a ratified Case changed since its ratification no longer answers `**Fact:**`, and it now gets a drop message. The `then` of each sub-case holds more than seven ＋ lines because it carries the whole Criterion it replaces. Each sub-case adds one line, so the unit stays atomic: one sub-case is the agent's undo, the other is the main agent's handling of the drop. The two sub-cases share words because they carry the whole Criteria of the agent and of the main agent that reads its answers, and they describe one drop from each side; their promises stay apart. `estimate-case-build-records-the-rounds-in-recommend` says that a change the person asked for on a shown Case is an item `**Change**` with a line `Asked:` and a line `Taken:`. Dropping a change is such a change, and 705.1 records it in that form, so that Criterion stands. `estimate-orchestration-acknowledging-reply` says that the reply that acknowledges a re-ratification carries the `LEDGER` block with the decision lines of each Case ratified again. That is the reply 705.2 relies on after the undo, unchanged, so that Criterion stands too. The prompt says that Case 711 of this session will also update `rule-case-build`; its case file, as it stands, holds no pair on that page. Its pair must not anchor on the drop sentence of the Render, which 705.1 replaces. The rendered `case-guppi.md` changes only at the librarian's render. Until then `case-guppi` answers such a drop with `**Fact:**` as before; no hook refuses anything in between, so no old form is kept.
+>
+> A Grep for `(?i)\bdrop(s|ped)? (that|the|its|your) Case|drop message|drop of (a|its|the) Case` over `vault/wiki/rules/` printed `rule-case-build.md` and `rule-orchestration.md`, and over `.claude/` printed `.claude/agents/case-guppi.md`. In `rule-case-build.md` one hit is the `description` of `case-guppi`, which stays true, and the other is the paragraph of the drop, which 705.1 changes. In `rule-orchestration.md` one hit is a History line, and the other is the paragraph of the drop, which 705.2 changes. `.claude/agents/case-guppi.md` is rendered from `rule-case-build`. Case 703 of this session changes `rule-case-check` and `guppi/casecheck.py`, which this Case does not touch, and it sets no behaviour at the drop of a Case.
+
+> **problem:**
+> When the person drops a change to a ratified Case, its file keeps the changed text that nobody ratified. That file is newer than the Case's last decision line, so the hook of `rule-prespec-onward` stays silent for the rest of Plan Mode.
+
+> **recommend:**
+> - **What dropping an approved Case after a change covers**
+>   - Recommended: (a) drop the change and keep the approved Case; taking back the whole decision is left not done and goes to the handoff.
+>   - Answer: agreed, (a).
+> - **How the file of the approved Case comes back**
+>   - Recommended: (a) `case-guppi` undoes its edits and answers with its summary; the main agent shows the Case again, and the person ratifies it again with the same lines.
+>   - Answer: agreed, (a).
+> - **What happens to `recommend` when the change is undone**
+>   - Recommended: (a) undo every section but `recommend`, which keeps its items and gains a `**Change**` item that records the drop.
+>   - Answer: agreed, (a).
+
+### Case 705.1 — case-guppi undoes a dropped change to a ratified Case
+
+> **given:**
+> `rule-case-build`: its Render, the agent file of `case-guppi`, gains the undo of a dropped change.
+> **＋** `estimate-case-build-writes-the-case`: its Criterion is replaced whole; its purpose and method are set anew.
+> **＋** `.claude/agents/case-guppi.md`: the file rendered from `rule-case-build`.
+> **＋** `.claude/skills/grill-me/SKILL.md`: the form of a round.
+> **＋** `vault/wiki/case-schema.md`, `vault/wiki/ratification.md` and `.claude/agents/ask-guppi.md`: what `case-guppi` reads before it answers.
+> **＋** `rule-case-check` and `.claude/settings.json`: the check of its file and summary, and the hooks it reads for a Case that changes a hook.
+> **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md` and `raw/<date>/<hi HHMM>/ledger.md`: the file of its Case and the ledger of the session.
+
+> **when:**
+> The main agent dispatches `case-guppi` with a Case id, a Frontier item and its source, and the person's words on it; or sends it by `SendMessage` the person's answers to a round, or the person's question or change on a Case it built.
+> **＋** Or the hook of `rule-case-check` sends it findings on the file of its Case or on its summary.
+> **＋** Or the main agent sends it by `SendMessage` the drop of the Case it built, or the drop of a change to that Case.
+
+> **then:**
+> `case-guppi` starts with `.claude/skills/grill-me/SKILL.md` in its context by `skills: [grill-me]` in `.claude/agents/case-guppi.md`, and reads `vault/wiki/case-schema.md` and `vault/wiki/ratification.md` whole before it answers.
+> **＋** Before a `create` without a `ref`, it runs the vault query of `.claude/agents/ask-guppi.md` itself, and the `context` of the Case gives the answer.
+> **＋** It reads each page and file the `given` names, the Criterion of each Estimate such a page lists, and, for a Case that adds or changes a hook, the hooks on the same event in `.claude/settings.json`; each contradiction is fixed in the Case, or the `context` says why it stands.
+> **＋** While a fork is open — the bound, the alternative, the promise, the split, the exceptions or what is left not done — its answer is a round of questions in the form of `.claude/skills/grill-me/SKILL.md`, in English, with no Case heading and nothing else but the context of a first round.
+> **＋** The first round on an item opens, before its first question, with one prose paragraph under the label `**Context:**`: what the item is about, what the thing does today and where it goes wrong, and what the round decides — a sentence per part where one is enough, a part with nothing to say left out.
+> **＋** When no fork is open, it writes the Case whole in English in the chat form of `vault/wiki/case-schema.md`, its ledger lines in the form of `vault/wiki/ratification.md`, from the heading to the fence of `ratification` and nothing else, into `raw/<date>/<hi HHMM>/cases/case-<N>.md` by `Write`, N the id of the top-level Case.
+> **＋** Its answer is then a summary alone: a first line `**Built:**` and the path of the file; a second line `**Case:**` with the id and the name of the top-level Case as the heading of the file writes them, a Case with sub-cases included; then one list item per Case and sub-case with its id and name, the Estimate that checks it and one line on what that Estimate checks, and under the item its ledger lines in an untagged fence, as the file holds them.
+> **＋** When the `context` of a Case says that another Case of the session should change instead, the item of that Case in the summary carries a line `**Other Case:**` that names the other Case and the change it needs.
+> **＋** Sent findings by the hook on the file, or asked for a change by a message, it changes the file by `Edit` of the lines that change and answers with the summary again; sent a finding on its summary alone, it answers with the summary again and leaves the file as it stands; asked by a message that opens a fork, it answers with a round.
+> **＋** A round may come at the first answer on an item, after a message on a Case it built, and in Work Mode when a ratified Case is built again.
+> **＋** It runs on `model: opus` with `effort: medium`, the tools Read, Grep, Glob, Write and Edit, and `permissionMode: auto`, so it writes its file with no prompt while the session is in Plan Mode.
+> **＋** Sent the drop of its Case, which has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, it writes empty text into the file of that Case by `Write` and answers with a first line `**Dropped:**` and the path of the file, and nothing else. A file of its own that it leaves behind, when it builds the Case again under another number, it empties the same way.
+> **＋** Sent the drop of a change to its Case, which has a decision line in `raw/<date>/<hi HHMM>/ledger.md` and which it changed after the Case was last ratified, it undoes by `Edit` each edit it made since then in every section but `recommend`. `recommend` keeps its items and gains one item `**Change**`: its `Asked:` line says that the person dropped the change, and its `Taken:` line says that the Case went back to its ratified form. It answers with the summary again, so that the check of `rule-case-check` finds an item for each question of its rounds.
+> **－** The `**Case:**` line is no Markdown heading, so the hook of `rule-case-check` does not read the summary as a Case.
+> **－** It does not write the whole Case again to fix a finding, make a change or undo a change.
+> **－** A later round on the item, a round after a message on a Case it built and a round in Work Mode carry no context.
+> **－** The context carries no Case heading, so the hook of `rule-case-check` neither checks nor stores the round as a Case; it judges only the form of the questions of the round, not its context.
+> **－** It writes no file but the file of its Case, the file it leaves behind under an earlier number of the same Case included, and no ledger line.
+> **－** It empties no file of a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`: sent the drop of such a Case that it did not change after the Case was last ratified, it answers under a first line `**Fact:**` that the Case is ratified, and the file stands.
+
+```then
+update:
+- slug: rule-case-build
+  replace:
+  - old: a Case with a decision line you do not empty, and you answer under a first line `**Fact:**` that it is ratified (case 701.3).
+    new: 'a Case with a decision line you do not empty: when the message drops a change you made to it after it was last ratified, you undo by `Edit` each edit you made since then in every section but `recommend`, which keeps its items and gains one item `**Change**` whose `Asked:` line says that the person dropped the change and whose `Taken:` line says that the Case went back to its ratified form, and you answer with the summary again, so that the main agent shows the Case again and the person ratifies it again; when you did not change it since, you answer under a first line `**Fact:**` that it is ratified (cases 701.3, 705.1).'
+  change: case-guppi undoes a change the person dropped on a ratified Case, keeping the items of recommend and adding a Change item, and answers with the summary again (case 705.1)
+- slug: estimate-case-build-writes-the-case
+  set:
+    status: pending
+    purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame, writes it into its file and answers with a short summary, empties the file of a Case it drops, and undoes a change the person dropped on a ratified Case
+    method: 'by hand: live dispatches in a session after the render — one item with a fork, answered by a round and then the Case written into its file and a summary, one Case with a create without a ref, one that changes a hook, a Case the hook sent back and fixed by Edit, a change the person asked for on one sub-case, made by Edit of that sub-case, a Case dropped by a message of the main agent, its file emptied and its answer opening with Dropped, and a change dropped on a ratified Case, its edits undone by Edit but for one Change item in recommend and its answer a summary, the file written in Plan Mode with no prompt; the tokens and seconds of each dispatch in the estimate line'
+  change: the Criterion replaced whole — case-guppi undoes a change the person dropped on a ratified Case and answers with the summary again (case 705.1)
+```
+
+```tasks
+- [ ] update `rule-case-build`
+- [ ] update `estimate-case-build-writes-the-case`
+- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [ ] read `estimate-case-build-writes-the-case`
+```
+
+### Case 705.2 — The main agent sends a dropped change to its case-guppi and shows the Case again
+
+> **given:**
+> `rule-orchestration`: its Render sets how the main agent reads an answer of `case-guppi` and handles a drop.
+> **＋** `estimate-orchestration-shows-the-built-case`: its Criterion is replaced whole.
+> **＋** `vault/wiki/orchestration.md`: the file rendered from `rule-orchestration`.
+> **＋** `rule-case-check`: the check of a showing.
+> **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`, `raw/<date>/<hi HHMM>/frontier.md` and `raw/<date>/<hi HHMM>/ledger.md`: the file of a Case, the Frontier and the ledger of the session.
+> **＋** `.claude/skills/wait-what/SKILL.md` and `.claude/skills/grill-me/SKILL.md`: the skill of a plain explanation and the form of a question.
+> **＋** `rule-prespec-onward`: the hook that counts a Case ratified again by a reply that carries its decision lines.
+
+> **when:**
+> The main agent takes up a Frontier item, the person answers a round of questions, answers a shown Case with a question or a change, or asks for a plain explanation of the agent's text — by `/wait-what` on `UserPromptSubmit` or in words — or a ratified Case changes and is shown again, in Plan Mode or in Work Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
+> **＋** Or the person puts off or keeps the item of a Case that `case-guppi` built and that is not ratified, or drops that Case so that the item ends another way.
+> **＋** Or the person drops a change to a ratified Case that its `case-guppi` made after the Case was last ratified.
+
+> **then:**
+> The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source, and the person's words on it, in the prompt of the call, after the plan file stands with its title line; nothing of the Case stands in the chat before the answer.
+> **＋** The person's answers to a round go to the same `case-guppi` by `SendMessage`, verbatim and untranslated, and so does a question or a change of the person on a shown Case that is not a request for a plain explanation.
+> **＋** A request for a plain explanation of a round, of the short text on a Case or of a reply the main agent answers itself by `.claude/skills/wait-what/SKILL.md`; it sends the `case-guppi` of the Case a `SendMessage` only to ask for a fact of the Case, and `case-guppi` answers with the fact alone, under a first line `**Fact:**` and with no Case heading.
+> **＋** An answer with no first line `**Built:**`, `**Fact:**` or `**Dropped:**` is a round of questions: the main agent shows it in the chat translated into Russian line by line, slugs, paths and quotations unchanged, each quotation in its blockquote — the `**Context:**` paragraph that opens the first round on an item translated in place before the first question, its label naming its Case and its item of `raw/<date>/<hi HHMM>/frontier.md` when the round is one of a batch, each question in the order and with the number of the answer, opening with its `❓ **Qn** - **<title>**:` line of `.claude/skills/grill-me/SKILL.md` and closing with its `➡️` line, its title, body and recommended answer translated in place, nothing merged, dropped or added between the questions, the agent's own text after the last question and one horizontal rule; no Case is shown, no file is sent, and no step of confirmation follows the last round.
+> **＋** The main agent shows a built Case at every showing by `SendUserFile` with `display: render` on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, the file `case-guppi` wrote and the hook of `rule-case-check` checked. In the same reply it writes the heading of the top-level Case: its id, and its name in Russian translated from the `**Case:**` line of the summary `case-guppi` answered with. Under the heading it writes one list with an item per Case and sub-case of the summary: its id, its name in Russian, and a short text in Russian on what done means and how it is checked, taken from the Estimate the summary names for it. Then it writes one `ratification` with the ledger lines of every Case of the list as the summary holds them, and its own text after one horizontal rule. A summary in which a Case names no such Estimate goes back to its `case-guppi` by `SendMessage` before the Case is shown.
+> **＋** A Case whose item in the summary carries a line `**Other Case:**` is shown as it stands, and the main agent asks the person whether that other Case is built again.
+> **＋** A reply that shows a Case and that the `Stop` check of `rule-case-check` refuses — its file not sent, or a showing that differs from the checked text — is followed, before the person answers, by a reply that sends the file and shows the `ratification` as the summary holds it.
+> **＋** A round or a Case shown with a text of the main agent's own before it or outside its list is not refused and is not shown again: `rule-case-check` tells the agent of it at the person's next message, and the agent keeps the form from the next showing on.
+> **＋** A ratified Case that changes — in its prose or in its body — changes through its `case-guppi`, and its new file is sent and ratified again; the main agent edits no Case in the plan file or under `cases/`.
+> **＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches `ask-guppi` only at pre-spec, one run over the whole plan at its first run, never to build a Case, and asks that run again only to confirm its own findings.
+> **＋** When the person puts off or keeps the item of a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, or drops that Case so that the item ends another way, the main agent sends the drop by `SendMessage` to the `case-guppi` of that Case, and the turn of the person's words ends with one line under the bold label `**Waiting:**`, translated, and nothing else. The agent goes on with the item only in the turn that the answer `**Dropped:**` of that `case-guppi` opens, so that the hook of `rule-prespec-onward` finds the file of the Case empty at the end of every later reply.
+> **＋** The drop adds no closer: the line of the item in `raw/<date>/<hi HHMM>/frontier.md` closes by one of the closers of `vault/wiki/orchestration.md`, as fits what the person chose — `[x] … · work`, `[x] … · case N` of another Case, `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
+> **＋** When the person drops a change to a ratified Case that its `case-guppi` made after the Case was last ratified, the main agent sends the drop to that `case-guppi` by `SendMessage`. `case-guppi` undoes the change and answers with the summary of the Case in its ratified form. The main agent shows the Case again as after a change, and the person ratifies it again, the acknowledging reply carrying the same decision lines, so that the hook of `rule-prespec-onward` counts the Case as ratified.
+> **－** The main agent writes the heading, the list, the `ratification` and the question on another Case from the summary, and does not read the file of the Case.
+> **－** The heading carries no name of the main agent's own and not the words of the Frontier item.
+> **－** The main agent writes no context of its own before the first question of a round. The label that names the Case of a round in a batch is no such context.
+> **－** The main agent writes no `given`, `when`, `then` or `tasks` of a built Case into the chat.
+> **－** A deferred decision in the short form is written by the main agent in English in the chat, with no dispatch and no file.
+> **－** The file of a Case with a decision line in `raw/<date>/<hi HHMM>/ledger.md` is never emptied: it keeps the `context` and `given` that its Decision page leaves there.
+
+```then
+update:
+- slug: rule-orchestration
+  replace:
+  - old: a Case with a decision line gets no drop message, since its file keeps the `context` and `given` that its Decision page leaves there (case 701.4).
+    new: the file of a Case with a decision line is never emptied, since it keeps the `context` and `given` that its Decision page leaves there (case 701.4); when the person drops a change to such a Case that its `case-guppi` made after the Case was last ratified, the agent sends the drop to that `case-guppi` by `SendMessage`, which undoes the change and answers with the summary of the Case in its ratified form, and the agent shows the Case again as after a change, and the person ratifies it again, the acknowledging reply carrying the same decision lines, so that the hook of `rule-prespec-onward` counts the Case as ratified (case 705.2).
+  change: a change the person drops on a ratified Case goes to its case-guppi, which undoes it, and the Case is shown and ratified again (case 705.2)
+- slug: estimate-orchestration-shows-the-built-case
+  set:
+    status: pending
+  change: the Criterion replaced whole — a change the person drops on a ratified Case goes to its case-guppi, and the Case is shown and ratified again with the same lines (case 705.2)
+```
+
+```tasks
+- [ ] update `rule-orchestration`
+- [ ] update `estimate-orchestration-shows-the-built-case`
+- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [ ] read `estimate-orchestration-shows-the-built-case`
+```
+
+## Case 706 — The actioned Insight links to the decision that actioned it
+
+> **context:**
+> An Insight page groups lessons that share one cause. When a ratified decision fixes that cause, the page becomes `actioned`, and `rule-insights-schema` then requires the field `addressed_by`, a link to that decision. Case 701.1 set `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out` to `actioned` with no `addressed_by`, so `make lint` reports a missing field on the page. `guppi/generate.py` does not fill the field: it writes what the `set` of an `update` gives. Its History already names `decision-case-701.1` as the decision that set the status, and that Decision page stands. The person chose that the field links to `decision-case-701.1`, and that this Case fixes the page only.
+>
+> A Grep for `conditional` over `guppi/` printed `guppi/lint.py` alone, so only `make lint` checks the requirement, at the librarian's run. A later Case can still set an Insight `actioned` without `addressed_by`, and no check sends it back before ratification; this is left not done, by the person's choice. `estimate-insights-schema-checked` checks the change: its Criterion says that a page with the required fields has no `schema` finding and that `actioned` requires `addressed_by`, and its live reading is `make lint` with no `schema` finding under `wiki/insights/`. This Case changes no schema and no code, so its Criterion stands, and the reading is left to the `make lint` of the librarian's run, which the brief reports. Case 704 of this session updates the same Insight with only `change`; it sets no field, so the two Cases do not clash, and each adds its own History line. No code changes, so no reader goes ahead of its text and no old form is kept.
+
+> **problem:**
+> The Insight `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out` stands `actioned` with no `addressed_by`, and `make lint` reports it as a missing field.
+
+> **recommend:**
+> - **Which decision the field `addressed_by` links to**
+>   - Recommended: (a) the part that set the status, `decision-case-701.1`, the decision its History line names.
+>   - Answer: agreed, (a).
+> - **Whether this Case also adds a check for this mistake**
+>   - Recommended: (a) fix the page only; `make lint` still catches the mistake at the librarian's run, and the Case says the check is left not done.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`: the Insight that gains the field.
+> **＋** `rule-insights-schema`: the schema that requires `addressed_by` on an `actioned` Insight.
+> **＋** `guppi/generate.py`: writes the field from the `set` of the `update`.
+> **＋** `guppi/lint.py`: `make lint`, which checks the page against the schema.
+
+> **when:**
+> The librarian's run applies the yaml of this session by `guppi/generate.py`, and `make lint` of `guppi/lint.py` reads `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out` by the schema of `rule-insights-schema`.
+
+> **then:**
+> `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out` holds `addressed_by: "[[decision-case-701.1]]"`.
+> **＋** `make lint` prints no `schema` finding on `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`.
+> **＋** The History of `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out` gains one line that it links to the decision that actioned it.
+> **－** Its `status` stays `actioned`, and no other field or section changes.
+
+```then
+update:
+- slug: insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out
+  set:
+    addressed_by: '[[decision-case-701.1]]'
+  change: 'addressed_by: decision-case-701.1, the decision that set it actioned (case 706)'
+```
+
+```tasks
+- [ ] update `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`
+```
+
+## Case 710 — A file a shell call left in a wrong byte form is repaired or named
+
+> **context:**
+> The agent sometimes changes a file of the repository with a Bash or PowerShell command instead of the Edit or Write tool, and on Windows the tool on the way rewrites the bytes of the file. The three lessons of `insight-workflow-file-changed-through-a-shell-command` show it. Windows PowerShell 5.1 read `frontier.md` in the ANSI code page and wrote it back with a byte-order mark and broken characters. Two inline Python scripts in Bash rewrote `guppi/onward.py` by `Path.write_text`, and after the last one the file held 412 CRLF line endings against 0 at HEAD. `guppi/bashguard.py` runs before a Bash call and refuses a heredoc only for a backslash in its body or a redirect into a file on its marker line, so both scripts passed. No hook of `.claude/settings.json` judges or guards a call of the PowerShell tool: the only hook that runs on it is `uv run guppi event tool`, which logs every tool on `PostToolUse`, and its line 242 of `vault/raw/2026-09-18/event_log.md` shows that the agent calls that tool. The person chose a check after the call rather than a wider guard before it, on Bash and on PowerShell; a rule page of its own with its own Estimate; every changed or new file at each call; and a hook that repairs CRLF line endings and a UTF-8 byte-order mark itself and only names a file it cannot repair, in UTF-16 or not valid UTF-8. `.gitattributes` sets `* text=auto eol=lf`, so LF is the form the repository sets for every text file. The hook gives its lines as `hookSpecificOutput.additionalContext`, which `rule-spec-capture` names the one shape in which the stdout of a `PostToolUse` hook reaches the agent (case 255). A file whose characters a tool changed but which stays valid UTF-8 with no mark is not caught, since no byte rule tells it from a sound file; where the hook removes a mark it asks the agent to check the characters, since in the first lesson the mark came with broken characters. A shell call of a subagent is not checked: `rule-governed-files-hook` and `rule-documentation` say that a subagent does not inherit the project's hooks. Case 710.2 sets the Insight `actioned`, its `addressed_by` the decision of Case 710.1, and corrects its Pattern, which names two lessons of three; by `rule-insights-schema` the cascade of `generate` then archives its three lessons. Its `## Proposal` stands: the schema calls it a suggestion, not a decision. `estimate-insights-schema-checked` checks Case 710.2: its Criterion says that an `actioned` Insight requires `addressed_by` and that a page in the shape has no `schema` finding, and its live reading is `make lint` at the librarian's run, which the brief reports. This Case changes no schema, so its Criterion stands; no Estimate reads the words of a Pattern. The person chose the quoted wikilink that the field description of `rule-insights-schema` sets, unless the check of this file refuses a wikilink to a decision of this session. It does: with the quoted wikilink, the `SubagentStop` check printed `casecheck: case 710.2: [[decision-case-710.1]] outside a code span names no page`, since `decision-case-710.1` is written only at the librarian's run. So the field holds the slug without brackets, as the example of `rule-insights-schema` writes it. `slug_of` of `guppi/pages.py`, which `guppi/lint.py` imports, gives the slug inside a `[[slug]]` value and any other value as it stands, so both forms give lint the same slug.
+>
+> The vault query of `.claude/agents/ask-guppi.md` answers: exists — none; near — `rule-bash-guard`, the guard before a Bash call, which stays as it is, and `rule-python-utf8`, which puts the output of a Python process in UTF-8 and does not judge the files it writes; missing — a check of the bytes of a file after a shell call; rules — `rule-hook-registry` requires the registration in the same Case that creates the rule of the hook, and `rule-harness` counts in its Purpose the rules that run in no pipeline; tags — `hooks`, `harness` and `workflow`, each a row of `tags.md`; a Glob `vault/**/*shell-write*` printed nothing, so `rule-shell-write-check` and `estimate-shell-write-check-repairs-and-reports` are free. `estimate-hook-registry-rendered` says that every hook the harness runs is registered by a line of the Render; that stays true, so its Criterion stands. A Grep of `(?i)hook that refuses a heredoc|run in no pipeline` over `vault/wiki/`, `guppi/`, `tests/`, `.claude/` and `CLAUDE.md` printed `vault/wiki/estimates/estimate-harness-pipeline.md` and `vault/wiki/rules/rule-harness.md`. Case 710.1 changes the Purpose of `rule-harness`. The Criterion of `estimate-harness-pipeline` lists rules the Purpose must name, not all of them, and the Purpose still names each one, so its Criterion stands, as case 640 found. A Grep of `PostToolUse` over `vault/wiki/rules/` and `.claude/` printed `.claude/settings.json`, `.claude/agents/librarian-guppi.md`, `rule-hook-registry.md`, `rule-spec-reconcile.md`, `rule-documentation.md`, `rule-spec-capture.md`, `rule-event-log.md`, `rule-governed-files-hook.md` and `rule-page-read.md`. Only `rule-event-log` sets what happens after a Bash or PowerShell call: its hook writes one log line for every tool, and this Case does not change it. The other passages set the moment after `ExitPlanMode` or `Read`, the librarian's own hook, or a refused call, which has no `PostToolUse`. A Grep of `insight-workflow-file-changed-through-a-shell-command` over `vault/wiki/`, `guppi/`, `tests/` and `.claude/` printed `brief.md`, `backlog.md`, `log.md` and the three lessons. The lessons link to the Insight by their `insight` field, which stays true; `backlog.md` lists open Insights and is written again by `guppi backlog` at the librarian's run; `brief.md` and `log.md` are not read. The code of `guppi/shellwrite.py` runs from the working tree at once, but the hook fires only once the render writes `.claude/settings.json`; nothing refuses in between, so no old form is kept. No other Case of this session sets what happens after a shell call or changes a page of this Case.
+
+> **problem:**
+> A shell command can rewrite a file of the repository with CRLF line endings, a byte-order mark or another encoding, and no check sees it: the guard before a Bash call reads only heredocs, and no hook judges a PowerShell call.
+
+> **recommend:**
+> - **Where the check catches a file changed through a shell command**
+>   - Recommended: (b) check the files after the call: a new hook after each shell call reads the files git sees as changed or new and reports each one with a CRLF line ending, a byte-order mark, or bytes that are not valid UTF-8.
+>   - Answer: agreed, (b), after the main agent explained the round again in plain words.
+> - **Which shell tools the check covers**
+>   - Recommended: (b) Bash and PowerShell.
+>   - Answer: agreed, (b).
+> - **Which page holds the new check**
+>   - Recommended: (a) a new rule page, such as `rule-shell-write-check`, with its own Estimate; `rule-bash-guard` and its Estimate stay as they are, and `rule-hook-registry` gains the hook entries.
+>   - Answer: agreed, (a).
+> - **Which files the check looks at after each call**
+>   - Recommended: (a) every changed or new file, ignored files left out, at every call, so a faulty file is reported again until it is repaired.
+>   - Answer: agreed, (a).
+> - **What the hook does with a faulty file**
+>   - Recommended: (b) repair what is safe and report the rest: the hook turns CRLF into LF and removes a byte-order mark, names the files it repaired, and only reports a file that is not valid UTF-8 or holds UTF-16 text.
+>   - Answer: agreed, (b).
+> - **What happens to the Insight page**
+>   - Recommended: (a) mark it fixed and correct its Pattern: `actioned`, `addressed_by` the decision of this Case, and a Pattern that names the three lessons.
+>   - Answer: agreed, (a).
+> - **Change**
+>   - Asked: a finding of pre-spec: a hook does run on PowerShell, `uv run guppi event tool`, so `context` and `problem` should say that no hook judges or guards a PowerShell call.
+>   - Taken: `context` and `problem` now say that no hook judges a PowerShell call, and that the only hook on it logs the call.
+> - **Change**
+>   - Asked: a finding of pre-spec, which the person agreed with: write `addressed_by` as the quoted wikilink to `decision-case-710.1`, as the schema sets, and keep the bare slug only if the check of the file refuses that link, quoting its refusal in `context`.
+>   - Taken: the check refused the link, so the bare slug stands, and `context` quotes the refusal.
+
+### Case 710.1 — The hook after a shell call repairs or names a file in a wrong byte form
+
+> **given:**
+> `rule-shell-write-check`: the new rule of the hook.
+> **＋** `estimate-shell-write-check-repairs-and-reports`: the new check of the hook.
+> **＋** `guppi/shellwrite.py` and `guppi/cli.py`: the hook and the dispatch of its command.
+> **＋** `tests/test_shellwrite.py`: the tests of the hook.
+> **＋** `rule-hook-registry` and `.claude/settings.json`: the registration of the hook, rendered into the file.
+> **＋** `rule-harness` and `estimate-harness-pipeline`: the parent rule, whose Purpose counts the rules in no pipeline, and the Estimate that lists them. Its Criterion is unchanged.
+> **＋** `rule-event-log`: the hook that logs every tool on `PostToolUse`. Unchanged.
+> **＋** `.gitattributes`: sets LF for every text file of the repository.
+
+> **when:**
+> A call of the `Bash` or `PowerShell` tool ends, and `uv run guppi shellwrite` of `guppi/shellwrite.py` on `PostToolUse` reads each file that `git` lists as changed or new and not ignored.
+
+> **then:**
+> In each such file the hook turns every CRLF line ending into LF, and removes a UTF-8 byte-order mark at its start.
+> **＋** For each file it repaired, one line of `hookSpecificOutput.additionalContext` names the file and what it repaired, and tells the agent to change a file with Edit or Write, never through a shell command; a line on a removed mark also asks the agent to check the characters of the file.
+> **＋** A file that opens with a UTF-16 byte-order mark, or that is not valid UTF-8, is not changed: its line names the file and the fault and tells the agent to restore the file with Write.
+> **＋** The hook reads every changed or new file at each such call, so a file left faulty is named again at the next call.
+> **＋** `.claude/settings.json` registers the hook on `PostToolUse` with the matcher `Bash|PowerShell`, by the Render of `rule-hook-registry`.
+> **－** A file outside the repository, a file that `git` ignores, and a file with a NUL byte and no UTF-16 mark are neither read for a fault nor changed.
+> **－** A call that leaves no faulty file adds nothing to the context.
+> **－** A payload the hook cannot read, or a `git` call that fails, gives exit 0 and one line on stderr; the hook never raises.
+> **－** A shell call of a subagent is not checked, since a subagent does not inherit the hooks of `.claude/settings.json`.
+
+```then
+create:
+- slug: rule-shell-write-check
+  ref: rule-harness
+  kind: Leaf
+  purpose: Prevents a file of the repository from keeping the CRLF line endings, the byte-order mark or the broken encoding that a Bash or PowerShell call left in it
+  enforcement: hook
+  implementation_ref:
+  - guppi/shellwrite.py
+  - tests/test_shellwrite.py
+  - .claude/settings.json
+  tags:
+  - hooks
+  - harness
+  - workflow
+  sections:
+    Purpose: Prevents a file of the repository from keeping the CRLF line endings, the byte-order mark or the broken encoding that a Bash or PowerShell call left in it. On Windows, Windows PowerShell 5.1 reads a UTF-8 file in the ANSI code page and writes it back with a byte-order mark, and Python's `Path.write_text` writes CRLF line endings. The three lessons of `insight-workflow-file-changed-through-a-shell-command` came from such writes, and the guard of `rule-bash-guard`, which reads only heredocs before a Bash call, did not see them. `uv run guppi shellwrite` runs on `PostToolUse` of `Bash` and `PowerShell` and reads each file that `git` lists as changed or new and not ignored. It turns CRLF into LF and removes a UTF-8 byte-order mark, the form `.gitattributes` sets for every text file, and names each file it repaired in `hookSpecificOutput.additionalContext`; a file in UTF-16 or not valid UTF-8 it names without a change, for the agent to restore with Write. A file whose characters changed but which stays valid UTF-8 with no mark is not caught, and a shell call of a subagent is not checked, since a subagent does not inherit the project's hooks (case 710.1).
+- slug: estimate-shell-write-check-repairs-and-reports
+  ref: rule-shell-write-check
+  kind: QA
+  purpose: Whether the hook after a Bash or PowerShell call turns CRLF into LF and removes a UTF-8 byte-order mark in each changed or new file of the repository and names each file it repaired, and names without a change a file in UTF-16 or not valid UTF-8
+  method: uv run pytest tests/test_shellwrite.py
+  tags:
+  - hooks
+  - harness
+  - workflow
+update:
+- slug: rule-hook-registry
+  replace:
+  - old: '{ "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run guppi pageread --after", "timeout": 30 } ] }'
+    new: '{ "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run guppi pageread --after", "timeout": 30 } ] }, { "matcher": "Bash|PowerShell", "hooks": [ { "type": "command", "command": "uv run guppi shellwrite", "timeout": 30 } ] }'
+  change: guppi shellwrite registered on PostToolUse of Bash and PowerShell (case 710.1)
+- slug: rule-harness
+  replace:
+  - old: 'Ten more belong here and run in no pipeline:'
+    new: 'Eleven more belong here and run in no pipeline:'
+  - old: the hook that refuses a heredoc with a backslash or a file write, the page
+    new: the hook that refuses a heredoc with a backslash or a file write, the hook that repairs or names a file a shell call left with CRLF line endings, a byte-order mark or bytes that are not UTF-8, the page
+  - old: 476.1, 640).
+    new: 476.1, 640, 710.1).
+  change: 'an eleventh rule outside the pipeline: the hook that repairs or names a file a shell call left in a wrong byte form (case 710.1)'
+```
+
+```tasks
+- [ ] create `rule-shell-write-check`
+- [ ] create `estimate-shell-write-check-repairs-and-reports`
+- [ ] update `rule-hook-registry`
+- [ ] update `rule-harness`
+- [x] `guppi/shellwrite.py`: `run` reads the `PostToolUse` payload of `Bash` or `PowerShell`, lists the changed and new files that are not ignored by `git ls-files -m -o --exclude-standard`, skips a deleted file and a file with a NUL byte and no UTF-16 mark, names a file with a UTF-16 mark or not valid UTF-8 without a change, turns CRLF into LF and removes a UTF-8 mark in the rest, and prints one `hookSpecificOutput.additionalContext` with a line per named file; exit 0 always, one stderr line on an unreadable payload or a failed `git`; the docstring says so and names the rule page.
+- [x] `guppi/cli.py`: the command `shellwrite` dispatches to `guppi/shellwrite.py`, and the docstring lists it among the hook commands.
+- [x] `tests/test_shellwrite.py`: in a temporary git repository, a changed file with CRLF and a new file with a UTF-8 mark are repaired and named; a file in UTF-16 and one not valid UTF-8 are named and unchanged; an ignored file, a binary file and a clean file are not touched and give no output; another tool, an unreadable payload and a failed `git` give exit 0.
+- [ ] `uv run guppi render`: `.claude/settings.json`
+- [ ] read `estimate-shell-write-check-repairs-and-reports`
+```
+
+### Case 710.2 — The Insight is marked fixed and its Pattern names three lessons
+
+> **given:**
+> `insight-workflow-file-changed-through-a-shell-command`: the Insight that becomes `actioned`.
+> **＋** `rule-insights-schema`: the schema that requires `addressed_by` on an `actioned` Insight.
+> **＋** `guppi/generate.py`: writes the fields and the Pattern from the `update`.
+> **＋** `guppi/lint.py`: `make lint`, which checks the page against the schema.
+
+> **when:**
+> The librarian's run applies the yaml of this session by `guppi/generate.py`, and `make lint` of `guppi/lint.py` reads `insight-workflow-file-changed-through-a-shell-command` by the schema of `rule-insights-schema`.
+
+> **then:**
+> `insight-workflow-file-changed-through-a-shell-command` holds `status: actioned` and `addressed_by: decision-case-710.1`.
+> **＋** Its `## Pattern` says three lessons share one cause and names the third: an inline Python script in Work Mode that rewrote a file of the repository with CRLF line endings.
+> **＋** `make lint` prints no `schema` finding on `insight-workflow-file-changed-through-a-shell-command`.
+> **－** Its `## Proposal` does not change.
+
+```then
+update:
+- slug: insight-workflow-file-changed-through-a-shell-command
+  set:
+    status: actioned
+    addressed_by: decision-case-710.1
+  replace:
+  - old: Two lessons, one cause.
+    new: Three lessons, one cause.
+  - old: so the bashguard guard let it through.
+    new: so the bashguard guard let it through. In Work Mode of session 0425 a python heredoc in Bash rewrote guppi/onward.py with Path.write_text again, and the file held 412 CRLF line endings against 0 at HEAD.
+  change: actioned by decision-case-710.1, the hook that repairs or names a file a shell call left in a wrong byte form; the Pattern names the third lesson (case 710.2)
+```
+
+```tasks
+- [ ] update `insight-workflow-file-changed-through-a-shell-command`
+```
+
+## Case 711 — The check of a Case file reads its edit pairs against the session and the reads of case-guppi
+
+> **context:**
+> An edit pair is the old and the new words that a Case signs to change a page: a `replace` changes one place, a `reword` changes a word on every live page. Today the `SubagentStop` check of a Case file runs `judge` of `guppi/prespec.py` over the Cases of the file alone, so `check_pairs` looks for each old text on the page as it stands on disk. Only `/pre-spec` applies the pairs of every Case of the session in order. No script looks at two Cases whose pairs change one sentence while both still match, and no script checks that `case-guppi` read the sentence around a match, though `case-schema.md` asks for that read (case 353). `insight-workflow-edit-pair-signed-from-a-grep-fragment` names both gaps. Case 351 set it `actioned` with the simulation at `/pre-spec`, and `lesson-case-build-related-cases-same-sentence-missed` reopened it: two Cases of session 0104 changed one sentence of `rule-orchestration` so that it named one reply twice, and only `/pre-spec` found it, after the person had approved both. The person asked whether the check could be made by a script, and chose three checks in the hook, each a sub-case with its own Estimate. Case 711.1 applies the pairs of the other Cases of the session first and those of the file last, by `check_pairs`, imported. Case 711.2 sends a note once when a pair of the file changes a sentence that a pair of another Case wrote into. Case 711.3 sends back a pair whose sentence came back whole from no `Read` call of `case-guppi`, and sets the Insight `actioned`. A sentence runs to a full stop followed by a space and a capital letter, or to the end of its paragraph, by one function that 711.2 and 711.3 share. Pairs of the file's own Cases in one sentence give no note, since `case-guppi` already reads the new texts of its own sub-cases side by side by its instructions, and the person's choice named another Case.
+>
+> `estimate-prespec-simulates-the-pairs` checks the run at `/pre-spec`, which does not change, so its Criterion stands; its line that the meaning of the words is not judged by a machine stays true, since a note judges no meaning. `estimate-case-check-sends-back-a-faulty-case` says that `judge` runs over the Cases of the file, which stays true: 711.1 replaces only its pair findings on the Cases of the file by those of the run in session order, so an old text that matches only after another Case's pair is no longer a wrong finding. `estimate-case-check-sends-back-a-clash-with-another-case` judges clashes by `check_same_target`, and says nothing of pairs, so it stands. The notes of 711.2 go where the notes of `estimate-case-check-notes-a-criterion-line-not-carried` go, and that Criterion speaks only of its own note, so it stands. The test of `estimate-case-protocol-example-passes-the-check` calls the check of `guppi/casecheck.py` with no record of an agent, so 711.3 judges no read there, the example gets no finding, and that Criterion stands. When the read shows that a pair holds, `case-guppi` changes no line and answers with the summary again. The Criterion of `estimate-case-build-writes-the-case` speaks of the lines that change, so it stands. With the Insight `actioned`, the cascade of `estimate-generate-cascades` archives its `clustered` child at the librarian's run; the lesson is of another session, so no decision line carries `{addresses:...}`.
+>
+> The sentence of the Purpose of `rule-case-check` that the checks of a Case are those of pre-spec and of the Spec hook becomes false with the read check, and 711.3 changes it. A Grep `checks of a Case are the ones of pre-spec` over the repository with the glob `!vault/{raw,archive}/**` printed `vault/wiki/rules/rule-case-check.md` alone. A Grep `SubagentStop` over `vault/wiki/rules/` printed `rule-orchestration.md`, `rule-case-check.md`, `rule-case-protocol.md`, `rule-hook-registry.md` and `rule-spec-reconcile.md`, and over `.claude/` printed `.claude/settings.json`. `rule-orchestration` and `rule-spec-reconcile` name the hook and the file it checks, `rule-hook-registry` registers it, and `rule-case-protocol` says the example passes the check, which stays true as above; all stand. `.claude/settings.json` registers only `uv run guppi casecheck --subagent` on `SubagentStop`. Case 703.1 of this session adds a finding of an unlisted tag to the same hook and changes `rule-case-check` with a pair on the sentence that ends with case 688.1. The pairs of this Case anchor on other sentences of that Purpose, and this Case covers pairs only. The two Cases still meet on the sentence that the checks of a Case are those of pre-spec and of the Spec hook: the tag finding of 703.1 reads `tags.md` through `guppi/tags.py` and is no check of either, so 711.3 names it there as a second exception beside the read check. 703.1 sets `implementation_ref` of the page, which this Case leaves alone. `estimate-prespec-catches-an-indent-added-twice` says that the hook of `rule-case-check` runs `judge` over an answer and sends back a pair that adds an indent twice. Under 711.1 that finding of the answer comes from the run in session order instead of from `judge`, and `check_pairs` still gives it, so the hook still sends the Case back and that Criterion stands; 711.2 adds a record of spans to `check_pairs` and changes none of its findings. A finding of 711.3, or a note of 711.2, may name a Case of the session that the prompt of `case-guppi` did not name, such as a `reword` that hits a page the item does not name. `rule-case-build` lets `case-guppi` read only the case files of the Cases its prompt names, so it could not clear such a finding. So Case 711.4 lets it read the case file of a Case that the check of its file names in a finding or a note. It replaces the Criterion of `estimate-case-build-checks-the-finished-case`, whose line on the Cases it reads says no other Case, and sets its `purpose` anew, since the `purpose` lists the Cases its prompt names; its `method` counts the clashes with a Case named in the prompt, which stays true, so it stands. Case 705.1 of this session changes the paragraph of `rule-case-build` on the drop of a Case, and 711.4 changes the sentence on related Cases in the paragraph of the checks before the summary, so the two pairs do not touch one sentence. The rendered `case-guppi.md` changes at the librarian's render, while the hook runs from the working tree at once: in the Work Mode of this session a Case built again could be sent back for a part written by a Case its prompt does not name, and it stays unshown until that file is read; no line is lost, so no old form is kept. The `addressed_by` of the Insight stands bare, `decision-case-711.3`, because the check of this file refused the quoted wikilink with `case 711.3: [[decision-case-711.3]] outside a code span names no page`, the Decision page not standing before the librarian's run. The person chose the bare form in that case. The Criterion that 711.4 writes changes on purpose one line of the old one, the line on the case files it reads, which the check noted as not carried. The new line adds the Cases that a finding or a note of the check names, and every other line is carried word for word. The hook runs from the working tree as soon as Work Mode changes it, and the writer, `case-guppi`, does not change. A pair sent back is fixed by `case-guppi`, so no refusal loses a line and no old form is kept. The check noted that two `then` lines of 711.3 share most of their words with a `then` line of 711.2. Both sub-cases speak of the sentence around a match of a pair of the file and of text another Case's pair wrote, but 711.2 promises a note on such a sentence and 711.3 promises a finding when it was not read, so the lines stay in both.
+
+> **problem:**
+> A pair is signed against the page as it stands, not as the earlier Cases of the session leave it, and nothing makes `case-guppi` read the sentence around a match or the new text of another Case in the same sentence. The fault is found at `/pre-spec`, after the person approved the Case.
+
+> **recommend:**
+> - **Should the check of a Case file apply the other Cases' pairs first?**
+>   - Recommended: (a) apply the other Cases' pairs first and those of the file last, by `check_pairs`, so an old text that then misses or matches twice goes back to `case-guppi`.
+>   - Answer: agreed, (a).
+> - **What happens when two Cases change the same sentence?**
+>   - Recommended: (a) a note sent back once, naming the other Case, the page and the start of the sentence; a sentence runs to a full stop followed by a space and a capital letter, or to the end of its paragraph.
+>   - Answer: agreed, (a).
+> - **Should my own instructions repeat the rule on reading the whole sentence?**
+>   - Recommended: (c) a script checks the read: a pair whose sentence came back whole from no read of the page file in the record of `case-guppi` goes back to it; a search result does not count.
+>   - Answer: agreed, (c), after the person asked whether the check could be made by a script.
+> - **One promise or three?**
+>   - Recommended: (a) three sub-cases, each with a new Estimate read by `tests/test_casecheck.py`.
+>   - Answer: agreed, (a).
+> - **Does the read check cover a word swapped across the vault too?**
+>   - Recommended: (a) both `replace` and `reword`, every match.
+>   - Answer: agreed, (a).
+> - **What counts as a read when my old words stand in another Case's new text?**
+>   - Recommended: (a) a read of the other Case's file whose output holds that Case's new text.
+>   - Answer: agreed, (a).
+> - **What happens to the item's page once these checks are approved?**
+>   - Recommended: (a) the same Case sets it `actioned`, its decision named as the one that acted on it.
+>   - Answer: agreed, (a).
+> - **Change**
+>   - Asked: the findings of `/pre-spec`. Name the tag check of Case 703.1 as a second exception where the Purpose of `rule-case-check` says the checks of a Case are those of pre-spec and of the Spec hook. Write `addressed_by` as a quoted wikilink, as `rule-insights-schema` sets it, unless the check of the Case file refuses a link to a decision of this session. Let `case-guppi` read the case file of a Case that the check of its file names in a finding or a note, by an update of `rule-case-build` (the person agreed, option (a)). Name `estimate-prespec-catches-an-indent-added-twice` and say why it stands. Confirm or fix the notes on the `then` lines that 711.3 shares with 711.2.
+>   - Taken: 711.3 names the tag check in its new wording, and its `given` names `case-703.md`. `addressed_by` stays bare, since the check refused the quoted wikilink, and the `context` gives the refusal. The new Case 711.4 updates `rule-case-build` and replaces the Criterion of `estimate-case-build-checks-the-finished-case`. The `context` names the indent Estimate and says why it stands. The shared `then` lines stay, and the `context` says why. The finding of 711.3 also names the file of the other Case.
+
+### Case 711.1 — The check of a Case file applies the pairs of the session in order
+
+> **given:**
+> `rule-case-check`: the rule of the check of the file of a Case, whose Purpose gains the run in session order.
+> **＋** `guppi/casecheck.py`: `check_answer` and `other_blocks` give the other Cases of the session.
+> **＋** `guppi/prespec.py`: `check_pairs` applies the pairs in order.
+> **＋** `tests/test_casecheck.py`: the tests of the run.
+> **＋** `<plan>.checked.json`: the store of the checked Cases of the session, beside the plan file.
+> **＋** `estimate-case-check-applies-the-pairs-of-the-session-in-order`: the new check of the run.
+> **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the file of a Case.
+> **＋** `raw/2026-10-07/0636/cases/case-703.md`: Case 703.1 adds another finding to the same hook.
+
+> **when:**
+> The `SubagentStop` hook `uv run guppi casecheck --subagent` of `guppi/casecheck.py` checks a file `raw/<date>/<hi HHMM>/cases/case-<N>.md` whose Case carries a `replace` or `reword` pair, while the plan file of the session or `<plan>.checked.json` holds other Cases of the session.
+
+> **then:**
+> The hook applies the `replace` and `reword` pairs of the other Cases of the session first, in the order `other_blocks` gives them, and the pairs of the Cases of the file last, to copies of the pages in memory, by `check_pairs` of `guppi/prespec.py`, imported; nothing is written to disk.
+> **＋** An old text of a Case of the file that then misses, or hits more than once, is a finding of that Case in the words `check_pairs` gives it.
+> **＋** An old text of a Case of the file that hits once only after a pair of another Case is no finding, though the page on disk does not hold it.
+> **－** A finding of that run that opens with another Case is no finding of the file.
+> **－** The other Cases are those `other_blocks` gives: a dropped Case, a Case a `{supersedes:case N}` mark names, a stored Case with findings and the family of a Case of the file are not among them.
+> **－** With no other Case of the session, the pairs are judged against the pages on disk as before.
+
+```then
+create:
+- slug: estimate-case-check-applies-the-pairs-of-the-session-in-order
+  ref: rule-case-check
+  kind: QA
+  purpose: Whether the check of the file of a Case applies the pairs of the other Cases of the session first and those of the file last, and sends back an old text of the file that then misses or hits more than once
+  method: uv run pytest tests/test_casecheck.py -k session_pairs
+  tags:
+  - hooks
+  - harness
+  - workflow
+update:
+- slug: rule-case-check
+  replace:
+  - old: goes back to `case-guppi` before the person first sees it (case 629.1).
+    new: goes back to `case-guppi` before the person first sees it (case 629.1). The check of the file of a Case also applies the `replace` and `reword` pairs of the other Cases of the session first and those of the file last, to copies of the pages in memory by `check_pairs` of `guppi/prespec.py`, so an old text that a Case of the session already rewrote, or that then matches twice, goes back to `case-guppi` before the person approves the Case, not at `/pre-spec` (case 711.1).
+  change: the check of the file of a Case applies the pairs of the session in order, those of the file last (case 711.1)
+```
+
+```tasks
+- [ ] create `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+- [ ] update `rule-case-check`
+- [x] `guppi/casecheck.py`: `check_answer` runs `check_pairs` over the blocks of `other_blocks` and then those of the answer, keeps the findings that open with a Case of the answer, and leaves out the pair findings of `judge` on the answer that the run of the answer alone gives; the module docstring says so.
+- [x] `tests/test_casecheck.py`: an old text that another Case of the plan or the store rewrote is a finding; an old text that hits only after another Case's pair is none; a miss between two other Cases is none; a dropped Case and a Case a mark retires are not applied.
+- [ ] read `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+```
+
+### Case 711.2 — The check of a Case file notes a sentence that two Cases change
+
+> **given:**
+> `rule-case-check`: the rule of the check of the file of a Case, whose Purpose gains the note.
+> **＋** `guppi/casecheck.py`: `check_answer` gives the note.
+> **＋** `guppi/prespec.py`: `check_pairs` records the text each pair writes, and one function gives the sentence around a place.
+> **＋** `guppi/generate.py`: `replace_hits` and `reword_text` find the places a pair changes.
+> **＋** `tests/test_casecheck.py`: the tests of the note.
+> **＋** `<plan>.checked.json`: the store of the checked Cases of the session, which keeps the notes sent.
+> **＋** `estimate-case-check-notes-a-sentence-two-cases-change`: the new check of the note.
+> **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the file of a Case.
+
+> **when:**
+> The `SubagentStop` hook `uv run guppi casecheck --subagent` of `guppi/casecheck.py` applies the pairs of the other Cases of the session and then those of a file `raw/<date>/<hi HHMM>/cases/case-<N>.md` by `check_pairs` of `guppi/prespec.py`.
+
+> **then:**
+> `check_pairs` records the text that each pair writes into a page, with the Case of the pair.
+> **＋** The sentence around a place runs back to the last full stop before it that a space and a capital letter follow, or to the start of its paragraph, and on to the next such full stop or to the end of its paragraph, by one function of `guppi/prespec.py`.
+> **＋** When the sentence around the match of a pair of a Case of the file holds text that a pair of another Case of the session wrote, the hook gives a note of the Case of the file that names the other Case, the page and the opening of the sentence: "case <N>: <slug>: a pair changes a sentence that case <M> changes too: <opening>: read both new texts side by side, and fix the pair or say in context why the two fit."
+> **＋** The note goes where a note of a Criterion line not carried goes: it is sent back once by exit 2 beside any findings, stored under `notes` in `<plan>.checked.json`, and not sent again for the same Case id.
+> **－** The note is no finding: the Case is stored with no finding for it, and the `Stop` check of `guppi casecheck` does not refuse a showing for it.
+> **－** Two pairs of the Cases of the file in one sentence give no note, and neither do two pairs of other Cases.
+> **－** `uv run guppi prespec --check` does not print the note.
+
+```then
+create:
+- slug: estimate-case-check-notes-a-sentence-two-cases-change
+  ref: rule-case-check
+  kind: QA
+  purpose: Whether the check of the file of a Case sends a note once when a pair of the file changes a sentence into which a pair of another Case of the session wrote
+  method: uv run pytest tests/test_casecheck.py -k shared_sentence
+  tags:
+  - hooks
+  - harness
+  - workflow
+update:
+- slug: rule-case-check
+  replace:
+  - old: ([[insight-case-form-chat-form-read-by-no-script]]).
+    new: ([[insight-case-form-chat-form-read-by-no-script]]). When a pair of the file changes a sentence into which a pair of another Case of the session wrote, the check sends `case-guppi` a note once that names the other Case, the page and the sentence, so the two new texts are read side by side before the person sees the Case (case 711.2).
+  change: the check of the file of a Case notes a sentence that a pair of the file and a pair of another Case change (case 711.2)
+```
+
+```tasks
+- [ ] create `estimate-case-check-notes-a-sentence-two-cases-change`
+- [ ] update `rule-case-check`
+- [x] `guppi/prespec.py`: one function gives the sentence around a place of a section; `check_pairs` records the span each pair writes and its Case, by `replace_hits` and the word pattern of `reword_text` of `guppi/generate.py`, imported, and gives the note for a pair of a Case named as the answer's; its docstring says so.
+- [x] `guppi/casecheck.py`: `check_answer` adds the notes of the run of 711.1 to the notes of the Cases of the answer; the module docstring says so.
+- [x] `tests/test_casecheck.py`: a pair of the answer in a sentence another Case wrote into is a note, sent once; a pair in another sentence of the same paragraph is none; two pairs of the answer in one sentence are none; the note is no finding.
+- [ ] read `estimate-case-check-notes-a-sentence-two-cases-change`
+```
+
+### Case 711.3 — The check of a Case file sends back a pair whose sentence was not read
+
+> **given:**
+> `rule-case-check`: the rule of the check of the file of a Case, whose Purpose gains the read check.
+> **＋** `guppi/casecheck.py`: the hook reads the `Read` calls of the subagent and gives the finding.
+> **＋** `guppi/prespec.py`: the function of the sentence around a place, and `check_pairs`, which records the text each pair writes.
+> **＋** `tests/test_casecheck.py` and `tests/test_case_schema.py`: the tests of the read check, and the test that runs the check over the example of `vault/wiki/case-schema.md` with no record of an agent.
+> **＋** `raw/2026-10-07/0636/cases/case-703.md`: Case 703.1 adds the tag check to the same Purpose.
+> **＋** `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`: the new check of the read.
+> **＋** `insight-workflow-edit-pair-signed-from-a-grep-fragment`: the pattern this Case acts on.
+> **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the file of a Case, and the file of another Case of the session.
+
+> **when:**
+> The `SubagentStop` hook `uv run guppi casecheck --subagent` of `guppi/casecheck.py` checks a file `raw/<date>/<hi HHMM>/cases/case-<N>.md` whose Case carries a `replace` or `reword` pair on a page that stands on disk, and reads the record of the subagent at `agent_transcript_path`.
+
+> **then:**
+> For each match of each pair of the Cases of the file — the one match of a `replace`, and each match of a `reword` on each live page — the hook takes the sentence around it on the page as the earlier pairs leave it, by the function of the sentence of `guppi/prespec.py`.
+> **＋** The sentence counts as read when each part of it that no pair wrote stands whole in the outputs of the `Read` calls of the subagent on the page file, the line numbers of the output and the whitespace set aside.
+> **＋** A part of the sentence that a pair of another Case of the session wrote counts as read when it stands whole in the outputs of the `Read` calls of the subagent on the file `raw/<date>/<hi HHMM>/cases/case-<N>.md` of that Case.
+> **＋** A sentence not read is a finding of its Case: "case <N>: <slug>: the sentence around a pair was not read whole: <opening>: Read the page around it, and the file of each other Case that wrote into it, and check the pair."
+> **－** The output of a `Grep` call, or of any other tool than `Read`, is no read.
+> **－** A part of the sentence that a pair of the Cases of the file wrote is not judged.
+> **－** A transcript the hook cannot read, and a call of the check with no record of an agent, such as `tests/test_case_schema.py` over the example of `vault/wiki/case-schema.md`, judge no read.
+
+```then
+create:
+- slug: estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read
+  ref: rule-case-check
+  kind: QA
+  purpose: Whether the check of the file of a Case sends back a pair whose sentence around a match no Read call of case-guppi on the page file, or on the file of the other Case that wrote into it, returned whole
+  method: uv run pytest tests/test_casecheck.py -k unread_sentence
+  tags:
+  - hooks
+  - harness
+  - workflow
+update:
+- slug: rule-case-check
+  replace:
+  - old: imported, not copied ([[rule-one-judgment-one-implementation]]),
+    new: imported, not copied ([[rule-one-judgment-one-implementation]]), but for the check of the read of its pairs set out below and the check of a tag that `vault/wiki/tags.md` does not hold set out at the end of this text,
+  - old: the person judges the text (cases 449, 537).
+    new: 'the person judges the text (cases 449, 537). The check of the read of its pairs is the hook''s own, since only the hook reads the record of the calls of `case-guppi`: a pair whose sentence around a match came back whole from no `Read` call on the page file, or, for the words that another Case''s pair wrote into it, on the file of that Case, goes back to `case-guppi`, and the output of a search is no read, so that no pair is signed from the line a search printed (case 711.3).'
+  change: the check of the file of a Case sends back a pair whose sentence no Read call of case-guppi returned whole (case 711.3)
+- slug: insight-workflow-edit-pair-signed-from-a-grep-fragment
+  set:
+    status: actioned
+    addressed_by: decision-case-711.3
+  change: 'actioned: the check of the file of a Case applies the pairs of the session in order, notes a sentence two Cases change, and sends back a pair whose sentence case-guppi did not read (case 711)'
+```
+
+```tasks
+- [ ] create `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+- [ ] update `rule-case-check`
+- [ ] update `insight-workflow-edit-pair-signed-from-a-grep-fragment`
+- [x] `guppi/casecheck.py`: a function reads the outputs of the `Read` calls of the subagent in `agent_transcript_path`, by the tool use and its tool result, keyed by the file, paths compared after they are resolved; `check_answer` takes them, None when the transcript cannot be read, and gives the finding for each sentence not read; the module docstring says so.
+- [x] `tests/test_casecheck.py`: a pair whose sentence a `Read` output holds passes; one whose sentence only a `Grep` output holds is a finding; a `reword` match on a page not read is a finding; a part another Case wrote passes only with a read of that Case's file; a part the answer wrote is not judged; no transcript, no finding.
+- [ ] read `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+```
+
+### Case 711.4 — case-guppi reads the file of a Case that the check of its file names
+
+> **given:**
+> `rule-case-build`: its Render, the agent file of `case-guppi`, lets it read the file of a Case that a finding or a note names.
+> **＋** `.claude/agents/case-guppi.md`: the file rendered from `rule-case-build`.
+> **＋** `estimate-case-build-checks-the-finished-case`: its Criterion is replaced whole and its `purpose` set anew.
+> **＋** `.claude/agents/ask-guppi.md`: the recipe of the index lines that `case-guppi` reads.
+> **＋** `vault/wiki/rules/` and `.claude/`: the rules and the harness searched for the moment a change sets.
+> **＋** `rule-case-check`: the check of the file of a Case, whose findings and notes name another Case.
+> **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the case files of the Cases of the session.
+> **＋** `raw/2026-10-07/0636/cases/case-705.md`: Case 705.1 changes the paragraph of `rule-case-build` on the drop of a Case.
+
+> **when:**
+> `case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, has built a Case and is about to answer with it.
+
+> **then:**
+> It puts each option the person chose in its rounds, or the person's own words where they answered outside the options, beside the `then` and `recommend` of the Case, and the Case holds each one; where the frame shows after a round that a chosen option cannot hold as written, its answer is a round on that point, not a Case with another behaviour.
+> **＋** For each page whose text the change makes false, it searches the live pages of the vault, leaving out the Decision pages, and the code, for the page's slug, and reads each hit that `given` does not name around the line of the hit; for a fact that no slug marks, it reads the index lines of the recipe of `.claude/agents/ask-guppi.md` and judges them by meaning.
+> **＋** When the change sets what happens at a moment — a reply, a hook event, a command — it searches `vault/wiki/rules/` and `.claude/` for the words that name that moment, reads each passage of each hit that sets a form or a behaviour at that moment, and the Case either does not cover that moment or names the other rule in `given`.
+> **＋** It reads the case file `raw/<date>/<hi HHMM>/cases/case-<N>.md` of each Case of the session that the prompt of its call names, and of each Case of the session that the check of `rule-case-check` names in a finding or a note on its file, and no other Case of the session; where that Case changes a page the Case changes or sets what happens at the same moment, the Case does not cover that moment or names the case file in `given`, and its new text of that page does not contradict the text of that Case.
+> **＋** When the Case replaces the Criterion of an Estimate, it reads the `purpose` and `method` of that Estimate, and the same `update` sets anew each one that states the old promise.
+> **＋** Each hit that the change makes false enters the Case, or its `context` says why it stands.
+> **＋** The `context` names a search only when the Case rests on it: a search with a hit that enters the Case, a search with a hit that stands and needs the reason why, or a search that a claim that no text says something rests on; a search that found nothing to change and that no claim rests on is left out.
+> **＋** A claim of `context` about a text names the search it rests on: its pattern, the paths it ran over, and each file the search printed, a file it does not read included, or the count it printed; just before it answers, it runs each search that `context` names again, with the pattern and the paths that `context` writes, and the files and counts in `context` are the ones that run printed, not the files it read during the build; it claims nothing the search did not print.
+> **＋** It reads side by side the finished new texts of all its sub-cases that change one page, and the Case holds no contradiction between them.
+> **－** A hit in a History line, in `log.md` or in `brief.md` is not read.
+
+```then
+update:
+- slug: rule-case-build
+  replace:
+  - old: 'Read the case file of each Case of the session that the caller''s prompt names, and no other Case of the session:'
+    new: 'Read the case file of each Case of the session that the caller''s prompt names, and the case file of each Case of the session that the check of your file names in a finding or a note (case 711.4), and no other Case of the session:'
+  change: case-guppi reads the case file of a Case of the session that the check of its file names in a finding or a note (case 711.4)
+- slug: estimate-case-build-checks-the-finished-case
+  set:
+    status: pending
+    purpose: Whether case-guppi checks its finished Case before it answers — the chosen options, the pages that name a slug the change makes false, the rules that act at the moment the change sets, the Cases of the session its prompt names or the check of its file names in a finding or a note, the purpose and method of an Estimate whose Criterion it replaces, what each search printed and that the context keeps only the searches the Case rests on, the sub-cases that change one page — counted by what ask-guppi still finds at pre-spec
+  change: the Criterion replaced whole — case-guppi also reads the case file of a Case that the check of its file names in a finding or a note; purpose set anew (case 711.4)
+```
+
+```tasks
+- [ ] update `rule-case-build`
+- [ ] update `estimate-case-build-checks-the-finished-case`
+- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [ ] read `estimate-case-build-checks-the-finished-case`
+```

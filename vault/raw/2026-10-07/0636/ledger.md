@@ -1,0 +1,38 @@
+- 15:23:59 decision[case 703.1][create][estimate-case-check-sends-back-an-unlisted-tag]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 15:23:59 decision[case 703.1][update][rule-case-check]{ref:rule-case-check}
+- 15:23:59 decision[case 703.2][create][estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag]{ref:rule-ledger-write}{tags:session,hooks,harness,ledger}
+- 15:23:59 decision[case 703.2][update][rule-ledger-write]{ref:rule-ledger-write}
+- 15:28:56 decision[case 704][update][insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out]{ref:insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out}
+- 15:43:29 decision[case 705.1][update][rule-case-build]{ref:rule-case-build}
+- 15:43:29 decision[case 705.1][update][estimate-case-build-writes-the-case]{ref:rule-case-build}
+- 15:43:29 decision[case 705.2][update][rule-orchestration]{ref:rule-orchestration}
+- 15:43:29 decision[case 705.2][update][estimate-orchestration-shows-the-built-case]{ref:rule-orchestration}
+- 15:47:07 decision[case 706][update][insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out]{ref:insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out}
+- 15:54:44 estimate[estimate-orchestration-shows-the-frontier-after-a-closed-line][passed] 2026-10-07, Plan Mode of session 0636, by the person's word; Case 707 dropped by the person's choice (a), only a reading; the reply that closes C7 `[x] … · work` is the first reply after the first reply of /hi that closes a line of frontier.md with no ratification and no defer, and it comes in the turn the answer **Dropped:** of its case-guppi opens, with a ## Frontier heading, the lines of frontier.md and, last, the question which open item is next; the person: "Достаточно чтения и я считаю что этот estimate passed. Мы уже разобрали кейсы и там все было ок"
+- 16:04:37 estimate[estimate-permissions][passed] 2026-10-07, Plan Mode of session 0636, the person's word: no permission prompt came while case-guppi built and wrote the files of Cases 703–708, in permissionMode auto; the agent did not count which paths those dispatches read; the person: "A1 я думаю passed. Никаких разрешений не было"
+- 16:11:44 estimate[estimate-orchestration-defers-in-one-reply][passed] 2026-10-07, Plan Mode of session 0636, by the person's word; Case 709 dropped by the person's choice (b); no decision was put off in this session or in session 0425, so no reply that puts off a decision was read against the Criterion; the person: "Я считаю что passed. Все было окей в прошлой сессии"
+- 16:45:36 decision[case 710.1][create][rule-shell-write-check]{ref:rule-harness}{tags:hooks,harness,workflow}
+- 16:45:36 decision[case 710.1][create][estimate-shell-write-check-repairs-and-reports]{ref:rule-shell-write-check}{tags:hooks,harness,workflow}
+- 16:45:36 decision[case 710.1][update][rule-hook-registry]{ref:rule-hook-registry}
+- 16:45:36 decision[case 710.1][update][rule-harness]{ref:rule-harness}
+- 16:45:36 decision[case 710.2][update][insight-workflow-file-changed-through-a-shell-command]{ref:insight-workflow-file-changed-through-a-shell-command}
+- 16:45:36 decision[case 711.1][create][estimate-case-check-applies-the-pairs-of-the-session-in-order]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 16:45:36 decision[case 711.1][update][rule-case-check]{ref:rule-case-check}
+- 16:45:36 decision[case 711.2][create][estimate-case-check-notes-a-sentence-two-cases-change]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 16:45:36 decision[case 711.2][update][rule-case-check]{ref:rule-case-check}
+- 16:45:36 decision[case 711.3][create][estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read]{ref:rule-case-check}{tags:hooks,harness,workflow}
+- 16:45:36 decision[case 711.3][update][rule-case-check]{ref:rule-case-check}
+- 16:45:36 decision[case 711.3][update][insight-workflow-edit-pair-signed-from-a-grep-fragment]{ref:insight-workflow-edit-pair-signed-from-a-grep-fragment}
+- 17:31:03 decision[case 703.3][update][estimate-ledger-write-asks-for-the-mark-of-a-lesson]{ref:rule-ledger-write}
+- 17:31:03 decision[case 711.4][update][rule-case-build]{ref:rule-case-build}
+- 17:31:03 decision[case 711.4][update][estimate-case-build-checks-the-finished-case]{ref:rule-case-build}
+- 17:49:25 estimate[estimate-case-check-sends-back-an-unlisted-tag][passed] 2026-10-07, Retro of session 0636, uv run pytest tests/test_casecheck.py -k unlisted_tag; 8 passed
+- 17:49:25 estimate[estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag][passed] 2026-10-07, Retro of session 0636, uv run pytest tests/test_ledger.py -k unlisted_tag; 9 passed
+- 17:49:25 estimate[estimate-ledger-write-asks-for-the-mark-of-a-lesson][passed] 2026-10-07, Retro of session 0636, uv run pytest tests/test_ledger.py; 135 passed, the tests of case 703.3 among them: a lesson refused for its tag after a decision line is not held and does not land when written again, a listed unmarked lesson is held as before
+- 17:49:25 estimate[estimate-shell-write-check-repairs-and-reports][passed] 2026-10-07, Retro of session 0636, uv run pytest tests/test_shellwrite.py; 12 passed; the registration on PostToolUse with the matcher Bash|PowerShell stands in the replace pair of rule-hook-registry in the Spec, and .claude/settings.json follows at the librarian's render
+- 17:49:25 estimate[estimate-case-check-applies-the-pairs-of-the-session-in-order][passed] 2026-10-07, Retro of session 0636, uv run pytest tests/test_casecheck.py -k session_pairs; 6 passed
+- 17:49:25 estimate[estimate-case-check-notes-a-sentence-two-cases-change][passed] 2026-10-07, Retro of session 0636, uv run pytest tests/test_casecheck.py -k shared_sentence; 5 passed
+- 17:49:25 estimate[estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read][passed] 2026-10-07, Retro of session 0636, uv run pytest tests/test_casecheck.py -k unread_sentence; 6 passed
+- 17:49:25 estimate[estimate-orchestration-shows-the-built-case][passed] 2026-10-07, Retro of session 0636, by hand: the new Render of rule-orchestration in the Spec read against the Criterion of case 705.2; the replace pair of 705.2 says that the file of a Case with a decision line is never emptied, and that a dropped change goes to its case-guppi, which undoes it, and the Case is shown and ratified again with the same decision lines; the other lines of the Criterion stand in the present text of orchestration.md
+- 17:49:25 estimate[estimate-case-build-writes-the-case][failed] 2026-10-07, Retro, not read: the undo of a dropped change of case 705.1 reaches .claude/agents/case-guppi.md only at the librarian's render of this session, and the person chose to take the reading whole in the next session
+- 17:49:25 estimate[estimate-case-build-checks-the-finished-case][failed] 2026-10-07, Retro, not read: the read of the case file of a Case the check names, case 711.4, reaches .claude/agents/case-guppi.md only at the librarian's render; at the /pre-spec of this session ask-guppi found 14 findings on the Cases case-guppi built, 5 of them Estimates a Case did not name and 3 facts of a context the vault did not bear out

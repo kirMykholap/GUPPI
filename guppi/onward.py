@@ -50,14 +50,17 @@ lines the ledger already held counts as ratified for the rest of the session, af
 message of the person too, and a Case that a `{supersedes:case N}` mark of those lines
 retires, whole or sub-case by sub-case, is never out, judged by
 `prespec.superseded_in_window` and `prespec.retired_whole`, no judgment of a mark written
-here (case 696.1); its own refusal, `uv run guppi onward --plan`, is not spent, as above
+here (case 696.1), nor is a file that holds nothing but blank space, the file of a dropped
+Case, judged by `casecheck.dropped`, the one judgment of an empty Case file (case 701.1); its own refusal, `uv run guppi onward --plan`, is not spent, as above
 (case 597.1), the flag counting only when the transcript cannot be read; and the reply does
-not open with `STOP:`. When a file under `cases/` was written after the last `prespec`
-line, its time read on the date of the event log that holds it (`built_after`, case 686.1),
+not open with `STOP:`. When a file under `cases/` that holds more than blank space was
+written after the last `prespec` line, its time read on the date of the event log that
+holds it (`built_after`, cases 686.1, 701.2),
 it tells the agent that the Cases built again on the findings are ratified, to run
 `uv run guppi prespec --check` on the plan file and call `ExitPlanMode` when it prints no
-finding; when no file was written after that line — a defer or a lesson in answer to the
-report of `/pre-spec`, before any Case is built again — it sends the agent on with the loop
+finding; when no such file was written after that line — a defer or a lesson in answer to
+the report of `/pre-spec`, before any Case is built again, or only the emptied file of a
+dropped Case — it sends the agent on with the loop
 after the findings: to send each finding in a Case to its `case-guppi`, or, when no Case
 goes back, to run the check and exit. After a reply the ledger hook sent back — a line it
 refused or held, or its reminder of a lesson with no mark (cases 685.1, 688.7) — `spent`
@@ -240,7 +243,9 @@ def case_out(folder: Path, reply: list[str], now, payload: dict | None = None) -
     Case built and not yet ratified (cases 561.5, 597.2, 604). A Case that a
     `{supersedes:case N}` mark of those lines retires, whole or sub-case by sub-case, is never
     out, by `superseded_in_window` and `retired_whole` of `guppi/prespec.py`; no judgment of a
-    mark is written here (case 696.1)."""
+    mark is written here (case 696.1). A file that holds nothing but blank space, the file of
+    a dropped Case, is never out, by `dropped` of `guppi/casecheck.py` (case 701.1)."""
+    from guppi.casecheck import dropped
     from guppi.prespec import retired_whole, superseded_in_window
 
     cases = folder / "cases"
@@ -254,7 +259,7 @@ def case_out(folder: Path, reply: list[str], now, payload: dict | None = None) -
     superseded = superseded_in_window(records)
     for path in cases.glob(f"{CASE_FILE}*.md"):
         case = path.stem.removeprefix(CASE_FILE)
-        if retired_whole(case, superseded, records):
+        if dropped(path) or retired_whole(case, superseded, records):
             continue
         if case not in moments or path.stat().st_mtime > moments[case]:
             return True
@@ -303,7 +308,10 @@ def built_after(folder: Path, mark: tuple[str, str], now) -> bool:
     """Whether a file under `cases/` was written after the `prespec` line at `mark`, its time
     read on the date of its log in the zone of `now`, as `last_decisions` reads the times of
     `ledger.md` (case 686.1): a Case built again on the findings. A mark whose time cannot be
-    read counts as none built."""
+    read counts as none built, and so does a file that holds nothing but blank space, the
+    file of a dropped Case, by `dropped` of `guppi/casecheck.py` (case 701.2)."""
+    from guppi.casecheck import dropped
+
     cases = folder / "cases"
     try:
         day, clock = date.fromisoformat(mark[0]), time.fromisoformat(mark[1])
@@ -311,7 +319,8 @@ def built_after(folder: Path, mark: tuple[str, str], now) -> bool:
         return False
     moment = datetime.combine(day, clock, tzinfo=now.tzinfo).timestamp()
     return cases.is_dir() and any(
-        path.stat().st_mtime > moment for path in cases.glob(f"{CASE_FILE}*.md")
+        path.stat().st_mtime > moment and not dropped(path)
+        for path in cases.glob(f"{CASE_FILE}*.md")
     )
 
 

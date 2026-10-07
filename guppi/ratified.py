@@ -39,7 +39,12 @@ block under the sub-point; a sub-point that reads into no key `materialize.item_
 item is refused, and nothing of the Case is written — a `create` or a `defer` of a category with
 no schema file, or of one whose schema rule the session's ledger or the reply changes, not
 judged (cases 308.2, 436.1); a `create` of an Estimate takes its `ref` from its ledger line when
-no sub-point gives one. A fence tagged `DIFF` is not read (case 441.8). A fence is judged by
+no sub-point gives one. A task line opening with `tag` and the tag in its first code span
+declares a new tag and is no task: its sub-points `meaning` and `aliases`, each one code span,
+make one entry of `new_tags` at the head of the block tagged `then`, in the order of the lines,
+which `materialize` carries to `generate`, and the line stands in no block tagged `tasks`;
+either sub-point missing, another sub-point or a value that is not one code span is refused,
+and nothing of the Case is written (case 702). A fence tagged `DIFF` is not read (case 441.8). A fence is judged by
 `materialize.fence_opening` and `closes_fence`, the one judgment: a fenced value under a
 sub-point that holds a shorter fence of the same character is read whole (case 444.1).
 
@@ -178,6 +183,9 @@ SPEC_FILE = "spec.md"
 TASK_LINE = re.compile(r"^- \[[ xX-]\] (.*)$")
 SUB_POINT = re.compile(r"^(\s+)- ([A-Za-z_][\w .]*?):(?:\s+(.*))?$")
 ITEM_LINE = re.compile(r"^(create|update|delete|defer) `([^`]+)`")
+TAG_LINE = re.compile(r"^tag `([^`]+)`")  # a new tag, an entry of `new_tags` (case 702)
+TAG_KEYS = ("meaning", "aliases")
+NEW_TAGS = "new_tags"
 # --- reading a Case -----------------------------------------------------------------
 
 
@@ -289,12 +297,17 @@ def put(
 def read_tasks(text: str, keys_for=None) -> tuple[list[str], dict, list[str]]:
     """The task lines without their sub-points, the `then` block their items make, and the
     errors of the form. `keys_for(kind, slug)`: the keys an item accepts, or None when none
-    are judged (case 436.1)."""
+    are judged (case 436.1). A task line `` tag `<tag>` `` is no task: its sub-points
+    `meaning` and `aliases`, each one code span, make an entry of `new_tags`, in the order of
+    the lines; either missing, another sub-point or a value that is not one code span is an
+    error (case 702)."""
     lines = text.splitlines()
     tasks: list[str] = []
     block: dict = {}
+    tags: list[dict] = []
     errors: list[str] = []
     item: dict | None = None
+    is_tag = False  # the item is a tag line (case 702)
     accepted: set[str] | None = None
     label = ""
     index = 0
@@ -302,9 +315,15 @@ def read_tasks(text: str, keys_for=None) -> tuple[list[str], dict, list[str]]:
         line = lines[index]
         task = TASK_LINE.match(line)
         if task:
+            tag = TAG_LINE.match(task.group(1))
+            if tag:
+                item, is_tag, label = {"tag": tag.group(1)}, True, f"tag {tag.group(1)}"
+                tags.append(item)
+                index += 1
+                continue
             tasks.append(f"- [ ] {task.group(1)}")
             head = ITEM_LINE.match(task.group(1))
-            item = None
+            item, is_tag = None, False
             if head:
                 item = {"slug": head.group(2)}
                 block.setdefault(head.group(1), []).append(item)
@@ -330,6 +349,15 @@ def read_tasks(text: str, keys_for=None) -> tuple[list[str], dict, list[str]]:
                     errors.append(f"`{key}`: no value — neither a code span nor a fenced block")
                     index += 1
                     continue
+                if is_tag:
+                    errors.append(f"`{key}`: the value of {label} is not one code span")
+                    continue
+            if is_tag:
+                if key not in TAG_KEYS:
+                    errors.append(f"`{key}`: not a key of {label}")
+                else:
+                    item[key] = value
+                continue
             if item is None:
                 errors.append(f"`{key}`: a sub-point under a line that is no item")
                 continue
@@ -345,7 +373,12 @@ def read_tasks(text: str, keys_for=None) -> tuple[list[str], dict, list[str]]:
             for pairs in (entry.get("replace") or [], entry.get("reword") or []):
                 if pairs and "new" not in pairs[-1]:
                     errors.append(f"{entry['slug']}: an `old` with no `new`")
-    return tasks, {k: block[k] for k in DECISION_KINDS if k in block}, errors
+    for entry in tags:
+        missing = [key for key in TAG_KEYS if key not in entry]
+        if missing:
+            errors.append(f"tag {entry['tag']}: no {' and no '.join(f'`{k}`' for k in missing)}")
+    then = {NEW_TAGS: tags} if tags else {}
+    return tasks, then | {k: block[k] for k in DECISION_KINDS if k in block}, errors
 
 
 # --- writing the Spec ---------------------------------------------------------------

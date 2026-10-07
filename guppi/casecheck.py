@@ -46,8 +46,9 @@ the whole file of a Case (case 645.2). The Cases of the answer are judged with t
 other Cases of the session by `prespec.check_same_target`, imported: each Case of the plan
 file, then each entry of the store under the number alone that the plan does not hold, its
 section built by `ratified.case_section` — leaving out an entry with findings, a Case a
-`{supersedes}` mark of the session's ledger names, a Case the answer holds and the family of
-a top-level Case the answer holds — and the answer's Cases last; a clash is a finding of the
+`{supersedes}` mark of the session's ledger names, a Case the answer holds, the family of
+a top-level Case the answer holds and a dropped Case, whose file holds nothing but blank
+space by `dropped` (case 701.7) — and the answer's Cases last; a clash is a finding of the
 Case of the answer it opens with, and a clash inside the answer, which `judge` gives, or
 between two other Cases is none (`other_blocks`, `session_clashes`, case 629.1). It runs over the same
 Spec text the language finding of `/pre-spec`,
@@ -382,6 +383,15 @@ def case_file(folder: Path, case: str) -> Path:
     top-level Case of `case` — the one naming of the file, of the writer, of `stop` and of the
     Spec hook (cases 452.1–452.3)."""
     return folder / CASES / f"case-{top_case(case)}.md"
+
+
+def dropped(path) -> bool:
+    """Whether the file `path` stands and holds nothing but blank space: the file of a Case
+    `case-guppi` dropped, which is no Case — the one judgment of the hook of
+    `rule-prespec-onward`, whether a Case is out and whether one was built again after
+    `/pre-spec`, and of `other_blocks` (cases 701.1, 701.2, 701.7)."""
+    path = Path(str(path))
+    return path.is_file() and not path.read_text(encoding="utf-8").strip()
 
 
 CASE_NAME = re.compile(r"^case-(\d+)\.md$")  # the name `case_file` gives
@@ -794,12 +804,16 @@ def superseded_cases(window: list[str]) -> list[str]:
     return [n for record in ledger_records(list(window)) for n in record.get("supersedes") or []]
 
 
-def other_blocks(cases: dict, plan: str, store: dict | None, window: list[str]) -> dict[str, dict]:
+def other_blocks(
+    cases: dict, plan: str, store: dict | None, window: list[str], folder: Path | None = None
+) -> dict[str, dict]:
     """Case 629.1: Case id → its `then` block, for the other Cases of the session in the
     order they are judged: each Case of the plan, then each entry of the store under the
     number alone that the plan does not hold — its section built by `ratified.case_section` —
     leaving out an entry with findings, a Case a `{supersedes}` mark of the ledger names, a
-    Case the answer holds and the family of a top-level Case the answer holds."""
+    Case the answer holds, the family of a top-level Case the answer holds, and an entry
+    whose top-level Case file in the session folder `folder` stands and holds nothing but
+    blank space, a dropped Case, by `dropped` (case 701.7)."""
     tops = [case for case in cases if "." not in case]
     retired = superseded_cases(window)
 
@@ -821,6 +835,8 @@ def other_blocks(cases: dict, plan: str, store: dict | None, window: list[str]) 
             continue
         if entry.get("findings") or not isinstance(entry.get("text"), str):
             continue
+        if folder is not None and dropped(case_file(folder, key)):
+            continue  # a dropped Case is no other Case of the session (case 701.7)
         chat = split_cases(entry["text"]).get(key)
         if chat is None:
             continue
@@ -857,6 +873,7 @@ def check_answer(
     rounds: list[str] = (),
     store: dict | None = None,
     plan: str = "",
+    folder: Path | None = None,
 ) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     """Case id → its findings, and case id → its notes, for every Case of an answer of
     `case-guppi`. The categories whose schema rule the lines of the `ratification` fences or
@@ -872,7 +889,8 @@ def check_answer(
     `prespec.promise_notes` on the answer — a Criterion line not carried, a `then` line shared
     by siblings (cases 472.1, 472.2). `plan`, the text of the plan file, with `store`, adds the
     check of the answer's Cases against the other Cases of the session, `session_clashes`
-    (case 629.1)."""
+    (case 629.1); `folder`, the session folder, leaves a dropped Case out of them (case
+    701.7)."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)
@@ -904,7 +922,8 @@ def check_answer(
         if case in cases
     }
     if store is not None:  # case 629.1: the other Cases of the session
-        for finding in session_clashes(answer, other_blocks(cases, plan, store, window)):
+        others = other_blocks(cases, plan, store, window, folder)
+        for finding in session_clashes(answer, others):
             found[FINDING_CASE.match(finding).group(1)].append(finding)
     shapes = []
     if store is not None:  # cases 610.1, 671.1
@@ -1241,7 +1260,7 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
         if files and not stored_with_findings(each, store) and not file_differences(each, store):
             continue  # unchanged and passed: its time of store stands (case 645.2)
         found, new, same = judge_and_store(
-            each, payload, project_dir, now, store, window, frontier, plan_text
+            each, payload, project_dir, now, store, window, frontier, plan_text, folder
         )
         findings += found
         fresh += new
@@ -1272,13 +1291,14 @@ def judge_and_store(
     window: list[str],
     frontier: Path | None,
     plan_text: str,
+    folder: Path | None = None,
 ) -> tuple[list[str], list[str], bool]:
     """The findings of the Cases of `text` by `check_answer`, each Case stored in `store`;
     the notes not yet sent for their Case id; and whether every Case with findings stands in
     the store as it is, findings and all (cases 434, 472.1, 610.2)."""
     cases = split_cases(text)
     found, notes = check_answer(
-        text, project_dir, window, frontier, round_titles(payload), store, plan_text
+        text, project_dir, window, frontier, round_titles(payload), store, plan_text, folder
     )
     agent_id = str(payload.get("agent_id") or "")
     apart = clashes(cases, store, agent_id)  # a number another agent holds (case 610.2)

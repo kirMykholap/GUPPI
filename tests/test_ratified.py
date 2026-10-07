@@ -728,6 +728,82 @@ def test_write_a_defer_with_a_hash_in_quotes_or_a_block_is_written(working, purp
     assert "## b" in plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)[1]
 
 
+# --- case 702: a tag line declares a new tag ------------------------------------------------
+# `estimate-spec-write-reads-a-new-tag`
+
+TAG_LINES = (
+    ">   - change: `the text changed (case 7)`\n"
+    "> - [ ] tag `orchestration`\n"
+    ">   - meaning: `the order of the main agent`\n"
+    ">   - aliases: `оркестровка`\n"
+    "> - [ ] tag `drops`\n"
+    ">   - meaning: `a dropped Case`\n"
+    ">   - aliases: `отказ`\n"
+)
+
+
+def with_tags(lines=TAG_LINES):
+    return SHOWING.replace(">   - change: `the text changed (case 7)`\n", lines)
+
+
+def test_tag_two_tag_lines_write_two_entries_of_new_tags_and_no_task(working):
+    assert stop(working, ACK, with_tags(), ACK) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    then = yaml.safe_load(plan.split("```then\n", 1)[1].split("\n```", 1)[0])
+    assert then["new_tags"] == [
+        {
+            "tag": "orchestration",
+            "meaning": "the order of the main agent",
+            "aliases": "оркестровка",
+        },
+        {"tag": "drops", "meaning": "a dropped Case", "aliases": "отказ"},
+    ]
+    assert next(iter(then)) == "new_tags" and then["update"][0]["slug"] == "rule-x"
+    tasks = plan.split("```tasks\n", 1)[1].split("\n```", 1)[0]
+    assert "tag `" not in tasks and "- [ ] update `rule-x`" in tasks
+
+
+@pytest.mark.parametrize(
+    "lines, error",
+    [
+        (
+            TAG_LINES.replace(">   - aliases: `отказ`\n", ""),
+            "tag drops: no `aliases`",
+        ),
+        (
+            TAG_LINES.replace(
+                ">   - aliases: `отказ`\n", ">   - aliases: `отказ`\n>   - kind: `x`\n"
+            ),
+            "`kind`: not a key of tag drops",
+        ),
+        (
+            TAG_LINES.replace("`a dropped Case`", "a dropped Case"),
+            "`meaning`: the value is not one code span",
+        ),
+        (
+            TAG_LINES.replace(
+                ">   - meaning: `a dropped Case`\n",
+                ">   - meaning:\n>     ```text\n>     a dropped Case\n>     ```\n",
+            ),
+            "`meaning`: the value of tag drops is not one code span",
+        ),
+    ],
+)
+def test_tag_a_tag_line_off_the_form_is_refused_and_nothing_is_written(working, lines, error):
+    code, err = stop(working, ACK, with_tags(lines), ACK)
+    assert code == 2 and error in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_tag_a_sub_point_under_a_plain_task_line_is_still_refused():
+    tasks = (
+        "- [ ] tag `x`\n  - meaning: `m`\n  - aliases: `a`\n- [ ] `guppi/x.py`\n  - meaning: `m`\n"
+    )
+    _, block, errors = ratified.read_tasks(tasks)
+    assert errors == ["`meaning`: a sub-point under a line that is no item"]
+    assert block["new_tags"] == [{"tag": "x", "meaning": "m", "aliases": "a"}]
+
+
 def test_write_the_answer_of_case_guppi_not_the_showing(working):
     # 437: a showing that differs from the stored answer, no stored answer, or one stored
     # with findings is refused and nothing is written

@@ -283,10 +283,10 @@ def run_plan(stdin, project_dir):
     return code, err.getvalue()
 
 
-def with_case_file(folder, case, mtime):
+def with_case_file(folder, case, mtime, text="## Case\n"):
     (folder / "cases").mkdir(exist_ok=True)
     path = folder / "cases" / f"case-{case}.md"
-    path.write_text("## Case\n", encoding="utf-8")
+    path.write_text(text, encoding="utf-8")
     os.utime(path, (mtime.timestamp(), mtime.timestamp()))
 
 
@@ -328,6 +328,32 @@ def test_loop_a_case_built_again_and_not_ratified_keeps_it_silent(tmp_path):
     folder = plan_session(tmp_path, log=START + HI + PRESPEC)
     with_case_file(folder, "8", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
     assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+
+
+def test_loop_an_emptied_case_file_after_prespec_alone_sends_it_on_with_the_loop(tmp_path):
+    """Case 701.2: the emptied file of a dropped Case is no Case built again."""
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC)
+    with_case_file(folder, "8", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC), text="")
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.TO_LOOP + "\n")
+
+
+def test_loop_an_emptied_case_file_beside_a_file_of_text_sends_it_to_the_exit(tmp_path):
+    """Case 701.2: a file of text written after the line is a Case built again."""
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC)
+    with_case_file(folder, "8", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC), text="")
+    with_case_file(folder, "7", datetime(2026, 9, 30, 11, 30, 0, tzinfo=UTC))
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.TO_EXIT + "\n")
+
+
+def test_loop_the_empty_file_is_judged_by_the_function_of_casecheck():
+    """Case 701.2: one judgment of an empty Case file, imported from `guppi/casecheck.py`."""
+    import inspect
+
+    from guppi import casecheck
+
+    assert "dropped" in inspect.getsource(onward.built_after)
+    assert "dropped" in inspect.getsource(onward.case_out)
+    assert not hasattr(onward, "dropped") and callable(casecheck.dropped)
 
 
 def test_loop_the_last_prespec_line_counts(tmp_path):
@@ -546,6 +572,27 @@ def test_plan_a_case_ratified_before_the_persons_last_message_is_not_out(tmp_pat
         reply("the next Case", "2026-09-30T11:40:00Z"),
     )
     assert run_plan(payload(LESSON, transcript_path=path), tmp_path)[0] == 2
+
+
+@pytest.mark.parametrize("text", ["", "  \n\t\n"])
+def test_plan_an_empty_case_file_with_no_decision_line_is_not_out(tmp_path, text):
+    """Case 701.1: the file of a dropped Case, empty or blank, is never out."""
+    folder = plan_session(tmp_path)
+    with_case_file(folder, "8", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC), text=text)
+    assert onward.case_out(folder, [], NOW) is False
+
+
+def test_plan_a_case_file_of_text_with_no_decision_line_is_out(tmp_path):
+    folder = plan_session(tmp_path)
+    with_case_file(folder, "8", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
+    assert onward.case_out(folder, [], NOW) is True
+
+
+def test_plan_an_empty_case_file_after_its_last_decision_line_is_not_out(tmp_path):
+    ledger = "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
+    folder = plan_session(tmp_path, ledger=ledger)
+    with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC), text="")
+    assert onward.case_out(folder, [], NOW) is False
 
 
 def test_plan_a_case_with_no_reply_that_ratified_it_is_out(tmp_path):

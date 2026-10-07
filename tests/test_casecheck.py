@@ -1831,6 +1831,20 @@ def test_subagent_session_clash_none_with_a_case_a_supersedes_mark_names(working
     assert answer(working, setting(7, "draft")) == (0, "")
 
 
+def test_subagent_session_clash_none_with_a_stored_case_whose_file_is_empty(working):
+    """Case 701.7: a dropped Case, its file emptied, is no other Case of the session."""
+    assert answer(working, setting(6, "built")) == (0, "")
+    case_path(working, "6").write_text("", encoding="utf-8")
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def test_subagent_session_clash_with_the_same_entry_and_a_file_of_text(working):
+    assert answer(working, setting(6, "built")) == (0, "")
+    assert case_path(working, "6").read_text(encoding="utf-8").strip()
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 6" in err
+
+
 def test_subagent_session_clash_none_with_the_answers_own_earlier_version(working):
     assert answer(working, setting(7, "built")) == (0, "")
     assert answer(working, setting(7, "draft")) == (0, "")
@@ -1852,6 +1866,30 @@ def test_subagent_session_clash_the_judgment_is_the_one_of_prespec():
         if f.startswith("case 7")
     ]
     assert found == ["case 7: rule-x: writes the section Purpose that case 5 writes too"]
+
+
+# --- case 702: a tag line, read by the function of the Spec hook -----------------------------
+
+TAG_LINE = (
+    ">   - change: `the text changed (case 7)`\n"
+    "> - [ ] tag `orchestration`\n"
+    ">   - meaning: `the order of the main agent`\n"
+    ">   - aliases: `оркестровка`\n"
+)
+
+
+def test_tag_a_case_file_with_a_tag_line_passes_with_no_finding(working):
+    tagged = ANSWER.replace(">   - change: `the text changed (case 7)`\n", TAG_LINE)
+    assert answer_file(working, tagged) == (0, "")
+
+
+def test_tag_a_case_file_with_a_tag_line_off_the_form_gives_the_hooks_refusal(working):
+    broken = ANSWER.replace(
+        ">   - change: `the text changed (case 7)`\n",
+        TAG_LINE.replace(">   - aliases: `оркестровка`\n", ""),
+    )
+    code, err = answer_file(working, broken)
+    assert code == 2 and "case 7: tag orchestration: no `aliases`" in err
 
 
 # --- the file case-guppi writes (case 645.2) -------------------------------------------------

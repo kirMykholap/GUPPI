@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: failed
 target: "[[rule-case-build]]"
-purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame, writes it into its file and answers with a short summary, and empties the file of a Case it drops
-method: "by hand: live dispatches in a session after the render — one item with a fork, answered by a round and then the Case written into its file and a summary, one Case with a create without a ref, one that changes a hook, a Case the hook sent back and fixed by Edit, a change the person asked for on one sub-case, made by Edit of that sub-case, and a Case dropped by a message of the main agent, its file emptied and its answer opening with Dropped, the file written in Plan Mode with no prompt; the tokens and seconds of each dispatch in the estimate line"
+purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame, writes it into its file and answers with a short summary, empties the file of a Case it drops, and undoes a change the person dropped on a ratified Case
+method: "by hand: live dispatches in a session after the render — one item with a fork, answered by a round and then the Case written into its file and a summary, one Case with a create without a ref, one that changes a hook, a Case the hook sent back and fixed by Edit, a change the person asked for on one sub-case, made by Edit of that sub-case, a Case dropped by a message of the main agent, its file emptied and its answer opening with Dropped, and a change dropped on a ratified Case, its edits undone by Edit but for one Change item in recommend and its answer a summary, the file written in Plan Mode with no prompt; the tokens and seconds of each dispatch in the estimate line"
 checked: 2026-10-07
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
@@ -17,7 +17,7 @@ tags: [session, workflow, harness]
 When:
 The main agent dispatches `case-guppi` with a Case id, a Frontier item and its source, and the person's words on it; or sends it by `SendMessage` the person's answers to a round, or the person's question or change on a Case it built.
 **＋** Or the hook of `rule-case-check` sends it findings on the file of its Case or on its summary.
-**＋** Or the main agent sends it by `SendMessage` the drop of the Case it built.
+**＋** Or the main agent sends it by `SendMessage` the drop of the Case it built, or the drop of a change to that Case.
 
 Then:
 `case-guppi` starts with `.claude/skills/grill-me/SKILL.md` in its context by `skills: [grill-me]` in `.claude/agents/case-guppi.md`, and reads `vault/wiki/case-schema.md` and `vault/wiki/ratification.md` whole before it answers.
@@ -32,16 +32,17 @@ Then:
 **＋** A round may come at the first answer on an item, after a message on a Case it built, and in Work Mode when a ratified Case is built again.
 **＋** It runs on `model: opus` with `effort: medium`, the tools Read, Grep, Glob, Write and Edit, and `permissionMode: auto`, so it writes its file with no prompt while the session is in Plan Mode.
 **＋** Sent the drop of its Case, which has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, it writes empty text into the file of that Case by `Write` and answers with a first line `**Dropped:**` and the path of the file, and nothing else. A file of its own that it leaves behind, when it builds the Case again under another number, it empties the same way.
+**＋** Sent the drop of a change to its Case, which has a decision line in `raw/<date>/<hi HHMM>/ledger.md` and which it changed after the Case was last ratified, it undoes by `Edit` each edit it made since then in every section but `recommend`. `recommend` keeps its items and gains one item `**Change**`: its `Asked:` line says that the person dropped the change, and its `Taken:` line says that the Case went back to its ratified form. It answers with the summary again, so that the check of `rule-case-check` finds an item for each question of its rounds.
 **－** The `**Case:**` line is no Markdown heading, so the hook of `rule-case-check` does not read the summary as a Case.
-**－** It does not write the whole Case again to fix a finding or make a change.
+**－** It does not write the whole Case again to fix a finding, make a change or undo a change.
 **－** A later round on the item, a round after a message on a Case it built and a round in Work Mode carry no context.
 **－** The context carries no Case heading, so the hook of `rule-case-check` neither checks nor stores the round as a Case; it judges only the form of the questions of the round, not its context.
 **－** It writes no file but the file of its Case, the file it leaves behind under an earlier number of the same Case included, and no ledger line.
-**－** It empties no file of a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`: sent its drop, it answers under a first line `**Fact:**` that the Case is ratified, and the file stands.
+**－** It empties no file of a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`: sent the drop of such a Case that it did not change after the Case was last ratified, it answers under a first line `**Fact:**` that the Case is ratified, and the file stands.
 
 ## Result
 
-2026-10-07, Retro, not read: the Criterion of case 701.3 adds the drop, which reaches .claude/agents/case-guppi.md only at the librarian's render after this session, and no Case with a create without a ref, no Case the hook sent back and fixed by Edit and no change on one sub-case came up; live dispatches of session 0425 in Plan Mode, each file written with no permission prompt by the person's word: case 701 round 78789 tokens 186.0 s, round 84559 tokens 42.3 s, built 164892 tokens 497.3 s, built again on the findings 212248 tokens 413.7 s; case 702 round 85031 tokens 234.2 s, round 105696 tokens 84.7 s, round 122763 tokens 59.6 s, built 147670 tokens 173.8 s, built again 153889 tokens 44.3 s; C4 round 80320 tokens 169.0 s, a Fact with no Case 81484 tokens 13.2 s
+2026-10-07, Retro, not read: the undo of a dropped change of case 705.1 reaches .claude/agents/case-guppi.md only at the librarian's render of this session, and the person chose to take the reading whole in the next session
 
 ## History
 
@@ -63,3 +64,5 @@ Then:
 - 2026-10-07 status: pending → failed · raw/2026-10-07/0211/ledger.md#L40
 - 2026-10-07 updated: the Criterion replaced whole — case-guppi empties the file of a Case it drops and answers with a first line Dropped (case 701.3) · [[decision-case-701.3]]
 - 2026-10-07 status: pending → failed · raw/2026-10-07/0425/ledger.md#L24
+- 2026-10-07 updated: the Criterion replaced whole — case-guppi undoes a change the person dropped on a ratified Case and answers with the summary again (case 705.1) · [[decision-case-705.1]]
+- 2026-10-07 status: pending → failed · raw/2026-10-07/0636/ledger.md#L37

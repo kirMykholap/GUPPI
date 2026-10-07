@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-permissions]]"
 method: the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of tests/test_render.py; the live probe is the person's word on the client's prompt at a Write of work.md in Work Mode, recorded in the estimate line; the live probe of the transcripts and of the mode of case-guppi is the person's word on the client's prompt, in a session after the librarian's render, at a Grep of a subagent whose path is the folder ~/.claude/projects/c--PROJECTS-GUPPI itself and at one whose path is a file under it, at the Write of the Case file of case-guppi, and at a Read of case-guppi on a path outside the project that no rule names, recorded in the estimate line — never the agent's, which cannot see the prompt; the Estimate stays pending until the person gives that word
-checked: 2026-10-05
+checked: 2026-10-07
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
 created: 2026-09-12
@@ -31,7 +31,7 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 
 ## Result
 
-2026-10-05, the person's word at /hi of session 1831: the client did not ask for permission at a Read, Grep or Glob of case-guppi under ~/.claude/projects/c--PROJECTS-GUPPI/ in a session after the render; the rendered .claude/settings.json: the allow list holds Edit and Write for frontier.md, spec.md, handoff.md and work.md under vault/raw/**, Write for carry.md under vault/raw/**, Edit and Write for vault/wiki/brief.md and Read(~/.claude/projects/c--PROJECTS-GUPPI/**), no deny and no ask; .claude/agents/case-guppi.md carries permissionMode: acceptEdits; uv run pytest tests/test_render.py -k "json or permission": 4 passed
+2026-10-07, Plan Mode of session 0636, the person's word: no permission prompt came while case-guppi built and wrote the files of Cases 703–708, in permissionMode auto; the agent did not count which paths those dispatches read; the person: "A1 я думаю passed. Никаких разрешений не было"
 
 ## History
 
@@ -50,3 +50,4 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L9
 - 2026-10-07 updated: the Criterion replaced whole — the allow list also names the folder of the saved transcripts itself, and a search with that folder as its path runs with no prompt · [[decision-case-693]]
 - 2026-10-07 updated: the Criterion replaced whole — case-guppi runs in permissionMode auto beside the read rules of the saved transcripts, and a call they do not match is judged by that mode with no prompt (case 698) · [[decision-case-698.2]]
+- 2026-10-07 status: pending → passed · raw/2026-10-07/0636/ledger.md#L12

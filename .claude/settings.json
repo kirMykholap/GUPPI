@@ -47,7 +47,7 @@
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run guppi pageread --after", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run guppi pageread --after", "timeout": 30 } ] }, { "matcher": "Bash|PowerShell", "hooks": [ { "type": "command", "command": "uv run guppi shellwrite", "timeout": 30 } ] }
     ],
     "Stop": [
       { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run guppi context", "timeout": 30 }, { "type": "command", "command": "uv run guppi onward", "timeout": 30 }, { "type": "command", "command": "uv run guppi onward --plan", "timeout": 30 } ] }

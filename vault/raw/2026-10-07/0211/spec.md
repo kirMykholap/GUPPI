@@ -522,7 +522,7 @@ update:
 - [x] update `estimate-permissions`
 - [x] update `rule-morph`
 - [x] `uv run guppi render`: `.claude/settings.json`
-- [ ] read `estimate-permissions`
+- [x] read `estimate-permissions`
 ```
 
 ## Case 699 — A layout fault of a shown round or Case is told at the next message, not shown again

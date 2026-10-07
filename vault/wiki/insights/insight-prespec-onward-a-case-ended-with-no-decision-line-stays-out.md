@@ -4,6 +4,7 @@ pattern: case_out of the hook of rule-prespec-onward takes a Case file written a
 status: actioned
 children: ["[[lesson-prespec-onward-re-ratification-out-after-its-stretch]]", "[[lesson-prespec-onward-an-empty-case-file-keeps-it-silent]]"]
 severity: 0
+addressed_by: "[[decision-case-701.1]]"
 origin: raw/2026-10-07/0211/ledger.md#L48
 sprint: migration
 created: 2026-10-07
@@ -22,3 +23,5 @@ A suggestion: let the end of a Case that writes no new decision line, a re-ratif
 
 - 2026-10-07 created · raw/2026-10-07/0211/ledger.md#L48
 - 2026-10-07 updated: actioned: case 604 counts a re-ratification with unchanged lines for the rest of the session, and case 701 makes the emptied file of a dropped Case count as no Case · [[decision-case-701.1]]
+- 2026-10-07 updated: its tag orchestration is registered in tags.md (case 704) · [[decision-case-704]]
+- 2026-10-07 updated: addressed_by: decision-case-701.1, the decision that set it actioned (case 706) · [[decision-case-706]]

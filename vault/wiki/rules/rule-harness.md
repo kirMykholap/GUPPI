@@ -3,7 +3,7 @@ type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
 status: built
-children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-vault-layout]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]", "[[rule-context-size]]", "[[rule-page-read]]", "[[rule-guppi-config]]", "[[rule-search-leaves-out-decisions]]"]
+children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-vault-layout]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]", "[[rule-context-size]]", "[[rule-page-read]]", "[[rule-guppi-config]]", "[[rule-search-leaves-out-decisions]]", "[[rule-shell-write-check]]"]
 estimates: ["[[estimate-harness-pipeline]]", "[[estimate-harness-make-runs-in-both-shells]]"]
 applies_to: ["[[entity-guppi]]"]
 origin: raw/2026-09-10/ledger.md#case-37
@@ -15,7 +15,7 @@ tags: [harness, workflow]
 ## Purpose
 
 Prevents the tools of the harness from drifting apart from the pages that describe them. The harness is the files that `guppi render` writes from the pages of `rules/`, such as `.claude/settings.json` with its hooks, the skills and agents under `.claude/`, `CLAUDE.md`, `case-schema.md` and `guppi.toml`. Three rules belong to no phase of the session: the renderer, the page
-`.claude/settings.json` is assembled from, and lint. They run together in `make lint`, with the checks of `rule-sprint` and `rule-backlog` (children of `rule-documentation`) between them, in this order: the harness files are checked against their pages, the sprint file against its page, the backlog file against its sources, the glossary file against its page, then the pages (cases 227, 306.5, 451.14). Ten more belong here and run in no pipeline: the settings file of guppi, `guppi.toml`, the schemas of the pages, the layout of the vault, the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the page `CLAUDE.md` is rendered from, the pinned clock of the tests, the hook that shows the size of the context, the hooks that read a page of the vault without its History, and the file under `.claude/rules/` that keeps the text of Decision pages out of a search (cases 59.6, 59.8, 127, 145.1, 304, 315, 392.3, 420.1, 476.1, 640).
+`.claude/settings.json` is assembled from, and lint. They run together in `make lint`, with the checks of `rule-sprint` and `rule-backlog` (children of `rule-documentation`) between them, in this order: the harness files are checked against their pages, the sprint file against its page, the backlog file against its sources, the glossary file against its page, then the pages (cases 227, 306.5, 451.14). Eleven more belong here and run in no pipeline: the settings file of guppi, `guppi.toml`, the schemas of the pages, the layout of the vault, the hook that refuses a hand edit of a rendered file, the hook that refuses a heredoc with a backslash or a file write, the hook that repairs or names a file a shell call left with CRLF line endings, a byte-order mark or bytes that are not UTF-8, the page `CLAUDE.md` is rendered from, the pinned clock of the tests, the hook that shows the size of the context, the hooks that read a page of the vault without its History, and the file under `.claude/rules/` that keeps the text of Decision pages out of a search (cases 59.6, 59.8, 127, 145.1, 304, 315, 392.3, 420.1, 476.1, 640, 710.1).
 
 ## History
 
@@ -62,3 +62,5 @@ Prevents the tools of the harness from drifting apart from the pages that descri
 - 2026-09-30 updated: the Purpose says what the harness is: the files guppi render writes from the pages of rules/ (case 527.1) · [[decision-case-527.1]]
 - 2026-10-05 child rule-search-leaves-out-decisions added · [[decision-case-640]]
 - 2026-10-05 updated: a tenth rule outside the pipeline: the file under .claude/rules/ that keeps Decision pages out of a search (case 640) · [[decision-case-640]]
+- 2026-10-07 child rule-shell-write-check added · [[decision-case-710.1]]
+- 2026-10-07 updated: an eleventh rule outside the pipeline: the hook that repairs or names a file a shell call left in a wrong byte form (case 710.1) · [[decision-case-710.1]]

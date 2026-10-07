@@ -7224,3 +7224,77 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-07 lessons/lesson-prespec-onward-an-empty-case-file-keeps-it-silent archived · insight actioned · generate
 - 2026-10-07 lessons/lesson-prespec-onward-an-empty-case-file-keeps-it-silent archived · cleanup
 - 2026-10-07 lessons/lesson-prespec-onward-re-ratification-out-after-its-stretch archived · cleanup
+- 2026-10-07 decisions/decision-case-703 created · raw/2026-10-07/0636/ledger.md#case-703 · generate
+- 2026-10-07 decisions/decision-case-703.1 created · raw/2026-10-07/0636/ledger.md#case-703.1 · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-an-unlisted-tag created · [[decision-case-703.1]] · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-an-unlisted-tag status: pending → passed · raw/2026-10-07/0636/ledger.md#L29 · generate
+- 2026-10-07 rules/rule-case-check estimate estimate-case-check-sends-back-an-unlisted-tag added · [[decision-case-703.1]] · generate
+- 2026-10-07 rules/rule-case-check updated: the check of the file of a Case sends back a tag that tags.md does not hold and no tag line declares (case 703.1) · [[decision-case-703.1]] · generate
+- 2026-10-07 decisions/decision-case-703.2 created · raw/2026-10-07/0636/ledger.md#case-703.2 · generate
+- 2026-10-07 estimates/estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag created · [[decision-case-703.2]] · generate
+- 2026-10-07 estimates/estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag status: pending → passed · raw/2026-10-07/0636/ledger.md#L30 · generate
+- 2026-10-07 rules/rule-ledger-write estimate estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag added · [[decision-case-703.2]] · generate
+- 2026-10-07 rules/rule-ledger-write updated: the ledger hook refuses a lesson line with a tag that tags.md does not hold and no ratified Case of the session declares (case 703.2) · [[decision-case-703.2]] · generate
+- 2026-10-07 decisions/decision-case-704 created · raw/2026-10-07/0636/ledger.md#case-704 · generate
+- 2026-10-07 insights/insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out updated: its tag orchestration is registered in tags.md (case 704) · [[decision-case-704]] · generate
+- 2026-10-07 decisions/decision-case-705 created · raw/2026-10-07/0636/ledger.md#case-705 · generate
+- 2026-10-07 decisions/decision-case-705.1 created · raw/2026-10-07/0636/ledger.md#case-705.1 · generate
+- 2026-10-07 rules/rule-case-build updated: case-guppi undoes a change the person dropped on a ratified Case, keeping the items of recommend and adding a Change item, and answers with the summary again (case 705.1) · [[decision-case-705.1]] · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — case-guppi undoes a change the person dropped on a ratified Case and answers with the summary again (case 705.1) · [[decision-case-705.1]] · generate
+- 2026-10-07 decisions/decision-case-705.2 created · raw/2026-10-07/0636/ledger.md#case-705.2 · generate
+- 2026-10-07 rules/rule-orchestration updated: a change the person drops on a ratified Case goes to its case-guppi, which undoes it, and the Case is shown and ratified again (case 705.2) · [[decision-case-705.2]] · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — a change the person drops on a ratified Case goes to its case-guppi, and the Case is shown and ratified again with the same lines (case 705.2) · [[decision-case-705.2]] · generate
+- 2026-10-07 decisions/decision-case-706 created · raw/2026-10-07/0636/ledger.md#case-706 · generate
+- 2026-10-07 insights/insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out updated: addressed_by: decision-case-701.1, the decision that set it actioned (case 706) · [[decision-case-706]] · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line status: failed → passed · raw/2026-10-07/0636/ledger.md#L11 · generate
+- 2026-10-07 estimates/estimate-permissions status: pending → passed · raw/2026-10-07/0636/ledger.md#L12 · generate
+- 2026-10-07 estimates/estimate-orchestration-defers-in-one-reply status: failed → passed · raw/2026-10-07/0636/ledger.md#L13 · generate
+- 2026-10-07 decisions/decision-case-710 created · raw/2026-10-07/0636/ledger.md#case-710 · generate
+- 2026-10-07 decisions/decision-case-710.1 created · raw/2026-10-07/0636/ledger.md#case-710.1 · generate
+- 2026-10-07 rules/rule-shell-write-check created · [[decision-case-710.1]] · generate
+- 2026-10-07 rules/rule-harness child rule-shell-write-check added · [[decision-case-710.1]] · generate
+- 2026-10-07 estimates/estimate-shell-write-check-repairs-and-reports created · [[decision-case-710.1]] · generate
+- 2026-10-07 estimates/estimate-shell-write-check-repairs-and-reports status: pending → passed · raw/2026-10-07/0636/ledger.md#L32 · generate
+- 2026-10-07 rules/rule-shell-write-check estimate estimate-shell-write-check-repairs-and-reports added · [[decision-case-710.1]] · generate
+- 2026-10-07 rules/rule-hook-registry updated: guppi shellwrite registered on PostToolUse of Bash and PowerShell (case 710.1) · [[decision-case-710.1]] · generate
+- 2026-10-07 rules/rule-harness updated: an eleventh rule outside the pipeline: the hook that repairs or names a file a shell call left in a wrong byte form (case 710.1) · [[decision-case-710.1]] · generate
+- 2026-10-07 decisions/decision-case-710.2 created · raw/2026-10-07/0636/ledger.md#case-710.2 · generate
+- 2026-10-07 insights/insight-workflow-file-changed-through-a-shell-command updated: actioned by decision-case-710.1, the hook that repairs or names a file a shell call left in a wrong byte form; the Pattern names the third lesson (case 710.2) · [[decision-case-710.2]] · generate
+- 2026-10-07 decisions/decision-case-711 created · raw/2026-10-07/0636/ledger.md#case-711 · generate
+- 2026-10-07 decisions/decision-case-711.1 created · raw/2026-10-07/0636/ledger.md#case-711.1 · generate
+- 2026-10-07 estimates/estimate-case-check-applies-the-pairs-of-the-session-in-order created · [[decision-case-711.1]] · generate
+- 2026-10-07 estimates/estimate-case-check-applies-the-pairs-of-the-session-in-order status: pending → passed · raw/2026-10-07/0636/ledger.md#L33 · generate
+- 2026-10-07 rules/rule-case-check estimate estimate-case-check-applies-the-pairs-of-the-session-in-order added · [[decision-case-711.1]] · generate
+- 2026-10-07 rules/rule-case-check updated: the check of the file of a Case applies the pairs of the session in order, those of the file last (case 711.1) · [[decision-case-711.1]] · generate
+- 2026-10-07 decisions/decision-case-711.2 created · raw/2026-10-07/0636/ledger.md#case-711.2 · generate
+- 2026-10-07 estimates/estimate-case-check-notes-a-sentence-two-cases-change created · [[decision-case-711.2]] · generate
+- 2026-10-07 estimates/estimate-case-check-notes-a-sentence-two-cases-change status: pending → passed · raw/2026-10-07/0636/ledger.md#L34 · generate
+- 2026-10-07 rules/rule-case-check estimate estimate-case-check-notes-a-sentence-two-cases-change added · [[decision-case-711.2]] · generate
+- 2026-10-07 rules/rule-case-check updated: the check of the file of a Case notes a sentence that a pair of the file and a pair of another Case change (case 711.2) · [[decision-case-711.2]] · generate
+- 2026-10-07 decisions/decision-case-711.3 created · raw/2026-10-07/0636/ledger.md#case-711.3 · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read created · [[decision-case-711.3]] · generate
+- 2026-10-07 estimates/estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read status: pending → passed · raw/2026-10-07/0636/ledger.md#L35 · generate
+- 2026-10-07 rules/rule-case-check estimate estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read added · [[decision-case-711.3]] · generate
+- 2026-10-07 rules/rule-case-check updated: the check of the file of a Case sends back a pair whose sentence no Read call of case-guppi returned whole (case 711.3) · [[decision-case-711.3]] · generate
+- 2026-10-07 insights/insight-workflow-edit-pair-signed-from-a-grep-fragment updated: actioned: the check of the file of a Case applies the pairs of the session in order, notes a sentence two Cases change, and sends back a pair whose sentence case-guppi did not read (case 711) · [[decision-case-711.3]] · generate
+- 2026-10-07 decisions/decision-case-703.3 created · raw/2026-10-07/0636/ledger.md#case-703.3 · generate
+- 2026-10-07 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson updated: the Criterion replaced whole — a line refused for a tag outside tags.md is not held for its mark and does not land (case 703.3) · [[decision-case-703.3]] · generate
+- 2026-10-07 decisions/decision-case-711.4 created · raw/2026-10-07/0636/ledger.md#case-711.4 · generate
+- 2026-10-07 rules/rule-case-build updated: case-guppi reads the case file of a Case of the session that the check of its file names in a finding or a note (case 711.4) · [[decision-case-711.4]] · generate
+- 2026-10-07 estimates/estimate-case-build-checks-the-finished-case updated: the Criterion replaced whole — case-guppi also reads the case file of a Case that the check of its file names in a finding or a note; purpose set anew (case 711.4) · [[decision-case-711.4]] · generate
+- 2026-10-07 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson status: pending → passed · raw/2026-10-07/0636/ledger.md#L31 · generate
+- 2026-10-07 estimates/estimate-orchestration-shows-the-built-case status: pending → passed · raw/2026-10-07/0636/ledger.md#L36 · generate
+- 2026-10-07 estimates/estimate-case-build-writes-the-case status: pending → failed · raw/2026-10-07/0636/ledger.md#L37 · generate
+- 2026-10-07 estimates/estimate-case-build-checks-the-finished-case status: pending → failed · raw/2026-10-07/0636/ledger.md#L38 · generate
+- 2026-10-07 rules/rule-orchestration status: draft → built · cascade · generate
+- 2026-10-07 rules/rule-permissions status: draft → built · cascade · generate
+- 2026-10-07 rules/rule-shell-write-check status: draft → built · cascade · generate
+- 2026-10-07 lessons/lesson-case-build-related-cases-same-sentence-missed archived · insight actioned · generate
+- 2026-10-07 lessons/lesson-session-frontier-rewritten-through-powershell archived · insight actioned · generate
+- 2026-10-07 lessons/lesson-work-mode-file-changed-through-a-bash-heredoc archived · insight actioned · generate
+- 2026-10-07 lessons/lesson-work-mode-code-rewritten-through-python-write-text archived · insight actioned · generate
+- 2026-10-07 tags.md registers orchestration · generate
+- 2026-10-07 lessons/lesson-case-build-related-cases-same-sentence-missed archived · cleanup
+- 2026-10-07 lessons/lesson-session-frontier-rewritten-through-powershell archived · cleanup
+- 2026-10-07 lessons/lesson-work-mode-code-rewritten-through-python-write-text archived · cleanup
+- 2026-10-07 lessons/lesson-work-mode-file-changed-through-a-bash-heredoc archived · cleanup

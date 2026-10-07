@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether a reply after the first reply of /hi that closes a Frontier line in Plan Mode with no ratification and no defer ends with the Frontier and the question which item is next
 method: "by hand, in a later session: the first reply in Plan Mode after the first reply of /hi that closes a line of frontier.md with no ratification and no defer, read against the Criterion"
@@ -34,7 +34,7 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 
 ## Result
 
-2026-10-07, Retro, not read: its method reads the reply in a later session, and the wait for **Dropped:** that case 701.6 adds reaches orchestration.md only at the librarian's render after this session
+2026-10-07, Plan Mode of session 0636, by the person's word; Case 707 dropped by the person's choice (a), only a reading; the reply that closes C7 `[x] … · work` is the first reply after the first reply of /hi that closes a line of frontier.md with no ratification and no defer, and it comes in the turn the answer **Dropped:** of its case-guppi opens, with a ## Frontier heading, the lines of frontier.md and, last, the question which open item is next; the person: "Достаточно чтения и я считаю что этот estimate passed. Мы уже разобрали кейсы и там все было ок"
 
 ## History
 
@@ -51,3 +51,4 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L37
 - 2026-10-07 updated: the Criterion replaced whole — a line closed with no defer after the drop of its built Case is closed in the turn of the answer Dropped · [[decision-case-701.6]]
 - 2026-10-07 status: pending → failed · raw/2026-10-07/0425/ledger.md#L26
+- 2026-10-07 status: failed → passed · raw/2026-10-07/0636/ledger.md#L11

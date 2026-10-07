@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: each case-guppi got its related Cases by id, one sentence and a case file path, and judged its own replace pairs against the page as it stands, not against the replace pairs in the case files of the related Cases
-status: clustered
+status: archived
 insight: "[[insight-workflow-edit-pair-signed-from-a-grep-fragment]]"
 origin: raw/2026-10-06/0104/ledger.md#L48
 sprint: migration
@@ -22,3 +22,5 @@ each case-guppi got its related Cases by id, one sentence and a case file path, 
 
 - 2026-10-06 created · raw/2026-10-06/0104/ledger.md#L48
 - 2026-10-06 updated: clustered under insight-workflow-edit-pair-signed-from-a-grep-fragment (synthesis) · raw/2026-10-06/0104/ledger.md#L48
+- 2026-10-07 archived · insight actioned
+- 2026-10-07 archived · cleanup

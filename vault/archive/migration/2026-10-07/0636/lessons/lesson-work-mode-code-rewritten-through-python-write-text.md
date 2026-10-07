@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: Path.write_text on Windows turns each newline into CRLF, and the agent took a shell script for an edit of several anchors instead of the Edit tool, which keeps the bytes of the file
-status: clustered
+status: archived
 insight: "[[insight-workflow-file-changed-through-a-shell-command]]"
 origin: raw/2026-10-07/0425/ledger.md#L27
 sprint: migration
@@ -22,3 +22,5 @@ Path.write_text on Windows turns each newline into CRLF, and the agent took a sh
 
 - 2026-10-07 created · raw/2026-10-07/0425/ledger.md#L27
 - 2026-10-07 updated: clustered under insight-workflow-file-changed-through-a-shell-command (synthesis) · raw/2026-10-07/0425/ledger.md#L27
+- 2026-10-07 archived · insight actioned
+- 2026-10-07 archived · cleanup

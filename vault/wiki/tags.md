@@ -19,3 +19,4 @@ another.
 | tests | the harness's own test suite, its fixtures and clocks | тесты |
 | sprint | the sprint page, its backlog and its render | спринт |
 | schema | the shape of a page category — its fields, their values and its sections | схема, схема страницы |
+| orchestration | the main agent's own work in a session: the Frontier, the dispatch of case-guppi, the showing and signing of a Case, the defers | оркестрация, оркестровка |

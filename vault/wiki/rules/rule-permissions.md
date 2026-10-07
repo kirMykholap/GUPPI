@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Lets the session write its own working files and read this project's saved transcripts without asking, and nothing else
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -65,3 +65,4 @@ a refusal that matters has a hook behind it (case 85.5).
 - 2026-10-07 updated: the folder of the saved transcripts itself joins the allow list for reading, beside what lies inside it; another install needs its own folder name, left to rule-morph · [[decision-case-693]]
 - 2026-10-07 status: built → draft · cascade
 - 2026-10-07 updated: case-guppi runs in permissionMode auto; the read rules of the saved transcripts stay, and a call they do not match is judged by that mode (case 698) · [[decision-case-698.2]]
+- 2026-10-07 status: draft → built · cascade

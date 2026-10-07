@@ -91,13 +91,13 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-sends-back-an-unlisted-tag`
-- [ ] update `rule-case-check`
+- [x] create `estimate-case-check-sends-back-an-unlisted-tag`
+- [x] update `rule-case-check`
 - [x] `guppi/tags.py`: `registered_tags` reads the rows of `vault/wiki/tags.md`, empty or None when the file does not stand; `declared_tags` gives the tags of the `new_tags` of a `then` block, read by `read_tasks` of `guppi/ratified.py`; `ratified_tags` gives the tags declared by the stored Cases whose decision line stands in a list of ledger lines; the docstring says that the checks and `generate` share them.
 - [x] `guppi/casecheck.py`: `check_answer` gives the finding for each tag of a `create`, of a `set` of `tags` and of a `{tags:...}` block of a decision line that `registered_tags`, the tag lines of the answer and `ratified_tags` over the session's ledger do not hold; no finding when `tags.md` does not stand.
 - [x] `guppi/generate.py`: `register_tags` reads the known rows by `registered_tags` of `guppi/tags.py`.
 - [x] `tests/test_casecheck.py`: an unlisted tag on a `create`, on a `set` of `tags` and on a decision line is a finding; a tag declared by a tag line of the same file, or of a Case of the session with a decision line in the ledger, is none; a tag declared by a Case with no decision line is a finding; no `tags.md`, no finding.
-- [ ] read `estimate-case-check-sends-back-an-unlisted-tag`
+- [x] read `estimate-case-check-sends-back-an-unlisted-tag`
 ```
 
 ### Case 703.2 — The ledger hook refuses a lesson with an unlisted tag
@@ -156,11 +156,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
-- [ ] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
+- [x] update `rule-ledger-write`
 - [x] `guppi/ledger.py`: a function beside `refused_lessons` gives each fresh lesson line, not refused for its prefix or its grammar, with a tag that `registered_tags` and `ratified_tags` of `guppi/tags.py` over the session's ledger and the lines of the `Stop` do not hold; `run` keeps it out and prints its stderr line only for the reply just finished; the module docstring says so.
 - [x] `tests/test_ledger.py`: an unlisted tag in the reply just finished is refused aloud and the other lines land; one in an earlier text is skipped without a word and lands once a ratified Case declares the tag; a tag declared by a Case with a decision line in the ledger or in the same `Stop` passes; a line refused for its prefix gets that refusal alone; no `tags.md`, no refusal.
-- [ ] read `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
+- [x] read `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
 ```
 
 ### Case 703.3 — A lesson refused for its tag is not held for its mark
@@ -200,10 +200,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] update `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
 - [x] `guppi/ledger.py`: `run` passes the lines refused for their tags to `unmarked_lessons` beside those refused for their prefix, so they are not held; the module docstring says so.
 - [x] `tests/test_ledger.py`: an unmarked lesson refused for its tag after a decision line is not held for its mark and does not land when written again; an unmarked lesson with listed tags is held as before.
-- [ ] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
 ```
 
 ## Case 704 — The tag orchestration enters tags.md
@@ -253,7 +253,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`
+- [x] update `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`
 ```
 
 ## Case 705 — A dropped change takes a ratified Case back to its ratified form
@@ -332,10 +332,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 705.2 — The main agent sends a dropped change to its case-guppi and shows the Case again
@@ -389,10 +389,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```
 
 ## Case 706 — The actioned Insight links to the decision that actioned it
@@ -437,7 +437,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`
+- [x] update `insight-prespec-onward-a-case-ended-with-no-decision-line-stays-out`
 ```
 
 ## Case 710 — A file a shell call left in a wrong byte form is repaired or named
@@ -546,15 +546,15 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-shell-write-check`
-- [ ] create `estimate-shell-write-check-repairs-and-reports`
-- [ ] update `rule-hook-registry`
-- [ ] update `rule-harness`
+- [x] create `rule-shell-write-check`
+- [x] create `estimate-shell-write-check-repairs-and-reports`
+- [x] update `rule-hook-registry`
+- [x] update `rule-harness`
 - [x] `guppi/shellwrite.py`: `run` reads the `PostToolUse` payload of `Bash` or `PowerShell`, lists the changed and new files that are not ignored by `git ls-files -m -o --exclude-standard`, skips a deleted file and a file with a NUL byte and no UTF-16 mark, names a file with a UTF-16 mark or not valid UTF-8 without a change, turns CRLF into LF and removes a UTF-8 mark in the rest, and prints one `hookSpecificOutput.additionalContext` with a line per named file; exit 0 always, one stderr line on an unreadable payload or a failed `git`; the docstring says so and names the rule page.
 - [x] `guppi/cli.py`: the command `shellwrite` dispatches to `guppi/shellwrite.py`, and the docstring lists it among the hook commands.
 - [x] `tests/test_shellwrite.py`: in a temporary git repository, a changed file with CRLF and a new file with a UTF-8 mark are repaired and named; a file in UTF-16 and one not valid UTF-8 are named and unchanged; an ignored file, a binary file and a clean file are not touched and give no output; another tool, an unreadable payload and a failed `git` give exit 0.
-- [ ] `uv run guppi render`: `.claude/settings.json`
-- [ ] read `estimate-shell-write-check-repairs-and-reports`
+- [x] `uv run guppi render`: `.claude/settings.json`
+- [x] read `estimate-shell-write-check-repairs-and-reports`
 ```
 
 ### Case 710.2 — The Insight is marked fixed and its Pattern names three lessons
@@ -589,7 +589,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-workflow-file-changed-through-a-shell-command`
+- [x] update `insight-workflow-file-changed-through-a-shell-command`
 ```
 
 ## Case 711 — The check of a Case file reads its edit pairs against the session and the reads of case-guppi
@@ -673,11 +673,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-applies-the-pairs-of-the-session-in-order`
-- [ ] update `rule-case-check`
+- [x] create `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+- [x] update `rule-case-check`
 - [x] `guppi/casecheck.py`: `check_answer` runs `check_pairs` over the blocks of `other_blocks` and then those of the answer, keeps the findings that open with a Case of the answer, and leaves out the pair findings of `judge` on the answer that the run of the answer alone gives; the module docstring says so.
 - [x] `tests/test_casecheck.py`: an old text that another Case of the plan or the store rewrote is a finding; an old text that hits only after another Case's pair is none; a miss between two other Cases is none; a dropped Case and a Case a mark retires are not applied.
-- [ ] read `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+- [x] read `estimate-case-check-applies-the-pairs-of-the-session-in-order`
 ```
 
 ### Case 711.2 — The check of a Case file notes a sentence that two Cases change
@@ -724,12 +724,12 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-notes-a-sentence-two-cases-change`
-- [ ] update `rule-case-check`
+- [x] create `estimate-case-check-notes-a-sentence-two-cases-change`
+- [x] update `rule-case-check`
 - [x] `guppi/prespec.py`: one function gives the sentence around a place of a section; `check_pairs` records the span each pair writes and its Case, by `replace_hits` and the word pattern of `reword_text` of `guppi/generate.py`, imported, and gives the note for a pair of a Case named as the answer's; its docstring says so.
 - [x] `guppi/casecheck.py`: `check_answer` adds the notes of the run of 711.1 to the notes of the Cases of the answer; the module docstring says so.
 - [x] `tests/test_casecheck.py`: a pair of the answer in a sentence another Case wrote into is a note, sent once; a pair in another sentence of the same paragraph is none; two pairs of the answer in one sentence are none; the note is no finding.
-- [ ] read `estimate-case-check-notes-a-sentence-two-cases-change`
+- [x] read `estimate-case-check-notes-a-sentence-two-cases-change`
 ```
 
 ### Case 711.3 — The check of a Case file sends back a pair whose sentence was not read
@@ -783,12 +783,12 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
-- [ ] update `rule-case-check`
-- [ ] update `insight-workflow-edit-pair-signed-from-a-grep-fragment`
+- [x] create `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+- [x] update `rule-case-check`
+- [x] update `insight-workflow-edit-pair-signed-from-a-grep-fragment`
 - [x] `guppi/casecheck.py`: a function reads the outputs of the `Read` calls of the subagent in `agent_transcript_path`, by the tool use and its tool result, keyed by the file, paths compared after they are resolved; `check_answer` takes them, None when the transcript cannot be read, and gives the finding for each sentence not read; the module docstring says so.
 - [x] `tests/test_casecheck.py`: a pair whose sentence a `Read` output holds passes; one whose sentence only a `Grep` output holds is a finding; a `reword` match on a page not read is a finding; a part another Case wrote passes only with a read of that Case's file; a part the answer wrote is not judged; no transcript, no finding.
-- [ ] read `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+- [x] read `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
 ```
 
 ### Case 711.4 — case-guppi reads the file of a Case that the check of its file names
@@ -833,8 +833,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-checks-the-finished-case`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-checks-the-finished-case`
 ```

@@ -58,7 +58,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run guppi pageread --after", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run guppi pageread --after", "timeout": 30 } ] }, { "matcher": "Bash|PowerShell", "hooks": [ { "type": "command", "command": "uv run guppi shellwrite", "timeout": 30 } ] }
     ],
     "Stop": [
       { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run guppi context", "timeout": 30 }, { "type": "command", "command": "uv run guppi onward", "timeout": 30 }, { "type": "command", "command": "uv run guppi onward --plan", "timeout": 30 } ] }
@@ -103,3 +103,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-01 updated: guppi onward --plan registered on Stop after guppi onward (case 561.5) · [[decision-case-561.5]]
 - 2026-10-05 updated: the hook grepguard registered on PreToolUse of Grep (case 664.1) · [[decision-case-664.1]]
 - 2026-10-07 updated: uv run guppi casecheck --prompt registered on UserPromptSubmit (case 699.1) · [[decision-case-699.1]]
+- 2026-10-07 updated: guppi shellwrite registered on PostToolUse of Bash and PowerShell (case 710.1) · [[decision-case-710.1]]

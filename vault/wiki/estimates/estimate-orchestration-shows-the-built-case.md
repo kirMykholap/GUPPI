@@ -17,6 +17,7 @@ tags: [session, workflow]
 When:
 The main agent takes up a Frontier item, the person answers a round of questions, answers a shown Case with a question or a change, or asks for a plain explanation of the agent's text — by `/wait-what` on `UserPromptSubmit` or in words — or a ratified Case changes and is shown again, in Plan Mode or in Work Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
 **＋** Or the person puts off or keeps the item of a Case that `case-guppi` built and that is not ratified, or drops that Case so that the item ends another way.
+**＋** Or the person drops a change to a ratified Case that its `case-guppi` made after the Case was last ratified.
 
 Then:
 The main agent dispatches `case-guppi` with the Case id, the Frontier item and its source, and the person's words on it, in the prompt of the call, after the plan file stands with its title line; nothing of the Case stands in the chat before the answer.
@@ -31,16 +32,17 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 **＋** An item that needs no decision the main agent closes alone, with no dispatch; it dispatches `ask-guppi` only at pre-spec, one run over the whole plan at its first run, never to build a Case, and asks that run again only to confirm its own findings.
 **＋** When the person puts off or keeps the item of a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, or drops that Case so that the item ends another way, the main agent sends the drop by `SendMessage` to the `case-guppi` of that Case, and the turn of the person's words ends with one line under the bold label `**Waiting:**`, translated, and nothing else. The agent goes on with the item only in the turn that the answer `**Dropped:**` of that `case-guppi` opens, so that the hook of `rule-prespec-onward` finds the file of the Case empty at the end of every later reply.
 **＋** The drop adds no closer: the line of the item in `raw/<date>/<hi HHMM>/frontier.md` closes by one of the closers of `vault/wiki/orchestration.md`, as fits what the person chose — `[x] … · work`, `[x] … · case N` of another Case, `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
+**＋** When the person drops a change to a ratified Case that its `case-guppi` made after the Case was last ratified, the main agent sends the drop to that `case-guppi` by `SendMessage`. `case-guppi` undoes the change and answers with the summary of the Case in its ratified form. The main agent shows the Case again as after a change, and the person ratifies it again, the acknowledging reply carrying the same decision lines, so that the hook of `rule-prespec-onward` counts the Case as ratified.
 **－** The main agent writes the heading, the list, the `ratification` and the question on another Case from the summary, and does not read the file of the Case.
 **－** The heading carries no name of the main agent's own and not the words of the Frontier item.
 **－** The main agent writes no context of its own before the first question of a round. The label that names the Case of a round in a batch is no such context.
 **－** The main agent writes no `given`, `when`, `then` or `tasks` of a built Case into the chat.
 **－** A deferred decision in the short form is written by the main agent in English in the chat, with no dispatch and no file.
-**－** A Case with a decision line in `raw/<date>/<hi HHMM>/ledger.md` gets no drop message: its file keeps the `context` and `given` that its Decision page leaves there.
+**－** The file of a Case with a decision line in `raw/<date>/<hi HHMM>/ledger.md` is never emptied: it keeps the `context` and `given` that its Decision page leaves there.
 
 ## Result
 
-2026-10-07, Retro, the new Render of rule-orchestration in the Spec of session 0425 read against the Criterion of case 701.4: the round line names **Built:**, **Fact:** or **Dropped:**; the paragraph after "A Case not yet ratified is sent again whole, in its file (case 452.4)." sets the drop by SendMessage, the one **Waiting:** line, the wait for **Dropped:**, no new closer and no drop for a Case with a decision line; each old anchor stands once in vault/wiki/rules/rule-orchestration.md (grep -c: 1 and 1); the other lines of the Criterion stand in the Render as it is
+2026-10-07, Retro of session 0636, by hand: the new Render of rule-orchestration in the Spec read against the Criterion of case 705.2; the replace pair of 705.2 says that the file of a Case with a decision line is never emptied, and that a dropped change goes to its case-guppi, which undoes it, and the Case is shown and ratified again with the same decision lines; the other lines of the Criterion stand in the present text of orchestration.md
 
 ## History
 
@@ -81,3 +83,5 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L44
 - 2026-10-07 updated: the Criterion replaced whole — an answer that opens with Dropped is no round, and the drop of a Case not ratified goes to its case-guppi, the agent waiting for its answer before it goes on with the item · [[decision-case-701.4]]
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0425/ledger.md#L23
+- 2026-10-07 updated: the Criterion replaced whole — a change the person drops on a ratified Case goes to its case-guppi, and the Case is shown and ratified again with the same lines (case 705.2) · [[decision-case-705.2]]
+- 2026-10-07 status: pending → passed · raw/2026-10-07/0636/ledger.md#L36

@@ -130,8 +130,37 @@ def load_schema(wiki: Path, category: str) -> dict | None:
     return data if isinstance(data, dict) else None
 
 
-def matches(page: Page, when: dict) -> bool:
-    return all(str(page.props.get(key)) == str(value) for key, value in when.items())
+def holds(props: dict, when: dict) -> bool:
+    """Whether the fields `props` hold every value of the `when` of a condition."""
+    return all(str(props.get(key)) == str(value) for key, value in when.items())
+
+
+def unmet_conditions(
+    props: dict, sections, schema: dict, block: str | None = None
+) -> list[tuple[dict, str]]:
+    """Each condition of `schema` — a rule of the `conditional` list of its `properties` or
+    of its `body`, or of the one `block` named — that the fields `props` and the section
+    names `sections` do not meet, as `(when, what)`: the `when` of the rule and the words of
+    the finding. The one judgment of a condition: `check_schema` reports each `what` on a
+    page, and the check of a plan of `guppi/prespec.py` on the page as a Case leaves it
+    (case 714)."""
+    out: list[tuple[dict, str]] = []
+    for name in (block,) if block else ("properties", "body"):
+        for rule in (schema.get(name) or {}).get("conditional") or []:
+            when = rule.get("when") or {}
+            if not holds(props, when):
+                continue
+            for required in rule.get("required") or []:
+                if name == "body" and required not in sections:
+                    out.append((when, f"missing section {required} (given {rule['when']})"))
+                elif name != "body" and required not in props:
+                    out.append((when, f"missing field {required} (given {rule['when']})"))
+            for field, banned in (rule.get("forbidden_values") or {}).items():
+                if field in props and str(props[field]) in [str(b) for b in banned]:
+                    out.append(
+                        (when, f"{field} may not be {props[field]!r} (given {rule['when']})")
+                    )
+    return out
 
 
 def is_placeholder(page: Page) -> bool:
@@ -178,32 +207,13 @@ def check_schema(page: Page, schema: dict) -> list[Finding]:
     for field in props.get("single") or []:  # one value is its shape, never a list (362.1)
         if isinstance(page.props.get(field), list):
             out.append(Finding(page, "schema", f"{field} holds a list; one link is its shape"))
-    for rule in props.get("conditional") or []:
-        if not matches(page, rule.get("when") or {}):
-            continue
-        for field in rule.get("required") or []:
-            if field not in page.props:
-                out.append(Finding(page, "schema", f"missing field {field} (given {rule['when']})"))
-        for field, banned in (rule.get("forbidden_values") or {}).items():
-            if field in page.props and str(page.props[field]) in [str(b) for b in banned]:
-                out.append(
-                    Finding(
-                        page,
-                        "schema",
-                        f"{field} may not be {page.props[field]!r} (given {rule['when']})",
-                    )
-                )
+    for _, what in unmet_conditions(page.props, page.sections, schema, "properties"):
+        out.append(Finding(page, "schema", what))
     for section in body.get("required") or []:
         if section not in page.sections:
             out.append(Finding(page, "schema", f"missing section {section}"))
-    for rule in body.get("conditional") or []:
-        if not matches(page, rule.get("when") or {}):
-            continue
-        for section in rule.get("required") or []:
-            if section not in page.sections:
-                out.append(
-                    Finding(page, "schema", f"missing section {section} (given {rule['when']})")
-                )
+    for _, what in unmet_conditions(page.props, page.sections, schema, "body"):
+        out.append(Finding(page, "schema", what))
     return out
 
 

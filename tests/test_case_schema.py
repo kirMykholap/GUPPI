@@ -1,10 +1,11 @@
-"""The example Case of `vault/wiki/case-schema.md`, in the chat form `case-guppi` writes into
-its file, passes the check the `SubagentStop` hook runs over that file (case 646,
-`estimate-case-protocol-example-passes-the-check`). The test holds no copy of the example
-or of the checks: it reads the block tagged `case` from the rendered page and runs
-`casecheck.check_answer` over it. A page that holds no block tagged `case` fails both tests
-with a message that names the file, so an example a render lost does not pass unseen (case
-652).
+"""The example Case of `vault/wiki/case-example.md`, in the chat form `case-guppi` writes
+into its file, passes the check the `SubagentStop` hook runs over that file (case 717.1,
+`estimate-case-example-passes-the-check`; before it case 646). The test holds no copy of
+the example or of the checks: it reads the block tagged `case` from the rendered page and
+runs `casecheck.check_answer` over it. While `case-example.md` does not stand — until the
+librarian's render writes it — the example is read from `vault/wiki/case-schema.md`, where
+it stood before. A page that holds no block tagged `case` fails both tests with a message
+that names the file it read, so an example a render lost does not pass unseen (case 652).
 """
 
 import shutil
@@ -17,14 +18,18 @@ from guppi.materialize import closes_fence, fence_opening, quoted_sections, spli
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "vault" / "wiki" / "case-schema.md"
+EXAMPLE = ROOT / "vault" / "wiki" / "case-example.md"  # the examples' own file (case 717.1)
 ANCHOR = "the buyer pays at `/checkout/pay`"  # the `old` of the example's pair
 PADDED = f"`` {ANCHOR} ``"
 
 
-def example(path: Path = SCHEMA) -> str:
-    """The first block tagged `case` of the page, its lines as they stand — the quote
-    markers of the Case kept, which `tagged_blocks` would remove — the fence judged by
+def example(path: Path | None = None) -> str:
+    """The first block tagged `case` of the page — `case-example.md`, or `case-schema.md`
+    while the first does not stand (case 717.1) — its lines as they stand, the quote
+    markers of the Case kept, which `tagged_blocks` would remove; the fence judged by
     `fence_opening` and `closes_fence`, the one judgment of a fence (case 444.1)."""
+    if path is None:
+        path = EXAMPLE if EXAMPLE.is_file() else SCHEMA
     opening, kept = None, []
     for line in path.read_text(encoding="utf-8").splitlines():
         if opening is None:
@@ -34,7 +39,7 @@ def example(path: Path = SCHEMA) -> str:
         if closes_fence(line, opening):
             return "\n".join(kept) + "\n"
         kept.append(line)
-    pytest.fail(f"{path} holds no block tagged case — the example of case 646 is gone (case 652)")
+    pytest.fail(f"{path} holds no block tagged case — the example of case 717.1 is gone (case 652)")
 
 
 def seed(project: Path, text: str) -> None:

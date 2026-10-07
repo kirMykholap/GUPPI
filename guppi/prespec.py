@@ -86,7 +86,17 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   `moment` of lint (case 613.1); and one whose `method` waits for another session — a part
   that names a later session, the next session, a session after another, the librarian or
   `/hi`, and not the person — by `lint.waits_for_another_session`, the one predicate, which
-  lint does not run over the live pages (case 670.4);
+  lint does not run over the live pages (case 670.4); and an `update` of an Estimate that
+  replaces its Criterion whole, writes no `method`, sets no status of `passed` or `failed`
+  and keeps a `method` on the live page that waits for another session, by the same
+  predicate (`kept_method_waits`, case 715);
+- a condition of a schema not met (case 714): a `create` whose page, as `generate` writes
+  it, or an `update` whose `set` gives the value a condition starts on, leaves the page
+  without a field or a section the condition requires, by `lint.unmet_conditions`, the one
+  judgment `make lint` reports by; the page is judged as the plan leaves it, with the
+  fields and the sections of each earlier item of the plan on it; a `defer`, a `delete` and
+  a category with no schema or one whose schema rule the session changes are not judged
+  (`check_conditions`);
 - an item writing a `sections: Render` for a page that enforces by render whose text does
   not open with `<!-- slug -->` and close with `<!-- /slug -->`; only the text the item
   itself writes is judged, and a child's marker line in a parent is not (case 325.1);
@@ -175,8 +185,10 @@ from guppi.event import project_root, read_payload, session_stamp
 from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 360)
     FRONTIER_LINE,
     FRONTIER_SEPARATOR,
+    INITIAL_STATUS,
     READ_LINE,
     RESULT,
+    SINGULAR,
     Vault,
     as_list,
     indent_added_twice,
@@ -195,9 +207,13 @@ from guppi.lint import (
     CODE_SPAN,
     WIKILINK,
     archived_slugs,
+    holds,
     hub_files,
+    load_schema,
+    method_of,
     names_a_form,
     tied_to_a_one_off_moment,
+    unmet_conditions,
     waits_for_another_session,
 )
 from guppi.materialize import (
@@ -214,6 +230,7 @@ from guppi.materialize import (
     parse_line,
     quoted_sections,
     schema_changed,
+    schema_fields,
     split_cases,
     tagged_blocks,
     then_blocks,
@@ -802,6 +819,10 @@ MOMENT = (
     "the method names the kind of its moment"
 )
 WAITS = "method waits for another session — a method holds only what runs in its own session"
+KEPT_WAITS = (
+    "the method on the page waits for another session — set a method that runs in this session"
+)
+DECIDED = ("passed", "failed")  # a status the person's decision sets, with no reading after it
 
 
 SENTENCE_STOP = re.compile(r"\.[ \t\n]+(?=[A-ZА-ЯЁ])")  # a full stop, a space, a capital
@@ -1170,8 +1191,112 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 findings.append(f"case {case}: update {slug}: {MOMENT}")
             if method is not None and waits_for_another_session(str(method)):  # case 670.4
                 findings.append(f"case {case}: update {slug}: {WAITS}")
+            if method is None and kept_method_waits(item, project_dir):  # case 715
+                findings.append(f"case {case}: update {slug}: {KEPT_WAITS}")
         if promises >= 2:
             findings.append(f"case {case}: two promises in one Case — split it")
+    return findings
+
+
+def kept_method_waits(item: dict, project_dir: Path) -> bool:
+    """Case 715: whether an `update` of an Estimate replaces its Criterion whole — it names
+    no part of the page, by `materialize.names_a_part` — writes no `method`, sets no status
+    the person's decision gives, `passed` or `failed`, and keeps on the live page a `method`
+    that waits for another session, by `lint.waits_for_another_session`, the predicate that
+    judges a `method` the plan writes. The page goes `pending`, and the Retro of the Case's
+    own session cannot read it."""
+    sets = item.get("set") if isinstance(item.get("set"), dict) else {}
+    if names_a_part(item) or "method" in sets or str(sets.get("status")) in DECIDED:
+        return False
+    path = wiki_root(project_dir) / "estimates" / f"{item.get('slug')}.md"
+    if not path.is_file():
+        return False
+    method = method_of(read_page(path, "estimates"))
+    return method is not None and waits_for_another_session(method)
+
+
+def created_page(item: dict, category: str, project_dir: Path) -> tuple[dict, set[str]] | None:
+    """The fields and the section names of the page a `create` item leaves, as `generate`
+    writes it: the fields of the item the category's schema names, `type`, the first
+    status, `parent` or `target` from `ref`, the lists a Leaf, a MOC or an Insight is given,
+    `origin`, `sprint`, `created`, the tags, the item's sections, `## Purpose` from `purpose`
+    on a rule or an entity, and `## History`. None for a category with no schema. A test runs
+    `Vault.create` over the same items and asserts the two answer alike (case 714)."""
+    known = schema_fields(project_dir, {"category": category})
+    if known is None:
+        return None
+    props = {key: value for key, value in item.items() if key in known}
+    props.setdefault("type", SINGULAR[category])
+    props["status"] = INITIAL_STATUS.get(category)
+    ref = item.get("ref")
+    if ref and category in LEAF_CATEGORIES:
+        props["parent"] = ref
+    if ref and category == "estimates":
+        props["target"] = ref
+    if category in LEAF_CATEGORIES:
+        props.setdefault("estimates", [])
+        if props.get("kind") == "MOC":
+            props.setdefault("children", [])
+    if category == "insights":
+        props.setdefault("children", [])
+        props["severity"] = len(as_list(props.get("children")))
+    props.update(origin="", sprint="", created="")
+    if item.get("tags"):
+        props["tags"] = list(item["tags"])
+    sections = {f"## {name}" for name in item.get("sections") or {}}
+    if category in LEAF_CATEGORIES and props.get("purpose"):
+        sections.add("## Purpose")
+    sections.add(HISTORY)
+    return props, sections
+
+
+def check_conditions(blocks: dict, project_dir: Path, schema_free: set[str]) -> list[str]:
+    """Case 714: a Case that leaves a page short of what a condition of its category's
+    schema requires — by `lint.unmet_conditions`, the judgment `make lint` reports by. The
+    page is judged as the plan leaves it: the live page, or the page a `create` writes by
+    `created_page`, with the fields and the section names of each earlier item of the plan
+    on the same page. A `create` is a finding for each condition its page does not meet; an
+    `update` only for a condition whose `when` its `set` gives, so a Case that does not
+    cause a break is not sent back for one the page already holds. A `defer` and a `delete`
+    are not judged, nor is a category with no schema or one in `schema_free`, whose schema
+    rule the session changes (case 308.2)."""
+    wiki = wiki_root(project_dir)
+    schemas: dict[str, dict | None] = {}
+    pages: dict[str, tuple[dict, set[str]]] = {}  # slug → the page as the plan leaves it
+    findings: list[str] = []
+    for case, block in blocks.items():
+        for kind in ("create", "update"):
+            for item in block.get(kind) or []:
+                slug = str(item.get("slug") or "") if isinstance(item, dict) else ""
+                category = category_of(slug)
+                if not category or category in schema_free:
+                    continue
+                if category not in schemas:
+                    schemas[category] = load_schema(wiki, category)
+                schema = schemas[category]
+                if schema is None:
+                    continue
+                sets = item.get("set") if isinstance(item.get("set"), dict) else {}
+                if kind == "create":
+                    page = created_page(item, category, project_dir)
+                    if page is None:
+                        continue
+                    pages[slug] = page
+                else:
+                    if slug not in pages:
+                        path = wiki / category / f"{slug}.md"
+                        if not path.is_file():
+                            continue
+                        live = read_page(path, category)
+                        pages[slug] = (dict(live.props), set(live.sections))
+                    props, sections = pages[slug]
+                    props.update(sets)
+                    sections |= {f"## {name}" for name in item.get("sections") or {}}
+                props, sections = pages[slug]
+                for when, what in unmet_conditions(props, sections, schema):
+                    if kind == "update" and not holds(sets, when):
+                        continue  # the Case did not start this condition
+                    findings.append(f"case {case}: {kind} {slug}: {what}")
     return findings
 
 
@@ -1491,6 +1616,7 @@ def judge(
     findings += check_tasks(cases, blocks, records)
     findings += check_governed(blocks, governed_paths(project_dir))
     findings += check_keys(blocks, project_dir, schema_free)
+    findings += check_conditions(blocks, project_dir, schema_free)
     findings += check_form(blocks, project_dir)
     findings += check_markers(blocks, project_dir)
     findings += check_pairs(cases, blocks, project_dir)

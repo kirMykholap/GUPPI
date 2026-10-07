@@ -1129,6 +1129,71 @@ def test_waits_a_method_that_names_the_person_is_clean_and_other_findings_stand(
     )
 
 
+KEPT_WAITS = (
+    "the method on the page waits for another session — set a method that runs in this session"
+)
+
+
+def with_method(project_dir, method, slug="estimate-x"):
+    with_estimate(project_dir, slug)
+    page = project_dir / "vault" / "wiki" / "estimates" / f"{slug}.md"
+    text = page.read_text(encoding="utf-8").replace(
+        "target: rule-x\n", f"target: rule-x\nmethod: {method}\n"
+    )
+    page.write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_kept_method_a_replaced_criterion_with_a_waiting_page_method_is_a_finding(tmp_path):
+    # case 715: the method on the live page, judged by lint's own predicate
+    with_page(tmp_path, "rules", "rule-x")
+    plan = create_plan("update:\n" + ESTIMATE_UPDATE)
+    for method in (
+        "pytest tests/test_x.py; by hand in a later session",
+        "by hand after the librarian's run",
+        "by hand at the /hi of the next session",
+    ):
+        with_method(tmp_path, method)
+        code, out, _ = check(tmp_path, plan=plan, ledger=UPDATE_LINE)
+        findings = [line for line in out.splitlines() if not line.startswith("note:")]
+        assert (code, findings) == (1, [f"case 1: update estimate-x: {KEPT_WAITS}"]), method
+        written = create_plan("update:\n  - slug: estimate-x\n" + WRITTEN + "    change: recut\n")
+        _, out, _ = check(tmp_path, plan=written, ledger=UPDATE_LINE)
+        assert f"case 1: update estimate-x: {KEPT_WAITS}" in out, method
+
+
+def test_kept_method_a_new_method_a_decision_a_part_or_a_method_of_this_session_is_clean(
+    tmp_path,
+):
+    with_page(tmp_path, "rules", "rule-x")
+    with_method(tmp_path, "by hand in a later session")
+    for item in (
+        (
+            "  - slug: estimate-x\n    set: {status: pending, method: pytest tests/test_x.py}\n"
+            "    change: recut\n"
+        ),
+        (
+            "  - slug: estimate-x\n    set: {status: passed}\n    sections: {Result: r}\n"
+            "    change: decided\n"
+        ),
+        (
+            "  - slug: estimate-x\n    set: {status: failed}\n    sections: {Result: r}\n"
+            "    change: decided\n"
+        ),
+        "  - slug: estimate-x\n    set: {purpose: p2}\n    change: purpose\n",
+        "  - slug: estimate-x\n    replace:\n      - old: c\n        new: d\n    change: a word\n",
+    ):
+        _, out, _ = check(tmp_path, plan=create_plan("update:\n" + item), ledger=UPDATE_LINE)
+        assert KEPT_WAITS not in out, item
+    plan = create_plan("update:\n" + ESTIMATE_UPDATE)
+    for method in (
+        "pytest tests/test_x.py; the person's answer at the /hi of the next session",
+        "by hand at the Retro of this session",
+    ):
+        with_method(tmp_path, method)
+        _, out, _ = check(tmp_path, plan=plan, ledger=UPDATE_LINE)
+        assert KEPT_WAITS not in out, method
+
+
 def test_the_keys_of_the_old_shape_are_a_finding_on_every_kind(tmp_path):
     # case 440: `contract` on an `update` and `estimate_slug` on a rule's `create` are keys of
     # no item, judged by `item_keys` like any other
@@ -2362,3 +2427,200 @@ def test_one_field_set_to_one_value_twice_is_no_finding(tmp_path):
         "  - slug: rule-x\n    set: {purpose: one}\n    change: b\n",
     )
     assert "sets purpose" not in out
+
+
+# --- a condition of a schema (case 714) ------------------------------------------------
+
+CONDITION_SCHEMAS = {
+    "rules": (
+        "type: rule\nproperties:\n  required: [type, kind, purpose, status, tags]\n"
+        "  optional: [enforcement, implementation_ref, parent, estimates, origin, sprint, "
+        "created]\n"
+        "  conditional:\n    - when: {enforcement: hook}\n      required: [implementation_ref]\n"
+    ),
+    "entities": (
+        "type: entity\nproperties:\n  required: [type, kind, purpose, status, tags]\n"
+        "  optional: [parent, children, estimates, origin, sprint, created]\n"
+        "  conditional:\n    - when: {kind: Leaf}\n      required: [parent]\n"
+    ),
+    "insights": (
+        "type: insight\nproperties:\n  required: [type, pattern, status]\n"
+        "  optional: [addressed_by]\n"
+        "  conditional:\n    - when: {status: actioned}\n      required: [addressed_by]\n"
+    ),
+    "estimates": (
+        "type: estimate\nproperties:\n  required: [type, kind, status, target, method, purpose]\n"
+        "  optional: [origin, sprint, created, tags]\n"
+        "body:\n  conditional:\n    - when: {status: passed}\n"
+        '      required: ["## Result"]\n'
+    ),
+}
+
+
+def with_condition_schemas(project_dir):
+    for category, text in CONDITION_SCHEMAS.items():
+        folder = project_dir / "vault" / "wiki" / category
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / "schema.yaml").write_text(text, encoding="utf-8", newline="\n")
+
+
+def with_insight(project_dir, slug="insight-y", extra="", status="open"):
+    folder = project_dir / "vault" / "wiki" / "insights"
+    folder.mkdir(parents=True, exist_ok=True)
+    text = f"---\ntype: insight\npattern: p\nstatus: {status}\n{extra}---\n\n## Pattern\n\np\n"
+    (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+def condition_plan(*bodies):
+    """A plan of one Case per `then` body, numbered from 1, each with a tasks block."""
+    parts = ["# Plan\n"]
+    for number, body in enumerate(bodies, 1):
+        parts.append(
+            f"\n## Case {number} — c{number}\n\n> **context:**\n> Something.\n\n"
+            f"```then\n{body}```\n\n```tasks\n- [ ] guppi/x.py: the change\n```\n"
+        )
+    return "".join(parts)
+
+
+def condition_line(case, kind, slug, ref="rule-x", second=0, tags=""):
+    return f"- 16:00:{second:02d} decision[case {case}][{kind}][{slug}]{{ref:{ref}}}{tags}\n"
+
+
+HOOK_RULE = (
+    "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    ref: rule-x\n"
+    "    purpose: p\n    enforcement: hook\n    tags: [a]\n"
+)
+ACTIONED = "update:\n  - slug: insight-y\n    set: {status: actioned}\n    change: actioned\n"
+PASSED = "update:\n  - slug: estimate-x\n    set: {status: passed}\n    change: decided\n"
+
+
+def condition_findings(project_dir, plan, ledger):
+    _, out, _ = check(project_dir, plan=plan, ledger=ledger)
+    return [line for line in out.splitlines() if not line.startswith("note:")]
+
+
+def test_condition_a_create_or_a_set_that_breaks_a_condition_is_a_finding(tmp_path):
+    with_condition_schemas(tmp_path)
+    with_page(tmp_path, "rules", "rule-x")
+    with_insight(tmp_path)
+    with_estimate(tmp_path)
+    created = condition_line(1, "create", "rule-z", tags="{tags:a}")
+    assert condition_findings(tmp_path, condition_plan(HOOK_RULE), created) == [
+        "case 1: create rule-z: missing field implementation_ref (given {'enforcement': 'hook'})"
+    ]
+    actioned = condition_line(1, "update", "insight-y", ref="insight-y")
+    assert condition_findings(tmp_path, condition_plan(ACTIONED), actioned) == [
+        "case 1: update insight-y: missing field addressed_by (given {'status': 'actioned'})"
+    ]
+    passed = condition_line(1, "update", "estimate-x", ref="estimate-x")
+    assert condition_findings(tmp_path, condition_plan(PASSED), passed) == [
+        "case 1: update estimate-x: missing section ## Result (given {'status': 'passed'})"
+    ]
+
+
+def test_condition_what_it_requires_in_the_item_on_the_page_or_earlier_is_clean(tmp_path):
+    with_condition_schemas(tmp_path)
+    with_page(tmp_path, "rules", "rule-x")
+    with_page(tmp_path, "entities", "entity-x")
+    with_insight(tmp_path)
+    with_estimate(tmp_path)
+    created = condition_line(1, "create", "rule-z", tags="{tags:a}")
+    in_item = HOOK_RULE + "    implementation_ref: guppi/z.py\n"
+    assert condition_findings(tmp_path, condition_plan(in_item), created) == []
+    actioned = condition_line(1, "update", "insight-y", ref="insight-y")
+    with_field = ACTIONED.replace("{status: actioned}", "{status: actioned, addressed_by: d}")
+    assert condition_findings(tmp_path, condition_plan(with_field), actioned) == []
+    passed = condition_line(1, "update", "estimate-x", ref="estimate-x")
+    with_result = PASSED + "    sections: {Result: r}\n"
+    assert condition_findings(tmp_path, condition_plan(with_result), passed) == []
+    # an earlier Case of the plan writes the field on the same page
+    earlier = "update:\n  - slug: insight-y\n    set: {addressed_by: d}\n    change: link\n"
+    ledger = actioned + condition_line(2, "update", "insight-y", ref="insight-y", second=1)
+    assert condition_findings(tmp_path, condition_plan(earlier, ACTIONED), ledger) == []
+    # a Leaf Entity whose `parent` `generate` fills from `ref`
+    leaf = (
+        "create:\n  - slug: entity-z\n    type: entity\n    kind: Leaf\n    ref: entity-x\n"
+        "    purpose: p\n    tags: [a]\n"
+    )
+    line = condition_line(1, "create", "entity-z", ref="entity-x", tags="{tags:a}")
+    assert condition_findings(tmp_path, condition_plan(leaf), line) == []
+    # the page already holds the field
+    with_insight(tmp_path, extra="addressed_by: d\n")
+    assert condition_findings(tmp_path, condition_plan(ACTIONED), actioned) == []
+
+
+def test_condition_a_case_that_does_not_start_it_is_not_judged(tmp_path):
+    with_condition_schemas(tmp_path)
+    with_page(tmp_path, "rules", "rule-x")
+    # the page already breaks the condition, and the Case names only its History
+    with_insight(tmp_path, status="actioned")
+    line = condition_line(1, "update", "insight-y", ref="insight-y")
+    change = "update:\n  - slug: insight-y\n    change: a note\n"
+    assert condition_findings(tmp_path, condition_plan(change), line) == []
+    # a defer is not judged
+    defer = "defer:\n  - slug: rule-z\n    type: rule\n    purpose: p\n    enforcement: hook\n"
+    deferred = condition_line(1, "defer", "rule-z", ref="rule-z")
+    findings = condition_findings(tmp_path, condition_plan(defer), deferred)
+    assert not any("implementation_ref" in finding for finding in findings)
+
+
+def test_condition_a_category_whose_schema_rule_the_session_changes_is_not_judged(tmp_path):
+    with_condition_schemas(tmp_path)
+    with_page(tmp_path, "rules", "rule-x")
+    with_page(tmp_path, "rules", "rule-insights-schema")
+    with_insight(tmp_path)
+    schema = "update:\n  - slug: rule-insights-schema\n    change: a field\n"
+    plan = condition_plan(schema + ACTIONED.removeprefix("update:\n"))
+    ledger = condition_line(
+        1, "update", "rule-insights-schema", ref="rule-insights-schema"
+    ) + condition_line(1, "update", "insight-y", ref="insight-y", second=1)
+    assert not any(
+        "addressed_by" in finding for finding in condition_findings(tmp_path, plan, ledger)
+    )
+
+
+def test_condition_created_page_answers_as_generate_writes_it(tmp_path):
+    # one judgment in two places: `created_page` and `Vault.create`, run over the same items
+    # as the librarian lifts and writes them (CLAUDE.md, One judgment, one implementation)
+    import yaml
+
+    from guppi import generate, materialize
+
+    with_condition_schemas(tmp_path)
+    with_page(tmp_path, "rules", "rule-x")
+    with_page(tmp_path, "entities", "entity-x")
+    items = [
+        yaml.safe_load(HOOK_RULE)["create"][0],
+        {
+            "slug": "entity-z",
+            "type": "entity",
+            "kind": "MOC",
+            "ref": "entity-x",
+            "purpose": "p",
+            "tags": ["a"],
+            "sections": {"How it works": "h"},
+        },
+        {
+            "slug": "estimate-z",
+            "type": "estimate",
+            "kind": "QA",
+            "ref": "rule-x",
+            "purpose": "p",
+            "method": "pytest",
+            "tags": ["a"],
+        },
+    ]
+    vault = generate.Vault(tmp_path, "2026-09-09", "s", NOW, io.StringIO(), io.StringIO())
+    for item in items:
+        category = materialize.category_of(item["slug"])
+        known = materialize.schema_fields(tmp_path, {"category": category})
+        entry = {"category": category, "slug": item["slug"], "origin": "raw/x/ledger.md#case-1"}
+        materialize._lift_item(entry, item, "create", None, [], known)
+        vault.create(entry)
+        path = tmp_path / "vault" / "wiki" / category / f"{item['slug']}.md"
+        page = prespec.read_page(path, category)
+        props, sections = prespec.created_page(item, category, tmp_path)
+        assert set(props) == set(page.props), item["slug"]
+        assert sections == set(page.sections), item["slug"]
+        for field in ("type", "status", "parent", "target", "kind", "children"):
+            assert props.get(field) == page.props.get(field), (item["slug"], field)

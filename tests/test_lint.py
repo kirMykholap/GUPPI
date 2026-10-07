@@ -198,6 +198,35 @@ def test_a_forbidden_value_is_a_schema_finding(tmp_path):
     ]
 
 
+def test_unmet_conditions_is_the_one_judgment_of_a_condition():
+    # case 714: `check_schema` reports each `what` it gives, and pre-spec calls it on the page
+    # as a Case leaves it
+    schema = yaml.safe_load(RULES_YAML)
+    schema["body"]["conditional"] = [{"when": {"enforcement": "render"}, "required": ["## Render"]}]
+    props = {"kind": "MOC", "enforcement": "hook"}
+    assert lint.unmet_conditions(props, {"## Purpose"}, schema) == [
+        (
+            {"enforcement": "hook"},
+            "missing field implementation_ref (given {'enforcement': 'hook'})",
+        ),
+        ({"kind": "MOC"}, "missing field children (given {'kind': 'MOC'})"),
+        ({"kind": "MOC"}, "enforcement may not be 'hook' (given {'kind': 'MOC'})"),
+    ]
+    rendered = {"kind": "Leaf", "enforcement": "render"}
+    assert lint.unmet_conditions(rendered, {"## Purpose"}, schema) == [
+        ({"enforcement": "render"}, "missing section ## Render (given {'enforcement': 'render'})")
+    ]
+    assert lint.unmet_conditions(rendered, {"## Render"}, schema) == []
+    page = lint.Page(category="rules", slug="rule-x", path=Path("rule-x.md"), props=props)
+    page.sections = {"## Purpose": "p", "## History": ""}
+    reported = [finding.text for finding in lint.check_schema(page, schema)]
+    judged = [
+        f"rules/rule-x: schema: {what}"
+        for _, what in lint.unmet_conditions(props, page.sections, schema)
+    ]
+    assert [line for line in reported if "given" in line] == judged
+
+
 def test_a_list_in_a_single_field_is_a_schema_finding(tmp_path):
     # case 362.1: a field `properties.single` names holds one value, never a list
     wiki = seed(tmp_path, rule=rule_page(parent="[rule-root, rule-x]"))

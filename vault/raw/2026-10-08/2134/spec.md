@@ -1,0 +1,363 @@
+<!-- approved 22:41:37 · session 5b41f5a2 -->
+
+# Spec — session 2134, 2026-10-08
+
+## Case 738 — The pre-spec check of a MOC's method lands from its patch
+
+> **context:**
+> `/pre-spec` judges the `method` of each Estimate item of a plan by `names_a_form` of `guppi/lint.py`, so a MOC's Estimate whose `method` names a test file or `pytest` alone passes the plan and turns `make lint` red only at the librarian's run. Case 733 of session 0213 ratified the stricter check: on a MOC as the plan leaves it, a `method` that names neither a `make <target>` nor `by hand` is a finding, by one predicate `names_a_moc_form` that `check_method` of lint calls too. Its code turned `make test` red at that Retro, in `tests/test_case_schema.py::test_case_schema_the_example_passes_the_check`, since the example Case of `vault/wiki/case-example.md` gave the MOC `entity-cart` an Estimate with a `pytest` command alone. The code was saved to `vault/raw/2026-10-08/0213/patch-prespec-moc-method-form.diff` and reverted; the four code boxes of Case 733 stand unticked in the 0213 Spec, and `estimate-prespec-catches-a-method-without-a-form` stands `failed`. Case 735 of session 1547 changed the example, and `vault/wiki/case-example.md` now gives that Estimate `make test-cart, which runs uv run pytest tests/test_cart_view.py -k render_time`, in the example Case and in the `then` block example; `MAKE_TARGET` of `guppi/lint.py` matches it, so the patched check passes the example. The person chose that this Case lands the code already ratified, with one decision line, an `update` of `rule-prespec` that adds a History line only, and that the four boxes of the 0213 Spec stay as that session left them; this session's boxes and its handoff say where the code landed. `estimate-prespec-catches-a-method-without-a-form` checks the change: its Criterion, `purpose` and `method`, set by Case 733, already state the stricter check, so they stand and are not signed again; its reading at the Retro of this session runs `tests/test_prespec.py`. The `when` and `then` below are that Criterion word for word. `estimate-lint-checks-the-method` stands: the patch moves the test of the form out of `check_method` into `names_a_moc_form` and keeps each answer of `check_method`, which `tests/test_lint.py` shows. A Grep of `MOC` over `vault/wiki/estimates/` with the glob `estimate-prespec-*.md` printed `vault/wiki/estimates/estimate-prespec-catches-a-method-without-a-form.md` alone, so no other Estimate of `rule-prespec` speaks of a MOC's `method`. The Render of `rule-prespec` leaves what the check compares to the module docstring of `guppi/prespec.py`, which the patch rewrites, so no sentence of the page changes; this Case does not set its `status`. Case 739.1 of this session writes the same module docstring: it names the cascade notes under Notes, while the patch rewrites the item on the `method` of an Estimate item and the docstring of `check_form`, a function Case 739.1 does not touch. The two texts say different things and neither makes the other false; the patch lands first, and Case 739.1 adds its notes after it. `estimate-case-example-passes-the-check` speaks of the check this Case changes: the check gives the example of `vault/wiki/case-example.md` no finding and no note, and a change of the check that gives it one fails `tests/test_case_schema.py`. It already checks that the example still passes, so its Criterion stands; the box on `tests/test_case_schema.py` and the full `make test` of Work Mode run it, and it gets no read line, since this Case neither creates it nor sets it `pending`. The hunks of `guppi/prespec.py` in the patch name line numbers a few lines off the file today, and the lines around them stand as the patch holds them. The patch's `tests/test_prespec.py` holds one long line in `test_a_moc_is_judged_as_the_plan_leaves_it` that `make style` reformats. A Grep of `(ROOT|REPO)\s*/\s*"(vault|\.claude)"` over `tests/` printed `tests/test_case_schema.py`, `tests/test_generate.py`, `tests/test_orchestration.py` and `tests/test_schemas.py`. Only `tests/test_case_schema.py` runs a live text through the changed code, the example through `guppi/casecheck.py`, which imports `guppi/prespec.py`; the other three read `schema.yaml` files or `vault/wiki/orchestration.md` and run no Estimate item through `check_form` or `check_method`.
+
+> **problem:**
+> The stricter check that Case 733 ratified is not in the code, so pre-spec still passes a MOC's Estimate whose `method` names a test file or `pytest` alone, and its Estimate stands `failed`.
+
+> **recommend:**
+> - **How does this session carry the code that is already ratified?**
+>   - Recommended: (a) a Case that lands the code by the patch, `make style` and the full `make test`, with one `update` of `rule-prespec` that adds a History line, its `context` naming `estimate-prespec-catches-a-method-without-a-form` as the check, the Criterion unchanged, read at Retro.
+>   - Answer: agreed, (a).
+> - **What happens to the four unticked boxes in the earlier Spec?**
+>   - Recommended: (a) they stay unticked; this session's boxes and its handoff record that the code landed here.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `rule-prespec`: the rule of pre-spec; a History line only.
+> **＋** `guppi/prespec.py`: `check_form` judges the `method` of each Estimate item of the plan.
+> **＋** `guppi/lint.py`: `names_a_form`, and `check_method`, whose test of the form of a MOC's `method` becomes `names_a_moc_form`.
+> **＋** `tests/test_prespec.py`: the unit tests of the findings of `check_form`.
+> **＋** `tests/test_lint.py`: the unit tests of `check_method`.
+> **＋** `tests/test_case_schema.py`: the test of `estimate-case-example-passes-the-check`, which runs the check of the Case file over the example of `vault/wiki/case-example.md`.
+> **＋** `estimate-prespec-catches-a-method-without-a-form`: the check of the change; its Criterion stands.
+> **＋** `vault/raw/2026-10-08/2134/cases/case-739.md`: Case 739.1 writes the module docstring of `guppi/prespec.py` too, after this patch.
+
+> **when:**
+> `uv run guppi prespec --check <plan> --session <id>` reads the items of the plan's `then` blocks before the Spec is approved.
+
+> **then:**
+> A `create` of an Estimate, or an `update` carrying `set: {method: …}`, whose `method` names none of the forms lint classifies (a `make <target>`, the word `pytest`, a path under `tests/`, or the words `by hand`) gives one line `case N: <create|update> <slug>: method names no form`, which goes on to name those forms.
+> **＋** A `create` of an Estimate with no `method` at all gives the same finding.
+> **＋** When the target of the Estimate is a MOC as the plan leaves it — the live page, or a `create` or an `update` of the plan that writes `kind: MOC` — a `method` that names neither a `make <target>` nor `by hand` gives one line `case N: <create|update> <slug>: method of a MOC's Estimate names no make target and is not a reading`, in place of the line of no form.
+> **＋** The predicate is one, lifted out of `guppi/lint.py`; `pre-spec` writes no second one.
+> **＋** The form of a MOC's `method` is one predicate too, in `guppi/lint.py`, which `check_method` of `make lint` calls as well.
+> **－** Existence is not checked in the plan: the file under `tests/` is written in Work Mode and lint checks it later.
+> **－** Whether the `Makefile` holds the `make <target>` a MOC's `method` names is left to lint.
+> **－** Whether every counted Estimate of the MOC's children is a reading, or a sibling Estimate names a `make <target>`, is left to lint.
+> **－** An `update` of an Estimate that writes no `method` gives no line of the form of a MOC's `method`.
+
+```then
+update:
+- slug: rule-prespec
+  change: 'the code of case 733 lands from its patch: pre-spec judges the method of a MOC''s Estimate by its form (case 738)'
+```
+
+```tasks
+- [ ] update `rule-prespec`
+- [x] `guppi/lint.py`: the `guppi/lint.py` part of the patch applied: `names_a_moc_form`, which `check_method` calls; the module docstring names it; `make style` passes.
+- [x] `guppi/prespec.py`: the `guppi/prespec.py` part of the patch applied: `check_form` judges a MOC's `method` by `names_a_moc_form`, the kind read by `plan_kind` and the target of an `update` by `estimate_target`; the two docstrings say so; `make style` passes.
+- [x] `tests/test_prespec.py`: the four tests of the patch added and formatted by `make style`.
+- [x] `tests/test_lint.py`: runs green, the judgment of `check_method` unchanged.
+- [x] `tests/test_case_schema.py`: runs green over the example of `vault/wiki/case-example.md` with the patched check.
+- [ ] read `estimate-prespec-catches-a-method-without-a-form`
+```
+
+## Case 739 — A page the cascade archives is noted before it is updated
+
+> **context:**
+> After a session, `uv run guppi generate` applies the items of the Spec and then runs its cascade. The cascade archives each `clustered` lesson of an Insight set `actioned`, archives an `open` Insight left with no live child, and archives a superseded Decision page. It also moves a rule or an entity between `built` and `draft`. No check of a Case looks at that cascade. In session 1547, Case 736.1 set `insight-workflow-contract-change-leaves-its-derived-text-stale` `actioned`, and Case 737 tagged its clustered lesson `lesson-case-build-misses-the-example-a-changed-check-runs-over`. The same librarian run applied the tags and then archived the lesson. `generate` printed nothing about it, since `cascade` of `guppi/generate.py` tests only the status of the lesson. `ask-guppi` found the clash at `/pre-spec`, the person kept the target, and both Cases were ratified a second time. `lesson-case-build-misses-the-cascade-of-a-related-case` records it and joined no Insight. The person chose a check by script over a new step of `case-guppi`. The rules of the cascade move out of `cascade` into one function of `guppi/generate.py` that `cascade` calls, and `/pre-spec` and the check of the file of a Case both use it. The check runs at both moments. It covers the three steps that archive a page and only an `update` of such a page. It gives a note, not a finding, and an `update` and its archive inside one Case give the note too. Case 739.1 is the note of `/pre-spec`, and Case 739.2 is the note of the check of the file. Each creates its own Estimate, since the two can fail apart and need different fixes. The judgment of which pages, items and Cases give the note is signed once, in Case 739.1; the `then` of Case 739.2 points to that Estimate and adds only who gets the note in the file and how it is sent, so nothing is signed twice. Q5 named the second Estimate `estimate-case-check-notes-a-page-another-case-archives`. After Q7 the archive may come from the same Case, so both Estimates end in `the-cascade-archives`. `estimate-generate-cascades` stands: the function keeps every answer of `cascade`, and `tests/test_generate.py` shows it. The Render of `rule-prespec` leaves what the check compares to the module docstring of `guppi/prespec.py`, so no sentence of the page changes, and Case 739.1 changes only that docstring and the code. Case 738 of this session also changes `guppi/prespec.py`: `check_form`, which this Case does not touch, and the module docstring, which this Case changes too. Its patch adds the MOC form to the list of the form of an Estimate item, at `@@ -81,7 +81,10 @@` of `vault/raw/2026-10-08/0213/patch-prespec-moc-method-form.diff`, and Case 739.1 adds the cascade notes under the Notes paragraph of the same docstring. The patch of Case 738 lands first, and Case 739.1 adds its notes after it, on the docstring as that patch leaves it. The Purpose of `rule-case-check` lists the notes and the checks that the file of a Case gets, so Case 739.2 adds one sentence after the note of case 711.2. No other sentence of that Purpose becomes false, since the new note is a judgment of `/pre-spec`, imported. No Criterion of an Estimate of `rule-case-check` or `rule-prespec` speaks against a new note. The new Estimate of `rule-case-check` sets that page from `built` to `draft` until it is read. A Grep of `(ROOT|REPO)\s*/\s*"(vault|\.claude)"` over `tests/` printed `tests/test_case_schema.py`, `tests/test_generate.py`, `tests/test_orchestration.py` and `tests/test_schemas.py`. Only `tests/test_case_schema.py` runs a live text through the changed code: the example of `vault/wiki/case-example.md` goes through `check_answer` of `guppi/casecheck.py`, and the test fails on any note. The example sets no status of an Insight and carries no `{supersedes:case N}` mark, and the test runs over a temporary project with no lesson or Insight page, so it gives no new note. `estimate-case-example-passes-the-check` already checks this: its Criterion says that the check gives the example no finding and no note, and that a change of the check that gives one fails the test. Its Criterion stands, since this Case keeps that promise, so it is not set `pending` and gets no `read` line; the task line of `tests/test_case_schema.py` under Case 739.2 runs its test. The other three read `schema.yaml` files or `vault/wiki/orchestration.md`. The lesson line of `lesson-case-build-misses-the-cascade-of-a-related-case` stands in the ledger of session 1547, so no decision line here carries an `{addresses:...}` mark, and the lesson stays `new`. The backlog item `insight-ledger-ratified-line-never-withdrawn` is about the number of a Case built again, not about the cascade, and stays out.
+
+> **problem:**
+> A Case can update a page that the cascade of `generate` archives in the same run, after an item of another Case of the session or of its own. No script reports it, so the update is lost in the archive unless a person or `ask-guppi` sees it.
+
+> **recommend:**
+> - **Where does the fix for a missed cascade live?**
+>   - Recommended: (a) a step in the instructions of `case-guppi`, which follows the cascade of each related Case onto the pages its own Case changes.
+>   - Answer: none of the options. The person wants a check by script that takes the logic of the cascade from the script that writes the pages, so that the Cases are checked at `/pre-spec`, before the pages are written. The person asked whether it should also run earlier, on one Case.
+> - **Where does the script check of the cascade run?**
+>   - Recommended: (a) at both moments, the check of the file of a Case and `/pre-spec`, by one shared function.
+>   - Answer: agreed, (a).
+> - **Does a cascade hit block the Case or only warn?**
+>   - Recommended: (a) a note: the Case drops the update or its `context` says why it stands, and the person may keep the target.
+>   - Answer: agreed, (a).
+> - **Which steps of the cascade does the check cover?**
+>   - Recommended: (a) the steps that archive a page: the lessons of an Insight set `actioned`, an `open` Insight with no live child, and a superseded Decision page.
+>   - Answer: agreed, (a).
+> - **How is the change split, and what checks it?**
+>   - Recommended: (a) one Case with two sub-cases, the note of `/pre-spec` and the note of the check of the file, each with a new Estimate read by its unit tests; the rules of the cascade go into one shared function of `guppi/generate.py`, and `estimate-generate-cascades` stands.
+>   - Answer: agreed, (a).
+> - **Which changes of a Case get the note?**
+>   - Recommended: (a) an `update` only; a `delete` of such a page ends where the cascade ends.
+>   - Answer: agreed, (a).
+> - **Does a Case that both sets the status and changes the page get the note?**
+>   - Recommended: (a) no note inside one Case and its sub-cases, as in the note on a page another Case puts off.
+>   - Answer: (b): a note inside one Case too, its sub-cases compared with each other as well.
+
+### Case 739.1 — Pre-spec notes a page the cascade archives
+
+> **given:**
+> `estimate-prespec-notes-a-page-the-cascade-archives`: the new check of the note.
+> **＋** `rule-prespec`: the rule of pre-spec, the target of the new Estimate; its text does not change.
+> **＋** `guppi/prespec.py`: the check `--check` and its module docstring, which gain the note.
+> **＋** `guppi/generate.py`: `cascade`, whose rules of the archive move into one function that the check imports.
+> **＋** `tests/test_prespec.py`: the unit tests of the note.
+> **＋** `tests/test_generate.py`: the tests of the cascade, which run green over the moved function.
+> **＋** `rule-prespec-hook`: the hook on the exit from Plan Mode, which blocks on a finding and not on a note.
+> **＋** `vault/raw/2026-10-08/2134/cases/case-738.md`: Case 738 changes `check_form` and the module docstring of `guppi/prespec.py` in the same session, and lands first.
+
+> **when:**
+> `uv run guppi prespec --check <plan> --session <id>` reads the `then` blocks of the plan and the decision lines of the session's window.
+> **＋** Or `tests/test_prespec.py` runs it over a made-up plan.
+
+> **then:**
+> For each `update` item of the plan whose page the cascade of `guppi/generate.py` archives once the items of the plan apply, the check prints one line that opens with `note:` and names the Case of the `update`, the page and the Case whose item sets off the archive.
+> **＋** The pages archived are: each lesson standing `clustered` among the `children` of an Insight that an `update` of the plan sets `status: actioned`; each Insight standing `open` whose every child stands `archived` once the items of the plan apply; and the Decision page of each Case that a `{supersedes:case N}` mark on a decision line of the session names.
+> **＋** The pages are judged by one function of `guppi/generate.py`, which the cascade of `uv run guppi generate` calls too.
+> **＋** An `update` and the item that sets off its archive in one Case, or in two sub-cases of one Case, give the note too.
+> **＋** The note is no finding: it does not change the exit code, and the hook of `rule-prespec-hook` does not block the exit from Plan Mode on it.
+> **＋** The agent answers the note in one line in the chat, and the person may change a Case or keep the `update`.
+> **－** A `create`, `delete` or `defer` item of such a page gives no note.
+> **－** A rule or an entity that the cascade moves between `built` and `draft` gives no note.
+
+```then
+create:
+- slug: estimate-prespec-notes-a-page-the-cascade-archives
+  ref: rule-prespec
+  kind: QA
+  purpose: Whether guppi prespec --check prints a note, without blocking, for an update of a page that the cascade of generate archives once the items of the plan apply, whether the item that sets off the archive stands in another Case or in the same one
+  method: uv run pytest tests/test_prespec.py -k cascade
+  tags:
+  - session
+  - workflow
+  - harness
+```
+
+```tasks
+- [ ] create `estimate-prespec-notes-a-page-the-cascade-archives`
+- [x] `guppi/generate.py`: the pages the cascade archives — the clustered lessons of an `actioned` Insight, an `open` Insight with no live child, a superseded Decision page — judged by one function, which `cascade` calls; its docstring says so; `make style` passes.
+- [x] `guppi/prespec.py`: one function of the cascade notes, which imports the function of `guppi/generate.py` and applies the plan's items and the `{supersedes:case N}` marks of the window before it; `plan_findings` adds its notes; the module docstring, as the patch of Case 738 leaves it, names them under Notes; this task runs after the code tasks of Case 738; `make style` passes.
+- [x] `tests/test_prespec.py`: tests with `cascade` in their names: an `actioned` Insight and an `update` of its clustered lesson under another Case give one note and exit 0; the same under one Case and under two sub-cases of one Case give the note; an `open` Insight left with no live child and a superseded Decision page give the note; a `create`, `delete` or `defer` of such a page and a move between `built` and `draft` give none.
+- [x] `tests/test_generate.py`: runs green, every answer of `cascade` unchanged.
+- [ ] read `estimate-prespec-notes-a-page-the-cascade-archives`
+```
+
+### Case 739.2 — The check of a Case file notes a page the cascade archives
+
+> **given:**
+> `estimate-case-check-notes-a-page-the-cascade-archives`: the new check of the note.
+> **＋** `rule-case-check`: the rule of the check of the file of a Case; its Purpose gains one sentence.
+> **＋** `guppi/casecheck.py`: `check_answer` and its module docstring, which gain the note.
+> **＋** `guppi/prespec.py`: the function of the cascade notes, imported.
+> **＋** `tests/test_casecheck.py`: the unit tests of the note.
+> **＋** `tests/test_case_schema.py`: runs the check over the example of `vault/wiki/case-example.md` and fails on any note.
+> **＋** `raw/<date>/<hi HHMM>/ledger.md`: the session's ledger, whose `{supersedes:case N}` marks the check reads.
+> **＋** `estimate-prespec-notes-a-page-the-cascade-archives`: the promise of the judgment that this check imports.
+
+> **when:**
+> `SubagentStop` fires when `case-guppi` writes a file of Cases, and `uv run guppi casecheck --subagent` reads the Cases of the file, the plan file of the session, `<plan>.checked.json` beside it and the session's `raw/<date>/<hi HHMM>/ledger.md`.
+> **＋** Or `tests/test_casecheck.py` runs it over a made-up file, plan file, store and ledger.
+
+> **then:**
+> The hook judges the Cases of the file with the other Cases of the session, as `other_blocks` of `guppi/casecheck.py` gives them, by the function of `guppi/prespec.py` that prints the cascade notes of pre-spec, imported, not copied.
+> **＋** Which pages, items and Cases give a note is what `estimate-prespec-notes-a-page-the-cascade-archives` sets for that function; this check adds only who gets the note and how.
+> **＋** The note goes to `case-guppi` under the Case of the file it names, and asks it to drop the change or to give the reason in `context`.
+> **＋** The note is sent back once by exit 2 beside any findings, stored under `notes` in `<plan>.checked.json`, and not sent again for the same Case id.
+> **－** The note is no finding: the Case is stored with no finding for it, and the `Stop` check of `guppi casecheck` refuses no showing for it.
+> **－** Two other Cases of the session give the file no note.
+
+```then
+create:
+- slug: estimate-case-check-notes-a-page-the-cascade-archives
+  ref: rule-case-check
+  kind: QA
+  purpose: Whether the check of the file of a Case sends case-guppi a note once for an update of a page that the cascade of generate archives after an item of the file or of another Case of the session, by the judgment pre-spec prints
+  method: uv run pytest tests/test_casecheck.py -k cascade
+  tags:
+  - hooks
+  - harness
+  - workflow
+update:
+- slug: rule-case-check
+  replace:
+  - old: so the two new texts are read side by side before the person sees the Case (case 711.2).
+    new: so the two new texts are read side by side before the person sees the Case (case 711.2). It sends `case-guppi` a note once, too, for each `update` of a page that the cascade of `guppi/generate.py` archives after an item of the same file or of another Case of the session — a lesson of an Insight set `actioned`, an `open` Insight left with no live child, the Decision page of a superseded Case — by the judgment that `/pre-spec` prints as a `note:` line, so that the Case drops the update or its `context` says why it stands (case 739.2).
+  change: the check of the file of a Case notes an update of a page that the cascade archives (case 739.2)
+```
+
+```tasks
+- [ ] create `estimate-case-check-notes-a-page-the-cascade-archives`
+- [ ] update `rule-case-check`
+- [x] `guppi/casecheck.py`: `check_answer` adds the cascade notes of `guppi/prespec.py` for the Cases of the file, the other Cases of the session first; the module docstring names them beside the notes of `promise_notes`; `make style` passes.
+- [x] `tests/test_casecheck.py`: tests with `cascade` in their names: an update in the file of a lesson that another stored Case archives, an item of the file that archives a page another Case updates, and both inside the file give one note sent once; two other Cases give the file none; a `create`, `delete` or `defer` gives none.
+- [x] `tests/test_case_schema.py`: runs green over the example of `vault/wiki/case-example.md`.
+- [ ] read `estimate-case-check-notes-a-page-the-cascade-archives`
+```
+
+## Case 740 — The Insight on Case ids that leave only by a supersedes line is closed
+
+> **context:**
+> `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line` gathers three lessons with one cause: a check kept a Case id in view until a `{supersedes:case N}` mark of the ledger named it. In `lesson-prespec-parent-of-superseded-sub-cases`, a parent with no ledger lines of its own stayed a finding after each of its sub-cases was superseded. In `lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped`, the store of the check of a case file kept sub-cases that a rebuild had dropped. In `lesson-case-check-refuses-a-rebuild-under-a-new-number`, a build under a new number was refused while the build it replaced stood in the plan. Each failure is fixed in the code today. The module docstring of `guppi/prespec.py` says that the plan is compared with no other file, since the ratified copy is gone (case 445.2). `other_blocks` of `guppi/casecheck.py` leaves out a stored Case that the file of its top-level Case no longer holds, by `left_by_its_file` (case 722.1), and a Case that a mark on a decision line of the answer's own file names, by `ratification_records` (case 725.2). `remove_superseded` of `guppi/ratified.py` removes a parent from the plan once marks retire each of its sub-cases, by `retired_whole` of `guppi/prespec.py` (case 722.2). Three Estimates check these fixes and all three stand `passed`: `estimate-case-check-sends-back-a-clash-with-another-case`, `estimate-case-check-leaves-out-a-case-the-file-supersedes` and `estimate-spec-write-removes-a-superseded-case`. Their Criteria stand, since this Case changes no code. The person chose to set the Insight `actioned` with `addressed_by` naming `decision-case-725.2`, the latest decision that fixed the pattern, as `rule-insights-schema` asks. That Decision page already exists, so the field takes the quoted wikilink. `estimate-insights-schema-checked` checks that an `actioned` Insight carries one `addressed_by`, and its Criterion stands. When the Insight is `actioned`, the cascade of `uv run guppi generate` archives its three `clustered` lessons. Case 739 of this session notes an `update` of a page that this cascade archives; this Case updates none of the three lessons. A Grep of `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line` over `vault/wiki/` printed `vault/wiki/backlog.md`, `vault/wiki/log.md` and the three lessons; over `guppi/` it printed nothing. `backlog.md` is written again by `uv run guppi backlog`, which drops an Insight that is not `open`. The `insight` field of each lesson still names the Insight correctly, and the cascade archives the lessons. `log.md` is not read.
+
+> **problem:**
+> The Insight stands `open` in the backlog, though the code now fixes each failure it records, and the Estimates of those fixes have passed.
+
+> **recommend:**
+> - **What happens to the Insight**
+>   - Recommended: (a) close it and name the last earlier fix: set it `actioned` with `addressed_by` naming `decision-case-725.2`, and change no code.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line`: the Insight that is set `actioned`.
+> **＋** `rule-insights-schema`: the rule that sets `addressed_by` of an `actioned` Insight to the latest decision that fixed it.
+> **＋** `lesson-prespec-parent-of-superseded-sub-cases`: a `clustered` child of the Insight.
+> **＋** `lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped`: a `clustered` child of the Insight.
+> **＋** `lesson-case-check-refuses-a-rebuild-under-a-new-number`: a `clustered` child of the Insight.
+> **＋** `decision-case-725.2`: the Decision page of the latest fix of the pattern, which `addressed_by` names.
+> **＋** `vault/wiki/backlog.md`: the list of open items, written by `uv run guppi backlog`.
+
+> **when:**
+> The librarian runs `uv run guppi generate` over the Spec of the session, then `uv run guppi backlog`.
+
+> **then:**
+> `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line` stands `actioned`, and its `addressed_by` names `decision-case-725.2`.
+> **＋** The cascade of `uv run guppi generate` archives `lesson-prespec-parent-of-superseded-sub-cases`, `lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped` and `lesson-case-check-refuses-a-rebuild-under-a-new-number`.
+> **＋** `vault/wiki/backlog.md` no longer lists the Insight.
+> **－** The `## Pattern` and `## Proposal` of the Insight do not change.
+
+```then
+update:
+- slug: insight-case-check-a-case-id-leaves-only-by-a-supersedes-line
+  set:
+    status: actioned
+    addressed_by: '[[decision-case-725.2]]'
+  change: 'actioned: each check now leaves out a Case id that a rebuild dropped or that every superseded sub-case retires, without waiting for a supersedes line of the ledger (cases 445.2, 722.1, 722.2, 725.2)'
+```
+
+```tasks
+- [ ] update `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line`
+```
+
+## Case 741 — A refusal of the auto mode classifier stops the run for the person
+
+> **context:**
+> In auto mode Claude Code runs a classifier before each tool call of the agent. The classifier judges the call against the permission rules of the settings, not against the person's word in the chat. `insight-permissions-classifier-weighs-the-rules-not-the-persons-word` clusters two lessons. In `lesson-permissions-auto-mode-refuses-a-remote-change-despite-the-chat` the classifier refused `git remote remove origin` twice, the second time after the person allowed it in the chat, and the person ran it by hand with `!` in the prompt. In `lesson-permissions-auto-mode-refuses-editing-the-case-check-store` the classifier refused the script that was to clear two stale entries from the store of the Case-file check, and the entries stand. `vault/wiki/where-to-stop.md` lists no such refusal among its stops, and its closing paragraph says that nothing else is a stop, so a refused task stays undone and ends as a lesson. The person chose a new eighth condition: the run stops on the refusal, gives the person the command to type after `!`, and goes on after the person has run it. The Proposal of the Insight suggested instead that each Case name in advance who runs such a task. The person did not take that, since nobody can know in advance which calls the classifier refuses. The Proposal section stays as the record of the suggestion, and History records the decision. The Insight goes to `actioned` with `addressed_by: decision-case-741`, as `rule-insights-schema` sets for a decision of the same session.
+>
+> The Criterion of `estimate-where-to-stop-stops-only-on-its-conditions` lists each stop, so it is replaced whole with one new line. Its `purpose` speaks of each condition of the file and of no other, and its `method` reads the text of the file or the new Render in the Spec, so both stand. `rule-permissions` stands: the new stop adds no permission rule, and its allow list keeps to the session's own files. The closing paragraph of the Render stays true, since the list it closes gains the new condition. A Grep of `classifier` over `vault/wiki/` and `.claude/` printed `backlog.md`, `log.md`, `rules/rule-skill-hi.md`, `rules/rule-permissions.md`, the two lessons, the Insight and `insights/insight-hi-skill-substitution-checked-by-a-model-call.md`. `rule-skill-hi` names the classifier at the `!` substitutions of `/hi`, which come before the run, and `rule-permissions` names it for the calls of `case-guppi`. Neither sets what the run does after a refusal, so both stand. `log.md` and `backlog.md` are not read. A Grep of `where-to-stop` over `.claude/`, `guppi/`, `tests/` and `vault/wiki/` printed 29 files. Those that load the file or point to its conditions stand. `rules/rule-spec-box.md` and `.claude/skills/box/SKILL.md` name condition 6 by its number, and the new condition comes after it.
+
+> **problem:**
+> When the auto mode classifier refuses an action that a ratified task needs, the run goes on without it. The task stays undone, even when the person asked for it, and only the person can run it.
+
+> **recommend:**
+> - **What to do with this Insight**
+>   - Recommended: (a) a new stop condition in `where-to-stop.md`: the run stops on a refusal of the classifier, gives the person the command to type after `!`, and goes on after the person has run it; the Insight is set `actioned`, and the Criterion of `estimate-where-to-stop-stops-only-on-its-conditions` is replaced.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `rule-where-to-stop`: the rule whose Render is the list of stops.
+> **＋** `vault/wiki/where-to-stop.md`: the file rendered from `rule-where-to-stop`, loaded by `/work`, `/box` and `/hi`.
+> **＋** `.claude/skills/work/SKILL.md`: the skill `/work`, which loads the list of stops.
+> **＋** `.claude/skills/box/SKILL.md`: the skill `/box`, which loads the same list.
+> **＋** `estimate-where-to-stop-stops-only-on-its-conditions`: the check of the stops; its Criterion is replaced whole.
+> **＋** `insight-permissions-classifier-weighs-the-rules-not-the-persons-word`: the Insight this Case actions.
+> **＋** `rule-insights-schema`: the rule that sets `addressed_by` of an `actioned` Insight.
+> **＋** `rule-permissions`: the permission rules of the settings; it stands.
+> **＋** `raw/<date>/<hi HHMM>/spec.md`: the Spec whose tasks the run carries out.
+
+> **when:**
+> The agent calls `/work` on `PreToolUse Skill` after the person picked it at the fork of `ExitPlanMode`, or the person types `/work` on `UserPromptSubmit`, and the run goes from the tasks of `raw/<date>/<hi HHMM>/spec.md` to the librarian's report.
+> **＋** Or the agent calls `/box` on `PreToolUse Skill`, and the run goes from its first step to the librarian's report.
+
+> **then:**
+> When the auto mode classifier of Claude Code refuses a tool call that the run needs, the agent ends a reply with a question to the person. The reply gives the shell command that does what the refused call would do, for the person to type after `!` in the prompt.
+> **＋** After the person has run that command, the run goes on from where it stopped.
+> **＋** `insight-permissions-classifier-weighs-the-rules-not-the-persons-word` stands `actioned` with `addressed_by: decision-case-741` and leaves the backlog.
+> **－** `rule-permissions` gains no permission rule for the refused action.
+
+```then
+update:
+- slug: rule-where-to-stop
+  replace:
+  - old: '7. The full `make test` run of `/work` after its last task finds a failing test that `## Baseline` of `work.md` does not hold, and its fix needs a choice that no ratified Case makes: name the test and its failure, and go on as the person''s word says (case 736.3).'
+    new: |-
+      7. The full `make test` run of `/work` after its last task finds a failing test that `## Baseline` of `work.md` does not hold, and its fix needs a choice that no ratified Case makes: name the test and its failure, and go on as the person's word says (case 736.3).
+      8. The auto mode classifier of Claude Code refuses a tool call that the run needs: give the person the shell command that does what the refused call would do, to type after `!` in the prompt, and go on after the person has run it (case 741).
+  change: 'a refusal of the auto mode classifier is a stop: the person runs the command after ! (case 741)'
+- slug: estimate-where-to-stop-stops-only-on-its-conditions
+  set:
+    status: pending
+  sections:
+    Criterion: |-
+      When:
+      The agent calls `/work` on `PreToolUse Skill` after the person picked it at the fork of `ExitPlanMode`, or the person types `/work` on `UserPromptSubmit`, and the run goes from the tasks of `raw/<date>/<hi HHMM>/spec.md` to the librarian's report.
+      **＋** Or the agent calls `/box` on `PreToolUse Skill`, and the run goes from its first step to the librarian's report.
+
+      Then:
+      The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered from `rule-where-to-stop`.
+      **＋** The context of `/box`, from `.claude/skills/box/SKILL.md`, holds the same text.
+      **＋** The agent ends a reply with a question to the person on a fork that changes a contract, on a hook refusal whose text gives no step it can follow or says that it is a stop, and before an action that git in the repository cannot undo.
+      **＋** Before a task of `raw/<date>/<hi HHMM>/spec.md` whose text opens with `stop:`, the agent stops and asks; the task runs after the person's word.
+      **＋** On the branch `main` the agent stops and says so: Work Mode does not start there.
+      **＋** In a run of `/box`, the agent stops and asks when `uv run guppi box --check` prints a line, or when a `git merge --ff-only` of `/box` refuses.
+      **＋** When the full `make test` run of `/work` after its last task finds a failing test that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` does not hold, and its fix needs a choice that no ratified Case makes, the agent ends a reply with a question to the person that names the test and its failure.
+      **＋** When the auto mode classifier of Claude Code refuses a tool call that the run needs, the agent ends a reply with a question to the person that gives the shell command doing what the refused call would do, for the person to type after `!` in the prompt.
+      **＋** A reply that stops from the call of `/retro` until `raw/<date>/<hi HHMM>/handoff.md` stands opens with `STOP:`.
+      **＋** After the person's answer the run goes on from where it stopped.
+      **＋** After the person has run the command that a refusal of the auto mode classifier gave, the run goes on from where it stopped.
+      **＋** `vault/wiki/case-schema.md` names a task line that opens with `stop:` as a task that waits for the person's word.
+      **－** No other point stops the run: any other red test, at `/retro` too, a reading that only the person can take, an observation or a doubt ends as a lesson or a line of `raw/<date>/<hi HHMM>/handoff.md`.
+  change: the Criterion replaced whole — a refusal of the auto mode classifier is a stop, and the person runs the command after ! (case 741)
+- slug: insight-permissions-classifier-weighs-the-rules-not-the-persons-word
+  set:
+    status: actioned
+    addressed_by: decision-case-741
+  change: 'actioned: a refusal of the auto mode classifier is a stop of where-to-stop.md, and the person runs the command after ! (case 741)'
+```
+
+```tasks
+- [ ] update `rule-where-to-stop`
+- [ ] `uv run guppi render`: `vault/wiki/where-to-stop.md`
+- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [ ] update `insight-permissions-classifier-weighs-the-rules-not-the-persons-word`
+- [ ] read `estimate-where-to-stop-stops-only-on-its-conditions`
+```
+
+## Case 742 — The Insight on a ratified line never withdrawn is closed
+
+> **context:**
+> The ledger only grows, so the decision line of a first ratification is never withdrawn. A Case built again with a target dropped or renamed, or in another shape, needs a new number whose line supersedes the old one. `insight-ledger-ratified-line-never-withdrawn` records that only the Spec hook found such a build. Case 671.1 set it `actioned`: the check of the file of a Case sends back a ratified Case built again without the item of one of its lines, with the new number and the marks, and `estimate-case-check-sends-back-a-ratified-case-without-a-target` checks it. The check also sends back a ratified Case built again in another shape under its old number (case 610.1), and `estimate-case-check-sends-back-a-ratified-case-in-another-shape` checks it. The Insight was opened again on 2026-10-07 by its one live child, `lesson-case-build-splits-a-ratified-leaf-case`: asked to add a second behaviour to ratified Case 713, which had no sub-cases, `case-guppi` split it, undid the split and built Case 719 to supersede it. The root cause of that lesson is that `rule-case-build` set no step for such a fix. Case 725.1, in session 2114 of 2026-10-07, after that lesson, added the step: such a fix is built as a new top-level Case beside the ratified one, and `estimate-case-build-writes-the-case`, read `passed` on 2026-10-08, checks it in its Criterion. Its Criterion stands, since this Case changes no behaviour. A Grep of `^root_cause:.*(ratified|new number|supersed|rebuil|built again|decision line)` over `vault/wiki/lessons/` printed 13 files. Read by their `root_cause` lines, only `lesson-case-build-splits-a-ratified-leaf-case` records a ratified Case built again with a target dropped, renamed or added under its old number. `lesson-case-build-emptied-the-file-of-a-ratified-case` records the file left behind by such a build, an instruction that case 725.1 changed too. `lesson-case-check-refuses-a-rebuild-under-a-new-number`, `lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped` and `lesson-prespec-parent-of-superseded-sub-cases` are children of the Insight that Case 740 actions. The others record other causes. So no lesson with this root cause has come since case 725.1. The person chose to set the Insight `actioned`, with `addressed_by` naming `decision-case-725.1`, the latest decision that fixed the pattern, as `rule-insights-schema` asks. That Decision page exists, so the field takes the quoted wikilink, as Case 740 of this session writes it for its own Insight. `estimate-insights-schema-checked` checks that an `actioned` Insight carries one `addressed_by`, and its Criterion stands. When the Insight is `actioned`, the cascade of `uv run guppi generate` archives its `clustered` lesson. Case 739 of this session notes an `update` of a page this cascade archives; this Case updates no lesson. Cases 740 and 741 of this session action two other Insights and touch no page of this Case. A Grep of `insight-ledger-ratified-line-never-withdrawn` over `vault/wiki/` printed `vault/wiki/backlog.md`, `vault/wiki/log.md` and `vault/wiki/lessons/lesson-case-build-splits-a-ratified-leaf-case.md`; over `guppi/` it printed nothing. `backlog.md` is written again by `uv run guppi backlog`, which lists only an `open` Insight. The `insight` field of the lesson still names the Insight, and the cascade archives the lesson. `log.md` is not read.
+
+> **problem:**
+> The Insight stands `open` in the backlog, though each way a ratified Case can come back changed now has a fix, and the Estimates of those fixes have passed.
+
+> **recommend:**
+> - **What happens to the Insight?**
+>   - Recommended: (a) mark it `actioned`: one `update` sets the status and names the fix in `addressed_by`, the cascade archives its lesson, and the Insight stays live until the close of the sprint.
+>   - Answer: agreed, (a).
+> - **Which decision does the Insight name as its fix?**
+>   - Recommended: (a) `decision-case-725.1`, the decision that added the step for a second behaviour and closed the cause of the last lesson.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `insight-ledger-ratified-line-never-withdrawn`: the Insight that is set `actioned`.
+> **＋** `rule-insights-schema`: the rule that sets `addressed_by` of an `actioned` Insight to the latest decision that fixed it.
+> **＋** `lesson-case-build-splits-a-ratified-leaf-case`: the `clustered` child of the Insight.
+> **＋** `decision-case-725.1`: the Decision page of the latest fix of the pattern, which `addressed_by` names.
+> **＋** `vault/wiki/backlog.md`: the list of open items, written by `uv run guppi backlog`.
+
+> **when:**
+> The librarian runs `uv run guppi generate` over the Spec of the session, then `uv run guppi backlog`.
+
+> **then:**
+> `insight-ledger-ratified-line-never-withdrawn` stands `actioned`, and its `addressed_by` names `decision-case-725.1`.
+> **＋** The cascade of `uv run guppi generate` archives `lesson-case-build-splits-a-ratified-leaf-case`.
+> **＋** `vault/wiki/backlog.md` no longer lists the Insight.
+> **－** The `## Pattern` and `## Proposal` of the Insight do not change.
+
+```then
+update:
+- slug: insight-ledger-ratified-line-never-withdrawn
+  set:
+    status: actioned
+    addressed_by: '[[decision-case-725.1]]'
+  change: 'actioned: a ratified Case built again without one of its targets or in another shape goes back with a new number, and a second behaviour of a ratified Case with no sub-cases is built as a new Case beside it (cases 610.1, 671.1, 725.1)'
+```
+
+```tasks
+- [ ] update `insight-ledger-ratified-line-never-withdrawn`
+```

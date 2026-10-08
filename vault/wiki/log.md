@@ -7505,3 +7505,38 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-08 lessons/lesson-case-build-misses-the-example-a-changed-check-runs-over archived · insight actioned · generate
 - 2026-10-08 tags.md registers case-build, prespec · generate
 - 2026-10-08 lessons/lesson-case-build-misses-the-example-a-changed-check-runs-over archived · cleanup
+- 2026-10-08 decisions/decision-case-738 created · raw/2026-10-08/2134/ledger.md#case-738 · generate
+- 2026-10-08 rules/rule-prespec updated: the code of case 733 lands from its patch: pre-spec judges the method of a MOC's Estimate by its form (case 738) · [[decision-case-738]] · generate
+- 2026-10-08 decisions/decision-case-739 created · raw/2026-10-08/2134/ledger.md#case-739 · generate
+- 2026-10-08 decisions/decision-case-739.1 created · raw/2026-10-08/2134/ledger.md#case-739.1 · generate
+- 2026-10-08 estimates/estimate-prespec-notes-a-page-the-cascade-archives created · [[decision-case-739.1]] · generate
+- 2026-10-08 estimates/estimate-prespec-notes-a-page-the-cascade-archives status: pending → passed · raw/2026-10-08/2134/ledger.md#L11 · generate
+- 2026-10-08 rules/rule-prespec estimate estimate-prespec-notes-a-page-the-cascade-archives added · [[decision-case-739.1]] · generate
+- 2026-10-08 decisions/decision-case-739.2 created · raw/2026-10-08/2134/ledger.md#case-739.2 · generate
+- 2026-10-08 estimates/estimate-case-check-notes-a-page-the-cascade-archives created · [[decision-case-739.2]] · generate
+- 2026-10-08 estimates/estimate-case-check-notes-a-page-the-cascade-archives status: pending → passed · raw/2026-10-08/2134/ledger.md#L12 · generate
+- 2026-10-08 rules/rule-case-check estimate estimate-case-check-notes-a-page-the-cascade-archives added · [[decision-case-739.2]] · generate
+- 2026-10-08 rules/rule-case-check updated: the check of the file of a Case notes an update of a page that the cascade archives (case 739.2) · [[decision-case-739.2]] · generate
+- 2026-10-08 decisions/decision-case-740 created · raw/2026-10-08/2134/ledger.md#case-740 · generate
+- 2026-10-08 insights/insight-case-check-a-case-id-leaves-only-by-a-supersedes-line updated: actioned: each check now leaves out a Case id that a rebuild dropped or that every superseded sub-case retires, without waiting for a supersedes line of the ledger (cases 445.2, 722.1, 722.2, 725.2) · [[decision-case-740]] · generate
+- 2026-10-08 decisions/decision-case-741 created · raw/2026-10-08/2134/ledger.md#case-741 · generate
+- 2026-10-08 rules/rule-where-to-stop updated: a refusal of the auto mode classifier is a stop: the person runs the command after ! (case 741) · [[decision-case-741]] · generate
+- 2026-10-08 estimates/estimate-where-to-stop-stops-only-on-its-conditions updated: the Criterion replaced whole — a refusal of the auto mode classifier is a stop, and the person runs the command after ! (case 741) · [[decision-case-741]] · generate
+- 2026-10-08 insights/insight-permissions-classifier-weighs-the-rules-not-the-persons-word updated: actioned: a refusal of the auto mode classifier is a stop of where-to-stop.md, and the person runs the command after ! (case 741) · [[decision-case-741]] · generate
+- 2026-10-08 decisions/decision-case-742 created · raw/2026-10-08/2134/ledger.md#case-742 · generate
+- 2026-10-08 insights/insight-ledger-ratified-line-never-withdrawn updated: actioned: a ratified Case built again without one of its targets or in another shape goes back with a new number, and a second behaviour of a ratified Case with no sub-cases is built as a new Case beside it (cases 610.1, 671.1, 725.1) · [[decision-case-742]] · generate
+- 2026-10-08 estimates/estimate-prespec-catches-a-method-without-a-form status: failed → passed · raw/2026-10-08/2134/ledger.md#L10 · generate
+- 2026-10-08 estimates/estimate-where-to-stop-stops-only-on-its-conditions status: pending → passed · raw/2026-10-08/2134/ledger.md#L13 · generate
+- 2026-10-08 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-10-08 lessons/lesson-prespec-parent-of-superseded-sub-cases archived · insight actioned · generate
+- 2026-10-08 lessons/lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped archived · insight actioned · generate
+- 2026-10-08 lessons/lesson-case-check-refuses-a-rebuild-under-a-new-number archived · insight actioned · generate
+- 2026-10-08 lessons/lesson-case-build-splits-a-ratified-leaf-case archived · insight actioned · generate
+- 2026-10-08 lessons/lesson-permissions-auto-mode-refuses-a-remote-change-despite-the-chat archived · insight actioned · generate
+- 2026-10-08 lessons/lesson-permissions-auto-mode-refuses-editing-the-case-check-store archived · insight actioned · generate
+- 2026-10-08 lessons/lesson-case-build-splits-a-ratified-leaf-case archived · cleanup
+- 2026-10-08 lessons/lesson-case-check-refuses-a-rebuild-under-a-new-number archived · cleanup
+- 2026-10-08 lessons/lesson-case-check-store-keeps-sub-cases-a-rebuild-dropped archived · cleanup
+- 2026-10-08 lessons/lesson-permissions-auto-mode-refuses-a-remote-change-despite-the-chat archived · cleanup
+- 2026-10-08 lessons/lesson-permissions-auto-mode-refuses-editing-the-case-check-store archived · cleanup
+- 2026-10-08 lessons/lesson-prespec-parent-of-superseded-sub-cases archived · cleanup

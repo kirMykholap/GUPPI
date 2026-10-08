@@ -26,14 +26,16 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 **＋** On the branch `main` the agent stops and says so: Work Mode does not start there.
 **＋** In a run of `/box`, the agent stops and asks when `uv run guppi box --check` prints a line, or when a `git merge --ff-only` of `/box` refuses.
 **＋** When the full `make test` run of `/work` after its last task finds a failing test that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` does not hold, and its fix needs a choice that no ratified Case makes, the agent ends a reply with a question to the person that names the test and its failure.
+**＋** When the auto mode classifier of Claude Code refuses a tool call that the run needs, the agent ends a reply with a question to the person that gives the shell command doing what the refused call would do, for the person to type after `!` in the prompt.
 **＋** A reply that stops from the call of `/retro` until `raw/<date>/<hi HHMM>/handoff.md` stands opens with `STOP:`.
 **＋** After the person's answer the run goes on from where it stopped.
+**＋** After the person has run the command that a refusal of the auto mode classifier gave, the run goes on from where it stopped.
 **＋** `vault/wiki/case-schema.md` names a task line that opens with `stop:` as a task that waits for the person's word.
 **－** No other point stops the run: any other red test, at `/retro` too, a reading that only the person can take, an observation or a doubt ends as a lesson or a line of `raw/<date>/<hi HHMM>/handoff.md`.
 
 ## Result
 
-2026-10-08, Retro, the new Render of rule-where-to-stop in vault/raw/2026-10-08/1547/spec.md (Case 736.3) with .claude/skills/work/SKILL.md line 7 and .claude/skills/box/SKILL.md line 7, which import vault/wiki/where-to-stop.md, read against each line of the Criterion: conditions 1–6 stand, the new condition 7 names the full make test run of /work after its last task, a failure ## Baseline of work.md does not hold whose fix needs a choice no ratified Case makes, the test and its failure named; STOP: from /retro until handoff.md, going on after the answer, and case-schema.md naming a stop: task stand; the closing paragraph reads "a red test other than that of the seventh condition", so a red test at /retro is no stop; both replace targets stand once in the page; no line of the Criterion is left unset
+2026-10-08, Retro, by hand: the new Render of rule-where-to-stop in the Spec (Case 741) against each line of the Criterion — .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md load @vault/wiki/where-to-stop.md; conditions 1–7 stand, condition 8 gives the shell command to type after ! and goes on after the person ran it; the STOP: opening from /retro to handoff.md stands; vault/wiki/case-schema.md names a stop: task; the closing paragraph keeps no other stop; no line of the Criterion is left unset
 
 ## History
 
@@ -44,3 +46,5 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L4
 - 2026-10-08 updated: the Criterion replaced whole — a new red test of the full run of /work whose fix needs a new Case is a stop (case 736.3) · [[decision-case-736.3]]
 - 2026-10-08 status: pending → passed · raw/2026-10-08/1547/ledger.md#L12
+- 2026-10-08 updated: the Criterion replaced whole — a refusal of the auto mode classifier is a stop, and the person runs the command after ! (case 741) · [[decision-case-741]]
+- 2026-10-08 status: pending → passed · raw/2026-10-08/2134/ledger.md#L13

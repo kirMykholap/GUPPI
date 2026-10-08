@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-prespec]]"
 purpose: Whether pre-spec refuses an Estimate whose method names none of the forms lint classifies, or, on a MOC, neither a make target nor by hand
 method: uv run pytest tests/test_prespec.py on a temp plan — a create with a prose method, a create with no method, each of the four forms clean, and on a MOC a tests/ path alone and pytest alone as findings, a make target and by hand clean
@@ -30,7 +30,7 @@ A `create` of an Estimate, or an `update` carrying `set: {method: …}`, whose `
 
 ## Result
 
-2026-10-08, Retro, not read: the code of case 733 (guppi/lint.py names_a_moc_form, guppi/prespec.py check_form by plan_kind, tests/test_prespec.py) turned make test red — tests/test_case_schema.py::test_case_schema_the_example_passes_the_check: case 1.2: create estimate-cart-renders-in-time: method of a MOC's Estimate names no make target and is not a reading — since the Case example of rule-case-example creates entity-cart as a MOC with an Estimate whose method names pytest alone; the code saved to vault/raw/2026-10-08/0213/patch-prespec-moc-method-form.diff and reverted, so pre-spec still passes such a method
+2026-10-08, Retro, uv run pytest tests/test_prespec.py: 216 passed, the -k "moc or form or method" selection 14 passed (a prose method, no method, the four forms, on a MOC a tests/ path alone and pytest alone as findings, a make target and by hand clean); make test 1448 passed, 6 skipped, tests/test_case_schema.py green over the make test-cart example
 
 ## History
 
@@ -40,3 +40,4 @@ A `create` of an Estimate, or an `update` carrying `set: {method: …}`, whose `
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L31
 - 2026-10-08 updated: the Criterion replaced whole — pre-spec judges the method of a MOC's Estimate by its form (case 733) · [[decision-case-733]]
 - 2026-10-08 status: pending → failed · raw/2026-10-08/0213/ledger.md#L8
+- 2026-10-08 status: failed → passed · raw/2026-10-08/2134/ledger.md#L10

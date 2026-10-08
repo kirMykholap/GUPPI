@@ -49,13 +49,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
+- [x] update `rule-prespec`
 - [x] `guppi/lint.py`: the `guppi/lint.py` part of the patch applied: `names_a_moc_form`, which `check_method` calls; the module docstring names it; `make style` passes.
 - [x] `guppi/prespec.py`: the `guppi/prespec.py` part of the patch applied: `check_form` judges a MOC's `method` by `names_a_moc_form`, the kind read by `plan_kind` and the target of an `update` by `estimate_target`; the two docstrings say so; `make style` passes.
 - [x] `tests/test_prespec.py`: the four tests of the patch added and formatted by `make style`.
 - [x] `tests/test_lint.py`: runs green, the judgment of `check_method` unchanged.
 - [x] `tests/test_case_schema.py`: runs green over the example of `vault/wiki/case-example.md` with the patched check.
-- [ ] read `estimate-prespec-catches-a-method-without-a-form`
+- [x] read `estimate-prespec-catches-a-method-without-a-form`
 ```
 
 ## Case 739 — A page the cascade archives is noted before it is updated
@@ -129,12 +129,12 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-notes-a-page-the-cascade-archives`
+- [x] create `estimate-prespec-notes-a-page-the-cascade-archives`
 - [x] `guppi/generate.py`: the pages the cascade archives — the clustered lessons of an `actioned` Insight, an `open` Insight with no live child, a superseded Decision page — judged by one function, which `cascade` calls; its docstring says so; `make style` passes.
 - [x] `guppi/prespec.py`: one function of the cascade notes, which imports the function of `guppi/generate.py` and applies the plan's items and the `{supersedes:case N}` marks of the window before it; `plan_findings` adds its notes; the module docstring, as the patch of Case 738 leaves it, names them under Notes; this task runs after the code tasks of Case 738; `make style` passes.
 - [x] `tests/test_prespec.py`: tests with `cascade` in their names: an `actioned` Insight and an `update` of its clustered lesson under another Case give one note and exit 0; the same under one Case and under two sub-cases of one Case give the note; an `open` Insight left with no live child and a superseded Decision page give the note; a `create`, `delete` or `defer` of such a page and a move between `built` and `draft` give none.
 - [x] `tests/test_generate.py`: runs green, every answer of `cascade` unchanged.
-- [ ] read `estimate-prespec-notes-a-page-the-cascade-archives`
+- [x] read `estimate-prespec-notes-a-page-the-cascade-archives`
 ```
 
 ### Case 739.2 — The check of a Case file notes a page the cascade archives
@@ -181,12 +181,12 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-notes-a-page-the-cascade-archives`
-- [ ] update `rule-case-check`
+- [x] create `estimate-case-check-notes-a-page-the-cascade-archives`
+- [x] update `rule-case-check`
 - [x] `guppi/casecheck.py`: `check_answer` adds the cascade notes of `guppi/prespec.py` for the Cases of the file, the other Cases of the session first; the module docstring names them beside the notes of `promise_notes`; `make style` passes.
 - [x] `tests/test_casecheck.py`: tests with `cascade` in their names: an update in the file of a lesson that another stored Case archives, an item of the file that archives a page another Case updates, and both inside the file give one note sent once; two other Cases give the file none; a `create`, `delete` or `defer` gives none.
 - [x] `tests/test_case_schema.py`: runs green over the example of `vault/wiki/case-example.md`.
-- [ ] read `estimate-case-check-notes-a-page-the-cascade-archives`
+- [x] read `estimate-case-check-notes-a-page-the-cascade-archives`
 ```
 
 ## Case 740 — The Insight on Case ids that leave only by a supersedes line is closed
@@ -230,7 +230,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line`
+- [x] update `insight-case-check-a-case-id-leaves-only-by-a-supersedes-line`
 ```
 
 ## Case 741 — A refusal of the auto mode classifier stops the run for the person
@@ -310,11 +310,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-where-to-stop`
-- [ ] `uv run guppi render`: `vault/wiki/where-to-stop.md`
-- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
-- [ ] update `insight-permissions-classifier-weighs-the-rules-not-the-persons-word`
-- [ ] read `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] update `rule-where-to-stop`
+- [x] `uv run guppi render`: `vault/wiki/where-to-stop.md`
+- [x] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] update `insight-permissions-classifier-weighs-the-rules-not-the-persons-word`
+- [x] read `estimate-where-to-stop-stops-only-on-its-conditions`
 ```
 
 ## Case 742 — The Insight on a ratified line never withdrawn is closed
@@ -359,5 +359,5 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-ledger-ratified-line-never-withdrawn`
+- [x] update `insight-ledger-ratified-line-never-withdrawn`
 ```

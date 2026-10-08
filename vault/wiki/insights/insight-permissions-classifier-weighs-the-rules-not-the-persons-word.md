@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: The auto mode classifier judges an action against the permission rules of the settings, not against the person's word in the chat, so a task the person asked for, such as a change of a git remote or of a check's own state file, is refused to the agent and can be done only by the person or under a permission rule.
-status: open
+status: actioned
 children: ["[[lesson-permissions-auto-mode-refuses-a-remote-change-despite-the-chat]]", "[[lesson-permissions-auto-mode-refuses-editing-the-case-check-store]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-741]]"
 origin: raw/2026-10-07/1804/ledger.md#L30
 sprint: migration
 created: 2026-10-07
@@ -21,3 +22,4 @@ A suggestion, not a decision. When a Case or a choice of the person sets a task 
 ## History
 
 - 2026-10-07 created · raw/2026-10-07/1804/ledger.md#L30
+- 2026-10-08 updated: actioned: a refusal of the auto mode classifier is a stop of where-to-stop.md, and the person runs the command after ! (case 741) · [[decision-case-741]]

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the check of the file of a Case left out only Cases that a supersedes mark already in the ledger names, and the mark of a build under a new number reaches the ledger only when that build is ratified
-status: clustered
+status: archived
 insight: "[[insight-case-check-a-case-id-leaves-only-by-a-supersedes-line]]"
 origin: raw/2026-10-07/2114/ledger.md#L28
 sprint: migration
@@ -22,3 +22,5 @@ the check of the file of a Case left out only Cases that a supersedes mark alrea
 
 - 2026-10-07 created · raw/2026-10-07/2114/ledger.md#L28
 - 2026-10-07 updated: clustered under insight-case-check-a-case-id-leaves-only-by-a-supersedes-line (synthesis) · raw/2026-10-07/2114/ledger.md#L28
+- 2026-10-08 archived · insight actioned
+- 2026-10-08 archived · cleanup

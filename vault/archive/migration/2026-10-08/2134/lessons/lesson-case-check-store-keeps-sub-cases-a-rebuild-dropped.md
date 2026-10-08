@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the store of the Case-file check keeps an entry under every Case id it once checked and drops none that the file of its top-level Case no longer holds; only a {supersedes} mark in the ledger leaves such an entry out, and that mark comes only with the ratification the refusal blocks
-status: clustered
+status: archived
 insight: "[[insight-case-check-a-case-id-leaves-only-by-a-supersedes-line]]"
 origin: raw/2026-10-07/1804/ledger.md#L27
 sprint: migration
@@ -22,3 +22,5 @@ the store of the Case-file check keeps an entry under every Case id it once chec
 
 - 2026-10-07 created · raw/2026-10-07/1804/ledger.md#L27
 - 2026-10-07 updated: clustered under insight-case-check-a-case-id-leaves-only-by-a-supersedes-line (synthesis) · raw/2026-10-07/1804/ledger.md#L27
+- 2026-10-08 archived · insight actioned
+- 2026-10-08 archived · cleanup

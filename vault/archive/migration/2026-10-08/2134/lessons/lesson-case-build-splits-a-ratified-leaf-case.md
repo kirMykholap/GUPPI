@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: rule-case-build sets no step for a fix that adds a second behaviour to a ratified Case with no sub-cases, which keeps its decision lines and cannot become a parent
-status: clustered
+status: archived
 insight: "[[insight-ledger-ratified-line-never-withdrawn]]"
 origin: raw/2026-10-07/1804/ledger.md#L28
 sprint: migration
@@ -22,3 +22,5 @@ rule-case-build sets no step for a fix that adds a second behaviour to a ratifie
 
 - 2026-10-07 created · raw/2026-10-07/1804/ledger.md#L28
 - 2026-10-07 updated: clustered under insight-ledger-ratified-line-never-withdrawn (synthesis) · raw/2026-10-07/1804/ledger.md#L28
+- 2026-10-08 archived · insight actioned
+- 2026-10-08 archived · cleanup

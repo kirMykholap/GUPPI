@@ -2,12 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-prespec-reconciles]]", "[[estimate-prespec-checks-the-plan]]", "[[estimate-prespec-catches-bare-wikilinks]]", "[[estimate-prespec-catches-a-command-line-off-form]]", "[[estimate-prespec-catches-a-superseded-case]]", "[[estimate-prespec-binds-a-sprint-line]]", "[[estimate-prespec-catches-an-unwrapped-render]]", "[[estimate-prespec-catches-a-method-without-a-form]]", "[[estimate-prespec-simulates-the-pairs]]", "[[estimate-prespec-refuses-a-pair-inside-a-criterion]]", "[[estimate-prespec-checks-the-frame]]", "[[estimate-prespec-notes-a-long-chain]]", "[[estimate-prespec-matches-lines-and-items]]", "[[estimate-prespec-checks-the-frontier]]", "[[estimate-prespec-requires-a-task-line]]", "[[estimate-prespec-checks-the-form-of-an-item]]", "[[estimate-prespec-requires-a-backlog-item-decided-on-its-page]]", "[[estimate-prespec-catches-a-broken-fence]]", "[[estimate-prespec-catches-an-indent-added-twice]]", "[[estimate-prespec-gathers-the-answers-after-findings]]", "[[estimate-prespec-catches-two-cases-on-one-target]]", "[[estimate-prespec-confirms-the-findings-once]]", "[[estimate-prespec-notes-a-page-another-case-defers]]"]
+estimates: ["[[estimate-prespec-reconciles]]", "[[estimate-prespec-checks-the-plan]]", "[[estimate-prespec-catches-bare-wikilinks]]", "[[estimate-prespec-catches-a-command-line-off-form]]", "[[estimate-prespec-catches-a-superseded-case]]", "[[estimate-prespec-binds-a-sprint-line]]", "[[estimate-prespec-catches-an-unwrapped-render]]", "[[estimate-prespec-catches-a-method-without-a-form]]", "[[estimate-prespec-simulates-the-pairs]]", "[[estimate-prespec-refuses-a-pair-inside-a-criterion]]", "[[estimate-prespec-checks-the-frame]]", "[[estimate-prespec-notes-a-long-chain]]", "[[estimate-prespec-matches-lines-and-items]]", "[[estimate-prespec-checks-the-frontier]]", "[[estimate-prespec-requires-a-task-line]]", "[[estimate-prespec-checks-the-form-of-an-item]]", "[[estimate-prespec-requires-a-backlog-item-decided-on-its-page]]", "[[estimate-prespec-catches-a-broken-fence]]", "[[estimate-prespec-catches-an-indent-added-twice]]", "[[estimate-prespec-gathers-the-answers-after-findings]]", "[[estimate-prespec-catches-two-cases-on-one-target]]", "[[estimate-prespec-confirms-the-findings-once]]", "[[estimate-prespec-notes-a-page-another-case-defers]]", "[[estimate-prespec-notes-a-page-the-cascade-archives]]"]
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -194,3 +194,6 @@ Inside this loop the rule of `vault/wiki/orchestration.md` that no Case is taken
 - 2026-10-07 estimate estimate-prespec-notes-a-page-another-case-defers added · [[decision-case-726.1]]
 - 2026-10-07 updated: a page one Case changes and another Case puts off is a note of the check, no longer a finding of ask-guppi (case 726.2) · [[decision-case-726.2]]
 - 2026-10-08 status: built → draft · cascade
+- 2026-10-08 updated: the code of case 733 lands from its patch: pre-spec judges the method of a MOC's Estimate by its form (case 738) · [[decision-case-738]]
+- 2026-10-08 estimate estimate-prespec-notes-a-page-the-cascade-archives added · [[decision-case-739.1]]
+- 2026-10-08 status: draft → built · cascade

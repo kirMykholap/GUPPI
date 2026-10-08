@@ -4,8 +4,8 @@ kind: QA
 status: passed
 target: "[[rule-where-to-stop]]"
 purpose: "Whether the run from /work to the librarian stops for the person on each condition of vault/wiki/where-to-stop.md and on no other, with the text loaded by /work and a stop after the call of /retro opening with STOP:"
-method: "by hand at a run from /work to the librarian, and at a run of /box: the context of /work and of /box, the replies of the turn and the Spec read against the Criterion, recorded in the estimate line; a condition that does not arise is named as not exercised"
-checked: 2026-10-04
+method: by hand, the text of vault/wiki/where-to-stop.md as rendered and the lines of .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md that load it, or, at the Retro of the session that changes it, the new Render of rule-where-to-stop in the Spec and those lines, read against each line of the Criterion, recorded in the estimate line; a line of the Criterion that the text does not set is named
+checked: 2026-10-08
 origin: raw/2026-09-29/2024/ledger.md#case-531.7
 sprint: migration
 created: 2026-09-29
@@ -25,14 +25,15 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 **＋** Before a task of `raw/<date>/<hi HHMM>/spec.md` whose text opens with `stop:`, the agent stops and asks; the task runs after the person's word.
 **＋** On the branch `main` the agent stops and says so: Work Mode does not start there.
 **＋** In a run of `/box`, the agent stops and asks when `uv run guppi box --check` prints a line, or when a `git merge --ff-only` of `/box` refuses.
+**＋** When the full `make test` run of `/work` after its last task finds a failing test that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` does not hold, and its fix needs a choice that no ratified Case makes, the agent ends a reply with a question to the person that names the test and its failure.
 **＋** A reply that stops from the call of `/retro` until `raw/<date>/<hi HHMM>/handoff.md` stands opens with `STOP:`.
 **＋** After the person's answer the run goes on from where it stopped.
 **＋** `vault/wiki/case-schema.md` names a task line that opens with `stop:` as a task that waits for the person's word.
-**－** No other point stops the run: a red test, a reading that only the person can take, an observation or a doubt ends as a lesson or a line of `raw/<date>/<hi HHMM>/handoff.md`.
+**－** No other point stops the run: any other red test, at `/retro` too, a reading that only the person can take, an observation or a doubt ends as a lesson or a line of `raw/<date>/<hi HHMM>/handoff.md`.
 
 ## Result
 
-2026-10-04, at the /hi of session 0004, by hand: the run of session 0317 (transcript 5b311f89) from the /work the agent called at the fork at 04:57:36 to the librarian's report at 05:13:39, and the run of /box of session 1416 (transcript 682b0e2f) from 14:37:13 to the report at 14:47:46: the /work call of 0317 carried vault/wiki/where-to-stop.md as a file attachment; in 1416 the /box call carried it as a file attachment and the /work call 13 seconds later as an already-read attachment of the same file; neither run stopped for the person and no condition of the file arose: no fork of a contract, no task opening with `stop:` in raw/2026-10-03/0317/spec.md or raw/2026-10-03/1341/spec.md, `guppi box --check` printing nothing and both merges of /box fast-forwards, and the one `git checkout -- tests/test_casecheck.py` of 0317, at 05:05:33, came after the commit 783d24e5 held that file and discarded nothing; the refusals of bashguard at 05:00:15 and of `guppi onward` at 05:06:02 and 14:40:45 each gave a step the agent followed; case-schema.md names a task opening with `stop:` as one that waits for the person's word; not exercised: a stop, a reply opening with STOP:, the branch main, a refused check or merge of /box, a run going on after the person's answer
+2026-10-08, Retro, the new Render of rule-where-to-stop in vault/raw/2026-10-08/1547/spec.md (Case 736.3) with .claude/skills/work/SKILL.md line 7 and .claude/skills/box/SKILL.md line 7, which import vault/wiki/where-to-stop.md, read against each line of the Criterion: conditions 1–6 stand, the new condition 7 names the full make test run of /work after its last task, a failure ## Baseline of work.md does not hold whose fix needs a choice no ratified Case makes, the test and its failure named; STOP: from /retro until handoff.md, going on after the answer, and case-schema.md naming a stop: task stand; the closing paragraph reads "a red test other than that of the seventh condition", so a red test at /retro is no stop; both replace targets stand once in the page; no line of the Criterion is left unset
 
 ## History
 
@@ -41,3 +42,5 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 - 2026-10-02 updated: the Criterion replaced whole — /box imports the file, and its stops (case 591.10) · [[decision-case-591.10]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L4
+- 2026-10-08 updated: the Criterion replaced whole — a new red test of the full run of /work whose fix needs a new Case is a stop (case 736.3) · [[decision-case-736.3]]
+- 2026-10-08 status: pending → passed · raw/2026-10-08/1547/ledger.md#L12

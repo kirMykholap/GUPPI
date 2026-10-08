@@ -7481,3 +7481,27 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-08 lessons/lesson-case-build-finds-the-sentences-it-changes-by-their-words archived · insight actioned · generate
 - 2026-10-08 lessons/lesson-case-build-finds-the-sentences-it-changes-by-their-words archived · cleanup
 - 2026-10-08 lessons/lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice archived · cleanup
+- 2026-10-08 decisions/decision-case-735 created · raw/2026-10-08/1547/ledger.md#case-735 · generate
+- 2026-10-08 rules/rule-case-example updated: the cart Estimate of both examples names a make target, the form a MOC's Estimate takes (case 735) · [[decision-case-735]] · generate
+- 2026-10-08 decisions/decision-case-736 created · raw/2026-10-08/1547/ledger.md#case-736 · generate
+- 2026-10-08 decisions/decision-case-736.1 created · raw/2026-10-08/1547/ledger.md#case-736.1 · generate
+- 2026-10-08 rules/rule-case-build updated: case-guppi reads, for a Case that changes the code of a check, each live file of the vault that a test runs through that check (case 736.1) · [[decision-case-736.1]] · generate
+- 2026-10-08 estimates/estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check created · [[decision-case-736.1]] · generate
+- 2026-10-08 estimates/estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check status: pending → passed · raw/2026-10-08/1547/ledger.md#L10 · generate
+- 2026-10-08 rules/rule-case-build estimate estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check added · [[decision-case-736.1]] · generate
+- 2026-10-08 insights/insight-workflow-contract-change-leaves-its-derived-text-stale updated: actioned: case-guppi reads the live texts a test runs through a changed check, and /work runs make test in full after its last task (case 736) · [[decision-case-736.1]] · generate
+- 2026-10-08 decisions/decision-case-736.2 created · raw/2026-10-08/1547/ledger.md#case-736.2 · generate
+- 2026-10-08 rules/rule-work-mode updated: /work runs make test in full after its last task and holds each failing test against the baseline (case 736.2) · [[decision-case-736.2]] · generate
+- 2026-10-08 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: the Criterion replaced whole — /work runs make test in full after its last task and holds each failing test against the baseline; purpose and method name it (case 736.2) · [[decision-case-736.2]] · generate
+- 2026-10-08 decisions/decision-case-736.3 created · raw/2026-10-08/1547/ledger.md#case-736.3 · generate
+- 2026-10-08 rules/rule-where-to-stop updated: a new red test of the full run of /work whose fix needs a new Case is a stop (case 736.3) · [[decision-case-736.3]] · generate
+- 2026-10-08 estimates/estimate-where-to-stop-stops-only-on-its-conditions updated: the Criterion replaced whole — a new red test of the full run of /work whose fix needs a new Case is a stop (case 736.3) · [[decision-case-736.3]] · generate
+- 2026-10-08 decisions/decision-case-737 created · raw/2026-10-08/1547/ledger.md#case-737 · generate
+- 2026-10-08 lessons/lesson-case-build-misses-the-example-a-changed-check-runs-over updated: tagged case-build and prespec, the tags the ledger hook refused at the Retro of session 0213 (case 737) · [[decision-case-737]] · generate
+- 2026-10-08 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline status: pending → passed · raw/2026-10-08/1547/ledger.md#L11 · generate
+- 2026-10-08 estimates/estimate-where-to-stop-stops-only-on-its-conditions status: pending → passed · raw/2026-10-08/1547/ledger.md#L12 · generate
+- 2026-10-08 lessons/lesson-case-build-misses-the-cascade-of-a-related-case created · raw/2026-10-08/1547/ledger.md#L13 · generate
+- 2026-10-08 rules/rule-work-mode status: draft → built · cascade · generate
+- 2026-10-08 lessons/lesson-case-build-misses-the-example-a-changed-check-runs-over archived · insight actioned · generate
+- 2026-10-08 tags.md registers case-build, prespec · generate
+- 2026-10-08 lessons/lesson-case-build-misses-the-example-a-changed-check-runs-over archived · cleanup

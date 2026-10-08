@@ -56,8 +56,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-example`
-- [ ] `uv run guppi render`: `vault/wiki/case-example.md`
+- [x] update `rule-case-example`
+- [x] `uv run guppi render`: `vault/wiki/case-example.md`
 ```
 
 ## Case 736 — A changed check is tried on the vault texts its tests run
@@ -136,11 +136,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check`
-- [ ] update `insight-workflow-contract-change-leaves-its-derived-text-stale`
-- [ ] read `estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check`
+- [x] update `insight-workflow-contract-change-leaves-its-derived-text-stale`
+- [x] read `estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check`
 ```
 
 ### Case 736.2 — Work Mode runs the whole test suite after its last task
@@ -205,10 +205,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] `uv run guppi render`: `.claude/skills/work/SKILL.md`
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- [ ] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] update `rule-work-mode`
+- [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 ```
 
 ### Case 736.3 — A new red test that needs a new Case stops Work Mode
@@ -266,10 +266,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-where-to-stop`
-- [ ] `uv run guppi render`: `vault/wiki/where-to-stop.md`
-- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
-- [ ] read `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] update `rule-where-to-stop`
+- [x] `uv run guppi render`: `vault/wiki/where-to-stop.md`
+- [x] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] read `estimate-where-to-stop-stops-only-on-its-conditions`
 ```
 
 ## Case 737 — The tags case-build and prespec are declared
@@ -331,5 +331,5 @@ update:
 ```
 
 ```tasks
-- [ ] update `lesson-case-build-misses-the-example-a-changed-check-runs-over`
+- [x] update `lesson-case-build-misses-the-example-a-changed-check-runs-over`
 ```

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents implementation starting before the plan, branch and baseline exist
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/work/SKILL.md
 render_mode: full
@@ -16,7 +16,7 @@ tags: [session, workflow, harness, render]
 
 ## Purpose
 
-Prevents implementation starting before the plan, branch and baseline exist. Work Mode runs the approved Spec of the session, or the conserved Spec whose folder `/box` gives it (case 591). Its skill `/work` starts after `ExitPlanMode`: the agent calls it when the person picks `/work` at the fork, and the person types it to resume a session that stopped in the middle. It stops on `main`. Before the first change it writes the baseline, the result of `make test` and `make lint`, into `raw/<date>/<hi HHMM>/work.md`, so that Retro charges to the session only a red the baseline does not hold. A substitution of the skill can come back empty when the model call that checks it fails, so the agent then runs the command itself. It runs the tasks in the order of the Spec and ticks each box. A task that changes a check that reads a page or a governed file the same Spec updates writes a mark of an expected red into the same file, naming the check and the page or file, and Retro reads it. Subagents in Work Mode, the test of each Estimate written first and the rest of the model are not decided yet (case 479.2).
+Prevents implementation starting before the plan, branch and baseline exist. Work Mode runs the approved Spec of the session, or the conserved Spec whose folder `/box` gives it (case 591). Its skill `/work` starts after `ExitPlanMode`: the agent calls it when the person picks `/work` at the fork, and the person types it to resume a session that stopped in the middle. It stops on `main`. Before the first change it writes the baseline, the result of `make test` and `make lint`, into `raw/<date>/<hi HHMM>/work.md`, so that Retro charges to the session only a red the baseline does not hold. A substitution of the skill can come back empty when the model call that checks it fails, so the agent then runs the command itself. It runs the tasks in the order of the Spec and ticks each box. After the last task it runs `make test` in full against the baseline, and a new failing test whose fix needs a choice that no ratified Case makes stops the run for the person (case 736.2). A task that changes a check that reads a page or a governed file the same Spec updates writes a mark of an expected red into the same file, naming the check and the page or file, and Retro reads it. Subagents in Work Mode, the test of each Estimate written first and the rest of the model are not decided yet (case 479.2).
 
 ## Render
 
@@ -45,7 +45,7 @@ Run the tasks of the Spec in the order the Spec holds them. Tick each box of cod
 
 When a task changes a check — `make lint` or one of its steps, or a hook of the working tree — that reads a page or a governed file this Spec updates, add one line under `## Expected red` in the same reply: the check, and the page or file it waits for. That check is red or refuses on that page or file until the librarian's run, and `/retro` ends that red as a note for the handoff.
 
-When the last task is done, delete the `carry.md` of a folder from `/box`, then take the Work readings before `/retro`: in the order of `frontier.md`, each reading of an open `W` line whose work is built and whose moment, as its `method` names it, has come; a moment of an earlier session, such as the librarian's run, has come. Leave a reading of an Estimate this session creates or updates — with a folder from `/box`, one that a decision line of that folder's `ledger.md` creates or updates too — and one whose moment has not come: its line stays open; Retro reads an Estimate this session or that folder creates or updates, or sets it `failed`, and closes its line (case 670.7). Close the line of each reading taken `[x] … · work` in `frontier.md` first; tick no `read` box. Write no `LEDGER` block here: the line of each reading stands in the one reply that ends Retro (case 531.8). Run the tasks, the readings and `/retro` in one turn, with tool calls and no reply that ends, except at a stop that `vault/wiki/where-to-stop.md` names. Work Mode ends by calling `/retro`.
+When the last task is done, run `make test` in full and hold each failing test against `## Baseline` of `work.md`. A failing test that the Baseline holds was red before the work and goes on. Fix a new one when the fix finishes ratified work; when its fix needs a choice that no ratified Case makes, stop as the seventh condition of `vault/wiki/where-to-stop.md` sets; any other new failing test goes on to `/retro`, which fixes it or reverts it (case 736.2). Then delete the `carry.md` of a folder from `/box`, and take the Work readings before `/retro`: in the order of `frontier.md`, each reading of an open `W` line whose work is built and whose moment, as its `method` names it, has come; a moment of an earlier session, such as the librarian's run, has come. Leave a reading of an Estimate this session creates or updates — with a folder from `/box`, one that a decision line of that folder's `ledger.md` creates or updates too — and one whose moment has not come: its line stays open; Retro reads an Estimate this session or that folder creates or updates, or sets it `failed`, and closes its line (case 670.7). Close the line of each reading taken `[x] … · work` in `frontier.md` first; tick no `read` box. Write no `LEDGER` block here: the line of each reading stands in the one reply that ends Retro (case 531.8). Run the tasks, the readings and `/retro` in one turn, with tool calls and no reply that ends, except at a stop that `vault/wiki/where-to-stop.md` names. Work Mode ends by calling `/retro`.
 <!-- /rule-work-mode -->
 
 ## History
@@ -130,3 +130,5 @@ When the last task is done, delete the `carry.md` of a folder from `/box`, then 
 - 2026-10-04 updated: Work Mode leaves the close line of a sprint to the librarian (case 628.4) · [[decision-case-628.4]]
 - 2026-10-04 status: built → draft · cascade
 - 2026-10-05 updated: the Work line of an Estimate the session changes stays open until Retro reads it and closes it (case 670.7) · [[decision-case-670.7]]
+- 2026-10-08 updated: /work runs make test in full after its last task and holds each failing test against the baseline (case 736.2) · [[decision-case-736.2]]
+- 2026-10-08 status: draft → built · cascade

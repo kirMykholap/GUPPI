@@ -2,12 +2,12 @@
 type: lesson
 kind: error
 root_cause: a Case that tightens a check is searched for the pages that name its slugs and the words of its moment, but no step of case-guppi, ask-guppi or Work Mode looks for the fixed texts — the examples of rule pages — that a test runs through that same check, and Work Mode ran only the test files the Spec named, so the regression reached Retro
-status: clustered
+status: archived
 insight: "[[insight-workflow-contract-change-leaves-its-derived-text-stale]]"
 origin: raw/2026-10-08/0213/ledger.md#L10
 sprint: migration
 created: 2026-10-08
-tags: [workflow, tests]
+tags: [workflow, tests, case-build, prespec]
 ---
 
 ## Trigger
@@ -22,3 +22,6 @@ a Case that tightens a check is searched for the pages that name its slugs and t
 
 - 2026-10-08 created · raw/2026-10-08/0213/ledger.md#L10
 - 2026-10-08 updated: clustered under insight-workflow-contract-change-leaves-its-derived-text-stale (synthesis) · raw/2026-10-08/0213/ledger.md#L10
+- 2026-10-08 updated: tagged case-build and prespec, the tags the ledger hook refused at the Retro of session 0213 (case 737) · [[decision-case-737]]
+- 2026-10-08 archived · insight actioned
+- 2026-10-08 archived · cleanup

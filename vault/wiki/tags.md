@@ -20,3 +20,5 @@ another.
 | sprint | the sprint page, its backlog and its render | спринт |
 | schema | the shape of a page category — its fields, their values and its sections | схема, схема страницы |
 | orchestration | the main agent's own work in a session: the Frontier, the dispatch of case-guppi, the showing and signing of a Case, the defers | оркестрация, оркестровка |
+| case-build | how case-guppi builds a Case: its rounds, its reading of the frame and the file it writes | сборка кейса, построение кейса |
+| prespec | the check of the ratified Cases before the Spec: /pre-spec, its hook and its findings | пре-спек, проверка плана |

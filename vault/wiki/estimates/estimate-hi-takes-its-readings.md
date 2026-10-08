@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-skill-hi]]"
-purpose: Whether /hi takes, in its first reply, each open W reading whose whole method runs now from files and commands, reads no transcript, writes a Cases line for each other open W line but those of the close of a sprint, puts each open Ask line to the person and writes the answer as its reading line, and opens no page but the Estimates it reads
+purpose: Whether /hi takes, in its first reply, each open W reading whose whole method runs now from files and commands, reads no transcript, writes a Cases line for each other open W line but those of the close of a sprint, puts each open Ask line to the person but one that waits for the close of a sprint or the session after it, writes the answer as its reading line, and opens no page but the Estimates it reads
 method: by hand, the text of the skill file rendered from rule-skill-hi, or, at the Retro of the session that changes it, the new Render of rule-skill-hi in the Spec, read against the Criterion, recorded in the estimate line
-checked: 2026-10-05
+checked: 2026-10-08
 origin: raw/2026-09-29/1134/ledger.md#case-508.1
 sprint: migration
 created: 2026-09-29
@@ -27,12 +27,13 @@ In its first reply, before the question on the order, the agent takes each readi
 **＋** When the person answers one, the agent closes its `A` line `[x] … · work` in `raw/<date>/<hi HHMM>/frontier.md` first, then writes its `estimate[...]` line, the answer as its result, in a `LEDGER` block of the reply, which ends in text.
 **－** It reads no transcript of an earlier session.
 **－** A `W` line of an Estimate whose `method` names the session that closes a sprint, or the session after that close, stays open under `## Work` and is no Cases line.
+**－** An `A` line whose question names the session that closes a sprint, or the session after that close, stays open under `## Ask` and is not put to the person. It is put at the `/hi` whose `vault/wiki/brief.md` opens the `Cases` of its Next session with `open the next sprint`, or in the session the person names as the one that closes the sprint. The agent judges this from the line as `vault/wiki/brief.md` gives it, with no page opened.
 **－** The Frontier is still assembled with no page opened. Only the reading step opens the pages of the Estimates it reads.
 **－** At `/hi` the agent changes no page and no file except `raw/<date>/<hi HHMM>/frontier.md`.
 
 ## Result
 
-2026-10-05, at the /hi of session 2103, by hand, .claude/skills/hi/SKILL.md as rendered against the Criterion: before the question on the order, the readings of each open W line whose whole method runs now, from the brief, git log, git status and the files and commands the method names; no transcript of an earlier session; the page of each Estimate read opened and judged against its Criterion; the W lines closed `[x] … · work` first, then a LEDGER block in a reply that ends in text; a Cases line with the source brief for each other open W line, its W line closing `· case N`; the W lines of the close of a sprint or the session after stay under Work; each open A line put as a question before the order, its line closed and then its answer written as the reading; the Frontier assembled with no page opened; the text names no file to write at /hi but frontier.md, and the plan file of a taken conserved Spec, outside the repository
+2026-10-08, Retro of session 0213, the new Render of rule-skill-hi in the Spec (case 732) read against the Criterion of case 732: the reading step of W lines, the Cases line for a W line that cannot run, the W lines of the close of a sprint left open, each open A line put to the person but one whose question names the session that closes a sprint or the session after it, which stays open under ## Ask until the /hi whose brief opens its Cases with `open the next sprint` or the session the person names, judged from the line with no page opened, and the answer written as its reading line — each line of the Criterion held by the text
 
 ## History
 
@@ -45,3 +46,5 @@ In its first reply, before the question on the order, the agent takes each readi
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L2
 - 2026-10-05 updated: the Criterion replaced whole — /hi reads no transcript, and an open Work line it cannot read becomes a Cases line (case 670.5) · [[decision-case-670.5]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L5
+- 2026-10-08 updated: the Criterion replaced whole — an Ask line that waits for the close of a sprint, or the session after it, stays open and is not asked; the purpose set anew · [[decision-case-732]]
+- 2026-10-08 status: pending → passed · raw/2026-10-08/0213/ledger.md#L7

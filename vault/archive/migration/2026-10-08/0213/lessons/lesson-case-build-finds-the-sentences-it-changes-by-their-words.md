@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi looked for the sentences its change touches by a Grep for the words of one sentence (alone or in a new batch|shown again alone|shown alone), so the sentences that state the same rule in other words were not read before the Case was shown
-status: clustered
+status: archived
 insight: "[[insight-workflow-case-written-without-reading-the-pages-it-changes]]"
 origin: raw/2026-10-08/0050/ledger.md#L17
 sprint: migration
@@ -22,3 +22,5 @@ case-guppi looked for the sentences its change touches by a Grep for the words o
 
 - 2026-10-08 created · raw/2026-10-08/0050/ledger.md#L17
 - 2026-10-08 updated: clustered under insight-workflow-case-written-without-reading-the-pages-it-changes (synthesis) · raw/2026-10-08/0050/ledger.md#L17
+- 2026-10-08 archived · insight actioned
+- 2026-10-08 archived · cleanup

@@ -7461,3 +7461,23 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-08 lessons/lesson-orchestration-showed-a-case-while-a-round-stood-open archived · cleanup
 - 2026-10-08 decisions/decision-case-722.3 archived · cleanup
 - 2026-10-08 decisions/decision-case-722 child decision-case-722.3 archived · cleanup
+- 2026-10-08 decisions/decision-case-732 created · raw/2026-10-08/0213/ledger.md#case-732 · generate
+- 2026-10-08 rules/rule-skill-hi updated: an Ask line whose question names the close of a sprint, or the session after it, stays open and is not asked until that session · [[decision-case-732]] · generate
+- 2026-10-08 estimates/estimate-hi-takes-its-readings updated: the Criterion replaced whole — an Ask line that waits for the close of a sprint, or the session after it, stays open and is not asked; the purpose set anew · [[decision-case-732]] · generate
+- 2026-10-08 decisions/decision-case-733 created · raw/2026-10-08/0213/ledger.md#case-733 · generate
+- 2026-10-08 estimates/estimate-prespec-catches-a-method-without-a-form updated: the Criterion replaced whole — pre-spec judges the method of a MOC's Estimate by its form (case 733) · [[decision-case-733]] · generate
+- 2026-10-08 decisions/decision-case-734 created · raw/2026-10-08/0213/ledger.md#case-734 · generate
+- 2026-10-08 rules/rule-case-build updated: case-guppi lists by meaning each sentence of a page it changes that states the behaviour the change touches, not by a Grep for the words of the changed sentence (case 734) · [[decision-case-734]] · generate
+- 2026-10-08 estimates/estimate-case-build-checks-the-finished-case updated: the Criterion replaced whole — case-guppi lists by meaning each sentence of a page it changes that states the behaviour the change touches; purpose and method name the new kind of miss (case 734) · [[decision-case-734]] · generate
+- 2026-10-08 insights/insight-workflow-case-written-without-reading-the-pages-it-changes updated: actioned: case-guppi lists by meaning each sentence of a page it changes that states the behaviour the change touches, not by a Grep for the words of the changed sentence (case 734) · [[decision-case-734]] · generate
+- 2026-10-08 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-10-08/0213/ledger.md#L7 · generate
+- 2026-10-08 estimates/estimate-prespec-catches-a-method-without-a-form status: pending → failed · raw/2026-10-08/0213/ledger.md#L8 · generate
+- 2026-10-08 estimates/estimate-case-build-checks-the-finished-case status: pending → passed · raw/2026-10-08/0213/ledger.md#L9 · generate
+- 2026-10-08 lessons/lesson-case-build-misses-the-example-a-changed-check-runs-over created · raw/2026-10-08/0213/ledger.md#L10 · generate
+- 2026-10-08 insights/insight-workflow-contract-change-leaves-its-derived-text-stale updated: child lesson-case-build-misses-the-example-a-changed-check-runs-over added, a Case tightened a check and left the example of rule-case-example that a test runs through it; reopened from actioned (synthesis) · raw/2026-10-08/0213/ledger.md#L10 · generate
+- 2026-10-08 lessons/lesson-case-build-misses-the-example-a-changed-check-runs-over updated: clustered under insight-workflow-contract-change-leaves-its-derived-text-stale (synthesis) · raw/2026-10-08/0213/ledger.md#L10 · generate
+- 2026-10-08 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-10-08 lessons/lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice archived · insight actioned · generate
+- 2026-10-08 lessons/lesson-case-build-finds-the-sentences-it-changes-by-their-words archived · insight actioned · generate
+- 2026-10-08 lessons/lesson-case-build-finds-the-sentences-it-changes-by-their-words archived · cleanup
+- 2026-10-08 lessons/lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice archived · cleanup

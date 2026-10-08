@@ -63,10 +63,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `estimate-hi-takes-its-readings`
-- [ ] read `estimate-hi-takes-its-readings`
+- [x] update `rule-skill-hi`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `estimate-hi-takes-its-readings`
+- [x] read `estimate-hi-takes-its-readings`
 ```
 
 ## Case 733 — Pre-spec judges the method of a MOC's Estimate by its form
@@ -122,12 +122,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-catches-a-method-without-a-form`
+- [x] update `estimate-prespec-catches-a-method-without-a-form`
 - [ ] `guppi/lint.py`: the test of the form of a MOC's `method` — a `make <target>` or `by hand` — is lifted out of `check_method` into one predicate, which `check_method` calls; the module docstring names it.
 - [ ] `guppi/prespec.py`: `check_form` reads the kind of the target as the plan leaves it and judges a MOC's `method` by that predicate; the module docstring and the docstring of `check_form` say so, in place of the words that the branch of a MOC stays with lint.
 - [ ] `tests/test_prespec.py`: a MOC target, live, created and set by an `update`, with a `tests/` path alone and `pytest` alone as findings, a `make <target>` and `by hand` clean, and an `update` with no `method` clean.
 - [ ] `tests/test_lint.py`: runs green, the judgment of `check_method` unchanged.
-- [ ] read `estimate-prespec-catches-a-method-without-a-form`
+- [x] read `estimate-prespec-catches-a-method-without-a-form`
 ```
 
 ## Case 734 — case-guppi lists the sentences a change touches by their meaning
@@ -211,9 +211,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] update `insight-workflow-case-written-without-reading-the-pages-it-changes`
-- [ ] read `estimate-case-build-checks-the-finished-case`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] update `insight-workflow-case-written-without-reading-the-pages-it-changes`
+- [x] read `estimate-case-build-checks-the-finished-case`
 ```

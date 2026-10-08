@@ -1,9 +1,9 @@
 ---
 type: insight
 pattern: A ratified change lands on one text and leaves the text derived from it behind, because no step of the pipeline names the dependents of a change.
-status: actioned
-children: ["[[lesson-estimates-criterion-stale-after-contract-change]]", "[[lesson-render-governed-file-updated-as-rule-class-file]]", "[[lesson-estimates-live-clause-stale-at-first-render]]", "[[lesson-case-render-update-skipped-the-live-reading-estimate]]", "[[lesson-case-appended-a-line-inside-another-criterion]]"]
-severity: 0
+status: open
+children: ["[[lesson-estimates-criterion-stale-after-contract-change]]", "[[lesson-render-governed-file-updated-as-rule-class-file]]", "[[lesson-estimates-live-clause-stale-at-first-render]]", "[[lesson-case-render-update-skipped-the-live-reading-estimate]]", "[[lesson-case-appended-a-line-inside-another-criterion]]", "[[lesson-case-build-misses-the-example-a-changed-check-runs-over]]"]
+severity: 1
 addressed_by: "[[decision-case-378.5]]"
 origin: raw/2026-09-12/ledger.md#L12
 sprint: migration
@@ -53,3 +53,4 @@ acknowledging reply.
 - 2026-09-23 updated: actioned: the live child's dependency was case 187 — a Render change had to touch the live reading's Criterion; 378.5 removes it, 378.4 stops journals (case 378.5) · [[decision-case-378.5]]
 - 2026-09-23 updated: synthesis: lesson-case-appended-a-line-inside-another-criterion added, a Case appended its promise inside another Estimate's Criterion, the pairs case 187 and case 296 allowed; status kept actioned, its cause closed by case 378.4 in its own session (case 284.4) · raw/2026-09-23/1355/ledger.md#L37
 - 2026-09-24 updated: addressed_by back to the later case, decision-case-378.5 (case 385) · [[decision-case-385]]
+- 2026-10-08 updated: child lesson-case-build-misses-the-example-a-changed-check-runs-over added, a Case tightened a check and left the example of rule-case-example that a test runs through it; reopened from actioned (synthesis) · raw/2026-10-08/0213/ledger.md#L10

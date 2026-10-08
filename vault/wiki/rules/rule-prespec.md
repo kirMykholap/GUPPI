@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -193,3 +193,4 @@ Inside this loop the rule of `vault/wiki/orchestration.md` that no Case is taken
 - 2026-10-07 updated: in the list of the rounds after the findings, the Context label of each first round names its Case (case 699.7) · [[decision-case-699.7]]
 - 2026-10-07 estimate estimate-prespec-notes-a-page-another-case-defers added · [[decision-case-726.1]]
 - 2026-10-07 updated: a page one Case changes and another Case puts off is a note of the check, no longer a finding of ask-guppi (case 726.2) · [[decision-case-726.2]]
+- 2026-10-08 status: built → draft · cascade

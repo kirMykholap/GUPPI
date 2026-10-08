@@ -1,0 +1,41 @@
+- 00:42:00 decision[case 743.1][update][rule-sprint-close]{ref:rule-sprint-close}{supersedes:case 718}
+- 00:42:00 decision[case 743.1][update][rule-raw-archive]{ref:rule-raw-archive}
+- 00:42:00 decision[case 743.1][create][estimate-sprint-close-sweeps-raw]{ref:rule-sprint-close}{tags:sprint,workflow,librarian}
+- 00:42:00 decision[case 743.2][update][rule-raw-archive]{ref:rule-raw-archive}
+- 00:42:00 decision[case 743.2][create][estimate-raw-archive-files-a-session-by-its-sprint]{ref:rule-raw-archive}{tags:harness,librarian,sprint}
+- 00:42:00 decision[case 743.3][update][rule-sprint-close]{ref:rule-sprint-close}
+- 00:42:00 decision[case 743.3][update][rule-raw-archive]{ref:rule-raw-archive}
+- 00:42:00 decision[case 743.3][create][estimate-sprint-close-moves-old-event-logs]{ref:rule-sprint-close}{tags:sprint,workflow,librarian}
+- 00:42:00 decision[case 743.4][update][rule-backlog]{ref:rule-backlog}
+- 00:42:00 decision[case 743.4][update][estimate-backlog-renders]{ref:rule-backlog}
+- 00:42:00 decision[case 743.5][update][rule-sprint]{ref:rule-sprint}
+- 00:42:00 decision[case 743.5][update][rule-documentation]{ref:rule-documentation}
+- 00:42:00 decision[case 743.5][create][estimate-sprint-marks-a-closed-sprint]{ref:rule-sprint}{tags:harness,sprint}
+- 00:42:00 decision[case 743.9][update][estimate-sprint-checks-the-file]{ref:rule-sprint}
+- 00:42:00 decision[case 743.6][create][rule-skill-sprint-open]{ref:rule-session}{tags:sprint,workflow,harness}
+- 00:42:00 decision[case 743.6][create][estimate-skill-sprint-open-asks-the-opening-questions]{ref:rule-skill-sprint-open}{tags:sprint,workflow,harness}
+- 00:42:00 decision[case 743.7][update][rule-hook-registry]{ref:rule-hook-registry}
+- 00:42:00 decision[case 743.7][create][estimate-skill-sprint-open-starts-at-hi]{ref:rule-skill-sprint-open}{tags:sprint,hooks,harness}
+- 00:42:00 decision[case 743.8][create][rule-skill-sprint-close]{ref:rule-session}{tags:sprint,workflow,harness}
+- 00:42:00 decision[case 743.8][create][estimate-skill-sprint-close-leads-the-closing-session]{ref:rule-skill-sprint-close}{tags:sprint,workflow,harness}
+- 00:42:00 decision[case 743.8][update][rule-orchestration]{ref:rule-orchestration}
+- 00:42:00 decision[case 743.8][update][entity-sprint-migration]{ref:entity-sprint-migration}
+- 00:58:07 decision[case 744.1][update][rule-skill-grill-me]{ref:rule-skill-grill-me}
+- 00:58:07 decision[case 744.1][update][estimate-skill-grill-me-asks-in-rounds]{ref:rule-skill-grill-me}
+- 00:58:07 decision[case 744.2][update][estimate-case-check-sends-back-a-faulty-round]{ref:rule-case-check}
+- 01:00:24 decision[case 745][defer][rule-morph]{ref:rule-morph}
+- 01:21:06 decision[case 743.6][create][rule-skill-sprint-open]{ref:rule-session-start}{tags:sprint,workflow,harness}
+- 01:21:06 decision[case 743.8][create][rule-skill-sprint-close]{ref:rule-plan-mode}{tags:sprint,workflow,harness}
+- 01:33:01 estimate[estimate-sprint-close-sweeps-raw][passed] 2026-10-09, uv run pytest tests/test_sprint_close.py -k sweep; 3 passed: a done unit of the run day and one of an earlier day move, an unfinished unit, a carry.md unit and the session of the run stay, the preview and a refused close move none
+- 01:33:01 estimate[estimate-raw-archive-files-a-session-by-its-sprint][passed] 2026-10-09, uv run pytest tests/test_archive.py -k sprint; 2 passed: a unit whose yaml holds sprint a goes under vault/archive/a/ while sprint.md names b, a unit with no sprint field goes under b
+- 01:33:01 estimate[estimate-sprint-close-moves-old-event-logs][passed] 2026-10-09, uv run pytest tests/test_sprint_close.py -k event_log; 3 passed; .gitignore line 48 reads vault/archive/*/*/event_log.md and git check-ignore matches vault/archive/x/2026-01-01/event_log.md by it
+- 01:33:01 estimate[estimate-backlog-renders][passed] 2026-10-09, uv run pytest tests/test_backlog.py; 18 passed, among them the archived line taken into a milestone, the built page and the note the live Backlog holds left out, and the line taken by nothing kept
+- 01:33:01 estimate[estimate-sprint-marks-a-closed-sprint][passed] 2026-10-09, uv run pytest tests/test_sprint.py -k closed; 8 passed: the closed form with the earlier id and exit 0, a closed file keeps its id, sprint_id reads it, no page and no file exit 1 with no tick, the closed run ticks the guppi sprint line
+- 01:33:01 estimate[estimate-sprint-checks-the-file][passed] 2026-10-09, uv run pytest tests/test_sprint.py; 29 passed, the closed file silent with exit 0 and a differing one named as the closed form of migration with exit 1
+- 01:33:01 estimate[estimate-skill-sprint-open-starts-at-hi][passed] 2026-10-09, uv run pytest tests/test_sprint.py -k hi; 7 passed: /hi with a closed heading prints the line, an open heading, another prompt and no file print nothing, each exit 0
+- 01:33:01 estimate[estimate-skill-grill-me-asks-in-rounds][passed] 2026-10-09, by hand at Retro, the Render of rule-skill-grill-me with the five replaces of Case 744.1 in the Spec read against the Criterion: the After line stands two spaces under the option name with no dash, a list and a quotation under it indented as far as the label, the other lines of the Criterion unchanged
+- 01:33:01 estimate[estimate-skill-sprint-open-asks-the-opening-questions][failed] 2026-10-09, Retro, not read: uv run guppi materialize --date 2026-10-08 --show marks both create entries of rule-skill-sprint-open (ledger lines 15 and 27) incomplete: [type], since the then block of 743.6 holds no type: rule, so the page and the skill are not built
+- 01:33:01 estimate[estimate-skill-sprint-close-leads-the-closing-session][failed] 2026-10-09, Retro, not read: uv run guppi materialize --date 2026-10-08 --show marks both create entries of rule-skill-sprint-close (ledger lines 19 and 28) incomplete: [type], since the then block of 743.8 holds no type: rule, so the skill is not built while the update of rule-orchestration removes the paragraph on the closing session
+- 01:33:01 estimate[estimate-case-check-sends-back-a-faulty-round][failed] 2026-10-09, Retro, not read: uv run pytest tests/test_casecheck.py -k round_form 13 passed, the round with dashed After lines among them, but the by-hand part of the method, a round the hook sends back live with its stderr and the round case-guppi gave again, did not occur in this session after the change
+- 01:33:07 lesson[error][lesson-case-build-rule-create-without-type]{tags:case-build,prespec,schema} trigger: the create items of rule-skill-sprint-open (743.6) and rule-skill-sprint-close (743.8) hold kind, purpose, enforcement and sections but no type: rule, and uv run guppi materialize --show marks all four create entries incomplete: [type] after the Case was ratified twice and passed /pre-spec root_cause: neither the check of the case file nor guppi prespec --check nor ask-guppi judges the fields that materialize requires of a create item, so a missing type reaches the ratified Spec unseen
+- 01:33:07 lesson[error][lesson-ledger-rebuilt-create-keeps-the-stale-ref]{tags:ledger,case-build,librarian} trigger: Case 743 rebuilt at /pre-spec changed the ref of two create lines from rule-session to rule-session-start and rule-plan-mode; the ledger holds lines 15 and 19 with {ref:rule-session} beside lines 27 and 28 with the new refs, and uv run guppi materialize --show gives entries 15 and 19 ref: rule-session root_cause: a re-ratification appends a changed decision line beside the first one, which the ledger never withdraws, and materialize takes the ref of an entry from its own ledger line before the item of the Spec, so the stale ref stays an entry of the yaml with nothing that marks it superseded

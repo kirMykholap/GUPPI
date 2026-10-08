@@ -25,20 +25,35 @@ History line that keeps the old status, through the page writer of `guppi/genera
 line of a `spec.md` under `vault/raw/` that `render.command_line("guppi sprint-close --sprint
 <id> --apply")` matches — the one matcher of the tickers, imported — so the librarian, which
 runs the line after `guppi generate`, finds it done; a refused run ticks nothing (case
-628.1). Exit 0 on a preview or a close, 1 on a refusal or an error, 2 on bad arguments.
+628.1).
+
+After that, the close empties `vault/raw/` as far as it can (cases 743.1, 743.3). It moves each
+unit that `guppi/archive.py` judges done by `archive.sweep` with `close=True`, whatever its
+date, and prints its lines: the session of the run, a unit not yet turned into pages and a
+conserved Spec stay. Then it moves each `vault/raw/<date>/event_log.md` dated before the day
+before the date of the session of the run to `vault/archive/<id>/<date>/event_log.md`, one
+line `archive: raw/<date>/event_log.md → archive/<id>/<date>/event_log.md` per log, since the
+hooks of the open session read only the logs back to the start of that session; a log whose
+target exists stays, with one line on stderr. A date folder the moves leave empty is removed.
+`.gitignore` leaves the moved logs out of git. The preview names each unit and each log the
+close would move and moves none; a refused close moves none. Exit 0 on a preview or a close,
+1 on a refusal or an error — a unit or a log that failed to move too, after the other moves —
+2 on bad arguments.
 Rule page: `vault/wiki/rules/rule-sprint-close.md`.
 """
 
 import argparse
 import io
+import shutil
 import sys
-from datetime import datetime
+from datetime import date as Date
+from datetime import datetime, timedelta
 from pathlib import Path
 
-from guppi import cleanup
+from guppi import archive, cleanup
 from guppi.event import project_root
 from guppi.generate import HISTORY, as_list, write_page
-from guppi.materialize import units_with
+from guppi.materialize import session_of_run, units_with
 from guppi.pages import Page, read_vault, wiki_root
 from guppi.render import command_line
 
@@ -215,6 +230,61 @@ def tick(project_dir: Path, sprint: str) -> int:
     return ticked
 
 
+def old_logs(project_dir: Path, now) -> list[Path]:
+    """Case 743.3: each `vault/raw/<date>/event_log.md` dated before the day before the date
+    of the session of the run — the logs no hook of the open session reads."""
+    raw = project_dir / "vault" / "raw"
+    if not raw.is_dir():
+        return []
+    today = now.date().isoformat()
+    session = session_of_run(project_dir, today)
+    start = Date.fromisoformat(session[0] if session else today)
+    limit = (start - timedelta(days=1)).isoformat()
+    return sorted(
+        folder / "event_log.md"
+        for folder in raw.iterdir()
+        if folder.is_dir() and folder.name < limit and (folder / "event_log.md").is_file()
+    )
+
+
+def move_logs(project_dir: Path, sprint: str, now, stdout, stderr, apply: bool = True) -> bool:
+    """Move the old logs under `vault/archive/<sprint>/<date>/`; True when one failed."""
+    failed = False
+    for log in old_logs(project_dir, now):
+        date = log.parent.name
+        target = project_dir / "vault" / "archive" / sprint / date / "event_log.md"
+        where = f"archive/{sprint}/{date}/event_log.md"
+        if not apply:
+            print(f"archive: raw/{date}/event_log.md would move → {where}", file=stdout)
+            continue
+        if target.exists():
+            print(f"archive: raw/{date}/event_log.md not moved: vault/{where} exists", file=stderr)
+            failed = True
+            continue
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(log), str(target))
+        print(f"archive: raw/{date}/event_log.md → {where}", file=stdout)
+    return failed
+
+
+def remove_empty_dates(project_dir: Path) -> None:
+    """A date folder of `vault/raw/` that the moves left empty goes."""
+    raw = project_dir / "vault" / "raw"
+    for folder in sorted(raw.iterdir()) if raw.is_dir() else []:
+        if folder.is_dir() and not any(folder.iterdir()):
+            folder.rmdir()
+
+
+def empty_raw(project_dir: Path, sprint: str, now, stdout, stderr, apply: bool = True) -> bool:
+    """Cases 743.1, 743.3: the sweep of the done units, then the old logs; True when a move
+    failed."""
+    failed = archive.sweep(project_dir, now, stdout, stderr, close=True, apply=apply)
+    failed = move_logs(project_dir, sprint, now, stdout, stderr, apply=apply) or failed
+    if apply:
+        remove_empty_dates(project_dir)
+    return failed
+
+
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi sprint-close", description=__doc__.split("\n\n")[0])
     p.add_argument("--sprint", required=True, help="the id of entity-sprint-<id>")
@@ -243,6 +313,7 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
             print(line, file=stdout)
         for line in close.errors:
             print(line, file=stdout)
+        empty_raw(project_dir, args.sprint, now, stdout, stderr, apply=False)
         return 0
     if close.errors:
         for line in close.errors:
@@ -264,4 +335,4 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
     if code != 0:
         return 1
     tick(project_dir, args.sprint)
-    return 0
+    return 1 if empty_raw(project_dir, args.sprint, now, stdout, stderr) else 0

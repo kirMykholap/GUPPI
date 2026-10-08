@@ -9,7 +9,10 @@ the readings still write into it after the librarian's commit. A unit is done wh
 and every line of its `ledger.md` that `materialize.parse_line` reads as a record has its
 number in the `line` or `folded` of an entry or under `unparsed` (case 100.1).
 
-A done session moves whole to `vault/archive/<sprint>/<date>/<HHMM>/raw/`. A done
+A done session moves whole to `vault/archive/<sprint>/<date>/<HHMM>/raw/`, `<sprint>` the
+`sprint` field of the unit's own `materialize.yaml`, so a session that leaves after the next
+sprint opened goes to the folder of its own sprint; a unit whose yaml holds none takes the
+first `## <id>` heading of `vault/wiki/sprint.md` by `sprint_id` (case 743.2). A done
 date-level unit moves with its yaml and everything else at the date root to
 `vault/archive/<sprint>/<date>/raw/`, and with it every `<HHMM>/` folder of the date that
 has no ledger of its own, each to `vault/archive/<sprint>/<date>/<HHMM>/raw/`; a session
@@ -21,8 +24,15 @@ the name of a ledger, which lint resolves in `raw/` or in the archive (case 103.
 Stdout carries one line per unit: `archive: raw/<unit> → archive/<sprint>/<unit>[/raw]` or
 `archive: raw/<unit> kept: <reason>` — `no yaml`, `N entries not applied`, `N ledger lines
 outside the yaml`. A name already taken in the archive or a move that fails is a line on
-stderr and exit 1; the other units still move. A rerun moves nothing and exits 0. The
-coverage of a line is the one function `guppi tail` uses (`rule-ledger-tail`). Rule page:
+stderr and exit 1; the other units still move. A rerun moves nothing and exits 0.
+
+The close of a sprint walks the units by the same `sweep` with `close=True` (case 743.1): the
+limit of the date drops, so a done unit of the run day moves too, the session of the run still
+left out, and a unit that `is_carried_over` of `guppi/materialize.py` judges carried over is
+kept with the reason `carried over`, since `backlog.md` and `/box` find a conserved Spec only
+in `raw/`. With `apply=False` the walk names each unit it would move as `archive: raw/<unit>
+would move → archive/<sprint>/<unit>[/raw]` and moves none. The run of `guppi archive` keeps
+the limit of the date and its reasons. The coverage of a line is the one function `guppi tail` uses (`rule-ledger-tail`). Rule page:
 `vault/wiki/rules/rule-raw-archive.md`.
 """
 
@@ -35,6 +45,7 @@ from pathlib import Path
 from guppi.event import project_root
 from guppi.materialize import (
     SESSION_FOLDER,
+    is_carried_over,
     load_yaml,
     parse_line,
     session_of_run,
@@ -117,27 +128,37 @@ def parser() -> argparse.ArgumentParser:
     return argparse.ArgumentParser(prog="guppi archive", description=__doc__.split("\n\n")[1])
 
 
-def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
-    stdout = sys.stdout if stdout is None else stdout
-    stderr = sys.stderr if stderr is None else stderr
-    project_dir = project_root() if project_dir is None else Path(project_dir)
-    now = datetime.now().astimezone() if now is None else now
-    try:
-        parser().parse_args(argv)
-    except SystemExit as exc:
-        return 2 if exc.code not in (None, 0) else 0
+def unit_sprint(project_dir: Path, unit: str, fallback: str) -> str:
+    """Case 743.2: the `sprint` field of the unit's own yaml, else `fallback`, the first
+    heading of `sprint.md`."""
+    data = load_yaml(yaml_path(project_dir, unit)) or {}
+    return str(data.get("sprint") or "").strip() or fallback
+
+
+def sweep(
+    project_dir: Path, now, stdout, stderr, *, close: bool = False, apply: bool = True
+) -> bool:
+    """Walk the units of `raw/` and move each done one; True when a move failed. `close`
+    drops the limit of the date and keeps a carried-over unit (case 743.1); `apply=False`
+    names the units it would move and moves none."""
     today = now.date().isoformat()
     session = session_of_run(project_dir, today)
     running = f"{session[0]}/{session[1]}" if session else None
-    sprint = sprint_id(project_dir)
+    fallback = sprint_id(project_dir)
     failed = False
     for unit in units_with(project_dir, "ledger.md"):
-        if unit.split("/")[0] >= today or unit == running:
+        if unit == running or (not close and unit.split("/")[0] >= today):
             continue
         try:
-            reason = kept_reason(project_dir, unit)
+            reason = "carried over" if close and is_carried_over(project_dir, unit) else None
+            reason = reason or kept_reason(project_dir, unit)
             if reason:
                 print(f"archive: raw/{unit} kept: {reason}", file=stdout)
+                continue
+            sprint = unit_sprint(project_dir, unit, fallback)
+            where = f"archive/{sprint}/{unit}/raw"
+            if not apply:
+                print(f"archive: raw/{unit} would move → {where}", file=stdout)
                 continue
             pairs = moves_of(project_dir, unit, sprint)
             taken = [t for _, t in pairs if t.exists()]
@@ -148,9 +169,20 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
                 continue
             for source, target in pairs:
                 move(source, target)
-            where = f"archive/{sprint}/{unit}/raw"
             print(f"archive: raw/{unit} → {where}", file=stdout)
         except Exception as exc:  # noqa: BLE001 — one unit fails alone, the walk goes on
             print(f"archive: raw/{unit} not moved: {exc}", file=stderr)
             failed = True
-    return 1 if failed else 0
+    return failed
+
+
+def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
+    stdout = sys.stdout if stdout is None else stdout
+    stderr = sys.stderr if stderr is None else stderr
+    project_dir = project_root() if project_dir is None else Path(project_dir)
+    now = datetime.now().astimezone() if now is None else now
+    try:
+        parser().parse_args(argv)
+    except SystemExit as exc:
+        return 2 if exc.code not in (None, 0) else 0
+    return 1 if sweep(project_dir, now, stdout, stderr) else 0

@@ -3,6 +3,8 @@
 import io
 from datetime import UTC, datetime
 
+import yaml
+
 from guppi import sprint_close
 
 NOW = datetime(2026, 10, 5, 12, 0, 0, tzinfo=UTC)
@@ -361,3 +363,126 @@ def test_no_sprint_page(tmp_path):
         ["--sprint", "gamma"], stdout=out, stderr=err, project_dir=tmp_path, now=NOW
     )
     assert code == 1 and "no live entity-sprint-gamma page" in err.getvalue()
+
+
+# --- case 743.1: the sweep of raw/; case 743.3: the old event logs ---------------------
+
+LEDGER = "- 10:00:00 decision[case 1][create][rule-a]\n"
+APPLIED = {"sprint": SPRINT, "entries": [{"line": 1, "applied": "10:00"}], "unparsed": []}
+PENDING = {"sprint": SPRINT, "entries": [{"line": 1, "failed": "boom"}], "unparsed": []}
+
+
+def raw_unit(project_dir, unit, data=None, extra=()):
+    folder = project_dir / "vault" / "raw" / unit
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / "ledger.md").write_text(LEDGER, encoding="utf-8", newline="\n")
+    if data is not None:
+        (folder / "materialize.yaml").write_text(yaml.safe_dump(data), encoding="utf-8")
+    for name in extra:
+        (folder / name).write_text(name, encoding="utf-8")
+    return folder
+
+
+def sweep_vault(tmp_path):
+    seed(tmp_path, [])
+    raw_unit(tmp_path, f"{DATE}/0900", APPLIED)  # done, of the run day
+    raw_unit(tmp_path, "2026-10-01/0800", APPLIED)  # done, of an earlier day
+    raw_unit(tmp_path, f"{DATE}/1000", PENDING)  # an entry not applied
+    raw_unit(tmp_path, "2026-10-02/1100", APPLIED, extra=("carry.md",))  # a conserved Spec
+    raw_unit(tmp_path, f"{DATE}/1200", APPLIED)  # the session of the run
+    return tmp_path
+
+
+def test_sweep_moves_each_done_unit_whatever_its_day(tmp_path):
+    sweep_vault(tmp_path)
+    code, out, err = run(tmp_path, "--apply")
+    assert code == 0, err
+    raw = tmp_path / "vault" / "raw"
+    base = tmp_path / "vault" / "archive" / SPRINT
+    assert (base / DATE / "0900" / "raw" / "ledger.md").exists()
+    assert (base / "2026-10-01" / "0800" / "raw" / "ledger.md").exists()
+    assert not (raw / "2026-10-01").exists()  # the date folder the move left empty goes
+    assert f"archive: raw/{DATE}/0900 → archive/{SPRINT}/{DATE}/0900/raw" in out
+    assert f"archive: raw/{DATE}/1000 kept: 1 entries not applied" in out
+    assert "archive: raw/2026-10-02/1100 kept: carried over" in out
+    assert (raw / DATE / "1000" / "ledger.md").exists()
+    assert (raw / "2026-10-02" / "1100" / "carry.md").exists()
+    assert (raw / DATE / "1200" / "ledger.md").exists()  # the session of the run stays
+    assert f"raw/{DATE}/1200" not in out
+
+
+def test_sweep_the_preview_names_the_units_and_moves_none(tmp_path):
+    sweep_vault(tmp_path)
+    before = snapshot(tmp_path)
+    code, out, _ = run(tmp_path)
+    assert code == 0
+    assert f"archive: raw/{DATE}/0900 would move → archive/{SPRINT}/{DATE}/0900/raw" in out
+    assert "archive: raw/2026-10-01/0800 would move" in out
+    assert snapshot(tmp_path) == before
+
+
+def test_sweep_a_refused_close_moves_no_unit(tmp_path):
+    sweep_vault(tmp_path)
+    (tmp_path / "vault" / "wiki" / "estimates" / "estimate-loose.md").write_text(
+        page("estimates", "pending", target="rule-q"), encoding="utf-8"
+    )
+    before = snapshot(tmp_path)
+    code, out, _ = run(tmp_path, "--apply")
+    assert code == 1
+    assert "archive:" not in out
+    assert snapshot(tmp_path) == before
+
+
+def log(project_dir, date):
+    path = project_dir / "vault" / "raw" / date / "event_log.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f"log of {date}\n", encoding="utf-8")
+    return path
+
+
+def event_log_vault(tmp_path):
+    seed(tmp_path, [])
+    raw_unit(tmp_path, f"{DATE}/1200", APPLIED)  # the session of the run, on 2026-10-05
+    for date in ("2026-10-02", "2026-10-03", "2026-10-04", DATE, "2026-10-06"):
+        log(tmp_path, date)
+    return tmp_path
+
+
+def test_event_log_old_logs_move_and_their_empty_folders_go(tmp_path):
+    event_log_vault(tmp_path)
+    code, out, err = run(tmp_path, "--apply")
+    assert code == 0, err
+    raw = tmp_path / "vault" / "raw"
+    base = tmp_path / "vault" / "archive" / SPRINT
+    for date in ("2026-10-02", "2026-10-03"):
+        assert (base / date / "event_log.md").read_text(encoding="utf-8") == f"log of {date}\n"
+        assert not (raw / date).exists()
+        assert f"archive: raw/{date}/event_log.md → archive/{SPRINT}/{date}/event_log.md" in out
+    # the day before the session, the session's date and a later date stay
+    for date in ("2026-10-04", DATE, "2026-10-06"):
+        assert (raw / date / "event_log.md").exists()
+
+
+def test_event_log_a_taken_target_is_a_stderr_line_and_exit_1(tmp_path):
+    event_log_vault(tmp_path)
+    taken = tmp_path / "vault" / "archive" / SPRINT / "2026-10-02" / "event_log.md"
+    taken.parent.mkdir(parents=True)
+    taken.write_text("there\n", encoding="utf-8")
+    code, out, err = run(tmp_path, "--apply")
+    assert code == 1
+    assert err.splitlines() == [
+        f"archive: raw/2026-10-02/event_log.md not moved: vault/archive/{SPRINT}/2026-10-02/event_log.md exists"
+    ]
+    assert (tmp_path / "vault" / "raw" / "2026-10-02" / "event_log.md").exists()
+    assert "archive: raw/2026-10-03/event_log.md →" in out  # the other moves still run
+
+
+def test_event_log_a_refused_close_moves_none(tmp_path):
+    event_log_vault(tmp_path)
+    (tmp_path / "vault" / "wiki" / "estimates" / "estimate-loose.md").write_text(
+        page("estimates", "pending", target="rule-q"), encoding="utf-8"
+    )
+    before = snapshot(tmp_path)
+    code, _, _ = run(tmp_path, "--apply")
+    assert code == 1
+    assert snapshot(tmp_path) == before

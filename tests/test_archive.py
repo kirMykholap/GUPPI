@@ -21,14 +21,18 @@ def entries(*marks):
     return out
 
 
-def unit(tmp_path, date, session=None, ledger=LEDGER, yaml_entries=None, extra=()):
+def unit(
+    tmp_path, date, session=None, ledger=LEDGER, yaml_entries=None, extra=(), sprint="migration"
+):
     folder = tmp_path / "vault" / "raw" / date
     if session:
         folder = folder / session
     folder.mkdir(parents=True, exist_ok=True)
     (folder / "ledger.md").write_text(ledger, encoding="utf-8", newline="\n")
     if yaml_entries is not None:
-        data = {"date": date, "sprint": "migration", "entries": yaml_entries, "unparsed": []}
+        data = {"date": date, "entries": yaml_entries, "unparsed": []}
+        if sprint is not None:
+            data["sprint"] = sprint
         (folder / "materialize.yaml").write_text(yaml.safe_dump(data), encoding="utf-8")
     for name in extra:
         (folder / name).write_text(name, encoding="utf-8")
@@ -149,6 +153,36 @@ def test_a_date_level_unit_leaves_a_session_with_its_own_ledger_behind(tmp_path)
     ]
     assert (day / "1610" / "ledger.md").exists()
     assert not (day / "ledger.md").exists()
+
+
+def test_sprint_of_the_unit_yaml_names_the_archive_folder(tmp_path):
+    """Case 743.2: a unit goes under the sprint its own yaml records, not that of sprint.md."""
+    seed(tmp_path)
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(
+        "# Sprint\n\n## b — open\n", encoding="utf-8"
+    )
+    unit(tmp_path, "2026-09-10", "0900", yaml_entries=APPLIED, sprint="a")
+    code, out, err = run(tmp_path)
+    assert (code, err) == (0, [])
+    assert out == ["archive: raw/2026-09-10/0900 → archive/a/2026-09-10/0900/raw"]
+    assert (
+        tmp_path / "vault" / "archive" / "a" / "2026-09-10" / "0900" / "raw" / "ledger.md"
+    ).exists()
+    assert not (tmp_path / "vault" / "archive" / "b").exists()
+
+
+def test_sprint_of_sprint_md_when_the_unit_yaml_records_none(tmp_path):
+    seed(tmp_path)
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(
+        "# Sprint\n\n## b — open\n", encoding="utf-8"
+    )
+    unit(tmp_path, "2026-09-10", "0900", yaml_entries=APPLIED, sprint=None)
+    code, out, _ = run(tmp_path)
+    assert code == 0
+    assert out == ["archive: raw/2026-09-10/0900 → archive/b/2026-09-10/0900/raw"]
+    assert (
+        tmp_path / "vault" / "archive" / "b" / "2026-09-10" / "0900" / "raw" / "ledger.md"
+    ).exists()
 
 
 def test_uncovered_lines_reads_line_folded_and_unparsed(tmp_path):

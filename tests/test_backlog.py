@@ -237,6 +237,44 @@ def test_the_backlog_of_an_archived_sprint_page_stays_beside_the_live_one(tmp_pa
     assert "- the merge of the closed sprint into main · put off in 0 sessions\n" in text
 
 
+def test_a_line_of_a_closed_sprint_leaves_once_taken_or_finished(tmp_path):
+    """Case 743.4: a line of an archived Backlog leaves once the live sprint names it in a
+    milestone or its Backlog, or its page is finished; a line nothing took stays."""
+    seed(tmp_path)
+    write_page(
+        tmp_path, "rules", "rule-built", {"type": "rule", "status": "built", "purpose": "done"}
+    )
+    write_page(
+        tmp_path, "rules", "rule-waits", {"type": "rule", "status": "draft", "purpose": "waits"}
+    )
+    closed = (
+        "---\ntype: entity\nstatus: archived\n---\n\n## Backlog\n\n"
+        "- [[rule-plain]] — taken into a milestone of the live sprint\n"
+        "- [[rule-built]] — its page is built\n"
+        "- the categories as data of the project\n"
+        "- [[rule-waits]] — taken by nothing\n"
+        "- a note taken by nothing\n"
+    )
+    write(
+        tmp_path
+        / "vault"
+        / "archive"
+        / "old"
+        / "2026-10-05"
+        / "1200"
+        / "entities"
+        / "entity-sprint-old.md",
+        closed,
+    )
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert "`rule-plain`" not in text
+    assert "`rule-built`" not in text
+    assert text.count("the categories as data of the project") == 1  # the live note alone
+    assert "- `rule-waits` — waits · put off in 0 sessions\n" in text
+    assert "- a note taken by nothing · put off in 0 sessions\n" in text
+
+
 def test_no_sprint_page_leaves_the_other_sources(tmp_path):
     seed(tmp_path)
     (tmp_path / "vault" / "wiki" / "entities" / "entity-sprint-migration.md").unlink()

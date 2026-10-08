@@ -163,12 +163,113 @@ def test_an_item_without_a_page_is_an_error_and_nothing_is_written(tmp_path):
     assert rendered(tmp_path) == "# Sprint\n\n## migration — by hand\n"
 
 
-def test_no_sprint_page_is_an_error_and_nothing_is_written(tmp_path):
-    seed(tmp_path)
+# --- the closed form (case 743.5, `estimate-sprint-marks-a-closed-sprint`) -------------
+
+CLOSED = "# Sprint\n\n## migration — closed\n\nNo sprint is open since the close of migration.\n"
+
+
+def close_sprint(tmp_path):
     (tmp_path / "vault" / "wiki" / "entities" / "entity-sprint-migration.md").unlink()
+
+
+def test_closed_form_written_with_the_id_of_the_earlier_file_and_exit_0(tmp_path):
+    seed(tmp_path)
+    close_sprint(tmp_path)
+    assert run(tmp_path) == (0, "", "")
+    assert rendered(tmp_path) == CLOSED
+
+
+def test_closed_file_keeps_its_id_and_sprint_id_reads_it(tmp_path):
+    from guppi.materialize import sprint_id
+
+    seed(tmp_path)
+    close_sprint(tmp_path)
+    run(tmp_path)
+    assert run(tmp_path) == (0, "", "")
+    assert rendered(tmp_path) == CLOSED
+    assert sprint_id(tmp_path) == "migration"
+    assert sprint.closed_id(rendered(tmp_path)) == "migration"
+    assert sprint.closed_id(EXPECTED) is None
+
+
+def test_closed_no_page_and_no_file_is_exit_1_and_ticks_nothing(tmp_path):
+    seed(tmp_path)
+    close_sprint(tmp_path)
+    spec = raw_unit(tmp_path, "2026-09-18/1957")
+    (tmp_path / "vault" / "wiki" / "sprint.md").unlink()
+    code, out, err = run(tmp_path)
+    assert (code, out) == (1, "")
+    assert err.strip() == "sprint: no live entity-sprint-<id> page and no vault/wiki/sprint.md"
+    assert not (tmp_path / "vault" / "wiki" / "sprint.md").exists()
+    assert spec.read_text(encoding="utf-8") == SPRINT_SPEC
+
+
+def test_closed_run_ticks_the_sprint_line_of_an_applied_spec(tmp_path):
+    seed(tmp_path)
+    close_sprint(tmp_path)
+    spec = raw_unit(tmp_path, "2026-09-18/1957")
+    assert run(tmp_path) == (0, "", "")
+    assert "- [x] `uv run guppi sprint` at the librarian's run" in spec.read_text(encoding="utf-8")
+
+
+def test_two_sprint_pages_are_an_error_and_nothing_is_written(tmp_path):
+    seed(tmp_path)
+    (tmp_path / "vault" / "wiki" / "entities" / "entity-sprint-next.md").write_text(
+        SPRINT_PAGE, encoding="utf-8", newline="\n"
+    )
     code, _, err = run(tmp_path)
-    assert code == 1 and err.strip() == "sprint: no live entity-sprint-<id> page"
+    assert code == 1 and err.strip() == "sprint: 2 live entity-sprint-<id> pages"
     assert rendered(tmp_path) == "# Sprint\n\n## migration — by hand\n"
+
+
+def test_check_is_silent_on_a_closed_file_that_matches(tmp_path):
+    """Case 743.9: with no live sprint page `--check` compares the closed form."""
+    seed(tmp_path)
+    close_sprint(tmp_path)
+    run(tmp_path)
+    assert check(tmp_path) == (0, "", "")
+
+
+def test_check_names_a_file_that_differs_from_the_closed_form(tmp_path):
+    seed(tmp_path)
+    close_sprint(tmp_path)
+    code, out, err = check(tmp_path)
+    assert (code, err) == (1, "")
+    assert out.strip() == "sprint: vault/wiki/sprint.md differs from the closed form of migration"
+    assert rendered(tmp_path) == "# Sprint\n\n## migration — by hand\n"
+
+
+# --- the hook on /hi (case 743.7, `estimate-skill-sprint-open-starts-at-hi`) ----------
+
+
+def hi(project_dir, prompt):
+    import json
+
+    out, err = io.StringIO(), io.StringIO()
+    payload = io.StringIO(json.dumps({"prompt": prompt}))
+    code = sprint.run(["--hi"], stdin=payload, stdout=out, stderr=err, project_dir=project_dir)
+    return code, out.getvalue(), err.getvalue()
+
+
+def test_hi_with_a_closed_heading_prints_the_line(tmp_path):
+    seed(tmp_path)
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(CLOSED, encoding="utf-8")
+    code, out, err = hi(tmp_path, "/hi")
+    assert (code, err) == (0, "")
+    assert out.strip() == (
+        "sprint: no sprint is open since the close of migration: start the skill "
+        "/sprint-open before the Frontier (rule-skill-sprint-open, case 743.7)"
+    )
+
+
+def test_hi_prints_nothing_on_an_open_heading_another_prompt_or_no_file(tmp_path):
+    seed(tmp_path)
+    run(tmp_path)  # the open heading
+    assert hi(tmp_path, "/hi") == (0, "", "")
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(CLOSED, encoding="utf-8")
+    assert hi(tmp_path, "let us go on") == (0, "", "")
+    (tmp_path / "vault" / "wiki" / "sprint.md").unlink()
+    assert hi(tmp_path, "/hi") == (0, "", "")
 
 
 def test_the_cli_knows_the_command(monkeypatch, tmp_path, capsys):

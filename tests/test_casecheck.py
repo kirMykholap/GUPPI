@@ -486,8 +486,8 @@ def round_of(*titles):
 
 
 QUESTION_BODY = (
-    "**Now:** it stands.\n\n**Options:**\n\n🔹 **(a) Keep it**\n  - **After:** it stays.\n\n"
-    "🔹 **(b) Change it**\n  - **After:** it moves.\n\n➡️ (a).\n"
+    "**Now:** it stands.\n\n**Options:**\n\n🔹 **(a) Keep it**\n  **After:** it stays.\n\n"
+    "🔹 **(b) Change it**\n  **After:** it moves.\n\n➡️ (a).\n"
 )
 
 
@@ -584,19 +584,26 @@ def test_subagent_round_form_a_round_in_form_passes_unstored(working):
         ("**Which page?**:", "**Which page?**", "the title line"),
         ("**Now:** it stands.\n\n", "", "a `**Now:**` line"),
         ("**Options:**\n", "**Options:** two\n", "the `**Options:**` label alone"),
-        ("  - **After:** it stays.\n", "", None),
+        ("  **After:** it stays.\n", "", None),
         ("➡️ (a).\n", "", "a `➡️` line"),
     ],
 )
 def test_subagent_round_form_a_question_out_of_form_is_sent_back(working, old, new, missing):
     faulty = round_of("Which page?").replace(old, new)
-    if missing is None:  # no option keeps an After item
-        faulty = faulty.replace("  - **After:** it moves.\n", "")
-        missing = "an option `🔹` with an `- **After:**` item"
+    if missing is None:  # no option keeps an After line
+        faulty = faulty.replace("  **After:** it moves.\n", "")
+        missing = "an option `🔹` with an `**After:**` line"
     code, err = round_answer(working, faulty)
     assert code == 2
     assert missing in err and "Which page?" in err and "answer with the round whole again" in err
     assert store(working) is None
+
+
+def test_subagent_round_form_after_lines_with_the_dash_pass(working):
+    """Case 744.2: the After line is accepted with or without the list dash."""
+    dashed = round_of("Which page?").replace("  **After:**", "  - **After:**")
+    assert "- **After:** it stays." in dashed
+    assert round_answer(working, dashed) == (0, "")
 
 
 def test_subagent_round_form_the_same_faulty_round_is_sent_back_once(working):

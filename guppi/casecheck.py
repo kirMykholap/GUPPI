@@ -169,7 +169,8 @@ that `is_round` — the one test of a round, which the `Stop` run imports too �
 has each question, from a line that opens with `❓` to the next, judged against the
 template of the skill `grill-me`: the title line by `QUESTION_LINE`, the one pattern every
 check of a round reads; a `**Now:**` line; the `**Options:**` label alone on its line; an
-option `🔹` with a `- **After:**` item; a `➡️` line. A question out of form is a finding
+option `🔹` with an `**After:**` line, with or without a list dash before the label (case
+744.2); a `➡️` line. A question out of form is a finding
 that names its first line and each part it misses and tells the agent to answer with the
 round whole again; a round gets no check of a Case, so its exit 2 carries the findings of its
 form alone (case 607.2). A round
@@ -388,7 +389,8 @@ QUESTION_MARK = "❓"
 NOW_LABEL = "**Now:**"
 OPTIONS_LABEL = "**Options:**"
 OPTION_MARK = "🔹"
-AFTER_ITEM = "- **After:**"
+AFTER_LINE = "**After:**"
+AFTER_LINES = (AFTER_LINE, "- " + AFTER_LINE)  # case 744.2: with or without the list dash
 ARROW = "➡"
 
 
@@ -1244,8 +1246,9 @@ def round_form(text: str) -> list[str]:
     text before the first one, the Context paragraph, is not judged. A question is out of
     form when its first line does not match `QUESTION_LINE`; when it holds no line that opens
     with `**Now:**`, no line that is `**Options:**` alone, or no line that opens with `➡️`;
-    or when no line that opens with `🔹` has a line that opens with `- **After:**` after it,
-    before the next `🔹` or `➡️` line. The lines are read with their indent set aside."""
+    or when no line that opens with `🔹` has a line that opens with `**After:**` or with
+    `- **After:**` after it, before the next `🔹` or `➡️` line (case 744.2). The lines are
+    read with their indent set aside."""
     if not is_round(text):
         return []
     questions: list[list[str]] = []
@@ -1264,7 +1267,7 @@ def round_form(text: str) -> list[str]:
         if OPTIONS_LABEL not in body:
             missing.append(f"the `{OPTIONS_LABEL}` label alone on its line")
         if not option_with_after(body):
-            missing.append(f"an option `{OPTION_MARK}` with an `{AFTER_ITEM}` item")
+            missing.append(f"an option `{OPTION_MARK}` with an `{AFTER_LINE}` line")
         if not any(line.startswith(ARROW) for line in body):
             missing.append("a `➡️` line")
         if missing:
@@ -1273,15 +1276,15 @@ def round_form(text: str) -> list[str]:
 
 
 def option_with_after(lines: list[str]) -> bool:
-    """Whether a line that opens with `🔹` has a line that opens with `- **After:**` after it,
-    before the next `🔹` or `➡️` line (case 601.1)."""
+    """Whether a line that opens with `🔹` has a line that opens with `**After:**` or with
+    `- **After:**` after it, before the next `🔹` or `➡️` line (cases 601.1, 744.2)."""
     in_option = False
     for line in lines:
         if line.startswith(OPTION_MARK):
             in_option = True
         elif line.startswith(ARROW):
             in_option = False
-        elif in_option and line.startswith(AFTER_ITEM):
+        elif in_option and line.startswith(AFTER_LINES):
             return True
     return False
 

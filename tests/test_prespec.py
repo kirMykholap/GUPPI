@@ -1062,6 +1062,71 @@ def test_an_estimate_update_setting_a_method_without_a_form_is_a_finding(tmp_pat
     assert out.splitlines() == [NO_FORM.replace("create estimate-x-again", "update estimate-x")]
 
 
+MOC_NO_FORM = (
+    "case 1: create estimate-x-again: method of a MOC's Estimate names no make target "
+    "and is not a reading"
+)
+
+
+def test_a_moc_estimate_naming_a_test_file_or_pytest_alone_is_a_finding(tmp_path):
+    # case 733: on a MOC only a make target or by hand is a form; one line, in place of no form
+    with_page(tmp_path, "rules", "rule-x", kind="MOC")
+    for method in ("tests/test_x.py, one case per defect", "pytest over the suite"):
+        item = NO_FORM_CREATE.replace("Run it and look", method)
+        code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+        assert (code, out.splitlines()) == (1, [MOC_NO_FORM]), method
+    code, out, _ = check(tmp_path, plan=create_plan(NO_FORM_CREATE), ledger=CREATE_LINE)
+    assert (code, out.splitlines()) == (1, [MOC_NO_FORM])
+    for method in ("make test-x, the pipeline", "read by hand at the Retro of this session"):
+        item = NO_FORM_CREATE.replace("Run it and look", method)
+        assert check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE) == (0, "", ""), method
+
+
+def test_a_moc_estimate_update_judged_by_the_live_target(tmp_path):
+    with_page(tmp_path, "rules", "rule-x", kind="MOC")
+    with_estimate(tmp_path)
+    item = "update:\n  - slug: estimate-x\n    set: {method: pytest over the suite}\n    change: recut\n"
+    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=UPDATE_LINE)
+    assert code == 1
+    assert out.splitlines() == [MOC_NO_FORM.replace("create estimate-x-again", "update estimate-x")]
+    # an update that writes no method gives no line of the form of a MOC's method
+    item = {"slug": "estimate-x", "set": {"status": "pending"}, "change": "recut"}
+    assert prespec.check_form({"1": {"update": [item]}}, tmp_path) == []
+
+
+def test_a_moc_is_judged_as_the_plan_leaves_it(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")  # a live Leaf
+    create = {"slug": "estimate-x-again", "ref": "rule-x", "method": "pytest over the suite"}
+    leaf = {"1": {"create": [create]}}
+    assert prespec.check_form(leaf, tmp_path) == []
+    turned = {
+        "1": {"create": [create]},
+        "2": {"update": [{"slug": "rule-x", "set": {"kind": "MOC"}}]},
+    }
+    assert prespec.check_form(turned, tmp_path) == [
+        "case 1: create estimate-x-again: " + prespec.MOC_NO_FORM
+    ]
+    made = {"1": {"create": [{"slug": "rule-y", "kind": "MOC"}, dict(create, ref="rule-y")]}}
+    findings = prespec.check_form(made, tmp_path)
+    assert "case 1: create estimate-x-again: " + prespec.MOC_NO_FORM in findings
+    assert prespec.plan_kind(made, "rule-y", tmp_path) == "MOC"
+    assert prespec.plan_kind(leaf, "rule-x", tmp_path) == "Leaf"
+
+
+def test_the_moc_form_is_one_predicate_lint_and_prespec_share(tmp_path):
+    # case 733: lint's check_method and pre-spec answer alike by names_a_moc_form
+    from guppi import lint
+
+    assert prespec.names_a_moc_form is lint.names_a_moc_form
+    for method, form in (
+        ("make test-x", True),
+        ("read by hand", True),
+        ("tests/test_x.py", False),
+        ("pytest over the suite", False),
+    ):
+        assert lint.names_a_moc_form(method) is form, method
+
+
 MOMENT = (
     "method ties its reading by hand to the first moment after the render or the change — "
     "the method names the kind of its moment"
@@ -2668,3 +2733,135 @@ def test_defers_a_page_only_defer_items_give_none(tmp_path):
         tmp_path, plan=plan, ledger=LINE + DEFER_LINE, frontier=FRONTIER_WITH_DEFER
     )
     assert (code, out) == (0, "")
+
+
+# --- a page the cascade archives (case 739.1) --------------------------------------------
+# `estimate-prespec-notes-a-page-the-cascade-archives`
+
+
+def with_wiki_page(project_dir, category, slug, status, children=()):
+    folder = project_dir / "vault" / "wiki" / category
+    folder.mkdir(parents=True, exist_ok=True)
+    text = f"---\ntype: {category[:-1]}\nstatus: {status}\n"
+    if children:
+        text += "children: [" + ", ".join(children) + "]\n"
+    text += "---\n\n## Root cause\n\nx\n"
+    (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+def with_cluster(project_dir, insight="open", lessons=("lesson-a", "lesson-b")):
+    for slug in lessons:
+        with_wiki_page(project_dir, "lessons", slug, "clustered")
+    with_wiki_page(project_dir, "insights", "insight-i", insight, lessons)
+
+
+def archives(case, slug, by):
+    return (
+        f"note: case {case}: {slug}: updated while the cascade archives it after case {by}: "
+        "drop the update, or say in its context why it stands"
+    )
+
+
+def update(slug, **given):
+    item = {"slug": slug, "change": "one line"}
+    if given:
+        item["set"] = given
+    return {"update": [item]}
+
+
+CASCADE_PLAN = (
+    PLAN.replace("rule-x", "lesson-a")
+    + """
+## Case 2 — two
+
+> **context:**
+> Something.
+
+```then
+update:
+  - slug: insight-i
+    set:
+      status: actioned
+    change: one line
+```
+
+```tasks
+- [ ] guppi/y.py: the change
+```
+"""
+)
+CASCADE_LEDGER = (
+    "- 16:00:00 decision[case 1][update][lesson-a]{ref:lesson-a}\n"
+    "- 16:00:01 decision[case 2][update][insight-i]{ref:insight-i}\n"
+)
+CASCADE_FRONTIER = CLEAN_FRONTIER + "- [x] F2 — the other item · owner · case 2\n"
+
+
+def test_cascade_an_actioned_insight_notes_an_update_of_its_lesson_and_exits_0(tmp_path):
+    with_cluster(tmp_path)
+    code, out, _ = check(
+        tmp_path, plan=CASCADE_PLAN, ledger=CASCADE_LEDGER, frontier=CASCADE_FRONTIER
+    )
+    assert (code, out) == (0, archives(1, "lesson-a", 2) + "\n")
+
+
+def test_cascade_one_case_and_two_sub_cases_of_one_case_give_the_note(tmp_path):
+    with_cluster(tmp_path)
+    one = {
+        "1": {
+            "update": update("lesson-a")["update"]
+            + update("insight-i", status="actioned")["update"]
+        }
+    }
+    assert prespec.cascade_notes(one, [], tmp_path) == [archives(1, "lesson-a", 1)]
+    subs = {"1": {}, "1.1": update("lesson-a"), "1.2": update("insight-i", status="actioned")}
+    assert prespec.cascade_notes(subs, [], tmp_path) == [archives("1.1", "lesson-a", "1.2")]
+
+
+def test_cascade_an_open_insight_left_with_no_live_child_gives_the_note(tmp_path):
+    with_cluster(tmp_path, lessons=("lesson-a",))
+    blocks = {"1": {"delete": [{"slug": "lesson-a"}]}, "2": update("insight-i", severity=0)}
+    assert prespec.cascade_notes(blocks, [], tmp_path) == [archives(2, "insight-i", 1)]
+
+
+def test_cascade_a_superseded_decision_page_gives_the_note(tmp_path):
+    with_wiki_page(tmp_path, "decisions", "decision-case-5", "current")
+    with_wiki_page(tmp_path, "decisions", "decision-case-5.1", "current")
+    records = [{"case": "7", "kind": "update", "slug": "rule-x", "supersedes": ["5"]}]
+    blocks = {"1": update("decision-case-5"), "2": update("decision-case-5.1")}
+    assert prespec.cascade_notes(blocks, records, tmp_path) == [
+        archives(1, "decision-case-5", 7),
+        archives(2, "decision-case-5.1", 7),
+    ]
+
+
+def test_cascade_a_create_delete_or_defer_of_such_a_page_gives_none(tmp_path):
+    with_cluster(tmp_path)
+    actioned = update("insight-i", status="actioned")
+    for block in (
+        {"create": [{"slug": "lesson-a"}]},
+        {"delete": [{"slug": "lesson-a"}]},
+        {"defer": [{"slug": "lesson-a", "type": "lesson"}]},
+    ):
+        assert prespec.cascade_notes({"1": block, "2": actioned}, [], tmp_path) == []
+
+
+def test_cascade_a_move_between_built_and_draft_gives_none(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_estimate(tmp_path)
+    blocks = {"1": update("estimate-x", status="pending"), "2": update("rule-x")}
+    assert prespec.cascade_notes(blocks, [], tmp_path) == []
+
+
+def test_cascade_a_page_archived_before_the_plan_gives_none(tmp_path):
+    with_cluster(tmp_path, insight="actioned")  # the cascade archives its lessons anyway
+    assert prespec.cascade_notes({"1": update("lesson-a")}, [], tmp_path) == []
+
+
+def test_cascade_judged_keeps_a_note_that_names_a_judged_case_either_way(tmp_path):
+    with_cluster(tmp_path)
+    blocks = {"1": update("lesson-a"), "2": update("insight-i", status="actioned")}
+    note = [archives(1, "lesson-a", 2)]
+    assert prespec.cascade_notes(blocks, [], tmp_path, judged={"1"}) == note
+    assert prespec.cascade_notes(blocks, [], tmp_path, judged={"2"}) == note
+    assert prespec.cascade_notes(blocks, [], tmp_path, judged={"3"}) == []

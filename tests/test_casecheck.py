@@ -2491,3 +2491,112 @@ def test_unread_sentence_no_transcript_judges_no_read(working):
     later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
     changed = ANSWER.replace("Context.", "Context again.")
     assert answer(working, changed, agent_transcript_path=missing, now=later) == (0, "")
+
+
+# --- a page the cascade archives (case 739.2) ---------------------------------------------
+# `estimate-case-check-notes-a-page-the-cascade-archives`
+
+UPDATE_RULE_X = (
+    "> - [ ] update `rule-x` — one `replace` pair\n"
+    ">   - old: `` the `old` text ``\n"
+    ">   - new: `the new text`\n"
+    ">   - change: `the text changed (case 7)`\n"
+)
+
+
+def cascading(case, *sets):
+    """ANSWER as Case `case`, its `update` of `rule-x` replaced by one `update` per
+    `(slug, status)` of `sets`, each a `set` of the status."""
+    tasks = "".join(
+        f"> - [ ] update `{slug}` — one `set`\n>   - set: `{{status: {status}}}`\n"
+        f">   - change: `{slug} set (case 7)`\n"
+        for slug, status in sets
+    )
+    given = "".join(f"> **＋** `{slug}` — the page.\n" for slug, _ in sets)
+    lines = "".join(f"> - decision[case 7][update][{slug}]{{ref:{slug}}}\n" for slug, _ in sets)
+    text = (
+        ANSWER.replace(UPDATE_RULE_X, tasks)
+        .replace("> **＋** `estimate-x-works`", given + "> **＋** `estimate-x-works`")
+        .replace("> - decision[case 7][update][rule-x]{ref:rule-x}\n", lines)
+    )
+    return (
+        text.replace("## Case 7 — example", f"## Case {case} — example")
+        .replace("case 7", f"case {case}")
+        .replace("estimate-x-works", f"estimate-x-works-{case}")
+    )
+
+
+def planned_items(case, kind, slug, status=None):
+    """A Case of the plan, in the Spec form, with one item of `kind` on `slug`."""
+    body = f"- slug: {slug}\n" + (f"  set:\n    status: {status}\n" if status else "")
+    if kind == "defer":
+        body += "  type: lesson\n"
+    return f"## Case {case} — planned\n\n```then\n{kind}:\n{body}```\n\n"
+
+
+def a_cluster(project):
+    wiki = project / "vault" / "wiki"
+    for category, slug, head in (
+        ("lessons", "lesson-a", "status: clustered\n"),
+        ("lessons", "lesson-b", "status: clustered\n"),
+        ("insights", "insight-i", "status: open\nchildren: [lesson-a, lesson-b]\n"),
+    ):
+        (wiki / category).mkdir(parents=True, exist_ok=True)
+        page = f"---\ntype: {category[:-1]}\n{head}---\n\n## Root cause\n\nx\n"
+        (wiki / category / f"{slug}.md").write_text(page, encoding="utf-8")
+
+
+def archives_note(case, slug, by):
+    return f"note: case {case}: {slug}: updated while the cascade archives it after case {by}"
+
+
+def test_cascade_an_update_of_a_lesson_another_case_archives_is_noted_once(working):
+    a_cluster(working)
+    plan_with(working, planned_items(5, "update", "insight-i", "actioned"))
+    code, err = answer(working, cascading(7, ("lesson-a", "clustered")))
+    assert code == 2 and archives_note(7, "lesson-a", 5) in err
+    assert "drop the update, or say in its context why it stands" in err
+    assert store(working)["7"]["findings"] == []  # the note is no finding
+    assert archives_note(7, "lesson-a", 5) in store(working)["7"]["notes"][0]
+    assert answer(working, cascading(7, ("lesson-a", "clustered"))) == (0, "")  # sent once
+
+
+def test_cascade_an_update_of_a_lesson_a_stored_case_archives_is_noted(working):
+    a_cluster(working)
+    assert answer(working, cascading(5, ("insight-i", "actioned"))) == (0, "")  # stored
+    code, err = answer(working, cascading(7, ("lesson-a", "clustered")))
+    assert code == 2 and archives_note(7, "lesson-a", 5) in err
+
+
+def test_cascade_an_item_of_the_file_that_archives_a_page_another_case_updates_is_noted(working):
+    a_cluster(working)
+    plan_with(working, planned_items(5, "update", "lesson-a", "clustered"))
+    code, err = answer(working, cascading(7, ("insight-i", "actioned")))
+    assert code == 2 and archives_note(5, "lesson-a", 7) in err
+    assert archives_note(5, "lesson-a", 7) in store(working)["7"]["notes"][0]  # under 7
+    assert answer(working, cascading(7, ("insight-i", "actioned"))) == (0, "")
+
+
+def test_cascade_both_inside_the_file_give_one_note(working):
+    a_cluster(working)
+    text = cascading(7, ("lesson-a", "clustered"), ("insight-i", "actioned"))
+    code, err = answer(working, text)
+    assert code == 2 and err.count(archives_note(7, "lesson-a", 7)) == 1
+    assert answer(working, text) == (0, "")
+
+
+def test_cascade_two_other_cases_give_the_file_none(working):
+    a_cluster(working)
+    plan_with(
+        working,
+        planned_items(5, "update", "insight-i", "actioned")
+        + planned_items(6, "update", "lesson-a", "clustered"),
+    )
+    assert answer(working, ANSWER) == (0, "")
+
+
+@pytest.mark.parametrize("kind", ["create", "delete", "defer"])
+def test_cascade_a_create_delete_or_defer_gives_none(working, kind):
+    a_cluster(working)
+    plan_with(working, planned_items(5, kind, "lesson-a"))
+    assert answer(working, cascading(7, ("insight-i", "actioned"))) == (0, "")

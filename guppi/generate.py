@@ -148,7 +148,10 @@ archive, a child with no page counted live (case 110); an `open` Insight at 0 be
 `archived`, an `actioned` one stays (case 104.3); the `rules` of every live Entity is
 recounted — the live rules whose `applies_to` names it, in slug order — written when the
 list is not empty or the field already stands, History `rules: [...] · cascade` on a change
-(case 305.3). No section is derived by the cascade.
+(case 305.3). No section is derived by the cascade. The pages the three archive steps take
+are judged by one function, `archived_by_cascade`, from the status of each page by slug and
+the `children` of each Insight; `cascade` calls it, and the cascade notes of `/pre-spec`
+and of the check of the file of a Case import it (case 739.1).
 
 No line of the sprint page moves by the script: a milestone item leaves its milestone
 only by an `update` of a Case (case 539.1).
@@ -553,6 +556,38 @@ def archived_paths(project_dir: Path, slug: str) -> list[Path]:
         for p in archive.rglob(f"{slug}.md")
         if p.parent.name in CATEGORIES and "raw" not in p.relative_to(archive).parts[:-1]
     )
+
+
+DECISION_PREFIX = "decision-"
+# the status `cascade` gives `archived_by_cascade` for a `clustered` lesson it cannot write —
+# unreadable, or read from the archive: not archived, and live (case 104.2)
+KEPT_CLUSTERED = "clustered, not written"
+
+
+def archived_by_cascade(statuses: dict[str, str], children: dict[str, list[str]]) -> set[str]:
+    """The slugs the archive steps of the cascade archive (cases 104.1–104.3), given the
+    status of each page by slug and the `children` of each Insight by its slug: a Decision
+    page standing `superseded`; a lesson standing `clustered` among the children of an
+    Insight standing `actioned`; and an Insight standing `open` whose every child stands
+    `archived` once the first two steps apply, one with no children included. A child with
+    no status — no page anywhere — is live. `cascade` calls it, and `/pre-spec` and the
+    check of the file of a Case judge the plan by it (case 739.1)."""
+    gone = {
+        slug
+        for slug, status in statuses.items()
+        if slug.startswith(DECISION_PREFIX) and status == "superseded"
+    }
+    for insight, kids in children.items():
+        if statuses.get(insight) == "actioned":
+            gone |= {kid for kid in kids if statuses.get(kid) == "clustered"}
+
+    def archived(slug: str) -> bool:
+        return slug in gone or statuses.get(slug) == "archived"
+
+    for insight, kids in children.items():
+        if statuses.get(insight) == "open" and all(archived(kid) for kid in kids):
+            gone.add(insight)
+    return gone
 
 
 # --- the Frontiers, read by the count of `guppi backlog` ---------------------------------------
@@ -1264,53 +1299,57 @@ class Vault:
                     self.history(page, f"status: {before} → {after}", "cascade")
                     self.save(page)
         self.recount_rules()
-        # 104.1: a superseded decision no longer describes the present
+        decisions: dict[str, Page] = {}
         for path in sorted((self.wiki / "decisions").glob("*.md")):
-            if path.stem == "schema":
-                continue
-            page = read_page(path, "decisions")
-            if page.error or str(page.props.get("status")) != "superseded":
-                continue
-            page.props["status"] = "archived"
-            self.history(page, "archived · superseded", None)
-            self.save(page)
-        lessons = {}
+            if path.stem != "schema":
+                page = read_page(path, "decisions")
+                if not page.error:
+                    decisions[path.stem] = page
+        lessons: dict[str, Page] = {}
         for path in (self.wiki / "lessons").glob("*.md"):
             if path.stem != "schema":
                 lessons[path.stem] = read_page(path, "lessons")
-
-        def child_status(slug: str) -> str:
-            """`wiki/lessons/` first, then the archive (case 110); no page anywhere is
-            not `archived`, so the child stays live and lint names the missing page."""
-            child = lessons.get(slug)
-            if child is None:
-                for path in archived_paths(self.project_dir, slug):
-                    child = read_page(path, path.parent.name)
-                    break
-            return str(child.props.get("status")) if child is not None else "none"
-
+        insights: dict[str, Page] = {}
         for path in sorted((self.wiki / "insights").glob("*.md")):
-            if path.stem == "schema":
-                continue
-            page = read_page(path, "insights")
-            if page.error:
-                continue
+            if path.stem != "schema":
+                page = read_page(path, "insights")
+                if not page.error:
+                    insights[path.stem] = page
+        statuses = {slug: str(page.props.get("status")) for slug, page in decisions.items()}
+        for slug, page in lessons.items():
             status = str(page.props.get("status"))
-            if status == "actioned":  # 104.2: its lessons did their work
-                for slug in as_list(page.props.get("children")):
-                    child = lessons.get(slug)
-                    if child is None or child.error:
-                        continue
-                    if str(child.props.get("status")) == "clustered":
-                        child.props["status"] = "archived"
-                        self.history(child, "archived · insight actioned", None)
-                        self.save(child)
-            live = [s for s in as_list(page.props.get("children")) if child_status(s) != "archived"]
+            statuses[slug] = KEPT_CLUSTERED if page.error and status == "clustered" else status
+        children = {slug: as_list(page.props.get("children")) for slug, page in insights.items()}
+        for slug, page in insights.items():
+            statuses[slug] = str(page.props.get("status"))
+            for kid in children[slug]:
+                # `wiki/lessons/` first, then the archive (case 110); no page anywhere has no
+                # status, so the child stays live and lint names the missing page
+                if kid not in statuses:
+                    for path in archived_paths(self.project_dir, kid):
+                        status = str(read_page(path, path.parent.name).props.get("status"))
+                        statuses[kid] = KEPT_CLUSTERED if status == "clustered" else status
+                        break
+        gone = archived_by_cascade(statuses, children)
+        # 104.1: a superseded decision no longer describes the present
+        for slug, page in decisions.items():
+            if slug in gone:
+                page.props["status"] = "archived"
+                self.history(page, "archived · superseded", None)
+                self.save(page)
+        for slug, page in insights.items():
+            for kid in children[slug]:  # 104.2: the lessons of an actioned Insight did their work
+                if kid in gone and kid in lessons:
+                    child = lessons[kid]
+                    child.props["status"] = "archived"
+                    self.history(child, "archived · insight actioned", None)
+                    self.save(child)
+            live = [s for s in children[slug] if s not in gone and statuses.get(s) != "archived"]
             changed = False
             if page.props.get("severity") != len(live):
                 page.props["severity"] = len(live)
                 changed = True
-            if status == "open" and not live:  # 104.3: its evidence is withdrawn
+            if slug in gone:  # 104.3: its evidence is withdrawn
                 page.props["status"] = "archived"
                 self.history(page, "archived · no live child", None)
                 changed = True

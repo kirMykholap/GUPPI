@@ -81,7 +81,10 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   an Estimate, or an `update` carrying `set: {method: …}`, whose `method` names none of the
   four forms lint classifies — by `lint.names_a_form`, the one predicate, the existence of
   the file and of the target left to lint — and a `create` with no `method` at all (case
-  331); and one whose `method` ties its reading by hand to the first moment after the
+  331); on the Estimate of a MOC as the plan leaves it — the live page, or a `create` or an
+  `update` of the plan that writes `kind: MOC` — one that names neither a `make <target>`
+  nor `by hand`, by `lint.names_a_moc_form`, which `check_method` of lint calls too, in
+  place of the line of no form, the Makefile and the children left to lint (case 733); and one whose `method` ties its reading by hand to the first moment after the
   render or the change — by `lint.tied_to_a_one_off_moment`, the one predicate of the class
   `moment` of lint (case 613.1); and one whose `method` waits for another session — a part
   that names a later session, the next session, a session after another, the librarian or
@@ -164,7 +167,15 @@ later sibling. And, by `defer_notes`, one note per page and pair of Cases where 
 `update` or `delete` item of one Case and a `defer` item of another top-level Case name the
 same page, a short Case under `## Deferred` included; a change and a defer inside one
 top-level Case give none (case 726.1). `plan_findings` alone prints it: the check of the
-answer of `case-guppi` imports `promise_notes`, not this one.
+answer of `case-guppi` imports `promise_notes`, not this one. And, by `cascade_notes`, one
+note per `update` item of a page that the cascade of `guppi generate` archives once the
+items of the plan and the `{supersedes:case N}` marks of the window apply, and would not
+archive before them — a `clustered` lesson of an Insight set `actioned`, an `open` Insight
+left with no live child, the Decision page of a superseded Case — judged by
+`generate.archived_by_cascade`, the function the cascade calls; the note names the Case
+whose item or mark sets off the archive, which may be the Case of the `update` itself or a
+sibling sub-case (case 739.1). The check of the file of a Case in `guppi/casecheck.py`
+imports it.
 
 The sentence of a pair (cases 711.2, 711.3). `check_pairs` records the span each pair writes
 into a section, with its Case. Given the Cases of an answer of `case-guppi` as `own`, it
@@ -187,6 +198,7 @@ from guppi import config, ratified
 from guppi.box import conserved_spec_named
 from guppi.event import project_root, read_payload, session_stamp
 from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 360)
+    DECISION_PREFIX,
     FRONTIER_LINE,
     FRONTIER_SEPARATOR,
     INITIAL_STATUS,
@@ -194,6 +206,7 @@ from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 3
     RESULT,
     SINGULAR,
     Vault,
+    archived_by_cascade,
     as_list,
     indent_added_twice,
     replace_hits,
@@ -216,6 +229,7 @@ from guppi.lint import (
     load_schema,
     method_of,
     names_a_form,
+    names_a_moc_form,
     tied_to_a_one_off_moment,
     unmet_conditions,
     waits_for_another_session,
@@ -818,6 +832,7 @@ def live_page(project_dir: Path, slug: str) -> bool:
 
 
 NO_FORM = 'method names no form — a make target, pytest, a tests/ file or "by hand"'
+MOC_NO_FORM = "method of a MOC's Estimate names no make target and is not a reading"
 MOMENT = (
     "method ties its reading by hand to the first moment after the render or the change — "
     "the method names the kind of its moment"
@@ -1152,8 +1167,12 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     is left to lint, since the test file is written in Work Mode (case 331). Such a `method`
     that ties its reading by hand to the first moment after the render or the change, by
     `lint.tied_to_a_one_off_moment`, is a finding as well (case 613.1), and so is one that
-    waits for another session, by `lint.waits_for_another_session` (case 670.4). The branch
-    of a MOC stays with lint."""
+    waits for another session, by `lint.waits_for_another_session` (case 670.4). When the
+    target of the Estimate is a MOC as the plan leaves it — by `plan_kind` — a `method` that
+    names neither a `make <target>` nor "by hand", by `lint.names_a_moc_form`, the one
+    predicate `check_method` of lint calls too, is a finding in place of the line of no form;
+    whether the Makefile holds the target and whether the children's Estimates are readings
+    stays with lint (case 733)."""
     findings: list[str] = []
     created = {  # the rules and entities the plan itself creates (case 221)
         str(item.get("slug"))
@@ -1161,6 +1180,12 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
         for item in block.get("create") or []
         if isinstance(item, dict) and category_of(str(item.get("slug") or "")) in LEAF_CATEGORIES
     }
+
+    def form_finding(target: str, method: str) -> str | None:
+        if plan_kind(blocks, target, project_dir) == "MOC":  # case 733
+            return None if names_a_moc_form(method) else MOC_NO_FORM
+        return None if names_a_form(method) else NO_FORM  # case 331
+
     for case, block in blocks.items():
         promises = 0
         for item in block.get("create") or []:
@@ -1173,8 +1198,8 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 live_page(project_dir, ref) or ref in created
             ):
                 findings.append(f"case {case}: create {slug}: ref {ref or '?'} names no live page")
-            if not names_a_form(str(item.get("method") or "")):  # case 331
-                findings.append(f"case {case}: create {slug}: {NO_FORM}")
+            if no_form := form_finding(ref, str(item.get("method") or "")):
+                findings.append(f"case {case}: create {slug}: {no_form}")
             if tied_to_a_one_off_moment(str(item.get("method") or "")):  # case 613.1
                 findings.append(f"case {case}: create {slug}: {MOMENT}")
             if waits_for_another_session(str(item.get("method") or "")):  # case 670.4
@@ -1189,8 +1214,10 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
             if not live_page(project_dir, slug):
                 findings.append(f"case {case}: update {slug}: no such Estimate page")
             method = set_fields.get("method") if isinstance(set_fields, dict) else None
-            if method is not None and not names_a_form(str(method)):  # case 331
-                findings.append(f"case {case}: update {slug}: {NO_FORM}")
+            if method is not None and (
+                no_form := form_finding(estimate_target(item, project_dir), str(method))
+            ):
+                findings.append(f"case {case}: update {slug}: {no_form}")
             if method is not None and tied_to_a_one_off_moment(str(method)):  # case 613.1
                 findings.append(f"case {case}: update {slug}: {MOMENT}")
             if method is not None and waits_for_another_session(str(method)):  # case 670.4
@@ -1200,6 +1227,40 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
         if promises >= 2:
             findings.append(f"case {case}: two promises in one Case — split it")
     return findings
+
+
+def plan_kind(blocks: dict, slug: str, project_dir: Path) -> str:
+    """Case 733: the `kind` of a rule or an entity as the plan leaves it — the last `create`
+    of the plan that writes `kind`, or `update` whose `set` gives it, else the `kind` of the
+    live page; empty when none gives one."""
+    kind = ""
+    for block in blocks.values():
+        for item in block.get("create") or []:
+            if isinstance(item, dict) and item.get("slug") == slug and item.get("kind"):
+                kind = str(item["kind"])
+        for item in block.get("update") or []:
+            sets = item.get("set") if isinstance(item, dict) else None
+            if item.get("slug") == slug and isinstance(sets, dict) and sets.get("kind"):
+                kind = str(sets["kind"])
+    if kind:
+        return kind
+    category = category_of(slug)
+    path = wiki_root(project_dir) / category / f"{slug}.md"
+    if category not in LEAF_CATEGORIES or not path.is_file():
+        return ""
+    return str(read_page(path, category).props.get("kind") or "")
+
+
+def estimate_target(item: dict, project_dir: Path) -> str:
+    """Case 733: the target of the Estimate an `update` item names — the `target` its `set`
+    gives, else the `target` of the live page; empty when neither gives one."""
+    sets = item.get("set") if isinstance(item.get("set"), dict) else {}
+    if sets.get("target"):
+        return str(sets["target"])
+    path = wiki_root(project_dir) / "estimates" / f"{item.get('slug')}.md"
+    if not path.is_file():
+        return ""
+    return str(read_page(path, "estimates").props.get("target") or "")
 
 
 def kept_method_waits(item: dict, project_dir: Path) -> bool:
@@ -1538,6 +1599,103 @@ def defer_notes(cases: dict) -> list[str]:
     return notes
 
 
+def cascade_notes(
+    blocks: dict[str, dict],
+    records: list[dict],
+    project_dir: Path,
+    judged: set[str] | None = None,
+) -> list[str]:
+    """739.1: one note per `update` item of a page that the cascade of `generate` archives
+    once the items of `blocks`, in their order, and the `{supersedes:case N}` marks of
+    `records` apply, and would not archive before them — judged by
+    `generate.archived_by_cascade`, the one function the cascade calls: a lesson standing
+    `clustered` among the children of an Insight an item sets `actioned`, an `open` Insight
+    whose last live child an item or the cascade archives, and the Decision page of a Case a
+    mark names, or of one of its sub-cases. An item reads `set: {status: …}` and `set:
+    {children: …}` of an `update`, and a `delete` sets `archived`. The note names the Case of
+    the `update`, the page and the Case whose item or mark sets off the archive; an `update`
+    and that item in one Case, or in two sub-cases of one, give it too. A `create`, a
+    `delete`, a `defer` and a move between `built` and `draft` give none. `judged`: the Cases
+    a note must name, as the Case of the `update` or as the Case that sets off the archive,
+    every Case of `blocks` when None — the check of the file of a Case passes the Cases of
+    the file, so two other Cases give it none. A note, not a finding."""
+    wiki = wiki_root(project_dir)
+    statuses: dict[str, str] = {}
+    children: dict[str, list[str]] = {}
+    for page in read_category(wiki, "lessons"):
+        statuses[page.slug] = str(page.props.get("status"))
+    for page in read_category(wiki, "insights"):
+        if not page.error:
+            statuses[page.slug] = str(page.props.get("status"))
+            children[page.slug] = as_list(page.props.get("children"))
+    updates = [
+        (case, str(item["slug"]))
+        for case, block in blocks.items()
+        for item in block.get("update") or []
+        if isinstance(item, dict) and item.get("slug")
+    ]
+    marks = superseded_in_window(records)
+    decisions = {slug for _, slug in updates if slug.startswith(DECISION_PREFIX)}
+    decisions |= {f"{DECISION_PREFIX}case-{n}" for n in marks}
+    for slug in decisions:
+        path = wiki / "decisions" / f"{slug}.md"
+        if path.exists():
+            statuses[slug] = str(read_page(path, "decisions").props.get("status"))
+    before = archived_by_cascade(statuses, children)
+    cause: dict[str, str] = {}
+    for case, block in blocks.items():
+        for kind in ("update", "delete"):
+            for item in block.get(kind) or []:
+                if not isinstance(item, dict) or not item.get("slug"):
+                    continue
+                slug = str(item["slug"])
+                given = item.get("set") if kind == "update" else {"status": "archived"}
+                if not isinstance(given, dict):
+                    continue
+                if "status" in given:
+                    statuses[slug] = str(given["status"])
+                    cause[slug] = case
+                if "children" in given and slug in children:
+                    children[slug] = as_list(given["children"])
+                    cause[slug] = case
+    for slug in decisions:
+        number = slug.removeprefix(f"{DECISION_PREFIX}case-")
+        by = retired_by(number, marks)
+        if by is not None:
+            statuses[slug] = "superseded"
+            cause[slug] = by
+    after = archived_by_cascade(statuses, children) - before
+
+    def trigger(slug: str) -> str | None:
+        """The Case whose item or mark sets off the archive of `slug`."""
+        if slug.startswith(DECISION_PREFIX):  # the Case of the mark
+            return cause.get(slug)
+        for insight, kids in children.items():  # a lesson: the Case that actions its Insight
+            if slug in kids and statuses.get(insight) == "actioned" and insight in cause:
+                return cause[insight]
+        for kid in children.get(slug, []):  # an Insight: the Case that archives a child
+            if kid in cause and statuses.get(kid) == "archived":
+                return cause[kid]
+            if kid in after and kid != slug:
+                found = trigger(kid)
+                if found is not None:
+                    return found
+        return cause.get(slug)  # an Insight whose `children` an item rewrites
+
+    notes: list[str] = []
+    for case, slug in updates:
+        by = trigger(slug) if slug in after else None
+        if by is None or (judged is not None and not {case, by} & judged):
+            continue
+        note = (
+            f"note: case {case}: {slug}: updated while the cascade archives it after case {by}: "
+            "drop the update, or say in its context why it stands"
+        )
+        if note not in notes:
+            notes.append(note)
+    return notes
+
+
 def promise_notes(plan: str, project_dir: Path) -> list[str]:
     """The notes of the promise lines of the plan's Cases (cases 472.1, 472.2) — printed by
     `--check`, and sent back once by the check of the answer of `case-guppi`, which imports
@@ -1671,10 +1829,13 @@ def plan_findings(
     relative = folder.relative_to(project_dir).as_posix() + "/frontier.md"
     findings = judge(plan, project_dir, records, lines, (folder / "frontier.md", relative))
     findings += check_untranslated(plan, project_dir)
+    cases = split_cases(plan)
+    blocks = {case: then_blocks(case_lines)[0] for case, case_lines in cases.items()}
     notes = (
-        chain_notes(split_cases(plan))
+        chain_notes(cases)
         + promise_notes(plan, project_dir)
-        + defer_notes(split_cases(plan))
+        + defer_notes(cases)
+        + cascade_notes(blocks, records, project_dir)
     )
     return findings, notes
 

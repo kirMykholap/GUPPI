@@ -93,7 +93,13 @@ are those of `prespec.promise_notes` on the answer — a line of a Criterion rep
 the new one does not carry, a `then` line shared by two siblings, named on the later (cases
 472.1, 472.2): a note not yet held for its Case id is stored under `notes`, apart from the
 findings, and sent back once by exit 2 beside any findings; a note is no finding, and `stop`
-refuses no showing for it.
+refuses no showing for it. Beside them stand the cascade notes of `prespec.cascade_notes`,
+imported (case 739.2): an `update` of a page that the cascade of `guppi generate` archives
+after an item of the answer or of another Case of the session, by `other_blocks` — the other
+Cases first, the answer last, with the `{supersedes:case N}` marks of the session's ledger
+and of the answer — a note only when it names a Case of the answer, as the Case of the
+`update` or as the Case that sets off the archive, and stored under that Case; two other
+Cases give the answer none.
 
 The tags (case 703.1). A tag in the `tags` of a `create`, in `tags` under the `set` of an
 `update`, or in a `{tags:...}` block of a decision line of the answer is a finding of its Case
@@ -340,6 +346,7 @@ from guppi.prespec import (
     BACKLOG_SOURCE,
     FINDING_CASE,
     NOTE_CASE,
+    cascade_notes,
     check_pairs,
     check_same_target,
     check_untranslated,
@@ -369,6 +376,8 @@ RULE = "---"  # the horizontal rule after which the agent's own text stands
 # The parts of a shown Case compared with its stored answer, each only when the reply shows
 # it (452.2); the heading name and the prose — `context`, `problem`, `recommend` — are free.
 MECHANICAL = ("given", "when", "then", "tasks", "ratification")
+# the Case that sets off the archive, at the end of a cascade note of `prespec` (case 739.2)
+CASCADE_BY = re.compile(r"archives it after case (\S+?): ")
 # The title line of a question of a round, as the template of the skill `grill-me` writes it,
 # and the title of an item of `recommend` (case 544.3).
 QUESTION_LINE = re.compile(r"^❓ \*\*Q\d+\*\* - \*\*(.+?)\*\*:")
@@ -1146,10 +1155,16 @@ def check_answer(
     ):
         family = [c for c in found if c == top or c.startswith(f"{top}.")]
         found[family[0] if family else next(iter(cases))].append(finding)
+    # case 739.2: an update of a page the cascade archives, the other Cases first
+    cascade = cascade_notes(
+        {**others, **answer}, ledger_records(list(window)) + records, project_dir, set(answer)
+    )
     notes: dict[str, list[str]] = {case: [] for case in cases}
-    for note in promise_notes(spec_text, project_dir) + pair_notes:
+    for note in promise_notes(spec_text, project_dir) + pair_notes + cascade:
         match = NOTE_CASE.match(note)
         case = match.group(1) if match else ""
+        if case not in notes and (by := CASCADE_BY.search(note)) and by.group(1) in notes:
+            case = by.group(1)  # the Case of the file whose item sets off the archive
         if case in notes or not match:
             notes[case if case in notes else next(iter(cases))].append(note)
     return found, notes

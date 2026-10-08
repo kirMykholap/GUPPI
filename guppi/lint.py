@@ -42,7 +42,9 @@ Estimates of a child with `enforcement: render` are not counted, since that chil
 is part of the parent's file and its Estimate promises the child's own behaviour, case 459;
 for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
 the one spelling since case 330.1; the four forms are one predicate, `names_a_form`, which
-`pre-spec` calls over the plan, case 331), `moment` (an Estimate whose `method` ties a
+`pre-spec` calls over the plan, case 331, and the two forms of a MOC's Estimate, a `make
+<target>` or a reading, are one predicate too, `names_a_moc_form`, which `pre-spec` calls
+as well, case 733), `moment` (an Estimate whose `method` ties a
 reading by hand to the first of something after the render or after the change — a part of
 the `method` between two `;` that holds `by hand` and the first of something after the
 render or the change; a reading names the kind of its moment, and any such moment counts,
@@ -580,6 +582,15 @@ def names_a_form(method: str) -> bool:
     )
 
 
+def names_a_moc_form(method: str) -> bool:
+    """Whether the `method` of a MOC's Estimate names one of the two forms a MOC takes: a
+    `make <target>` or the words `by hand`; a `tests/` path or the word `pytest` alone is
+    no form on a MOC. The one predicate of this form, which `check_method` and `pre-spec`
+    call; whether the Makefile holds the target and whether the children's Estimates are
+    readings is judged by `check_method` alone (case 733)."""
+    return bool(MAKE_TARGET.search(method) or is_reading(method))
+
+
 FIRST_AFTER = re.compile(r"\bfirst\b.*?\bafter the (?:render|change)\b")
 CLAUSE = ";"  # a `method` joins its parts by `;`, such as a test run and a reading
 
@@ -700,8 +711,9 @@ def sibling_names_a_target(page: Page, target: Page, by_slug: dict[str, Page], t
 
 def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> list[Finding]:
     """The `method` field of an Estimate (case 506.3):
-    for a MOC's Estimate a `make <target>` of the Makefile passes whatever else it says,
-    without one "by hand" passes when every counted Estimate of the children is a reading
+    for a MOC's Estimate one that names neither a `make <target>` nor "by hand", by
+    `names_a_moc_form`, is a finding (case 733), a `make <target>` of the Makefile passes
+    whatever else it says, without one "by hand" passes when every counted Estimate of the children is a reading
     (case 112.1) or when a sibling Estimate of the MOC names a `make <target>` of the Makefile
     (case 212); on a MOC with `render_mode: full` the Estimates of a child with `enforcement:
     render` are not counted (`children_estimates`, case 459);
@@ -717,16 +729,16 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
     text = makefile.read_text(encoding="utf-8") if makefile.exists() else ""
     match = MAKE_TARGET.search(method)  # the target first (case 112.1)
     if str(target.props.get("kind")) == "MOC":
-        if not match and is_reading(method) and sibling_names_a_target(page, target, by_slug, text):
+        if not names_a_moc_form(method):  # case 733
+            return [Finding(page, "method", "a MOC's Estimate names no `make <target>`")]
+        if not match and sibling_names_a_target(page, target, by_slug, text):
             return []  # the pipeline is a sibling Estimate's; nothing is hidden (case 212)
-        if not match and is_reading(method):
+        if not match:
             return [
                 Finding(page, "method", f"says by hand while {child.slug} names a test file")
                 for child in children_estimates(target, by_slug)
                 if not is_reading(method_of(child) or "")
             ][:1]
-        if not match:
-            return [Finding(page, "method", "a MOC's Estimate names no `make <target>`")]
         if not re.search(rf"^{re.escape(match.group(1))}:", text, re.MULTILINE):
             return [Finding(page, "method", f"the Makefile has no target {match.group(1)}")]
         return []

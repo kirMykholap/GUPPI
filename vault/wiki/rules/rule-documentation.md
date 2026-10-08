@@ -66,7 +66,7 @@ Do the steps in this order.
 
 <!-- rule-synthesis -->
 
-2. Run `uv run guppi generate`. Every line on its stderr is a flag. Then, when an unticked task line of the session's `spec.md` opens with a code span holding `guppi sprint-close` and `--apply`, run that command as the line holds it: the readings this run applied count, and the command runs `guppi cleanup` itself (`rule-sprint-close`, case 628.1). Every line on its stderr is a flag; a refusal moves nothing, and the run goes on. After a close, `guppi sprint` in step 5 finds no live sprint page; its error is a flag.
+2. Run `uv run guppi generate`. Every line on its stderr is a flag. Then, when an unticked task line of the session's `spec.md` opens with a code span holding `guppi sprint-close` and `--apply`, run that command as the line holds it: the readings this run applied count, and the command runs `guppi cleanup` itself (`rule-sprint-close`, case 628.1). Every line on its stderr is a flag; a refusal moves nothing, and the run goes on. After a close, `guppi sprint` in step 5 finds no live sprint page and writes `vault/wiki/sprint.md` with the closed sprint marked (`rule-sprint`, case 743.5).
 
 3. Run `uv run guppi cleanup`. Every line on its stderr is a flag.
 
@@ -148,3 +148,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-10-01 status: draft → built · cascade
 - 2026-10-04 updated: the librarian runs the close line of the Spec after generate (case 628.1) · [[decision-case-628.1]]
 - 2026-10-04 updated: step 5 reads the Backlog of each sprint page, live or archived (case 632.2) · [[decision-case-632.2]]
+- 2026-10-09 updated: after a close guppi sprint marks the sprint closed instead of failing (case 743.5) · [[decision-case-743.5]]

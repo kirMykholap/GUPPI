@@ -36,7 +36,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
         "hooks": [ { "type": "command", "command": "uv run guppi recall", "timeout": 30 } ] }
 ],
 "UserPromptSubmit": [
-  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi context --prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck --prompt", "timeout": 30 },
+  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi context --prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck --prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi sprint --hi", "timeout": 30 },
                { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
 ],
 "PreToolUse": [
@@ -104,3 +104,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-05 updated: the hook grepguard registered on PreToolUse of Grep (case 664.1) · [[decision-case-664.1]]
 - 2026-10-07 updated: uv run guppi casecheck --prompt registered on UserPromptSubmit (case 699.1) · [[decision-case-699.1]]
 - 2026-10-07 updated: guppi shellwrite registered on PostToolUse of Bash and PowerShell (case 710.1) · [[decision-case-710.1]]
+- 2026-10-09 updated: UserPromptSubmit runs guppi sprint --hi, which tells the agent at /hi to start /sprint-open when the sprint is closed (case 743.7) · [[decision-case-743.7]]

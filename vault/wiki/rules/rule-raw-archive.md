@@ -6,7 +6,7 @@ status: built
 enforcement: check
 implementation_ref: [guppi/archive.py, tests/test_archive.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-raw-archive]]"]
+estimates: ["[[estimate-raw-archive]]", "[[estimate-raw-archive-files-a-session-by-its-sprint]]"]
 origin: raw/2026-09-13/ledger.md#case-100.1
 sprint: migration
 created: 2026-09-13
@@ -27,7 +27,7 @@ Plan Mode.
 `uv run guppi archive` looks at every unit of `vault/raw/` whose date is before
 the day of the run: a session folder `raw/<date>/<HHMM>/` holding a `ledger.md`,
 or a date-level `raw/<date>/ledger.md` with its yaml (the shape before case 103).
-The session of the run is never looked at. A unit is done when its
+The session of the run is never looked at. At the close of a sprint, `guppi sprint-close` moves each done unit the same way whatever its date, the session of the run still left out (`rule-sprint-close`, case 743.1). A unit is done when its
 `materialize.yaml` exists, every entry under `entries` carries `applied` or
 `superseded_by`, and every line of its `ledger.md` that `materialize.parse_line`
 reads as a record has its number in the `line` or `folded` of an entry or under
@@ -36,9 +36,7 @@ reads as a record has its number in the `line` or `folded` of an entry or under
 its yaml and everything else at the date root to
 `vault/archive/<sprint>/<date>/raw/`, and with it every `<HHMM>/` folder of the
 date without a ledger of its own, each to
-`vault/archive/<sprint>/<date>/<HHMM>/raw/`. `<sprint>` is the first `## <id>`
-heading of `sprint.md`. `event_log.md` stays in `vault/raw/<date>/`: it is
-gitignored and the ledger hook walks it for the `hi` window. No file is cut and no
+`vault/archive/<sprint>/<date>/<HHMM>/raw/`. `<sprint>` is the `sprint` field of the unit's own `materialize.yaml`, so a session that leaves after the next sprint opened goes to the folder of its own sprint; a unit whose yaml holds none takes the first `## <id>` heading of `sprint.md` (case 743.2). `event_log.md` stays in `vault/raw/<date>/`: it is gitignored and the ledger hook walks it for the `hi` window. The close of a sprint moves each log dated before the day before the session of its run to `vault/archive/<id>/<date>/`, `<id>` the sprint it closes, still gitignored (`rule-sprint-close`, case 743.3). No file is cut and no
 pointer is rewritten: `raw/<date>/<HHMM>/ledger.md#case-N`, the date form and
 `#L<n>` stay the name of a ledger, which lint resolves in `raw/` or in the archive.
 
@@ -59,3 +57,7 @@ coverage of a line is the one function `guppi tail` uses ([[rule-ledger-tail]]).
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-09 updated: the close of a sprint moves each done unit whatever its date (case 743.1) · [[decision-case-743.1]]
+- 2026-10-09 updated: a unit goes to the archive folder of the sprint its own yaml records (case 743.2) · [[decision-case-743.2]]
+- 2026-10-09 estimate estimate-raw-archive-files-a-session-by-its-sprint added · [[decision-case-743.2]]
+- 2026-10-09 updated: the close of a sprint moves the old event logs (case 743.3) · [[decision-case-743.3]]

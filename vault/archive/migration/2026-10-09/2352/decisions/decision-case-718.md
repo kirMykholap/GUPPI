@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "718"
-status: current
+status: archived
 defer: ["[[rule-sprint-close]]"]
+superseded_by: ["[[decision-case-743.1]]"]
 origin: raw/2026-10-07/1804/ledger.md#case-718
 sprint: migration
 created: 2026-10-07
@@ -26,3 +27,6 @@ Prevents a closed sprint from leaving its finished work among the live pages, so
 ## History
 
 - 2026-10-07 created · raw/2026-10-07/1804/ledger.md#case-718
+- 2026-10-09 superseded by decision-case-743.1 · [[decision-case-743.1]]
+- 2026-10-09 archived · superseded
+- 2026-10-09 archived · cleanup

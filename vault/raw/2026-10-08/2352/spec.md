@@ -121,14 +121,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint-close`
-- [ ] update `rule-raw-archive`
-- [ ] create `estimate-sprint-close-sweeps-raw`
+- [x] update `rule-sprint-close`
+- [x] update `rule-raw-archive`
+- [x] create `estimate-sprint-close-sweeps-raw`
 - [x] `guppi/archive.py`: the walk over the units takes a flag that drops the limit of the date; the run of `guppi archive` keeps the limit; the docstring says so.
 - [x] `guppi/sprint_close.py`: after `guppi cleanup` exits 0, the run moves the done units by that walk with the flag and prints its lines; the preview names the units it would move; the docstring says so.
 - [x] `guppi/archive.py`: with the flag of the close, the walk keeps a unit that `is_carried_over` of `guppi/materialize.py` judges carried over, imported and not copied, with the reason `carried over`; the run of `guppi archive` without the flag keeps its reasons.
 - [x] `tests/test_sprint_close.py`: tests named `sweep` — a done unit of the run day moves; the session of the run, a unit with an entry not applied and a unit with `carry.md` stay; a refused close and the preview move none.
-- [ ] read `estimate-sprint-close-sweeps-raw`
+- [x] read `estimate-sprint-close-sweeps-raw`
 ```
 
 ### Case 743.2 — A session goes to the archive folder of its own sprint
@@ -170,11 +170,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-raw-archive`
-- [ ] create `estimate-raw-archive-files-a-session-by-its-sprint`
+- [x] update `rule-raw-archive`
+- [x] create `estimate-raw-archive-files-a-session-by-its-sprint`
 - [x] `guppi/archive.py`: the move takes the sprint from the unit's yaml, `sprint_id` as the fallback; the docstring says so.
 - [x] `tests/test_archive.py`: tests named `sprint` — a unit whose yaml holds `sprint: a` goes under `vault/archive/a/` while `sprint.md` names `b`; a unit whose yaml holds no `sprint` goes under `b`.
-- [ ] read `estimate-raw-archive-files-a-session-by-its-sprint`
+- [x] read `estimate-raw-archive-files-a-session-by-its-sprint`
 ```
 
 ### Case 743.3 — The close moves the old event logs to the archive
@@ -226,13 +226,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint-close`
-- [ ] update `rule-raw-archive`
-- [ ] create `estimate-sprint-close-moves-old-event-logs`
+- [x] update `rule-sprint-close`
+- [x] update `rule-raw-archive`
+- [x] create `estimate-sprint-close-moves-old-event-logs`
 - [x] `.gitignore`: the line `vault/archive/*/*/event_log.md` under the line of the event log.
 - [x] `guppi/sprint_close.py`: after the sweep of 743.1, the run moves the old logs and removes the date folders left empty; the docstring says so.
 - [x] `tests/test_sprint_close.py`: tests named `event_log` — an old log moves and its empty folder goes; the logs of the day before, of the session's date and of a later date stay; a taken target is one stderr line and exit 1; a refused close moves none.
-- [ ] read `estimate-sprint-close-moves-old-event-logs`
+- [x] read `estimate-sprint-close-moves-old-event-logs`
 ```
 
 ### Case 743.4 — `backlog.md` drops a line of a closed sprint once it is taken or finished
@@ -280,12 +280,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-backlog`
-- [ ] update `estimate-backlog-renders`
+- [x] update `rule-backlog`
+- [x] update `estimate-backlog-renders`
 - [x] `guppi/backlog.py`: an item of an archived sprint page is left out as the `then` sets it, by `item_slugs` and `DONE` of `guppi/sprint.py`, imported; the docstring says so.
 - [x] `tests/test_backlog.py`: an archived line whose slug the live page names in a milestone, an archived line whose page is `built`, and an archived note whose text the live Backlog holds are left out; an archived line taken by nothing stays.
 - [x] `uv run guppi backlog`
-- [ ] read `estimate-backlog-renders`
+- [x] read `estimate-backlog-renders`
 ```
 
 ### Case 743.5 — `sprint.md` marks a closed sprint
@@ -335,13 +335,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint`
-- [ ] update `rule-documentation`
-- [ ] create `estimate-sprint-marks-a-closed-sprint`
+- [x] update `rule-sprint`
+- [x] update `rule-documentation`
+- [x] create `estimate-sprint-marks-a-closed-sprint`
 - [x] `guppi/sprint.py`: with no live sprint page, `run` writes the closed form by one function that also judges a heading closed; the docstring says so.
 - [x] `tests/test_sprint.py`: tests named `closed` — the closed form written with the id of the earlier file and exit 0; a closed file keeps its id; no page and no file is exit 1 and ticks nothing; the closed run ticks the `guppi sprint` line of an applied Spec; `sprint_id` reads the id from the closed heading.
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-sprint-marks-a-closed-sprint`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] read `estimate-sprint-marks-a-closed-sprint`
 ```
 
 ### Case 743.9 — `sprint --check` compares the closed form
@@ -374,10 +374,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-checks-the-file`
+- [x] update `estimate-sprint-checks-the-file`
 - [x] `guppi/sprint.py`: `--check` with no live sprint page compares the file with the closed form and names it so in its line.
 - [x] `tests/test_sprint.py`: `--check` is silent with exit 0 on a closed file that matches, and names the file with exit 1 on one that differs.
-- [ ] read `estimate-sprint-checks-the-file`
+- [x] read `estimate-sprint-checks-the-file`
 ```
 
 ### Case 743.6 — `/sprint-open` asks the questions that open a sprint
@@ -453,10 +453,10 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-skill-sprint-open`
-- [ ] create `estimate-skill-sprint-open-asks-the-opening-questions`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] read `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] create `rule-skill-sprint-open`
+- [x] create `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] read `estimate-skill-sprint-open-asks-the-opening-questions`
 ```
 
 ### Case 743.7 — A hook on `/hi` starts `/sprint-open` when the sprint is closed
@@ -501,12 +501,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-hook-registry`
-- [ ] create `estimate-skill-sprint-open-starts-at-hi`
+- [x] update `rule-hook-registry`
+- [x] create `estimate-skill-sprint-open-starts-at-hi`
 - [x] `guppi/sprint.py`: the flag `--hi` reads the payload on stdin, judges `/hi` by `is_hi_prompt` and the mark by the function of 743.5, and prints the line; exit 0 always; the docstring says so.
 - [x] `tests/test_sprint.py`: tests named `hi` — `/hi` with a closed heading prints the line; `/hi` with an open heading, another prompt and a missing file print nothing; every case exits 0.
-- [ ] `uv run guppi render`: `.claude/settings.json`
-- [ ] read `estimate-skill-sprint-open-starts-at-hi`
+- [x] `uv run guppi render`: `.claude/settings.json`
+- [x] read `estimate-skill-sprint-open-starts-at-hi`
 ```
 
 ### Case 743.8 — `/sprint-close` leads the session that closes a sprint
@@ -591,14 +591,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-skill-sprint-close`
-- [ ] create `estimate-skill-sprint-close-leads-the-closing-session`
-- [ ] update `rule-orchestration`
-- [ ] update `entity-sprint-migration`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-close/SKILL.md`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] `uv run guppi sprint`
-- [ ] read `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] create `rule-skill-sprint-close`
+- [x] create `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] update `rule-orchestration`
+- [x] update `entity-sprint-migration`
+- [x] `uv run guppi render`: `.claude/skills/sprint-close/SKILL.md`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] `uv run guppi sprint`
+- [x] read `estimate-skill-sprint-close-leads-the-closing-session`
 ```
 
 ## Case 744 — The After line of an option stands without a list dash
@@ -683,10 +683,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-grill-me`
-- [ ] update `estimate-skill-grill-me-asks-in-rounds`
-- [ ] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
-- [ ] read `estimate-skill-grill-me-asks-in-rounds`
+- [x] update `rule-skill-grill-me`
+- [x] update `estimate-skill-grill-me-asks-in-rounds`
+- [x] `uv run guppi render`: `.claude/skills/grill-me/SKILL.md`
+- [x] read `estimate-skill-grill-me-asks-in-rounds`
 ```
 
 ### Case 744.2 — The round check accepts the After line with or without the dash
@@ -726,10 +726,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-faulty-round`
+- [x] update `estimate-case-check-sends-back-a-faulty-round`
 - [x] `guppi/casecheck.py`: `option_with_after` takes a line that opens with `**After:**` or with `- **After:**`; the finding names an option `🔹` with an `**After:**` line; the module docstring and the docstrings of `round_form` and `option_with_after` say so.
 - [x] `tests/test_casecheck.py`: `QUESTION_BODY` writes the After lines with no dash; a test named `round_form` that a round whose After lines have the dash passes; the case of the test of a question out of form with no After line removes the lines with no dash and looks for the new finding.
-- [ ] read `estimate-case-check-sends-back-a-faulty-round`
+- [x] read `estimate-case-check-sends-back-a-faulty-round`
 ```
 
 ## Deferred

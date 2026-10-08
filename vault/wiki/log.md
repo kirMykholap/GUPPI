@@ -7540,3 +7540,73 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-08 lessons/lesson-permissions-auto-mode-refuses-a-remote-change-despite-the-chat archived · cleanup
 - 2026-10-08 lessons/lesson-permissions-auto-mode-refuses-editing-the-case-check-store archived · cleanup
 - 2026-10-08 lessons/lesson-prespec-parent-of-superseded-sub-cases archived · cleanup
+- 2026-10-09 decisions/decision-case-743 created · raw/2026-10-08/2352/ledger.md#case-743 · generate
+- 2026-10-09 decisions/decision-case-743.1 created · raw/2026-10-08/2352/ledger.md#case-743.1 · generate
+- 2026-10-09 decisions/decision-case-718 superseded by decision-case-743.1 · [[decision-case-743.1]] · generate
+- 2026-10-09 rules/rule-sprint-close defer by decision-case-718 superseded · [[decision-case-743.1]] · generate
+- 2026-10-09 rules/rule-sprint-close updated: the close moves every finished session of raw/ to the archive, whatever its day; the defer of case 718 taken up (case 743.1) · [[decision-case-743.1]] · generate
+- 2026-10-09 rules/rule-raw-archive updated: the close of a sprint moves each done unit whatever its date (case 743.1) · [[decision-case-743.1]] · generate
+- 2026-10-09 estimates/estimate-sprint-close-sweeps-raw created · [[decision-case-743.1]] · generate
+- 2026-10-09 estimates/estimate-sprint-close-sweeps-raw status: pending → passed · raw/2026-10-08/2352/ledger.md#L29 · generate
+- 2026-10-09 rules/rule-sprint-close estimate estimate-sprint-close-sweeps-raw added · [[decision-case-743.1]] · generate
+- 2026-10-09 decisions/decision-case-743.2 created · raw/2026-10-08/2352/ledger.md#case-743.2 · generate
+- 2026-10-09 rules/rule-raw-archive updated: a unit goes to the archive folder of the sprint its own yaml records (case 743.2) · [[decision-case-743.2]] · generate
+- 2026-10-09 estimates/estimate-raw-archive-files-a-session-by-its-sprint created · [[decision-case-743.2]] · generate
+- 2026-10-09 estimates/estimate-raw-archive-files-a-session-by-its-sprint status: pending → passed · raw/2026-10-08/2352/ledger.md#L30 · generate
+- 2026-10-09 rules/rule-raw-archive estimate estimate-raw-archive-files-a-session-by-its-sprint added · [[decision-case-743.2]] · generate
+- 2026-10-09 decisions/decision-case-743.3 created · raw/2026-10-08/2352/ledger.md#case-743.3 · generate
+- 2026-10-09 rules/rule-sprint-close updated: the close moves the old event logs to the archive (case 743.3) · [[decision-case-743.3]] · generate
+- 2026-10-09 rules/rule-raw-archive updated: the close of a sprint moves the old event logs (case 743.3) · [[decision-case-743.3]] · generate
+- 2026-10-09 estimates/estimate-sprint-close-moves-old-event-logs created · [[decision-case-743.3]] · generate
+- 2026-10-09 estimates/estimate-sprint-close-moves-old-event-logs status: pending → passed · raw/2026-10-08/2352/ledger.md#L31 · generate
+- 2026-10-09 rules/rule-sprint-close estimate estimate-sprint-close-moves-old-event-logs added · [[decision-case-743.3]] · generate
+- 2026-10-09 decisions/decision-case-743.4 created · raw/2026-10-08/2352/ledger.md#case-743.4 · generate
+- 2026-10-09 rules/rule-backlog updated: a line of the Backlog of a closed sprint leaves backlog.md once the live sprint takes it or its pages are finished (case 743.4) · [[decision-case-743.4]] · generate
+- 2026-10-09 estimates/estimate-backlog-renders updated: the Criterion replaced whole — a line of a closed sprint leaves once taken or finished; the method a test of the session (case 743.4) · [[decision-case-743.4]] · generate
+- 2026-10-09 decisions/decision-case-743.5 created · raw/2026-10-08/2352/ledger.md#case-743.5 · generate
+- 2026-10-09 rules/rule-sprint updated: with no live sprint page, guppi sprint writes sprint.md with the closed sprint marked, and exits 0 (case 743.5) · [[decision-case-743.5]] · generate
+- 2026-10-09 rules/rule-documentation updated: after a close guppi sprint marks the sprint closed instead of failing (case 743.5) · [[decision-case-743.5]] · generate
+- 2026-10-09 estimates/estimate-sprint-marks-a-closed-sprint created · [[decision-case-743.5]] · generate
+- 2026-10-09 estimates/estimate-sprint-marks-a-closed-sprint status: pending → passed · raw/2026-10-08/2352/ledger.md#L33 · generate
+- 2026-10-09 rules/rule-sprint estimate estimate-sprint-marks-a-closed-sprint added · [[decision-case-743.5]] · generate
+- 2026-10-09 decisions/decision-case-743.9 created · raw/2026-10-08/2352/ledger.md#case-743.9 · generate
+- 2026-10-09 estimates/estimate-sprint-checks-the-file updated: the Criterion replaced whole — with no live sprint page the check compares the closed form; the purpose covers both; the method a test of the session (case 743.9) · [[decision-case-743.9]] · generate
+- 2026-10-09 decisions/decision-case-743.6 created · raw/2026-10-08/2352/ledger.md#case-743.6 · generate
+- 2026-10-09 rules/rule-skill-sprint-open created · [[decision-case-743.6]] · generate
+- 2026-10-09 rules/rule-session child rule-skill-sprint-open added · [[decision-case-743.6]] · generate
+- 2026-10-09 estimates/estimate-skill-sprint-open-asks-the-opening-questions created · [[decision-case-743.6]] · generate
+- 2026-10-09 estimates/estimate-skill-sprint-open-asks-the-opening-questions status: pending → failed · raw/2026-10-08/2352/ledger.md#L37 · generate
+- 2026-10-09 rules/rule-skill-sprint-open estimate estimate-skill-sprint-open-asks-the-opening-questions added · [[decision-case-743.6]] · generate
+- 2026-10-09 decisions/decision-case-743.7 created · raw/2026-10-08/2352/ledger.md#case-743.7 · generate
+- 2026-10-09 rules/rule-hook-registry updated: UserPromptSubmit runs guppi sprint --hi, which tells the agent at /hi to start /sprint-open when the sprint is closed (case 743.7) · [[decision-case-743.7]] · generate
+- 2026-10-09 estimates/estimate-skill-sprint-open-starts-at-hi created · [[decision-case-743.7]] · generate
+- 2026-10-09 estimates/estimate-skill-sprint-open-starts-at-hi status: pending → passed · raw/2026-10-08/2352/ledger.md#L35 · generate
+- 2026-10-09 rules/rule-skill-sprint-open estimate estimate-skill-sprint-open-starts-at-hi added · [[decision-case-743.7]] · generate
+- 2026-10-09 decisions/decision-case-743.8 created · raw/2026-10-08/2352/ledger.md#case-743.8 · generate
+- 2026-10-09 rules/rule-skill-sprint-close created · [[decision-case-743.8]] · generate
+- 2026-10-09 rules/rule-session child rule-skill-sprint-close added · [[decision-case-743.8]] · generate
+- 2026-10-09 estimates/estimate-skill-sprint-close-leads-the-closing-session created · [[decision-case-743.8]] · generate
+- 2026-10-09 estimates/estimate-skill-sprint-close-leads-the-closing-session status: pending → failed · raw/2026-10-08/2352/ledger.md#L38 · generate
+- 2026-10-09 rules/rule-skill-sprint-close estimate estimate-skill-sprint-close-leads-the-closing-session added · [[decision-case-743.8]] · generate
+- 2026-10-09 rules/rule-orchestration updated: the steps of the closing session move into the skill /sprint-close; one sentence names the two skills; the start of /sprint-close is a third moment of a short-form defer (case 743.8) · [[decision-case-743.8]] · generate
+- 2026-10-09 entities/entity-sprint-migration updated: the close line takes the form that starts /sprint-close; the merge into main leaves the Backlog for the closing Case of /sprint-close (case 743.8) · [[decision-case-743.8]] · generate
+- 2026-10-09 decisions/decision-case-744 created · raw/2026-10-08/2352/ledger.md#case-744 · generate
+- 2026-10-09 decisions/decision-case-744.1 created · raw/2026-10-08/2352/ledger.md#case-744.1 · generate
+- 2026-10-09 rules/rule-skill-grill-me updated: the After line of an option stands with no list dash, and a quotation or a list under it is indented as far as the label (case 744.1) · [[decision-case-744.1]] · generate
+- 2026-10-09 estimates/estimate-skill-grill-me-asks-in-rounds updated: the Criterion replaced whole — the After line of an option stands with no list dash (case 744.1) · [[decision-case-744.1]] · generate
+- 2026-10-09 decisions/decision-case-744.2 created · raw/2026-10-08/2352/ledger.md#case-744.2 · generate
+- 2026-10-09 estimates/estimate-case-check-sends-back-a-faulty-round updated: the Criterion replaced whole — the After line of an option is accepted with or without the list dash (case 744.2) · [[decision-case-744.2]] · generate
+- 2026-10-09 decisions/decision-case-745 created · raw/2026-10-08/2352/ledger.md#case-745 · generate
+- 2026-10-09 rules/rule-morph deferred · [[decision-case-745]] · generate
+- 2026-10-09 estimates/estimate-backlog-renders status: pending → passed · raw/2026-10-08/2352/ledger.md#L32 · generate
+- 2026-10-09 estimates/estimate-sprint-checks-the-file status: pending → passed · raw/2026-10-08/2352/ledger.md#L34 · generate
+- 2026-10-09 estimates/estimate-skill-grill-me-asks-in-rounds status: pending → passed · raw/2026-10-08/2352/ledger.md#L36 · generate
+- 2026-10-09 estimates/estimate-case-check-sends-back-a-faulty-round status: pending → failed · raw/2026-10-08/2352/ledger.md#L39 · generate
+- 2026-10-09 lessons/lesson-case-build-rule-create-without-type created · raw/2026-10-08/2352/ledger.md#L40 · generate
+- 2026-10-09 lessons/lesson-ledger-rebuilt-create-keeps-the-stale-ref created · raw/2026-10-08/2352/ledger.md#L41 · generate
+- 2026-10-09 insights/insight-ledger-ratified-line-never-withdrawn updated: child lesson-ledger-rebuilt-create-keeps-the-stale-ref added, reopened (synthesis) · raw/2026-10-08/2352/ledger.md#L41 · generate
+- 2026-10-09 lessons/lesson-ledger-rebuilt-create-keeps-the-stale-ref updated: clustered under insight-ledger-ratified-line-never-withdrawn (synthesis) · raw/2026-10-08/2352/ledger.md#L41 · generate
+- 2026-10-09 rules/rule-backlog status: draft → built · cascade · generate
+- 2026-10-09 rules/rule-case-check status: built → draft · cascade · generate
+- 2026-10-09 decisions/decision-case-718 archived · superseded · generate
+- 2026-10-09 decisions/decision-case-718 archived · cleanup

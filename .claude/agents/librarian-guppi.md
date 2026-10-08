@@ -94,7 +94,7 @@ Trigger and Root cause of the candidate and name the page in the report with the
 outcome, clustered or not. The archive is not needed: an actioned Insight stays live with its pattern in its index line until the close of its sprint; when you still need an archived page, read it and flag the read as the frame says (case 558.2). Do not write pages yourself.
 <!-- /rule-synthesis -->
 
-2. Run `uv run guppi generate`. Every line on its stderr is a flag. Then, when an unticked task line of the session's `spec.md` opens with a code span holding `guppi sprint-close` and `--apply`, run that command as the line holds it: the readings this run applied count, and the command runs `guppi cleanup` itself (`rule-sprint-close`, case 628.1). Every line on its stderr is a flag; a refusal moves nothing, and the run goes on. After a close, `guppi sprint` in step 5 finds no live sprint page; its error is a flag.
+2. Run `uv run guppi generate`. Every line on its stderr is a flag. Then, when an unticked task line of the session's `spec.md` opens with a code span holding `guppi sprint-close` and `--apply`, run that command as the line holds it: the readings this run applied count, and the command runs `guppi cleanup` itself (`rule-sprint-close`, case 628.1). Every line on its stderr is a flag; a refusal moves nothing, and the run goes on. After a close, `guppi sprint` in step 5 finds no live sprint page and writes `vault/wiki/sprint.md` with the closed sprint marked (`rule-sprint`, case 743.5).
 
 3. Run `uv run guppi cleanup`. Every line on its stderr is a flag.
 

@@ -21,8 +21,8 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### [ ] Slice 5 — closing
 
-- [ ] [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (cases 612.1, 627) · draft · decision-case-718
-- [ ] the close of migration — a session of its own: the pending readings taken in groups, `make test`, `make lint` and the tree read in its Work Mode, then `uv run guppi sprint-close --sprint migration --apply` in the librarian's run (case 628.9)
+- [ ] [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (cases 612.1, 627) · draft
+- [ ] the close of `migration` — `/sprint-close`, a session of its own
 
 ## Closed
 

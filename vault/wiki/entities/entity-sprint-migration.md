@@ -24,14 +24,13 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 ### Slice 5 — closing
 
 - [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (cases 612.1, 627)
-- the close of migration — a session of its own: the pending readings taken in groups, `make test`, `make lint` and the tree read in its Work Mode, then `uv run guppi sprint-close --sprint migration --apply` in the librarian's run (case 628.9)
+- the close of `migration` — `/sprint-close`, a session of its own
 
 ## Backlog
 
 - [[rule-work-mode]] — the rest of Work Mode past the skill `/work` of case 479.2: the test of each Estimate written first and turned green, and the full model the person plans; cases 183, 206
 - [[rule-spec-box]] — the Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session (case 591)
 - [[rule-morph]] — the morph mechanism: the initiation at install sets the category set of the project, the development set by default, held as data so that a changed set rewrites no rule; case 239
-- the merge of `migration` into `main` — the first work of the session that opens the next sprint, after its opening Case (case 628.9)
 
 ## Closed
 
@@ -116,3 +115,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-10-05 deferred · [[decision-case-642]]
 - 2026-10-06 defer by decision-case-642 superseded · [[decision-case-680]]
 - 2026-10-06 updated: the five plain notes of the Backlog — the product model, reuse three times, the template engine — and the line of rule-subagent-guppi leave; the defer of the close of migration is retired, and the close stays the milestone of Slice 5 · [[decision-case-680]]
+- 2026-10-09 updated: the close line takes the form that starts /sprint-close; the merge into main leaves the Backlog for the closing Case of /sprint-close (case 743.8) · [[decision-case-743.8]]

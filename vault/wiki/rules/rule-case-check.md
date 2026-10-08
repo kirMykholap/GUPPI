@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Case from being shown to the person in a form the checks of pre-spec refuse, or with other given, when, then, tasks or ratification than the ones that passed them, while fewer than three refusals of that Case stand since the person's last message, a round of case-guppi from reaching the main agent with a question out of the form of the grill-me template, a round of case-guppi or a Case from being shown after a text of the main agent's own with no word to the agent at the person's next message, and a summary of case-guppi from reaching the main agent without the id and the name of the Case it built
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [guppi/casecheck.py, guppi/tags.py, tests/test_casecheck.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -89,3 +89,4 @@ Prevents a Case from being shown to the person in a form the checks of pre-spec 
 - 2026-10-07 estimate estimate-case-check-leaves-out-a-case-the-file-supersedes added · [[decision-case-725.2]]
 - 2026-10-08 estimate estimate-case-check-notes-a-page-the-cascade-archives added · [[decision-case-739.2]]
 - 2026-10-08 updated: the check of the file of a Case notes an update of a page that the cascade archives (case 739.2) · [[decision-case-739.2]]
+- 2026-10-09 status: built → draft · cascade

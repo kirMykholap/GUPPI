@@ -238,8 +238,8 @@ that opens with `❓`, no Case heading and no `**Fact:**` line before it, not a
 `QUESTION_LINE` match, so a round whose title line lacks its colon is judged too (case
 601.4). The `Stop` run no longer refuses a reply for it, so a round is not shown twice (case
 699.1). It finds a fault
-when the first line of the reply that is not blank opens neither with `❓ ` nor with a bold
-label that ends in a colon — the label of the Context paragraph, translated — and, while the
+when the first line of the reply that is neither blank nor the horizontal rule opens neither
+with `❓ ` nor with a bold label that ends in a colon (case 751.4) — the label of the Context paragraph, translated — and, while the
 session's event log holds no `prespec` line of this session after its `hi`, judged by
 `prespec.window`, the function the `ExitPlanMode` hook judges by, imported, when the main
 agent wrote text in the turn after the first round came back and before its last tool call,
@@ -252,7 +252,7 @@ turn of its own and the text the main agent writes there is set by `rule-prespec
 581.2). On a fault it prints one line to stdout, which reaches the agent's context: it
 quotes the text before the round, says the round stands as shown and is not shown again, and
 tells the agent to open the next round with its Context paragraph or its first question,
-with nothing before it. It exits 0 always and never blocks the message; its own error goes
+with nothing before it but a horizontal rule. It exits 0 always and never blocks the message; its own error goes
 to stderr, and an unreadable payload prints nothing. Text after the last question is not judged, a
 turn with no round — the main agent's own questions, a `**Fact:**` answer, a re-pitch by
 `wait-what` — is not judged, and the check stores nothing. Where an answer stands was
@@ -270,9 +270,9 @@ shows a Case — one that `showings` reads, so not the acknowledging reply, a fe
 under it, one `ratification`, and the agent's own text only after the horizontal rule; the
 `Stop` run no longer refuses a showing for it, while it still refuses a Case that differs
 from the store or whose file was not sent (case 699.2). It finds a fault when a
-line that is not blank stands before the first Case heading (`CASE_HEADING` of
-`guppi/materialize.py`, `## Case N —` or `### Case N.M —`); when, between a Case heading and
-the next one or the horizontal rule, a line stands that is not blank, not a list item — one
+line that is neither blank nor the horizontal rule stands before the first Case heading
+(`CASE_HEADING` of `guppi/materialize.py`, `## Case N —` or `### Case N.M —`); when, between a
+Case heading and the next one or the horizontal rule, a line stands that is not blank, not a list item — one
 that opens with `- `, `* ` or a number and `. ` — not a line indented under a list item, and
 not a line of the `ratification` blockquote, its `RATIFICATION_HEAD` and the `>` lines after
 it, or when `quoted_sections` reads there a section other than `ratification`; and when the
@@ -283,9 +283,12 @@ judgment of the check of a round, after the reply the last refusal of the check 
 no second copy (`outside_the_list`, `showing_layout`, case 692.2). A text written before the
 summary came back, and every text of a turn with no summary, is not judged. The note quotes
 the first such text, says the Case stands as shown and is not shown again, and tells the
-agent to write nothing of its own before the Case and to keep its own text after the
-horizontal rule at the next showing; it is joined with the note on the opening of a round.
-Text after the horizontal rule is not judged, and the check stores nothing. The comparison above still compares the sections a reply shows; this check refuses
+agent to write nothing of its own before the Case but a horizontal rule and to keep its own
+text after the horizontal rule at the next showing; it is joined with the note on the
+opening of a round. A horizontal rule whose next line that is not blank is a Case heading
+ends one Case, and the judgment goes on under that heading, so each Case of a batch is
+judged (case 751.5); text after a horizontal rule that no Case heading follows is not
+judged, and the check stores nothing. The comparison above still compares the sections a reply shows; this check refuses
 the showing of any but `ratification`.
 
 A sending. The transcript is JSONL (`ledger.read_records`); a `SendUserFile` call stands in an
@@ -1809,7 +1812,9 @@ def outside_the_list(reply: str) -> str | None:
     blank one, a list item (`LIST_ITEM`), a line indented under a list item and the
     `ratification` blockquote — its `RATIFICATION_HEAD` and the `>` lines after it; a section
     other than `ratification` that `quoted_sections` reads under a heading is refused too.
-    Text after the horizontal rule is not judged."""
+    A horizontal rule before the first Case heading is passed over, and one whose next line
+    that is not blank is a Case heading ends one Case of a batch, so the next is judged too
+    (case 751.5). Text after a horizontal rule that no Case heading follows is not judged."""
     seen_heading = in_list = in_ratification = False
     block: list[str] = []
 
@@ -1818,7 +1823,8 @@ def outside_the_list(reply: str) -> str | None:
         other = next((name for name in sections if name != "ratification"), None)
         return f"> **{other}:**" if other else None
 
-    for line in reply.splitlines():
+    lines = reply.splitlines()
+    for index, line in enumerate(lines):
         stripped = line.strip()
         if CASE_HEADING.match(line):
             if seen_heading and (section := other_section()):
@@ -1828,10 +1834,13 @@ def outside_the_list(reply: str) -> str | None:
         if not stripped:
             block.append(line)
             continue
+        if stripped == RULE:
+            following = next((later for later in lines[index + 1 :] if later.strip()), "")
+            if not seen_heading or CASE_HEADING.match(following):
+                continue
+            break
         if not seen_heading:
             return stripped
-        if stripped == RULE:
-            break
         block.append(line)
         if stripped == RATIFICATION_HEAD:
             in_ratification, in_list = True, False
@@ -1864,8 +1873,8 @@ def showing_layout(records: list[dict], reply: str, since: int = -1) -> str | No
     return (
         f"casecheck: your last reply showed a Case with a text of your own outside its list "
         f"and ratification: {quoted[:120]!r} — the Case stands as shown and is not shown "
-        "again; at the next showing write nothing of your own before the Case and keep your "
-        "own text after the horizontal rule"
+        "again; at the next showing write nothing of your own before the Case but a "
+        "horizontal rule and keep your own text after the horizontal rule"
     )
 
 
@@ -2003,8 +2012,8 @@ def round_opening(
     after its `hi` — a text of the main agent written after the first round of the turn came
     back and before the last tool call, by `texts_after`, is a fault, and only after the reply
     that the last refusal of the check follows, `since` (case 692.1); always, a reply whose
-    first line that is not blank opens neither with `❓ ` nor with a bold label that ends in a
-    colon. After `/pre-spec` only the first line is judged: in the loop over its findings each
+    first line that is neither blank nor the horizontal rule opens neither with `❓ ` nor with
+    a bold label that ends in a colon (case 751.4). After `/pre-spec` only the first line is judged: in the loop over its findings each
     answer of a `case-guppi` comes back in a turn of its own, and the text the main agent
     writes there is set by `rule-prespec` (case 581.2). Text after the last question is not
     judged. The `--prompt` run gives the note at the person's next message, and the round is
@@ -2012,14 +2021,17 @@ def round_opening(
     if not any(is_round(text) for text in given_back(records)):
         return None
     before = [] if after_prespec else texts_after(records, is_round, since)
-    first = next((line.strip() for line in reply.splitlines() if line.strip()), "")
+    first = next(
+        (line.strip() for line in reply.splitlines() if line.strip() not in ("", RULE)), ""
+    )
     if not before and (first.startswith("❓ ") or LABEL_LINE.match(first)):
         return None
     quoted = before[0] if before else first
     return (
         f"casecheck: your last reply showed a round of case-guppi after a text of your own: "
         f"{quoted[:120]!r} — the round stands as shown and is not shown again; open the next "
-        "round with its Context paragraph or its first question, with nothing before it"
+        "round with its Context paragraph or its first question, with nothing before it but a "
+        "horizontal rule"
     )
 
 

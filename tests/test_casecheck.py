@@ -1390,6 +1390,43 @@ def test_layout_a_list_showing_gives_no_note(working):
     assert noted(working, SHORT_SHOWING) == (0, "")
 
 
+def ruled_batch(between=""):
+    """Case 751.5: two showings of a batch, a rule before the first and one between them."""
+    first = SHORT_SHOWING.split("\n---\n")[0]
+    second = list_showing(*LINES_9_1, *LINES_9_2).replace("- 9.1 —", between + "- 9.1 —", 1)
+    return "---\n\n" + first + "\n---\n\n" + second
+
+
+def built_batch(working):
+    built_family(working)
+    no_pair = ANSWER.replace(">   - old: `` the `old` text ``\n>   - new: `the new text`\n", "")
+    assert answer(working, no_pair) == (0, "")
+
+
+def test_layout_rules_before_and_between_the_cases_of_a_batch_give_no_note(working):
+    # case 751.5
+    built_batch(working)
+    assert show(working, ruled_batch()) == (0, "")
+    assert noted(working, ruled_batch()) == (0, "")
+    assert noted(working, "---\n\n" + SHORT_SHOWING) == (0, "")
+
+
+def test_layout_a_text_in_the_second_case_after_a_rule_is_told(working):
+    # case 751.5: the judgment goes past a rule that a Case heading follows
+    built_batch(working)
+    shown = ruled_batch(between="A note of mine.\n\n")
+    code, out = noted(working, shown)
+    assert code == 0 and LAYOUT in out and "A note of mine." in out
+    assert "before the Case but a horizontal rule" in out
+
+
+def test_layout_text_after_a_last_rule_that_no_heading_follows_is_not_judged(working):
+    # case 751.5
+    answer(working, ANSWER)
+    shown = "---\n\n" + SHORT_SHOWING + "\nMore of my own.\n\n- a list item of mine\n"
+    assert noted(working, shown) == (0, "")
+
+
 def test_layout_a_showing_with_no_file_sent_is_still_refused_at_stop(working):
     # case 699.2: the file not sent is still a reason of the Stop run
     answer(working, ANSWER)
@@ -1610,6 +1647,15 @@ def test_round_a_reply_that_opens_with_the_context_label_or_the_question_passes(
     assert noted(working, question, records=records) == (0, "")
     labelled = SHOWN_ROUND.replace("**Контекст:**", "**Контекст — Case 7 (C2):**")
     assert noted(working, labelled, records=records) == (0, "")  # case 699.5
+
+
+def test_round_a_leading_rule_gives_no_note_and_a_text_after_it_is_told(working):
+    # case 751.4: a horizontal rule before a round is no text of the agent's own
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    assert noted(working, "---\n\n" + SHOWN_ROUND, records=records) == (0, "")
+    assert noted(working, SHOWN_ROUND, records=records) == (0, "")
+    code, out = noted(working, "---\n\nMine.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "Mine." in out and "nothing before it but a horizontal rule" in out
 
 
 @pytest.mark.parametrize(

@@ -51,9 +51,13 @@ def test_a_page_without_the_example_fails_and_names_the_file(tmp_path, tag):
 
 def store_of_showing(text: str) -> dict:
     """An entry for each sub-case id a ledger line of the showing names: its heading and a
-    `ratification` of its own lines, read by `fence_ledger_lines` — what `case-guppi` stores
-    for a Case with sub-cases."""
-    lines = casecheck.fence_ledger_lines(text.splitlines())
+    `ratification` of its own lines, read by `fence_ledger_lines` under each Case heading that
+    `split_cases` cuts, as the `Stop` run reads them, so a horizontal rule before the heading
+    does not end the reading (case 751.6) — what `case-guppi` stores for a Case with
+    sub-cases."""
+    lines = [
+        line for body in split_cases(text).values() for line in casecheck.fence_ledger_lines(body)
+    ]
     ids = list(dict.fromkeys(str(parse_line(line)["case"]) for line in lines))
     store = {}
     for case in ids:

@@ -100,6 +100,12 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   fields and the sections of each earlier item of the plan on it; a `defer`, a `delete` and
   a category with no schema or one whose schema rule the session changes are not judged
   (`check_conditions`);
+- a `create` item that lacks a field `materialize` would name under `incomplete` (case
+  748.2): one finding per field, by `materialize.create_lacks`, the one judgment the lift
+  marks by, `type` filled from the category first, so a missing `type` is none, and the
+  tags present when the item or its decision line carries them; a missing `method` of an
+  Estimate is the finding of its form alone, and a `defer`, an `update` and a `delete` are
+  not judged (`check_required`);
 - an item writing a `sections: Render` for a page that enforces by render whose text does
   not open with `<!-- slug -->` and close with `<!-- /slug -->`; only the text the item
   itself writes is judged, and a child's marker line in a parent is not (case 325.1);
@@ -204,7 +210,6 @@ from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 3
     INITIAL_STATUS,
     READ_LINE,
     RESULT,
-    SINGULAR,
     Vault,
     archived_by_cascade,
     as_list,
@@ -236,8 +241,11 @@ from guppi.lint import (
 )
 from guppi.materialize import (
     DECISION_KINDS,
+    SINGULAR,
     case_texts,
     category_of,
+    create_fields,
+    create_lacks,
     criterion_text,
     fence_breaks,
     fenced_lines,
@@ -1315,6 +1323,43 @@ def created_page(item: dict, category: str, project_dir: Path) -> tuple[dict, se
     return props, sections
 
 
+def check_required(
+    blocks: dict, records: list[dict], project_dir: Path, schema_free: set[str]
+) -> list[str]:
+    """Case 748.2: a `create` item that lacks a field `materialize` would name under
+    `incomplete`, by `materialize.create_lacks`, the one judgment the lift marks by: the
+    fields lifted as the lift lifts them, `type` filled from the category, the tags counted
+    when the item or its decision line carries them. A missing `method` of an Estimate is
+    left to `check_form`, which reports it already (case 331); a `defer`, an `update` and a
+    `delete` are not judged."""
+    tagged = {
+        (str(r.get("case")), str(r.get("slug")))
+        for r in records
+        if r.get("kind") == "create" and r.get("tags")
+    }
+    findings: list[str] = []
+    for case, block in blocks.items():
+        for item in block.get("create") or []:
+            if not isinstance(item, dict):
+                continue
+            slug = str(item.get("slug") or "")
+            category = category_of(slug)
+            known = schema_fields(project_dir, {"category": category}, schema_free)
+            sections = item.get("sections") if isinstance(item.get("sections"), dict) else {}
+            lacks = create_lacks(
+                category,
+                create_fields(item, known),
+                sections,
+                bool(item.get("tags")) or (case, slug) in tagged,
+            )
+            findings += [
+                f"case {case}: create {slug}: no {name}, a field materialize requires"
+                for name in lacks
+                if not (name == "method" and category == "estimates")
+            ]
+    return findings
+
+
 def check_conditions(blocks: dict, project_dir: Path, schema_free: set[str]) -> list[str]:
     """Case 714: a Case that leaves a page short of what a condition of its category's
     schema requires — by `lint.unmet_conditions`, the judgment `make lint` reports by. The
@@ -1803,6 +1848,7 @@ def judge(
     findings += check_governed(blocks, governed_paths(project_dir))
     findings += check_keys(blocks, project_dir, schema_free)
     findings += check_conditions(blocks, project_dir, schema_free)
+    findings += check_required(blocks, records, project_dir, schema_free)
     findings += check_form(blocks, project_dir)
     findings += check_markers(blocks, project_dir)
     findings += check_pairs(cases, blocks, project_dir)

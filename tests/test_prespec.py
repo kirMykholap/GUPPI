@@ -423,7 +423,8 @@ def test_a_nested_estimate_is_covered_by_its_parents_create_line(tmp_path):
     paired = "- 16:00:00 decision[case 1][create][estimate-z-works]{ref:rule-z}{tags:a}\n"
     plan = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
-        "create:\n  - slug: rule-z\n    type: rule\n    estimate:\n      slug: estimate-z-works\n",
+        "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    purpose: p\n"
+        "    estimate:\n      slug: estimate-z-works\n",
     ).replace("- [ ] guppi/x.py: the change", "- [ ] read `estimate-z-works`")
     assert check(tmp_path, plan=plan, ledger=parent) == (0, "", "")
     assert check(tmp_path, plan=plan, ledger=parent + paired) == (0, "", "")
@@ -433,7 +434,7 @@ def test_a_standalone_estimate_create_needs_its_own_line(tmp_path):
     plan = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
         "create:\n  - slug: estimate-alone\n    type: estimate\n    ref: rule-x\n"
-        "    method: pytest tests/test_x.py\n",
+        "    kind: QA\n    purpose: p\n    method: pytest tests/test_x.py\n",
     ).replace("- [ ] guppi/x.py: the change", "- [ ] read `estimate-alone`")
     with_page(tmp_path, "rules", "rule-x")
     _, out, _ = check(tmp_path, plan=plan, ledger="")
@@ -875,7 +876,7 @@ def test_a_created_estimate_without_its_task_line_is_a_finding(tmp_path):
     plan = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
         "create:\n  - slug: estimate-fresh\n    type: estimate\n    ref: rule-x\n"
-        "    method: pytest tests/test_x.py\n",
+        "    kind: QA\n    purpose: p\n    method: pytest tests/test_x.py\n",
     )
     with_page(tmp_path, "rules", "rule-x")
     _, out, _ = check(tmp_path, plan=plan, ledger=ledger)
@@ -1271,7 +1272,7 @@ def test_the_keys_of_the_old_shape_are_a_finding_on_every_kind(tmp_path):
     schema.write_text("properties:\n  required: [type, kind, purpose]\n", encoding="utf-8")
     leaf = PLAN.replace(
         "update:\n  - slug: rule-x\n    change: one line\n",
-        "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    estimate_slug: e\n",
+        "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    purpose: p\n    estimate_slug: e\n",
     )
     line = "- 16:00:00 decision[case 1][create][rule-z]{ref:rule-root}{tags:a}\n"
     code, out, _ = check(tmp_path, plan=leaf, ledger=line)
@@ -1873,7 +1874,7 @@ WRAPPED_UPDATE = UNWRAPPED_UPDATE.replace(
     "        <!-- rule-x -->\n        the body\n        <!-- /rule-x -->\n",
 )
 UNWRAPPED_CREATE = (
-    "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    enforcement: render\n"
+    "create:\n  - slug: rule-z\n    type: rule\n    kind: Leaf\n    purpose: p\n    enforcement: render\n"
     "    governs: .claude/x.md\n    sections:\n      Render: |\n        the body, no markers\n"
 )
 CREATE_RULE_LINE = "- 16:00:00 decision[case 1][create][rule-z]{ref:rule-x}{tags:a}\n"
@@ -2865,3 +2866,78 @@ def test_cascade_judged_keeps_a_note_that_names_a_judged_case_either_way(tmp_pat
     assert prespec.cascade_notes(blocks, [], tmp_path, judged={"1"}) == note
     assert prespec.cascade_notes(blocks, [], tmp_path, judged={"2"}) == note
     assert prespec.cascade_notes(blocks, [], tmp_path, judged={"3"}) == []
+
+
+# --- a create without a required field (case 748.2) ----------------------------------
+
+
+def required(tmp_path, item, kind="create", line_tags=None):
+    records = []
+    if line_tags:
+        records.append({"case": "1", "kind": kind, "slug": item["slug"], "tags": line_tags})
+    return prespec.check_required({"1": {kind: [item]}}, records, tmp_path, set())
+
+
+def lacks(slug, field):
+    return f"case 1: create {slug}: no {field}, a field materialize requires"
+
+
+def test_a_rule_create_with_no_purpose_or_no_tags_is_a_required_field_finding(tmp_path):
+    no_purpose = {"slug": "rule-z", "kind": "Leaf", "tags": ["a"]}
+    assert required(tmp_path, no_purpose) == [lacks("rule-z", "purpose")]
+    no_tags = {"slug": "rule-z", "kind": "Leaf", "purpose": "p"}
+    assert required(tmp_path, no_tags) == [lacks("rule-z", "tags")]
+
+
+def test_a_create_with_no_type_gives_no_required_field_finding(tmp_path):
+    item = {"slug": "rule-z", "kind": "Leaf", "purpose": "p", "tags": ["a"]}
+    assert required(tmp_path, item) == []
+
+
+def test_tags_on_the_decision_line_alone_count_as_the_required_field(tmp_path):
+    item = {"slug": "rule-z", "kind": "Leaf", "purpose": "p"}
+    assert required(tmp_path, item, line_tags=["a"]) == []
+
+
+def test_a_defer_with_no_purpose_gives_no_required_field_finding(tmp_path):
+    assert required(tmp_path, {"slug": "rule-z", "type": "rule"}, kind="defer") == []
+
+
+def test_an_estimate_with_no_method_gives_no_second_required_field_finding(tmp_path):
+    item = {"slug": "estimate-z-works", "ref": "rule-z", "kind": "QA", "purpose": "p"}
+    assert required(tmp_path, item) == []
+    assert required(tmp_path, {"slug": "estimate-z-works", "method": "m"}) == [
+        lacks("estimate-z-works", "kind"),
+        lacks("estimate-z-works", "purpose"),
+    ]
+
+
+def test_the_check_prints_a_required_field_finding(tmp_path):
+    plan = PLAN.replace(
+        "update:\n  - slug: rule-x\n    change: one line\n",
+        "create:\n  - slug: rule-z\n    kind: Leaf\n",
+    )
+    code, out, _ = check(tmp_path, plan=plan, ledger=CREATE_RULE_LINE)
+    assert code == 1
+    assert out.splitlines() == [lacks("rule-z", "purpose")]
+
+
+def test_the_lift_and_the_check_answer_alike_over_a_required_field(tmp_path):
+    from guppi import materialize
+
+    items = [
+        {"slug": "rule-z", "kind": "Leaf"},
+        {"slug": "rule-z", "purpose": "p", "tags": ["a"]},
+        {"slug": "entity-z", "kind": "MOC", "sections": {"Purpose": "p"}},
+        {"slug": "estimate-z-works", "purpose": "p"},
+        {"slug": "insight-z", "pattern": "p"},
+        {"slug": "rule-z", "type": "rule", "kind": "Leaf", "purpose": "p", "tags": ["a"]},
+    ]
+    for item in items:
+        entry = {"slug": item["slug"], "category": materialize.category_of(item["slug"])}
+        lifted: list[str] = []
+        materialize._lift_item(entry, dict(item), "create", None, lifted)
+        found = required(tmp_path, dict(item))
+        named = [f.split(": no ")[1].split(",")[0] for f in found]
+        # `method` is the finding of check_form, `parent` a mark of the lift alone
+        assert named == [f for f in lifted if f not in ("method", "parent")], item

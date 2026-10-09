@@ -177,6 +177,7 @@ from guppi.materialize import (
     CATEGORIES,
     ITEM_KEYS,
     PREFIXES,
+    SINGULAR,
     dump_yaml,
     load_yaml,
     sprint_id,
@@ -234,14 +235,6 @@ INITIAL_STATUS = {
     "lessons": "new",
     "insights": "open",
     "decisions": "current",
-}
-SINGULAR = {
-    "entities": "entity",
-    "rules": "rule",
-    "estimates": "estimate",
-    "lessons": "lesson",
-    "insights": "insight",
-    "decisions": "decision",
 }
 RESULT = "## Result"  # a reading's record; a rename leaves it as it is (case 258.1)
 REWORD_CATEGORIES = ("rules", "entities", "estimates")  # not the journal, not the records (274.1)

@@ -74,7 +74,13 @@ A number of the answer with a section and no sub-case whose decision line other 
 `guppi/prespec.py` — a target renamed or dropped in a Case built again in its shape — is a
 finding of its Case, by `target_findings`, with the same new number and marks; `case-guppi`
 puts the item back or changes the number by `Edit`, never writing the whole Case again
-(case 671.1).
+(case 671.1). On such a number a `create` line of the ledger whose slug the number's
+`ratification` holds on a `create` line with another `ref`, or with a tag added or removed,
+is a finding of its Case too, by `changed_create_findings`, with the same new number and
+marks, since `generate` builds the page from the first line and takes the later one for a
+repeat; the order of the tags and a `{supersedes}` or `{addresses}` mark do not count, and
+`case-guppi` writes the line back as the ledger holds it or changes the number by `Edit`
+(case 749).
 Each Case of the answer is stored with its findings, the time of the store and the `agent_id`
 of the payload in `<plan>.checked.json` beside the plan file of the session, a later answer
 for the same id replacing it but for the notes sent for that id, which it keeps (case 472.1).
@@ -829,6 +835,66 @@ def target_findings(
     return findings
 
 
+def create_line(record: dict) -> str:
+    """A `create` decision record as its line: the brackets, `ref` and the tags."""
+    line = f"decision[case {record['case']}][create][{record['slug']}]"
+    if record.get("ref"):
+        line += f"{{ref:{record['ref']}}}"
+    if record.get("tags"):
+        line += f"{{tags:{','.join(record['tags'])}}}"
+    return line
+
+
+def changed_create_findings(
+    cases: dict, ratified: list[dict], records: list[dict], store: dict
+) -> list[tuple[str, str]]:
+    """Case 749: `(top-level case, finding)` for each `create` line in the session's ledger
+    `records` on a number of the answer that has a section in it and no sub-case, when the
+    `ratification` of that number in the answer, `ratified`, holds a `create` line of the
+    same slug whose `ref` differs, or whose tags differ by a tag added or removed: a Case
+    ratified in the session and built again with another parent or tags for a page it
+    creates, which `generate` would build from the first line, taking the later one for a
+    repeat (case 514). The order of the tags and a `{supersedes}` or `{addresses}` mark do
+    not count; a slug with no `create` line under that number in the answer is left to
+    `target_findings`. The finding names the number, the slug, both lines, the new number
+    by `new_number` and the marks by `supersede_marks`, and tells `case-guppi` to write the
+    line back as the ledger holds it, or to change the number in the headings and the ledger
+    lines by `Edit` and add the marks, never writing the whole Case again."""
+    answered = {
+        (str(r["case"]), r["slug"]): r
+        for r in ratified
+        if r.get("record") == "decision" and r.get("kind") == "create"
+    }
+    findings: list[tuple[str, str]] = []
+    for record in records:
+        number = str(record.get("case", ""))
+        if (
+            record.get("record") != "decision"
+            or record.get("kind") != "create"
+            or number not in cases
+            or has_sub_cases(number, cases)
+        ):
+            continue
+        again = answered.get((number, record["slug"]))
+        if again is None or (
+            (again.get("ref") or None) == (record.get("ref") or None)
+            and set(again.get("tags") or []) == set(record.get("tags") or [])
+        ):
+            continue
+        top = top_case(number)
+        marks = supersede_marks(top, lined_numbers(top, records))
+        finding = (
+            f"case {number}: create {record['slug']}: the session's ledger holds "
+            f"{create_line(record)} and the Case built again holds {create_line(again)} — "
+            "the librarian builds the page from the first line; write the line back as the "
+            "ledger holds it, or change the number in the headings and the ledger lines to "
+            f"case {new_number(records, store)} by Edit and add {marks}; never write the "
+            "whole Case again"
+        )
+        findings.append((top, finding))
+    return findings
+
+
 def shape_findings(cases: dict, records: list[dict], store: dict) -> list[tuple[str, str]]:
     """Case 610.1: `(top-level case, finding)` for each top-level Case N of the answer whose
     family — N and its sub-cases at any depth — has a decision line other than a `defer` in
@@ -1076,7 +1142,8 @@ def check_answer(
     the check that `recommend` holds an item for each (case 544.3). `store`, the store of
     checked answers, adds the check of a Case built again in another shape against the
     decision lines of `window`, `shape_findings` (case 610.1), and of one built again in its
-    shape without the item of one of its lines, `target_findings` (case 671.1). The
+    shape without the item of one of its lines, `target_findings` (case 671.1), or with a
+    `create` line whose `ref` or tags changed, `changed_create_findings` (case 749). The
     language finding of `/pre-spec`, `check_untranslated`, runs over the same Spec text as
     `judge`, each hit a finding of its Case (case 537). The notes are those of
     `prespec.promise_notes` on the answer — a Criterion line not carried, a `then` line shared
@@ -1145,10 +1212,12 @@ def check_answer(
         for case, finding in unread_sentences(trace, reads, folder, own):
             found[case if case in found else next(iter(cases))].append(finding)
     shapes = []
-    if store is not None:  # cases 610.1, 671.1
+    if store is not None:  # cases 610.1, 671.1, 749
         ledger = ledger_records(window)
-        shapes = shape_findings(cases, ledger, store) + target_findings(
-            cases, answer, ledger, store
+        shapes = (
+            shape_findings(cases, ledger, store)
+            + target_findings(cases, answer, ledger, store)
+            + changed_create_findings(cases, records, ledger, store)
         )
     for top, finding in (
         check_backlog(records, frontier, project_dir)

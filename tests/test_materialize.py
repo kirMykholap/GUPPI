@@ -2630,3 +2630,53 @@ def test_sprint_of_a_unit_with_no_sprint_page_is_the_heading(tmp_path):
     seed(tmp_path)
     run(tmp_path)
     assert load(tmp_path)["sprint"] == "migration"
+
+
+# --- the type of a create from its category (case 748.1) -------------------------------
+
+
+def lift_create(slug, tags=None, **fields):
+    entry = {"slug": slug, "category": materialize.category_of(slug), "ref": "rule-root"}
+    if tags:
+        entry["tags"] = list(tags)
+    incomplete: list[str] = []
+    materialize._lift_item(entry, {"slug": slug, **fields}, "create", None, incomplete)
+    return entry, incomplete
+
+
+def test_a_rule_and_an_entity_with_no_type_take_it_type_from_the_category():
+    rule, missing = lift_create("rule-z", tags=["a"], kind="Leaf", purpose="p")
+    assert rule["fields"]["type"] == "rule" and missing == []
+    entity, missing = lift_create("entity-z", tags=["a"], kind="Leaf", purpose="p")
+    assert entity["fields"]["type"] == "entity" and missing == []
+
+
+def test_an_estimate_and_an_insight_take_it_type_from_the_category():
+    estimate, missing = lift_create("estimate-z-works", kind="QA", purpose="p", method="m")
+    assert estimate["fields"]["type"] == "estimate" and missing == []
+    insight, missing = lift_create("insight-z", tags=["a"], pattern="p", children=["lesson-a"])
+    assert insight["fields"]["type"] == "insight" and missing == []
+
+
+def test_a_written_type_stands_type_from_the_category():
+    entry, missing = lift_create("rule-z", tags=["a"], type="entity", kind="Leaf", purpose="p")
+    assert entry["fields"]["type"] == "entity" and missing == []
+
+
+def test_a_missing_purpose_is_still_incomplete_type_from_the_category():
+    entry, missing = lift_create("rule-z", tags=["a"], kind="Leaf")
+    assert entry["fields"]["type"] == "rule" and missing == ["purpose"]
+
+
+def test_a_defer_gets_no_type_type_from_the_category():
+    entry = {"slug": "rule-z", "category": "rules"}
+    missing: list[str] = []
+    materialize._lift_item(entry, {"slug": "rule-z", "purpose": "p"}, "defer", None, missing)
+    assert "type" not in entry["fields"] and missing == []
+
+
+def test_generate_and_prespec_read_the_one_map_type_from_the_category():
+    from guppi import generate, prespec
+
+    assert generate.SINGULAR is materialize.SINGULAR
+    assert prespec.SINGULAR is materialize.SINGULAR

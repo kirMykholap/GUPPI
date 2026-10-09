@@ -18,7 +18,10 @@ parent, and needs no `problem`. A Case whose sub-cases have decision lines in th
 decision record of its own: its `decision` and `origin` by its id, `case_text` with its
 `context`, `problem`, `recommend` and its `given` when it has one, `children` the `decision` of
 each sub-case in ledger order, `tags` the union of theirs, and no `targets` (case 544.6). What
-is missing is named (`incomplete`), never invented.
+is missing is named (`incomplete`), never invented. The `type` of a `create` that writes none
+is its category's, by `SINGULAR`, the one map `generate` and pre-spec read too, and is never
+`incomplete` (`fill_type`, case 748.1); the other fields of `REQUIRED` a `create` lacks are
+judged by `create_lacks`, which pre-spec reports by too (case 748.2).
 The yaml's `sprint` is the first `## <id>` heading of `vault/wiki/sprint.md`, but in a unit
 whose ledger holds a `create` decision line of `entity-sprint-<id>` it is that `<id>`, so the
 session that opens a sprint after the close of the last one belongs to the new sprint
@@ -202,6 +205,16 @@ REQUIRED = {
     "entities": ("type", "kind", "purpose", "tags"),
     "estimates": ("kind", "purpose", "method"),  # the Criterion comes from the Case (194.1)
     "insights": ("pattern", "children", "tags"),
+}
+# The type of a page of each category, the one map the lift, `generate` and pre-spec read
+# (case 748.1): a `create` that writes no `type` takes it from here, never `incomplete`.
+SINGULAR = {
+    "entities": "entity",
+    "rules": "rule",
+    "estimates": "estimate",
+    "lessons": "lesson",
+    "insights": "insight",
+    "decisions": "decision",
 }
 CASE_SECTIONS = ("context", "problem", "recommend", "given", "when", "then", "ratification")
 # A sub-case reads these from its parent, never `problem`, `recommend` or `when` (case 544.6).
@@ -884,6 +897,42 @@ def schema_fields(
     }
 
 
+def fill_type(fields: dict, category: str | None) -> dict:
+    """The `type` of a `create` that writes none, from its category by `SINGULAR`; a
+    written `type` stands (case 748.1)."""
+    if category in SINGULAR:
+        fields.setdefault("type", SINGULAR[category])
+    return fields
+
+
+def create_lacks(
+    category: str | None, fields: dict, sections: dict | None, tagged: bool
+) -> list[str]:
+    """The fields of `REQUIRED` that a `create` item of `category` lacks, `type` filled
+    first by `fill_type`: a field is present as a key of `fields` or under `sections`, and
+    the tags when the item or its decision line carries them. The one judgment the lift marks
+    `incomplete` by and pre-spec reports by (case 748.2)."""
+    fields = fill_type(dict(fields), category)
+    sections = sections or {}
+    present = set(fields) | set(sections) | {str(k).lower() for k in sections}
+    if tagged:
+        present.add("tags")
+    return [
+        name
+        for name in REQUIRED.get(category, ())
+        if name not in present and name.capitalize() not in sections
+    ]
+
+
+def create_fields(item: dict, known: set[str] | None) -> dict:
+    """The fields a `create` item lifts: its keys but the structural ones, those the
+    category's schema names when it has one (cases 214.1, 436)."""
+    fields = {k: v for k, v in item.items() if k not in CREATE_SKIPPED}
+    if known is not None:
+        fields = {k: v for k, v in fields.items() if k in known}
+    return fields
+
+
 def _lift_item(
     entry: dict,
     item: dict,
@@ -893,17 +942,16 @@ def _lift_item(
     known: set[str] | None = None,
 ):
     if kind == "create":
-        fields = {k: v for k, v in item.items() if k not in CREATE_SKIPPED}
+        fields = create_fields(item, known)
         if known is not None:  # the lift by the schema (case 214.1), by `accepted_keys` (436)
             accepted = accepted_keys("create", known)
             unknown = [k for k in item if k not in accepted]
             if unknown:
                 entry["unknown"] = unknown
-            fields = {k: v for k, v in fields.items() if k in known}
             if item.get("ref") and not entry.get("ref"):  # the item's ref is the entry's
                 entry["ref"] = str(item["ref"])
+        fill_type(fields, entry.get("category"))  # from the category (case 748.1)
         if nested == "estimate" or entry.get("category") == "estimates":
-            fields.setdefault("type", "estimate")
             fields.pop("context", None)  # `## Context` is not written since case 193
             if "criterion" in fields:  # the shape before 194.1: a written Criterion
                 entry.setdefault("sections", {})["Criterion"] = fields.pop("criterion")
@@ -922,16 +970,7 @@ def _lift_item(
         if item.get("tags") and not entry.get("tags"):
             entry["tags"] = list(item["tags"])
         category = entry.get("category")
-        needed = REQUIRED.get(category, ())
-        present = (
-            set(fields)
-            | set(entry.get("sections") or {})
-            | ({"tags"} if entry.get("tags") else set())
-        )
-        present |= {k.lower() for k in entry.get("sections") or {}}
-        for name in needed:
-            if name not in present and name.capitalize() not in (entry.get("sections") or {}):
-                incomplete.append(name)
+        incomplete += create_lacks(category, fields, entry.get("sections"), bool(entry.get("tags")))
         if (
             category == "rules"
             and fields.get("kind") == "Leaf"

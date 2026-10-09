@@ -803,6 +803,67 @@ def test_subagent_dropped_target_a_changed_shape_gets_only_the_shape_finding(wor
     assert code == 2 and "comes back in another shape" in err and NO_ITEM not in err
 
 
+# --- a ratified Case built again with another ref or tags on a create line (case 749) ------
+
+CHANGED = "the Case built again holds"
+
+
+def test_subagent_changed_create_line_another_ref_is_sent_back_with_the_new_number(working):
+    ledger(working, KEPT_7, "decision[case 7][create][estimate-x-works]{ref:rule-y}{tags:harness}")
+    code, err = answer_file(working, ANSWER)
+    assert code == 2
+    assert (
+        "case 7: create estimate-x-works: the session's ledger holds "
+        "decision[case 7][create][estimate-x-works]{ref:rule-y}{tags:harness} and "
+        f"{CHANGED} decision[case 7][create][estimate-x-works]{{ref:rule-x}}{{tags:harness}} — "
+        "the librarian builds the page from the first line; write the line back as the ledger "
+        "holds it, or change the number in the headings and the ledger lines to case 8 by "
+        "Edit and add {supersedes:case 7}; never write the whole Case again"
+    ) in err
+    assert NO_ITEM not in err
+
+
+@pytest.mark.parametrize(
+    "line",
+    [
+        "decision[case 7][create][estimate-x-works]{ref:rule-x}",  # a tag added
+        "decision[case 7][create][estimate-x-works]{ref:rule-x}{tags:harness,hooks}",  # removed
+    ],
+)
+def test_subagent_changed_create_line_a_tag_added_or_removed_is_sent_back(working, line):
+    ledger(working, KEPT_7, line)
+    code, err = answer_file(working, ANSWER)
+    assert code == 2 and CHANGED in err and "case 8 by Edit and add {supersedes:case 7}" in err
+
+
+@pytest.mark.parametrize(
+    ("line", "text"),
+    [
+        (  # the same tags in another order
+            "decision[case 7][create][estimate-x-works]{ref:rule-x}{tags:hooks,harness}",
+            ANSWER.replace("{tags:harness}", "{tags:harness,hooks}"),
+        ),
+        (  # a line that differs by a mark alone
+            (
+                "decision[case 7][create][estimate-x-works]{ref:rule-x}{tags:harness}"
+                "{supersedes:case 3}"
+            ),
+            ANSWER,
+        ),
+        ("decision[case 7][update][rule-x]{ref:rule-z}", ANSWER),  # an update, another ref
+    ],
+)
+def test_subagent_changed_create_line_passes_what_is_no_change(working, line, text):
+    ledger(working, KEPT_7, line)
+    assert answer_file(working, text) == (0, "")
+
+
+def test_subagent_changed_create_line_a_number_with_sub_cases_gets_none(working):
+    ledger(working, "decision[case 9][create][estimate-x-works-1]{ref:rule-y}{tags:harness}")
+    code, err = answer_file(working, FAMILY_9)
+    assert code == 2 and "comes back in another shape" in err and CHANGED not in err
+
+
 # --- a number another agent holds (case 610.2) ---------------------------------------------
 
 

@@ -4,7 +4,7 @@ kind: MOC
 purpose: Prevents work being planned against stale or contradictory vault state
 status: built
 parent: "[[rule-session]]"
-children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]", "[[rule-spec-write]]", "[[rule-spec-reconcile]]", "[[rule-case-build]]", "[[rule-case-check]]", "[[rule-skill-grill-me]]", "[[rule-skill-wait-what]]", "[[rule-prespec-onward]]", "[[rule-orchestration]]", "[[rule-ratification]]", "[[rule-case-example]]"]
+children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]", "[[rule-spec-write]]", "[[rule-spec-reconcile]]", "[[rule-case-build]]", "[[rule-case-check]]", "[[rule-skill-grill-me]]", "[[rule-skill-wait-what]]", "[[rule-prespec-onward]]", "[[rule-orchestration]]", "[[rule-ratification]]", "[[rule-case-example]]", "[[rule-skill-sprint-close]]"]
 estimates: ["[[estimate-plan-mode-verified]]", "[[estimate-plan-mode-names-its-estimates]]"]
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
@@ -57,3 +57,4 @@ touches no Estimate; an `update` of a `Render` touches no Estimate of the live r
 - 2026-10-02 child rule-ratification added · [[decision-case-595.3]]
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-07 child rule-case-example added · [[decision-case-717.1]]
+- 2026-10-09 updated: child rule-skill-sprint-close added (case 746.1) · [[decision-case-746.1]]

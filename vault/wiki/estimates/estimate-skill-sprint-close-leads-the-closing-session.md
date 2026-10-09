@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-skill-sprint-close]]"
 purpose: Whether /sprint-close refuses in a session that ratified another Case, puts off the other Cases lines, sorts the readings and has the closing Case built with the close line, while orchestration.md no longer holds the steps of the closing session
-method: by hand, at the Retro of the session that creates it, the new Renders of rule-skill-sprint-close and rule-orchestration and the update of entity-sprint-migration in the Spec read against the Criterion
+method: by hand, at the Retro of the session of case 746, the live Renders of rule-skill-sprint-close and rule-orchestration, .claude/skills/sprint-close/SKILL.md, vault/wiki/orchestration.md and entity-sprint-migration read against the Criterion
+checked: 2026-10-09
 origin: raw/2026-10-08/2352/ledger.md#case-743.8
 sprint: migration
 created: 2026-10-08
@@ -28,9 +29,11 @@ When the session's ledger holds a decision line other than a `defer`, the main a
 
 ## Result
 
-2026-10-09, Retro, not read: uv run guppi materialize --date 2026-10-08 --show marks both create entries of rule-skill-sprint-close (ledger lines 19 and 28) incomplete: [type], since the then block of 743.8 holds no type: rule, so the skill is not built while the update of rule-orchestration removes the paragraph on the closing session
+2026-10-09, Retro, by hand: .claude/skills/sprint-close/SKILL.md, vault/wiki/orchestration.md and entity-sprint-migration read against the Criterion — step 1 defers the close line and stops when the ledger holds a decision line other than a defer; step 2 puts off the other Cases lines with the pick as the ratifying words, Work and Ask left open, the Frontier shown; steps 3–4 sort pending and failed Estimates by moment, the closing Case with one by hand task per moment, one read line per Estimate, the sprint-close --apply line with the person's choice and the merge line left unticked; step 5–6 Work Mode neither runs nor ticks the close line, the librarian runs it; orchestration.md names the two skills in one sentence and counts the start of /sprint-close among the moments of a short-form defer; the close line reads "- the close of `migration` — `/sprint-close`, a session of its own" and the Backlog holds no merge line
 
 ## History
 
 - 2026-10-09 created · [[decision-case-743.8]]
 - 2026-10-09 status: pending → failed · raw/2026-10-08/2352/ledger.md#L38
+- 2026-10-09 updated: sent back for a reading at the Retro of the session of case 746, the Criterion unchanged; the moment of the old method passed unread (case 746.3) · [[decision-case-746.3]]
+- 2026-10-09 status: pending → passed · raw/2026-10-09/0200/ledger.md#L18

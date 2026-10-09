@@ -2,12 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next sprint from opening without a goal, a Definition of done, a first milestone, its close line and a look at the backlog, while the text that asks for them stays out of the sessions that open no sprint
-status: draft
+status: built
 enforcement: render
 implementation_ref: [guppi/sprint.py, tests/test_sprint.py, .claude/settings.json]
 governs: .claude/skills/sprint-open/SKILL.md
 render_mode: full
-parent: "[[rule-session]]"
+parent: "[[rule-session-start]]"
 estimates: ["[[estimate-skill-sprint-open-asks-the-opening-questions]]", "[[estimate-skill-sprint-open-starts-at-hi]]"]
 origin: raw/2026-10-08/2352/ledger.md#case-743.6
 sprint: migration
@@ -45,3 +45,5 @@ No sprint is open: the first heading of `vault/wiki/sprint.md` marks the last sp
 - 2026-10-09 created · [[decision-case-743.6]]
 - 2026-10-09 estimate estimate-skill-sprint-open-asks-the-opening-questions added · [[decision-case-743.6]]
 - 2026-10-09 estimate estimate-skill-sprint-open-starts-at-hi added · [[decision-case-743.7]]
+- 2026-10-09 updated: the parent is rule-session-start, as case 743.6 set it (case 746.1) · [[decision-case-746.1]]
+- 2026-10-09 status: draft → built · cascade

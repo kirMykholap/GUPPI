@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents the session that closes a sprint from mixing the close with other decisions, or from reaching the close without the readings sorted, while the text that leads it stays out of the sessions that close no sprint
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/sprint-close/SKILL.md
 render_mode: full
-parent: "[[rule-session]]"
+parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-skill-sprint-close-leads-the-closing-session]]"]
 origin: raw/2026-10-08/2352/ledger.md#case-743.8
 sprint: migration
@@ -40,3 +40,5 @@ This session closes the sprint that `vault/wiki/sprint.md` names. Its Plan Mode 
 
 - 2026-10-09 created · [[decision-case-743.8]]
 - 2026-10-09 estimate estimate-skill-sprint-close-leads-the-closing-session added · [[decision-case-743.8]]
+- 2026-10-09 updated: the parent is rule-plan-mode, as case 743.8 set it (case 746.1) · [[decision-case-746.1]]
+- 2026-10-09 status: draft → built · cascade

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-skill-sprint-open]]"
 purpose: Whether /sprint-open has the opening Case of a sprint ask its id, its goal, its Definition of done, its first milestone and whether to take an item of the backlog, and write the close line, with the Frontier assembled as /hi sets it
-method: by hand, at the Retro of the session that creates it, the new Render of rule-skill-sprint-open in the Spec read against the Criterion
+method: by hand, at the Retro of the session of case 746, the live Render of rule-skill-sprint-open and .claude/skills/sprint-open/SKILL.md read against the Criterion
+checked: 2026-10-09
 origin: raw/2026-10-08/2352/ledger.md#case-743.6
 sprint: migration
 created: 2026-10-08
@@ -27,9 +28,11 @@ The main agent assembles the Frontier as `rule-skill-hi` sets it, the line `open
 
 ## Result
 
-2026-10-09, Retro, not read: uv run guppi materialize --date 2026-10-08 --show marks both create entries of rule-skill-sprint-open (ledger lines 15 and 27) incomplete: [type], since the then block of 743.6 holds no type: rule, so the page and the skill are not built
+2026-10-09, Retro, by hand: .claude/skills/sprint-open/SKILL.md, the Render of rule-skill-sprint-open (guppi render --check printed nothing), read against the Criterion — the Frontier as /hi sets it with open the next sprint first; the prompt asks the id, the goal in one sentence, the Definition of done as Estimates, the first milestone and its items, the count of backlog.md and whether to take any, no item the person does not name; the close line as the last item of the last milestone; the opening Case the first ratified; the skill decides no answer
 
 ## History
 
 - 2026-10-09 created · [[decision-case-743.6]]
 - 2026-10-09 status: pending → failed · raw/2026-10-08/2352/ledger.md#L37
+- 2026-10-09 updated: sent back for a reading at the Retro of the session of case 746, the Criterion unchanged; the moment of the old method passed unread (case 746.2) · [[decision-case-746.2]]
+- 2026-10-09 status: pending → passed · raw/2026-10-09/0200/ledger.md#L17

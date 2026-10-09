@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: a re-ratification appends a changed decision line beside the first one, which the ledger never withdraws, and materialize takes the ref of an entry from its own ledger line before the item of the Spec, so the stale ref stays an entry of the yaml with nothing that marks it superseded
-status: clustered
+status: archived
 insight: "[[insight-ledger-ratified-line-never-withdrawn]]"
 origin: raw/2026-10-08/2352/ledger.md#L41
 sprint: migration
@@ -22,3 +22,5 @@ a re-ratification appends a changed decision line beside the first one, which th
 
 - 2026-10-09 created · raw/2026-10-08/2352/ledger.md#L41
 - 2026-10-09 updated: clustered under insight-ledger-ratified-line-never-withdrawn (synthesis) · raw/2026-10-08/2352/ledger.md#L41
+- 2026-10-09 archived · insight actioned
+- 2026-10-09 archived · cleanup

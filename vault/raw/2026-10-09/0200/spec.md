@@ -117,13 +117,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] update `rule-skill-sprint-close`
-- [ ] update `rule-session`
-- [ ] update `rule-session-start`
-- [ ] update `rule-plan-mode`
-- [ ] update `estimate-session-phases-in-order`
-- [ ] read `estimate-session-phases-in-order`
+- [x] update `rule-skill-sprint-open`
+- [x] update `rule-skill-sprint-close`
+- [x] update `rule-session`
+- [x] update `rule-session-start`
+- [x] update `rule-plan-mode`
+- [x] update `estimate-session-phases-in-order`
+- [x] read `estimate-session-phases-in-order`
 ```
 
 ### Case 746.2 — `/sprint-open` is read again against its Criterion
@@ -160,8 +160,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-skill-sprint-open-asks-the-opening-questions`
-- [ ] read `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] update `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] read `estimate-skill-sprint-open-asks-the-opening-questions`
 ```
 
 ### Case 746.3 — `/sprint-close` is read again against its Criterion
@@ -198,8 +198,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-skill-sprint-close-leads-the-closing-session`
-- [ ] read `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] update `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] read `estimate-skill-sprint-close-leads-the-closing-session`
 ```
 
 ## Case 747 — The round check is read by a staged run of the hook
@@ -256,8 +256,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-faulty-round`
-- [ ] read `estimate-case-check-sends-back-a-faulty-round`
+- [x] update `estimate-case-check-sends-back-a-faulty-round`
+- [x] read `estimate-case-check-sends-back-a-faulty-round`
 ```
 
 ## Case 748 — A new page takes its type from its folder, and a missing required field is caught before the Spec
@@ -326,11 +326,11 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-materialize-fills-the-type-from-the-category`
+- [x] create `estimate-materialize-fills-the-type-from-the-category`
 - [x] `guppi/materialize.py`: `SINGULAR` moves here from `guppi/generate.py`; `_lift_item` fills `type` by it for every `create` item that writes none, in place of its literal `type: estimate`, and the module docstring says so.
 - [x] `guppi/generate.py` and `guppi/prespec.py`: import `SINGULAR` from `guppi/materialize.py`; no second copy of the map stays.
 - [x] `tests/test_materialize.py`: tests named `type_from_the_category` — a rule and an entity `create` with no `type` get it and no `incomplete: [type]`, a written `type` stands, a missing `purpose` is still `incomplete`.
-- [ ] read `estimate-materialize-fills-the-type-from-the-category`
+- [x] read `estimate-materialize-fills-the-type-from-the-category`
 ```
 
 ### Case 748.2 — Pre-spec reports a `create` item without a required field
@@ -369,11 +369,11 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-hook-reports-a-create-without-a-required-field`
+- [x] create `estimate-prespec-hook-reports-a-create-without-a-required-field`
 - [x] `guppi/materialize.py`: one function gives the required fields that a `create` item lacks, `type` filled first; `_lift_item` calls it.
 - [x] `guppi/prespec.py`: `judge` reports each missing field by that function, the tags of the decision line counted, no second finding for a missing `method`; the module docstring lists the finding.
 - [x] `tests/test_prespec.py`: tests named `required_field` — a rule `create` with no `purpose` or no `tags` gives a finding, one with no `type` gives none, tags on the decision line alone count, a `defer` with no `purpose` gives none, and the lift and the check answer alike over the same items.
-- [ ] read `estimate-prespec-hook-reports-a-create-without-a-required-field`
+- [x] read `estimate-prespec-hook-reports-a-create-without-a-required-field`
 ```
 
 ## Case 749 — A rebuilt Case that changes the parent or tags of a new page goes back with a new number
@@ -458,13 +458,13 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line`
+- [x] create `estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line`
 - [x] `guppi/casecheck.py`: a finding beside `target_findings`, run where it runs, that compares each `create` line of the ledger on a number of the file with the `create` line of the same slug in the file's `ratification`, by `ref` and by the set of tags, with the new number by `new_number` and the marks by `supersede_marks`; the module docstring names it.
 - [x] `tests/test_casecheck.py`: under `changed_create_line`, a changed `ref` and a tag added are sent back with the new number and the marks; the same tags in another order, a line with an added `{supersedes}` mark, an `update` line with another `ref`, and a number with sub-cases give no finding of this check.
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] update `insight-ledger-ratified-line-never-withdrawn`
-- [ ] read `estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line`
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `insight-ledger-ratified-line-never-withdrawn`
+- [x] read `estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line`
 ```
 
 ## Deferred

@@ -7610,3 +7610,46 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-09 rules/rule-case-check status: built → draft · cascade · generate
 - 2026-10-09 decisions/decision-case-718 archived · superseded · generate
 - 2026-10-09 decisions/decision-case-718 archived · cleanup
+- 2026-10-09 decisions/decision-case-746 created · raw/2026-10-09/0200/ledger.md#case-746 · generate
+- 2026-10-09 decisions/decision-case-746.1 created · raw/2026-10-09/0200/ledger.md#case-746.1 · generate
+- 2026-10-09 rules/rule-skill-sprint-open updated: the parent is rule-session-start, as case 743.6 set it (case 746.1) · [[decision-case-746.1]] · generate
+- 2026-10-09 rules/rule-skill-sprint-close updated: the parent is rule-plan-mode, as case 743.8 set it (case 746.1) · [[decision-case-746.1]] · generate
+- 2026-10-09 rules/rule-session updated: the children are the five phases alone; the two sprint skill pages hang under their phases (case 746.1) · [[decision-case-746.1]] · generate
+- 2026-10-09 rules/rule-session-start updated: child rule-skill-sprint-open added (case 746.1) · [[decision-case-746.1]] · generate
+- 2026-10-09 rules/rule-plan-mode updated: child rule-skill-sprint-close added (case 746.1) · [[decision-case-746.1]] · generate
+- 2026-10-09 estimates/estimate-session-phases-in-order updated: sent back for a reading at the Retro of the session of case 746, the Criterion unchanged: rule-session listed the two sprint skill pages among its children (case 746.1) · [[decision-case-746.1]] · generate
+- 2026-10-09 decisions/decision-case-746.2 created · raw/2026-10-09/0200/ledger.md#case-746.2 · generate
+- 2026-10-09 estimates/estimate-skill-sprint-open-asks-the-opening-questions updated: sent back for a reading at the Retro of the session of case 746, the Criterion unchanged; the moment of the old method passed unread (case 746.2) · [[decision-case-746.2]] · generate
+- 2026-10-09 decisions/decision-case-746.3 created · raw/2026-10-09/0200/ledger.md#case-746.3 · generate
+- 2026-10-09 estimates/estimate-skill-sprint-close-leads-the-closing-session updated: sent back for a reading at the Retro of the session of case 746, the Criterion unchanged; the moment of the old method passed unread (case 746.3) · [[decision-case-746.3]] · generate
+- 2026-10-09 decisions/decision-case-747 created · raw/2026-10-09/0200/ledger.md#case-747 · generate
+- 2026-10-09 estimates/estimate-case-check-sends-back-a-faulty-round updated: the Criterion replaced whole — the clause that case-guppi answers again leaves it, and the live send-back of the method gives way to a staged run of the hook command at the Retro (case 747) · [[decision-case-747]] · generate
+- 2026-10-09 decisions/decision-case-748 created · raw/2026-10-09/0200/ledger.md#case-748 · generate
+- 2026-10-09 decisions/decision-case-748.1 created · raw/2026-10-09/0200/ledger.md#case-748.1 · generate
+- 2026-10-09 estimates/estimate-materialize-fills-the-type-from-the-category created · [[decision-case-748.1]] · generate
+- 2026-10-09 estimates/estimate-materialize-fills-the-type-from-the-category status: pending → passed · raw/2026-10-09/0200/ledger.md#L20 · generate
+- 2026-10-09 rules/rule-materialize estimate estimate-materialize-fills-the-type-from-the-category added · [[decision-case-748.1]] · generate
+- 2026-10-09 decisions/decision-case-748.2 created · raw/2026-10-09/0200/ledger.md#case-748.2 · generate
+- 2026-10-09 estimates/estimate-prespec-hook-reports-a-create-without-a-required-field created · [[decision-case-748.2]] · generate
+- 2026-10-09 estimates/estimate-prespec-hook-reports-a-create-without-a-required-field status: pending → passed · raw/2026-10-09/0200/ledger.md#L21 · generate
+- 2026-10-09 rules/rule-prespec-hook estimate estimate-prespec-hook-reports-a-create-without-a-required-field added · [[decision-case-748.2]] · generate
+- 2026-10-09 decisions/decision-case-749 created · raw/2026-10-09/0200/ledger.md#case-749 · generate
+- 2026-10-09 estimates/estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line created · [[decision-case-749]] · generate
+- 2026-10-09 estimates/estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line status: pending → passed · raw/2026-10-09/0200/ledger.md#L22 · generate
+- 2026-10-09 rules/rule-case-check estimate estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line added · [[decision-case-749]] · generate
+- 2026-10-09 rules/rule-case-protocol updated: a rebuilt Case whose create line changes its ref or its tags takes a new number, and the check sends it back (case 749) · [[decision-case-749]] · generate
+- 2026-10-09 insights/insight-ledger-ratified-line-never-withdrawn updated: actioned: the check of the file case-guppi writes sends back a ratified Case built again whose create line changes its ref or its tags, with the new number and the marks (case 749) · [[decision-case-749]] · generate
+- 2026-10-09 decisions/decision-case-750 created · raw/2026-10-09/0200/ledger.md#case-750 · generate
+- 2026-10-09 rules/rule-morph deferred · [[decision-case-750]] · generate
+- 2026-10-09 estimates/estimate-session-phases-in-order status: pending → passed · raw/2026-10-09/0200/ledger.md#L16 · generate
+- 2026-10-09 estimates/estimate-skill-sprint-open-asks-the-opening-questions status: pending → passed · raw/2026-10-09/0200/ledger.md#L17 · generate
+- 2026-10-09 estimates/estimate-skill-sprint-close-leads-the-closing-session status: pending → passed · raw/2026-10-09/0200/ledger.md#L18 · generate
+- 2026-10-09 estimates/estimate-case-check-sends-back-a-faulty-round status: pending → passed · raw/2026-10-09/0200/ledger.md#L19 · generate
+- 2026-10-09 lessons/lesson-case-build-task-copies-an-existing-judgment created · raw/2026-10-09/0200/ledger.md#L23 · generate
+- 2026-10-09 insights/insight-workflow-case-written-without-reading-the-pages-it-changes updated: child lesson-case-build-task-copies-an-existing-judgment added, reopened from actioned (synthesis) · raw/2026-10-09/0200/ledger.md#L23 · generate
+- 2026-10-09 lessons/lesson-case-build-task-copies-an-existing-judgment updated: clustered under insight-workflow-case-written-without-reading-the-pages-it-changes (synthesis) · raw/2026-10-09/0200/ledger.md#L23 · generate
+- 2026-10-09 rules/rule-case-check status: draft → built · cascade · generate
+- 2026-10-09 rules/rule-skill-sprint-close status: draft → built · cascade · generate
+- 2026-10-09 rules/rule-skill-sprint-open status: draft → built · cascade · generate
+- 2026-10-09 lessons/lesson-ledger-rebuilt-create-keeps-the-stale-ref archived · insight actioned · generate
+- 2026-10-09 lessons/lesson-ledger-rebuilt-create-keeps-the-stale-ref archived · cleanup

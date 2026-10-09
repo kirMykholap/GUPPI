@@ -4,7 +4,7 @@ kind: MOC
 purpose: Prevents a working session from starting against unknown state
 status: built
 parent: "[[rule-session]]"
-children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]", "[[rule-compact-recall]]"]
+children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]", "[[rule-compact-recall]]", "[[rule-skill-sprint-open]]"]
 estimates: ["[[estimate-session-start-context]]"]
 origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
@@ -71,3 +71,4 @@ items outright.
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-30 updated: no pull and no issues at /hi: the git Leaf and the sources of the Frontier (case 528.3) · [[decision-case-528.3]]
 - 2026-10-05 status: draft → built · cascade
+- 2026-10-09 updated: child rule-skill-sprint-open added (case 746.1) · [[decision-case-746.1]]

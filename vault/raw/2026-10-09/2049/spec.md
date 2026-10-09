@@ -65,10 +65,10 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-orchestration-sets-off-each-reply-of-case-guppi`
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-sets-off-each-reply-of-case-guppi`
+- [x] create `estimate-orchestration-sets-off-each-reply-of-case-guppi`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-sets-off-each-reply-of-case-guppi`
 ```
 
 ### Case 751.2 — A rule between the Cases of a batch
@@ -108,10 +108,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-marks-each-round-of-a-batch`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-marks-each-round-of-a-batch`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-marks-each-round-of-a-batch`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-marks-each-round-of-a-batch`
 ```
 
 ### Case 751.3 — A rule between the rounds of the loop after pre-spec
@@ -155,10 +155,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-gathers-the-answers-after-findings`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-gathers-the-answers-after-findings`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-gathers-the-answers-after-findings`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-gathers-the-answers-after-findings`
 ```
 
 ### Case 751.4 — The check of a round accepts a leading rule
@@ -197,8 +197,8 @@ update:
 ```tasks
 - [x] `guppi/casecheck.py`: `round_opening` takes the first line of the reply that is neither blank nor `RULE`, and its note says nothing before the round but a horizontal rule; the module docstring on how a round opens says so.
 - [x] `tests/test_casecheck.py`: a round that opens with `---` gets no note; a round with no rule gets no note; a text of the agent's own after a leading `---` still gets the note.
-- [ ] update `estimate-case-check-refuses-text-before-a-round`
-- [ ] read `estimate-case-check-refuses-text-before-a-round`
+- [x] update `estimate-case-check-refuses-text-before-a-round`
+- [x] read `estimate-case-check-refuses-text-before-a-round`
 ```
 
 ### Case 751.5 — The check of a showing accepts the rules and reads past them
@@ -238,8 +238,8 @@ update:
 ```tasks
 - [x] `guppi/casecheck.py`: `outside_the_list` passes over a `RULE` line before the first Case heading, and at a `RULE` line under a heading goes on when the next line that is not blank is a Case heading and stops otherwise; the note of `showing_layout` says nothing of its own before the Case but a horizontal rule; the module docstring on the layout of a showing says so.
 - [x] `tests/test_casecheck.py`: a showing with a leading rule and a rule between two Cases gets no note; a text outside the list of the second Case after a rule gets the note; text after a last rule that no Case heading follows gets no note; a showing with no rules gets no note.
-- [ ] update `estimate-case-check-refuses-text-outside-the-list`
-- [ ] read `estimate-case-check-refuses-text-outside-the-list`
+- [x] update `estimate-case-check-refuses-text-outside-the-list`
+- [x] read `estimate-case-check-refuses-text-outside-the-list`
 ```
 
 ### Case 751.6 — The example of a showing stands between two rules
@@ -283,10 +283,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-showing-example-passes-the-check`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-showing-example-passes-the-check`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-showing-example-passes-the-check`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-showing-example-passes-the-check`
 ```
 
 ## Case 752 — case-guppi searches the code for a judgment a task would copy
@@ -355,9 +355,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-finds-an-existing-judgment`
-- [ ] update `insight-workflow-case-written-without-reading-the-pages-it-changes`
-- [ ] read `estimate-case-build-finds-an-existing-judgment`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-finds-an-existing-judgment`
+- [x] update `insight-workflow-case-written-without-reading-the-pages-it-changes`
+- [x] read `estimate-case-build-finds-an-existing-judgment`
 ```

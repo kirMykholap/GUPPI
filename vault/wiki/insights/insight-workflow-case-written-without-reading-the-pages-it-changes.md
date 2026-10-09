@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: A Case is composed from what the agent has in view — the dialogue, the rule page, the code — and the pages it changes or runs beside are not read against it before it is shown, so a contradiction with them is found only by a later check, pre-task or pre-spec.
-status: open
+status: actioned
 children: ["[[lesson-plan-mode-contract-change-skips-the-estimates-blocks]]", "[[lesson-case-designed-in-dialogue-not-checked-against-its-rules]]", "[[lesson-case-frame-read-without-the-estimates-of-the-pages-it-edits]]", "[[lesson-orchestration-recommended-a-rebuild-that-signed-a-promise-twice]]", "[[lesson-case-build-finds-the-sentences-it-changes-by-their-words]]", "[[lesson-case-build-task-copies-an-existing-judgment]]"]
-severity: 1
-addressed_by: "[[decision-case-734]]"
+severity: 0
+addressed_by: "[[decision-case-752]]"
 origin: raw/2026-09-23/1859/ledger.md#L30
 sprint: migration
 created: 2026-09-23
@@ -29,3 +29,4 @@ A suggestion, not a decision: before a Case that changes a contract or adds a ho
 - 2026-10-08 updated: child lesson-case-build-finds-the-sentences-it-changes-by-their-words added, reopened from actioned by case 730.3 of this run (synthesis) · raw/2026-10-08/0050/ledger.md#L17
 - 2026-10-08 updated: actioned: case-guppi lists by meaning each sentence of a page it changes that states the behaviour the change touches, not by a Grep for the words of the changed sentence (case 734) · [[decision-case-734]]
 - 2026-10-09 updated: child lesson-case-build-task-copies-an-existing-judgment added, reopened from actioned (synthesis) · raw/2026-10-09/0200/ledger.md#L23
+- 2026-10-09 updated: actioned: case-guppi searches guppi/ for an existing implementation of a judgment before a task adds one (case 752) · [[decision-case-752]]

@@ -7653,3 +7653,38 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-09 rules/rule-skill-sprint-open status: draft → built · cascade · generate
 - 2026-10-09 lessons/lesson-ledger-rebuilt-create-keeps-the-stale-ref archived · insight actioned · generate
 - 2026-10-09 lessons/lesson-ledger-rebuilt-create-keeps-the-stale-ref archived · cleanup
+- 2026-10-09 decisions/decision-case-751 created · raw/2026-10-09/2049/ledger.md#case-751 · generate
+- 2026-10-09 decisions/decision-case-751.1 created · raw/2026-10-09/2049/ledger.md#case-751.1 · generate
+- 2026-10-09 estimates/estimate-orchestration-sets-off-each-reply-of-case-guppi created · [[decision-case-751.1]] · generate
+- 2026-10-09 estimates/estimate-orchestration-sets-off-each-reply-of-case-guppi status: pending → passed · raw/2026-10-09/2049/ledger.md#L14 · generate
+- 2026-10-09 rules/rule-orchestration estimate estimate-orchestration-sets-off-each-reply-of-case-guppi added · [[decision-case-751.1]] · generate
+- 2026-10-09 rules/rule-orchestration updated: each reply of case-guppi that the agent shows stands between two horizontal rules (case 751.1) · [[decision-case-751.1]] · generate
+- 2026-10-09 decisions/decision-case-751.2 created · raw/2026-10-09/2049/ledger.md#case-751.2 · generate
+- 2026-10-09 rules/rule-orchestration updated: a horizontal rule stands between the rounds and between the showings of two Cases of a batch (case 751.2) · [[decision-case-751.2]] · generate
+- 2026-10-09 estimates/estimate-orchestration-marks-each-round-of-a-batch updated: the Criterion replaced whole — a horizontal rule between the rounds and between the showings of two Cases of a batch · [[decision-case-751.2]] · generate
+- 2026-10-09 decisions/decision-case-751.3 created · raw/2026-10-09/2049/ledger.md#case-751.3 · generate
+- 2026-10-09 rules/rule-prespec updated: a horizontal rule stands between the rounds of two Cases in the loop after the findings (case 751.3) · [[decision-case-751.3]] · generate
+- 2026-10-09 estimates/estimate-prespec-gathers-the-answers-after-findings updated: the Criterion replaced whole — a horizontal rule between the rounds of two Cases in the list · [[decision-case-751.3]] · generate
+- 2026-10-09 decisions/decision-case-751.4 created · raw/2026-10-09/2049/ledger.md#case-751.4 · generate
+- 2026-10-09 estimates/estimate-case-check-refuses-text-before-a-round updated: the Criterion replaced whole — a leading horizontal rule is no text before a round · [[decision-case-751.4]] · generate
+- 2026-10-09 decisions/decision-case-751.5 created · raw/2026-10-09/2049/ledger.md#case-751.5 · generate
+- 2026-10-09 estimates/estimate-case-check-refuses-text-outside-the-list updated: the Criterion replaced whole — a horizontal rule before the first Case and between two Cases is no text outside the list, and each Case of a batch is judged · [[decision-case-751.5]] · generate
+- 2026-10-09 decisions/decision-case-751.6 created · raw/2026-10-09/2049/ledger.md#case-751.6 · generate
+- 2026-10-09 rules/rule-orchestration updated: the example of a showing stands between two horizontal rules (case 751.6) · [[decision-case-751.6]] · generate
+- 2026-10-09 estimates/estimate-orchestration-showing-example-passes-the-check updated: the Criterion replaced whole — the example opens with a horizontal rule · [[decision-case-751.6]] · generate
+- 2026-10-09 decisions/decision-case-752 created · raw/2026-10-09/2049/ledger.md#case-752 · generate
+- 2026-10-09 rules/rule-case-build updated: case-guppi searches guppi/ for an existing implementation of a judgment before a task adds one (case 752) · [[decision-case-752]] · generate
+- 2026-10-09 estimates/estimate-case-build-finds-an-existing-judgment created · [[decision-case-752]] · generate
+- 2026-10-09 estimates/estimate-case-build-finds-an-existing-judgment status: pending → passed · raw/2026-10-09/2049/ledger.md#L20 · generate
+- 2026-10-09 rules/rule-case-build estimate estimate-case-build-finds-an-existing-judgment added · [[decision-case-752]] · generate
+- 2026-10-09 insights/insight-workflow-case-written-without-reading-the-pages-it-changes updated: actioned: case-guppi searches guppi/ for an existing implementation of a judgment before a task adds one (case 752) · [[decision-case-752]] · generate
+- 2026-10-09 estimates/estimate-orchestration-marks-each-round-of-a-batch status: pending → passed · raw/2026-10-09/2049/ledger.md#L15 · generate
+- 2026-10-09 estimates/estimate-prespec-gathers-the-answers-after-findings status: pending → passed · raw/2026-10-09/2049/ledger.md#L16 · generate
+- 2026-10-09 estimates/estimate-case-check-refuses-text-before-a-round status: pending → passed · raw/2026-10-09/2049/ledger.md#L17 · generate
+- 2026-10-09 estimates/estimate-case-check-refuses-text-outside-the-list status: pending → passed · raw/2026-10-09/2049/ledger.md#L18 · generate
+- 2026-10-09 estimates/estimate-orchestration-showing-example-passes-the-check status: pending → passed · raw/2026-10-09/2049/ledger.md#L19 · generate
+- 2026-10-09 lessons/lesson-case-build-changed-example-read-by-the-check-not-by-the-test-helper created · raw/2026-10-09/2049/ledger.md#L21 · generate
+- 2026-10-09 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: child lesson-case-build-changed-example-read-by-the-check-not-by-the-test-helper added, status open again (synthesis) · raw/2026-10-09/2049/ledger.md#L21 · generate
+- 2026-10-09 lessons/lesson-case-build-changed-example-read-by-the-check-not-by-the-test-helper updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-09/2049/ledger.md#L21 · generate
+- 2026-10-09 lessons/lesson-case-build-task-copies-an-existing-judgment archived · insight actioned · generate
+- 2026-10-09 lessons/lesson-case-build-task-copies-an-existing-judgment archived · cleanup

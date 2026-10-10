@@ -1,0 +1,45 @@
+- 19:53:37 decision[case 764.1][update][rule-brief]{ref:rule-brief}
+- 19:53:37 decision[case 764.1][update][estimate-brief-written]{ref:rule-brief}
+- 19:53:37 decision[case 764.2][update][rule-retro]{ref:rule-retro}
+- 19:53:37 decision[case 764.2][update][estimate-retro-loads]{ref:rule-retro}
+- 19:53:37 decision[case 764.3][update][rule-handoff]{ref:rule-handoff}
+- 19:53:37 decision[case 764.3][update][estimate-handoff-holds-each-fact-once]{ref:rule-handoff}
+- 19:53:37 decision[case 764.4][update][rule-case-protocol]{ref:rule-case-protocol}
+- 19:53:37 decision[case 764.4][update][estimate-prespec-hook-reports-a-method-that-waits-for-another-session]{ref:rule-prespec-hook}
+- 19:53:37 decision[case 764.5][update][estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session]{ref:rule-prespec-hook}
+- 19:53:37 decision[case 765][update][estimate-sprint-plugin-readme-describes-the-project]{ref:entity-sprint-plugin}
+- 19:53:37 decision[case 766][update][estimate-sprint-plugin-pull-requests-reviewed-on-github]{ref:entity-sprint-plugin}
+- 19:53:37 decision[case 767][update][estimate-sprint-plugin-ci-writes-a-clean-branch]{ref:entity-sprint-plugin}
+- 19:53:37 decision[case 768][update][estimate-sprint-plugin-installs-as-a-plugin]{ref:entity-sprint-plugin}
+- 20:24:46 decision[case 769.1][update][rule-skill-sprint-open]{ref:rule-skill-sprint-open}
+- 20:24:46 decision[case 769.1][update][estimate-skill-sprint-open-asks-the-opening-questions]{ref:rule-skill-sprint-open}
+- 20:24:46 decision[case 769.2][update][rule-skill-hi]{ref:rule-skill-hi}
+- 20:24:46 decision[case 769.2][update][rule-session-start]{ref:rule-session-start}
+- 20:24:46 decision[case 769.2][update][estimate-hi-writes-frontier]{ref:rule-skill-hi}
+- 20:24:46 decision[case 769.3][update][estimate-hi-takes-its-readings]{ref:rule-skill-hi}
+- 20:24:46 decision[case 769.4][update][rule-orchestration]{ref:rule-orchestration}
+- 20:24:46 decision[case 769.4][create][estimate-orchestration-acknowledges-the-opening-with-the-frontier]{ref:rule-orchestration}{tags:session,workflow,sprint}
+- 20:31:38 decision[case 770][create][estimate-cleanup-files-a-session-by-its-sprint]{ref:rule-cleanup}{tags:harness,librarian,sprint}
+- 20:32:54 decision[case 771][defer][rule-skill-sprint-open]{ref:rule-skill-sprint-open}
+- 20:32:54 decision[case 771][defer][rule-skill-sprint-close]{ref:rule-skill-sprint-close}
+- 21:05:07 decision[case 772.1][update][rule-brief]{ref:rule-brief}{supersedes:case 764}{supersedes:case 764.1}
+- 21:05:07 decision[case 772.1][update][estimate-brief-written]{ref:rule-brief}
+- 21:05:07 decision[case 772.2][update][rule-retro]{ref:rule-retro}{supersedes:case 764.2}
+- 21:05:07 decision[case 772.2][update][estimate-retro-loads]{ref:rule-retro}
+- 21:05:07 decision[case 772.3][update][rule-handoff]{ref:rule-handoff}{supersedes:case 764.3}
+- 21:05:07 decision[case 772.3][update][estimate-handoff-holds-each-fact-once]{ref:rule-handoff}
+- 21:05:07 decision[case 772.4][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 764.4}
+- 21:05:07 decision[case 772.4][update][estimate-prespec-hook-reports-a-method-that-waits-for-another-session]{ref:rule-prespec-hook}
+- 21:05:07 decision[case 772.5][update][estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session]{ref:rule-prespec-hook}{supersedes:case 764.5}
+- 21:05:07 decision[case 769.5][update][estimate-sprint-close-next-session-opens-the-sprint]{ref:rule-sprint-close}
+- 21:14:03 estimate[estimate-skill-sprint-open-asks-the-opening-questions][passed] 2026-10-10, Retro of session 1913, by hand: the new Render of rule-skill-sprint-open in spec.md (case 769.1) read against the Criterion — step 1 assembles no Frontier and takes up no other item before the opening Case is ratified; step 2 dispatches case-guppi at once with the id, the goal, the Definition of done, the first milestone and the count of backlog.md with the question; step 3 writes the close line; step 4 leaves every answer to the person and writes the Frontier before the reply that acknowledges the Case; the preamble keeps the opening Case first
+- 21:14:03 estimate[estimate-hi-takes-its-readings][passed] 2026-10-10, Retro of session 1913, by hand: the new Render of rule-skill-hi in spec.md (case 769.2) read against the Criterion of case 769.3 — at an opening the Frontier is written and its readings taken before the reply that acknowledges the opening Case, which shows it and puts its A lines; the reading step, the Cases line for a W line that cannot run, the A questions, no transcript and no page opened but the Estimates read stand as before
+- 21:14:03 estimate[estimate-orchestration-acknowledges-the-opening-with-the-frontier][passed] 2026-10-10, Retro of session 1913, by hand: the new Render of rule-orchestration in spec.md (case 769.4) read against the Criterion — frontier.md written and the readings of /hi taken before the reply that acknowledges the opening Case; its LEDGER block holds the reading lines after the decision lines; its ## Frontier shows the new Frontier; the open A lines stand after the Frontier and before the question which item is next; the four parts and no tool call after the block stand
+- 21:14:03 estimate[estimate-sprint-close-next-session-opens-the-sprint][passed] 2026-10-10, Retro of session 1913: uv run pytest tests/test_ledger.py -k sprint 4 passed, tests/test_materialize.py -k sprint 2 passed; by hand, the new Renders of rule-skill-hi and rule-skill-sprint-open in spec.md (cases 769.1, 769.2): /hi starts /sprint-open, writes no frontier.md before the opening Case is ratified, then the opening line stands first under ## Cases closed [x] … · case N, with no item of sprint.md
+- 21:14:03 estimate[estimate-retro-loads][passed] 2026-10-10, Retro of session 1913, by hand: the new Render of rule-retro in spec.md (case 772.2) read against the Criterion — an Estimate of the live sprint page whose work is not done is neither read, nor put to the person, nor set failed, its read line neither debt nor the librarian's, handoff names it with its moment; once its work is done its Retro reads it or names it under ## Ask the person; the other lines of the Criterion stand in the rendered text
+- 21:14:03 estimate[estimate-handoff-holds-each-fact-once][passed] 2026-10-10, Retro of session 1913, by hand: the new Render of rule-handoff in spec.md (case 772.3) read against the Criterion — ## Debt keeps a line for an Estimate of the live sprint page that Retro left pending, its moment the Retro of the session that finishes its work or the close of the sprint; the seven sections in order, no statement twice and no commit stand in .claude/skills/handoff/SKILL.md
+- 21:14:03 estimate[estimate-prespec-hook-reports-a-method-that-waits-for-another-session][passed] 2026-10-10, uv run pytest tests/test_prespec.py tests/test_lint.py -k waits: 5 passed — a session of a sprint and the session that closes one are caught; an Estimate of a sprint page, by create ref or update target, gives no line, the same method on a rule does
+- 21:14:03 estimate[estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session][passed] 2026-10-10, uv run pytest tests/test_prespec.py -k kept_method: 3 passed — a kept method of an Estimate whose live target is entity-sprint-plugin gives no line, the same kept method on a rule gives KEPT_WAITS
+- 21:14:03 estimate[estimate-cleanup-files-a-session-by-its-sprint][passed] 2026-10-10, uv run pytest tests/test_cleanup.py -k sprint: 2 passed — sprint: a in the session yaml files the page under archive/a while sprint.md names b; with no yaml it goes under b
+- 21:14:16 lesson[error][lesson-frontier-sprint-line-closed-by-a-case-that-updates-no-sprint-page]{tags:session,sprint} trigger: the agent closed the milestone line C1 `[x] … · sprint · case 769` after Case 769 was ratified, and guppi prespec --check printed "frontier: C1 closes a sprint item with case 769, no update of the sprint page under Case 769" root_cause: the agent took the ratification of a Case built on a sprint item as the end of that item, while a sprint item ends by a Case only when the Case updates the sprint page; a Case that settles part of a milestone line leaves the line to close `· sprint · defer`
+- 21:14:16 lesson[error][lesson-hi-brief-line-judged-apart-from-a-broad-milestone-line]{tags:session,sprint} trigger: at /hi the agent wrote the brief line "The form of the opening of a sprint" as C5 beside the milestone line C1 "the opening and the close of a sprint run with no fix by hand", and the person asked whether C1 and C5 were one Case; they were merged root_cause: the agent judged the sameness of case 729 by wording, reading a brief line as an item of its own when it named the open content of a broad milestone line

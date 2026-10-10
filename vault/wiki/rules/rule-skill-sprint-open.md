@@ -8,8 +8,7 @@ implementation_ref: [guppi/sprint.py, tests/test_sprint.py, .claude/settings.jso
 governs: .claude/skills/sprint-open/SKILL.md
 render_mode: full
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-skill-sprint-open-asks-the-opening-questions]]", "[[estimate-skill-sprint-open-starts-at-hi]]"]
-deferred_by: ["[[decision-case-771]]"]
+estimates: ["[[estimate-skill-sprint-open-asks-the-opening-questions]]", "[[estimate-skill-sprint-open-starts-at-hi]]", "[[estimate-skill-sprint-open-merges-the-closed-sprint-branch]]"]
 origin: raw/2026-10-08/2352/ledger.md#case-743.6
 sprint: migration
 created: 2026-10-08
@@ -38,7 +37,8 @@ No sprint is open: the first heading of `vault/wiki/sprint.md` marks the last sp
    - the first milestone and its items, under `## Milestones`;
    - whether to take any item of `vault/wiki/backlog.md` into the sprint: the Case says how many items the file holds, and goes through no item the person does not name.
 3. Write into the same prompt that the opening Case writes, as the last item of the last milestone of the page, the line ``- the close of `<id>` — `/sprint-close`, a session of its own``, so that the session that closes the sprint starts `/sprint-close` from it.
-4. The skill decides none of the answers: `case-guppi` puts each to the person, and the person ratifies the opening Case as any other. Before the reply that acknowledges it, assemble and write the Frontier as `/hi` sets it, the items of the first milestone of the opening Case among its Cases; that reply shows it, as `vault/wiki/orchestration.md` sets that reply (case 769.4).
+4. Write into the same prompt the branch that `/hi` printed under `Branch:`. When it is not `main`, the closed sprint ran on it, and the opening Case holds as its first task lines `git switch main`, `git merge --ff-only <branch>`, `git switch -c <id>` and `git branch -d <branch>`, `<id>` the id of the new sprint. The Spec holds the opening Case first, so Work Mode runs them before any other task: `main` takes the work of the closed sprint by a fast-forward, and the rest of Work Mode runs on the branch `<id>`. A refusal of the merge or of the deletion is a stop on the sixth condition of `vault/wiki/where-to-stop.md`. When the branch is `main`, the opening Case holds no merge, branch or deletion task: Work Mode stops on `main`, and goes on after the person makes the branch `<id>` and moves to it. The opening Case puts no question on the merge or the branch to the person (case 775.1).
+5. The skill decides none of the answers: `case-guppi` puts each to the person, and the person ratifies the opening Case as any other. Before the reply that acknowledges it, assemble and write the Frontier as `/hi` sets it, the items of the first milestone of the opening Case among its Cases; that reply shows it, as `vault/wiki/orchestration.md` sets that reply (case 769.4).
 <!-- /rule-skill-sprint-open -->
 
 ## History
@@ -50,3 +50,6 @@ No sprint is open: the first heading of `vault/wiki/sprint.md` marks the last sp
 - 2026-10-09 status: draft → built · cascade
 - 2026-10-10 updated: the opening Case comes before any Frontier, and the reply that acknowledges it brings the Frontier (case 769.1) · [[decision-case-769.1]]
 - 2026-10-10 deferred · [[decision-case-771]]
+- 2026-10-11 defer by decision-case-771 superseded · [[decision-case-775.1]]
+- 2026-10-11 updated: the opening Case of a sprint merges the closed sprint's branch into main by a fast-forward and moves the work to a branch named by the new sprint · [[decision-case-775.1]]
+- 2026-10-11 estimate estimate-skill-sprint-open-merges-the-closed-sprint-branch added · [[decision-case-775.1]]

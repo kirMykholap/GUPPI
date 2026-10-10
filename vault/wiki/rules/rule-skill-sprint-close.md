@@ -8,7 +8,6 @@ governs: .claude/skills/sprint-close/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-skill-sprint-close-leads-the-closing-session]]", "[[estimate-skill-sprint-close-migration-merged-into-main]]"]
-deferred_by: ["[[decision-case-771]]"]
 origin: raw/2026-10-08/2352/ledger.md#case-743.8
 sprint: migration
 created: 2026-10-08
@@ -32,7 +31,7 @@ This session closes the sprint that `vault/wiki/sprint.md` names. Its Plan Mode 
 1. When the session's `raw/<date>/<hi HHMM>/ledger.md` holds a decision line other than a `defer`, this session cannot close the sprint. Close the line of the close in `frontier.md` as `[-] … · sprint · defer`, tell the person that the close needs a session of its own, opened by `/hi`, and stop the skill here.
 2. Close each other open line under `## Cases` of `frontier.md` as put off, by the closer of its source that `vault/wiki/orchestration.md` sets: `[-] … · sprint · defer`, `[-] … · backlog · kept`, or a short-form defer and `[-] … · defer case N`. The person's pick of the close line stands as the words that ratify each such defer, shown in one reply as `## The short form — deferred decisions` of `vault/wiki/orchestration.md` sets it. Leave the lines under `## Work` and `## Ask` open: their readings serve the close. Show the Frontier.
 3. Sort the Estimates under `vault/wiki/estimates/` that stand `pending` or `failed` into groups by the kind of moment their `method` names.
-4. Dispatch `case-guppi` for the closing Case as `vault/wiki/orchestration.md` sets it, with the groups in the prompt of the call. The closing Case names the groups in its `context`, holds one `by hand` task per moment that Work Mode sets up and one `read` line per Estimate, and holds the task line `uv run guppi sprint-close --sprint <id> --apply` with the person's choice, `--carry` or `--archive-unread`, for each Estimate still unread after Work Mode and each one read `failed` in Work Mode that the sprint page does not list; an Estimate of the sprint page is never carried. When the sprint ran on a branch of its own, the closing Case holds too the task line ``the merge of `<branch>` into `main` — the first work of the session that opens the next sprint, after its opening Case``, which Work Mode leaves unticked, so that the brief gives it under `Work` to that session. A Case that prepares a reading is built the same way, and no other Case is ratified in this session.
+4. Dispatch `case-guppi` for the closing Case as `vault/wiki/orchestration.md` sets it, with the groups in the prompt of the call. The closing Case names the groups in its `context`, holds one `by hand` task per moment that Work Mode sets up and one `read` line per Estimate, and holds the task line `uv run guppi sprint-close --sprint <id> --apply` with the person's choice, `--carry` or `--archive-unread`, for each Estimate still unread after Work Mode and each one read `failed` in Work Mode that the sprint page does not list; an Estimate of the sprint page is never carried. The closing Case holds no task line for the merge of the sprint's branch into `main`: the opening Case of the next sprint holds the merge, as `/sprint-open` sets it (case 775.2). A Case that prepares a reading is built the same way, and no other Case is ratified in this session.
 5. In Work Mode set up each moment and take each reading whose moment came. Work Mode neither runs nor ticks the close line.
 6. The librarian runs the close line after `guppi generate`, as `.claude/agents/librarian-guppi.md` sets it. The close moves the finished pages, the finished sessions of `vault/raw/` and the old event logs to the archive, and `guppi sprint` then marks the sprint closed in `vault/wiki/sprint.md`; the next session opens the next sprint by `/sprint-open`.
 <!-- /rule-skill-sprint-close -->
@@ -46,3 +45,5 @@ This session closes the sprint that `vault/wiki/sprint.md` names. Its Plan Mode 
 - 2026-10-10 estimate estimate-skill-sprint-close-migration-merged-into-main added · [[decision-case-762]]
 - 2026-10-10 updated: step 4: the close line also names an Estimate read failed in Work Mode that the sprint page does not list · [[decision-case-763.2]]
 - 2026-10-10 deferred · [[decision-case-771]]
+- 2026-10-11 defer by decision-case-771 superseded · [[decision-case-775.2]]
+- 2026-10-11 updated: the closing Case leaves no merge line; the opening Case of the next sprint holds the merge · [[decision-case-775.2]]

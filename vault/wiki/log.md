@@ -9271,3 +9271,29 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-10 decisions/decision-case-764.4 archived · cleanup
 - 2026-10-10 decisions/decision-case-764.5 archived · cleanup
 - 2026-10-10 decisions/decision-case-764 archived · cleanup
+- 2026-10-11 decisions/decision-case-773 created · raw/2026-10-10/2350/ledger.md#case-773 · generate
+- 2026-10-11 estimates/estimate-generate-writes-the-decision-page updated: the Criterion replaced whole — a page whose superseded_by already names the new page, by an earlier step of the same record too, gets no second History line and no second log line; the method is the test run alone · [[decision-case-773]] · generate
+- 2026-10-11 decisions/decision-case-774 created · raw/2026-10-10/2350/ledger.md#case-774 · generate
+- 2026-10-11 entities/entity-sprint-plugin updated: the note on the opening and the close of a sprint leaves the milestone The sprint turn and GitHub; the Purpose names only the close · [[decision-case-774]] · generate
+- 2026-10-11 decisions/decision-case-775 created · raw/2026-10-10/2350/ledger.md#case-775 · generate
+- 2026-10-11 decisions/decision-case-775.1 created · raw/2026-10-10/2350/ledger.md#case-775.1 · generate
+- 2026-10-11 decisions/decision-case-771 superseded by decision-case-775.1 · [[decision-case-775.1]] · generate
+- 2026-10-11 rules/rule-skill-sprint-open defer by decision-case-771 superseded · [[decision-case-775.1]] · generate
+- 2026-10-11 rules/rule-skill-sprint-open updated: the opening Case of a sprint merges the closed sprint's branch into main by a fast-forward and moves the work to a branch named by the new sprint · [[decision-case-775.1]] · generate
+- 2026-10-11 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch created · [[decision-case-775.1]] · generate
+- 2026-10-11 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch status: pending → passed · raw/2026-10-10/2350/ledger.md#L10 · generate
+- 2026-10-11 rules/rule-skill-sprint-open estimate estimate-skill-sprint-open-merges-the-closed-sprint-branch added · [[decision-case-775.1]] · generate
+- 2026-10-11 decisions/decision-case-775.2 created · raw/2026-10-10/2350/ledger.md#case-775.2 · generate
+- 2026-10-11 decisions/decision-case-771 superseded by decision-case-775.2 · [[decision-case-775.2]] · generate
+- 2026-10-11 rules/rule-skill-sprint-close defer by decision-case-771 superseded · [[decision-case-775.2]] · generate
+- 2026-10-11 rules/rule-skill-sprint-close updated: the closing Case leaves no merge line; the opening Case of the next sprint holds the merge · [[decision-case-775.2]] · generate
+- 2026-10-11 estimates/estimate-skill-sprint-close-leads-the-closing-session updated: the Criterion replaced whole — the closing Case holds no merge line, the opening Case of the next sprint holds the merge · [[decision-case-775.2]] · generate
+- 2026-10-11 decisions/decision-case-775.3 created · raw/2026-10-10/2350/ledger.md#case-775.3 · generate
+- 2026-10-11 rules/rule-where-to-stop updated: condition 6 also covers a refused merge or branch deletion in the merge tasks of the opening Case of a sprint · [[decision-case-775.3]] · generate
+- 2026-10-11 estimates/estimate-where-to-stop-stops-only-on-its-conditions updated: the Criterion replaced whole — a refused merge or branch deletion in the merge tasks of the opening Case of a sprint is a stop · [[decision-case-775.3]] · generate
+- 2026-10-11 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-10-10/2350/ledger.md#L9 · generate
+- 2026-10-11 estimates/estimate-skill-sprint-close-leads-the-closing-session status: pending → passed · raw/2026-10-10/2350/ledger.md#L11 · generate
+- 2026-10-11 estimates/estimate-where-to-stop-stops-only-on-its-conditions status: pending → passed · raw/2026-10-10/2350/ledger.md#L12 · generate
+- 2026-10-11 lessons/lesson-hi-unread-sprint-reading-made-a-case-line created · raw/2026-10-10/2350/ledger.md#L13 · generate
+- 2026-10-11 decisions/decision-case-771 archived · superseded · generate
+- 2026-10-11 decisions/decision-case-771 archived · cleanup

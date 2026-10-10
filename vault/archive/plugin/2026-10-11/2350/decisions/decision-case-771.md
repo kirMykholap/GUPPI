@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "771"
-status: current
+status: archived
 defer: ["[[rule-skill-sprint-open]]", "[[rule-skill-sprint-close]]"]
+superseded_by: ["[[decision-case-775.1]]", "[[decision-case-775.2]]"]
 origin: raw/2026-10-10/1913/ledger.md#case-771
 sprint: plugin
 created: 2026-10-10
@@ -30,3 +31,7 @@ Which list of the brief carries the merge line that step 4 of /sprint-close sets
 ## History
 
 - 2026-10-10 created · raw/2026-10-10/1913/ledger.md#case-771
+- 2026-10-11 superseded by decision-case-775.1 · [[decision-case-775.1]]
+- 2026-10-11 superseded by decision-case-775.2 · [[decision-case-775.2]]
+- 2026-10-11 archived · superseded
+- 2026-10-11 archived · cleanup

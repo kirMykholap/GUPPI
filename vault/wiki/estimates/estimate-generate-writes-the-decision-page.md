@@ -4,8 +4,8 @@ kind: QA
 status: passed
 target: "[[rule-page-generation]]"
 purpose: One Decision page per Case, written before its entries, with its lists, its body and its defers
-method: pytest tests/test_generate.py, the tests of the decision page; the live reading in the librarian's run
-checked: 2026-10-06
+method: uv run pytest tests/test_generate.py, the tests of the Decision page
+checked: 2026-10-11
 origin: raw/2026-09-16/1955/ledger.md#case-201.2
 sprint: migration
 created: 2026-09-16
@@ -29,13 +29,13 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 **＋** A record with `superseded_by` and no `case_text` gets a two-line body: `## Context` `Superseded by [[decision-case-M]] in its own session, before the Spec was approved; the Case left the Spec (case 299).`, `## Problem` `Decided under [[decision-case-M]].`
 **－** The page holds no `## Given`, no `## When` and no `## Criterion`, and no `## Context` when `case_text` carries `given` or the record carries `children`.
 **－** The Decision pages already written are not rewritten.
-**－** A page whose `superseded_by` already names the new page gets no second History line.
+**－** A page whose `superseded_by` already names the new page gets no second History line and no second line in `vault/wiki/log.md`, whether an earlier run put the name there or an earlier step of the same record did, such as a sub-case page reached through the `children` of its parent and named in `supersedes` too.
 **－** A page in `children` that stands `archived` or `superseded` is left as it is.
 **－** The page of a sub-case carries no `## Problem`, and a `case_text` with no `recommend` gives no `## Recommend`.
 
 ## Result
 
-2026-10-06, uv run pytest tests/test_generate.py; 114 passed: an archived earlier page keeps status archived and its place under vault/archive/, takes decision-case-4 into superseded_by with one History line, no page under vault/wiki/decisions/ is written; the test fails without the change of generate.decision
+2026-10-11, Retro of session 2350, uv run pytest tests/test_generate.py: 115 passed; the new test test_a_sub_case_superseded_with_its_parent_and_named_too_takes_one_line fails without the change of guppi/generate.py and passes with it — a sub-case page superseded through its parent and named in supersedes too holds one superseded by History line and log.md one line for it
 
 ## History
 
@@ -57,3 +57,5 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L6
 - 2026-10-06 updated: the Criterion replaced whole — a supersedes leaves an earlier page that stands archived archived, and only appends to its superseded_by (case 683) · [[decision-case-683]]
 - 2026-10-06 status: pending → passed · raw/2026-10-05/2249/ledger.md#L22
+- 2026-10-11 updated: the Criterion replaced whole — a page whose superseded_by already names the new page, by an earlier step of the same record too, gets no second History line and no second log line; the method is the test run alone · [[decision-case-773]]
+- 2026-10-11 status: pending → passed · raw/2026-10-10/2350/ledger.md#L9

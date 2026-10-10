@@ -1,7 +1,7 @@
 ---
 type: entity
 kind: Leaf
-purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the opening and close of a sprint work with no fix by hand"
+purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the close of a sprint works with no fix by hand"
 status: draft
 parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]"]
@@ -13,13 +13,12 @@ tags: [sprint, workflow]
 
 ## Purpose
 
-GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the opening and close of a sprint work with no fix by hand. Done when every Estimate of this page passes: the close steps run from the close line, the README describes the project, a pull request from another account is checked and reviewed on GitHub, CI writes the clean branch, and the clean branch installs as a plugin. Each Estimate of this page is read before the close of the sprint; one that has not passed by then goes to the archive with this page, its status kept in the record of the close (rule-sprint-close).
+GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the close of a sprint works with no fix by hand. Done when every Estimate of this page passes: the close steps run from the close line, the README describes the project, a pull request from another account is checked and reviewed on GitHub, CI writes the clean branch, and the clean branch installs as a plugin. Each Estimate of this page is read before the close of the sprint; one that has not passed by then goes to the archive with this page, its status kept in the record of the close (rule-sprint-close).
 
 ## Milestones
 
 ### The sprint turn and GitHub
 
-- the opening and the close of a sprint run with no fix by hand and each flaw found in them is fixed
 - the repository on GitHub set up so that a pull request from another person is easy to review
 
 ### The clean branch
@@ -40,3 +39,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-10 estimate estimate-sprint-plugin-pull-requests-reviewed-on-github added · [[decision-case-756.4]]
 - 2026-10-10 estimate estimate-sprint-plugin-ci-writes-a-clean-branch added · [[decision-case-756.5]]
 - 2026-10-10 estimate estimate-sprint-plugin-installs-as-a-plugin added · [[decision-case-756.6]]
+- 2026-10-11 updated: the note on the opening and the close of a sprint leaves the milestone The sprint turn and GitHub; the Purpose names only the close · [[decision-case-774]]

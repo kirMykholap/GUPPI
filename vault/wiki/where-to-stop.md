@@ -7,7 +7,7 @@ From the approved Spec to the librarian's report the run needs no person: `/box`
 3. An action that git in this repository cannot undo, such as a push to a remote or a deletion outside the repository.
 4. A task of the Spec whose text opens with `stop:`: stop before it runs, and run it after the person's word.
 5. The branch is `main`: Work Mode does not start there; say so, and go on after the person moves to another branch.
-6. `/box` cannot go on: its check `uv run guppi box --check` prints a reason, or one of its `git merge --ff-only` refuses; show what stopped it, and go on after the person's word.
+6. `/box` cannot go on: its check `uv run guppi box --check` prints a reason, or one of its `git merge --ff-only` refuses; or, in the merge tasks of the opening Case of a sprint, `git merge --ff-only` or `git branch -d` refuses: show what stopped it, and go on after the person's word (case 775.3).
 7. The full `make test` run of `/work` after its last task finds a failing test that `## Baseline` of `work.md` does not hold, and its fix needs a choice that no ratified Case makes: name the test and its failure, and go on as the person's word says (case 736.3).
 8. The auto mode classifier of Claude Code refuses a tool call that the run needs: give the person the shell command that does what the refused call would do, to type after `!` in the prompt, and go on after the person has run it (case 741).
 

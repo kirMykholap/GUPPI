@@ -62,8 +62,8 @@ update:
 ```tasks
 - [x] `guppi/generate.py`: one helper adds the superseding page to `superseded_by` and writes the History line only when it adds it; the step for a page named in `supersedes` and the step for a sub-case both call it.
 - [x] `tests/test_generate.py`: a record supersedes a parent and one of its sub-cases; the sub-case page holds one `superseded by` History line and `vault/wiki/log.md` one line for it; the test fails without the change of `guppi/generate.py`.
-- [ ] update `estimate-generate-writes-the-decision-page`
-- [ ] read `estimate-generate-writes-the-decision-page`
+- [x] update `estimate-generate-writes-the-decision-page`
+- [x] read `estimate-generate-writes-the-decision-page`
 ```
 
 ## Case 774 — The opening-and-close note leaves the current milestone
@@ -114,8 +114,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run guppi sprint`
 ```
 
 ## Case 775 — The opening Case of a sprint merges the closed sprint's branch
@@ -196,10 +196,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] create `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
-- [ ] read `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] update `rule-skill-sprint-open`
+- [x] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] create `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] read `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
 ```
 
 ### Case 775.2 — The closing Case leaves no merge line
@@ -242,10 +242,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-close`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-close/SKILL.md`
-- [ ] update `estimate-skill-sprint-close-leads-the-closing-session`
-- [ ] read `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] update `rule-skill-sprint-close`
+- [x] `uv run guppi render`: `.claude/skills/sprint-close/SKILL.md`
+- [x] update `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] read `estimate-skill-sprint-close-leads-the-closing-session`
 ```
 
 ### Case 775.3 — A refused merge at the opening of a sprint is the sixth stop
@@ -295,8 +295,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-where-to-stop`
-- [ ] `uv run guppi render`: `vault/wiki/where-to-stop.md`
-- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
-- [ ] read `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] update `rule-where-to-stop`
+- [x] `uv run guppi render`: `vault/wiki/where-to-stop.md`
+- [x] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] read `estimate-where-to-stop-stops-only-on-its-conditions`
 ```

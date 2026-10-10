@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-where-to-stop]]"
 purpose: "Whether the run from /work to the librarian stops for the person on each condition of vault/wiki/where-to-stop.md and on no other, with the text loaded by /work and a stop after the call of /retro opening with STOP:"
 method: by hand, the text of vault/wiki/where-to-stop.md as rendered and the lines of .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md that load it, or, at the Retro of the session that changes it, the new Render of rule-where-to-stop in the Spec and those lines, read against each line of the Criterion, recorded in the estimate line; a line of the Criterion that the text does not set is named
-checked: 2026-10-08
+checked: 2026-10-11
 origin: raw/2026-09-29/2024/ledger.md#case-531.7
 sprint: migration
 created: 2026-09-29
@@ -25,6 +25,7 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 **＋** Before a task of `raw/<date>/<hi HHMM>/spec.md` whose text opens with `stop:`, the agent stops and asks; the task runs after the person's word.
 **＋** On the branch `main` the agent stops and says so: Work Mode does not start there.
 **＋** In a run of `/box`, the agent stops and asks when `uv run guppi box --check` prints a line, or when a `git merge --ff-only` of `/box` refuses.
+**＋** In the merge tasks that the opening Case of a sprint holds by `.claude/skills/sprint-open/SKILL.md`, the agent stops, shows what stopped it and asks when `git merge --ff-only` or `git branch -d` refuses.
 **＋** When the full `make test` run of `/work` after its last task finds a failing test that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` does not hold, and its fix needs a choice that no ratified Case makes, the agent ends a reply with a question to the person that names the test and its failure.
 **＋** When the auto mode classifier of Claude Code refuses a tool call that the run needs, the agent ends a reply with a question to the person that gives the shell command doing what the refused call would do, for the person to type after `!` in the prompt.
 **＋** A reply that stops from the call of `/retro` until `raw/<date>/<hi HHMM>/handoff.md` stands opens with `STOP:`.
@@ -35,7 +36,7 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 
 ## Result
 
-2026-10-08, Retro, by hand: the new Render of rule-where-to-stop in the Spec (Case 741) against each line of the Criterion — .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md load @vault/wiki/where-to-stop.md; conditions 1–7 stand, condition 8 gives the shell command to type after ! and goes on after the person ran it; the STOP: opening from /retro to handoff.md stands; vault/wiki/case-schema.md names a stop: task; the closing paragraph keeps no other stop; no line of the Criterion is left unset
+2026-10-11, Retro of session 2350, by hand: the new Render of rule-where-to-stop in spec.md (case 775.3), with lines 7 of .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md that load it, against each line of the Criterion — conditions 1 to 8, condition 6 now covering a refused git merge --ff-only or git branch -d in the merge tasks of the opening Case, the STOP: reply from /retro to handoff.md, the run going on after the answer and after the command, and case-schema.md naming a stop: task line; no Criterion line the text does not set
 
 ## History
 
@@ -48,3 +49,5 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 - 2026-10-08 status: pending → passed · raw/2026-10-08/1547/ledger.md#L12
 - 2026-10-08 updated: the Criterion replaced whole — a refusal of the auto mode classifier is a stop, and the person runs the command after ! (case 741) · [[decision-case-741]]
 - 2026-10-08 status: pending → passed · raw/2026-10-08/2134/ledger.md#L13
+- 2026-10-11 updated: the Criterion replaced whole — a refused merge or branch deletion in the merge tasks of the opening Case of a sprint is a stop · [[decision-case-775.3]]
+- 2026-10-11 status: pending → passed · raw/2026-10-10/2350/ledger.md#L12

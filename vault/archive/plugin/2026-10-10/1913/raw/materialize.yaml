@@ -606,6 +606,7 @@ entries:
       of the next sprint; put off at the close of Plan Mode
   exists: true
   applied: '21:15:50'
+  superseded_by: '775.2'
 - line: 24
   text: decision[case 771][defer][rule-skill-sprint-close]{ref:rule-skill-sprint-close}
   case: '771'
@@ -621,6 +622,7 @@ entries:
       at the close of Plan Mode
   exists: true
   applied: '21:15:50'
+  superseded_by: '775.2'
 - line: 25
   text: decision[case 772.1][update][rule-brief]{ref:rule-brief}{supersedes:case 764}{supersedes:case
     764.1}
@@ -2259,6 +2261,9 @@ decisions:
       opening of the next sprint, nor which list of the brief carries its line.
   spec: vault/raw/2026-10-10/1913/spec.md
   applied: '21:15:50'
+  superseded_by:
+  - decision-case-775.1
+  - decision-case-775.2
 - case: '772.1'
   decision: decision-case-772.1
   origin: raw/2026-10-10/1913/ledger.md#case-772.1

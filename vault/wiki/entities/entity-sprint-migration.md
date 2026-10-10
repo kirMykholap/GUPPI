@@ -23,7 +23,6 @@ Rule-class files dissolved, `index.md` gone, the `file` route out of the scripts
 
 ### Slice 5 — closing
 
-- [[rule-sprint-close]] — what the close of a sprint moves to the archive and what it keeps (cases 612.1, 627)
 - the close of `migration` — `/sprint-close`, a session of its own
 
 ## Backlog
@@ -116,3 +115,4 @@ No file of `vault/wiki/` is written by hand.
 - 2026-10-06 defer by decision-case-642 superseded · [[decision-case-680]]
 - 2026-10-06 updated: the five plain notes of the Backlog — the product model, reuse three times, the template engine — and the line of rule-subagent-guppi leave; the defer of the close of migration is retired, and the close stays the milestone of Slice 5 · [[decision-case-680]]
 - 2026-10-09 updated: the close line takes the form that starts /sprint-close; the merge into main leaves the Backlog for the closing Case of /sprint-close (case 743.8) · [[decision-case-743.8]]
+- 2026-10-10 updated: Slice 5 holds the close line alone: rule-sprint-close left the milestone, its pending Estimates settled by the closing Case (case 753) · [[decision-case-753]]

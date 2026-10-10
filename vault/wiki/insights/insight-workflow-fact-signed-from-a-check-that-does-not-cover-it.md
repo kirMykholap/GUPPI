@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: "A fact is signed — in a Case, in a reading, in a ledger line — on a check narrower than the claim: the command that ran answered one question and the sentence it supports makes a wider one, while the wider check was one more command away."
-status: open
+status: actioned
 children: ["[[lesson-fact-asserted-from-a-partial-check]]", "[[lesson-ledger-estimate-line-carried-a-count-not-read]]", "[[lesson-case-context-claim-wider-than-its-search]]", "[[lesson-case-context-bookkeeping-written-from-memory]]", "[[lesson-case-build-writes-a-count-no-command-printed]]", "[[lesson-case-build-frame-count-claimed-over-a-partial-search]]", "[[lesson-case-build-context-claims-an-effect-no-check-covers]]", "[[lesson-case-build-a-count-in-context-not-from-a-run]]", "[[lesson-case-build-a-page-judged-true-by-its-mark-not-its-moment]]", "[[lesson-case-build-hits-counted-as-lines]]", "[[lesson-case-build-a-grep-cited-for-files-it-did-not-print]]", "[[lesson-orchestration-dispatch-prompt-carried-counts-not-from-a-run]]", "[[lesson-orchestration-a-ratified-render-change-claimed-live-before-the-render]]", "[[lesson-case-build-changed-example-read-by-the-check-not-by-the-test-helper]]"]
-severity: 1
-addressed_by: "[[decision-case-690.3]]"
+severity: 0
+addressed_by: "[[decision-case-754]]"
 origin: raw/2026-09-22/2046/ledger.md#L21
 sprint: migration
 created: 2026-09-22
@@ -65,3 +65,4 @@ Neither half is decided here.
 - 2026-10-05 updated: child lesson-orchestration-a-ratified-render-change-claimed-live-before-the-render added (synthesis) · raw/2026-10-05/2103/ledger.md#L23
 - 2026-10-06 updated: actioned: case-guppi reads a fact of its prompt at its source (case 690.1), and the acknowledging reply says that a rendered file changes at the librarian's render (case 690.2) (case 690.3) · [[decision-case-690.3]]
 - 2026-10-09 updated: child lesson-case-build-changed-example-read-by-the-check-not-by-the-test-helper added, status open again (synthesis) · raw/2026-10-09/2049/ledger.md#L21
+- 2026-10-10 updated: actioned: case-guppi reads the code of a test, its helpers included, over a live text the Case changes (case 754) · [[decision-case-754]]

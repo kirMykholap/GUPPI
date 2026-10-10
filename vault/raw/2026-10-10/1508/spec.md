@@ -44,8 +44,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
-- [ ] `uv run guppi sprint`
+- [x] update `entity-sprint-migration`
+- [x] `uv run guppi sprint`
 ```
 
 ## Case 754 — case-guppi reads the test code over a live text a Case changes
@@ -115,9 +115,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-reads-the-test-code-over-a-changed-text`
-- [ ] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`
-- [ ] read `estimate-case-build-reads-the-test-code-over-a-changed-text`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-reads-the-test-code-over-a-changed-text`
+- [x] update `insight-workflow-fact-signed-from-a-check-that-does-not-cover-it`
+- [x] read `estimate-case-build-reads-the-test-code-over-a-changed-text`
 ```

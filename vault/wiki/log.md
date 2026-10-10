@@ -7688,3 +7688,13 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-09 lessons/lesson-case-build-changed-example-read-by-the-check-not-by-the-test-helper updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-09/2049/ledger.md#L21 · generate
 - 2026-10-09 lessons/lesson-case-build-task-copies-an-existing-judgment archived · insight actioned · generate
 - 2026-10-09 lessons/lesson-case-build-task-copies-an-existing-judgment archived · cleanup
+- 2026-10-10 decisions/decision-case-753 created · raw/2026-10-10/1508/ledger.md#case-753 · generate
+- 2026-10-10 entities/entity-sprint-migration updated: Slice 5 holds the close line alone: rule-sprint-close left the milestone, its pending Estimates settled by the closing Case (case 753) · [[decision-case-753]] · generate
+- 2026-10-10 decisions/decision-case-754 created · raw/2026-10-10/1508/ledger.md#case-754 · generate
+- 2026-10-10 rules/rule-case-build updated: case-guppi reads the code of a test, its helpers included, over a live text the Case changes (case 754) · [[decision-case-754]] · generate
+- 2026-10-10 estimates/estimate-case-build-reads-the-test-code-over-a-changed-text created · [[decision-case-754]] · generate
+- 2026-10-10 estimates/estimate-case-build-reads-the-test-code-over-a-changed-text status: pending → passed · raw/2026-10-10/1508/ledger.md#L5 · generate
+- 2026-10-10 rules/rule-case-build estimate estimate-case-build-reads-the-test-code-over-a-changed-text added · [[decision-case-754]] · generate
+- 2026-10-10 insights/insight-workflow-fact-signed-from-a-check-that-does-not-cover-it updated: actioned: case-guppi reads the code of a test, its helpers included, over a live text the Case changes (case 754) · [[decision-case-754]] · generate
+- 2026-10-10 lessons/lesson-case-build-changed-example-read-by-the-check-not-by-the-test-helper archived · insight actioned · generate
+- 2026-10-10 lessons/lesson-case-build-changed-example-read-by-the-check-not-by-the-test-helper archived · cleanup

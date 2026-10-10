@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi judged a changed live text against the check functions a test runs over it, not against the test's own helper code that reads the same text
-status: clustered
+status: archived
 insight: "[[insight-workflow-fact-signed-from-a-check-that-does-not-cover-it]]"
 origin: raw/2026-10-09/2049/ledger.md#L21
 sprint: migration
@@ -22,3 +22,5 @@ case-guppi judged a changed live text against the check functions a test runs ov
 
 - 2026-10-09 created · raw/2026-10-09/2049/ledger.md#L21
 - 2026-10-09 updated: clustered under insight-workflow-fact-signed-from-a-check-that-does-not-cover-it (synthesis) · raw/2026-10-09/2049/ledger.md#L21
+- 2026-10-10 archived · insight actioned
+- 2026-10-10 archived · cleanup

@@ -9130,3 +9130,57 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-10 decisions/decision-case-92 archived · cleanup
 - 2026-10-10 decisions/decision-case-99 archived · cleanup
 - 2026-10-10 entities/entity-sprint child entity-sprint-migration archived · cleanup
+- 2026-10-10 estimates/estimate-sprint-close-runs-in-the-librarian-run status: pending → passed · raw/2026-10-10/1713/ledger.md#L1 · generate
+- 2026-10-10 estimates/estimate-brief-written status: pending → failed · raw/2026-10-10/1713/ledger.md#L2 · generate
+- 2026-10-10 estimates/estimate-hi-takes-a-conserved-spec status: pending → passed · raw/2026-10-10/1713/ledger.md#L3 · generate
+- 2026-10-10 decisions/decision-case-756 created · raw/2026-10-10/1713/ledger.md#case-756 · generate
+- 2026-10-10 decisions/decision-case-756.1 created · raw/2026-10-10/1713/ledger.md#case-756.1 · generate
+- 2026-10-10 entities/entity-sprint-plugin created · [[decision-case-756.1]] · generate
+- 2026-10-10 entities/entity-sprint child entity-sprint-plugin added · [[decision-case-756.1]] · generate
+- 2026-10-10 decisions/decision-case-756.2 created · raw/2026-10-10/1713/ledger.md#case-756.2 · generate
+- 2026-10-10 estimates/estimate-sprint-plugin-close-steps-run-from-the-line created · [[decision-case-756.2]] · generate
+- 2026-10-10 entities/entity-sprint-plugin estimate estimate-sprint-plugin-close-steps-run-from-the-line added · [[decision-case-756.2]] · generate
+- 2026-10-10 decisions/decision-case-756.3 created · raw/2026-10-10/1713/ledger.md#case-756.3 · generate
+- 2026-10-10 estimates/estimate-sprint-plugin-readme-describes-the-project created · [[decision-case-756.3]] · generate
+- 2026-10-10 entities/entity-sprint-plugin estimate estimate-sprint-plugin-readme-describes-the-project added · [[decision-case-756.3]] · generate
+- 2026-10-10 decisions/decision-case-756.4 created · raw/2026-10-10/1713/ledger.md#case-756.4 · generate
+- 2026-10-10 estimates/estimate-sprint-plugin-pull-requests-reviewed-on-github created · [[decision-case-756.4]] · generate
+- 2026-10-10 entities/entity-sprint-plugin estimate estimate-sprint-plugin-pull-requests-reviewed-on-github added · [[decision-case-756.4]] · generate
+- 2026-10-10 decisions/decision-case-756.5 created · raw/2026-10-10/1713/ledger.md#case-756.5 · generate
+- 2026-10-10 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch created · [[decision-case-756.5]] · generate
+- 2026-10-10 entities/entity-sprint-plugin estimate estimate-sprint-plugin-ci-writes-a-clean-branch added · [[decision-case-756.5]] · generate
+- 2026-10-10 decisions/decision-case-756.6 created · raw/2026-10-10/1713/ledger.md#case-756.6 · generate
+- 2026-10-10 estimates/estimate-sprint-plugin-installs-as-a-plugin created · [[decision-case-756.6]] · generate
+- 2026-10-10 entities/entity-sprint-plugin estimate estimate-sprint-plugin-installs-as-a-plugin added · [[decision-case-756.6]] · generate
+- 2026-10-10 decisions/decision-case-757 created · raw/2026-10-10/1713/ledger.md#case-757 · generate
+- 2026-10-10 decisions/decision-case-758 created · raw/2026-10-10/1713/ledger.md#case-758 · generate
+- 2026-10-10 rules/rule-morph deferred · [[decision-case-758]] · generate
+- 2026-10-10 decisions/decision-case-759 created · raw/2026-10-10/1713/ledger.md#case-759 · generate
+- 2026-10-10 decisions/decision-case-761 created · raw/2026-10-10/1713/ledger.md#case-761 · generate
+- 2026-10-10 rules/rule-brief updated: Cases of Next session hold each contradiction of Flags, one between archived pages too, once (case 761) · [[decision-case-761]] · generate
+- 2026-10-10 estimates/estimate-hi-writes-frontier status: pending → passed · raw/2026-10-10/1713/ledger.md#L14 · generate
+- 2026-10-10 estimates/estimate-brief-written updated: the Criterion replaced whole — Cases hold each contradiction of Flags, one between archived pages too, once; read by the person's answer on the brief after a sprint close (case 761) · [[decision-case-761]] · generate
+- 2026-10-10 decisions/decision-case-762 created · raw/2026-10-10/1713/ledger.md#case-762 · generate
+- 2026-10-10 decisions/decision-case-757 superseded by decision-case-762 · [[decision-case-762]] · generate
+- 2026-10-10 estimates/estimate-skill-sprint-close-migration-merged-into-main created · [[decision-case-762]] · generate
+- 2026-10-10 estimates/estimate-skill-sprint-close-migration-merged-into-main status: pending → passed · raw/2026-10-10/1713/ledger.md#L20 · generate
+- 2026-10-10 rules/rule-skill-sprint-close estimate estimate-skill-sprint-close-migration-merged-into-main added · [[decision-case-762]] · generate
+- 2026-10-10 decisions/decision-case-763 created · raw/2026-10-10/1713/ledger.md#case-763 · generate
+- 2026-10-10 decisions/decision-case-763.1 created · raw/2026-10-10/1713/ledger.md#case-763.1 · generate
+- 2026-10-10 decisions/decision-case-759 superseded by decision-case-763.1 · [[decision-case-763.1]] · generate
+- 2026-10-10 estimates/estimate-sprint-close-settles-unread-estimates updated: the Criterion replaced whole — a failed Estimate outside the sprint page is settled only when --carry or --archive-unread names it, as guppi/sprint_close.py does; the purpose set anew; the method the pytest run alone, since no sprint page is live to preview · [[decision-case-763.1]] · generate
+- 2026-10-10 decisions/decision-case-763.2 created · raw/2026-10-10/1713/ledger.md#case-763.2 · generate
+- 2026-10-10 estimates/estimate-sprint-close-takes-the-readings-in-groups updated: the Criterion replaced whole — the close line also names an Estimate read failed in Work Mode that the sprint page does not list; the purpose and the method set anew · [[decision-case-763.2]] · generate
+- 2026-10-10 rules/rule-skill-sprint-close updated: step 4: the close line also names an Estimate read failed in Work Mode that the sprint page does not list · [[decision-case-763.2]] · generate
+- 2026-10-10 estimates/estimate-sprint-close-settles-unread-estimates status: pending → passed · raw/2026-10-10/1713/ledger.md#L21 · generate
+- 2026-10-10 estimates/estimate-sprint-close-takes-the-readings-in-groups status: pending → passed · raw/2026-10-10/1713/ledger.md#L22 · generate
+- 2026-10-10 lessons/lesson-case-reading-moment-before-the-render-it-reads created · raw/2026-10-10/1713/ledger.md#L23 · generate
+- 2026-10-10 lessons/lesson-prespec-method-predicate-misses-a-sprint-session created · raw/2026-10-10/1713/ledger.md#L24 · generate
+- 2026-10-10 insights/insight-workflow-code-live-before-the-page-it-reads updated: child lesson-case-reading-moment-before-the-render-it-reads added (synthesis) · raw/2026-10-10/1713/ledger.md#L23 · generate
+- 2026-10-10 lessons/lesson-case-reading-moment-before-the-render-it-reads updated: clustered under insight-workflow-code-live-before-the-page-it-reads (synthesis) · raw/2026-10-10/1713/ledger.md#L23 · generate
+- 2026-10-10 rules/rule-skill-hi status: draft → built · cascade · generate
+- 2026-10-10 decisions/decision-case-757 archived · superseded · generate
+- 2026-10-10 decisions/decision-case-759 archived · superseded · generate
+- 2026-10-10 tags.md registers readme, ci, plugin · generate
+- 2026-10-10 decisions/decision-case-757 archived · cleanup
+- 2026-10-10 decisions/decision-case-759 archived · cleanup

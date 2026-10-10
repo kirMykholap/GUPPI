@@ -95,8 +95,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `entity-sprint-plugin`
-- [ ] `uv run guppi sprint`
+- [x] create `entity-sprint-plugin`
+- [x] `uv run guppi sprint`
 ```
 
 ### Case 756.2 — The close steps run from the close line
@@ -130,7 +130,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-close-steps-run-from-the-line`
+- [x] create `estimate-sprint-plugin-close-steps-run-from-the-line`
 - [ ] read `estimate-sprint-plugin-close-steps-run-from-the-line`
 ```
 
@@ -167,7 +167,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-readme-describes-the-project`
+- [x] create `estimate-sprint-plugin-readme-describes-the-project`
 - [ ] read `estimate-sprint-plugin-readme-describes-the-project`
 ```
 
@@ -199,7 +199,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-pull-requests-reviewed-on-github`
+- [x] create `estimate-sprint-plugin-pull-requests-reviewed-on-github`
 - [ ] read `estimate-sprint-plugin-pull-requests-reviewed-on-github`
 ```
 
@@ -237,7 +237,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-ci-writes-a-clean-branch`
+- [x] create `estimate-sprint-plugin-ci-writes-a-clean-branch`
 - [ ] read `estimate-sprint-plugin-ci-writes-a-clean-branch`
 ```
 
@@ -273,7 +273,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-installs-as-a-plugin`
+- [x] create `estimate-sprint-plugin-installs-as-a-plugin`
 - [ ] read `estimate-sprint-plugin-installs-as-a-plugin`
 ```
 
@@ -350,9 +350,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] update `estimate-brief-written`
+- [x] update `rule-brief`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `estimate-brief-written`
 - [ ] read `estimate-brief-written`
 ```
 
@@ -417,11 +417,11 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-skill-sprint-close-migration-merged-into-main`
+- [x] create `estimate-skill-sprint-close-migration-merged-into-main`
 - [x] by hand: as the first task of Work Mode, run `git switch main`, `git merge --ff-only migration`, `git switch -c plugin` and `git branch -d migration`; a refusal of the merge or of the deletion is a stop on the first condition of `vault/wiki/where-to-stop.md`.
 - [x] by hand: run `make test` on `plugin` right after the switch, and hold each failing test against `## Baseline` of `vault/raw/2026-10-10/1713/work.md`.
 - [x] by hand: tick the line ``the merge of `migration` into `main` — the first work of the session that opens the next sprint, after its opening Case`` in `vault/raw/2026-10-10/1555/spec.md`.
-- [ ] read `estimate-skill-sprint-close-migration-merged-into-main`
+- [x] read `estimate-skill-sprint-close-migration-merged-into-main`
 ```
 
 ## Case 763 — A failed Estimate outside the sprint page is settled only by name
@@ -481,8 +481,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-close-settles-unread-estimates`
-- [ ] read `estimate-sprint-close-settles-unread-estimates`
+- [x] update `estimate-sprint-close-settles-unread-estimates`
+- [x] read `estimate-sprint-close-settles-unread-estimates`
 ```
 
 ### Case 763.2 — The close line names a failed reading outside the sprint page
@@ -521,10 +521,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-close-takes-the-readings-in-groups`
-- [ ] update `rule-skill-sprint-close`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-close/SKILL.md`
-- [ ] read `estimate-sprint-close-takes-the-readings-in-groups`
+- [x] update `estimate-sprint-close-takes-the-readings-in-groups`
+- [x] update `rule-skill-sprint-close`
+- [x] `uv run guppi render`: `.claude/skills/sprint-close/SKILL.md`
+- [x] read `estimate-sprint-close-takes-the-readings-in-groups`
 ```
 
 ## Deferred

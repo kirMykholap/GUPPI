@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-brief]]"
-method: by hand at the /hi after the librarian's run of the session that closes a sprint, recorded in the estimate line
-checked: 2026-10-01
+method: by hand, the person's answer at the /hi after the librarian's run of the session that closes a sprint, on vault/wiki/brief.md of that run, whether Cases hold each contradiction of Flags, one between archived pages too, and once where a line of For the next session carries it, recorded in the estimate line
+checked: 2026-10-10
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10
@@ -22,15 +22,16 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 **＋** Where things stand, Readings due and Readings at the close are as before.
 **＋** Readings due takes from each Estimate page its `status`, `target` and `method`, and from the target rule its `status`.
 **＋** Flags keep their kinds of lines — marked entries, failed Estimates, MOC candidates, stale defers, contradictions, the lint output — and add one kind: a read that the librarian's frame says its job does not need, with what was read, the part of the job it served, and the handoff when the handoff asked for it.
-**＋** Next session holds `Cases`, `Work` and `Ask the person`. `Cases` is what needs a decision: after a run whose `guppi sprint-close --apply` moved the sprint page, first the line `open the next sprint — no sprint is open since the close of <id>`; a line of `## For the next session` of `handoff.md`, a handoff flag with a question or a request to change the sprint, a `failed` Estimate, a contradiction, a defect the librarian found; one line per item, with what and from where. `Work` is what is done without a decision: every `pending` reading of Readings due by its slug but one that `Ask the person` holds, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
+**＋** Next session holds `Cases`, `Work` and `Ask the person`. `Cases` is what needs a decision: after a run whose `guppi sprint-close --apply` moved the sprint page, first the line `open the next sprint — no sprint is open since the close of <id>`; a line of `## For the next session` of `handoff.md`, a handoff flag with a question or a request to change the sprint, a `failed` Estimate, each contradiction of Flags, one between pages that stand in `vault/archive/` too, a defect the librarian found; one line per item, with what and from where. `Work` is what is done without a decision: every `pending` reading of Readings due by its slug but one that `Ask the person` holds, the unticked boxes of the Specs, a ledger line this run did not apply, a dirty tree; one line per item.
 **＋** `Ask the person` holds each line of `## Ask the person` of `handoff.md`: the Estimate by slug, the mark `needs the person` and its question, as the handoff wrote them.
 **＋** An item stands in one list only. A list with no item is the line "none".
 **＋** The brief of the skill `carry` keeps a short shape: Where things stand, Flags and Next session, without Readings due, Readings at the close and a Deferred list. In its Next session, `Work` and `Ask the person` take the open `W` and `A` lines of the session's `frontier.md`, and `Cases` is the line "none", since a deferred decision stands in `vault/wiki/backlog.md` and a sprint item on `vault/wiki/sprint.md`. `rule-brief` and `rule-carry-over` both say so.
+**－** A contradiction of Flags that a line of `## For the next session` of `handoff.md` already carries gets no second line in `Cases`.
 **－** The brief states no decision: the sort by kind is not a judgment of the work.
 
 ## Result
 
-2026-10-01, by hand at the /hi of session 1725, vault/wiki/brief.md of the librarian's run a264476c over 1441, the first run whose .claude/agents/librarian-guppi.md held the Render of session 1237, read against raw/2026-10-01/1441/handoff.md: five sections in order, no Deferred list and no cap; Readings due 39 lines, each with slug, target and method, the failed one marked, 10 of the target rules checked by grep, all draft; Flags hold the incomplete and near marks, the failed Estimate, MOC candidates none, the 6 stale defers, the handoff's contradiction, the lint output and the line on reads outside the frame; Next session: Cases the 4 lines of For the next session and the handoff's Observation on guppi/casecheck.py; Work the 38 pending slugs of Readings due, the unticked read boxes of specs 1441 (14) and 1237 (4) and the unapplied ledger lines 22 to 27; Ask the person "none" as the handoff; no dirty tree; no decision stated; the lines it shares with the old brief are Readings due lines taken from the Estimate pages; estimate-estimates-schema-checked stands in Work by its reading and in Cases by the question on its test
+2026-10-10, by hand at the /hi of session 1713, vault/wiki/brief.md of the librarian's run ab8be60f, read against vault/raw/2026-10-10/1555/handoff.md: five sections in order, no Deferred list; Readings due 6 lines, each with status, target and method; Flags hold the marked entries (none), the failed Estimate, the stale defer, two contradictions, MOC candidates none, the lint output, reads outside the frame none; Next session: Cases opens with `open the next sprint — no sprint is open since the close of migration`, then the 3 lines of For the next session and the failed Estimate; Work the 4 pending slugs not in Ask; Ask the person the handoff's one line as written; fails: the contradiction on the `－` line of `estimate-sprint-migration-merges`, a Flag of the brief, stands in no line of `Cases`
 
 ## History
 
@@ -61,3 +62,5 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 - 2026-10-01 updated: the Criterion replaced whole — Flags hold a line for each read the frame says the job does not need; Readings due takes the status, target and method fields (case 567.2) · [[decision-case-567.2]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L2
 - 2026-10-04 updated: the Criterion replaced whole — after a close, the first Cases line opens the next sprint (case 628.8) · [[decision-case-628.8]]
+- 2026-10-10 status: pending → failed · raw/2026-10-10/1713/ledger.md#L2
+- 2026-10-10 updated: the Criterion replaced whole — Cases hold each contradiction of Flags, one between archived pages too, once; read by the person's answer on the brief after a sprint close (case 761) · [[decision-case-761]]

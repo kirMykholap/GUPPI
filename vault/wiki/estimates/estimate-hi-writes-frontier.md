@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 method: "by hand: the person's answer at the /hi of the session after the close of a sprint, on whether the Frontier came out as the Criterion says, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
-checked: 2026-09-30
+checked: 2026-10-10
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
 created: 2026-09-12
@@ -31,7 +31,7 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 
 ## Result
 
-2026-09-30, `uv run pytest tests/test_prespec.py -k frontier` 7 passed; by hand, the /hi of session 0248: raw/2026-09-30/0248/frontier.md written in plan mode with ## Cases (C1–C2 from the milestone Slice 5, C3–C7 from the brief's Cases, C8 a failed reading), ## Work (W1–W46, one per pending reading, and W47) and ## Ask (empty, the brief has no Ask the person list); the milestone line C1 opens with its slug in a code span; `Backlog: 26 items` ends ## Cases; near lines name backlog items by slug; the chat shows the Cases as a checklist with no bold Case line
+2026-10-10, by hand, the person's answer at the /hi of session 1713, the session that opens the sprint after the close of migration: "Я считаю, что все ок" — the Frontier came out as the Criterion says: raw/2026-10-10/1713/frontier.md with ## Cases, ## Work and ## Ask; `open the next sprint` the first Cases line; no milestone item and no conserved Spec; `Backlog: 3 items` last under Cases, near lines by slug; the chat showed the Cases as a checklist with no bold Case line; C3, of source brief, closed `[-] … · defer case 758` with its short Case; not exercised: an item closed `· sprint · defer` or `· backlog · kept`, and a brief line that repeats a milestone item, since no milestone stood
 
 ## History
 
@@ -68,3 +68,4 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 - 2026-10-07 updated: the Criterion replaced whole — an item closed defer or kept has no short Case but for the short Case of a take-back; the reading by hand is the person's answer at that /hi (case 723.3) · [[decision-case-723.3]]
 - 2026-10-08 updated: the Criterion replaced whole — a brief line that repeats an item of the current milestone makes no line of its own (case 729) · [[decision-case-729]]
 - 2026-10-08 updated: the method opens with "by hand", the one spelling of a reading, so lint reads it as one (case 731) · [[decision-case-731]]
+- 2026-10-10 status: pending → passed · raw/2026-10-10/1713/ledger.md#L14

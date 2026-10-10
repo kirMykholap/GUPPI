@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 purpose: Whether a session takes a conserved Spec of the Frontier whole — only with no decision line of its own but a defer, its line closed, the plan file created with a title line that names the conserved spec.md, the other lines closed as left
 method: "uv run guppi render --check; by hand, a session whose person takes a conserved Spec at the Frontier: frontier.md, the title line of the plan file and the session's ledger read against the Criterion; and the /hi of the session after the close of a sprint: its frontier.md and backlog.md"
-checked: 2026-10-04
+checked: 2026-10-10
 origin: raw/2026-10-02/1202/ledger.md#case-593.1
 sprint: migration
 created: 2026-10-02
@@ -31,7 +31,7 @@ In a session whose `/hi` found no first line `open the next sprint` in the `Case
 
 ## Result
 
-2026-10-04, the Work readings of session 1934: `uv run guppi render --check` exit 0; by hand, the person took C1, the conserved Spec of raw/2026-10-04/1439/, at the Frontier: the session's ledger then held 3 estimate lines and no decision line, and after it the session wrote one lesson line and no decision line; frontier.md closes C1 `[x] … · backlog · work`, and the plan file magical-noodling-papert.md holds the one line `# Session 1934 — runs the conserved Spec vault/raw/2026-10-04/1439/spec.md`, the path backlog.md names; C2 and C3, items of the sprint, closed `[-] … · sprint · defer`, no other line under Cases closed `[x]`; /pre-spec ran next, `uv run guppi prespec --check` printed nothing, and the 12 findings of ask-guppi on Cases 627–629 went to the handoff, no Case of the conserved Spec built or ratified again; not exercised: a line whose target a defer item of the Spec puts off, closed `[-] … · defer case N`
+2026-10-10, at the /hi of session 1713, the session that opens the next sprint: `uv run guppi render --check` exit 0; vault/wiki/backlog.md, `## Conserved Specs` holds no item; raw/2026-10-10/1713/frontier.md holds no conserved Spec under `## Cases` and its first line is `open the next sprint`; the agent took none; not exercised: a conserved Spec in backlog.md at the opening of a sprint, and a line closed `[-] … · defer case N` by a defer item of a taken Spec
 
 ## History
 
@@ -41,3 +41,4 @@ In a session whose `/hi` found no first line `open the next sprint` in the `Case
 - 2026-10-04 updated: the Criterion replaced whole — a line put off by a defer of the conserved Spec closes defer case N with that Spec's Case · [[decision-case-620.1]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/1934/ledger.md#L5
 - 2026-10-04 updated: the Criterion replaced whole — a session that does not open a sprint takes a conserved Spec as before; the session that opens the next sprint takes none (case 632.7) · [[decision-case-632.7]]
+- 2026-10-10 status: pending → passed · raw/2026-10-10/1713/ledger.md#L3

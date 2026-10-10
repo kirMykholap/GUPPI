@@ -22,3 +22,6 @@ another.
 | orchestration | the main agent's own work in a session: the Frontier, the dispatch of case-guppi, the showing and signing of a Case, the defers | оркестрация, оркестровка |
 | case-build | how case-guppi builds a Case: its rounds, its reading of the frame and the file it writes | сборка кейса, построение кейса |
 | prespec | the check of the ratified Cases before the Spec: /pre-spec, its hook and its findings | пре-спек, проверка плана |
+| readme | the README of the repository: what the project is, its parts and how to use it | ридми, описание проекта |
+| ci | the continuous integration of the repository on GitHub: its runs, its checks and the branches it writes | CI, CI/CD, непрерывная интеграция |
+| plugin | GUPPI as a Claude Code plugin: its clean version, its install and its use in another project | плагин |

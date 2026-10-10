@@ -1,71 +1,73 @@
-# Brief — 2026-10-10, after the librarian run of session 1555
+# Brief — 2026-10-10, after the librarian run of session 1713
 
 ## Where things stand
 
-- Session 1555 ratified Case 755, the closing Case of `migration`, twice, the second time after `/pre-spec` (handoff, What actually got done).
-- No code file and no test changed. `docs/migration/migration-plan.md` deleted; `docs/` is gone. `make test`: 1490 passed, 6 skipped. `make style`: clean (handoff).
-- Readings: `estimate-sprint-migration-leftovers-gone` `passed`, `estimate-sprint-migration-merges` `passed`, `estimate-sprint-migration-lint-clean` `failed`, `estimate-sprint-close-takes-the-readings-in-groups` `passed`. Lessons: `lesson-prespec-preview-expected-before-generate-applies-the-readings` (handoff).
-- Pages created: decisions 1 (`decision-case-755`), lessons 1 (`lesson-prespec-preview-expected-before-generate-applies-the-readings`).
-- Pages updated: entities 1 (`entity-sprint-migration`), estimates 4 (the four readings above), insights 1 (`insight-workflow-code-live-before-the-page-it-reads`, synthesis), lessons 1 (the new lesson, set `clustered`, synthesis).
-- The yaml of session 1555 holds 8 entries, 6 lifted from the 6 lines of the ledger and 2 added by the synthesis, all `applied`. The yaml of session 1508 was extended with 0 entries.
-- Handoff check before the close: after `generate`, `estimate-sprint-migration-leftovers-gone` and `estimate-sprint-migration-merges` stand `passed`, `estimate-sprint-migration-lint-clean` `failed`, `estimate-sprint-close-takes-the-readings-in-groups` `passed`.
-- Close: the librarian ran the close line of `vault/raw/2026-10-10/1555/spec.md` after `generate`: exit 0, no stderr line. It printed 6 `unread` lines (5 `carried into the next sprint`, `estimate-sprint-migration-lint-clean` `goes with the sprint page, its status kept`), `sprint-close: migration: 1422 page(s) marked archived; cleanup: 1422 page(s) moved`, and 30 `archive` lines (`raw/2026-10-10/1508` and 29 event logs, 2026-09-09 to 2026-10-08). The close line stands ticked in `spec.md`.
-- Moved to `vault/archive/migration/2026-10-10/1555/`: decisions 1331, lessons 49, insights 35, estimates 6, entities 1 (`entity-sprint-migration`).
-- Close against the Work Mode preview (handoff): preview 1423 `move` (1331 decisions, 49 lessons, 36 insights, 6 estimates, 1 entity), 30 `archive`, 9 `unread`, 4 `not settled`, 30 `keep`; the close moved 1422 (1331 decisions, 49 lessons, 35 insights, 6 estimates, 1 entity), printed 30 `archive`, 6 `unread`, no `not settled` line and no `keep` line. `insight-workflow-code-live-before-the-page-it-reads`, reopened by the synthesis, stayed live; `decision-case-473.2` stayed live; `decision-case-755`, created by this run, was moved.
-- `guppi sprint` wrote `vault/wiki/sprint.md`: `## migration — closed`, "No sprint is open since the close of migration." `entity-sprint` lost its child `entity-sprint-migration`.
-- Index check: no `create` entry in the yaml; no Grep run for it.
-- Synthesis: Grep `^(root_cause|deferred_by):` over `vault/wiki/lessons/` printed 74 lines; Grep `^(pattern|deferred_by):` over `vault/wiki/insights/` printed 36 lines.
-  - `lesson-prespec-preview-expected-before-generate-applies-the-readings` joined `insight-workflow-code-live-before-the-page-it-reads`.
-  - The pair: the Insight stood `actioned` with `addressed_by: decision-case-473.2`; the lesson entry carries no `addressed_by`, so the update set it `open`. Its `addressed_by` stands.
-- Archive: `guppi archive` printed no line on stdout or stderr and moved no unit; session 1555 stays.
+- Session 1713 opened the sprint `plugin` and ratified Cases 756 (756.1 to 756.6), 758 (the defer of `rule-morph`), 761, 762 and 763 (763.1, 763.2); Case 757 is superseded by Case 762 and Case 759 by Case 763.1 (handoff, What actually got done).
+- Work Mode moved `main` to the last commit of `migration` by fast-forward, made the branch `plugin` from `main`, deleted `migration` and ticked the merge line of `vault/raw/2026-10-10/1555/spec.md`. No code or test changed (handoff).
+- Readings of the session: `estimate-sprint-close-runs-in-the-librarian-run` passed, `estimate-brief-written` failed, then set `pending` with a new Criterion and method by Case 761, `estimate-hi-takes-a-conserved-spec` passed, `estimate-hi-writes-frontier` passed, `estimate-skill-sprint-close-migration-merged-into-main` passed, `estimate-sprint-close-settles-unread-estimates` passed, `estimate-sprint-close-takes-the-readings-in-groups` passed (ledger lines 1, 2, 3, 14, 20, 21, 22).
+- The yaml `vault/raw/2026-10-10/1713/materialize.yaml`: 24 entries from a 24-line ledger (line 20 folded into the entry of case 762), 2 entries added by the synthesis; 24 entries `applied`, the entries of case 757 and case 759 `superseded_by`; `unparsed: []`. `guppi generate` wrote or changed 36 pages.
+- Created: decisions 15 (756, 756.1 to 756.6, 757, 758, 759, 761, 762, 763, 763.1, 763.2), entities 1 (`entity-sprint-plugin`), estimates 6 (the five `estimate-sprint-plugin-*` and `estimate-skill-sprint-close-migration-merged-into-main`), lessons 2.
+- Updated: estimates 6, rules 4 (`rule-brief`, `rule-morph` deferred by case 758, `rule-skill-sprint-close`, `rule-skill-hi` draft → built by the cascade), entities 1 (`entity-sprint`, child `entity-sprint-plugin`), insights 1, lessons 1 (the new lesson clustered).
+- Archived by `guppi cleanup`: `decision-case-757` and `decision-case-759`, superseded, to `vault/archive/migration/2026-10-10/1713/decisions/`.
+- Rendered: `.claude/agents/librarian-guppi.md` (Case 761) and `.claude/skills/sprint-close/SKILL.md` (Case 763.2). `guppi sprint` wrote `vault/wiki/sprint.md` with the sprint `plugin`; `guppi backlog` rewrote `vault/wiki/backlog.md`; `guppi glossary` changed nothing.
+- `guppi archive` printed no line: both units under `vault/raw/2026-10-10/` are dated the day of the run, and 1713 is the session of the run.
+- Synthesis: Grep `^(root_cause|deferred_by):` over `vault/wiki/lessons/` printed 27 lines; Grep `^(pattern|deferred_by):` over `vault/wiki/insights/` printed 1 line.
+  - `lesson-case-reading-moment-before-the-render-it-reads` joined `insight-workflow-code-live-before-the-page-it-reads` (open, severity 2 now), beside its child `lesson-prespec-preview-expected-before-generate-applies-the-readings`: both set a moment or an expected output from the end state of the session, with no check of the order of generate and render or close.
+  - `lesson-prespec-method-predicate-misses-a-sprint-session` joined none: no index line names the `waits_for_another_session` predicate of `guppi/lint.py` or the Estimates of a sprint page; it stays `new`.
 
 ## Readings due
 
-- `estimate-sprint-migration-lint-clean` — `failed` — `entity-sprint-migration` (`archived` by the close) — `make lint` in Work Mode of the closing session, before the librarian's run (`read` line of `vault/raw/2026-10-10/1555/spec.md`, ticked by this run). Result: exit 2, 10 finding lines; not excused: `rules/rule-morph: deferred: 3 times since case 239` and `estimates/estimate-sprint-close-takes-the-readings-in-groups: unread: pending`. The page went to the archive with the sprint page.
-- `estimate-sprint-close-runs-in-the-librarian-run` — `pending` — `rule-sprint-close` (`draft`) — after the librarian's run of this session, carried (`spec.md` of session 1555). This run: the ledger holds 6 lines, 1 decision line (case 755, `update` of `entity-sprint-migration`) and no `defer`; `generate` applied ledger lines 2 to 5 at 16:25:05, before the close line ran; the close line ran after `generate` and before `cleanup`, exit 0, no stderr line; the close line stands ticked in `spec.md` (`git diff`); handoff, Debt: "No box is debt", and the close line named among "6 boxes wait for the librarian"; `vault/archive/migration/2026-10-10/1555/` holds 1422 pages.
-- `estimate-brief-written` — `pending` — `rule-brief` (`draft`) — at the `/hi` after the librarian's run of this session, carried (`spec.md` of session 1555). This run: this brief holds Where things stand, Readings due, Flags, Next session, Readings at the close, and no Deferred list.
-- `estimate-sprint-close-next-session-opens-the-sprint` — `pending` — `rule-sprint-close` (`draft`) — in the session that opens the next sprint, carried (`spec.md` of session 1555). This run: `vault/wiki/sprint.md` reads "No sprint is open since the close of migration."; `guppi sprint` printed no stderr line.
-- `estimate-hi-writes-frontier` — `pending` — `rule-skill-hi` (`draft`) — at the `/hi` of the session that opens the next sprint, carried (`spec.md` of session 1555).
-- `estimate-hi-takes-a-conserved-spec` — `pending` — `rule-skill-hi` (`draft`) — at the `/hi` of the session that opens the next sprint, carried (`spec.md` of session 1555).
+- `estimate-brief-written` · pending · target `rule-brief` (draft) · read by the person at the `/hi` after the close of `plugin` (`- [ ] read` line 356 of `vault/raw/2026-10-10/1713/spec.md`; method: by hand, the person's answer at the /hi after the librarian's run of the session that closes a sprint, on vault/wiki/brief.md of that run).
+- `estimate-sprint-close-next-session-opens-the-sprint` · pending · target `rule-sprint-close` (draft) · no read line in the 1713 spec; method: pytest tests/test_ledger.py -k sprint and tests/test_materialize.py -k sprint; by hand, at the librarian's run of the session after the close of a sprint: the brief before it, its frontier.md, the refusals of guppi ledger in its transcript, its ledger and the sprint field of the pages written from that ledger. This run: the yaml of 1713 holds `sprint: plugin`; the 22 pages created from the ledger of 1713 (13 live decisions, 1 entity, 6 estimates, 2 lessons) carry `sprint: plugin`; the 10 pages it updated (6 estimates, 3 rules, 1 insight) keep `sprint: migration`, as do `entity-sprint` (child added by case 756.1) and `rule-skill-hi` (changed by the cascade); `guppi cleanup` moved `decision-case-757` and `decision-case-759` to `vault/archive/migration/2026-10-10/1713/`; `make test` 1490 passed, 6 skipped.
+- `estimate-sprint-plugin-close-steps-run-from-the-line` · pending · target `entity-sprint-plugin` (draft) · `- [ ] read` line 134 of the 1713 spec; method: by hand, at the end of Work Mode of the session that closes entity-sprint-plugin.
+- `estimate-sprint-plugin-readme-describes-the-project` · pending · target `entity-sprint-plugin` (draft) · `- [ ] read` line 171 of the 1713 spec; method: the person's answer on README.md, in a session of the sprint plugin before its close.
+- `estimate-sprint-plugin-pull-requests-reviewed-on-github` · pending · target `entity-sprint-plugin` (draft) · `- [ ] read` line 203 of the 1713 spec; method: a pull request from a second account read on GitHub, in a session of the sprint plugin before its close.
+- `estimate-sprint-plugin-ci-writes-a-clean-branch` · pending · target `entity-sprint-plugin` (draft) · `- [ ] read` line 241 of the 1713 spec; method: a CI run on GitHub and the clean branch it wrote, in a session of the sprint plugin before its close.
+- `estimate-sprint-plugin-installs-as-a-plugin` · pending · target `entity-sprint-plugin` (draft) · `- [ ] read` line 277 of the 1713 spec; method: an install of the clean branch into an empty project, in a session of the sprint plugin before its close.
 
 ## Flags
 
-- Entries marked `incomplete`, `failed`, `near` or `unparsed`: none.
-- Failed Estimate: `estimate-sprint-migration-lint-clean` `failed`; archived with the sprint page, the close record keeps its status.
-- Stale defer: `rules/rule-morph: deferred: 3 times since case 239`.
-- Contradiction (handoff, Observations): `estimate-sprint-close-settles-unread-estimates` (`passed`) says a `failed` Estimate outside the sprint page "is carried into the next sprint"; `guppi/sprint_close.py` settles it only when `--carry` or `--archive-unread` names it.
-- Contradiction (handoff, Observations): the `－` line of `estimate-sprint-migration-merges` puts the merge on a line of the `## Backlog` of `entity-sprint-migration`, and that page holds no such line; both pages are now in the archive.
-- Synthesis reopened an Insight: `insight-workflow-code-live-before-the-page-it-reads` `actioned` → `open`, `addressed_by: decision-case-473.2` kept.
+- `incomplete`: the entry of case 757 (`estimate-skill-sprint-close-branch-merged-at-the-next-opening`) lacks `criterion`; it is `superseded_by: '762'` and no page was written. No entry is marked `failed`, `near` or `unparsed`.
+- Failed Estimates: none after `generate`. `estimate-brief-written` was read `failed` (ledger line 2: the contradiction on the `－` line of `estimate-sprint-migration-merges`, a Flag of the brief of run ab8be60f, stood in no line of `Cases`), then set `pending` by Case 761.
 - MOC candidates: none.
-- `make lint`, after `glossary`: exit 2, 6 lines:
-  - `rules/rule-morph: deferred: 3 times since case 239`
+- Stale defer: `rule-morph` — `deferred: 4 times since case 239` (lint); `backlog.md` reads "put off in 7 sessions".
+- Contradiction (handoff, Observations): `/retro` sets an unread Estimate `failed` with "Retro, not read", while the ratified context of Case 756 says the read lines of the five Estimates of `entity-sprint-plugin` stay open; Retro left them `pending`. Carried by the first line of `## For the next session`.
+- Contradiction (handoff, For the next session): the brief gives the merge line under `Cases` while step 4 of `/sprint-close` says `Work`. Carried by the second line of `## For the next session`.
+- Defect: `guppi cleanup` took the sprint id from the first heading of `vault/wiki/sprint.md`, still `## migration — closed` before `guppi sprint` ran, and moved `decision-case-757` and `decision-case-759` of session 1713 to `vault/archive/migration/2026-10-10/1713/`, while `guppi materialize` set the yaml of 1713 to `sprint: plugin` (`opened_sprint`, case 628.3) (`guppi/cleanup.py`, `sprint_id`).
+- Handoff check (Direct instructions): `entity-sprint-plugin` lists the five Estimates of Cases 756.2 to 756.6 in `estimates`, each with `target: entity-sprint-plugin`; the pages created from the 1713 ledger carry `sprint: plugin`; the pages it updated keep their own `sprint: migration`. No page `estimate-skill-sprint-close-branch-merged-at-the-next-opening` exists.
+- Handoff note: the render of this run wrote the new text of `rule-brief` (Case 761) into `.claude/agents/librarian-guppi.md`; this run's librarian worked from the text before it.
+- `make lint`, exit 2, 8 lines:
+  - `rules/rule-morph: deferred: 4 times since case 239`
   - `estimates/estimate-brief-written: unread: pending`
-  - `estimates/estimate-hi-takes-a-conserved-spec: unread: pending`
-  - `estimates/estimate-hi-writes-frontier: unread: pending`
   - `estimates/estimate-sprint-close-next-session-opens-the-sprint: unread: pending`
-  - `estimates/estimate-sprint-close-runs-in-the-librarian-run: unread: pending`
-- Reads outside the frame: none.
+  - `estimates/estimate-sprint-plugin-ci-writes-a-clean-branch: unread: pending`
+  - `estimates/estimate-sprint-plugin-close-steps-run-from-the-line: unread: pending`
+  - `estimates/estimate-sprint-plugin-installs-as-a-plugin: unread: pending`
+  - `estimates/estimate-sprint-plugin-pull-requests-reviewed-on-github: unread: pending`
+  - `estimates/estimate-sprint-plugin-readme-describes-the-project: unread: pending`
+- Read outside the frame: a Grep `^sprint:` over the 13 Decision pages of this run in `vault/wiki/decisions/` (the `sprint` field only), for the handoff check and the Readings due line of `estimate-sprint-close-next-session-opens-the-sprint`; the handoff asked for it (Direct instructions, second line).
 
 ## Next session
 
-Cases
-- open the next sprint — no sprint is open since the close of migration
-- handoff, For the next session: the first work after the opening Case is the merge of `migration` into `main`, the last task line of `vault/raw/2026-10-10/1555/spec.md`, left unticked by design.
-- handoff, For the next session: `rule-morph` stays deferred, the stale-defer lint line with it, into the next sprint.
-- handoff, For the next session: the sentence of `estimate-sprint-close-settles-unread-estimates` on a `failed` Estimate outside the sprint page disagrees with `guppi/sprint_close.py`; one of them needs a decision.
-- failed Estimate: `estimate-sprint-migration-lint-clean`, archived with the sprint page.
+**Cases**
+- One rule for the Estimates of a sprint page read in a later session of the sprint: `case-schema.md` (case 670.4), `/retro` and `waits_for_another_session` of `guppi/lint.py` hold no exception for them (handoff, For the next session; work of the first milestone of `plugin`).
+- A merge step at the opening of a sprint after a sprint with a branch of its own, and the brief giving the merge line under `Cases` while step 4 of `/sprint-close` says `Work` (handoff, For the next session; work of the first milestone of `plugin`).
+- The form of the opening of a sprint, which the person may want to discuss (handoff, For the next session).
+- `guppi cleanup` files the pages of the session that opens a sprint under the archive folder of the closed sprint, since `sprint.md` is rewritten only at the later step `guppi sprint` (`vault/archive/migration/2026-10-10/1713/`, `guppi/cleanup.py`).
 
-Work
-- `estimate-sprint-close-runs-in-the-librarian-run`
-- `estimate-brief-written`
-- `estimate-sprint-close-next-session-opens-the-sprint`
-- `estimate-hi-takes-a-conserved-spec`
+**Work**
+- `estimate-sprint-close-next-session-opens-the-sprint` (its `- [ ] read` line in `vault/raw/2026-10-10/1555/spec.md`).
+- `estimate-sprint-plugin-close-steps-run-from-the-line`.
+- `estimate-sprint-plugin-readme-describes-the-project`.
+- `estimate-sprint-plugin-pull-requests-reviewed-on-github`.
+- `estimate-sprint-plugin-ci-writes-a-clean-branch`.
+- `estimate-sprint-plugin-installs-as-a-plugin`.
 
-Ask the person
-- `estimate-hi-writes-frontier` — needs the person — at the `/hi` of the session that opens the next sprint: did the Frontier come out as the Criterion says, an item closed `defer` or `kept` with no short Case but the short Case of a take-back, and no second line for a brief line that repeats a milestone item?
+**Ask the person**
+- `estimate-brief-written` — needs the person — at the `/hi` after the close of `plugin`, on the brief the librarian wrote in that run: does `Cases` of Next session hold each contradiction listed under Flags, one between archived pages too, and only once when a line of `## For the next session` already carries it?
 
 ## Readings at the close
 
 - `make test`: 1490 passed, 6 skipped.
-- `make lint`: exit 2, 6 lines (Flags).
-- Live pages: decisions 5, entities 3, estimates 257, insights 1, lessons 27, rules 79.
+- `make lint`: exit 2, 8 lines (above).
+- Live pages: decisions 18, entities 4, estimates 263, insights 1, lessons 29, rules 79; `vault/archive/` holds 2579 `.md` files.

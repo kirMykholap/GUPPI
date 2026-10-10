@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents a session from being loaded piecemeal by read-tool calls
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: full
@@ -121,3 +121,4 @@ copies of one text, kept identical by hand.
 - 2026-10-07 updated: a sprint item put off and a backlog item kept take no Case but for the short Case of a take-back (case 723.3) · [[decision-case-723.3]]
 - 2026-10-08 updated: a line of the brief's Next session that repeats an item of the current milestone makes no Frontier line of its own (case 729) · [[decision-case-729]]
 - 2026-10-08 updated: an Ask line whose question names the close of a sprint, or the session after it, stays open and is not asked until that session · [[decision-case-732]]
+- 2026-10-10 status: draft → built · cascade

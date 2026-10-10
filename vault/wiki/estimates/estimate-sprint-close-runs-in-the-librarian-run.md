@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint-close]]"
 purpose: Whether the close of a sprint runs in the librarian's run of a session of its own, from the task line of its closing Case, after guppi generate and before guppi cleanup, so that the readings of that session count, with Work Mode leaving the line, Retro not counting it as debt and the command ticking it
 method: "pytest tests/test_sprint_close.py -k tick; by hand, after the librarian's run of the session that closes a sprint: its ledger, spec.md, handoff.md, the librarian's event log and report, and vault/archive/"
+checked: 2026-10-10
 origin: raw/2026-10-04/1439/ledger.md#case-628.1
 sprint: migration
 created: 2026-10-04
@@ -24,6 +25,11 @@ The ledger of the session holds the decision lines of the closing Case and of th
 **＋** After a run that moved the pages, the line stands ticked in `spec.md`, found by `command_line` of `guppi/render.py`.
 **－** A run that refuses moves nothing and ticks nothing, and the librarian names its stderr lines as flags.
 
+## Result
+
+2026-10-10, at the /hi of session 1713: `uv run pytest tests/test_sprint_close.py -k tick` 2 passed; by hand over session 1555: its ledger holds one decision line, case 755 `update` of `entity-sprint-migration`, and no other; spec.md ticks the close line (line 77) and leaves the read lines and the merge line open; handoff.md, Debt: "No box is debt", the close line among "6 boxes wait for the librarian"; raw/2026-10-10/event_log.md: `guppi generate` 16:25:16, `guppi sprint-close --apply` 16:25:42, `guppi cleanup` 16:26:06, the only earlier sprint-close call (16:20:35) the preview of Work Mode without `--apply`; vault/archive/migration/2026-10-10/1555/ holds decisions, entities, estimates, insights, lessons; not exercised: a run that refuses
+
 ## History
 
 - 2026-10-04 created · [[decision-case-628.1]]
+- 2026-10-10 status: pending → passed · raw/2026-10-10/1713/ledger.md#L1

@@ -1204,13 +1204,21 @@ class Vault:
                 continue
             if str(other.props.get("status")) != "archived":  # no round trip (case 683)
                 other.props["status"] = "superseded"
-            done = as_list(other.props.get("superseded_by"))
-            if slug not in done:
-                other.props["superseded_by"] = done + [slug]
-            self.history(other, f"superseded by {slug}", f"[[{slug}]]")
+            self.take_superseded_by(other, slug)
             self.save(other)
             self.clear_deferred_by(other, slug, {str(t.get("slug")) for t in targets})
             self.supersede_children(other, slug)
+
+    def take_superseded_by(self, page: Page, slug: str) -> None:
+        """Case 773: `page` takes `slug` into its `superseded_by` with one History line, and
+        only when the name is new — a page an earlier run or an earlier step of the same
+        record already marked, such as a sub-case reached through its parent and named in
+        `supersedes` too, gets no second line here nor in `log.md`."""
+        done = as_list(page.props.get("superseded_by"))
+        if slug in done:
+            return
+        page.props["superseded_by"] = done + [slug]
+        self.history(page, f"superseded by {slug}", f"[[{slug}]]")
 
     def supersede_children(self, parent: Page, slug: str) -> None:
         """Case 660.3: the tag that supersedes a Case supersedes its sub-cases too — each page
@@ -1225,10 +1233,7 @@ class Vault:
             if child is None or child.props.get("status") != "current":
                 continue
             child.props["status"] = "superseded"
-            done = as_list(child.props.get("superseded_by"))
-            if slug not in done:
-                child.props["superseded_by"] = done + [slug]
-                self.history(child, f"superseded by {slug}", f"[[{slug}]]")
+            self.take_superseded_by(child, slug)
             self.save(child)
             self.supersede_children(child, slug)
 

@@ -3280,6 +3280,27 @@ def test_a_supersedes_of_a_parent_sets_its_sub_case_pages_superseded_in_the_same
     assert props(page(tmp_path, "rules", "rule-later"))["deferred_by"] == ["decision-case-5.2.1"]
 
 
+def test_a_sub_case_superseded_with_its_parent_and_named_too_takes_one_line(tmp_path):
+    # case 773: the parent step marks 5.1 first, the step of the named 5.1 writes nothing again
+    six = superseding_six()
+    six["supersedes"] = ["decision-case-5", "decision-case-5.1"]
+    decisions = [
+        family_record("5.1", parent="decision-case-5"),
+        six,
+        family_record(
+            "5", children=["decision-case-5.1"], case_text={"context": "c", "problem": "p"}
+        ),
+    ]
+    seed(tmp_path, entries=[ROOT], decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    text = page(tmp_path, "decisions", "decision-case-5.1")
+    assert props(text)["superseded_by"] == ["decision-case-6"]
+    assert text.split("## History")[1].count(SUPERSEDED_BY_SIX) == 1
+    log = (tmp_path / "vault" / "wiki" / "log.md").read_text(encoding="utf-8")
+    assert log.count(f"decision-case-5.1 {SUPERSEDED_BY_SIX}") == 1
+
+
 def decision_page(case, status, extra=""):
     return (
         f'---\ntype: decision\ncase: "{case}"\nstatus: {status}\n{extra}'

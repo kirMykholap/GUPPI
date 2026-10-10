@@ -177,6 +177,7 @@ from pathlib import Path
 import yaml
 
 from guppi.event import project_root
+from guppi.ledger import SPRINT_PAGE, is_sprint_page
 from guppi.ledger import body as line_body
 from guppi.pages import slug_of
 
@@ -1371,9 +1372,6 @@ def parent_record(
 # --- assembly -----------------------------------------------------------------------
 
 
-SPRINT_PAGE = "entity-sprint-"
-
-
 def opened_sprint(ledger: list[str]) -> str | None:
     """The `<id>` of the first `create` decision line of an `entity-sprint-<id>` slug in a
     unit's ledger, else None: the yaml's `sprint` of the unit that opens a sprint (case 628.3)."""
@@ -1383,7 +1381,7 @@ def opened_sprint(ledger: list[str]) -> str | None:
             record
             and record["record"] == "decision"
             and record["kind"] == "create"
-            and record["slug"].startswith(SPRINT_PAGE)
+            and is_sprint_page(record["slug"])
         ):
             return record["slug"][len(SPRINT_PAGE) :]
     return None
@@ -1638,6 +1636,17 @@ def load_yaml(path: Path) -> dict | None:
         return None
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
     return data if isinstance(data, dict) else None
+
+
+def unit_sprint(project_dir: Path, unit: str, fallback: str | None = None) -> str:
+    """The sprint of a unit (cases 743.2, 770): the `sprint` field of its own yaml, stripped,
+    else `fallback`, else the first heading of `sprint.md` by `sprint_id`. The one judgment
+    that `guppi archive`, `guppi cleanup` and `guppi generate` import."""
+    data = load_yaml(yaml_path(project_dir, unit)) or {}
+    found = str(data.get("sprint") or "").strip()
+    if found:
+        return found
+    return sprint_id(project_dir) if fallback is None else fallback
 
 
 def yaml_text(data: dict) -> str:

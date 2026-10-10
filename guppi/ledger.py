@@ -182,6 +182,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
+from guppi.pages import slug_of
 
 PREFIXES = ("- decision[", "- estimate[", "- lesson[")
 TIMED = re.compile(r"^- (?:\d\d:\d\d:\d\d )?(.*)$")
@@ -867,7 +868,16 @@ def off_store_message(case: str) -> str:
     )
 
 
-SPRINT_PREFIX = "entity-sprint-"
+SPRINT_PAGE = "entity-sprint-"
+
+
+def is_sprint_page(slug) -> bool:
+    """Whether a slug, or a wikilink `[[slug]]` to it, names a sprint page
+    `entity-sprint-<id>` — not the MOC `entity-sprint`, the sprint as a kind. The one
+    judgment of a sprint page (case 772.4), which `guppi/materialize.py`, `guppi/prespec.py`,
+    `guppi/sprint.py` and `guppi/sprint_close.py` import with `SPRINT_PAGE`."""
+    text = str(slug_of(slug) or "").strip()
+    return text.startswith(SPRINT_PAGE) and len(text) > len(SPRINT_PAGE)
 
 
 def refused_without_sprint(project_dir: Path, fresh: list[str], written: list[str]) -> list[str]:
@@ -879,11 +889,11 @@ def refused_without_sprint(project_dir: Path, fresh: list[str], written: list[st
     from guppi.materialize import parse_line
 
     entities = project_dir / "vault" / "wiki" / "entities"
-    if entities.is_dir() and any(entities.glob(f"{SPRINT_PREFIX}*.md")):
+    if entities.is_dir() and any(entities.glob(f"{SPRINT_PAGE}*.md")):
         return []
     records = [(line, parse_line(f"- {body(line)}")) for line in written + fresh]
     decisions = [(line, r) for line, r in records if r and r["record"] == "decision"]
-    if any(r["kind"] == "create" and r["slug"].startswith(SPRINT_PREFIX) for _, r in decisions):
+    if any(r["kind"] == "create" and is_sprint_page(r["slug"]) for _, r in decisions):
         return []
     return [line for line, r in decisions if line in fresh and r["kind"] != "defer"]
 

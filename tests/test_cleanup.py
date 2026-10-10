@@ -138,6 +138,35 @@ def test_without_a_session_today_the_nearest_date_back_names_the_session(tmp_pat
     assert moved.exists()
 
 
+def test_a_page_goes_under_the_sprint_of_the_session_yaml_over_sprint_md(tmp_path):
+    # case 770: the session that opens a sprint runs cleanup before `guppi sprint`
+    seed(tmp_path, [("rules", "rule-a", page("rules", "rule-a", status="archived"))])
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(
+        "# Sprint\n\n## b — closed\n", encoding="utf-8"
+    )
+    with_session(tmp_path, DATE, "1156")
+    (tmp_path / "vault" / "raw" / DATE / "1156" / "materialize.yaml").write_text(
+        "date: '2026-09-10'\nsprint: a\nentries: []\n", encoding="utf-8"
+    )
+    code, out, _ = run(tmp_path)
+    assert code == 0 and "1 page(s) moved" in out
+    archive = tmp_path / "vault" / "archive"
+    assert (archive / "a" / DATE / "1156" / "rules" / "rule-a.md").exists()
+    assert not (archive / "b").exists()
+
+
+def test_a_session_with_no_yaml_takes_the_sprint_of_sprint_md(tmp_path):
+    seed(tmp_path, [("rules", "rule-a", page("rules", "rule-a", status="archived"))])
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(
+        "# Sprint\n\n## b — open\n", encoding="utf-8"
+    )
+    with_session(tmp_path, DATE, "1156")
+    code, out, _ = run(tmp_path)
+    assert code == 0 and "1 page(s) moved" in out
+    moved = tmp_path / "vault" / "archive" / "b" / DATE / "1156" / "rules" / "rule-a.md"
+    assert moved.exists()
+
+
 def test_a_page_restores_from_the_session_depth(tmp_path):
     seed(tmp_path, [("rules", "rule-a", page("rules", "rule-a", status="archived"))])
     with_session(tmp_path, DATE, "1156")

@@ -63,12 +63,12 @@ import sys
 from pathlib import Path
 
 from guppi.event import is_hi_prompt, project_root, read_payload
+from guppi.ledger import SPRINT_PAGE, is_sprint_page
 from guppi.lint import archived_slugs, as_list
 from guppi.materialize import sprint_id
 from guppi.pages import Page, read_vault, wiki_root
 from guppi.render import tick_command_lines
 
-PREFIX = "entity-sprint-"
 DONE = {"built", "passed", "archived"}
 WIKILINK = re.compile(r"\[\[([^\]|#]+)\]\]")
 DASH = " — "
@@ -77,7 +77,7 @@ SLICE = re.compile(r"^### (.+)$")
 
 
 def sprint_pages_live(pages: dict[str, list[Page]]) -> list[Page]:
-    return [p for p in pages["entities"] if p.slug.startswith(PREFIX) and not p.error]
+    return [p for p in pages["entities"] if is_sprint_page(p.slug) and not p.error]
 
 
 def sprint_page(pages: dict[str, list[Page]]) -> Page | None:
@@ -239,7 +239,7 @@ def render_milestones(
 
 def render(page: Page, by_slug: dict[str, Page], archived: set[str]) -> tuple[str | None, str]:
     """`(text, error)`: the whole file, or the error line."""
-    parts = ["# Sprint", "", f"## {page.slug[len(PREFIX) :]}", ""]
+    parts = ["# Sprint", "", f"## {page.slug[len(SPRINT_PAGE) :]}", ""]
     purpose = (page.section("## Purpose") or "").strip()
     if purpose:
         parts += [purpose, ""]
@@ -305,11 +305,13 @@ def run(argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None 
     pages = read_vault(wiki)
     found = sprint_pages_live(pages)
     if len(found) > 1:
-        print(f"sprint: {len(found)} live {PREFIX}<id> pages", file=stderr)
+        print(f"sprint: {len(found)} live {SPRINT_PAGE}<id> pages", file=stderr)
         return 1
     if not found:  # case 743.5: after the close, the closed form
         if not target.is_file():
-            print(f"sprint: no live {PREFIX}<id> page and no vault/wiki/sprint.md", file=stderr)
+            print(
+                f"sprint: no live {SPRINT_PAGE}<id> page and no vault/wiki/sprint.md", file=stderr
+            )
             return 1
         closed = sprint_id(project_dir)
         text, source = closed_form(closed), f"the closed form of {closed}"

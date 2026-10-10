@@ -604,7 +604,8 @@ def tied_to_a_one_off_moment(method: str) -> bool:
 
 
 ANOTHER_SESSION = re.compile(
-    r"\b(?:later|next)\s+session\b|\bsession\s+after\b|\blibrarian\b|(?<![\w/])/hi\b",
+    r"\b(?:later|next)\s+session\b|\bsession\s+after\b|\blibrarian\b|(?<![\w/])/hi\b"
+    r"|\bsessions?\s+of\s+(?:the\s+|a\s+)?sprint\b|\bsession\s+that\s+closes\b",
     re.IGNORECASE,
 )
 PERSON = re.compile(r"\bperson\b", re.IGNORECASE)
@@ -612,7 +613,9 @@ PERSON = re.compile(r"\bperson\b", re.IGNORECASE)
 
 def waits_for_another_session(method: str) -> bool:
     """Whether a `method` waits for another session: a part between two `;` that names a
-    later session, the next session, a session after another, the librarian or `/hi`, and
+    later session, the next session, a session after another, a session of a sprint — "a
+    session of the sprint plugin before its close" —, the session that closes one — "the
+    session that closes entity-sprint-plugin" (case 772.4) —, the librarian or `/hi`, and
     does not name the person — whose answer at a `/hi` is the one reading a method may leave
     to another session. A method holds only what runs in its own session (case 670.4). The
     one predicate of this judgment, which `pre-spec` calls over the plan; the lint run does

@@ -53,11 +53,11 @@ from pathlib import Path
 from guppi import archive, cleanup
 from guppi.event import project_root
 from guppi.generate import HISTORY, as_list, write_page
+from guppi.ledger import SPRINT_PAGE
 from guppi.materialize import session_of_run, units_with
 from guppi.pages import Page, read_vault, wiki_root
 from guppi.render import command_line
 
-PREFIX = "entity-sprint-"
 UNREAD = ("pending", "failed")
 KEEPERS = ("deferred_by", "addressed_by")
 
@@ -71,13 +71,13 @@ class Close:
         self.unread = list(unread)
         live = [p for category in pages.values() for p in category if not p.error]
         self.by_slug = {p.slug: p for p in live}
-        self.page = self.by_slug.get(PREFIX + sprint)
+        self.page = self.by_slug.get(SPRINT_PAGE + sprint)
         self.move: dict[str, Page] = {}  # slug → page, in the order of the judgment
         self.why: dict[str, str] = {}
         self.keep: list[tuple[Page, str]] = []
         self.errors: list[str] = []
         if self.page is None or self.page.category != "entities":
-            self.errors.append(f"sprint-close: no live {PREFIX}{sprint} page")
+            self.errors.append(f"sprint-close: no live {SPRINT_PAGE}{sprint} page")
             return
         own = as_list(self.page.props.get("estimates"))
         self.listed = [

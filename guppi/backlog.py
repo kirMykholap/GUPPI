@@ -39,6 +39,7 @@ from pathlib import Path
 
 from guppi.event import project_root
 from guppi.generate import frontier_marks, frontiers
+from guppi.ledger import SPRINT_PAGE
 from guppi.lint import archived_slugs, as_list
 from guppi.materialize import (
     DECISION_KINDS,
@@ -49,7 +50,7 @@ from guppi.materialize import (
     units_with,
 )
 from guppi.pages import Page, read_page, read_vault, wiki_root
-from guppi.sprint import DASH, PREFIX, is_done, item_slugs, item_statuses, sprint_page
+from guppi.sprint import DASH, is_done, item_slugs, item_statuses, sprint_page
 
 TARGET = "backlog.md"
 CARRY = "carry.md"
@@ -133,7 +134,7 @@ def archived_sprint_pages(project_dir: Path) -> list[Page]:
     root = project_dir / "vault" / "archive"
     if not root.is_dir():
         return []
-    found = [read_page(p, "entities") for p in sorted(root.rglob(f"entities/{PREFIX}*.md"))]
+    found = [read_page(p, "entities") for p in sorted(root.rglob(f"entities/{SPRINT_PAGE}*.md"))]
     return [p for p in found if not p.error]
 
 

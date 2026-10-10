@@ -12,7 +12,12 @@ under `vault/archive/`, at any depth, whose status is no longer `archived` moves
 index files are gone, the reader computes the line (case 147.6).
 `raw/` is `guppi archive`'s, not this script's. Rule page: `vault/wiki/rules/rule-cleanup.md`.
 
-`sprint` is the first `## <id>` heading of `sprint.md`. A moved page gets the History line
+`sprint` is the `sprint` field of the `materialize.yaml` of the session of the run, by
+`unit_sprint` of `guppi/materialize.py`, the one judgment `guppi archive` and `guppi generate`
+import too; the first `## <id>` heading of `sprint.md` only when that yaml or its field is
+missing, or no session folder exists — so the session that opens a sprint files its pages
+under the new sprint, though `guppi sprint` rewrites `sprint.md` later in the run (case 770).
+A moved page gets the History line
 `archived · cleanup`, a page moved back `restored · cleanup`, and a live page whose list lost
 a slug `child <slug> archived · cleanup` or `estimate <slug> archived · cleanup`; `log.md` gets
 each line with the page's path. `[[slug]]` links in page bodies stay because Obsidian resolves
@@ -28,7 +33,7 @@ from pathlib import Path
 
 from guppi.event import project_root
 from guppi.generate import HISTORY, as_list, write_page
-from guppi.materialize import CATEGORIES, session_of_run, sprint_id
+from guppi.materialize import CATEGORIES, session_of_run, sprint_id, unit_sprint
 from guppi.pages import Page, read_page, wiki_root
 
 LISTS = ("children", "estimates")
@@ -178,7 +183,12 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
         parser().parse_args(argv)
     except SystemExit as exc:
         return 2 if exc.code not in (None, 0) else 0
-    job = Cleanup(project_dir, now.date().isoformat(), sprint_id(project_dir), stdout, stderr)
+    today = now.date().isoformat()
+    session = session_of_run(project_dir, today)
+    sprint = (
+        sprint_id(project_dir) if session is None else unit_sprint(project_dir, "/".join(session))
+    )
+    job = Cleanup(project_dir, today, sprint, stdout, stderr)
     try:
         gone = job.archive()
         job.restore()

@@ -684,6 +684,8 @@ def test_waits_the_one_predicate_names_another_session(tmp_path):
         "by hand in a session after the render",
         "by hand after the librarian's run",
         "by hand at /hi",
+        "by hand, a CI run on GitHub, in a session of the sprint plugin before its close",
+        "by hand, at the end of Work Mode of the session that closes entity-sprint-plugin",
     ):
         assert lint.waits_for_another_session(method), method
     for method in (

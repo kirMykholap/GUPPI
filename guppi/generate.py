@@ -180,7 +180,7 @@ from guppi.materialize import (
     SINGULAR,
     dump_yaml,
     load_yaml,
-    sprint_id,
+    unit_sprint,
     units_with,
     yaml_path,
 )
@@ -1534,9 +1534,7 @@ def generate_date(project_dir: Path, unit: str, now, stdout, stderr) -> int:
             file=stderr,
         )
         return 1
-    vault = Vault(
-        project_dir, date, str(data.get("sprint") or sprint_id(project_dir)), now, stdout, stderr
-    )
+    vault = Vault(project_dir, date, unit_sprint(project_dir, unit), now, stdout, stderr)
     vault.spec = path.parent / "spec.md"  # the Spec beside the yaml (226.1)
     try:
         apply(vault, data)

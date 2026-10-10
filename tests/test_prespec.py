@@ -1195,6 +1195,36 @@ def test_waits_a_method_that_names_the_person_is_clean_and_other_findings_stand(
     )
 
 
+SPRINT_METHOD = "by hand in a session of the sprint plugin before its close"
+
+
+def retarget(project_dir, target="entity-sprint-plugin", slug="estimate-x"):
+    page = project_dir / "vault" / "wiki" / "estimates" / f"{slug}.md"
+    text = page.read_text(encoding="utf-8").replace("target: rule-x\n", f"target: {target}\n")
+    page.write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_waits_an_estimate_of_a_sprint_page_may_wait_for_a_session_of_its_sprint(tmp_path):
+    # case 772.4: the Definition of done of a sprint is read before its close
+    with_page(tmp_path, "rules", "rule-x")
+    with_page(tmp_path, "entities", "entity-sprint-plugin")
+    item = NO_FORM_CREATE.replace("Run it and look", SPRINT_METHOD)
+    sprint_item = item.replace("ref: rule-x", "ref: entity-sprint-plugin")
+    sprint_line = CREATE_LINE.replace("{ref:rule-x}", "{ref:entity-sprint-plugin}")
+    assert check(tmp_path, plan=create_plan(sprint_item), ledger=sprint_line) == (0, "", "")
+    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+    assert (code, out.splitlines()) == (1, [f"case 1: create estimate-x-again: {WAITS}"])
+    update = (
+        f"update:\n  - slug: estimate-x\n    set: {{method: {SPRINT_METHOD}}}\n    change: recut\n"
+    )
+    with_estimate(tmp_path)
+    retarget(tmp_path)
+    assert check(tmp_path, plan=create_plan(update), ledger=UPDATE_LINE) == (0, "", "")
+    with_estimate(tmp_path)
+    code, out, _ = check(tmp_path, plan=create_plan(update), ledger=UPDATE_LINE)
+    assert (code, out.splitlines()) == (1, [f"case 1: update estimate-x: {WAITS}"])
+
+
 KEPT_WAITS = (
     "the method on the page waits for another session — set a method that runs in this session"
 )
@@ -1225,6 +1255,20 @@ def test_kept_method_a_replaced_criterion_with_a_waiting_page_method_is_a_findin
         written = create_plan("update:\n  - slug: estimate-x\n" + WRITTEN + "    change: recut\n")
         _, out, _ = check(tmp_path, plan=written, ledger=UPDATE_LINE)
         assert f"case 1: update estimate-x: {KEPT_WAITS}" in out, method
+
+
+def test_kept_method_of_an_estimate_of_a_sprint_page_is_clean(tmp_path):
+    # case 772.5: the live page's target is a sprint page
+    with_page(tmp_path, "rules", "rule-x")
+    with_page(tmp_path, "entities", "entity-sprint-plugin")
+    plan = create_plan("update:\n" + ESTIMATE_UPDATE)
+    with_method(tmp_path, SPRINT_METHOD)
+    retarget(tmp_path)
+    _, out, _ = check(tmp_path, plan=plan, ledger=UPDATE_LINE)
+    assert KEPT_WAITS not in out
+    with_method(tmp_path, SPRINT_METHOD)
+    _, out, _ = check(tmp_path, plan=plan, ledger=UPDATE_LINE)
+    assert f"case 1: update estimate-x: {KEPT_WAITS}" in out
 
 
 def test_kept_method_a_new_method_a_decision_a_part_or_a_method_of_this_session_is_clean(

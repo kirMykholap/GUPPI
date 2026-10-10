@@ -50,6 +50,7 @@ from guppi.materialize import (
     parse_line,
     session_of_run,
     sprint_id,
+    unit_sprint,
     units_with,
     yaml_path,
 )
@@ -126,13 +127,6 @@ def move(source: Path, target: Path) -> None:
 
 def parser() -> argparse.ArgumentParser:
     return argparse.ArgumentParser(prog="guppi archive", description=__doc__.split("\n\n")[1])
-
-
-def unit_sprint(project_dir: Path, unit: str, fallback: str) -> str:
-    """Case 743.2: the `sprint` field of the unit's own yaml, else `fallback`, the first
-    heading of `sprint.md`."""
-    data = load_yaml(yaml_path(project_dir, unit)) or {}
-    return str(data.get("sprint") or "").strip() or fallback
 
 
 def sweep(

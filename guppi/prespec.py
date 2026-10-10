@@ -87,12 +87,16 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   place of the line of no form, the Makefile and the children left to lint (case 733); and one whose `method` ties its reading by hand to the first moment after the
   render or the change — by `lint.tied_to_a_one_off_moment`, the one predicate of the class
   `moment` of lint (case 613.1); and one whose `method` waits for another session — a part
-  that names a later session, the next session, a session after another, the librarian or
-  `/hi`, and not the person — by `lint.waits_for_another_session`, the one predicate, which
-  lint does not run over the live pages (case 670.4); and an `update` of an Estimate that
-  replaces its Criterion whole, writes no `method`, sets no status of `passed` or `failed`
-  and keeps a `method` on the live page that waits for another session, by the same
-  predicate (`kept_method_waits`, case 715);
+  that names a later session, the next session, a session after another, a session of a
+  sprint, the session that closes one, the librarian or `/hi`, and not the person — by
+  `lint.waits_for_another_session`, the one predicate, which lint does not run over the live
+  pages (case 670.4); and an `update` of an Estimate that replaces its Criterion whole,
+  writes no `method`, sets no status of `passed` or `failed` and keeps a `method` on the
+  live page that waits for another session, by the same predicate (`kept_method_waits`,
+  case 715). An Estimate of a sprint page `entity-sprint-<id>` — the `ref` of a `create`,
+  the target of an `update` by `estimate_target`, the `target` of the live page — gives
+  neither line: the Definition of done of a sprint may wait for a later session of it, up
+  to the one that closes it, judged by `ledger.is_sprint_page` (cases 772.4, 772.5);
 - a condition of a schema not met (case 714): a `create` whose page, as `generate` writes
   it, or an `update` whose `set` gives the value a condition starts on, leaves the page
   without a field or a section the condition requires, by `lint.unmet_conditions`, the one
@@ -221,6 +225,7 @@ from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 3
 from guppi.ledger import (
     hi_moment,
     hi_recorded,
+    is_sprint_page,
     plan_path,
     session_dir,
     session_event_logs,
@@ -283,7 +288,6 @@ BACKLOG_SOURCE = "backlog"
 # the source each closer with no Case is clean after
 PUT_OFF_SOURCE = {DEFER: SPRINT_SOURCE, KEPT: BACKLOG_SOURCE}
 PUT_OFF_CLOSER = {source: closer for closer, source in PUT_OFF_SOURCE.items()}
-SPRINT_PAGE = "entity-sprint-"
 # Case 279.2: a task line the tickers of `render` and `sprint` would not match — the bare
 # word, or the command outside a code span, right after the box.
 OFF_FORM_LINE = re.compile(r"^- \[[ x]\] (?:uv run )?(?:guppi )?(?:render|sprint)\b")
@@ -526,7 +530,7 @@ def updates_the_sprint(blocks: dict, case: str) -> bool:
         if key != case and not key.startswith(f"{case}."):
             continue
         for item in (block or {}).get("update") or []:
-            if isinstance(item, dict) and str(item.get("slug") or "").startswith(SPRINT_PAGE):
+            if isinstance(item, dict) and is_sprint_page(item.get("slug")):
                 return True
     return False
 
@@ -1175,7 +1179,8 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     is left to lint, since the test file is written in Work Mode (case 331). Such a `method`
     that ties its reading by hand to the first moment after the render or the change, by
     `lint.tied_to_a_one_off_moment`, is a finding as well (case 613.1), and so is one that
-    waits for another session, by `lint.waits_for_another_session` (case 670.4). When the
+    waits for another session, by `lint.waits_for_another_session` (case 670.4), but on an
+    Estimate whose target is a sprint page, by `ledger.is_sprint_page` (case 772.4). When the
     target of the Estimate is a MOC as the plan leaves it — by `plan_kind` — a `method` that
     names neither a `make <target>` nor "by hand", by `lint.names_a_moc_form`, the one
     predicate `check_method` of lint calls too, is a finding in place of the line of no form;
@@ -1210,7 +1215,9 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 findings.append(f"case {case}: create {slug}: {no_form}")
             if tied_to_a_one_off_moment(str(item.get("method") or "")):  # case 613.1
                 findings.append(f"case {case}: create {slug}: {MOMENT}")
-            if waits_for_another_session(str(item.get("method") or "")):  # case 670.4
+            if waits_for_another_session(str(item.get("method") or "")) and not is_sprint_page(
+                ref
+            ):  # cases 670.4, 772.4
                 findings.append(f"case {case}: create {slug}: {WAITS}")
         for item in block.get("update") or []:
             slug = item.get("slug") if isinstance(item, dict) else None
@@ -1228,7 +1235,11 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 findings.append(f"case {case}: update {slug}: {no_form}")
             if method is not None and tied_to_a_one_off_moment(str(method)):  # case 613.1
                 findings.append(f"case {case}: update {slug}: {MOMENT}")
-            if method is not None and waits_for_another_session(str(method)):  # case 670.4
+            if (
+                method is not None
+                and waits_for_another_session(str(method))
+                and not is_sprint_page(estimate_target(item, project_dir))
+            ):  # cases 670.4, 772.4
                 findings.append(f"case {case}: update {slug}: {WAITS}")
             if method is None and kept_method_waits(item, project_dir):  # case 715
                 findings.append(f"case {case}: update {slug}: {KEPT_WAITS}")
@@ -1277,14 +1288,19 @@ def kept_method_waits(item: dict, project_dir: Path) -> bool:
     the person's decision gives, `passed` or `failed`, and keeps on the live page a `method`
     that waits for another session, by `lint.waits_for_another_session`, the predicate that
     judges a `method` the plan writes. The page goes `pending`, and the Retro of the Case's
-    own session cannot read it."""
+    own session cannot read it. False when the `target` of the live page is a sprint page,
+    by `ledger.is_sprint_page`: its Estimate may wait for a later session of its sprint
+    (case 772.5)."""
     sets = item.get("set") if isinstance(item.get("set"), dict) else {}
     if names_a_part(item) or "method" in sets or str(sets.get("status")) in DECIDED:
         return False
     path = wiki_root(project_dir) / "estimates" / f"{item.get('slug')}.md"
     if not path.is_file():
         return False
-    method = method_of(read_page(path, "estimates"))
+    page = read_page(path, "estimates")
+    if is_sprint_page(page.props.get("target")):
+        return False
+    method = method_of(page)
     return method is not None and waits_for_another_session(method)
 
 

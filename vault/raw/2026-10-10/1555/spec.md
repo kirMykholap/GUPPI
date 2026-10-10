@@ -75,5 +75,5 @@ update:
 - [ ] read `estimate-hi-writes-frontier` — at the `/hi` of the session that opens the next sprint, carried
 - [ ] read `estimate-hi-takes-a-conserved-spec` — at the `/hi` of the session that opens the next sprint, carried
 - [x] `uv run guppi sprint-close --sprint migration --apply --carry estimate-sprint-close-runs-in-the-librarian-run --carry estimate-brief-written --carry estimate-sprint-close-next-session-opens-the-sprint --carry estimate-hi-writes-frontier --carry estimate-hi-takes-a-conserved-spec`
-- [ ] the merge of `migration` into `main` — the first work of the session that opens the next sprint, after its opening Case
+- [x] the merge of `migration` into `main` — the first work of the session that opens the next sprint, after its opening Case
 ```

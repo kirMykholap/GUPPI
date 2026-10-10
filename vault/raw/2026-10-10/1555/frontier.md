@@ -12,11 +12,11 @@ Backlog: 4 items
 - [ ] W1 — `estimate-brief-written` · brief
 - [ ] W2 — `estimate-hi-takes-a-conserved-spec` · brief
 - [ ] W3 — `estimate-sprint-close-runs-in-the-librarian-run` · brief
-- [ ] W4 — `estimate-sprint-close-takes-the-readings-in-groups` · brief
+- [x] W4 — `estimate-sprint-close-takes-the-readings-in-groups` · brief · work
 - [ ] W5 — `estimate-sprint-close-next-session-opens-the-sprint` · brief
-- [ ] W6 — `estimate-sprint-migration-leftovers-gone` · brief
-- [ ] W7 — `estimate-sprint-migration-merges` · brief
-- [ ] W8 — `estimate-sprint-migration-lint-clean` · brief
+- [x] W6 — `estimate-sprint-migration-leftovers-gone` · brief · work
+- [x] W7 — `estimate-sprint-migration-merges` · brief · work
+- [x] W8 — `estimate-sprint-migration-lint-clean` · brief · work
 
 ## Ask
 

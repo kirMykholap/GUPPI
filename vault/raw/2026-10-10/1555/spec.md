@@ -61,19 +61,19 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-migration`
+- [x] update `entity-sprint-migration`
 - [x] `docs/migration/migration-plan.md`: deleted in Work Mode, before the last commit and `make test`.
 - [x] by hand: in Work Mode, commit the changes of this session on the branch `migration`, so that its last commit holds them, before `make test` runs.
-- [ ] read `estimate-sprint-migration-leftovers-gone`
-- [ ] read `estimate-sprint-migration-merges`
-- [ ] read `estimate-sprint-migration-lint-clean`
+- [x] read `estimate-sprint-migration-leftovers-gone`
+- [x] read `estimate-sprint-migration-merges`
+- [x] read `estimate-sprint-migration-lint-clean`
 - [x] by hand: in Work Mode, after its readings, run the preview `uv run guppi sprint-close --sprint migration` with the same `--carry` flags as the close line and without `--apply`, and read its output: the lines "not settled" name exactly `estimate-sprint-migration-lint-clean`, `estimate-sprint-migration-leftovers-gone`, `estimate-sprint-migration-merges` and `estimate-sprint-close-takes-the-readings-in-groups`, whose readings `guppi generate` applies at the librarian's run, and no other refusal line stands; the preview lists the Estimates of `entity-sprint-migration` and the other pages, sessions and logs it would move. Any other refusal line stops Work Mode for the person's word.
-- [ ] read `estimate-sprint-close-takes-the-readings-in-groups` — at Retro of this session
+- [x] read `estimate-sprint-close-takes-the-readings-in-groups` — at Retro of this session
 - [ ] read `estimate-sprint-close-runs-in-the-librarian-run` — after the librarian's run of this session, carried
 - [ ] read `estimate-brief-written` — at the `/hi` after the librarian's run of this session, carried
 - [ ] read `estimate-sprint-close-next-session-opens-the-sprint` — in the session that opens the next sprint, carried
 - [ ] read `estimate-hi-writes-frontier` — at the `/hi` of the session that opens the next sprint, carried
 - [ ] read `estimate-hi-takes-a-conserved-spec` — at the `/hi` of the session that opens the next sprint, carried
-- [ ] `uv run guppi sprint-close --sprint migration --apply --carry estimate-sprint-close-runs-in-the-librarian-run --carry estimate-brief-written --carry estimate-sprint-close-next-session-opens-the-sprint --carry estimate-hi-writes-frontier --carry estimate-hi-takes-a-conserved-spec`
+- [x] `uv run guppi sprint-close --sprint migration --apply --carry estimate-sprint-close-runs-in-the-librarian-run --carry estimate-brief-written --carry estimate-sprint-close-next-session-opens-the-sprint --carry estimate-hi-writes-frontier --carry estimate-hi-takes-a-conserved-spec`
 - [ ] the merge of `migration` into `main` — the first work of the session that opens the next sprint, after its opening Case
 ```

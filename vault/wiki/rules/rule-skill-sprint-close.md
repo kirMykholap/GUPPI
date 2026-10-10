@@ -8,6 +8,7 @@ governs: .claude/skills/sprint-close/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-skill-sprint-close-leads-the-closing-session]]", "[[estimate-skill-sprint-close-migration-merged-into-main]]"]
+deferred_by: ["[[decision-case-771]]"]
 origin: raw/2026-10-08/2352/ledger.md#case-743.8
 sprint: migration
 created: 2026-10-08
@@ -44,3 +45,4 @@ This session closes the sprint that `vault/wiki/sprint.md` names. Its Plan Mode 
 - 2026-10-09 status: draft → built · cascade
 - 2026-10-10 estimate estimate-skill-sprint-close-migration-merged-into-main added · [[decision-case-762]]
 - 2026-10-10 updated: step 4: the close line also names an Estimate read failed in Work Mode that the sprint page does not list · [[decision-case-763.2]]
+- 2026-10-10 deferred · [[decision-case-771]]

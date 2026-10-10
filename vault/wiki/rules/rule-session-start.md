@@ -53,9 +53,7 @@ so they are one Leaf. The git commands fail apart from the imports, so they are 
 
 ### The Frontier
 
-Assembled from what was loaded: `brief.md` + `sprint.md` + the git state and the tail, plus the unfinished
-plan if we are on a plan branch. The agent's first turn presents it as a list — tasks,
-problems, debt carried over, where the sprint stands. The human picks the order or defers
+Assembled from what was loaded: `brief.md` + `sprint.md` + the git state and the tail, plus the unfinished plan if we are on a plan branch; in the session that opens a sprint, the first milestone comes from the case file of the opening Case of `/sprint-open` instead of `sprint.md` (case 769.2). The agent's first turn presents it as a list — tasks, problems, debt carried over, where the sprint stands —, but in the session that opens a sprint, whose first turn starts the opening Case of `/sprint-open`: there the Frontier is assembled and written before the reply that acknowledges that Case, and that reply presents it (case 769.2). The human picks the order or defers
 items outright.
 
 ## History
@@ -72,3 +70,4 @@ items outright.
 - 2026-09-30 updated: no pull and no issues at /hi: the git Leaf and the sources of the Frontier (case 528.3) · [[decision-case-528.3]]
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-09 updated: child rule-skill-sprint-open added (case 746.1) · [[decision-case-746.1]]
+- 2026-10-10 updated: in the session that opens a sprint the Frontier takes the first milestone from the opening Case and the reply that acknowledges that Case presents it (case 769.2) · [[decision-case-769.2]]

@@ -14,7 +14,7 @@ tags: [sprint, ci, git]
 ## Criterion
 
 When:
-In a session of the sprint `plugin` before its close, a commit lands on `main` of the repository of the project on GitHub, and CI runs on it.
+In a session of the sprint `plugin` before its close, a commit lands on the branch `plugin` of the repository of the project on GitHub, and CI runs on it.
 
 Then:
 CI writes a clean version of the project to a branch of its own.
@@ -25,3 +25,4 @@ CI writes a clean version of the project to a branch of its own.
 ## History
 
 - 2026-10-10 created · [[decision-case-756.5]]
+- 2026-10-10 updated: the Criterion replaced whole — CI starts on a commit to the branch plugin, where the sprint commits · [[decision-case-767]]

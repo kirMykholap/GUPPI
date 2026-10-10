@@ -9184,3 +9184,90 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-10 tags.md registers readme, ci, plugin · generate
 - 2026-10-10 decisions/decision-case-757 archived · cleanup
 - 2026-10-10 decisions/decision-case-759 archived · cleanup
+- 2026-10-10 decisions/decision-case-764 created · raw/2026-10-10/1913/ledger.md#case-764 · generate
+- 2026-10-10 decisions/decision-case-764.1 created · raw/2026-10-10/1913/ledger.md#case-764.1 · generate
+- 2026-10-10 decisions/decision-case-764.2 created · raw/2026-10-10/1913/ledger.md#case-764.2 · generate
+- 2026-10-10 decisions/decision-case-764.3 created · raw/2026-10-10/1913/ledger.md#case-764.3 · generate
+- 2026-10-10 decisions/decision-case-764.4 created · raw/2026-10-10/1913/ledger.md#case-764.4 · generate
+- 2026-10-10 decisions/decision-case-764.5 created · raw/2026-10-10/1913/ledger.md#case-764.5 · generate
+- 2026-10-10 decisions/decision-case-765 created · raw/2026-10-10/1913/ledger.md#case-765 · generate
+- 2026-10-10 estimates/estimate-sprint-plugin-readme-describes-the-project updated: the method names the moment of the reading: the /hi of the session after the one that writes the README · [[decision-case-765]] · generate
+- 2026-10-10 decisions/decision-case-766 created · raw/2026-10-10/1913/ledger.md#case-766 · generate
+- 2026-10-10 estimates/estimate-sprint-plugin-pull-requests-reviewed-on-github updated: the Criterion replaced whole — the pull request goes against the branch plugin, and a second account of the owner counts as another account · [[decision-case-766]] · generate
+- 2026-10-10 decisions/decision-case-767 created · raw/2026-10-10/1913/ledger.md#case-767 · generate
+- 2026-10-10 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch updated: the Criterion replaced whole — CI starts on a commit to the branch plugin, where the sprint commits · [[decision-case-767]] · generate
+- 2026-10-10 decisions/decision-case-768 created · raw/2026-10-10/1913/ledger.md#case-768 · generate
+- 2026-10-10 estimates/estimate-sprint-plugin-installs-as-a-plugin updated: the reading waits for the milestone The plugin of entity-sprint-plugin; no clean branch exists to install before it · [[decision-case-768]] · generate
+- 2026-10-10 decisions/decision-case-769 created · raw/2026-10-10/1913/ledger.md#case-769 · generate
+- 2026-10-10 decisions/decision-case-769.1 created · raw/2026-10-10/1913/ledger.md#case-769.1 · generate
+- 2026-10-10 rules/rule-skill-sprint-open updated: the opening Case comes before any Frontier, and the reply that acknowledges it brings the Frontier (case 769.1) · [[decision-case-769.1]] · generate
+- 2026-10-10 estimates/estimate-skill-sprint-open-asks-the-opening-questions updated: the Criterion replaced whole — the opening Case is dispatched before any Frontier · [[decision-case-769.1]] · generate
+- 2026-10-10 decisions/decision-case-769.2 created · raw/2026-10-10/1913/ledger.md#case-769.2 · generate
+- 2026-10-10 rules/rule-skill-hi updated: at the opening of a sprint the Frontier comes after the opening Case and takes the first milestone from it (case 769.2) · [[decision-case-769.2]] · generate
+- 2026-10-10 rules/rule-session-start updated: in the session that opens a sprint the Frontier takes the first milestone from the opening Case and the reply that acknowledges that Case presents it (case 769.2) · [[decision-case-769.2]] · generate
+- 2026-10-10 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — at an opening the Frontier takes the first milestone from the opening Case, and the opening line stands closed · [[decision-case-769.2]] · generate
+- 2026-10-10 decisions/decision-case-769.3 created · raw/2026-10-10/1913/ledger.md#case-769.3 · generate
+- 2026-10-10 estimates/estimate-hi-takes-its-readings updated: the Criterion replaced whole — the readings come with the Frontier, which at an opening is not the first reply · [[decision-case-769.3]] · generate
+- 2026-10-10 decisions/decision-case-769.4 created · raw/2026-10-10/1913/ledger.md#case-769.4 · generate
+- 2026-10-10 rules/rule-orchestration updated: the Frontier and the readings of /hi come before the reply that acknowledges the opening Case of a sprint, which shows that Frontier and puts its Ask questions (case 769.4) · [[decision-case-769.4]] · generate
+- 2026-10-10 estimates/estimate-orchestration-acknowledges-the-opening-with-the-frontier created · [[decision-case-769.4]] · generate
+- 2026-10-10 estimates/estimate-orchestration-acknowledges-the-opening-with-the-frontier status: pending → passed · raw/2026-10-10/1913/ledger.md#L37 · generate
+- 2026-10-10 rules/rule-orchestration estimate estimate-orchestration-acknowledges-the-opening-with-the-frontier added · [[decision-case-769.4]] · generate
+- 2026-10-10 decisions/decision-case-770 created · raw/2026-10-10/1913/ledger.md#case-770 · generate
+- 2026-10-10 estimates/estimate-cleanup-files-a-session-by-its-sprint created · [[decision-case-770]] · generate
+- 2026-10-10 estimates/estimate-cleanup-files-a-session-by-its-sprint status: pending → passed · raw/2026-10-10/1913/ledger.md#L43 · generate
+- 2026-10-10 rules/rule-cleanup estimate estimate-cleanup-files-a-session-by-its-sprint added · [[decision-case-770]] · generate
+- 2026-10-10 decisions/decision-case-771 created · raw/2026-10-10/1913/ledger.md#case-771 · generate
+- 2026-10-10 rules/rule-skill-sprint-open deferred · [[decision-case-771]] · generate
+- 2026-10-10 rules/rule-skill-sprint-close deferred · [[decision-case-771]] · generate
+- 2026-10-10 decisions/decision-case-772 created · raw/2026-10-10/1913/ledger.md#case-772 · generate
+- 2026-10-10 decisions/decision-case-772.1 created · raw/2026-10-10/1913/ledger.md#case-772.1 · generate
+- 2026-10-10 decisions/decision-case-764 superseded by decision-case-772.1 · [[decision-case-772.1]] · generate
+- 2026-10-10 decisions/decision-case-764.1 superseded by decision-case-772.1 · [[decision-case-772.1]] · generate
+- 2026-10-10 decisions/decision-case-764.2 superseded by decision-case-772.1 · [[decision-case-772.1]] · generate
+- 2026-10-10 decisions/decision-case-764.3 superseded by decision-case-772.1 · [[decision-case-772.1]] · generate
+- 2026-10-10 decisions/decision-case-764.4 superseded by decision-case-772.1 · [[decision-case-772.1]] · generate
+- 2026-10-10 decisions/decision-case-764.5 superseded by decision-case-772.1 · [[decision-case-772.1]] · generate
+- 2026-10-10 decisions/decision-case-764.1 superseded by decision-case-772.1 · [[decision-case-772.1]] · generate
+- 2026-10-10 rules/rule-brief updated: Work and Ask the person of Next session leave out a reading of the live sprint page whose work is not done, its read box included, and one whose method names the close of a sprint, until its moment (case 772.1) · [[decision-case-772.1]] · generate
+- 2026-10-10 estimates/estimate-brief-written updated: the Criterion replaced whole — Work and Ask the person leave out a reading that waits for a moment of the sprint, its read box included; the method reads it too · [[decision-case-772.1]] · generate
+- 2026-10-10 decisions/decision-case-772.2 created · raw/2026-10-10/1913/ledger.md#case-772.2 · generate
+- 2026-10-10 decisions/decision-case-764.2 superseded by decision-case-772.2 · [[decision-case-772.2]] · generate
+- 2026-10-10 rules/rule-retro updated: Retro leaves an Estimate of the live sprint page whose work is not done pending, its read line neither debt nor the librarian's, and names it under Ask the person once its work is done when the person's answer reads it (case 772.2) · [[decision-case-772.2]] · generate
+- 2026-10-10 estimates/estimate-retro-loads updated: the Criterion replaced whole — an Estimate of the live sprint page whose work is not done stays pending, its read line no debt · [[decision-case-772.2]] · generate
+- 2026-10-10 decisions/decision-case-772.3 created · raw/2026-10-10/1913/ledger.md#case-772.3 · generate
+- 2026-10-10 decisions/decision-case-764.3 superseded by decision-case-772.3 · [[decision-case-772.3]] · generate
+- 2026-10-10 rules/rule-handoff updated: Debt names an Estimate of the live sprint page that Retro left pending, with its moment (case 772.3) · [[decision-case-772.3]] · generate
+- 2026-10-10 estimates/estimate-handoff-holds-each-fact-once updated: the Criterion replaced whole — Debt names an Estimate of the live sprint page that Retro left pending · [[decision-case-772.3]] · generate
+- 2026-10-10 decisions/decision-case-772.4 created · raw/2026-10-10/1913/ledger.md#case-772.4 · generate
+- 2026-10-10 decisions/decision-case-764.4 superseded by decision-case-772.4 · [[decision-case-772.4]] · generate
+- 2026-10-10 rules/rule-case-protocol updated: an Estimate of a sprint page may wait for a later session of its sprint, and pre-spec catches a session of a sprint and the session that closes one (case 772.4) · [[decision-case-772.4]] · generate
+- 2026-10-10 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session updated: the Criterion replaced whole — the predicate catches a session of a sprint and the session that closes one, and an Estimate of a sprint page gives no finding · [[decision-case-772.4]] · generate
+- 2026-10-10 decisions/decision-case-772.5 created · raw/2026-10-10/1913/ledger.md#case-772.5 · generate
+- 2026-10-10 decisions/decision-case-764.5 superseded by decision-case-772.5 · [[decision-case-772.5]] · generate
+- 2026-10-10 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session updated: the Criterion replaced whole — a kept method of an Estimate of a sprint page gives no finding, and the predicate names a session of a sprint and the session that closes one · [[decision-case-772.5]] · generate
+- 2026-10-10 decisions/decision-case-769.5 created · raw/2026-10-10/1913/ledger.md#case-769.5 · generate
+- 2026-10-10 estimates/estimate-sprint-close-next-session-opens-the-sprint updated: the Criterion replaced whole — the opening line reaches frontier.md after the opening Case, closed by it; the method runs in the session of case 769 · [[decision-case-769.5]] · generate
+- 2026-10-10 estimates/estimate-skill-sprint-open-asks-the-opening-questions status: pending → passed · raw/2026-10-10/1913/ledger.md#L35 · generate
+- 2026-10-10 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-10-10/1913/ledger.md#L36 · generate
+- 2026-10-10 estimates/estimate-sprint-close-next-session-opens-the-sprint status: pending → passed · raw/2026-10-10/1913/ledger.md#L38 · generate
+- 2026-10-10 estimates/estimate-retro-loads status: pending → passed · raw/2026-10-10/1913/ledger.md#L39 · generate
+- 2026-10-10 estimates/estimate-handoff-holds-each-fact-once status: pending → passed · raw/2026-10-10/1913/ledger.md#L40 · generate
+- 2026-10-10 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session status: pending → passed · raw/2026-10-10/1913/ledger.md#L41 · generate
+- 2026-10-10 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session status: pending → passed · raw/2026-10-10/1913/ledger.md#L42 · generate
+- 2026-10-10 lessons/lesson-frontier-sprint-line-closed-by-a-case-that-updates-no-sprint-page created · raw/2026-10-10/1913/ledger.md#L44 · generate
+- 2026-10-10 lessons/lesson-hi-brief-line-judged-apart-from-a-broad-milestone-line created · raw/2026-10-10/1913/ledger.md#L45 · generate
+- 2026-10-10 rules/rule-skill-hi status: built → draft · cascade · generate
+- 2026-10-10 rules/rule-sprint-close status: draft → built · cascade · generate
+- 2026-10-10 decisions/decision-case-764.1 archived · superseded · generate
+- 2026-10-10 decisions/decision-case-764.2 archived · superseded · generate
+- 2026-10-10 decisions/decision-case-764.3 archived · superseded · generate
+- 2026-10-10 decisions/decision-case-764.4 archived · superseded · generate
+- 2026-10-10 decisions/decision-case-764.5 archived · superseded · generate
+- 2026-10-10 decisions/decision-case-764 archived · superseded · generate
+- 2026-10-10 decisions/decision-case-764.1 archived · cleanup
+- 2026-10-10 decisions/decision-case-764.2 archived · cleanup
+- 2026-10-10 decisions/decision-case-764.3 archived · cleanup
+- 2026-10-10 decisions/decision-case-764.4 archived · cleanup
+- 2026-10-10 decisions/decision-case-764.5 archived · cleanup
+- 2026-10-10 decisions/decision-case-764 archived · cleanup

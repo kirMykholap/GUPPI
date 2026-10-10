@@ -71,7 +71,7 @@ update:
 - [x] read `estimate-sprint-close-takes-the-readings-in-groups` — at Retro of this session
 - [x] read `estimate-sprint-close-runs-in-the-librarian-run` — after the librarian's run of this session, carried
 - [x] read `estimate-brief-written` — at the `/hi` after the librarian's run of this session, carried
-- [ ] read `estimate-sprint-close-next-session-opens-the-sprint` — in the session that opens the next sprint, carried
+- [x] read `estimate-sprint-close-next-session-opens-the-sprint` — in the session that opens the next sprint, carried
 - [x] read `estimate-hi-writes-frontier` — at the `/hi` of the session that opens the next sprint, carried
 - [x] read `estimate-hi-takes-a-conserved-spec` — at the `/hi` of the session that opens the next sprint, carried
 - [x] `uv run guppi sprint-close --sprint migration --apply --carry estimate-sprint-close-runs-in-the-librarian-run --carry estimate-brief-written --carry estimate-sprint-close-next-session-opens-the-sprint --carry estimate-hi-writes-frontier --carry estimate-hi-takes-a-conserved-spec`

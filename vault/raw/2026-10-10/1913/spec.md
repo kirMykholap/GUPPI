@@ -43,7 +43,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-plugin-readme-describes-the-project`
+- [x] update `estimate-sprint-plugin-readme-describes-the-project`
 ```
 
 ## Case 766 — The pull-request check of the sprint plugin targets the sprint branch
@@ -85,7 +85,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-plugin-pull-requests-reviewed-on-github`
+- [x] update `estimate-sprint-plugin-pull-requests-reviewed-on-github`
 - [ ] read `estimate-sprint-plugin-pull-requests-reviewed-on-github`
 ```
 
@@ -130,7 +130,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
+- [x] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
 - [ ] read `estimate-sprint-plugin-ci-writes-a-clean-branch`
 ```
 
@@ -169,7 +169,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-plugin-installs-as-a-plugin`
+- [x] update `estimate-sprint-plugin-installs-as-a-plugin`
 ```
 
 ## Case 769 — The opening of a sprint comes before the Frontier
@@ -247,10 +247,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] update `estimate-skill-sprint-open-asks-the-opening-questions`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] read `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] update `rule-skill-sprint-open`
+- [x] update `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] read `estimate-skill-sprint-open-asks-the-opening-questions`
 ```
 
 ### Case 769.2 — At an opening the Frontier takes the first milestone from the opening Case
@@ -308,10 +308,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-session-start`
-- [ ] update `estimate-hi-writes-frontier`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi`
+- [x] update `rule-session-start`
+- [x] update `estimate-hi-writes-frontier`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -350,8 +350,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hi-takes-its-readings`
-- [ ] read `estimate-hi-takes-its-readings`
+- [x] update `estimate-hi-takes-its-readings`
+- [x] read `estimate-hi-takes-its-readings`
 ```
 
 ### Case 769.4 — The reply that acknowledges the opening Case brings the Frontier
@@ -397,10 +397,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
+- [x] update `rule-orchestration`
+- [x] create `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
 ```
 
 ### Case 769.5 — The opening line reaches the Frontier closed by the opening Case
@@ -439,8 +439,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-close-next-session-opens-the-sprint`
-- [ ] read `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] update `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] read `estimate-sprint-close-next-session-opens-the-sprint`
 ```
 
 ## Case 770 — Cleanup files a page under the sprint of the session of its run
@@ -499,13 +499,13 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-cleanup-files-a-session-by-its-sprint`
+- [x] create `estimate-cleanup-files-a-session-by-its-sprint`
 - [x] `guppi/materialize.py`: one function gives the sprint of a unit, the `sprint` field of its yaml stripped, else `sprint_id`; `unit_sprint` of `guppi/archive.py` and the inline judgment in `generate_date` of `guppi/generate.py` are replaced by imports of it.
 - [x] `guppi/cleanup.py`: `run` takes the sprint of the unit `<date>/<HHMM>` that `session_of_run` names, by that function, and `sprint_id` when no session folder exists; the docstring says so.
 - [x] `tests/test_cleanup.py`: a test whose session yaml holds `sprint: a` while `sprint.md` names `b`, and the page lands under `vault/archive/a/`; a test whose session has no yaml, and the page lands under `b`; both names hold `sprint`.
 - [x] `uv run pytest tests/test_cleanup.py tests/test_archive.py tests/test_generate.py tests/test_sprint_close.py`
 - [x] one-off migration: `git mv` `vault/archive/migration/2026-10-10/1713/decisions/decision-case-757.md` and `decision-case-759.md` to `vault/archive/plugin/2026-10-10/1713/decisions/`, and remove the folders left empty.
-- [ ] read `estimate-cleanup-files-a-session-by-its-sprint`
+- [x] read `estimate-cleanup-files-a-session-by-its-sprint`
 ```
 
 ## Case 772 — The checks that wait for a moment of the sprint stay off Work and the Frontier
@@ -597,9 +597,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief`
-- [ ] update `estimate-brief-written`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-brief`
+- [x] update `estimate-brief-written`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-brief-written`
 ```
 
@@ -646,10 +646,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] update `estimate-retro-loads`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] read `estimate-retro-loads`
+- [x] update `rule-retro`
+- [x] update `estimate-retro-loads`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] read `estimate-retro-loads`
 ```
 
 ### Case 772.3 — The handoff names a sprint check that waits for its work
@@ -690,10 +690,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-handoff`
-- [ ] update `estimate-handoff-holds-each-fact-once`
-- [ ] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
-- [ ] read `estimate-handoff-holds-each-fact-once`
+- [x] update `rule-handoff`
+- [x] update `estimate-handoff-holds-each-fact-once`
+- [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
+- [x] read `estimate-handoff-holds-each-fact-once`
 ```
 
 ### Case 772.4 — A check of a sprint page may wait for a later session of its sprint
@@ -738,16 +738,16 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
+- [x] update `rule-case-protocol`
+- [x] update `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
 - [x] `guppi/lint.py`: `ANOTHER_SESSION` also matches a session of a sprint and the session that closes, such as "a session of the sprint plugin before its close" and "the session that closes entity-sprint-plugin"; the docstring of `waits_for_another_session` names them.
 - [x] `guppi/ledger.py`: the constant of the prefix `entity-sprint-` and one predicate that tells whether a slug, or a wikilink to it, names a sprint page, with its docstring.
 - [x] `guppi/materialize.py`, `guppi/prespec.py`, `guppi/sprint.py` and `guppi/sprint_close.py`: each drops its own constant `entity-sprint-` and imports the constant and the predicate of `guppi/ledger.py`; `opened_sprint`, `updates_the_sprint` and `sprint_pages_live` judge a sprint page by that predicate.
 - [x] `guppi/prespec.py`: the check of the form gives no `WAITS` line on a `create` whose `ref`, or an `update` whose target by `estimate_target`, is a sprint page, by the predicate of `guppi/ledger.py`; the module docstring names the new words and the exception.
 - [x] `tests/test_lint.py`: `test_waits_the_one_predicate_names_another_session` holds a method that names a session of a sprint and one that names the session that closes it among the methods that wait.
 - [x] `tests/test_prespec.py`: a test whose name opens with `test_waits_` shows that a `create` and an `update` of an Estimate of a sprint page whose method names a session of the sprint before its close give no line, and that the same method on an Estimate of a rule gives the line.
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] read `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
 ```
 
 ### Case 772.5 — Pre-spec spares a kept method of a sprint check
@@ -781,10 +781,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
+- [x] update `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
 - [x] `guppi/prespec.py`: `kept_method_waits` returns false when the `target` of the live page is a sprint page, by the predicate of `guppi/ledger.py`; its docstring says so.
 - [x] `tests/test_prespec.py`: a test whose name opens with `test_kept_method_` shows that an `update` that replaces the Criterion of an Estimate of a sprint page whole and keeps a method that names a session of the sprint gives no line, and that the same kept method on an Estimate of a rule gives the line.
-- [ ] read `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
+- [x] read `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
 ```
 
 ## Deferred

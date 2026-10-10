@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a closed sprint from leaving its finished work among the live pages, so that the vault does not only grow
-status: draft
+status: built
 enforcement: check
 implementation_ref: [guppi/sprint_close.py, tests/test_sprint_close.py]
 estimates: ["[[estimate-sprint-close-archives-the-decisions]]", "[[estimate-sprint-close-archives-done-insights-and-lone-lessons]]", "[[estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest]]", "[[estimate-sprint-close-settles-unread-estimates]]", "[[estimate-sprint-close-runs-in-the-librarian-run]]", "[[estimate-sprint-close-takes-the-readings-in-groups]]", "[[estimate-sprint-close-next-session-opens-the-sprint]]", "[[estimate-sprint-close-sweeps-raw]]", "[[estimate-sprint-close-moves-old-event-logs]]"]
@@ -36,3 +36,4 @@ Prevents a closed sprint from leaving its finished work among the live pages, so
 - 2026-10-09 estimate estimate-sprint-close-sweeps-raw added · [[decision-case-743.1]]
 - 2026-10-09 updated: the close moves the old event logs to the archive (case 743.3) · [[decision-case-743.3]]
 - 2026-10-09 estimate estimate-sprint-close-moves-old-event-logs added · [[decision-case-743.3]]
+- 2026-10-10 status: draft → built · cascade

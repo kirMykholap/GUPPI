@@ -23,3 +23,4 @@ The plugin installs with no error.
 ## History
 
 - 2026-10-10 created · [[decision-case-756.6]]
+- 2026-10-10 updated: the reading waits for the milestone The plugin of entity-sprint-plugin; no clean branch exists to install before it · [[decision-case-768]]

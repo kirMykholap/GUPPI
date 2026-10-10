@@ -6,7 +6,7 @@ status: built
 enforcement: check
 implementation_ref: [guppi/cleanup.py, tests/test_cleanup.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-cleanup-moves]]"]
+estimates: ["[[estimate-cleanup-moves]]", "[[estimate-cleanup-files-a-session-by-its-sprint]]"]
 origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
 created: 2026-09-10
@@ -39,3 +39,4 @@ this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-04 updated: guppi sprint-close also sets archived (case 627.1) · [[decision-case-627.1]]
 - 2026-10-04 updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/cleanup.py (case 632.1) · [[decision-case-632.1]]
+- 2026-10-10 estimate estimate-cleanup-files-a-session-by-its-sprint added · [[decision-case-770]]

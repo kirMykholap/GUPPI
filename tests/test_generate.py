@@ -1777,6 +1777,72 @@ def test_a_defer_marks_an_estimate_deferred_by_after_checked_and_a_supersedes_cl
     assert "deferred_by" not in props(page(tmp_path, "estimates", "estimate-held"))
 
 
+# --- Case 783: a defer of an Estimate with no page writes no placeholder -------------------
+
+
+def estimate_defer(slug="estimate-unborn"):
+    return {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": "defer",
+        "category": "estimates",
+        "slug": slug,
+        "origin": f"raw/{DATE}/ledger.md#case-2",
+        "decision": "decision-case-2",
+        "fields": {"type": "estimate", "purpose": "later"},
+    }
+
+
+ESTIMATE_DEFER_ERROR = (
+    "generate: estimate-unborn: an Estimate is deferred only with its page"
+    " — defer the page it would check"
+)
+
+
+def test_a_defer_of_an_estimate_with_no_page_writes_no_page_and_fails_alone(tmp_path):
+    seed(tmp_path, entries=[ROOT, estimate_defer()])
+    code, _, err = run(tmp_path)
+    assert code == 1 and ESTIMATE_DEFER_ERROR in err
+    entries = load_yaml(tmp_path)["entries"]
+    assert entries[0]["applied"] and entries[1]["failed"]
+    assert not list(tmp_path.joinpath("vault").rglob("estimate-unborn.md"))
+    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").exists()
+
+
+@pytest.mark.parametrize(
+    "folder",
+    ["plugin/2026-09-01/0900/rules", "plugin/2026-09-01/0900/raw/estimates"],
+)
+def test_a_defer_of_an_estimate_archived_outside_an_estimates_folder_fails(tmp_path, folder):
+    # where `page_paths` and `archived_paths` used to part: `has_page` takes neither (783)
+    seed(tmp_path, entries=[ROOT, estimate_defer()])
+    stray = tmp_path / "vault" / "archive" / folder / "estimate-unborn.md"
+    stray.parent.mkdir(parents=True)
+    text = estimate_text("estimate-unborn", "pending", "rule-root")
+    stray.write_text(text, encoding="utf-8", newline="\n")
+    code, _, err = run(tmp_path)
+    assert code == 1 and ESTIMATE_DEFER_ERROR in err
+    assert load_yaml(tmp_path)["entries"][1]["failed"]
+    assert stray.read_text(encoding="utf-8") == text
+    assert not (tmp_path / "vault" / "wiki" / "estimates" / "estimate-unborn.md").exists()
+
+
+def test_a_defer_of_an_estimate_archived_in_an_estimates_folder_marks_it_there(tmp_path):
+    seed(tmp_path, entries=[ROOT, estimate_defer()])
+    archived = tmp_path / "vault" / "archive" / "plugin" / "2026-09-01" / "0900" / "estimates"
+    archived.mkdir(parents=True)
+    path = archived / "estimate-unborn.md"
+    path.write_text(
+        estimate_text("estimate-unborn", "pending", "rule-root"), encoding="utf-8", newline="\n"
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    text = path.read_text(encoding="utf-8")
+    assert props(text)["deferred_by"] == ["decision-case-2"]
+    assert f"- {DATE} deferred · [[decision-case-2]]" in text
+
+
 def test_a_synthesis_create_of_an_insight_marked_librarian_applies(tmp_path):
     entry = {
         "kind": "create",

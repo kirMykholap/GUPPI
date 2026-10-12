@@ -55,7 +55,9 @@ can name it (case 52.4), and an effect on each target:
                                     marks it applied, nothing to archive
     defer     existing              the Decision's slug appended to the target's `deferred_by`,
                                     shown in its index line (case 52.3)
-    defer     none                  a minimal placeholder page, born with `deferred_by`
+    defer     none                  a minimal placeholder page, born with `deferred_by`; never
+                                    for an Estimate: no page by `has_page`, its entry fails
+                                    in `generate` (case 783)
 
 The category of a slug comes from its prefix, which pre-spec guards; a slug with no prefix is
 `unknown` (case 320). A `{supersedes:case N}` makes the earlier decision `superseded`, and
@@ -770,6 +772,23 @@ def page_paths(project_dir: Path, category: str, slug: str) -> list[Path]:
 
 def page_exists(project_dir: Path, category: str, slug: str) -> bool:
     return bool(page_paths(project_dir, category, slug))
+
+
+def has_page(project_dir: Path, category: str, slug: str) -> bool:
+    """True when the page of a slug stands in its own category folder: under
+    `vault/wiki/<category>/`, or in a folder `<category>` under `vault/archive/` outside a
+    `raw/` folder. The one judgment whether a `defer` of an Estimate names a page, imported
+    by `guppi/generate.py`, which fails such an entry, and `guppi/prespec.py`, which reports
+    it (case 783)."""
+    if (project_dir / "vault" / "wiki" / category / f"{slug}.md").exists():
+        return True
+    archive = project_dir / "vault" / "archive"
+    if not archive.is_dir():
+        return False
+    return any(
+        p.parent.name == category and "raw" not in p.relative_to(archive).parts[:-1]
+        for p in archive.rglob(f"{slug}.md")
+    )
 
 
 def page_of_case(project_dir: Path, category: str, slug: str, origin: str) -> bool:

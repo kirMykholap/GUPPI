@@ -47,7 +47,9 @@ History `deleted`; a `delete` of a slug with no category is a thing outside the 
 printed, applied, nothing to archive. A `defer` with a page appends the decision slug to
 its `deferred_by` — a rule, an entity or an Insight (case 124.2), or an Estimate, after its
 `checked` (case 781) — History `deferred`;
-without a page it writes a placeholder, `status: draft`, with the fields the Case gave. A
+without a page it writes a placeholder, `status: draft`, with the fields the Case gave,
+for a rule or an entity, never for an Estimate: a `defer` of an Estimate with no page by
+`has_page` of `guppi/materialize.py` writes no page and fails alone (case 783). A
 `lesson` writes the lesson alone, `source` when the line carries it (case 53.1). Every ref
 field (`REF_FIELDS`) is written as a quoted wikilink, `"[[slug]]"`; a slug without a
 category prefix stays bare; readers strip the brackets (case 172). A `create` in
@@ -180,6 +182,7 @@ from guppi.materialize import (
     PREFIXES,
     SINGULAR,
     dump_yaml,
+    has_page,
     load_yaml,
     unit_sprint,
     units_with,
@@ -553,6 +556,10 @@ def archived_paths(project_dir: Path, slug: str) -> list[Path]:
 
 
 DECISION_PREFIX = "decision-"
+# a `defer` of an Estimate with no page: no placeholder, the entry fails alone (case 783)
+ESTIMATE_DEFER_NEEDS_A_PAGE = (
+    "an Estimate is deferred only with its page — defer the page it would check"
+)
 # the status `cascade` gives `archived_by_cascade` for a `clustered` lesson it cannot write —
 # unreadable, or read from the archive: not archived, and live (case 104.2)
 KEPT_CLUSTERED = "clustered, not written"
@@ -1067,9 +1074,13 @@ class Vault:
 
     def defer(self, entry: dict) -> None:
         """A `defer` marks its target `deferred_by` — a Rule, an Entity or an Insight (case
-        124.2), or an Estimate (case 781) — or writes a placeholder page when the target does
-        not exist."""
+        124.2), or an Estimate (case 781) — or writes a placeholder page for a rule or an
+        entity when the target does not exist; never for an Estimate: one with no page by
+        `has_page` fails alone, before any page is read (case 783)."""
         slug, category = entry["slug"], entry["category"]
+        if category == "estimates" and not has_page(self.project_dir, category, slug):
+            self.error(slug, ESTIMATE_DEFER_NEEDS_A_PAGE)
+            return
         page = self.find(slug)
         decision = entry.get("decision")
         if page is not None:

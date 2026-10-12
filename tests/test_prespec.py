@@ -3021,3 +3021,72 @@ def test_the_lift_and_the_check_answer_alike_over_a_required_field(tmp_path):
         named = [f.split(": no ")[1].split(",")[0] for f in found]
         # `method` is the finding of check_form, `parent` a mark of the lift alone
         assert named == [f for f in lifted if f not in ("method", "parent")], item
+
+
+# --- a defer of an Estimate with no page (case 783) -----------------------------------------
+# `estimate-prespec-checks-the-form-of-an-item`
+
+DEFER_ESTIMATE_CASE = DEFERRED_CASE.replace("rule-later", "estimate-later").replace(
+    "type: rule", "type: estimate"
+)
+DEFER_ESTIMATE_LINE = DEFER_LINE.replace("rule-later", "estimate-later")
+NO_DEFERRED_PAGE = (
+    "case 2: defer estimate-later: no such Estimate page — defer the page it would check"
+)
+ESTIMATE_STUB = "---\ntype: estimate\n---\n"
+
+
+def check_defer(project_dir, under_deferred=True):
+    case = DEFER_ESTIMATE_CASE
+    if not under_deferred:
+        case = case.replace("## Deferred\n", "")
+    return check(
+        project_dir,
+        plan=PLAN + case,
+        ledger=LINE + DEFER_ESTIMATE_LINE,
+        frontier=FRONTIER_WITH_DEFER,
+    )
+
+
+@pytest.mark.parametrize("under_deferred", [True, False])
+def test_a_defer_of_an_estimate_with_no_page_is_a_finding(tmp_path, under_deferred):
+    code, out, _ = check_defer(tmp_path, under_deferred)
+    assert code == 1
+    assert out.splitlines() == [NO_DEFERRED_PAGE]
+
+
+@pytest.mark.parametrize(
+    "folder",
+    ["plugin/2026-09-01/0900/rules", "plugin/2026-09-01/0900/raw/estimates"],
+)
+def test_a_defer_of_an_estimate_archived_outside_an_estimates_folder_is_a_finding(tmp_path, folder):
+    stray = tmp_path / "vault" / "archive" / folder / "estimate-later.md"
+    stray.parent.mkdir(parents=True)
+    stray.write_text(ESTIMATE_STUB, encoding="utf-8", newline="\n")
+    code, out, _ = check_defer(tmp_path)
+    assert code == 1
+    assert out.splitlines() == [NO_DEFERRED_PAGE]
+
+
+def test_a_defer_of_an_estimate_live_or_archived_in_an_estimates_folder_is_none(tmp_path):
+    with_estimate(tmp_path, "estimate-later")
+    assert check_defer(tmp_path) == (0, "", "")
+    (tmp_path / "vault" / "wiki" / "estimates" / "estimate-later.md").unlink()
+    archived = tmp_path / "vault" / "archive" / "plugin" / "2026-09-01" / "0900" / "estimates"
+    archived.mkdir(parents=True)
+    (archived / "estimate-later.md").write_text(ESTIMATE_STUB, encoding="utf-8", newline="\n")
+    assert check_defer(tmp_path) == (0, "", "")
+
+
+def test_a_defer_of_a_rule_with_no_page_is_none(tmp_path):
+    plan = PLAN + DEFERRED_CASE
+    result = check(tmp_path, plan=plan, ledger=LINE + DEFER_LINE, frontier=FRONTIER_WITH_DEFER)
+    assert result == (0, "", "")
+
+
+def test_prespec_and_generate_judge_a_deferred_estimate_by_one_predicate():
+    # CLAUDE.md, one judgment: the check that reports the defer and the script that fails it
+    from guppi import generate, materialize
+
+    assert prespec.has_page is materialize.has_page
+    assert generate.has_page is materialize.has_page

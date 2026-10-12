@@ -9297,3 +9297,19 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-11 lessons/lesson-hi-unread-sprint-reading-made-a-case-line created · raw/2026-10-10/2350/ledger.md#L13 · generate
 - 2026-10-11 decisions/decision-case-771 archived · superseded · generate
 - 2026-10-11 decisions/decision-case-771 archived · cleanup
+- 2026-10-12 decisions/decision-case-776 created · raw/2026-10-12/1449/ledger.md#case-776 · generate
+- 2026-10-12 rules/rule-materialize updated: the superseded_by of an entry is a list, one Case per line that retires it (case 776) · [[decision-case-776]] · generate
+- 2026-10-12 estimates/estimate-materialize-marks-superseded updated: the Criterion replaced whole — the superseded_by of an entry lists every Case that retires it; the method is the test run alone (case 776) · [[decision-case-776]] · generate
+- 2026-10-12 decisions/decision-case-777 created · raw/2026-10-12/1449/ledger.md#case-777 · generate
+- 2026-10-12 decisions/decision-case-778 created · raw/2026-10-12/1449/ledger.md#case-778 · generate
+- 2026-10-12 rules/rule-skill-hi updated: an open W line of an Estimate of the live sprint page whose reading cannot run now stays open under Work and makes no Cases line (case 778) · [[decision-case-778]] · generate
+- 2026-10-12 estimates/estimate-hi-takes-its-readings updated: the Criterion replaced whole — an open W line of an Estimate of the live sprint page whose reading cannot run now stays open under Work and is no Cases line · [[decision-case-778]] · generate
+- 2026-10-12 decisions/decision-case-779 created · raw/2026-10-12/1449/ledger.md#case-779 · generate
+- 2026-10-12 decisions/decision-case-777 superseded by decision-case-779 · [[decision-case-779]] · generate
+- 2026-10-12 estimates/estimate-sprint-close-next-session-opens-the-sprint updated: the Criterion replaced whole — the When names what the check reads, with no reading of a later session; the method runs in the session of case 779 · [[decision-case-779]] · generate
+- 2026-10-12 estimates/estimate-materialize-marks-superseded status: pending → passed · raw/2026-10-12/1449/ledger.md#L7 · generate
+- 2026-10-12 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-10-12/1449/ledger.md#L8 · generate
+- 2026-10-12 estimates/estimate-sprint-close-next-session-opens-the-sprint status: pending → passed · raw/2026-10-12/1449/ledger.md#L9 · generate
+- 2026-10-12 lessons/lesson-case-build-recommended-a-trigger-that-keeps-the-defect created · raw/2026-10-12/1449/ledger.md#L10 · generate
+- 2026-10-12 decisions/decision-case-777 archived · superseded · generate
+- 2026-10-12 decisions/decision-case-777 archived · cleanup

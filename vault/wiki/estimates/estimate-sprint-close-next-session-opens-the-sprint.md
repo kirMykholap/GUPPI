@@ -4,8 +4,8 @@ kind: QA
 status: passed
 target: "[[rule-sprint-close]]"
 purpose: Whether after the close of a sprint the brief puts the opening of the next sprint first, /hi takes no item of sprint.md, the ledger hook refuses every decision line but a defer until a create of a sprint page stands, and the pages written from the ledger of the session that opens it carry its id
-method: pytest tests/test_ledger.py -k sprint and tests/test_materialize.py -k sprint; by hand, at the Retro of the session of case 769, the new Renders of rule-skill-hi and rule-skill-sprint-open in its spec.md read against the Criterion
-checked: 2026-10-10
+method: pytest tests/test_ledger.py -k sprint and tests/test_materialize.py -k sprint; by hand, at the Retro of the session of case 779, .claude/skills/hi/SKILL.md, .claude/skills/sprint-open/SKILL.md and the step of the Render of rule-brief that writes the first line of the brief's Cases read against the Criterion
+checked: 2026-10-12
 origin: raw/2026-10-04/1439/ledger.md#case-628.3
 sprint: migration
 created: 2026-10-04
@@ -15,7 +15,7 @@ tags: [sprint, workflow, ledger]
 ## Criterion
 
 When:
-The librarian's run of the session that closes `entity-sprint-<id>` ends with no live sprint page, and the next session opens with `/hi`; someone reads `vault/wiki/brief.md`, that session's `vault/raw/<date>/<hi HHMM>/frontier.md`, the refusals of `uv run guppi ledger` in its transcript, its ledger, and the pages of its librarian's run.
+Someone reads `.claude/skills/hi/SKILL.md`, `.claude/skills/sprint-open/SKILL.md` and the step of the Render of `rule-brief` that writes the `Cases` of Next session in `vault/wiki/brief.md`, for the session that opens after the librarian's run of the session that closes `entity-sprint-<id>` ends with no live sprint page.
 **＋** Or `tests/test_ledger.py` and `tests/test_materialize.py` run `guppi ledger` and `guppi materialize` over a made-up vault with no live sprint page.
 
 Then:
@@ -28,7 +28,7 @@ The first line of the `Cases` of Next session in `vault/wiki/brief.md` is `open 
 
 ## Result
 
-2026-10-10, Retro of session 1913: uv run pytest tests/test_ledger.py -k sprint 4 passed, tests/test_materialize.py -k sprint 2 passed; by hand, the new Renders of rule-skill-hi and rule-skill-sprint-open in spec.md (cases 769.1, 769.2): /hi starts /sprint-open, writes no frontier.md before the opening Case is ratified, then the opening line stands first under ## Cases closed [x] … · case N, with no item of sprint.md
+2026-10-12, Retro of session 1449, uv run pytest tests/test_ledger.py tests/test_materialize.py -k sprint: 6 passed (4 of test_ledger on the refusal of decision lines but a defer, a reading or a lesson until a create of an entity-sprint page in the reply or the ledger, 2 of test_materialize on the sprint id of a unit); by hand: .claude/agents/librarian-guppi.md writes the first Cases line `open the next sprint — no sprint is open since the close of <id>`, .claude/skills/hi/SKILL.md starts /sprint-open first and writes the Frontier before the reply that acknowledges the opening Case, that line first and closed by it, no item of sprint.md while it stands, .claude/skills/sprint-open/SKILL.md says the ledger hook refuses each decision line but a defer until the create of entity-sprint-<id>
 
 ## History
 
@@ -36,3 +36,5 @@ The first line of the `Cases` of Next session in `vault/wiki/brief.md` is `open 
 - 2026-10-04 updated: the Criterion replaced whole — the new sprint id goes to the pages written from the ledger that creates the sprint page, as materialize sets it (case 632.5) · [[decision-case-632.5]]
 - 2026-10-10 updated: the Criterion replaced whole — the opening line reaches frontier.md after the opening Case, closed by it; the method runs in the session of case 769 · [[decision-case-769.5]]
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1913/ledger.md#L38
+- 2026-10-12 updated: the Criterion replaced whole — the When names what the check reads, with no reading of a later session; the method runs in the session of case 779 · [[decision-case-779]]
+- 2026-10-12 status: pending → passed · raw/2026-10-12/1449/ledger.md#L9

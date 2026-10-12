@@ -64,9 +64,9 @@ update:
 ```tasks
 - [x] `guppi/materialize.py`: `mark_superseded` reads the entry's `superseded_by` through `cases_of` and appends the superseding Case when the list does not hold it; the docstring of `cases_of` names both fields; the module docstring names `superseded_by` of an entry as a list, one value in a yaml written before case 776, and the one-off migration of case 427 as writing a list of one.
 - [x] `tests/test_materialize.py`: each assertion that compares an entry's `superseded_by` to one value compares it to a list; one new test where two decision lines each carry `{supersedes:case N}` for the same Case, and every entry of that Case lists both Cases in ledger order; one new test where an entry holds one value and a new mark appends to it, and a mark of a Case already listed adds nothing.
-- [ ] update `rule-materialize`
-- [ ] update `estimate-materialize-marks-superseded`
-- [ ] read `estimate-materialize-marks-superseded`
+- [x] update `rule-materialize`
+- [x] update `estimate-materialize-marks-superseded`
+- [x] read `estimate-materialize-marks-superseded`
 ```
 
 ## Case 778 — A waiting reading of the sprint page makes no Cases line at /hi
@@ -136,10 +136,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `estimate-hi-takes-its-readings`
-- [ ] read `estimate-hi-takes-its-readings`
+- [x] update `rule-skill-hi`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `estimate-hi-takes-its-readings`
+- [x] read `estimate-hi-takes-its-readings`
 ```
 
 ## Case 779 — The opening of the next sprint is checked by what runs in one session
@@ -192,6 +192,6 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-close-next-session-opens-the-sprint`
-- [ ] read `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] update `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] read `estimate-sprint-close-next-session-opens-the-sprint`
 ```

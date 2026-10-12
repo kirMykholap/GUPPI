@@ -272,7 +272,7 @@ def test_a_supersedes_chain_marks_the_earlier_entry(tmp_path):
     run(tmp_path)
     data = load(tmp_path)
     earlier, later = by_slug(data, "rule-old", "update")
-    assert earlier["case"] == "3" and earlier["superseded_by"] == "6"
+    assert earlier["case"] == "3" and earlier["superseded_by"] == ["6"]
     assert later["supersedes"] == ["3"] and "superseded_by" not in later
     assert earlier["set"] == {"tags": ["harness", "git"]}
     assert earlier["replace"] == [{"old": "old words", "new": "new words"}]
@@ -583,7 +583,7 @@ def test_an_existing_yaml_gains_only_the_new_lines(tmp_path):
     data = load(tmp_path)
     root, late_root = by_slug(data, "rule-root")
     assert root["kind"] == "update" and root["applied"] == "10:30:00"
-    assert root["superseded_by"] == "8" and late_root["case"] == "8"
+    assert root["superseded_by"] == ["8"] and late_root["case"] == "8"
     assert len(data["entries"]) == 12
     (late,) = by_slug(data, "estimate-child-works", "estimate")
     assert late["status"] == "failed" and late["line"] == 14
@@ -1035,7 +1035,7 @@ def test_an_update_of_a_rule_yields_one_entry_and_derives_no_estimate(tmp_path):
     assert update["slug"] == "rule-old" and update["kind"] == "update"
     assert "fields" not in update
     assert update["replace"] == [{"old": "old words", "new": "new words"}]
-    assert "incomplete" not in update and update["superseded_by"] == "13"
+    assert "incomplete" not in update and update["superseded_by"] == ["13"]
     assert by_slug(data, "estimate-old-holds", "update") == [of_case(data, "17")[0]]
     for case in ("13", "14"):  # a later update of the page, and one of a page that is none
         (only,) = of_case(data, case)
@@ -1350,7 +1350,7 @@ def test_a_supersedes_marks_every_entry_of_the_earlier_case(tmp_path):
     run(tmp_path)
     data = load(tmp_path)
     (thirteen,) = of_case(data, "13")
-    assert thirteen["kind"] == "update" and thirteen["superseded_by"] == "21"
+    assert thirteen["kind"] == "update" and thirteen["superseded_by"] == ["21"]
     (mine,) = of_case(data, "21")
     assert mine["supersedes"] == ["13"]
     marked = {e["case"] for e in data["entries"] if e.get("superseded_by")}
@@ -1399,7 +1399,7 @@ def test_the_entries_of_a_superseded_case_gone_from_the_spec_are_complete_by_the
     data = load(tmp_path)
     thirty = of_case(data, "30")
     assert [e["slug"] for e in thirty] == ["rule-old", "rule-other"]
-    assert all(e["superseded_by"] == "31" for e in thirty)
+    assert all(e["superseded_by"] == ["31"] for e in thirty)
     assert all("incomplete" not in e for e in thirty)  # no `then`, no missing change
     (record,) = [d for d in data["decisions"] if d["case"] == "30"]
     assert record["superseded_by"] == ["decision-case-31"]
@@ -1432,7 +1432,7 @@ update:
     run(tmp_path)
     data = load(tmp_path)
     old, other = of_case(data, "30")
-    assert old["change"] == "old words" and old["superseded_by"] == "31"
+    assert old["change"] == "old words" and old["superseded_by"] == ["31"]
     assert other["incomplete"] == ["then"]  # rule-other has no item, as before
     (record,) = [d for d in data["decisions"] if d["case"] == "30"]
     assert record["case_text"]["context"] == "Old." and "given" in record["incomplete"]
@@ -1704,7 +1704,7 @@ def test_a_supersedes_marks_the_earlier_entry_in_another_units_yaml(tmp_path):
     assert code == 0 and err == ""
     before = unit_yaml(a)
     (entry,) = [e for e in before["entries"] if e.get("case") == "5"]
-    assert entry["superseded_by"] == "9" and "applied" not in entry
+    assert entry["superseded_by"] == ["9"] and "applied" not in entry
     (decision,) = before["decisions"]
     assert decision["superseded_by"] == ["decision-case-9"]
     assert archive.kept_reason(tmp_path, f"{DATE}/0900") is None
@@ -1751,7 +1751,7 @@ def test_a_tag_on_a_parent_marks_the_entries_and_records_of_its_sub_cases(tmp_pa
     data = load(tmp_path)
     for case in ("30.1", "30.2", "30.2.1"):
         (entry,) = of_case(data, case)
-        assert entry["superseded_by"] == "31"
+        assert entry["superseded_by"] == ["31"]
         assert "incomplete" not in entry  # gone from the Spec: complete by the mark (299.3)
     records = {d["case"]: d for d in data["decisions"]}
     for case in ("30", "30.1", "30.2", "30.2.1"):
@@ -1768,9 +1768,33 @@ def test_a_tag_on_a_sub_case_leaves_the_parent_and_its_other_sub_cases(tmp_path)
     assert "superseded_by" not in first
     for case in ("30.2", "30.2.1"):
         (entry,) = of_case(data, case)
-        assert entry["superseded_by"] == "31"
+        assert entry["superseded_by"] == ["31"]
     records = {d["case"]: d for d in data["decisions"]}
     assert "superseded_by" not in records["30"] and "superseded_by" not in records["30.1"]
+
+
+def test_two_lines_that_retire_one_case_are_both_listed_in_ledger_order(tmp_path):
+    ledger = (
+        FAMILY_LEDGER
+        + "- decision[case 32][update][rule-other]{ref:rule-other}{supersedes:case 30}\n"
+    )
+    seed(tmp_path, ledger=ledger, spec=GONE_SPEC)
+    run(tmp_path)
+    data = load(tmp_path)
+    for case in ("30.1", "30.2", "30.2.1"):
+        (entry,) = of_case(data, case)
+        assert entry["superseded_by"] == ["31", "32"]  # case 776
+    records = {d["case"]: d for d in data["decisions"]}
+    for case in ("30", "30.1", "30.2", "30.2.1"):
+        assert records[case]["superseded_by"] == ["decision-case-31", "decision-case-32"]
+
+
+def test_a_one_value_mark_of_an_older_yaml_is_appended_to():
+    entries = [{"case": "5", "superseded_by": "7"}]
+    assert materialize.mark_superseded(entries, [], "5", "9")
+    assert entries[0]["superseded_by"] == ["7", "9"]  # one value before case 776
+    materialize.mark_superseded(entries, [], "5", "9")
+    assert entries[0]["superseded_by"] == ["7", "9"]  # a Case already listed adds nothing
 
 
 def test_a_tag_on_a_parent_marks_its_sub_cases_in_another_units_yaml(tmp_path):
@@ -1785,7 +1809,7 @@ def test_a_tag_on_a_parent_marks_its_sub_cases_in_another_units_yaml(tmp_path):
     assert code == 0 and err == ""
     earlier = unit_yaml(a)
     marked = {e["case"]: e.get("superseded_by") for e in earlier["entries"] if e.get("case")}
-    assert marked == {"5.1": "9", "5.2": "9"}
+    assert marked == {"5.1": ["9"], "5.2": ["9"]}
     for decision in earlier["decisions"]:
         assert decision["superseded_by"] == ["decision-case-9"]
 
@@ -1876,11 +1900,11 @@ def test_a_line_with_two_supersedes_blocks_marks_both_cases(tmp_path):
     assert code == 0 and err == ""
     earlier = unit_yaml(a)
     (five,) = [e for e in earlier["entries"] if e.get("case") == "5"]
-    assert five["superseded_by"] == "9"  # in another unit's yaml (130.2)
+    assert five["superseded_by"] == ["9"]  # in another unit's yaml (130.2)
     assert earlier["decisions"][0]["superseded_by"] == ["decision-case-9"]
     later = unit_yaml(b)
     (eight,) = [e for e in later["entries"] if e.get("case") == "8"]
-    assert eight["superseded_by"] == "9" and "incomplete" not in eight  # in this unit
+    assert eight["superseded_by"] == ["9"] and "incomplete" not in eight  # in this unit
     (mine,) = [e for e in later["entries"] if e.get("case") == "9"]
     assert mine["supersedes"] == ["5", "8"]  # in the order of the blocks
     decisions = {d["case"]: d for d in later["decisions"]}
@@ -2387,7 +2411,7 @@ def test_a_folded_reading_moves_to_the_live_create(tmp_path):
     )
     data = refold_entries(tmp_path, ledger)
     (marked,) = of_case(data, "30")
-    assert marked["superseded_by"] == "31"
+    assert marked["superseded_by"] == ["31"]
     assert "status" not in marked and "result" not in marked and "folded" not in marked
     (live,) = of_case(data, "31")
     assert live["status"] == "passed" and live["result"] == "the first reading"
@@ -2424,9 +2448,9 @@ def test_a_folded_reading_is_refolded_for_each_block_of_the_line(tmp_path):  # c
     )
     data = refold_entries(tmp_path, ledger)
     (twenty_nine,) = of_case(data, "29")
-    assert twenty_nine["superseded_by"] == "31"
+    assert twenty_nine["superseded_by"] == ["31"]
     (marked,) = of_case(data, "30")
-    assert marked["superseded_by"] == "31" and "folded" not in marked
+    assert marked["superseded_by"] == ["31"] and "folded" not in marked
     (live,) = [e for e in of_case(data, "31") if e.get("kind") == "create"]
     assert live["status"] == "passed" and live["folded"] == [3]
 

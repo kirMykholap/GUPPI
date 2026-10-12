@@ -122,10 +122,13 @@ this line's `#case-N`, case 105.2; a defer whose page exists). Set by this scrip
 (`status: pending` on an Estimate update), and `status`, `result`, `folded` of a reading
 folded into the live create of its slug — never into one already applied or marked
 `superseded_by`, and a `{supersedes}` moves the readings of the create it marks to the live
-create of the slug, or makes each an `estimate` entry of its own (case 309); `superseded_by` from a later `{supersedes}` in any unit — an `estimate` entry carries no
+create of the slug, or makes each an `estimate` entry of its own (case 309); `superseded_by` from a later `{supersedes}` in any unit — a list of
+each Case whose line retires the entry, in the order the lines are lifted, with no Case
+twice; one value in a yaml written before case 776, read as a list of one by `cases_of` and
+appended to by the next mark — an `estimate` entry carries no
 `case`, so no `{supersedes}` reaches it: a reading that must not apply is retired only by a
-ratified Case, whose one-off migration writes `superseded_by` with the number of that Case
-and removes the entry's `failed` (case 427); `addressed_by`
+ratified Case, whose one-off migration writes `superseded_by` as a list that holds the
+number of that Case and removes the entry's `failed` (case 427); `addressed_by`
 (`decision-case-<N>`) on a lesson entry a decision line of the same unit marked with
 `{addresses:<its slug>}`, or whose own line carries `{addressed_by:case N}` after a decision
 line of Case N — one function sets it for both marks, at the entry's level, never a page
@@ -366,8 +369,8 @@ def unlinked_lessons(lines: list[str]) -> list[int]:
 
 
 def cases_of(value) -> list[str]:
-    """The Cases an entry's `supersedes` names: a list since case 429, one value in a yaml
-    written before it."""
+    """The Cases an entry's `supersedes` or `superseded_by` names: a list since case 429 and
+    case 776, one value in a yaml written before them."""
     if not value:
         return []
     return [str(v) for v in value] if isinstance(value, list) else [str(value)]
@@ -1221,7 +1224,10 @@ def mark_superseded(
     for entry in entries:
         own = entry.get("case")
         if own is not None and in_family(str(own), case):
-            entry["superseded_by"] = by
+            done = cases_of(entry.get("superseded_by"))  # one value before case 776
+            if by not in done:
+                done.append(by)
+            entry["superseded_by"] = done
             marked = True
             if spec is not None and own not in spec and "then" in (entry.get("incomplete") or []):
                 rest = [i for i in entry["incomplete"] if i != "then"]

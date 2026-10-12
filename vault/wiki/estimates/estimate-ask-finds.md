@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi answers the questions of /pre-spec with one line on what it read, one numbered list of findings under each question and nothing else under it, each finding naming its Case and the page or Cases it bears on, then a list of what it did not check ending with a line per search rule it broke, of its frame or of .claude/rules/search-leaves-out-decisions.md, and a list of the paths of the files it read, and nothing else
-method: "by hand at the /hi of a later session: the answer of ask-guppi at a /pre-spec after the render of .claude/agents/ask-guppi.md by case 639, read in its agent transcript against the event log, recorded in the estimate line"
+method: "by hand, after a /pre-spec whose ask-guppi runs on .claude/agents/ask-guppi.md as rendered by case 782: the answer of ask-guppi in its agent transcript read against the Criterion and the event log, recorded in the estimate line"
 checked: 2026-10-05
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -19,12 +19,13 @@ At the first run of `/pre-spec` in a session, the main agent dispatches `ask-gup
 
 Then:
 The answer opens with one line that names what the agent read: the plan file, or the Spec that the plan's title line names, and the Cases it checked.
-**＋** Then stands one numbered list of findings under each question of `.claude/skills/pre-spec/SKILL.md`, in its order: what contradicts a page, a rule or another Case; an Estimate a Case does not name that speaks of the thing the Case changes; a fact of a `context` the vault does not bear out.
+**＋** Then stands one numbered list of findings under each question that `.claude/skills/pre-spec/SKILL.md` sets, in the order of that file.
 **＋** Each finding names its Case and the page or the Cases it bears on; a question with no finding says "none".
 **＋** A finding that names a page carrying `deferred_by` gives the `## Problem` of the Decision that field names.
 **＋** After the findings stands one list of what the questions ask that the agent did not check. The list says "none" when the agent checked all of it and its searches broke no rule of `.claude/agents/ask-guppi.md` or of `.claude/rules/search-leaves-out-decisions.md`. Its last lines name each rule of those files that a search broke, one line each, and say whether a finding rests on what that search printed. Then stands a list of the paths of the files the agent read.
 **＋** The dispatch stands in `vault/raw/<date>/event_log.md`.
 **－** The findings are not put under the lines `exists`, `near`, `missing`, `rules` and tags/slug: those lines answer a question whether a thing exists.
+**－** `.claude/agents/ask-guppi.md` does not list the questions of `/pre-spec` itself.
 **－** Nothing but its numbered findings, or "none" alone, stands under a question. No sentence says what the agent checked and found sound, and this includes a clash with another Case that it did not find.
 **－** No summary of the findings, no list of what holds, no index line and no page text reaches the caller.
 **－** An answer with no list of paths holds the promise as well.
@@ -52,3 +53,4 @@ The answer opens with one line that names what the agent read: the plan file, or
 - 2026-10-05 status: pending → failed · raw/2026-10-05/0109/ledger.md#L8
 - 2026-10-05 updated: the Criterion replaced whole — only findings or "none" under a question, no sentence on a clash not found; the list of what was not checked ends with a line per search rule broken, of the frame or of .claude/rules/search-leaves-out-decisions.md (case 639) · [[decision-case-639]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L9
+- 2026-10-12 updated: the Criterion replaced whole — one list of findings under each question the skill sets, in its order; the method waits for a /pre-spec after the render · [[decision-case-782.2]]

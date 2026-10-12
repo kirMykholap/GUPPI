@@ -9355,3 +9355,27 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-12 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-10-12/1604/ledger.md#L28 · generate
 - 2026-10-12 lessons/lesson-case-build-sub-cases-contradicted-each-other created · raw/2026-10-12/1604/ledger.md#L29 · generate
 - 2026-10-12 rules/rule-brief status: draft → built · cascade · generate
+- 2026-10-12 decisions/decision-case-782 created · raw/2026-10-12/2252/ledger.md#case-782 · generate
+- 2026-10-12 decisions/decision-case-782.1 created · raw/2026-10-12/2252/ledger.md#case-782.1 · generate
+- 2026-10-12 rules/rule-prespec updated: the ask-guppi run at pre-spec is also asked whether the When or Then of a Criterion needs a reading only a later session can take (case 782) · [[decision-case-782.1]] · generate
+- 2026-10-12 estimates/estimate-prespec-reconciles updated: the Criterion replaced whole — ask-guppi is also asked whether the When or Then of a Criterion needs a reading only a later session can take · [[decision-case-782.1]] · generate
+- 2026-10-12 decisions/decision-case-782.2 created · raw/2026-10-12/2252/ledger.md#case-782.2 · generate
+- 2026-10-12 rules/rule-ask updated: at pre-spec ask-guppi answers each question the skill sets, in its order, and the agent file lists them no more (case 782) · [[decision-case-782.2]] · generate
+- 2026-10-12 estimates/estimate-ask-finds updated: the Criterion replaced whole — one list of findings under each question the skill sets, in its order; the method waits for a /pre-spec after the render · [[decision-case-782.2]] · generate
+- 2026-10-12 decisions/decision-case-783 created · raw/2026-10-12/2252/ledger.md#case-783 · generate
+- 2026-10-12 decisions/decision-case-783.1 created · raw/2026-10-12/2252/ledger.md#case-783.1 · generate
+- 2026-10-12 rules/rule-page-generation updated: a defer of an Estimate with no page writes no placeholder and fails as an entry (case 783) · [[decision-case-783.1]] · generate
+- 2026-10-12 entities/entity-glossary updated: Types: a defer writes no placeholder for an Estimate (case 783) · [[decision-case-783.1]] · generate
+- 2026-10-12 estimates/estimate-generate-writes updated: the Criterion replaced whole — a defer of an Estimate with no page writes no placeholder and fails alone · [[decision-case-783.1]] · generate
+- 2026-10-12 decisions/decision-case-783.2 created · raw/2026-10-12/2252/ledger.md#case-783.2 · generate
+- 2026-10-12 rules/rule-orchestration updated: a defer of an Estimate names a page that stands; a check not yet created is put off through the page it would check, and a pre-spec finding on such a defer is fixed by a new short Case that supersedes it (case 783) · [[decision-case-783.2]] · generate
+- 2026-10-12 estimates/estimate-prespec-checks-the-form-of-an-item updated: the Criterion replaced whole — a defer of an Estimate with no page is a finding · [[decision-case-783.2]] · generate
+- 2026-10-12 decisions/decision-case-784 created · raw/2026-10-12/2252/ledger.md#case-784 · generate
+- 2026-10-12 rules/rule-case-build updated: case-guppi reads side by side the sentences of all its sub-cases on one behaviour, field or term, whatever page each changes, and searches the live pages and .claude/ for the name of each field, term or command whose behaviour the Case changes (case 784) · [[decision-case-784]] · generate
+- 2026-10-12 estimates/estimate-case-build-checks-the-finished-case updated: the Criterion replaced whole — sub-cases read side by side by the behaviour, field or term they speak of, whatever page each changes, and a search for the name of each changed field, term or command (case 784) · [[decision-case-784]] · generate
+- 2026-10-12 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-10-12/2252/ledger.md#L12 · generate
+- 2026-10-12 estimates/estimate-generate-writes status: pending → passed · raw/2026-10-12/2252/ledger.md#L13 · generate
+- 2026-10-12 estimates/estimate-prespec-checks-the-form-of-an-item status: pending → passed · raw/2026-10-12/2252/ledger.md#L14 · generate
+- 2026-10-12 estimates/estimate-case-build-checks-the-finished-case status: pending → passed · raw/2026-10-12/2252/ledger.md#L15 · generate
+- 2026-10-12 lessons/lesson-case-build-reused-judgment-not-checked-against-the-other-side created · raw/2026-10-12/2252/ledger.md#L16 · generate
+- 2026-10-12 rules/rule-ask status: built → draft · cascade · generate

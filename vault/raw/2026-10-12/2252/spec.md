@@ -71,10 +71,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] update `estimate-prespec-reconciles`
-- [ ] read `estimate-prespec-reconciles`
+- [x] update `rule-prespec`
+- [x] `uv run guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] update `estimate-prespec-reconciles`
+- [x] read `estimate-prespec-reconciles`
 ```
 
 ### Case 782.2 — Ask-guppi answers each question the skill sets
@@ -118,9 +118,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] update `estimate-ask-finds`
+- [x] update `rule-ask`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `estimate-ask-finds`
 - [ ] read `estimate-ask-finds`
 ```
 
@@ -210,14 +210,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
+- [x] update `rule-page-generation`
 - [x] `guppi/materialize.py`: a new predicate `has_page(project_dir, category, slug)` — true when the page stands under `vault/wiki/<category>/`, or in a folder `<category>` under `vault/archive/` outside a `raw/` folder; its docstring names `guppi/generate.py` and `guppi/prespec.py` as the modules that import it; the line `defer none` of the routing table in the module docstring says that an Estimate gets no placeholder and its entry fails in `generate` (case 783).
 - [x] `guppi/generate.py`: in `defer`, an entry of the category `estimates` for which `materialize.has_page` is false fails with `an Estimate is deferred only with its page — defer the page it would check`, before any page is read, and no page is written; the module docstring and the docstring of `defer` say that a placeholder is written for a rule or an entity, never for an Estimate (case 783).
 - [x] `tests/test_generate.py`: a `defer` of an Estimate with no page writes no page, prints the line on stderr, exits 1 and lets the other entries apply; so does a `defer` of an Estimate whose file stands under `vault/archive/` in a folder other than `estimates/`, or under a `raw/` folder; a `defer` of an Estimate that stands in a folder `estimates/` under `vault/archive/` appends the decision to its `deferred_by` there.
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi glossary`
-- [ ] update `estimate-generate-writes`
-- [ ] read `estimate-generate-writes`
+- [x] update `entity-glossary`
+- [x] `uv run guppi glossary`
+- [x] update `estimate-generate-writes`
+- [x] read `estimate-generate-writes`
 ```
 
 ### Case 783.2 — Pre-spec reports a defer of a check with no page
@@ -261,12 +261,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [x] `guppi/prespec.py`: `check_form` reports a `defer` item of an Estimate for which `materialize.has_page` is false, with the line `case N: defer <slug>: no such Estimate page — defer the page it would check`; the module docstring and the docstring of `check_form` name it (case 783).
 - [x] `tests/test_prespec.py`: a `defer` of an Estimate with no page, under a Case heading and under `## Deferred`, gives the finding, and so does one whose file stands under `vault/archive/` in a folder other than `estimates/`, or under a `raw/` folder; a `defer` of an Estimate that stands live or in a folder `estimates/` under `vault/archive/`, and a `defer` of a rule with no page, give none.
-- [ ] update `estimate-prespec-checks-the-form-of-an-item`
-- [ ] read `estimate-prespec-checks-the-form-of-an-item`
+- [x] update `estimate-prespec-checks-the-form-of-an-item`
+- [x] read `estimate-prespec-checks-the-form-of-an-item`
 ```
 
 ## Case 784 — case-guppi reads its sub-cases side by side by what they speak of, and searches for each changed field
@@ -335,8 +335,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] read `estimate-case-build-checks-the-finished-case`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] read `estimate-case-build-checks-the-finished-case`
 ```

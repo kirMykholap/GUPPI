@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
@@ -45,7 +45,7 @@ To a question whether a thing exists — what is close, what is missing, which r
 
 At `/pre-spec`, when the caller sends you again the Cases built again on the findings you gave and asks whether each finding is closed, answer, for each finding of yours under its number, with a line that holds `closed` or `not closed`, and under it at most a short paragraph of up to three sentences on why. After the findings stand one list of what you did not check in confirming them, in the form the paragraph below sets for that list of the first answer — "none" when you checked all of it and your searches broke no rule, its last lines one per rule a search of yours broke, each saying whether a verdict rests on what that search printed — and then the list of the paths of the files you read; nothing else stands before or after them (case 638). Run no Grep, the Grep of the rules included: read only the Cases built again and the pages your findings name, and name no new finding (case 634.2).
 
-At `/pre-spec`, where the caller asks you to judge every Case of the plan with its sub-cases (case 674.1), and asks which Case of the plan contradicts a page of the vault, a rule of the vault or another Case, which Estimate a Case does not name speaks of the thing the Case changes, and which fact of a `context` the vault does not bear out, answer instead with one numbered list of findings under each question, in that order: each finding names its Case and the page or the Cases it bears on, and a question with no finding says "none" (case 626.1). Under a question stand only its numbered findings, or "none" alone: no sentence on what you checked and found sound, a clash with another Case you did not find included (case 639). One line before the first list names what you read: the plan file, or the Spec its title line names, and the Cases you checked. After the findings stand one list of what the questions ask that you did not check, "none" when you checked all of it and your searches broke no rule of this file or of `.claude/rules/search-leaves-out-decisions.md`; its last lines name each rule of those files that a search of yours broke, one line each, and say whether a finding rests on what that search printed (case 639); and then the list of the paths of the files you read; no summary of the findings and no list of what holds (case 633.1).
+At `/pre-spec`, where the caller asks you to judge every Case of the plan with its sub-cases (case 674.1), and asks the questions that `.claude/skills/pre-spec/SKILL.md` sets, answer instead with one numbered list of findings under each question, in the order of that file (case 782): each finding names its Case and the page or the Cases it bears on, and a question with no finding says "none" (case 626.1). Under a question stand only its numbered findings, or "none" alone: no sentence on what you checked and found sound, a clash with another Case you did not find included (case 639). One line before the first list names what you read: the plan file, or the Spec its title line names, and the Cases you checked. After the findings stand one list of what the questions ask that you did not check, "none" when you checked all of it and your searches broke no rule of this file or of `.claude/rules/search-leaves-out-decisions.md`; its last lines name each rule of those files that a search of yours broke, one line each, and say whether a finding rests on what that search printed (case 639); and then the list of the paths of the files you read; no summary of the findings and no list of what holds (case 633.1).
 <!-- /rule-ask -->
 
 ## History
@@ -93,3 +93,5 @@ At `/pre-spec`, where the caller asks you to judge every Case of the plan with i
 - 2026-10-05 updated: under a question of the first answer at /pre-spec stand only its findings or "none", no sentence on what holds; the list of what was not checked ends with a line per search rule broken, of the frame or of .claude/rules/search-leaves-out-decisions.md (case 639) · [[decision-case-639]]
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-05 updated: at pre-spec one ask-guppi run judges every Case of the plan with its sub-cases (case 674.1) · [[decision-case-674.1]]
+- 2026-10-12 updated: at pre-spec ask-guppi answers each question the skill sets, in its order, and the agent file lists them no more (case 782) · [[decision-case-782.2]]
+- 2026-10-12 status: built → draft · cascade

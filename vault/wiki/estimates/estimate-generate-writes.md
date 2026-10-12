@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-page-generation]]"
 purpose: What generate writes to a page for each kind of entry of a materialize.yaml, and nothing an entry does not carry
 method: pytest in tests/test_generate.py against a temp vault; the live reading once by hand
-checked: 2026-10-04
+checked: 2026-10-12
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -19,13 +19,13 @@ When:
 
 Then:
 A `create` becomes a page: `type`, the fields of the entry, `status` by category (entity and rule `draft`, estimate `pending`, lesson `new`, insight `open`), `origin`, `sprint` — the `sprint` of the yaml, which `guppi materialize` takes from the first `## <id>` of `sprint.md` or, in a unit whose ledger creates `entity-sprint-<id>`, from that `<id>`, `created` — the yaml's date, `tags`; the body sections from `sections`, `## Purpose` from `purpose` on a rule or an entity; a `ref` lands in the parent's `children` or the target's `estimates` with History `child <slug> added` / `estimate <slug> added`, at the end of the run when the parent comes later in the yaml.
-**＋** An Estimate page carries `purpose`, `method` and `checked` as fields, in that order after `target`; `## Criterion` from `sections`; neither `## Context` nor `## Method` is written.
+**＋** An Estimate page carries `purpose`, `method` and `checked` as fields, in that order after `target`, and `deferred_by` after `checked` once a `defer` marks it; `## Criterion` from `sections`; neither `## Context` nor `## Method` is written.
 **＋** A `create` whose slug is a placeholder (`draft`, no `kind`) fills it: `created` and `deferred_by` kept, History `created over placeholder`; any other existing page is a collision, not a rename.
 **＋** An `update` applies `set` to the frontmatter, `sections` as whole replacements, `replace` inside the body (whitespace collapsed, exactly one occurrence), History `updated: <change>`; an `update` of an Estimate with `sections.Criterion` replaces the section whole.
 **＋** An `update`, `estimate`, `delete` or `defer` whose slug is not under `vault/wiki/` finds the page under `vault/archive/` (`raw/` folders excluded) and edits it there.
 **＋** An `estimate` sets `status`, overwrites `## Result`, writes `checked` — the date the `result` opens with, else the yaml's date — and appends History `status: a → b · <ledger pointer>`.
 **＋** A `delete` sets `archived` with History `deleted`; a `delete` outside the vault is a line on stdout, the entry applied, no page written.
-**＋** A `defer` with a page appends the decision slug to `deferred_by` (rule, entity, insight) with History `deferred`; without a page it writes a placeholder `draft` with the Case's fields and `deferred_by`.
+**＋** A `defer` with a page appends the decision slug to `deferred_by` (rule, entity, insight, estimate) with History `deferred`; without a page it writes a placeholder `draft` with the Case's fields and `deferred_by`.
 **＋** A `lesson` writes the lesson only, `source` when the line carries it; no Estimate is created.
 **＋** Every ref field is written as `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`; a slug without a category prefix stays bare; read through the brackets.
 **＋** A `create` in `insights` applies only with the mark `librarian`; a `delete` of an Insight is refused always.
@@ -36,7 +36,7 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 
 ## Result
 
-2026-10-04, at the /hi of session 2041: uv run pytest tests/test_generate.py 104 passed; by hand on the librarian's run of c04578e2, the yamls of 1439 and 1934 both sprint migration: the 33 pages it created all carry sprint migration; estimate-sprint-close-runs-in-the-librarian-run carries type, kind, status pending, target, purpose, method in order and the sections Criterion and History only; estimate-ask-finds stands failed with its Result overwritten, checked 2026-10-04 and the History line status pending to failed with the pointer raw/2026-10-04/1934/ledger.md#L1; estimate-spec-write-reaches-the-approved-spec has the History line deferred by decision-case-630; the 5 log.md lines read end in the decision or the ledger pointer; not exercised live: the sprint of a unit that creates entity-sprint-<id>
+2026-10-12, uv run pytest tests/test_generate.py: 116 passed; a defer of an existing Estimate appends the decision to deferred_by, written after checked and before origin, with History deferred, and a later supersedes that names the page clears it.
 
 ## History
 
@@ -83,3 +83,5 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L25
 - 2026-10-04 updated: the Criterion replaced whole — a page's sprint is the sprint of the yaml, the new sprint's id in the unit that creates its page (case 628.6) · [[decision-case-628.6]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L6
+- 2026-10-12 updated: the Criterion replaced whole — a defer marks an Estimate deferred_by, written after checked · [[decision-case-781.6]]
+- 2026-10-12 status: pending → passed · raw/2026-10-12/1604/ledger.md#L26

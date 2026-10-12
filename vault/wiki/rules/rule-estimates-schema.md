@@ -40,7 +40,7 @@ description: |
   `Result` is overwritten, not appended. It is about one run of one check: a test that passed, broke and was fixed leaves one current result; the sequence of changes is what History is for. Same for Research: the page states what we currently believe, and History records that the belief changed. `Criterion` is replaced, not appended: a rule changes → the Estimate the Case names goes `pending` → the test or the reading → `passed`.
 properties:
   required: [type, kind, status, target, method, origin, sprint, created, tags]
-  optional: [purpose, checked]
+  optional: [purpose, checked, deferred_by]
   values:
     kind: [QA, Research]
     status: [pending, passed, failed]
@@ -67,6 +67,8 @@ fields:
     required; one line. How the promise is checked, in one of the four forms lint classifies: a `make <target>` of the Makefile; the word `pytest`; a path under `tests/`; or the words `by hand` — the one spelling of a reading — with where and when it is taken, a session start, the brief of a librarian's run. A reading names its moment by its kind — a `/handoff`, a run of `/box`, a compaction — and any such moment after the render counts, in this session or in an earlier one; the word "first" stands only for an event that has never happened. A reading by hand tied to the first of something after the render or after the change is a finding of the class `moment` of lint and a finding of pre-spec, judged by one predicate of `guppi/lint.py` (case 613.1). Naming a form is not enough by itself: a path under `tests/` must exist and a `make <target>` must stand in the Makefile. On the Estimate of a MOC the form is a `make <target>` of the Makefile alone — there `pytest` or a path by itself earns a finding, and `by hand` passes only when every child's Estimate is a reading or a sibling Estimate of the MOC names such a target; on a MOC with `render_mode: full` the Estimate of a child with `enforcement: render` is not counted, since that child's Render is part of the parent's file and its Estimate promises the child's own behaviour (cases 378.5, 459). A `method` that names none of the forms earns a finding of the class `method`. A page without the field earns the `schema` finding `missing field method` (case 506.1). For `Research` what is measured stands beside one of the forms, never instead of one. Written from the Case since case 193 (case 350).
   checked: |
     optional; date. The date of the last reading, or of the person's decision that set the status, which the Case writes (case 669.16): the date the Result opens with, else the date of the reading's unit; written by `generate` on every reading (case 201.1).
+  deferred_by: |
+    optional; list. The Decision pages whose `defer` puts the reading of this Estimate off into `backlog.md`; written by `generate` on a defer and cleared by it on a later `supersedes`, under the condition that `rule-case-protocol` sets, never by hand (case 781).
   origin: |
     required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). The ratified decision that created it.
   sprint: |
@@ -169,3 +171,4 @@ examples:
 - 2026-10-02 status: draft → built · cascade
 - 2026-10-03 updated: a reading names its moment by its kind; a reading by hand tied to the first moment after the render or the change is a finding of lint and pre-spec (case 613.1) · [[decision-case-613.1]]
 - 2026-10-05 updated: the person may close an Estimate by decision: its Result opens with the date and the place of the decision, and checked is that date (case 669.16) · [[decision-case-669.16]]
+- 2026-10-12 updated: deferred_by is an optional field of an Estimate page (case 781) · [[decision-case-781.7]]

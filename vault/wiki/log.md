@@ -9313,3 +9313,45 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-12 lessons/lesson-case-build-recommended-a-trigger-that-keeps-the-defect created · raw/2026-10-12/1449/ledger.md#L10 · generate
 - 2026-10-12 decisions/decision-case-777 archived · superseded · generate
 - 2026-10-12 decisions/decision-case-777 archived · cleanup
+- 2026-10-12 decisions/decision-case-780 created · raw/2026-10-12/1604/ledger.md#case-780 · generate
+- 2026-10-12 rules/rule-case-build updated: case-guppi judges each option of a round against the rule the defect of the item breaks, over the whole text the option leaves (case 780) · [[decision-case-780]] · generate
+- 2026-10-12 estimates/estimate-case-build-judges-options-against-the-broken-rule created · [[decision-case-780]] · generate
+- 2026-10-12 estimates/estimate-case-build-judges-options-against-the-broken-rule status: pending → passed · raw/2026-10-12/1604/ledger.md#L20 · generate
+- 2026-10-12 rules/rule-case-build estimate estimate-case-build-judges-options-against-the-broken-rule added · [[decision-case-780]] · generate
+- 2026-10-12 decisions/decision-case-781 created · raw/2026-10-12/1604/ledger.md#case-781 · generate
+- 2026-10-12 decisions/decision-case-781.1 created · raw/2026-10-12/1604/ledger.md#case-781.1 · generate
+- 2026-10-12 rules/rule-case-protocol updated: a method may wait for an event it names in a part that opens with after and names the event before a colon; pre-spec does not report it (case 781) · [[decision-case-781.1]] · generate
+- 2026-10-12 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session updated: the Criterion replaced whole — a method part that opens with after and names its event before a colon is no finding · [[decision-case-781.1]] · generate
+- 2026-10-12 decisions/decision-case-781.2 created · raw/2026-10-12/1604/ledger.md#case-781.2 · generate
+- 2026-10-12 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session updated: the Criterion replaced whole — a kept method part that waits for an event it names is no finding · [[decision-case-781.2]] · generate
+- 2026-10-12 decisions/decision-case-781.3 created · raw/2026-10-12/1604/ledger.md#case-781.3 · generate
+- 2026-10-12 rules/rule-retro updated: Retro leaves an Estimate whose method waits for an event that has not come pending, its read line neither debt nor the librarian's, and the handoff names it with its event (case 781) · [[decision-case-781.3]] · generate
+- 2026-10-12 estimates/estimate-retro-loads updated: the Criterion replaced whole — an Estimate whose method waits for an event that has not come stays pending, its read line no debt · [[decision-case-781.3]] · generate
+- 2026-10-12 decisions/decision-case-781.4 created · raw/2026-10-12/1604/ledger.md#case-781.4 · generate
+- 2026-10-12 rules/rule-handoff updated: Debt names an Estimate whose method waits for an event that has not come, which Retro left pending, with its event (case 781) · [[decision-case-781.4]] · generate
+- 2026-10-12 estimates/estimate-handoff-holds-each-fact-once updated: the Criterion replaced whole — Debt names an Estimate that Retro left pending while its event has not come · [[decision-case-781.4]] · generate
+- 2026-10-12 decisions/decision-case-781.5 created · raw/2026-10-12/1604/ledger.md#case-781.5 · generate
+- 2026-10-12 rules/rule-brief updated: the brief holds a reading that waits for an event in Readings due until the librarian sees the event, proposes a defer into the backlog for a reading its session did not take, and leaves a deferred Estimate out of Work (case 781) · [[decision-case-781.5]] · generate
+- 2026-10-12 estimates/estimate-brief-written updated: the Criterion replaced whole — a reading that waits for an event stays in Readings due until the librarian sees it, a reading its session did not take is a Cases line that proposes a defer, and a deferred Estimate stays out of Work · [[decision-case-781.5]] · generate
+- 2026-10-12 decisions/decision-case-781.6 created · raw/2026-10-12/1604/ledger.md#case-781.6 · generate
+- 2026-10-12 rules/rule-page-generation updated: a defer marks an Estimate deferred_by as it marks a rule, an entity or an Insight (case 781) · [[decision-case-781.6]] · generate
+- 2026-10-12 estimates/estimate-generate-writes updated: the Criterion replaced whole — a defer marks an Estimate deferred_by, written after checked · [[decision-case-781.6]] · generate
+- 2026-10-12 decisions/decision-case-781.7 created · raw/2026-10-12/1604/ledger.md#case-781.7 · generate
+- 2026-10-12 rules/rule-estimates-schema updated: deferred_by is an optional field of an Estimate page (case 781) · [[decision-case-781.7]] · generate
+- 2026-10-12 estimates/estimate-estimates-schema-checked updated: the Criterion replaced whole — deferred_by is an optional field of an Estimate page · [[decision-case-781.7]] · generate
+- 2026-10-12 decisions/decision-case-781.8 created · raw/2026-10-12/1604/ledger.md#case-781.8 · generate
+- 2026-10-12 rules/rule-skill-hi updated: an open W line whose reading cannot run now stays open under Work and makes no Cases line (case 781) · [[decision-case-781.8]] · generate
+- 2026-10-12 estimates/estimate-hi-takes-its-readings updated: the Criterion replaced whole — an open W line whose reading cannot run now stays open under Work and is no Cases line · [[decision-case-781.8]] · generate
+- 2026-10-12 entities/entity-glossary updated: deferred_by: an Estimate may carry it, and backlog.md lists a deferred one (case 781) · [[decision-case-781.7]] · generate
+- 2026-10-12 decisions/decision-case-781.9 created · raw/2026-10-12/1604/ledger.md#case-781.9 · generate
+- 2026-10-12 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — an open W line whose reading cannot run now is no Cases source · [[decision-case-781.9]] · generate
+- 2026-10-12 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session status: pending → passed · raw/2026-10-12/1604/ledger.md#L21 · generate
+- 2026-10-12 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session status: pending → passed · raw/2026-10-12/1604/ledger.md#L22 · generate
+- 2026-10-12 estimates/estimate-retro-loads status: pending → passed · raw/2026-10-12/1604/ledger.md#L23 · generate
+- 2026-10-12 estimates/estimate-handoff-holds-each-fact-once status: pending → passed · raw/2026-10-12/1604/ledger.md#L24 · generate
+- 2026-10-12 estimates/estimate-brief-written status: pending → passed · raw/2026-10-12/1604/ledger.md#L25 · generate
+- 2026-10-12 estimates/estimate-generate-writes status: pending → passed · raw/2026-10-12/1604/ledger.md#L26 · generate
+- 2026-10-12 estimates/estimate-estimates-schema-checked status: pending → passed · raw/2026-10-12/1604/ledger.md#L27 · generate
+- 2026-10-12 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-10-12/1604/ledger.md#L28 · generate
+- 2026-10-12 lessons/lesson-case-build-sub-cases-contradicted-each-other created · raw/2026-10-12/1604/ledger.md#L29 · generate
+- 2026-10-12 rules/rule-brief status: draft → built · cascade · generate

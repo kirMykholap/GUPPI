@@ -56,10 +56,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-judges-options-against-the-broken-rule`
-- [ ] read `estimate-case-build-judges-options-against-the-broken-rule`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-judges-options-against-the-broken-rule`
+- [x] read `estimate-case-build-judges-options-against-the-broken-rule`
 ```
 
 ## Case 781 — A reading that cannot run now waits instead of becoming a decision
@@ -167,15 +167,15 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
 - [x] `guppi/lint.py`: a new predicate `waits_for_an_event(part)` — true when a part, stripped, opens with `after`, or with `by hand, after`, and holds a colon after the event; `waits_for_another_session` passes such a part by; both docstrings name case 781.
 - [x] `guppi/prespec.py`: the module docstring and the docstring of the check of a plan's `method` name the part that waits for an event, judged by `lint.waits_for_an_event` through `lint.waits_for_another_session`.
 - [x] `guppi/ledger.py`: the docstring of `is_sprint_page` names `guppi/prespec.py`, `guppi/materialize.py` and `guppi/sprint.py` as the modules that import it; `guppi/sprint_close.py` imports `SPRINT_PAGE` alone.
 - [x] `tests/test_lint.py`: in a test whose name holds `waits`, `by hand, after a pull request from a second account: the output read` and `pytest tests/test_x.py; after the librarian's run of a session: brief.md read` are no wait; `by hand after the librarian's run` with no colon, and `by hand at the /hi of the next session after the change: read`, still wait.
 - [x] `tests/test_prespec.py`: in a test whose name holds `waits`, a `create` and an `update` with `set: {method: …}` whose method part waits for an event give no wait line; the same method with no colon gives it.
-- [ ] update `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
-- [ ] read `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
+- [x] update `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
+- [x] read `estimate-prespec-hook-reports-a-method-that-waits-for-another-session`
 ```
 
 ### Case 781.2 — Pre-spec accepts a kept method that waits for a named event
@@ -212,8 +212,8 @@ update:
 ```tasks
 - [x] `guppi/prespec.py`: the docstring of `kept_method_waits` names the part that waits for an event, which the shared predicate passes by (case 781).
 - [x] `tests/test_prespec.py`: in a test whose name holds `kept_method`, a live page whose method is `by hand, after a pull request from a second account: the output read` gives no kept-method line on an `update` that replaces the Criterion whole.
-- [ ] update `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
-- [ ] read `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
+- [x] update `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
+- [x] read `estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session`
 ```
 
 ### Case 781.3 — Retro leaves a check that waits for its event pending
@@ -258,10 +258,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] update `estimate-retro-loads`
-- [ ] read `estimate-retro-loads`
+- [x] update `rule-retro`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `estimate-retro-loads`
+- [x] read `estimate-retro-loads`
 ```
 
 ### Case 781.4 — The handoff names a check that waits for its event
@@ -302,10 +302,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-handoff`
-- [ ] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
-- [ ] update `estimate-handoff-holds-each-fact-once`
-- [ ] read `estimate-handoff-holds-each-fact-once`
+- [x] update `rule-handoff`
+- [x] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
+- [x] update `estimate-handoff-holds-each-fact-once`
+- [x] read `estimate-handoff-holds-each-fact-once`
 ```
 
 ### Case 781.5 — The brief holds a reading until its event and proposes a defer for one not taken
@@ -355,10 +355,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] update `estimate-brief-written`
-- [ ] read `estimate-brief-written`
+- [x] update `rule-brief`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `estimate-brief-written`
+- [x] read `estimate-brief-written`
 ```
 
 ### Case 781.6 — A defer marks an Estimate as it marks a rule
@@ -404,11 +404,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
+- [x] update `rule-page-generation`
 - [x] `guppi/generate.py`: `DEFERRABLE` holds `estimates`; the `estimates` order of `KEY_ORDER` holds `deferred_by` after `checked`; the module docstring and the docstring of `defer` name the Estimate (case 781).
 - [x] `tests/test_generate.py`: a `defer` of an existing Estimate appends the decision slug to its `deferred_by`, after `checked`, with History `deferred`; a later `supersedes` that names the page clears it.
-- [ ] update `estimate-generate-writes`
-- [ ] read `estimate-generate-writes`
+- [x] update `estimate-generate-writes`
+- [x] read `estimate-generate-writes`
 ```
 
 ### Case 781.7 — The format of a check page allows deferred_by
@@ -454,13 +454,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-estimates-schema`
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] update `rule-estimates-schema`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 - [x] `tests/test_schemas.py`: in a test whose name holds `estimate`, an Estimate page in the shape with `deferred_by` has no schema finding.
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi glossary`
-- [ ] update `estimate-estimates-schema-checked`
-- [ ] read `estimate-estimates-schema-checked`
+- [x] update `entity-glossary`
+- [x] `uv run guppi glossary`
+- [x] update `estimate-estimates-schema-checked`
+- [x] read `estimate-estimates-schema-checked`
 ```
 
 ### Case 781.8 — A reading /hi cannot take stays in Work
@@ -504,10 +504,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `estimate-hi-takes-its-readings`
-- [ ] read `estimate-hi-takes-its-readings`
+- [x] update `rule-skill-hi`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `estimate-hi-takes-its-readings`
+- [x] read `estimate-hi-takes-its-readings`
 ```
 
 ### Case 781.9 — The Frontier has no Cases source for a reading /hi cannot take
@@ -545,6 +545,6 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hi-writes-frontier`
+- [x] update `estimate-hi-writes-frontier`
 - [ ] read `estimate-hi-writes-frontier`
 ```

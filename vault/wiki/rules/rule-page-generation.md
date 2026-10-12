@@ -142,3 +142,4 @@ entry never stops the run: it is marked `failed`, reported, and the rest apply (
 - 2026-10-05 updated: an update that sets an Estimate passed or failed by the person's decision ticks its read lines across the live Specs, with the skips of a reading (case 672) · [[decision-case-672]]
 - 2026-10-06 defer by decision-case-469 superseded · [[decision-case-683]]
 - 2026-10-06 updated: a supersede of a Decision already archived keeps it archived and only appends the superseding Case to its superseded_by, so cleanup does not bring it back (case 683) · [[decision-case-683]]
+- 2026-10-12 updated: a defer marks an Estimate deferred_by as it marks a rule, an entity or an Insight (case 781) · [[decision-case-781.6]]

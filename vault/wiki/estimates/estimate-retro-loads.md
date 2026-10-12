@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-retro]]"
 method: by hand, the text of .claude/skills/retro/SKILL.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-retro in the Spec, read against the Criterion, recorded in the estimate line
-checked: 2026-10-10
+checked: 2026-10-12
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -25,13 +25,14 @@ A reading measures the Criterion the page carries at the moment of the reading �
 **＋** Retro closes the open `W` line of each Estimate it reads or sets `failed` `[x] … · work` in `raw/<date>/<hi HHMM>/frontier.md`.
 **－** An Estimate whose `target` is the live sprint page `entity-sprint-<id>` and whose work is not done yet is neither read, nor put to the person, nor set `failed`: it stays `pending` for the Retro of the session that finishes its work or for the closing Case of `/sprint-close`, and its `read` box in `raw/<date>/<hi HHMM>/spec.md` waits for that moment, neither debt nor the librarian's.
 **－** Once its work is done, the Retro of that session reads it, or, when its `method` names the person's answer, names it under `## Ask the person` of `raw/<date>/<hi HHMM>/handoff.md`.
+**－** An Estimate this session creates or updates whose `method` waits for an event — a part of it that opens with `after`, or with `by hand, after`, and names the event before a colon — and whose event has not come in this session is neither read, nor put to the person, nor set `failed`: it stays `pending`, its `read` box in `raw/<date>/<hi HHMM>/spec.md` waits for that event, neither debt nor the librarian's, and when the event came in this session Retro reads it.
 **－** An Estimate whose `update` sets `passed` or `failed` by the person's decision and writes its Criterion back unchanged, and one whose `update` names one part of the page alone, is neither read nor set `failed`.
 **－** A reading whose `method` names the person's word is not taken: it is a line of `## Ask the person` of `raw/<date>/<hi HHMM>/handoff.md`, with its question, and its `read` line is neither debt nor the librarian's.
 **－** A reading of an Estimate this session neither creates nor updates is taken as before, once its work is built.
 
 ## Result
 
-2026-10-10, Retro of session 1913, by hand: the new Render of rule-retro in spec.md (case 772.2) read against the Criterion — an Estimate of the live sprint page whose work is not done is neither read, nor put to the person, nor set failed, its read line neither debt nor the librarian's, handoff names it with its moment; once its work is done its Retro reads it or names it under ## Ask the person; the other lines of the Criterion stand in the rendered text
+2026-10-12, by hand at the Retro of session 1604: the new Render of rule-retro in raw/2026-10-12/1604/spec.md (Case 781.3) read against the Criterion — an Estimate this session creates or updates whose method waits for an event that has not come is neither read, put to the person nor set failed, stays pending, its read line neither debt nor the librarian's, read when the event came in the session; the lesson sentence excepts such a reading.
 
 ## History
 
@@ -71,3 +72,5 @@ A reading measures the Criterion the page carries at the moment of the reading �
 - 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L2
 - 2026-10-10 updated: the Criterion replaced whole — an Estimate of the live sprint page whose work is not done stays pending, its read line no debt · [[decision-case-772.2]]
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1913/ledger.md#L39
+- 2026-10-12 updated: the Criterion replaced whole — an Estimate whose method waits for an event that has not come stays pending, its read line no debt · [[decision-case-781.3]]
+- 2026-10-12 status: pending → passed · raw/2026-10-12/1604/ledger.md#L23

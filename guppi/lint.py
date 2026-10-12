@@ -609,6 +609,18 @@ ANOTHER_SESSION = re.compile(
     re.IGNORECASE,
 )
 PERSON = re.compile(r"\bperson\b", re.IGNORECASE)
+EVENT_PART = re.compile(r"(?:by hand,\s*)?after\b[^:]*?\S\s*:", re.IGNORECASE)
+
+
+def waits_for_an_event(part: str) -> bool:
+    """Whether a part of a `method` between two `;` waits for an event it names: the part,
+    stripped, opens with `after`, or with `by hand, after`, and names its event before a
+    colon — "by hand, after a pull request from a second account: the output read" —,
+    whatever event it names, a later session or the librarian's run among them. A part with
+    the same words but no colon, or one in which `after` does not open the part, waits for
+    no event. The one predicate of this judgment, which `waits_for_another_session` calls
+    (case 781)."""
+    return bool(EVENT_PART.match(part.strip()))
 
 
 def waits_for_another_session(method: str) -> bool:
@@ -617,11 +629,14 @@ def waits_for_another_session(method: str) -> bool:
     session of the sprint plugin before its close" —, the session that closes one — "the
     session that closes entity-sprint-plugin" (case 772.4) —, the librarian or `/hi`, and
     does not name the person — whose answer at a `/hi` is the one reading a method may leave
-    to another session. A method holds only what runs in its own session (case 670.4). The
-    one predicate of this judgment, which `pre-spec` calls over the plan; the lint run does
-    not call it, so the live pages give no finding by it."""
+    to another session — and does not wait for an event it names, by `waits_for_an_event`
+    (case 781). A method holds only what runs in its own session, or a reading that waits
+    for an event it names (cases 670.4, 781). The one predicate of this judgment, which
+    `pre-spec` calls over the plan; the lint run does not call it, so the live pages give no
+    finding by it."""
     return any(
-        ANOTHER_SESSION.search(part) and not PERSON.search(part) for part in method.split(CLAUSE)
+        ANOTHER_SESSION.search(part) and not PERSON.search(part) and not waits_for_an_event(part)
+        for part in method.split(CLAUSE)
     )
 
 

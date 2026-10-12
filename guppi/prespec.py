@@ -90,7 +90,9 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   that names a later session, the next session, a session after another, a session of a
   sprint, the session that closes one, the librarian or `/hi`, and not the person — by
   `lint.waits_for_another_session`, the one predicate, which lint does not run over the live
-  pages (case 670.4); and an `update` of an Estimate that replaces its Criterion whole,
+  pages (case 670.4), but a part that opens with `after`, or with `by hand, after`, and
+  names its event before a colon, which waits for that event, judged by
+  `lint.waits_for_an_event` through `lint.waits_for_another_session` (case 781); and an `update` of an Estimate that replaces its Criterion whole,
   writes no `method`, sets no status of `passed` or `failed` and keeps a `method` on the
   live page that waits for another session, by the same predicate (`kept_method_waits`,
   case 715). An Estimate of a sprint page `entity-sprint-<id>` — the `ref` of a `create`,
@@ -1180,7 +1182,10 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     that ties its reading by hand to the first moment after the render or the change, by
     `lint.tied_to_a_one_off_moment`, is a finding as well (case 613.1), and so is one that
     waits for another session, by `lint.waits_for_another_session` (case 670.4), but on an
-    Estimate whose target is a sprint page, by `ledger.is_sprint_page` (case 772.4). When the
+    Estimate whose target is a sprint page, by `ledger.is_sprint_page` (case 772.4); a part
+    that opens with `after`, or with `by hand, after`, and names its event before a colon
+    waits for that event and is no such finding, judged by `lint.waits_for_an_event` through
+    `lint.waits_for_another_session` (case 781). When the
     target of the Estimate is a MOC as the plan leaves it — by `plan_kind` — a `method` that
     names neither a `make <target>` nor "by hand", by `lint.names_a_moc_form`, the one
     predicate `check_method` of lint calls too, is a finding in place of the line of no form;
@@ -1290,7 +1295,9 @@ def kept_method_waits(item: dict, project_dir: Path) -> bool:
     judges a `method` the plan writes. The page goes `pending`, and the Retro of the Case's
     own session cannot read it. False when the `target` of the live page is a sprint page,
     by `ledger.is_sprint_page`: its Estimate may wait for a later session of its sprint
-    (case 772.5)."""
+    (case 772.5). A part of the kept `method` that opens with `after`, or with `by hand,
+    after`, and names its event before a colon waits for that event, and the shared
+    predicate passes it by (case 781)."""
     sets = item.get("set") if isinstance(item.get("set"), dict) else {}
     if names_a_part(item) or "method" in sets or str(sets.get("status")) in DECIDED:
         return False

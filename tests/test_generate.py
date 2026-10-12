@@ -1713,6 +1713,70 @@ def test_a_defer_marks_an_insight_deferred_by_and_a_supersedes_clears_it(tmp_pat
     assert props(thin)["severity"] == 0
 
 
+def test_a_defer_marks_an_estimate_deferred_by_after_checked_and_a_supersedes_clears_it(
+    tmp_path,
+):
+    # case 781: an Estimate is a page a defer marks, its `deferred_by` after `checked`
+    entries = [
+        {
+            "line": 1,
+            "text": "",
+            "case": "2",
+            "kind": "defer",
+            "category": "estimates",
+            "slug": "estimate-held",
+            "origin": f"raw/{DATE}/ledger.md#case-2",
+            "decision": "decision-case-2",
+        },
+    ]
+    held = estimate_text("estimate-held", "pending", "rule-held").replace(
+        "method: pytest tests/test_x.py\n", "method: pytest tests/test_x.py\nchecked: 2026-09-02\n"
+    )
+    pages = [
+        ("rules", "rule-held", page_text("rules", "rule-held", estimates="[estimate-held]")),
+        ("estimates", "estimate-held", held),
+    ]
+    seed(tmp_path, entries=entries, pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    text = page(tmp_path, "estimates", "estimate-held")
+    assert props(text)["deferred_by"] == ["decision-case-2"]
+    assert f"- {DATE} deferred · [[decision-case-2]]" in text
+    assert text.index("checked:") < text.index("deferred_by:") < text.index("origin:")
+    later = [
+        {
+            "line": 1,
+            "text": "",
+            "case": "3",
+            "kind": "update",
+            "category": "estimates",
+            "slug": "estimate-held",
+            "origin": f"raw/{DATE}/ledger.md#case-3",
+            "decision": "decision-case-3",
+            "supersedes": "2",
+            "set": {"purpose": "taken up"},
+            "change": "taken up",
+        },
+    ]
+    decisions = records_for(later)
+    decisions[0]["supersedes"] = ["decision-case-2"]
+    raw = tmp_path / "vault" / "raw" / DATE
+    raw.joinpath("materialize.yaml").unlink()
+    data = {
+        "date": DATE,
+        "sprint": "migration",
+        "entries": later,
+        "decisions": decisions,
+        "unparsed": [],
+    }
+    (raw / "materialize.yaml").write_text(
+        yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8"
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert "deferred_by" not in props(page(tmp_path, "estimates", "estimate-held"))
+
+
 def test_a_synthesis_create_of_an_insight_marked_librarian_applies(tmp_path):
     entry = {
         "kind": "create",

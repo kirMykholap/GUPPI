@@ -78,6 +78,15 @@ def test_an_estimate_without_method_is_one_finding():
     assert findings(page, data) == ["estimates/estimate-x: schema: missing field method"]
 
 
+def test_an_estimate_with_deferred_by_has_no_finding():
+    """Case 781: a defer marks an Estimate `deferred_by`, an optional field of its page, so
+    a page in the shape that carries it earns no `schema` finding."""
+    data = schema("estimates")
+    page = page_in_shape("estimates", data)
+    page.props["deferred_by"] = ["[[decision-case-1]]"]
+    assert findings(page, data) == []
+
+
 def test_a_decision_page_without_context_has_no_finding():
     """Case 513.1: `## Context` is an optional section of a Decision page — the Case file
     keeps the context — so a page with `## Problem` and `## History` alone earns no

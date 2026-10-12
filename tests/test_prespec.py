@@ -1225,6 +1225,30 @@ def test_waits_an_estimate_of_a_sprint_page_may_wait_for_a_session_of_its_sprint
     assert (code, out.splitlines()) == (1, [f"case 1: update estimate-x: {WAITS}"])
 
 
+EVENT_METHOD = "by hand, after a pull request from a second account: the output read"
+
+
+def test_waits_a_method_part_that_waits_for_an_event_is_clean(tmp_path):
+    # case 781: a part that opens with `after` and names its event before a colon
+    with_page(tmp_path, "rules", "rule-x")
+    for method, findings in (
+        (EVENT_METHOD, []),
+        ("pytest tests/test_x.py; after the librarian's run of a session: brief.md read", []),
+        ("pytest tests/test_x.py; after the librarian's run of a session", [WAITS]),
+    ):
+        item = NO_FORM_CREATE.replace("Run it and look", f'"{method}"')
+        code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+        expected = [f"case 1: create estimate-x-again: {line}" for line in findings]
+        assert (code, out.splitlines()) == (1 if findings else 0, expected), method
+        with_estimate(tmp_path)
+        item = (
+            f'update:\n  - slug: estimate-x\n    set: {{method: "{method}"}}\n    change: recut\n'
+        )
+        code, out, _ = check(tmp_path, plan=create_plan(item), ledger=UPDATE_LINE)
+        expected = [f"case 1: update estimate-x: {line}" for line in findings]
+        assert (code, out.splitlines()) == (1 if findings else 0, expected), method
+
+
 KEPT_WAITS = (
     "the method on the page waits for another session — set a method that runs in this session"
 )
@@ -1255,6 +1279,18 @@ def test_kept_method_a_replaced_criterion_with_a_waiting_page_method_is_a_findin
         written = create_plan("update:\n  - slug: estimate-x\n" + WRITTEN + "    change: recut\n")
         _, out, _ = check(tmp_path, plan=written, ledger=UPDATE_LINE)
         assert f"case 1: update estimate-x: {KEPT_WAITS}" in out, method
+
+
+def test_kept_method_that_waits_for_an_event_is_clean(tmp_path):
+    # case 781: the kept method's part waits for the event it names
+    with_page(tmp_path, "rules", "rule-x")
+    plan = create_plan("update:\n" + ESTIMATE_UPDATE)
+    with_method(tmp_path, f"'{EVENT_METHOD}'")
+    _, out, _ = check(tmp_path, plan=plan, ledger=UPDATE_LINE)
+    assert KEPT_WAITS not in out
+    with_method(tmp_path, "by hand after the librarian's run")
+    _, out, _ = check(tmp_path, plan=plan, ledger=UPDATE_LINE)
+    assert f"case 1: update estimate-x: {KEPT_WAITS}" in out
 
 
 def test_kept_method_of_an_estimate_of_a_sprint_page_is_clean(tmp_path):

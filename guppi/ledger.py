@@ -874,8 +874,9 @@ SPRINT_PAGE = "entity-sprint-"
 def is_sprint_page(slug) -> bool:
     """Whether a slug, or a wikilink `[[slug]]` to it, names a sprint page
     `entity-sprint-<id>` — not the MOC `entity-sprint`, the sprint as a kind. The one
-    judgment of a sprint page (case 772.4), which `guppi/materialize.py`, `guppi/prespec.py`,
-    `guppi/sprint.py` and `guppi/sprint_close.py` import with `SPRINT_PAGE`."""
+    judgment of a sprint page (case 772.4), which `guppi/materialize.py`, `guppi/prespec.py`
+    and `guppi/sprint.py` import; `guppi/sprint_close.py` imports `SPRINT_PAGE` alone
+    (case 781)."""
     text = str(slug_of(slug) or "").strip()
     return text.startswith(SPRINT_PAGE) and len(text) > len(SPRINT_PAGE)
 

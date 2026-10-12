@@ -45,7 +45,8 @@ edits it there (case 105.3). An `estimate` sets `status`, overwrites `## Result`
 History `status: a → b` with the ledger pointer (case 53.2). A `delete` sets `archived`,
 History `deleted`; a `delete` of a slug with no category is a thing outside the vault:
 printed, applied, nothing to archive. A `defer` with a page appends the decision slug to
-its `deferred_by` — a rule, an entity or an Insight (case 124.2) — History `deferred`;
+its `deferred_by` — a rule, an entity or an Insight (case 124.2), or an Estimate, after its
+`checked` (case 781) — History `deferred`;
 without a page it writes a placeholder, `status: draft`, with the fields the Case gave. A
 `lesson` writes the lesson alone, `source` when the line carries it (case 53.1). Every ref
 field (`REF_FIELDS`) is written as a quoted wikilink, `"[[slug]]"`; a slug without a
@@ -198,8 +199,8 @@ KEY_ORDER = {
         "deferred_by", "code_ref", "origin", "sprint", "created", "tags",
     ],
     "estimates": [
-        "type", "kind", "status", "target", "purpose", "method", "checked", "origin", "sprint",
-        "created", "tags",
+        "type", "kind", "status", "target", "purpose", "method", "checked", "deferred_by",
+        "origin", "sprint", "created", "tags",
     ],
     "lessons": [
         "type", "kind", "root_cause", "status", "source", "insight", "origin", "sprint",
@@ -226,7 +227,7 @@ SECTION_ORDER = {  # no section derived from a ref field (case 166.2)
         "Context", "Problem", "Recommend", "Given", "When", "Criterion", "Deferred", "Note",
     ],
 }  # fmt: skip
-DEFERRABLE = ("rules", "entities", "insights")  # the categories a `defer` marks (124.2)
+DEFERRABLE = ("rules", "entities", "insights", "estimates")  # a `defer` marks (124.2, 781)
 LIBRARIAN_ONLY = "an Insight is made and retired by the librarian, never created or deleted by a decision (case 171)"
 INITIAL_STATUS = {
     "entities": "draft",
@@ -1066,7 +1067,8 @@ class Vault:
 
     def defer(self, entry: dict) -> None:
         """A `defer` marks its target `deferred_by` — a Rule, an Entity or an Insight (case
-        124.2) — or writes a placeholder page when the target does not exist."""
+        124.2), or an Estimate (case 781) — or writes a placeholder page when the target does
+        not exist."""
         slug, category = entry["slug"], entry["category"]
         page = self.find(slug)
         decision = entry.get("decision")

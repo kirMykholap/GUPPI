@@ -696,6 +696,24 @@ def test_waits_the_one_predicate_names_another_session(tmp_path):
         assert not lint.waits_for_another_session(method), method
 
 
+def test_waits_a_part_that_waits_for_an_event_it_names_is_no_wait(tmp_path):
+    # case 781: a part that opens with `after`, or `by hand, after`, and names its event
+    # before a colon
+    for method in (
+        "by hand, after a pull request from a second account: the output read",
+        "pytest tests/test_x.py; after the librarian's run of a session: brief.md read",
+    ):
+        assert not lint.waits_for_another_session(method), method
+    for method in (
+        "by hand after the librarian's run",
+        "by hand at the /hi of the next session after the change: read",
+    ):
+        assert lint.waits_for_another_session(method), method
+    assert lint.waits_for_an_event("after a pull request from a second account: read")
+    assert not lint.waits_for_an_event("after a pull request from a second account")
+    assert not lint.waits_for_an_event("read after a pull request: x")
+
+
 def test_waits_the_lint_run_gives_no_finding_on_a_live_page(tmp_path):
     method = "pytest tests/test_x.py; by hand in a later session"
     seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method=method))

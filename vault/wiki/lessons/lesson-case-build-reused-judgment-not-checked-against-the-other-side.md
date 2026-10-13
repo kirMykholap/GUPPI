@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: case-guppi named an existing function as the judgment both sides share without reading the function the other side calls, so CLAUDE.md "One judgment, one implementation" was claimed and not checked
-status: new
+status: clustered
+insight: "[[insight-case-build-claims-what-code-does-without-reading-it]]"
 origin: raw/2026-10-12/2252/ledger.md#L16
 sprint: plugin
 created: 2026-10-12
@@ -20,3 +21,4 @@ case-guppi named an existing function as the judgment both sides share without r
 ## History
 
 - 2026-10-12 created · raw/2026-10-12/2252/ledger.md#L16
+- 2026-10-14 updated: clustered under insight-case-build-claims-what-code-does-without-reading-it (synthesis) · raw/2026-10-13/2118/ledger.md#L27

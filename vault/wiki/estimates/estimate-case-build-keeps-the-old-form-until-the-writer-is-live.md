@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether a Case that changes a reader and the text it reads, where the reader loses what it refuses before the text lands, keeps the old form in its then until the writer is measured live
 method: "by hand, after the first Case case-guppi builds that changes a reader in code and the text or the writer it reads: the then of that Case read against the Criterion, recorded in the estimate line"
-checked: 2026-09-28
+checked: 2026-10-13
 origin: raw/2026-09-28/0000/ledger.md#case-473.2
 sprint: migration
 created: 2026-09-28
@@ -24,7 +24,7 @@ Where the reader refuses in between and what it refuses is lost, such as a hook 
 
 ## Result
 
-2026-09-28, by hand, Case 476.3 of session 1318, the first Case after the render that changes a reader (the pre-spec finding) and what it reads (guppi.toml, landing at the librarian's render): the reader only goes red, and the context of 476 says it keeps no old form; the refusing branch of the Criterion was not met in this session; insight-workflow-code-live-before-the-page-it-reads stands actioned with addressed_by decision-case-473.2 and is not in backlog.md
+2026-10-13, /hi of session 2118, the then of Case 804.4 in vault/raw/2026-10-13/1753/cases/case-804.md read against the Criterion: 804.4 changes the reader check_origin of guppi/lint.py and 804.5 writes the field core it reads, which lands at the librarian's run; the reader is lint, which only goes red and loses nothing it refuses, so by the － line it keeps no old form, and the then keeps none — it keeps every earlier origin form and adds origin guppi on a page with core: true; make lint printed 0 lines at the close of the librarian's run (brief)
 
 ## History
 
@@ -32,3 +32,4 @@ Where the reader refuses in between and what it refuses is lost, such as a hook 
 - 2026-09-28 status: pending → passed · raw/2026-09-28/1318/ledger.md#L38
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-13 updated: the Criterion replaced whole — the line that put the insight actioned is dropped, since the insight was reopened; the method names its event (case 797.2) · [[decision-case-797.2]]
+- 2026-10-14 status: pending → passed · raw/2026-10-13/2118/ledger.md#L2

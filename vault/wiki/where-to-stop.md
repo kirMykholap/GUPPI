@@ -2,7 +2,7 @@
 
 From the approved Spec to the librarian's report the run needs no person: `/box`, `/work`, the Work readings, `/retro` and `/handoff` run in one turn. Stop and ask the person only on one of these conditions:
 
-1. A fork that changes a contract: the work needs a choice that no ratified Case makes, so a new Case is needed.
+1. A fork that changes a contract: the work needs a choice that no ratified Case makes, or a ratified Case turns out wrong — by a text you find wrong or too narrow, or by a finding of `uv run guppi prespec --check` on the plan after a Case ratified in Work Mode — so a new Case is needed, or that Case is fixed, as `orchestration.md` sets it; in a `/work` that `/box` calls no Case is built, as `rule-spec-box` sets it, and the choice goes to `handoff.md` as a line (case 806.4).
 2. A hook refuses, and its text gives no step you can follow, or says that the refusal is a stop.
 3. An action that git in this repository cannot undo, such as a push to a remote or a deletion outside the repository.
 4. A task of the Spec whose text opens with `stop:`: stop before it runs, and run it after the person's word.

@@ -369,7 +369,7 @@ update:
 - [x] update `rule-case-build`
 - [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
 - [x] create `estimate-case-build-judges-by-the-state-at-the-moment`
-- [ ] read `estimate-case-build-judges-by-the-state-at-the-moment`
+- [x] read `estimate-case-build-judges-by-the-state-at-the-moment`
 ```
 
 ### Case 797.2 — The Criterion of the old-form Estimate no longer states the insight closed
@@ -398,7 +398,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
-- [ ] read `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
+- [x] read `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
 ```
 
 ## Case 798 — case-guppi reads the governing rule and the last output of a check before it recommends an option

@@ -5,6 +5,7 @@ purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a 
 status: draft
 parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]"]
+deferred_by: ["[[decision-case-805]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-756.1
 sprint: plugin
 created: 2026-10-10
@@ -48,3 +49,5 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-13 updated: the milestone The sprint turn and GitHub closed — out of Milestones, named in Closed (case 794) · [[decision-case-794]]
 - 2026-10-13 updated: the milestone The plugin names rule-morph, the install step; the Backlog takes the category set as data, out of rule-morph (case 802) · [[decision-case-802]]
 - 2026-10-13 updated: the item of The clean branch links rule-clean-branch and the Estimate of the live run (case 804) · [[decision-case-804.7]]
+- 2026-10-14 deferred · [[decision-case-805]]
+- 2026-10-14 updated: the clean branch: guppi ship removes each bracket that holds a pointer; the pages are reworded by a Case of the next session (case 807.1) · [[decision-case-807.1]]

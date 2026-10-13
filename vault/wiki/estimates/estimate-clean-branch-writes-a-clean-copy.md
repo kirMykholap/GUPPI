@@ -3,8 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-clean-branch]]"
-purpose: "Whether guppi ship writes only the code, the harness and the pages with core: true, removes the references to cases, writes the shipped values, and exits 1 on what it cannot clean"
+purpose: "Whether guppi ship writes only the code, the harness and the pages with core: true, removes whole each bracket that holds a pointer, writes a link to a page it leaves out as its slug, writes the shipped values, exits 1 on a pointer outside such a bracket, lists the brackets with words under --review, and judges in place under --check each file outside vault/ that it writes"
 method: uv run pytest tests/test_ship.py
+checked: 2026-10-14
 origin: raw/2026-10-13/1753/ledger.md#case-804.6
 sprint: plugin
 created: 2026-10-13
@@ -15,22 +16,30 @@ tags: [ci, plugin]
 
 When:
 `uv run guppi ship <folder>`, as `rule-clean-branch` sets it, builds the clean version of the project from its working tree into an empty folder.
+**＋** Or `uv run guppi ship --review <folder>` does the same.
+**＋** Or `uv run guppi ship --check` judges the working tree and writes no folder.
 
 Then:
 It writes `guppi/`, `.claude/`, `CLAUDE.md`, `Makefile`, `pyproject.toml`, `uv.lock`, `.gitattributes`, the `schema.yaml` of each category, `vault/wiki/tags.md`, each page under `vault/wiki/` with `core: true`, and each file rendered from such a page.
-**＋** In each file it writes, it removes a parenthesis that holds only references to cases, the references to cases inside a longer parenthesis, and each `[[decision-case-N]]` link.
+**＋** In each file it writes, it removes whole each bracket that holds a pointer — a reference to a case, an id `decision-case-N` or a mention of a session by its id — with every word in it and the space before it, and each `[[decision-case-N]]` link; a bracket that holds no pointer stays as it is.
+**＋** It writes each other `[[…]]` link of a Markdown file to a page or a file it does not write as the slug in a code span.
 **＋** Each page it writes carries `origin: guppi`, `sprint: guppi`, the date of the run in `created` and a `## History` of one line that says the page shipped with GUPPI, and its link fields keep only the pages it writes.
-**＋** It exits 1, and prints the file and the line, for each reference to a case, each link in a text to a page or a file it does not write, and each mention of a session of this repository by its id that remains.
+**＋** It exits 1, and prints the file and the line, for each pointer that stands outside such a bracket, each id of a list of sessions included.
 **＋** It exits 1 when a file it writes holds a section between the markers of a page without `core: true`.
+**＋** With `--review` it also prints the file, the line and the bracket for each bracket it removes that holds words beside its pointers, and those lines set no exit code.
+**＋** With `--check` it judges each file it would write outside `vault/` — `guppi/`, `.claude/` and the files at the root of the project — but `uv.lock`, which it does not clean, as it would write it, prints the same lines for it, exits 1 on any, and writes nothing.
 **－** It writes no page without `core: true`, nothing of `vault/raw/`, `vault/archive/` or `.github/`, and no `sprint.md`, `backlog.md`, `brief.md`, `log.md` or `guppi.toml`.
 **－** It writes no file that a page without `core: true` renders in full.
 **－** A case id inside a code span of a Markdown file, or after `[case ` or `#case-`, is the form of a line, not a reference.
+**－** A case id inside a fenced block of a Markdown file, inside a code span of the text of a `schema.yaml`, in `vault/wiki/case-example.md` or the Render of `rule-case-example`, or after `:case `, is the form of a sample or of a line: it is neither removed nor printed.
 
 ## Result
 
-2026-10-13, uv run pytest tests/test_ship.py: 10 passed — the written set (code, harness, schema files, tags.md, core pages, files a core page renders), no session record, no sprint.md, backlog.md, brief.md, log.md, guppi.toml or file a loose page renders in full, the references to cases and decision links removed, origin and sprint guppi with the run date and a one-line History, exit 1 with file and line on a leftover reference, a link to a page left out, a session mention and a section of a loose page, the form of a line kept, and lint finds no origin on a page it wrote
+2026-10-14, uv run pytest tests/test_ship.py: 15 passed — every bracket that holds a pointer removed whole (words, a session, across lines, a bracket that opens a line), a bracket with no pointer kept, a link to a page left out written as its slug, a fenced block, a code span of a schema.yaml and case-example.md kept, a pointer outside a bracket and each id of a list of sessions exit 1, --review lists a bracket with words with exit 0, --check judges guppi/ in place and writes nothing, the written set and the shipped values as before
 
 ## History
 
 - 2026-10-13 created · [[decision-case-804.6]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L120
+- 2026-10-14 updated: the Criterion replaced whole — each bracket that holds a pointer removed whole, a link to a page left out as its slug, samples and examples kept, --review and --check (case 807.1) · [[decision-case-807.1]]
+- 2026-10-14 status: pending → passed · raw/2026-10-13/2118/ledger.md#L20

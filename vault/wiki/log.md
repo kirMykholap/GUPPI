@@ -9689,3 +9689,48 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-13 decisions/decision-case-745 archived · cleanup
 - 2026-10-13 decisions/decision-case-750 archived · cleanup
 - 2026-10-13 decisions/decision-case-758 archived · cleanup
+- 2026-10-14 estimates/estimate-case-build-judges-by-the-state-at-the-moment status: pending → passed · raw/2026-10-13/2118/ledger.md#L1 · generate
+- 2026-10-14 estimates/estimate-case-build-keeps-the-old-form-until-the-writer-is-live status: pending → passed · raw/2026-10-13/2118/ledger.md#L2 · generate
+- 2026-10-14 decisions/decision-case-805 created · raw/2026-10-13/2118/ledger.md#case-805 · generate
+- 2026-10-14 entities/entity-sprint-plugin deferred · [[decision-case-805]] · generate
+- 2026-10-14 decisions/decision-case-806 created · raw/2026-10-13/2118/ledger.md#case-806 · generate
+- 2026-10-14 decisions/decision-case-806.1 created · raw/2026-10-13/2118/ledger.md#case-806.1 · generate
+- 2026-10-14 rules/rule-orchestration updated: in Work Mode a ratified Case is not built again: a new Case under a new number replaces the sub-case that must change, and the replaced sub-case leaves the Spec; the reply that acknowledges it ends the turn (case 806.1) · [[decision-case-806.1]] · generate
+- 2026-10-14 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — in Work Mode a new Case replaces the sub-case of a ratified Case that must change, and only that sub-case leaves the Spec (case 806.1) · [[decision-case-806.1]] · generate
+- 2026-10-14 decisions/decision-case-806.2 created · raw/2026-10-13/2118/ledger.md#case-806.2 · generate
+- 2026-10-14 rules/rule-case-build updated: in Work Mode case-guppi builds a new Case that holds whole each sub-case of a ratified Case it replaces and supersedes it, never the ratified Case again under its own number (case 806.2) · [[decision-case-806.2]] · generate
+- 2026-10-14 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — in Work Mode case-guppi builds a new Case that replaces the sub-case of a ratified Case, never that Case under its own number (case 806.2) · [[decision-case-806.2]] · generate
+- 2026-10-14 decisions/decision-case-806.3 created · raw/2026-10-13/2118/ledger.md#case-806.3 · generate
+- 2026-10-14 rules/rule-work-mode updated: after a Case ratified in Work Mode, /work runs the check of the plan before its first task, stops on a finding, and ticks a task whose work already stands (case 806.3) · [[decision-case-806.3]] · generate
+- 2026-10-14 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: the Criterion replaced whole — the check of the plan before the tasks of a Case ratified in Work Mode, the stop on its finding, and the tick of a task whose work already stands (case 806.3) · [[decision-case-806.3]] · generate
+- 2026-10-14 decisions/decision-case-807 created · raw/2026-10-13/2118/ledger.md#case-807 · generate
+- 2026-10-14 decisions/decision-case-807.1 created · raw/2026-10-13/2118/ledger.md#case-807.1 · generate
+- 2026-10-14 rules/rule-clean-branch updated: a pointer stands in a bracket of its own, which guppi ship removes whole; a link to a page left out becomes its slug; --review and --check (case 807.1) · [[decision-case-807.1]] · generate
+- 2026-10-14 estimates/estimate-clean-branch-writes-a-clean-copy updated: the Criterion replaced whole — each bracket that holds a pointer removed whole, a link to a page left out as its slug, samples and examples kept, --review and --check (case 807.1) · [[decision-case-807.1]] · generate
+- 2026-10-14 entities/entity-sprint-plugin updated: the clean branch: guppi ship removes each bracket that holds a pointer; the pages are reworded by a Case of the next session (case 807.1) · [[decision-case-807.1]] · generate
+- 2026-10-14 decisions/decision-case-807.2 created · raw/2026-10-13/2118/ledger.md#case-807.2 · generate
+- 2026-10-14 rules/rule-lint updated: make lint runs guppi ship --check as its last step (case 807.2) · [[decision-case-807.2]] · generate
+- 2026-10-14 estimates/estimate-lint-runs-every-step updated: the Criterion replaced whole — guppi ship --check is the last step of make lint (case 807.2) · [[decision-case-807.2]] · generate
+- 2026-10-14 decisions/decision-case-807.3 created · raw/2026-10-13/2118/ledger.md#case-807.3 · generate
+- 2026-10-14 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets created · [[decision-case-807.3]] · generate
+- 2026-10-14 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets status: pending → passed · raw/2026-10-13/2118/ledger.md#L22 · generate
+- 2026-10-14 rules/rule-clean-branch estimate estimate-clean-branch-code-holds-pointers-only-in-brackets added · [[decision-case-807.3]] · generate
+- 2026-10-14 decisions/decision-case-807.4 created · raw/2026-10-13/2118/ledger.md#case-807.4 · generate
+- 2026-10-14 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket created · [[decision-case-807.4]] · generate
+- 2026-10-14 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket status: pending → passed · raw/2026-10-13/2118/ledger.md#L23 · generate
+- 2026-10-14 rules/rule-prespec-hook estimate estimate-prespec-hook-reports-a-pointer-outside-a-bracket added · [[decision-case-807.4]] · generate
+- 2026-10-14 rules/rule-case-protocol updated: a pointer in the new text of a page with core: true stands in a bracket of its own (case 807.4) · [[decision-case-807.4]] · generate
+- 2026-10-14 decisions/decision-case-806.4 created · raw/2026-10-13/2118/ledger.md#case-806.4 · generate
+- 2026-10-14 rules/rule-where-to-stop updated: the first condition also covers a ratified Case found wrong, by a text the agent finds wrong or by a finding of the check of the plan in Work Mode; under /box no Case is built (case 806.4) · [[decision-case-806.4]] · generate
+- 2026-10-14 estimates/estimate-where-to-stop-stops-only-on-its-conditions updated: the Criterion replaced whole — a fork that changes a contract covers a ratified Case found wrong, by a text the agent finds wrong or by a finding of the check of the plan after a Case ratified in Work Mode (case 806.4) · [[decision-case-806.4]] · generate
+- 2026-10-14 estimates/estimate-clean-branch-writes-a-clean-copy status: pending → passed · raw/2026-10-13/2118/ledger.md#L20 · generate
+- 2026-10-14 estimates/estimate-lint-runs-every-step status: pending → passed · raw/2026-10-13/2118/ledger.md#L21 · generate
+- 2026-10-14 estimates/estimate-orchestration-shows-the-built-case status: pending → passed · raw/2026-10-13/2118/ledger.md#L24 · generate
+- 2026-10-14 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-10-13/2118/ledger.md#L25 · generate
+- 2026-10-14 estimates/estimate-where-to-stop-stops-only-on-its-conditions status: pending → passed · raw/2026-10-13/2118/ledger.md#L26 · generate
+- 2026-10-14 lessons/lesson-case-build-recommended-on-a-claim-about-code-it-did-not-read created · raw/2026-10-13/2118/ledger.md#L27 · generate
+- 2026-10-14 insights/insight-case-build-claims-what-code-does-without-reading-it created · raw/2026-10-13/2118/ledger.md#L27 · generate
+- 2026-10-14 lessons/lesson-case-build-reused-judgment-not-checked-against-the-other-side updated: clustered under insight-case-build-claims-what-code-does-without-reading-it (synthesis) · raw/2026-10-13/2118/ledger.md#L27 · generate
+- 2026-10-14 lessons/lesson-case-build-recommended-on-a-claim-about-code-it-did-not-read updated: clustered under insight-case-build-claims-what-code-does-without-reading-it (synthesis) · raw/2026-10-13/2118/ledger.md#L27 · generate
+- 2026-10-14 rules/rule-case-build status: draft → built · cascade · generate
+- 2026-10-14 rules/rule-work-mode status: built → draft · cascade · generate

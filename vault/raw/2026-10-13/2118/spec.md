@@ -118,10 +118,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```
 
 ### Case 806.2 — case-guppi builds the new Case that replaces a sub-case in Work Mode
@@ -198,10 +198,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 806.3 — /work checks the plan before the tasks of a Case ratified in Work Mode
@@ -260,9 +260,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- [ ] `uv run guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `rule-work-mode`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
 - [ ] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 ```
 
@@ -314,10 +314,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-where-to-stop`
-- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
-- [ ] `uv run guppi render`: `vault/wiki/where-to-stop.md`
-- [ ] read `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] update `rule-where-to-stop`
+- [x] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] `uv run guppi render`: `vault/wiki/where-to-stop.md`
+- [x] read `estimate-where-to-stop-stops-only-on-its-conditions`
 ```
 
 ## Case 807 — A pointer stands in a bracket of its own, which guppi ship removes whole
@@ -446,13 +446,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-clean-branch`
-- [ ] update `estimate-clean-branch-writes-a-clean-copy`
-- [ ] update `entity-sprint-plugin`
+- [x] update `rule-clean-branch`
+- [x] update `estimate-clean-branch-writes-a-clean-copy`
+- [x] update `entity-sprint-plugin`
 - [x] `guppi/ship.py`: the `then` of this Case. A bracket with no bracket inside it, on one line or across lines, that holds a pointer is removed whole; the pointer of a session takes each id of a list, as `REFS` does for cases; a fenced block of a Markdown file and the text of a `schema.yaml` are masked like a code span; `vault/wiki/case-example.md` and the section between the markers of `rule-case-example` are not judged; `--review` and `--check` as the `then` sets them, `--check` over `TREES` and `ROOT_FILES` but `NOT_CLEANED`. The judgment of a pointer — its patterns, the masking, the removal and the list of what remains — is one set of functions of this module, which `guppi/prespec.py` imports. The docstring names the rule.
 - [x] `tests/test_ship.py`: the tests of the removal and of what remains follow the new rule — a bracket with words and a pointer removed whole, a bracket with no pointer kept, a session in a bracket removed, each id of a list of sessions printed, a link to a page left out written as its slug — and new tests of a fenced block, of a code span in a `schema.yaml`, of `case-example.md`, of `--review` and of `--check`.
 - [x] `uv run guppi ship --review` into an empty temporary folder after the change: its lines under `vault/wiki/`, and its lines on `.claude/` and `CLAUDE.md`, which change only through their Rule pages, go into the handoff for the Case of the next session that rewords the pages; its lines under `guppi/` and on `Makefile`, `pyproject.toml` and `.gitattributes` are the work of 807.3.
-- [ ] read `estimate-clean-branch-writes-a-clean-copy`
+- [x] read `estimate-clean-branch-writes-a-clean-copy`
 ```
 
 ### Case 807.2 — make lint runs the pointer check of guppi ship
@@ -493,9 +493,9 @@ update:
 ```tasks
 - [x] `Makefile`: the target `lint` runs `uv run guppi ship --check < /dev/null || status=1` after `guppi lint`, and its `##` line names the check of the pointers in the files outside `vault/` that the clean version holds.
 - [x] `tests/test_lint.py`: `LINT_STEPS` ends with `run guppi ship --check`.
-- [ ] update `rule-lint`
-- [ ] update `estimate-lint-runs-every-step`
-- [ ] read `estimate-lint-runs-every-step`
+- [x] update `rule-lint`
+- [x] update `estimate-lint-runs-every-step`
+- [x] read `estimate-lint-runs-every-step`
 ```
 
 ### Case 807.3 — The code holds each pointer in a bracket of its own
@@ -533,8 +533,8 @@ create:
 
 ```tasks
 - [x] `guppi/`, `Makefile`, `pyproject.toml` and `.gitattributes`: each pointer that `uv run guppi ship --check` prints on these files moves, with the words that go with it, into a bracket of its own at the end of its sentence, or its sentence is reworded so that it needs no pointer; each bracket on these files that `--review` prints is split so that a word the sentence needs stands outside it.
-- [ ] create `estimate-clean-branch-code-holds-pointers-only-in-brackets`
-- [ ] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] create `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
 ```
 
 ### Case 807.4 — The check of the plan finds a pointer outside its bracket
@@ -580,10 +580,10 @@ update:
 ```tasks
 - [x] `guppi/prespec.py`: the finding as the `then` of this Case sets it, by the judgment of `guppi/ship.py` and `is_core` of `guppi/pages.py`; the module docstring names it among the findings of `--check`.
 - [x] `tests/test_prespec.py`: one test per line of the `then` of this Case, the names of the tests holding `pointer`.
-- [ ] create `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
-- [ ] update `rule-case-protocol`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
+- [x] create `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
+- [x] update `rule-case-protocol`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] read `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
 ```
 
 ## Deferred

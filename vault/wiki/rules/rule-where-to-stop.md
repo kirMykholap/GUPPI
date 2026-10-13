@@ -25,7 +25,7 @@ Prevents the run from /work to the librarian from stopping where the person is n
 
 From the approved Spec to the librarian's report the run needs no person: `/box`, `/work`, the Work readings, `/retro` and `/handoff` run in one turn. Stop and ask the person only on one of these conditions:
 
-1. A fork that changes a contract: the work needs a choice that no ratified Case makes, so a new Case is needed.
+1. A fork that changes a contract: the work needs a choice that no ratified Case makes, or a ratified Case turns out wrong — by a text you find wrong or too narrow, or by a finding of `uv run guppi prespec --check` on the plan after a Case ratified in Work Mode — so a new Case is needed, or that Case is fixed, as `orchestration.md` sets it; in a `/work` that `/box` calls no Case is built, as `rule-spec-box` sets it, and the choice goes to `handoff.md` as a line (case 806.4).
 2. A hook refuses, and its text gives no step you can follow, or says that the refusal is a stop.
 3. An action that git in this repository cannot undo, such as a push to a remote or a deletion outside the repository.
 4. A task of the Spec whose text opens with `stop:`: stop before it runs, and run it after the person's word.
@@ -51,3 +51,4 @@ To stop, end the reply with the question to the person. From the call of `/retro
 - 2026-10-11 updated: condition 6 also covers a refused merge or branch deletion in the merge tasks of the opening Case of a sprint · [[decision-case-775.3]]
 - 2026-10-13 updated: condition 6 covers a refused git or gh command in the merge tasks of the opening Case of a sprint, of a review Case and of a merge Case, and a conflict that a merge Case does not settle · [[decision-case-789.3]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the first condition also covers a ratified Case found wrong, by a text the agent finds wrong or by a finding of the check of the plan in Work Mode; under /box no Case is built (case 806.4) · [[decision-case-806.4]]

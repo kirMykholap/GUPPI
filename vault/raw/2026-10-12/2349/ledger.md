@@ -1,0 +1,59 @@
+- 00:14:28 decision[case 785][update][rule-case-build]{ref:rule-case-build}
+- 00:14:28 decision[case 785][update][estimate-case-build-finds-an-existing-judgment]{ref:rule-case-build}
+- 00:27:21 decision[case 786.1][update][rule-page-generation]{ref:rule-page-generation}
+- 00:27:21 decision[case 786.1][update][entity-glossary]{ref:entity-glossary}
+- 00:27:21 decision[case 786.1][update][estimate-generate-writes]{ref:rule-page-generation}
+- 00:27:21 decision[case 786.2][update][rule-orchestration]{ref:rule-orchestration}
+- 00:27:21 decision[case 786.2][update][estimate-prespec-checks-the-form-of-an-item]{ref:rule-prespec}
+- 02:26:48 decision[case 787.1][create][rule-github-repository]{tags:github,ci,git}
+- 02:26:48 decision[case 787.1][update][estimate-sprint-plugin-pull-requests-reviewed-on-github]{ref:entity-sprint-plugin}
+- 02:26:48 decision[case 787.2][update][rule-git-context]{ref:rule-git-context}
+- 02:26:48 decision[case 787.2][update][estimate-git-context-current]{ref:rule-git-context}
+- 02:26:48 decision[case 788.1][update][rule-skill-sprint-open]{ref:rule-skill-sprint-open}
+- 02:26:48 decision[case 788.1][update][rule-ledger-write]{ref:rule-ledger-write}
+- 02:26:48 decision[case 788.1][create][estimate-skill-sprint-open-refuses-a-taken-sprint-id]{ref:rule-skill-sprint-open}{tags:sprint,ledger,hooks}
+- 02:26:48 decision[case 788.2][update][rule-ratification]{ref:rule-ratification}
+- 02:26:48 decision[case 788.2][update][rule-decisions-schema]{ref:rule-decisions-schema}
+- 02:26:48 decision[case 788.2][update][rule-orchestration]{ref:rule-orchestration}
+- 02:26:48 decision[case 788.2][create][estimate-ratification-case-id-carries-the-sprint]{ref:rule-ratification}{tags:ledger,harness,session}
+- 02:26:48 decision[case 789.1][update][rule-skill-sprint-open]{ref:rule-skill-sprint-open}
+- 02:26:48 decision[case 789.1][update][estimate-skill-sprint-open-merges-the-closed-sprint-branch]{ref:rule-skill-sprint-open}
+- 02:26:48 decision[case 789.2][create][rule-skill-pr-review]{ref:rule-plan-mode}{tags:github,git,workflow,harness}
+- 02:26:48 decision[case 789.2][create][estimate-skill-pr-review-takes-a-pull-request-whole]{ref:rule-skill-pr-review}{tags:github,git,workflow}
+- 02:26:48 decision[case 789.3][update][rule-where-to-stop]{ref:rule-where-to-stop}
+- 02:26:48 decision[case 789.3][update][estimate-where-to-stop-stops-only-on-its-conditions]{ref:rule-where-to-stop}
+- 02:26:48 decision[case 790][create][rule-skill-merge-main]{ref:rule-plan-mode}{tags:git,workflow,sprint,harness}
+- 02:26:48 decision[case 790][create][estimate-skill-merge-main-joins-a-conflicted-page]{ref:rule-skill-merge-main}{tags:git,workflow,sprint}
+- 02:26:48 decision[case 790][update][rule-page-generation]{ref:rule-page-generation}
+- 02:26:48 decision[case 790][update][rule-vault-layout]{ref:rule-vault-layout}
+- 02:26:48 decision[case 790][update][rule-documentation]{ref:rule-documentation}
+- 02:26:48 decision[case 790][update][entity-glossary]{ref:entity-glossary}
+- 03:19:35 decision[case 793][defer][rule-page-generation]{ref:rule-page-generation}
+- 03:24:31 decision[case 787.1][update][entity-sprint-plugin]{ref:entity-sprint-plugin}
+- 03:24:31 decision[case 788.3][update][rule-skill-sprint-open]{ref:rule-skill-sprint-open}
+- 03:24:31 decision[case 788.3][update][estimate-skill-sprint-open-asks-the-opening-questions]{ref:rule-skill-sprint-open}
+- 03:24:31 decision[case 788.4][update][estimate-case-check-sends-back-a-ratified-case-in-another-shape]{ref:rule-case-check}
+- 03:24:31 decision[case 788.5][update][estimate-spec-box-refuses-a-stale-spec]{ref:rule-spec-box}
+- 03:24:31 decision[case 788.6][update][estimate-spec-reconcile-refuses-a-case-file-another-agent-holds]{ref:rule-spec-reconcile}
+- 03:24:31 decision[case 788.7][update][estimate-case-check-sends-back-a-case-number-held-by-another-agent]{ref:rule-case-check}
+- 03:24:31 decision[case 791][update][rule-skill-sprint-close]{ref:rule-skill-sprint-close}
+- 03:24:31 decision[case 791][update][estimate-skill-sprint-close-leads-the-closing-session]{ref:rule-skill-sprint-close}
+- 04:00:27 decision[case 794][create][rule-github-repository]{supersedes:case 787.1}{tags:github,ci,git}
+- 04:00:27 decision[case 794][update][estimate-sprint-plugin-pull-requests-reviewed-on-github]{ref:entity-sprint-plugin}
+- 04:00:27 decision[case 794][update][entity-sprint-plugin]{ref:entity-sprint-plugin}
+- 04:28:14 estimate[estimate-case-build-finds-an-existing-judgment][passed] 2026-10-13, Retro by hand: the new Render of rule-case-build in raw/2026-10-12/2349/spec.md (case 785) has case-guppi read whole the function each side calls, judge where they part, ask the person in a round and add a test over that input, and name each function in context — each line of the Criterion stands in it; the ask-guppi run at the /pre-spec of this session found 2 such tasks (findings 11 and 12, Case 788), both in Cases built on the Render before case 785
+- 04:28:14 estimate[estimate-generate-writes][passed] 2026-10-13, uv run pytest tests/test_generate.py: 127 passed — a defer of an Insight, a Lesson and a Decision page with no page writes no page and fails alone; an Insight archived in an insights folder is marked there
+- 04:28:14 estimate[estimate-prespec-checks-the-form-of-an-item][passed] 2026-10-13, uv run pytest tests/test_prespec.py: 242 passed — a defer of an Insight or a Lesson with no page is the finding of defer_writes_no_page, a rule or an entity with no page is none
+- 04:28:14 estimate[estimate-skill-sprint-open-refuses-a-taken-sprint-id][passed] 2026-10-13, uv run pytest tests/test_ledger.py -k taken_sprint: 4 passed; Retro by hand: the Render of rule-skill-sprint-open in spec.md asks for another id and builds the opening Case again after a refusal (case 788.1)
+- 04:28:14 estimate[estimate-ratification-case-id-carries-the-sprint][passed] 2026-10-13, uv run pytest tests/test_caseid.py: 20 passed — parse_line, top_case, case_file, case_number, held_number, check_origin, DEFERRED_LINE and case_key read kir-plugin-12.1 and 785.1 alike, and guppi caseid --next prints and holds two ids for a new sprint, a session that creates a sprint page and the sprint plugin; Retro by hand: the Renders of rule-ratification and rule-orchestration in spec.md state the form and the dispatch by guppi caseid --next
+- 04:28:14 estimate[estimate-skill-sprint-open-asks-the-opening-questions][passed] 2026-10-13, Retro by hand: the Render of rule-skill-sprint-open in spec.md (case 788.3) has the main agent ask the sprint id first, dispatch the opening Case as <id>-1 and case-guppi ask the goal, the Definition of done, the first milestone and the backlog
+- 04:28:14 estimate[estimate-case-check-sends-back-a-ratified-case-in-another-shape][passed] 2026-10-13, uv run pytest tests/test_casecheck.py -k shape: 13 passed — the new id stands above an id held only by the store, only by a Case file and only by a Decision page, and new_number and guppi caseid --next give the same id
+- 04:28:14 estimate[estimate-spec-box-refuses-a-stale-spec][passed] 2026-10-13, uv run pytest tests/test_box.py: 14 passed — a later Case of the same sprint, a Case of another sprint dated on or after the folder, a plain id after a Spec of plain ids; a plain id beside a Spec with no plain id is not counted
+- 04:28:14 estimate[estimate-spec-reconcile-refuses-a-case-file-another-agent-holds][passed] 2026-10-13, uv run pytest tests/test_ratified.py -k number_held: 13 passed — a file case-kir-plugin-12.md held by another agent is refused with case kir-plugin-13, the same agent passes
+- 04:28:14 estimate[estimate-case-check-sends-back-a-case-number-held-by-another-agent][passed] 2026-10-13, uv run pytest tests/test_casecheck.py -k subagent_clash: 5 passed — Case kir-plugin-12 held by another agent is sent back as kir-plugin-13; an id held by guppi caseid --next with no agent_id gives no finding
+- 04:28:14 estimate[estimate-skill-sprint-open-merges-the-closed-sprint-branch][passed] 2026-10-13, Retro by hand: the Render of rule-skill-sprint-open in spec.md (case 789.1) names the owner by gh api user against gh repo view, writes the /merge-main line before the close line, holds the stop: task with push, pr create, pr checks --watch and pr merge --merge for the owner and push and pr create for an author, then fetch, ff-only from origin/main, the new branch and the deletion; no merge of main into the closed branch; a refusal is the sixth stop
+- 04:28:14 estimate[estimate-where-to-stop-stops-only-on-its-conditions][passed] 2026-10-13, Retro by hand: the Render of rule-where-to-stop in spec.md (case 789.3) makes the sixth condition cover a refused git or gh command of the opening Case, a review Case and a merge Case, and a conflict a merge Case does not settle, with git merge --no-ff --no-commit on settled files no refusal; the other conditions stand as rendered
+- 04:28:14 estimate[estimate-skill-sprint-close-leads-the-closing-session][passed] 2026-10-13, Retro by hand: the Render of rule-skill-sprint-close in spec.md (case 791) reads the commit of main by gh api and stops with /merge-main first when git merge-base --is-ancestor fails, writing nothing into .git; orchestration.md names the two skills in one sentence; the archived entity-sprint-migration holds the close line in its form
+- 04:28:22 lesson[error][lesson-case-build-made-an-always-red-check-required]{tags:case-build,ci,github} trigger: Case 787 made style, test and lint required checks on main; in Work Mode the first CI run showed lint red on the 8 lines of the Baseline, so no outside pull request could merge, and Case 794 had to replace 787.1 root_cause: case-guppi recommended all three checks as required without reading what make lint prints at the Baseline of the session or rule-lint, which calls lint a signal and not a gate
+- 04:28:22 lesson[error][lesson-case-build-chose-a-key-its-own-session-adds]{tags:case-build,prespec,harness} trigger: Case 787.2 was built to drop a section with the key drop that Case 792 of the same session would add; the check of the Case file, running the code before Work Mode, refused the key, and Case 792 was put off to the backlog root_cause: case-guppi let a Case of a session use a form of an update that only the code of that session's Work Mode would accept, though every check of the Case file runs the code that stands before Work Mode
+- 04:28:22 lesson[error][lesson-work-mode-edited-a-source-file-through-the-shell]{tags:workflow,hooks} trigger: in Work Mode the agent changed guppi/materialize.py by a python heredoc in Bash; the shellwrite hook turned its CRLF endings into LF, and a later heredoc for a JSON file was refused by bashguard root_cause: the agent chose a shell script for a multi-part edit of a source file instead of the Edit tool that the hooks require

@@ -55,9 +55,10 @@ can name it (case 52.4), and an effect on each target:
                                     marks it applied, nothing to archive
     defer     existing              the Decision's slug appended to the target's `deferred_by`,
                                     shown in its index line (case 52.3)
-    defer     none                  a minimal placeholder page, born with `deferred_by`; never
-                                    for an Estimate: no page by `has_page`, its entry fails
-                                    in `generate` (case 783)
+    defer     none                  a minimal placeholder page, born with `deferred_by`, for a
+                                    rule or an entity only; an entry of any other kind with
+                                    no page by `defer_writes_no_page` fails in `generate`
+                                    (cases 783, 786)
 
 The category of a slug comes from its prefix, which pre-spec guards; a slug with no prefix is
 `unknown` (case 320). A `{supersedes:case N}` makes the earlier decision `superseded`, and
@@ -777,9 +778,7 @@ def page_exists(project_dir: Path, category: str, slug: str) -> bool:
 def has_page(project_dir: Path, category: str, slug: str) -> bool:
     """True when the page of a slug stands in its own category folder: under
     `vault/wiki/<category>/`, or in a folder `<category>` under `vault/archive/` outside a
-    `raw/` folder. The one judgment whether a `defer` of an Estimate names a page, imported
-    by `guppi/generate.py`, which fails such an entry, and `guppi/prespec.py`, which reports
-    it (case 783)."""
+    `raw/` folder (case 783). `defer_writes_no_page` asks it (case 786)."""
     if (project_dir / "vault" / "wiki" / category / f"{slug}.md").exists():
         return True
     archive = project_dir / "vault" / "archive"
@@ -788,6 +787,22 @@ def has_page(project_dir: Path, category: str, slug: str) -> bool:
     return any(
         p.parent.name == category and "raw" not in p.relative_to(archive).parts[:-1]
         for p in archive.rglob(f"{slug}.md")
+    )
+
+
+# the folders whose `defer` with no page writes a placeholder page (case 786)
+PLACEHOLDER_CATEGORIES = ("rules", "entities")
+
+
+def defer_writes_no_page(project_dir: Path, category: str, slug: str) -> bool:
+    """True when a `defer` names a page that a placeholder cannot stand for: `category` is a
+    vault folder of `CATEGORIES` outside `PLACEHOLDER_CATEGORIES`, and `has_page` finds no
+    page. The one judgment whether a `defer` names a page, imported by `guppi/generate.py`,
+    which fails such an entry, and `guppi/prespec.py`, which reports it (cases 783, 786)."""
+    return (
+        category in CATEGORIES
+        and category not in PLACEHOLDER_CATEGORIES
+        and not has_page(project_dir, category, slug)
     )
 
 

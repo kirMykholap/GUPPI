@@ -74,8 +74,10 @@ from pathlib import Path
 
 import yaml
 
+from guppi.caseid import ID as CASE_ID
 from guppi.event import project_root
 from guppi.materialize import (
+    PLACEHOLDER_CATEGORIES,  # the folders a placeholder may stand in (case 786)
     category_of,  # the one table of prefixes (case 460.3)
     fence_breaks,  # the one judgment of a fence (case 487.2)
 )
@@ -97,7 +99,8 @@ PATH_FIELDS = ("implementation_ref", "governs")
 WIKILINK = re.compile(r"\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]")
 CODE_SPAN = re.compile(r"`[^`\n]*`")  # a `[[slug]]` quoted in prose is not a link
 # `raw/<date>/ledger.md#…` (the shape before case 103) or `raw/<date>/<HHMM>/ledger.md#…`
-ORIGIN_CASE = re.compile(r"^raw/(\d{4}-\d\d-\d\d(?:/\d{4})?)/ledger\.md#case-([\w.]+)$")
+# a Case id in either form, by the grammar of `guppi/caseid.py` (case 788.2)
+ORIGIN_CASE = re.compile(rf"^raw/(\d{{4}}-\d\d-\d\d(?:/\d{{4}})?)/ledger\.md#case-({CASE_ID})$")
 ORIGIN_LINE = re.compile(r"^raw/(\d{4}-\d\d-\d\d(?:/\d{4})?)/ledger\.md#L(\d+)$")
 TEST_PATH = re.compile(r"`?(tests/[\w./-]+\.py)`?")
 MAKE_TARGET = re.compile(r"`?make ([\w-]+)`?")
@@ -107,7 +110,7 @@ CRITERION = "## Criterion"
 RENDER = "## Render"
 WHEN = "## When"
 PLACEHOLDER_FIELDS = ("kind", "estimates", "tags")  # what a `create` fills (case 186.3)
-DEFERRED_LINE = re.compile(r"^- \S+ deferred\b.*(?:\[\[decision-case-|#case-)([\w.]+?)\]?\]?$")
+DEFERRED_LINE = re.compile(rf"^- \S+ deferred\b.*(?:\[\[decision-case-|#case-)({CASE_ID})\]?\]?$")
 
 
 class Finding:
@@ -169,7 +172,7 @@ def is_placeholder(page: Page) -> bool:
     """A rule or entity page born of a `defer` without a `ref`: it carries `deferred_by`
     and none of the fields a `create` fills (case 186.3)."""
     return (
-        page.category in ("rules", "entities")
+        page.category in PLACEHOLDER_CATEGORIES
         and not page.error
         and page.props.get("deferred_by") is not None
         and not any(field in page.props for field in PLACEHOLDER_FIELDS)

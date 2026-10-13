@@ -1359,6 +1359,29 @@ def test_number_held_a_file_with_no_number_is_not_judged():
     assert casecheck.case_number("vault/raw/2026-09-09/1501/cases/case-7.md") == "7"
     assert casecheck.case_number("vault/raw/2026-09-09/1501/cases/notes.md") is None
     assert casecheck.case_number("vault/raw/2026-09-09/1501/cases/case-7.1.md") is None
+    folder = "vault/raw/2026-09-09/1501/cases/"
+    assert casecheck.case_number(folder + "case-kir-plugin-12.md") == "kir-plugin-12"
+    assert casecheck.case_number(folder + "case-kir-plugin-12.1.md") is None
+
+
+# --- a file named by an id of a sprint (case 788.6) ----------------------------------------
+# `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+
+
+def test_number_held_an_id_of_a_sprint_held_by_another_agent_is_refused(working):
+    hold(working, {"kir-plugin-12": {"agent_id": "agent-a", "stored": STORED}})
+    code, err = builder(working, "Write", agent_id="agent-b", case="kir-plugin-12")
+    assert code == 2
+    assert "build this Case as case kir-plugin-13" in err and "case-kir-plugin-13.md" in err
+    assert store_data(working) == {"kir-plugin-12": {"agent_id": "agent-a", "stored": STORED}}
+
+
+def test_number_held_an_id_of_a_sprint_held_by_the_same_agent_passes(working):
+    assert builder(working, "Write", case="kir-plugin-12") == (0, "")
+    assert store_data(working) == {
+        "kir-plugin-12": {"agent_id": "agent-a", "stored": NOW.isoformat()}
+    }
+    assert builder(working, "Edit", case="kir-plugin-12") == (0, "")
 
 
 # --- the hook's own error (case 554) ---------------------------------------------------

@@ -237,6 +237,8 @@ def run(
 
 
 def case_key(text: str) -> tuple:
-    """`case 12.3` sorts after `case 9` and before `case 12.10`."""
-    number = text.removeprefix("case ").strip()
-    return tuple(int(p) if p.isdigit() else 0 for p in number.split("."))
+    """`case 12.3` sorts after `case 9` and before `case 12.10`, by the sort key of
+    `guppi/caseid.py`, an id of a sprint beside its sprint (case 788.2)."""
+    from guppi.caseid import sort_key
+
+    return sort_key(text.removeprefix("case ").strip())

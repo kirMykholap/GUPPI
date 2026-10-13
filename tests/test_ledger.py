@@ -1252,6 +1252,49 @@ def test_sprint_create_in_the_ledger_lets_a_later_line_through(tmp_path):
     assert ledger_text(tmp_path).endswith(f"{timed(DECISION)}\n")
 
 
+# --- case 788.1: a sprint id is never taken twice -----------------------------------------
+# `estimate-skill-sprint-open-refuses-a-taken-sprint-id`
+
+TAKEN = "the sprint id next is taken"
+
+
+def test_taken_sprint_a_live_id_is_refused(tmp_path):
+    without_sprint(tmp_path)
+    sprint_page(tmp_path, "entity-sprint-next")
+    code, err = run(payload(last_assistant_message=ledger_block(OPENING)), tmp_path)
+    assert code == 2 and err.count(TAKEN) == 1
+    assert not ledger_file(tmp_path).exists() or ledger_text(tmp_path) == ""
+
+
+def test_taken_sprint_an_archived_id_is_refused_and_opens_no_sprint(tmp_path):
+    without_sprint(tmp_path)
+    archived = tmp_path / "vault" / "archive" / "next" / "2026-09-01" / "0900" / "entities"
+    archived.mkdir(parents=True)
+    (archived / "entity-sprint-next.md").write_text("---\ntype: entity\n---\n", encoding="utf-8")
+    code, err = run(payload(last_assistant_message=ledger_block(OPENING, DECISION)), tmp_path)
+    assert code == 2
+    assert err.count(TAKEN) == 1 and err.count("no sprint is open") == 1
+    assert not ledger_file(tmp_path).exists() or ledger_text(tmp_path) == ""
+
+
+def test_taken_sprint_an_id_in_a_raw_folder_or_another_category_is_free(tmp_path):
+    without_sprint(tmp_path)
+    for folder in ("next/2026-09-01/0900/raw/entities", "next/2026-09-01/0900/rules"):
+        stray = tmp_path / "vault" / "archive" / folder / "entity-sprint-next.md"
+        stray.parent.mkdir(parents=True)
+        stray.write_text("---\ntype: entity\n---\n", encoding="utf-8")
+    code, err = run(payload(last_assistant_message=ledger_block(OPENING, DECISION)), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path) == f"{timed(OPENING)}\n{timed(DECISION)}\n"
+
+
+def test_taken_sprint_a_free_id_is_written(tmp_path):
+    without_sprint(tmp_path)
+    code, err = run(payload(last_assistant_message=ledger_block(OPENING)), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path) == f"{timed(OPENING)}\n"
+
+
 def test_sprint_live_page_accepts_a_decision_line(working):
     code, err = run(payload(last_assistant_message=ledger_block(DECISION)), working)
     assert (code, err) == (0, "")

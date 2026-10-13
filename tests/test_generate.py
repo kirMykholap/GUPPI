@@ -1843,6 +1843,79 @@ def test_a_defer_of_an_estimate_archived_in_an_estimates_folder_marks_it_there(t
     assert f"- {DATE} deferred · [[decision-case-2]]" in text
 
 
+# --- Case 786: a defer with no page writes a placeholder for a rule or an entity only -------
+
+
+def kind_defer(category, slug, kind):
+    entry = estimate_defer(slug)
+    entry.update(category=category, fields={"type": kind, "purpose": "later"})
+    return entry
+
+
+def defer_error(slug):
+    return (
+        f"generate: {slug}: a placeholder is written only for a rule or an entity"
+        " — defer a page that stands"
+    )
+
+
+@pytest.mark.parametrize(
+    "category, slug, kind",
+    [
+        ("insights", "insight-unborn", "insight"),
+        ("lessons", "lesson-unborn", "lesson"),
+        ("decisions", "decision-case-9", "decision"),
+    ],
+)
+def test_a_defer_with_no_page_of_another_kind_writes_no_page_and_fails_alone(
+    tmp_path, category, slug, kind
+):
+    seed(tmp_path, entries=[ROOT, kind_defer(category, slug, kind)])
+    code, _, err = run(tmp_path)
+    assert code == 1 and defer_error(slug) in err
+    entries = load_yaml(tmp_path)["entries"]
+    assert entries[0]["applied"] and entries[1]["failed"]
+    assert not list(tmp_path.joinpath("vault").rglob(f"{slug}.md"))
+    assert (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").exists()
+
+
+@pytest.mark.parametrize(
+    "folder",
+    ["plugin/2026-09-01/0900/rules", "plugin/2026-09-01/0900/raw/insights"],
+)
+def test_a_defer_of_an_insight_archived_outside_an_insights_folder_fails(tmp_path, folder):
+    seed(tmp_path, entries=[ROOT, kind_defer("insights", "insight-unborn", "insight")])
+    stray = tmp_path / "vault" / "archive" / folder / "insight-unborn.md"
+    stray.parent.mkdir(parents=True)
+    text = "---\ntype: insight\nstatus: open\n---\n"
+    stray.write_text(text, encoding="utf-8", newline="\n")
+    code, _, err = run(tmp_path)
+    assert code == 1 and defer_error("insight-unborn") in err
+    assert stray.read_text(encoding="utf-8") == text
+    assert not (tmp_path / "vault" / "wiki" / "insights" / "insight-unborn.md").exists()
+
+
+def test_a_defer_of_an_insight_archived_in_an_insights_folder_marks_it_there(tmp_path):
+    seed(tmp_path, entries=[ROOT, kind_defer("insights", "insight-unborn", "insight")])
+    archived = tmp_path / "vault" / "archive" / "plugin" / "2026-09-01" / "0900" / "insights"
+    archived.mkdir(parents=True)
+    path = archived / "insight-unborn.md"
+    path.write_text(
+        "---\ntype: insight\nstatus: open\n---\n\n## History\n", encoding="utf-8", newline="\n"
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert props(path.read_text(encoding="utf-8"))["deferred_by"] == ["decision-case-2"]
+
+
+def test_generate_and_lint_judge_a_placeholder_by_one_table():
+    # CLAUDE.md, one judgment: the script that writes a placeholder and lint that finds one
+    from guppi import generate, lint, materialize
+
+    assert generate.defer_writes_no_page is materialize.defer_writes_no_page
+    assert lint.PLACEHOLDER_CATEGORIES is materialize.PLACEHOLDER_CATEGORIES
+
+
 def test_a_synthesis_create_of_an_insight_marked_librarian_applies(tmp_path):
     entry = {
         "kind": "create",

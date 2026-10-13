@@ -26,6 +26,12 @@
 # assumed.
 * text=auto eol=lf
 
+# The two files of `vault/wiki/` that only gain lines, merged as the union of both sides: at a
+# merge of `main` into a sprint branch by `/merge-main`, git keeps the lines of each branch
+# and writes no conflict into them (case 790).
+vault/wiki/log.md merge=union
+vault/wiki/tags.md merge=union
+
 # Скрипты, исполняемые внутри Linux-контейнера, обязаны иметь LF:
 # CRLF ломает строку запуска и даёт "no such file or directory" на entrypoint.
 *.sh text eol=lf

@@ -931,7 +931,7 @@ def held_number(payload: dict, project_dir: Path, now, stderr) -> tuple[str, str
         store = held_store(plan)
         if clashes({number: []}, store, agent_id):
             folder = session_dir(project_dir, now, stamp)
-            free = new_number(ledger_records(ledger_of(folder)), store)
+            free = new_number(ledger_records(ledger_of(folder)), store, number, project_dir, folder)
             return str(raw), (
                 f"{raw}: another case-guppi holds case {number} in the store — build this "
                 f"Case as case {free}, in cases/case-{free}.md (rule-spec-reconcile)"

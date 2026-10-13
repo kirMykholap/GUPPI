@@ -156,6 +156,51 @@ def test_a_page_changed_by_a_later_case_is_a_reason(repo):
     ]
 
 
+# --- a later Case across sprints (case 788.5) ----------------------------------------------
+# `estimate-spec-box-refuses-a-stale-spec`
+
+
+def sprint_spec(repo, *cases):
+    """The Spec of the folder with these top-level Cases, each updating rule-y."""
+    text = "# Spec — session 0900, 2026-09-01\n"
+    for case in cases:
+        text += f"\n## Case {case} — x\n\n```then\nupdate:\n  - slug: rule-y\n    change: c\n```\n"
+    (repo / "vault" / "raw" / "2026-09-01" / "0900" / "spec.md").write_text(text, encoding="utf-8")
+
+
+def test_a_later_case_of_the_same_sprint_is_a_reason(repo):
+    sprint_spec(repo, "kir-a-3")
+    history(repo, "rule-y", "- 2026-08-20 updated: more · [[decision-case-kir-a-4.1]]")
+    history(repo, "rule-y", "- 2026-09-05 updated: more · [[decision-case-kir-a-2]]")
+    assert reasons(repo) == [
+        "box: rule-y — changed after the Spec was conserved, by decision-case-kir-a-4"
+    ]
+
+
+def test_a_case_of_another_sprint_counts_by_the_date_of_its_line(repo):
+    sprint_spec(repo, "kir-a-3")
+    history(repo, "rule-y", "- 2026-08-31 updated: more · [[decision-case-kir-b-1]]")
+    history(repo, "rule-y", "- 2026-09-01 updated: more · [[decision-case-kir-c-1]]")
+    assert reasons(repo) == [
+        "box: rule-y — changed after the Spec was conserved, by decision-case-kir-c-1"
+    ]
+
+
+def test_a_plain_id_after_a_spec_of_plain_ids_is_a_reason(repo):
+    sprint_spec(repo, "100")
+    history(repo, "rule-y", "- 2026-08-20 updated: more · [[decision-case-99]]")
+    history(repo, "rule-y", "- 2026-09-05 updated: more · [[decision-case-101]]")
+    assert reasons(repo) == [
+        "box: rule-y — changed after the Spec was conserved, by decision-case-101"
+    ]
+
+
+def test_a_plain_id_beside_a_spec_with_no_plain_id_is_not_counted(repo):
+    sprint_spec(repo, "kir-a-3")
+    history(repo, "rule-y", "- 2026-09-05 updated: more · [[decision-case-900]]")
+    assert reasons(repo) == []
+
+
 def test_a_history_line_of_the_spec_itself_or_a_cascade_line_is_not_counted(repo):
     history(repo, "rule-x", "- 2026-09-05 updated: one line · [[decision-case-100]]")
     history(repo, "rule-z", "- 2026-09-05 deferred · [[decision-case-101]]")

@@ -322,6 +322,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from guppi import caseid
 from guppi.event import project_root, read_payload, session_stamp
 from guppi.generate import DAY, FRONTIER_LINE, FRONTIER_SEPARATOR, SESSION
 from guppi.ledger import (
@@ -411,8 +412,9 @@ def store_of(plan: Path) -> Path:
 
 
 def top_case(case: str) -> str:
-    """The id of the top-level Case of `case`: `452` of `452.1`."""
-    return case.split(".", 1)[0]
+    """The id of the top-level Case of `case`: `452` of `452.1`, `kir-plugin-12` of
+    `kir-plugin-12.1`, by the grammar of `guppi/caseid.py` (case 788.2)."""
+    return caseid.top(case)
 
 
 def is_case_file(path) -> bool:
@@ -458,12 +460,13 @@ def left_by_its_file(path, case: str) -> bool:
     return bool(text.strip()) and case not in split_cases(text)
 
 
-CASE_NAME = re.compile(r"^case-(\d+)\.md$")  # the name `case_file` gives
+CASE_NAME = caseid.CASE_FILE  # the name `case_file` gives, in either form (case 788.2)
 
 
 def case_number(path) -> str | None:
-    """N of a file named `case-<N>.md` as `case_file` names it; None for any other name, a
-    file the guard does not hold a number for (case 650.1)."""
+    """N of a file named `case-<N>.md` as `case_file` names it, a plain id or an id of a
+    sprint (case 788.6); None for any other name, a file the guard does not hold a number for
+    (case 650.1)."""
     match = CASE_NAME.match(Path(str(path)).name)
     return match.group(1) if match else None
 
@@ -772,13 +775,26 @@ def key_case(key) -> str:
     return str(key).split(AGENT_KEY, 1)[0]
 
 
-def new_number(records: list[dict], store: dict) -> str:
-    """Case 610.1: a free number for a Case built again — one above the highest top-level
-    Case number that the decision lines of the session's ledger and the keys of the store
-    hold; the one count of `shape_findings` and of the clash of `subagent` (case 610.2)."""
-    numbers = [top_case(str(r["case"])) for r in records if r.get("record") == "decision"]
-    numbers += [top_case(key_case(key)) for key in store]
-    return str(max((int(n) for n in numbers if n.isdigit()), default=0) + 1)
+def new_number(
+    records: list[dict],
+    store: dict,
+    top: str = "",
+    project_dir: Path | None = None,
+    folder: Path | None = None,
+) -> str:
+    """Case 610.1: a free id for a Case built again — `next_id` of `guppi/caseid.py`, the one
+    count, over the decision lines of the session's ledger, the keys of the store, and, given
+    `project_dir` and `folder`, the Decision pages and the session's Case files, in the sprint
+    of `top` (case 788.4); the count of `shape_findings`, of the clash of `subagent` (case
+    610.2), of the guard `held_number` and of `guppi caseid --next`."""
+    parsed = caseid.parse(top) if top else None
+    sprint = parsed.sprint if parsed is not None else None
+    if project_dir is None:
+        ids = [str(r["case"]) for r in records if r.get("record") == "decision"]
+        ids += [key_case(key) for key in store] + caseid.file_ids(folder)
+    else:
+        ids = caseid.known_ids(project_dir, folder, records, store)
+    return caseid.next_id(sprint, ids)
 
 
 def lined_numbers(top: str, records: list[dict]) -> list[str]:
@@ -803,7 +819,12 @@ def supersede_marks(top: str, lined: list[str]) -> str:
 
 
 def target_findings(
-    cases: dict, blocks: dict, records: list[dict], store: dict
+    cases: dict,
+    blocks: dict,
+    records: list[dict],
+    store: dict,
+    project_dir: Path | None = None,
+    folder: Path | None = None,
 ) -> list[tuple[str, str]]:
     """Case 671.1: `(top-level case, finding)` for each decision line other than a `defer`
     in the session's ledger `records` on a number of the answer that has a section in it and
@@ -831,7 +852,8 @@ def target_findings(
             f"case {number}: its decision line [{record['kind']}][{record['slug']}] stands in "
             "the session's ledger and the Case built again has no item for it — put the item "
             f"back, or change the number in the headings and the ledger lines to case "
-            f"{new_number(records, store)} by Edit and add {marks}; never write the whole Case "
+            f"{new_number(records, store, top, project_dir, folder)} by Edit and add {marks}; "
+            "never write the whole Case "
             "again"
         )
         findings.append((top, finding))
@@ -849,7 +871,12 @@ def create_line(record: dict) -> str:
 
 
 def changed_create_findings(
-    cases: dict, ratified: list[dict], records: list[dict], store: dict
+    cases: dict,
+    ratified: list[dict],
+    records: list[dict],
+    store: dict,
+    project_dir: Path | None = None,
+    folder: Path | None = None,
 ) -> list[tuple[str, str]]:
     """Case 749: `(top-level case, finding)` for each `create` line in the session's ledger
     `records` on a number of the answer that has a section in it and no sub-case, when the
@@ -891,14 +918,21 @@ def changed_create_findings(
             f"{create_line(record)} and the Case built again holds {create_line(again)} — "
             "the librarian builds the page from the first line; write the line back as the "
             "ledger holds it, or change the number in the headings and the ledger lines to "
-            f"case {new_number(records, store)} by Edit and add {marks}; never write the "
+            f"case {new_number(records, store, top, project_dir, folder)} by Edit and add "
+            f"{marks}; never write the "
             "whole Case again"
         )
         findings.append((top, finding))
     return findings
 
 
-def shape_findings(cases: dict, records: list[dict], store: dict) -> list[tuple[str, str]]:
+def shape_findings(
+    cases: dict,
+    records: list[dict],
+    store: dict,
+    project_dir: Path | None = None,
+    folder: Path | None = None,
+) -> list[tuple[str, str]]:
     """Case 610.1: `(top-level case, finding)` for each top-level Case N of the answer whose
     family — N and its sub-cases at any depth — has a decision line other than a `defer` in
     the session's ledger `records` on a number with no section in the answer, or on a number
@@ -917,7 +951,8 @@ def shape_findings(cases: dict, records: list[dict], store: dict) -> list[tuple[
         finding = (
             f"case {top}: case {', '.join(changed)} has decision lines in the session's "
             "ledger and comes back in another shape under its old number — build it "
-            f"again as case {new_number(records, store)}, its decision lines carrying {marks}"
+            f"again as case {new_number(records, store, top, project_dir, folder)}, its "
+            f"decision lines carrying {marks}"
         )
         findings.append((top, finding))
     return findings
@@ -1218,9 +1253,9 @@ def check_answer(
     if store is not None:  # cases 610.1, 671.1, 749
         ledger = ledger_records(window)
         shapes = (
-            shape_findings(cases, ledger, store)
-            + target_findings(cases, answer, ledger, store)
-            + changed_create_findings(cases, records, ledger, store)
+            shape_findings(cases, ledger, store, project_dir, folder)
+            + target_findings(cases, answer, ledger, store, project_dir, folder)
+            + changed_create_findings(cases, records, ledger, store, project_dir, folder)
         )
     for top, finding in (
         check_backlog(records, frontier, project_dir)
@@ -1609,8 +1644,8 @@ def judge_and_store(
     agent_id = str(payload.get("agent_id") or "")
     apart = clashes(cases, store, agent_id)  # a number another agent holds (case 610.2)
     if apart:
-        number = new_number(ledger_records(window), store)
         for top in apart:
+            number = new_number(ledger_records(window), store, top, project_dir, folder)
             first = next(case for case in cases if in_family(case, top))
             found[first].append(
                 f"case {top}: the store holds case {top} from the answer of another agent — "

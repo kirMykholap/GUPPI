@@ -76,9 +76,10 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   Estimate items that set a new Criterion — a `create`, or an `update` that names no part of
   the page by `materialize.names_a_part`, written or lifted (one promise per Case: split it,
   case 472.3); an `update` of an
-  Estimate whose page does not exist; a `defer` of an Estimate whose page
-  `materialize.has_page` does not find, the judgment by which `generate` fails the entry, a
-  short Case under `## Deferred` included (case 783); a `create` of an Estimate whose `ref` names neither
+  Estimate whose page does not exist; a `defer` of an Estimate, an Insight, a Lesson or a
+  Decision page whose page `materialize.defer_writes_no_page` does not find, the judgment by
+  which `generate` fails the entry, a short Case under `## Deferred` included (cases 783,
+  786); a `create` of an Estimate whose `ref` names neither
   a live rule or entity nor one a `create` of the same plan carries (case 221); a `create` of
   an Estimate, or an `update` carrying `set: {method: …}`, whose `method` names none of the
   four forms lint classifies — by `lint.names_a_form`, the one predicate, the existence of
@@ -256,10 +257,10 @@ from guppi.materialize import (
     create_fields,
     create_lacks,
     criterion_text,
+    defer_writes_no_page,
     fence_breaks,
     fenced_lines,
     find_item,
-    has_page,
     in_family,
     item_keys,
     names_a_part,
@@ -859,6 +860,7 @@ KEPT_WAITS = (
     "the method on the page waits for another session — set a method that runs in this session"
 )
 NO_DEFERRED_ESTIMATE = "no such Estimate page — defer the page it would check"  # case 783
+NO_DEFERRED_PAGE = "no such page — a placeholder is written only for a rule or an entity"  # 786
 DECIDED = ("passed", "failed")  # a status the person's decision sets, with no reading after it
 
 
@@ -1194,10 +1196,11 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     names neither a `make <target>` nor "by hand", by `lint.names_a_moc_form`, the one
     predicate `check_method` of lint calls too, is a finding in place of the line of no form;
     whether the Makefile holds the target and whether the children's Estimates are readings
-    stays with lint (case 733). A `defer` of an Estimate whose page `materialize.has_page`
-    does not find — the one judgment, by which `generate` fails such an entry — is a finding,
-    a short Case under `## Deferred` included; a `defer` of another category with no page is
-    not (case 783)."""
+    stays with lint (case 733). A `defer` with no page by `materialize.defer_writes_no_page`
+    — the one judgment, by which `generate` fails such an entry — is a finding, a short Case
+    under `## Deferred` included: an Estimate with `NO_DEFERRED_ESTIMATE` (case 783), an
+    Insight, a Lesson or a Decision page with `NO_DEFERRED_PAGE`; a `defer` of a rule or an
+    entity with no page is not (case 786)."""
     findings: list[str] = []
     created = {  # the rules and entities the plan itself creates (case 221)
         str(item.get("slug"))
@@ -1255,14 +1258,12 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 findings.append(f"case {case}: update {slug}: {WAITS}")
             if method is None and kept_method_waits(item, project_dir):  # case 715
                 findings.append(f"case {case}: update {slug}: {KEPT_WAITS}")
-        for item in block.get("defer") or []:  # case 783
+        for item in block.get("defer") or []:  # cases 783, 786
             slug = item.get("slug") if isinstance(item, dict) else None
-            if (
-                slug
-                and category_of(slug) == "estimates"
-                and not has_page(project_dir, "estimates", slug)
-            ):
-                findings.append(f"case {case}: defer {slug}: {NO_DEFERRED_ESTIMATE}")
+            category = category_of(slug) if slug else None
+            if category and defer_writes_no_page(project_dir, category, slug):
+                line = NO_DEFERRED_ESTIMATE if category == "estimates" else NO_DEFERRED_PAGE
+                findings.append(f"case {case}: defer {slug}: {line}")
         if promises >= 2:
             findings.append(f"case {case}: two promises in one Case — split it")
     return findings

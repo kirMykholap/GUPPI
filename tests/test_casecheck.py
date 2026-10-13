@@ -735,6 +735,45 @@ def test_subagent_shape_the_new_number_counts_the_keys_of_the_store(working):
     assert code == 2 and "build it again as case 13" in err
 
 
+def test_subagent_shape_the_new_id_stands_above_a_case_file(working):
+    # case 788.4: `next_id` counts the Case files of the session
+    cases = working.joinpath(*FOLDER, "cases")
+    cases.mkdir(parents=True, exist_ok=True)
+    (cases / "case-15.md").write_text("", encoding="utf-8")
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    code, err = answer_file(working, FAMILY_9)
+    assert code == 2 and "build it again as case 16" in err
+
+
+def test_subagent_shape_the_new_id_stands_above_a_decision_page(working):
+    # case 788.4: `next_id` counts the Decision pages, live and archived
+    archived = working / "vault" / "archive" / "plugin" / "2026-09-01" / "0900" / "decisions"
+    archived.mkdir(parents=True)
+    (archived / "decision-case-20.md").write_text("---\n---\n", encoding="utf-8")
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    code, err = answer_file(working, FAMILY_9)
+    assert code == 2 and "build it again as case 21" in err
+
+
+def test_subagent_shape_new_number_and_the_command_give_the_same_id(working):
+    # case 788.4: the check of a Case built again and `guppi caseid --next`, one count
+    from guppi import caseid
+
+    sprint = working / "vault" / "wiki" / "sprint.md"
+    sprint.write_text("# Sprint\n\n## plugin\n", encoding="utf-8")
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    plan = working / ".claude" / "plans" / "plan.md"
+    casecheck.write_store(plan, {"12": {"agent_id": "a"}})
+    folder = working.joinpath(*FOLDER)
+    records = casecheck.ledger_records(casecheck.ledger_of(folder))
+    counted = casecheck.new_number(records, store(working), "9", working, folder)
+    out = io.StringIO()
+    assert (
+        caseid.run(["--next", "--session", SESSION], stdout=out, project_dir=working, now=NOW) == 0
+    )
+    assert out.getvalue().strip() == counted == "13"
+
+
 @pytest.mark.parametrize(
     ("lines", "text"),
     [
@@ -902,6 +941,30 @@ def test_subagent_clash_no_agent_id_and_the_same_agent_give_no_finding(working):
     once_more = again.replace("written again.", "written once more.")
     assert answer_file(working, once_more, agent_id="b2") == (0, "")
     assert list(store(working)) == ["7"]
+
+
+KIR_12 = ANSWER.replace("## Case 7 — example", "## Case kir-plugin-12 — example").replace(
+    "case 7", "case kir-plugin-12"
+)
+
+
+def test_subagent_clash_an_id_of_a_sprint_another_agent_holds_is_sent_back(working):
+    # case 788.7: a Case of a sprint held by another agent gets the next id of its sprint
+    assert answer_file(working, KIR_12, agent_id="a1") == (0, "")
+    other = KIR_12.replace("The file is written.", "Another file is written.")
+    code, err = answer_file(working, other, now=LATER, agent_id="b2")
+    assert code == 2
+    assert (
+        "case kir-plugin-12: the store holds case kir-plugin-12 from the answer of another "
+        "agent — build this Case as case kir-plugin-13"
+    ) in err
+
+
+def test_subagent_clash_an_id_the_command_holds_gives_no_finding(working):
+    # case 788.7: `guppi caseid --next` holds an id with no agent_id, which no answer clashes with
+    plan = working / ".claude" / "plans" / "plan.md"
+    casecheck.write_store(plan, {"kir-plugin-12": {"stored": NOW.isoformat()}})
+    assert answer_file(working, KIR_12, agent_id="b2") == (0, "")
 
 
 # --- no problem in a sub-case (case 544.4) --------------------------------------------------

@@ -17,9 +17,13 @@ cannot run now and exits 1 when it prints any; with no reason it prints nothing 
   decision line other than a `defer`: a box session ratifies no Case of its own in this
   first part (case 591);
 - a live page that an `update`, `delete` or `defer` item of the folder's `spec.md` names has
-  a History line that names the Decision page of a Case whose whole number is higher than
-  that of every Case of that Spec — a later decision changed the page after the Spec was
-  conserved; the line names the page and that Decision page;
+  a History line that names the Decision page of a later Case, read by `guppi/caseid.py`
+  (`later_case`, case 788.5): a plain id whose whole number is higher than that of every Case
+  of that Spec with a plain id, when the Spec holds one; an id of a sprint whose number is
+  higher than that of every Case of that Spec of the same sprint; or an id of a sprint the
+  Spec holds no Case of, on a History line dated on or after the date of the folder — a later
+  decision changed the page after the Spec was conserved; the line names the page and that
+  Decision page;
 - a slug that a `create` item of that Spec names is carried by a live page.
 
 The items are read by `split_cases` and `then_blocks` of `guppi/materialize.py`, the parser
@@ -34,11 +38,14 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from guppi.caseid import ID as CASE_ID
+from guppi.caseid import parse, top
 from guppi.event import project_root, session_stamp
 from guppi.materialize import category_of, is_carried_over, split_cases, then_blocks
 
 SPEC_PATH = re.compile(r"vault/raw/(\d{4}-\d\d-\d\d)/(\d{4})/spec\.md")
-DECISION_LINK = re.compile(r"\[\[decision-case-(\d+)")
+DECISION_LINK = re.compile(rf"\[\[decision-case-({CASE_ID})")  # either form (case 788.5)
+HISTORY_DATE = re.compile(r"^- (\d{4}-\d\d-\d\d)\b")
 NAMED_KINDS = ("update", "delete", "defer")
 SHARED_NEVER = "main"
 
@@ -82,23 +89,47 @@ def git(project_dir: Path, *args: str) -> str:
     return result.stdout if result.returncode == 0 else ""
 
 
-def history_cases(page: Path) -> list[int]:
-    """The whole numbers of the Decision pages the `## History` of a page names."""
+def history_cases(page: Path) -> list[tuple[str, str]]:
+    """`(date, id)` of each Decision page the `## History` of a page names, the id of its
+    top-level Case read by `guppi/caseid.py` in either form, the date of its History line
+    (case 788.5)."""
     text = page.read_text(encoding="utf-8")
     at = text.find("\n## History")
     if at < 0:
         return []
-    return [int(n) for n in DECISION_LINK.findall(text[at:])]
+    found: list[tuple[str, str]] = []
+    for line in text[at:].splitlines():
+        date = HISTORY_DATE.match(line.strip())
+        for case in DECISION_LINK.findall(line):
+            found.append((date.group(1) if date else "", top(case)))
+    return found
 
 
-def spec_items(spec: str) -> tuple[list[int], list[tuple[str, str]]]:
-    """The whole numbers of the Cases of a Spec, and `(kind, slug)` of each decision item."""
-    numbers: list[int] = []
+def later_case(case: str, date: str, spec_cases: list[str], folder_date: str) -> bool:
+    """Whether the Decision page of top-level `case`, on a History line dated `date`, is of a
+    Case later than the Spec of `spec_cases`, conserved on `folder_date` (case 788.5): a plain
+    id whose number is higher than every plain id of the Spec, when it holds one; an id of a
+    sprint whose number is higher than every id of that sprint in the Spec; an id of a sprint
+    the Spec holds no Case of, on a line dated on or after the folder."""
+    parsed = parse(case)
+    if parsed is None:
+        return False
+    own = [p.number for c in spec_cases if (p := parse(c)) and p.sprint == parsed.sprint]
+    if own:
+        return parsed.number > max(own)
+    if parsed.sprint is None:
+        return False
+    return bool(date) and date >= folder_date
+
+
+def spec_items(spec: str) -> tuple[list[str], list[tuple[str, str]]]:
+    """The ids of the top-level Cases of a Spec, and `(kind, slug)` of each decision item."""
+    numbers: list[str] = []
     items: list[tuple[str, str]] = []
     for case, lines in split_cases(spec).items():
-        head = case.split(".", 1)[0]
-        if head.isdigit():
-            numbers.append(int(head))
+        head = top(case)
+        if parse(head) is not None and head not in numbers:
+            numbers.append(head)
         block, _ = then_blocks(lines)
         for kind in ("create", *NAMED_KINDS):
             for item in block.get(kind) or []:
@@ -149,7 +180,6 @@ def check(project_dir: Path, folder: Path, session: str, now=None) -> list[str]:
         reasons.append(f"box: vault/raw/{unit}/spec.md is missing")
         return reasons
     numbers, items = spec_items(spec.read_text(encoding="utf-8"))
-    top = max(numbers, default=0)
     wiki = project_dir / "vault" / "wiki"
     seen: set[tuple[str, str]] = set()
     for kind, slug in items:
@@ -164,7 +194,9 @@ def check(project_dir: Path, folder: Path, session: str, now=None) -> list[str]:
             continue
         if page is None or not page.is_file():
             continue
-        later = sorted({n for n in history_cases(page) if n > top})
+        later = dict.fromkeys(
+            case for day, case in history_cases(page) if later_case(case, day, numbers, date)
+        )
         for number in later:
             reasons.append(
                 f"box: {slug} — changed after the Spec was conserved, by decision-case-{number}"

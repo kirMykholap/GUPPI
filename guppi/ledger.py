@@ -881,18 +881,43 @@ def is_sprint_page(slug) -> bool:
     return text.startswith(SPRINT_PAGE) and len(text) > len(SPRINT_PAGE)
 
 
-def refused_without_sprint(project_dir: Path, fresh: list[str], written: list[str]) -> list[str]:
+def refused_taken_sprint(project_dir: Path, fresh: list[str]) -> list[tuple[str, str]]:
+    """`(line, id)` of each fresh `create` decision line of a sprint page `entity-sprint-<id>`
+    whose page `has_page` of `guppi/materialize.py` finds under `entities`, live or archived:
+    a sprint id is never taken twice (case 788.1). The GitHub name is not checked."""
+    from guppi.materialize import has_page, parse_line
+
+    taken: list[tuple[str, str]] = []
+    for line in fresh:
+        record = parse_line(f"- {body(line)}")
+        if (
+            record
+            and record["record"] == "decision"
+            and record["kind"] == "create"
+            and is_sprint_page(record["slug"])
+            and has_page(project_dir, "entities", record["slug"])
+        ):
+            taken.append((line, record["slug"][len(SPRINT_PAGE) :]))
+    return taken
+
+
+def refused_without_sprint(
+    project_dir: Path, fresh: list[str], written: list[str], taken: frozenset = frozenset()
+) -> list[str]:
     """Each fresh decision line but a `defer` while no live sprint page stands, until the
     session's ledger or the lines of the same `Stop` hold a `create` decision line of an
     `entity-sprint-` slug: the session after the close of a sprint opens the next sprint
-    first (case 628.3). Readings and lessons pass. The lines are read by `parse_line` of
+    first (case 628.3). A line of `taken`, refused by `refused_taken_sprint`, opens no sprint
+    (case 788.1). Readings and lessons pass. The lines are read by `parse_line` of
     `guppi/materialize.py`, the one parse of a ledger line."""
     from guppi.materialize import parse_line
 
     entities = project_dir / "vault" / "wiki" / "entities"
     if entities.is_dir() and any(entities.glob(f"{SPRINT_PAGE}*.md")):
         return []
-    records = [(line, parse_line(f"- {body(line)}")) for line in written + fresh]
+    records = [
+        (line, parse_line(f"- {body(line)}")) for line in written + fresh if line not in taken
+    ]
     decisions = [(line, r) for line, r in records if r and r["record"] == "decision"]
     if any(r["kind"] == "create" and is_sprint_page(r["slug"]) for _, r in decisions):
         return []
@@ -951,9 +976,18 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         prefixed = {line for line, _ in lessons}
         tagged = refused_tags(project_dir, now, stamp, fresh, written, prefixed)  # case 703.2
         marks = refused_marks(fresh, written, prefixed)  # case 497.1
-        unopened = refused_without_sprint(project_dir, fresh, written)  # case 628.3
+        taken = refused_taken_sprint(project_dir, fresh)  # case 788.1
+        taken_lines = frozenset(line for line, _ in taken)
+        unopened = [  # case 628.3
+            line
+            for line in refused_without_sprint(project_dir, fresh, written, taken_lines)
+            if line not in taken_lines
+        ]
         copied = off_store(  # case 688.7: a line the sprint refuses gets that refusal alone
-            project_dir, now, stamp, [line for line in fresh if line not in set(unopened)]
+            project_dir,
+            now,
+            stamp,
+            [line for line in fresh if line not in set(unopened) | taken_lines],
         )
         finished = {body(line) for line in ledger_lines(reply_text(payload))}
         held: list[tuple[str, str]] = []  # case 682.1: asked once, then written as it stands
@@ -972,6 +1006,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             | {line for line, _, _ in tagged}
             | {line for line, _, _, _ in marks}
             | set(unopened)
+            | taken_lines
             | {line for line, _ in held}
             | {line for line, _ in copied}
             | dropped
@@ -1015,6 +1050,13 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                     f"ledger: lesson[{slug}] not written — {{addressed_by:case {case}}} names "
                     f"no decision line before it in this session{named}: write the line again "
                     "after the decision line of the Case that closed the cause, naming that Case."
+                )
+        for line, sprint in taken:  # case 788.1
+            if body(line) in finished:
+                messages.append(
+                    f"ledger: line not written — the sprint id {sprint} is taken: a live or "
+                    f"archived page entity-sprint-{sprint} holds it. Ask the person for another "
+                    "id and build the opening Case again under it."
                 )
         for line in unopened:
             if body(line) in finished:

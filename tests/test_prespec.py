@@ -3084,9 +3084,67 @@ def test_a_defer_of_a_rule_with_no_page_is_none(tmp_path):
     assert result == (0, "", "")
 
 
-def test_prespec_and_generate_judge_a_deferred_estimate_by_one_predicate():
+def test_prespec_and_generate_judge_a_deferred_page_by_one_predicate():
     # CLAUDE.md, one judgment: the check that reports the defer and the script that fails it
     from guppi import generate, materialize
 
-    assert prespec.has_page is materialize.has_page
-    assert generate.has_page is materialize.has_page
+    assert prespec.defer_writes_no_page is materialize.defer_writes_no_page
+    assert generate.defer_writes_no_page is materialize.defer_writes_no_page
+
+
+# --- a defer with no page of anything but a rule or an entity (case 786) --------------------
+
+
+def check_kind_defer(project_dir, slug, kind, under_deferred=True):
+    case = DEFERRED_CASE.replace("rule-later", slug).replace("type: rule", f"type: {kind}")
+    if not under_deferred:
+        case = case.replace("## Deferred\n", "")
+    return check(
+        project_dir,
+        plan=PLAN + case,
+        ledger=LINE + DEFER_LINE.replace("rule-later", slug),
+        frontier=FRONTIER_WITH_DEFER,
+    )
+
+
+def no_page(slug):
+    return f"case 2: defer {slug}: no such page — a placeholder is written only for a rule or an entity"
+
+
+@pytest.mark.parametrize("under_deferred", [True, False])
+@pytest.mark.parametrize("slug, kind", [("insight-later", "insight"), ("lesson-later", "lesson")])
+def test_a_defer_of_another_kind_with_no_page_is_a_finding(tmp_path, slug, kind, under_deferred):
+    code, out, _ = check_kind_defer(tmp_path, slug, kind, under_deferred)
+    assert code == 1
+    assert out.splitlines() == [no_page(slug)]
+
+
+@pytest.mark.parametrize(
+    "folder",
+    ["plugin/2026-09-01/0900/rules", "plugin/2026-09-01/0900/raw/insights"],
+)
+def test_a_defer_of_an_insight_archived_outside_an_insights_folder_is_a_finding(tmp_path, folder):
+    stray = tmp_path / "vault" / "archive" / folder / "insight-later.md"
+    stray.parent.mkdir(parents=True)
+    stray.write_text("---\ntype: insight\n---\n", encoding="utf-8", newline="\n")
+    code, out, _ = check_kind_defer(tmp_path, "insight-later", "insight")
+    assert code == 1
+    assert out.splitlines() == [no_page("insight-later")]
+
+
+def test_a_defer_of_an_insight_live_or_archived_in_an_insights_folder_is_none(tmp_path):
+    live = tmp_path / "vault" / "wiki" / "insights" / "insight-later.md"
+    live.parent.mkdir(parents=True)
+    live.write_text("---\ntype: insight\n---\n", encoding="utf-8", newline="\n")
+    assert check_kind_defer(tmp_path, "insight-later", "insight") == (0, "", "")
+    live.unlink()
+    archived = tmp_path / "vault" / "archive" / "plugin" / "2026-09-01" / "0900" / "insights"
+    archived.mkdir(parents=True)
+    (archived / "insight-later.md").write_text(
+        "---\ntype: insight\n---\n", encoding="utf-8", newline="\n"
+    )
+    assert check_kind_defer(tmp_path, "insight-later", "insight") == (0, "", "")
+
+
+def test_a_defer_of_an_entity_with_no_page_is_none(tmp_path):
+    assert check_kind_defer(tmp_path, "entity-later", "entity") == (0, "", "")

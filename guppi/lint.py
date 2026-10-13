@@ -32,8 +32,9 @@ it or not; an Insight owns its children through `children`, archived or not, and
 one, case 156), `status` (a `built` page with an Estimate not `passed`, a `draft` one with
 every Estimate `passed`; an Estimate `passed` or `failed` without `## Result`; an Estimate
 whose `target` is not an entity or a rule, or does not list it, case 53.1), `unread` (every
-Estimate `pending` or `failed`, one finding each — red between a change of a promise and
-its reading, by design; cases 182, 202), `method` (the `method` field alone, case 506.3:
+Estimate `failed`, and every one `pending` whose `method` waits for no later moment, one
+finding each — red between a change of a promise and its reading, by design; cases 182,
+202, 799), `method` (the `method` field alone, case 506.3:
 for a MOC's Estimate a `make <target>` of the
 Makefile passes whatever else it says, and one that names none may be a reading when its
 children's Estimates are all readings, case 112.1, or when a sibling Estimate of the MOC
@@ -661,12 +662,27 @@ def check_moment(page: Page) -> list[Finding]:
     return []
 
 
+def waits_for_a_later_moment(method: str) -> bool:
+    """Whether a `method` waits for a later moment: a part between two `;` that waits for an
+    event it names, by `waits_for_an_event`, or names a later session, the next session, a
+    session after another, a session of a sprint, the session that closes one, the librarian
+    or `/hi`, by `ANOTHER_SESSION`. A reading is taken once, as a whole, so one such part is
+    enough. It judges the words of a `method`, not whether the moment has come: the brief
+    puts a reading whose moment has come under `Work` (case 799)."""
+    return any(
+        waits_for_an_event(part) or ANOTHER_SESSION.search(part) for part in method.split(CLAUSE)
+    )
+
+
 def check_unread(page: Page) -> list[Finding]:
-    """Every `pending` or `failed` Estimate is one finding, `unread: <status>` — red between
-    a change of a promise and its reading, by design (cases 182, 202)."""
+    """Every `failed` Estimate, and every `pending` one whose `method` does not wait for a
+    later moment by `waits_for_a_later_moment`, is one finding, `unread: <status>` — red
+    between a change of a promise and its reading, by design (cases 182, 202, 799)."""
     if page.category != "estimates":
         return []
     status = str(page.props.get("status", ""))
+    if status == "pending" and waits_for_a_later_moment(method_of(page) or ""):
+        return []
     if status in ("pending", "failed"):
         return [Finding(page, "unread", status)]
     return []

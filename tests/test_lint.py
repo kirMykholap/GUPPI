@@ -456,6 +456,42 @@ def test_a_pending_or_failed_estimate_is_an_unread_finding(tmp_path):
     assert lines == ["estimates/estimate-x-works: unread: failed"]
 
 
+def unread_lines(tmp_path, status, method):
+    seed(tmp_path, rule=rule_page(status="draft"), estimate=estimate_page(status, method))
+    _, lines, _ = run(tmp_path)
+    return [line for line in lines if ": unread: " in line]
+
+
+# case 799: a pending Estimate whose method waits for a later moment is not red
+@pytest.mark.parametrize(
+    "method",
+    [
+        "by hand, after a pull request from a second account: the page read against the Criterion",
+        "by hand, in a session of the sprint plugin before its close: the run read",
+        "by hand: the person's answer in the session after the close of a sprint",
+        "pytest tests/test_x.py; by hand, after the first merge of main: the page read",
+    ],
+)
+def test_a_pending_estimate_whose_method_waits_for_a_later_moment_is_no_unread_finding(
+    tmp_path, method
+):
+    assert unread_lines(tmp_path, "pending", method) == []
+
+
+def test_a_pending_estimate_read_at_its_own_retro_is_an_unread_finding(tmp_path):
+    method = "by hand at the Retro of this session: the Render read against the Criterion"
+    assert unread_lines(tmp_path, "pending", method) == [
+        "estimates/estimate-x-works: unread: pending"
+    ]
+
+
+def test_a_failed_estimate_whose_method_waits_for_an_event_is_an_unread_finding(tmp_path):
+    method = "by hand, after a pull request from a second account: the page read"
+    assert unread_lines(tmp_path, "failed", method) == [
+        "estimates/estimate-x-works: unread: failed"
+    ]
+
+
 def test_a_page_with_context_and_method_sections_prints_no_unmigrated_line(tmp_path):
     # case 506.2: the count of the shape before case 193 is gone, whatever the page holds
     old = estimate_page().replace(

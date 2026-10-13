@@ -1,27 +1,37 @@
 """`guppi bashguard` — the `PreToolUse` hook on the `Bash` tool that refuses a heredoc
-whose body carries a backslash, or one that writes a file.
+whose body carries a backslash, one that writes a file, or one that feeds a script to an
+interpreter.
 
 On this Windows machine the tool's shell layer interprets backslash escapes inside a
 heredoc body before the interpreter reads it, whatever the quoting of the marker; three
 sessions (H, L, M) broke edit scripts that way with the lesson live, and a heredoc that
-writes a file fails on quotes in its body. A lesson the agent has to remember is not a
+writes a file fails on quotes in its body. A heredoc with neither, fed to Python, rewrote a
+source file in three more sessions (case 796.1). A lesson the agent has to remember is not a
 rule; a `PreToolUse` hook cannot be skipped (case 127).
 
-The hook reads `tool_input.command`, finds every heredoc (`<<` or `<<-`, the marker quoted
-or not) and its body up to the closing line. A body with a backslash, or a marker line that
-redirects into a file (`>` or `>>` to a path other than `/dev/null`, or `tee`), exits 2 with
-the reason on stderr — `bashguard: heredoc refused — <reason>. Write a whole file with the
-Write tool and change a file with Edit, never through Bash; only a script goes into the
+`uv run guppi bashguard` runs on `PreToolUse` of `Bash`. It reads `tool_input.command`,
+finds every heredoc (`<<` or `<<-`, the marker quoted or not) and its body up to the
+closing line. A body with a backslash, a marker line that redirects into a file (`>` or
+`>>` to a path other than `/dev/null`, or `tee`), or a marker line that runs an interpreter
+of `INTERPRETERS` — `python`, `python3`, `py`, `uv run python`, `node`, `perl` or `ruby`,
+as its first command or after a `|`, `&&`, `||` or `;` — with no script by path and no
+`-c` or `-e`, exits 2 with the reason on stderr — `bashguard: heredoc refused — <a
+backslash in its body | it writes <path> | it feeds <interpreter>>. Write a whole file with
+the Write tool and change a file with Edit, never through Bash; only a script goes into the
 scratchpad, written with the Write tool and run by path. The refusal is this guard working
-as designed, not an event of the session: do not report it at Retro.` (case 530.2) —
-which blocks the call (case 384); one line `bashguard refused: <reason>` goes to
-`vault/raw/<date>/event_log.md` before that (case 91). A `<<<` here-string, a heredoc without a backslash whose output goes to a
-pipe or the screen, a command without a heredoc, any other tool, or a payload the hook
-cannot read: exit 0, the last with one line on stderr. The hook never raises. Rule page:
+as designed, not an event of the session: do not report it at Retro.` (case 530.2) — which
+blocks the call (case 384); one line `bashguard refused: <reason>` goes to
+`vault/raw/<date>/event_log.md` before that (case 91). A `<<<` here-string, a heredoc with
+no backslash, no file write and no interpreter it feeds, a command without a heredoc, any
+other tool, or a payload the hook cannot read: exit 0, the last with one line on stderr.
+An interpreter that runs a script by path, or takes it by `-c` or `-e`, passes. The hook
+never raises. `interpreter` is the one judgment of an interpreter fed inline, and
+`guppi/powershellguard.py` calls it too (case 796.2). Rule page:
 `vault/wiki/rules/rule-bash-guard.md`.
 """
 
 import re
+import shlex
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -32,6 +42,10 @@ TOOL = "Bash"
 MARKER = re.compile(r"(?<!<)<<(?!<)(-?)\s*(?:'([^']+)'|\"([^\"]+)\"|\\?(\w+))")
 REDIRECT = re.compile(r"(?<![<>&\d])\d?>{1,2}\s*(\S+)")
 NULL = "/dev/null"
+# the interpreters a script fed inline to may rewrite a file (case 796.1)
+INTERPRETERS = ("python", "python3", "py", "node", "perl", "ruby")
+INLINE_FLAGS = ("-c", "-e")  # a script passed by a flag is no reason to refuse
+SEPARATORS = re.compile(r"\|\||&&|[|;]")
 
 
 def heredocs(command: str) -> list[tuple[str, str]]:
@@ -75,6 +89,49 @@ def file_write(marker_line: str) -> str | None:
     return None
 
 
+def _words(segment: str) -> list[str]:
+    """The words of one command, its redirections left out."""
+    try:
+        words = shlex.split(segment, posix=True)
+    except ValueError:
+        words = segment.split()
+    return [w for w in words if not re.match(r"^\d?[<>]", w)]
+
+
+def _fed(args: list[str]) -> bool:
+    """Whether an interpreter called with `args` reads its script from stdin: no script by
+    path and no `-c` or `-e` before it; `-` alone is stdin."""
+    for arg in args:
+        if arg in INLINE_FLAGS:
+            return False
+        if arg == "-":
+            return True
+        if not arg.startswith("-"):
+            return False  # a script run by path
+    return True
+
+
+def interpreter(line: str) -> str | None:
+    """The interpreter of `INTERPRETERS` that a command line feeds a script to on stdin — as
+    its first command or after a `|`, `&&`, `||` or `;` — named as called, such as
+    `python` or `uv run python`, or None. The one judgment of the Bash guard and of the
+    PowerShell guard (cases 796.1, 796.2)."""
+    for segment in SEPARATORS.split(MARKER.sub(" ", line)):
+        words = _words(segment)
+        prefix = ""
+        if words[:2] == ["uv", "run"]:
+            words = words[2:]
+            while words and words[0].startswith("-"):
+                words = words[1:]
+            prefix = "uv run "
+        if not words:
+            continue
+        name = re.sub(r"\.exe$", "", words[0].replace("\\", "/").rsplit("/", 1)[-1].lower())
+        if name in INTERPRETERS and _fed(words[1:]):
+            return prefix + name
+    return None
+
+
 def refusal(command: str) -> str | None:
     """The first reason to refuse the command, or None."""
     for marker_line, body in heredocs(command):
@@ -83,6 +140,9 @@ def refusal(command: str) -> str | None:
         path = file_write(marker_line)
         if path:
             return f"it writes {path}"
+        fed = interpreter(marker_line)
+        if fed:
+            return f"it feeds {fed}"
     return None
 
 

@@ -1,5 +1,6 @@
 """`guppi bashguard`: the `PreToolUse Bash` hook refuses a heredoc whose body carries a
-backslash, or one that writes a file, and names Write and Edit (case 127). Rule page:
+backslash, one that writes a file, or one that feeds an interpreter, and names Write and Edit
+(cases 127, 796.1). Rule page:
 `vault/wiki/rules/rule-bash-guard.md`."""
 
 import io
@@ -13,13 +14,19 @@ from guppi import bashguard
 NOW = datetime(2026, 9, 14, 12, 0, 0, tzinfo=UTC)
 
 BACKSLASH_BODY = "python - <<'EOF'\nprint('a\\nb')\nEOF"
-CLEAN_PIPE = "python - <<'EOF' | head -3\nprint(1)\nEOF"
+CLEAN_PIPE = "cat - <<'EOF' | head -3\nprint(1)\nEOF"
 CLEAN_SCREEN = "cat <<EOF\nhello\nEOF"
 FILE_WRITE = "cat > out.txt <<EOF\nhello\nEOF"
 APPEND_WRITE = "cat >> C:/x/plan.md <<'EOF'\n## Case\nEOF"
 TEE_WRITE = "cat <<EOF | tee notes.md\nhello\nEOF"
 DASH_MARKER = "cat <<-EOF\n\thello\n\tEOF\necho done"
-NULL_ONLY = "python - <<'EOF' 2>/dev/null\nprint(1)\nEOF"
+NULL_ONLY = "cat - <<'EOF' 2>/dev/null\nprint(1)\nEOF"
+# case 796.1: a heredoc that feeds a script to an interpreter
+PYTHON_FED = "python - <<'EOF'\nfrom pathlib import Path\nEOF"
+UV_PYTHON_FED = "uv run python - <<EOF\nprint(1)\nEOF"
+NODE_FED = "cat <<EOF | node\nconsole.log(1)\nEOF"
+PYTHON_FLAG = 'python -c "print(1)"'
+PYTHON_BY_PATH = "python script.py <<EOF\ndata\nEOF"
 HERE_STRING = "grep x <<< 'a\\tb'"
 NO_HEREDOC = "printf '%s\\n' a b > out.txt"
 
@@ -70,6 +77,16 @@ def test_a_heredoc_that_writes_a_file_is_refused_with_the_path(tmp_path):
     assert code == 2 and "it writes notes.md" in err
 
 
+@pytest.mark.parametrize(
+    ("command", "fed"),
+    [(PYTHON_FED, "python"), (UV_PYTHON_FED, "uv run python"), (NODE_FED, "node")],
+)
+def test_a_heredoc_that_feeds_an_interpreter_is_refused_and_logged(tmp_path, command, fed):
+    code, err = run(bash(command), tmp_path)
+    assert code == 2 and err == f"bashguard: heredoc refused — it feeds {fed}. {ADVICE}"
+    assert log(tmp_path) == f"- 12:00:00 19037d1c bashguard refused: it feeds {fed}\n"
+
+
 def test_the_refusal_is_logged_before_it_is_said(tmp_path):
     run(bash(BACKSLASH_BODY), tmp_path)
     assert log(tmp_path) == "- 12:00:00 19037d1c bashguard refused: a backslash in its body\n"
@@ -79,7 +96,17 @@ def test_the_refusal_is_logged_before_it_is_said(tmp_path):
 
 
 @pytest.mark.parametrize(
-    "command", [CLEAN_PIPE, CLEAN_SCREEN, DASH_MARKER, NULL_ONLY, HERE_STRING, NO_HEREDOC]
+    "command",
+    [
+        CLEAN_PIPE,
+        CLEAN_SCREEN,
+        DASH_MARKER,
+        NULL_ONLY,
+        HERE_STRING,
+        NO_HEREDOC,
+        PYTHON_FLAG,
+        PYTHON_BY_PATH,
+    ],
 )
 def test_a_clean_heredoc_a_here_string_or_no_heredoc_passes(tmp_path, command):
     assert run(bash(command), tmp_path) == (0, "")

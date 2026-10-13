@@ -944,22 +944,35 @@ def fill_type(fields: dict, category: str | None) -> dict:
 
 
 def create_lacks(
-    category: str | None, fields: dict, sections: dict | None, tagged: bool
+    category: str | None,
+    fields: dict,
+    sections: dict | None,
+    tagged: bool,
+    ref: str | None = None,
 ) -> list[str]:
     """The fields of `REQUIRED` that a `create` item of `category` lacks, `type` filled
     first by `fill_type`: a field is present as a key of `fields` or under `sections`, and
-    the tags when the item or its decision line carries them. The one judgment the lift marks
-    `incomplete` by and pre-spec reports by (case 748.2)."""
+    the tags when the item or its decision line carries them. A rule of kind `Leaf` lacks
+    `parent` when it has neither a `ref`, on its item or its decision line, nor a `parent`
+    nor an `applies_to` that links it to an entity (case 795.2). The one judgment the lift
+    marks `incomplete` by and pre-spec reports by (case 748.2)."""
     fields = fill_type(dict(fields), category)
     sections = sections or {}
     present = set(fields) | set(sections) | {str(k).lower() for k in sections}
     if tagged:
         present.add("tags")
-    return [
+    lacks = [
         name
         for name in REQUIRED.get(category, ())
         if name not in present and name.capitalize() not in sections
     ]
+    if (
+        category == "rules"
+        and fields.get("kind") == "Leaf"
+        and not (ref or fields.get("ref") or fields.get("parent") or fields.get("applies_to"))
+    ):
+        lacks.append("parent")
+    return lacks
 
 
 def create_fields(item: dict, known: set[str] | None) -> dict:
@@ -1008,13 +1021,9 @@ def _lift_item(
         if item.get("tags") and not entry.get("tags"):
             entry["tags"] = list(item["tags"])
         category = entry.get("category")
-        incomplete += create_lacks(category, fields, entry.get("sections"), bool(entry.get("tags")))
-        if (
-            category == "rules"
-            and fields.get("kind") == "Leaf"
-            and not (entry.get("ref") or fields.get("parent"))
-        ):
-            incomplete.append("parent")
+        incomplete += create_lacks(
+            category, fields, entry.get("sections"), bool(entry.get("tags")), entry.get("ref")
+        )
     elif kind == "update":
         for key in ITEM_KEYS["update"]:
             if key in ("slug", "reword"):  # the target, and the pairs checked below

@@ -2963,20 +2963,37 @@ def lacks(slug, field):
 
 
 def test_a_rule_create_with_no_purpose_or_no_tags_is_a_required_field_finding(tmp_path):
-    no_purpose = {"slug": "rule-z", "kind": "Leaf", "tags": ["a"]}
+    no_purpose = {"slug": "rule-z", "kind": "Leaf", "ref": "rule-x", "tags": ["a"]}
     assert required(tmp_path, no_purpose) == [lacks("rule-z", "purpose")]
-    no_tags = {"slug": "rule-z", "kind": "Leaf", "purpose": "p"}
+    no_tags = {"slug": "rule-z", "kind": "Leaf", "ref": "rule-x", "purpose": "p"}
     assert required(tmp_path, no_tags) == [lacks("rule-z", "tags")]
 
 
 def test_a_create_with_no_type_gives_no_required_field_finding(tmp_path):
-    item = {"slug": "rule-z", "kind": "Leaf", "purpose": "p", "tags": ["a"]}
+    item = {"slug": "rule-z", "kind": "Leaf", "ref": "rule-x", "purpose": "p", "tags": ["a"]}
     assert required(tmp_path, item) == []
 
 
 def test_tags_on_the_decision_line_alone_count_as_the_required_field(tmp_path):
-    item = {"slug": "rule-z", "kind": "Leaf", "purpose": "p"}
+    item = {"slug": "rule-z", "kind": "Leaf", "ref": "rule-x", "purpose": "p"}
     assert required(tmp_path, item, line_tags=["a"]) == []
+
+
+# case 795.2
+def test_a_leaf_rule_with_no_ref_and_no_applies_to_is_a_required_field_finding(tmp_path):
+    item = {"slug": "rule-z", "kind": "Leaf", "purpose": "p", "tags": ["a"]}
+    assert required(tmp_path, item) == [lacks("rule-z", "parent")]
+
+
+def test_a_leaf_rule_with_an_applies_to_alone_gives_no_required_field_finding(tmp_path):
+    item = {
+        "slug": "rule-z",
+        "kind": "Leaf",
+        "applies_to": "entity-x",
+        "purpose": "p",
+        "tags": ["a"],
+    }
+    assert required(tmp_path, item) == []
 
 
 def test_a_defer_with_no_purpose_gives_no_required_field_finding(tmp_path):
@@ -3012,6 +3029,8 @@ def test_the_lift_and_the_check_answer_alike_over_a_required_field(tmp_path):
         {"slug": "estimate-z-works", "purpose": "p"},
         {"slug": "insight-z", "pattern": "p"},
         {"slug": "rule-z", "type": "rule", "kind": "Leaf", "purpose": "p", "tags": ["a"]},
+        {"slug": "rule-z", "kind": "Leaf", "applies_to": "entity-x", "purpose": "p"},
+        {"slug": "rule-z", "kind": "Leaf", "ref": "rule-x", "purpose": "p", "tags": ["a"]},
     ]
     for item in items:
         entry = {"slug": item["slug"], "category": materialize.category_of(item["slug"])}
@@ -3019,8 +3038,8 @@ def test_the_lift_and_the_check_answer_alike_over_a_required_field(tmp_path):
         materialize._lift_item(entry, dict(item), "create", None, lifted)
         found = required(tmp_path, dict(item))
         named = [f.split(": no ")[1].split(",")[0] for f in found]
-        # `method` is the finding of check_form, `parent` a mark of the lift alone
-        assert named == [f for f in lifted if f not in ("method", "parent")], item
+        # `method` is the finding of check_form
+        assert named == [f for f in lifted if f != "method"], item
 
 
 # --- a defer of an Estimate with no page (case 783) -----------------------------------------

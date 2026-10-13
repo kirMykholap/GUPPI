@@ -1370,11 +1370,17 @@ def check_required(
     fields lifted as the lift lifts them, `type` filled from the category, the tags counted
     when the item or its decision line carries them. A missing `method` of an Estimate is
     left to `check_form`, which reports it already (case 331); a `defer`, an `update` and a
-    `delete` are not judged."""
+    `delete` are not judged. The `ref` that saves a `Leaf` rule from lacking `parent` is the
+    item's, or that of the decision line of its Case and slug (case 795.2)."""
     tagged = {
         (str(r.get("case")), str(r.get("slug")))
         for r in records
         if r.get("kind") == "create" and r.get("tags")
+    }
+    refs = {
+        (str(r.get("case")), str(r.get("slug"))): str(r["ref"])
+        for r in records
+        if r.get("kind") == "create" and r.get("ref")
     }
     findings: list[str] = []
     for case, block in blocks.items():
@@ -1390,6 +1396,7 @@ def check_required(
                 create_fields(item, known),
                 sections,
                 bool(item.get("tags")) or (case, slug) in tagged,
+                item.get("ref") or refs.get((case, slug)),
             )
             findings += [
                 f"case {case}: create {slug}: no {name}, a field materialize requires"

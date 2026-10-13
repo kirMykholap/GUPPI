@@ -1,0 +1,196 @@
+ship: vault/wiki/entities/schema.yaml:21: a reference to a case: case 148.1
+ship: vault/wiki/rules/schema.yaml:13: a reference to a case: case 148.1
+ship: vault/wiki/rules/schema.yaml:152: a reference to a case: case 273
+ship: vault/wiki/estimates/schema.yaml:9: a reference to a case: case 182
+ship: vault/wiki/estimates/schema.yaml:45: a reference to a case: case 193
+ship: vault/wiki/decisions/schema.yaml:9: a reference to a case: case 513
+ship: vault/wiki/decisions/schema.yaml:44: a mention of a session: session 2026-09-27/1819
+ship: vault/wiki/decisions/schema.yaml:53: a reference to a case: case 513
+ship: vault/wiki/decisions/schema.yaml:57: a reference to a case: case 544
+ship: vault/wiki/decisions/schema.yaml:59: a reference to a case: Cases 201
+ship: vault/wiki/decisions/schema.yaml:59: a reference to a case: case 376
+ship: vault/wiki/decisions/schema.yaml:59: a reference to a case: case 378.3
+ship: vault/wiki/decisions/schema.yaml:59: a reference to a case: case 513
+ship: vault/wiki/decisions/schema.yaml:59: a reference to a case: case 513
+ship: vault/wiki/decisions/schema.yaml:59: a reference to a case: case 52.1
+ship: vault/wiki/decisions/schema.yaml:61: a reference to a case: case 72
+ship: vault/wiki/decisions/schema.yaml:61: a reference to a case: case 72
+ship: vault/wiki/decisions/schema.yaml:63: a reference to a case: case 193
+ship: vault/wiki/decisions/schema.yaml:63: a reference to a case: case 201.2
+ship: vault/wiki/entities/entity-glossary.md:18: a reference to a case: case 306.3
+ship: vault/wiki/entities/entity-glossary.md:51: a reference to a case: case 513
+ship: vault/wiki/entities/entity-glossary.md:58: a mention of a session: session 2026-09-27/1819
+ship: vault/wiki/rules/rule-agent-writing.md:21: a reference to a case: case 272
+ship: vault/wiki/rules/rule-backlog.md:20: a reference to a case: case 451
+ship: vault/wiki/rules/rule-case-build.md:20: a reference to a case: case 419.2
+ship: vault/wiki/rules/rule-case-build.md:20: a reference to a case: cases 403 and 408
+ship: vault/wiki/rules/rule-case-check.md:19: a reference to a case: case 419
+ship: vault/wiki/rules/rule-case-example.md:20: a reference to a case: case 717.1
+ship: vault/wiki/rules/rule-case-protocol.md:21: a reference to a case: case 273
+ship: vault/wiki/rules/rule-case-protocol.md:21: a reference to a case: case 595
+ship: vault/wiki/rules/rule-claude-md.md:42: a reference to a case: case 272
+ship: vault/wiki/rules/rule-claude-md.md:42: a reference to a case: case 273
+ship: vault/wiki/rules/rule-claude-md.md:42: a reference to a case: case 288.3
+ship: vault/wiki/rules/rule-claude-md.md:42: a reference to a case: case 66
+ship: vault/wiki/rules/rule-decisions-schema.md:33: a reference to a case: case 513
+ship: vault/wiki/rules/rule-decisions-schema.md:68: a mention of a session: session 2026-09-27/1819
+ship: vault/wiki/rules/rule-decisions-schema.md:77: a reference to a case: case 513
+ship: vault/wiki/rules/rule-decisions-schema.md:81: a reference to a case: case 544
+ship: vault/wiki/rules/rule-decisions-schema.md:83: a reference to a case: Cases 201
+ship: vault/wiki/rules/rule-decisions-schema.md:83: a reference to a case: case 376
+ship: vault/wiki/rules/rule-decisions-schema.md:83: a reference to a case: case 378.3
+ship: vault/wiki/rules/rule-decisions-schema.md:83: a reference to a case: case 513
+ship: vault/wiki/rules/rule-decisions-schema.md:83: a reference to a case: case 513
+ship: vault/wiki/rules/rule-decisions-schema.md:83: a reference to a case: case 52.1
+ship: vault/wiki/rules/rule-decisions-schema.md:85: a reference to a case: case 72
+ship: vault/wiki/rules/rule-decisions-schema.md:85: a reference to a case: case 72
+ship: vault/wiki/rules/rule-decisions-schema.md:87: a reference to a case: case 193
+ship: vault/wiki/rules/rule-decisions-schema.md:87: a reference to a case: case 201.2
+ship: vault/wiki/rules/rule-entities-schema.md:45: a reference to a case: case 148.1
+ship: vault/wiki/rules/rule-estimates-schema.md:33: a reference to a case: case 182
+ship: vault/wiki/rules/rule-estimates-schema.md:69: a reference to a case: case 193
+ship: vault/wiki/rules/rule-event-log.md:41: a reference to a case: case 136.1
+ship: vault/wiki/rules/rule-event-log.md:45: a reference to a case: case 111
+ship: vault/wiki/rules/rule-git-context.md:37: a reference to a case: case 528
+ship: vault/wiki/rules/rule-git-context.md:37: a reference to a case: case 787
+ship: vault/wiki/rules/rule-git-context.md:37: a reference to a case: case 787
+ship: vault/wiki/rules/rule-internal-context.md:38: a reference to a case: case 273
+ship: vault/wiki/rules/rule-internal-context.md:38: a reference to a case: case 288.1
+ship: vault/wiki/rules/rule-internal-context.md:38: a reference to a case: case 595
+ship: vault/wiki/rules/rule-internal-context.md:41: a reference to a case: case 689.1
+ship: vault/wiki/rules/rule-language.md:20: a reference to a case: case 272
+ship: vault/wiki/rules/rule-ledger-tail.md:21: a reference to a case: case 126
+ship: vault/wiki/rules/rule-page-read.md:19: a mention of a session: session 0051
+ship: vault/wiki/rules/rule-page-schemas.md:18: a reference to a case: case 304
+ship: vault/wiki/rules/rule-permissions.md:22: a mention of a session: session 1448
+ship: vault/wiki/rules/rule-prespec-hook.md:25: a reference to a case: case 261
+ship: vault/wiki/rules/rule-render-harness.md:23: a reference to a case: case 226.2
+ship: vault/wiki/rules/rule-retro-onward.md:19: a mention of a session: session 1237
+ship: vault/wiki/rules/rule-retro-onward.md:19: a mention of a session: session 1834
+ship: vault/wiki/rules/rule-rules-schema.md:37: a reference to a case: case 148.1
+ship: vault/wiki/rules/rule-rules-schema.md:176: a reference to a case: case 273
+ship: vault/wiki/rules/rule-search-leaves-out-decisions.md:21: a mention of a session: session 1343
+ship: vault/wiki/rules/rule-skill-grill-me.md:20: a reference to a case: case 443.1
+ship: vault/wiki/rules/rule-skill-grill-me.md:20: a reference to a case: case 443.1
+ship: vault/wiki/rules/rule-skill-grill-me.md:20: a reference to a case: case 444
+ship: vault/wiki/rules/rule-skill-hi.md:52: a reference to a case: case 111.4
+ship: vault/wiki/rules/rule-skill-sprint-close.md:20: a reference to a case: case 743
+ship: vault/wiki/rules/rule-skill-sprint-open.md:21: a reference to a case: case 743
+ship: vault/wiki/rules/rule-spec-reconcile.md:19: a reference to a case: case 387.3
+ship: vault/wiki/rules/rule-spec-reconcile.md:19: a reference to a case: case 441
+ship: vault/wiki/rules/rule-spec-reconcile.md:23: a reference to a case: case 445.1
+ship: vault/wiki/rules/rule-spec-write.md:19: a reference to a case: case 387
+ship: guppi/archive.py:4: a bracket with words: (the shape before case 103)
+ship: guppi/casecheck.py:119: a bracket with words: (cases 711.1–711.3)
+ship: guppi/casecheck.py:150: a bracket with words: (measured 2026-09-25, session 0051)
+ship: guppi/casecheck.py:151: a bracket with words: (measured 2026-09-26, session 1337)
+ship: guppi/casecheck.py:263: a bracket with words: (case 592; measured on the transcript of session 2356, 2026-10-01)
+ship: guppi/casecheck.py:295: a bracket with words: (measured 2026-09-27, session 1255)
+ship: guppi/casecheck.py:302: a bracket with words: (transcripts of sessions 1237 and 1441, case 584)
+ship: guppi/casecheck.py:438: a bracket with words: (cases 452.1–452.3)
+ship: guppi/casecheck.py:1965: a bracket with words: (measured 2026-10-01, session 2356)
+ship: guppi/generate.py:62: a bracket with words: (the shape before case 189)
+ship: guppi/generate.py:574: a bracket with words: (cases 104.1–104.3)
+ship: guppi/generate.py:852: a bracket with words: (the shape before case 189, case 201.1)
+ship: guppi/generate.py:1249: a bracket with words: (the round trip of decision-case-469 kept off it)
+ship: guppi/generate.py:1523: a bracket with words: (the shape before case 189, case 201.1)
+ship: guppi/ledger.py:301: a bracket with words: (measured on session 1237 and 1441, Claude Code 2.1.282)
+ship: guppi/lint.py:65: a bracket with words: (the shape before case 193; case 506.2)
+ship: guppi/lint.py:68: a bracket with words: (the cut is case 72; case 72.6)
+ship: guppi/lint.py:112: a bracket with words: (the shape before case 103)
+ship: guppi/materialize.py:9: a bracket with words: (the shape before case 103; a date-level Spec on the dates before case 73)
+ship: guppi/materialize.py:86: a bracket with words: (the shape before case 189; case 440)
+ship: guppi/materialize.py:102: a bracket with words: (the file route removed by case 320)
+ship: guppi/materialize.py:140: a bracket with words: (the shape before case 189)
+ship: guppi/materialize.py:437: a bracket with words: (the shape before case 103)
+ship: guppi/materialize.py:855: a bracket with words: (case 320: no file route)
+ship: guppi/materialize.py:892: a bracket with words: (the shape before case 189; case 440)
+ship: guppi/materialize.py:1006: a bracket with words: (since case 193)
+ship: guppi/materialize.py:1007: a bracket with words: (the shape before case 194.1)
+ship: guppi/prespec.py:1202: a bracket with words: (split it, case 472.3)
+ship: guppi/ratified.py:88: a bracket with words: (measured 2026-10-05, session 0311)
+ship: guppi/sprint.py:287: a bracket with words: (rule-skill-sprint-open, case 743.7)
+ship: guppi/tail.py:3: a bracket with words: (the shape before case 103)
+ship: .claude/agents/librarian-guppi.md:15: a bracket with words: (the session's folder, case 73)
+ship: .claude/agents/librarian-guppi.md:96: a bracket with words: (`rule-sprint-close`, case 628.1)
+ship: .claude/agents/librarian-guppi.md:96: a bracket with words: (`rule-sprint`, case 743.5)
+ship: .claude/agents/librarian-guppi.md:104: a bracket with words: (`rule-backlog`, case 632.2)
+ship: .claude/agents/librarian-guppi.md:117: a bracket with words: (`rule-sprint-close`, case 628.8)
+ship: .claude/skills/carry/SKILL.md:21: a bracket with words: (`rule-spec-box`, case 591)
+ship: .claude/skills/hi/SKILL.md:28: a bracket with words: (`rule-sprint-close`, cases 628.7, 769.2)
+ship: .claude/skills/hi/SKILL.md:31: a bracket with words: (`rule-permissions`, case 363)
+ship: .claude/skills/hi/SKILL.md:31: a bracket with words: (`rule-spec-box`, case 591)
+ship: .claude/skills/retro/SKILL.md:13: a bracket with words: (the session's folder, case 73)
+ship: .claude/skills/retro/SKILL.md:13: a bracket with words: (`rule-sprint-close`, case 628.1)
+ship: .claude/skills/work/SKILL.md:21: a bracket with words: (`rule-sprint-close`, case 628.4)
+ship: vault/wiki/rules/schema.yaml:11: a bracket with words: (`rule-sprint`, case 209.7)
+ship: vault/wiki/estimates/schema.yaml:13: a bracket with words: (case 182, point 5)
+ship: vault/wiki/lessons/schema.yaml:11: a bracket with words: (`rule-sprint-close`, case 627.2)
+ship: vault/wiki/lessons/schema.yaml:35: a bracket with words: (`rule-sprint-close`, case 627.2)
+ship: vault/wiki/insights/schema.yaml:9: a bracket with words: (`rule-sprint-close`, case 627.2)
+ship: vault/wiki/insights/schema.yaml:35: a bracket with words: (`rule-sprint-close`, case 627.2)
+ship: vault/wiki/decisions/schema.yaml:5: a bracket with words: (a deferred decision, case 52.3)
+ship: vault/wiki/decisions/schema.yaml:24: a bracket with words: (`rule-sprint-close`, case 627.1)
+ship: vault/wiki/decisions/schema.yaml:26: a bracket with words: (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1)
+ship: vault/wiki/case-schema.md:19: a bracket with words: (`rule-where-to-stop`, case 531.7)
+ship: vault/wiki/case-schema.md:44: a bracket with words: (a list of `{old, new}` pairs, each `old` replaced by its `new` inside the body; one pair is a list of one, and a mapping under `replace` is a shape `generate` rejects; an `old` matches inside one `##` section of the page — a render block is one section with its headings — never in History, a line break matching any whitespace, and hits the page once: an anchor that crosses a section heading never matches, and one that misses or hits twice fails the entry; an `old` that opens with spaces or tabs takes the spaces and tabs before its first word on the page too, so the indent of `new` replaces them, and a `new` that opens with spaces or tabs takes an `old` that opens with them, or pre-spec reports the pair — case 543)
+ship: vault/wiki/case-schema.md:44: a bracket with words: (a list of `{old, new}` pairs replaced as whole words over every live page of `wiki/`, the page of the item being the owner, for a word that changes everywhere — a slug goes through `rename`, case 274.1)
+ship: vault/wiki/case-schema.md:44: a bracket with words: (the new slug, the same category prefix; the page moves and every link to it in the live pages follows, `origin`, History and Result kept — case 258.1)
+ship: vault/wiki/case-schema.md:46: a bracket with words: (`rule-sprint-close`, case 628.1)
+ship: vault/wiki/orchestration.md:11: a bracket with words: (`rule-skill-sprint-close`, `rule-skill-sprint-open`, case 743.8)
+ship: vault/wiki/orchestration.md:15: a bracket with words: (`rule-prespec`, case 634.2)
+ship: vault/wiki/orchestration.md:82: a bracket with words: (case 167, supersedes 157)
+ship: vault/wiki/orchestration.md:82: a bracket with words: (`rule-page-generation`, case 673)
+ship: vault/wiki/entities/entity-glossary.md:28: a bracket with words: (an Estimate is its own `create`, with `ref` on its target, case 193)
+ship: vault/wiki/entities/entity-sprint.md:18: a bracket with words: (`rule-sprint-close`, case 632.3)
+ship: vault/wiki/rules/rule-backlog.md:20: a bracket with words: (`rule-sprint-close`, case 628.12)
+ship: vault/wiki/rules/rule-brief.md:33: a bracket with words: (`rule-sprint-close`, case 628.8)
+ship: vault/wiki/rules/rule-carry-over.md:49: a bracket with words: (`rule-spec-box`, case 591)
+ship: vault/wiki/rules/rule-case-protocol.md:44: a bracket with words: (`rule-where-to-stop`, case 531.7)
+ship: vault/wiki/rules/rule-case-protocol.md:69: a bracket with words: (a list of `{old, new}` pairs, each `old` replaced by its `new` inside the body; one pair is a list of one, and a mapping under `replace` is a shape `generate` rejects; an `old` matches inside one `##` section of the page — a render block is one section with its headings — never in History, a line break matching any whitespace, and hits the page once: an anchor that crosses a section heading never matches, and one that misses or hits twice fails the entry; an `old` that opens with spaces or tabs takes the spaces and tabs before its first word on the page too, so the indent of `new` replaces them, and a `new` that opens with spaces or tabs takes an `old` that opens with them, or pre-spec reports the pair — case 543)
+ship: vault/wiki/rules/rule-case-protocol.md:69: a bracket with words: (a list of `{old, new}` pairs replaced as whole words over every live page of `wiki/`, the page of the item being the owner, for a word that changes everywhere — a slug goes through `rename`, case 274.1)
+ship: vault/wiki/rules/rule-case-protocol.md:69: a bracket with words: (the new slug, the same category prefix; the page moves and every link to it in the live pages follows, `origin`, History and Result kept — case 258.1)
+ship: vault/wiki/rules/rule-case-protocol.md:71: a bracket with words: (`rule-sprint-close`, case 628.1)
+ship: vault/wiki/rules/rule-cleanup.md:19: a bracket with words: (`rule-sprint-close`, case 627.1)
+ship: vault/wiki/rules/rule-decisions-schema.md:29: a bracket with words: (a deferred decision, case 52.3)
+ship: vault/wiki/rules/rule-decisions-schema.md:48: a bracket with words: (`rule-sprint-close`, case 627.1)
+ship: vault/wiki/rules/rule-decisions-schema.md:50: a bracket with words: (case 59.4, replacing the aligned `kind` and `target_slug` of case 52.1)
+ship: vault/wiki/rules/rule-documentation.md:43: a bracket with words: (the session's folder, case 73)
+ship: vault/wiki/rules/rule-documentation.md:69: a bracket with words: (`rule-sprint-close`, case 628.1)
+ship: vault/wiki/rules/rule-documentation.md:69: a bracket with words: (`rule-sprint`, case 743.5)
+ship: vault/wiki/rules/rule-documentation.md:77: a bracket with words: (`rule-backlog`, case 632.2)
+ship: vault/wiki/rules/rule-end-of-work.md:25: a bracket with words: (`rule-spec-box`, case 591)
+ship: vault/wiki/rules/rule-estimates-schema.md:37: a bracket with words: (case 182, point 5)
+ship: vault/wiki/rules/rule-governed-files-hook.md:22: a bracket with words: (case 56, `lesson-render-governed-file-updated-as-rule-class-file`)
+ship: vault/wiki/rules/rule-insights-schema.md:33: a bracket with words: (`rule-sprint-close`, case 627.2)
+ship: vault/wiki/rules/rule-insights-schema.md:59: a bracket with words: (`rule-sprint-close`, case 627.2)
+ship: vault/wiki/rules/rule-ledger-tail.md:36: a bracket with words: (the shape before case 103)
+ship: vault/wiki/rules/rule-ledger-write.md:24: a bracket with words: (`rule-sprint-close`, case 628.3)
+ship: vault/wiki/rules/rule-lessons-schema.md:35: a bracket with words: (`rule-sprint-close`, case 627.2)
+ship: vault/wiki/rules/rule-lessons-schema.md:59: a bracket with words: (`rule-sprint-close`, case 627.2)
+ship: vault/wiki/rules/rule-materialize.md:29: a bracket with words: (`rule-sprint-close`, case 628.3)
+ship: vault/wiki/rules/rule-orchestration.md:35: a bracket with words: (`rule-skill-sprint-close`, `rule-skill-sprint-open`, case 743.8)
+ship: vault/wiki/rules/rule-orchestration.md:39: a bracket with words: (`rule-prespec`, case 634.2)
+ship: vault/wiki/rules/rule-orchestration.md:106: a bracket with words: (case 167, supersedes 157)
+ship: vault/wiki/rules/rule-orchestration.md:106: a bracket with words: (`rule-page-generation`, case 673)
+ship: vault/wiki/rules/rule-page-generation.md:25: a bracket with words: (`rule-sprint`, case 539.1)
+ship: vault/wiki/rules/rule-prespec-hook.md:25: a bracket with words: (cases 59.1–59.3, 59.6)
+ship: vault/wiki/rules/rule-raw-archive.md:30: a bracket with words: (the shape before case 103)
+ship: vault/wiki/rules/rule-raw-archive.md:31: a bracket with words: (`rule-sprint-close`, case 743.1)
+ship: vault/wiki/rules/rule-raw-archive.md:40: a bracket with words: (`rule-sprint-close`, case 743.3)
+ship: vault/wiki/rules/rule-retro-commit.md:29: a bracket with words: (`rule-ledger-write`, case 122)
+ship: vault/wiki/rules/rule-retro.md:20: a bracket with words: (case 169.3, supersedes 150)
+ship: vault/wiki/rules/rule-retro.md:37: a bracket with words: (the session's folder, case 73)
+ship: vault/wiki/rules/rule-retro.md:37: a bracket with words: (`rule-sprint-close`, case 628.1)
+ship: vault/wiki/rules/rule-rules-schema.md:35: a bracket with words: (`rule-sprint`, case 209.7)
+ship: vault/wiki/rules/rule-skill-hi.md:23: a bracket with words: (`rule-event-log`, case 111.1)
+ship: vault/wiki/rules/rule-skill-hi.md:39: a bracket with words: (`rule-sprint-close`, cases 628.7, 769.2)
+ship: vault/wiki/rules/rule-skill-hi.md:42: a bracket with words: (`rule-permissions`, case 363)
+ship: vault/wiki/rules/rule-skill-hi.md:42: a bracket with words: (`rule-spec-box`, case 591)
+ship: vault/wiki/rules/rule-skill-hi.md:52: a bracket with words: (`rule-event-log`, case 111.1)
+ship: vault/wiki/rules/rule-skill-sprint-close.md:20: a bracket with words: ([[rule-sprint-close]], case 628.1)
+ship: vault/wiki/rules/rule-skill-sprint-open.md:21: a bracket with words: ([[rule-sprint]], case 743.5)
+ship: vault/wiki/rules/rule-spec-capture.md:25: a bracket with words: (`rule-spec-box`, case 591)
+ship: vault/wiki/rules/rule-sprint.md:22: a bracket with words: (`rule-sprint-close`, case 632.3)
+ship: vault/wiki/rules/rule-synthesis.md:22: a bracket with words: (`rule-sprint-close`, case 627.5)
+ship: vault/wiki/rules/rule-work-mode.md:45: a bracket with words: (`rule-sprint-close`, case 628.4)

@@ -25,7 +25,7 @@ type: decision
 description: |
   Every page has three blocks: properties (frontmatter), body (per-category sections), history (appended by hook). This is the schema for Decision. One page per Case, however many ledger lines the Case produced.
 
-  Slug. `decision-case-<N>`: `decision-case-18.1`. Mechanical, because the script writes the page and may not name anything; unique, because a Case id is. Nothing searches Decision pages, so the slug needs no meaning beyond the Case it points back at. A Decision is reached by reference only: from a target page's `deferred_by` (a deferred decision, case 52.3), from the `[[decision-case-N]]` wikilink of a History line (case 52.4), or by the case id a `supersedes` carries.
+  Slug. `decision-case-<N>`: `decision-case-kir-plugin-12.1`, or `decision-case-18.1` for a Case from before sprint ids (case 788.2). Mechanical, because the script writes the page and may not name anything; unique, because a Case id is. Nothing searches Decision pages, so the slug needs no meaning beyond the Case it points back at. A Decision is reached by reference only: from a target page's `deferred_by` (a deferred decision, case 52.3), from the `[[decision-case-N]]` wikilink of a History line (case 52.4), or by the case id a `supersedes` carries.
 
   Fields deliberately absent. `ratification` — a Decision page cannot exist without it. The Case does not close, no ledger line is written, no page is generated. A field with one possible value carries no information; the fact is recorded by the page existing and by `origin`. `recommend` — no field: the body carries it as `## Recommend` (case 544.8). `last_updated` — a decision is not edited. Only `status` and `superseded_by` ever change, and both are dated in History; one more History line is allowed, `updated:` of a Case that signs the page's text after the fact (case 358). `authority` — dropped. It overlapped with tags on one reading and with `ref` on the other. If a real need appears later, it comes back as a ratified decision.
 
@@ -42,7 +42,7 @@ fields:
   type: |
     required; `decision`. Page category. Fixed for this schema.
   case: |
-    required; case id, e.g. `18.1`. The Case this page records.
+    required; case id, e.g. `kir-plugin-12.1`, or `18.1` for a Case from before sprint ids. The Case this page records.
   status: |
     required; `current` | `superseded` | `archived`. Lifecycle of this page, not of the work. `superseded` once a later Case names it, or the page of a Case it is a sub-case of, in `supersedes`, and `archived` the moment the cascade of `generate` meets it so: a superseded Decision no longer describes the present (case 104.1); a page that stands `archived` when a later Case names it stays `archived` and only takes that Case into `superseded_by` (case 683); `guppi sprint-close` also sets `archived` on a Decision page of the sprint it closes, but for one that a live page names in `deferred_by` or `addressed_by` (`rule-sprint-close`, case 627.1).
   create: |
@@ -131,3 +131,4 @@ examples:
 - 2026-10-04 updated: a Decision page is archived also by the close of its sprint (case 627.1) · [[decision-case-627.1]]
 - 2026-10-05 updated: the page of a sub-case is superseded with its parent (case 660.3) · [[decision-case-660.3]]
 - 2026-10-06 updated: a Decision page already archived stays archived when a later Case supersedes it (case 683) · [[decision-case-683]]
+- 2026-10-13 updated: the slug and the field case show an id that carries its sprint (case 788.2) · [[decision-case-788.2]]

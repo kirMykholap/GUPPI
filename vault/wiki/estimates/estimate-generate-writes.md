@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-page-generation]]"
 purpose: What generate writes to a page for each kind of entry of a materialize.yaml, and nothing an entry does not carry
 method: pytest in tests/test_generate.py against a temp vault; the live reading once by hand
-checked: 2026-10-12
+checked: 2026-10-13
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -25,19 +25,19 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 **＋** An `update`, `estimate`, `delete` or `defer` whose slug is not under `vault/wiki/` finds the page under `vault/archive/` (`raw/` folders excluded) and edits it there.
 **＋** An `estimate` sets `status`, overwrites `## Result`, writes `checked` — the date the `result` opens with, else the yaml's date — and appends History `status: a → b · <ledger pointer>`.
 **＋** A `delete` sets `archived` with History `deleted`; a `delete` outside the vault is a line on stdout, the entry applied, no page written.
-**＋** A `defer` with a page appends the decision slug to `deferred_by` (rule, entity, insight, estimate) with History `deferred`; without a page it writes a placeholder `draft` with the Case's fields and `deferred_by` for a rule or an entity.
+**＋** A `defer` with a page appends the decision slug to `deferred_by` (rule, entity, insight, estimate) with History `deferred`; without a page it writes a placeholder `draft` with the Case's fields and `deferred_by` for a rule or an entity only.
 **＋** A `lesson` writes the lesson only, `source` when the line carries it; no Estimate is created.
 **＋** Every ref field is written as `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`; a slug without a category prefix stays bare; read through the brackets.
 **＋** A `create` in `insights` applies only with the mark `librarian`; a `delete` of an Insight is refused always.
 **＋** History lines and `log.md` lines carry the date of the run and end with `[[decision-case-N]]` or the ledger pointer; `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a used and undeclared one goes to stderr.
-**－** A `defer` of an Estimate whose page stands neither under `vault/wiki/estimates/` nor in a folder `estimates/` under `vault/archive/` outside a `raw/` folder, by `has_page` of `guppi/materialize.py`, writes no page: the entry fails alone with `generate: <slug>: an Estimate is deferred only with its page — defer the page it would check` on stderr (`estimate-generate-fails-alone`).
+**－** A `defer` of an Estimate, an Insight, a Lesson or a Decision page whose page stands neither under `vault/wiki/<category>/` nor in a folder `<category>` under `vault/archive/` outside a `raw/` folder, by `defer_writes_no_page` of `guppi/materialize.py`, which asks `has_page`, writes no page: the entry fails alone (`estimate-generate-fails-alone`), with `generate: <slug>: an Estimate is deferred only with its page — defer the page it would check` on stderr for an Estimate, and `generate: <slug>: a placeholder is written only for a rule or an entity — defer a page that stands` for the other kinds.
 **－** No body section is derived from a ref field; a section the entry does not name under `sections` or reach by `replace` is not touched.
 **－** An `update` of an Estimate whose `set` carries `method` drops no section.
 **－** `criterion_block` on an `update` and an entry of kind `remove_criterion` are not applied: a shape the script does not know — the entry fails alone (`estimate-generate-fails-alone`).
 
 ## Result
 
-2026-10-12, uv run pytest tests/test_generate.py: 120 passed; a defer of an Estimate with no page, or archived outside a folder estimates/ or under raw/, writes no page, fails alone with the line on stderr and lets the other entries apply; one archived in a folder estimates/ takes deferred_by there; rule and entity placeholders unchanged
+2026-10-13, uv run pytest tests/test_generate.py: 127 passed — a defer of an Insight, a Lesson and a Decision page with no page writes no page and fails alone; an Insight archived in an insights folder is marked there
 
 ## History
 
@@ -88,3 +88,5 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 - 2026-10-12 status: pending → passed · raw/2026-10-12/1604/ledger.md#L26
 - 2026-10-12 updated: the Criterion replaced whole — a defer of an Estimate with no page writes no placeholder and fails alone · [[decision-case-783.1]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/2252/ledger.md#L13
+- 2026-10-13 updated: the Criterion replaced whole — a defer with no page of anything but a rule or an entity writes no placeholder and fails alone · [[decision-case-786.1]]
+- 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L45

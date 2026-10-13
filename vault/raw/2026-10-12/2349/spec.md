@@ -65,10 +65,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-finds-an-existing-judgment`
-- [ ] read `estimate-case-build-finds-an-existing-judgment`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-finds-an-existing-judgment`
+- [x] read `estimate-case-build-finds-an-existing-judgment`
 ```
 
 ## Case 786 — A defer writes a stand-in page only for a rule or an entity
@@ -151,15 +151,15 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
+- [x] update `rule-page-generation`
 - [x] `guppi/materialize.py`: a constant `PLACEHOLDER_CATEGORIES`, the folders `rules` and `entities`, and a predicate `defer_writes_no_page(project_dir, category, slug)` — true when `category` is a vault folder of `CATEGORIES` outside `PLACEHOLDER_CATEGORIES` and `has_page` is false; its docstring names `guppi/generate.py` and `guppi/prespec.py` as the modules that import it, and the docstring of `has_page` names it; the line `defer none` of the routing table says that a placeholder is written for a rule or an entity only and that the entry of any other kind fails in `generate` (case 786).
 - [x] `guppi/generate.py`: in `defer`, an entry for which `materialize.defer_writes_no_page` is true fails before any page is read, with the Estimate line for an Estimate and `a placeholder is written only for a rule or an entity — defer a page that stands` for any other kind, and no page is written; the module docstring and the docstring of `defer` say that a placeholder is written for a rule or an entity only (case 786).
 - [x] `guppi/lint.py`: `is_placeholder` judges the category by `materialize.PLACEHOLDER_CATEGORIES`, imported, in place of its literal (case 786).
 - [x] `tests/test_generate.py`: a `defer` of an Insight, of a Lesson and of a Decision page with no page each writes no page, prints its line on stderr, exits 1 and lets the other entries apply; so does a `defer` of an Insight whose file stands under `vault/archive/` in a folder other than `insights/`, or under a `raw/` folder; a `defer` of an Insight that stands in a folder `insights/` under `vault/archive/` appends the decision to its `deferred_by` there; `generate.defer_writes_no_page` is `materialize.defer_writes_no_page`, and `lint.PLACEHOLDER_CATEGORIES` is `materialize.PLACEHOLDER_CATEGORIES`.
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi glossary`
-- [ ] update `estimate-generate-writes`
-- [ ] read `estimate-generate-writes`
+- [x] update `entity-glossary`
+- [x] `uv run guppi glossary`
+- [x] update `estimate-generate-writes`
+- [x] read `estimate-generate-writes`
 ```
 
 ### Case 786.2 — Pre-spec reports a defer with no page of anything but a rule or an entity
@@ -205,12 +205,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [x] `guppi/prespec.py`: `check_form` judges each `defer` item whose slug has a category by `materialize.defer_writes_no_page`, imported in place of its direct call of `has_page`, and reports an Estimate with the line it gives today and any other kind with `case N: defer <slug>: no such page — a placeholder is written only for a rule or an entity`; the module docstring and the docstring of `check_form` name it (case 786).
 - [x] `tests/test_prespec.py`: a `defer` of an Insight and of a Lesson with no page, under a Case heading and under `## Deferred`, gives the new finding, and so does one whose file stands under `vault/archive/` in a folder of another category, or under a `raw/` folder; a `defer` of an Insight that stands live or in a folder `insights/` under `vault/archive/`, and a `defer` of a rule or an entity with no page, give none; `prespec.defer_writes_no_page` and `generate.defer_writes_no_page` are `materialize.defer_writes_no_page`.
-- [ ] update `estimate-prespec-checks-the-form-of-an-item`
-- [ ] read `estimate-prespec-checks-the-form-of-an-item`
+- [x] update `estimate-prespec-checks-the-form-of-an-item`
+- [x] read `estimate-prespec-checks-the-form-of-an-item`
 ```
 
 ## Case 787 — The repository on GitHub takes pull requests into main
@@ -289,8 +289,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-git-context`
-- [ ] update `estimate-git-context-current`
+- [x] update `rule-git-context`
+- [x] update `estimate-git-context-current`
 - [ ] read `estimate-git-context-current`
 ```
 
@@ -399,13 +399,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] update `rule-ledger-write`
+- [x] update `rule-skill-sprint-open`
+- [x] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] update `rule-ledger-write`
 - [x] `guppi/ledger.py`: a function `refused_taken_sprint` refuses a fresh `create` of a slug that `is_sprint_page` judges a sprint page when `has_page` of `guppi/materialize.py` finds it under `entities`, imported inside the function; `refused_without_sprint` does not count a refused line; one stderr line per refused line of the reply just finished.
 - [x] `tests/test_ledger.py`: tests named `taken_sprint`: a live id, an archived id, a free id, and a refused `create` that leaves the other decision lines of the session refused while no sprint is open.
-- [ ] create `estimate-skill-sprint-open-refuses-a-taken-sprint-id`
-- [ ] read `estimate-skill-sprint-open-refuses-a-taken-sprint-id`
+- [x] create `estimate-skill-sprint-open-refuses-a-taken-sprint-id`
+- [x] read `estimate-skill-sprint-open-refuses-a-taken-sprint-id`
 ```
 
 ### Case 788.2 — A Case id carries its sprint and starts again at 1 in each sprint
@@ -469,19 +469,19 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ratification`
-- [ ] `uv run guppi render`: `vault/wiki/ratification.md`
-- [ ] update `rule-decisions-schema`
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] update `rule-orchestration`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-ratification`
+- [x] `uv run guppi render`: `vault/wiki/ratification.md`
+- [x] update `rule-decisions-schema`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] update `rule-orchestration`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [x] `guppi/caseid.py`: the one grammar of a Case id — its parse into sprint, number and sub-case levels, the top-level Case, a sort key, and the fixed list of the sprints `migration` and `plugin` — and the command `guppi caseid --next`, which takes the open sprint from `opened_sprint` of `guppi/materialize.py` over the session's ledger, else from `sprint_id`, prints the id that `next_id` gives and holds it in the store; registered in `guppi/cli.py`.
 - [x] `guppi/casecheck.py`: `top_case`, `CASE_NAME` and `case_number` read by the grammar of `guppi/caseid.py`.
 - [x] `guppi/lint.py`: `ORIGIN_CASE` and `DEFERRED_LINE` take an id with a sprint part, by the grammar of `guppi/caseid.py`.
 - [x] `guppi/gate.py`: `case_key` sorts by the sort key of `guppi/caseid.py`.
 - [x] `tests/test_caseid.py`: runs `parse_line` of `guppi/materialize.py`, `top_case`, `case_file` and `case_number` of `guppi/casecheck.py`, `held_number` of `guppi/ratified.py`, `check_origin` of `guppi/lint.py` and `case_key` of `guppi/gate.py` over `kir-plugin-12.1` and `785.1` and asserts they read both alike; runs `guppi caseid --next` twice over a temp vault of a new sprint, of a session that creates a sprint page, and of the sprint `plugin`, and asserts the two runs print two ids.
-- [ ] create `estimate-ratification-case-id-carries-the-sprint`
-- [ ] read `estimate-ratification-case-id-carries-the-sprint`
+- [x] create `estimate-ratification-case-id-carries-the-sprint`
+- [x] read `estimate-ratification-case-id-carries-the-sprint`
 ```
 
 ### Case 788.3 — The main agent asks the sprint id first, and the opening Case is its Case 1
@@ -530,10 +530,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] update `estimate-skill-sprint-open-asks-the-opening-questions`
-- [ ] read `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] update `rule-skill-sprint-open`
+- [x] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] update `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] read `estimate-skill-sprint-open-asks-the-opening-questions`
 ```
 
 ### Case 788.4 — One function counts the next free id
@@ -573,8 +573,8 @@ update:
 - [x] `guppi/caseid.py`: `next_id` takes a sprint and the ids of the Decision pages live and archived, of the decision lines of the session's ledger, of the keys of the store and of the files under `cases/`, and gives one above the highest number of that sprint, or of the plain ids for a sprint of the fixed list.
 - [x] `guppi/casecheck.py`: `new_number` gives the id of `next_id` over the same sources; the shape judgment stays in its one function of `guppi/casecheck.py`.
 - [x] `tests/test_casecheck.py`: a test named `shape` whose new id stands above an id that only the store holds, one that only a Case file holds and one that only a Decision page holds, and one that runs `new_number` and `guppi caseid --next` over the same folder and asserts they give the same id.
-- [ ] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
-- [ ] read `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- [x] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- [x] read `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
 ```
 
 ### Case 788.5 — `/box` judges a later Case across sprints
@@ -610,8 +610,8 @@ update:
 ```tasks
 - [x] `guppi/box.py`: `DECISION_LINK`, `history_cases` and `spec_items` read both forms by `guppi/caseid.py`, and a History line names a later Case as the Criterion sets it.
 - [x] `tests/test_box.py`: tests of a later Case of the same sprint, of another sprint dated on or after the folder, of a plain id after a Spec of plain ids, and of a plain id beside a Spec with no plain id.
-- [ ] update `estimate-spec-box-refuses-a-stale-spec`
-- [ ] read `estimate-spec-box-refuses-a-stale-spec`
+- [x] update `estimate-spec-box-refuses-a-stale-spec`
+- [x] read `estimate-spec-box-refuses-a-stale-spec`
 ```
 
 ### Case 788.6 — The guard of a Case file reads a name in either form
@@ -651,8 +651,8 @@ update:
 
 ```tasks
 - [x] `tests/test_ratified.py`: tests named `number_held` over a file `case-kir-plugin-12.md` held by another agent and by the same agent.
-- [ ] update `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
-- [ ] read `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+- [x] update `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+- [x] read `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
 ```
 
 ### Case 788.7 — The check of a Case file names a free id when another agent holds one
@@ -688,8 +688,8 @@ update:
 
 ```tasks
 - [x] `tests/test_casecheck.py`: tests named `subagent_clash` over a Case `kir-plugin-12` held by another agent, and over an id that `guppi caseid --next` held with no `agent_id`.
-- [ ] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
-- [ ] read `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] read `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
 ```
 
 ## Case 789 — A pull request into main is one Case, and the closed sprint reaches main by a pull request
@@ -822,10 +822,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
-- [ ] read `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] update `rule-skill-sprint-open`
+- [x] `uv run guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] read `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
 ```
 
 ### Case 789.2 — A pull request into main is reviewed as one Case
@@ -904,9 +904,9 @@ create:
 ```
 
 ```tasks
-- [ ] create `rule-skill-pr-review`
-- [ ] `uv run guppi render`: `.claude/skills/pr-review/SKILL.md`
-- [ ] create `estimate-skill-pr-review-takes-a-pull-request-whole`
+- [x] create `rule-skill-pr-review`
+- [x] `uv run guppi render`: `.claude/skills/pr-review/SKILL.md`
+- [x] create `estimate-skill-pr-review-takes-a-pull-request-whole`
 - [ ] read `estimate-skill-pr-review-takes-a-pull-request-whole`
 ```
 
@@ -958,10 +958,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-where-to-stop`
-- [ ] `uv run guppi render`: `vault/wiki/where-to-stop.md`
-- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
-- [ ] read `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] update `rule-where-to-stop`
+- [x] `uv run guppi render`: `vault/wiki/where-to-stop.md`
+- [x] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] read `estimate-where-to-stop-stops-only-on-its-conditions`
 ```
 
 ## Case 790 — A sprint branch takes in main by one merge Case before its close
@@ -1132,15 +1132,15 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-skill-merge-main`
-- [ ] `uv run guppi render`: `.claude/skills/merge-main/SKILL.md`
-- [ ] create `estimate-skill-merge-main-joins-a-conflicted-page`
-- [ ] update `rule-page-generation`
-- [ ] update `rule-vault-layout`
-- [ ] update `rule-documentation`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] update `entity-glossary`
-- [ ] `uv run guppi glossary`
+- [x] create `rule-skill-merge-main`
+- [x] `uv run guppi render`: `.claude/skills/merge-main/SKILL.md`
+- [x] create `estimate-skill-merge-main-joins-a-conflicted-page`
+- [x] update `rule-page-generation`
+- [x] update `rule-vault-layout`
+- [x] update `rule-documentation`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `entity-glossary`
+- [x] `uv run guppi glossary`
 - [x] `.gitattributes`: the lines `vault/wiki/log.md merge=union` and `vault/wiki/tags.md merge=union` after the line `* text=auto eol=lf`, under one comment that names case 790: git keeps the lines of both sides of the two files at a merge.
 - [ ] read `estimate-skill-merge-main-joins-a-conflicted-page`
 ```
@@ -1248,10 +1248,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-close`
-- [ ] `uv run guppi render`: `.claude/skills/sprint-close/SKILL.md`
-- [ ] update `estimate-skill-sprint-close-leads-the-closing-session`
-- [ ] read `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] update `rule-skill-sprint-close`
+- [x] `uv run guppi render`: `.claude/skills/sprint-close/SKILL.md`
+- [x] update `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] read `estimate-skill-sprint-close-leads-the-closing-session`
 ```
 
 ## Case 794 — The history on GitHub starts at the harness, and only style and test block a merge
@@ -1337,7 +1337,7 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-github-repository`
+- [x] create `rule-github-repository`
 - [x] `.github/workflows/checks.yml`: on `pull_request` and on `push` to every branch but `prod`, on `windows-latest`, three jobs `style`, `test` and `lint`, each sets up uv and runs its `make` target.
 - [x] stop: the person runs `gh auth login` in the shell, since the login asks questions only the person can answer.
 - [x] The whole history searched before the push: `git log -p --all` for local paths, email addresses, keys and tokens, and `git log --all --format=%ae` for the author addresses; the findings shown to the person.
@@ -1347,9 +1347,9 @@ update:
 - [x] stop: after the person's word on that check, `gh repo create GUPPI --public --source . --remote origin`, then `git push -u origin main plugin`.
 - [x] The settings of the repository by `gh api`: the ruleset on `main` with the jobs `style` and `test` as required checks and `lint` not required, the ruleset on `prod` and the approval of the runs of first-time contributors, as the Purpose of `rule-github-repository` sets them.
 - [x] stop: after the person's word, once the first commit of `main` and `plugin` on GitHub is read as the cut commit, the backup branch and the tag `vault-v1` are deleted, and `git reflog expire --expire=now --all` and `git gc --prune=now` clear the old commits from this repository.
-- [ ] update `estimate-sprint-plugin-pull-requests-reviewed-on-github`
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run guppi sprint`
+- [x] update `estimate-sprint-plugin-pull-requests-reviewed-on-github`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-sprint-plugin-pull-requests-reviewed-on-github`
 ```
 

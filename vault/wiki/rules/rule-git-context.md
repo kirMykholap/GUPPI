@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from starting on a branch it does not know
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -33,7 +33,7 @@ Status: !`git status --short`
 
 ## How it works
 
-The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line is a Frontier item like the one of the session start (case 115). The repository has no remote since case 528: `origin` was the product repository this vault was split from and `migration` had no upstream, so the pull that stood first in this block failed at every session start. `/hi` runs no `git pull`; a Case that adds a remote writes its pull line and its rule again.
+The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line is a Frontier item like the one of the session start (case 115). From case 528 to case 787 the repository had no remote: `origin` had been the product repository this vault was split from and `migration` had no upstream, so the pull that stood first in this block failed at every session start. Since case 787 `origin` is the public repository `GUPPI` on GitHub, and `/hi` still runs no `git pull`. The local `main` follows `origin/main` in the opening Case of a sprint, by `git fetch origin` and `git merge --ff-only origin/main` (case 789.1), and a sprint branch takes `main` by the merge Case of `/merge-main` (case 790).
 
 ## History
 
@@ -50,3 +50,5 @@ The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, aft
 - 2026-09-30 defer by decision-case-243 superseded · [[decision-case-528.1]]
 - 2026-09-30 updated: taken up: the pull leaves /hi with the remote; the rule keeps the render, the branch and the status; the defers of cases 220 and 243 retired (case 528.1) · [[decision-case-528.1]]
 - 2026-09-30 status: draft → built · cascade
+- 2026-10-13 updated: the remote is the repository GUPPI on GitHub; /hi still runs no git pull · [[decision-case-787.2]]
+- 2026-10-13 status: built → draft · cascade

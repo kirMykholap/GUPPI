@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-where-to-stop]]"
 purpose: "Whether the run from /work to the librarian stops for the person on each condition of vault/wiki/where-to-stop.md and on no other, with the text loaded by /work and a stop after the call of /retro opening with STOP:"
 method: by hand, the text of vault/wiki/where-to-stop.md as rendered and the lines of .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md that load it, or, at the Retro of the session that changes it, the new Render of rule-where-to-stop in the Spec and those lines, read against each line of the Criterion, recorded in the estimate line; a line of the Criterion that the text does not set is named
-checked: 2026-10-11
+checked: 2026-10-13
 origin: raw/2026-09-29/2024/ledger.md#case-531.7
 sprint: migration
 created: 2026-09-29
@@ -25,7 +25,8 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 **＋** Before a task of `raw/<date>/<hi HHMM>/spec.md` whose text opens with `stop:`, the agent stops and asks; the task runs after the person's word.
 **＋** On the branch `main` the agent stops and says so: Work Mode does not start there.
 **＋** In a run of `/box`, the agent stops and asks when `uv run guppi box --check` prints a line, or when a `git merge --ff-only` of `/box` refuses.
-**＋** In the merge tasks that the opening Case of a sprint holds by `.claude/skills/sprint-open/SKILL.md`, the agent stops, shows what stopped it and asks when `git merge --ff-only` or `git branch -d` refuses.
+**＋** In the merge tasks that the opening Case of a sprint holds by `.claude/skills/sprint-open/SKILL.md`, in the merge task that a review Case holds by `.claude/skills/pr-review/SKILL.md`, and in the tasks that a merge Case holds by `.claude/skills/merge-main/SKILL.md`, the agent stops, shows what stopped it and asks when a `git` or `gh` command refuses, or when the merge of a merge Case leaves in conflict a file that the merge Case does not settle.
+**－** `git merge --no-ff --no-commit` of a merge Case of `.claude/skills/merge-main/SKILL.md` that exits non-zero only on files that the merge Case settles is no refusal, and the run goes on to the tasks that settle them.
 **＋** When the full `make test` run of `/work` after its last task finds a failing test that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` does not hold, and its fix needs a choice that no ratified Case makes, the agent ends a reply with a question to the person that names the test and its failure.
 **＋** When the auto mode classifier of Claude Code refuses a tool call that the run needs, the agent ends a reply with a question to the person that gives the shell command doing what the refused call would do, for the person to type after `!` in the prompt.
 **＋** A reply that stops from the call of `/retro` until `raw/<date>/<hi HHMM>/handoff.md` stands opens with `STOP:`.
@@ -36,7 +37,7 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 
 ## Result
 
-2026-10-11, Retro of session 2350, by hand: the new Render of rule-where-to-stop in spec.md (case 775.3), with lines 7 of .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md that load it, against each line of the Criterion — conditions 1 to 8, condition 6 now covering a refused git merge --ff-only or git branch -d in the merge tasks of the opening Case, the STOP: reply from /retro to handoff.md, the run going on after the answer and after the command, and case-schema.md naming a stop: task line; no Criterion line the text does not set
+2026-10-13, Retro by hand: the Render of rule-where-to-stop in spec.md (case 789.3) makes the sixth condition cover a refused git or gh command of the opening Case, a review Case and a merge Case, and a conflict a merge Case does not settle, with git merge --no-ff --no-commit on settled files no refusal; the other conditions stand as rendered
 
 ## History
 
@@ -51,3 +52,5 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 - 2026-10-08 status: pending → passed · raw/2026-10-08/2134/ledger.md#L13
 - 2026-10-11 updated: the Criterion replaced whole — a refused merge or branch deletion in the merge tasks of the opening Case of a sprint is a stop · [[decision-case-775.3]]
 - 2026-10-11 status: pending → passed · raw/2026-10-10/2350/ledger.md#L12
+- 2026-10-13 updated: the Criterion replaced whole — a refused git or gh command in the merge tasks of the opening Case of a sprint, of a review Case or of a merge Case, and a conflict that a merge Case does not settle, is a stop · [[decision-case-789.3]]
+- 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L55

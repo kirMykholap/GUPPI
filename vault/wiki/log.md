@@ -9379,3 +9379,98 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-12 estimates/estimate-case-build-checks-the-finished-case status: pending → passed · raw/2026-10-12/2252/ledger.md#L15 · generate
 - 2026-10-12 lessons/lesson-case-build-reused-judgment-not-checked-against-the-other-side created · raw/2026-10-12/2252/ledger.md#L16 · generate
 - 2026-10-12 rules/rule-ask status: built → draft · cascade · generate
+- 2026-10-13 decisions/decision-case-785 created · raw/2026-10-12/2349/ledger.md#case-785 · generate
+- 2026-10-13 rules/rule-case-build updated: case-guppi reads whole the function each side calls before it names a shared judgment, asks the person where they part, and has a test run both sides over that input (case 785) · [[decision-case-785]] · generate
+- 2026-10-13 estimates/estimate-case-build-finds-an-existing-judgment updated: the Criterion replaced whole — case-guppi reads the function each side calls before it names a shared judgment, asks the person where they part, and a test runs both sides over that input (case 785) · [[decision-case-785]] · generate
+- 2026-10-13 decisions/decision-case-786 created · raw/2026-10-12/2349/ledger.md#case-786 · generate
+- 2026-10-13 decisions/decision-case-786.1 created · raw/2026-10-12/2349/ledger.md#case-786.1 · generate
+- 2026-10-13 rules/rule-page-generation updated: a defer with no page writes a placeholder only for a rule or an entity; any other kind fails as an entry (case 786) · [[decision-case-786.1]] · generate
+- 2026-10-13 entities/entity-glossary updated: Types: a defer writes a placeholder only for a rule or an entity (case 786) · [[decision-case-786.1]] · generate
+- 2026-10-13 estimates/estimate-generate-writes updated: the Criterion replaced whole — a defer with no page of anything but a rule or an entity writes no placeholder and fails alone · [[decision-case-786.1]] · generate
+- 2026-10-13 decisions/decision-case-786.2 created · raw/2026-10-12/2349/ledger.md#case-786.2 · generate
+- 2026-10-13 rules/rule-orchestration updated: a defer of an Insight, a Lesson or a Decision page names a page that stands; a pre-spec finding on one with no page is fixed by a new short Case that supersedes it (case 786) · [[decision-case-786.2]] · generate
+- 2026-10-13 estimates/estimate-prespec-checks-the-form-of-an-item updated: the Criterion replaced whole — a defer with no page of anything but a rule or an entity is a finding · [[decision-case-786.2]] · generate
+- 2026-10-13 decisions/decision-case-787 created · raw/2026-10-12/2349/ledger.md#case-787 · generate
+- 2026-10-13 decisions/decision-case-787.1 created · raw/2026-10-12/2349/ledger.md#case-787.1 · generate
+- 2026-10-13 decisions/decision-case-787.2 created · raw/2026-10-12/2349/ledger.md#case-787.2 · generate
+- 2026-10-13 rules/rule-git-context updated: the remote is the repository GUPPI on GitHub; /hi still runs no git pull · [[decision-case-787.2]] · generate
+- 2026-10-13 estimates/estimate-git-context-current updated: the Criterion replaced whole — git remote prints origin, the repository GUPPI on GitHub; /hi still runs no git pull · [[decision-case-787.2]] · generate
+- 2026-10-13 decisions/decision-case-788 created · raw/2026-10-12/2349/ledger.md#case-788 · generate
+- 2026-10-13 decisions/decision-case-788.1 created · raw/2026-10-12/2349/ledger.md#case-788.1 · generate
+- 2026-10-13 rules/rule-skill-sprint-open updated: the ledger hook refuses the create of a sprint page whose id a live or archived sprint page holds, and the opening Case is built again under another id (case 788.1) · [[decision-case-788.1]] · generate
+- 2026-10-13 rules/rule-ledger-write updated: refuses the create of a sprint page whose id a live or archived sprint page already holds (case 788.1) · [[decision-case-788.1]] · generate
+- 2026-10-13 estimates/estimate-skill-sprint-open-refuses-a-taken-sprint-id created · [[decision-case-788.1]] · generate
+- 2026-10-13 estimates/estimate-skill-sprint-open-refuses-a-taken-sprint-id status: pending → passed · raw/2026-10-12/2349/ledger.md#L47 · generate
+- 2026-10-13 rules/rule-skill-sprint-open estimate estimate-skill-sprint-open-refuses-a-taken-sprint-id added · [[decision-case-788.1]] · generate
+- 2026-10-13 decisions/decision-case-788.2 created · raw/2026-10-12/2349/ledger.md#case-788.2 · generate
+- 2026-10-13 rules/rule-ratification updated: a Case id carries the id of its sprint and starts again at 1 in each sprint; a plain id is a Case from before sprint ids (case 788.2) · [[decision-case-788.2]] · generate
+- 2026-10-13 rules/rule-decisions-schema updated: the slug and the field case show an id that carries its sprint (case 788.2) · [[decision-case-788.2]] · generate
+- 2026-10-13 rules/rule-orchestration updated: the main agent takes the id of a new top-level Case from uv run guppi caseid --next (case 788.2) · [[decision-case-788.2]] · generate
+- 2026-10-13 estimates/estimate-ratification-case-id-carries-the-sprint created · [[decision-case-788.2]] · generate
+- 2026-10-13 estimates/estimate-ratification-case-id-carries-the-sprint status: pending → passed · raw/2026-10-12/2349/ledger.md#L48 · generate
+- 2026-10-13 rules/rule-ratification estimate estimate-ratification-case-id-carries-the-sprint added · [[decision-case-788.2]] · generate
+- 2026-10-13 decisions/decision-case-789 created · raw/2026-10-12/2349/ledger.md#case-789 · generate
+- 2026-10-13 decisions/decision-case-789.1 created · raw/2026-10-12/2349/ledger.md#case-789.1 · generate
+- 2026-10-13 rules/rule-skill-sprint-open updated: the opening Case of a sprint pushes the closed sprint and opens its pull request into main; for the owner it merges it after its checks pass; the last milestone names /merge-main before the close · [[decision-case-789.1]] · generate
+- 2026-10-13 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch updated: the Criterion replaced whole — the opening Case pushes the closed sprint and opens its pull request; the owner's is merged after its checks pass; /merge-main stands before the close line · [[decision-case-789.1]] · generate
+- 2026-10-13 decisions/decision-case-789.2 created · raw/2026-10-12/2349/ledger.md#case-789.2 · generate
+- 2026-10-13 rules/rule-skill-pr-review created · [[decision-case-789.2]] · generate
+- 2026-10-13 rules/rule-plan-mode child rule-skill-pr-review added · [[decision-case-789.2]] · generate
+- 2026-10-13 estimates/estimate-skill-pr-review-takes-a-pull-request-whole created · [[decision-case-789.2]] · generate
+- 2026-10-13 rules/rule-skill-pr-review estimate estimate-skill-pr-review-takes-a-pull-request-whole added · [[decision-case-789.2]] · generate
+- 2026-10-13 decisions/decision-case-789.3 created · raw/2026-10-12/2349/ledger.md#case-789.3 · generate
+- 2026-10-13 rules/rule-where-to-stop updated: condition 6 covers a refused git or gh command in the merge tasks of the opening Case of a sprint, of a review Case and of a merge Case, and a conflict that a merge Case does not settle · [[decision-case-789.3]] · generate
+- 2026-10-13 estimates/estimate-where-to-stop-stops-only-on-its-conditions updated: the Criterion replaced whole — a refused git or gh command in the merge tasks of the opening Case of a sprint, of a review Case or of a merge Case, and a conflict that a merge Case does not settle, is a stop · [[decision-case-789.3]] · generate
+- 2026-10-13 decisions/decision-case-790 created · raw/2026-10-12/2349/ledger.md#case-790 · generate
+- 2026-10-13 rules/rule-skill-merge-main created · [[decision-case-790]] · generate
+- 2026-10-13 rules/rule-plan-mode child rule-skill-merge-main added · [[decision-case-790]] · generate
+- 2026-10-13 estimates/estimate-skill-merge-main-joins-a-conflicted-page created · [[decision-case-790]] · generate
+- 2026-10-13 rules/rule-skill-merge-main estimate estimate-skill-merge-main-joins-a-conflicted-page added · [[decision-case-790]] · generate
+- 2026-10-13 rules/rule-page-generation updated: a merge of main by /merge-main writes the joined text of a conflicted page and git joins log.md and tags.md (case 790) · [[decision-case-790]] · generate
+- 2026-10-13 rules/rule-vault-layout updated: a merge of main by /merge-main writes the joined text of a conflicted page and git joins log.md and tags.md (case 790) · [[decision-case-790]] · generate
+- 2026-10-13 rules/rule-documentation updated: the librarian is the only writer to vault/wiki/ but for what a merge of main by /merge-main writes (case 790) · [[decision-case-790]] · generate
+- 2026-10-13 entities/entity-glossary updated: Librarian: the only writer to wiki/ but for what a merge of main by /merge-main writes (case 790) · [[decision-case-790]] · generate
+- 2026-10-13 decisions/decision-case-793 created · raw/2026-10-12/2349/ledger.md#case-793 · generate
+- 2026-10-13 rules/rule-page-generation deferred · [[decision-case-793]] · generate
+- 2026-10-13 decisions/decision-case-788.3 created · raw/2026-10-12/2349/ledger.md#case-788.3 · generate
+- 2026-10-13 rules/rule-skill-sprint-open updated: the main agent asks the sprint id before the dispatch, and the opening Case is Case <id>-1 (case 788.3) · [[decision-case-788.3]] · generate
+- 2026-10-13 estimates/estimate-skill-sprint-open-asks-the-opening-questions updated: the Criterion replaced whole — the main agent asks the sprint id before the dispatch, and the opening Case is Case <id>-1 (case 788.3) · [[decision-case-788.3]] · generate
+- 2026-10-13 decisions/decision-case-788.4 created · raw/2026-10-12/2349/ledger.md#case-788.4 · generate
+- 2026-10-13 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape updated: the Criterion replaced whole — the new id is counted by next_id of guppi/caseid.py over the Decision pages, the ledger, the store and the Case files of the session (case 788.4) · [[decision-case-788.4]] · generate
+- 2026-10-13 decisions/decision-case-788.5 created · raw/2026-10-12/2349/ledger.md#case-788.5 · generate
+- 2026-10-13 estimates/estimate-spec-box-refuses-a-stale-spec updated: the Criterion replaced whole — a later Case is judged by the sprint and the number of its id, or by the date of its History line for another sprint (case 788.5) · [[decision-case-788.5]] · generate
+- 2026-10-13 decisions/decision-case-788.6 created · raw/2026-10-12/2349/ledger.md#case-788.6 · generate
+- 2026-10-13 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds updated: the Criterion replaced whole — the guard reads a file name in either form of the id and names a free id (case 788.6) · [[decision-case-788.6]] · generate
+- 2026-10-13 decisions/decision-case-788.7 created · raw/2026-10-12/2349/ledger.md#case-788.7 · generate
+- 2026-10-13 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent updated: the Criterion replaced whole — an id of a sprint is judged as a plain one, and an id held by guppi caseid --next gives no finding (case 788.7) · [[decision-case-788.7]] · generate
+- 2026-10-13 decisions/decision-case-791 created · raw/2026-10-12/2349/ledger.md#case-791 · generate
+- 2026-10-13 rules/rule-skill-sprint-close updated: /sprint-close refuses while the branch does not hold origin/main, and asks for /merge-main first (case 791) · [[decision-case-791]] · generate
+- 2026-10-13 estimates/estimate-skill-sprint-close-leads-the-closing-session updated: the Criterion replaced whole — /sprint-close refuses while the branch does not hold origin/main · [[decision-case-791]] · generate
+- 2026-10-13 decisions/decision-case-794 created · raw/2026-10-12/2349/ledger.md#case-794 · generate
+- 2026-10-13 decisions/decision-case-787.1 superseded by decision-case-794 · [[decision-case-794]] · generate
+- 2026-10-13 rules/rule-github-repository created · [[decision-case-794]] · generate
+- 2026-10-13 estimates/estimate-sprint-plugin-pull-requests-reviewed-on-github updated: the Criterion replaced whole — the pull request goes against main, only style and test block a merge, only the owner merges, the test pull request is closed without a merge · [[decision-case-794]] · generate
+- 2026-10-13 entities/entity-sprint-plugin updated: the milestone The sprint turn and GitHub closed — out of Milestones, named in Closed (case 794) · [[decision-case-794]] · generate
+- 2026-10-13 estimates/estimate-case-build-finds-an-existing-judgment status: pending → passed · raw/2026-10-12/2349/ledger.md#L44 · generate
+- 2026-10-13 estimates/estimate-generate-writes status: pending → passed · raw/2026-10-12/2349/ledger.md#L45 · generate
+- 2026-10-13 estimates/estimate-prespec-checks-the-form-of-an-item status: pending → passed · raw/2026-10-12/2349/ledger.md#L46 · generate
+- 2026-10-13 estimates/estimate-skill-sprint-open-asks-the-opening-questions status: pending → passed · raw/2026-10-12/2349/ledger.md#L49 · generate
+- 2026-10-13 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape status: pending → passed · raw/2026-10-12/2349/ledger.md#L50 · generate
+- 2026-10-13 estimates/estimate-spec-box-refuses-a-stale-spec status: pending → passed · raw/2026-10-12/2349/ledger.md#L51 · generate
+- 2026-10-13 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds status: pending → passed · raw/2026-10-12/2349/ledger.md#L52 · generate
+- 2026-10-13 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent status: pending → passed · raw/2026-10-12/2349/ledger.md#L53 · generate
+- 2026-10-13 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch status: pending → passed · raw/2026-10-12/2349/ledger.md#L54 · generate
+- 2026-10-13 estimates/estimate-where-to-stop-stops-only-on-its-conditions status: pending → passed · raw/2026-10-12/2349/ledger.md#L55 · generate
+- 2026-10-13 estimates/estimate-skill-sprint-close-leads-the-closing-session status: pending → passed · raw/2026-10-12/2349/ledger.md#L56 · generate
+- 2026-10-13 lessons/lesson-case-build-made-an-always-red-check-required created · raw/2026-10-12/2349/ledger.md#L57 · generate
+- 2026-10-13 lessons/lesson-case-build-chose-a-key-its-own-session-adds created · raw/2026-10-12/2349/ledger.md#L58 · generate
+- 2026-10-13 lessons/lesson-work-mode-edited-a-source-file-through-the-shell created · raw/2026-10-12/2349/ledger.md#L59 · generate
+- 2026-10-13 insights/insight-case-build-recommends-without-reading-the-governing-rule created · raw/2026-10-12/2349/ledger.md#L57 · generate
+- 2026-10-13 lessons/lesson-case-build-made-an-always-red-check-required updated: clustered under insight-case-build-recommends-without-reading-the-governing-rule (synthesis) · raw/2026-10-12/2349/ledger.md#L57 · generate
+- 2026-10-13 lessons/lesson-case-build-recommended-a-trigger-that-keeps-the-defect updated: clustered under insight-case-build-recommends-without-reading-the-governing-rule (synthesis) · raw/2026-10-12/2349/ledger.md#L57 · generate
+- 2026-10-13 insights/insight-workflow-code-live-before-the-page-it-reads updated: child lesson-case-build-chose-a-key-its-own-session-adds added (synthesis) · raw/2026-10-12/2349/ledger.md#L58 · generate
+- 2026-10-13 lessons/lesson-case-build-chose-a-key-its-own-session-adds updated: clustered under insight-workflow-code-live-before-the-page-it-reads (synthesis) · raw/2026-10-12/2349/ledger.md#L58 · generate
+- 2026-10-13 rules/rule-git-context status: built → draft · cascade · generate
+- 2026-10-13 decisions/decision-case-787.1 archived · superseded · generate
+- 2026-10-13 decisions/decision-case-787.1 archived · cleanup
+- 2026-10-13 decisions/decision-case-787 child decision-case-787.1 archived · cleanup

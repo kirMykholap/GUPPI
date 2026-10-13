@@ -4,11 +4,12 @@ kind: MOC
 purpose: "Prevents an agent of a working session from acting without the one rule and the form of the ledger lines: the one rule, the form of the ledger lines, atomicity and the harness stand in ratification.md, which /hi loads and case-guppi reads"
 status: built
 enforcement: render
+implementation_ref: [guppi/caseid.py, tests/test_caseid.py]
 governs: vault/wiki/ratification.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 children: ["[[rule-atomicity]]"]
-estimates: ["[[estimate-ratification-ledger-line-form]]", "[[estimate-ratification-loaded]]"]
+estimates: ["[[estimate-ratification-ledger-line-form]]", "[[estimate-ratification-loaded]]", "[[estimate-ratification-case-id-carries-the-sprint]]"]
 origin: raw/2026-10-02/1834/ledger.md#case-595.3
 sprint: migration
 created: 2026-10-02
@@ -40,7 +41,7 @@ Nothing in the vault or the codebase changes without a Decision ratified by the 
 | a measurement taken | `- estimate[slug][passed\|failed] <date, command or place; the result>` (case 199) |
 | something learned | `- lesson[error\|knowledge][slug]{tags:a,b} trigger: <...> root_cause: <...>` |
 
-The id is `case N` — the word and a space — in the first bracket and in `{supersedes:case N}` alike; `{source:...}` and `{supersedes:...}` are present only when they apply (case 75.1), and a line carries one `{supersedes:case N}` block per Case it supersedes, several side by side, never a list inside one block (case 429); `{addresses:<lesson slug>}` stands on a decision line whose Case closes the root cause of a lesson of this session — written when the lesson line already stands in the session's ledger, one mark per lesson; a lesson line written after the Case of this session that closed its cause carries `{addressed_by:case N}` instead, naming that Case — for a Case with sub-cases the sub-case whose decision line closes the cause, since the parent has no decision line and the ledger hook refuses a mark with no decision line of its Case before it (case 497.4) — one of the two marks per pair, by the order of the lines (case 379); a lesson whose fix is ratified in another session gets no mark (case 284.2).
+The id is `case N` — the word and a space — in the first bracket and in `{supersedes:case N}` alike. N is the id of the sprint, a hyphen and the number of the Case in that sprint, from 1 in each sprint, with a dot for each sub-case level, such as `case kir-plugin-12.1`; a sprint id holds no dot and starts with the GitHub name of its author, so two people never share one. An N with no sprint part, such as `case 785.1`, is a Case from before sprint ids, and the sprints `migration` and `plugin` keep that form to their close: every reader takes both forms, and no such id is renamed. `uv run guppi caseid --next` prints the id of the next Case of the open sprint and holds it, and the opening Case of a sprint is `<id>-1` (case 788.2). In a line, `{source:...}` and `{supersedes:...}` are present only when they apply (case 75.1), and a line carries one `{supersedes:case N}` block per Case it supersedes, several side by side, never a list inside one block (case 429); `{addresses:<lesson slug>}` stands on a decision line whose Case closes the root cause of a lesson of this session — written when the lesson line already stands in the session's ledger, one mark per lesson; a lesson line written after the Case of this session that closed its cause carries `{addressed_by:case N}` instead, naming that Case — for a Case with sub-cases the sub-case whose decision line closes the cause, since the parent has no decision line and the ledger hook refuses a mark with no decision line of its Case before it (case 497.4) — one of the two marks per pair, by the order of the lines (case 379); a lesson whose fix is ratified in another session gets no mark (case 284.2).
 
 **Decision lines are markup only** — their content already sits ratified in the Spec, so the
 line just names what happens to which page, and the tags a `create` was ratified with.
@@ -67,3 +68,5 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file, 
 - 2026-10-02 estimate estimate-ratification-loaded added · [[decision-case-595.3]]
 - 2026-10-02 ref `estimate-case-protocol-ledger-line-form` → `estimate-ratification-ledger-line-form` · [[decision-case-595.16]]
 - 2026-10-04 status: draft → built · cascade
+- 2026-10-13 updated: a Case id carries the id of its sprint and starts again at 1 in each sprint; a plain id is a Case from before sprint ids (case 788.2) · [[decision-case-788.2]]
+- 2026-10-13 estimate estimate-ratification-case-id-carries-the-sprint added · [[decision-case-788.2]]

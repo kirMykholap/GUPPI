@@ -17,10 +17,6 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 
 ## Milestones
 
-### The sprint turn and GitHub
-
-- the repository on GitHub set up so that a pull request from another person is easy to review
-
 ### The clean branch
 
 - CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint
@@ -31,6 +27,10 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - the README on what the project is and what it is for and on its main parts and its use
 - the close of `plugin` — `/sprint-close`, a session of its own
 
+## Closed
+
+- The sprint turn and GitHub: the repository on GitHub set up so that a pull request from another person is easy to review (case 794)
+
 ## History
 
 - 2026-10-10 created · [[decision-case-756.1]]
@@ -40,3 +40,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-10 estimate estimate-sprint-plugin-ci-writes-a-clean-branch added · [[decision-case-756.5]]
 - 2026-10-10 estimate estimate-sprint-plugin-installs-as-a-plugin added · [[decision-case-756.6]]
 - 2026-10-11 updated: the note on the opening and the close of a sprint leaves the milestone The sprint turn and GitHub; the Purpose names only the close · [[decision-case-774]]
+- 2026-10-13 updated: the milestone The sprint turn and GitHub closed — out of Milestones, named in Closed (case 794) · [[decision-case-794]]

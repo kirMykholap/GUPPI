@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-prespec]]"
 purpose: An item of the plan carries one promise per Case, names a page that exists or is created, and no file
 method: uv run pytest tests/test_prespec.py
-checked: 2026-10-12
+checked: 2026-10-13
 origin: raw/2026-09-24/1916/ledger.md#case-399.5
 sprint: migration
 created: 2026-09-24
@@ -20,18 +20,19 @@ When:
 Then:
 A Case whose `then` block holds two or more Estimate items that set a new Criterion — a `create`, or an `update` that names no part of the page by `names_a_part` of `guppi/materialize.py` — is the finding `case N: two promises in one Case — split it`, whether each item writes its Criterion under `sections` or lifts it.
 **＋** An `update` of an Estimate whose page does not exist is the finding `case N: update <slug>: no such Estimate page`.
-**＋** A `defer` of an Estimate whose page stands neither under `vault/wiki/estimates/` nor in a folder `estimates/` under `vault/archive/` outside a `raw/` folder, by `has_page` of `guppi/materialize.py`, is the finding `case N: defer <slug>: no such Estimate page — defer the page it would check`, a short Case under `## Deferred` of the plan included.
-**＋** The judgment is `has_page` of `guppi/materialize.py`, which the `defer` of `guppi/generate.py` imports too.
+**＋** A `defer` of an Estimate whose page stands neither under `vault/wiki/estimates/` nor in a folder `estimates/` under `vault/archive/` outside a `raw/` folder is the finding `case N: defer <slug>: no such Estimate page — defer the page it would check`, a short Case under `## Deferred` of the plan included.
+**＋** A `defer` of an Insight, a Lesson or a Decision page whose page stands neither under `vault/wiki/<category>/` nor in a folder `<category>` under `vault/archive/` outside a `raw/` folder is the finding `case N: defer <slug>: no such page — a placeholder is written only for a rule or an entity`, a short Case under `## Deferred` of the plan included.
+**＋** The judgment of both is `defer_writes_no_page` of `guppi/materialize.py`, which asks `has_page` and which the `defer` of `guppi/generate.py` imports too.
 **＋** A `create` of an Estimate whose `ref` names neither a live rule or entity nor a rule or entity a `create` item of the plan carries is the finding `case N: create <slug>: ref <ref> names no live page`.
 **＋** An `update` item carrying `file` is the finding `case N: file <path>; the file route is gone (case 320)`, naming the rule that governs the path when one does.
 **＋** A key of an item of any kind that `item_keys` of `guppi/materialize.py` does not give its kind and category — `slug` a key of every kind — is the finding `case N: <kind> <slug>: key <key> is not a key of this item`.
 **－** An `update` of an Estimate that names a part alone — `set` without `status`, a `replace` pair, a section other than `Criterion` — is not counted.
-**－** A `defer` of a rule, an entity or an Insight with no page is not this finding.
+**－** A `defer` of a rule or an entity with no page is not a finding.
 **－** A `create` or a `defer` of a category with no schema file, or of one whose schema rule a decision line of the session creates or updates, is not judged by its keys (case 308.2).
 
 ## Result
 
-2026-10-12, uv run pytest tests/test_prespec.py: 234 passed; a defer of an Estimate with no page, under a Case heading and under ## Deferred, and one archived outside a folder estimates/ or under raw/, gives "case 2: defer estimate-later: no such Estimate page — defer the page it would check"; a live one, one archived in estimates/ and a defer of a rule with no page give none; prespec.has_page and generate.has_page are materialize.has_page
+2026-10-13, uv run pytest tests/test_prespec.py: 242 passed — a defer of an Insight or a Lesson with no page is the finding of defer_writes_no_page, a rule or an entity with no page is none
 
 ## History
 
@@ -43,3 +44,5 @@ A Case whose `then` block holds two or more Estimate items that set a new Criter
 - 2026-09-28 status: pending → passed · raw/2026-09-28/1318/ledger.md#L35
 - 2026-10-12 updated: the Criterion replaced whole — a defer of an Estimate with no page is a finding · [[decision-case-783.2]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/2252/ledger.md#L14
+- 2026-10-13 updated: the Criterion replaced whole — a defer with no page of anything but a rule or an entity is a finding · [[decision-case-786.2]]
+- 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L46

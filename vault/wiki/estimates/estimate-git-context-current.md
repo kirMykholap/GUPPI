@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-git-context]]"
 purpose: At /hi the context holds the render sync, the branch and the status, and the skill runs no git pull
-method: by hand at the /hi of a session after the render, the first turn's context and the output of git remote, written into the estimate line
+method: "by hand, after the first /hi that follows the first push to GitHub: the first turn's context, the output of git remote -v and .claude/skills/hi/SKILL.md read against the Criterion, written into the estimate line"
 checked: 2026-09-30
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
@@ -19,7 +19,7 @@ The person invokes `/hi`, and `.claude/skills/hi/SKILL.md` runs the commands of 
 
 Then:
 The context holds `Render:` with the output of `uv run guppi render --sync` (a diff for each governed file that differed and was written, or nothing), then `Branch:` with the current branch and `Status:` with `git status --short`.
-**＋** `git remote` prints no remote: `.git/config` holds no `origin`, and `main` has no upstream.
+**＋** `git remote -v` prints `origin` with the URL of the repository `GUPPI` on GitHub.
 **－** The skill runs no `git pull`, and the context holds no `Pull:` line.
 
 ## Result
@@ -35,3 +35,4 @@ The context holds `Render:` with the output of `uv run guppi render --sync` (a d
 - 2026-09-28 updated: the Criterion replaced whole — one When and Then; the Frontier item left to estimate-hi-writes-frontier, the block bookkeeping out; purpose and method set, Context and Method out (case 485.3) · [[decision-case-485.3]]
 - 2026-09-30 updated: the Criterion replaced whole — no Pull line, no git pull, no remote; the promise on a pull mid-session gone with the pull (case 528.1) · [[decision-case-528.1]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L1
+- 2026-10-13 updated: the Criterion replaced whole — git remote prints origin, the repository GUPPI on GitHub; /hi still runs no git pull · [[decision-case-787.2]]

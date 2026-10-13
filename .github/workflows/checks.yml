@@ -1,0 +1,39 @@
+# The checks of a pull request and of a push, as `rule-github-repository` sets them (case 787).
+# The event is `pull_request`, never `pull_request_target`, so the code of a pull request reaches
+# no secret of the repository. The runner is Windows, where the suite is known to run; the
+# Makefile takes the sh of Git for Windows by its path.
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches-ignore:
+      - prod
+
+permissions:
+  contents: read
+
+jobs:
+  style:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: choco install make --no-progress -y
+      - run: make style
+
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: choco install make --no-progress -y
+      - run: make test
+
+  lint:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: choco install make --no-progress -y
+      - run: make lint

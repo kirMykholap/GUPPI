@@ -136,7 +136,7 @@ class Cleanup:
                 current = as_list(page.props.get(field))
                 kept = [s for s in current if s not in gone]
                 if kept != current:
-                    page.props[field] = kept  # the field only; no section rebuilt (166.4)
+                    page.props[field] = kept  # the field only; no section rebuilt (case 166.4)
                     for slug in current:
                         if slug in gone:
                             self.history(

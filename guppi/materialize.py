@@ -45,7 +45,7 @@ can name it (case 52.4), and an effect on each target:
     create    none                  the vault asked first; nothing found → a new top-level page
     create    parent                a new child page, added to the parent's `children`
     create    target (an Estimate)  a new Estimate, added to the target's `estimates`; its own
-                                    line and its own item, the Criterion from the Case (193)
+                                    line and its own item, the Criterion from the Case (case 193)
     update    target                the target's fields; with `rename` the page moves first and
                                     every link to it in the live pages follows (case 258.1)
     update    none                  invalid: the Case should have been a `create`
@@ -210,7 +210,7 @@ SCHEMA_RULE = re.compile(r"^rule-([a-z]+)-schema$")
 REQUIRED = {
     "rules": ("type", "kind", "purpose", "tags"),
     "entities": ("type", "kind", "purpose", "tags"),
-    "estimates": ("kind", "purpose", "method"),  # the Criterion comes from the Case (194.1)
+    "estimates": ("kind", "purpose", "method"),  # the Criterion comes from the Case (case 194.1)
     "insights": ("pattern", "children", "tags"),
 }
 # The type of a page of each category, the one map the lift, `generate` and pre-spec read
@@ -228,7 +228,7 @@ CASE_SECTIONS = ("context", "problem", "recommend", "given", "when", "then", "ra
 INHERITED = ("context", "given")
 # The story of a parent Case its own record carries (case 544.6).
 PARENT_TEXT = ("context", "problem", "recommend", "given")
-CRITERION_SECTIONS = ("when", "then")  # the Criterion of an Estimate, never `given` (378.2)
+CRITERION_SECTIONS = ("when", "then")  # the Criterion of an Estimate, never `given` (case 378.2)
 SESSION_FOLDER = re.compile(r"^\d{4}$")  # raw/<date>/<HHMM>/, one session's Spec (case 73)
 
 
@@ -314,7 +314,7 @@ def parse_line(text: str) -> dict | None:
         "root_cause": root_cause.strip(),
         "tags": _tags(options.get("tags")),
         "source": options.get("source"),
-        "addressed_by": _case_of(options.get("addressed_by")),  # written after its fix (377.3)
+        "addressed_by": _case_of(options.get("addressed_by")),  # written after its fix (case 377.3)
     }
 
 
@@ -994,7 +994,7 @@ def _lift_item(
 ):
     if kind == "create":
         fields = create_fields(item, known)
-        if known is not None:  # the lift by the schema (case 214.1), by `accepted_keys` (436)
+        if known is not None:  # the lift by the schema (case 214.1), by `accepted_keys` (case 436)
             accepted = accepted_keys("create", known)
             unknown = [k for k in item if k not in accepted]
             if unknown:
@@ -1028,9 +1028,10 @@ def _lift_item(
         for key in ITEM_KEYS["update"]:
             if key in ("slug", "reword"):  # the target, and the pairs checked below
                 continue
-            if item.get(key) is not None:  # `rename`: the new slug, checked by generate (258.2)
+            # `rename`: the new slug, checked by generate (case 258.2)
+            if item.get(key) is not None:
                 entry[key] = item[key]
-        if item.get("reword") is not None:  # a list of pairs, carried as written (274.3)
+        if item.get("reword") is not None:  # a list of pairs, carried as written (case 274.3)
             pairs = item["reword"]
             if isinstance(pairs, list) and all(isinstance(p, dict) for p in pairs):
                 entry["reword"] = pairs
@@ -1149,7 +1150,7 @@ def page_estimates(project_dir: Path, category: str, slug: str) -> list[str] | N
     except yaml.YAMLError:
         return []
     value = front.get("estimates") if isinstance(front, dict) else None
-    return [str(slug_of(v)) for v in value] if isinstance(value, list) else []  # 148.1
+    return [str(slug_of(v)) for v in value] if isinstance(value, list) else []  # slugs (case 148.1)
 
 
 def estimate_entry(record: dict, number: int, text: str, date: str) -> dict:
@@ -1320,7 +1321,7 @@ def decision_record(
 ):
     """The `decisions` record of one Case. `gone_from_spec`: every entry of the Case is
     marked `superseded_by` and no heading of its number stands in the Spec — the Case left
-    it (299.1); the record carries no `case_text` and no `incomplete` (case 299.3)."""
+    it (case 299.1); the record carries no `case_text` and no `incomplete` (case 299.3)."""
     targets = []
     tags: list[str] = []
     supersedes: list[str] = []
@@ -1352,14 +1353,14 @@ def decision_record(
         record["spec"] = spec
     if supersedes:
         record["supersedes"] = supersedes
-    if gone_from_spec:  # superseded in its own session: complete by the mark (299.3)
+    if gone_from_spec:  # superseded in its own session: complete by the mark (case 299.3)
         del record["case_text"]
         return record
     # `problem` stands on the parent only: a sub-case needs none (case 544.6)
     needed = ("context",) if "." in case else ("context", "problem")
     if any(
         e.get("kind") != "defer" for e in entries_of_case
-    ):  # the short form of a defer (56, 542)
+    ):  # the short form of a defer (cases 56, 542)
         needed += ("given", "when")
     missing = [name for name in needed if name not in texts]
     if missing or block_errors:
@@ -1489,14 +1490,15 @@ def lift_line(
         entry.setdefault("incomplete", []).append("comment")
     if case not in texts_of:
         texts_of[case] = case_texts(cases, case)
-    lift_criterion(entry, texts_of[case], project_dir)  # an Estimate's own entry (189, 194.1, 296)
+    # an Estimate's own entry (cases 189, 194.1, 296)
+    lift_criterion(entry, texts_of[case], project_dir)
     entries.append(entry)
     added = 1
     for earlier in record.get("supersedes") or []:  # one block per Case (case 429)
         if mark_superseded(entries, decisions, earlier, case, cases):
             refold(entries, earlier, ledger or [], date)  # its readings move (case 309)
         else:
-            elsewhere.append((earlier, case))  # another unit's yaml (130.2)
+            elsewhere.append((earlier, case))  # another unit's yaml (case 130.2)
     if record.get("addresses") and not mark_addressed(entries, record["addresses"], case):
         entry.setdefault("incomplete", []).append("addresses")  # a mark without its lesson
     return added
@@ -1569,7 +1571,7 @@ def assemble(
                 file=stderr,
             )
     entries[:] = [e for e in entries if isinstance(e, dict)]
-    # A line whose lift failed last run is lifted again and replaced on success (142.1).
+    # A line whose lift failed last run is lifted again and replaced on success (case 142.1).
     retry = {e["line"]: e for e in entries if "line" in e and e.get("failed") and "kind" not in e}
     known = {e["line"]: e for e in entries if "line" in e and e["line"] not in retry}
     folded = {n for e in entries for n in e.get("folded") or []}
@@ -1611,7 +1613,7 @@ def assemble(
                 schema_free,
                 ledger,
             )
-        except Exception as exc:  # noqa: BLE001 — one line fails alone, the rest are lifted (142.1)
+        except Exception as exc:  # noqa: BLE001 — one line fails alone, the rest are lifted (case 142.1)
             del entries[before:]
             message = f"{type(exc).__name__}: {exc}"
             print(f"materialize: line {number}: {message}", file=stderr)

@@ -384,7 +384,7 @@ STORE_SUFFIX = ".checked.json"
 CASES = "cases"  # the folder of the files of built Cases in a session folder (case 452.1)
 RULE = "---"  # the horizontal rule after which the agent's own text stands
 # The parts of a shown Case compared with its stored answer, each only when the reply shows
-# it (452.2); the heading name and the prose — `context`, `problem`, `recommend` — are free.
+# it (case 452.2); the heading name and the prose — `context`, `problem`, `recommend` — are free.
 MECHANICAL = ("given", "when", "then", "tasks", "ratification")
 # the Case that sets off the archive, at the end of a cascade note of `prespec` (case 739.2)
 CASCADE_BY = re.compile(r"archives it after case (\S+?): ")
@@ -1502,7 +1502,7 @@ def summary_findings(payload: dict, files: list[Path], store: dict) -> list[str]
     return findings
 
 
-EDIT_CALLS = ("Write", "Edit", "MultiEdit")  # the calls that write a file of a Case (645.2)
+EDIT_CALLS = ("Write", "Edit", "MultiEdit")  # the calls that write a file of a Case (case 645.2)
 
 
 def written_case_files(payload: dict, project_dir: Path) -> list[Path]:
@@ -1604,7 +1604,7 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     write_store(plan, store)
     if not files and not findings and folder is not None:  # the old path (cases 452.1, 645.2)
         write_case_files(folder, list(split_cases(text)), store)
-    if (findings and not repeated) or fresh:  # the store guards the loop (434, 472.1)
+    if (findings and not repeated) or fresh:  # the store guards the loop (cases 434, 472.1)
         return send_back(findings + fresh + named + form, stderr)
     return send_back(named + form, stderr)
 
@@ -1675,7 +1675,7 @@ def judge_and_store(
         fresh += new
         if kept or new:  # the notes sent for the id outlive a later answer (case 472.1)
             entry["notes"] = kept + new
-        if isinstance(held, dict) and held.get("summary_sent"):  # the loop guard (662.3)
+        if isinstance(held, dict) and held.get("summary_sent"):  # the loop guard (case 662.3)
             entry["summary_sent"] = held["summary_sent"]
         store[key] = entry
     return [f for case in cases for f in found[case]], fresh, repeated
@@ -2258,4 +2258,4 @@ def run(
             told = None
         if told is None and payload.get("stop_hook_active"):
             return 0
-        return give([reason], told or [], stderr)  # at most three times a stretch (688.4)
+        return give([reason], told or [], stderr)  # at most three times a stretch (case 688.4)

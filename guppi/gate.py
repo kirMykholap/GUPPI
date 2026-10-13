@@ -206,7 +206,7 @@ def run(
         unwritten = spec_check(project_dir, stamp, now)
         if unwritten:
             cases = sorted({f.split(":", 1)[0] for f in unwritten}, key=case_key)
-            if typed(payload):  # 169.1: the reason is for the person
+            if typed(payload):  # the reason is for the person (case 169.1)
                 advice = f"Ask the agent to end its reply with the LEDGER block, then type /{skill} again."
             else:
                 advice = (

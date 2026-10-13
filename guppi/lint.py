@@ -220,7 +220,7 @@ def check_schema(page: Page, schema: dict) -> list[Finding]:
             out.append(
                 Finding(page, "schema", f"{field} is {page.props[field]!r}, not one of {allowed}")
             )
-    for field in props.get("single") or []:  # one value is its shape, never a list (362.1)
+    for field in props.get("single") or []:  # one value is its shape, never a list (case 362.1)
         if isinstance(page.props.get(field), list):
             out.append(Finding(page, "schema", f"{field} holds a list; one link is its shape"))
     for _, what in unmet_conditions(page.props, page.sections, schema, "properties"):

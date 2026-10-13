@@ -410,7 +410,7 @@ def window_lines(project_dir: Path, hi: tuple[str, str], today: str) -> list[tup
 
 def session_decisions(lines: list[tuple]) -> list[dict]:
     """The decision records among the window's lines; a bare case id is read as `case N`
-    and the grammar check (75.2) reports it."""
+    and the grammar check (case 75.2) reports it."""
     records: list[dict] = []
     for _, _, line in lines:
         if TIMED_RECORD.match(line).group(2) != "decision":
@@ -422,8 +422,8 @@ def session_decisions(lines: list[tuple]) -> list[dict]:
 
 
 def check_grammar(lines: list[tuple]) -> list[str]:
-    """75.2: every record line of the window goes through `materialize.parse_line`; one
-    that returns None is a finding with its file and line number."""
+    """Every record line of the window goes through `materialize.parse_line`; one
+    that returns None is a finding with its file and line number (case 75.2)."""
     findings: list[str] = []
     for day, number, line in lines:
         if parse_line(line) is None:
@@ -480,8 +480,8 @@ def item_has_line(entry: dict, records: list[dict]) -> bool:
 
 
 def superseded_in_window(records: list[dict]) -> dict[str, str]:
-    """299.2: the Cases a `{supersedes:case N}` of the window names, each with the Case that
-    superseded it — a Case superseded in its own session leaves the plan."""
+    """The Cases a `{supersedes:case N}` of the window names, each with the Case that
+    superseded it — a Case superseded in its own session leaves the plan (case 299.2)."""
     by: dict[str, str] = {}
     for record in records:
         for earlier in record.get("supersedes") or []:  # one block per Case (case 429)
@@ -512,11 +512,12 @@ def retired_whole(case: str, superseded: dict[str, str], records: list[dict]) ->
 
 
 def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
-    """59.1: every line has its item under its own Case; every item has its line, a nested
-    estimate through its parent's create line. 299.2: a Case superseded by a line of the
-    window needs no item, and its heading still in the plan is a finding. 426: a second item
-    of one kind and slug under one Case heading, in one fence tagged `then` or in another, is
-    a finding — one decision line covers one item, and `materialize` lifts only the first."""
+    """Every line has its item under its own Case; every item has its line, a nested
+    estimate through its parent's create line (case 59.1). A Case superseded by a line of the
+    window needs no item, and its heading still in the plan is a finding (case 299.2). A second
+    item of one kind and slug under one Case heading, in one fence tagged `then` or in
+    another, is a finding — one decision line covers one item, and `materialize` lifts only
+    the first (case 426)."""
     findings: list[str] = []
     superseded = superseded_in_window(records)
     for case in cases:  # a sub-case of a superseded Case too (case 660.1)
@@ -536,7 +537,7 @@ def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
         seen: set[tuple[str, str]] = set()
         for entry in items_of(block):
             tag = (entry["kind"], item_name(entry))
-            if not entry["nested"] and tag in seen:  # materialize lifts only the first (426)
+            if not entry["nested"] and tag in seen:  # materialize lifts only the first (case 426)
                 findings.append(
                     f"case {case}: item [{tag[0]}][{tag[1]}] stands twice — one entry per target"
                 )
@@ -586,8 +587,8 @@ def decided_on_its_page(
     slug: str, deferred: list[str], records: list[dict], case: str
 ) -> tuple[bool, list[str]]:
     """The one judgment of a backlog item taken up by Case N, run by `/pre-spec` on a
-    closed line (467.1) and by the check of the answer of `case-guppi` on an open one
-    (467.2) (case 467). Of `records`, only the decision lines of Case N and its sub-cases are read.
+    closed line (case 467.1) and by the check of the answer of `case-guppi` on an open one
+    (case 467.2) (case 467). Of `records`, only the decision lines of Case N and its sub-cases are read.
     Returns whether a line of them other than a `defer` names the page, and each Case M of
     the page's `deferred_by` for which no Case among them both names the page on such a line
     and carries `{supersedes:case M}` — `generate` clears a defer only from the pages the
@@ -605,7 +606,7 @@ def decided_on_its_page(
 def check_backlog_line(
     item: str, title: str, case: str, records: list[dict], project_dir: Path
 ) -> list[str]:
-    """467.1: a Frontier line of the source `backlog` closed `[x] · case N`."""
+    """A Frontier line of the source `backlog` closed `[x] · case N` (case 467.1)."""
     findings: list[str] = []
     for slug, deferred in deferred_pages(title, project_dir).items():
         named, missing = decided_on_its_page(slug, deferred, records, case)
@@ -670,7 +671,7 @@ def check_frontier(
     project_dir: Path | None = None,
     plan: str = "",
 ) -> list[str]:
-    """59.2: the frontier of the session's folder (73.4). An open line under `## Cases` is
+    """The frontier of the session's folder (cases 59.2, 73.4). An open line under `## Cases` is
     a finding (case 356.1), one under `## Work` is not — its work waits for Work Mode — nor
     one under `## Ask`, which waits for the person at `/hi` (case 531.12); a closed one is
     checked as any. Only a box line, `- [ ]`, `- [x]` or `- [-]` at the start,
@@ -774,15 +775,15 @@ def estimates_to_read(block: dict) -> list[str]:
 
 
 def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
-    """59.3: a ratified Case has a `tasks` block; an Estimate to read has its task line — a
+    """A ratified Case has a `tasks` block; an Estimate to read has its task line — a
     line `- [ ] read `<slug>`` whose first backticked slug is that Estimate, matched by
-    `generate.READ_LINE`, the ticker's own pattern, so the check judges as the ticker ticks.
-    A slug named on another Estimate's read line has no line of its own and is a finding in
-    its own words; a mention on an `update` line, or on any line that is not a read line, is
-    no task line (case 327). 279.2: a render or sprint line is in the form the tickers
-    match."""
+    `generate.READ_LINE`, the ticker's own pattern, so the check judges as the ticker ticks
+    (case 59.3). A slug named on another Estimate's read line has no line of its own and is a
+    finding in its own words; a mention on an `update` line, or on any line that is not a read
+    line, is no task line (case 327). A render or sprint line is in the form the tickers match
+    (case 279.2)."""
     findings: list[str] = []
-    superseded = superseded_in_window(records)  # a superseded Case has no work here (299.2)
+    superseded = superseded_in_window(records)  # a superseded Case has no work here (case 299.2)
     with_work = {
         r["case"]
         for r in records
@@ -846,7 +847,7 @@ def check_keys(blocks: dict, project_dir: Path, schema_free: set[str]) -> list[s
 def check_governed(blocks: dict, governed: dict[str, str]) -> list[str]:
     """An `update` item carrying `file` — the file route is gone (case 320); every file of
     the vault is a page, the Render of a page or a record a script keeps. A path a live
-    Rule page governs is named with its rule (59.6)."""
+    Rule page governs is named with its rule (case 59.6)."""
     findings: list[str] = []
     for case, block in blocks.items():
         for item in block.get("update") or []:
@@ -883,7 +884,8 @@ KEPT_WAITS = (
 )
 # a defer of an Estimate with no page (case 783)
 NO_DEFERRED_ESTIMATE = "no such Estimate page — defer the page it would check"
-NO_DEFERRED_PAGE = "no such page — a placeholder is written only for a rule or an entity"  # 786
+# a defer of another kind needs a page that stands (case 786)
+NO_DEFERRED_PAGE = "no such page — a placeholder is written only for a rule or an entity"
 DECIDED = ("passed", "failed")  # a status the person's decision sets, with no reading after it
 
 
@@ -1528,9 +1530,9 @@ def check_pointers(blocks: dict, project_dir: Path) -> list[str]:
 
 
 def check_criterion_pairs(blocks: dict, project_dir: Path) -> list[str]:
-    """378.4: a `replace` pair of an Estimate `update` whose `old` stands inside the page's
+    """A `replace` pair of an Estimate `update` whose `old` stands inside the page's
     `## Criterion` — judged by `materialize.touches_criterion`, the predicate `materialize`
-    marks `incomplete: [criterion]` by; a Criterion changes only whole."""
+    marks `incomplete: [criterion]` by; a Criterion changes only whole (case 378.4)."""
     findings: list[str] = []
     for case, block in blocks.items():
         for item in block.get("update") or []:
@@ -1547,10 +1549,10 @@ def check_criterion_pairs(blocks: dict, project_dir: Path) -> list[str]:
 
 
 def check_same_target(blocks: dict) -> list[str]:
-    """561.4: two Cases of the plan whose `update` items name one page and set one field
+    """Two Cases of the plan whose `update` items name one page and set one field
     under `set` to two different values, each write one section under `sections`, or each
     replace the Criterion of one Estimate whole — an `update` that names no part, by
-    `materialize.names_a_part`. One finding per pair, opening with the later Case in the
+    `materialize.names_a_part` (case 561.4). One finding per pair, opening with the later Case in the
     plan's order, so the check after a write gives it to the Case just written. Two items of
     one Case are not compared here — a second item of one kind and slug keeps the finding of
     `check_lines` (case 426) — and different fields, sections or anchors of one page are no
@@ -1619,9 +1621,10 @@ def item_slugs(block: dict) -> list[str]:
 
 
 def check_frame(cases: dict, blocks: dict) -> list[str]:
-    """378.7: `when` and `then` name only what `given` names, and every slug of the `then`
+    """The `when` and `then` name only what `given` names, and every slug of the `then`
     block stands in `given`; a sub-case reads its parent's `given` by `case_texts`; a Case
-    without `given` — a defer, an older Spec — is not checked. One finding per name."""
+    without `given` — a defer, an older Spec — is not checked (case 378.7). One finding per
+    name."""
     findings: list[str] = []
     for case in cases:
         texts = case_texts(cases, case)
@@ -1644,8 +1647,8 @@ def check_frame(cases: dict, blocks: dict) -> list[str]:
 
 
 def chain_notes(cases: dict) -> list[str]:
-    """378.8: a Case whose own `given` or `then` holds more than seven `＋` lines — a sign
-    it is not atomic; a note, not a finding."""
+    """A Case whose own `given` or `then` holds more than seven `＋` lines — a sign
+    it is not atomic; a note, not a finding (case 378.8)."""
     notes: list[str] = []
     for case in cases:
         texts = case_texts(cases, case)
@@ -1671,10 +1674,11 @@ def criterion_line(line: str) -> str:
 
 
 def criterion_notes(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
-    """472.1: each line of the `## Criterion` of an Estimate that a Case replaces whole — an
+    """Each line of the `## Criterion` of an Estimate that a Case replaces whole — an
     `update` that names no part, by `materialize.names_a_part` — which no line of the new
     Criterion equals; the new one is the Criterion the item writes, else the `when` and `then`
-    of its Case, and a Case that gives none is not compared. A `create` has no old Criterion."""
+    of its Case, and a Case that gives none is not compared (case 472.1). A `create` has no
+    old Criterion."""
     notes: list[str] = []
     for case, block in blocks.items():
         for item in block.get("update") or []:
@@ -1707,10 +1711,10 @@ def words(line: str) -> set[str]:
 
 
 def sibling_notes(cases: dict) -> list[str]:
-    """472.2: each pair of `then` lines of two sibling sub-cases — of one parent — whose
+    """Each pair of `then` lines of two sibling sub-cases — of one parent — whose
     shared words make `SIBLING_SHARE` or more of the words of the shorter line, named on the
     later sibling; a line with no word is compared with none, and a Case with no quoted
-    `then` — an older Spec — gives no line."""
+    `then` — an older Spec — gives no line (case 472.2)."""
     families: dict[str, list[str]] = {}
     for case in cases:
         if "." in case:
@@ -1738,10 +1742,10 @@ def sibling_notes(cases: dict) -> list[str]:
 
 
 def defer_notes(cases: dict) -> list[str]:
-    """726.1: one note per page and pair of Cases, where a `create`, `update` or `delete`
+    """One note per page and pair of Cases, where a `create`, `update` or `delete`
     item of one Case and a `defer` item of another top-level Case name the same page, a short
     Case under `## Deferred` included; a Case and its sub-cases are one Case here, and a page
-    only `defer` items name gives none. A note, not a finding."""
+    only `defer` items name gives none (case 726.1). A note, not a finding."""
     changes: list[tuple[str, str]] = []
     defers: list[tuple[str, str]] = []
     for case, lines in cases.items():
@@ -1767,13 +1771,13 @@ def cascade_notes(
     project_dir: Path,
     judged: set[str] | None = None,
 ) -> list[str]:
-    """739.1: one note per `update` item of a page that the cascade of `generate` archives
+    """One note per `update` item of a page that the cascade of `generate` archives
     once the items of `blocks`, in their order, and the `{supersedes:case N}` marks of
     `records` apply, and would not archive before them — judged by
     `generate.archived_by_cascade`, the one function the cascade calls: a lesson standing
     `clustered` among the children of an Insight an item sets `actioned`, an `open` Insight
     whose last live child an item or the cascade archives, and the Decision page of a Case a
-    mark names, or of one of its sub-cases. An item reads `set: {status: …}` and `set:
+    mark names, or of one of its sub-cases (case 739.1). An item reads `set: {status: …}` and `set:
     {children: …}` of an `update`, and a `delete` sets `archived`. The note names the Case of
     the `update`, the page and the Case whose item or mark sets off the archive; an `update`
     and that item in one Case, or in two sub-cases of one, give it too. A `create`, a
@@ -1889,10 +1893,10 @@ def known_slugs(project_dir: Path) -> set[str]:
 
 
 def check_bare_links(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
-    """264.2: a `[[slug]]` outside a code span in the plan — in the blockquotes and in the
+    """A `[[slug]]` outside a code span in the plan — in the blockquotes and in the
     strings of the `then` blocks — that names neither a live or archived page, nor a slug a
     `create` of the same plan carries, nor a hub file of `wiki/`; one line per slug and
-    Case. The text would reach a page as it stands, and lint would read it as a broken
+    Case (case 264.2). The text would reach a page as it stands, and lint would read it as a broken
     link (cases 130.1, 140, 160, 262)."""
     known = known_slugs(project_dir)
     created = {
@@ -1915,10 +1919,10 @@ def check_bare_links(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
 
 
 def check_untranslated(plan: str, project_dir: Path) -> list[str]:
-    """387.4, 445.4, 476.3: every name, `context` or `problem` of a Case of the plan that still
-    holds a letter outside the script of the documentation language `guppi.toml` sets, a
-    short form under `## Deferred` included, by `ratified.untranslated`; a Latin letter in a
-    code span gives no finding (case 589.1); a `guppi.toml` that is missing or names a code
+    """Every name, `context` or `problem` of a Case of the plan that still holds a letter
+    outside the script of the documentation language `guppi.toml` sets, a short form under
+    `## Deferred` included, by `ratified.untranslated` (cases 387.4, 445.4, 476.3); a Latin
+    letter in a code span gives no finding (case 589.1); a `guppi.toml` that is missing or names a code
     the table does not hold is one finding, and no Case is read. The plan is compared with no
     other file."""
     try:
@@ -1942,8 +1946,8 @@ def judge(
     schema_free: set[str] | None = None,
 ) -> list[str]:
     """The checks of `--check` on the plan's Cases, in the order they print. `lines`, the
-    window's record lines, adds their grammar (75.2); `frontier`, its path and the name a
-    finding gives it, adds the Frontier (59.2). The check after a write passes neither, and
+    window's record lines, adds their grammar (case 75.2); `frontier`, its path and the name a
+    finding gives it, adds the Frontier (case 59.2). The check after a write passes neither, and
     the language finding stays with `check` (cases 414.1, 445.4). `schema_free`: the
     categories whose keys are not judged, by default those `records` change (case 436.2)."""
     if schema_free is None:

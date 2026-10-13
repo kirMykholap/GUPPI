@@ -365,7 +365,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     now = datetime.now().astimezone() if now is None else now
     try:
         payload = read_payload(stdin)
-    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell its own refusal (555.3, 577.2)
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell its own refusal (cases 555.3, 577.2)
         print(f"onward: not checked: {exc}", file=stderr)
         return 0
     if not payload:

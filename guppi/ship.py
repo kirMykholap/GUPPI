@@ -24,7 +24,11 @@ of the run in `created` and a `## History` of one line; its link fields, `LINK_F
 Then it reads what it wrote and prints `ship: <file>:<line>: <what>` for each pointer that
 stands outside such a bracket and each marker line of `MARKER` of `guppi/pages.py` that
 opens or closes the section of a page without `core: true`; any such line exits 1, and a
-Case rewords that text at its source. `--review` also prints each bracket it removes that
+Case rewords that text at its source. A case number with no word `case` before it is no
+pointer and stays in the copy, but in a comment or a docstring of a Python file
+`bare_numbers` prints it and exits 1 too: a bracket of case numbers alone, an opening of a
+case number and a colon, a comment that is a case number alone (case 808.1); it reads the
+file by `tokenize`, so no code is judged. `--review` also prints each bracket it removes that
 holds a word beside its pointers, which sets no exit code. `--check` judges in place each
 file outside `vault/` that the copy takes, but `NOT_CLEANED`, prints the same lines and
 writes nothing; `make lint` runs it. A folder that is not empty exits 2 with nothing
@@ -36,7 +40,9 @@ import argparse
 import re
 import shutil
 import sys
+import tokenize
 from datetime import date, datetime
+from io import StringIO
 from pathlib import Path
 
 from guppi.caseid import ID
@@ -87,6 +93,25 @@ POINTERS = (
 # a bracket that opens a line and a mark of punctuation follows takes the line break before
 # it, so the mark joins the line above and does not stand alone
 BRACKET = re.compile(r"(\n[ \t]*(?=\([^()]*\)[.,;:])|[ \t]?)\(([^()]*)\)")
+# a case number with no word before it, in a comment or a docstring of a Python file
+# (case 808.1): a bracket that holds only case numbers, joined by a comma, a semicolon,
+# `and` or a dash, and not opened right after a name, as a call is; a comment or a docstring
+# that opens with a case number and a colon; a comment that is a case number alone. A date
+# is no case number.
+NUMBER = rf"(?!\d{{4}}-\d\d-\d\d){ID}"
+BARE_BRACKET = re.compile(
+    rf"(?<![\w.\])])\(\s*{NUMBER}(?:\s*(?:[,;]|\band\b|[-–])\s*{NUMBER})*\s*\)"
+)
+BARE_OPENING = re.compile(rf"^\s*{NUMBER}:")
+BARE_ALONE = re.compile(rf"^\s*{NUMBER}\s*$")
+STRING_PREFIX = re.compile(r"^[rRbBuU]*('''|\"\"\"|'|\")")
+STATEMENT_START = {
+    tokenize.NEWLINE,
+    tokenize.NL,
+    tokenize.INDENT,
+    tokenize.DEDENT,
+    tokenize.ENCODING,
+}
 SEPARATORS = re.compile(r"[\s,;]+|\band\b")
 FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
 MASK = "\x00{}\x00"
@@ -170,6 +195,50 @@ def outside(text: str, sample: bool = True) -> list[tuple[int, str]]:
     return out
 
 
+def bare_in(body: str) -> list[tuple[int, str]]:
+    """`(offset, number)` for each bare case number of the text of one comment or docstring."""
+    found = [(m.start(), m.group(0)) for m in BARE_BRACKET.finditer(body)]
+    opening = BARE_ALONE.match(body) or BARE_OPENING.match(body)
+    if opening:
+        found.append((opening.start(), opening.group(0).strip()))
+    return sorted(found)
+
+
+def bare_numbers(text: str) -> list[tuple[int, str]]:
+    """`(line, what)` for each case number with no word before it in a comment or a docstring
+    of the Python source `text`, read by `tokenize`, so that no code is judged: the one
+    judgment of a bare case number (case 808.1). A docstring is a string that a statement is
+    alone; a comment that only opens with a number, such as a count, is no finding. A text
+    that does not tokenize gives none."""
+    try:
+        tokens = list(tokenize.generate_tokens(StringIO(text).readline))
+    except (tokenize.TokenError, SyntaxError):
+        return []
+    skipped = (tokenize.COMMENT, tokenize.NL)
+    out, at_start = [], True
+    for index, token in enumerate(tokens):
+        if token.type == tokenize.COMMENT:
+            body = token.string[1:]
+            out += [(token.start[0], f"a bare case number: {n}") for _, n in bare_in(body)]
+            continue
+        if token.type == tokenize.STRING and at_start:
+            after = next((t for t in tokens[index + 1 :] if t.type not in skipped), None)
+            if after is None or after.type in (tokenize.NEWLINE, tokenize.ENDMARKER):
+                quote = STRING_PREFIX.match(token.string)
+                start = quote.end() if quote else 0
+                body = token.string[start:]
+                out += [
+                    (
+                        token.start[0] + token.string.count("\n", 0, start + at),
+                        f"a bare case number: {n}",
+                    )
+                    for at, n in bare_in(body)
+                ]
+        if token.type not in skipped:
+            at_start = token.type in STATEMENT_START
+    return out
+
+
 def clean(
     text: str, sample: bool, known: set[str] | None = None
 ) -> tuple[str, list[tuple[int, str]]]:
@@ -188,14 +257,19 @@ def clean(
     return unmasked(body, spans), [(n, unmasked(b, spans)) for n, b in review]
 
 
-def leftovers(text: str, sample: bool, loose: set[str]) -> list[tuple[int, str]]:
+def leftovers(
+    text: str, sample: bool, loose: set[str], python: bool = False
+) -> list[tuple[int, str]]:
     """`(line, what)` for each pointer outside a bracket, and each marker of a page in
-    `loose`, the page slugs without `core`, that the copy must not hold."""
+    `loose`, the page slugs without `core`, that the copy must not hold; with `python`, each
+    bare case number of `bare_numbers` too."""
     out = []
     for number, line in enumerate(text.split("\n"), start=1):
         marker = MARKER.match(line.strip())
         if marker and marker.group(2) in loose:
             out.append((number, f"a section of {marker.group(2)}, a page without core: true"))
+    if python:
+        out += bare_numbers(text)
     return sorted(out + outside(text, sample))
 
 
@@ -287,7 +361,8 @@ def judged(name: str, text: str, known: set[str], loose: set[str]) -> tuple[str,
         return text, [], []
     sample = is_sample_file(name)
     cleaned, review = clean(text, sample, known if name.endswith(".md") else None)
-    lines = [f"ship: {name}:{n}: {what}" for n, what in leftovers(text, sample, loose)]
+    python = name.endswith(".py")
+    lines = [f"ship: {name}:{n}: {what}" for n, what in leftovers(text, sample, loose, python)]
     reviewed = [f"ship: {name}:{n}: a bracket with words: {' '.join(b.split())}" for n, b in review]
     return cleaned, lines, reviewed
 

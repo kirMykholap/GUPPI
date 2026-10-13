@@ -938,7 +938,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     now = datetime.now().astimezone() if now is None else now
     try:
         payload = read_payload(stdin)
-    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell its own refusal (552.4, 577.4)
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to tell its own refusal (cases 552.4, 577.4)
         print(f"ledger: ledger.md not written: {exc}", file=stderr)
         return 0
     told: list[str] | None = None

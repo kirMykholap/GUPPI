@@ -173,7 +173,8 @@ CHAT_SECTIONS = (
     "tasks",
     "ratification",
 )
-SPEC_SECTIONS = ("context", "problem", "recommend", "given", "when", "then")  # 544.5
+# the parts of a Case the Spec holds (case 544.5)
+SPEC_SECTIONS = ("context", "problem", "recommend", "given", "when", "then")
 PROSE = ("context", "problem")  # the parts the language finding reads (cases 387.4, 445.4)
 # The story of a Case the Spec holds, which a showing may leave out and a sub-case takes from
 # its parent's stored answer (cases 441.6, 544.5).
@@ -985,7 +986,7 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
     cases, refs = ratified_cases(records)
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
     keys_for = key_judge(project_dir, window_schema_free(folder, reply))
-    approved = folder / SPEC_FILE  # the approved Spec, once `guppi spec` wrote it (441.6)
+    approved = folder / SPEC_FILE  # the approved Spec, once `guppi spec` wrote it (case 441.6)
     problems: list[str] = []
     written: set[str] = set()
     if cases:
@@ -1027,7 +1028,7 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
                         "lines"
                     )
                     continue
-                changed = changed_file(folder, case, store)  # a file changed after (645.5)
+                changed = changed_file(folder, case, store)  # a file changed after (case 645.5)
                 if changed:
                     problems.append(changed)
                     continue
@@ -1046,13 +1047,13 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
                     continue
                 written.add(case)
                 parent = store.get(case.rsplit(".", 1)[0]) if "." in case else None
-                if isinstance(parent, dict):  # its prose from its stored answer only (441.6)
+                if isinstance(parent, dict):  # its prose from its stored answer only (case 441.6)
                     write_parent(plan, case, str(parent.get("text") or ""), approved)
     checked = set(written)  # the check after the write reads the Cases of `write_case` only
     if defer_only(records):
         target = (
             approved if approved.is_file() else plan
-        )  # once spec.md stands, a defer goes there (542)
+        )  # once spec.md stands, a defer goes there (case 542)
         if target is None or not target.is_file():
             problems.append(
                 "no plan file of this session in the event log — create it with its title "

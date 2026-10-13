@@ -1,8 +1,9 @@
 """`guppi ship` over a sample tree, `estimate-clean-branch-writes-a-clean-copy` (cases 804.6,
-807.1): only the code, the harness and the pages with `core: true` are written, each bracket
-that holds a pointer goes whole, a link to a page left out becomes its slug, samples stay,
-the shipped values are written, a pointer outside a bracket exits 1, and `--review` and
-`--check` work as the rule sets them."""
+807.1, 808.1): only the code, the harness and the pages with `core: true` are written, each
+bracket that holds a pointer goes whole, a link to a page left out becomes its slug, samples
+stay, the shipped values are written, a pointer outside a bracket and a bare case number in a
+comment or a docstring of a Python file exit 1, and `--review` and `--check` work as the rule
+sets them."""
 
 import io
 from datetime import UTC, datetime
@@ -267,6 +268,63 @@ def test_check_judges_the_files_outside_the_vault_in_place(tmp_path):
     assert stdout.getvalue().splitlines() == ["ship: guppi/y.py:1: a reference to a case: case 5"]
     assert written(root) == before
     assert (root / "guppi" / "y.py").read_text(encoding="utf-8").endswith("(as set in case 6)\n")
+
+
+BARE = '''"""75.2: the frontier (513, 544.7)."""
+
+X = 1  # not the records (274.1)
+# 169.1: the reason is for the person
+Y = 2  # 786
+
+
+def f():
+    """Reads a page (280–281)."""
+    return 3
+'''
+
+
+def test_a_bare_case_number_in_a_comment_or_a_docstring_exits_1_and_stays(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    write(root / "guppi" / "y.py", BARE)
+    code, lines = run(root, out)
+    assert code == 1
+    assert lines == [
+        "ship: guppi/y.py:1: a bare case number: (513, 544.7)",
+        "ship: guppi/y.py:1: a bare case number: 75.2:",
+        "ship: guppi/y.py:3: a bare case number: (274.1)",
+        "ship: guppi/y.py:4: a bare case number: 169.1:",
+        "ship: guppi/y.py:5: a bare case number: 786",
+        "ship: guppi/y.py:9: a bare case number: (280–281)",
+    ]
+    assert (out / "guppi" / "y.py").read_text(encoding="utf-8") == BARE
+
+
+def test_check_reports_a_bare_case_number_in_place(tmp_path):
+    root = tmp_path / "p"
+    tree(root, rule_a=page("rule", "rule-a"))
+    write(root / "guppi" / "y.py", "X = 1  # not the records (274.1)\n")
+    stdout = io.StringIO()
+    code = ship.run(["--check"], stdout=stdout, stderr=io.StringIO(), project_dir=root, now=NOW)
+    assert code == 1
+    assert stdout.getvalue().splitlines() == ["ship: guppi/y.py:1: a bare case number: (274.1)"]
+
+
+def test_code_and_a_count_are_no_bare_case_number(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    code_text = (
+        '"""Reads a page, measured (2026-09-25)."""\n'
+        "N = m.group(1) + f(274.1)  # 3 tries, as in m.group(2)\n"
+        'S = "(274.1)"\n'
+        "call(\n"
+        '    "75.2: a string argument",\n'
+        ")\n"
+    )
+    write(root / "guppi" / "y.py", code_text)
+    write(root / "Makefile", "# 786\ntest:\n\tuv run pytest\n")
+    code, lines = run(root, out)
+    assert (code, lines) == (0, [])
 
 
 def test_a_section_of_a_loose_page_exits_1(tmp_path):

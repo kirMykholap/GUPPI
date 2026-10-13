@@ -222,7 +222,8 @@ KEY_ORDER = {
 KINDS = ("create", "update", "delete", "defer")  # a decision page's lists, in this order
 SECTION_ORDER = {  # no section derived from a ref field (case 166.2)
     "rules": ["Purpose", "Render", "How it works"],
-    "entities": ["Purpose", "How it works", "Milestones", "Backlog", "Closed"],  # 229.1
+    # the last three a sprint's (case 229.1)
+    "entities": ["Purpose", "How it works", "Milestones", "Backlog", "Closed"],
     "estimates": ["Context", "Criterion", "Method", "Result"],
     "lessons": ["Trigger", "Root cause"],
     "insights": ["Pattern", "Proposal"],
@@ -231,7 +232,7 @@ SECTION_ORDER = {  # no section derived from a ref field (case 166.2)
         "Context", "Problem", "Recommend", "Given", "When", "Criterion", "Deferred", "Note",
     ],
 }  # fmt: skip
-DEFERRABLE = ("rules", "entities", "insights", "estimates")  # a `defer` marks (124.2, 781)
+DEFERRABLE = ("rules", "entities", "insights", "estimates")  # a `defer` marks (cases 124.2, 781)
 LIBRARIAN_ONLY = "an Insight is made and retired by the librarian, never created or deleted by a decision (case 171)"
 INITIAL_STATUS = {
     "entities": "draft",
@@ -242,7 +243,8 @@ INITIAL_STATUS = {
     "decisions": "current",
 }
 RESULT = "## Result"  # a reading's record; a rename leaves it as it is (case 258.1)
-REWORD_CATEGORIES = ("rules", "entities", "estimates")  # not the journal, not the records (274.1)
+# not the journal, not the records (case 274.1)
+REWORD_CATEGORIES = ("rules", "entities", "estimates")
 REWORD_FIELDS = ("purpose", "method")
 NEEDS_QUOTE = re.compile(r"""^[\s\[\]{}"'&*!|>%@,#`-]|: | #|:$|\s$|\n""")
 LOOKS_SPECIAL = re.compile(r"^(true|false|null|yes|no|on|off|~|[-+]?\d[\d.]*)$", re.IGNORECASE)
@@ -647,7 +649,7 @@ class Vault:
             tuple[str, str, str, str]
         ] = []  # backlinks whose parent is not there yet
         self.spec: Path | None = None  # the Spec beside the yaml, whose page lines are ticked
-        self.entries: list = []  # the yaml's entries, for the Cases later than a reading (280)
+        self.entries: list = []  # the yaml's entries, for the Cases later than a reading (case 280)
 
     # the Spec (case 226.1)
 
@@ -655,13 +657,13 @@ class Vault:
         """The first unticked `- [ ] <kind> `<slug>`` line in the section of the entry's
         Case becomes `- [x]`; a reading — an `estimate` entry, or a `create` with `folded` —
         ticks the first unticked `- [ ] read `<slug>`` line across the Specs of `raw/`
-        (270.1); a `delete` entry ticks its page line and, as a reading does, the `read`
-        lines of its slug — no reading of a deleted Estimate will stand in the ledger (463);
+        (case 270.1); a `delete` entry ticks its page line and, as a reading does, the `read`
+        lines of its slug — no reading of a deleted Estimate will stand in the ledger (case 463);
         so does an `update` that sets an Estimate `passed` or `failed` by the person's
-        decision, which no reading follows (672); an `estimate` or a `delete` entry, or such
+        decision, which no reading follows (case 672); an `estimate` or a `delete` entry, or such
         an `update`, skips, in the Spec beside the yaml, the Cases whose first decision entry
-        stands after it in the ledger (280, 463, 672); all skip, in every
-        Spec, the Cases the yaml beside it marks `superseded_by` (286); nothing found — no
+        stands after it in the ledger (cases 280, 463, 672); all skip, in every
+        Spec, the Cases the yaml beside it marks `superseded_by` (case 286); nothing found — no
         Spec, no section, no line — is no error. Called for an applied entry alone, so a
         failed `delete` ticks nothing."""
         kind = entry.get("kind")
@@ -733,7 +735,8 @@ class Vault:
         if category not in CATEGORIES:
             self.error(slug, f"category {category!r} is not a vault folder")
             return
-        if category == "insights" and not entry.get("librarian"):  # 171: a decision's, refused
+        # an Insight is the librarian's; a decision's is refused (case 171)
+        if category == "insights" and not entry.get("librarian"):
             self.error(slug, LIBRARIAN_ONLY)
             return
         path = self.path(category, slug)
@@ -859,11 +862,11 @@ class Vault:
                 file=self.stdout,
             )
             return
-        if entry.get("rename"):  # the page moves first; the rest lands on the new file (258.1)
+        if entry.get("rename"):  # the page moves first; the rest lands on the new file (case 258.1)
             page = self.rename(page, str(entry["rename"]), self.pointer(entry))
             if page is None:
                 return
-        if entry.get("reword") and not self.reword_pairs(  # the word changes first (274.1)
+        if entry.get("reword") and not self.reword_pairs(  # the word changes first (case 274.1)
             page, entry["reword"], self.pointer(entry)
         ):
             return
@@ -959,7 +962,7 @@ class Vault:
     @staticmethod
     def owner_text(page: Page) -> str:
         """What a rule owns, lowercased: its `purpose`, `governs`, `implementation_ref`, its
-        Purpose and its Render — the `new` of a pair must stand there (274.1)."""
+        Purpose and its Render — the `new` of a pair must stand there (case 274.1)."""
         parts = [str(page.props.get(k, "")) for k in ("purpose", "governs", "implementation_ref")]
         parts += [page.sections.get(name, "") for name in ("## Purpose", "## Render")]
         return "\n".join(parts).lower()
@@ -986,7 +989,7 @@ class Vault:
         """Every pair of `reword` replaced as a whole word on every live rule, entity and
         estimate, the owner included; one History line per page touched, one stdout line
         with the count. A pair with no hit, or with a `new` the owner's text lacks (compared
-        without regard to case), fails the entry before anything is written (274.1)."""
+        without regard to case), fails the entry before anything is written (case 274.1)."""
         shape = isinstance(pairs, list) and all(
             isinstance(p, dict) and p.get("old") and p.get("new") for p in pairs
         )
@@ -1197,15 +1200,15 @@ class Vault:
         props["sprint"] = self.sprint
         props["created"] = self.date
         props["tags"] = tags  # the union of the targets' tags; empty is a fact, not a gap
-        sections = {}  # no When, no Criterion list: the contract lives on the Estimate (201.2)
+        sections = {}  # no When, no Criterion list: the contract lives on the Estimate (case 201.2)
         short = not text.get("given") and not record.get("children")
-        if text.get("context") and short:  # the short form: no Case file (513, 544.7)
+        if text.get("context") and short:  # the short form: no Case file (cases 513, 544.7)
             sections["## Context"] = text["context"]
-        if text.get("problem") and not record.get("parent"):  # the parent's only (544.7)
+        if text.get("problem") and not record.get("parent"):  # the parent's only (case 544.7)
             sections["## Problem"] = text["problem"]
         if text.get("recommend"):  # the choices of the rounds (case 544.7)
             sections["## Recommend"] = text["recommend"]
-        if not text and record.get("superseded_by"):  # gone from the Spec (299.4)
+        if not text and record.get("superseded_by"):  # gone from the Spec (case 299.4)
             by = ", ".join(f"[[{s}]]" for s in as_list(record["superseded_by"]))
             sections["## Context"] = (
                 f"Superseded by {by} in its own session, before the Spec was approved; "
@@ -1350,14 +1353,14 @@ class Vault:
                         statuses[kid] = KEPT_CLUSTERED if status == "clustered" else status
                         break
         gone = archived_by_cascade(statuses, children)
-        # 104.1: a superseded decision no longer describes the present
+        # a superseded decision no longer describes the present (case 104.1)
         for slug, page in decisions.items():
             if slug in gone:
                 page.props["status"] = "archived"
                 self.history(page, "archived · superseded", None)
                 self.save(page)
         for slug, page in insights.items():
-            for kid in children[slug]:  # 104.2: the lessons of an actioned Insight did their work
+            for kid in children[slug]:  # an actioned Insight's lessons did their work (case 104.2)
                 if kid in gone and kid in lessons:
                     child = lessons[kid]
                     child.props["status"] = "archived"
@@ -1368,7 +1371,7 @@ class Vault:
             if page.props.get("severity") != len(live):
                 page.props["severity"] = len(live)
                 changed = True
-            if slug in gone:  # 104.3: its evidence is withdrawn
+            if slug in gone:  # its evidence is withdrawn (case 104.3)
                 page.props["status"] = "archived"
                 self.history(page, "archived · no live child", None)
                 changed = True
@@ -1494,7 +1497,7 @@ def apply(vault: Vault, data: dict) -> None:
                 f"line {entry.get('line', '?')}", f"not lifted by materialize; {entry['failed']}"
             )
             continue  # the mark stays as materialize wrote it (case 142.2)
-        if "case" in entry and str(entry["case"]) in records:  # the Decision page first (52.4)
+        if "case" in entry and str(entry["case"]) in records:  # the Decision page first (case 52.4)
             case = str(entry["case"])
             apply_decision(vault, records[case], stamp, deferred.get(case), records)
         kind = entry.get("kind")
@@ -1507,7 +1510,7 @@ def apply(vault: Vault, data: dict) -> None:
             )
             entry["applied"] = stamp
             entry.pop("failed", None)
-            continue  # no tick: the Spec's lines are closed by the entry that did the work (522)
+            continue  # no tick: the Spec's lines are closed by the entry that did the work (case 522)
         before = len(vault.errors)
         try:
             if kind == "create" or kind == "lesson":
@@ -1526,8 +1529,8 @@ def apply(vault: Vault, data: dict) -> None:
             vault.error(entry.get("slug", "?"), f"{type(exc).__name__}: {exc}")
         if len(vault.errors) == before:
             entry["applied"] = stamp
-            entry.pop("failed", None)  # a failure that is over is not shown (53.3)
-            vault.tick(entry)  # the Spec's page line, once the entry applied (226.1)
+            entry.pop("failed", None)  # a failure that is over is not shown (case 53.3)
+            vault.tick(entry)  # the Spec's page line, once the entry applied (case 226.1)
         else:
             entry["failed"] = vault.errors[-1]
         vault.write_log()
@@ -1561,7 +1564,7 @@ def generate_date(project_dir: Path, unit: str, now, stdout, stderr) -> int:
         )
         return 1
     vault = Vault(project_dir, date, unit_sprint(project_dir, unit), now, stdout, stderr)
-    vault.spec = path.parent / "spec.md"  # the Spec beside the yaml (226.1)
+    vault.spec = path.parent / "spec.md"  # the Spec beside the yaml (case 226.1)
     try:
         apply(vault, data)
     except GenerateError as exc:

@@ -20,10 +20,10 @@ which is its own output. A placeholder whose name is not a key, a key missing fr
 the page and the placeholder or key on stderr; a run in which no Render holds a placeholder
 reads no `rule-guppi-config` (case 476.1).
 `--check` renders in memory, names every file that differs, exits 1 and writes nothing.
-`--sync`, the `SessionStart` hook and, since case 115, the `Render:` line of `/hi` after the
-pull, prints a unified diff for each file that differs — the file as it is, then the
-rendered text — and writes it, so the agent's first turn shows what the render changed: the
-pages the librarian updated, or a hand edit that is now gone and may deserve a Case. An
+`--sync`, the `SessionStart` hook and the `Render:` line of `/hi` after the pull, prints a
+unified diff for each file that differs — the file as it is, then the rendered text — and
+writes it, so the agent's first turn shows what the render changed: the pages the librarian
+updated, or a hand edit that is now gone and may deserve a Case (case 115). An
 identical file gets neither; a render error goes to stderr and nothing is written. `--sync`
 always exits 0, since a `SessionStart` hook cannot block and its stdout is added to the
 agent's context.
@@ -36,7 +36,7 @@ the whole write and names the file and its page on stderr (case 89.4).
 Once the plain `guppi render` wrote the files and exits 0, it ticks — in the `spec.md` of
 every unit under `vault/raw/` whose `materialize.yaml` is applied whole, a carried-over
 unit passed by — every unticked task line that opens with a code span holding `guppi
-render` (cases 226.2, 235; a `read` line that names the command later is not one);
+render`, and a `read` line that names the command later is not one (cases 226.2, 235);
 `--check`, `--sync` and an exit 1 tick nothing, and nothing is said either way. A yaml is
 applied whole when every entry carries `applied` or `superseded_by` and none `failed`, as
 `guppi archive` counts it (case 250.1). The tick is `tick_command_lines`, shared with
@@ -108,8 +108,8 @@ def render_units(pages: list[Page]) -> dict[str, Unit]:
 
 
 def fill_placeholders(units: dict[str, Unit]) -> None:
-    """Case 476.1: each `{{key}}` of a unit's text becomes the name of the language whose
-    code the Render of `rule-guppi-config` sets for the key. No placeholder, no read of that
+    """Each `{{key}}` of a unit's text becomes the name of the language whose code the
+    Render of `rule-guppi-config` sets for the key (case 476.1). No placeholder, no read of that
     page; an unknown placeholder, a missing key or an unknown code is a `RenderError`."""
     holders = [unit for unit in units.values() if PLACEHOLDER.search(unit.text)]
     if not holders:
@@ -273,9 +273,9 @@ def applied_whole(data: dict | None) -> bool:
 
 
 def tick_command_lines(project_dir: Path, command: str) -> int:
-    """Cases 226.2, 250.2: in the `spec.md` of every unit under `raw/` whose yaml is
-    applied whole — a carried-over unit passed by — every unticked task line that opens
-    with a code span holding `command` becomes `- [x]` (case 235). `render` calls it with
+    """In the `spec.md` of every unit under `raw/` whose yaml is applied whole — a
+    carried-over unit passed by — every unticked task line that opens with a code span
+    holding `command` becomes `- [x]` (cases 226.2, 235, 250.2). `render` calls it with
     `guppi render`, `sprint` with `guppi sprint`. The count of lines ticked; nothing is
     said."""
     pattern = command_line(command)

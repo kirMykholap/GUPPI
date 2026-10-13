@@ -4,69 +4,69 @@ Reads every page under `vault/wiki/<category>/` (archive excluded) against that 
 `schema.yaml` and reports `<category>/<slug>: <class>: <what>`; writes nothing. The
 classes, in the order they are checked: `schema` (a missing field or section, a value
 outside the list, a conditional not met, a field `properties.single` names holding a list —
-one value is its shape, case 362.1), `schema-description` (a field or section the
-lists of `schema.yaml` name without a description under its `fields` or `sections`, or a
-description of a name no list carries — the prose of the schema lives in the yaml since
-case 304.8), `ref` (a slug no live or archived page carries; a
-body `[[…]]` may also name a hub file under `wiki/` by its stem or its path, case 149.3;
-an `applies_to` that names no live Entity, and an Entity's `rules` that differs from the
-live rules whose `applies_to` names it, case 305.5;
-and, case 72.6, a `[[slug]]` under a decision page's `## Criterion` that is not a live or
+one value is its shape) (case 362.1), `schema-description` (a field or section the lists of
+`schema.yaml` name without a description under its `fields` or `sections`, or a description
+of a name no list carries — the prose of the schema lives in the yaml) (case 304.8), `ref`
+(a slug no live or archived page carries; a body `[[…]]` may also name a hub file under
+`wiki/` by its stem or its path (case 149.3); an `applies_to` that names no live Entity,
+and an Entity's `rules` that differs from the live rules whose `applies_to` names it (case
+305.5); and a `[[slug]]` under a decision page's `## Criterion` that is not a live or
 archived Estimate page, or a `### case N` block under an Estimate's `## Criterion` with no
-live or archived `decision-case-N`), `origin` (a ledger file or `[case N]` line that does
-not exist; the `#case-N` of a Case with no line of its own is found by a line `[case N.M]` of
-a sub-case, case 544.9; an `origin` equal to `SHIPPED` on a page that `is_core` accepts, a
-page of the clean version, is no finding, case 804.4), `path` (a file named in
-`implementation_ref` or `governs` that does not exist), `markers` (a page with
+live or archived `decision-case-N` (case 72.6)), `origin` (a ledger file or `[case N]` line
+that does not exist; the `#case-N` of a Case with no line of its own is found by a line
+`[case N.M]` of a sub-case (case 544.9); an `origin` equal to `SHIPPED` on a page that
+`is_core` accepts, a page of the clean version, is no finding (case 804.4)), `path` (a file
+named in `implementation_ref` or `governs` that does not exist), `markers` (a page with
 `enforcement: render` whose `## Render` is absent, or whose text does not open with
 `<!-- slug -->` and close with `<!-- /slug -->`; and a `render_mode: full` page whose Render
 holds a closing line for one of its `children` — a parent carries one opening line per
-child, and the closing line is the renderer's own, case 325.2), `fence` (a section of a page
-with a code fence broken — a line inside the fence with a run at least as long and text
-after it, or a fence open at the end of the section — by `fence_breaks` of
-`guppi/materialize.py`, the judgment `pre-spec` runs over the pairs of a plan; a harness file
-is not read, `render --check` compares it with its Render, case 487.2), `layout` (a page whose `type` does
-not match the folder it sits in, a page whose `slug` field is not its filename, and a `.md`
-at the root of `wiki/` that no live rule page names — case 315), `orphan` (a live entity, rule or
-estimate no other live page's frontmatter names; a lesson is a record and an Insight names
-it or not; an Insight owns its children through `children`, archived or not, and is never
-one, case 156), `status` (a `built` page with an Estimate not `passed`, a `draft` one with
-every Estimate `passed`; an Estimate `passed` or `failed` without `## Result`; an Estimate
-whose `target` is not an entity or a rule, or does not list it, case 53.1), `unread` (every
-Estimate `failed`, and every one `pending` whose `method` waits for no later moment, one
-finding each — red between a change of a promise and its reading, by design; cases 182,
-202, 799), `method` (the `method` field alone, case 506.3:
-for a MOC's Estimate a `make <target>` of the
-Makefile passes whatever else it says, and one that names none may be a reading when its
-children's Estimates are all readings, case 112.1, or when a sibling Estimate of the MOC
-names a `make <target>` of the Makefile, case 212; on a MOC with `render_mode: full` the
-Estimates of a child with `enforcement: render` are not counted, since that child's Render
-is part of the parent's file and its Estimate promises the child's own behaviour, case 459;
-for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand",
-the one spelling since case 330.1; the four forms are one predicate, `names_a_form`, which
-`pre-spec` calls over the plan, case 331, and the two forms of a MOC's Estimate, a `make
-<target>` or a reading, are one predicate too, `names_a_moc_form`, which `pre-spec` calls
-as well, case 733), `moment` (an Estimate whose `method` ties a
+child, and the closing line is the renderer's own) (case 325.2), `fence` (a section of a
+page with a code fence broken — a line inside the fence with a run at least as long and
+text after it, or a fence open at the end of the section — by `fence_breaks` of
+`guppi/materialize.py`, the judgment `pre-spec` runs over the pairs of a plan; a harness
+file is not read, `render --check` compares it with its Render) (case 487.2), `layout` (a
+page whose `type` does not match the folder it sits in, a page whose `slug` field is not
+its filename, and a `.md` at the root of `wiki/` that no live rule page names) (case 315),
+`orphan` (a live entity, rule or estimate no other live page's frontmatter names; a lesson
+is a record and an Insight names it or not; an Insight owns its children through
+`children`, archived or not, and is never one) (case 156), `status` (a `built` page with an
+Estimate not `passed`, a `draft` one with every Estimate `passed`; an Estimate `passed` or
+`failed` without `## Result`; an Estimate whose `target` is not an entity or a rule, or
+does not list it) (case 53.1), `unread` (every Estimate `failed`, and every one `pending`
+whose `method` waits for no later moment, one finding each — red between a change of a
+promise and its reading, by design) (cases 182, 202, 799), `method` (the `method` field
+alone (case 506.3): for a MOC's Estimate a `make <target>` of the Makefile passes whatever
+else it says, and one that names none may be a reading when its children's Estimates are
+all readings (case 112.1), or when a sibling Estimate of the MOC names a `make <target>` of
+the Makefile (case 212); on a MOC with `render_mode: full` the Estimates of a child with
+`enforcement: render` are not counted, since that child's Render is part of the parent's
+file and its Estimate promises the child's own behaviour (case 459); for a Leaf's Estimate
+a `tests/` file that exists, the word `pytest`, a `make <target>` of the Makefile, or a
+reading — "by hand", the one spelling (case 330.1); the four forms are one predicate,
+`names_a_form`, which `pre-spec` calls over the plan (case 331), and the two forms of a
+MOC's Estimate, a `make <target>` or a reading, are one predicate too, `names_a_moc_form`,
+which `pre-spec` calls as well (case 733)), `moment` (an Estimate whose `method` ties a
 reading by hand to the first of something after the render or after the change — a part of
 the `method` between two `;` that holds `by hand` and the first of something after the
 render or the change; a reading names the kind of its moment, and any such moment counts,
 in this session or an earlier one; the one predicate, `tied_to_a_one_off_moment`, which
-`pre-spec` calls over the plan, case 613.1), `decision` (a decision page with none of the four
-kind lists `create`, `update`, `delete`, `defer` and no `children` — the page of a Case with
-sub-cases carries `children` in their place, case 544.9 — or with `kind` or `target_slug` still
-present, or a slug in a list with a category prefix that names neither a live nor an
-archived page, case 59.4; the prefix is judged by `category_of` of `guppi/materialize.py`,
-the one table, `decision-` included, case 460.3), `deferred` (a placeholder — a rule or entity page that carries
-`deferred_by` and lacks the fields a `create` fills, `kind`, `estimates` and `tags` — earns
-one finding, `deferred: <N> times since case <M>`, N the `deferred` lines of its History
-and M the case of the first, in place of those three `schema` findings and of `orphan`; a
-page with `deferred_by` whose fields are in place earns none, case 186.3). An Estimate
-without a `method` field is a `schema` finding of `estimates/schema.yaml`, which requires the
-field (case 506.1); the count of the shape before case 193 left with it (case 506.2). A
-`deferred_by` slug and a `[[decision-case-N]]` wikilink in History are refs like any other
-(cases 52.3, 52.4). `## When` is never a required section of a decision page, whatever
-`decisions/schema.yaml` says: a page written before case 72 has one, a later page has none
-(case 72.6). Rule page: `vault/wiki/rules/rule-lint.md`.
+`pre-spec` calls over the plan) (case 613.1), `decision` (a decision page with none of the
+four kind lists `create`, `update`, `delete`, `defer` and no `children` — the page of a
+Case with sub-cases carries `children` in their place (case 544.9) — or with `kind` or
+`target_slug` still present, or a slug in a list with a category prefix that names neither
+a live nor an archived page (case 59.4); the prefix is judged by `category_of` of
+`guppi/materialize.py`, the one table, `decision-` included) (case 460.3), `deferred` (a
+placeholder — a rule or entity page that carries `deferred_by` and lacks the fields a
+`create` fills, `kind`, `estimates` and `tags` — earns one finding, `deferred: <N> times
+since case <M>`, N the `deferred` lines of its History and M the case of the first, in
+place of those three `schema` findings and of `orphan`; a page with `deferred_by` whose
+fields are in place earns none) (case 186.3). An Estimate without a `method` field is a
+`schema` finding of `estimates/schema.yaml`, which requires the field (case 506.1); the
+count of the old shape left with it (the shape before case 193; case 506.2). A
+`deferred_by` slug and a `[[decision-case-N]]` wikilink in History are refs like any
+other (cases 52.3, 52.4). `## When` is never a required section of a decision page,
+whatever `decisions/schema.yaml` says: an early page has one, a later page has none (the
+cut is case 72; case 72.6). Rule page: `vault/wiki/rules/rule-lint.md`.
 """
 
 import argparse
@@ -244,9 +244,9 @@ def listed_names(block: dict) -> set[str]:
 
 
 def check_descriptions(category: str, schema: dict) -> list[Finding]:
-    """Case 304.8: the prose of a schema is data of its yaml — `fields` describes every
-    name the lists of `properties` carry and nothing else, `sections` the same for `body`;
-    one finding per name missing on either side, class `schema-description`."""
+    """The prose of a schema is data of its yaml — `fields` describes every name the lists
+    of `properties` carry and nothing else, `sections` the same for `body`; one finding per
+    name missing on either side, class `schema-description` (case 304.8)."""
     out = []
     for block, key, word in (("properties", "fields", "field"), ("body", "sections", "section")):
         listed = listed_names(schema.get(block) or {})
@@ -347,9 +347,9 @@ def rules_of(entity_slug: str, pages: list[Page]) -> list[str]:
 
 
 def check_edges(page: Page, pages: list[Page], by_slug: dict[str, Page]) -> list[Finding]:
-    """Case 305.5, class `ref`: an `applies_to` names a live Entity; an Entity's `rules`
-    is the live rules whose `applies_to` names it — a difference names what is extra
-    (`+`) and what is missing (`-`)."""
+    """Class `ref`: an `applies_to` names a live Entity; an Entity's `rules` is the live
+    rules whose `applies_to` names it — a difference names what is extra (`+`) and what is
+    missing (`-`) (case 305.5)."""
     out = []
     if page.category == "rules":
         for slug in as_list(page.props.get("applies_to")):
@@ -370,8 +370,8 @@ def check_edges(page: Page, pages: list[Page], by_slug: dict[str, Page]) -> list
 
 
 def check_criterion(page: Page, known: set[str]) -> list[Finding]:
-    """Case 72.6. On a decision page every `[[slug]]` under `## Criterion` is a live or
-    archived Estimate page. One finding per slug, class `ref`. An Estimate's Criterion is
+    """On a decision page every `[[slug]]` under `## Criterion` is a live or archived
+    Estimate page (case 72.6). One finding per slug, class `ref`. An Estimate's Criterion is
     one text, and a `### case N` line in it is no link (case 506.4)."""
     out = []
     seen: set[str] = set()
@@ -451,9 +451,9 @@ TYPES = {
 
 
 def check_layout(wiki: Path, pages: list[Page], rules: list[Page]) -> list[Finding]:
-    """Case 315: a page whose `type` does not match the folder it sits in, a page whose
-    `slug` field is not its filename, and a `.md` at the root of `wiki/` that no live rule
-    page names — it reached the vault without a decision."""
+    """A page whose `type` does not match the folder it sits in, a page whose `slug` field
+    is not its filename, and a `.md` at the root of `wiki/` that no live rule page names —
+    it reached the vault without a decision (case 315)."""
     out: list[Finding] = []
     for page in pages:
         if page.error:
@@ -762,12 +762,13 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
     """The `method` field of an Estimate (case 506.3):
     for a MOC's Estimate one that names neither a `make <target>` nor "by hand", by
     `names_a_moc_form`, is a finding (case 733), a `make <target>` of the Makefile passes
-    whatever else it says, without one "by hand" passes when every counted Estimate of the children is a reading
-    (case 112.1) or when a sibling Estimate of the MOC names a `make <target>` of the Makefile
-    (case 212); on a MOC with `render_mode: full` the Estimates of a child with `enforcement:
-    render` are not counted (`children_estimates`, case 459);
-    for a Leaf's Estimate a `tests/` file that exists, the word `pytest`, a `make
-    <target>` of the Makefile, or a reading — "by hand", the one spelling since case 330.1."""
+    whatever else it says, without one "by hand" passes when every counted Estimate of the
+    children is a reading (case 112.1) or when a sibling Estimate of the MOC names a
+    `make <target>` of the Makefile (case 212); on a MOC with `render_mode: full` the
+    Estimates of a child with `enforcement: render` are not counted, by
+    `children_estimates` (case 459); for a Leaf's Estimate a `tests/` file that exists, the
+    word `pytest`, a `make <target>` of the Makefile, or a reading — "by hand", the one
+    spelling (case 330.1)."""
     if page.category != "estimates":
         return []
     method = method_of(page)
@@ -778,7 +779,7 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
     text = makefile.read_text(encoding="utf-8") if makefile.exists() else ""
     match = MAKE_TARGET.search(method)  # the target first (case 112.1)
     if str(target.props.get("kind")) == "MOC":
-        if not names_a_moc_form(method):  # case 733
+        if not names_a_moc_form(method):  # the forms of a MOC (case 733)
             return [Finding(page, "method", "a MOC's Estimate names no `make <target>`")]
         if not match and sibling_names_a_target(page, target, by_slug, text):
             return []  # the pipeline is a sibling Estimate's; nothing is hidden (case 212)

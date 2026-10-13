@@ -205,7 +205,7 @@ def deferred(
             text = body.split(DASH, 1)[1].strip() if DASH in body else ""
             for slug in slugs:
                 if closed and (slug in taken_slugs or finished(slug, by_slug, gone)):
-                    continue  # case 743.4: taken by the live sprint, or its page finished
+                    continue  # taken by the live sprint, or its page finished (case 743.4)
                 items.append((slug, describe(by_slug.get(slug), text)))
     out: list[str] = []
     seen = set(shown)
@@ -271,7 +271,7 @@ def run(argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None 
         print(error, file=stderr)
         return 1
     target = wiki / TARGET
-    if args.check:  # case 451.5: compare, name, write nothing
+    if args.check:  # compare, name, write nothing (case 451.5)
         current = target.read_text(encoding="utf-8") if target.is_file() else None
         if current == text:
             return 0

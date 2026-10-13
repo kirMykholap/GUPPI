@@ -6,7 +6,7 @@ Every live page under `vault/wiki/<category>/` with `status: archived` moves to
 one the latest of the nearest date back; `<date>/<category>/` when no session folder
 exists (case 102.2) — with a History line and a `log.md` line; its slug leaves the `children` lists of live pages and the `estimates` lists of
 entities and rules (an Insight's `children` keep it, since `severity` counts the live
-ones; a lesson has no Estimates, case 53.1); `[[slug]]` links in page bodies stay. A page
+ones; a lesson has no Estimates) (case 53.1); `[[slug]]` links in page bodies stay. A page
 under `vault/archive/`, at any depth, whose status is no longer `archived` moves back. A live page whose
 `parent` or `target` is in the archive is reported, not moved. No index is rewritten: the
 index files are gone, the reader computes the line (case 147.6).

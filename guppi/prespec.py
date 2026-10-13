@@ -65,7 +65,7 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   names; the judgment is `decided_on_its_page`, which the check of the answer of
   `case-guppi` imports (case 467);
 - a Case with a line of a kind other than `defer` and no fenced block tagged `tasks` (a
-  defer-only Case has no work, case 74); an Estimate a `then` block creates or sets
+  defer-only Case has no work) (case 74); an Estimate a `then` block creates or sets
   `pending` with no task line of its own — a line `- [ ] read `<slug>`` whose first
   backticked slug is that Estimate, matched by `generate.READ_LINE`, the ticker's own
   pattern; a slug named on another Estimate's read line is a finding in its own words, and a
@@ -74,34 +74,36 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   governs the path is named when there is one;
 - the form of an Estimate item (case 203.1): a Case whose `then` block holds two or more
   Estimate items that set a new Criterion — a `create`, or an `update` that names no part of
-  the page by `materialize.names_a_part`, written or lifted (one promise per Case: split it,
-  case 472.3); an `update` of an
-  Estimate whose page does not exist; a `defer` of an Estimate, an Insight, a Lesson or a
-  Decision page whose page `materialize.defer_writes_no_page` does not find, the judgment by
-  which `generate` fails the entry, a short Case under `## Deferred` included (cases 783,
-  786); a `create` of an Estimate whose `ref` names neither
-  a live rule or entity nor one a `create` of the same plan carries (case 221); a `create` of
-  an Estimate, or an `update` carrying `set: {method: …}`, whose `method` names none of the
-  four forms lint classifies — by `lint.names_a_form`, the one predicate, the existence of
-  the file and of the target left to lint — and a `create` with no `method` at all (case
-  331); on the Estimate of a MOC as the plan leaves it — the live page, or a `create` or an
-  `update` of the plan that writes `kind: MOC` — one that names neither a `make <target>`
-  nor `by hand`, by `lint.names_a_moc_form`, which `check_method` of lint calls too, in
-  place of the line of no form, the Makefile and the children left to lint (case 733); and one whose `method` ties its reading by hand to the first moment after the
-  render or the change — by `lint.tied_to_a_one_off_moment`, the one predicate of the class
-  `moment` of lint (case 613.1); and one whose `method` waits for another session — a part
-  that names a later session, the next session, a session after another, a session of a
-  sprint, the session that closes one, the librarian or `/hi`, and not the person — by
+  the page by `materialize.names_a_part`, written or lifted (one promise per Case: split
+  it) (case 472.3); an `update` of an Estimate whose page does not exist; a `defer` of an
+  Estimate, an Insight, a Lesson or a Decision page whose page
+  `materialize.defer_writes_no_page` does not find, the judgment by which `generate` fails
+  the entry, a short Case under `## Deferred` included (cases 783, 786); a `create` of an
+  Estimate whose `ref` names neither a live rule or entity nor one a `create` of the same
+  plan carries (case 221); a `create` of an Estimate, or an `update` carrying
+  `set: {method: …}`, whose `method` names none of the four forms lint classifies — by
+  `lint.names_a_form`, the one predicate, the existence of the file and of the target left
+  to lint — and a `create` with no `method` at all (case 331); on the Estimate of a MOC as
+  the plan leaves it — the live page, or a `create` or an `update` of the plan that writes
+  `kind: MOC` — one that names neither a `make <target>` nor `by hand`, by
+  `lint.names_a_moc_form`, which `check_method` of lint calls too, in place of the line of
+  no form, the Makefile and the children left to lint (case 733); and one whose `method`
+  ties its reading by hand to the first moment after the render or the change — by
+  `lint.tied_to_a_one_off_moment`, the one predicate of the class `moment` of lint (case
+  613.1); and one whose `method` waits for another session — a part that names a later
+  session, the next session, a session after another, a session of a sprint, the session
+  that closes one, the librarian or `/hi`, and not the person — by
   `lint.waits_for_another_session`, the one predicate, which lint does not run over the live
   pages (case 670.4), but a part that opens with `after`, or with `by hand, after`, and
   names its event before a colon, which waits for that event, judged by
-  `lint.waits_for_an_event` through `lint.waits_for_another_session` (case 781); and an `update` of an Estimate that replaces its Criterion whole,
-  writes no `method`, sets no status of `passed` or `failed` and keeps a `method` on the
-  live page that waits for another session, by the same predicate (`kept_method_waits`,
-  case 715). An Estimate of a sprint page `entity-sprint-<id>` — the `ref` of a `create`,
-  the target of an `update` by `estimate_target`, the `target` of the live page — gives
-  neither line: the Definition of done of a sprint may wait for a later session of it, up
-  to the one that closes it, judged by `ledger.is_sprint_page` (cases 772.4, 772.5);
+  `lint.waits_for_an_event` through `lint.waits_for_another_session` (case 781); and an
+  `update` of an Estimate that replaces its Criterion whole, writes no `method`, sets no
+  status of `passed` or `failed` and keeps a `method` on the live page that waits for
+  another session, by the same predicate (`kept_method_waits`) (case 715). An Estimate of a
+  sprint page `entity-sprint-<id>` — the `ref` of a `create`, the target of an `update` by
+  `estimate_target`, the `target` of the live page — gives neither line: the Definition of
+  done of a sprint may wait for a later session of it, up to the one that closes it, judged
+  by `ledger.is_sprint_page` (cases 772.4, 772.5);
 - a condition of a schema not met (case 714): a `create` whose page, as `generate` writes
   it, or an `update` whose `set` gives the value a condition starts on, leaves the page
   without a field or a section the condition requires, by `lint.unmet_conditions`, the one
@@ -135,8 +137,8 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   Criterion of one Estimate whole — an `update` that names no part, by
   `materialize.names_a_part` — with both Cases, the page's slug and the field or the
   section, the line opening with the later Case; two items of one Case, and different
-  fields, sections or anchors of one page, are no such finding (`check_same_target`, case
-  561.4);
+  fields, sections or anchors of one page, are no such finding
+  (`check_same_target`) (case 561.4);
 - a record line of the window — `- decision[`, `- estimate[`, `- lesson[`, timed — that
   `materialize.parse_line` does not read, with its date and line number (case 75.2);
 - a `[[slug]]` outside a code span in the plan — in the blockquotes and in the strings of
@@ -162,7 +164,16 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   other script there is judged as in prose (case 589.1); a `guppi.toml` that is missing or
   names an unknown code is one finding that names it; the `given`, `when`, `then` and the
   blocks are not read, and the
-  plan is compared with no other file — the ratified copy is gone (case 445.2).
+  plan is compared with no other file — the ratified copy is gone (case 445.2);
+- a pointer — a reference to a case, an id `decision-case-N` or a mention of a session by
+  its id — that stands outside a bracket of its own in the new text an item writes for a
+  page with `core: true`, on the live page or as the plan leaves it: the `new` of a
+  `replace` pair, a `sections` value or a `purpose`, never the `change` line nor the
+  `context`, `problem` or `recommend` of a Case; a pointer in such a bracket, a code span or
+  a fenced block is none. The judgment is `outside` of `guppi/ship.py`, the one `guppi
+  ship` refuses by, and the finding names the Case, the page and the pointer
+  (`check_pointers`) (case 807.4). `plan_findings` alone runs it, not the check after a
+  write.
 
 The check after a write (case 414.1): `written_findings` runs the same checks, `judge`, for
 the `Stop` hook of `rule-spec-write` on the Cases it wrote, with the decision lines of the
@@ -273,7 +284,16 @@ from guppi.materialize import (
     then_blocks,
     touches_criterion,
 )
-from guppi.pages import CATEGORIES, HISTORY, Page, read_category, read_page, wiki_root
+from guppi.pages import (
+    CATEGORIES,
+    HISTORY,
+    Page,
+    is_core,
+    read_category,
+    read_page,
+    wiki_root,
+)
+from guppi.ship import outside
 
 TOOL = "ExitPlanMode"
 TIMED_RECORD = re.compile(r"^- (\d\d:\d\d:\d\d) (decision|estimate|lesson)\[")
@@ -294,8 +314,8 @@ BACKLOG_SOURCE = "backlog"
 # the source each closer with no Case is clean after
 PUT_OFF_SOURCE = {DEFER: SPRINT_SOURCE, KEPT: BACKLOG_SOURCE}
 PUT_OFF_CLOSER = {source: closer for closer, source in PUT_OFF_SOURCE.items()}
-# Case 279.2: a task line the tickers of `render` and `sprint` would not match — the bare
-# word, or the command outside a code span, right after the box.
+# A task line the tickers of `render` and `sprint` would not match — the bare word, or the
+# command outside a code span, right after the box (case 279.2).
 OFF_FORM_LINE = re.compile(r"^- \[[ x]\] (?:uv run )?(?:guppi )?(?:render|sprint)\b")
 AND = "**＋**"  # the operand "and" at the head of a line (case 378.6)
 LONG_CHAIN = 7  # more `＋` lines than this in `given` or `then` is a note (case 378.8)
@@ -349,8 +369,8 @@ NO_SESSION = "prespec: no session id; pass --session <stamp> from the hi: line"
 
 def resolve_session(option: str | None) -> str | None:
     """The stamp of `--session`, else of `CLAUDE_SESSION_ID`; None with neither. The last
-    `session-start` of today's log was the fallback until case 213.1: a foreign start beside
-    a parallel session, none after midnight — the session is never guessed."""
+    `session-start` of today's log is no fallback: a foreign start beside a parallel
+    session, none after midnight — the session is never guessed (case 213.1)."""
     if option:
         return session_stamp(option, {})
     env = os.environ.get("CLAUDE_SESSION_ID")
@@ -530,8 +550,8 @@ def check_lines(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
 
 
 def updates_the_sprint(blocks: dict, case: str) -> bool:
-    """Case 314.2: an `update` of the sprint page `entity-sprint-<id>` under Case N — the
-    parent or any of its sub-cases."""
+    """An `update` of the sprint page `entity-sprint-<id>` under Case N — the parent or
+    any of its sub-cases (case 314.2)."""
     for key, block in blocks.items():
         if key != case and not key.startswith(f"{case}."):
             continue
@@ -545,8 +565,8 @@ DECISION_PAGE = "decision-case-"
 
 
 def deferred_pages(title: str, project_dir: Path) -> dict[str, list[str]]:
-    """Case 467: each live page the title of a Frontier line names in a code span that
-    carries `deferred_by`, with the ids of the Cases there — `decision-case-M` read as `M`.
+    """Each live page the title of a Frontier line names in a code span that carries
+    `deferred_by`, with the ids of the Cases there — `decision-case-M` read as `M` (case 467).
     A page without `deferred_by` — an open Insight, a note of the sprint page — is left out."""
     pages: dict[str, list[str]] = {}
     for span in CODE_SPAN.findall(title):
@@ -565,9 +585,9 @@ def deferred_pages(title: str, project_dir: Path) -> dict[str, list[str]]:
 def decided_on_its_page(
     slug: str, deferred: list[str], records: list[dict], case: str
 ) -> tuple[bool, list[str]]:
-    """Case 467: the one judgment of a backlog item taken up by Case N, run by `/pre-spec`
-    on a closed line (467.1) and by the check of the answer of `case-guppi` on an open one
-    (467.2). Of `records`, only the decision lines of Case N and its sub-cases are read.
+    """The one judgment of a backlog item taken up by Case N, run by `/pre-spec` on a
+    closed line (467.1) and by the check of the answer of `case-guppi` on an open one
+    (467.2) (case 467). Of `records`, only the decision lines of Case N and its sub-cases are read.
     Returns whether a line of them other than a `defer` names the page, and each Case M of
     the page's `deferred_by` for which no Case among them both names the page on such a line
     and carries `{supersedes:case M}` — `generate` clears a defer only from the pages the
@@ -621,9 +641,10 @@ def open_case_items(frontier: str) -> list[str]:
 
 
 def conserved_blocks(plan: str, project_dir: Path | None) -> dict[str, dict]:
-    """Case 620.2: Case id → the merged `then` block of each Case of the conserved Spec whose
-    `spec.md` the title line of the plan names, the folder found by `conserved_spec_named` of
-    `guppi/box.py`; empty for a plan whose title line names no folder holding `carry.md`."""
+    """Case id → the merged `then` block of each Case of the conserved Spec whose `spec.md`
+    the title line of the plan names, the folder found by `conserved_spec_named` of
+    `guppi/box.py` (case 620.2); empty for a plan whose title line names no folder holding
+    `carry.md`."""
     if project_dir is None:
         return {}
     folder = conserved_spec_named(plan, project_dir)
@@ -649,29 +670,29 @@ def check_frontier(
     project_dir: Path | None = None,
     plan: str = "",
 ) -> list[str]:
-    """59.2: the frontier of the session's folder (73.4). Case 356.1: an open line under
-    `## Cases` is a finding, one under `## Work` is not — its work waits for Work Mode — nor
+    """59.2: the frontier of the session's folder (73.4). An open line under `## Cases` is
+    a finding (case 356.1), one under `## Work` is not — its work waits for Work Mode — nor
     one under `## Ask`, which waits for the person at `/hi` (case 531.12); a closed one is
     checked as any. Only a box line, `- [ ]`, `- [x]` or `- [-]` at the start,
     is read: `Backlog: N items` and an indented `- near` line are not (case 451.2).
 
-    Case 451.2: the closer, the last segment after ` · `, is one of `case N`, `work`,
-    `defer`, `kept` and `defer case N`, and the box agrees with it both ways — `[x]`, an item
-    ended, takes only `case N` or `work`; `[-]`, an item put off, only `defer`, `kept` or
-    `defer case N`. The source is the segment standing immediately before the closer; the
-    word inside the slug of a title is not the source (case 335). `defer` alone is clean
-    only after the source `sprint`, a sprint item left for a later session, and `kept` only
-    after the source `backlog`, an item of `backlog.md` left as it stands. `defer case N`
-    after the source `sprint` or `backlog` is a finding — neither is deferred by a Case
-    (case 356.2) — and after another source it needs a `defer` item under Case N, in the
-    plan or, case 620.2, in the conserved Spec that the title line of `plan` names, a Case
-    of the Spec the session runs by `/box`; a title line that names no folder holding
+    The closer, the last segment after ` · `, is one of `case N`, `work`, `defer`, `kept`
+    and `defer case N`, and the box agrees with it both ways — `[x]`, an item ended, takes
+    only `case N` or `work`; `[-]`, an item put off, only `defer`, `kept` or
+    `defer case N` (case 451.2). The source is the segment standing immediately before the
+    closer; the word inside the slug of a title is not the source (case 335). `defer` alone
+    is clean only after the source `sprint`, a sprint item left for a later session, and
+    `kept` only after the source `backlog`, an item of `backlog.md` left as it stands.
+    `defer case N` after the source `sprint` or `backlog` is a finding — neither is deferred
+    by a Case (case 356.2) — and after another source it needs a `defer` item under Case N, in the
+    plan or in the conserved Spec that the title line of `plan` names, a Case of the Spec
+    the session runs by `/box` (case 620.2); a title line that names no folder holding
     `carry.md` adds no Case. A line
     closed `case N` needs the heading of Case N in the plan, and after the source `sprint`
     an `update` of the sprint page `entity-sprint-<id>` under Case N, the parent or a
     sub-case (cases 314.2, 451.3). A finding of the box and one of the source are separate.
-    Case 467.1: a line of the source `backlog` closed `case N` is judged by
-    `check_backlog_line` against `records` and the pages of `project_dir`."""
+    A line of the source `backlog` closed `case N` is judged by `check_backlog_line`
+    against `records` and the pages of `project_dir` (case 467.1)."""
     if not path.exists():
         return [f"frontier: {relative} is missing"]
     text = path.read_text(encoding="utf-8")
@@ -769,10 +790,11 @@ def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     }
     for case, lines in cases.items():
         tasks = "\n".join(tagged_blocks(lines, "tasks"))
-        if case in with_work and not tasks:  # a defer-only Case has no work, case 74
+        if case in with_work and not tasks:  # a defer-only Case has no work (case 74)
             findings.append(f"case {case}: decision lines and no tasks block")
         read_lines = [line for line in tasks.splitlines() if READ_LINE.match(line)]
-        of_their_own = {READ_LINE.match(line).group(1) for line in read_lines}  # case 327
+        # the Estimates with a read line of their own (case 327)
+        of_their_own = {READ_LINE.match(line).group(1) for line in read_lines}
         for slug in estimates_to_read(blocks[case]):
             if slug in of_their_own:
                 continue
@@ -800,8 +822,8 @@ def governed_paths(project_dir: Path) -> dict[str, str]:
 
 
 def check_keys(blocks: dict, project_dir: Path, schema_free: set[str]) -> list[str]:
-    """Case 436.2: a key of an item that `materialize.item_keys` does not give its kind and
-    category — the one judgment the lift and `generate` go by; a `create` or a `defer` of a
+    """A key of an item that `materialize.item_keys` does not give its kind and category —
+    the one judgment the lift and `generate` go by (case 436.2); a `create` or a `defer` of a
     category with no schema file, or of one in `schema_free`, is not judged (case 308.2)."""
     findings: list[str] = []
     for case, block in blocks.items():
@@ -822,7 +844,7 @@ def check_keys(blocks: dict, project_dir: Path, schema_free: set[str]) -> list[s
 
 
 def check_governed(blocks: dict, governed: dict[str, str]) -> list[str]:
-    """Case 320: an `update` item carrying `file` — the file route is gone; every file of
+    """An `update` item carrying `file` — the file route is gone (case 320); every file of
     the vault is a page, the Render of a page or a record a script keeps. A path a live
     Rule page governs is named with its rule (59.6)."""
     findings: list[str] = []
@@ -859,7 +881,8 @@ WAITS = "method waits for another session — a method holds only what runs in i
 KEPT_WAITS = (
     "the method on the page waits for another session — set a method that runs in this session"
 )
-NO_DEFERRED_ESTIMATE = "no such Estimate page — defer the page it would check"  # case 783
+# a defer of an Estimate with no page (case 783)
+NO_DEFERRED_ESTIMATE = "no such Estimate page — defer the page it would check"
 NO_DEFERRED_PAGE = "no such page — a placeholder is written only for a rule or an entity"  # 786
 DECIDED = ("passed", "failed")  # a status the person's decision sets, with no reading after it
 
@@ -1210,9 +1233,9 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     }
 
     def form_finding(target: str, method: str) -> str | None:
-        if plan_kind(blocks, target, project_dir) == "MOC":  # case 733
+        if plan_kind(blocks, target, project_dir) == "MOC":  # the forms of a MOC (case 733)
             return None if names_a_moc_form(method) else MOC_NO_FORM
-        return None if names_a_form(method) else NO_FORM  # case 331
+        return None if names_a_form(method) else NO_FORM  # the forms of a Leaf (case 331)
 
     for case, block in blocks.items():
         promises = 0
@@ -1228,11 +1251,12 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 findings.append(f"case {case}: create {slug}: ref {ref or '?'} names no live page")
             if no_form := form_finding(ref, str(item.get("method") or "")):
                 findings.append(f"case {case}: create {slug}: {no_form}")
-            if tied_to_a_one_off_moment(str(item.get("method") or "")):  # case 613.1
+            # a reading tied to a one-off moment (case 613.1)
+            if tied_to_a_one_off_moment(str(item.get("method") or "")):
                 findings.append(f"case {case}: create {slug}: {MOMENT}")
             if waits_for_another_session(str(item.get("method") or "")) and not is_sprint_page(
                 ref
-            ):  # cases 670.4, 772.4
+            ):  # a method that waits, off a sprint page (cases 670.4, 772.4)
                 findings.append(f"case {case}: create {slug}: {WAITS}")
         for item in block.get("update") or []:
             slug = item.get("slug") if isinstance(item, dict) else None
@@ -1248,17 +1272,18 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 no_form := form_finding(estimate_target(item, project_dir), str(method))
             ):
                 findings.append(f"case {case}: update {slug}: {no_form}")
-            if method is not None and tied_to_a_one_off_moment(str(method)):  # case 613.1
+            # a reading tied to a one-off moment (case 613.1)
+            if method is not None and tied_to_a_one_off_moment(str(method)):
                 findings.append(f"case {case}: update {slug}: {MOMENT}")
             if (
                 method is not None
                 and waits_for_another_session(str(method))
                 and not is_sprint_page(estimate_target(item, project_dir))
-            ):  # cases 670.4, 772.4
+            ):  # a method that waits, off a sprint page (cases 670.4, 772.4)
                 findings.append(f"case {case}: update {slug}: {WAITS}")
-            if method is None and kept_method_waits(item, project_dir):  # case 715
+            if method is None and kept_method_waits(item, project_dir):  # a kept wait (case 715)
                 findings.append(f"case {case}: update {slug}: {KEPT_WAITS}")
-        for item in block.get("defer") or []:  # cases 783, 786
+        for item in block.get("defer") or []:  # a defer that writes no page (cases 783, 786)
             slug = item.get("slug") if isinstance(item, dict) else None
             category = category_of(slug) if slug else None
             if category and defer_writes_no_page(project_dir, category, slug):
@@ -1270,9 +1295,9 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
 
 
 def plan_kind(blocks: dict, slug: str, project_dir: Path) -> str:
-    """Case 733: the `kind` of a rule or an entity as the plan leaves it — the last `create`
-    of the plan that writes `kind`, or `update` whose `set` gives it, else the `kind` of the
-    live page; empty when none gives one."""
+    """The `kind` of a rule or an entity as the plan leaves it — the last `create` of the
+    plan that writes `kind`, or `update` whose `set` gives it, else the `kind` of the live
+    page; empty when none gives one (case 733)."""
     kind = ""
     for block in blocks.values():
         for item in block.get("create") or []:
@@ -1292,8 +1317,8 @@ def plan_kind(blocks: dict, slug: str, project_dir: Path) -> str:
 
 
 def estimate_target(item: dict, project_dir: Path) -> str:
-    """Case 733: the target of the Estimate an `update` item names — the `target` its `set`
-    gives, else the `target` of the live page; empty when neither gives one."""
+    """The target of the Estimate an `update` item names — the `target` its `set` gives,
+    else the `target` of the live page; empty when neither gives one (case 733)."""
     sets = item.get("set") if isinstance(item.get("set"), dict) else {}
     if sets.get("target"):
         return str(sets["target"])
@@ -1304,14 +1329,14 @@ def estimate_target(item: dict, project_dir: Path) -> str:
 
 
 def kept_method_waits(item: dict, project_dir: Path) -> bool:
-    """Case 715: whether an `update` of an Estimate replaces its Criterion whole — it names
-    no part of the page, by `materialize.names_a_part` — writes no `method`, sets no status
-    the person's decision gives, `passed` or `failed`, and keeps on the live page a `method`
+    """Whether an `update` of an Estimate replaces its Criterion whole — it names no part
+    of the page, by `materialize.names_a_part` — writes no `method`, sets no status the
+    person's decision gives, `passed` or `failed`, and keeps on the live page a `method`
     that waits for another session, by `lint.waits_for_another_session`, the predicate that
-    judges a `method` the plan writes. The page goes `pending`, and the Retro of the Case's
-    own session cannot read it. False when the `target` of the live page is a sprint page,
-    by `ledger.is_sprint_page`: its Estimate may wait for a later session of its sprint
-    (case 772.5). A part of the kept `method` that opens with `after`, or with `by hand,
+    judges a `method` the plan writes (case 715). The page goes `pending`, and the Retro of
+    the Case's own session cannot read it. False when the `target` of the live page is a
+    sprint page, by `ledger.is_sprint_page`: its Estimate may wait for a later session of its
+    sprint (case 772.5). A part of the kept `method` that opens with `after`, or with `by hand,
     after`, and names its event before a colon waits for that event, and the shared
     predicate passes it by (case 781)."""
     sets = item.get("set") if isinstance(item.get("set"), dict) else {}
@@ -1365,10 +1390,10 @@ def created_page(item: dict, category: str, project_dir: Path) -> tuple[dict, se
 def check_required(
     blocks: dict, records: list[dict], project_dir: Path, schema_free: set[str]
 ) -> list[str]:
-    """Case 748.2: a `create` item that lacks a field `materialize` would name under
-    `incomplete`, by `materialize.create_lacks`, the one judgment the lift marks by: the
-    fields lifted as the lift lifts them, `type` filled from the category, the tags counted
-    when the item or its decision line carries them. A missing `method` of an Estimate is
+    """A `create` item that lacks a field `materialize` would name under `incomplete`, by
+    `materialize.create_lacks`, the one judgment the lift marks by: the fields lifted as
+    the lift lifts them, `type` filled from the category, the tags counted when the item or
+    its decision line carries them (case 748.2). A missing `method` of an Estimate is
     left to `check_form`, which reports it already (case 331); a `defer`, an `update` and a
     `delete` are not judged. The `ref` that saves a `Leaf` rule from lacking `parent` is the
     item's, or that of the decision line of its Case and slug (case 795.2)."""
@@ -1407,8 +1432,8 @@ def check_required(
 
 
 def check_conditions(blocks: dict, project_dir: Path, schema_free: set[str]) -> list[str]:
-    """Case 714: a Case that leaves a page short of what a condition of its category's
-    schema requires — by `lint.unmet_conditions`, the judgment `make lint` reports by. The
+    """A Case that leaves a page short of what a condition of its category's schema
+    requires — by `lint.unmet_conditions`, the judgment `make lint` reports by (case 714). The
     page is judged as the plan leaves it: the live page, or the page a `create` writes by
     `created_page`, with the fields and the section names of each earlier item of the plan
     on the same page. A `create` is a finding for each condition its page does not meet; an
@@ -1453,6 +1478,52 @@ def check_conditions(blocks: dict, project_dir: Path, schema_free: set[str]) -> 
                     if kind == "update" and not holds(sets, when):
                         continue  # the Case did not start this condition
                     findings.append(f"case {case}: {kind} {slug}: {what}")
+    return findings
+
+
+def core_as_left(item: dict, kind: str, project_dir: Path) -> bool:
+    """Whether the page of an item carries `core: true` as the plan leaves it: by the item
+    — the field of a `create`, the `set` of an `update` — else on the live page."""
+    if kind == "create" and "core" in item:
+        return item.get("core") is True
+    if isinstance(item.get("set"), dict) and "core" in item["set"]:
+        return item["set"]["core"] is True
+    slug = str(item.get("slug") or "")
+    category = category_of(slug)
+    path = wiki_root(project_dir) / category / f"{slug}.md" if category else None
+    return bool(path and path.exists() and is_core(read_page(path, category)))
+
+
+def written_texts(item: dict) -> list[str]:
+    """The new text an item writes on its page: the `new` of each `replace` pair, each
+    `sections` value and the `purpose`; never its `change` line."""
+    texts = [str(p.get("new") or "") for p in item.get("replace") or [] if isinstance(p, dict)]
+    sections = item.get("sections")
+    if isinstance(sections, dict):
+        texts += [str(value or "") for value in sections.values()]
+    texts.append(str(item.get("purpose") or ""))
+    if isinstance(item.get("set"), dict):
+        texts.append(str(item["set"].get("purpose") or ""))
+    return [text for text in texts if text]
+
+
+def check_pointers(blocks: dict, project_dir: Path) -> list[str]:
+    """A pointer to a case, a decision or a session outside a bracket of its own in the new
+    text of a page with `core: true`, by `outside` of `guppi/ship.py`, the judgment `guppi
+    ship` removes and refuses by (case 807.4)."""
+    findings: list[str] = []
+    for case, block in blocks.items():
+        for kind in ("create", "update"):
+            for item in block.get(kind) or []:
+                if not isinstance(item, dict) or not core_as_left(item, kind, project_dir):
+                    continue
+                slug = str(item.get("slug") or "")
+                for text in written_texts(item):
+                    for _, what in outside(text):
+                        findings.append(
+                            f"case {case}: {kind} {slug}: a pointer outside a bracket of its "
+                            f"own: {what}"
+                        )
     return findings
 
 
@@ -1923,6 +1994,7 @@ def plan_findings(
     findings += check_untranslated(plan, project_dir)
     cases = split_cases(plan)
     blocks = {case: then_blocks(case_lines)[0] for case, case_lines in cases.items()}
+    findings += check_pointers(blocks, project_dir)
     notes = (
         chain_notes(cases)
         + promise_notes(plan, project_dir)
@@ -1982,8 +2054,8 @@ FINDING_CASE = re.compile(r"^case (\S+?):")
 def written_findings(
     plan: str, written: set[str], project_dir: Path, stamp: str, now, extra: list[dict]
 ) -> list[str]:
-    """Case 414.1: the findings of `judge` on the Cases the `Stop` hook of `rule-spec-write`
-    wrote in one run and on their sub-cases, a finding of another Case left out. The records
+    """The findings of `judge` on the Cases the `Stop` hook of `rule-spec-write` wrote in
+    one run and on their sub-cases, a finding of another Case left out (case 414.1). The records
     are the window's decision lines and `extra`, the lines of the reply itself, each once: the
     ledger hook runs in parallel on the same `Stop`, so `ledger.md` may not hold them yet. No
     Frontier, no language finding, no grammar of the window: they stay with `/pre-spec`."""

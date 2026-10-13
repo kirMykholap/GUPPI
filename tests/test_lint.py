@@ -1310,6 +1310,7 @@ LINT_STEPS = [
     "run guppi backlog --check",
     "run guppi glossary --check",
     "run guppi lint",
+    "run guppi ship --check",
 ]
 FAKE_UV = """\
 #!/bin/sh

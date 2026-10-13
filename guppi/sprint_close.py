@@ -212,8 +212,8 @@ def mark(page: Page, date: str, sprint: str) -> None:
 
 
 def tick(project_dir: Path, sprint: str) -> int:
-    """Case 628.1: each unticked close line of a `spec.md` under `vault/raw/`, by the one
-    matcher of the tickers; the count ticked."""
+    """Tick each unticked close line of a `spec.md` under `vault/raw/`, by the one matcher
+    of the tickers (case 628.1); the count ticked."""
     pattern = command_line(f"guppi sprint-close --sprint {sprint} --apply")
     ticked = 0
     for unit in units_with(project_dir, "spec.md"):
@@ -231,8 +231,8 @@ def tick(project_dir: Path, sprint: str) -> int:
 
 
 def old_logs(project_dir: Path, now) -> list[Path]:
-    """Case 743.3: each `vault/raw/<date>/event_log.md` dated before the day before the date
-    of the session of the run — the logs no hook of the open session reads."""
+    """Each `vault/raw/<date>/event_log.md` dated before the day before the date of the
+    session of the run — the logs no hook of the open session reads (case 743.3)."""
     raw = project_dir / "vault" / "raw"
     if not raw.is_dir():
         return []
@@ -276,7 +276,7 @@ def remove_empty_dates(project_dir: Path) -> None:
 
 
 def empty_raw(project_dir: Path, sprint: str, now, stdout, stderr, apply: bool = True) -> bool:
-    """Cases 743.1, 743.3: the sweep of the done units, then the old logs; True when a move
+    """The sweep of the done units, then the old logs (cases 743.1, 743.3); True when a move
     failed."""
     failed = archive.sweep(project_dir, now, stdout, stderr, close=True, apply=apply)
     failed = move_logs(project_dir, sprint, now, stdout, stderr, apply=apply) or failed

@@ -1,5 +1,5 @@
 """`guppi grepguard` — the `PreToolUse` hook on `Grep` that leaves the Decision pages out of
-every search over the wiki (`rule-search-leaves-out-decisions`, case 664.1).
+every search over the wiki (`rule-search-leaves-out-decisions`) (case 664.1).
 
 For a `Grep` whose searched folder — its `path`, or the working directory of the payload
 (`cwd`, else the project root) when the call has none — holds `vault/wiki/decisions/` and

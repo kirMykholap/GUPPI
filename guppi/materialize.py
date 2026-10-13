@@ -3,11 +3,11 @@
 Reads one unit at a time (case 103.2). A session folder `vault/raw/<date>/<HHMM>/` holding
 a `ledger.md` is a unit: its ledger, its own `spec.md` and nothing else, written to
 `vault/raw/<date>/<HHMM>/materialize.yaml`, the `origin` of every entry
-`raw/<date>/<HHMM>/ledger.md#…`. A date-level `vault/raw/<date>/ledger.md` — the shape
-before case 103 — is a unit read as before: the ledger and every Spec of the date
-(`vault/raw/<date>/spec.md` when the date has one, dates before case 73, then
-`vault/raw/<date>/<HHMM>/spec.md` in folder order), written to
-`vault/raw/<date>/materialize.yaml` with the date form of `origin`. Either way the yaml
+`raw/<date>/<HHMM>/ledger.md#…`. A date-level `vault/raw/<date>/ledger.md` is a unit read
+as before: the ledger and every Spec of the date — `vault/raw/<date>/spec.md` when the date
+has one, then `vault/raw/<date>/<HHMM>/spec.md` in folder order — written to
+`vault/raw/<date>/materialize.yaml` with the date form of `origin` (the shape before case
+103; a date-level Spec on the dates before case 73). Either way the yaml
 holds one entry per record line of the ledger, in ledger order, with its route computed by
 the Routing Table below and its content lifted from the `then` block of its Case in the Spec. The yaml's `spec` field lists the
 files read and each decision entry names the file its Case was found in; a Case heading
@@ -20,12 +20,12 @@ decision record of its own: its `decision` and `origin` by its id, `case_text` w
 each sub-case in ledger order, `tags` the union of theirs, and no `targets` (case 544.6). What
 is missing is named (`incomplete`), never invented. The `type` of a `create` that writes none
 is its category's, by `SINGULAR`, the one map `generate` and pre-spec read too, and is never
-`incomplete` (`fill_type`, case 748.1); the other fields of `REQUIRED` a `create` lacks are
+`incomplete` (`fill_type`) (case 748.1); the other fields of `REQUIRED` a `create` lacks are
 judged by `create_lacks`, which pre-spec reports by too (case 748.2).
 The yaml's `sprint` is the first `## <id>` heading of `vault/wiki/sprint.md`, but in a unit
 whose ledger holds a `create` decision line of `entity-sprint-<id>` it is that `<id>`, so the
 session that opens a sprint after the close of the last one belongs to the new sprint
-(`opened_sprint`, case 628.3).
+(`opened_sprint`) (case 628.3).
 A line the grammar does not parse goes under `unparsed`. A line whose lift raises — a `then`
 item of an unexpected shape, any error while the entry is built — becomes an entry `{line,
 text, failed}` without `kind`, reported on stderr as `materialize: line N: <message>`; the
@@ -81,9 +81,9 @@ Criterion written under `sections` replaces the Criterion (case 588.2). An Estim
 `tags` as fields — a `ref` on the item is the entry's `ref`, never a page field (case 201.1);
 `## Context` and `## Method` are not written, and a `context` key of the
 old shape is dropped; a `criterion` key of the old shape goes to `sections.Criterion`. The
-keys of the shape before case 189 — `method`, `contract`, `estimate_slug`, `estimate_kind`
-on a rule's or entity's item — are no keys of their own: like any key the schema does not
-name, they go under `unknown` (case 440). A line with `{supersedes:case
+keys `method`, `contract`, `estimate_slug`, `estimate_kind` on a rule's or entity's item
+are no keys of their own: like any key the schema does not name, they go under `unknown`
+(the shape before case 189; case 440). A line with `{supersedes:case
 N}` marks every entry carrying `case: N` `superseded_by`, whatever its kind (case 175), and
 every entry of a sub-case of N at any depth, judged by `in_family` — the one reading of the
 tag that the Spec hook, `prespec` and the clash check of `casecheck` import (case 660.2); a
@@ -99,36 +99,36 @@ nested `estimate` in an older Spec becomes its own `create` entry, for a line wi
 
 The fields of an entry, each with its writer. From the ledger line: `case`, `kind`
 (`create`, `update`, `delete`, `defer`, `estimate`, `lesson`), `category` (from the slug
-prefix; a slug with no category prefix is `unknown` and `incomplete: [category]`, since case 320 removed the file route), `slug`, `ref`, `source`,
-`supersedes` (a list, one Case per `{supersedes:case N}` block, case 429; one value in a
-yaml written before it), `tags`, `addresses` (the lesson slugs of a decision line's `{addresses:...}`
-marks, one per mark, case 284.2), `origin` (`raw/<unit>/ledger.md#case-N`; a lesson
-`#L<n>`), `line`, `text`, `decision` (`decision-case-<N>`). From the `then` block: `fields`, `sections`
-(`Criterion` lifted from the Case when the item wrote none), `replace`, `change`, `rename`
-(an update's new slug, carried as written; `generate` checks it, case 258.2), `reword` (a
-list of `{old, new}` pairs, carried as written; a mapping or a scalar under it is
-`incomplete: [reword]`, case 274.3), `impact`,
-`incomplete` (what the block lacks: a required field, `then`, `change`, `criterion`,
-`purpose`, `source`, `reword`; `comment` on each decision entry of a Case whose fence tagged
-`then` holds a YAML comment by `then_comments`, which `guppi ratified` imports — the entry
-keeps what YAML read, and `generate` still applies it, case 521.2; `addresses` when the mark names no lesson of this unit,
-case 284.3; `addressed_by` on a lesson whose mark names a Case with no decision line earlier
-in the unit, case 377.3, judged by `marks_without_decision`, which the ledger hook calls too,
-case 497.1), `unknown` (a key of a `create` or `defer` item that the category's
-`schema.yaml` names as no field and that is not structural — never lifted into `fields`,
-case 214.1; the `type` and `purpose` of a `defer` are its own keys and reach `fields`
-whatever the target's category, an Insight's too, case 266; and nothing is filtered at all
+prefix; a slug with no category prefix is `unknown` and `incomplete: [category]`) (the file
+route removed by case 320), `slug`, `ref`, `source`, `supersedes` (a list, one Case per
+`{supersedes:case N}` block; one value in an older yaml) (case 429), `tags`, `addresses`
+(the lesson slugs of a decision line's `{addresses:...}` marks, one per mark) (case 284.2),
+`origin` (`raw/<unit>/ledger.md#case-N`; a lesson `#L<n>`), `line`, `text`, `decision`
+(`decision-case-<N>`). From the `then` block: `fields`, `sections` (`Criterion` lifted from
+the Case when the item wrote none), `replace`, `change`, `rename` (an update's new slug,
+carried as written; `generate` checks it) (case 258.2), `reword` (a list of `{old, new}`
+pairs, carried as written; a mapping or a scalar under it is `incomplete: [reword]`) (case
+274.3), `impact`, `incomplete` (what the block lacks: a required field, `then`, `change`,
+`criterion`, `purpose`, `source`, `reword`; `comment` on each decision entry of a Case whose
+fence tagged `then` holds a YAML comment by `then_comments`, which `guppi ratified` imports
+— the entry keeps what YAML read, and `generate` still applies it; `addresses` when the mark
+names no lesson of this unit; `addressed_by` on a lesson whose mark names a Case with no
+decision line earlier in the unit, judged by `marks_without_decision`, which the ledger hook
+calls too) (cases 521.2, 284.3, 377.3, 497.1), `unknown` (a key of a `create` or `defer`
+item that the category's `schema.yaml` names as no field and that is not structural — never
+lifted into `fields`; the `type` and `purpose` of a `defer` are its own keys and reach
+`fields` whatever the target's category, an Insight's too; and nothing is filtered at all
 for a category whose `rule-<category>-schema` this unit creates or updates — the
-`schema.yaml` on disk catches up only at the render after `generate`, case 308.2),
-`exists` (a create whose page is on disk with an `origin` carrying
-this line's `#case-N`, case 105.2; a defer whose page exists). Set by this script: `set`
+`schema.yaml` on disk catches up only at the render after `generate`) (cases 214.1, 266,
+308.2), `exists` (a create whose page is on disk with an `origin` carrying this line's
+`#case-N`; a defer whose page exists) (case 105.2). Set by this script: `set`
 (`status: pending` on an Estimate update), and `status`, `result`, `folded` of a reading
 folded into the live create of its slug — never into one already applied or marked
 `superseded_by`, and a `{supersedes}` moves the readings of the create it marks to the live
 create of the slug, or makes each an `estimate` entry of its own (case 309); `superseded_by` from a later `{supersedes}` in any unit — a list of
 each Case whose line retires the entry, in the order the lines are lifted, with no Case
-twice; one value in a yaml written before case 776, read as a list of one by `cases_of` and
-appended to by the next mark — an `estimate` entry carries no
+twice; one value in an older yaml, read as a list of one by `cases_of` and appended to by
+the next mark (case 776) — an `estimate` entry carries no
 `case`, so no `{supersedes}` reaches it: a reading that must not apply is retired only by a
 ratified Case, whose one-off migration writes `superseded_by` as a list that holds the
 number of that Case and removes the entry's `failed` (case 427); `addressed_by`
@@ -136,8 +136,8 @@ number of that Case and removes the entry's `failed` (case 427); `addressed_by`
 `{addresses:<its slug>}`, or whose own line carries `{addressed_by:case N}` after a decision
 line of Case N — one function sets it for both marks, at the entry's level, never a page
 field (cases 284.3, 377.3); `failed`
-from a lift that raised. Kept from the shape before case 189 on entries already written:
-`derived`, `criterion_block`, `case_removed`. Set by `guppi generate`: `applied` (the time
+from a lift that raised. Kept from an older shape on entries already written: `derived`,
+`criterion_block`, `case_removed` (the shape before case 189). Set by `guppi generate`: `applied` (the time
 applied) and `failed` (the error). Set by the librarian: `near`, and `librarian` with the
 value `merged` or `synthesis` (`rule-documentation`). The decision record of a Case:
 `case`, `decision`, `origin`, `targets` (one per line: `kind`, `category`, `slug`, and
@@ -372,8 +372,8 @@ def unlinked_lessons(lines: list[str]) -> list[int]:
 
 
 def cases_of(value) -> list[str]:
-    """The Cases an entry's `supersedes` or `superseded_by` names: a list since case 429 and
-    case 776, one value in a yaml written before them."""
+    """The Cases an entry's `supersedes` or `superseded_by` names: a list, or one value in an
+    older yaml (cases 429, 776)."""
     if not value:
         return []
     return [str(v) for v in value] if isinstance(value, list) else [str(value)]
@@ -393,8 +393,8 @@ def category_of(slug: str) -> str | None:
 
 
 def schema_changed(ledger: list) -> set[str]:
-    """Case 308.2: the categories whose `rule-<category>-schema` this unit creates or
-    updates. A `create` of such a category is lifted whole, no `unknown`: the `schema.yaml`
+    """The categories whose `rule-<category>-schema` this unit creates or updates (case
+    308.2). A `create` of such a category is lifted whole, no `unknown`: the `schema.yaml`
     on disk catches up only at the render after `generate`. `ledger` holds lines or records
     `parse_line` made of them (case 436.1)."""
     out: set[str] = set()
@@ -434,7 +434,7 @@ def split_cases(spec: str) -> dict[str, list[str]]:
 
 
 def is_session(unit: str) -> bool:
-    """A unit is `<date>` (the date-level ledger, the shape before case 103) or
+    """A unit is `<date>`, a date-level ledger (the shape before case 103), or
     `<date>/<HHMM>` (a session folder with its own ledger)."""
     return "/" in unit
 
@@ -852,7 +852,7 @@ def decision_entry(
     category = category_of(slug)
     if category is not None:
         entry["category"] = category
-    else:  # case 320: no file route — a slug without a category prefix names no page
+    else:  # a slug without a category prefix names no page (case 320: no file route)
         entry["category"] = "unknown"
         incomplete.append("category")
     if item is None:
@@ -888,8 +888,8 @@ ITEM_KEYS = {
 
 def accepted_keys(kind: str, known: set[str]) -> set[str]:
     """The keys a `create` or a `defer` accepts, given the fields `known` of its category's
-    schema: those fields and the item's own keys, as `_lift_item` counts them (case 436.1);
-    the keys of the shape before case 189 are none of them (case 440)."""
+    schema: those fields and the item's own keys, as `_lift_item` counts them (case 436.1).
+    The keys of an older shape are none of them (the shape before case 189; case 440)."""
     if kind == "defer":
         return set(known) | set(DEFER_KEYS) | set(STRUCTURAL_KEYS)
     return set(known) | set(CREATE_SKIPPED) | set(STRUCTURAL_KEYS)
@@ -902,7 +902,7 @@ def item_keys(
     lift, `generate`, the Spec hook and pre-spec share (case 436). `ITEM_KEYS` for an
     `update` and a `delete`; for a `create` and a `defer` the fields of the category's schema
     and the item's own keys. None where no judgment is made: a category with no schema file,
-    or one whose schema rule the session changes (`schema_free`, case 308.2)."""
+    or one whose schema rule the session changes (`schema_free`) (case 308.2)."""
     if kind in ITEM_KEYS:
         return set(ITEM_KEYS[kind])
     if kind not in ("create", "defer"):
@@ -1003,8 +1003,8 @@ def _lift_item(
                 entry["ref"] = str(item["ref"])
         fill_type(fields, entry.get("category"))  # from the category (case 748.1)
         if nested == "estimate" or entry.get("category") == "estimates":
-            fields.pop("context", None)  # `## Context` is not written since case 193
-            if "criterion" in fields:  # the shape before 194.1: a written Criterion
+            fields.pop("context", None)  # `## Context` is not written (since case 193)
+            if "criterion" in fields:  # a written Criterion (the shape before case 194.1)
                 entry.setdefault("sections", {})["Criterion"] = fields.pop("criterion")
             ref = fields.pop("ref", None)  # the target is the entry's `ref`, not a page field
             if ref and not entry.get("ref"):
@@ -1210,9 +1210,9 @@ def fold_estimate(entries: list[dict], record: dict, number: int) -> bool:
 
 
 def refold(entries: list[dict], case: str, ledger: list[str], date: str) -> None:
-    """Case 309: the readings folded into a `create` this mark just superseded move to the
-    live `create` of the same slug in the unit; with none, each becomes an `estimate` entry
-    of its own from its ledger line. The marked entry keeps no reading; the mark covers the
+    """The readings folded into a `create` this mark just superseded move to the live
+    `create` of the same slug in the unit; with none, each becomes an `estimate` entry of its
+    own from its ledger line (case 309). The marked entry keeps no reading; the mark covers the
     sub-cases of `case` too (case 660.2)."""
     for entry in entries:
         own = entry.get("case")
@@ -1256,8 +1256,8 @@ def in_family(case: str, top: str) -> bool:
 def mark_superseded(
     entries: list[dict], decisions: list[dict], case: str, by: str, spec=None
 ) -> bool:
-    """Mark every entry of `case` or of one of its sub-cases (`in_family`, case 660.2)
-    `superseded_by` — the lines' own and the derived ones, the block removal included,
+    """Mark `superseded_by` every entry of `case` or of one of its sub-cases, as `in_family`
+    judges them (case 660.2) — the lines' own and the derived ones, the block removal included,
     whatever its kind (case 175) — and their decision records likewise; True when an entry
     or a record of that family was here to mark. An `estimate` or `lesson` entry carries no
     `case` and is never marked. `spec`, when given, holds the Cases whose heading stands in
@@ -1267,7 +1267,7 @@ def mark_superseded(
     for entry in entries:
         own = entry.get("case")
         if own is not None and in_family(str(own), case):
-            done = cases_of(entry.get("superseded_by"))  # one value before case 776
+            done = cases_of(entry.get("superseded_by"))  # one value in an older yaml (case 776)
             if by not in done:
                 done.append(by)
             entry["superseded_by"] = done
@@ -1325,7 +1325,7 @@ def decision_record(
     tags: list[str] = []
     supersedes: list[str] = []
     for entry in entries_of_case:
-        if entry.get("derived"):  # an entry of the shape before case 189, kept as it is
+        if entry.get("derived"):  # an entry of an older shape, kept as it is (case 189)
             continue
         target = {"kind": entry["kind"], "category": entry["category"], "slug": entry["slug"]}
         for key in ("ref", "source"):
@@ -1470,7 +1470,8 @@ def lift_line(
     if record["record"] == "lesson":
         lesson = lesson_entry(record, number, text, date, project_dir)
         mark = record.get("addressed_by")
-        if mark and number - 1 in marks_without_decision(ledger or []):  # case 497.1
+        # the one judgment the ledger hook calls too (case 497.1)
+        if mark and number - 1 in marks_without_decision(ledger or []):
             lesson.setdefault("incomplete", []).append("addressed_by")  # no decision line before it
         elif mark:
             address(lesson, mark)
@@ -1493,7 +1494,7 @@ def lift_line(
     added = 1
     for earlier in record.get("supersedes") or []:  # one block per Case (case 429)
         if mark_superseded(entries, decisions, earlier, case, cases):
-            refold(entries, earlier, ledger or [], date)  # case 309
+            refold(entries, earlier, ledger or [], date)  # its readings move (case 309)
         else:
             elsewhere.append((earlier, case))  # another unit's yaml (130.2)
     if record.get("addresses") and not mark_addressed(entries, record["addresses"], case):
@@ -1533,7 +1534,7 @@ def assemble(
     if not ledger_path.exists():
         raise MaterializeError(f"{ledger_path.relative_to(project_dir).as_posix()} does not exist")
     ledger = ledger_path.read_text(encoding="utf-8").splitlines()
-    schema_free = schema_changed(ledger)  # case 308.2
+    schema_free = schema_changed(ledger)  # the categories lifted whole (case 308.2)
     cases, spec_of = read_specs(project_dir, unit)
     date = unit
     elsewhere: list[tuple[str, str]] = []
@@ -1546,7 +1547,7 @@ def assemble(
         "decisions": [],
         "unparsed": [],
     }
-    opening = opened_sprint(ledger)  # case 628.3: the unit that opens a sprint belongs to it
+    opening = opened_sprint(ledger)  # the unit that opens a sprint belongs to it (case 628.3)
     if opening:
         data["sprint"] = opening
     if is_session(unit):
@@ -1558,7 +1559,7 @@ def assemble(
     unparsed: list[dict] = data.setdefault("unparsed", [])
     # An entry another hand wrote in a shape this script cannot read — not a mapping, or a
     # mapping with none of `line`, `derived`, `librarian` — is left as it is, named once
-    # (case 142.1; the librarian's own entries carry `librarian` and no line).
+    # (case 142.1). The librarian's own entries carry `librarian` and no line.
     for entry in entries:
         if not isinstance(entry, dict) or not (
             "line" in entry or entry.get("derived") or entry.get("librarian")

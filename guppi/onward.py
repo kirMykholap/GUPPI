@@ -44,7 +44,7 @@ carries a `LEDGER` block, by `ledger.ledger_lines`, or the ledger hook refused t
 ended just before it, by `ledger.sent_back_last`, so the answer with no block to its reminder
 is sent on too (case 696.2); no file under `cases/` was written after the last decision line
 of its Case, or of a sub-case, in `ledger.md`, in any reply of the main agent in the
-transcript at the moment of its record (`transcript_replies`, cases 597.2, 604) or in that
+transcript at the moment of its record (`transcript_replies`) (cases 597.2, 604) or in that
 block — a Case built again and not yet ratified is still out, while one ratified again with
 lines the ledger already held counts as ratified for the rest of the session, after a later
 message of the person too, and a Case that a `{supersedes:case N}` mark of those lines
@@ -55,7 +55,7 @@ Case, judged by `casecheck.dropped`, the one judgment of an empty Case file (cas
 (case 597.1), the flag counting only when the transcript cannot be read; and the reply does
 not open with `STOP:`. When a file under `cases/` that holds more than blank space was
 written after the last `prespec` line, its time read on the date of the event log that
-holds it (`built_after`, cases 686.1, 701.2),
+holds it (`built_after`) (cases 686.1, 701.2),
 it tells the agent that the Cases built again on the findings are ratified, to run
 `uv run guppi prespec --check` on the plan file and call `ExitPlanMode` when it prints no
 finding; when no such file was written after that line — a defer or a lesson in answer to

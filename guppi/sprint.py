@@ -51,7 +51,7 @@ after `render --check` (case 227). Once the plain `guppi sprint` wrote the file 
 never a `read` line that names the command later, nor a line whose code span holds `guppi
 sprint-close`, which that command ticks itself (case 628.5) — in the `spec.md` of every unit under
 `raw/` whose yaml is applied whole, a carried-over unit passed by; `--check` and an exit 1
-tick nothing (case 250.2; the helper is `render.tick_command_lines`). The file holds
+tick nothing; the helper is `render.tick_command_lines` (case 250.2). The file holds
 nothing beyond this: the librarian runs the script after `cleanup` and `render`, and the
 governed-files hook refuses a hand edit (`governs` on `rule-sprint`). Rule page:
 `vault/wiki/rules/rule-sprint.md`.
@@ -274,8 +274,8 @@ def parser() -> argparse.ArgumentParser:
 
 
 def hi_hook(project_dir: Path, stdin, stdout, stderr) -> int:
-    """Case 743.7: at `/hi`, a first heading that carries the closed mark prints one line
-    that tells the agent to start `/sprint-open`; anything else prints nothing. Exit 0."""
+    """At `/hi`, a first heading that carries the closed mark prints one line that tells
+    the agent to start `/sprint-open`; anything else prints nothing (case 743.7). Exit 0."""
     try:
         if not is_hi_prompt(read_payload(stdin).get("prompt")):
             return 0
@@ -307,7 +307,7 @@ def run(argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None 
     if len(found) > 1:
         print(f"sprint: {len(found)} live {SPRINT_PAGE}<id> pages", file=stderr)
         return 1
-    if not found:  # case 743.5: after the close, the closed form
+    if not found:  # after the close, the closed form (case 743.5)
         if not target.is_file():
             print(
                 f"sprint: no live {SPRINT_PAGE}<id> page and no vault/wiki/sprint.md", file=stderr
@@ -323,7 +323,7 @@ def run(argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None 
             print(error, file=stderr)
             return 1
         source = page.slug
-    if args.check:  # case 227: compare, name, write nothing
+    if args.check:  # compare, name, write nothing (case 227)
         current = target.read_text(encoding="utf-8") if target.is_file() else None
         if current == text:
             return 0

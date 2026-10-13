@@ -1,5 +1,5 @@
 """`guppi shellwrite` — the `PostToolUse` hook on `Bash` and `PowerShell` that repairs or
-names a file a shell call left in a wrong byte form (`rule-shell-write-check`, case 710.1).
+names a file a shell call left in a wrong byte form (`rule-shell-write-check`) (case 710.1).
 
 On Windows, Windows PowerShell 5.1 reads a UTF-8 file in the ANSI code page and writes it back
 with a byte-order mark, and Python's `Path.write_text` writes CRLF line endings; the guard of

@@ -18,7 +18,7 @@ cannot run now and exits 1 when it prints any; with no reason it prints nothing 
   first part (case 591);
 - a live page that an `update`, `delete` or `defer` item of the folder's `spec.md` names has
   a History line that names the Decision page of a later Case, read by `guppi/caseid.py`
-  (`later_case`, case 788.5): a plain id whose whole number is higher than that of every Case
+  (`later_case`) (case 788.5): a plain id whose whole number is higher than that of every Case
   of that Spec with a plain id, when the Spec holds one; an id of a sprint whose number is
   higher than that of every Case of that Spec of the same sprint; or an id of a sprint the
   Spec holds no Case of, on a History line dated on or after the date of the folder — a later

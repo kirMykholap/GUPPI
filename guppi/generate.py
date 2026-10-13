@@ -59,8 +59,8 @@ refused always (case 171). History and `log.md` lines carry the run's date and e
 `[[decision-case-N]]` when the entry belongs to a Case, else the ledger pointer (case
 52.4); `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a
 used and undeclared one goes to stderr. `criterion_block` on an update and the kind
-`remove_criterion` — the shape before case 189 — are not applied: they fail as any shape
-the script does not know.
+`remove_criterion` are not applied: they fail as any shape the script does not know (the
+shape before case 189).
 
 The Decision page (case 201.2): one per Case, `decisions/decision-case-<N>.md`, written
 before the first entry of its lines so their History lines can name it; `case`, `status:
@@ -136,7 +136,7 @@ section of a Case whose entries the yaml beside that Spec mark `superseded_by` �
 entries for the Spec beside the yaml, the `materialize.yaml` of the other unit's folder
 otherwise, read for the marks alone; no yaml, nothing skipped there — its work stands under
 the superseding Case (case 286). An applied entry ticks its line whatever its category, an
-entry with no category (`unknown`, case 320) included; only a `lesson` entry and a failed
+entry with no category (`unknown`) (case 320) included; only a `lesson` entry and a failed
 entry tick nothing — a failed `delete` or `update` leaves the `read` lines of its slug as
 they stand (cases 460.1, 463, 672); the lines on code, tests, migrations and `by hand` checks stay the
 agent's.
@@ -403,25 +403,25 @@ def tick_read(
     skip: set[str] = frozenset(),
     superseded: set[str] = frozenset(),
 ) -> bool:
-    """Case 270.1: in the first of `specs` that holds one, every unticked line
-    `- [ ] read `<slug>`` — in any Case, a reading carries no Case — becomes `- [x] …`. One
-    reading is of the page, whose Criterion is one, however many Cases of the session
-    touched it (case 312).
-    Case 280: in the first Spec, the Spec beside the yaml, a line in the section of a Case
-    of `skip` — a Case ratified after the reading — is not the reading's line. Case 286: in
-    any Spec, a line in the section of a superseded Case is not the reading's line either —
-    `superseded` for the first Spec, the marks of the run's entries; for every other Spec
-    the marks of the `materialize.yaml` beside it. True when a line was ticked; False when
-    no Spec holds one — no error either way.
-    Case 326: every live Spec of `raw/` is ticked, not the first that holds a line. A promise
-    changed in two sessions leaves a read line in each, and one reading is of the page, so
-    the older line has no Case of its own and no later reading would ever reach it. The
-    archive is not read: an archived Spec keeps its open line as the record of a task nobody
-    performed.
-    Case 463: a `delete` of the slug ticks by this same walk, with the same two skips — `skip`
-    then holds the Cases ratified after the delete — since no reading of a deleted Estimate
-    will ever stand in the ledger. Case 672: so does an `update` that sets the Estimate
-    `passed` or `failed` by the person's decision."""
+    """In the first of `specs` that holds one, every unticked line `- [ ] read `<slug>`` —
+    in any Case, a reading carries no Case — becomes `- [x] …` (case 270.1). One reading is
+    of the page, whose Criterion is one, however many Cases of the session touched it (case
+    312).
+    In the first Spec, the Spec beside the yaml, a line in the section of a Case of `skip` —
+    a Case ratified after the reading — is not the reading's line (case 280). In any Spec, a
+    line in the section of a superseded Case is not the reading's line either — `superseded`
+    for the first Spec, the marks of the run's entries; for every other Spec the marks of
+    the `materialize.yaml` beside it (case 286). True when a line was ticked; False when no
+    Spec holds one — no error either way.
+    Every live Spec of `raw/` is ticked, not the first that holds a line (case 326). A
+    promise changed in two sessions leaves a read line in each, and one reading is of the
+    page, so the older line has no Case of its own and no later reading would ever reach it.
+    The archive is not read: an archived Spec keeps its open line as the record of a task
+    nobody performed.
+    A `delete` of the slug ticks by this same walk, with the same two skips — `skip` then
+    holds the Cases ratified after the delete — since no reading of a deleted Estimate will
+    ever stand in the ledger (case 463). So does an `update` that sets the Estimate `passed`
+    or `failed` by the person's decision (case 672)."""
     any_ticked = False
     for position, spec in enumerate(specs):
         if not spec.is_file():
@@ -446,9 +446,9 @@ def tick_read(
 
 
 def closes_by_decision(entry: dict) -> bool:
-    """Case 672: an `update` whose `set` gives `status` the value `passed` or `failed` closes
-    its Estimate by the person's decision; no reading of it follows, so it ticks the `read`
-    lines of its slug as a `delete` does. An `update` that sets `pending`, or no `status`,
+    """An `update` whose `set` gives `status` the value `passed` or `failed` closes its
+    Estimate by the person's decision; no reading of it follows, so it ticks the `read` lines
+    of its slug as a `delete` does (case 672). An `update` that sets `pending`, or no `status`,
     leaves them for the reading."""
     sets = entry.get("set")
     return (
@@ -459,8 +459,8 @@ def closes_by_decision(entry: dict) -> bool:
 
 
 def later_cases(entries: list, line) -> set[str]:
-    """Case 280: the Cases whose first decision entry carries a `line` greater than `line`
-    — ratified after the reading recorded at that ledger line."""
+    """The Cases whose first decision entry carries a `line` greater than `line` — ratified
+    after the reading recorded at that ledger line (case 280)."""
     first: dict[str, int] = {}
     for entry in entries:
         if not isinstance(entry, dict) or "case" not in entry or "line" not in entry:
@@ -475,8 +475,8 @@ def later_cases(entries: list, line) -> set[str]:
 
 
 def superseded_cases(entries: list) -> set[str]:
-    """Case 286: the Cases whose entries carry `superseded_by` — their work stands under
-    the superseding Case, so their lines are nobody's to tick."""
+    """The Cases whose entries carry `superseded_by` — their work stands under the
+    superseding Case, so their lines are nobody's to tick (case 286)."""
     return {
         str(entry["case"])
         for entry in entries
@@ -485,8 +485,8 @@ def superseded_cases(entries: list) -> set[str]:
 
 
 def superseded_beside(spec: Path) -> set[str]:
-    """Case 286: the superseded Cases of the `materialize.yaml` beside `spec`, read for
-    the marks alone; none without a yaml, or with one that does not load."""
+    """The superseded Cases of the `materialize.yaml` beside `spec`, read for the marks
+    alone; none without a yaml, or with one that does not load (case 286)."""
     try:
         data = load_yaml(spec.parent / "materialize.yaml")
     except Exception:  # noqa: BLE001 — a yaml that does not load skips nothing
@@ -506,9 +506,8 @@ def raw_specs(project_dir: Path, first: Path | None) -> list[Path]:
 
 
 def tick_spec(spec: Path, case: str, kind: str, slug: str) -> bool:
-    """Case 226.1: in `spec`, under the heading `## Case <case>` or `### Case <case>` and
-    before the next heading, the first line `- [ ] <kind> `<slug>`` becomes `- [x] …`.
-    True when a line was ticked; False when the file, the section or the line is absent —
+    """In `spec`, under the heading `## Case <case>` or `### Case <case>` and before the next
+    heading, the first line `- [ ] <kind> `<slug>`` becomes `- [x] …` (case 226.1). True when a line was ticked; False when the file, the section or the line is absent —
     no error either way, the entry is applied all the same."""
     if not spec.is_file():
         return False
@@ -850,7 +849,7 @@ class Vault:
         if page is None:
             self.error(slug, "no page to update")
             return
-        if entry.get("criterion_block"):  # the shape before case 189: not applied (201.1)
+        if entry.get("criterion_block"):  # not applied (the shape before case 189, case 201.1)
             self.error(slug, "criterion_block: a shape the script no longer knows (case 201.1)")
             return
         keys = [k for k in ITEM_KEYS["update"] if k != "slug"]  # one list (case 436.1)
@@ -1232,8 +1231,8 @@ class Vault:
             self.supersede_children(other, slug)
 
     def take_superseded_by(self, page: Page, slug: str) -> None:
-        """Case 773: `page` takes `slug` into its `superseded_by` with one History line, and
-        only when the name is new — a page an earlier run or an earlier step of the same
+        """`page` takes `slug` into its `superseded_by` with one History line, and only when
+        the name is new (case 773) — a page an earlier run or an earlier step of the same
         record already marked, such as a sub-case reached through its parent and named in
         `supersedes` too, gets no second line here nor in `log.md`."""
         done = as_list(page.props.get("superseded_by"))
@@ -1243,11 +1242,11 @@ class Vault:
         self.history(page, f"superseded by {slug}", f"[[{slug}]]")
 
     def supersede_children(self, parent: Page, slug: str) -> None:
-        """Case 660.3: the tag that supersedes a Case supersedes its sub-cases too — each page
-        in the `children` of `parent`, at any depth, that stands `current` becomes
-        `superseded`, takes `slug` into its `superseded_by` and one History line, whatever
-        the run that wrote it; a child page `archived` or already `superseded` is left as it
-        stands, the round trip of `decision-case-469` kept off it. No `deferred_by` is
+        """The tag that supersedes a Case supersedes its sub-cases too — each page in the
+        `children` of `parent`, at any depth, that stands `current` becomes `superseded`,
+        takes `slug` into its `superseded_by` and one History line, whatever the run that
+        wrote it (case 660.3). A child page `archived` or already `superseded` is left as it
+        stands (the round trip of decision-case-469 kept off it). No `deferred_by` is
         cleared through a child: only the pages the record's `supersedes` names clear theirs
         (case 467.3)."""
         for name in as_list(parent.props.get("children")):
@@ -1262,8 +1261,8 @@ class Vault:
     # after all entries
 
     def recount_rules(self) -> None:
-        """Case 305.3: the `rules` of every live Entity is the live rules whose
-        `applies_to` names it, in slug order — the backlink of the edge Rule → Entity.
+        """The `rules` of every live Entity is the live rules whose `applies_to` names it,
+        in slug order — the backlink of the edge Rule → Entity (case 305.3).
         The field is written when the list is not empty or already stands; an empty list
         on a page without the field writes nothing. An archived rule gives no edge; an
         `applies_to` on a slug with no page is left to lint."""
@@ -1305,9 +1304,9 @@ class Vault:
                 if page.error or str(page.props.get("status")) not in ("draft", "built"):
                     continue
                 own = [estimates.get(s) for s in as_list(page.props.get("estimates"))]
-                # Case 328: a slug with no page is not counted, and neither is an Estimate
-                # standing `archived` — a `delete` of this run retired it and its file waits
-                # under `wiki/estimates/` until `cleanup`, which runs after this script.
+                # A slug with no page is not counted, and neither is an Estimate standing
+                # `archived` — a `delete` of this run retired it and its file waits under
+                # `wiki/estimates/` until `cleanup`, which runs after this script (case 328).
                 own = [e for e in own if e is not None and str(e.props.get("status")) != "archived"]
                 if not own:
                     continue
@@ -1521,7 +1520,7 @@ def apply(vault: Vault, data: dict) -> None:
                 vault.delete(entry)
             elif kind == "defer":
                 vault.defer(entry)
-            else:  # `remove_criterion` among them: the shape before case 189 (201.1)
+            else:  # `remove_criterion` among them (the shape before case 189, case 201.1)
                 vault.error(entry.get("slug", "?"), f"unknown kind {kind!r}")
         except Exception as exc:  # noqa: BLE001 — one entry fails alone, the run goes on
             vault.error(entry.get("slug", "?"), f"{type(exc).__name__}: {exc}")

@@ -1,11 +1,11 @@
 """`guppi caseid --next [--session <id>]` — the one grammar of a Case id, and the next id.
 
-A Case id of a sprint opened after case 788 is the sprint id, a hyphen and the number of the
-Case in that sprint, from 1, with a dot for each sub-case level: `kir-plugin-12.1`. A sprint
-id holds lower-case letters, digits and hyphens and no dot, so the number is the last run of
-digits after the last hyphen ahead of the first dot. An id with no sprint part, such as
-`785.1`, is a Case from before sprint ids, and the sprints of `PLAIN_SPRINTS`, opened before
-case 788, keep that form to their close (case 788.2). Every reader of a Case id — the
+A Case id of a sprint opened after sprint ids came in is the sprint id, a hyphen and the
+number of the Case in that sprint, from 1, with a dot for each sub-case level:
+`kir-plugin-12.1` (case 788). A sprint id holds lower-case letters, digits and hyphens and no
+dot, so the number is the last run of digits after the last hyphen ahead of the first dot. An
+id with no sprint part, such as `785.1`, is a Case from before sprint ids, and the sprints of
+`PLAIN_SPRINTS`, opened before sprint ids came in, keep that form to their close (case 788.2). Every reader of a Case id — the
 ledger's `parse_line` and `_case_of` of `guppi/materialize.py`, `top_case`, `case_file`,
 `case_number` and `new_number` of `guppi/casecheck.py`, `held_number` of
 `guppi/ratified.py`, `ORIGIN_CASE` and `DEFERRED_LINE` of `guppi/lint.py`, `case_key` of
@@ -41,7 +41,8 @@ WHOLE = re.compile(rf"^(?:({SPRINT})-)?(\d+)((?:\.\d+)*)$")
 TOP_ID = rf"(?:{SPRINT}-)?\d+"  # the id of a top-level Case
 CASE_FILE = re.compile(rf"^case-({TOP_ID})\.md$")  # the name `case_file` gives
 DECISION_PAGE = re.compile(rf"^decision-case-({ID})\.md$")
-# the sprints opened before case 788, whose Cases keep a plain id to their close
+# the sprints opened before sprint ids came in, whose Cases keep a plain id to their close
+# (case 788)
 PLAIN_SPRINTS = ("migration", "plugin")
 
 

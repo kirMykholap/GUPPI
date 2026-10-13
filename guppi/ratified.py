@@ -1,7 +1,7 @@
-"""`guppi ratified` — the `Stop` hook that writes a ratified Case into the Spec
-(`rule-spec-write`, case 387.2); `guppi ratified --guard` — the `PreToolUse` hook that refuses
-the agent's edit of the plan file, of its store (`rule-spec-reconcile`, case 445.1) and of the
-file of a built Case under `cases/` (case 453).
+"""`guppi ratified` — the `Stop` hook of `rule-spec-write` that writes a ratified Case into
+the Spec (case 387.2). `guppi ratified --guard` — the `PreToolUse` hook of
+`rule-spec-reconcile` that refuses the agent's edit of the plan file and of its store
+(case 445.1), and of the file of a built Case under `cases/` (case 453).
 
 The write. After a reply whose `LEDGER` block holds `- decision[case N]` lines of a kind other
 than `defer`, the hook reads `<plan>.checked.json` for the answer of `case-guppi` stored under
@@ -449,8 +449,8 @@ def section_end(lines: list[str], start: int) -> int:
 
 
 def place(document: str, case: str, section: list[str]) -> str:
-    """The document with every section of `case` replaced (case 441.6: an approval repeated
-    in one session leaves a Case twice in `spec.md`); with none, the section inserted in the
+    """The document with every section of `case` replaced, as an approval repeated in one
+    session leaves a Case twice in `spec.md` (case 441.6); with none, the section inserted in the
     last approved document — the whole document when it holds no stamp — after the last
     section of its family, or before its `## Deferred`, or at the end."""
     lines = document.splitlines()
@@ -893,10 +893,10 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
 
 
 def held_number(payload: dict, project_dir: Path, now, stderr) -> tuple[str, str] | None:
-    """Case 650.1: `(path, reason)` when a call of `case-guppi` on `case-<N>.md` under
-    `cases/` meets Case N, or a sub-case of it, held in the store under its number alone by
-    another `agent_id` — by `casecheck.clashes`, the reason naming a free number by
-    `casecheck.new_number`. A call that passes while the store holds no entry under N writes
+    """`(path, reason)` when a call of `case-guppi` on `case-<N>.md` under `cases/` meets
+    Case N, or a sub-case of it, held in the store under its number alone by another
+    `agent_id` — by `casecheck.clashes`, the reason naming a free number by
+    `casecheck.new_number` (case 650.1). A call that passes while the store holds no entry under N writes
     there an entry with its `agent_id` and the time and no text. A call with no `agent_id`, a
     file with no number and a session with no plan file are not judged and write nothing; an
     error while finding the plan or reading or writing the store lets the call run, with one
@@ -1013,7 +1013,8 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
             for case in cases:
                 found = find_showing(messages, case)  # none is no refusal (case 452.3)
                 heading, lines = (found[0], found[1]) if found else ("", [])
-                problem = against_store(case, heading, lines, store)  # cases 437, 452.2
+                # the Case against its store (cases 437, 452.2)
+                problem = against_store(case, heading, lines, store)
                 if problem:
                     problems.append(problem)
                     continue
@@ -1063,7 +1064,8 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
     from guppi.casecheck import ledger_of, ledger_records  # it imports this module
 
     session = ledger_records(ledger_of(folder))
-    remove_superseded(records, written, targets, session)  # cases 441.7, 445.3, 722.2
+    # the superseded sections out (cases 441.7, 445.3, 722.2)
+    remove_superseded(records, written, targets, session)
     if checked:
         from guppi import prespec  # it imports this module at load (case 414.1)
 

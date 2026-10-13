@@ -7,21 +7,28 @@ that the Render of such a page governs — but `LEFT_OUT`, the files of this pro
 `sprint.md`, `backlog.md` and `guppi.toml`. A file that a page without `core: true` renders
 in full is not written; nothing of `vault/raw/`, `vault/archive/` or `.github/` is read.
 
-In each text file it writes it removes a parenthesis that holds only references to cases,
-the references to cases inside a longer parenthesis, and each `[[decision-case-N]]` link.
-A case id after `[case `, `#case-` or `:case ` — the form of a ledger line or a mark — is
-no reference, and neither is one inside a code span of a Markdown file. Each page it writes
-carries `origin` and `sprint` `SHIPPED`, the date of the run in `created` and a `## History`
-of one line; its link fields, `LINK_FIELDS` of `guppi/lint.py`, keep only the pages it
-writes. The page is written by `write_page` of `guppi/generate.py`.
+A pointer — a reference to a case, an id `decision-case-N` or a mention of a session by its
+id, each id of a list included — stands in a bracket of its own at the end of its sentence,
+with the words that go with it (case 807.1). In each text file it writes it removes whole
+each bracket that holds a pointer, with the space before it, and each `[[decision-case-N]]`
+link; a bracket with no pointer stays. It writes each other `[[…]]` link of a Markdown file
+to a page or a file it does not write as the slug in a code span, by `WIKILINK` of
+`guppi/lint.py`. A case id after `[case `, `#case-` or `:case ` — the form of a ledger line
+or a mark — is no pointer, and neither is one in a code span or a fenced block of a Markdown
+file or of the text of a `schema.yaml`, in the Render of `EXAMPLE` or in `EXAMPLE_FILE`,
+which are not judged. Each page it writes carries `origin` and `sprint` `SHIPPED`, the date
+of the run in `created` and a `## History` of one line; its link fields, `LINK_FIELDS` of
+`guppi/lint.py`, keep only the pages it writes. The page is written by `write_page` of
+`guppi/generate.py`.
 
-Then it reads what it wrote and prints `ship: <file>:<line>: <what>` for each reference to
-a case or a decision, each `[[link]]` of a Markdown file to a page or a file it does not
-write — by `WIKILINK` and `CODE_SPAN` of `guppi/lint.py`, the patterns of `links_of` —,
-each mention of a session of this repository by its id, and each marker line of `MARKER`
-of `guppi/pages.py` that opens or closes the section of a page without `core: true`; any
-such line exits 1, and a Case rewords that text at its source. A folder that is not empty
-exits 2 with nothing written.
+Then it reads what it wrote and prints `ship: <file>:<line>: <what>` for each pointer that
+stands outside such a bracket and each marker line of `MARKER` of `guppi/pages.py` that
+opens or closes the section of a page without `core: true`; any such line exits 1, and a
+Case rewords that text at its source. `--review` also prints each bracket it removes that
+holds a word beside its pointers, which sets no exit code. `--check` judges in place each
+file outside `vault/` that the copy takes, but `NOT_CLEANED`, prints the same lines and
+writes nothing; `make lint` runs it. A folder that is not empty exits 2 with nothing
+written. `outside` is the one judgment of a pointer, which `guppi/prespec.py` imports.
 Rule page: `vault/wiki/rules/rule-clean-branch.md`.
 """
 
@@ -54,6 +61,8 @@ SKIPPED_NAMES = ("__pycache__", "settings.local.json")
 NOT_CLEANED = ("uv.lock",)  # a lock file is data of the package manager, not text of ours
 TAGS = "vault/wiki/tags.md"
 HISTORY_LINE = "- {day} shipped with GUPPI"
+EXAMPLE = "rule-case-example"  # its Render is the example Case, whose ids are no pointers
+EXAMPLE_FILE = "vault/wiki/case-example.md"
 
 # a reference to a case: the word `case` or `cases`, either case, and one or more ids of
 # `ID`, joined by a comma, a semicolon or `and`; not the form of a line after `[`, `#` or
@@ -61,70 +70,139 @@ HISTORY_LINE = "- {day} shipped with GUPPI"
 REFS = re.compile(
     rf"(?<![\[#:\w-])[Cc]ases?\s+{ID}(?:(?:\s*[,;]\s*|\s+and\s+)(?:[Cc]ases?\s+)?{ID})*\b"
 )
-PARENTHESIS = re.compile(r"([ \t]?)\(([^()\n]*)\)")
-DANGLING = re.compile(r"\s*[,;]\s*(?=[,;]|$)")
 DECISION_LINK = re.compile(rf"[ \t]?\[\[decision-case-{ID}(?:[|#][^\]]*)?\]\]")
 DECISION = re.compile(rf"\bdecision-case-{ID}")
-SESSION = re.compile(r"\b[Ss]essions?\s+(?:\d{4}-\d\d-\d\d/)?\d{4}\b")
+# a mention of a session by its id, each id of a list included, as `REFS` takes a list
+SESSION_ID = r"(?:\d{4}-\d\d-\d\d/)?\d{4}"
+SESSION = re.compile(
+    rf"\b[Ss]essions?\s+{SESSION_ID}"
+    rf"(?:(?:\s*[,;]\s*|\s+and\s+)(?:[Ss]essions?\s+)?{SESSION_ID})*\b"
+)
+POINTERS = (
+    ("a reference to a case", REFS),
+    ("a reference to a decision", DECISION),
+    ("a mention of a session", SESSION),
+)
+# a bracket with no bracket inside it, on one line or across lines, and the space before it;
+# a bracket that opens a line and a mark of punctuation follows takes the line break before
+# it, so the mark joins the line above and does not stand alone
+BRACKET = re.compile(r"(\n[ \t]*(?=\([^()]*\)[.,;:])|[ \t]?)\(([^()]*)\)")
+SEPARATORS = re.compile(r"[\s,;]+|\band\b")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
 MASK = "\x00{}\x00"
 MASKED = re.compile(r"\x00(\d+)\x00")
 
 
-def clean_parenthesis(match: re.Match) -> str:
-    space, inner = match.groups()
-    if not REFS.search(inner):
-        return match.group(0)
-    rest = DANGLING.sub("", REFS.sub("", inner))
-    rest = re.sub(r"^\s*[,;]?\s*", "", rest).rstrip()
-    return f"{space}({rest})" if rest else ""
+def holds_pointer(text: str) -> bool:
+    return any(pattern.search(text) for _, pattern in POINTERS)
 
 
-def masked(text: str, markdown: bool) -> tuple[str, list[str]]:
-    """The text with each code span of a Markdown file put aside, and the spans."""
-    if not markdown:
-        return text, []
+def masked(text: str, sample: bool) -> tuple[str, list[str]]:
+    """The text with each sample put aside, and the samples: with `sample`, each code span,
+    each line of a fenced block and each line of the Render of `EXAMPLE`. A line keeps its
+    place, so the lines of the text keep their numbers."""
     spans: list[str] = []
 
-    def keep(match: re.Match) -> str:
-        spans.append(match.group(0))
+    def keep(part: str) -> str:
+        spans.append(part)
         return MASK.format(len(spans) - 1)
 
-    return CODE_SPAN.sub(keep, text), spans
+    if not sample:
+        return text, spans
+    lines, fence, example = text.split("\n"), None, False
+    for number, line in enumerate(lines):
+        marker = MARKER.match(line.strip())
+        opener = FENCE.match(line)
+        if fence is None and marker and marker.group(2) == EXAMPLE:
+            example = not marker.group(1)
+        elif fence is None and opener:
+            fence = opener.group(1)
+            lines[number] = keep(line)
+        elif fence is not None:
+            if opener and opener.group(1)[0] == fence[0] and len(opener.group(1)) >= len(fence):
+                fence = None
+            lines[number] = keep(line)
+        elif example:
+            lines[number] = keep(line)
+        else:
+            lines[number] = CODE_SPAN.sub(lambda m: keep(m.group(0)), line)
+    return "\n".join(lines), spans
 
 
 def unmasked(text: str, spans: list[str]) -> str:
     return MASKED.sub(lambda m: spans[int(m.group(1))], text)
 
 
-def clean(text: str, markdown: bool) -> str:
-    """The references to cases and the links to decisions removed (case 804.6)."""
-    body, spans = masked(text, markdown)
-    body = DECISION_LINK.sub("", body)
-    body = PARENTHESIS.sub(clean_parenthesis, body)
-    return unmasked(body, spans)
+def words_beside(inner: str) -> bool:
+    """Whether a bracket holds a word beside its pointers."""
+    rest = inner
+    for _, pattern in POINTERS:
+        rest = pattern.sub("", rest)
+    return bool(SEPARATORS.sub("", rest))
 
 
-def leftovers(text: str, markdown: bool, known: set[str], loose: set[str]) -> list[tuple[int, str]]:
-    """`(line, what)` for each reference, link, session or marker the copy must not hold:
-    `known` the slugs and hub names it writes, `loose` the page slugs without `core`."""
+def removed(body: str, keep_lines: bool = True) -> tuple[str, list[tuple[int, str]]]:
+    """`body` with each bracket that holds a pointer removed whole, and `(line, bracket)`
+    for each removed bracket that holds a word beside its pointers. With `keep_lines` a
+    removed bracket leaves its line breaks, so the lines keep their numbers."""
+    review = []
+
+    def drop(match: re.Match) -> str:
+        if not holds_pointer(match.group(2)):
+            return match.group(0)
+        if words_beside(match.group(2)):
+            line = body.count("\n", 0, match.start(2)) + 1
+            review.append((line, f"({match.group(2)})"))
+        return "\n" * match.group(0).count("\n") if keep_lines else ""
+
+    return BRACKET.sub(drop, body), review
+
+
+def outside(text: str, sample: bool = True) -> list[tuple[int, str]]:
+    """`(line, what)` for each pointer that stands outside a bracket of its own: the one
+    judgment of a pointer, which `guppi/prespec.py` runs over the new text of a page."""
+    body, _ = masked(text, sample)
+    body, _ = removed(DECISION_LINK.sub("", body))
     out = []
-    for number, line in enumerate(text.splitlines(), start=1):
+    for number, line in enumerate(body.split("\n"), start=1):
+        for what, pattern in POINTERS:
+            out += [(number, f"{what}: {m.group(0)}") for m in pattern.finditer(line)]
+    return out
+
+
+def clean(
+    text: str, sample: bool, known: set[str] | None = None
+) -> tuple[str, list[tuple[int, str]]]:
+    """The text as the copy holds it, and the brackets `--review` lists: each bracket that
+    holds a pointer and each `[[decision-case-N]]` link removed; with `known`, each other
+    `[[…]]` link to a slug outside it written as the slug in a code span (case 807.1)."""
+    body, spans = masked(text, sample)
+    body, review = removed(DECISION_LINK.sub("", body), keep_lines=False)
+    if known is not None:
+
+        def link(match: re.Match) -> str:
+            slug = match.group(1).strip()
+            return match.group(0) if slug in known else f"`{slug}`"
+
+        body = WIKILINK.sub(link, body)
+    return unmasked(body, spans), [(n, unmasked(b, spans)) for n, b in review]
+
+
+def leftovers(text: str, sample: bool, loose: set[str]) -> list[tuple[int, str]]:
+    """`(line, what)` for each pointer outside a bracket, and each marker of a page in
+    `loose`, the page slugs without `core`, that the copy must not hold."""
+    out = []
+    for number, line in enumerate(text.split("\n"), start=1):
         marker = MARKER.match(line.strip())
         if marker and marker.group(2) in loose:
             out.append((number, f"a section of {marker.group(2)}, a page without core: true"))
-            continue
-        plain = CODE_SPAN.sub("", line) if markdown else line
-        for match in REFS.finditer(plain):
-            out.append((number, f"a reference to a case: {match.group(0)}"))
-        for match in DECISION.finditer(plain):
-            out.append((number, f"a reference to a decision: {match.group(0)}"))
-        for match in SESSION.finditer(plain):
-            out.append((number, f"a mention of a session: {match.group(0)}"))
-        if markdown:
-            for slug in WIKILINK.findall(plain):
-                if slug.strip() not in known:
-                    out.append((number, f"a link to {slug.strip()}, which the copy leaves out"))
-    return out
+    return sorted(out + outside(text, sample))
+
+
+def is_sample_file(name: str) -> bool:
+    """Whether the code spans and fenced blocks of a file hold samples: Markdown, and the
+    text of a `schema.yaml`."""
+    return name.endswith(".md") or Path(name).name == "schema.yaml"
 
 
 def tree_files(project_dir: Path, top: str) -> list[str]:
@@ -174,8 +252,9 @@ def shipped_page(page: Page, slugs: set[str], day: date) -> tuple[dict, dict]:
     return props, sections
 
 
-def ship(project_dir: Path, folder: Path, day: date) -> list[str]:
-    """Writes the clean version into `folder`; the lines of what remains, empty when clean."""
+def plan(project_dir: Path) -> tuple[list[str], list[Page], set[str], set[str]]:
+    """The files the copy takes from the tree, the pages it writes, the slugs and hub names
+    a link of the copy may name, and the page slugs without `core`."""
     vault = read_vault(wiki_root(project_dir))
     pages = [page for category in CATEGORIES for page in vault[category]]
     core = [page for page in pages if is_core(page) and not page.error]
@@ -194,6 +273,37 @@ def ship(project_dir: Path, folder: Path, day: date) -> list[str]:
         for name in dict.fromkeys(files)
         if name not in refused and name not in LEFT_OUT and (project_dir / name).is_file()
     ]
+    names = files + [f"vault/wiki/{page.category}/{page.slug}.md" for page in core]
+    hubs = {Path(name).stem for name in names if Path(name).parent.as_posix() == "vault/wiki"}
+    known = slugs | hubs | {f"{p.category}/{p.slug}" for p in core}
+    return files, core, known, loose
+
+
+def judged(name: str, text: str, known: set[str], loose: set[str]) -> tuple[str, list, list]:
+    """The text of a file as the copy holds it, and its `ship:` lines and `--review` lines by
+    the lines of `text`; the example Case of `EXAMPLE_FILE` and a file of `NOT_CLEANED` are
+    not judged."""
+    if Path(name).name in NOT_CLEANED or name == EXAMPLE_FILE:
+        return text, [], []
+    sample = is_sample_file(name)
+    cleaned, review = clean(text, sample, known if name.endswith(".md") else None)
+    lines = [f"ship: {name}:{n}: {what}" for n, what in leftovers(text, sample, loose)]
+    reviewed = [f"ship: {name}:{n}: a bracket with words: {' '.join(b.split())}" for n, b in review]
+    return cleaned, lines, reviewed
+
+
+def read_text(path: Path) -> str | None:
+    try:
+        return path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return None
+
+
+def ship(project_dir: Path, folder: Path, day: date) -> tuple[list[str], list[str]]:
+    """Writes the clean version into `folder`; the lines of what remains, empty when clean,
+    and the lines of `--review`."""
+    files, core, known, loose = plan(project_dir)
+    slugs = {page.slug for page in core}
     for name in files:
         target = folder / name
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -204,29 +314,44 @@ def ship(project_dir: Path, folder: Path, day: date) -> list[str]:
         write_page(folder / name, props, sections, page.category)
         files.append(name)
 
-    hubs = {Path(name).stem for name in files if Path(name).parent.as_posix() == "vault/wiki"}
-    known = slugs | hubs | {f"{p.category}/{p.slug}" for p in core}
-    out = []
+    out, review = [], []
     for name in files:
-        if Path(name).name in NOT_CLEANED:
-            continue
         path = folder / name
-        try:
-            text = path.read_text(encoding="utf-8")
-        except UnicodeDecodeError:
+        text = read_text(path)
+        if text is None:
             continue
-        markdown = path.suffix == ".md"
-        cleaned = clean(text, markdown)
+        cleaned, lines, reviewed = judged(name, text, known, loose)
         if cleaned != text:
             path.write_text(cleaned, encoding="utf-8", newline="\n")
-        for number, what in leftovers(cleaned, markdown, known, loose):
-            out.append(f"ship: {name}:{number}: {what}")
-    return out
+        out += lines
+        review += reviewed
+    return out, review
+
+
+def check(project_dir: Path) -> tuple[list[str], list[str]]:
+    """The lines of `ship` for each file outside `vault/` that the copy takes, judged in
+    place in the working tree; nothing is written."""
+    files, _, known, loose = plan(project_dir)
+    out, review = [], []
+    for name in files:
+        if name.startswith("vault/"):
+            continue
+        text = read_text(project_dir / name)
+        if text is None:
+            continue
+        _, lines, reviewed = judged(name, text, known, loose)
+        out += lines
+        review += reviewed
+    return out, review
 
 
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi ship")
-    p.add_argument("folder", help="an empty folder for the clean version")
+    p.add_argument("folder", nargs="?", help="an empty folder for the clean version")
+    p.add_argument(
+        "--review", action="store_true", help="also list the brackets with words it removes"
+    )
+    p.add_argument("--check", action="store_true", help="judge the files outside vault/ in place")
     return p
 
 
@@ -236,12 +361,18 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
     project_dir = project_root() if project_dir is None else Path(project_dir)
     now = datetime.now().astimezone() if now is None else now
     args = parser().parse_args(argv)
-    folder = Path(args.folder)
-    if folder.exists() and any(folder.iterdir()):
-        print(f"ship: {folder} is not empty; nothing written", file=stderr)
+    if args.check:
+        lines, review = check(project_dir)
+    elif args.folder is None:
+        print("ship: name an empty folder, or pass --check", file=stderr)
         return 2
-    folder.mkdir(parents=True, exist_ok=True)
-    lines = ship(project_dir, folder, now.date())
-    for line in lines:
+    else:
+        folder = Path(args.folder)
+        if folder.exists() and any(folder.iterdir()):
+            print(f"ship: {folder} is not empty; nothing written", file=stderr)
+            return 2
+        folder.mkdir(parents=True, exist_ok=True)
+        lines, review = ship(project_dir, folder, now.date())
+    for line in lines + (review if args.review else []):
         print(line, file=stdout)
     return 1 if lines else 0

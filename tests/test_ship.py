@@ -1,6 +1,8 @@
-"""`guppi ship` over a sample tree (case 804.6, `estimate-clean-branch-writes-a-clean-copy`):
-only the code, the harness and the pages with `core: true` are written, the references to
-cases go, the shipped values are written, and what cannot be cleaned exits 1."""
+"""`guppi ship` over a sample tree, `estimate-clean-branch-writes-a-clean-copy` (cases 804.6,
+807.1): only the code, the harness and the pages with `core: true` are written, each bracket
+that holds a pointer goes whole, a link to a page left out becomes its slug, samples stay,
+the shipped values are written, a pointer outside a bracket exits 1, and `--review` and
+`--check` work as the rule sets them."""
 
 import io
 from datetime import UTC, datetime
@@ -139,20 +141,41 @@ def test_it_writes_no_session_record_and_no_file_of_this_project(tmp_path):
     assert ".claude/settings.local.json" not in files
 
 
-def test_it_removes_the_references_to_cases(tmp_path):
+def test_it_removes_each_bracket_that_holds_a_pointer_whole(tmp_path):
     root, out = tmp_path / "p", tmp_path / "out"
     body = (
         "One (case 12). Two (cases 3.1, 4 and kir-plugin-5). "
-        "Three (`rule-a`, case 628.4). Four (see x; case 9). Five [[decision-case-7]]."
+        "Three (`rule-a`, case 628.4). Four (as set in case 9). Five [[decision-case-7]]. "
+        "Six (measured 2026-09-25, session 0051). Seven (see decision-case-3). "
+        "Eight (across\nlines, case 2). Nine (a plain aside) stays."
     )
     tree(root, rule_a=page("rule", "rule-a", body=body))
     code, lines = run(root, out)
     assert (code, lines) == (0, [])
     text = (out / "vault" / "wiki" / "rules" / "rule-a.md").read_text(encoding="utf-8")
-    assert "One. Two. Three (`rule-a`). Four (see x). Five." in text
+    assert "One. Two. Three. Four. Five. Six. Seven. Eight. Nine (a plain aside) stays." in text
     assert "purpose: Prevents x\n" in text
     assert (out / "guppi" / "x.py").read_text(encoding="utf-8") == "# reads a page\nX = 1\n"
     assert (out / "CLAUDE.md").read_text(encoding="utf-8").endswith("Keep the facts.\n")
+
+
+def test_a_bracket_that_opens_a_line_leaves_no_mark_alone(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    write(root / "guppi" / "y.py", '"""It reads the page\n    (case 714)."""\n')
+    code, lines = run(root, out)
+    assert (code, lines) == (0, [])
+    assert (out / "guppi" / "y.py").read_text(encoding="utf-8") == '"""It reads the page."""\n'
+
+
+def test_a_link_to_a_page_left_out_is_written_as_its_slug(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    body = "It links [[rule-b]], [[rule-a]] and [[brief|the brief]]."
+    tree(root, rule_a=page("rule", "rule-a", body=body), rule_b=page("rule", "rule-b", core=False))
+    code, lines = run(root, out)
+    assert (code, lines) == (0, [])
+    text = (out / "vault" / "wiki" / "rules" / "rule-a.md").read_text(encoding="utf-8")
+    assert "It links `rule-b`, [[rule-a]] and `brief`." in text
 
 
 def test_it_writes_the_shipped_values(tmp_path):
@@ -178,10 +201,10 @@ def test_it_writes_the_shipped_values(tmp_path):
     assert shipped.sections["## History"] == "- 2026-10-13 shipped with GUPPI"
 
 
-def test_a_reference_a_link_or_a_session_that_remains_exits_1(tmp_path):
+def test_a_pointer_outside_a_bracket_exits_1(tmp_path):
     root, out = tmp_path / "p", tmp_path / "out"
-    body = "Since case 239 it reads.\n\nIt links [[rule-b]] and [[brief]].\n\nIn session 0051 it broke."
-    tree(root, rule_a=page("rule", "rule-a", body=body), rule_b=page("rule", "rule-b", core=False))
+    body = "Since case 239 it reads.\n\nIn session 0051 it broke, and in sessions 1237 and 1441."
+    tree(root, rule_a=page("rule", "rule-a", body=body))
     write(root / "guppi" / "y.py", "# decision-case-616 stays open\n")
     code, lines = run(root, out)
     assert code == 1
@@ -190,9 +213,60 @@ def test_a_reference_a_link_or_a_session_that_remains_exits_1(tmp_path):
         l.startswith("ship: vault/wiki/rules/rule-a.md:") and "a reference to a case: case 239" in l
         for l in lines
     )
-    assert any("a link to rule-b, which the copy leaves out" in l for l in lines)
-    assert any("a link to brief, which the copy leaves out" in l for l in lines)
     assert any("a mention of a session: session 0051" in l for l in lines)
+    assert any("a mention of a session: sessions 1237 and 1441" in l for l in lines)
+
+
+def test_a_sample_is_no_pointer(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    fenced = "Before.\n\n````showing\n## Case 7 — A sample (case 3)\n````\n\nAfter."
+    render = "enforcement: render\nrender_mode: full\ngoverns: vault/wiki/case-example.md"
+    tree(
+        root,
+        rule_a=page("rule", "rule-a", body=fenced),
+        rule_case_example=page("rule", "rule-case-example", extra=render, render="## Case 1 — x"),
+    )
+    write(root / "vault" / "wiki" / "case-example.md", "Cart (case 717.1).\n\n## Case 1 — x\n")
+    write(
+        root / "vault" / "wiki" / "decisions" / "schema.yaml",
+        "description: |\n  A slug `decision-case-18.1`.\n  ```\n  case 4\n  ```\n",
+    )
+    code, lines = run(root, out)
+    assert (code, lines) == (0, [])
+    text = (out / "vault" / "wiki" / "rules" / "rule-a.md").read_text(encoding="utf-8")
+    assert "## Case 7 — A sample (case 3)" in text
+    example = (out / "vault" / "wiki" / "case-example.md").read_text(encoding="utf-8")
+    assert example == "Cart (case 717.1).\n\n## Case 1 — x\n"
+
+
+def test_review_lists_a_bracket_with_words_and_sets_no_exit_code(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    body = "One (case 12). Two (the folder, case 73)."
+    tree(root, rule_a=page("rule", "rule-a", body=body))
+    stdout = io.StringIO()
+    code = ship.run(
+        ["--review", str(out)], stdout=stdout, stderr=io.StringIO(), project_dir=root, now=NOW
+    )
+    lines = stdout.getvalue().splitlines()
+    assert code == 0
+    assert len(lines) == 1
+    assert lines[0].startswith("ship: vault/wiki/rules/rule-a.md:")
+    assert lines[0].endswith("a bracket with words: (the folder, case 73)")
+
+
+def test_check_judges_the_files_outside_the_vault_in_place(tmp_path):
+    root = tmp_path / "p"
+    body = "Since case 239 it reads."
+    tree(root, rule_a=page("rule", "rule-a", body=body))
+    write(root / "guppi" / "y.py", "# since case 5 it reads\n# a note (as set in case 6)\n")
+    write(root / "uv.lock", "case 9\n")
+    before = written(root)
+    stdout = io.StringIO()
+    code = ship.run(["--check"], stdout=stdout, stderr=io.StringIO(), project_dir=root, now=NOW)
+    assert code == 1
+    assert stdout.getvalue().splitlines() == ["ship: guppi/y.py:1: a reference to a case: case 5"]
+    assert written(root) == before
+    assert (root / "guppi" / "y.py").read_text(encoding="utf-8").endswith("(as set in case 6)\n")
 
 
 def test_a_section_of_a_loose_page_exits_1(tmp_path):

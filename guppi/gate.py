@@ -192,7 +192,7 @@ def run(
             if empty:
                 if typed(payload):
                     advice = ", then type /retro again."
-                else:  # case 531.15: a stop, not a call in the next reply
+                else:  # a stop, not a call in the next reply (case 531.15)
                     advice = (
                         ". This refusal is a stop of vault/wiki/where-to-stop.md: end your "
                         "reply with the question to the person."
@@ -237,8 +237,9 @@ def run(
 
 
 def case_key(text: str) -> tuple:
-    """`case 12.3` sorts after `case 9` and before `case 12.10`, by the sort key of
-    `guppi/caseid.py`, an id of a sprint beside its sprint (case 788.2)."""
+    """The sort key of a Case named as in a refusal: id `12.3` sorts after id `9` and before
+    id `12.10`, by the sort key of `guppi/caseid.py`, an id of a sprint beside its sprint
+    (case 788.2)."""
     from guppi.caseid import sort_key
 
     return sort_key(text.removeprefix("case ").strip())

@@ -16,8 +16,8 @@ same, nothing written either way; `make lint` runs it after `sprint --check` (ca
 Once the plain `guppi glossary` wrote the file and exits 0, it ticks every unticked task
 line that opens with a code span holding `guppi glossary` in the `spec.md` of every unit
 under `raw/` whose yaml is applied whole — the Spec's bookkeeping, never a tick in the
-glossary itself; `--check` and an exit 1 tick nothing (case 306.6; the helper is
-`render.tick_command_lines`). The librarian runs the script after `sprint`, before the
+glossary itself; `--check` and an exit 1 tick nothing; the helper is
+`render.tick_command_lines` (case 306.6). The librarian runs the script after `sprint`, before the
 brief, and the governed-files hook refuses a hand edit (`governs` on `rule-glossary`);
 a term changes by an `update` of `entity-glossary`. Rule page:
 `vault/wiki/rules/rule-glossary.md`.
@@ -136,7 +136,7 @@ def run(argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None 
         print(error, file=stderr)
         return 1
     target = wiki / "glossary.md"
-    if args.check:  # case 306.5: compare, name, write nothing
+    if args.check:  # compare, name, write nothing (case 306.5)
         current = target.read_text(encoding="utf-8") if target.is_file() else None
         if current == text:
             return 0

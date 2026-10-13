@@ -3167,3 +3167,75 @@ def test_a_defer_of_an_insight_live_or_archived_in_an_insights_folder_is_none(tm
 
 def test_a_defer_of_an_entity_with_no_page_is_none(tmp_path):
     assert check_kind_defer(tmp_path, "entity-later", "entity") == (0, "", "")
+
+
+# --- a pointer outside its bracket in the new text of a core page (case 807.4) -----------
+
+
+def with_core_rule(project_dir, slug="rule-x", core=True):
+    folder = project_dir / "vault" / "wiki" / "rules"
+    folder.mkdir(parents=True, exist_ok=True)
+    text = "---\ntype: rule\nstatus: built\n" + ("core: true\n" if core else "")
+    text += "---\n\n## Purpose\n\nOld text.\n"
+    (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+POINTER = "case 1: update rule-x: a pointer outside a bracket of its own: "
+
+
+def pointer_findings(project_dir, item, kind="update"):
+    return prespec.check_pointers({"1": {kind: [item]}}, project_dir)
+
+
+def test_a_pointer_outside_a_bracket_in_the_new_text_of_a_core_page_is_a_finding(tmp_path):
+    with_core_rule(tmp_path)
+    item = {
+        "slug": "rule-x",
+        "replace": [{"old": "Old text.", "new": "New text, as set in case 12."}],
+        "sections": {"Purpose": "Since session 0051 it reads."},
+        "set": {"purpose": "Prevents x; see decision-case-7"},
+        "change": "a change (case 1)",
+    }
+    assert pointer_findings(tmp_path, item) == [
+        POINTER + "a reference to a case: case 12",
+        POINTER + "a mention of a session: session 0051",
+        POINTER + "a reference to a decision: decision-case-7",
+    ]
+
+
+def test_a_pointer_finding_names_the_case_the_page_and_the_pointer(tmp_path):
+    item = {"slug": "rule-y", "core": True, "purpose": "Prevents y since case 3"}
+    (finding,) = pointer_findings(tmp_path, item, kind="create")
+    assert finding.startswith("case 1: create rule-y: ")
+    assert finding.endswith("case 3")
+
+
+def test_a_pointer_is_judged_by_the_judgment_of_guppi_ship():
+    from guppi import ship
+
+    assert prespec.outside is ship.outside
+
+
+def test_a_pointer_in_a_bracket_a_code_span_or_a_fence_is_no_pointer_finding(tmp_path):
+    with_core_rule(tmp_path)
+    text = "One (as set in case 12). Two `case 13`.\n\n```\ncase 14\n```\n"
+    assert pointer_findings(tmp_path, {"slug": "rule-x", "sections": {"Purpose": text}}) == []
+
+
+def test_a_page_without_core_and_the_change_line_are_not_judged_for_pointers(tmp_path):
+    with_core_rule(tmp_path, core=False)
+    assert pointer_findings(tmp_path, {"slug": "rule-x", "purpose": "since case 5"}) == []
+    with_core_rule(tmp_path)
+    assert pointer_findings(tmp_path, {"slug": "rule-x", "change": "since case 5"}) == []
+    item = {"slug": "rule-x", "set": {"core": False}, "purpose": "since case 5"}
+    assert pointer_findings(tmp_path, item) == []
+
+
+def test_the_context_of_a_case_is_not_judged_for_pointers_and_check_prints_one(tmp_path):
+    with_core_rule(tmp_path)
+    plan = PLAN.replace("> Something.", "> Since case 9 it reads.").replace(
+        "    change: one line", "    change: one line\n    purpose: Prevents x since case 4"
+    )
+    _, out, _ = check(tmp_path, plan=plan)
+    pointers = [line for line in out.splitlines() if "a pointer outside" in line]
+    assert pointers == [POINTER + "a reference to a case: case 4"]

@@ -1,6 +1,6 @@
 """`guppi pageread` — the `PreToolUse` hook on `Read` that reads a vault page without its
 `## History`; `guppi pageread --after` — the `PostToolUse` hook that says where the History
-starts (`rule-page-read`, case 420.1).
+starts (`rule-page-read`) (case 420.1).
 
 Before. For a `Read` of a file under `vault/wiki/` whose input carries neither `offset` nor
 `limit`, the hook finds the line of the page's own `## History` heading by

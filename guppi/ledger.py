@@ -499,9 +499,9 @@ def hi_moment(logs: list[tuple[str, str]], stamp: str) -> tuple[str, str] | None
     """`(date, time)` of the `hi` that opens this session's window: the first `hi` of this
     stamp after its first `session-start`, over the `(date, text)` logs of
     `session_event_logs` in date order; lines of other sessions are skipped (case 111.3).
-    A stamped `hi` is the one opener: the fallback of case 111.6 — a `--------` `hi` bound
-    by position, for the sessions opened before the hook — was removed once those sessions
-    had closed (case 136.3)."""
+    A stamped `hi` is the one opener: the old fallback — a `--------` `hi` bound by position,
+    for the sessions opened before the hook — was removed once those sessions had closed
+    (cases 111.6, 136.3)."""
     ours = False
     for day, text in logs:
         for line in text.splitlines():
@@ -946,7 +946,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         told = own_refusals(payload, COMMAND)
         seen = existing_bodies(project_dir)
         fresh = [timed(line, now) for line in session_lines(payload) if body(line) not in seen]
-        strays = stray_lines(reply_text(payload))  # case 695.1: the reply just finished alone
+        strays = stray_lines(reply_text(payload))  # the reply just finished alone (case 695.1)
         if not fresh and not strays:
             return 0
         stamp = session_stamp(None, payload)
@@ -963,9 +963,10 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         if path is None:
             raise RuntimeError("no session folder for the hi")
         written = path.read_text(encoding="utf-8").splitlines() if path.exists() else []
-        broken = unreadable(fresh)  # case 552.2: judged first, no other refusal
+        broken = unreadable(fresh)  # judged first, no other refusal (case 552.2)
         fresh = [line for line in fresh if line not in broken]
-        refused = refused_readings(  # cases 428.1, 670.1
+        # the readings refused (cases 428.1, 670.1)
+        refused = refused_readings(
             fresh,
             changed_by_session(written + fresh),
             payload,
@@ -974,25 +975,29 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         )
         lessons = refused_lessons(fresh)
         prefixed = {line for line, _ in lessons}
-        tagged = refused_tags(project_dir, now, stamp, fresh, written, prefixed)  # case 703.2
-        marks = refused_marks(fresh, written, prefixed)  # case 497.1
-        taken = refused_taken_sprint(project_dir, fresh)  # case 788.1
+        # the lines with a tag refused (case 703.2)
+        tagged = refused_tags(project_dir, now, stamp, fresh, written, prefixed)
+        marks = refused_marks(fresh, written, prefixed)  # the marks refused (case 497.1)
+        taken = refused_taken_sprint(project_dir, fresh)  # a sprint id taken (case 788.1)
         taken_lines = frozenset(line for line, _ in taken)
-        unopened = [  # case 628.3
+        # the lines written with no sprint open (case 628.3)
+        unopened = [
             line
             for line in refused_without_sprint(project_dir, fresh, written, taken_lines)
             if line not in taken_lines
         ]
-        copied = off_store(  # case 688.7: a line the sprint refuses gets that refusal alone
+        # a line the sprint refuses gets that refusal alone (case 688.7)
+        copied = off_store(
             project_dir,
             now,
             stamp,
             [line for line in fresh if line not in set(unopened) | taken_lines],
         )
         finished = {body(line) for line in ledger_lines(reply_text(payload))}
-        held: list[tuple[str, str]] = []  # case 682.1: asked once, then written as it stands
+        held: list[tuple[str, str]] = []  # asked once, then written as it stands (case 682.1)
         dropped: set[str] = set()
-        for line, slug, cases, beside in unmarked_lessons(  # case 703.3: no hold for a tag
+        # no hold for a tag (case 703.3)
+        for line, slug, cases, beside in unmarked_lessons(
             fresh, written, prefixed | {line for line, _, _ in tagged}
         ):
             message = held_message(slug)
@@ -1014,9 +1019,8 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         fresh = [line for line in fresh if line not in out]
         if fresh:
             append(path, fresh)
-        reminders = [  # case 685.1: after the write, once a stretch
-            reminder_message(slug) for slug, _ in unaddressed(written, fresh, finished)
-        ]
+        # after the write, once a stretch (case 685.1)
+        reminders = [reminder_message(slug) for slug, _ in unaddressed(written, fresh, finished)]
         messages = [
             "ledger: line not written — the grammar of a ledger line does not read it: "
             f"{body(line)}. Write it again in the form of the table in ratification.md."
@@ -1038,7 +1042,8 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                     f"ledger: lesson[{slug}] not written — a lesson slug starts with lesson-, "
                     "then the area, then the cause: write the line again with the prefix."
                 )
-        messages += [  # case 703.2
+        # the messages on the tags (case 703.2)
+        messages += [
             tag_message(slug, tags) for line, slug, tags in tagged if body(line) in finished
         ]
         for line, slug, case, subs in marks:
@@ -1051,7 +1056,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                     f"no decision line before it in this session{named}: write the line again "
                     "after the decision line of the Case that closed the cause, naming that Case."
                 )
-        for line, sprint in taken:  # case 788.1
+        for line, sprint in taken:  # the sprint ids taken (case 788.1)
             if body(line) in finished:
                 messages.append(
                     f"ledger: line not written — the sprint id {sprint} is taken: a live or "
@@ -1066,13 +1071,14 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                     "the line; a defer, a reading and a lesson pass."
                 )
         messages += [message for _, message in held]
-        messages += list(  # case 688.7: one line per held Case
+        # one line per held Case (case 688.7)
+        messages += list(
             dict.fromkeys(
                 off_store_message(case) for line, case in copied if body(line) in finished
             )
         )
         messages += reminders
-        loud = untold(messages, told, payload)  # case 577.3: each refused line once a stretch
+        loud = untold(messages, told, payload)  # each refused line once a stretch (case 577.3)
         for message in loud:
             print(message, file=stderr)
         if loud:

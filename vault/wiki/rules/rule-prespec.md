@@ -12,6 +12,7 @@ origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow, harness]
+core: true
 ---
 
 ## Purpose
@@ -199,3 +200,4 @@ Inside this loop the rule of `vault/wiki/orchestration.md` that no Case is taken
 - 2026-10-08 status: draft → built · cascade
 - 2026-10-09 updated: a horizontal rule stands between the rounds of two Cases in the loop after the findings (case 751.3) · [[decision-case-751.3]]
 - 2026-10-12 updated: the ask-guppi run at pre-spec is also asked whether the When or Then of a Criterion needs a reading only a later session can take (case 782) · [[decision-case-782.1]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

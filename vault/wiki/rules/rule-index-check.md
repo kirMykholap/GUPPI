@@ -12,6 +12,7 @@ origin: raw/2026-09-10/ledger.md#case-35.1
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, librarian]
+core: true
 ---
 
 ## Purpose
@@ -45,3 +46,4 @@ When the index line does not settle same or near, open the page and name it in t
 - 2026-09-20 updated: Pre-task → the vault query before the Case (case 277.4) · [[decision-case-277.4]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

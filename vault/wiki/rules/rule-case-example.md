@@ -12,6 +12,7 @@ origin: raw/2026-10-07/1804/ledger.md#case-717.1
 sprint: migration
 created: 2026-10-07
 tags: [session, workflow, harness]
+core: true
 ---
 
 ## Purpose
@@ -152,3 +153,4 @@ update:
 - 2026-10-07 estimate estimate-case-example-passes-the-check added · [[decision-case-717.1]]
 - 2026-10-07 status: draft → built · cascade
 - 2026-10-08 updated: the cart Estimate of both examples names a make target, the form a MOC's Estimate takes (case 735) · [[decision-case-735]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

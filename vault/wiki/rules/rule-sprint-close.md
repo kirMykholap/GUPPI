@@ -11,6 +11,7 @@ origin: raw/2026-10-03/0317/ledger.md#case-612.1
 sprint: migration
 created: 2026-10-03
 tags: [sprint, workflow]
+core: true
 ---
 
 ## Purpose
@@ -37,3 +38,4 @@ Prevents a closed sprint from leaving its finished work among the live pages, so
 - 2026-10-09 updated: the close moves the old event logs to the archive (case 743.3) · [[decision-case-743.3]]
 - 2026-10-09 estimate estimate-sprint-close-moves-old-event-logs added · [[decision-case-743.3]]
 - 2026-10-10 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

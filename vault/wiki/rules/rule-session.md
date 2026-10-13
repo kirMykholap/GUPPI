@@ -9,6 +9,7 @@ origin: raw/2026-09-22/1121/ledger.md#case-316
 sprint: migration
 created: 2026-09-22
 tags: [session, workflow]
+core: true
 ---
 
 ## Purpose
@@ -22,3 +23,4 @@ Prevents a phase of the session from running out of its turn. A session is five 
 - 2026-10-09 child rule-skill-sprint-open added · [[decision-case-743.6]]
 - 2026-10-09 child rule-skill-sprint-close added · [[decision-case-743.8]]
 - 2026-10-09 updated: the children are the five phases alone; the two sprint skill pages hang under their phases (case 746.1) · [[decision-case-746.1]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

@@ -12,6 +12,7 @@ origin: raw/2026-09-22/0014/ledger.md#case-304.5
 sprint: migration
 created: 2026-09-22
 tags: [harness, render, schema]
+core: true
 ---
 
 ## Purpose
@@ -138,3 +139,4 @@ examples:
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-04 updated: a new error Lesson is archived at the close of its sprint (case 627.2) · [[decision-case-627.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

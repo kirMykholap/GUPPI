@@ -12,6 +12,7 @@ origin: raw/2026-09-28/1318/ledger.md#case-477.2
 sprint: migration
 created: 2026-09-28
 tags: [harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -47,3 +48,4 @@ Change no option and no recommendation. End with the open question, asked again.
 - 2026-09-29 defer by decision-case-496 superseded · [[decision-case-502]]
 - 2026-09-29 updated: the re-pitch quotes a real line with its path, found by the main agent or located through case-guppi, never a made-up one; options follow the question shape of the grill-me template (case 502) · [[decision-case-502]]
 - 2026-09-30 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

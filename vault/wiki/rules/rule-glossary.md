@@ -13,6 +13,7 @@ origin: raw/2026-09-22/0014/ledger.md#case-306.4
 sprint: migration
 created: 2026-09-22
 tags: [harness, workflow, librarian, session]
+core: true
 ---
 
 ## Purpose
@@ -26,3 +27,4 @@ Prevents `vault/wiki/glossary.md` from drifting from the terms of `entity-glossa
 - 2026-09-22 updated: the edge to entity-glossary, dropped by materialize as unknown against the old schema in session 0014 (case 308.1) · [[decision-case-308.1]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

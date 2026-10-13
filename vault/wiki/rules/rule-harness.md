@@ -10,6 +10,7 @@ origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -67,3 +68,4 @@ Prevents the tools of the harness from drifting apart from the pages that descri
 - 2026-10-13 updated: the Bash guard named with its third reason (case 796.1) · [[decision-case-796.1]]
 - 2026-10-13 child rule-powershell-guard added · [[decision-case-796.2]]
 - 2026-10-13 updated: the PowerShell guard named among the rules in no pipeline (case 796.2) · [[decision-case-796.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

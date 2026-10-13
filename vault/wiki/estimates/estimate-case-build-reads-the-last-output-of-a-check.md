@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-case-build]]"
-purpose: Whether case-guppi, before it recommends an option that rests on whether a check passes, reads what that check printed at its last run, from the brief, judges the option against it, or by the state at the moment the check runs where another Case of the session changes the check or the pages it reads, and names it in context, or says in the After line and context that the output was not read
+purpose: Whether case-guppi, before it recommends an option that rests on whether a check passes, reads what that check printed at its last run, from the brief, judges the option against it, or by the state at the moment the check runs where another Case of the session changes the check or the pages it reads, and quotes it with its source in context, or says in the After line and context that the output was not read
 method: "by hand at the Retro of this session: the new Render of rule-case-build in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
+checked: 2026-10-13
 origin: raw/2026-10-13/1426/ledger.md#case-798.2
 sprint: plugin
 created: 2026-10-13
@@ -24,9 +25,11 @@ Before it recommends that option, it reads what that check printed at its last r
 
 ## Result
 
-2026-10-13, Retro of session 1426, the new Render sentence of rule-case-build in raw/2026-10-13/1426/spec.md (case 798.2) read against the Criterion: it reads the last output from ## Flags and ## Readings at the close of the brief, judges the option against it, defers to the state at the moment the check runs where another Case of the session changes the check, and says in the After line and context when the output was not read; but it says only that `context` names that output, not that it quotes it with its source, which the first Then line asks
+2026-10-13, Retro, the new Render of rule-case-build in raw/2026-10-13/1753/spec.md (Case 801) read against the Criterion; the sentence reads the last output from `## Flags` and `## Readings at the close` of vault/wiki/brief.md before it recommends, and now says "`context` quotes that output with its source", the word the first Then line asks; the After line and context still say when the output was not read, and the sentence of case 797.1 keeps the state at the moment the check runs
 
 ## History
 
 - 2026-10-13 created · [[decision-case-798.2]]
 - 2026-10-13 status: pending → failed · raw/2026-10-13/1426/ledger.md#L28
+- 2026-10-13 updated: the Criterion written again whole and the purpose set to quote the output with its source, after the failed reading of session 1426 (case 801) · [[decision-case-801]]
+- 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L114

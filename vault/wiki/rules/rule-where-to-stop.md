@@ -11,6 +11,7 @@ origin: raw/2026-09-29/2024/ledger.md#case-531.7
 sprint: migration
 created: 2026-09-29
 tags: [session, workflow, harness, render]
+core: true
 ---
 
 ## Purpose
@@ -49,3 +50,4 @@ To stop, end the reply with the question to the person. From the call of `/retro
 - 2026-10-08 updated: a refusal of the auto mode classifier is a stop: the person runs the command after ! (case 741) · [[decision-case-741]]
 - 2026-10-11 updated: condition 6 also covers a refused merge or branch deletion in the merge tasks of the opening Case of a sprint · [[decision-case-775.3]]
 - 2026-10-13 updated: condition 6 covers a refused git or gh command in the merge tasks of the opening Case of a sprint, of a review Case and of a merge Case, and a conflict that a merge Case does not settle · [[decision-case-789.3]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

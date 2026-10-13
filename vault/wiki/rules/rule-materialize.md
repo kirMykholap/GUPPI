@@ -11,6 +11,7 @@ origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, ledger]
+core: true
 ---
 
 ## Purpose
@@ -136,3 +137,4 @@ ratified and its work not done (case 190.3). A reading — an `estimate` line �
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-09 estimate estimate-materialize-fills-the-type-from-the-category added · [[decision-case-748.1]]
 - 2026-10-12 updated: the superseded_by of an entry is a list, one Case per line that retires it (case 776) · [[decision-case-776]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

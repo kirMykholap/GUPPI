@@ -11,6 +11,7 @@ origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
 created: 2026-09-09
 tags: [harness, render]
+core: true
 ---
 
 ## Purpose
@@ -48,3 +49,4 @@ edited by hand, the page follows or does not, and the vault stops being the sour
 - 2026-09-28 updated: the render fills the language placeholders of a Render from rule-guppi-config; How it works left for the docstring of guppi/render.py (cases 193, 476.1) · [[decision-case-476.1]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

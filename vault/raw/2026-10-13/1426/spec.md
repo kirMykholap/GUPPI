@@ -297,7 +297,7 @@ update:
 - [x] update `rule-hook-registry`
 - [x] update `rule-harness`
 - [x] `uv run guppi render`: `.claude/settings.json`
-- [ ] read `estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter`
+- [x] read `estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter`
 ```
 
 ## Case 797 — A Case is judged by the state at the moment its check or reading runs

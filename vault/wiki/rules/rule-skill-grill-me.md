@@ -12,6 +12,7 @@ origin: raw/2026-09-26/2300/ledger.md#case-443.1
 sprint: migration
 created: 2026-09-26
 tags: [harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -78,3 +79,4 @@ The session is done when the frontier is empty: every branch of the design tree 
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-09 updated: the After line of an option stands with no list dash, and a quotation or a list under it is indented as far as the label (case 744.1) · [[decision-case-744.1]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

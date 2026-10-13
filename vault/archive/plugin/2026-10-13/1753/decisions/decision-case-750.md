@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "750"
-status: current
+status: archived
 defer: ["[[rule-morph]]"]
+superseded_by: ["[[decision-case-802]]"]
 origin: raw/2026-10-09/0200/ledger.md#case-750
 sprint: migration
 created: 2026-10-09
@@ -26,3 +27,6 @@ The initiation at install: the person sets the category set of the project and t
 ## History
 
 - 2026-10-09 created · raw/2026-10-09/0200/ledger.md#case-750
+- 2026-10-13 superseded by decision-case-802 · [[decision-case-802]]
+- 2026-10-13 archived · superseded
+- 2026-10-13 archived · cleanup

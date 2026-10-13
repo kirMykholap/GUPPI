@@ -13,6 +13,7 @@ origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
 tags: [session, harness]
+core: true
 ---
 
 ## Purpose
@@ -126,3 +127,4 @@ copies of one text, kept identical by hand.
 - 2026-10-10 status: built → draft · cascade
 - 2026-10-12 updated: an open W line of an Estimate of the live sprint page whose reading cannot run now stays open under Work and makes no Cases line (case 778) · [[decision-case-778]]
 - 2026-10-12 updated: an open W line whose reading cannot run now stays open under Work and makes no Cases line (case 781) · [[decision-case-781.8]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

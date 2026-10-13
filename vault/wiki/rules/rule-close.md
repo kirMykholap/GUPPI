@@ -12,6 +12,7 @@ origin: raw/2026-09-10/ledger.md#case-36.1
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, git, librarian]
+core: true
 ---
 
 ## Purpose
@@ -41,3 +42,4 @@ pages archived, the flags you raised, the lint total. Nothing else.
 - 2026-09-28 updated: the commit takes guppi.toml, the settings file rendered at the root (case 482) · [[decision-case-482]]
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

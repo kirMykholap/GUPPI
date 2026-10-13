@@ -12,6 +12,7 @@ origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
 tags: [session, harness]
+core: true
 ---
 
 ## Purpose
@@ -56,3 +57,4 @@ prints the paths of these lines back (case 287). `where-to-stop.md` is listed af
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-02 status: draft → built · cascade
 - 2026-10-06 updated: /hi loads where-to-stop.md after orchestration.md (case 689.1) · [[decision-case-689.1]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

@@ -11,6 +11,7 @@ origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
 created: 2026-09-09
 tags: [session, hooks, harness]
+core: true
 ---
 
 ## Purpose
@@ -57,3 +58,4 @@ The hook never fails the session on an error: any error goes to stderr and the e
 - 2026-09-27 updated: no hi line outside plan mode; the refusal exits 2 (case 445.6) · [[decision-case-445.6]]
 - 2026-09-27 status: built → draft · cascade
 - 2026-10-03 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

@@ -13,6 +13,7 @@ origin: raw/2026-09-16/2238/ledger.md#case-209
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow, harness, librarian, sprint]
+core: true
 ---
 
 ## Purpose
@@ -64,3 +65,4 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-10-04 status: draft → built · cascade
 - 2026-10-09 updated: with no live sprint page, guppi sprint writes sprint.md with the closed sprint marked, and exits 0 (case 743.5) · [[decision-case-743.5]]
 - 2026-10-09 estimate estimate-sprint-marks-a-closed-sprint added · [[decision-case-743.5]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

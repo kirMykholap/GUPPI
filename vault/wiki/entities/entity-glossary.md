@@ -10,6 +10,7 @@ origin: raw/2026-09-22/0014/ledger.md#case-306.3
 sprint: migration
 created: 2026-09-22
 tags: [session, harness]
+core: true
 ---
 
 ## Purpose
@@ -111,3 +112,4 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 - 2026-10-12 updated: Types: a defer writes no placeholder for an Estimate (case 783) · [[decision-case-783.1]]
 - 2026-10-13 updated: Types: a defer writes a placeholder only for a rule or an entity (case 786) · [[decision-case-786.1]]
 - 2026-10-13 updated: Librarian: the only writer to wiki/ but for what a merge of main by /merge-main writes (case 790) · [[decision-case-790]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

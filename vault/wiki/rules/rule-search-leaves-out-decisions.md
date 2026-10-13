@@ -13,6 +13,7 @@ origin: raw/2026-10-05/0109/ledger.md#case-640
 sprint: migration
 created: 2026-10-05
 tags: [harness, workflow, session]
+core: true
 ---
 
 ## Purpose
@@ -38,3 +39,4 @@ This file binds the main agent, `ask-guppi` and `case-guppi` (case 640). The lib
 - 2026-10-05 estimate estimate-search-leaves-out-decisions-by-the-grep-hook added · [[decision-case-664.1]]
 - 2026-10-05 updated: a PreToolUse hook on Grep adds !**/decisions/** at the end of the glob in every agent, a Grep inside decisions/ left unchanged; the Render keeps the rule on reads; purpose set anew (case 664.1) · [[decision-case-664.1]]
 - 2026-10-05 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

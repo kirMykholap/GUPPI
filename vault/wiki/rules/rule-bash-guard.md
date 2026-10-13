@@ -11,6 +11,7 @@ origin: raw/2026-09-14/1029/ledger.md#case-127
 sprint: migration
 created: 2026-09-14
 tags: [hooks, harness]
+core: true
 ---
 
 ## Purpose
@@ -31,3 +32,4 @@ Prevents a heredoc from carrying a backslash escape, writing a file or feeding a
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 status: draft → built · cascade
 - 2026-10-13 updated: a heredoc whose marker line runs an interpreter is refused; How it works removed by hand, a one-off, its facts in the docstring of guppi/bashguard.py (case 796.1) · [[decision-case-796.1]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "758"
-status: current
+status: archived
 defer: ["[[rule-morph]]"]
+superseded_by: ["[[decision-case-802]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-758
 sprint: plugin
 created: 2026-10-10
@@ -26,3 +27,6 @@ The initiation at install: the person sets the category set of the project, held
 ## History
 
 - 2026-10-10 created · raw/2026-10-10/1713/ledger.md#case-758
+- 2026-10-13 superseded by decision-case-802 · [[decision-case-802]]
+- 2026-10-13 archived · superseded
+- 2026-10-13 archived · cleanup

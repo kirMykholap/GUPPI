@@ -12,6 +12,7 @@ origin: raw/2026-09-12/ledger.md#case-85.4
 sprint: migration
 created: 2026-09-12
 tags: [harness, session]
+core: true
 ---
 
 ## Purpose
@@ -35,3 +36,4 @@ own and not a line of the registry (case 85.4).
 - 2026-09-13 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

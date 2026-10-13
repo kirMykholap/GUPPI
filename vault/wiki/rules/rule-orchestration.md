@@ -12,6 +12,7 @@ origin: raw/2026-10-02/1834/ledger.md#case-595.2
 sprint: migration
 created: 2026-09-25
 tags: [session, workflow, harness]
+core: true
 ---
 
 ## Purpose
@@ -191,3 +192,4 @@ The reply that acknowledges a ratification has four parts, in this order: the `L
 - 2026-10-12 updated: a defer of an Estimate names a page that stands; a check not yet created is put off through the page it would check, and a pre-spec finding on such a defer is fixed by a new short Case that supersedes it (case 783) · [[decision-case-783.2]]
 - 2026-10-13 updated: a defer of an Insight, a Lesson or a Decision page names a page that stands; a pre-spec finding on one with no page is fixed by a new short Case that supersedes it (case 786) · [[decision-case-786.2]]
 - 2026-10-13 updated: the main agent takes the id of a new top-level Case from uv run guppi caseid --next (case 788.2) · [[decision-case-788.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-estimates-schema]]"
 purpose: An Estimate page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: pytest tests/test_schemas.py -k estimate on the live vault/wiki/estimates/schema.yaml — a page in the shape, a page without method, then one defect at a time; the live reading make lint, no schema finding on wiki/estimates/
-checked: 2026-10-12
+checked: 2026-10-13
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
@@ -18,15 +18,16 @@ When:
 `guppi render` writes `vault/wiki/estimates/schema.yaml` from `rule-estimates-schema`, and `guppi lint` reads a page of `vault/wiki/estimates/`.
 
 Then:
-The file equals the Render. Lint reads from it: required `type, kind, status, target, method, origin, sprint, created, tags`; optional `purpose, checked, deferred_by`; values `kind: QA | Research`, `status: pending | passed | failed`; the sections `## Criterion` and `## History` required, `## Result` optional, `## Result` required on `passed` and on `failed`.
+The file equals the Render. Lint reads from it: required `type, kind, status, target, method, origin, sprint, created, tags`; optional `purpose, checked, deferred_by, core`; values `kind: QA | Research`, `status: pending | passed | failed`, `core: true`; the sections `## Criterion` and `## History` required, `## Result` optional, `## Result` required on `passed` and on `failed`.
 **＋** An Estimate page with these fields, values and sections has no `schema` finding; one lacking a required field, with a value outside the list, with a conditional not met or lacking a required section has one finding per defect.
 **＋** An Estimate page without a `method` field has the finding `schema: missing field method`.
-**＋** `fields` and `sections` describe each name of these lists; `description` holds, among its paragraphs, the introduction, the `failed` paragraph, the fields deliberately absent, the two kinds, and the Result and Criterion paragraph; `examples` holds the example pages.
+**＋** An Estimate page in the shape with `core: true`, `origin: guppi` and `sprint: guppi` has no `schema` finding.
+**＋** `fields` and `sections` describe each name of these lists, `core` among them, and the descriptions of `origin` and `sprint` name the value `guppi` on a page with `core: true` in the clean version; `description` holds, among its paragraphs, the introduction, the `failed` paragraph, the fields deliberately absent, the two kinds, and the Result and Criterion paragraph; `examples` holds the example pages.
 **－** `description`, `fields` and `sections` name no `unmigrated` count, no recut of an older page, no `## Context` or `## Method` section, and no `Given:` kept on an older page.
 
 ## Result
 
-2026-10-12, uv run pytest tests/test_schemas.py -k estimate: 7 passed, 1 skipped, an Estimate in the shape with deferred_by has no schema finding; the new Render of rule-estimates-schema in raw/2026-10-12/1604/spec.md (Case 781.7) lists optional [purpose, checked, deferred_by] and describes deferred_by under fields; the live schema.yaml follows at the librarian's render.
+2026-10-13, uv run pytest tests/test_schemas.py -k estimate: 8 passed, 1 skipped, the new shipped-page test among them; the new Render in raw/2026-10-13/1753/spec.md (Case 804.3) adds core to optional and values, the core description and the value guppi to origin and sprint; the live schema.yaml follows at the librarian's render
 
 ## History
 
@@ -45,3 +46,5 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 - 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L32
 - 2026-10-12 updated: the Criterion replaced whole — deferred_by is an optional field of an Estimate page · [[decision-case-781.7]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/1604/ledger.md#L27
+- 2026-10-13 updated: the Criterion replaced whole — the field core and the shipped values (case 804) · [[decision-case-804.3]]
+- 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L118

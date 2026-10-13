@@ -12,6 +12,7 @@ origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
 tags: [session, workflow, harness, render]
+core: true
 ---
 
 ## Purpose
@@ -123,3 +124,4 @@ When the review is done, commit the work: `make style` clean, `make test` green 
 - 2026-10-07 updated: the answer to a refusal of the ledger hook after Retro leaves out a refused line that is no record, and goes on to /handoff when nothing is left to write · [[decision-case-695.2]]
 - 2026-10-10 updated: Retro leaves an Estimate of the live sprint page whose work is not done pending, its read line neither debt nor the librarian's, and names it under Ask the person once its work is done when the person's answer reads it (case 772.2) · [[decision-case-772.2]]
 - 2026-10-12 updated: Retro leaves an Estimate whose method waits for an event that has not come pending, its read line neither debt nor the librarian's, and the handoff names it with its event (case 781) · [[decision-case-781.3]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

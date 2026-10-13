@@ -12,6 +12,7 @@ origin: raw/2026-09-22/0014/ledger.md#case-304.7
 sprint: migration
 created: 2026-09-22
 tags: [harness, render, schema]
+core: true
 ---
 
 ## Purpose
@@ -132,3 +133,4 @@ examples:
 - 2026-10-05 updated: the page of a sub-case is superseded with its parent (case 660.3) · [[decision-case-660.3]]
 - 2026-10-06 updated: a Decision page already archived stays archived when a later Case supersedes it (case 683) · [[decision-case-683]]
 - 2026-10-13 updated: the slug and the field case show an id that carries its sprint (case 788.2) · [[decision-case-788.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

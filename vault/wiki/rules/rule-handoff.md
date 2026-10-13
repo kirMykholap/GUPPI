@@ -12,6 +12,7 @@ origin: raw/2026-09-10/ledger.md#case-38.3
 sprint: migration
 created: 2026-09-10
 tags: [session, workflow, harness, render]
+core: true
 ---
 
 ## Purpose
@@ -68,3 +69,4 @@ Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box`
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-10 updated: Debt names an Estimate of the live sprint page that Retro left pending, with its moment (case 772.3) · [[decision-case-772.3]]
 - 2026-10-12 updated: Debt names an Estimate whose method waits for an event that has not come, which Retro left pending, with its event (case 781) · [[decision-case-781.4]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

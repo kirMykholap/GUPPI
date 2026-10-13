@@ -12,6 +12,7 @@ origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, ledger]
+core: true
 ---
 
 ## Purpose
@@ -146,3 +147,4 @@ entry never stops the run: it is marked `failed`, reported, and the rest apply (
 - 2026-10-13 updated: a defer with no page writes a placeholder only for a rule or an entity; any other kind fails as an entry (case 786) · [[decision-case-786.1]]
 - 2026-10-13 updated: a merge of main by /merge-main writes the joined text of a conflicted page and git joins log.md and tags.md (case 790) · [[decision-case-790]]
 - 2026-10-13 deferred · [[decision-case-793]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

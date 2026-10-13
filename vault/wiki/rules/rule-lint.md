@@ -11,6 +11,7 @@ origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
 tags: [harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -87,3 +88,4 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-10-03 estimate estimate-lint-reports-a-method-tied-to-a-one-off-moment added · [[decision-case-613.1]]
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-13 updated: a pending Estimate whose method waits for a later moment is no longer red; a failed one still is (case 799) · [[decision-case-799]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

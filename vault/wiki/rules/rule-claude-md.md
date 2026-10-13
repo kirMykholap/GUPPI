@@ -13,6 +13,7 @@ origin: raw/2026-09-12/ledger.md#case-59.8
 sprint: migration
 created: 2026-09-12
 tags: [harness, render]
+core: true
 ---
 
 ## Purpose
@@ -75,3 +76,4 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 - 2026-10-02 updated: the texts that arrive with /hi are orchestration.md and ratification.md, the one rule opens ratification.md (case 595.4) · [[decision-case-595.4]]
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-02 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

@@ -11,6 +11,7 @@ origin: raw/2026-09-22/1121/ledger.md#case-315
 sprint: migration
 created: 2026-09-22
 tags: [harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -27,3 +28,4 @@ No file of `wiki/` is written by hand, but for what a merge of `main` by `/merge
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-13 updated: a merge of main by /merge-main writes the joined text of a conflicted page and git joins log.md and tags.md (case 790) · [[decision-case-790]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

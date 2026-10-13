@@ -13,6 +13,7 @@ origin: raw/2026-10-08/2352/ledger.md#case-743.6
 sprint: migration
 created: 2026-10-08
 tags: [sprint, workflow, harness]
+core: true
 ---
 
 ## Purpose
@@ -60,3 +61,4 @@ No sprint is open: the first heading of `vault/wiki/sprint.md` marks the last sp
 - 2026-10-13 estimate estimate-skill-sprint-open-refuses-a-taken-sprint-id added · [[decision-case-788.1]]
 - 2026-10-13 updated: the opening Case of a sprint pushes the closed sprint and opens its pull request into main; for the owner it merges it after its checks pass; the last milestone names /merge-main before the close · [[decision-case-789.1]]
 - 2026-10-13 updated: the main agent asks the sprint id before the dispatch, and the opening Case is Case <id>-1 (case 788.3) · [[decision-case-788.3]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

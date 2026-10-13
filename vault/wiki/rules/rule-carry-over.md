@@ -12,6 +12,7 @@ origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow, harness, render]
+core: true
 ---
 
 ## Purpose
@@ -72,3 +73,4 @@ materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki
 - 2026-09-30 status: built → draft · cascade
 - 2026-10-02 updated: /carry makes the branch spec/<hi date>-<hi HHMM> at its commit and stays on the current branch (case 591.1) · [[decision-case-591.1]]
 - 2026-10-03 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

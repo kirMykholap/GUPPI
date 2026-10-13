@@ -12,6 +12,7 @@ origin: raw/2026-09-22/0014/ledger.md#case-306.1
 sprint: migration
 created: 2026-09-22
 tags: [harness, render, schema]
+core: true
 ---
 
 ## Purpose
@@ -44,10 +45,11 @@ description: |
   No body section is derived from a ref field: `estimates`, `children`, `parent`, `rules` and `code_ref` are the link, seen by Obsidian since case 148.1 (case 166.1). `deferred_by` is written on a defer and cleared on a `supersedes` by `guppi generate`, under the condition that `rule-case-protocol` sets, never by hand (case 52.3).
 properties:
   required: [type, kind, purpose, status, estimates, origin, sprint, created, tags]
-  optional: [parent, children, code_ref, deferred_by, rules]
+  optional: [parent, children, code_ref, deferred_by, rules, core]
   values:
     kind: [MOC, Leaf]
     status: [draft, built, archived]
+    core: [true]
   conditional:
     - when: {kind: Leaf}
       required: [parent]
@@ -79,9 +81,11 @@ fields:
   code_ref: |
     optional; list of paths. Code, commits or PRs. Allowed on both kinds: a Leaf points at files, a MOC may point at the directory or module it corresponds to. The field is the link; no body section repeats it (case 166.1).
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). The ratified decision that created it.
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
   sprint: |
-    required; the sprint id.
+    required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
+  core: |
+    optional; `true`. The page ships in the clean version of GUPPI that `guppi ship` writes for the branch `prod`; a page without it stays in this repository only. Set by a Case, never by hand (case 804).
   created: |
     required; date.
   tags: |
@@ -167,3 +171,5 @@ examples:
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
 - 2026-09-30 updated: deferred_by is cleared on a supersedes under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]]
+- 2026-10-13 updated: the field core, and the value guppi of origin and sprint on a page of the clean version (case 804) · [[decision-case-804.1]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

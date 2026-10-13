@@ -12,6 +12,7 @@ origin: raw/2026-09-20/1308/ledger.md#case-272.2
 sprint: migration
 created: 2026-09-20
 tags: [harness, render, workflow]
+core: true
 ---
 
 ## Purpose
@@ -44,3 +45,4 @@ is the `## Language` section of `case-schema.md`, which this rule does not repea
 - 2026-09-28 status: draft → built · cascade
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-02 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

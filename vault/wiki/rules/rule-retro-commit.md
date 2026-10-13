@@ -11,6 +11,7 @@ origin: raw/2026-09-10/ledger.md#case-38.2
 sprint: migration
 created: 2026-09-10
 tags: [session, workflow, hooks, harness, git]
+core: true
 ---
 
 ## Purpose
@@ -41,3 +42,4 @@ commits nothing. It sees the agent's calls through the `Skill` tool, and — reg
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-30 updated: the refusal nothing to review on the agent's call names a stop, not a call in the next reply (case 531.15) · [[decision-case-531.15]]
 - 2026-09-30 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

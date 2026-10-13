@@ -14,6 +14,7 @@ origin: raw/2026-10-02/1834/ledger.md#case-595.3
 sprint: migration
 created: 2026-10-02
 tags: [session, workflow, ledger, harness]
+core: true
 ---
 
 ## Purpose
@@ -70,3 +71,4 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file, 
 - 2026-10-04 status: draft → built · cascade
 - 2026-10-13 updated: a Case id carries the id of its sprint and starts again at 1 in each sprint; a plain id is a Case from before sprint ids (case 788.2) · [[decision-case-788.2]]
 - 2026-10-13 estimate estimate-ratification-case-id-carries-the-sprint added · [[decision-case-788.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

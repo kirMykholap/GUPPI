@@ -13,6 +13,7 @@ origin: raw/2026-09-12/ledger.md#case-85.2
 sprint: migration
 created: 2026-09-12
 tags: [harness, render]
+core: true
 ---
 
 ## Purpose
@@ -52,3 +53,4 @@ them all. This page is the file: its body is the whole of `settings.json`, and e
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 status: draft → built · cascade
 - 2026-10-05 updated: the block of rule-permissions also carries what may be read without a question (case 656) · [[decision-case-656]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

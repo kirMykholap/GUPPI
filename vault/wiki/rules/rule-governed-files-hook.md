@@ -11,6 +11,7 @@ origin: raw/2026-09-12/ledger.md#case-59.6
 sprint: migration
 created: 2026-09-12
 tags: [hooks, harness, render]
+core: true
 ---
 
 ## Purpose
@@ -42,3 +43,4 @@ and passes; subagents inherit no project hook.
 - 2026-09-12 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-10-01 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

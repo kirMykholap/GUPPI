@@ -12,6 +12,7 @@ origin: raw/2026-09-30/0248/ledger.md#case-534.1
 sprint: migration
 created: 2026-09-30
 tags: [harness, session]
+core: true
 ---
 
 ## Purpose
@@ -31,3 +32,4 @@ Prevents a Python script that a session runs on Windows from printing through th
 - 2026-09-30 created · [[decision-case-534.1]]
 - 2026-09-30 estimate estimate-python-utf8-output-intact added · [[decision-case-534.1]]
 - 2026-10-01 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

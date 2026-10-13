@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "239"
-status: current
+status: archived
 update: ["[[entity-sprint-migration]]"]
 defer: ["[[rule-morph]]"]
+superseded_by: ["[[decision-case-802]]"]
 origin: raw/2026-09-18/1252/ledger.md#case-239
 sprint: migration
 created: 2026-09-18
@@ -27,3 +28,6 @@ The initiation at install: the person sets the category set of the project — t
 ## History
 
 - 2026-09-18 created · raw/2026-09-18/1252/ledger.md#case-239
+- 2026-10-13 superseded by decision-case-802 · [[decision-case-802]]
+- 2026-10-13 archived · superseded
+- 2026-10-13 archived · cleanup

@@ -12,6 +12,7 @@ origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
 tags: [session, harness, git]
+core: true
 ---
 
 ## Purpose
@@ -53,3 +54,4 @@ The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, aft
 - 2026-10-13 updated: the remote is the repository GUPPI on GitHub; /hi still runs no git pull · [[decision-case-787.2]]
 - 2026-10-13 status: built → draft · cascade
 - 2026-10-13 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

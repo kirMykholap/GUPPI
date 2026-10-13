@@ -12,6 +12,7 @@ origin: raw/2026-09-20/1308/ledger.md#case-272.3
 sprint: migration
 created: 2026-09-20
 tags: [harness, render, workflow]
+core: true
 ---
 
 ## Purpose
@@ -39,3 +40,4 @@ and what is not done; never leave the not-done implied.
 - 2026-09-23 updated: a claim no wider than the output it rests on (case 359) · [[decision-case-359]]
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-30 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

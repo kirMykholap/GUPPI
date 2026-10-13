@@ -10,6 +10,7 @@ origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow]
+core: true
 ---
 
 ## Purpose
@@ -60,3 +61,4 @@ touches no Estimate; an `update` of a `Render` touches no Estimate of the live r
 - 2026-10-09 updated: child rule-skill-sprint-close added (case 746.1) · [[decision-case-746.1]]
 - 2026-10-13 child rule-skill-pr-review added · [[decision-case-789.2]]
 - 2026-10-13 child rule-skill-merge-main added · [[decision-case-790]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

@@ -11,6 +11,7 @@ origin: raw/2026-09-30/2356/ledger.md#case-561.5
 sprint: migration
 created: 2026-09-30
 tags: [session, workflow, hooks, harness]
+core: true
 ---
 
 ## Purpose
@@ -39,3 +40,4 @@ Prevents Plan Mode from stopping where no person is needed after `/pre-spec`: in
 - 2026-10-07 updated: the hook sends the agent on at the end of the answer to a reply the ledger hook sent back, an answer with no LEDGER block too, and no longer sends it to /pre-spec (case 696.2) · [[decision-case-696.2]]
 - 2026-10-07 updated: a Case file that holds nothing but blank space, the file of a dropped Case, is never out (case 701.1) · [[decision-case-701.1]]
 - 2026-10-07 updated: the emptied file of a dropped Case is no Case built again after /pre-spec (case 701.2) · [[decision-case-701.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

@@ -11,6 +11,7 @@ origin: raw/2026-09-18/1252/ledger.md#case-241
 sprint: migration
 created: 2026-09-18
 tags: [sprint, workflow]
+core: true
 ---
 
 ## Purpose
@@ -26,3 +27,4 @@ The sprint as a kind. A sprint is a unit of work over the project: its Estimates
 - 2026-10-04 updated: the Estimates are the Definition of done read before the close; one not passed is archived with the sprint page (case 632.3) · [[decision-case-632.3]]
 - 2026-10-10 child entity-sprint-migration archived · cleanup
 - 2026-10-10 child entity-sprint-plugin added · [[decision-case-756.1]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

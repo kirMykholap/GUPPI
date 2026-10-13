@@ -11,6 +11,7 @@ origin: raw/2026-09-21/0019/ledger.md#case-287
 sprint: migration
 created: 2026-09-21
 tags: [session, hooks, harness]
+core: true
 ---
 
 ## Purpose
@@ -29,3 +30,4 @@ Prevents a working session from going on after a compaction without the texts `/
 - 2026-09-29 status: built → draft · cascade
 - 2026-10-02 updated: the purpose names the texts /hi loads, no longer the Case schema (case 595.4) · [[decision-case-595.4]]
 - 2026-10-03 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

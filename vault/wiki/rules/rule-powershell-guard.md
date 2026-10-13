@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a here-string from feeding a script to an interpreter through the PowerShell tool
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [guppi/powershellguard.py, tests/test_powershellguard.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -11,6 +11,7 @@ origin: raw/2026-10-13/1426/ledger.md#case-796.2
 sprint: plugin
 created: 2026-10-13
 tags: [hooks, harness]
+core: true
 ---
 
 ## Purpose
@@ -21,3 +22,5 @@ Prevents a here-string from feeding a script to an interpreter through the Power
 
 - 2026-10-13 created · [[decision-case-796.2]]
 - 2026-10-13 estimate estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter added · [[decision-case-796.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-13 status: draft → built · cascade

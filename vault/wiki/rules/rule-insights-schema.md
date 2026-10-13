@@ -12,6 +12,7 @@ origin: raw/2026-09-22/0014/ledger.md#case-304.6
 sprint: migration
 created: 2026-09-22
 tags: [harness, render, schema]
+core: true
 ---
 
 ## Purpose
@@ -126,3 +127,4 @@ examples:
 - 2026-10-04 status: built → draft · cascade
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-07 updated: a Case names a decision of its own session in addressed_by by the bare slug; generate adds the brackets (case 712) · [[decision-case-712]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

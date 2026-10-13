@@ -13,6 +13,7 @@ origin: raw/2026-09-13/ledger.md#case-101.2
 sprint: migration
 created: 2026-09-10
 tags: [session, harness, ledger]
+core: true
 ---
 
 ## Purpose
@@ -68,3 +69,4 @@ an item, and a decision line not.
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
 - 2026-09-30 updated: the Tail line follows the git lines: rule-github-issues left the harness (case 528.2) · [[decision-case-528.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

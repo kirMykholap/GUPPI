@@ -12,6 +12,7 @@ origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
 created: 2026-09-12
 tags: [harness, session]
+core: true
 ---
 
 ## Purpose
@@ -66,3 +67,4 @@ a refusal that matters has a hook behind it (case 85.5).
 - 2026-10-07 status: built → draft · cascade
 - 2026-10-07 updated: case-guppi runs in permissionMode auto; the read rules of the saved transcripts stay, and a call they do not match is judged by that mode (case 698) · [[decision-case-698.2]]
 - 2026-10-07 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

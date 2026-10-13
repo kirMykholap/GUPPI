@@ -11,6 +11,7 @@ origin: raw/2026-09-14/1633/ledger.md#case-145.1
 sprint: migration
 created: 2026-09-14
 tags: [tests, harness]
+core: true
 ---
 
 ## Purpose
@@ -40,3 +41,4 @@ without `now` writes a time dated 2001 (case 145.1).
 - 2026-09-14 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

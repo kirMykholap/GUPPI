@@ -11,6 +11,7 @@ origin: raw/2026-09-23/1859/ledger.md#case-387.3
 sprint: migration
 created: 2026-09-23
 tags: [hooks, harness, workflow, session]
+core: true
 ---
 
 ## Purpose
@@ -44,3 +45,4 @@ Prevents a ratified Case from changing in what the scripts apply without the per
 - 2026-10-05 estimate estimate-spec-reconcile-refuses-a-case-file-another-agent-holds added · [[decision-case-650.1]]
 - 2026-10-05 updated: the first write of case-guppi on the file of a Case holds its number in the store, and a write of another case-guppi on that file is refused with a free number (case 650.1) · [[decision-case-650.1]]
 - 2026-10-05 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

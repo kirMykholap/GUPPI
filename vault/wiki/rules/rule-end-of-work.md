@@ -10,6 +10,7 @@ origin: raw/2026-09-10/ledger.md#case-38
 sprint: migration
 created: 2026-09-10
 tags: [session, workflow]
+core: true
 ---
 
 ## Purpose
@@ -39,3 +40,4 @@ picks the Spec up and the librarian does not apply it blind. On leaving Plan Mod
 - 2026-09-30 child rule-retro-onward added · [[decision-case-531.9]]
 - 2026-10-02 updated: a session that took a conserved Spec is asked nothing on leaving Plan Mode and ends the ordinary way through /box; rule-spec-box a child after rule-retro-onward (case 591.4) · [[decision-case-591.4]]
 - 2026-10-03 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

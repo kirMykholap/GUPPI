@@ -12,6 +12,7 @@ origin: raw/2026-09-22/1121/ledger.md#case-317
 sprint: migration
 created: 2026-09-22
 tags: [harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -41,3 +42,4 @@ It holds for a Case, an Entity, a Rule and an Estimate alike. Not for a Lesson: 
 - 2026-10-02 updated: rendered into ratification.md under rule-ratification (case 595.5) · [[decision-case-595.5]]
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-02 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

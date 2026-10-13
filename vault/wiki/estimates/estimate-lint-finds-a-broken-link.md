@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-lint]]"
 purpose: A link, an origin or a Decision list that names nothing, and a page nothing names, are findings of lint
 method: uv run pytest tests/test_lint.py
-checked: 2026-09-30
+checked: 2026-10-13
 origin: raw/2026-09-24/1916/ledger.md#case-401.2
 sprint: migration
 created: 2026-09-24
@@ -26,10 +26,11 @@ Then:
 **＋** `decision`: a Decision page with none of `create`, `update`, `delete`, `defer` and no `children`, or with `kind` or `target_slug`; a slug of its lists that `category_of` of `guppi/materialize.py` gives a category — the prefix `decision-` included — and that no live or archived page carries.
 **＋** `orphan`: a live entity, rule or estimate that no other live page names in its frontmatter; a Decision, a Lesson, an Insight and a placeholder never.
 **－** A `### case N` line under an Estimate's `## Criterion` is not read as a link.
+**－** An `origin` `guppi` on a page with `core: true` is no finding; on a page without `core: true` it is an `origin` of another form.
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_lint.py: 82 passed
+2026-10-13, uv run pytest tests/test_lint.py: 98 passed, test_the_shipped_origin_is_no_finding_on_a_core_page_only among them — origin guppi with core: true gives no finding, origin guppi without core gives "origin: guppi: not raw/<date>[/<HHMM>]/ledger.md#case-N"
 
 ## History
 
@@ -41,3 +42,5 @@ Then:
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L26
 - 2026-09-30 updated: the Criterion replaced whole — the page of a parent Case: children in place of the kind lists, its origin found by a line of a sub-case (case 544.9) · [[decision-case-544.9]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L26
+- 2026-10-13 updated: the Criterion replaced whole — the origin guppi on a page with core: true is no finding (case 804) · [[decision-case-804.4]]
+- 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L119

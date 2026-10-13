@@ -11,6 +11,7 @@ origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow, hooks, harness]
+core: true
 ---
 
 ## Purpose
@@ -46,3 +47,4 @@ with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-sp
 - 2026-10-07 estimate estimate-prespec-hook-reports-a-schema-condition-not-met added · [[decision-case-714]]
 - 2026-10-07 estimate estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session added · [[decision-case-715]]
 - 2026-10-09 estimate estimate-prespec-hook-reports-a-create-without-a-required-field added · [[decision-case-748.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

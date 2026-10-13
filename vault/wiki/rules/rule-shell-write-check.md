@@ -11,6 +11,7 @@ origin: raw/2026-10-07/0636/ledger.md#case-710.1
 sprint: migration
 created: 2026-10-07
 tags: [hooks, harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -22,3 +23,4 @@ Prevents a file of the repository from keeping the CRLF line endings, the byte-o
 - 2026-10-07 created · [[decision-case-710.1]]
 - 2026-10-07 estimate estimate-shell-write-check-repairs-and-reports added · [[decision-case-710.1]]
 - 2026-10-07 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

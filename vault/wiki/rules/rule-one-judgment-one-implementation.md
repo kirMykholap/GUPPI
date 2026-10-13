@@ -12,6 +12,7 @@ origin: raw/2026-09-23/0034/ledger.md#case-360
 sprint: migration
 created: 2026-09-23
 tags: [harness, workflow, render, tests]
+core: true
 ---
 
 ## Purpose
@@ -35,3 +36,4 @@ Where code judges the same text in two places — a check and a writer, a ticker
 - 2026-09-27 defer by decision-case-455 superseded · [[decision-case-462]]
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

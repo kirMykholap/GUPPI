@@ -11,6 +11,7 @@ origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
 tags: [session, hooks, harness, ledger]
+core: true
 ---
 
 ## Purpose
@@ -92,3 +93,4 @@ would materialize pages from it the next day. It also refuses, while no live pag
 - 2026-10-07 estimate estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag added · [[decision-case-703.2]]
 - 2026-10-07 updated: the ledger hook refuses a lesson line with a tag that tags.md does not hold and no ratified Case of the session declares (case 703.2) · [[decision-case-703.2]]
 - 2026-10-13 updated: refuses the create of a sprint page whose id a live or archived sprint page already holds (case 788.1) · [[decision-case-788.1]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

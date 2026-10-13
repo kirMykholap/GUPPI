@@ -13,6 +13,7 @@ origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
 tags: [session, workflow, harness, librarian, render]
+core: true
 ---
 
 ## Purpose
@@ -149,3 +150,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-10-04 updated: step 5 reads the Backlog of each sprint page, live or archived (case 632.2) · [[decision-case-632.2]]
 - 2026-10-09 updated: after a close guppi sprint marks the sprint closed instead of failing (case 743.5) · [[decision-case-743.5]]
 - 2026-10-13 updated: the librarian is the only writer to vault/wiki/ but for what a merge of main by /merge-main writes (case 790) · [[decision-case-790]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

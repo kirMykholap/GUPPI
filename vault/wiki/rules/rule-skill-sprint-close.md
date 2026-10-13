@@ -12,6 +12,7 @@ origin: raw/2026-10-08/2352/ledger.md#case-743.8
 sprint: migration
 created: 2026-10-08
 tags: [sprint, workflow, harness]
+core: true
 ---
 
 ## Purpose
@@ -48,3 +49,4 @@ This session closes the sprint that `vault/wiki/sprint.md` names. Its Plan Mode 
 - 2026-10-11 defer by decision-case-771 superseded · [[decision-case-775.2]]
 - 2026-10-11 updated: the closing Case leaves no merge line; the opening Case of the next sprint holds the merge · [[decision-case-775.2]]
 - 2026-10-13 updated: /sprint-close refuses while the branch does not hold origin/main, and asks for /merge-main first (case 791) · [[decision-case-791]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

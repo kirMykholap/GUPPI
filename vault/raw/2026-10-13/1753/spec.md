@@ -65,10 +65,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-answers-what-done-means`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-answers-what-done-means`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-answers-what-done-means`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-answers-what-done-means`
 ```
 
 ### Case 800.2 — ask-guppi opens a deferred Decision only for a page a finding names
@@ -111,9 +111,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] create `estimate-ask-opens-a-decision-only-for-a-finding`
-- [ ] `uv run guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-ask`
+- [x] create `estimate-ask-opens-a-decision-only-for-a-finding`
+- [x] `uv run guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-ask-opens-a-decision-only-for-a-finding`
 ```
 
@@ -168,10 +168,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-reads-the-last-output-of-a-check`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-reads-the-last-output-of-a-check`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-reads-the-last-output-of-a-check`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-reads-the-last-output-of-a-check`
 ```
 
 ## Case 802 — The first /hi of a new install sets the project up through one Case
@@ -282,11 +282,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-morph`
-- [ ] create `estimate-morph-sets-up-the-project-at-the-first-hi`
-- [ ] update `rule-guppi-config`
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run guppi sprint`
+- [x] update `rule-morph`
+- [x] create `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] update `rule-guppi-config`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run guppi sprint`
 - [ ] read `estimate-morph-sets-up-the-project-at-the-first-hi`
 ```
 
@@ -368,12 +368,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `rule-case-protocol`
-- [ ] create `estimate-case-build-offers-a-page-for-code-no-page-covers`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-case-build-offers-a-page-for-code-no-page-covers`
+- [x] update `rule-case-build`
+- [x] update `rule-case-protocol`
+- [x] create `estimate-case-build-offers-a-page-for-code-no-page-covers`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] read `estimate-case-build-offers-a-page-for-code-no-page-covers`
 ```
 
 ## Case 804 — CI writes a clean version of GUPPI to the branch prod
@@ -534,11 +534,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-entities-schema`
-- [ ] update `estimate-entities-schema-checked`
-- [ ] `uv run guppi render`: `vault/wiki/entities/schema.yaml`
+- [x] update `rule-entities-schema`
+- [x] update `estimate-entities-schema-checked`
+- [x] `uv run guppi render`: `vault/wiki/entities/schema.yaml`
 - [x] `tests/test_schemas.py`: the case `entities` of a test that a page in the shape with `core: true`, `origin: guppi` and `sprint: guppi` has no `schema` finding.
-- [ ] read `estimate-entities-schema-checked`
+- [x] read `estimate-entities-schema-checked`
 ```
 
 ### Case 804.2 — The Rule schema carries the field core and the shipped values
@@ -586,11 +586,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-rules-schema`
-- [ ] update `estimate-rules-schema-checked`
-- [ ] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] update `rule-rules-schema`
+- [x] update `estimate-rules-schema-checked`
+- [x] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
 - [x] `tests/test_schemas.py`: the case `rules` of a test that a page in the shape with `core: true`, `origin: guppi` and `sprint: guppi` has no `schema` finding.
-- [ ] read `estimate-rules-schema-checked`
+- [x] read `estimate-rules-schema-checked`
 ```
 
 ### Case 804.3 — The Estimate schema carries the field core and the shipped values
@@ -637,11 +637,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-estimates-schema`
-- [ ] update `estimate-estimates-schema-checked`
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] update `rule-estimates-schema`
+- [x] update `estimate-estimates-schema-checked`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 - [x] `tests/test_schemas.py`: the case `estimates` of a test that a page in the shape with `core: true`, `origin: guppi` and `sprint: guppi` has no `schema` finding.
-- [ ] read `estimate-estimates-schema-checked`
+- [x] read `estimate-estimates-schema-checked`
 ```
 
 ### Case 804.4 — Lint accepts the origin guppi on a page marked core
@@ -683,8 +683,8 @@ update:
 - [x] `guppi/pages.py`: `SHIPPED = "guppi"`, the value of `origin` and `sprint` on a page of the clean version, and `is_core(page)`, true when the page carries `core: true` — the one judgment of both, which `guppi/lint.py` and `guppi/ship.py` import.
 - [x] `guppi/lint.py`: `check_origin` returns no finding for an `origin` equal to `SHIPPED` on a page that `is_core` accepts; the docstring names it.
 - [x] `tests/test_lint.py`: a page with `core: true` and `origin: guppi` has no `origin` finding, and a page with `origin: guppi` and no `core` has one.
-- [ ] update `estimate-lint-finds-a-broken-link`
-- [ ] read `estimate-lint-finds-a-broken-link`
+- [x] update `estimate-lint-finds-a-broken-link`
+- [x] read `estimate-lint-finds-a-broken-link`
 ```
 
 ### Case 804.5 — The pages that ship carry core
@@ -1050,91 +1050,91 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-agent-writing`
-- [ ] update `rule-ask`
-- [ ] update `rule-atomicity`
-- [ ] update `rule-backlog`
-- [ ] update `rule-bash-guard`
-- [ ] update `rule-brief`
-- [ ] update `rule-carry-over`
-- [ ] update `rule-case-build`
-- [ ] update `rule-case-check`
-- [ ] update `rule-case-example`
-- [ ] update `rule-case-protocol`
-- [ ] update `rule-claude-md`
-- [ ] update `rule-cleanup`
-- [ ] update `rule-close`
-- [ ] update `rule-compact-recall`
-- [ ] update `rule-context-size`
-- [ ] update `rule-decisions-schema`
-- [ ] update `rule-default-mode`
-- [ ] update `rule-documentation`
-- [ ] update `rule-end-of-work`
-- [ ] update `rule-entities-schema`
-- [ ] update `rule-estimates-schema`
-- [ ] update `rule-event-log`
-- [ ] update `rule-git-context`
-- [ ] update `rule-glossary`
-- [ ] update `rule-governed-files-hook`
-- [ ] update `rule-guppi-config`
-- [ ] update `rule-handoff`
-- [ ] update `rule-harness`
-- [ ] update `rule-hook-registry`
-- [ ] update `rule-index-check`
-- [ ] update `rule-insights-schema`
-- [ ] update `rule-internal-context`
-- [ ] update `rule-language`
-- [ ] update `rule-ledger-tail`
-- [ ] update `rule-ledger-write`
-- [ ] update `rule-lessons-schema`
-- [ ] update `rule-lint`
-- [ ] update `rule-materialize`
-- [ ] update `rule-morph`
-- [ ] update `rule-one-judgment-one-implementation`
-- [ ] update `rule-orchestration`
-- [ ] update `rule-page-generation`
-- [ ] update `rule-page-read`
-- [ ] update `rule-page-schemas`
-- [ ] update `rule-permissions`
-- [ ] update `rule-plan-mode`
-- [ ] update `rule-powershell-guard`
-- [ ] update `rule-prespec`
-- [ ] update `rule-prespec-hook`
-- [ ] update `rule-prespec-onward`
-- [ ] update `rule-python-utf8`
-- [ ] update `rule-ratification`
-- [ ] update `rule-raw-archive`
-- [ ] update `rule-render-harness`
-- [ ] update `rule-retro`
-- [ ] update `rule-retro-commit`
-- [ ] update `rule-retro-onward`
-- [ ] update `rule-rules-schema`
-- [ ] update `rule-search-leaves-out-decisions`
-- [ ] update `rule-session`
-- [ ] update `rule-session-start`
-- [ ] update `rule-settings`
-- [ ] update `rule-shell-write-check`
-- [ ] update `rule-skill-grill-me`
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-skill-merge-main`
-- [ ] update `rule-skill-pr-review`
-- [ ] update `rule-skill-sprint-close`
-- [ ] update `rule-skill-sprint-open`
-- [ ] update `rule-skill-wait-what`
-- [ ] update `rule-spec-box`
-- [ ] update `rule-spec-capture`
-- [ ] update `rule-spec-reconcile`
-- [ ] update `rule-spec-write`
-- [ ] update `rule-sprint`
-- [ ] update `rule-sprint-close`
-- [ ] update `rule-synthesis`
-- [ ] update `rule-tests-clock-pinned`
-- [ ] update `rule-vault-layout`
-- [ ] update `rule-where-to-stop`
-- [ ] update `rule-work-mode`
-- [ ] update `entity-guppi`
-- [ ] update `entity-sprint`
-- [ ] update `entity-glossary`
+- [x] update `rule-agent-writing`
+- [x] update `rule-ask`
+- [x] update `rule-atomicity`
+- [x] update `rule-backlog`
+- [x] update `rule-bash-guard`
+- [x] update `rule-brief`
+- [x] update `rule-carry-over`
+- [x] update `rule-case-build`
+- [x] update `rule-case-check`
+- [x] update `rule-case-example`
+- [x] update `rule-case-protocol`
+- [x] update `rule-claude-md`
+- [x] update `rule-cleanup`
+- [x] update `rule-close`
+- [x] update `rule-compact-recall`
+- [x] update `rule-context-size`
+- [x] update `rule-decisions-schema`
+- [x] update `rule-default-mode`
+- [x] update `rule-documentation`
+- [x] update `rule-end-of-work`
+- [x] update `rule-entities-schema`
+- [x] update `rule-estimates-schema`
+- [x] update `rule-event-log`
+- [x] update `rule-git-context`
+- [x] update `rule-glossary`
+- [x] update `rule-governed-files-hook`
+- [x] update `rule-guppi-config`
+- [x] update `rule-handoff`
+- [x] update `rule-harness`
+- [x] update `rule-hook-registry`
+- [x] update `rule-index-check`
+- [x] update `rule-insights-schema`
+- [x] update `rule-internal-context`
+- [x] update `rule-language`
+- [x] update `rule-ledger-tail`
+- [x] update `rule-ledger-write`
+- [x] update `rule-lessons-schema`
+- [x] update `rule-lint`
+- [x] update `rule-materialize`
+- [x] update `rule-morph`
+- [x] update `rule-one-judgment-one-implementation`
+- [x] update `rule-orchestration`
+- [x] update `rule-page-generation`
+- [x] update `rule-page-read`
+- [x] update `rule-page-schemas`
+- [x] update `rule-permissions`
+- [x] update `rule-plan-mode`
+- [x] update `rule-powershell-guard`
+- [x] update `rule-prespec`
+- [x] update `rule-prespec-hook`
+- [x] update `rule-prespec-onward`
+- [x] update `rule-python-utf8`
+- [x] update `rule-ratification`
+- [x] update `rule-raw-archive`
+- [x] update `rule-render-harness`
+- [x] update `rule-retro`
+- [x] update `rule-retro-commit`
+- [x] update `rule-retro-onward`
+- [x] update `rule-rules-schema`
+- [x] update `rule-search-leaves-out-decisions`
+- [x] update `rule-session`
+- [x] update `rule-session-start`
+- [x] update `rule-settings`
+- [x] update `rule-shell-write-check`
+- [x] update `rule-skill-grill-me`
+- [x] update `rule-skill-hi`
+- [x] update `rule-skill-merge-main`
+- [x] update `rule-skill-pr-review`
+- [x] update `rule-skill-sprint-close`
+- [x] update `rule-skill-sprint-open`
+- [x] update `rule-skill-wait-what`
+- [x] update `rule-spec-box`
+- [x] update `rule-spec-capture`
+- [x] update `rule-spec-reconcile`
+- [x] update `rule-spec-write`
+- [x] update `rule-sprint`
+- [x] update `rule-sprint-close`
+- [x] update `rule-synthesis`
+- [x] update `rule-tests-clock-pinned`
+- [x] update `rule-vault-layout`
+- [x] update `rule-where-to-stop`
+- [x] update `rule-work-mode`
+- [x] update `entity-guppi`
+- [x] update `entity-sprint`
+- [x] update `entity-glossary`
 ```
 
 ### Case 804.6 — guppi ship builds and checks the clean version
@@ -1202,14 +1202,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-clean-branch`
-- [ ] create `estimate-clean-branch-writes-a-clean-copy`
-- [ ] update `entity-guppi-repository`
+- [x] create `rule-clean-branch`
+- [x] create `estimate-clean-branch-writes-a-clean-copy`
+- [x] update `entity-guppi-repository`
 - [x] `guppi/ship.py`: the command `guppi ship <folder>` as the `then` of this Case sets it. It reads pages by `read_vault`, `HISTORY` and `is_core` of `guppi/pages.py`, body links by `links_of` of `guppi/lint.py`, markers by `MARKER` of `guppi/pages.py`, and a case id by `ID` of `guppi/caseid.py`, and writes `SHIPPED` of `guppi/pages.py`; its own patterns are the parenthesis of case references and the mention of a session in prose, which no module of `guppi/` judges today.
 - [x] `guppi/cli.py`: registers `ship`.
 - [x] `tests/test_ship.py`: over a sample tree under a temporary folder, one test per line of the `then` of this Case, and one test that runs `guppi/lint.py` over a page that `guppi ship` wrote and asserts no `origin` finding.
 - [x] `uv run guppi ship` over the working tree into a temporary folder: the files and lines it refuses go into the handoff, with the note that the leftovers of the pages come from the first CI run, which the owner starts by a tag `prod-*` on a commit of `plugin` after the push of the librarian's commit.
-- [ ] read `estimate-clean-branch-writes-a-clean-copy`
+- [x] read `estimate-clean-branch-writes-a-clean-copy`
 ```
 
 ### Case 804.7 — CI writes the clean version to prod
@@ -1264,13 +1264,13 @@ update:
 
 ```tasks
 - [x] `.github/workflows/prod.yml`: runs on a push to `main` and on a push of a tag `prod-*`, with `contents: write`; runs `uv run guppi ship` into an empty folder; when it exits 0, commits that folder to `prod` on top of its last commit with a message that names the commit it was built from, adds no commit when nothing changed, and pushes over SSH with the private key of the secret `PROD_DEPLOY_KEY`, never with the token of the run; when it exits 1, fails and pushes nothing; its header comment names the deploy key in place of the GitHub Actions app.
-- [ ] update `rule-github-repository`
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run guppi sprint`
+- [x] update `rule-github-repository`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run guppi sprint`
 - [x] stop: the owner makes an SSH key pair on the owner's machine, such as by `ssh-keygen -t ed25519 -N "" -C prod-deploy -f prod_deploy_key`, outside the repository.
 - [x] stop: the owner adds the public half, `prod_deploy_key.pub`, as a deploy key of the repository on GitHub, with write access, under Settings, Deploy keys.
 - [x] stop: the owner stores the private half, `prod_deploy_key`, as the repository secret `PROD_DEPLOY_KEY` under Settings, Secrets and variables, Actions, and then deletes both files from the machine.
 - [x] stop: the owner adds `Deploy keys` to the bypass list of the ruleset `prod`, with the mode always, in the settings of the repository on GitHub.
-- [ ] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
+- [x] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
 - [ ] read `estimate-sprint-plugin-ci-writes-a-clean-branch`
 ```

@@ -12,6 +12,7 @@ origin: raw/2026-09-22/0014/ledger.md#case-306.2
 sprint: migration
 created: 2026-09-22
 tags: [harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -28,3 +29,4 @@ GUPPI as the thing this repository builds: a Claude Code harness governed by rat
 - 2026-10-03 deferred · [[decision-case-616]]
 - 2026-10-13 child entity-guppi-repository added · [[decision-case-795.1]]
 - 2026-10-13 updated: the repository of GUPPI on GitHub is a part (case 795.1) · [[decision-case-795.1]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

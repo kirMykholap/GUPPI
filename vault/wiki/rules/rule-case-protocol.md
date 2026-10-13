@@ -13,6 +13,7 @@ origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow, ledger]
+core: true
 ---
 
 ## Purpose
@@ -69,7 +70,7 @@ A `create` holds the fields the target schema needs a judgment for; prose for a 
 
 **The Spec is written as each Case is ratified**, by the `Stop` hook of `rule-spec-write`, after the reply that carries the Case's ledger lines: it copies the Case as `case-guppi` wrote it into its file — the text the check of `rule-case-check` stored, never a showing or a file that differs from it, which is refused (cases 437, 645.5) — into the plan file, outside the repository, and, once `raw/<date>/<hi HHMM>/spec.md` stands, into it too, the ticks of its unchanged task lines kept (case 441). The Case holds `context`, `problem`, `recommend`, `given`, `when`, `then`, the `then` block and a block tagged `tasks` — one `- [ ] <what>` per file to change, test to write, command to run, one-off migration, and one per reading of an Estimate the Case creates or sets `pending`, by its slug. A `by hand` box is a check that Work Mode of the Case's own session takes; a check whose moment comes after that Work Mode — the librarian's run of the session or a later session — is no box: it is the reading of an Estimate, through the `read` line of one the Case creates or sets `pending`, which the Retro of the Case's own session takes on the Criterion of the Spec (case 670.4), or, for an Estimate of the live sprint page whose work is not done, the Retro of the session that finishes its work or the closing Case of `/sprint-close` (case 772.4), or, for an Estimate whose `method` waits for an event that has not come, the session whose brief puts it under `Work` once the librarian sees the event (case 781), or through one its `context` names, or it is left to the `make lint` of the librarian's run, which the brief reports (case 606.1). `ratification` stays in the chat (case 544.5); code is Work Mode. Who ticks which line is `orchestration.md`. A render line is `- [ ] `uv run guppi render`: `<file>``, a sprint line `- [ ] `uv run guppi sprint``, a glossary line `- [ ] `uv run guppi glossary``, a close line `- [ ] `uv run guppi sprint-close --sprint <id> --apply …``, which the librarian runs and the command ticks (`rule-sprint-close`, case 628.1) — the command in the first code span is what the ticker matches (case 235); a line of another form stays debt at Retro (case 279.1).
 
-Derivable fields — `origin`, `status`, `parent` from `ref`, `children`, `code_ref`, `deferred_by` — are filled mechanically and are not written here, but for the `status` and `checked` of an Estimate that a Case sets by the person's decision (case 669.16). `guppi materialize` reads the blocks, and what is not in a block was signed by nobody.
+Derivable fields — `origin`, `status`, `parent` from `ref`, `children`, `deferred_by` — are filled mechanically and are not written here, but for the `status` and `checked` of an Estimate that a Case sets by the person's decision (case 669.16). `code_ref` is no such field: a Case writes it, on a `create` or by `set` on an `update`, when it gives a page the path of its code (case 803). `guppi materialize` reads the blocks, and what is not in a block was signed by nobody.
 
 **The slug is written in the Case**, and pre-spec checks it. Meaningful, never an index: `entity-cart`, `lesson-hooks-sessionstart-cannot-block`. The page's category comes from its prefix: `rule-`, `entity-`, `estimate-`, `lesson-`, `insight-`. Decision pages are the one exception: `decision-case-<N>`, one per Case, written by the script.
 
@@ -282,3 +283,5 @@ Silently producing `entity-cart-2` would put a name in the vault that nobody rat
 - 2026-10-09 updated: a rebuilt Case whose create line changes its ref or its tags takes a new number, and the check sends it back (case 749) · [[decision-case-749]]
 - 2026-10-10 updated: an Estimate of a sprint page may wait for a later session of its sprint, and pre-spec catches a session of a sprint and the session that closes one (case 772.4) · [[decision-case-772.4]]
 - 2026-10-12 updated: a method may wait for an event it names in a part that opens with after and names the event before a colon; pre-spec does not report it (case 781) · [[decision-case-781.1]]
+- 2026-10-13 updated: code_ref leaves the list of derivable fields: a Case writes it when it gives a page the path of its code (case 803) · [[decision-case-803]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

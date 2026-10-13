@@ -12,6 +12,7 @@ origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10
 tags: [session, workflow, harness, render]
+core: true
 ---
 
 ## Purpose
@@ -132,3 +133,4 @@ When the last task is done, run `make test` in full and hold each failing test a
 - 2026-10-05 updated: the Work line of an Estimate the session changes stays open until Retro reads it and closes it (case 670.7) · [[decision-case-670.7]]
 - 2026-10-08 updated: /work runs make test in full after its last task and holds each failing test against the baseline (case 736.2) · [[decision-case-736.2]]
 - 2026-10-08 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

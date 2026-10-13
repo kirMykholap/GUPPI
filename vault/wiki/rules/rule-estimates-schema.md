@@ -12,6 +12,7 @@ origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
 tags: [harness, render, schema]
+core: true
 ---
 
 ## Purpose
@@ -40,10 +41,11 @@ description: |
   `Result` is overwritten, not appended. It is about one run of one check: a test that passed, broke and was fixed leaves one current result; the sequence of changes is what History is for. Same for Research: the page states what we currently believe, and History records that the belief changed. `Criterion` is replaced, not appended: a rule changes → the Estimate the Case names goes `pending` → the test or the reading → `passed`.
 properties:
   required: [type, kind, status, target, method, origin, sprint, created, tags]
-  optional: [purpose, checked, deferred_by]
+  optional: [purpose, checked, deferred_by, core]
   values:
     kind: [QA, Research]
     status: [pending, passed, failed]
+    core: [true]
 body:
   required: ["## Criterion", "## History"]
   optional: ["## Result"]
@@ -70,9 +72,11 @@ fields:
   deferred_by: |
     optional; list. The Decision pages whose `defer` puts the reading of this Estimate off into `backlog.md`; written by `generate` on a defer and cleared by it on a later `supersedes`, under the condition that `rule-case-protocol` sets, never by hand (case 781).
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). The ratified decision that created it.
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
   sprint: |
-    required; the sprint id.
+    required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
+  core: |
+    optional; `true`. The page ships in the clean version of GUPPI that `guppi ship` writes for the branch `prod`; a page without it stays in this repository only. Set by a Case, never by hand (case 804).
   created: |
     required; date.
   tags: |
@@ -172,3 +176,5 @@ examples:
 - 2026-10-03 updated: a reading names its moment by its kind; a reading by hand tied to the first moment after the render or the change is a finding of lint and pre-spec (case 613.1) · [[decision-case-613.1]]
 - 2026-10-05 updated: the person may close an Estimate by decision: its Result opens with the date and the place of the decision, and checked is that date (case 669.16) · [[decision-case-669.16]]
 - 2026-10-12 updated: deferred_by is an optional field of an Estimate page (case 781) · [[decision-case-781.7]]
+- 2026-10-13 updated: the field core, and the value guppi of origin and sprint on a page of the clean version (case 804) · [[decision-case-804.3]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

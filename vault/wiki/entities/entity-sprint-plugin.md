@@ -19,13 +19,18 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 
 ### The clean branch
 
-- CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint
+- [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint
 
 ### The plugin
 
 - the clean version made into a Claude Code plugin
+- [[rule-morph]] — the install step that the first `/hi` of a new install runs
 - the README on what the project is and what it is for and on its main parts and its use
 - the close of `plugin` — `/sprint-close`, a session of its own
+
+## Backlog
+
+- The category set as data: the person sets the categories of a project, the development set entity, rule, estimate by default, and the harness holds them as data, so a changed set rewrites no rule; taken out of rule-morph (case 802); the categories discussion of session 1119, vault/archive/migration/2026-09-17/1119/raw/categories-discussion.md
 
 ## Closed
 
@@ -41,3 +46,5 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-10 estimate estimate-sprint-plugin-installs-as-a-plugin added · [[decision-case-756.6]]
 - 2026-10-11 updated: the note on the opening and the close of a sprint leaves the milestone The sprint turn and GitHub; the Purpose names only the close · [[decision-case-774]]
 - 2026-10-13 updated: the milestone The sprint turn and GitHub closed — out of Milestones, named in Closed (case 794) · [[decision-case-794]]
+- 2026-10-13 updated: the milestone The plugin names rule-morph, the install step; the Backlog takes the category set as data, out of rule-morph (case 802) · [[decision-case-802]]
+- 2026-10-13 updated: the item of The clean branch links rule-clean-branch and the Estimate of the live run (case 804) · [[decision-case-804.7]]

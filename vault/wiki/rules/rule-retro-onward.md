@@ -11,6 +11,7 @@ origin: raw/2026-09-29/2024/ledger.md#case-531.9
 sprint: migration
 created: 2026-09-29
 tags: [session, workflow, hooks, harness]
+core: true
 ---
 
 ## Purpose
@@ -30,3 +31,4 @@ Prevents the run from stopping between the reply that ends Retro and /handoff, w
 - 2026-10-02 updated: the hook sends the agent on again after each reply that the ledger hook refused; tests/test_ledger.py joins implementation_ref (case 596) · [[decision-case-596.1]]
 - 2026-10-04 status: draft → built · cascade
 - 2026-10-07 updated: the answer to a refusal of the ledger hook may write no line and call /handoff itself when only lines that are no record were refused · [[decision-case-695.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

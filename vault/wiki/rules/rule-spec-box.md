@@ -13,6 +13,7 @@ origin: raw/2026-09-16/1955/ledger.md#case-207
 sprint: migration
 created: 2026-09-16
 tags: [session, workflow, git, harness, render]
+core: true
 ---
 
 ## Purpose
@@ -60,3 +61,4 @@ The stops of steps 1, 3 and 5 are condition 6 of `vault/wiki/where-to-stop.md`.
 - 2026-10-02 estimate estimate-spec-box-runs-a-conserved-spec added · [[decision-case-593.2]]
 - 2026-10-02 estimate estimate-spec-box-refuses-a-stale-spec added · [[decision-case-593.3]]
 - 2026-10-04 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

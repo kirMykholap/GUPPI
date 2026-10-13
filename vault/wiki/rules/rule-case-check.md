@@ -11,6 +11,7 @@ origin: raw/2026-09-25/1228/ledger.md#case-419.3
 sprint: migration
 created: 2026-09-25
 tags: [hooks, harness, workflow, session]
+core: true
 ---
 
 ## Purpose
@@ -92,3 +93,4 @@ Prevents a Case from being shown to the person in a form the checks of pre-spec 
 - 2026-10-09 status: built → draft · cascade
 - 2026-10-09 estimate estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line added · [[decision-case-749]]
 - 2026-10-09 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

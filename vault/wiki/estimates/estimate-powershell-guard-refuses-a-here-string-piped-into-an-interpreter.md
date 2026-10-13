@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-powershell-guard]]"
 purpose: A here-string piped into an interpreter is refused before a PowerShell call runs, with a message that sends the agent to Write and Edit and says the refusal is no finding
 method: "uv run pytest tests/test_powershellguard.py; after the librarian's run of this session renders rule-hook-registry: the PowerShell entry of .claude/settings.json read against the Criterion"
+checked: 2026-10-13
 origin: raw/2026-10-13/1426/ledger.md#case-796.2
 sprint: plugin
 created: 2026-10-13
@@ -25,6 +26,11 @@ A here-string whose closing line pipes it into an interpreter (`python`, `python
 **－** A quoted string, a variable or the output of a command piped into an interpreter, a script run by path, and a script passed by `-c` or `-e` are no reason to refuse.
 **－** The hook never raises.
 
+## Result
+
+2026-10-13, uv run pytest tests/test_powershellguard.py and .claude/settings.json; 11 passed; the PreToolUse list holds { "matcher": "PowerShell", "hooks": [ { "type": "command", "command": "uv run guppi powershellguard", "timeout": 30 } ] } right after the Bash entry of uv run guppi bashguard (lines 41–42); guppi/powershellguard.py imports interpreter from guppi.bashguard and keeps no list of its own
+
 ## History
 
 - 2026-10-13 created · [[decision-case-796.2]]
+- 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L1

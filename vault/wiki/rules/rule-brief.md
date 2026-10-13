@@ -12,6 +12,7 @@ origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, librarian]
+core: true
 ---
 
 ## Purpose
@@ -92,3 +93,4 @@ The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes 
 - 2026-10-10 updated: Work and Ask the person of Next session leave out a reading of the live sprint page whose work is not done, its read box included, and one whose method names the close of a sprint, until its moment (case 772.1) · [[decision-case-772.1]]
 - 2026-10-12 updated: the brief holds a reading that waits for an event in Readings due until the librarian sees the event, proposes a defer into the backlog for a reading its session did not take, and leaves a deferred Estimate out of Work (case 781) · [[decision-case-781.5]]
 - 2026-10-12 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

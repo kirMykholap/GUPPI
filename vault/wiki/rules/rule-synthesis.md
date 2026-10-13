@@ -12,6 +12,7 @@ origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow, librarian]
+core: true
 ---
 
 ## Purpose
@@ -107,3 +108,4 @@ outcome, clustered or not. The archive is not needed: an actioned Insight stays 
 - 2026-10-05 estimate estimate-synthesis-reads-the-status-its-yaml-sets added · [[decision-case-668]]
 - 2026-10-05 updated: an Insight that a decision entry of the same yaml sets actioned counts as actioned at synthesis (case 668) · [[decision-case-668]]
 - 2026-10-05 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

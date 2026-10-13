@@ -11,6 +11,7 @@ origin: raw/2026-09-10/ledger.md#case-33
 sprint: migration
 created: 2026-09-10
 tags: [harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -40,3 +41,4 @@ this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 - 2026-10-04 updated: guppi sprint-close also sets archived (case 627.1) · [[decision-case-627.1]]
 - 2026-10-04 updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/cleanup.py (case 632.1) · [[decision-case-632.1]]
 - 2026-10-10 estimate estimate-cleanup-files-a-session-by-its-sprint added · [[decision-case-770]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

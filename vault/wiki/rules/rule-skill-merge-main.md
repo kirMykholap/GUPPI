@@ -12,6 +12,7 @@ origin: raw/2026-10-12/2349/ledger.md#case-790
 sprint: plugin
 created: 2026-10-12
 tags: [git, workflow, sprint, harness]
+core: true
 ---
 
 ## Purpose
@@ -49,3 +50,4 @@ This session merges `origin/main` into the branch of the open sprint, after the 
 
 - 2026-10-13 created · [[decision-case-790]]
 - 2026-10-13 estimate estimate-skill-merge-main-joins-a-conflicted-page added · [[decision-case-790]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

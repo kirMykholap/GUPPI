@@ -10,6 +10,7 @@ origin: raw/2026-09-22/0014/ledger.md#case-304.1
 sprint: migration
 created: 2026-09-22
 tags: [harness, render, schema]
+core: true
 ---
 
 ## Purpose
@@ -24,3 +25,4 @@ Prevents the shape of a page category from living in a file nobody ratified. Unt
 - 2026-09-23 status: draft → built · cascade
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

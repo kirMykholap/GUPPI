@@ -12,6 +12,7 @@ origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
 created: 2026-09-09
 tags: [hooks, harness, render]
+core: true
 ---
 
 ## Purpose
@@ -108,3 +109,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-07 updated: guppi shellwrite registered on PostToolUse of Bash and PowerShell (case 710.1) · [[decision-case-710.1]]
 - 2026-10-09 updated: UserPromptSubmit runs guppi sprint --hi, which tells the agent at /hi to start /sprint-open when the sprint is closed (case 743.7) · [[decision-case-743.7]]
 - 2026-10-13 updated: guppi powershellguard registered on PreToolUse of PowerShell (case 796.2) · [[decision-case-796.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

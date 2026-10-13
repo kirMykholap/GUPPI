@@ -12,6 +12,7 @@ origin: raw/2026-09-27/1255/ledger.md#case-451.4
 sprint: migration
 created: 2026-09-27
 tags: [session, workflow, harness, librarian, sprint]
+core: true
 ---
 
 ## Purpose
@@ -33,3 +34,4 @@ Prevents a deferred item from dropping out of sight. Before case 451 the brief c
 - 2026-10-04 status: built → draft · cascade
 - 2026-10-09 updated: a line of the Backlog of a closed sprint leaves backlog.md once the live sprint takes it or its pages are finished (case 743.4) · [[decision-case-743.4]]
 - 2026-10-09 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

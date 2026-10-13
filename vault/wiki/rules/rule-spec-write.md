@@ -11,6 +11,7 @@ origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
 tags: [hooks, harness, workflow, session]
+core: true
 ---
 
 ## Purpose
@@ -69,3 +70,4 @@ Prevents a ratified Case from entering the Spec in other words than the Case `ca
 - 2026-10-07 estimate estimate-spec-write-reads-a-new-tag added · [[decision-case-702]]
 - 2026-10-07 updated: a task line tag with the sub-points meaning and aliases declares a new tag into new_tags of the then block and stands in no tasks block (case 702) · [[decision-case-702]]
 - 2026-10-07 updated: the Spec hook removes a parent whose every sub-case with a decision line is retired (case 722.2) · [[decision-case-722.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

@@ -9530,3 +9530,162 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-13 lessons/lesson-case-build-recommended-a-trigger-that-keeps-the-defect archived · insight actioned · generate
 - 2026-10-13 lessons/lesson-case-build-made-an-always-red-check-required archived · cleanup
 - 2026-10-13 lessons/lesson-case-build-recommended-a-trigger-that-keeps-the-defect archived · cleanup
+- 2026-10-13 estimates/estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter status: pending → passed · raw/2026-10-13/1753/ledger.md#L1 · generate
+- 2026-10-13 decisions/decision-case-800 created · raw/2026-10-13/1753/ledger.md#case-800 · generate
+- 2026-10-13 decisions/decision-case-800.1 created · raw/2026-10-13/1753/ledger.md#case-800.1 · generate
+- 2026-10-13 rules/rule-case-build updated: an answer that no new Estimate is created closes the promise only with the existing Estimate named by slug in the round and in context (case 800.1) · [[decision-case-800.1]] · generate
+- 2026-10-13 estimates/estimate-case-build-answers-what-done-means updated: the Criterion replaced whole — the round on the promise names the existing Estimate, and an answer of no new Estimate closes the promise only with it named (case 800.1) · [[decision-case-800.1]] · generate
+- 2026-10-13 decisions/decision-case-800.2 created · raw/2026-10-13/1753/ledger.md#case-800.2 · generate
+- 2026-10-13 rules/rule-ask updated: at /pre-spec the Decision of a page with deferred_by is opened only after a finding names the page (case 800.2) · [[decision-case-800.2]] · generate
+- 2026-10-13 estimates/estimate-ask-opens-a-decision-only-for-a-finding created · [[decision-case-800.2]] · generate
+- 2026-10-13 rules/rule-ask estimate estimate-ask-opens-a-decision-only-for-a-finding added · [[decision-case-800.2]] · generate
+- 2026-10-13 decisions/decision-case-801 created · raw/2026-10-13/1753/ledger.md#case-801 · generate
+- 2026-10-13 rules/rule-case-build updated: context quotes the last output of a check with its source, as the Criterion of estimate-case-build-reads-the-last-output-of-a-check asks (case 801) · [[decision-case-801]] · generate
+- 2026-10-13 estimates/estimate-case-build-reads-the-last-output-of-a-check updated: the Criterion written again whole and the purpose set to quote the output with its source, after the failed reading of session 1426 (case 801) · [[decision-case-801]] · generate
+- 2026-10-13 decisions/decision-case-802 created · raw/2026-10-13/1753/ledger.md#case-802 · generate
+- 2026-10-13 decisions/decision-case-239 superseded by decision-case-802 · [[decision-case-802]] · generate
+- 2026-10-13 rules/rule-morph defer by decision-case-239 superseded · [[decision-case-802]] · generate
+- 2026-10-13 decisions/decision-case-745 superseded by decision-case-802 · [[decision-case-802]] · generate
+- 2026-10-13 rules/rule-morph defer by decision-case-745 superseded · [[decision-case-802]] · generate
+- 2026-10-13 decisions/decision-case-750 superseded by decision-case-802 · [[decision-case-802]] · generate
+- 2026-10-13 rules/rule-morph defer by decision-case-750 superseded · [[decision-case-802]] · generate
+- 2026-10-13 decisions/decision-case-758 superseded by decision-case-802 · [[decision-case-802]] · generate
+- 2026-10-13 rules/rule-morph defer by decision-case-758 superseded · [[decision-case-802]] · generate
+- 2026-10-13 rules/rule-morph updated: taken up: the install step is a skill at the first /hi whose answers become one ratified Case; the category set leaves for the Backlog of entity-sprint-plugin (case 802) · [[decision-case-802]] · generate
+- 2026-10-13 estimates/estimate-morph-sets-up-the-project-at-the-first-hi created · [[decision-case-802]] · generate
+- 2026-10-13 rules/rule-morph estimate estimate-morph-sets-up-the-project-at-the-first-hi added · [[decision-case-802]] · generate
+- 2026-10-13 rules/rule-guppi-config updated: the category set leaves rule-morph for the Backlog of entity-sprint-plugin (case 802) · [[decision-case-802]] · generate
+- 2026-10-13 entities/entity-sprint-plugin updated: the milestone The plugin names rule-morph, the install step; the Backlog takes the category set as data, out of rule-morph (case 802) · [[decision-case-802]] · generate
+- 2026-10-13 decisions/decision-case-803 created · raw/2026-10-13/1753/ledger.md#case-803 · generate
+- 2026-10-13 rules/rule-case-build updated: for code that the Case changes and no page covers, case-guppi reads the code and offers in a round a page, or the path added to a page that describes the thing (case 803) · [[decision-case-803]] · generate
+- 2026-10-13 rules/rule-case-protocol updated: code_ref leaves the list of derivable fields: a Case writes it when it gives a page the path of its code (case 803) · [[decision-case-803]] · generate
+- 2026-10-13 estimates/estimate-case-build-offers-a-page-for-code-no-page-covers created · [[decision-case-803]] · generate
+- 2026-10-13 estimates/estimate-case-build-offers-a-page-for-code-no-page-covers status: pending → passed · raw/2026-10-13/1753/ledger.md#L115 · generate
+- 2026-10-13 rules/rule-case-build estimate estimate-case-build-offers-a-page-for-code-no-page-covers added · [[decision-case-803]] · generate
+- 2026-10-13 decisions/decision-case-804 created · raw/2026-10-13/1753/ledger.md#case-804 · generate
+- 2026-10-13 decisions/decision-case-804.1 created · raw/2026-10-13/1753/ledger.md#case-804.1 · generate
+- 2026-10-13 rules/rule-entities-schema updated: the field core, and the value guppi of origin and sprint on a page of the clean version (case 804) · [[decision-case-804.1]] · generate
+- 2026-10-13 estimates/estimate-entities-schema-checked updated: the Criterion replaced whole — the field core and the shipped values (case 804) · [[decision-case-804.1]] · generate
+- 2026-10-13 decisions/decision-case-804.2 created · raw/2026-10-13/1753/ledger.md#case-804.2 · generate
+- 2026-10-13 rules/rule-rules-schema updated: the field core, and the value guppi of origin and sprint on a page of the clean version (case 804) · [[decision-case-804.2]] · generate
+- 2026-10-13 estimates/estimate-rules-schema-checked updated: the Criterion replaced whole — the field core and the shipped values (case 804) · [[decision-case-804.2]] · generate
+- 2026-10-13 decisions/decision-case-804.3 created · raw/2026-10-13/1753/ledger.md#case-804.3 · generate
+- 2026-10-13 rules/rule-estimates-schema updated: the field core, and the value guppi of origin and sprint on a page of the clean version (case 804) · [[decision-case-804.3]] · generate
+- 2026-10-13 estimates/estimate-estimates-schema-checked updated: the Criterion replaced whole — the field core and the shipped values (case 804) · [[decision-case-804.3]] · generate
+- 2026-10-13 decisions/decision-case-804.4 created · raw/2026-10-13/1753/ledger.md#case-804.4 · generate
+- 2026-10-13 estimates/estimate-lint-finds-a-broken-link updated: the Criterion replaced whole — the origin guppi on a page with core: true is no finding (case 804) · [[decision-case-804.4]] · generate
+- 2026-10-13 decisions/decision-case-804.5 created · raw/2026-10-13/1753/ledger.md#case-804.5 · generate
+- 2026-10-13 rules/rule-agent-writing updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-ask updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-atomicity updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-backlog updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-bash-guard updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-brief updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-carry-over updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-case-build updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-case-check updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-case-example updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-case-protocol updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-claude-md updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-cleanup updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-close updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-compact-recall updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-context-size updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-decisions-schema updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-default-mode updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-documentation updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-end-of-work updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-entities-schema updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-estimates-schema updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-event-log updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-git-context updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-glossary updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-governed-files-hook updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-guppi-config updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-handoff updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-harness updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-hook-registry updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-index-check updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-insights-schema updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-internal-context updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-language updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-ledger-tail updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-ledger-write updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-lessons-schema updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-lint updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-materialize updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-morph updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-one-judgment-one-implementation updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-orchestration updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-page-generation updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-page-read updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-page-schemas updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-permissions updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-plan-mode updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-powershell-guard updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-prespec updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-prespec-hook updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-prespec-onward updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-python-utf8 updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-ratification updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-raw-archive updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-render-harness updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-retro updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-retro-commit updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-retro-onward updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-rules-schema updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-search-leaves-out-decisions updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-session updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-session-start updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-settings updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-shell-write-check updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-skill-grill-me updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-skill-hi updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-skill-merge-main updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-skill-pr-review updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-skill-sprint-close updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-skill-sprint-open updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-skill-wait-what updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-spec-box updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-spec-capture updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-spec-reconcile updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-spec-write updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-sprint updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-sprint-close updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-synthesis updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-tests-clock-pinned updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-vault-layout updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-where-to-stop updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 rules/rule-work-mode updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 entities/entity-guppi updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 entities/entity-sprint updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 entities/entity-glossary updated: ships in the clean version (case 804) · [[decision-case-804.5]] · generate
+- 2026-10-13 decisions/decision-case-804.6 created · raw/2026-10-13/1753/ledger.md#case-804.6 · generate
+- 2026-10-13 rules/rule-clean-branch created · [[decision-case-804.6]] · generate
+- 2026-10-13 estimates/estimate-clean-branch-writes-a-clean-copy created · [[decision-case-804.6]] · generate
+- 2026-10-13 estimates/estimate-clean-branch-writes-a-clean-copy status: pending → passed · raw/2026-10-13/1753/ledger.md#L120 · generate
+- 2026-10-13 rules/rule-clean-branch estimate estimate-clean-branch-writes-a-clean-copy added · [[decision-case-804.6]] · generate
+- 2026-10-13 entities/entity-guppi-repository updated: its rules name rule-clean-branch beside rule-github-repository (case 804) · [[decision-case-804.6]] · generate
+- 2026-10-13 decisions/decision-case-804.7 created · raw/2026-10-13/1753/ledger.md#case-804.7 · generate
+- 2026-10-13 rules/rule-github-repository updated: deploy keys on the bypass list of prod, and the workflow of rule-clean-branch writes prod with the key of the secret PROD_DEPLOY_KEY (case 804) · [[decision-case-804.7]] · generate
+- 2026-10-13 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch updated: the Criterion replaced whole — the run on a tag prod-* of plugin, the commit on top of prod, prod holds exactly the pages with core: true, the push with the deploy key of PROD_DEPLOY_KEY (case 804) · [[decision-case-804.7]] · generate
+- 2026-10-13 entities/entity-sprint-plugin updated: the item of The clean branch links rule-clean-branch and the Estimate of the live run (case 804) · [[decision-case-804.7]] · generate
+- 2026-10-13 estimates/estimate-case-build-answers-what-done-means status: pending → passed · raw/2026-10-13/1753/ledger.md#L113 · generate
+- 2026-10-13 estimates/estimate-case-build-reads-the-last-output-of-a-check status: pending → passed · raw/2026-10-13/1753/ledger.md#L114 · generate
+- 2026-10-13 estimates/estimate-entities-schema-checked status: pending → passed · raw/2026-10-13/1753/ledger.md#L116 · generate
+- 2026-10-13 estimates/estimate-rules-schema-checked status: pending → passed · raw/2026-10-13/1753/ledger.md#L117 · generate
+- 2026-10-13 estimates/estimate-estimates-schema-checked status: pending → passed · raw/2026-10-13/1753/ledger.md#L118 · generate
+- 2026-10-13 estimates/estimate-lint-finds-a-broken-link status: pending → passed · raw/2026-10-13/1753/ledger.md#L119 · generate
+- 2026-10-13 lessons/lesson-case-build-recommended-an-unchecked-github-fact created · raw/2026-10-13/1753/ledger.md#L121 · generate
+- 2026-10-13 rules/rule-ask status: built → draft · cascade · generate
+- 2026-10-13 rules/rule-clean-branch status: draft → built · cascade · generate
+- 2026-10-13 rules/rule-powershell-guard status: draft → built · cascade · generate
+- 2026-10-13 entities/entity-guppi-repository rules: [rule-clean-branch, rule-github-repository] · cascade · generate
+- 2026-10-13 decisions/decision-case-239 archived · superseded · generate
+- 2026-10-13 decisions/decision-case-745 archived · superseded · generate
+- 2026-10-13 decisions/decision-case-750 archived · superseded · generate
+- 2026-10-13 decisions/decision-case-758 archived · superseded · generate
+- 2026-10-13 decisions/decision-case-239 archived · cleanup
+- 2026-10-13 decisions/decision-case-745 archived · cleanup
+- 2026-10-13 decisions/decision-case-750 archived · cleanup
+- 2026-10-13 decisions/decision-case-758 archived · cleanup

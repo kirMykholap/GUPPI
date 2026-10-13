@@ -11,6 +11,7 @@ origin: raw/2026-09-13/ledger.md#case-100.1
 sprint: migration
 created: 2026-09-13
 tags: [harness, librarian, ledger]
+core: true
 ---
 
 ## Purpose
@@ -61,3 +62,4 @@ coverage of a line is the one function `guppi tail` uses ([[rule-ledger-tail]]).
 - 2026-10-09 updated: a unit goes to the archive folder of the sprint its own yaml records (case 743.2) · [[decision-case-743.2]]
 - 2026-10-09 estimate estimate-raw-archive-files-a-session-by-its-sprint added · [[decision-case-743.2]]
 - 2026-10-09 updated: the close of a sprint moves the old event logs (case 743.3) · [[decision-case-743.3]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

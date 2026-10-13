@@ -11,6 +11,7 @@ origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
 created: 2026-09-09
 tags: [session, hooks, harness, workflow]
+core: true
 ---
 
 ## Purpose
@@ -53,3 +54,4 @@ into the context — `/work`, Work Mode on the Spec, or `/carry` to conserve it 
 - 2026-10-02 updated: a plan that names a conserved Spec gets a line that leads to /box in place of the fork (case 591.3) · [[decision-case-591.3]]
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-03 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

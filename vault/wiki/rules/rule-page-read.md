@@ -11,6 +11,7 @@ origin: raw/2026-09-25/1228/ledger.md#case-420.1
 sprint: migration
 created: 2026-09-25
 tags: [hooks, harness]
+core: true
 ---
 
 ## Purpose
@@ -26,3 +27,4 @@ Prevents an agent from reading the History of a vault page it did not ask for. E
 - 2026-09-25 created · [[decision-case-420.1]]
 - 2026-09-25 estimate estimate-page-read-cuts-the-history added · [[decision-case-420.1]]
 - 2026-09-25 status: draft → built · cascade
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

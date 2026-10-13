@@ -10,6 +10,7 @@ origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
 created: 2026-09-09
 tags: [session, workflow, hooks]
+core: true
 ---
 
 ## Purpose
@@ -71,3 +72,4 @@ items outright.
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-09 updated: child rule-skill-sprint-open added (case 746.1) · [[decision-case-746.1]]
 - 2026-10-10 updated: in the session that opens a sprint the Frontier takes the first milestone from the opening Case and the reply that acknowledges that Case presents it (case 769.2) · [[decision-case-769.2]]
+- 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]

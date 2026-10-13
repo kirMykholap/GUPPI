@@ -36,6 +36,13 @@ REF_FIELDS = (  # the fields whose values are slugs of pages (case 148.1)
     "rules",  # its backlink, computed by generate (case 305.3)
 )
 WIKILINK_VALUE = re.compile(r"^\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]$")
+SHIPPED = "guppi"  # the `origin` and `sprint` of a page in the clean version (case 804.4)
+
+
+def is_core(page: "Page") -> bool:
+    """True when the page carries `core: true`: it ships in the clean version that `guppi
+    ship` writes. The one judgment of the field, which `lint` and `ship` import (case 804.4)."""
+    return page.props.get("core") is True
 
 
 def slug_of(value):

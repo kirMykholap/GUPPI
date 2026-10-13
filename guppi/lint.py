@@ -15,7 +15,8 @@ and, case 72.6, a `[[slug]]` under a decision page's `## Criterion` that is not 
 archived Estimate page, or a `### case N` block under an Estimate's `## Criterion` with no
 live or archived `decision-case-N`), `origin` (a ledger file or `[case N]` line that does
 not exist; the `#case-N` of a Case with no line of its own is found by a line `[case N.M]` of
-a sub-case, case 544.9), `path` (a file named in
+a sub-case, case 544.9; an `origin` equal to `SHIPPED` on a page that `is_core` accepts, a
+page of the clean version, is no finding, case 804.4), `path` (a file named in
 `implementation_ref` or `governs` that does not exist), `markers` (a page with
 `enforcement: render` whose `## Render` is absent, or whose text does not open with
 `<!-- slug -->` and close with `<!-- /slug -->`; and a `render_mode: full` page whose Render
@@ -82,7 +83,16 @@ from guppi.materialize import (
     category_of,  # the one table of prefixes (case 460.3)
     fence_breaks,  # the one judgment of a fence (case 487.2)
 )
-from guppi.pages import CATEGORIES, HISTORY, Page, read_vault, slug_of, wiki_root
+from guppi.pages import (
+    CATEGORIES,
+    HISTORY,
+    SHIPPED,
+    Page,
+    is_core,
+    read_vault,
+    slug_of,
+    wiki_root,
+)
 
 LINK_FIELDS = (
     "parent",
@@ -415,6 +425,8 @@ def check_origin(page: Page, project_dir: Path) -> list[Finding]:
             return [Finding(page, "origin", f"{origin}: the ledger has no line {what}")]
         return []
     if page.category == "insights":
+        return []
+    if origin == SHIPPED and is_core(page):  # a page of the clean version (case 804.4)
         return []
     return [Finding(page, "origin", f"{origin}: not raw/<date>[/<HHMM>]/ledger.md#case-N")]
 

@@ -1,0 +1,58 @@
+# The clean version of GUPPI written to the branch `prod`, as `rule-clean-branch` sets it.
+# A push to `main`, or a push of a tag `prod-*` on a commit of another branch, runs
+# `guppi ship`; when it exits 0, the run commits its folder to `prod` on top of the last
+# commit, with a message that names the commit it was built from, and adds none when nothing
+# changed. When `guppi ship` exits 1 the run fails and pushes nothing. The run pushes with the
+# deploy key whose private half is the secret `PROD_DEPLOY_KEY`; deploy keys stand on the
+# bypass list of the ruleset on `prod` that `rule-github-repository` sets.
+name: prod
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "prod-*"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prod
+  cancel-in-progress: false
+
+jobs:
+  ship:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ssh-key: ${{ secrets.PROD_DEPLOY_KEY }}
+      - uses: astral-sh/setup-uv@v5
+      - name: Build the clean version
+        run: uv run guppi ship "$RUNNER_TEMP/clean"
+      - name: Commit it to prod
+        run: |
+          source="$(git rev-parse HEAD)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          target="$RUNNER_TEMP/prod"
+          if git ls-remote --exit-code --heads origin prod; then
+            git fetch origin prod
+            git worktree add -B prod "$target" origin/prod
+          else
+            git worktree add --detach "$target"
+            git -C "$target" checkout --orphan prod
+          fi
+          cd "$target"
+          git rm -rq --cached . || true
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a "$RUNNER_TEMP/clean/." .
+          git add -A
+          if git diff --cached --quiet; then
+            echo "prod: the clean version equals the last commit of prod; no commit"
+            exit 0
+          fi
+          git commit -q -m "The clean version of GUPPI, built from $source"
+          git push origin HEAD:prod

@@ -87,6 +87,16 @@ def test_an_estimate_with_deferred_by_has_no_finding():
     assert findings(page, data) == []
 
 
+@pytest.mark.parametrize("category", ("entities", "rules", "estimates"))
+def test_a_shipped_page_in_the_shape_has_no_finding(category):
+    """Case 804.1–804.3: a page of the clean version — `core: true`, `origin` and `sprint`
+    `guppi` — in the shape of its schema earns no `schema` finding."""
+    data = schema(category)
+    page = page_in_shape(category, data)
+    page.props.update(core=True, origin="guppi", sprint="guppi")
+    assert findings(page, data) == []
+
+
 def test_a_decision_page_without_context_has_no_finding():
     """Case 513.1: `## Context` is an optional section of a Decision page — the Case file
     keeps the context — so a page with `## Problem` and `## History` alone earns no

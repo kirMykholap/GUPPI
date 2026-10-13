@@ -366,6 +366,14 @@ def test_an_origin_in_neither_place_or_in_both_is_a_finding(tmp_path):
     ]
 
 
+def test_the_shipped_origin_is_no_finding_on_a_core_page_only(tmp_path):  # case 804.4
+    seed(tmp_path, rule=rule_page(origin="guppi", core="true"))
+    assert run(tmp_path) == (0, [], "")
+    seed(tmp_path, rule=rule_page(origin="guppi"))
+    _, lines, _ = run(tmp_path)
+    assert lines == ["rules/rule-x: origin: guppi: not raw/<date>[/<HHMM>]/ledger.md#case-N"]
+
+
 def test_a_page_under_an_archived_raw_folder_is_no_known_slug(tmp_path):
     seed(tmp_path)
     write(

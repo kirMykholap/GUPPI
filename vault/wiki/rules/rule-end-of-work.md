@@ -22,7 +22,7 @@ session's own, by forcing a commit between the two. Three steps, which the agent
 A session has a second end: `/carry` straight after Plan Mode, when the Spec is
 ratified and its work is not done — no Work Mode, no Retro, no handoff, no
 librarian; the brief is rewritten and the session folder marked, so the next session
-picks the Spec up and the librarian does not apply it blind. On leaving Plan Mode the agent asks the person which of the two ends and starts nothing until it is answered (case 190.2). A session that took a conserved Spec at the Frontier is asked nothing there: `/box` runs it the ordinary way on the branch of that Spec, and merges the branch back by a fast-forward after `handoff.md` stands and before the librarian (`rule-spec-box`, case 591).
+picks the Spec up and the librarian does not apply it blind. On leaving Plan Mode the agent asks the person which of the two ends and starts nothing until it is answered (case 190.2). A session that took a conserved Spec at the Frontier is asked nothing there: `/box` runs it the ordinary way on the branch of that Spec, and merges the branch back by a fast-forward after `handoff.md` stands and before the librarian, as `rule-spec-box` sets it (case 591).
 
 ## History
 
@@ -41,3 +41,4 @@ picks the Spec up and the librarian does not apply it blind. On leaving Plan Mod
 - 2026-10-02 updated: a session that took a conserved Spec is asked nothing on leaving Plan Mode and ends the ordinary way through /box; rule-spec-box a child after rule-retro-onward (case 591.4) · [[decision-case-591.4]]
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the slug of rule-spec-box stands outside the bracket of its pointer · [[decision-case-809]]

@@ -18,9 +18,7 @@ core: true
 ## Purpose
 
 Keeps the agent's text — replies, pages, commit messages, documents — to facts with a
-source, short active sentences, the answer first and the not-done named. Until case 272 the
-rule was the section `## Style` of the Render of `rule-claude-md`: a standing condition with
-no page and no Estimate. It is about the agent's prose; the style of the code is `make style`.
+source, short active sentences, the answer first and the not-done named (until case 272 the rule was the section `## Style` of the Render of `rule-claude-md`, a standing condition with no page and no Estimate). It is about the agent's prose; the style of the code is `make style`.
 
 ## Render
 
@@ -41,3 +39,4 @@ and what is not done; never leave the not-done implied.
 - 2026-09-23 status: built → draft · cascade
 - 2026-09-30 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the history of the rule stands in the bracket of its pointer · [[decision-case-809]]

@@ -42,7 +42,7 @@ description: |
 
   Two Entities of GUPPI hold content in a section of their own: the sprint page, `entity-sprint-<id>`, in `## Milestones`, `## Backlog` and `## Closed` (case 234), and the glossary page, `entity-glossary`, in `## Terms` — a flat table of the terms; `guppi sprint` and `guppi glossary` render `sprint.md` and `glossary.md` from them, and `rule-sprint` and `rule-glossary` are their guards (case 306).
 
-  No body section is derived from a ref field: `estimates`, `children`, `parent`, `rules` and `code_ref` are the link, seen by Obsidian since case 148.1 (case 166.1). `deferred_by` is written on a defer and cleared on a `supersedes` by `guppi generate`, under the condition that `rule-case-protocol` sets, never by hand (case 52.3).
+  No body section is derived from a ref field: `estimates`, `children`, `parent`, `rules` and `code_ref` are the link, seen by Obsidian (since case 148.1; case 166.1). `deferred_by` is written on a defer and cleared on a `supersedes` by `guppi generate`, under the condition that `rule-case-protocol` sets, never by hand (case 52.3).
 properties:
   required: [type, kind, purpose, status, estimates, origin, sprint, created, tags]
   optional: [parent, children, code_ref, deferred_by, rules, core]
@@ -173,3 +173,4 @@ examples:
 - 2026-09-30 updated: deferred_by is cleared on a supersedes under the condition that rule-case-protocol sets (case 549) · [[decision-case-549]]
 - 2026-10-13 updated: the field core, and the value guppi of origin and sprint on a page of the clean version (case 804) · [[decision-case-804.1]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: each pointer stands in a bracket of its own · [[decision-case-809]]

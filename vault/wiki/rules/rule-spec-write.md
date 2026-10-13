@@ -16,7 +16,7 @@ core: true
 
 ## Purpose
 
-Prevents a ratified Case from entering the Spec in other words than the Case `case-guppi` wrote into its file, whose `given`, `when`, `then`, `tasks` and `ratification` the person signed and the check of `rule-case-check` stored (case 645.5). Until case 387 the agent wrote each Case into the plan file itself, translated from the chat, and nobody compared the two. Now `case-guppi` writes the whole Case in English, and a hook copies its stored answer (cases 437, 441).
+Prevents a ratified Case from entering the Spec in other words than the Case `case-guppi` wrote into its file, whose `given`, `when`, `then`, `tasks` and `ratification` the person signed and the check of `rule-case-check` stored (case 645.5). `case-guppi` writes the whole Case in English, and a hook copies its stored answer (cases 437, 441; until case 387 the agent wrote each Case into the plan file itself, translated from the chat, and nobody compared the two).
 
 ## How it works
 
@@ -71,3 +71,4 @@ Prevents a ratified Case from entering the Spec in other words than the Case `ca
 - 2026-10-07 updated: a task line tag with the sub-points meaning and aliases declares a new tag into new_tags of the then block and stands in no tasks block (case 702) · [[decision-case-702]]
 - 2026-10-07 updated: the Spec hook removes a parent whose every sub-case with a decision line is retired (case 722.2) · [[decision-case-722.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the history of the hook stands in the bracket of its pointers · [[decision-case-809]]

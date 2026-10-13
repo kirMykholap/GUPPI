@@ -89,9 +89,9 @@ update:
 ```tasks
 - [x] `guppi/ship.py`: one judgment of a bare case number, built on `ID` of `guppi/caseid.py`, reads the comments and docstrings of a Python file by the standard `tokenize` module and gives the line and what it found; `leftovers` adds its lines for a `.py` file, and the module docstring names it.
 - [x] `tests/test_ship.py`: a bracket of case numbers, a comment and a docstring that open with a case number and a colon, and a comment that is a case number alone each exit 1 and stay in the copy; `match.group(1)` in code and a comment that opens with a count are no finding.
-- [ ] update `rule-clean-branch`
-- [ ] update `estimate-clean-branch-writes-a-clean-copy`
-- [ ] read `estimate-clean-branch-writes-a-clean-copy`
+- [x] update `rule-clean-branch`
+- [x] update `estimate-clean-branch-writes-a-clean-copy`
+- [x] read `estimate-clean-branch-writes-a-clean-copy`
 ```
 
 ### Case 808.2 — The code writes each case number with its word
@@ -127,8 +127,8 @@ update:
 
 ```tasks
 - [x] `guppi/`: each comment and docstring that gives a case number with no word `case` or `cases` before it — in a bracket, such as `(274.1)`, at its opening, such as `# 169.1:` or `"""75.2:`, or alone, such as `# 786` — is rewritten by hand as a pointer in a bracket of its own at the end of its sentence, such as `(case 274.1)`; no code changes.
-- [ ] update `estimate-clean-branch-code-holds-pointers-only-in-brackets`
-- [ ] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] update `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
 ```
 
 ## Case 809 — The shipped pages hold each pointer in a bracket of its own
@@ -584,70 +584,70 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
-- [ ] update `entity-glossary`
-- [ ] update `entity-sprint`
-- [ ] update `entity-sprint-plugin`
-- [ ] update `rule-agent-writing`
-- [ ] update `rule-backlog`
-- [ ] update `rule-brief`
-- [ ] update `rule-carry-over`
-- [ ] update `rule-case-build`
-- [ ] update `rule-case-check`
-- [ ] update `rule-case-example`
-- [ ] update `rule-case-protocol`
-- [ ] update `rule-claude-md`
-- [ ] update `rule-cleanup`
-- [ ] update `rule-decisions-schema`
-- [ ] update `rule-documentation`
-- [ ] update `rule-end-of-work`
-- [ ] update `rule-entities-schema`
-- [ ] update `rule-estimates-schema`
-- [ ] update `rule-event-log`
-- [ ] update `rule-git-context`
-- [ ] update `rule-insights-schema`
-- [ ] update `rule-internal-context`
-- [ ] update `rule-language`
-- [ ] update `rule-ledger-tail`
-- [ ] update `rule-ledger-write`
-- [ ] update `rule-lessons-schema`
-- [ ] update `rule-materialize`
-- [ ] update `rule-orchestration`
-- [ ] update `rule-page-generation`
-- [ ] update `rule-page-read`
-- [ ] update `rule-page-schemas`
-- [ ] update `rule-permissions`
-- [ ] update `rule-prespec-hook`
-- [ ] update `rule-raw-archive`
-- [ ] update `rule-render-harness`
-- [ ] update `rule-retro`
-- [ ] update `rule-retro-commit`
-- [ ] update `rule-retro-onward`
-- [ ] update `rule-rules-schema`
-- [ ] update `rule-search-leaves-out-decisions`
-- [ ] update `rule-skill-grill-me`
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-skill-sprint-close`
-- [ ] update `rule-skill-sprint-open`
-- [ ] update `rule-spec-capture`
-- [ ] update `rule-spec-reconcile`
-- [ ] update `rule-spec-write`
-- [ ] update `rule-sprint`
-- [ ] update `rule-synthesis`
-- [ ] update `rule-work-mode`
-- [ ] `uv run guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
-- [ ] `uv run guppi render`: `vault/wiki/entities/schema.yaml`
-- [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] `uv run guppi render`: `vault/wiki/lessons/schema.yaml`
-- [ ] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
-- [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
-- [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] `uv run guppi render`: `.claude/skills/work/SKILL.md`
-- [ ] `uv run guppi glossary`
+- [x] create `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
+- [x] update `entity-glossary`
+- [x] update `entity-sprint`
+- [x] update `entity-sprint-plugin`
+- [x] update `rule-agent-writing`
+- [x] update `rule-backlog`
+- [x] update `rule-brief`
+- [x] update `rule-carry-over`
+- [x] update `rule-case-build`
+- [x] update `rule-case-check`
+- [x] update `rule-case-example`
+- [x] update `rule-case-protocol`
+- [x] update `rule-claude-md`
+- [x] update `rule-cleanup`
+- [x] update `rule-decisions-schema`
+- [x] update `rule-documentation`
+- [x] update `rule-end-of-work`
+- [x] update `rule-entities-schema`
+- [x] update `rule-estimates-schema`
+- [x] update `rule-event-log`
+- [x] update `rule-git-context`
+- [x] update `rule-insights-schema`
+- [x] update `rule-internal-context`
+- [x] update `rule-language`
+- [x] update `rule-ledger-tail`
+- [x] update `rule-ledger-write`
+- [x] update `rule-lessons-schema`
+- [x] update `rule-materialize`
+- [x] update `rule-orchestration`
+- [x] update `rule-page-generation`
+- [x] update `rule-page-read`
+- [x] update `rule-page-schemas`
+- [x] update `rule-permissions`
+- [x] update `rule-prespec-hook`
+- [x] update `rule-raw-archive`
+- [x] update `rule-render-harness`
+- [x] update `rule-retro`
+- [x] update `rule-retro-commit`
+- [x] update `rule-retro-onward`
+- [x] update `rule-rules-schema`
+- [x] update `rule-search-leaves-out-decisions`
+- [x] update `rule-skill-grill-me`
+- [x] update `rule-skill-hi`
+- [x] update `rule-skill-sprint-close`
+- [x] update `rule-skill-sprint-open`
+- [x] update `rule-spec-capture`
+- [x] update `rule-spec-reconcile`
+- [x] update `rule-spec-write`
+- [x] update `rule-sprint`
+- [x] update `rule-synthesis`
+- [x] update `rule-work-mode`
+- [x] `uv run guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/entities/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/lessons/schema.yaml`
+- [x] `uv run guppi render`: `vault/wiki/insights/schema.yaml`
+- [x] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] `uv run guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/carry/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
+- [x] `uv run guppi glossary`
 - [ ] read `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
 ```

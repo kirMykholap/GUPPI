@@ -46,7 +46,7 @@ Otherwise:
    this file when the work of spec.md is done`. Its presence tells `guppi materialize` to pass the unit by, and `guppi backlog` to show the Spec under its conserved Specs. Then run `uv run guppi backlog`; every line on its stderr goes into the reply.
 3. Run `make style`, then commit `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`:
    `docs(vault): Spec of session <HHMM> conserved, Cases <N>–<M>`.
-4. Make the branch of the Spec at that commit: `git branch spec/<hi date>-<hi HHMM>`. Stay on the current branch: the Spec waits on its branch until a later session takes it at the Frontier and `/box` runs it (`rule-spec-box`, case 591).
+4. Make the branch of the Spec at that commit: `git branch spec/<hi date>-<hi HHMM>`. Stay on the current branch: the Spec waits on its branch until a later session takes it at the Frontier and `/box` runs it, as `rule-spec-box` sets it (case 591).
 
 Run nothing else: no Work Mode, no `/retro`, no `/handoff`, no librarian, no `guppi
 materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki/` but the brief; `vault/wiki/backlog.md` is written by `guppi backlog` alone. The session that finishes the Spec deletes `carry.md`.
@@ -74,3 +74,4 @@ materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki
 - 2026-10-02 updated: /carry makes the branch spec/<hi date>-<hi HHMM> at its commit and stays on the current branch (case 591.1) · [[decision-case-591.1]]
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the slug of rule-spec-box stands outside the bracket of its pointer · [[decision-case-809]]

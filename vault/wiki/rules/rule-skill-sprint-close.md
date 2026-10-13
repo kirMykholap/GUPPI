@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents the session that closes a sprint from mixing the close with other decisions, or from reaching the close without the readings sorted, while the text that leads it stays out of the sessions that close no sprint. Until case 743 these steps stood in a paragraph of `orchestration.md`, which every session loads. The skill starts when the person takes up the close line of the sprint, which [[rule-skill-sprint-open]] writes in a fixed form as the last item of the last milestone, or when the person types it (case 743.8). It reaches the librarian through the close line of the Spec, which `.claude/agents/librarian-guppi.md` runs ([[rule-sprint-close]], case 628.1).
+Prevents the session that closes a sprint from mixing the close with other decisions, or from reaching the close without the readings sorted, while the text that leads it stays out of the sessions that close no sprint. These steps stand apart from `orchestration.md`, which every session loads (until case 743 they stood in a paragraph of it). The skill starts when the person takes up the close line of the sprint, which [[rule-skill-sprint-open]] writes in a fixed form as the last item of the last milestone, or when the person types it (case 743.8). It reaches the librarian through the close line of the Spec, which `.claude/agents/librarian-guppi.md` runs as [[rule-sprint-close]] sets it (case 628.1).
 
 ## Render
 
@@ -50,3 +50,4 @@ This session closes the sprint that `vault/wiki/sprint.md` names. Its Plan Mode 
 - 2026-10-11 updated: the closing Case leaves no merge line; the opening Case of the next sprint holds the merge · [[decision-case-775.2]]
 - 2026-10-13 updated: /sprint-close refuses while the branch does not hold origin/main, and asks for /merge-main first (case 791) · [[decision-case-791]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: each pointer stands in a bracket of its own, the link to rule-sprint-close outside it · [[decision-case-809]]

@@ -16,7 +16,7 @@ core: true
 
 ## Purpose
 
-The sprint as a kind. A sprint is a unit of work over the project: its Estimates are its Definition of done, read before its close, and one that has not passed by then goes to the archive with the sprint page, its status kept in the record of the close (`rule-sprint-close`, case 632.3); its `## Milestones` the Slices in order, its `## Backlog` the items without a turn. Each sprint is a Leaf under this page, `entity-sprint-<id>`, one live at a time; `guppi sprint` renders `vault/wiki/sprint.md` from the live one, and `rule-sprint` is its guard. This page carries no Estimate yet — the person named none; a measure over all sprints, which no single sprint owns, goes here when one is named (case 241).
+The sprint as a kind. A sprint is a unit of work over the project: its Estimates are its Definition of done, read before its close, and one that has not passed by then goes to the archive with the sprint page, its status kept in the record of the close, as `rule-sprint-close` sets it (case 632.3); its `## Milestones` the Slices in order, its `## Backlog` the items without a turn. Each sprint is a Leaf under this page, `entity-sprint-<id>`, one live at a time; `guppi sprint` renders `vault/wiki/sprint.md` from the live one, and `rule-sprint` is its guard. This page carries no Estimate yet — the person named none; a measure over all sprints, which no single sprint owns, goes here when one is named (case 241).
 
 ## History
 
@@ -28,3 +28,4 @@ The sprint as a kind. A sprint is a unit of work over the project: its Estimates
 - 2026-10-10 child entity-sprint-migration archived · cleanup
 - 2026-10-10 child entity-sprint-plugin added · [[decision-case-756.1]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]]

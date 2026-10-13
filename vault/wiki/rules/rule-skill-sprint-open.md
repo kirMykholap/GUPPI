@@ -18,7 +18,7 @@ core: true
 
 ## Purpose
 
-Prevents the next sprint from opening without a goal, a Definition of done, a first milestone, its close line and a look at the backlog, while the text that asks for them stays out of the sessions that open no sprint. Until case 743 nothing set what the opening Case asks, and the steps of the turn of a sprint stood in `orchestration.md`, which every session loads. The skill loads only in the session that opens a sprint: the `UserPromptSubmit` hook `guppi sprint --hi` tells the agent at `/hi` to start it when `vault/wiki/sprint.md` marks the last sprint closed ([[rule-sprint]], case 743.5), and the person may type it too. The backlog is not gone through: the opening Case says how many items it holds and asks whether to take any (case 743.6). The close line it writes starts [[rule-skill-sprint-close]] in the session that closes the sprint.
+Prevents the next sprint from opening without a goal, a Definition of done, a first milestone, its close line and a look at the backlog, while the text that asks for them stays out of the sessions that open no sprint. The skill sets what the opening Case asks, apart from `orchestration.md`, which every session loads (until case 743 nothing set it, and the steps of the turn of a sprint stood in `orchestration.md`). The skill loads only in the session that opens a sprint: the `UserPromptSubmit` hook `guppi sprint --hi` tells the agent at `/hi` to start it when `vault/wiki/sprint.md` marks the last sprint closed, as [[rule-sprint]] sets it (case 743.5), and the person may type it too. The backlog is not gone through: the opening Case says how many items it holds and asks whether to take any (case 743.6). The close line it writes starts [[rule-skill-sprint-close]] in the session that closes the sprint.
 
 ## Render
 
@@ -62,3 +62,4 @@ No sprint is open: the first heading of `vault/wiki/sprint.md` marks the last sp
 - 2026-10-13 updated: the opening Case of a sprint pushes the closed sprint and opens its pull request into main; for the owner it merges it after its checks pass; the last milestone names /merge-main before the close · [[decision-case-789.1]]
 - 2026-10-13 updated: the main agent asks the sprint id before the dispatch, and the opening Case is Case <id>-1 (case 788.3) · [[decision-case-788.3]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: each pointer stands in a bracket of its own, the link to rule-sprint outside it · [[decision-case-809]]

@@ -34,7 +34,7 @@ Status: !`git status --short`
 
 ## How it works
 
-The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line is a Frontier item like the one of the session start (case 115). From case 528 to case 787 the repository had no remote: `origin` had been the product repository this vault was split from and `migration` had no upstream, so the pull that stood first in this block failed at every session start. Since case 787 `origin` is the public repository `GUPPI` on GitHub, and `/hi` still runs no `git pull`. The local `main` follows `origin/main` in the opening Case of a sprint, by `git fetch origin` and `git merge --ff-only origin/main` (case 789.1), and a sprint branch takes `main` by the merge Case of `/merge-main` (case 790).
+The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line is a Frontier item like the one of the session start (case 115). `/hi` runs no `git pull` (from case 528 to case 787 the repository had no remote: `origin` had been the product repository this vault was split from and `migration` had no upstream, so the pull that stood first in this block failed at every session start; since case 787 `origin` is the public repository `GUPPI` on GitHub). The local `main` follows `origin/main` in the opening Case of a sprint, by `git fetch origin` and `git merge --ff-only origin/main` (case 789.1), and a sprint branch takes `main` by the merge Case of `/merge-main` (case 790).
 
 ## History
 
@@ -55,3 +55,4 @@ The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, aft
 - 2026-10-13 status: built → draft · cascade
 - 2026-10-13 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the history of the remote stands in the bracket of its pointers · [[decision-case-809]]

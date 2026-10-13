@@ -35,10 +35,9 @@ one rule rather than two.
 
 ## How it works
 
-`orchestration.md` and `ratification.md` are listed since case 595, in place of `case-schema.md`, listed from case 273: they reach a working session here and not through `CLAUDE.md`, so a session without `/hi` carries none of their text, and the form of a Case, `case-schema.md`, reaches only `case-guppi`, which reads it itself. `glossary.md` is listed since case 288.1: it left the `@` import of `CLAUDE.md`,
-which every subagent loads and none of them needs. The category schemas are not listed:
+`orchestration.md` and `ratification.md` are listed in place of `case-schema.md` (since case 595; `case-schema.md` was listed from case 273): they reach a working session here and not through `CLAUDE.md`, so a session without `/hi` carries none of their text, and the form of a Case, `case-schema.md`, reaches only `case-guppi`, which reads it itself. `glossary.md` is listed here and not in the `@` import of `CLAUDE.md`, which every subagent loads and none of them needs (since case 288.1). The category schemas are not listed:
 they are read when a page of their category is written. After a compaction `guppi recall`
-prints the paths of these lines back (case 287). `where-to-stop.md` is listed after `orchestration.md` since case 689.1: the run from the approved Spec to the librarian stops for the person only on its conditions, and Plan Mode, which plans that run with the person, holds the same list, so the main agent promises no turn of the person inside it.
+prints the paths of these lines back (case 287). `where-to-stop.md` is listed after `orchestration.md` (since case 689.1): the run from the approved Spec to the librarian stops for the person only on its conditions, and Plan Mode, which plans that run with the person, holds the same list, so the main agent promises no turn of the person inside it.
 
 ## History
 
@@ -58,3 +57,4 @@ prints the paths of these lines back (case 287). `where-to-stop.md` is listed af
 - 2026-10-02 status: draft → built · cascade
 - 2026-10-06 updated: /hi loads where-to-stop.md after orchestration.md (case 689.1) · [[decision-case-689.1]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: each pointer stands in a bracket of its own · [[decision-case-809]]

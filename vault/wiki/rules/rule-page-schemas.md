@@ -15,7 +15,7 @@ core: true
 
 ## Purpose
 
-Prevents the shape of a page category from living in a file nobody ratified. Until case 304 the six `schema.yaml` and their `schema.md` stood outside the graph — no `purpose`, no History, no Estimate, changed by hand by an `update` with `file`. Each child renders one `vault/wiki/<category>/schema.yaml`: the lists lint reads, the prose of the former `schema.md` as data under `description`, `fields`, `sections` and `examples`. Lint reads the file, the governed-files hook refuses a hand edit of it. The schemas are read in every phase — the agent's `then` block in Plan Mode, `materialize` and `generate` in Documentation, lint with the renderer — so the MOC sits under `rule-harness`, as `rule-lint` does. The order of the children is the order of `CATEGORIES` in `materialize.py`. No `applies_to` on a schema rule: a schema applies to a category of pages, not to a page (case 304).
+Prevents the shape of a page category from living in a file nobody ratified (until case 304 the six `schema.yaml` and their `schema.md` stood outside the graph — no `purpose`, no History, no Estimate, changed by hand by an `update` with `file`). Each child renders one `vault/wiki/<category>/schema.yaml`: the lists lint reads, the prose of the former `schema.md` as data under `description`, `fields`, `sections` and `examples`. Lint reads the file, the governed-files hook refuses a hand edit of it. The schemas are read in every phase — the agent's `then` block in Plan Mode, `materialize` and `generate` in Documentation, lint with the renderer — so the MOC sits under `rule-harness`, as `rule-lint` does. The order of the children is the order of `CATEGORIES` in `materialize.py`. No `applies_to` on a schema rule: a schema applies to a category of pages, not to a page (case 304).
 
 ## History
 
@@ -26,3 +26,4 @@ Prevents the shape of a page category from living in a file nobody ratified. Unt
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the history of the schemas stands in the bracket of its pointer · [[decision-case-809]]

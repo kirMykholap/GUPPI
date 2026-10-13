@@ -20,7 +20,7 @@ Prevents a Rule page and the harness file it governs from becoming two copies of
 text. Without a renderer `enforcement: render` is a label: the skill and `CLAUDE.md` are
 edited by hand, the page follows or does not, and the vault stops being the source.
 
-`parent: rule-harness` names the MOC of the harness tools: the renderer runs with lint and as the librarian's step after `cleanup` (case 89.1); the tick of case 226.2 belongs to that step.
+`parent: rule-harness` names the MOC of the harness tools: the renderer runs with lint and as the librarian's step after `cleanup` (case 89.1), and its tick of the render lines of the Spec belongs to that step (case 226.2).
 
 ## History
 
@@ -50,3 +50,4 @@ edited by hand, the page follows or does not, and the vault stops being the sour
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the pointer stands in a bracket of its own · [[decision-case-809]]

@@ -39,7 +39,7 @@ A Claude Code harness governed by ratified decisions, and the Obsidian vault it 
 
 ## How it works
 
-Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-writing`, `rule-one-judgment-one-implementation` — splices into its marker line. The file is the system prompt of every session and of every subagent, so it holds what each of them needs and no more: the description of the project and the three standing rules. The glossary, `orchestration.md` and `ratification.md` arrive with `/hi` through `rule-internal-context`, and the one rule opens `ratification.md` (cases 288, 595). The section "Migration mode", carried from the hand-written file of 2026-09-12, left with case 288.3, each of its items a Rule with a Render of its own by then; "Commands" left with it — `make style` before a commit is `rule-retro`'s, and "no new dependencies" came with the file in 59.8 and was never decided on its own. `rule-language` and `rule-agent-writing` have this page as their parent since case 272. `rule-case-protocol` was a child from case 66 to case 273, when its Render became `case-schema.md` and its parent `rule-plan-mode`.
+Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-writing`, `rule-one-judgment-one-implementation` — splices into its marker line. The file is the system prompt of every session and of every subagent, so it holds what each of them needs and no more: the description of the project and the three standing rules. The glossary, `orchestration.md` and `ratification.md` arrive with `/hi` through `rule-internal-context`, and the one rule opens `ratification.md` (cases 288, 595). `rule-language` and `rule-agent-writing` have this page as their parent (since case 272; the section "Migration mode", carried from the hand-written file of 2026-09-12, left with case 288.3, each of its items a Rule with a Render of its own by then, and "Commands" left with it — `make style` before a commit is `rule-retro`'s, and "no new dependencies" came with the file in case 59.8 and was never decided on its own; `rule-case-protocol` was a child from case 66 to case 273, when its Render became `case-schema.md` and its parent `rule-plan-mode`).
 
 ## History
 
@@ -77,3 +77,4 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-02 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the history of the page stands in the bracket of its pointers · [[decision-case-809]]

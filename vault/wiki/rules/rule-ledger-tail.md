@@ -18,7 +18,7 @@ core: true
 
 ## Purpose
 
-Shows at `/hi`, and at `/retro` since case 126, every ledger line that no vault page holds yet. The readings of the
+Shows at `/hi` and at `/retro` (since case 126) every ledger line that no vault page holds yet. The readings of the
 librarian's own run and the lessons of the close are written after its commit and
 after its brief, so the next `/hi`, which reads the brief, would not see them until
 the librarian after next. The tail closes that gap for the Frontier: the page of a
@@ -70,3 +70,4 @@ an item, and a decision line not.
 - 2026-09-29 status: draft → built · cascade
 - 2026-09-30 updated: the Tail line follows the git lines: rule-github-issues left the harness (case 528.2) · [[decision-case-528.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the pointer stands in a bracket of its own · [[decision-case-809]]

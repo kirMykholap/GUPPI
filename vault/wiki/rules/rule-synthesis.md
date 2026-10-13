@@ -19,7 +19,7 @@ core: true
 
 Prevents a pattern of failures from staying a list of unrelated incidents. One
 lesson is an incident; two with one root cause are a pattern, and a pattern is what
-a later Case can fix. The archive is not needed: a lesson is archived when its Insight was actioned, and that Insight stays live with its pattern in its index line until the close of its sprint, so a recurrence inside the sprint is caught there at the cost of one Grep line; the close of a sprint archives its actioned Insights and its `error` lessons that joined no Insight (`rule-sprint-close`, case 627.5).
+a later Case can fix. The archive is not needed: a lesson is archived when its Insight was actioned, and that Insight stays live with its pattern in its index line until the close of its sprint, so a recurrence inside the sprint is caught there at the cost of one Grep line; the close of a sprint archives its actioned Insights and its `error` lessons that joined no Insight, as `rule-sprint-close` sets it (case 627.5).
 
 ## Render
 
@@ -109,3 +109,4 @@ outcome, clustered or not. The archive is not needed: an actioned Insight stays 
 - 2026-10-05 updated: an Insight that a decision entry of the same yaml sets actioned counts as actioned at synthesis (case 668) · [[decision-case-668]]
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]]

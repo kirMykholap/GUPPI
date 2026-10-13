@@ -9734,3 +9734,68 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-14 lessons/lesson-case-build-recommended-on-a-claim-about-code-it-did-not-read updated: clustered under insight-case-build-claims-what-code-does-without-reading-it (synthesis) · raw/2026-10-13/2118/ledger.md#L27 · generate
 - 2026-10-14 rules/rule-case-build status: draft → built · cascade · generate
 - 2026-10-14 rules/rule-work-mode status: built → draft · cascade · generate
+- 2026-10-14 decisions/decision-case-808 created · raw/2026-10-14/0101/ledger.md#case-808 · generate
+- 2026-10-14 decisions/decision-case-808.1 created · raw/2026-10-14/0101/ledger.md#case-808.1 · generate
+- 2026-10-14 rules/rule-clean-branch updated: a case number stands with its word; guppi ship reports a bare one in a comment or a docstring of the code · [[decision-case-808.1]] · generate
+- 2026-10-14 estimates/estimate-clean-branch-writes-a-clean-copy updated: the Criterion replaced whole — guppi ship reports a bare case number in a comment or a docstring of a Python file · [[decision-case-808.1]] · generate
+- 2026-10-14 decisions/decision-case-808.2 created · raw/2026-10-14/0101/ledger.md#case-808.2 · generate
+- 2026-10-14 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets updated: the Criterion replaced whole — the code writes each case number with its word · [[decision-case-808.2]] · generate
+- 2026-10-14 decisions/decision-case-809 created · raw/2026-10-14/0101/ledger.md#case-809 · generate
+- 2026-10-14 estimates/estimate-clean-branch-pages-hold-pointers-only-in-brackets created · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-clean-branch estimate estimate-clean-branch-pages-hold-pointers-only-in-brackets added · [[decision-case-809]] · generate
+- 2026-10-14 entities/entity-glossary updated: each pointer stands in a bracket of its own, a definition outside it · [[decision-case-809]] · generate
+- 2026-10-14 entities/entity-sprint updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-agent-writing updated: the history of the rule stands in the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-backlog updated: each pointer stands in a bracket of its own, the slug of rule-sprint-close outside it · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-brief updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-carry-over updated: the slug of rule-spec-box stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-case-build updated: the history of the agent stands in the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-case-check updated: the history of the check stands in the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-case-example updated: the history of the examples stands in the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-case-protocol updated: each pointer stands in a bracket of its own; the definitions of replace, reword and rename and the slugs of shipped rules stand outside it · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-claude-md updated: the history of the page stands in the bracket of its pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-cleanup updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-decisions-schema updated: each pointer stands in a bracket of its own with the history it names, the slug of rule-sprint-close outside it · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-documentation updated: the session's folder and the slugs of shipped rules stand outside the brackets of their pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-end-of-work updated: the slug of rule-spec-box stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-entities-schema updated: each pointer stands in a bracket of its own · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-estimates-schema updated: each pointer stands in a bracket of its own · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-event-log updated: the history of the marks stands in the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-git-context updated: the history of the remote stands in the bracket of its pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-insights-schema updated: the slug of rule-sprint-close stands outside the brackets of its pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-internal-context updated: each pointer stands in a bracket of its own · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-language updated: the history of the rule stands in the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-ledger-tail updated: the pointer stands in a bracket of its own · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-ledger-write updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-lessons-schema updated: the slug of rule-sprint-close stands outside the brackets of its pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-materialize updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-orchestration updated: the slugs of shipped rules stand outside the brackets of their pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-page-generation updated: the slug of rule-sprint stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-page-read updated: the session stands in the bracket of the lesson · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-page-schemas updated: the history of the schemas stands in the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-permissions updated: the session stands in the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-prespec-hook updated: the old name stands in the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-raw-archive updated: the slug of rule-sprint-close stands outside the brackets of its pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-render-harness updated: the pointer stands in a bracket of its own · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-retro updated: the session's folder and the slug of rule-sprint-close stand outside the brackets of their pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-retro-commit updated: the slug of rule-ledger-write stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-retro-onward updated: each session stands in a bracket · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-rules-schema updated: each pointer stands in a bracket of its own, the slug of rule-sprint outside it · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-search-leaves-out-decisions updated: the session stands in a bracket · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-skill-grill-me updated: each pointer stands in a bracket of its own · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-skill-hi updated: each pointer stands in a bracket of its own, the slugs of shipped rules outside it · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-skill-sprint-close updated: each pointer stands in a bracket of its own, the link to rule-sprint-close outside it · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-skill-sprint-open updated: each pointer stands in a bracket of its own, the link to rule-sprint outside it · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-spec-capture updated: the slug of rule-spec-box stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-spec-reconcile updated: the history of the guard stands in the brackets of its pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-spec-write updated: the history of the hook stands in the bracket of its pointers · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-sprint updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-synthesis updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 rules/rule-work-mode updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]] · generate
+- 2026-10-14 entities/entity-sprint-plugin updated: the milestone The clean branch says what remains after the rewording of the pages · [[decision-case-809]] · generate
+- 2026-10-14 estimates/estimate-ask-opens-a-decision-only-for-a-finding status: pending → passed · raw/2026-10-14/0101/ledger.md#L55 · generate
+- 2026-10-14 estimates/estimate-clean-branch-writes-a-clean-copy status: pending → passed · raw/2026-10-14/0101/ledger.md#L56 · generate
+- 2026-10-14 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets status: pending → passed · raw/2026-10-14/0101/ledger.md#L57 · generate
+- 2026-10-14 lessons/lesson-caseid-held-no-id-without-the-session-option created · raw/2026-10-14/0101/ledger.md#L58 · generate
+- 2026-10-14 rules/rule-ask status: draft → built · cascade · generate
+- 2026-10-14 rules/rule-clean-branch status: built → draft · cascade · generate

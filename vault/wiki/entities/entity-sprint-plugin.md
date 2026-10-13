@@ -20,7 +20,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 
 ### The clean branch
 
-- [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint
+- [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint; what remains: once the librarian's run applies the rewording of the pages (case 809), the owner pushes a tag `prod-*` on a commit of `plugin`, and the CI run it starts is read by its Estimate
 
 ### The plugin
 
@@ -51,3 +51,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-13 updated: the item of The clean branch links rule-clean-branch and the Estimate of the live run (case 804) · [[decision-case-804.7]]
 - 2026-10-14 deferred · [[decision-case-805]]
 - 2026-10-14 updated: the clean branch: guppi ship removes each bracket that holds a pointer; the pages are reworded by a Case of the next session (case 807.1) · [[decision-case-807.1]]
+- 2026-10-14 updated: the milestone The clean branch says what remains after the rewording of the pages · [[decision-case-809]]

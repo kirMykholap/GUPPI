@@ -17,9 +17,7 @@ core: true
 
 ## Purpose
 
-Keeps the repository in the documentation language and the chat with the owner in the chat language, `documentation_lang` and `chat_lang` set in `rule-guppi-config` and rendered into `guppi.toml` — English and Russian in this project (case 476.4). Until case 272 the
-rule was a section of the Render of `rule-claude-md`: a standing condition with no page and
-no Estimate. A Case is discussed in Russian and read in English, whole, in the file the agent sends the person (cases 123, 387.1, 452.5); the
+Keeps the repository in the documentation language and the chat with the owner in the chat language, `documentation_lang` and `chat_lang` set in `rule-guppi-config` and rendered into `guppi.toml` — English and Russian in this project (case 476.4; until case 272 the rule was a section of the Render of `rule-claude-md`, a standing condition with no page and no Estimate). A Case is discussed in Russian and read in English, whole, in the file the agent sends the person (cases 123, 387.1, 452.5); the
 manner of the English that lands in the vault — ASD-STE100 Simplified Technical English —
 is the `## Language` section of `case-schema.md`, which this rule does not repeat.
 
@@ -46,3 +44,4 @@ is the `## Language` section of `case-schema.md`, which this rule does not repea
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-02 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the history of the rule stands in the bracket of its pointer · [[decision-case-809]]

@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents an interview from acting on a plan before each of its decisions is put to the person and settled, and the skill that runs it from being a file no rule page governs. `/grill-me` asks in rounds: the frontier of a design tree, the questions whose prerequisites are settled, each with a recommended answer. It served the person's own interviews without a page until case 443.1. The same text serves `case-guppi`, which loads it through the `skills` field of its frontmatter ([[rule-case-build]]), so two of its sentences name no one agent: a fact is found by the agent itself, or by a sub-agent when the agent can dispatch one; the shared understanding is confirmed by the user's word unless the instructions that started the grill name another confirmation. The question template is an indented code block, the form it took when case 443.1 was written, before case 444 let a fenced value carry a shorter fence.
+Prevents an interview from acting on a plan before each of its decisions is put to the person and settled, and the skill that runs it from being a file no rule page governs. `/grill-me` asks in rounds: the frontier of a design tree, the questions whose prerequisites are settled, each with a recommended answer. It served the person's own interviews without a page (until case 443.1). The same text serves `case-guppi`, which loads it through the `skills` field of its frontmatter ([[rule-case-build]]), so two of its sentences name no one agent: a fact is found by the agent itself, or by a sub-agent when the agent can dispatch one; the shared understanding is confirmed by the user's word unless the instructions that started the grill name another confirmation. The question template is an indented code block (the form it took when case 443.1 was written, before case 444 let a fenced value carry a shorter fence).
 
 ## Render
 
@@ -80,3 +80,4 @@ The session is done when the frontier is empty: every branch of the design tree 
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-09 updated: the After line of an option stands with no list dash, and a quotation or a list under it is indented as far as the label (case 744.1) · [[decision-case-744.1]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: each pointer stands in a bracket of its own · [[decision-case-809]]

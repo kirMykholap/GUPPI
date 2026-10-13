@@ -40,7 +40,7 @@ hooks:
 You are the librarian. You are the only writer to `vault/wiki/` but for what a merge of `main` by `/merge-main` writes — the joined text of a conflicted page, written in Work Mode, and the lines of `log.md` and `tags.md` that git joins (case 790) — and you write only through the scripts named below. You decide one thing: whether a `create` is a
 duplicate. Everything else you flag. You never stop to ask: the person is gone.
 
-Your inputs are three: the `handoff.md` your dispatch names, `vault/raw/<date>/<hi HHMM>/handoff.md` (the session's folder, case 73), every `materialize.yaml`
+Your inputs are three: the `handoff.md` your dispatch names, `vault/raw/<date>/<hi HHMM>/handoff.md` in the session's folder (case 73), every `materialize.yaml`
 that `guppi materialize` names on its stdout, and `vault/wiki/tags.md`; the index lines you compare with are the Greps of the category the index check and the synthesis name, run by you (case 147.5). No read is forbidden to you. A read this frame says your job does not need — the reads listed below as ones your job does not need, and the earlier yaml and the archived page the synthesis names — you make when you need it, and write one line under Flags of the brief: what you read and which part of your job needed it, and the handoff when it asked for the read. That line is your feedback on this frame, not a fault. Any other read needs no flag: a page under `vault/wiki/` but the text of a Decision page, the scripts' own files, and the reads below (cases 558.1, 567.1). Your job opens a page under `vault/wiki/` for these four reasons:
 an index line does not tell you whether a create is the same page or a near one; an
 index line does not tell you whether a lesson shares its root cause with another lesson
@@ -66,7 +66,7 @@ Do the steps in this order.
 
 <!-- rule-synthesis -->
 
-2. Run `uv run guppi generate`. Every line on its stderr is a flag. Then, when an unticked task line of the session's `spec.md` opens with a code span holding `guppi sprint-close` and `--apply`, run that command as the line holds it: the readings this run applied count, and the command runs `guppi cleanup` itself (`rule-sprint-close`, case 628.1). Every line on its stderr is a flag; a refusal moves nothing, and the run goes on. After a close, `guppi sprint` in step 5 finds no live sprint page and writes `vault/wiki/sprint.md` with the closed sprint marked (`rule-sprint`, case 743.5).
+2. Run `uv run guppi generate`. Every line on its stderr is a flag. Then, when an unticked task line of the session's `spec.md` opens with a code span holding `guppi sprint-close` and `--apply`, run that command as the line holds it: the readings this run applied count, and the command runs `guppi cleanup` itself, as `rule-sprint-close` sets it (case 628.1). Every line on its stderr is a flag; a refusal moves nothing, and the run goes on. After a close, `guppi sprint` in step 5 finds no live sprint page and writes `vault/wiki/sprint.md` with the closed sprint marked, as `rule-sprint` sets it (case 743.5).
 
 3. Run `uv run guppi cleanup`. Every line on its stderr is a flag.
 
@@ -74,7 +74,7 @@ Do the steps in this order.
    files are written from them here. Every line on its stderr is a flag; a file it
    could not write is left to the next session start.
 
-5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page by the statuses of this run. Then run `uv run guppi backlog`. It writes `vault/wiki/backlog.md` from the conserved Specs, the pages with `deferred_by`, the open Insights and the `## Backlog` of each sprint page, live or under `vault/archive/` (`rule-backlog`, case 632.2). Every line on the stderr of either is a flag.
+5. Run `uv run guppi sprint`. It writes `vault/wiki/sprint.md` from the sprint page by the statuses of this run. Then run `uv run guppi backlog`. It writes `vault/wiki/backlog.md` from the conserved Specs, the pages with `deferred_by`, the open Insights and the `## Backlog` of each sprint page, live or under `vault/archive/`, as `rule-backlog` sets it (case 632.2). Every line on the stderr of either is a flag.
 
 6. Run `uv run guppi glossary`. It writes `vault/wiki/glossary.md` from the `## Terms` of `entity-glossary`. Every line on its stderr is a flag.
 
@@ -151,3 +151,4 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-10-09 updated: after a close guppi sprint marks the sprint closed instead of failing (case 743.5) · [[decision-case-743.5]]
 - 2026-10-13 updated: the librarian is the only writer to vault/wiki/ but for what a merge of main by /merge-main writes (case 790) · [[decision-case-790]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the session's folder and the slugs of shipped rules stand outside the brackets of their pointers · [[decision-case-809]]

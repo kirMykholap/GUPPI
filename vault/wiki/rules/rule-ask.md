@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
@@ -101,3 +101,4 @@ At `/pre-spec`, where the caller asks you to judge every Case of the plan with i
 - 2026-10-13 estimate estimate-ask-opens-a-decision-only-for-a-finding added · [[decision-case-800.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-13 status: built → draft · cascade
+- 2026-10-14 status: draft → built · cascade

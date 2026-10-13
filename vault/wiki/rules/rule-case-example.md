@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents a Case from being written in a form the check of its file refuses because the agent that writes it saw no example of the form. Until case 717.1 the examples stood in `case-schema.md`, the Render of [[rule-case-protocol]], which `case-guppi` reads whole on every dispatch, a dispatch that answers only with rounds included, and every later turn of the dispatch read them again from the cache. Here they stand apart, and `case-guppi` reads them once in a dispatch, just before it first writes the file of a Case ([[rule-case-build]]). The example Case passes the check of `rule-case-check`, and the test of its Estimate runs that check over it (case 646).
+Prevents a Case from being written in a form the check of its file refuses because the agent that writes it saw no example of the form. The examples stand apart from `case-schema.md`, the Render of [[rule-case-protocol]], which `case-guppi` reads whole on every dispatch, a dispatch that answers only with rounds included (until case 717.1 they stood there, and every later turn of the dispatch read them again from the cache). Here `case-guppi` reads them once in a dispatch, just before it first writes the file of a Case ([[rule-case-build]]). The example Case passes the check of `rule-case-check`, and the test of its Estimate runs that check over it (case 646).
 
 ## Render
 
@@ -154,3 +154,4 @@ update:
 - 2026-10-07 status: draft → built · cascade
 - 2026-10-08 updated: the cart Estimate of both examples names a make target, the form a MOC's Estimate takes (case 735) · [[decision-case-735]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the history of the examples stands in the bracket of its pointer · [[decision-case-809]]

@@ -16,7 +16,7 @@ core: true
 
 ## Purpose
 
-Prevents an archived page from staying among the live ones. `archived` is a status the generator sets, and `guppi sprint-close` at the close of a sprint (`rule-sprint-close`, case 627.1). The file move
+Prevents an archived page from staying among the live ones. `archived` is a status the generator sets, and `guppi sprint-close` at the close of a sprint, as `rule-sprint-close` sets it (case 627.1). The file move
 is this script's, so a page never disappears by an agent's hand. `raw/<date>/` is not
 this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 
@@ -42,3 +42,4 @@ this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 - 2026-10-04 updated: ## How it works left the Leaf, its mechanism in the docstring of guppi/cleanup.py (case 632.1) · [[decision-case-632.1]]
 - 2026-10-10 estimate estimate-cleanup-files-a-session-by-its-sprint added · [[decision-case-770]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]]

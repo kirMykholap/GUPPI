@@ -32,7 +32,7 @@ description: |
 
   There is no Estimate. A lesson is a recorded fact: the trigger is the observation, and nothing about it is checked again. An Estimate exists only for a page with a contract — an Entity or a Rule. A `knowledge` claim is checked where it is leaned on: by the Estimate of the Rule built on it (case 53.1).
 
-  There is no `reviewed` status. An intermediate "the librarian looked at it" state records nothing useful — a lesson with no pair is simply still `new`, and will be reconsidered next session anyway, until the close of its sprint archives a `new` lesson of kind `error` (`rule-sprint-close`, case 627.2). Only membership in an Insight is a real change of state.
+  There is no `reviewed` status. An intermediate "the librarian looked at it" state records nothing useful — a lesson with no pair is simply still `new`, and will be reconsidered next session anyway, until the close of its sprint archives a `new` lesson of kind `error`, as `rule-sprint-close` sets it (case 627.2). Only membership in an Insight is a real change of state.
 
   No `## Insight` section: the `insight` field is the link (case 166.1).
 properties:
@@ -56,7 +56,7 @@ fields:
   root_cause: |
     required; one line. Why it happened (`error`), or the mechanism the source claims (`knowledge`). Lives in properties because the index line of the category is built from it, and clustering into an Insight compares exactly this.
   status: |
-    required; `new` | `clustered` | `archived`. `clustered` once it belongs to an Insight. Archived when its Insight is `actioned`, or, a `new` Lesson of kind `error`, at the close of its sprint (`rule-sprint-close`, case 627.2).
+    required; `new` | `clustered` | `archived`. `clustered` once it belongs to an Insight. Archived when its Insight is `actioned`, or, a `new` Lesson of kind `error`, at the close of its sprint, as `rule-sprint-close` sets it (case 627.2).
   source: |
     required on `knowledge`; url or reference. Where the material came from.
   insight: |
@@ -140,3 +140,4 @@ examples:
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-04 updated: a new error Lesson is archived at the close of its sprint (case 627.2) · [[decision-case-627.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-14 updated: the slug of rule-sprint-close stands outside the brackets of its pointers · [[decision-case-809]]

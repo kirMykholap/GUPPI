@@ -19,7 +19,7 @@ Prevents a page that breaks its schema, points at nothing, claims a status its
 Estimates do not support, or waits for a reading nobody took from sitting in the vault
 unnoticed. Pages are written by the generator;
 both drift, and nothing else reads the whole graph at once. Red is a signal, not a
-gate: a `pending` Estimate is red until its reading (case 182, point 13), and a placeholder is red with the count of its defers (case 186.3).
+gate: a `pending` Estimate is red until its reading, but for one whose `method` waits for a later moment — an event it names, a later session, a session of a sprint, the session that closes one, the librarian or `/hi` — since the brief lists it under Readings due and puts it under Work once its moment comes, and a `failed` one is red until it is read again (cases 182, 799); a placeholder is red with the count of its defers (case 186.3).
 `make lint` runs it after `render --check`, `sprint --check`, `backlog --check` and `glossary --check`; all five only report, so the Makefile's rule — no target writes to the tree — holds (cases 147.7, 227). It runs all five even when one of them is red, so a red step hides no finding of a later one, and it exits non-zero when any step is red (case 587). `parent: rule-harness` names the
 MOC of the harness tools: lint runs with the renderer, in no phase of the session. The
 classes and their order live in the docstring of `guppi/lint.py`.
@@ -86,3 +86,4 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-10-02 status: built → draft · cascade
 - 2026-10-03 estimate estimate-lint-reports-a-method-tied-to-a-one-off-moment added · [[decision-case-613.1]]
 - 2026-10-05 status: draft → built · cascade
+- 2026-10-13 updated: a pending Estimate whose method waits for a later moment is no longer red; a failed one still is (case 799) · [[decision-case-799]]

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from starting on a branch it does not know
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
@@ -52,3 +52,4 @@ The `Render:` line runs `uv run guppi render --sync` once more inside `/hi`, aft
 - 2026-09-30 status: draft → built · cascade
 - 2026-10-13 updated: the remote is the repository GUPPI on GitHub; /hi still runs no git pull · [[decision-case-787.2]]
 - 2026-10-13 status: built → draft · cascade
+- 2026-10-13 status: draft → built · cascade

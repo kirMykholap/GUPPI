@@ -9474,3 +9474,59 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-13 decisions/decision-case-787.1 archived · superseded · generate
 - 2026-10-13 decisions/decision-case-787.1 archived · cleanup
 - 2026-10-13 decisions/decision-case-787 child decision-case-787.1 archived · cleanup
+- 2026-10-13 decisions/decision-case-795 created · raw/2026-10-13/1426/ledger.md#case-795 · generate
+- 2026-10-13 decisions/decision-case-795.1 created · raw/2026-10-13/1426/ledger.md#case-795.1 · generate
+- 2026-10-13 entities/entity-guppi-repository created · [[decision-case-795.1]] · generate
+- 2026-10-13 entities/entity-guppi child entity-guppi-repository added · [[decision-case-795.1]] · generate
+- 2026-10-13 rules/rule-github-repository updated: the rule guards entity-guppi-repository, so a live page names it (case 795.1) · [[decision-case-795.1]] · generate
+- 2026-10-13 entities/entity-guppi updated: the repository of GUPPI on GitHub is a part (case 795.1) · [[decision-case-795.1]] · generate
+- 2026-10-13 decisions/decision-case-795.2 created · raw/2026-10-13/1426/ledger.md#case-795.2 · generate
+- 2026-10-13 estimates/estimate-prespec-hook-reports-a-create-without-a-required-field updated: the Criterion replaced whole — the parent of a Leaf rule, or its applies_to, is judged by create_lacks on both sides (case 795.2) · [[decision-case-795.2]] · generate
+- 2026-10-13 decisions/decision-case-796 created · raw/2026-10-13/1426/ledger.md#case-796 · generate
+- 2026-10-13 decisions/decision-case-796.1 created · raw/2026-10-13/1426/ledger.md#case-796.1 · generate
+- 2026-10-13 rules/rule-bash-guard updated: a heredoc whose marker line runs an interpreter is refused; How it works removed by hand, a one-off, its facts in the docstring of guppi/bashguard.py (case 796.1) · [[decision-case-796.1]] · generate
+- 2026-10-13 estimates/estimate-bash-guard updated: the Criterion replaced whole — a heredoc fed into an interpreter is refused (case 796.1) · [[decision-case-796.1]] · generate
+- 2026-10-13 rules/rule-harness updated: the Bash guard named with its third reason (case 796.1) · [[decision-case-796.1]] · generate
+- 2026-10-13 decisions/decision-case-796.2 created · raw/2026-10-13/1426/ledger.md#case-796.2 · generate
+- 2026-10-13 rules/rule-powershell-guard created · [[decision-case-796.2]] · generate
+- 2026-10-13 rules/rule-harness child rule-powershell-guard added · [[decision-case-796.2]] · generate
+- 2026-10-13 estimates/estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter created · [[decision-case-796.2]] · generate
+- 2026-10-13 rules/rule-powershell-guard estimate estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter added · [[decision-case-796.2]] · generate
+- 2026-10-13 rules/rule-hook-registry updated: guppi powershellguard registered on PreToolUse of PowerShell (case 796.2) · [[decision-case-796.2]] · generate
+- 2026-10-13 rules/rule-harness updated: the PowerShell guard named among the rules in no pipeline (case 796.2) · [[decision-case-796.2]] · generate
+- 2026-10-13 decisions/decision-case-797 created · raw/2026-10-13/1426/ledger.md#case-797 · generate
+- 2026-10-13 decisions/decision-case-797.1 created · raw/2026-10-13/1426/ledger.md#case-797.1 · generate
+- 2026-10-13 rules/rule-case-build updated: case-guppi judges a Case by the state of the code and the pages at the moment its check or reading runs, and asks in a round when a Case needs a form another Case of the session adds (case 797.1) · [[decision-case-797.1]] · generate
+- 2026-10-13 estimates/estimate-case-build-judges-by-the-state-at-the-moment created · [[decision-case-797.1]] · generate
+- 2026-10-13 rules/rule-case-build estimate estimate-case-build-judges-by-the-state-at-the-moment added · [[decision-case-797.1]] · generate
+- 2026-10-13 decisions/decision-case-797.2 created · raw/2026-10-13/1426/ledger.md#case-797.2 · generate
+- 2026-10-13 estimates/estimate-case-build-keeps-the-old-form-until-the-writer-is-live updated: the Criterion replaced whole — the line that put the insight actioned is dropped, since the insight was reopened; the method names its event (case 797.2) · [[decision-case-797.2]] · generate
+- 2026-10-13 decisions/decision-case-798 created · raw/2026-10-13/1426/ledger.md#case-798 · generate
+- 2026-10-13 decisions/decision-case-798.1 created · raw/2026-10-13/1426/ledger.md#case-798.1 · generate
+- 2026-10-13 rules/rule-case-build updated: case-guppi reads the rule that governs what each option changes on every item, not only on an item that reports a defect, and context names it (case 798.1) · [[decision-case-798.1]] · generate
+- 2026-10-13 estimates/estimate-case-build-judges-options-against-the-broken-rule updated: the Criterion and purpose replaced whole — the rule that governs what an option changes is read on every item, not only on an item that reports a defect (case 798.1) · [[decision-case-798.1]] · generate
+- 2026-10-13 insights/insight-case-build-recommends-without-reading-the-governing-rule updated: actioned: case-guppi reads the rule that governs what each option changes on every item, and the last output of a check an option rests on (cases 798.1, 798.2) · [[decision-case-798.1]] · generate
+- 2026-10-13 decisions/decision-case-798.2 created · raw/2026-10-13/1426/ledger.md#case-798.2 · generate
+- 2026-10-13 rules/rule-case-build updated: case-guppi reads what a check printed at its last run, from the brief, before it recommends an option that rests on that check (case 798.2) · [[decision-case-798.2]] · generate
+- 2026-10-13 estimates/estimate-case-build-reads-the-last-output-of-a-check created · [[decision-case-798.2]] · generate
+- 2026-10-13 estimates/estimate-case-build-reads-the-last-output-of-a-check status: pending → failed · raw/2026-10-13/1426/ledger.md#L28 · generate
+- 2026-10-13 rules/rule-case-build estimate estimate-case-build-reads-the-last-output-of-a-check added · [[decision-case-798.2]] · generate
+- 2026-10-13 decisions/decision-case-799 created · raw/2026-10-13/1426/ledger.md#case-799 · generate
+- 2026-10-13 rules/rule-lint updated: a pending Estimate whose method waits for a later moment is no longer red; a failed one still is (case 799) · [[decision-case-799]] · generate
+- 2026-10-13 estimates/estimate-lint-checks-the-statuses updated: the Criterion and purpose replaced whole — a pending Estimate whose method waits for a later moment earns no unread finding (case 799) · [[decision-case-799]] · generate
+- 2026-10-13 estimates/estimate-ask-finds status: pending → passed · raw/2026-10-13/1426/ledger.md#L22 · generate
+- 2026-10-13 estimates/estimate-git-context-current status: pending → passed · raw/2026-10-13/1426/ledger.md#L23 · generate
+- 2026-10-13 estimates/estimate-prespec-hook-reports-a-create-without-a-required-field status: pending → passed · raw/2026-10-13/1426/ledger.md#L24 · generate
+- 2026-10-13 estimates/estimate-bash-guard status: pending → passed · raw/2026-10-13/1426/ledger.md#L25 · generate
+- 2026-10-13 estimates/estimate-lint-checks-the-statuses status: pending → passed · raw/2026-10-13/1426/ledger.md#L26 · generate
+- 2026-10-13 estimates/estimate-case-build-judges-options-against-the-broken-rule status: pending → passed · raw/2026-10-13/1426/ledger.md#L27 · generate
+- 2026-10-13 lessons/lesson-case-build-gave-a-sub-case-no-estimate created · raw/2026-10-13/1426/ledger.md#L29 · generate
+- 2026-10-13 lessons/lesson-ask-guppi-read-a-decision-page-without-a-reason created · raw/2026-10-13/1426/ledger.md#L30 · generate
+- 2026-10-13 rules/rule-ask status: draft → built · cascade · generate
+- 2026-10-13 rules/rule-case-build status: built → draft · cascade · generate
+- 2026-10-13 rules/rule-git-context status: draft → built · cascade · generate
+- 2026-10-13 entities/entity-guppi-repository rules: [rule-github-repository] · cascade · generate
+- 2026-10-13 lessons/lesson-case-build-made-an-always-red-check-required archived · insight actioned · generate
+- 2026-10-13 lessons/lesson-case-build-recommended-a-trigger-that-keeps-the-defect archived · insight actioned · generate
+- 2026-10-13 lessons/lesson-case-build-made-an-always-red-check-required archived · cleanup
+- 2026-10-13 lessons/lesson-case-build-recommended-a-trigger-that-keeps-the-defect archived · cleanup

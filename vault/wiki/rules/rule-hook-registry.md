@@ -49,6 +49,8 @@ agent's Render and is ratified with it; this page holds the registrations only.
   "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified --guard", "timeout": 30 } ] },
 { "matcher": "Bash",
   "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] },
+{ "matcher": "PowerShell",
+  "hooks": [ { "type": "command", "command": "uv run guppi powershellguard", "timeout": 30 } ] },
 { "matcher": "Read",
   "hooks": [ { "type": "command", "command": "uv run guppi pageread", "timeout": 30 } ] },
 { "matcher": "Grep",
@@ -105,3 +107,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-07 updated: uv run guppi casecheck --prompt registered on UserPromptSubmit (case 699.1) · [[decision-case-699.1]]
 - 2026-10-07 updated: guppi shellwrite registered on PostToolUse of Bash and PowerShell (case 710.1) · [[decision-case-710.1]]
 - 2026-10-09 updated: UserPromptSubmit runs guppi sprint --hi, which tells the agent at /hi to start /sprint-open when the sprint is closed (case 743.7) · [[decision-case-743.7]]
+- 2026-10-13 updated: guppi powershellguard registered on PreToolUse of PowerShell (case 796.2) · [[decision-case-796.2]]

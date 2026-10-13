@@ -1,7 +1,7 @@
 ---
 type: rule
 kind: Leaf
-purpose: Prevents a heredoc from carrying a backslash escape or writing a file through the Bash tool
+purpose: Prevents a heredoc from carrying a backslash escape, writing a file or feeding a script to an interpreter through the Bash tool
 status: built
 enforcement: hook
 implementation_ref: [guppi/bashguard.py, tests/test_bashguard.py, .claude/settings.json]
@@ -15,12 +15,7 @@ tags: [hooks, harness]
 
 ## Purpose
 
-Prevents a heredoc from carrying a backslash escape or writing a file through the Bash
-tool. On this Windows machine the tool's shell layer interprets backslash escapes inside a
-heredoc body before the interpreter reads it, whatever the quoting of the marker; three
-sessions (H, L, M) broke edit scripts that way with the lesson live, and a heredoc that
-writes a file fails on quotes in its body. A lesson the agent has to remember is not a
-rule; a `PreToolUse` hook cannot be skipped.
+Prevents a heredoc from carrying a backslash escape, writing a file or feeding a script to an interpreter through the Bash tool. On this Windows machine the tool's shell layer interprets backslash escapes inside a heredoc body before the interpreter reads it, whatever the quoting of the marker; three sessions (H, L, M) broke edit scripts that way with the lesson live, and a heredoc that writes a file fails on quotes in its body. A heredoc with neither, fed to Python, rewrote a source file in three more sessions, and `Path.write_text` left CRLF line endings in it (`insight-workflow-file-changed-through-a-shell-command`, `lesson-work-mode-edited-a-source-file-through-the-shell`): a source file changes by Edit, and a script goes into the scratchpad and runs by path. A lesson the agent has to remember is not a rule; a `PreToolUse` hook cannot be skipped. A script run by path or passed by `-c` or `-e` passes. The mechanism stands in the docstring of `guppi/bashguard.py`, and a PowerShell call is the rule `rule-powershell-guard` (cases 127, 796.1).
 
 ## History
 
@@ -35,3 +30,4 @@ rule; a `PreToolUse` hook cannot be skipped.
 - 2026-09-30 updated: the refusal text sends a whole file to Write and only a script to the scratchpad (case 530.2) · [[decision-case-530.2]]
 - 2026-09-30 status: built → draft · cascade
 - 2026-09-30 status: draft → built · cascade
+- 2026-10-13 updated: a heredoc whose marker line runs an interpreter is refused; How it works removed by hand, a one-off, its facts in the docstring of guppi/bashguard.py (case 796.1) · [[decision-case-796.1]]

@@ -86,9 +86,9 @@ update:
 ```
 
 ```tasks
-- [ ] create `entity-guppi-repository`
-- [ ] update `rule-github-repository`
-- [ ] update `entity-guppi`
+- [x] create `entity-guppi-repository`
+- [x] update `rule-github-repository`
+- [x] update `entity-guppi`
 ```
 
 ### Case 795.2 — Pre-spec reports a single rule created with no link
@@ -127,8 +127,8 @@ update:
 - [x] `guppi/materialize.py`: `create_lacks` takes the `ref` of the item or of its decision line, and names `parent` for a rule of kind `Leaf` with neither a `ref` nor an `applies_to`; `_lift_item` drops its own test of the parent and marks by `create_lacks` alone.
 - [x] `guppi/prespec.py`: `check_required` passes `create_lacks` the `ref` of the item, or of the decision line of its Case and slug.
 - [x] `tests/test_prespec.py`: the rule items of the tests of the required field that stand for another field carry a `ref`. Two new tests, their names holding `required_field`, cover a `Leaf` rule with neither a `ref` nor an `applies_to`, which gives the finding of `parent`, and one with an `applies_to` alone, which gives none. The test that runs both sides over the same items stops leaving out `parent`, and gains a `Leaf` rule with an `applies_to` and one with a `ref`.
-- [ ] update `estimate-prespec-hook-reports-a-create-without-a-required-field`
-- [ ] read `estimate-prespec-hook-reports-a-create-without-a-required-field`
+- [x] update `estimate-prespec-hook-reports-a-create-without-a-required-field`
+- [x] read `estimate-prespec-hook-reports-a-create-without-a-required-field`
 ```
 
 ## Case 796 — A script fed inline to an interpreter is refused before a shell call
@@ -213,10 +213,10 @@ update:
 - [x] `guppi/bashguard.py`: one function judges whether a marker line runs an interpreter of the list, as its first command or after a `|`, `&&`, `||` or `;`, and names it; `refusal` gives `it feeds <interpreter>` after the backslash and the file write; the docstring gains the new reason and keeps every fact of the `## How it works` that leaves the page.
 - [x] `tests/test_bashguard.py`: `python - <<'EOF'`, `uv run python - <<EOF` and `cat <<EOF | node` are refused with `it feeds <interpreter>` and logged; `python -c "print(1)"` and `python script.py` pass; `CLEAN_PIPE` and `NULL_ONLY` feed `cat` in place of `python` and still pass.
 - [x] `vault/wiki/rules/rule-bash-guard.md`: a one-off in Work Mode, before the librarian's run: the section `## How it works`, heading and text, removed by hand.
-- [ ] update `rule-bash-guard`
-- [ ] update `estimate-bash-guard`
-- [ ] update `rule-harness`
-- [ ] read `estimate-bash-guard`
+- [x] update `rule-bash-guard`
+- [x] update `estimate-bash-guard`
+- [x] update `rule-harness`
+- [x] read `estimate-bash-guard`
 ```
 
 ### Case 796.2 — A PowerShell check refuses a here-string piped into an interpreter
@@ -289,14 +289,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-powershell-guard`
-- [ ] create `estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter`
+- [x] create `rule-powershell-guard`
+- [x] create `estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter`
 - [x] `guppi/powershellguard.py`: the `PreToolUse` hook on `PowerShell`: it finds every here-string, refuses one whose closing line pipes it into an interpreter by the function of `guppi/bashguard.py`, logs the refusal by `guppi.event` before it says it, and never raises; its docstring holds the mechanism.
 - [x] `guppi/cli.py`: the command `powershellguard`, and its name in the list of hook commands of the docstring.
 - [x] `tests/test_powershellguard.py`: `@'` and `@"` here-strings piped into `python -`, `uv run python -` and `node` are refused with the reason and logged; a here-string piped into `Out-File` or to the screen, a quoted string piped into `python`, `python script.py`, a `Bash` payload and an unreadable payload pass; `cli.main(["powershellguard"])` dispatches to the hook.
-- [ ] update `rule-hook-registry`
-- [ ] update `rule-harness`
-- [ ] `uv run guppi render`: `.claude/settings.json`
+- [x] update `rule-hook-registry`
+- [x] update `rule-harness`
+- [x] `uv run guppi render`: `.claude/settings.json`
 - [ ] read `estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter`
 ```
 
@@ -366,9 +366,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-judges-by-the-state-at-the-moment`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-judges-by-the-state-at-the-moment`
 - [ ] read `estimate-case-build-judges-by-the-state-at-the-moment`
 ```
 
@@ -397,7 +397,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
+- [x] update `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
 - [ ] read `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
 ```
 
@@ -473,11 +473,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-judges-options-against-the-broken-rule`
-- [ ] update `insight-case-build-recommends-without-reading-the-governing-rule`
-- [ ] read `estimate-case-build-judges-options-against-the-broken-rule`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-judges-options-against-the-broken-rule`
+- [x] update `insight-case-build-recommends-without-reading-the-governing-rule`
+- [x] read `estimate-case-build-judges-options-against-the-broken-rule`
 ```
 
 ### Case 798.2 — case-guppi reads the last output of a check an option rests on
@@ -518,10 +518,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-reads-the-last-output-of-a-check`
-- [ ] read `estimate-case-build-reads-the-last-output-of-a-check`
+- [x] update `rule-case-build`
+- [x] `uv run guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-reads-the-last-output-of-a-check`
+- [x] read `estimate-case-build-reads-the-last-output-of-a-check`
 ```
 
 ## Case 799 — Lint does not mark red a check whose reading waits for a later moment
@@ -596,8 +596,8 @@ update:
 ```tasks
 - [x] `guppi/lint.py`: a new predicate, `waits_for_a_later_moment`, is true when a part of a `method` between two `;` waits for an event by `waits_for_an_event`, or names a later moment by `ANOTHER_SESSION`; `check_unread` gives no finding for a `pending` Estimate whose `method` it holds; the docstring of the class `unread` says so.
 - [x] `tests/test_lint.py`: tests whose names hold `unread`: a `pending` Estimate whose method waits for an event before a colon, one whose method names a session of a sprint before its close and one whose method names the session after a close give no finding; a `pending` one whose method is a reading at the Retro of its own session, and a `failed` one whose method waits for an event, each give `unread`.
-- [ ] update `rule-lint`
-- [ ] update `estimate-lint-checks-the-statuses`
-- [ ] read `estimate-lint-checks-the-statuses`
+- [x] update `rule-lint`
+- [x] update `estimate-lint-checks-the-statuses`
+- [x] read `estimate-lint-checks-the-statuses`
 - [x] by hand, in Work Mode of this session: `estimate-git-context-current` read by its method — the context of the first turn of this session's `/hi`, the output of `git remote -v` and `.claude/skills/hi/SKILL.md` against its Criterion; the main agent writes the estimate line.
 ```

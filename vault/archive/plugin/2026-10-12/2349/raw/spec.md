@@ -291,7 +291,7 @@ update:
 ```tasks
 - [x] update `rule-git-context`
 - [x] update `estimate-git-context-current`
-- [ ] read `estimate-git-context-current`
+- [x] read `estimate-git-context-current`
 ```
 
 ## Case 788 — A Case id carries its sprint, and a sprint id is unique

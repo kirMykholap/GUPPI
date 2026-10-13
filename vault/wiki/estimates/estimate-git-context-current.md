@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-git-context]]"
 purpose: At /hi the context holds the render sync, the branch and the status, and the skill runs no git pull
 method: "by hand, after the first /hi that follows the first push to GitHub: the first turn's context, the output of git remote -v and .claude/skills/hi/SKILL.md read against the Criterion, written into the estimate line"
-checked: 2026-09-30
+checked: 2026-10-13
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -24,7 +24,7 @@ The context holds `Render:` with the output of `uv run guppi render --sync` (a d
 
 ## Result
 
-2026-09-30, /hi of session 0248, the first turn's context, `git remote`, `.git/config`, `git rev-parse --abbrev-ref main@{upstream}`: the context holds Render: (empty), Branch: migration, Status: (empty); `git remote` printed nothing; `.git/config` has no [remote] section, its only `origin` text is `vscode-merge-base = origin/main` under [branch "main"] and [branch "migration"]; `main` has no upstream configured; `.claude/skills/hi/SKILL.md` holds no `git pull`, `gh` or `Pull:`
+2026-10-13, Work Mode of session 1426, the first /hi after the first push to GitHub (session 2349): the first turn's context holds Render: (no output), Branch: plugin, Status: (no output); `git remote -v` prints origin https://github.com/kirMykholap/GUPPI.git (fetch) and (push); .claude/skills/hi/SKILL.md holds Render:, Branch:, Status: in the rule-git-context markers and no `git pull` and no `Pull:`
 
 ## History
 
@@ -36,3 +36,4 @@ The context holds `Render:` with the output of `uv run guppi render --sync` (a d
 - 2026-09-30 updated: the Criterion replaced whole — no Pull line, no git pull, no remote; the promise on a pull mid-session gone with the pull (case 528.1) · [[decision-case-528.1]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L1
 - 2026-10-13 updated: the Criterion replaced whole — git remote prints origin, the repository GUPPI on GitHub; /hi still runs no git pull · [[decision-case-787.2]]
+- 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L23

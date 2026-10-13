@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
@@ -95,3 +95,4 @@ At `/pre-spec`, where the caller asks you to judge every Case of the plan with i
 - 2026-10-05 updated: at pre-spec one ask-guppi run judges every Case of the plan with its sub-cases (case 674.1) · [[decision-case-674.1]]
 - 2026-10-12 updated: at pre-spec ask-guppi answers each question the skill sets, in its order, and the agent file lists them no more (case 782) · [[decision-case-782.2]]
 - 2026-10-12 status: built → draft · cascade
+- 2026-10-13 status: draft → built · cascade

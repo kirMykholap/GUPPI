@@ -6,6 +6,7 @@ status: draft
 enforcement: check
 implementation_ref: [.github/workflows/checks.yml]
 estimates: []
+applies_to: ["[[entity-guppi-repository]]"]
 origin: raw/2026-10-12/2349/ledger.md#case-794
 sprint: plugin
 created: 2026-10-12
@@ -19,3 +20,4 @@ Prevents a pull request from reaching `main` unchecked, and an account other tha
 ## History
 
 - 2026-10-13 created · [[decision-case-794]]
+- 2026-10-13 updated: the rule guards entity-guppi-repository, so a live page names it (case 795.1) · [[decision-case-795.1]]

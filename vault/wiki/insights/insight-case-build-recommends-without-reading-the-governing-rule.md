@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: case-guppi builds its recommended option from the item's own words and does not check it against the rule of the vault that governs what the option changes, so the recommendation breaks that rule and the Case is built again
-status: open
+status: actioned
 children: ["[[lesson-case-build-made-an-always-red-check-required]]", "[[lesson-case-build-recommended-a-trigger-that-keeps-the-defect]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-798.1]]"
 origin: raw/2026-10-12/2349/ledger.md#L57
 sprint: plugin
 created: 2026-10-12
@@ -21,3 +22,4 @@ One sentence in rule-case-build: before case-guppi recommends an option, it name
 ## History
 
 - 2026-10-13 created · raw/2026-10-12/2349/ledger.md#L57
+- 2026-10-13 updated: actioned: case-guppi reads the rule that governs what each option changes on every item, and the last output of a check an option rests on (cases 798.1, 798.2) · [[decision-case-798.1]]

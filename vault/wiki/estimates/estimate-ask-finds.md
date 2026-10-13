@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi answers the questions of /pre-spec with one line on what it read, one numbered list of findings under each question and nothing else under it, each finding naming its Case and the page or Cases it bears on, then a list of what it did not check ending with a line per search rule it broke, of its frame or of .claude/rules/search-leaves-out-decisions.md, and a list of the paths of the files it read, and nothing else
 method: "by hand, after a /pre-spec whose ask-guppi runs on .claude/agents/ask-guppi.md as rendered by case 782: the answer of ask-guppi in its agent transcript read against the Criterion and the event log, recorded in the estimate line"
-checked: 2026-10-05
+checked: 2026-10-13
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -32,7 +32,7 @@ The answer opens with one line that names what the agent read: the plan file, or
 
 ## Result
 
-2026-10-05, at the /hi of session 1343, by hand: the first answers of the three ask-guppi runs at the /pre-spec of session 0311 (transcript 6d53e05d, agent a055d35695650c13f on Case 644, af56f988c579ddc06 on 645, af7cde916f5b24293 on 646; event log `04:50:14 6d53e05d tool Agent: ask-guppi`, three times), after the render by case 639 at the librarian's run of session 0109: each opens with one line on the plan file and the Cases it checked; three numbered lists in the order of the questions (644: 3, none, none; 645: 6, 4, 2; 646: 3, 2, none), each finding names its Case and the page or Cases it bears on, a question with no finding says "none", no sentence of what holds under a question; then a list of what was not checked, whose last lines in 644 and 645 name the search rule broken and say whether a finding rests on it, then the list of files read; not exercised: a finding that names a page carrying deferred_by
+2026-10-13, Work Mode of session 1426, by hand: the first answer of the ask-guppi run at the /pre-spec of session 1426 (event log `16:53:56 6f2e6cde tool Agent: ask-guppi`), on .claude/agents/ask-guppi.md as rendered at commit 279c853 (case 782): it opens with one line on the plan file and the Cases it checked (795–799, no ## Deferred); four numbered lists in the order of the questions (3, 1, 1, 2 findings), each finding names its Case and the page or Cases it bears on; the finding on rule-page-generation, which carries deferred_by, gives the ## Problem of decision-case-793; then a list of what was not checked whose last line names the search rule broken (a Grep of decision-case-616.md) and says no finding rests on it; then the list of files read; ask-guppi.md lists no question of /pre-spec; no summary or list of what holds
 
 ## History
 
@@ -54,3 +54,4 @@ The answer opens with one line that names what the agent read: the plan file, or
 - 2026-10-05 updated: the Criterion replaced whole — only findings or "none" under a question, no sentence on a clash not found; the list of what was not checked ends with a line per search rule broken, of the frame or of .claude/rules/search-leaves-out-decisions.md (case 639) · [[decision-case-639]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L9
 - 2026-10-12 updated: the Criterion replaced whole — one list of findings under each question the skill sets, in its order; the method waits for a /pre-spec after the render · [[decision-case-782.2]]
+- 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L22

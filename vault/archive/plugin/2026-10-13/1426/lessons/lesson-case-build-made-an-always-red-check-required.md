@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi recommended all three checks as required without reading what make lint prints at the Baseline of the session or rule-lint, which calls lint a signal and not a gate
-status: clustered
+status: archived
 insight: "[[insight-case-build-recommends-without-reading-the-governing-rule]]"
 origin: raw/2026-10-12/2349/ledger.md#L57
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi recommended all three checks as required without reading what make li
 
 - 2026-10-13 created · raw/2026-10-12/2349/ledger.md#L57
 - 2026-10-13 updated: clustered under insight-case-build-recommends-without-reading-the-governing-rule (synthesis) · raw/2026-10-12/2349/ledger.md#L57
+- 2026-10-13 archived · insight actioned
+- 2026-10-13 archived · cleanup

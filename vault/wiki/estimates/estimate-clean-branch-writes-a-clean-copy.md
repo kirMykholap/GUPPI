@@ -26,7 +26,7 @@ It writes `guppi/`, `.claude/`, `CLAUDE.md`, `Makefile`, `pyproject.toml`, `uv.l
 **＋** Each page it writes carries `origin: guppi`, `sprint: guppi`, the date of the run in `created` and a `## History` of one line that says the page shipped with GUPPI, and its link fields keep only the pages it writes.
 **＋** It exits 1, and prints the file and the line, for each pointer that stands outside such a bracket, each id of a list of sessions included.
 **＋** In a comment or a docstring of a Python file it writes, it exits 1, and prints the file and the line, for each bracket that holds only case numbers, joined by a comma, a semicolon, `and` or a dash, such as `(274.1)` or `(513, 544.7)`.
-**＋** It does the same for each comment or docstring that opens with a case number followed by a colon, such as `# 169.1:` or `"""75.2:`, and for each comment whose whole text is a case number, such as `# 786`.
+**＋** It does the same for each comment or docstring that opens with one or more case numbers joined the same way, followed by a colon, such as `# 169.1:`, `"""75.2:` or `# 387.4, 445.4:`, and for each comment whose whole text is one or more case numbers joined the same way, such as `# 786` or `# 387.4, 445.4`.
 **＋** It exits 1 when a file it writes holds a section between the markers of a page without `core: true`.
 **＋** With `--review` it also prints the file, the line and the bracket for each bracket it removes that holds words beside its pointers, and those lines set no exit code.
 **＋** With `--check` it judges each file it would write outside `vault/` — `guppi/`, `.claude/` and the files at the root of the project — but `uv.lock`, which it does not clean, as it would write it, prints the same lines for it, exits 1 on any, and writes nothing.
@@ -35,11 +35,11 @@ It writes `guppi/`, `.claude/`, `CLAUDE.md`, `Makefile`, `pyproject.toml`, `uv.l
 **－** A case id inside a code span of a Markdown file, or after `[case ` or `#case-`, is the form of a line, not a reference.
 **－** A case id inside a fenced block of a Markdown file, inside a code span of the text of a `schema.yaml`, in `vault/wiki/case-example.md` or the Render of `rule-case-example`, or after `:case `, is the form of a sample or of a line: it is neither removed nor printed.
 **－** It removes no bare case number: the copy holds it as written.
-**－** It judges no code of a Python file outside its comments and docstrings for a bare case number, such as `match.group(1)`, and a number that opens a comment with no colon after it is no finding.
+**－** It judges no code of a Python file outside its comments and docstrings for a bare case number, such as `match.group(1)`, and a number or a list of numbers that opens a comment with words and no colon after it, such as `# 3, 4 tries`, is no finding.
 
 ## Result
 
-2026-10-14, Retro, uv run pytest tests/test_ship.py: 18 passed; the three new tests of case 808.1 show a bracket of case numbers, an opening of a case number and a colon in a comment and in a docstring, and a comment that is a case number alone each exit 1 and stay in the copy, --check reports one in place, and m.group(1) in code, a string argument, a date and a count are no finding; make test 1615 passed, 6 skipped
+2026-10-14, session 0232, uv run pytest tests/test_ship.py: 19 passed, the new test included — a docstring opening `387.4, 445.4 and 476.3:`, a comment opening `387.4; 445.4:`, a comment `# 387.4, 445.4` and a comment `# 280–281` each print a line and exit 1, the copy holds the file as written, and `# 3, 4 tries` is no finding; uv run guppi ship --check printed no line, exit 0; one pattern NUMBERS serves BARE_BRACKET, BARE_OPENING and BARE_ALONE in guppi/ship.py
 
 ## History
 
@@ -49,3 +49,5 @@ It writes `guppi/`, `.claude/`, `CLAUDE.md`, `Makefile`, `pyproject.toml`, `uv.l
 - 2026-10-14 status: pending → passed · raw/2026-10-13/2118/ledger.md#L20
 - 2026-10-14 updated: the Criterion replaced whole — guppi ship reports a bare case number in a comment or a docstring of a Python file · [[decision-case-808.1]]
 - 2026-10-14 status: pending → passed · raw/2026-10-14/0101/ledger.md#L56
+- 2026-10-14 updated: the Criterion replaced whole — guppi ship reports a list of bare case numbers at the opening of a comment or a docstring, or alone in a comment · [[decision-case-811]]
+- 2026-10-14 status: pending → passed · raw/2026-10-14/0232/ledger.md#L11

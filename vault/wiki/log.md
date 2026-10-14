@@ -9799,3 +9799,33 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-14 lessons/lesson-caseid-held-no-id-without-the-session-option created · raw/2026-10-14/0101/ledger.md#L58 · generate
 - 2026-10-14 rules/rule-ask status: draft → built · cascade · generate
 - 2026-10-14 rules/rule-clean-branch status: built → draft · cascade · generate
+- 2026-10-14 estimates/estimate-clean-branch-pages-hold-pointers-only-in-brackets status: pending → passed · raw/2026-10-14/0232/ledger.md#L1 · generate
+- 2026-10-14 decisions/decision-case-810 created · raw/2026-10-14/0232/ledger.md#case-810 · generate
+- 2026-10-14 decisions/decision-case-811 created · raw/2026-10-14/0232/ledger.md#case-811 · generate
+- 2026-10-14 rules/rule-clean-branch updated: guppi ship reports a list of bare case numbers at the opening of a comment or a docstring, or alone in a comment · [[decision-case-811]] · generate
+- 2026-10-14 estimates/estimate-clean-branch-writes-a-clean-copy updated: the Criterion replaced whole — guppi ship reports a list of bare case numbers at the opening of a comment or a docstring, or alone in a comment · [[decision-case-811]] · generate
+- 2026-10-14 decisions/decision-case-812 created · raw/2026-10-14/0232/ledger.md#case-812 · generate
+- 2026-10-14 decisions/decision-case-812.1 created · raw/2026-10-14/0232/ledger.md#case-812.1 · generate
+- 2026-10-14 decisions/decision-case-810 superseded by decision-case-812.1 · [[decision-case-812.1]] · generate
+- 2026-10-14 rules/rule-orchestration updated: the command for the id of a new Case carries --session with the stamp of the hi: line, and the plan file stands before its first run · [[decision-case-812.1]] · generate
+- 2026-10-14 rules/rule-ratification updated: guppi caseid --next takes --session, and prints no id without it or without the plan file of the session · [[decision-case-812.1]] · generate
+- 2026-10-14 estimates/estimate-ratification-case-id-carries-the-sprint updated: the Criterion replaced whole — guppi caseid --next takes --session with the stamp of the hi: line, and prints no id without it or without the plan file of the session · [[decision-case-812.1]] · generate
+- 2026-10-14 decisions/decision-case-812.2 created · raw/2026-10-14/0232/ledger.md#case-812.2 · generate
+- 2026-10-14 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — the Work Mode dispatch names guppi caseid --next with --session and the stamp of the hi: line · [[decision-case-812.2]] · generate
+- 2026-10-14 estimates/estimate-clean-branch-writes-a-clean-copy status: pending → passed · raw/2026-10-14/0232/ledger.md#L11 · generate
+- 2026-10-14 estimates/estimate-ratification-case-id-carries-the-sprint status: pending → passed · raw/2026-10-14/0232/ledger.md#L12 · generate
+- 2026-10-14 estimates/estimate-orchestration-shows-the-built-case status: pending → passed · raw/2026-10-14/0232/ledger.md#L13 · generate
+- 2026-10-14 lessons/lesson-ci-prod-deploy-key-refused-at-checkout created · raw/2026-10-14/0232/ledger.md#L14 · generate
+- 2026-10-14 lessons/lesson-caseid-run-before-the-plan-file-held-no-id created · raw/2026-10-14/0232/ledger.md#L15 · generate
+- 2026-10-14 lessons/lesson-caseid-run-to-check-an-id-held-a-new-one created · raw/2026-10-14/0232/ledger.md#L16 · generate
+- 2026-10-14 insights/insight-caseid-printed-an-id-it-did-not-hold created · raw/2026-10-14/0232/ledger.md#L15 · generate
+- 2026-10-14 insights/insight-caseid-printed-an-id-it-did-not-hold updated: born actioned, its cause closed by case 812.1 (synthesis) · raw/2026-10-14/0232/ledger.md#L15 · generate
+- 2026-10-14 lessons/lesson-caseid-held-no-id-without-the-session-option updated: clustered under insight-caseid-printed-an-id-it-did-not-hold (synthesis) · raw/2026-10-14/0232/ledger.md#L15 · generate
+- 2026-10-14 lessons/lesson-caseid-run-before-the-plan-file-held-no-id updated: clustered under insight-caseid-printed-an-id-it-did-not-hold (synthesis) · raw/2026-10-14/0232/ledger.md#L15 · generate
+- 2026-10-14 rules/rule-clean-branch status: draft → built · cascade · generate
+- 2026-10-14 decisions/decision-case-810 archived · superseded · generate
+- 2026-10-14 lessons/lesson-caseid-held-no-id-without-the-session-option archived · insight actioned · generate
+- 2026-10-14 lessons/lesson-caseid-run-before-the-plan-file-held-no-id archived · insight actioned · generate
+- 2026-10-14 lessons/lesson-caseid-held-no-id-without-the-session-option archived · cleanup
+- 2026-10-14 lessons/lesson-caseid-run-before-the-plan-file-held-no-id archived · cleanup
+- 2026-10-14 decisions/decision-case-810 archived · cleanup

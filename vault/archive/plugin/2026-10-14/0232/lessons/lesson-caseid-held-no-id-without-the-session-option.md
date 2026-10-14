@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: guppi/caseid.py takes the session stamp only from `--session` or a hook payload, and a Bash call has no payload, while orchestration.md names the command without `--session`
-status: new
+status: archived
+insight: "[[insight-caseid-printed-an-id-it-did-not-hold]]"
 origin: raw/2026-10-14/0101/ledger.md#L58
 sprint: plugin
 created: 2026-10-14
@@ -20,3 +21,6 @@ guppi/caseid.py takes the session stamp only from `--session` or a hook payload,
 ## History
 
 - 2026-10-14 created · raw/2026-10-14/0101/ledger.md#L58
+- 2026-10-14 updated: clustered under insight-caseid-printed-an-id-it-did-not-hold (synthesis) · raw/2026-10-14/0232/ledger.md#L15
+- 2026-10-14 archived · insight actioned
+- 2026-10-14 archived · cleanup

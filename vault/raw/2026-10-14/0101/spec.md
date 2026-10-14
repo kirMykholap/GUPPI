@@ -649,5 +649,5 @@ update:
 - [x] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [x] `uv run guppi render`: `.claude/skills/work/SKILL.md`
 - [x] `uv run guppi glossary`
-- [ ] read `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
+- [x] read `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
 ```

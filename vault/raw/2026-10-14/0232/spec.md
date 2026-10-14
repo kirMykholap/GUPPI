@@ -80,9 +80,9 @@ update:
 - [x] `guppi/ship.py`: one pattern of a list of case numbers, joined by a comma, a semicolon, `and` or a dash, serves `BARE_BRACKET`, `BARE_OPENING` and `BARE_ALONE`; the opening and the comment alone take the list, and the module docstring and the comment above the patterns say so.
 - [x] `tests/test_ship.py`: a comment and a docstring that open with a list of case numbers and a colon, and a comment that is a list of case numbers alone, each exit 1 and stay in the copy; a comment that opens with a list of numbers and words with no colon is no finding.
 - [x] `uv run guppi ship --check`: prints no line after the change.
-- [ ] update `rule-clean-branch`
-- [ ] update `estimate-clean-branch-writes-a-clean-copy`
-- [ ] read `estimate-clean-branch-writes-a-clean-copy`
+- [x] update `rule-clean-branch`
+- [x] update `estimate-clean-branch-writes-a-clean-copy`
+- [x] read `estimate-clean-branch-writes-a-clean-copy`
 ```
 
 ## Case 812 — The id of a new Case comes only with the session's stamp and its plan file
@@ -173,14 +173,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `rule-ratification`
-- [ ] update `estimate-ratification-case-id-carries-the-sprint`
+- [x] update `rule-orchestration`
+- [x] update `rule-ratification`
+- [x] update `estimate-ratification-case-id-carries-the-sprint`
 - [x] `guppi/caseid.py`: the option `--session` is required; with no plan file of the session the command prints one line on stderr that names the missing plan file, prints no id, holds nothing and exits 1; the docstring says both.
 - [x] `tests/test_caseid.py`: a test that a run of `guppi caseid --next` without `--session` exits 2 and prints no id, and a test that a run with `--session` over a session with no plan file exits 1, prints no id and writes no store.
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] `uv run guppi render`: `vault/wiki/ratification.md`
-- [ ] read `estimate-ratification-case-id-carries-the-sprint`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] `uv run guppi render`: `vault/wiki/ratification.md`
+- [x] read `estimate-ratification-case-id-carries-the-sprint`
 ```
 
 ### Case 812.2 — The Work Mode dispatch names the command with the stamp
@@ -235,6 +235,6 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```

@@ -9829,3 +9829,16 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-14 lessons/lesson-caseid-held-no-id-without-the-session-option archived · cleanup
 - 2026-10-14 lessons/lesson-caseid-run-before-the-plan-file-held-no-id archived · cleanup
 - 2026-10-14 decisions/decision-case-810 archived · cleanup
+- 2026-10-14 decisions/decision-case-813 created · raw/2026-10-14/1536/ledger.md#case-813 · generate
+- 2026-10-14 rules/rule-orchestration updated: the main agent runs guppi caseid --next only for the id of a new top-level Case, never to check an id · [[decision-case-813]] · generate
+- 2026-10-14 estimates/estimate-ratification-case-id-carries-the-sprint updated: the Criterion replaced whole — the main agent runs guppi caseid --next only for the id of a new top-level Case, never to check an id · [[decision-case-813]] · generate
+- 2026-10-14 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch status: pending → failed · raw/2026-10-14/1536/ledger.md#L3 · generate
+- 2026-10-14 lessons/lesson-ship-example-file-exempt-whole-left-case-pointers created · raw/2026-10-14/1536/ledger.md#L4 · generate
+- 2026-10-14 decisions/decision-case-815 created · raw/2026-10-14/1536/ledger.md#case-815 · generate
+- 2026-10-14 rules/rule-clean-branch updated: guppi ship judges and cleans the text around the example Case; only its fenced blocks are set aside · [[decision-case-815]] · generate
+- 2026-10-14 estimates/estimate-clean-branch-writes-a-clean-copy updated: the Criterion replaced whole — case-example.md and the Render of rule-case-example are cleaned outside their fenced blocks · [[decision-case-815]] · generate
+- 2026-10-14 entities/entity-sprint-plugin updated: the milestone The clean branch says what remains after the fix of guppi ship for the example Case · [[decision-case-815]] · generate
+- 2026-10-14 estimates/estimate-ratification-case-id-carries-the-sprint status: pending → passed · raw/2026-10-14/1536/ledger.md#L8 · generate
+- 2026-10-14 estimates/estimate-clean-branch-writes-a-clean-copy status: pending → passed · raw/2026-10-14/1536/ledger.md#L9 · generate
+- 2026-10-14 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch status: failed → passed · raw/2026-10-14/1536/ledger.md#L10 · generate
+- 2026-10-14 lessons/lesson-shell-bang-commands-given-in-bash-syntax-ran-in-powershell created · raw/2026-10-14/1536/ledger.md#L11 · generate

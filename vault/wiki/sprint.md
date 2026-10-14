@@ -9,16 +9,19 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - [ ] Whether the session that closes sprint plugin runs /sprint-close from the close line up to the end of Work Mode with no step done or fixed by hand · pending
 - [ ] Whether README.md says what GUPPI is and what it is for, its main parts and how to install and use it, as the person confirms · pending
 - [ ] Whether a pull request from another account, a second account of the owner included, runs the checks of CI on GitHub and can be reviewed and merged into the branch main by the owner alone · pending
-- [ ] Whether CI writes a clean version of the project to a branch of its own, with no case reference and no session data, and fails when one remains · pending
+- [x] Whether CI writes a clean version of the project to a branch of its own, with no case reference and no session data, and fails when one remains · passed
 - [ ] Whether the clean branch installs as a Claude Code plugin into an empty project and /hi runs there · pending
 
 ## Milestones
 
-### [ ] The clean branch
+### [x] The clean branch
 
-- [ ] [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint; what remains: once the librarian's run applies the rewording of the pages (case 809), the owner pushes a tag `prod-*` on a commit of `plugin`, and the CI run it starts is read by its Estimate · built, pending
+### [ ] The plugin
 
-### [ ] The plugin — 4 items: the clean version made into a Claude Code plugin, [[rule-morph]], the README on what the project is and what it is for and on its main parts and its use, the close of `plugin` — `/sprint-close`, a session of its own
+- [ ] the clean version made into a Claude Code plugin
+- [ ] [[rule-morph]] — the install step that the first `/hi` of a new install runs · draft
+- [ ] the README on what the project is and what it is for and on its main parts and its use
+- [ ] the close of `plugin` — `/sprint-close`, a session of its own
 
 ## Closed
 

@@ -1,0 +1,587 @@
+date: '2026-10-14'
+sprint: plugin
+ledger: vault/raw/2026-10-14/1536/ledger.md
+spec:
+- vault/raw/2026-10-14/1536/spec.md
+entries:
+- line: 1
+  text: decision[case 813][update][rule-orchestration]{ref:rule-orchestration}
+  case: '813'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-10-14/1536/ledger.md#case-813
+  decision: decision-case-813
+  ref: rule-orchestration
+  category: rules
+  replace:
+  - old: since the command prints no id without that file.
+    new: since the command prints no id without that file. The main agent runs the command only to get
+      the id of a new top-level Case, once for each Case, and never to check an id or what the store holds,
+      since each run holds a new id; a number that `case-guppi` takes for a Case built again is held by
+      the guard of its case file (as set in case 813).
+  change: the main agent runs guppi caseid --next only for the id of a new top-level Case, never to check
+    an id
+  applied: '18:06:16'
+- line: 2
+  text: decision[case 813][update][estimate-ratification-case-id-carries-the-sprint]{ref:rule-ratification}
+  case: '813'
+  kind: update
+  slug: estimate-ratification-case-id-carries-the-sprint
+  origin: raw/2026-10-14/1536/ledger.md#case-813
+  decision: decision-case-813
+  ref: rule-ratification
+  category: estimates
+  set:
+    status: pending
+    purpose: Whether every reader of a Case id takes an id that carries its sprint and a plain id from
+      before sprint ids alike, and guppi caseid --next --session <stamp> prints and holds the next id
+      of the open sprint, which the main agent runs only for the id of a new top-level Case and never
+      to check an id, and prints no id without --session or without the plan file of the session
+    method: 'uv run pytest tests/test_caseid.py; by hand at the Retro of this session: the new Render
+      of rule-orchestration in raw/<date>/<hi HHMM>/spec.md, and the Render of rule-ratification, read
+      against the Criterion'
+  sections:
+    Criterion: 'When:
+
+      `guppi/casecheck.py`, `guppi/ratified.py`, `guppi/lint.py`, `guppi/gate.py` or `guppi/materialize.py`
+      reads a Case id in a ledger line, a heading of a Case file, a file name `case-<id>.md` or an `origin`.
+
+      **＋** The main agent, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`, runs
+      `uv run guppi caseid --next --session <stamp>`, `<stamp>` the stamp of the `hi:` line of its session,
+      before it dispatches a new top-level Case.
+
+      **＋** Or `uv run guppi caseid --next` runs without `--session`, or with a stamp whose session has
+      no plan file.
+
+
+      Then:
+
+      A Case id of a sprint opened after case 788.2 is the sprint id, a hyphen and the number of the Case
+      in that sprint, from 1, with a dot for each sub-case level, such as `kir-plugin-12.1`, and its Case
+      file is `case-<id>.md` of its top-level Case.
+
+      **＋** The readers read a Case id through `guppi/caseid.py`, which takes both forms and reads the
+      sprint id as the text before the last hyphen ahead of the number.
+
+      **＋** The sprints `migration` and `plugin`, opened before case 788.2, keep plain ids to their close,
+      by a fixed list in `guppi/caseid.py`.
+
+      **＋** The main agent creates the plan file of its session with its title line before its first run
+      of the command.
+
+      **＋** `uv run guppi caseid --next --session <stamp>` takes the open sprint from the `create` decision
+      line of a sprint page in `raw/<date>/<hi HHMM>/ledger.md` of the session of that stamp, else from
+      the first heading of `vault/wiki/sprint.md`, and prints the next id of that sprint.
+
+      **＋** It holds the id it prints in `<plan>.checked.json` of the plan file of that session, under
+      that id, with no `agent_id` and no text, so that the next run prints the id after it.
+
+      **＋** The main agent dispatches each new top-level Case with the id that the command printed, but
+      the opening Case of a sprint, whose id `/sprint-open` sets.
+
+      **－** The main agent runs the command only to get the id of a new top-level Case, once for each
+      Case, and never to check an id or what the store holds, since each run holds a new id.
+
+      **－** Without `--session` the command prints no id: it prints its usage error and exits 2.
+
+      **－** With a stamp whose session has no plan file, the command prints no id, holds nothing, prints
+      one line on stderr and exits 1.
+
+      **－** An id with no sprint part, such as `785.1`, stays a Case from before sprint ids, and no page,
+      file or citation is renamed.'
+  change: the Criterion replaced whole — the main agent runs guppi caseid --next only for the id of a
+    new top-level Case, never to check an id
+  applied: '18:06:16'
+- line: 3
+  text: 'estimate[estimate-sprint-plugin-ci-writes-a-clean-branch][failed] 2026-10-14, session 1536, gh
+    run view 38489789184 (attempt 2, tag prod-1, commit 3a50557a) and git grep over origin/prod: the run
+    succeeded and pushed with the new deploy key through the ruleset bypass ("Bypassed rule violations
+    for refs/heads/prod"); it wrote prod as its first commit 34ae3bee "The clean version of GUPPI, built
+    from 3a50557a95a4…"; prod holds 85 pages, the same set as the 85 pages with core: true at 3a50557a;
+    no frontier.md, sprint.md, brief.md, backlog.md, raw/ or archive/; no [[…]] link to a page left out
+    but placeholders; the on: block runs on a push to main and to a tag prod-*; but vault/wiki/case-example.md
+    lines 3 and 7 and vault/wiki/rules/rule-case-example.md lines 27 and 31 hold the pointers "(case 717.1)"
+    and "(case 646)", since guppi ship judges neither EXAMPLE_FILE nor any line of the Render of rule-case-example;
+    the two − lines were read from the workflow text, not from a run'
+  kind: estimate
+  category: estimates
+  slug: estimate-sprint-plugin-ci-writes-a-clean-branch
+  status: failed
+  result: '2026-10-14, session 1536, gh run view 38489789184 (attempt 2, tag prod-1, commit 3a50557a)
+    and git grep over origin/prod: the run succeeded and pushed with the new deploy key through the ruleset
+    bypass ("Bypassed rule violations for refs/heads/prod"); it wrote prod as its first commit 34ae3bee
+    "The clean version of GUPPI, built from 3a50557a95a4…"; prod holds 85 pages, the same set as the 85
+    pages with core: true at 3a50557a; no frontier.md, sprint.md, brief.md, backlog.md, raw/ or archive/;
+    no [[…]] link to a page left out but placeholders; the on: block runs on a push to main and to a tag
+    prod-*; but vault/wiki/case-example.md lines 3 and 7 and vault/wiki/rules/rule-case-example.md lines
+    27 and 31 hold the pointers "(case 717.1)" and "(case 646)", since guppi ship judges neither EXAMPLE_FILE
+    nor any line of the Render of rule-case-example; the two − lines were read from the workflow text,
+    not from a run'
+  origin: raw/2026-10-14/1536/ledger.md#L3
+  applied: '18:06:16'
+- line: 4
+  text: 'lesson[error][lesson-ship-example-file-exempt-whole-left-case-pointers]{tags:ci} trigger: the
+    first clean branch prod, written by run 38489789184, holds "(case 717.1)" and "(case 646)" in vault/wiki/case-example.md
+    and in the Render of rule-case-example, and guppi ship --check printed nothing on them root_cause:
+    guppi/ship.py exempts the whole file EXAMPLE_FILE from cleaning and masks every line of the Render
+    of EXAMPLE, not only the fenced example Case, so the prose around the example is never judged'
+  kind: lesson
+  category: lessons
+  slug: lesson-ship-example-file-exempt-whole-left-case-pointers
+  origin: raw/2026-10-14/1536/ledger.md#L4
+  fields:
+    type: lesson
+    kind: error
+    root_cause: guppi/ship.py exempts the whole file EXAMPLE_FILE from cleaning and masks every line of
+      the Render of EXAMPLE, not only the fenced example Case, so the prose around the example is never
+      judged
+  sections:
+    Trigger: the first clean branch prod, written by run 38489789184, holds "(case 717.1)" and "(case
+      646)" in vault/wiki/case-example.md and in the Render of rule-case-example, and guppi ship --check
+      printed nothing on them
+    Root cause: guppi/ship.py exempts the whole file EXAMPLE_FILE from cleaning and masks every line of
+      the Render of EXAMPLE, not only the fenced example Case, so the prose around the example is never
+      judged
+  tags:
+  - ci
+  addressed_by: decision-case-815
+  applied: '18:06:16'
+- line: 5
+  text: decision[case 815][update][rule-clean-branch]{ref:rule-clean-branch}{addresses:lesson-ship-example-file-exempt-whole-left-case-pointers}
+  case: '815'
+  kind: update
+  slug: rule-clean-branch
+  origin: raw/2026-10-14/1536/ledger.md#case-815
+  decision: decision-case-815
+  ref: rule-clean-branch
+  addresses:
+  - lesson-ship-example-file-exempt-whole-left-case-pointers
+  category: rules
+  replace:
+  - old: A case id in a code span or a fenced block, of a Markdown file or of the text of a `schema.yaml`,
+      in `case-example.md` or the Render of `rule-case-example`, or in the form of a line after `[case
+      `, `#case-` or `:case `, is no pointer.
+    new: A case id in a code span or a fenced block, of a Markdown file or of the text of a `schema.yaml`,
+      or in the form of a line after `[case `, `#case-` or `:case `, is no pointer; the example Case of
+      `case-example.md` and of the Render of `rule-case-example` stands in a fenced block, and the text
+      around it is judged and cleaned like the text of any other page.
+  change: guppi ship judges and cleans the text around the example Case; only its fenced blocks are set
+    aside
+  applied: '18:06:16'
+- line: 6
+  text: decision[case 815][update][estimate-clean-branch-writes-a-clean-copy]{ref:rule-clean-branch}
+  case: '815'
+  kind: update
+  slug: estimate-clean-branch-writes-a-clean-copy
+  origin: raw/2026-10-14/1536/ledger.md#case-815
+  decision: decision-case-815
+  ref: rule-clean-branch
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — case-example.md and the Render of rule-case-example are cleaned
+    outside their fenced blocks
+  sections:
+    Criterion: 'When:
+
+      `uv run guppi ship <folder>`, as `rule-clean-branch` sets it, builds the clean version of the project
+      from its working tree into an empty folder.
+
+      **＋** Or `uv run guppi ship --review <folder>` does the same.
+
+      **＋** Or `uv run guppi ship --check` judges the working tree and writes no folder.
+
+
+      Then:
+
+      It writes `guppi/`, `.claude/`, `CLAUDE.md`, `Makefile`, `pyproject.toml`, `uv.lock`, `.gitattributes`,
+      the `schema.yaml` of each category, `vault/wiki/tags.md`, each page under `vault/wiki/` with `core:
+      true`, and each file rendered from such a page.
+
+      **＋** In each file it writes, it removes whole each bracket that holds a pointer — a reference to
+      a case, an id `decision-case-N` or a mention of a session by its id — with every word in it and
+      the space before it, and each `[[decision-case-N]]` link; a bracket that holds no pointer stays
+      as it is.
+
+      **＋** It writes each other `[[…]]` link of a Markdown file to a page or a file it does not write
+      as the slug in a code span.
+
+      **＋** Each page it writes carries `origin: guppi`, `sprint: guppi`, the date of the run in `created`
+      and a `## History` of one line that says the page shipped with GUPPI, and its link fields keep only
+      the pages it writes.
+
+      **＋** It exits 1, and prints the file and the line, for each pointer that stands outside such a
+      bracket, each id of a list of sessions included.
+
+      **＋** In a comment or a docstring of a Python file it writes, it exits 1, and prints the file and
+      the line, for each bracket that holds only case numbers, joined by a comma, a semicolon, `and` or
+      a dash, such as `(274.1)` or `(513, 544.7)`.
+
+      **＋** It does the same for each comment or docstring that opens with one or more case numbers joined
+      the same way, followed by a colon, such as `# 169.1:`, `"""75.2:` or `# 387.4, 445.4:`, and for
+      each comment whose whole text is one or more case numbers joined the same way, such as `# 786` or
+      `# 387.4, 445.4`.
+
+      **＋** It exits 1 when a file it writes holds a section between the markers of a page without `core:
+      true`.
+
+      **＋** With `--review` it also prints the file, the line and the bracket for each bracket it removes
+      that holds words beside its pointers, and those lines set no exit code.
+
+      **＋** With `--check` it judges each file it would write outside `vault/` — `guppi/`, `.claude/`
+      and the files at the root of the project — but `uv.lock`, which it does not clean, as it would write
+      it, prints the same lines for it, exits 1 on any, and writes nothing.
+
+      **－** It writes no page without `core: true`, nothing of `vault/raw/`, `vault/archive/` or `.github/`,
+      and no `sprint.md`, `backlog.md`, `brief.md`, `log.md` or `guppi.toml`.
+
+      **－** It writes no file that a page without `core: true` renders in full.
+
+      **－** A case id inside a code span of a Markdown file, or after `[case ` or `#case-`, is the form
+      of a line, not a reference.
+
+      **－** A case id inside a fenced block of a Markdown file, inside a code span of the text of a `schema.yaml`,
+      or after `:case `, is the form of a sample or of a line: it is neither removed nor printed; in `vault/wiki/case-example.md`
+      and the Render of `rule-case-example` only the fenced blocks, the example Case among them, are set
+      aside so, and the text around them is judged and cleaned like the text of any other page.
+
+      **－** It removes no bare case number: the copy holds it as written.
+
+      **－** It judges no code of a Python file outside its comments and docstrings for a bare case number,
+      such as `match.group(1)`, and a number or a list of numbers that opens a comment with words and
+      no colon after it, such as `# 3, 4 tries`, is no finding.'
+  applied: '18:06:16'
+- line: 7
+  text: decision[case 815][update][entity-sprint-plugin]{ref:entity-sprint-plugin}
+  case: '815'
+  kind: update
+  slug: entity-sprint-plugin
+  origin: raw/2026-10-14/1536/ledger.md#case-815
+  decision: decision-case-815
+  ref: entity-sprint-plugin
+  category: entities
+  replace:
+  - old: 'what remains: once the librarian''s run applies the rewording of the pages (case 809), the owner
+      pushes a tag `prod-*` on a commit of `plugin`, and the CI run it starts is read by its Estimate'
+    new: 'what remains: once Work Mode commits the fix of `guppi ship` that cleans the text around the
+      example Case (case 815), the owner pushes `plugin` and a tag `prod-2` on its last commit, and the
+      CI run it starts is read by its Estimate'
+  change: the milestone The clean branch says what remains after the fix of guppi ship for the example
+    Case
+  applied: '18:06:16'
+- line: 8
+  text: 'estimate[estimate-ratification-case-id-carries-the-sprint][passed] 2026-10-14, Retro of session
+    1536: uv run pytest tests/test_caseid.py, 23 passed; the new text of rule-orchestration in raw/2026-10-14/1536/spec.md
+    (Case 813), whose old text "since the command prints no id without that file." stands once in the
+    page, says the main agent runs the command only for the id of a new top-level Case, once for each
+    Case, and never to check an id or what the store holds; the Render of rule-ratification unchanged
+    keeps the lines on --session and the plan file; in this session the plan file was created with its
+    title line before the first run, and the three runs printed and held 813, 814 and 815, each before
+    the dispatch of a new top-level Case and none to check an id'
+  kind: estimate
+  category: estimates
+  slug: estimate-ratification-case-id-carries-the-sprint
+  status: passed
+  result: '2026-10-14, Retro of session 1536: uv run pytest tests/test_caseid.py, 23 passed; the new text
+    of rule-orchestration in raw/2026-10-14/1536/spec.md (Case 813), whose old text "since the command
+    prints no id without that file." stands once in the page, says the main agent runs the command only
+    for the id of a new top-level Case, once for each Case, and never to check an id or what the store
+    holds; the Render of rule-ratification unchanged keeps the lines on --session and the plan file; in
+    this session the plan file was created with its title line before the first run, and the three runs
+    printed and held 813, 814 and 815, each before the dispatch of a new top-level Case and none to check
+    an id'
+  origin: raw/2026-10-14/1536/ledger.md#L8
+  applied: '18:06:16'
+- line: 9
+  text: 'estimate[estimate-clean-branch-writes-a-clean-copy][passed] 2026-10-14, Retro of session 1536:
+    uv run pytest tests/test_ship.py, 20 passed, test_a_sample_is_no_pointer and test_a_pointer_in_the_prose_of_the_example_file_exits_1
+    among them; uv run guppi ship into an empty scratchpad folder exited 0 and its vault/wiki/case-example.md
+    ends lines 3 and 7 with no bracket "(case 717.1)" or "(case 646)" while the [case 1.1] lines of the
+    fenced example Case stand; make test 1620 passed, 6 skipped'
+  kind: estimate
+  category: estimates
+  slug: estimate-clean-branch-writes-a-clean-copy
+  status: passed
+  result: '2026-10-14, Retro of session 1536: uv run pytest tests/test_ship.py, 20 passed, test_a_sample_is_no_pointer
+    and test_a_pointer_in_the_prose_of_the_example_file_exits_1 among them; uv run guppi ship into an
+    empty scratchpad folder exited 0 and its vault/wiki/case-example.md ends lines 3 and 7 with no bracket
+    "(case 717.1)" or "(case 646)" while the [case 1.1] lines of the fenced example Case stand; make test
+    1620 passed, 6 skipped'
+  origin: raw/2026-10-14/1536/ledger.md#L9
+  applied: '18:06:16'
+- line: 10
+  text: 'estimate[estimate-sprint-plugin-ci-writes-a-clean-branch][passed] 2026-10-14, Retro of session
+    1536, gh run view 38585781386 (tag prod-2, commit c95e7579) and git grep over origin/prod: the run
+    succeeded and pushed through the ruleset bypass with the deploy key of PROD_DEPLOY_KEY ("Bypassed
+    rule violations for refs/heads/prod", 34ae3bee..c363e8a9 HEAD -> prod); c363e8a9 is one new commit
+    on top of 34ae3bee, "The clean version of GUPPI, built from c95e75791a69…"; prod holds 85 pages, the
+    same set as the 85 pages with core: true at c95e7579; no frontier.md, sprint.md, brief.md, backlog.md,
+    log.md, guppi.toml, .github/, raw/ or archive/; every case id left stands in a code span, a fenced
+    block or the form [case N], and the schema.yaml origins raw/2026-09-08/… are the example pages of
+    its examples block; the on: block runs on a push to main and to a tag prod-*; the two − lines were
+    read from the workflow text, not from a run'
+  kind: estimate
+  category: estimates
+  slug: estimate-sprint-plugin-ci-writes-a-clean-branch
+  status: passed
+  result: '2026-10-14, Retro of session 1536, gh run view 38585781386 (tag prod-2, commit c95e7579) and
+    git grep over origin/prod: the run succeeded and pushed through the ruleset bypass with the deploy
+    key of PROD_DEPLOY_KEY ("Bypassed rule violations for refs/heads/prod", 34ae3bee..c363e8a9 HEAD ->
+    prod); c363e8a9 is one new commit on top of 34ae3bee, "The clean version of GUPPI, built from c95e75791a69…";
+    prod holds 85 pages, the same set as the 85 pages with core: true at c95e7579; no frontier.md, sprint.md,
+    brief.md, backlog.md, log.md, guppi.toml, .github/, raw/ or archive/; every case id left stands in
+    a code span, a fenced block or the form [case N], and the schema.yaml origins raw/2026-09-08/… are
+    the example pages of its examples block; the on: block runs on a push to main and to a tag prod-*;
+    the two − lines were read from the workflow text, not from a run'
+  origin: raw/2026-10-14/1536/ledger.md#L10
+  applied: '18:06:16'
+- line: 11
+  text: 'lesson[error][lesson-shell-bang-commands-given-in-bash-syntax-ran-in-powershell]{tags:ci} trigger:
+    ssh-keygen -N "" -f ~/prod_deploy, given to the owner to type after ! in the prompt, failed with "Too
+    many arguments" root_cause: the commands were written for Git Bash, while the ! prompt of this Windows
+    setup runs PowerShell 5.1, which drops an empty "" argument and takes no < redirection'
+  kind: lesson
+  category: lessons
+  slug: lesson-shell-bang-commands-given-in-bash-syntax-ran-in-powershell
+  origin: raw/2026-10-14/1536/ledger.md#L11
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the commands were written for Git Bash, while the ! prompt of this Windows setup runs
+      PowerShell 5.1, which drops an empty "" argument and takes no < redirection
+  sections:
+    Trigger: ssh-keygen -N "" -f ~/prod_deploy, given to the owner to type after ! in the prompt, failed
+      with "Too many arguments"
+    Root cause: the commands were written for Git Bash, while the ! prompt of this Windows setup runs
+      PowerShell 5.1, which drops an empty "" argument and takes no < redirection
+  tags:
+  - ci
+  near: lesson-bash-tool-heredoc-escapes-interpreted
+  applied: '18:06:16'
+decisions:
+- case: '813'
+  decision: decision-case-813
+  origin: raw/2026-10-14/1536/ledger.md#case-813
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  - kind: update
+    category: estimates
+    slug: estimate-ratification-case-id-carries-the-sprint
+    ref: rule-ratification
+  tags: []
+  case_text:
+    context: '`uv run guppi caseid --next --session <stamp>` has one mode: each run prints the next free
+      id and holds it in `<plan>.checked.json`, so the next run gets the id after it. In session 0232
+      a Case was built again under a number of its own, and the main agent ran the command to check that
+      the number was held; that run held 813, which no Case used (`lesson-caseid-run-to-check-an-id-held-a-new-one`,
+      handoff of session 0232). The check was never needed: the guard `guppi ratified --guard` of `guppi/ratified.py`
+      holds the number at the first call of a `case-guppi` on its case file (docstring of `guppi/casecheck.py`,
+      case 650.1). `rule-orchestration` says when the main agent runs the command, before the dispatch
+      of a new top-level Case, but not that it runs it for nothing else. The person chose one sentence
+      in that Render and no new mode of the command, so `guppi/caseid.py` and its tests do not change.
+      The rule that governs the change is `rule-orchestration` itself; no rule forbids it. `estimate-ratification-case-id-carries-the-sprint`
+      already promises when the main agent runs the command, so its Criterion is replaced whole: every
+      line it holds is kept, one `－` line is added, and its `purpose` and `method` are set anew, since
+      the `purpose` names the use of the main agent and the `method` named a new Render of `rule-ratification`,
+      which this Case does not change. A Grep `caseid` over `vault/wiki/` (Decision pages left out) printed
+      13 files: `brief.md`, `log.md`, `orchestration.md`, `ratification.md`, `rules/rule-orchestration.md`,
+      `rules/rule-ratification.md`, `lessons/lesson-caseid-run-to-check-an-id-held-a-new-one.md`, `insights/insight-caseid-printed-an-id-it-did-not-hold.md`,
+      `estimates/estimate-ratification-case-id-carries-the-sprint.md`, `estimates/estimate-orchestration-shows-the-built-case.md`,
+      `estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent.md`, `estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape.md`
+      and `estimates/estimate-spec-box-refuses-a-stale-spec.md`; the same Grep over `.claude/` printed
+      nothing. None of them is made false: `ratification.md` says what the command does, which stands;
+      the Criterion of `estimate-orchestration-shows-the-built-case` names the command for the Work Mode
+      dispatch of a new top-level Case, which the new sentence keeps; the two `case-check` Estimates speak
+      of the count and of an id the command holds; `estimate-spec-box-refuses-a-stale-spec` names `guppi/caseid.py`
+      as a reader of ids; the Insight speaks of a run with no plan file. `tests/test_orchestration.py`
+      reads the live `orchestration.md`, but only its blocks tagged `showing` and `defer` by `example`,
+      and the new sentence stands outside them. The decision lines carry no `{addresses}` mark: the lesson
+      line stands in the ledger of session 0232, and a lesson whose fix is ratified in another session
+      gets no mark (`ratification.md`).'
+    problem: '`orchestration.md` does not tell the main agent that each run of `guppi caseid --next` holds
+      a new id, so the agent ran it to check an id and held one that no Case uses.'
+    recommend: "- **How do we stop a run that only checks from holding an id?**\n  - Recommended: (a)\
+      \ a sentence in `orchestration.md` only: the main agent runs the command only to get the id of a\
+      \ new top-level Case, once for each Case, and never to check an id; no code changes.\n  - Answer:\
+      \ agreed, (a).\n- **Which Estimate checks the fix?**\n  - Recommended: (a) replace the Criterion\
+      \ of `estimate-ratification-case-id-carries-the-sprint` with one more line, read at the Retro of\
+      \ this session against the new Render of `orchestration.md`.\n  - Answer: agreed, (a)."
+    given: '`rule-orchestration`: its Render, `vault/wiki/orchestration.md`, sets when the main agent
+      runs the command.
+
+      **＋** `guppi/caseid.py`: the command `guppi caseid --next`, which this Case does not change.
+
+      **＋** `<plan>.checked.json`: the store of the ids the command and the guard hold.
+
+      **＋** `guppi/ratified.py`: the guard that holds the number of a case file at the first call of its
+      `case-guppi`.
+
+      **＋** `estimate-ratification-case-id-carries-the-sprint`: its Criterion is replaced whole.'
+    when: 'The main agent, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`, needs
+      a Case id: for a new top-level Case, or to check the number of a Case built again.'
+    then: 'The main agent runs `uv run guppi caseid --next --session <stamp>` of `guppi/caseid.py` only
+      to get the id of a new top-level Case, once for each Case.
+
+      **＋** `vault/wiki/orchestration.md` says that each run of the command holds a new id.
+
+      **－** The main agent never runs the command to check an id or what `<plan>.checked.json` holds.
+
+      **－** A number that `case-guppi` takes for a Case built again is held by the guard of `guppi/ratified.py`,
+      with no run of the command.'
+  spec: vault/raw/2026-10-14/1536/spec.md
+  applied: '18:06:16'
+- case: '815'
+  decision: decision-case-815
+  origin: raw/2026-10-14/1536/ledger.md#case-815
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-clean-branch
+    ref: rule-clean-branch
+  - kind: update
+    category: estimates
+    slug: estimate-clean-branch-writes-a-clean-copy
+    ref: rule-clean-branch
+  - kind: update
+    category: entities
+    slug: entity-sprint-plugin
+    ref: entity-sprint-plugin
+  tags: []
+  case_text:
+    context: '`guppi ship` builds the clean version of the project and removes from it each bracket that
+      holds a pointer to a case. It makes two exceptions for the example Case: `judged` in `guppi/ship.py`
+      returns the file `EXAMPLE_FILE`, `vault/wiki/case-example.md`, as it stands, and `masked` sets aside
+      every line between the markers of the Render of `EXAMPLE`, `rule-case-example`. Both exist so that
+      the case ids of the example Case are not read as pointers. The example Case stands in a fenced block
+      tagged `case`, though, and `masked` sets aside each line of a fenced block in any Markdown file;
+      the example `then` block is fenced too. So the exceptions only keep the prose around the examples
+      from being judged. The run of the tag `prod-1` showed it: in this session the main agent read `vault/wiki/case-example.md`
+      lines 3 and 7 and `vault/wiki/rules/rule-case-example.md` lines 27 and 31 on `origin/prod`, which
+      still hold `(case 717.1)` and `(case 646)`, and wrote the reading of `estimate-sprint-plugin-ci-writes-a-clean-branch`
+      `failed` in this session''s ledger. The lesson `lesson-ship-example-file-exempt-whole-left-case-pointers`
+      names that cause, and the decision line on `rule-clean-branch` carries its `addresses` mark. The
+      person chose to drop both exceptions, so that only the fenced blocks are set aside as in any other
+      page, and to read the CI again in this session, after the owner pushes `plugin` and a tag `prod-2`.
+      The case-guppi read the prose of both texts outside their fences: each pointer there stands in a
+      bracket of its own at the end of its sentence, and no other text there matches a pointer, so `guppi
+      ship` will remove those brackets and exit 0 on them. The two sentences that state the exemption
+      are the docstrings of `guppi/ship.py` and the sentence of the Purpose of `rule-clean-branch` that
+      lists what is no pointer; the Case rewords both. The fourth `－` line of the Criterion of `estimate-clean-branch-writes-a-clean-copy`,
+      on a case id inside a fenced block, names the two exempt texts, so the Case replaces that Criterion
+      whole: that line alone changes, and every other line is carried as it stands, so `then` keeps the
+      nine `＋` lines of the Criterion it replaces. Its `purpose` and `method` do not state the exemption
+      and stand. The other two Estimates of `rule-clean-branch` speak of the pointers in the source texts,
+      which this Case does not change, and stand. The Criterion of `estimate-sprint-plugin-ci-writes-a-clean-branch`
+      already promises that no text of the clean version holds a reference to a case, so it stands, and
+      the main agent reads it again after the new run. A Grep `EXAMPLE|masked\(|case-example|rule-case-example`
+      over `guppi/` printed only `guppi/ship.py`; `guppi/prespec.py` judges a pointer by `outside` of
+      `guppi/ship.py`, which calls `masked`, so `/pre-spec` will judge the prose of a new Render of `rule-case-example`
+      the same way, and the sentence of `rule-clean-branch` on `/pre-spec` stays true. A Grep `rule-clean-branch|estimate-clean-branch-writes-a-clean-copy|estimate-sprint-plugin-ci`
+      over `tests/` printed only `tests/test_ship.py`, which builds its tree in a temporary folder; no
+      test reads a page this Case changes live. A Grep `import .*\bship\b|guppi\.ship|prespec\.(outside|pointer)`
+      over `tests/` printed `tests/test_ship.py` and `tests/test_prespec.py`; `tests/test_prespec.py`
+      holds no read of the live tree, and of `tests/test_ship.py` only `test_a_sample_is_no_pointer` expects
+      the old copy of `case-example.md`. The Case closes the item of the milestone The clean branch on
+      `entity-sprint-plugin`, so it rewrites what remains there, as `uv run guppi prespec --check` asked:
+      the fix of this Case, then the push of `plugin` and a tag `prod-2`, and the reading of the run by
+      its Estimate. The brief reports `make test`: 1619 passed, 6 skipped, and `make lint`: 0 lines, exit
+      0, at the last close.'
+    problem: '`guppi ship` never judges or cleans the prose around the example Case, so the pointers there
+      reach the branch `prod`.'
+    recommend: "- **How the prose around the example Case gets cleaned**\n  - Recommended: (a) drop both\
+      \ exceptions; the example Case and the example `then` block stay aside as fenced blocks, and the\
+      \ brackets in the prose are removed from the copy.\n  - Answer: agreed, (a).\n- **When the CI run\
+      \ is read again**\n  - Recommended: (a) in this session, after Work Mode commits the fix: the owner\
+      \ pushes `plugin` and a tag `prod-2`, and the main agent reads the run against the unchanged Criterion.\n\
+      \  - Answer: agreed, (a)."
+    given: '`guppi/ship.py`: the command that builds the clean version, and its exceptions for the example
+      Case.
+
+      **＋** `tests/test_ship.py`: the tests of `guppi ship` over a sample tree.
+
+      **＋** `rule-clean-branch`: the rule of the clean version, whose Purpose lists what is no pointer.
+
+      **＋** `estimate-clean-branch-writes-a-clean-copy`: its Criterion is replaced whole.
+
+      **＋** `vault/wiki/case-example.md`: the file of the examples, rendered from `rule-case-example`.
+
+      **＋** `rule-case-example`: the rule whose Render is the examples.
+
+      **＋** `estimate-sprint-plugin-ci-writes-a-clean-branch`: the reading of the CI run that the new
+      tag starts.
+
+      **＋** `.claude/`, `vault/wiki/tags.md`, `vault/raw/`, `vault/archive/` and `.github/`: the folders
+      and files the clean version takes or leaves out.
+
+      **＋** `decision-case-N`: the form of the id of a Decision page, one form of a pointer.
+
+      **＋** `entity-sprint-plugin`: the sprint page, whose milestone The clean branch says what remains.'
+    when: '`uv run guppi ship <folder>`, as `rule-clean-branch` sets it, builds the clean version of the
+      project from its working tree into an empty folder.
+
+      **＋** Or `uv run guppi ship --review <folder>` does the same.
+
+      **＋** Or `uv run guppi ship --check` judges the working tree and writes no folder.'
+    then: 'It writes `guppi/`, `.claude/`, `CLAUDE.md`, `Makefile`, `pyproject.toml`, `uv.lock`, `.gitattributes`,
+      the `schema.yaml` of each category, `vault/wiki/tags.md`, each page under `vault/wiki/` with `core:
+      true`, and each file rendered from such a page.
+
+      **＋** In each file it writes, it removes whole each bracket that holds a pointer — a reference to
+      a case, an id `decision-case-N` or a mention of a session by its id — with every word in it and
+      the space before it, and each `[[decision-case-N]]` link; a bracket that holds no pointer stays
+      as it is.
+
+      **＋** It writes each other `[[…]]` link of a Markdown file to a page or a file it does not write
+      as the slug in a code span.
+
+      **＋** Each page it writes carries `origin: guppi`, `sprint: guppi`, the date of the run in `created`
+      and a `## History` of one line that says the page shipped with GUPPI, and its link fields keep only
+      the pages it writes.
+
+      **＋** It exits 1, and prints the file and the line, for each pointer that stands outside such a
+      bracket, each id of a list of sessions included.
+
+      **＋** In a comment or a docstring of a Python file it writes, it exits 1, and prints the file and
+      the line, for each bracket that holds only case numbers, joined by a comma, a semicolon, `and` or
+      a dash, such as `(274.1)` or `(513, 544.7)`.
+
+      **＋** It does the same for each comment or docstring that opens with one or more case numbers joined
+      the same way, followed by a colon, such as `# 169.1:`, `"""75.2:` or `# 387.4, 445.4:`, and for
+      each comment whose whole text is one or more case numbers joined the same way, such as `# 786` or
+      `# 387.4, 445.4`.
+
+      **＋** It exits 1 when a file it writes holds a section between the markers of a page without `core:
+      true`.
+
+      **＋** With `--review` it also prints the file, the line and the bracket for each bracket it removes
+      that holds words beside its pointers, and those lines set no exit code.
+
+      **＋** With `--check` it judges each file it would write outside `vault/` — `guppi/`, `.claude/`
+      and the files at the root of the project — but `uv.lock`, which it does not clean, as it would write
+      it, prints the same lines for it, exits 1 on any, and writes nothing.
+
+      **－** It writes no page without `core: true`, nothing of `vault/raw/`, `vault/archive/` or `.github/`,
+      and no `sprint.md`, `backlog.md`, `brief.md`, `log.md` or `guppi.toml`.
+
+      **－** It writes no file that a page without `core: true` renders in full.
+
+      **－** A case id inside a code span of a Markdown file, or after `[case ` or `#case-`, is the form
+      of a line, not a reference.
+
+      **－** A case id inside a fenced block of a Markdown file, inside a code span of the text of a `schema.yaml`,
+      or after `:case `, is the form of a sample or of a line: it is neither removed nor printed; in `vault/wiki/case-example.md`
+      and the Render of `rule-case-example` only the fenced blocks, the example Case among them, are set
+      aside so, and the text around them is judged and cleaned like the text of any other page.
+
+      **－** It removes no bare case number: the copy holds it as written.
+
+      **－** It judges no code of a Python file outside its comments and docstrings for a bare case number,
+      such as `match.group(1)`, and a number or a list of numbers that opens a comment with words and
+      no colon after it, such as `# 3, 4 tries`, is no finding.'
+  spec: vault/raw/2026-10-14/1536/spec.md
+  applied: '18:06:16'
+unparsed: []
+session: '1536'

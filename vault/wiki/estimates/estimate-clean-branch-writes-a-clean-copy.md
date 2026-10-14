@@ -33,13 +33,13 @@ It writes `guppi/`, `.claude/`, `CLAUDE.md`, `Makefile`, `pyproject.toml`, `uv.l
 **－** It writes no page without `core: true`, nothing of `vault/raw/`, `vault/archive/` or `.github/`, and no `sprint.md`, `backlog.md`, `brief.md`, `log.md` or `guppi.toml`.
 **－** It writes no file that a page without `core: true` renders in full.
 **－** A case id inside a code span of a Markdown file, or after `[case ` or `#case-`, is the form of a line, not a reference.
-**－** A case id inside a fenced block of a Markdown file, inside a code span of the text of a `schema.yaml`, in `vault/wiki/case-example.md` or the Render of `rule-case-example`, or after `:case `, is the form of a sample or of a line: it is neither removed nor printed.
+**－** A case id inside a fenced block of a Markdown file, inside a code span of the text of a `schema.yaml`, or after `:case `, is the form of a sample or of a line: it is neither removed nor printed; in `vault/wiki/case-example.md` and the Render of `rule-case-example` only the fenced blocks, the example Case among them, are set aside so, and the text around them is judged and cleaned like the text of any other page.
 **－** It removes no bare case number: the copy holds it as written.
 **－** It judges no code of a Python file outside its comments and docstrings for a bare case number, such as `match.group(1)`, and a number or a list of numbers that opens a comment with words and no colon after it, such as `# 3, 4 tries`, is no finding.
 
 ## Result
 
-2026-10-14, session 0232, uv run pytest tests/test_ship.py: 19 passed, the new test included — a docstring opening `387.4, 445.4 and 476.3:`, a comment opening `387.4; 445.4:`, a comment `# 387.4, 445.4` and a comment `# 280–281` each print a line and exit 1, the copy holds the file as written, and `# 3, 4 tries` is no finding; uv run guppi ship --check printed no line, exit 0; one pattern NUMBERS serves BARE_BRACKET, BARE_OPENING and BARE_ALONE in guppi/ship.py
+2026-10-14, Retro of session 1536: uv run pytest tests/test_ship.py, 20 passed, test_a_sample_is_no_pointer and test_a_pointer_in_the_prose_of_the_example_file_exits_1 among them; uv run guppi ship into an empty scratchpad folder exited 0 and its vault/wiki/case-example.md ends lines 3 and 7 with no bracket "(case 717.1)" or "(case 646)" while the [case 1.1] lines of the fenced example Case stand; make test 1620 passed, 6 skipped
 
 ## History
 
@@ -51,3 +51,5 @@ It writes `guppi/`, `.claude/`, `CLAUDE.md`, `Makefile`, `pyproject.toml`, `uv.l
 - 2026-10-14 status: pending → passed · raw/2026-10-14/0101/ledger.md#L56
 - 2026-10-14 updated: the Criterion replaced whole — guppi ship reports a list of bare case numbers at the opening of a comment or a docstring, or alone in a comment · [[decision-case-811]]
 - 2026-10-14 status: pending → passed · raw/2026-10-14/0232/ledger.md#L11
+- 2026-10-14 updated: the Criterion replaced whole — case-example.md and the Render of rule-case-example are cleaned outside their fenced blocks · [[decision-case-815]]
+- 2026-10-14 status: pending → passed · raw/2026-10-14/1536/ledger.md#L9

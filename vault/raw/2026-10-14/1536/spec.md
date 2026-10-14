@@ -69,10 +69,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-ratification-case-id-carries-the-sprint`
-- [ ] `uv run guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-ratification-case-id-carries-the-sprint`
+- [x] update `rule-orchestration`
+- [x] update `estimate-ratification-case-id-carries-the-sprint`
+- [x] `uv run guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-ratification-case-id-carries-the-sprint`
 ```
 
 ## Case 815 — guppi ship cleans the prose around the example Case
@@ -145,13 +145,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-clean-branch`
-- [ ] update `estimate-clean-branch-writes-a-clean-copy`
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run guppi sprint`
+- [x] update `rule-clean-branch`
+- [x] update `estimate-clean-branch-writes-a-clean-copy`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run guppi sprint`
 - [x] `guppi/ship.py`: remove `EXAMPLE` and `EXAMPLE_FILE`, the branch of `masked` that sets aside the lines of the Render of `EXAMPLE`, and the exception of `judged` for `EXAMPLE_FILE`; reword the module docstring and the docstrings of `masked` and `judged` so that they name no exception for the example.
 - [x] `tests/test_ship.py`: `test_a_sample_is_no_pointer` puts the example Case of its `case-example.md` and of the Render of its `rule-case-example` in a fenced block, and asserts that the case id in the fence stays and that the bracket `(case 717.1)` in the prose is removed in both; a new test asserts that a pointer outside a bracket in the prose of `case-example.md` exits 1 and prints its file and line.
 - [x] `uv run pytest tests/test_ship.py`
-- [ ] read `estimate-clean-branch-writes-a-clean-copy`
+- [x] read `estimate-clean-branch-writes-a-clean-copy`
 - [x] stop: after the commit of Work Mode, the owner pushes `plugin` and a tag `prod-2` on its last commit; the main agent reads the CI run that the tag starts, its push and the branch `prod` against the Criterion of `estimate-sprint-plugin-ci-writes-a-clean-branch` and writes its `estimate` line.
 ```

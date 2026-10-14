@@ -15,8 +15,8 @@ link; a bracket with no pointer stays. It writes each other `[[…]]` link of a 
 to a page or a file it does not write as the slug in a code span, by `WIKILINK` of
 `guppi/lint.py`. A case id after `[case `, `#case-` or `:case ` — the form of a ledger line
 or a mark — is no pointer, and neither is one in a code span or a fenced block of a Markdown
-file or of the text of a `schema.yaml`, in the Render of `EXAMPLE` or in `EXAMPLE_FILE`,
-which are not judged. Each page it writes carries `origin` and `sprint` `SHIPPED`, the date
+file or of the text of a `schema.yaml`; the example Case of `case-example.md` stands in such
+a block, and the text around it is judged like any other. Each page it writes carries `origin` and `sprint` `SHIPPED`, the date
 of the run in `created` and a `## History` of one line; its link fields, `LINK_FIELDS` of
 `guppi/lint.py`, keep only the pages it writes. The page is written by `write_page` of
 `guppi/generate.py`.
@@ -68,8 +68,6 @@ SKIPPED_NAMES = ("__pycache__", "settings.local.json")
 NOT_CLEANED = ("uv.lock",)  # a lock file is data of the package manager, not text of ours
 TAGS = "vault/wiki/tags.md"
 HISTORY_LINE = "- {day} shipped with GUPPI"
-EXAMPLE = "rule-case-example"  # its Render is the example Case, whose ids are no pointers
-EXAMPLE_FILE = "vault/wiki/case-example.md"
 
 # a reference to a case: the word `case` or `cases`, either case, and one or more ids of
 # `ID`, joined by a comma, a semicolon or `and`; not the form of a line after `[`, `#` or
@@ -124,8 +122,8 @@ def holds_pointer(text: str) -> bool:
 
 def masked(text: str, sample: bool) -> tuple[str, list[str]]:
     """The text with each sample put aside, and the samples: with `sample`, each code span,
-    each line of a fenced block and each line of the Render of `EXAMPLE`. A line keeps its
-    place, so the lines of the text keep their numbers."""
+    each line of a fenced block. A line keeps its place, so the lines of the text keep their
+    numbers."""
     spans: list[str] = []
 
     def keep(part: str) -> str:
@@ -134,20 +132,15 @@ def masked(text: str, sample: bool) -> tuple[str, list[str]]:
 
     if not sample:
         return text, spans
-    lines, fence, example = text.split("\n"), None, False
+    lines, fence = text.split("\n"), None
     for number, line in enumerate(lines):
-        marker = MARKER.match(line.strip())
         opener = FENCE.match(line)
-        if fence is None and marker and marker.group(2) == EXAMPLE:
-            example = not marker.group(1)
-        elif fence is None and opener:
+        if fence is None and opener:
             fence = opener.group(1)
             lines[number] = keep(line)
         elif fence is not None:
             if opener and opener.group(1)[0] == fence[0] and len(opener.group(1)) >= len(fence):
                 fence = None
-            lines[number] = keep(line)
-        elif example:
             lines[number] = keep(line)
         else:
             lines[number] = CODE_SPAN.sub(lambda m: keep(m.group(0)), line)
@@ -355,9 +348,8 @@ def plan(project_dir: Path) -> tuple[list[str], list[Page], set[str], set[str]]:
 
 def judged(name: str, text: str, known: set[str], loose: set[str]) -> tuple[str, list, list]:
     """The text of a file as the copy holds it, and its `ship:` lines and `--review` lines by
-    the lines of `text`; the example Case of `EXAMPLE_FILE` and a file of `NOT_CLEANED` are
-    not judged."""
-    if Path(name).name in NOT_CLEANED or name == EXAMPLE_FILE:
+    the lines of `text`; a file of `NOT_CLEANED` is not judged."""
+    if Path(name).name in NOT_CLEANED:
         return text, [], []
     sample = is_sample_file(name)
     cleaned, review = clean(text, sample, known if name.endswith(".md") else None)

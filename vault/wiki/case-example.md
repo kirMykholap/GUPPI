@@ -1,10 +1,10 @@
 # Case — examples
 
-`wiki/case-example.md` — the Render of `rule-case-example`: two examples of the forms that `case-schema.md` sets. `case-guppi` reads this file once in a dispatch, just before it first writes the file of a Case; the rules of the form stand in `case-schema.md` (case 717.1).
+`wiki/case-example.md` — the Render of `rule-case-example`: two examples of the forms that `case-schema.md` sets. `case-guppi` reads this file once in a dispatch, just before it first writes the file of a Case; the rules of the form stand in `case-schema.md`.
 
 ## The chat form, by example
 
-The Case below is written in the chat form that `case-guppi` writes into its file. A test runs over it the check that the `SubagentStop` hook of `rule-case-check` runs over that file, and fails on any finding or note, so the example passes that check as the check stands (case 646). The limits a form must keep are those of the check, not of this paragraph: copy the form of the example, and read a finding of the check as the limit it names.
+The Case below is written in the chat form that `case-guppi` writes into its file. A test runs over it the check that the `SubagentStop` hook of `rule-case-check` runs over that file, and fails on any finding or note, so the example passes that check as the check stands. The limits a form must keep are those of the check, not of this paragraph: copy the form of the example, and read a finding of the check as the limit it names.
 
 ````case
 ## Case 1 — The cart stands before payment

@@ -26,8 +26,9 @@ stands outside such a bracket and each marker line of `MARKER` of `guppi/pages.p
 opens or closes the section of a page without `core: true`; any such line exits 1, and a
 Case rewords that text at its source. A case number with no word `case` before it is no
 pointer and stays in the copy, but in a comment or a docstring of a Python file
-`bare_numbers` prints it and exits 1 too: a bracket of case numbers alone, an opening of a
-case number and a colon, a comment that is a case number alone (case 808.1); it reads the
+`bare_numbers` prints it and exits 1 too: a bracket of case numbers alone, an opening of
+one or more case numbers and a colon, a comment that is one or more case numbers alone, a
+list joined in each shape alike (cases 808.1, 811); it reads the
 file by `tokenize`, so no code is judged. `--review` also prints each bracket it removes that
 holds a word beside its pointers, which sets no exit code. `--check` judges in place each
 file outside `vault/` that the copy takes, but `NOT_CLEANED`, prints the same lines and
@@ -94,16 +95,15 @@ POINTERS = (
 # it, so the mark joins the line above and does not stand alone
 BRACKET = re.compile(r"(\n[ \t]*(?=\([^()]*\)[.,;:])|[ \t]?)\(([^()]*)\)")
 # a case number with no word before it, in a comment or a docstring of a Python file
-# (case 808.1): a bracket that holds only case numbers, joined by a comma, a semicolon,
-# `and` or a dash, and not opened right after a name, as a call is; a comment or a docstring
-# that opens with a case number and a colon; a comment that is a case number alone. A date
-# is no case number.
+# (cases 808.1, 811): `NUMBERS`, one or more case numbers joined by a comma, a semicolon,
+# `and` or a dash, serves each shape — a bracket that holds only such a list, and not opened
+# right after a name, as a call is; a comment or a docstring that opens with such a list and
+# a colon; a comment that is such a list alone. A date is no case number.
 NUMBER = rf"(?!\d{{4}}-\d\d-\d\d){ID}"
-BARE_BRACKET = re.compile(
-    rf"(?<![\w.\])])\(\s*{NUMBER}(?:\s*(?:[,;]|\band\b|[-–])\s*{NUMBER})*\s*\)"
-)
-BARE_OPENING = re.compile(rf"^\s*{NUMBER}:")
-BARE_ALONE = re.compile(rf"^\s*{NUMBER}\s*$")
+NUMBERS = rf"{NUMBER}(?:\s*(?:[,;]|\band\b|[-–])\s*{NUMBER})*"
+BARE_BRACKET = re.compile(rf"(?<![\w.\])])\(\s*{NUMBERS}\s*\)")
+BARE_OPENING = re.compile(rf"^\s*{NUMBERS}:")
+BARE_ALONE = re.compile(rf"^\s*{NUMBERS}\s*$")
 STRING_PREFIX = re.compile(r"^[rRbBuU]*('''|\"\"\"|'|\")")
 STATEMENT_START = {
     tokenize.NEWLINE,

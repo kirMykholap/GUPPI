@@ -1,4 +1,4 @@
-"""`guppi caseid --next [--session <id>]` — the one grammar of a Case id, and the next id.
+"""`guppi caseid --next --session <stamp>` — the one grammar of a Case id, and the next id.
 
 A Case id of a sprint opened after sprint ids came in is the sprint id, a hyphen and the
 number of the Case in that sprint, from 1, with a dot for each sub-case level:
@@ -22,8 +22,11 @@ it for a new Case.
 The command takes the open sprint from the `create` decision line of a sprint page in the
 session's `ledger.md` (`opened_sprint` of `guppi/materialize.py`), else from the first heading
 of `vault/wiki/sprint.md` (`sprint_id`), prints the next id, and holds it in the store under
-that id with no `agent_id` and no text, so that the next run prints the id after it. With no
-session folder or no plan file it prints the id and holds nothing.
+that id with no `agent_id` and no text, so that the next run prints the id after it. It
+takes the session only from `--session`, the stamp of the `hi:` line, and never guesses it:
+without the option it prints its usage error and exits 2, and with no plan file of that
+session it prints one line on stderr that names the missing plan file, prints no id, holds
+nothing and exits 1, so that no id it does not hold reaches a Case (case 812.1).
 
 Rule page: `vault/wiki/rules/rule-ratification.md`.
 """
@@ -139,7 +142,7 @@ def open_sprint(project_dir: Path, folder: Path | None) -> str:
 def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi caseid", description=__doc__.splitlines()[0])
     p.add_argument("--next", action="store_true", required=True, help="print the next id")
-    p.add_argument("--session", default=None, help="the stamp of the hi: line")
+    p.add_argument("--session", required=True, help="the stamp of the hi: line")
     return p
 
 
@@ -156,13 +159,14 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
     stamp = session_stamp(args.session, {})
     folder = session_dir(project_dir, now, stamp)
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
-    store = held_store(plan) if plan is not None and plan.is_file() else {}
+    if plan is None or not plan.is_file():
+        where = f" ({plan})" if plan is not None else ""
+        print(f"caseid: no plan file of session {stamp}{where} — no id printed", file=stderr)
+        return 1
+    store = held_store(plan)
     records = ledger_records(ledger_of(folder))
     case = next_id(open_sprint(project_dir, folder), known_ids(project_dir, folder, records, store))
-    if plan is not None and plan.is_file():
-        store[case] = {"stored": now.isoformat()}  # held: no agent_id, no text (case 788.2)
-        write_store(plan, store)
-    else:
-        print("caseid: no plan file of the session — the id is not held", file=stderr)
+    store[case] = {"stored": now.isoformat()}  # held: no agent_id, no text (case 788.2)
+    write_store(plan, store)
     print(case, file=stdout)
     return 0

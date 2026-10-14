@@ -300,6 +300,30 @@ def test_a_bare_case_number_in_a_comment_or_a_docstring_exits_1_and_stays(tmp_pa
     assert (out / "guppi" / "y.py").read_text(encoding="utf-8") == BARE
 
 
+BARE_LIST = '''"""387.4, 445.4 and 476.3: the frontier."""
+
+# 387.4; 445.4: the reason is for the person
+X = 1  # 387.4, 445.4
+Y = 2  # 280–281
+Z = 3  # 3, 4 tries
+'''
+
+
+def test_a_list_of_bare_case_numbers_at_an_opening_or_alone_exits_1_and_stays(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    write(root / "guppi" / "y.py", BARE_LIST)
+    code, lines = run(root, out)
+    assert code == 1
+    assert lines == [
+        "ship: guppi/y.py:1: a bare case number: 387.4, 445.4 and 476.3:",
+        "ship: guppi/y.py:3: a bare case number: 387.4; 445.4:",
+        "ship: guppi/y.py:4: a bare case number: 387.4, 445.4",
+        "ship: guppi/y.py:5: a bare case number: 280–281",
+    ]
+    assert (out / "guppi" / "y.py").read_text(encoding="utf-8") == BARE_LIST
+
+
 def test_check_reports_a_bare_case_number_in_place(tmp_path):
     root = tmp_path / "p"
     tree(root, rule_a=page("rule", "rule-a"))

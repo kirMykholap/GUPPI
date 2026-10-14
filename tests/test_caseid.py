@@ -166,6 +166,31 @@ def test_next_of_a_session_that_creates_a_sprint_page_takes_that_sprint(session)
     assert next_ids(session) == ["kir-new-2", "kir-new-3"]
 
 
+def test_next_without_the_session_prints_no_id_and_exits_2(session, capsys):
+    sprint(session, "kir-next")
+    stdout = io.StringIO()
+    with pytest.raises(SystemExit) as refused:
+        caseid.run(["--next"], stdout=stdout, project_dir=session, now=NOW)
+    assert refused.value.code == 2
+    assert stdout.getvalue() == ""
+    assert "--session" in capsys.readouterr().err
+    assert not casecheck.store_of(plan_of(session)).exists()
+
+
+@pytest.mark.parametrize("stamp", [STAMP, "ffffffff"])
+def test_next_with_no_plan_file_of_the_session_prints_no_id_and_exits_1(session, stamp):
+    sprint(session, "kir-next")
+    plan_of(session).unlink()
+    stdout, stderr = io.StringIO(), io.StringIO()
+    code = caseid.run(
+        ["--next", "--session", stamp], stdout=stdout, stderr=stderr, project_dir=session, now=NOW
+    )
+    assert code == 1
+    assert stdout.getvalue() == ""
+    assert stderr.getvalue().startswith(f"caseid: no plan file of session {stamp}")
+    assert not casecheck.store_of(plan_of(session)).exists()
+
+
 def test_next_of_the_sprint_plugin_stays_plain(session):
     sprint(session, "plugin")
     decisions = session / "vault" / "wiki" / "decisions"

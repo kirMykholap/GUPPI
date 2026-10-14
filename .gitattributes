@@ -1,0 +1,93 @@
+# EVERYTHING IS LF UNLESS GIT SEES BINARY, added 2026-08-26 on the owner's ruling. The blocks below
+# stay exactly as they were written: they are no longer the mechanism, they are the record of what
+# each class cost, and deleting them would delete the only evidence for this line.
+#
+# WHY THE LIST STOPPED BEING THE ANSWER. It was extended four times, and every extension was a hole
+# found the expensive way: `*.ps1` after an edit script's LF anchors matched nothing and cost a
+# debugging pass; the six `_schema.yaml` after a `git stash` round-trip turned all of them CRLF;
+# `*.tsv` after git rewrote every coverage sidecar and turned 317 of 411 verdicts into BAD VERDICT
+# lines; `Makefile` earlier today, announced by git while it was being committed. The defect was
+# never the missing class. It was that a per-extension list has holes by construction and nothing
+# enumerates them.
+#
+# MEASURED BEFORE THIS LINE, 2026-08-26: 40 tracked files carried no eol attribute, and two of them
+# were the SAME class the first block below was written for - `Dockerfile`, whose RUN lines execute
+# in a Linux container, and `docker-compose.yml`, which the `*.yaml` pattern does not reach because
+# `.yml` is a different extension. Neither had cost anything yet, and both were one checkout away
+# from costing the thing that block names.
+#
+# THIS IS A DEPARTURE FROM "PIN A CLASS AFTER IT HAS COST SOMETHING", AND THE OWNER TOOK IT
+# DELIBERATELY. That principle is written against pinning ONE class speculatively. A default is the
+# other shape: it inverts the question from which classes to pin into which to exempt, and its own
+# cost is on the counter four times over.
+#
+# `text=auto` AND NOT A BARE `text`: git decides by looking for a NUL byte, so images, fonts and any
+# other binary stay untouched. Verified with `git ls-files --eol` across the tree rather than
+# assumed.
+* text=auto eol=lf
+
+# The two files of `vault/wiki/` that only gain lines, merged as the union of both sides: at a
+# merge of `main` into a sprint branch by `/merge-main`, git keeps the lines of each branch
+# and writes no conflict into them.
+vault/wiki/log.md merge=union
+vault/wiki/tags.md merge=union
+
+# Скрипты, исполняемые внутри Linux-контейнера, обязаны иметь LF:
+# CRLF ломает строку запуска и даёт "no such file or directory" на entrypoint.
+*.sh text eol=lf
+
+# Markdown is the vault's storage format and is parsed by awk and bash, on the host
+# and in the container alike: a CR is a byte inside the field, not a line ending.
+# Without this line every .md follows core.autocrlf and depends on what wrote it last.
+*.md text eol=lf
+
+# PowerShell hooks and JSON config. The index already holds LF for these - core.autocrlf
+# normalises on the way in - so pinning changes nothing about the repository and everything
+# about the WORKING copy, which is what scripts that edit these files actually read. Added
+# 2026-08-17, after an edit script's LF anchors matched nothing in a CRLF .ps1 and cost a
+# debugging pass. This project pins a class after it has cost something, never before.
+*.ps1 text eol=lf
+*.json text eol=lf
+
+# The per-folder schemas. Same class as the three above and missed only because it did not exist
+# when they were written: `_schema.yaml` is the gate's own input, read by awk and bash exactly as
+# the .md corpus is, so a CR is a byte inside the field here too. Added 2026-08-19, after a
+# `git stash` round-trip turned all six CRLF and an edit script's LF anchors matched nothing in
+# them - the same failure, on the same day the files became load-bearing. This project pins a
+# class after it has cost something, and this one now has.
+*.yaml text eol=lf
+
+# Python entry points, added 2026-08-24 with the transcript reader and its selftest. THIS ONE IS
+# PINNED ON A COST PAID BY ITS SIBLING RATHER THAN BY ITSELF, which is a departure from the line
+# every other block here ends with, and the owner ruled it deliberately. `*.ps1` was pinned on
+# 2026-08-17 after an edit script's LF anchors matched nothing in a CRLF file and cost a debugging
+# pass; `sed -i` with LF anchors was run against `scripts/session-dialogue.py` twice on the day it
+# was written, and worked only because the working copy was still LF. After one checkout it would
+# not have been. The principle exists against SPECULATIVE pinning, and this failure is measured -
+# on the same mechanism, one file class over.
+*.py text eol=lf
+
+# The coverage sidecars. A `.tsv` is read field-by-field by awk exactly as the .md corpus is, and a
+# CR is a byte inside the verdict rather than a line ending. This one has already cost the most of
+# any of them: git rewrote every sidecar to CRLF and turned 317 of 411 verdicts into BAD VERDICT
+# lines. `vault-coverage.sh` has carried its own CR strip on both fields ever since - so the
+# defence lived in the script and not in the class list, which is the gap this closes. Added
+# 2026-08-20, on the owner's ruling, after git warned about the class again while committing the
+# ingest that raised it. This project pins a class after it has cost something, and this one has
+# cost the most.
+*.tsv text eol=lf
+
+# The Makefile, added 2026-08-26 on the owner's ruling, in the same session that wrote it. A recipe
+# line is an invocation line: `make` hands it to `sh`, and a CR at its end travels into the command,
+# which is the failure `*.sh` was pinned for at the top of this file in exactly those words. The
+# file has no extension, so no pattern above reaches it and `git check-attr` reported `unspecified`.
+#
+# PINNED BEFORE IT COST ANYTHING, WHICH IS THE SECOND DEPARTURE FROM THE LINE THE BLOCKS ABOVE END
+# WITH, and it is deliberate rather than an oversight. Git said it outright while the file was being
+# committed - "in the working copy of 'Makefile', LF will be replaced by CRLF the next time Git
+# touches it" - so the conversion is announced rather than hypothetical, and the blob and working
+# copy were both measured clean at that moment. What is new is the stake: this file became the
+# single entry point for every check in the repository on the day it was written, so the first
+# checkout that converted it would break `make` for everything at once, with the fastest reader of
+# the tree unable to run.
+Makefile text eol=lf

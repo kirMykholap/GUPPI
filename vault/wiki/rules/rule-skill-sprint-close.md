@@ -1,0 +1,42 @@
+---
+type: rule
+kind: Leaf
+purpose: Prevents the session that closes a sprint from mixing the close with other decisions, or from reaching the close without the readings sorted, while the text that leads it stays out of the sessions that close no sprint
+status: built
+enforcement: render
+governs: .claude/skills/sprint-close/SKILL.md
+render_mode: full
+parent: "[[rule-plan-mode]]"
+estimates: []
+origin: guppi
+sprint: guppi
+created: 2026-10-14
+tags: [sprint, workflow, harness]
+core: true
+---
+
+## Purpose
+
+Prevents the session that closes a sprint from mixing the close with other decisions, or from reaching the close without the readings sorted, while the text that leads it stays out of the sessions that close no sprint. These steps stand apart from `orchestration.md`, which every session loads. The skill starts when the person takes up the close line of the sprint, which [[rule-skill-sprint-open]] writes in a fixed form as the last item of the last milestone, or when the person types it. It reaches the librarian through the close line of the Spec, which `.claude/agents/librarian-guppi.md` runs as [[rule-sprint-close]] sets it.
+
+## Render
+
+<!-- rule-skill-sprint-close -->
+---
+name: sprint-close
+description: "Lead the session that closes the sprint. Run it when the person takes up the line of the sprint that names /sprint-close, or types /sprint-close."
+---
+
+This session closes the sprint that `vault/wiki/sprint.md` names. Its Plan Mode holds only the closing Case and the Cases that prepare its readings, so that all of its decisions belong to the sprint it closes.
+
+1. Write nothing into `.git`, so run no `git fetch`: `gh api repos/{owner}/{repo}/commits/main --jq .sha` prints `<hash>`, the commit of `main` on GitHub. When `git merge-base --is-ancestor <hash> HEAD` exits other than 0, the branch does not hold `main`, and this session cannot close the sprint: close the line of the close in `frontier.md` as `[-] … · sprint · defer`, tell the person to run `/merge-main` in a session of its own first, and stop the skill here. When `gh api` fails, show its output, close the line the same way and stop the skill here. When the session's `raw/<date>/<hi HHMM>/ledger.md` holds a decision line other than a `defer`, this session cannot close the sprint. Close the line of the close in `frontier.md` as `[-] … · sprint · defer`, tell the person that the close needs a session of its own, opened by `/hi`, and stop the skill here.
+2. Close each other open line under `## Cases` of `frontier.md` as put off, by the closer of its source that `vault/wiki/orchestration.md` sets: `[-] … · sprint · defer`, `[-] … · backlog · kept`, or a short-form defer and `[-] … · defer case N`. The person's pick of the close line stands as the words that ratify each such defer, shown in one reply as `## The short form — deferred decisions` of `vault/wiki/orchestration.md` sets it. Leave the lines under `## Work` and `## Ask` open: their readings serve the close. Show the Frontier.
+3. Sort the Estimates under `vault/wiki/estimates/` that stand `pending` or `failed` into groups by the kind of moment their `method` names.
+4. Dispatch `case-guppi` for the closing Case as `vault/wiki/orchestration.md` sets it, with the groups in the prompt of the call. The closing Case names the groups in its `context`, holds one `by hand` task per moment that Work Mode sets up and one `read` line per Estimate, and holds the task line `uv run guppi sprint-close --sprint <id> --apply` with the person's choice, `--carry` or `--archive-unread`, for each Estimate still unread after Work Mode and each one read `failed` in Work Mode that the sprint page does not list; an Estimate of the sprint page is never carried. The closing Case holds no task line for the merge of the sprint's branch into `main`: the opening Case of the next sprint holds the merge, as `/sprint-open` sets it. A Case that prepares a reading is built the same way, and no other Case is ratified in this session.
+5. In Work Mode set up each moment and take each reading whose moment came. Work Mode neither runs nor ticks the close line.
+6. The librarian runs the close line after `guppi generate`, as `.claude/agents/librarian-guppi.md` sets it. The close moves the finished pages, the finished sessions of `vault/raw/` and the old event logs to the archive, and `guppi sprint` then marks the sprint closed in `vault/wiki/sprint.md`; the next session opens the next sprint by `/sprint-open`.
+<!-- /rule-skill-sprint-close -->
+
+## History
+
+- 2026-10-14 shipped with GUPPI

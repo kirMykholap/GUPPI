@@ -1,0 +1,116 @@
+---
+type: rule
+kind: Leaf
+purpose: Prevents a Decision page from carrying a field or section outside the shape lint checks, or lacking one it needs
+status: built
+enforcement: render
+governs: vault/wiki/decisions/schema.yaml
+render_mode: full
+parent: "[[rule-page-schemas]]"
+estimates: []
+origin: guppi
+sprint: guppi
+created: 2026-10-14
+tags: [harness, render, schema]
+core: true
+---
+
+## Purpose
+
+Prevents a Decision page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/decisions/schema.yaml`, the file `guppi lint` reads for every page of `wiki/decisions/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the former `schema.md` as data — lint refuses a listed name without a description and a description without a name.
+
+## Render
+
+<!-- rule-decisions-schema -->
+type: decision
+description: |
+  Every page has three blocks: properties (frontmatter), body (per-category sections), history (appended by hook). This is the schema for Decision. One page per Case, however many ledger lines the Case produced.
+
+  Slug. `decision-case-<N>`: `decision-case-kir-plugin-12.1`, or `decision-case-18.1` for a Case from before sprint ids. Mechanical, because the script writes the page and may not name anything; unique, because a Case id is. Nothing searches Decision pages, so the slug needs no meaning beyond the Case it points back at. A Decision is reached by reference only: from the `deferred_by` of the target page of a deferred decision, from the `[[decision-case-N]]` wikilink of a History line, or by the case id a `supersedes` carries.
+
+  Fields deliberately absent. `ratification` — a Decision page cannot exist without it. The Case does not close, no ledger line is written, no page is generated. A field with one possible value carries no information; the fact is recorded by the page existing and by `origin`. `recommend` — no field: the body carries it as `## Recommend`. `last_updated` — a decision is not edited. Only `status` and `superseded_by` ever change, and both are dated in History; one more History line is allowed, `updated:` of a Case that signs the page's text after the fact. `authority` — dropped. It overlapped with tags on one reading and with `ref` on the other. If a real need appears later, it comes back as a ratified decision.
+
+  The body is the `problem` of the Case that produced it — the one paragraph a reader needs at the end of a link — and its `recommend`, the choices made in the rounds, under `## Recommend`. A Case with sub-cases has a page of its own with `## Problem`, the parent's `## Recommend` and `children`, and never `## Context`; the page of a sub-case carries `parent`, its own `## Recommend` when it has one, and no `## Problem`. The rest of the Case — `context`, `given`, `when`, `then`, `tasks`, `ratification` — stays in its Case file. A Case without `given` and without sub-cases, the short form of a deferred decision, has no Case file, so its page keeps `## Context` as well; the page of a Case superseded in its own session has the two-line body of `## Context` and `## Problem` that names the superseding Decision. An older page keeps the sections it carries and is not rewritten. `create`, `update`, `delete`, `defer`: one list per kind present among the Case's ledger lines, in that order, each the slugs of those lines in ledger order; a kind with no line is absent, at least one is present but on the page of a Case with sub-cases, which carries `children` instead. The category is derived from the slug prefix, never written. Lint checks every page slug names a live or archived page, and that neither `kind` nor `target_slug` is present.
+properties:
+  required: [type, case, status, origin, sprint, created, tags]
+  optional: [create, update, delete, defer, source, supersedes, superseded_by, parent, children]
+  values:
+    status: [current, superseded, archived]
+body:
+  required: ["## History"]
+  optional: ["## Context", "## Problem", "## Recommend", "## Given", "## When", "## Criterion", "## Deferred", "## Note"]
+fields:
+  type: |
+    required; `decision`. Page category. Fixed for this schema.
+  case: |
+    required; case id, e.g. `kir-plugin-12.1`, or `18.1` for a Case from before sprint ids. The Case this page records.
+  status: |
+    required; `current` | `superseded` | `archived`. Lifecycle of this page, not of the work. `superseded` once a later Case names it, or the page of a Case it is a sub-case of, in `supersedes`, and `archived` the moment the cascade of `generate` meets it so: a superseded Decision no longer describes the present; a page that stands `archived` when a later Case names it stays `archived` and only takes that Case into `superseded_by`; `guppi sprint-close` also sets `archived` on a Decision page of the sprint it closes, but for one that a live page names in `deferred_by` or `addressed_by`, as `rule-sprint-close` sets it.
+  create: |
+    one of the four, or `children` on the page of a Case with sub-cases; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `create` lines, in ledger order: a page. One list per kind present, in the order create, update, delete, defer; a kind with no line is absent. Lists of quoted wikilinks for page slugs, so Obsidian shows them as links; the kind of every target is its key. The category is derived from the slug prefix and never written; the parent of a `create` is on the child page as `parent` or `target`.
+  update: |
+    one of the four, or `children` on the page of a Case with sub-cases; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `update` lines, in ledger order; a later `rename` retargets the link like any link.
+  delete: |
+    one of the four, or `children` on the page of a Case with sub-cases; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `delete` lines, in ledger order.
+  defer: |
+    one of the four, or `children` on the page of a Case with sub-cases; list of quoted wikilinks `"[[slug]]"`. The slugs of the Case's `defer` lines, in ledger order; each target carries this page in `deferred_by`.
+  source: |
+    optional; list. External ids the Case's lines carried (`{source:...}`), traceability only.
+  supersedes: |
+    optional; list of decision quoted wikilinks `"[[slug]]"`. Earlier Cases this one overrides, from the ledger's `{supersedes:case N}`.
+  superseded_by: |
+    optional; list of decision quoted wikilinks `"[[slug]]"`. Back-references, written by the script.
+  parent: |
+    optional; a decision quoted wikilink `"[[slug]]"`. On the page of a sub-case, the page of its parent Case, written by the script.
+  children: |
+    optional; list of decision quoted wikilinks `"[[slug]]"`. On the page of a Case with sub-cases, the pages of its sub-cases in ledger order, written by the script; such a page carries `children` in place of the kind lists.
+  origin: |
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13. Where this was ratified. The folder also holds the Spec with the Case and, for a Case built by `case-guppi`, its Case file `cases/case-<N>.md` with every section, N the id of the top-level Case. Once the session is archived, the folder lies under `vault/archive/<sprint>/`. The `raw/` of a session is archived with it once every line of it became a page, and the pointer is not rewritten.
+  sprint: |
+    required; the sprint id. Cheap slice of "what did we decide this sprint" without parsing dates.
+  created: |
+    required; date.
+  tags: |
+    required; list. The union of the targets' tags, as ratified in the Case.
+sections:
+  "## Context": |
+    optional. What this is about. Written for a Case without `given` and without sub-cases, the short form of a deferred decision, which has no Case file, and in the two-line body of a Case superseded in its own session, and kept on the older pages that carry it; any other Case keeps it in its Case file.
+  "## Problem": |
+    optional. What required a decision. On a defer, what is unresolved. On the page of a Case without sub-cases and on the page of a Case with sub-cases; the page of a sub-case carries none.
+  "## Recommend": |
+    optional. The `recommend` of the Case as it stands: one item per question of the rounds of `case-guppi` — the question, its recommendation and the person's answer as they stood when the person answered it, or a note that it was not answered — one per change asked for on the shown Case, or the one recommendation of a Case with no round. On the page of a sub-case its own items, on the page of a Case with sub-cases the rest; absent on a short-form defer and on the older pages written without it.
+  "## Given": |
+    optional. The Case's `given`, verbatim: the frame of the Case — the pages, modules, files and tests it touches and the rule that constrains — kept only on older pages that `generate` wrote with it. A newer page carries none, and the Case file holds it.
+  "## When": |
+    optional. Only on older pages, which keep it: the Case's `when`. A newer page has no `## When`.
+  "## Criterion": |
+    optional. Only on older pages, which keep it: one `- [[estimate-x]] § case N` line per block the Case wrote in an older shape. A newer page carries none: the Estimate named in the Case holds the Criterion whole.
+  "## Deferred": |
+    when the Case has a `defer` line with a `purpose`. The body of the deferred decision: one `### [[slug]]` heading per target of the Case's `defer` lines, in that order, each followed by that target's `purpose` verbatim, however long — written for a defer with a `ref` and for a placeholder alike, so the postponed work is never dropped; a `supersedes` does not edit it, the page is archived whole.
+  "## Note": |
+    optional. Only when ratification was non-trivial: a reservation, a condition, a rejected alternative worth remembering. Omit when the answer was simply yes.
+  "## History": |
+    required. Appended by hook, never by an agent. Always the last section, so `tail` reads it without loading the page: `- <date> created · <origin>`, `- <date> superseded by decision-case-N`, and `- <date> updated: <change> · [[decision-case-N]]` of a Case that signs the text after the fact.
+examples:
+  "a create": |
+    ---
+    type: decision
+    case: "1"
+    status: current
+    create: [entity-cart]
+    origin: raw/2026-09-08/ledger.md#case-1
+    sprint: 2026-Q3-s4
+    created: 2026-09-08
+    tags: [cart, checkout]
+    ---
+
+    ## Problem
+    Buyers cannot review an order before paying.
+
+    ## History
+    - 2026-09-08 created · raw/2026-09-08/ledger.md#case-1
+<!-- /rule-decisions-schema -->
+
+## History
+
+- 2026-10-14 shipped with GUPPI

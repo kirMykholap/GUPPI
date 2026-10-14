@@ -222,12 +222,13 @@ def test_a_sample_is_no_pointer(tmp_path):
     root, out = tmp_path / "p", tmp_path / "out"
     fenced = "Before.\n\n````showing\n## Case 7 — A sample (case 3)\n````\n\nAfter."
     render = "enforcement: render\nrender_mode: full\ngoverns: vault/wiki/case-example.md"
+    example_case = "Cart (case 717.1).\n\n````case\n## Case 1 — x (case 3)\n````"
     tree(
         root,
         rule_a=page("rule", "rule-a", body=fenced),
-        rule_case_example=page("rule", "rule-case-example", extra=render, render="## Case 1 — x"),
+        rule_case_example=page("rule", "rule-case-example", extra=render, render=example_case),
     )
-    write(root / "vault" / "wiki" / "case-example.md", "Cart (case 717.1).\n\n## Case 1 — x\n")
+    write(root / "vault" / "wiki" / "case-example.md", example_case + "\n")
     write(
         root / "vault" / "wiki" / "decisions" / "schema.yaml",
         "description: |\n  A slug `decision-case-18.1`.\n  ```\n  case 4\n  ```\n",
@@ -237,7 +238,22 @@ def test_a_sample_is_no_pointer(tmp_path):
     text = (out / "vault" / "wiki" / "rules" / "rule-a.md").read_text(encoding="utf-8")
     assert "## Case 7 — A sample (case 3)" in text
     example = (out / "vault" / "wiki" / "case-example.md").read_text(encoding="utf-8")
-    assert example == "Cart (case 717.1).\n\n## Case 1 — x\n"
+    assert example == "Cart.\n\n````case\n## Case 1 — x (case 3)\n````\n"
+    rule = (out / "vault" / "wiki" / "rules" / "rule-case-example.md").read_text(encoding="utf-8")
+    assert "## Case 1 — x (case 3)" in rule
+    assert "(case 717.1)" not in rule
+    assert "Cart.\n" in rule
+
+
+def test_a_pointer_in_the_prose_of_the_example_file_exits_1(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    render = "enforcement: render\nrender_mode: full\ngoverns: vault/wiki/case-example.md"
+    tree(root, rule_case_example=page("rule", "rule-case-example", extra=render, render="x"))
+    text = "Since case 717.1 the cart stands.\n\n````case\n## Case 1 — x\n````\n"
+    write(root / "vault" / "wiki" / "case-example.md", text)
+    code, lines = run(root, out)
+    assert code == 1
+    assert [line for line in lines if line.startswith("ship: vault/wiki/case-example.md:1:")]
 
 
 def test_review_lists_a_bracket_with_words_and_sets_no_exit_code(tmp_path):

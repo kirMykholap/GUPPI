@@ -1,0 +1,73 @@
+- 20:04:52 estimate[estimate-claude-md-rendered][passed] 2026-10-15, the /hi of session 1959: `uv run --project .guppi guppi render --check` exit 0; CLAUDE.md lines 1–27: `<!-- project-description -->`, `# GUPPI`, the paragraph, `<!-- /project-description -->`, the paragraph with `vault/`, `vault/wiki/glossary.md` and `/hi` in code spans, then rule-language, rule-agent-writing and rule-one-judgment-one-implementation between their markers; no @ import, no one rule; the text stands in this session's context; the refusal of a hand edit was not tried
+- 20:04:52 estimate[estimate-generate-rewords][passed] 2026-10-15, the /hi of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_generate.py` 131 passed; over the live rules, entities and Estimates one History line per page and pair: `uv run guppi` 195, `uv run pytest` 116, `guppi/` 156, `tests/` 223 (case 819.1), `make lint` 36, `make test` 22, `make style` 12 (case 820.7), 760 in all, the count of stdout lines the brief of the run gives; 0 such History lines over lessons, insights and decisions; `tests/` outside `.guppi/` stands on rule-page-generation and estimate-generate-rewords in the text Case 819.2 wrote after the reword in ledger order, not a miss of the reword
+- 20:04:52 estimate[estimate-guppi-config-runs-the-test-and-style-commands][passed] 2026-10-15, the /hi of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_commands.py` 7 passed; guppi.toml holds `test = ["uv run --project .guppi pytest -q"]` and `style` the two ruff commands; `uv run --project .guppi guppi style` exit 0, printing "All checks passed!" and "98 files already formatted"; `uv run --project .guppi guppi test` exit 1 on 1 failed, 1699 passed, 6 skipped; a search for `make test`, `make style` and `make lint` as whole words outside History and Result over the live rules, entities and Estimates and every file of `.claude/`: 0 hits
+- 20:04:52 estimate[estimate-lint-runs-every-step][passed] 2026-10-15, the /hi of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_check.py` 7 passed; a search for `make lint` as whole words outside History and Result over the live rules, entities and Estimates and every file of `.claude/`: 0 hits
+- 20:04:52 estimate[estimate-guppi-package-runs-from-its-own-folder][failed] 2026-10-15, the /hi of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_guppi_package.py` 1 failed, 11 passed — `test_no_live_page_names_the_old_command_or_path_where_a_reword_changes_it[tests/]` on rules/rule-page-generation and estimates/estimate-generate-rewords; the hooks of this session's /hi printed the `hi:` line and an empty Render and Tail, no error, and the Bash guard ran as `uv run --project .guppi guppi bashguard`
+- 20:27:33 decision[case 823.1][create][estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets]{ref:rule-clean-branch}{tags:ci,plugin}
+- 20:27:33 decision[case 823.1][update][estimate-ask-finds]{ref:rule-ask}
+- 20:27:33 decision[case 823.1][update][estimate-ask-query-before-a-create]{ref:rule-ask}
+- 20:27:33 decision[case 823.1][update][estimate-ask-opens-a-decision-only-for-a-finding]{ref:rule-ask}
+- 20:27:33 decision[case 823.1][update][estimate-case-check-sends-back-a-faulty-round]{ref:rule-case-check}
+- 20:27:33 decision[case 823.1][update][estimate-orchestration-acknowledges-the-opening-with-the-frontier]{ref:rule-orchestration}
+- 20:27:33 decision[case 823.1][update][estimate-orchestration-names-related-cases-in-the-dispatch]{ref:rule-orchestration}
+- 20:27:33 decision[case 823.1][update][estimate-orchestration-signs-items-taken-together]{ref:rule-orchestration}
+- 20:27:33 decision[case 823.1][update][estimate-prespec-confirms-the-findings-once]{ref:rule-prespec}
+- 20:27:33 decision[case 823.1][update][estimate-search-leaves-out-decisions-in-every-agent]{ref:rule-search-leaves-out-decisions}
+- 20:27:33 decision[case 823.1][update][estimate-skill-sprint-close-leads-the-closing-session]{ref:rule-skill-sprint-close}
+- 20:27:33 decision[case 823.1][update][estimate-skill-sprint-open-merges-the-closed-sprint-branch]{ref:rule-skill-sprint-open}
+- 20:27:33 decision[case 823.1][update][estimate-sprint-close-next-session-opens-the-sprint]{ref:rule-sprint-close}
+- 20:27:33 decision[case 823.2][update][estimate-case-check-notes-a-then-line-shared-by-siblings]{ref:rule-case-check}
+- 20:27:33 decision[case 823.3][update][estimate-ledger-write-holds-a-decision-line-off-the-stored-case]{ref:rule-ledger-write}
+- 20:27:33 decision[case 823.4][update][estimate-orchestration-defer-example-passes-the-hook]{ref:rule-orchestration}
+- 20:27:33 decision[case 823.5][update][estimate-ratification-case-id-carries-the-sprint]{ref:rule-ratification}
+- 20:27:33 decision[case 823.6][update][estimate-prespec-hook-reports-a-pointer-outside-a-bracket]{ref:rule-prespec-hook}
+- 20:44:14 decision[case 824][update][rule-language]{ref:rule-language}
+- 20:44:14 decision[case 824][update][rule-spec-write]{ref:rule-spec-write}
+- 20:44:14 decision[case 824][update][rule-case-build]{ref:rule-case-build}
+- 20:44:14 decision[case 824][update][rule-case-protocol]{ref:rule-case-protocol}
+- 20:44:14 decision[case 824][update][rule-morph]{ref:rule-morph}
+- 20:44:14 decision[case 824][update][rule-permissions]{ref:rule-permissions}
+- 20:44:14 decision[case 824][update][estimate-clean-branch-ships-neutral-texts]{ref:rule-clean-branch}
+- 21:06:38 decision[case 825][update][rule-morph]{ref:rule-morph}
+- 21:06:38 decision[case 825][update][estimate-morph-sets-up-the-project-at-the-first-hi]{ref:rule-morph}
+- 21:06:38 decision[case 825][update][rule-claude-md]{ref:rule-claude-md}
+- 21:06:38 decision[case 825][update][rule-guppi-config]{ref:rule-guppi-config}
+- 21:06:38 decision[case 825][update][rule-clean-branch]{ref:rule-clean-branch}
+- 21:06:38 decision[case 825][update][entity-sprint-plugin]{ref:entity-sprint-plugin}
+- 21:16:35 decision[case 826][update][lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian]{ref:lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian}
+- 21:16:35 decision[case 826][update][lesson-box-cannot-act-on-the-prespec-findings-of-a-conserved-spec]{ref:lesson-box-cannot-act-on-the-prespec-findings-of-a-conserved-spec}
+- 21:48:52 decision[case 827.1][update][rule-ledger-write]{ref:rule-ledger-write}
+- 21:48:52 decision[case 827.1][update][estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag]{ref:rule-ledger-write}
+- 21:48:52 decision[case 827.2][update][rule-materialize]{ref:rule-materialize}
+- 21:48:52 decision[case 827.2][create][estimate-materialize-lifts-a-tag-of-a-lesson]{ref:rule-materialize}{tags:harness,workflow,ledger}
+- 21:48:52 decision[case 827.3][update][rule-ratification]{ref:rule-ratification}
+- 21:48:52 decision[case 827.3][update][estimate-ratification-ledger-line-form]{ref:rule-ratification}
+- 21:48:52 decision[case 827.4][update][rule-vault-layout]{ref:rule-vault-layout}
+- 21:48:52 decision[case 827.4][update][rule-page-generation]{ref:rule-page-generation}
+- 21:48:52 decision[case 827.4][update][rule-documentation]{ref:rule-documentation}
+- 21:48:52 decision[case 827.4][update][entity-glossary]{ref:entity-glossary}
+- 21:50:46 decision[case 828][defer][rule-rules-schema]{ref:rule-rules-schema}
+- 21:50:46 decision[case 829][defer][estimate-guppi-tests-green]{ref:estimate-guppi-tests-green}
+- 21:50:46 decision[case 829][defer][estimate-page-schemas-one-file-per-rule]{ref:estimate-page-schemas-one-file-per-rule}
+- 21:50:46 decision[case 830][defer][entity-sprint-plugin]{ref:entity-sprint-plugin}
+- 21:50:46 decision[case 831][defer][estimate-clean-branch-installs-as-a-plugin]{ref:estimate-clean-branch-installs-as-a-plugin}
+- 21:50:46 decision[case 831][defer][estimate-plugin-install-writes-guppi-into-an-empty-project]{ref:estimate-plugin-install-writes-guppi-into-an-empty-project}
+- 21:50:46 decision[case 831][defer][estimate-guppi-package-is-ready-after-the-install]{ref:estimate-guppi-package-is-ready-after-the-install}
+- 21:50:46 decision[case 832][defer][estimate-guppi-package-is-ready-after-the-install]{ref:estimate-guppi-package-is-ready-after-the-install}
+- 21:50:46 decision[case 833][defer][estimate-harness-pipeline]{ref:estimate-harness-pipeline}
+- 21:50:46 decision[case 834][defer][rule-guppi-package]{ref:rule-guppi-package}
+- 21:50:46 decision[case 835][defer][insight-case-build-claims-what-code-does-without-reading-it]{ref:insight-case-build-claims-what-code-does-without-reading-it}
+- 21:50:46 decision[case 836][defer][lesson-ledger-window-stops-at-a-resume-on-the-next-day]{ref:lesson-ledger-window-stops-at-a-resume-on-the-next-day}
+- 21:50:46 decision[case 836][defer][lesson-case-build-agent-context-grows-on-every-resume]{ref:lesson-case-build-agent-context-grows-on-every-resume}
+- 21:50:46 decision[case 837][defer][estimate-guppi-package-runs-from-its-own-folder]{ref:estimate-guppi-package-runs-from-its-own-folder}
+- 21:50:46 decision[case 838][defer][rule-lint]{ref:rule-lint}
+- 21:50:46 decision[case 839][defer][rule-documentation]{ref:rule-documentation}
+- 22:35:41 decision[case 825][update][rule-permissions]{ref:rule-permissions}
+- 22:54:24 estimate[estimate-case-check-notes-a-then-line-shared-by-siblings][passed] 2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_casecheck.py .guppi/tests/test_prespec.py -k sibling` 6 passed, read on the Criterion of Case 823.2, which promises the note of the hook alone
+- 22:54:24 estimate[estimate-ledger-write-holds-a-decision-line-off-the-stored-case][passed] 2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_ledger.py` 150 passed, read on the Criterion of Case 823.3
+- 22:54:24 estimate[estimate-orchestration-defer-example-passes-the-hook][passed] 2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_orchestration.py -k defer_example -rs` 2 passed, none skipped; insight-workflow-case-schema-silent-on-what-the-scripts-accept stands under vault/archive/migration/2026-10-10/1555/insights/ with `status: archived` and not under vault/wiki/insights/
+- 22:54:24 estimate[estimate-ratification-case-id-carries-the-sprint][passed] 2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_caseid.py` 23 passed; vault/wiki/ratification.md gives the form `case kir-plugin-12.1`, the plain ids of migration and plugin to their close, `caseid --next --session <stamp>` that prints and holds the id and prints none without `--session` or the plan file, and the opening Case `<id>-1`; vault/wiki/orchestration.md has the main agent create the plan file with its title line before the first run, run the command once per new top-level Case and never to check, the opening Case's id set by /sprint-open; this session ran it for Cases 823 to 839 after the plan file stood
+- 22:54:24 estimate[estimate-prespec-hook-reports-a-pointer-outside-a-bracket][passed] 2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_prespec.py -k pointer` 12 passed, the six new tests of an Estimate of a core target among them; `guppi prespec --check` over this session's plan with the widened judgment printed no finding
+- 22:54:24 estimate[estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag][passed] 2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_ledger.py -k unlisted_tag` 14 passed, among them a tag declared on the line itself, on a lesson line of the session's ledger and on another line of the same Stop landing, a block outside its tags or with empty aliases and a block on a line refused for its prefix declaring nothing, and the new refusal words with no handoff in them
+- 22:54:24 estimate[estimate-materialize-lifts-a-tag-of-a-lesson][passed] 2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_materialize.py -k newtag` 4 passed: the tag reaches new_tags once after the tags of the Cases, the earlier line's declaration kept and a run again adding none; a tag a Case declares keeps the Case's meaning; a lesson with no block adds nothing; the lesson entry keeps its tags, trigger and root cause
+- 22:54:30 lesson[error][lesson-case-build-names-a-pytest-config-the-root-run-does-not-read]{tags:tests,case-build} trigger: Case 823.1 set the marker live and its addopts in .guppi/pyproject.toml; the first full `uv run --project .guppi guppi test` after the task ran the live test anyway and warned of an unknown mark, since pytest from the root reads the [tool.pytest.ini_options] of the root pyproject.toml; Work Mode added the same two lines there root_cause: the Case named the file of the pytest settings from where the package lives, without checking which config file a run from the root of the repository reads

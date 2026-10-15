@@ -220,7 +220,7 @@ examples:
     purpose: Prevents async calls leaking into the pricing module
     status: built
     enforcement: check
-    implementation_ref: [ruff.toml, tests/lint/test_pricing_sync.py]
+    implementation_ref: [ruff.toml, lint/tests/test_pricing_sync.py]
     estimates: [estimate-pricing-sync-check]
     origin: raw/2026-09-12/ledger.md#case-2
     sprint: 2026-Q3-s4
@@ -254,3 +254,4 @@ examples:
 - 2026-10-13 updated: the field core, and the value guppi of origin and sprint on a page of the clean version (case 804) · [[decision-case-804.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: each pointer stands in a bracket of its own, the slug of rule-sprint outside it · [[decision-case-809]]
+- 2026-10-15 updated: the example names a test path that the reword of rule-guppi-package does not touch · [[decision-case-819.1]]

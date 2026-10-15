@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-vault-layout]]"
 purpose: lint finds a page under the wrong category folder, a page whose slug is not its filename, and a .md at the root of wiki/ that no live rule page names; the live vault has none
-method: uv run pytest tests/test_lint.py -k layout, then make lint — no layout finding on the live vault
+method: uv run --project .guppi pytest .guppi/tests/test_lint.py -k layout, then uv run --project .guppi guppi check — no layout finding on the live vault
 checked: 2026-09-29
 origin: raw/2026-09-22/1121/ledger.md#case-315
 sprint: migration
@@ -34,3 +34,6 @@ A page whose `type` does not match its folder is a `layout` finding.
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L92
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the schema file not read as a page stated (case 490.7) · [[decision-case-490.7]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L37
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

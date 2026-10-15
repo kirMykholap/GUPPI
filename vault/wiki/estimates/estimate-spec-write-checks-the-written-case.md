@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-spec-write]]"
 purpose: Each Case the Stop hook writes into the plan is checked at once, and a finding comes back to the agent
-method: uv run pytest tests/test_ratified.py -k checks_the_written; by hand, a ratification of a session
+method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k checks_the_written; by hand, a ratification of a session
 checked: 2026-10-05
 origin: raw/2026-09-25/0051/ledger.md#case-414.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ratified` has written Case N into the plan file after a reply whose `LEDGER` block holds the decision lines of Case N.
+The `Stop` hook `uv run --project .guppi guppi ratified` has written Case N into the plan file after a reply whose `LEDGER` block holds the decision lines of Case N.
 
 Then:
 The hook runs the checks of `prespec --check` on each Case it wrote in this run and its sub-cases, with the decision lines of the reply added to those of the session's ledger, each line once.
@@ -43,3 +43,6 @@ The hook runs the checks of `prespec --check` on each Case it wrote in this run 
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-05 updated: the Criterion replaced whole — with stop_hook_active set the hook checks as without it, each finding once a stretch (case 644.3) · [[decision-case-644.3]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L33
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the system prompt from holding a line nobody ratified
-status: built
+status: draft
 enforcement: render
 governs: CLAUDE.md
 render_mode: full
@@ -21,14 +21,18 @@ core: true
 Prevents the system prompt from holding a line nobody ratified. `CLAUDE.md` is the
 one file every session reads first; until this page it was hand-written around one
 rendered section, and a ratified sentence went into the file instead of the page
-(case 56). Now the file is the Render of this page, whole, with `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` spliced into their markers; a change to it is an `update` of one of the four. The Render holds the description of the project and the three children; the glossary, `orchestration.md` and `ratification.md` arrive with `/hi`, the one rule opens `ratification.md`, and the Case schema reaches `case-guppi` alone (cases 272, 273.3, 288.3, 595).
+(case 56). Now the file is the Render of this page, whole, with `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` spliced into their markers; a change to it is an `update` of one of the four. The Render holds the description of the project and the three children; the glossary, `orchestration.md` and `ratification.md` arrive with `/hi`, the one rule opens `ratification.md`, and the Case schema reaches `case-guppi` alone (cases 272, 273.3, 288.3, 595). The heading and the description of the project stand between the lines `<!-- project-description -->` and `<!-- /project-description -->`: in the clean version of GUPPI a heading and a line that says the description is not set yet stand there, until the install Case of a project writes its own description (case 822).
 
 ## Render
 
 <!-- rule-claude-md -->
+<!-- project-description -->
 # GUPPI
 
-A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The vault is `vault/`; its terms are `vault/wiki/glossary.md`. A working session opens with `/hi`.
+A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into.
+<!-- /project-description -->
+
+The vault is `vault/`; its terms are `vault/wiki/glossary.md`. A working session opens with `/hi`.
 
 <!-- rule-language -->
 
@@ -39,7 +43,7 @@ A Claude Code harness governed by ratified decisions, and the Obsidian vault it 
 
 ## How it works
 
-Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-writing`, `rule-one-judgment-one-implementation` — splices into its marker line. The file is the system prompt of every session and of every subagent, so it holds what each of them needs and no more: the description of the project and the three standing rules. The glossary, `orchestration.md` and `ratification.md` arrive with `/hi` through `rule-internal-context`, and the one rule opens `ratification.md` (cases 288, 595). `rule-language` and `rule-agent-writing` have this page as their parent (since case 272; the section "Migration mode", carried from the hand-written file of 2026-09-12, left with case 288.3, each of its items a Rule with a Render of its own by then, and "Commands" left with it — `make style` before a commit is `rule-retro`'s, and "no new dependencies" came with the file in case 59.8 and was never decided on its own; `rule-case-protocol` was a child from case 66 to case 273, when its Render became `case-schema.md` and its parent `rule-plan-mode`).
+Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-writing`, `rule-one-judgment-one-implementation` — splices into its marker line. The file is the system prompt of every session and of every subagent, so it holds what each of them needs and no more: the description of the project and the three standing rules. The glossary, `orchestration.md` and `ratification.md` arrive with `/hi` through `rule-internal-context`, and the one rule opens `ratification.md` (cases 288, 595). `rule-language` and `rule-agent-writing` have this page as their parent (since case 272; the section "Migration mode", carried from the hand-written file of 2026-09-12, left with case 288.3, each of its items a Rule with a Render of its own by then, and "Commands" left with it — `uv run --project .guppi guppi style` before a commit is `rule-retro`'s, and "no new dependencies" came with the file in case 59.8 and was never decided on its own; `rule-case-protocol` was a child from case 66 to case 273, when its Render became `case-schema.md` and its parent `rule-plan-mode`).
 
 ## History
 
@@ -78,3 +82,6 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 - 2026-10-02 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the history of the page stands in the bracket of its pointers · [[decision-case-809]]
+- 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]
+- 2026-10-15 updated: the heading and the description of the project stand between marker lines of their own · [[decision-case-822.5]]
+- 2026-10-15 status: built → draft · cascade

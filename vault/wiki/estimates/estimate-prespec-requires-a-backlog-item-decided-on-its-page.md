@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: A Case that decides an item taken from the backlog names its page and supersedes every Decision of its deferred_by, or pre-spec reports it
-method: uv run pytest tests/test_prespec.py -k backlog
+method: uv run --project .guppi pytest .guppi/tests/test_prespec.py -k backlog
 checked: 2026-09-28
 origin: raw/2026-09-27/2050/ledger.md#case-467.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-`uv run guppi prespec --check <plan>` reads the session's `vault/raw/<date>/<hi HHMM>/frontier.md`, the decision lines of the session's window, and the pages of the vault.
+`uv run --project .guppi guppi prespec --check <plan>` reads the session's `vault/raw/<date>/<hi HHMM>/frontier.md`, the decision lines of the session's window, and the pages of the vault.
 
 Then:
 For each line of the Frontier closed `[x] … · backlog · case N`, each page that its title names in a code span and that carries `deferred_by` is checked against Case N and its sub-cases.
@@ -31,3 +31,6 @@ For each line of the Frontier closed `[x] … · backlog · case N`, each page t
 
 - 2026-09-27 created · [[decision-case-467.1]]
 - 2026-09-28 status: pending → passed · raw/2026-09-28/1318/ledger.md#L36
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

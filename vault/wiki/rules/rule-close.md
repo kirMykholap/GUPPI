@@ -24,7 +24,7 @@ changed must be readable as one separate diff, six months on.
 ## Render
 
 <!-- rule-close -->
-Close. Run `make lint` and keep its output for the report. Commit the vault with the
+Close. Run `uv run --project .guppi guppi check` and keep its output for the report. Commit the vault with the
 files the render wrote: `git add vault CLAUDE.md .claude guppi.toml && git commit -m
 "docs(vault): librarian, <date>"`, never `--amend`, never a path outside those four. After the commit, no file the render wrote stands untracked. Then return a report of at most twenty
 lines: pages created and updated per category, entries marked incomplete or failed,
@@ -43,3 +43,4 @@ pages archived, the flags you raised, the lint total. Nothing else.
 - 2026-09-28 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

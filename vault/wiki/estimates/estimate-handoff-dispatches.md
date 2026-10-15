@@ -15,7 +15,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-The agent calls `/handoff` on `PreToolUse Skill` after the reply that ends Retro, or the person types `/handoff` on `UserPromptSubmit`, the gate of `guppi/gate.py` reads the tree, and the agent runs the skill `.claude/skills/handoff/SKILL.md` as rendered from `rule-handoff`.
+The agent calls `/handoff` on `PreToolUse Skill` after the reply that ends Retro, or the person types `/handoff` on `UserPromptSubmit`, the gate of `.guppi/guppi/gate.py` reads the tree, and the agent runs the skill `.claude/skills/handoff/SKILL.md` as rendered from `rule-handoff`.
 
 Then:
 The skill's context holds `git status --porcelain`. On a dirty tree the skill stops and says "commit first", and nothing is written.
@@ -40,3 +40,4 @@ The skill's context holds `git status --porcelain`. On a dirty tree the skill st
 - 2026-10-02 updated: the Criterion replaced whole — in a session that /box runs, /handoff hands back to /box (case 591.9) · [[decision-case-591.9]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L1
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]

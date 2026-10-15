@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-claude-md]]"
 purpose: CLAUDE.md equals the Render of rule-claude-md with each child between its markers, and every session loads that text
-method: uv run guppi render and guppi render --check after the build, plus one reading of CLAUDE.md at the next session start, by hand
+method: "by hand, after the librarian's run of this change: uv run --project .guppi guppi render --check, and CLAUDE.md as the file holds it and as the session of that run loads it, read against the Criterion"
 checked: 2026-10-02
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
@@ -18,7 +18,7 @@ When:
 `guppi render` writes `CLAUDE.md` from `rule-claude-md` and its children, and a session or a subagent starts and loads the file.
 
 Then:
-`CLAUDE.md` is: `# GUPPI`; one paragraph, "A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The vault is vault/; its terms are vault/wiki/glossary.md. A working session opens with /hi.", whose words the file holds with the folder, the path and the skill in code spans; then the text of `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` in their markers.
+`CLAUDE.md` is: the line `<!-- project-description -->`; `# GUPPI`; the paragraph "A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into."; the line `<!-- /project-description -->`; the paragraph "The vault is vault/; its terms are vault/wiki/glossary.md. A working session opens with /hi.", whose words the file holds with the folder, the path and the skill in code spans; then the text of `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` in their markers.
 **＋** `render --check` after the render exits 0, and the hook of `rule-governed-files-hook` refuses a hand edit of the file.
 **＋** Every session and every subagent loads this text.
 **－** No `@` import, no "What is loaded here", no paragraph on `index.md`, no "Migration mode", no "Commands", no one rule and no sentence on memory — the one rule is in `vault/wiki/ratification.md`; the `children` of `rule-claude-md` are `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation`.
@@ -47,3 +47,5 @@ Then:
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L41
 - 2026-10-02 updated: the Criterion replaced whole - the one rule is in ratification.md (case 595.21) · [[decision-case-595.21]]
 - 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L6
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 updated: the Criterion replaced whole — the heading and the description stand between marker lines of their own · [[decision-case-822.5]]

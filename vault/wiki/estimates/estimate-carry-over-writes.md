@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-carry-over]]"
 purpose: /carry writes the brief and the mark, runs guppi backlog, commits, makes the branch of the Spec at that commit, and runs nothing else
-method: uv run guppi render --check; by hand, a /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md, the commit and git branch read
+method: uv run --project .guppi guppi render --check; by hand, a /carry after the fork of ExitPlanMode — the tree, vault/wiki/brief.md, carry.md, vault/wiki/backlog.md, the commit and git branch read
 checked: 2026-10-03
 origin: raw/2026-09-16/1034/ledger.md#case-190.1
 sprint: migration
@@ -23,8 +23,8 @@ The skill reads the tree. When the tree holds changes outside the session folder
 **＋** The short shape holds Where things stand, Flags and Next session, with no Readings due and no Readings at the close.
 **＋** Next session holds `Cases`, `Work` and `Ask the person`, one line per item, a list with no item the line "none": `Cases` is always the line "none", since a deferred decision reaches `/hi` through `vault/wiki/backlog.md` and a sprint item through `vault/wiki/sprint.md`; `Work` holds each open `W` line of `raw/<hi date>/<hi HHMM>/frontier.md`, and `Ask the person` each open `A` line with its Estimate by slug, the mark `needs the person` and its question.
 **＋** It puts `carry.md` into the session folder: one line, a flag for `materialize` and `guppi backlog`, not a document. The session that finishes the work deletes it.
-**＋** It runs `uv run guppi backlog`, and `vault/wiki/backlog.md` then shows the conserved Spec with its targets.
-**＋** It runs `make style` and commits `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`.
+**＋** It runs `uv run --project .guppi guppi backlog`, and `vault/wiki/backlog.md` then shows the conserved Spec with its targets.
+**＋** It runs `uv run --project .guppi guppi style` and commits `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`.
 **＋** After that commit it runs `git branch spec/<hi date>-<hi HHMM>`, so the branch of the Spec points at the commit that holds the whole of `/carry`.
 **－** No open `W` or `A` line of `frontier.md` is left out of Next session, so the next `/hi` takes each one into its Frontier.
 **－** It runs no Work Mode, `/retro`, `/handoff`, librarian, `materialize`, `generate`, `cleanup` or `render`, and it writes no decision. It writes no page of `vault/wiki/`.
@@ -51,3 +51,5 @@ The skill reads the tree. When the tree holds changes outside the session folder
 - 2026-10-02 updated: the Criterion replaced whole — /carry makes the branch of the Spec after its commit (case 591.1) · [[decision-case-591.1]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L3
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]

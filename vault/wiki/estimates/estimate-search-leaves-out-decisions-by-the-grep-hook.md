@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-search-leaves-out-decisions]]"
 purpose: Whether every Grep over vault/wiki/ or a folder that holds it runs with !**/decisions/** at the end of its glob, added by the PreToolUse hook, and prints nothing under vault/wiki/decisions/
-method: uv run pytest tests/test_grepguard.py, then by hand at the /hi of a later session after the render a Grep over vault/wiki/ with no glob in the main agent and in a subagent, whether it prints a file under vault/wiki/decisions/
+method: uv run --project .guppi pytest .guppi/tests/test_grepguard.py, then by hand at the /hi of a later session after the render a Grep over vault/wiki/ with no glob in the main agent and in a subagent, whether it prints a file under vault/wiki/decisions/
 checked: 2026-10-05
 origin: raw/2026-10-05/1616/ledger.md#case-664.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [hooks, harness, session]
 ## Criterion
 
 When:
-The main agent or any subagent calls Grep, and `uv run guppi grepguard` of `guppi/grepguard.py`, registered on `PreToolUse` of `Grep` in `.claude/settings.json`, reads the call.
+The main agent or any subagent calls Grep, and `uv run --project .guppi guppi grepguard` of `.guppi/guppi/grepguard.py`, registered on `PreToolUse` of `Grep` in `.claude/settings.json`, reads the call.
 
 Then:
 When the searched folder — the `path` of the call, or the working directory when the call has none — is a folder that holds `vault/wiki/decisions/`, the hook returns the call by `updatedInput` with `!**/decisions/**` at the end of its `glob`, after a space when the `glob` holds another filter, and with no permission decision.
@@ -34,3 +34,7 @@ When the searched folder — the `path` of the call, or the working directory wh
 
 - 2026-10-05 created · [[decision-case-664.1]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L4
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

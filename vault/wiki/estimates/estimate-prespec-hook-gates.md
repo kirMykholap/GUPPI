@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec-hook]]"
 purpose: The ExitPlanMode hook holds a working session in Plan Mode until /pre-spec has run in it and the check of its plan finds nothing, across midnight too
-method: pytest in tests/test_prespec.py with piped payloads against a temp event log; the live reading once by hand, written into the estimate line
+method: pytest in .guppi/tests/test_prespec.py with piped payloads against a temp event log; the live reading once by hand, written into the estimate line
 checked: 2026-10-01
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
@@ -19,7 +19,7 @@ The hook `guppi prespec` receives a `PreToolUse` payload naming `ExitPlanMode` w
 
 Then:
 With no `prespec` line of this session's stamp after its `hi`, the hook exits 2 with a reason that names `/pre-spec` and the session.
-**＋** With the line, it finds the plan file of the session by `plan_path` of `guppi/ledger.py`, runs on it the judgment of `uv run guppi prespec --check`, and exits 2 with the findings on stderr while the judgment finds one.
+**＋** With the line, it finds the plan file of the session by `plan_path` of `.guppi/guppi/ledger.py`, runs on it the judgment of `uv run --project .guppi guppi prespec --check`, and exits 2 with the findings on stderr while the judgment finds one.
 **＋** With the line and a judgment that finds nothing it exits 0; a line that opens with `note:` does not block.
 **＋** With the line and no plan file of the session it exits 0.
 **＋** The window is open when the logs hold a `hi` of the session's stamp and a `prespec` of the same stamp after it; a mark of another stamp or `--------` does not count; a foreign `session-start` resets nothing.
@@ -49,3 +49,6 @@ With no `prespec` line of this session's stamp after its `hi`, the hook exits 2 
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L74
 - 2026-10-01 updated: the Criterion replaced whole and the purpose set anew - with the prespec line the hook runs the check of the plan and refuses while it finds one (case 561.3) · [[decision-case-561.3]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L38
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

@@ -21,7 +21,7 @@ Then:
 The person raised no complaint in the session that the agent's text broke the section `## How the agent writes` of `CLAUDE.md` — a claim with no real source or wider than the output it rests on, a sales pitch, a long or passive sentence, an answer not given first, a not-done left implied.
 **－** A slip in the agent's text that the agent found and corrected itself, with no complaint of the person, is no fault.
 **－** When the person says they did not follow and wants it said more simply, by `/wait-what` or in words, that is the normal use of `.claude/skills/wait-what/SKILL.md`, not a fault of this rule.
-**－** The code the agent writes is not a text of this rule; `make style` judges the code.
+**－** The code the agent writes is not a text of this rule; `uv run --project .guppi guppi style` judges the code.
 
 ## Result
 
@@ -38,3 +38,4 @@ The person raised no complaint in the session that the agent's text broke the se
 - 2026-09-28 status: pending → failed · raw/2026-09-28/0000/ledger.md#L32
 - 2026-09-28 updated: the Criterion replaced whole — a request for a plain explanation, answered by the skill wait-what, is no complaint (case 477.4) · [[decision-case-477.4]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L34
+- 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]

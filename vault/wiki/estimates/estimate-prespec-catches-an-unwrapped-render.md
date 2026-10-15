@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: Whether pre-spec refuses an item that writes a Render without the page's own markers
-method: pytest in tests/test_prespec.py — a create and an update with an unwrapped Render, a wrapped one clean
+method: pytest in .guppi/tests/test_prespec.py — a create and an update with an unwrapped Render, a wrapped one clean
 checked: 2026-09-29
 origin: raw/2026-09-22/1724/ledger.md#case-325.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow]
 ## Criterion
 
 When:
-`uv run guppi prespec --check <plan> --session <id>` reads the items of the plan's `then` blocks that carry `sections: Render`.
+`uv run --project .guppi guppi prespec --check <plan> --session <id>` reads the items of the plan's `then` blocks that carry `sections: Render`.
 
 Then:
 An item whose target is a page with `enforcement: render`, and whose text does not open with `<!-- slug -->` and close with `<!-- /slug -->` of its own slug, gives one line `case N: <create|update> <slug>: Render is not wrapped in`, followed by the two markers of that slug.
@@ -35,3 +35,5 @@ An item whose target is a page with `enforcement: render`, and whose text does n
 - 2026-09-23 status: pending → passed · raw/2026-09-22/2046/ledger.md#L34
 - 2026-09-28 updated: the Criterion replaced whole — When and Then only, Given out (case 484.4) · [[decision-case-484.4]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L32
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

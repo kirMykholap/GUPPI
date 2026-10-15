@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Shows at /hi every ledger line that no vault page holds yet, so a reading or a lesson written after the librarian's commit reaches the next session's Frontier
 status: built
 enforcement: render
-implementation_ref: [guppi/tail.py, tests/test_tail.py]
+implementation_ref: [.guppi/guppi/tail.py, .guppi/tests/test_tail.py]
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
 parent: "[[rule-skill-hi]]"
@@ -27,12 +27,12 @@ reading comes with the next librarian, the fact that it failed comes at once.
 ## Render
 
 <!-- rule-ledger-tail -->
-Tail: !`uv run guppi tail`
+Tail: !`uv run --project .guppi guppi tail`
 <!-- /rule-ledger-tail -->
 
 ## How it works
 
-`uv run guppi tail` walks every `ledger.md` under `vault/raw/`: the date-level
+`uv run --project .guppi guppi tail` walks every `ledger.md` under `vault/raw/`: the date-level
 ledger of a date first (the shape before case 103), then the session ledgers
 `raw/<date>/<HHMM>/ledger.md` in folder order, dates ascending. For each it reads
 the `materialize.yaml` beside it and prints every line that
@@ -71,3 +71,6 @@ an item, and a decision line not.
 - 2026-09-30 updated: the Tail line follows the git lines: rule-github-issues left the harness (case 528.2) · [[decision-case-528.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the pointer stands in a bracket of its own · [[decision-case-809]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

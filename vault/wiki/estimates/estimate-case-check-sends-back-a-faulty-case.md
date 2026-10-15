@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi that the checks refuse goes back to it before the main agent sees it
-method: uv run pytest tests/test_casecheck.py -k subagent, then by hand in a session after the render a file of case-guppi the hook sends back, fixed by Edit and passed, and a live round after a built Case, which leaves the stored entry of that Case as it stood
+method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k subagent, then by hand in a session after the render a file of case-guppi the hook sends back, fixed by Edit and passed, and a live round after a built Case, which leaves the stored entry of that Case as it stood
 checked: 2026-10-05
 origin: raw/2026-09-25/1228/ledger.md#case-419.3
 sprint: migration
@@ -18,9 +18,9 @@ When:
 `SubagentStop` fires when `case-guppi` stops; its payload carries `last_assistant_message`, `agent_transcript_path` and `stop_hook_active`, and it may fire twice after one message to the subagent, the second time after a `SubagentHandback` call, with `stop_hook_active` true though no hook exited 2.
 
 Then:
-`uv run guppi casecheck --subagent` takes each file under the `cases/` folder of a session folder, judged by `is_case_file` of `guppi/casecheck.py`, that a `Write` or `Edit` call of the subagent in `agent_transcript_path` names, and reads its Cases as the file stands now.
+`uv run --project .guppi guppi casecheck --subagent` takes each file under the `cases/` folder of a session folder, judged by `is_case_file` of `.guppi/guppi/casecheck.py`, that a `Write` or `Edit` call of the subagent in `agent_transcript_path` names, and reads its Cases as the file stands now.
 **＋** A file whose Cases `<plan>.checked.json` already holds with the same text, line ends and trailing spaces aside, and with no findings is not checked or stored again, so the time of its store stands.
-**＋** Any other such file is checked whole: each Case is read in the chat form by the functions of `guppi/ratified.py`, its section of the Spec is built in memory as the Spec hook writes it, and `judge` of `guppi/prespec.py` runs over them, the decision lines of the `ratification` fences standing for the ledger and, with the session's window, giving the categories whose schema rule the session changes.
+**＋** Any other such file is checked whole: each Case is read in the chat form by the functions of `.guppi/guppi/ratified.py`, its section of the Spec is built in memory as the Spec hook writes it, and `judge` of `.guppi/guppi/prespec.py` runs over them, the decision lines of the `ratification` fences standing for the ledger and, with the session's window, giving the categories whose schema rule the session changes.
 **＋** It checks the chat form besides: the sections in the order of the schema, none missing that the schema requires, and a `ratification` that holds one untagged fence of ledger lines and nothing else.
 **＋** Each Case of the file is stored, its text as the file holds it, with its findings and the time of the store, in `<plan>.checked.json`; the hook does not write that file.
 **＋** A finding exits 2 with the findings on stderr, each naming its Case, and `case-guppi` fixes the file and stops again, whatever `stop_hook_active` says.
@@ -47,3 +47,7 @@ Then:
 - 2026-10-05 updated: the Criterion replaced whole — the check reads the file case-guppi wrote, whole, and keeps the old path until the writer is live; the method follows (case 645.2) · [[decision-case-645.2]]
 - 2026-10-05 deferred · [[decision-case-659]]
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.6]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

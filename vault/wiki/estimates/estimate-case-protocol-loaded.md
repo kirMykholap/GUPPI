@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-protocol]]"
 purpose: The form of a Case stands in one text, the Render of rule-case-protocol, which /hi does not load and the main agent does not read, with nothing of orchestration.md or ratification.md repeated in it and nothing of it repeated in CLAUDE.md
-method: uv run guppi render --check; by hand after the librarian's render, case-schema.md, orchestration.md and ratification.md compared paragraph by paragraph, and at the first /hi of a later session the first turn's context and the main agent's read calls in the transcript
+method: uv run --project .guppi guppi render --check; by hand after the librarian's render, case-schema.md, orchestration.md and ratification.md compared paragraph by paragraph, and at the first /hi of a later session the first turn's context and the main agent's read calls in the transcript
 checked: 2026-10-02
 origin: raw/2026-09-09/ledger.md#case-13
 sprint: migration
@@ -15,10 +15,10 @@ tags: [session, workflow, ledger]
 ## Criterion
 
 When:
-`uv run guppi render` wrote `vault/wiki/case-schema.md` from `rule-case-protocol`, and a session opened by `/hi` dispatches `case-guppi` by `.claude/agents/case-guppi.md`.
+`uv run --project .guppi guppi render` wrote `vault/wiki/case-schema.md` from `rule-case-protocol`, and a session opened by `/hi` dispatches `case-guppi` by `.claude/agents/case-guppi.md`.
 
 Then:
-`uv run guppi render --check` exits 0: the file equals the Render of `rule-case-protocol`, its language placeholders filled from `rule-guppi-config`.
+`uv run --project .guppi guppi render --check` exits 0: the file equals the Render of `rule-case-protocol`, its language placeholders filled from `rule-guppi-config`.
 **＋** The file holds the form of a Case: its sections, operands and language, the `then` block, the task lines, the taking up of a deferred decision, the sub-cases and the slug.
 **＋** `.claude/skills/hi/SKILL.md` holds no `@` line for `vault/wiki/case-schema.md`, and the main agent reads none of it in the session.
 **－** The file repeats no paragraph of `vault/wiki/orchestration.md` or `vault/wiki/ratification.md`, and `CLAUDE.md` repeats none of its paragraphs.
@@ -78,3 +78,4 @@ Then:
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L48
 - 2026-10-02 updated: the Criterion replaced whole - the file holds the form of a Case alone and is not loaded by /hi (case 595.6) · [[decision-case-595.6]]
 - 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L5
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

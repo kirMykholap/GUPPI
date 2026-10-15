@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-lint]]"
 purpose: A link, an origin or a Decision list that names nothing, and a page nothing names, are findings of lint
-method: uv run pytest tests/test_lint.py
+method: uv run --project .guppi pytest .guppi/tests/test_lint.py
 checked: 2026-10-13
 origin: raw/2026-09-24/1916/ledger.md#case-401.2
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow]
 ## Criterion
 
 When:
-`uv run guppi lint` follows the links of the live pages under `vault/wiki/`.
+`uv run --project .guppi guppi lint` follows the links of the live pages under `vault/wiki/`.
 
 Then:
 `ref`: a slug in `parent`, `children`, `estimates`, `target`, `insight`, `addressed_by`, `deferred_by`, `applies_to`, `rules` or in a body `[[…]]` that no live or archived page carries; a body `[[…]]` may name a file under `vault/wiki/` by stem or path; a `[[…]]` inside a code span is no link.
@@ -23,7 +23,7 @@ Then:
 **＋** `ref`: a `[[slug]]` under a Decision page's `## Criterion` that is no live or archived Estimate.
 **＋** `origin`: an `origin` `raw/<date>[/<HHMM>]/ledger.md#case-N` or `#L<n>` whose ledger stands in neither `vault/raw/` nor `vault/archive/`, or in both, or holds no such case or line; an `origin` of another form on a page that is not an Insight.
 **＋** An `origin` `#case-N` of a Case that has no ledger line of its own is found by a line of one of its sub-cases, `[case N.M]`.
-**＋** `decision`: a Decision page with none of `create`, `update`, `delete`, `defer` and no `children`, or with `kind` or `target_slug`; a slug of its lists that `category_of` of `guppi/materialize.py` gives a category — the prefix `decision-` included — and that no live or archived page carries.
+**＋** `decision`: a Decision page with none of `create`, `update`, `delete`, `defer` and no `children`, or with `kind` or `target_slug`; a slug of its lists that `category_of` of `.guppi/guppi/materialize.py` gives a category — the prefix `decision-` included — and that no live or archived page carries.
 **＋** `orphan`: a live entity, rule or estimate that no other live page names in its frontmatter; a Decision, a Lesson, an Insight and a placeholder never.
 **－** A `### case N` line under an Estimate's `## Criterion` is not read as a link.
 **－** An `origin` `guppi` on a page with `core: true` is no finding; on a page without `core: true` it is an `origin` of another form.
@@ -44,3 +44,7 @@ Then:
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L26
 - 2026-10-13 updated: the Criterion replaced whole — the origin guppi on a page with core: true is no finding (case 804) · [[decision-case-804.4]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L119
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

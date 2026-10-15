@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-page-generation]]"
 purpose: One bad entry never stops the run; every entry carries its mark
-method: pytest tests/test_generate.py, the tests of the failed, skipped and marked entries
+method: pytest .guppi/tests/test_generate.py, the tests of the failed, skipped and marked entries
 checked: 2026-09-29
 origin: raw/2026-09-16/1955/ledger.md#case-201.3
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger, tests]
 ## Criterion
 
 When:
-`uv run guppi generate` meets an entry of `materialize.yaml` it cannot apply, or one already handled.
+`uv run --project .guppi guppi generate` meets an entry of `materialize.yaml` it cannot apply, or one already handled.
 
 Then:
 An entry that fails — a collision, a `ref` naming no page, a `replace` absent or not unique, a field of an unexpected shape, an unknown `kind`, any exception — is printed on stderr as `generate: <slug>: <what>`, marked `failed` in the yaml and skipped; the rest apply; the exit code is 1; no entry ends the run.
@@ -49,3 +49,5 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 - 2026-09-29 updated: the Criterion replaced whole — a recut without method no longer fails (case 506.5) · [[decision-case-506.5]]
 - 2026-09-29 updated: the Criterion replaced whole — an entry that repeats an applied entry of its Case, kind and slug is marked applied, changes no page and prints one line · [[decision-case-514]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L23
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

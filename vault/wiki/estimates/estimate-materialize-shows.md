@@ -3,18 +3,18 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-materialize]]"
+purpose: "--show prints the yaml and writes nothing under raw/"
+method: pytest in .guppi/tests/test_materialize.py, the tests of the --show path
 origin: raw/2026-09-16/1034/ledger.md#case-189
 sprint: migration
 created: 2026-09-16
 tags: [harness, workflow, ledger, tests]
-purpose: "--show prints the yaml and writes nothing under raw/"
-method: pytest in tests/test_materialize.py, the tests of the --show path
 ---
 
 ## Criterion
 
 When:
-`uv run guppi materialize --show [--date YYYY-MM-DD]` runs.
+`uv run --project .guppi guppi materialize --show [--date YYYY-MM-DD]` runs.
 
 Then:
 Stdout holds the yaml each date would be written with — entries, `unparsed`,
@@ -31,3 +31,5 @@ Stdout holds the yaml each date would be written with — entries, `unparsed`,
 - 2026-09-16 created · [[decision-case-189]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1651/ledger.md#L29
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

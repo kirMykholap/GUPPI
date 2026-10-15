@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents an archived page from staying among the live ones
 status: built
 enforcement: check
-implementation_ref: [guppi/cleanup.py, tests/test_cleanup.py]
+implementation_ref: [.guppi/guppi/cleanup.py, .guppi/tests/test_cleanup.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-cleanup-moves]]", "[[estimate-cleanup-files-a-session-by-its-sprint]]"]
 origin: raw/2026-09-10/ledger.md#case-33
@@ -43,3 +43,5 @@ this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 - 2026-10-10 estimate estimate-cleanup-files-a-session-by-its-sprint added · [[decision-case-770]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

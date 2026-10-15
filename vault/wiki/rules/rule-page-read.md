@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents an agent from reading the History of a vault page it did not ask for
 status: built
 enforcement: hook
-implementation_ref: [guppi/pageread.py, guppi/pages.py, tests/test_pageread.py, .claude/settings.json]
+implementation_ref: [.guppi/guppi/pageread.py, .guppi/guppi/pages.py, .guppi/tests/test_pageread.py, .claude/settings.json]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-page-read-cuts-the-history]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-420.1
@@ -20,7 +20,7 @@ Prevents an agent from reading the History of a vault page it did not ask for. E
 
 ## How it works
 
-`uv run guppi pageread` on `PreToolUse` of `Read`. For a file under `vault/wiki/` read with neither `offset` nor `limit`, it finds the line of the page's own `## History` heading by `pages.history_line` — the walk of `split_sections`, so a heading inside a render block does not count — and returns `updatedInput` with `limit` set to the line before it, with no permission decision. `uv run guppi pageread --after` on `PostToolUse` of `Read` adds one line of `additionalContext` after such a call: the History is cut, its first and last line, and a `Read` with `offset` at its first line shows it. A call with its own `offset` or `limit`, a file with no `## History` — `brief.md`, `sprint.md`, `glossary.md`, `log.md`, `case-schema.md` — and a file outside `vault/wiki/` pass unchanged. The page on disk is never changed. The hooks read stdin as UTF-8 and never raise; an error lets the call pass whole.
+`uv run --project .guppi guppi pageread` on `PreToolUse` of `Read`. For a file under `vault/wiki/` read with neither `offset` nor `limit`, it finds the line of the page's own `## History` heading by `pages.history_line` — the walk of `split_sections`, so a heading inside a render block does not count — and returns `updatedInput` with `limit` set to the line before it, with no permission decision. `uv run --project .guppi guppi pageread --after` on `PostToolUse` of `Read` adds one line of `additionalContext` after such a call: the History is cut, its first and last line, and a `Read` with `offset` at its first line shows it. A call with its own `offset` or `limit`, a file with no `## History` — `brief.md`, `sprint.md`, `glossary.md`, `log.md`, `case-schema.md` — and a file outside `vault/wiki/` pass unchanged. The page on disk is never changed. The hooks read stdin as UTF-8 and never raise; an error lets the call pass whole.
 
 ## History
 
@@ -29,3 +29,6 @@ Prevents an agent from reading the History of a vault page it did not ask for. E
 - 2026-09-25 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the session stands in the bracket of the lesson · [[decision-case-809]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

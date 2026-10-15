@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-page-generation]]"
 purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading, of a deleted Estimate or of an Estimate an update sets passed or failed, across the Specs of raw/ — never a line of a later or a superseded Case
-method: uv run pytest tests/test_generate.py
+method: uv run --project .guppi pytest .guppi/tests/test_generate.py
 checked: 2026-10-05
 origin: raw/2026-09-17/1119/ledger.md#case-226.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 When:
-`uv run guppi generate` of `rule-page-generation` marks an entry of `materialize.yaml` `applied`. Either it applied the entry, or it found the entry to be a repeat: a `create`, `update`, `delete` or `defer` entry whose `case`, `kind` and `slug` match those of an entry of the same `materialize.yaml` already marked `applied`.
+`uv run --project .guppi guppi generate` of `rule-page-generation` marks an entry of `materialize.yaml` `applied`. Either it applied the entry, or it found the entry to be a repeat: a `create`, `update`, `delete` or `defer` entry whose `case`, `kind` and `slug` match those of an entry of the same `materialize.yaml` already marked `applied`.
 
 Then:
 For a `create`, `update`, `delete` or `defer` entry that was applied, in the `spec.md` of the same unit, the first unticked line `` - [ ] <kind> `<slug>` `` in the section of the entry's Case becomes `- [x]`. Nothing else in the file changes.
@@ -59,3 +59,6 @@ For a `create`, `update`, `delete` or `defer` entry that was applied, in the `sp
 - 2026-09-30 status: pending → passed · raw/2026-09-29/2024/ledger.md#L1
 - 2026-10-05 updated: the Criterion replaced whole — an update that sets passed or failed ticks the read lines of its slug, with the skips of a reading; the method the tests alone (case 672) · [[decision-case-672]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L20
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

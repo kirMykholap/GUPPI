@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-page-generation]]"
 purpose: What generate writes to a page for each kind of entry of a materialize.yaml, and nothing an entry does not carry
-method: pytest in tests/test_generate.py against a temp vault; the live reading once by hand
+method: pytest in .guppi/tests/test_generate.py against a temp vault; the live reading once by hand
 checked: 2026-10-13
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
@@ -30,7 +30,7 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 **＋** Every ref field is written as `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`; a slug without a category prefix stays bare; read through the brackets.
 **＋** A `create` in `insights` applies only with the mark `librarian`; a `delete` of an Insight is refused always.
 **＋** History lines and `log.md` lines carry the date of the run and end with `[[decision-case-N]]` or the ledger pointer; `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a used and undeclared one goes to stderr.
-**－** A `defer` of an Estimate, an Insight, a Lesson or a Decision page whose page stands neither under `vault/wiki/<category>/` nor in a folder `<category>` under `vault/archive/` outside a `raw/` folder, by `defer_writes_no_page` of `guppi/materialize.py`, which asks `has_page`, writes no page: the entry fails alone (`estimate-generate-fails-alone`), with `generate: <slug>: an Estimate is deferred only with its page — defer the page it would check` on stderr for an Estimate, and `generate: <slug>: a placeholder is written only for a rule or an entity — defer a page that stands` for the other kinds.
+**－** A `defer` of an Estimate, an Insight, a Lesson or a Decision page whose page stands neither under `vault/wiki/<category>/` nor in a folder `<category>` under `vault/archive/` outside a `raw/` folder, by `defer_writes_no_page` of `.guppi/guppi/materialize.py`, which asks `has_page`, writes no page: the entry fails alone (`estimate-generate-fails-alone`), with `generate: <slug>: an Estimate is deferred only with its page — defer the page it would check` on stderr for an Estimate, and `generate: <slug>: a placeholder is written only for a rule or an entity — defer a page that stands` for the other kinds.
 **－** No body section is derived from a ref field; a section the entry does not name under `sections` or reach by `replace` is not touched.
 **－** An `update` of an Estimate whose `set` carries `method` drops no section.
 **－** `criterion_block` on an `update` and an entry of kind `remove_criterion` are not applied: a shape the script does not know — the entry fails alone (`estimate-generate-fails-alone`).
@@ -90,3 +90,5 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 - 2026-10-12 status: pending → passed · raw/2026-10-12/2252/ledger.md#L13
 - 2026-10-13 updated: the Criterion replaced whole — a defer with no page of anything but a rule or an entity writes no placeholder and fails alone · [[decision-case-786.1]]
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L45
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

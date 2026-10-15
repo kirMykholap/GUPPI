@@ -15,11 +15,11 @@ tags: [harness, workflow, librarian]
 ## Criterion
 
 When:
-`librarian-guppi`, at synthesis, hangs a lesson entry on an Insight of the same pattern that stands `open` on disk, while an `update` entry of a decision in the same `materialize.yaml` sets that Insight `actioned` with `addressed_by: decision-case-M`, and `guppi/generate.py` then applies the yaml.
+`librarian-guppi`, at synthesis, hangs a lesson entry on an Insight of the same pattern that stands `open` on disk, while an `update` entry of a decision in the same `materialize.yaml` sets that Insight `actioned` with `addressed_by: decision-case-M`, and `.guppi/guppi/generate.py` then applies the yaml.
 
 Then:
 A lesson entry with no `addressed_by` gives an `update` of the Insight with `children` plus the lesson and `set: {status: open}`.
-**＋** After `guppi/generate.py` runs, the Insight stands `open` and the lesson stands `clustered`, not archived.
+**＋** After `.guppi/guppi/generate.py` runs, the Insight stands `open` and the lesson stands `clustered`, not archived.
 **＋** A lesson entry with `addressed_by: decision-case-N` gives an `update` with no `status`: it carries `set: {addressed_by: decision-case-N}` when case N is later than case M, compared number by number, and no `addressed_by` otherwise; the Insight stays `actioned`.
 **＋** `vault/wiki/brief.md` reports the pair beside the synthesis.
 **－** An Insight that is not `actioned` on disk and that no decision entry of the yaml sets `actioned` takes no `status` from the lesson.
@@ -32,3 +32,4 @@ A lesson entry with no `addressed_by` gives an `update` of the Insight with `chi
 
 - 2026-10-05 created · [[decision-case-668]]
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.3]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]

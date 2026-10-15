@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-page-schemas]]"
 purpose: Each vault/wiki/<category>/schema.yaml is written by guppi render from exactly one rule page, no schema.md remains, lint reads every file and a hand edit is refused
-method: make lint — render --check exit 0 and no path or schema-description finding on a <category>/schema; tests/test_render.py for two full pages on one file; the live reading by hand after the librarian's first render
+method: uv run --project .guppi guppi check — render --check exit 0 and no path or schema-description finding on a <category>/schema; .guppi/tests/test_render.py for two full pages on one file; the live reading by hand after the librarian's first render
 checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-304.1
 sprint: migration
@@ -37,3 +37,5 @@ Each category folder of `vault/wiki/` holds one `schema.yaml`, written from the 
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L32
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the count of files out, the missing file stated (case 490.1) · [[decision-case-490.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L60
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

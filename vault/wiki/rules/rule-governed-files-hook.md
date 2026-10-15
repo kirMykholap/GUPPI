@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents a harness file rendered from a Rule page from being edited by hand
 status: built
 enforcement: hook
-implementation_ref: [guppi/guard.py, tests/test_guard.py, .claude/settings.json]
+implementation_ref: [.guppi/guppi/guard.py, .guppi/tests/test_guard.py, .claude/settings.json]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-governed-files-hook-refuses]]"]
 origin: raw/2026-09-12/ledger.md#case-59.6
@@ -23,7 +23,7 @@ the next render, and what it carried was ratified for the page, not the file
 
 ## How it works
 
-`uv run guppi guard` on `PreToolUse` of `Edit`, `Write` and `MultiEdit`. It reads
+`uv run --project .guppi guppi guard` on `PreToolUse` of `Edit`, `Write` and `MultiEdit`. It reads
 the `governs` field of every live Rule page under `vault/wiki/rules/`. A call whose
 `file_path` is a governed path exits 2 with the rule's slug and the file, which
 blocks the tool, and one line goes to `vault/raw/<date>/event_log.md` before that:
@@ -44,3 +44,6 @@ and passes; subagents inherit no project hook.
 - 2026-09-29 status: built → draft · cascade
 - 2026-10-01 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

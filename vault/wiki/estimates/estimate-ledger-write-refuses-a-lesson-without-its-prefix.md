@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a lesson line whose slug does not open with lesson-, and says why only for the reply just finished
-method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads and a session ledger in a temp vault
 checked: 2026-10-01
 origin: raw/2026-09-27/1819/ledger.md#case-460.5
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, hooks, harness, ledger]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ledger` finds a fresh `lesson[<slug>]` line in a `LEDGER` block of the session. `category_of` of `guppi/materialize.py` does not put its slug under the lessons folder: the slug does not start with the lesson prefix.
+The `Stop` hook `uv run --project .guppi guppi ledger` finds a fresh `lesson[<slug>]` line in a `LEDGER` block of the session. `category_of` of `.guppi/guppi/materialize.py` does not put its slug under the lessons folder: the slug does not start with the lesson prefix.
 
 Then:
 The line is not written.
@@ -38,3 +38,7 @@ The line is not written.
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L24
 - 2026-10-01 updated: the Criterion replaced whole — with stop_hook_active the line is judged the same, and its stderr line is told once a stretch (case 577.7) · [[decision-case-577.7]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L12
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

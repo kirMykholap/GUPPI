@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook holds once a lesson line with no addressed_by mark written after a decision line of the session, asks for the mark, and then writes the line written again unless another refusal of the hook keeps it out
-method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads and a session ledger in a temp vault
 checked: 2026-10-07
 origin: raw/2026-10-05/2249/ledger.md#case-682.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, hooks, harness, ledger]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ledger` of `guppi/ledger.py` finds a fresh `lesson[<slug>]` line in a `LEDGER` block of the session that carries no `{addressed_by:...}`, and a decision line of the session stands before it, in the session's ledger or earlier among the lines of the same `Stop`.
+The `Stop` hook `uv run --project .guppi guppi ledger` of `.guppi/guppi/ledger.py` finds a fresh `lesson[<slug>]` line in a `LEDGER` block of the session that carries no `{addressed_by:...}`, and a decision line of the session stands before it, in the session's ledger or earlier among the lines of the same `Stop`.
 
 Then:
 At the `Stop` of the reply that carries it, the hook holds the line back once, unless it already asked about it since the person's last message.
@@ -44,3 +44,7 @@ At the `Stop` of the reply that carries it, the hook holds the line back once, u
 - 2026-10-07 status: pending → passed · raw/2026-10-06/1448/ledger.md#L21
 - 2026-10-07 updated: the Criterion replaced whole — a line refused for a tag outside tags.md is not held for its mark and does not land (case 703.3) · [[decision-case-703.3]]
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0636/ledger.md#L31
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

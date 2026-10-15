@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the check of case-guppi sends back a summary that does not name the top-level Case as its file heads it
-method: uv run pytest tests/test_casecheck.py -k summary_names_the_case
+method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k summary_names_the_case
 checked: 2026-10-05
 origin: raw/2026-10-05/1616/ledger.md#case-662.3
 sprint: migration
@@ -15,7 +15,7 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-`case-guppi` stops after it wrote or edited a file `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and the `SubagentStop` hook `guppi casecheck --subagent` of `guppi/casecheck.py`, registered in `.claude/settings.json`, reads its newest output: a summary whose first line that is not blank opens with `**Built:**`.
+`case-guppi` stops after it wrote or edited a file `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and the `SubagentStop` hook `guppi casecheck --subagent` of `.guppi/guppi/casecheck.py`, registered in `.claude/settings.json`, reads its newest output: a summary whose first line that is not blank opens with `**Built:**`.
 
 Then:
 A summary with no line `**Case:**` for the top-level Case of a file it wrote, or with one whose id and name differ from the heading `## Case N — name` of that file, gets a finding that names the file and the line to write, and the hook exits 2.
@@ -33,3 +33,6 @@ A summary with no line `**Case:**` for the top-level Case of a file it wrote, or
 
 - 2026-10-05 created · [[decision-case-662.3]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L3
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-retro-commit]]"
 purpose: guppi gate refuses /handoff on a dirty tree and /retro with nothing to review or a Spec ahead of the ledger, and marks each call it lets through
-method: pytest in tests/test_gate.py with piped payloads against a temp repository; the live reading once by hand
+method: pytest in .guppi/tests/test_gate.py with piped payloads against a temp repository; the live reading once by hand
 checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-38.2
 sprint: migration
@@ -43,3 +43,4 @@ A `/handoff` on a dirty tree, where `git status --porcelain` is not empty, exits
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out, the pass without hi narrowed to what the gate does; purpose set (case 493.3) · [[decision-case-493.3]]
 - 2026-09-30 updated: the Criterion replaced whole — on the Skill path the refusal nothing to review names a stop of vault/wiki/where-to-stop.md, not a call in the next reply (case 531.15) · [[decision-case-531.15]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L34
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

@@ -20,7 +20,7 @@ When:
 Then:
 Where the reader refuses in between and what it refuses is lost, such as a hook that refuses a ledger line, the `then` of the Case says that the reader accepts the old form beside the new one until a reading of the writer passes live.
 **＋** The removal of the old form is left to a Case of a later session, after that reading.
-**－** A reader that only goes red, such as `make lint`, keeps no old form: its red is a note for the handoff by `rule-retro`.
+**－** A reader that only goes red, such as `uv run --project .guppi guppi check`, keeps no old form: its red is a note for the handoff by `rule-retro`.
 
 ## Result
 
@@ -33,3 +33,4 @@ Where the reader refuses in between and what it refuses is lost, such as a hook 
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-13 updated: the Criterion replaced whole — the line that put the insight actioned is dropped, since the insight was reopened; the method names its event (case 797.2) · [[decision-case-797.2]]
 - 2026-10-14 status: pending → passed · raw/2026-10-13/2118/ledger.md#L2
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

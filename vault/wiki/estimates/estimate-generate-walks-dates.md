@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-page-generation]]"
 purpose: generate applies every unit under raw/ that has a yaml, dates ascending, and a failing unit does not stop the walk
-method: tests/test_generate.py with two dated folders; live, the librarian's first run
+method: .guppi/tests/test_generate.py with two dated folders; live, the librarian's first run
 checked: 2026-09-29
 origin: raw/2026-09-10/ledger.md#case-43
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 When:
-`uv run guppi generate` runs, with `--date` or without.
+`uv run --project .guppi guppi generate` runs, with `--date` or without.
 
 Then:
 Without `--date` every unit under `vault/raw/` with a `materialize.yaml` is applied: the date-level yaml `vault/raw/<date>/materialize.yaml` first, then `vault/raw/<date>/<HHMM>/materialize.yaml` in folder order, dates ascending; `--date` walks the units of that date alone.
@@ -44,3 +44,5 @@ Without `--date` every unit under `vault/raw/` with a `materialize.yaml` is appl
 - 2026-09-20 updated: the word moved: the module pretask → prespec and the slug -pretask-reconciles → -prespec-reconciles in the Criterion; the promise and the reading unchanged, passed kept (case 265) · [[decision-case-265]]
 - 2026-09-29 updated: the Criterion restored whole — the text of case 201.5, which case 211.3 overwrote; purpose set (case 489.2) · [[decision-case-489.2]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L54
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

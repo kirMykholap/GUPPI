@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-hook-registry]]"
-method: the JSON case of tests/test_render.py; uv run guppi render --check after the render
+method: the JSON case of .guppi/tests/test_render.py; uv run --project .guppi guppi render --check after the render
 checked: 2026-09-25
 origin: raw/2026-09-09/ledger.md#case-18.2
 sprint: migration
@@ -14,11 +14,11 @@ tags: [hooks, harness, render]
 ## Criterion
 
 When:
-`uv run guppi render` writes `.claude/settings.json`.
+`uv run --project .guppi guppi render` writes `.claude/settings.json`.
 
 Then:
 The `"hooks"` key of `.claude/settings.json` equals the Render of `rule-hook-registry` byte for byte, and every hook the harness runs is registered by one of its lines.
-**＋** `uv run guppi render --check` exits 0 after the render.
+**＋** `uv run --project .guppi guppi render --check` exits 0 after the render.
 
 ## Result
 
@@ -35,3 +35,5 @@ The `"hooks"` key of `.claude/settings.json` equals the Render of `rule-hook-reg
 - 2026-09-15 status: pending → passed · raw/2026-09-15/1809/ledger.md#L13
 - 2026-09-24 updated: the Criterion replaced whole — the live reading of the Render, no count of commands (case 392.4) · [[decision-case-392.4]]
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L41
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

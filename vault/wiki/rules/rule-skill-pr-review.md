@@ -12,7 +12,6 @@ origin: raw/2026-10-12/2349/ledger.md#case-789.2
 sprint: plugin
 created: 2026-10-12
 tags: [github, git, workflow, harness]
-core: true
 ---
 
 ## Purpose
@@ -46,3 +45,4 @@ The person asks to review the pull request `$ARGUMENTS`, called `<n>` below, int
 - 2026-10-13 created · [[decision-case-789.2]]
 - 2026-10-13 estimate estimate-skill-pr-review-takes-a-pull-request-whole added · [[decision-case-789.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-15 updated: core taken off while the page is draft; a Case gives it back once it is built · [[decision-case-822.8]]

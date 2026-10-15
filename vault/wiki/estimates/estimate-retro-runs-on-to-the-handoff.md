@@ -20,7 +20,7 @@ The agent calls `/retro` on `PreToolUse Skill` at the end of `/work`, or the per
 Then:
 Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`, reads `raw/<date>/<hi HHMM>/work.md` if it stands — with the Read tool, unless the agent wrote or changed the file itself in the same turn, whose text then counts as read —, takes the readings whose moment has come, and decides which lessons to write.
 **＋** A red test that the agent cannot fix within the ratified work is saved as a patch in the session folder and reverted, with a `lesson[error]` line and a line in `## Debt` of `raw/<date>/<hi HHMM>/handoff.md` that names the patch.
-**＋** The agent commits the work when `make style` is clean and `make test` is green, except for the tests that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` holds.
+**＋** The agent commits the work when `uv run --project .guppi guppi style` is clean and `uv run --project .guppi guppi test` is green, except for the tests that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` holds.
 **＋** One reply ends Retro: one sentence in the language of the chat that names the commit of the work, then one `LEDGER` block with every reading and lesson of `/work` and Retro; it asks the person nothing.
 **－** That reply shows the person no report: no heading, no list and no other paragraph stands before or after the block, since `raw/<date>/<hi HHMM>/handoff.md` is the report of Retro.
 **＋** When the ledger hook refuses a line of that reply, the agent answers with a reply that holds only a `LEDGER` block with each refused record line written again; a refused line of the block that is no record, one that does not open with `- decision[`, `- estimate[` or `- lesson[`, is left out. No other `LEDGER` block follows the reply that ends Retro.
@@ -53,3 +53,5 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 - 2026-10-04 updated: method names no Retro at which the ledger hook refuses a line, a moment no one brings on (case 625) · [[decision-case-625]]
 - 2026-10-07 updated: the Criterion replaced whole — a refused line that is no record is left out of the answer to a refusal of the ledger hook, and with nothing left the answer calls /handoff · [[decision-case-695.2]]
 - 2026-10-07 status: pending → passed · raw/2026-10-06/1448/ledger.md#L23
+- 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
+- 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]

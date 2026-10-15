@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-shell-write-check]]"
 purpose: Whether the hook after a Bash or PowerShell call turns CRLF into LF and removes a UTF-8 byte-order mark in each changed or new file of the repository and names each file it repaired, and names without a change a file in UTF-16 or not valid UTF-8
-method: uv run pytest tests/test_shellwrite.py
+method: uv run --project .guppi pytest .guppi/tests/test_shellwrite.py
 origin: raw/2026-10-07/0636/ledger.md#case-710.1
 sprint: migration
 created: 2026-10-07
@@ -14,7 +14,7 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-A call of the `Bash` or `PowerShell` tool ends, and `uv run guppi shellwrite` of `guppi/shellwrite.py` on `PostToolUse` reads each file that `git` lists as changed or new and not ignored.
+A call of the `Bash` or `PowerShell` tool ends, and `uv run --project .guppi guppi shellwrite` of `.guppi/guppi/shellwrite.py` on `PostToolUse` reads each file that `git` lists as changed or new and not ignored.
 
 Then:
 In each such file the hook turns every CRLF line ending into LF, and removes a UTF-8 byte-order mark at its start.
@@ -35,3 +35,7 @@ In each such file the hook turns every CRLF line ending into LF, and removes a U
 
 - 2026-10-07 created · [[decision-case-710.1]]
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0636/ledger.md#L32
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

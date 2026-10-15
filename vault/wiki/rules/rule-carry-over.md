@@ -43,8 +43,8 @@ Otherwise:
    things stand names the conserved Spec — `vault/raw/<hi date>/<hi HHMM>/spec.md`, its
    Cases, what is not done on it; no Readings due, no Readings at the close, no Deferred list — the conserved Spec and its targets stand in `backlog.md` (case 451.9); Flags say what the vault does not know about this session; Next session keeps its three lists, one line per item, a list with no item the line "none": `Cases` always the line "none" — a deferred decision reaches `/hi` through `backlog.md`, a sprint item through the sprint page; `Work` each open `W` line of `vault/raw/<hi date>/<hi HHMM>/frontier.md`; `Ask the person` each open `A` line of it, with its Estimate by slug, the mark `needs the person` and its question. `/hi` takes its Work list from Next session alone, so a line left out is lost to the next session (case 538.1).
 2. Write `vault/raw/<hi date>/<hi HHMM>/carry.md` with one line: `conserved — delete
-   this file when the work of spec.md is done`. Its presence tells `guppi materialize` to pass the unit by, and `guppi backlog` to show the Spec under its conserved Specs. Then run `uv run guppi backlog`; every line on its stderr goes into the reply.
-3. Run `make style`, then commit `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`:
+   this file when the work of spec.md is done`. Its presence tells `guppi materialize` to pass the unit by, and `guppi backlog` to show the Spec under its conserved Specs. Then run `uv run --project .guppi guppi backlog`; every line on its stderr goes into the reply.
+3. Run `uv run --project .guppi guppi style`, then commit `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`:
    `docs(vault): Spec of session <HHMM> conserved, Cases <N>–<M>`.
 4. Make the branch of the Spec at that commit: `git branch spec/<hi date>-<hi HHMM>`. Stay on the current branch: the Spec waits on its branch until a later session takes it at the Frontier and `/box` runs it, as `rule-spec-box` sets it (case 591).
 
@@ -75,3 +75,5 @@ materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the slug of rule-spec-box stands outside the bracket of its pointer · [[decision-case-809]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]

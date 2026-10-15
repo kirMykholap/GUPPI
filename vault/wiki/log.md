@@ -9842,3 +9842,941 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-14 estimates/estimate-clean-branch-writes-a-clean-copy status: pending → passed · raw/2026-10-14/1536/ledger.md#L9 · generate
 - 2026-10-14 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch status: failed → passed · raw/2026-10-14/1536/ledger.md#L10 · generate
 - 2026-10-14 lessons/lesson-shell-bang-commands-given-in-bash-syntax-ran-in-powershell created · raw/2026-10-14/1536/ledger.md#L11 · generate
+- 2026-10-15 decisions/decision-case-816 created · raw/2026-10-15/0553/ledger.md#case-816 · generate
+- 2026-10-15 decisions/decision-case-816.1 created · raw/2026-10-15/0553/ledger.md#case-816.1 · generate
+- 2026-10-15 estimates/estimate-clean-branch-installs-as-a-plugin created · [[decision-case-816.1]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-installs-as-a-plugin added · [[decision-case-816.1]] · generate
+- 2026-10-15 rules/rule-clean-branch updated: the clean version holds the manifest of the plugin guppi and the catalogue guppi-marketplace, copied from plugin/, and CI runs claude plugin validate before it commits · [[decision-case-816.1]] · generate
+- 2026-10-15 decisions/decision-case-816.2 created · raw/2026-10-15/0553/ledger.md#case-816.2 · generate
+- 2026-10-15 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch updated: the Criterion replaced whole — the run on a tag prod-x.y.z writes prod with the version of that tag, and guppi ship exits 1 with no such tag in the history · [[decision-case-816.2]] · generate
+- 2026-10-15 rules/rule-clean-branch updated: the version of the plugin is the highest tag prod-x.y.z in the history, and guppi ship exits 1 with no such tag · [[decision-case-816.2]] · generate
+- 2026-10-15 decisions/decision-case-817 created · raw/2026-10-15/0553/ledger.md#case-817 · generate
+- 2026-10-15 rules/rule-morph updated: the install Case comes at the first /hi after /guppi:install, while a key of guppi.toml does not mark the install as done; the install step is no skill named install · [[decision-case-817]] · generate
+- 2026-10-15 estimates/estimate-morph-sets-up-the-project-at-the-first-hi updated: the Criterion replaced whole — the install Case comes at the first /hi after /guppi:install, while guppi.toml does not mark the install as done · [[decision-case-817]] · generate
+- 2026-10-15 decisions/decision-case-818 created · raw/2026-10-15/0553/ledger.md#case-818 · generate
+- 2026-10-15 decisions/decision-case-818.1 created · raw/2026-10-15/0553/ledger.md#case-818.1 · generate
+- 2026-10-15 rules/rule-plugin-install created · [[decision-case-818.1]] · generate
+- 2026-10-15 rules/rule-harness child rule-plugin-install added · [[decision-case-818.1]] · generate
+- 2026-10-15 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project created · [[decision-case-818.1]] · generate
+- 2026-10-15 rules/rule-plugin-install estimate estimate-plugin-install-writes-guppi-into-an-empty-project added · [[decision-case-818.1]] · generate
+- 2026-10-15 rules/rule-clean-branch updated: guppi ship writes the skill of the plugin from plugin/skills/ to skills/ of the clean version, and --check judges it in place · [[decision-case-818.1]] · generate
+- 2026-10-15 decisions/decision-case-818.2 created · raw/2026-10-15/0553/ledger.md#case-818.2 · generate
+- 2026-10-15 estimates/estimate-sprint-plugin-installs-as-a-plugin updated: the Criterion replaced whole — the install is read from a local copy that guppi ship --allow-draft writes, and /guppi:install copies GUPPI into the empty project before /hi runs there · [[decision-case-818.2]] · generate
+- 2026-10-15 decisions/decision-case-819 created · raw/2026-10-15/0553/ledger.md#case-819 · generate
+- 2026-10-15 decisions/decision-case-819.1 created · raw/2026-10-15/0553/ledger.md#case-819.1 · generate
+- 2026-10-15 rules/rule-guppi-package created · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-harness child rule-guppi-package added · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-guppi-package-runs-from-its-own-folder created · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-guppi-package estimate estimate-guppi-package-runs-from-its-own-folder added · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-case-example updated: the example Estimate names a test path of the example project that the reword of rule-guppi-package does not touch · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-estimates-schema updated: a method names a test path under .guppi/tests/ or in the tests of the project's own code; the example names a path that the reword of rule-guppi-package does not touch · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-rules-schema updated: the example names a test path that the reword of rule-guppi-package does not touch · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-carry-over reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-case-protocol reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-compact-recall reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-documentation reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-event-log reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-git-context reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-governed-files-hook reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-hook-registry reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-ledger-tail reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-orchestration reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-page-read reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-prespec-hook reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-prespec-onward reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-prespec reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-ratification reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-raw-archive reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-retro-commit reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-retro reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-shell-write-check reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-skill-hi reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-skill-merge-main reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-skill-sprint-close reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-box reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-reconcile reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-write reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-where-to-stop reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-work-mode reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-atomicity-rendered reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-backlog-checks-the-file reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-backlog-renders reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-bash-guard reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-brief-carries-the-run-facts reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-carry-over-writes reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-applies-the-pairs-of-the-session-in-order reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-exits-2-on-an-error reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-judges-a-showing-after-a-refusal reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-leaves-out-a-case-the-file-supersedes reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-criterion-line-not-carried reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-page-the-cascade-archives reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-sentence-two-cases-change reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-then-line-shared-by-siblings reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-changed-case-file reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-letter-outside-the-script reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-problem-in-a-sub-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-text-before-a-round reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-text-outside-the-list reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-requires-each-question-of-the-rounds reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-clash-with-another-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-faulty-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-faulty-round reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-without-a-target reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-an-unlisted-tag reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-shows-only-the-checked-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-protocol-loaded reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-claude-md-rendered reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-installs-as-a-plugin reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-pages-hold-pointers-only-in-brackets reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-writes-a-clean-copy reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-cleanup-files-a-session-by-its-sprint reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-cleanup-moves reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-shown-after-each-reply reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-shows-its-error reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-warns-past-the-limit reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-documentation-completes reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-event-log-records reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-cascades reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-fails-alone reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-ticks-the-spec reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-walks-dates reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-writes-the-decision-page reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-git-context-current reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-glossary-checks-the-file reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-glossary-renders-the-terms reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-glossary-terms-defined reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-glossary-ticks-the-spec reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-governed-files-hook-refuses reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-hi-no-read-calls reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-hi-takes-a-conserved-spec reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-hook-registry-rendered reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-insights-schema-checked reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-tail reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-exits-2-on-an-error reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-holds-a-decision-line-off-the-stored-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-lifts reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-names-the-kind-of-a-user-record reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-line-that-is-no-record reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-catches-a-broken-fence reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-catches reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-method reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-statuses reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-finds-a-broken-link reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-reports-a-method-tied-to-a-one-off-moment reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-assembles reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-changes-a-named-part-alone reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-fills-the-type-from-the-category reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-lifts-a-create-by-the-schema reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-marks-a-comment reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-marks-exists reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-marks-superseded reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-shows reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-skips-a-carried-over-unit reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-walks-dates reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-loaded reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-shows-the-built-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-page-read-cuts-the-history reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-binds-a-sprint-line reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-broken-fence reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-command-line-off-form reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-method-without-a-form reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-superseded-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-an-indent-added-twice reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-an-unwrapped-render reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-two-cases-on-one-target reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-form-of-an-item reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-frontier reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-plan reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-gathers-the-answers-after-findings reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-gates reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-create-without-a-required-field reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-schema-condition-not-met reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-matches-lines-and-items reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-notes-a-page-another-case-defers reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-notes-a-page-the-cascade-archives reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-sends-the-agent-on reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-tells-the-loop-from-its-end reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-reconciles reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-requires-a-backlog-item-decided-on-its-page reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-requires-a-task-line reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-simulates-the-pairs reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-python-utf8-output-intact reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ratification-case-id-carries-the-sprint reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ratification-loaded reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-raw-archive-files-a-session-by-its-sprint reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-raw-archive reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-render-harness-reproduces reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-render-sync-reports reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-retro-onward-exits-2-on-an-error reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-search-leaves-out-decisions-by-the-grep-hook reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-search-leaves-out-decisions-in-every-agent reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-settings reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-shell-write-check-repairs-and-reports reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-grill-me-asks-in-rounds reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-merge-main-joins-a-conflicted-page reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-close-leads-the-closing-session reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-open-starts-at-hi reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-wait-what-re-pitches reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-box-refuses-a-stale-spec reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-box-runs-a-conserved-spec reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-capture-appends reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-answers-a-refusal reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-checks-the-written-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-copies-the-ratified-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-exits-2-on-an-error reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-reaches-the-approved-spec reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-reads-a-new-tag reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-refuses-a-changed-case-file reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-removes-a-superseded-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-tells-each-reason-once reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-writes-a-defer reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-checks-the-file reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-archives-done-insights-and-lone-lessons reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-archives-the-decisions reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-moves-old-event-logs reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-runs-in-the-librarian-run reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-settles-unread-estimates reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-sweeps-raw reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-items-move-only-by-a-case reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-marks-a-closed-sprint reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-renders-the-backlog reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-where-to-stop-stops-only-on-its-conditions reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-backlog-checks-the-file reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-backlog-renders reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-bash-guard reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-applies-the-pairs-of-the-session-in-order reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-exits-2-on-an-error reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-judges-a-showing-after-a-refusal reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-leaves-out-a-case-the-file-supersedes reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-criterion-line-not-carried reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-page-the-cascade-archives reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-sentence-two-cases-change reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-then-line-shared-by-siblings reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-changed-case-file reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-letter-outside-the-script reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-text-before-a-round reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-text-outside-the-list reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-clash-with-another-case reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-faulty-case reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-faulty-round reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-without-a-target reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-summary-without-the-case-name reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-an-unlisted-tag reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-shows-only-the-checked-case reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-example-passes-the-check reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-installs-as-a-plugin reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-writes-a-clean-copy reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-cleanup-files-a-session-by-its-sprint reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-shown-after-each-reply reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-shows-its-error reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-warns-past-the-limit reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-ticks-the-spec reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-writes-the-decision-page reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-guppi-config-fills-the-languages reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-guppi-tests-green reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-language-spec-prose-in-english reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-exits-2-on-an-error reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-holds-a-decision-line-off-the-stored-case reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-names-the-kind-of-a-user-record reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-line-that-is-no-record reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-catches-a-broken-fence reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-method reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-statuses reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-finds-a-broken-link reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-reports-a-method-tied-to-a-one-off-moment reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-runs-every-step reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-changes-a-named-part-alone reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-fills-the-type-from-the-category reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-judges-a-fence reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-lifts-a-create-by-the-schema reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-lifts-unfiltered-on-a-schema-change reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-marks-a-comment reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-refolds-a-reading-on-a-supersede reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-walks-dates reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-defer-example-passes-the-hook reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-showing-example-passes-the-check reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-page-read-cuts-the-history reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-binds-a-sprint-line reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-broken-fence reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-method-without-a-form reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-two-cases-on-one-target reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-form-of-an-item reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-frontier reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-create-without-a-required-field reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-schema-condition-not-met reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-matches-lines-and-items reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-notes-a-page-another-case-defers reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-notes-a-page-the-cascade-archives reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-sends-the-agent-on reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-tells-the-loop-from-its-end reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-requires-a-backlog-item-decided-on-its-page reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-requires-a-task-line reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ratification-case-id-carries-the-sprint reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-raw-archive-files-a-session-by-its-sprint reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-retro-onward-exits-2-on-an-error reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-search-leaves-out-decisions-by-the-grep-hook reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-shell-write-check-repairs-and-reports reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-open-refuses-a-taken-sprint-id reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-open-starts-at-hi reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-box-refuses-a-stale-spec reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-capture-offers-the-fork reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-answers-a-refusal reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-checks-the-written-case reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-copies-the-ratified-case reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-exits-2-on-an-error reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-reaches-the-approved-spec reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-reads-a-new-tag reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-refuses-a-changed-case-file reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-removes-a-superseded-case reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-tells-each-reason-once reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-writes-a-defer reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-checks-the-file reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-moves-old-event-logs reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-sweeps-raw reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-items-move-only-by-a-case reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-marks-a-closed-sprint reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-vault-layout-holds reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-backlog reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-bash-guard reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-case-build reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-case-check reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-clean-branch reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-cleanup reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-compact-recall reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-context-size reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-documentation reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-estimates-schema reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-event-log reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-glossary reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-governed-files-hook reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-guppi-config reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-ledger-tail reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-ledger-write reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-lint reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-materialize reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-page-generation reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-page-read reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-powershell-guard reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-prespec-hook reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-prespec-onward reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-prespec reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-python-utf8 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-ratification reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-raw-archive reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-render-harness reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-retro-commit reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-retro-onward reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-search-leaves-out-decisions reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-shell-write-check reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-skill-sprint-open reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-box reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-capture reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-reconcile reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-write reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-sprint-close reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-sprint reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-tests-clock-pinned reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-vault-layout reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 entities/entity-guppi reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-backlog-renders reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-build-finds-an-existing-judgment reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-build-reads-the-test-code-over-a-changed-text reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-build-writes-the-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-applies-the-pairs-of-the-session-in-order reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-exits-2-on-an-error reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-judges-a-showing-after-a-refusal reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-leaves-out-a-case-the-file-supersedes reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-criterion-line-not-carried reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-page-the-cascade-archives reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-sentence-two-cases-change reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-changed-case-file reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-letter-outside-the-script reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-problem-in-a-sub-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-text-before-a-round reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-text-outside-the-list reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-requires-each-question-of-the-rounds reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-clash-with-another-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-faulty-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-faulty-round reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-without-a-target reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-summary-without-the-case-name reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-an-unlisted-tag reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-shows-only-the-checked-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-example-passes-the-check reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-pages-hold-pointers-only-in-brackets reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-writes-a-clean-copy reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-cleanup-files-a-session-by-its-sprint reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-close-commits reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-compact-recall-reloads reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-shown-after-each-reply reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-shows-its-error reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-replace-takes-the-leading-indent reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-writes reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-guppi-config-fills-the-languages reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-handoff-dispatches reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-language-spec-prose-in-english reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-tail reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-exits-2-on-an-error reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-holds-a-decision-line-off-the-stored-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-lifts reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-names-the-kind-of-a-user-record reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-line-that-is-no-record reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-catches-a-broken-fence reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-finds-a-broken-link reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-reports-a-method-tied-to-a-one-off-moment reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-changes-a-named-part-alone reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-fails-alone reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-fills-the-type-from-the-category reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-judges-a-fence reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-marks-a-comment reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-marks-superseded reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-one-judgment-one-implementation-followed reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-defer-example-passes-the-hook reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-showing-example-passes-the-check reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-takes-back-a-ratified-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-page-read-cuts-the-history reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-broken-fence reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-method-without-a-form reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-superseded-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-an-indent-added-twice reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-two-cases-on-one-target reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-form-of-an-item reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-gates reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-create-without-a-required-field reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-schema-condition-not-met reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-notes-a-page-another-case-defers reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-notes-a-page-the-cascade-archives reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-sends-the-agent-on reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-tells-the-loop-from-its-end reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ratification-case-id-carries-the-sprint reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-raw-archive-files-a-session-by-its-sprint reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-retro-onward-exits-2-on-an-error reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-search-leaves-out-decisions-by-the-grep-hook reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-session-start-context reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-shell-write-check-repairs-and-reports reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-open-refuses-a-taken-sprint-id reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-open-starts-at-hi reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-box-refuses-a-stale-spec reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-capture-offers-the-fork reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-copies-the-ratified-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-exits-2-on-an-error reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-reads-a-new-tag reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-refuses-a-changed-case-file reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-removes-a-superseded-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-tells-each-reason-once reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-writes-a-defer reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-moves-old-event-logs reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-runs-in-the-librarian-run reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-sweeps-raw reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-items-move-only-by-a-case reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-marks-a-closed-sprint reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-synthesis-reads-the-status-its-yaml-sets reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-tests-clock-pinned reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-backlog reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-bash-guard reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-case-build reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-case-check reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-clean-branch reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-cleanup reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-compact-recall reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-context-size reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-documentation reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-event-log reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-glossary reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-governed-files-hook reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-guppi-config reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-ledger-tail reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-ledger-write reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-lint reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-materialize reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-page-generation reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-page-read reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-powershell-guard reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-prespec-onward reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-ratification reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-raw-archive reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-render-harness reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-retro-commit reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-retro-onward reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-search-leaves-out-decisions reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-shell-write-check reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-skill-sprint-open reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-box reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-reconcile reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-spec-write reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-sprint-close reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-sprint reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-tests-clock-pinned reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-vault-layout reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-backlog-checks-the-file reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-backlog-renders reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-bash-guard reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-build-reads-the-test-code-over-a-changed-text reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-applies-the-pairs-of-the-session-in-order reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-exits-2-on-an-error reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-judges-a-showing-after-a-refusal reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-leaves-out-a-case-the-file-supersedes reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-criterion-line-not-carried reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-page-the-cascade-archives reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-sentence-two-cases-change reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-then-line-shared-by-siblings reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-changed-case-file reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-letter-outside-the-script reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-a-problem-in-a-sub-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-text-before-a-round reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-refuses-text-outside-the-list reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-requires-each-question-of-the-rounds reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-clash-with-another-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-faulty-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-faulty-round reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-with-a-changed-create-line reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-ratified-case-without-a-target reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-summary-without-the-case-name reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-an-unlisted-tag reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-shows-only-the-checked-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-case-example-passes-the-check reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-installs-as-a-plugin reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-writes-a-clean-copy reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-cleanup-files-a-session-by-its-sprint reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-cleanup-moves reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-compact-recall-reloads reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-shown-after-each-reply reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-shows-its-error reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-context-size-warns-past-the-limit reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-decisions-schema-checked reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-default-mode reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-documentation-completes reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-entities-schema-checked reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-estimates-schema-checked reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-event-log-records reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-cascades reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-fails-alone reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-renames reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-replace-takes-the-leading-indent reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-rewords reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-ticks-the-spec reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-walks-dates reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-writes-rules-from-applies-to reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-writes-the-decision-page reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-generate-writes reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-glossary-checks-the-file reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-glossary-renders-the-terms reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-glossary-ticks-the-spec reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-governed-files-hook-refuses reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-guppi-config-fills-the-languages reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-guppi-tests-green reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-harness-pipeline reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-hi-writes-frontier reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-hook-registry-rendered reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-insights-schema-checked reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-language-spec-prose-in-english reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-tail reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-exits-2-on-an-error reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-holds-a-decision-line-off-the-stored-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-lifts reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-names-the-kind-of-a-user-record reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-without-its-prefix reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-line-it-cannot-read reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-line-that-is-no-record reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-mark-with-no-decision-line reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lessons-schema-checked reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-catches-a-broken-fence reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-catches reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-method reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-statuses reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-finds-a-broken-link reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-reports-a-method-tied-to-a-one-off-moment reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-lint-runs-every-step reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-assembles reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-carries-addresses reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-changes-a-named-part-alone reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-fails-alone reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-fills-the-type-from-the-category reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-judges-a-fence reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-lifts-a-create-by-the-schema reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-lifts-a-lesson reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-lifts-unfiltered-on-a-schema-change reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-lifts-when-and-then reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-marks-a-comment reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-marks-exists reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-marks-superseded reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-refolds-a-reading-on-a-supersede reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-shows reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-skips-a-carried-over-unit reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-materialize-walks-dates reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-defer-example-passes-the-hook reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-showing-example-passes-the-check reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-page-read-cuts-the-history reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-page-schemas-one-file-per-rule reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-permissions reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-plan-mode-verified reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-binds-a-sprint-line reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-broken-fence reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-command-line-off-form reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-method-without-a-form reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-superseded-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-an-indent-added-twice reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-an-unwrapped-render reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-bare-wikilinks reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-catches-two-cases-on-one-target reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-form-of-an-item reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-frame reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-frontier reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-checks-the-plan reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-gates reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-create-without-a-required-field reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-method-that-waits-for-another-session reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-schema-condition-not-met reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-matches-lines-and-items reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-notes-a-long-chain reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-notes-a-page-another-case-defers reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-notes-a-page-the-cascade-archives reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-reads-the-decisions-of-the-session reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-sends-the-agent-on reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-onward-tells-the-loop-from-its-end reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-refuses-a-pair-inside-a-criterion reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-requires-a-backlog-item-decided-on-its-page reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-requires-a-task-line reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-simulates-the-pairs reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-ratification-case-id-carries-the-sprint reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-raw-archive-files-a-session-by-its-sprint reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-raw-archive reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-render-harness-reproduces reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-render-harness-ticks-the-spec reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-render-sync-reports reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-retro-commit-gates reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-retro-onward-exits-2-on-an-error reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-rules-schema-checked reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-search-leaves-out-decisions-by-the-grep-hook reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-shell-write-check-repairs-and-reports reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-open-refuses-a-taken-sprint-id reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-open-starts-at-hi reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-box-refuses-a-stale-spec reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-capture-appends reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-capture-offers-the-fork reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-answers-a-refusal reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-checks-the-written-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-copies-the-ratified-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-exits-2-on-an-error reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-reaches-the-approved-spec reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-reads-a-new-tag reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-refuses-a-changed-case-file reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-removes-a-superseded-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-tells-each-reason-once reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-spec-write-writes-a-defer reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-checks-the-file reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-archives-done-insights-and-lone-lessons reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-archives-the-decisions reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-moves-old-event-logs reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-next-session-opens-the-sprint reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-runs-in-the-librarian-run reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-settles-unread-estimates reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-sweeps-raw reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-items-move-only-by-a-case reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-marks-a-closed-sprint reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-renders-the-backlog reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-ticks-the-spec reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-tests-clock-pinned reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 estimates/estimate-vault-layout-holds reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]] · generate
+- 2026-10-15 rules/rule-guppi-package updated: every live rule, entity and Estimate names the command, the code and the tests of GUPPI under .guppi/, and the page ships · [[decision-case-819.1]] · generate
+- 2026-10-15 decisions/decision-case-819.2 created · raw/2026-10-15/0553/ledger.md#case-819.2 · generate
+- 2026-10-15 rules/rule-page-generation updated: a reword pair whose old ends with / matches the start of a path and changes the link fields too · [[decision-case-819.2]] · generate
+- 2026-10-15 estimates/estimate-generate-rewords updated: the Criterion replaced whole — a pair whose old ends with / matches the start of a path, in the link fields too · [[decision-case-819.2]] · generate
+- 2026-10-15 decisions/decision-case-819.3 created · raw/2026-10-15/0553/ledger.md#case-819.3 · generate
+- 2026-10-15 rules/rule-clean-branch updated: guppi ship writes the code under .guppi/ without its tests and its environment, and no pyproject.toml or uv.lock at the root · [[decision-case-819.3]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-writes-a-clean-copy updated: the Criterion replaced whole — the code ships under .guppi/, and the root pyproject.toml and uv.lock do not ship · [[decision-case-819.3]] · generate
+- 2026-10-15 decisions/decision-case-819.4 created · raw/2026-10-15/0553/ledger.md#case-819.4 · generate
+- 2026-10-15 rules/rule-plugin-install updated: /guppi:install checks uv before it writes and builds the Python environment by uv sync after the copy · [[decision-case-819.4]] · generate
+- 2026-10-15 estimates/estimate-guppi-package-is-ready-after-the-install created · [[decision-case-819.4]] · generate
+- 2026-10-15 rules/rule-guppi-package estimate estimate-guppi-package-is-ready-after-the-install added · [[decision-case-819.4]] · generate
+- 2026-10-15 decisions/decision-case-820 created · raw/2026-10-15/0553/ledger.md#case-820 · generate
+- 2026-10-15 decisions/decision-case-820.1 created · raw/2026-10-15/0553/ledger.md#case-820.1 · generate
+- 2026-10-15 rules/rule-lint updated: guppi check runs the six vault checks, and skips guppi ship --check where the command ship is missing · [[decision-case-820.1]] · generate
+- 2026-10-15 estimates/estimate-lint-runs-every-step updated: the Criterion replaced whole — guppi check runs the vault checks in place of the target lint of the Makefile · [[decision-case-820.1]] · generate
+- 2026-10-15 decisions/decision-case-820.2 created · raw/2026-10-15/0553/ledger.md#case-820.2 · generate
+- 2026-10-15 rules/rule-guppi-config updated: guppi.toml sets the commands of the tests and of the style check, which guppi test and guppi style run · [[decision-case-820.2]] · generate
+- 2026-10-15 estimates/estimate-guppi-config-runs-the-test-and-style-commands created · [[decision-case-820.2]] · generate
+- 2026-10-15 rules/rule-guppi-config estimate estimate-guppi-config-runs-the-test-and-style-commands added · [[decision-case-820.2]] · generate
+- 2026-10-15 decisions/decision-case-820.3 created · raw/2026-10-15/0553/ledger.md#case-820.3 · generate
+- 2026-10-15 rules/rule-estimates-schema updated: a method may name guppi test, guppi check or guppi style, and the Estimate of a MOC may name pytest with the test files of its pipeline · [[decision-case-820.3]] · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-method updated: the Criterion replaced whole — the commands guppi test, guppi check and guppi style are forms, and on a MOC pytest with test files that exist passes · [[decision-case-820.3]] · generate
+- 2026-10-15 decisions/decision-case-820.4 created · raw/2026-10-15/0553/ledger.md#case-820.4 · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-method-without-a-form updated: the Criterion replaced whole — the commands guppi test, guppi check and guppi style are forms, and on a MOC pytest with a test path is one · [[decision-case-820.4]] · generate
+- 2026-10-15 decisions/decision-case-820.5 created · raw/2026-10-15/0553/ledger.md#case-820.5 · generate
+- 2026-10-15 rules/rule-clean-branch updated: the clean version holds no guppi/ship.py, and the judgment of a pointer lives in guppi/pointers.py · [[decision-case-820.5]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-no-ship-command created · [[decision-case-820.5]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-ships-no-ship-command added · [[decision-case-820.5]] · generate
+- 2026-10-15 decisions/decision-case-820.6 created · raw/2026-10-15/0553/ledger.md#case-820.6 · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket updated: the Criterion replaced whole — the judgment of a pointer is imported from guppi/pointers.py · [[decision-case-820.6]] · generate
+- 2026-10-15 decisions/decision-case-820.7 created · raw/2026-10-15/0553/ledger.md#case-820.7 · generate
+- 2026-10-15 rules/rule-harness updated: the Makefile stays for now: its target lint runs guppi check, and its other targets stand · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-harness-make-runs-in-both-shells updated: the Criterion replaced whole — the Makefile stays for now, and its target lint runs guppi check · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-backlog reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-brief reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-case-build reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-case-protocol reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-clean-branch reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-close reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-github-repository reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-glossary reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-harness reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-retro reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-sprint reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-work-mode reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 entities/entity-glossary reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-backlog-checks-the-file reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-case-build-keeps-the-old-form-until-the-writer-is-live reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-case-build-reads-the-last-output-of-a-check reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-case-protocol-case-form reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-decisions-schema-checked reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-documentation-completes reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-entities-schema-checked reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-estimates-schema-checked reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-glossary-checks-the-file reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-glossary-terms-defined reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-harness-pipeline reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-insights-schema-checked reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-lessons-schema-checked reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-lint-reports-a-method-tied-to-a-one-off-moment reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-page-schemas-one-file-per-rule reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-schema-condition-not-met reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-raw-archive reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-retro-red-check-of-an-updated-page-is-a-handoff-note reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-rules-schema-checked reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-sprint-plugin-pull-requests-reviewed-on-github reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-vault-layout-holds reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-lint updated: every live rule, entity and Estimate names guppi check in place of the target lint of the Makefile · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-brief reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-case-build reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-github-repository reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-handoff reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-retro reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-spec-box reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-where-to-stop reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-work-mode reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 entities/entity-glossary reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-case-build-reads-the-last-output-of-a-check reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-guppi-tests-green reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-handoff-holds-each-fact-once reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-retro-red-in-the-baseline-is-not-charged reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-retro-runs-on-to-the-handoff reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-close-migration-merged-into-main reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-spec-box-runs-a-conserved-spec reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-sprint-plugin-pull-requests-reviewed-on-github reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-tests-clock-pinned reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-where-to-stop-stops-only-on-its-conditions reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-agent-writing reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-carry-over reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-claude-md reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-github-repository reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-handoff reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-retro reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-agent-writing-followed reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-carry-over-writes reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-handoff-holds-each-fact-once reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-retro-red-in-the-baseline-is-not-charged reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-retro-runs-on-to-the-handoff reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 estimates/estimate-sprint-plugin-pull-requests-reviewed-on-github reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]] · generate
+- 2026-10-15 rules/rule-guppi-config updated: every live rule, entity and Estimate names guppi test and guppi style in place of the targets test and style of the Makefile · [[decision-case-820.7]] · generate
+- 2026-10-15 decisions/decision-case-820.8 created · raw/2026-10-15/0553/ledger.md#case-820.8 · generate
+- 2026-10-15 estimates/estimate-sprint-plugin-pull-requests-reviewed-on-github updated: the Criterion replaced whole — the jobs of CI run guppi test, guppi check and guppi style in place of the targets of the Makefile · [[decision-case-820.8]] · generate
+- 2026-10-15 decisions/decision-case-821 created · raw/2026-10-15/0553/ledger.md#case-821 · generate
+- 2026-10-15 decisions/decision-case-821.1 created · raw/2026-10-15/0553/ledger.md#case-821.1 · generate
+- 2026-10-15 decisions/decision-case-821.2 created · raw/2026-10-15/0553/ledger.md#case-821.2 · generate
+- 2026-10-15 decisions/decision-case-821.3 created · raw/2026-10-15/0553/ledger.md#case-821.3 · generate
+- 2026-10-15 decisions/decision-case-821.4 created · raw/2026-10-15/0553/ledger.md#case-821.4 · generate
+- 2026-10-15 decisions/decision-case-821.5 created · raw/2026-10-15/0553/ledger.md#case-821.5 · generate
+- 2026-10-15 decisions/decision-case-821.6 created · raw/2026-10-15/0553/ledger.md#case-821.6 · generate
+- 2026-10-15 decisions/decision-case-821.7 created · raw/2026-10-15/0553/ledger.md#case-821.7 · generate
+- 2026-10-15 lessons/lesson-ledger-window-stops-at-a-resume-on-the-next-day created · raw/2026-10-15/0553/ledger.md#L61 · generate
+- 2026-10-15 lessons/lesson-case-build-agent-context-grows-on-every-resume created · raw/2026-10-15/0553/ledger.md#L62 · generate
+- 2026-10-15 decisions/decision-case-822 created · raw/2026-10-15/0553/ledger.md#case-822 · generate
+- 2026-10-15 decisions/decision-case-822.1 created · raw/2026-10-15/0553/ledger.md#case-822.1 · generate
+- 2026-10-15 decisions/decision-case-821 superseded by decision-case-822.1 · [[decision-case-822.1]] · generate
+- 2026-10-15 decisions/decision-case-821.1 superseded by decision-case-822.1 · [[decision-case-822.1]] · generate
+- 2026-10-15 decisions/decision-case-821.2 superseded by decision-case-822.1 · [[decision-case-822.1]] · generate
+- 2026-10-15 decisions/decision-case-821.3 superseded by decision-case-822.1 · [[decision-case-822.1]] · generate
+- 2026-10-15 decisions/decision-case-821.4 superseded by decision-case-822.1 · [[decision-case-822.1]] · generate
+- 2026-10-15 decisions/decision-case-821.5 superseded by decision-case-822.1 · [[decision-case-822.1]] · generate
+- 2026-10-15 decisions/decision-case-821.6 superseded by decision-case-822.1 · [[decision-case-822.1]] · generate
+- 2026-10-15 decisions/decision-case-821.7 superseded by decision-case-822.1 · [[decision-case-822.1]] · generate
+- 2026-10-15 decisions/decision-case-805 superseded by decision-case-822.1 · [[decision-case-822.1]] · generate
+- 2026-10-15 entities/entity-sprint-plugin defer by decision-case-805 superseded · [[decision-case-822.1]] · generate
+- 2026-10-15 rules/rule-clean-branch updated: guppi ship writes each passed Estimate of a page it writes, with core: true and a Result of one line, but one whose method names a make target · [[decision-case-822.1]] · generate
+- 2026-10-15 rules/rule-estimates-schema updated: the field core of an Estimate is written by guppi ship into the copy of each passed Estimate of a shipped page · [[decision-case-822.1]] · generate
+- 2026-10-15 entities/entity-sprint-plugin updated: the question put off by decision-case-805 is decided by case 822: the passed Estimates of the shipped pages ship, and the tests ship · [[decision-case-822.1]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-the-passed-estimates created · [[decision-case-822.1]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-ships-the-passed-estimates added · [[decision-case-822.1]] · generate
+- 2026-10-15 decisions/decision-case-822.2 created · raw/2026-10-15/0553/ledger.md#case-822.2 · generate
+- 2026-10-15 rules/rule-clean-branch updated: guppi ship writes the tests but those of ship, and in a test file it cleans and judges only the comments and the docstrings · [[decision-case-822.2]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-the-tests created · [[decision-case-822.2]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-ships-the-tests added · [[decision-case-822.2]] · generate
+- 2026-10-15 decisions/decision-case-822.3 created · raw/2026-10-15/0553/ledger.md#case-822.3 · generate
+- 2026-10-15 rules/rule-clean-branch updated: guppi ship writes sprint.md, backlog.md, brief.md, glossary.md and log.md as skeletons · [[decision-case-822.3]] · generate
+- 2026-10-15 rules/rule-plugin-install updated: what a new project gets is set in rule-clean-branch · [[decision-case-822.3]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-writes-the-session-files created · [[decision-case-822.3]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-writes-the-session-files added · [[decision-case-822.3]] · generate
+- 2026-10-15 decisions/decision-case-822.4 created · raw/2026-10-15/0553/ledger.md#case-822.4 · generate
+- 2026-10-15 rules/rule-clean-branch updated: guppi ship writes a blank description of the project into rule-claude-md and CLAUDE.md · [[decision-case-822.4]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-a-blank-project-description created · [[decision-case-822.4]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-ships-a-blank-project-description added · [[decision-case-822.4]] · generate
+- 2026-10-15 decisions/decision-case-822.5 created · raw/2026-10-15/0553/ledger.md#case-822.5 · generate
+- 2026-10-15 rules/rule-claude-md updated: the heading and the description of the project stand between marker lines of their own · [[decision-case-822.5]] · generate
+- 2026-10-15 estimates/estimate-claude-md-rendered updated: the Criterion replaced whole — the heading and the description stand between marker lines of their own · [[decision-case-822.5]] · generate
+- 2026-10-15 decisions/decision-case-822.6 created · raw/2026-10-15/0553/ledger.md#case-822.6 · generate
+- 2026-10-15 rules/rule-clean-branch updated: the clean version holds .github/workflows/checks.yml and no other file of .github/ · [[decision-case-822.6]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-the-checks-workflow created · [[decision-case-822.6]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-ships-the-checks-workflow added · [[decision-case-822.6]] · generate
+- 2026-10-15 decisions/decision-case-822.7 created · raw/2026-10-15/0553/ledger.md#case-822.7 · generate
+- 2026-10-15 entities/entity-guppi updated: GUPPI is described as a harness and a vault, true in any project that uses it · [[decision-case-822.7]] · generate
+- 2026-10-15 rules/rule-language updated: the Purpose names the two languages by their role · [[decision-case-822.7]] · generate
+- 2026-10-15 rules/rule-case-build updated: the Purpose names the language of the chat by its role · [[decision-case-822.7]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-neutral-texts created · [[decision-case-822.7]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-ships-neutral-texts added · [[decision-case-822.7]] · generate
+- 2026-10-15 decisions/decision-case-822.8 created · raw/2026-10-15/0553/ledger.md#case-822.8 · generate
+- 2026-10-15 rules/rule-clean-branch updated: guppi ship builds no clean version while a page with core: true is draft, but into a folder with --allow-draft · [[decision-case-822.8]] · generate
+- 2026-10-15 rules/rule-skill-merge-main updated: core taken off while the page is draft; a Case gives it back once it is built · [[decision-case-822.8]] · generate
+- 2026-10-15 rules/rule-skill-pr-review updated: core taken off while the page is draft; a Case gives it back once it is built · [[decision-case-822.8]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-refuses-a-draft-core-page created · [[decision-case-822.8]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-refuses-a-draft-core-page added · [[decision-case-822.8]] · generate
+- 2026-10-15 decisions/decision-case-822.9 created · raw/2026-10-15/0553/ledger.md#case-822.9 · generate
+- 2026-10-15 rules/rule-lint updated: lint reports a draft page with core: true where the module of ship stands · [[decision-case-822.9]] · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-statuses updated: the Criterion replaced whole — a draft page with core: true is a status finding where the module of ship stands · [[decision-case-822.9]] · generate
+- 2026-10-15 entities/entity-sprint-plugin updated: the milestone line of rule-morph names what remains of the install step · [[decision-case-817]] · generate
+- 2026-10-15 decisions/decision-case-820.9 created · raw/2026-10-15/0553/ledger.md#case-820.9 · generate
+- 2026-10-15 rules/rule-harness updated: the Purpose names the folder of the code of GUPPI and the skill of the plugin among the rules that run in no pipeline · [[decision-case-820.9]] · generate
+- 2026-10-15 estimates/estimate-harness-pipeline updated: the Criterion replaced whole — the rules in no pipeline include the folder of the code and the skill of the plugin, and the vault checks run by guppi check · [[decision-case-820.9]] · generate
+- 2026-10-15 rules/rule-claude-md status: built → draft · cascade · generate
+- 2026-10-15 rules/rule-clean-branch status: built → draft · cascade · generate
+- 2026-10-15 rules/rule-guppi-config status: built → draft · cascade · generate
+- 2026-10-15 rules/rule-harness status: built → draft · cascade · generate
+- 2026-10-15 rules/rule-lint status: built → draft · cascade · generate
+- 2026-10-15 rules/rule-page-generation status: built → draft · cascade · generate
+- 2026-10-15 rules/rule-prespec-hook status: built → draft · cascade · generate
+- 2026-10-15 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-10-15 decisions/decision-case-805 archived · superseded · generate
+- 2026-10-15 decisions/decision-case-821.1 archived · superseded · generate
+- 2026-10-15 decisions/decision-case-821.2 archived · superseded · generate
+- 2026-10-15 decisions/decision-case-821.3 archived · superseded · generate
+- 2026-10-15 decisions/decision-case-821.4 archived · superseded · generate
+- 2026-10-15 decisions/decision-case-821.5 archived · superseded · generate
+- 2026-10-15 decisions/decision-case-821.6 archived · superseded · generate
+- 2026-10-15 decisions/decision-case-821.7 archived · superseded · generate
+- 2026-10-15 decisions/decision-case-821 archived · superseded · generate
+- 2026-10-15 estimates/estimate-clean-branch-writes-a-clean-copy status: pending → passed · raw/2026-10-15/1739/ledger.md#L1 · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-no-ship-command status: pending → passed · raw/2026-10-15/1739/ledger.md#L2 · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-the-passed-estimates status: pending → passed · raw/2026-10-15/1739/ledger.md#L3 · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-the-checks-workflow status: pending → passed · raw/2026-10-15/1739/ledger.md#L4 · generate
+- 2026-10-15 estimates/estimate-clean-branch-refuses-a-draft-core-page status: pending → passed · raw/2026-10-15/1739/ledger.md#L5 · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-a-blank-project-description status: pending → passed · raw/2026-10-15/1739/ledger.md#L6 · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-method status: pending → passed · raw/2026-10-15/1739/ledger.md#L7 · generate
+- 2026-10-15 estimates/estimate-lint-checks-the-statuses status: pending → passed · raw/2026-10-15/1739/ledger.md#L8 · generate
+- 2026-10-15 estimates/estimate-prespec-catches-a-method-without-a-form status: pending → passed · raw/2026-10-15/1739/ledger.md#L9 · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket status: pending → passed · raw/2026-10-15/1739/ledger.md#L10 · generate
+- 2026-10-15 estimates/estimate-harness-make-runs-in-both-shells status: pending → passed · raw/2026-10-15/1739/ledger.md#L11 · generate
+- 2026-10-15 estimates/estimate-clean-branch-installs-as-a-plugin status: pending → failed · raw/2026-10-15/1739/ledger.md#L12 · generate
+- 2026-10-15 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project status: pending → failed · raw/2026-10-15/1739/ledger.md#L13 · generate
+- 2026-10-15 estimates/estimate-harness-pipeline status: pending → failed · raw/2026-10-15/1739/ledger.md#L14 · generate
+- 2026-10-15 lessons/lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian created · raw/2026-10-15/1739/ledger.md#L15 · generate
+- 2026-10-15 lessons/lesson-box-cannot-act-on-the-prespec-findings-of-a-conserved-spec created · raw/2026-10-15/1739/ledger.md#L16 · generate
+- 2026-10-15 insights/insight-workflow-code-live-before-the-page-it-reads updated: child lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian added (synthesis) · raw/2026-10-15/1739/ledger.md#L15 · generate
+- 2026-10-15 lessons/lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian updated: clustered under insight-workflow-code-live-before-the-page-it-reads (synthesis) · raw/2026-10-15/1739/ledger.md#L15 · generate
+- 2026-10-15 rules/rule-prespec-hook status: draft → built · cascade · generate
+- 2026-10-15 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-10-15 decisions/decision-case-805 archived · cleanup
+- 2026-10-15 decisions/decision-case-821.1 archived · cleanup
+- 2026-10-15 decisions/decision-case-821.2 archived · cleanup
+- 2026-10-15 decisions/decision-case-821.3 archived · cleanup
+- 2026-10-15 decisions/decision-case-821.4 archived · cleanup
+- 2026-10-15 decisions/decision-case-821.5 archived · cleanup
+- 2026-10-15 decisions/decision-case-821.6 archived · cleanup
+- 2026-10-15 decisions/decision-case-821.7 archived · cleanup
+- 2026-10-15 decisions/decision-case-821 archived · cleanup

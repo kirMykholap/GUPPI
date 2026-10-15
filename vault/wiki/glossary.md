@@ -24,7 +24,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | term | meaning | where |
 |---|---|---|
 | Vault | `vault/wiki/`: one folder per page category, each page a file named by its slug | [[rule-vault-layout]] |
-| Lint | `guppi lint`, run by `make lint` after the render, sprint, backlog and glossary checks: reports a page that breaks its schema, points at nothing, claims a status its Estimates do not support, or waits for a reading; red is a signal, not a gate | [[rule-lint]] |
+| Lint | `guppi lint`, run by `uv run --project .guppi guppi check` after the render, sprint, backlog and glossary checks: reports a page that breaks its schema, points at nothing, claims a status its Estimates do not support, or waits for a reading; red is a signal, not a gate | [[rule-lint]] |
 | Renderer | `guppi render` writes the text of a Rule page into the harness file it governs, so the page stays the source; it runs with lint and as the librarian's step after `cleanup` | [[rule-render-harness]] |
 | Harness | The files that `guppi render` writes from the pages of `rules/`, such as `.claude/settings.json` with its hooks, the skills and agents, `CLAUDE.md`, `case-schema.md` and `guppi.toml` | [[rule-harness]] |
 | `CLAUDE.md`, `case-schema.md` | The system prompt, the Render of `rule-claude-md`, whole — the description of the project, `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` in their markers (cases 59.8, 272, 288.3, 360); the Case schema is the Render of `rule-case-protocol`, read by `case-guppi` alone; `/hi` loads, together with the glossary, `orchestration.md`, the Render of `rule-orchestration`, and `ratification.md`, the Render of `rule-ratification`, which the one rule opens (cases 273, 288, 595) | [[rule-claude-md]] |
@@ -86,7 +86,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | [[rule-documentation]] |
 | Librarian | Clean context; the only writer to `wiki/` but for what a merge of `main` by `/merge-main` writes: the joined text of a conflicted page, and the lines of `log.md` and `tags.md` that git joins (case 790); reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
 | Session | Five phases in one order under [[rule-session]]: Session Start, Plan Mode, Work Mode, End of Work, Documentation | [[rule-session]] |
-| Work Mode | `/work` runs the approved Spec on a branch other than `main`: a baseline of `make test` and `make lint` first, the tasks in the order of the Spec, each box ticked, then the Work readings; it ends with `/retro` | [[rule-work-mode]] |
+| Work Mode | `/work` runs the approved Spec on a branch other than `main`: a baseline of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check` first, the tasks in the order of the Spec, each box ticked, then the Work readings; it ends with `/retro` | [[rule-work-mode]] |
 
 ## [[rule-session-start]]
 

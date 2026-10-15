@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-skill-hi]]"
 purpose: Whether a session takes a conserved Spec of the Frontier whole — only with no decision line of its own but a defer, its line closed, the plan file created with a title line that names the conserved spec.md, the other lines closed as left
-method: "uv run guppi render --check; by hand, a session whose person takes a conserved Spec at the Frontier: frontier.md, the title line of the plan file and the session's ledger read against the Criterion; and the /hi of the session after the close of a sprint: its frontier.md and backlog.md"
+method: "uv run --project .guppi guppi render --check; by hand, a session whose person takes a conserved Spec at the Frontier: frontier.md, the title line of the plan file and the session's ledger read against the Criterion; and the /hi of the session after the close of a sprint: its frontier.md and backlog.md"
 checked: 2026-10-10
 origin: raw/2026-10-02/1202/ledger.md#case-593.1
 sprint: migration
@@ -42,3 +42,4 @@ In a session whose `/hi` found no first line `open the next sprint` in the `Case
 - 2026-10-04 status: pending → passed · raw/2026-10-04/1934/ledger.md#L5
 - 2026-10-04 updated: the Criterion replaced whole — a session that does not open a sprint takes a conserved Spec as before; the session that opens the next sprint takes none (case 632.7) · [[decision-case-632.7]]
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1713/ledger.md#L3
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

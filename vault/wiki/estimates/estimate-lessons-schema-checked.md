@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-lessons-schema]]"
 purpose: A Lesson page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
-method: pytest tests/test_schemas.py -k lessons on the live vault/wiki/lessons/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/lessons/
+method: pytest .guppi/tests/test_schemas.py -k lessons on the live vault/wiki/lessons/schema.yaml — a page in the shape, then one defect at a time; the live reading uv run --project .guppi guppi check, no schema finding on wiki/lessons/
 checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-304.5
 sprint: migration
@@ -34,3 +34,5 @@ The file equals the Render. Lint reads from it: required `type, kind, root_cause
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L31
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the history of schema.md out (case 490.6) · [[decision-case-490.6]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L59
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents a Spec from being approved before its decisions were checked against each other and the vault
 status: built
 enforcement: hook
-implementation_ref: [guppi/prespec.py, .claude/settings.json]
+implementation_ref: [.guppi/guppi/prespec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-prespec-hook-gates]]", "[[estimate-prespec-hook-reports-a-method-that-waits-for-another-session]]", "[[estimate-prespec-hook-reports-a-schema-condition-not-met]]", "[[estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session]]", "[[estimate-prespec-hook-reports-a-create-without-a-required-field]]", "[[estimate-prespec-hook-reports-a-pointer-outside-a-bracket]]"]
 origin: raw/2026-09-09/ledger.md#case-24.1
@@ -18,11 +18,11 @@ core: true
 
 Prevents a Spec from being approved before its decisions were checked against each other
 and the vault. `PreToolUse` on `ExitPlanMode`: in a working session with no `prespec`
-line of this session's stamp after its `hi`, `uv run guppi prespec` exits 2 with the reason, which
-blocks the approval; the `/pre-spec` call leaves the stamped line through `guppi gate`. With the line, the hook finds the plan file of the session by `plan_path` of `guppi/ledger.py`, runs on it the judgment of `--check` — the same function, not a copy — and exits 2 with its findings on stderr while it finds one; a line that opens with `note:` does not block, and with no plan file of the session the exit passes on the line alone (case 561.3). A `prespec` of another stamp or `--------` does not count, and a foreign `session-start` resets nothing (case 136.2). An
+line of this session's stamp after its `hi`, `uv run --project .guppi guppi prespec` exits 2 with the reason, which
+blocks the approval; the `/pre-spec` call leaves the stamped line through `guppi gate`. With the line, the hook finds the plan file of the session by `plan_path` of `.guppi/guppi/ledger.py`, runs on it the judgment of `--check` — the same function, not a copy — and exits 2 with its findings on stderr while it finds one; a line that opens with `note:` does not block, and with no plan file of the session the exit passes on the line alone (case 561.3). A `prespec` of another stamp or `--------` does not count, and a foreign `session-start` resets nothing (case 136.2). An
 ordinary session, one without `/hi`, is not gated: no governance applies there. The
-same module serves the skill: `uv run guppi prespec --check <plan>` compares the plan
-with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-spec` runs it, and the hook runs the same judgment at the exit (case 561.3; named `pretask` until case 261). What `--check` compares, the check the skill `/pre-spec` runs, is written in the module docstring of `guppi/prespec.py`, beside its code (case 561.1).
+same module serves the skill: `uv run --project .guppi guppi prespec --check <plan>` compares the plan
+with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-spec` runs it, and the hook runs the same judgment at the exit (case 561.3; named `pretask` until case 261). What `--check` compares, the check the skill `/pre-spec` runs, is written in the module docstring of `.guppi/guppi/prespec.py`, beside its code (case 561.1).
 
 ## History
 
@@ -50,3 +50,7 @@ with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-sp
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 estimate estimate-prespec-hook-reports-a-pointer-outside-a-bracket added · [[decision-case-807.4]]
 - 2026-10-14 updated: the old name stands in the bracket of its pointer · [[decision-case-809]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 status: built → draft · cascade
+- 2026-10-15 status: draft → built · cascade

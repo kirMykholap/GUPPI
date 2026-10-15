@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the check of the file of a Case sends case-guppi a note once for an update of a page that the cascade of generate archives after an item of the file or of another Case of the session, by the judgment pre-spec prints
-method: uv run pytest tests/test_casecheck.py -k cascade
+method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k cascade
 origin: raw/2026-10-08/2134/ledger.md#case-739.2
 sprint: migration
 created: 2026-10-08
@@ -14,11 +14,11 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-`SubagentStop` fires when `case-guppi` writes a file of Cases, and `uv run guppi casecheck --subagent` reads the Cases of the file, the plan file of the session, `<plan>.checked.json` beside it and the session's `raw/<date>/<hi HHMM>/ledger.md`.
-**＋** Or `tests/test_casecheck.py` runs it over a made-up file, plan file, store and ledger.
+`SubagentStop` fires when `case-guppi` writes a file of Cases, and `uv run --project .guppi guppi casecheck --subagent` reads the Cases of the file, the plan file of the session, `<plan>.checked.json` beside it and the session's `raw/<date>/<hi HHMM>/ledger.md`.
+**＋** Or `.guppi/tests/test_casecheck.py` runs it over a made-up file, plan file, store and ledger.
 
 Then:
-The hook judges the Cases of the file with the other Cases of the session, as `other_blocks` of `guppi/casecheck.py` gives them, by the function of `guppi/prespec.py` that prints the cascade notes of pre-spec, imported, not copied.
+The hook judges the Cases of the file with the other Cases of the session, as `other_blocks` of `.guppi/guppi/casecheck.py` gives them, by the function of `.guppi/guppi/prespec.py` that prints the cascade notes of pre-spec, imported, not copied.
 **＋** Which pages, items and Cases give a note is what `estimate-prespec-notes-a-page-the-cascade-archives` sets for that function; this check adds only who gets the note and how.
 **＋** The note goes to `case-guppi` under the Case of the file it names, and asks it to drop the change or to give the reason in `context`.
 **＋** The note is sent back once by exit 2 beside any findings, stored under `notes` in `<plan>.checked.json`, and not sent again for the same Case id.
@@ -33,3 +33,7 @@ The hook judges the Cases of the file with the other Cases of the session, as `o
 
 - 2026-10-08 created · [[decision-case-739.2]]
 - 2026-10-08 status: pending → passed · raw/2026-10-08/2134/ledger.md#L12
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

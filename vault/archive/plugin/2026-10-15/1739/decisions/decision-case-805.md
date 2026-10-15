@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "805"
-status: current
+status: archived
 defer: ["[[entity-sprint-plugin]]"]
+superseded_by: ["[[decision-case-822.1]]"]
 origin: raw/2026-10-13/2118/ledger.md#case-805
 sprint: plugin
 created: 2026-10-13
@@ -26,3 +27,6 @@ Whether the clean version ships the Estimates of its shipped rules together with
 ## History
 
 - 2026-10-14 created · raw/2026-10-13/2118/ledger.md#case-805
+- 2026-10-15 superseded by decision-case-822.1 · [[decision-case-822.1]]
+- 2026-10-15 archived · superseded
+- 2026-10-15 archived · cleanup

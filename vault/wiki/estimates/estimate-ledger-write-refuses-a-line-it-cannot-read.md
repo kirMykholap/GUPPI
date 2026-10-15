@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a record line that parse_line cannot read, and says why only for the reply just finished
-method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads and a session ledger in a temp vault
 checked: 2026-10-02
 origin: raw/2026-09-30/1736/ledger.md#case-552.2
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, hooks, harness, ledger]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ledger` finds a fresh line `- decision[`, `- estimate[` or `- lesson[` in a `LEDGER` block of the session, and `parse_line` of `guppi/materialize.py` returns None for it.
+The `Stop` hook `uv run --project .guppi guppi ledger` finds a fresh line `- decision[`, `- estimate[` or `- lesson[` in a `LEDGER` block of the session, and `parse_line` of `.guppi/guppi/materialize.py` returns None for it.
 
 Then:
 The line is not written.
@@ -38,3 +38,7 @@ The line is not written.
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L10
 - 2026-10-02 updated: the Criterion replaced whole - the refusal names the table in ratification.md (case 595.17) · [[decision-case-595.17]]
 - 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L23
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

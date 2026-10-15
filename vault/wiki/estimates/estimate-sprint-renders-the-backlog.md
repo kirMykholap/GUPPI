@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-sprint]]"
 purpose: guppi sprint writes sprint.md from the sprint page, one tick per item by the status of the page it names
-method: pytest tests/test_sprint.py, plus one reading of the rendered sprint.md after the librarian's run
+method: pytest .guppi/tests/test_sprint.py, plus one reading of the rendered sprint.md after the librarian's run
 checked: 2026-09-27
 origin: raw/2026-09-16/2238/ledger.md#case-209.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, sprint]
 ## Criterion
 
 When:
-`uv run guppi sprint` runs with a live page `entity-sprint-<id>` and reads its `estimates`, `## Purpose`, `## Milestones` and `## Closed`.
+`uv run --project .guppi guppi sprint` runs with a live page `entity-sprint-<id>` and reads its `estimates`, `## Purpose`, `## Milestones` and `## Closed`.
 
 Then:
 The file `vault/wiki/sprint.md` holds, in order: `# Sprint`; `## <id>`; Purpose; `**Done when**`, one line per Estimate; then `## Milestones`; then `## Closed` as it is. Under `## Milestones`: a closed milestone is one line `### [x] <name>`. The current one is the heading `### [ ] <name>` and each item with its status and `deferred_by`. Each later one is one line `### [ ] <name> — N items: ` with its items separated by commas; an item with a wikilink stands as `[[slug]]`, an item without one by its text, with no tick and no status.
@@ -41,3 +41,5 @@ The file `vault/wiki/sprint.md` holds, in order: `# Sprint`; `## <id>`; Purpose;
 - 2026-09-24 updated: the Criterion replaced whole — a blank line after every milestone heading (case 386) · [[decision-case-386]]
 - 2026-09-27 updated: the Criterion replaced whole — the Backlog of the page is not rendered into sprint.md (case 451.6) · [[decision-case-451.6]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L30
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-spec-write]]"
 purpose: A Case ratified after the approval reaches spec.md from its stored answer, every section of it replaced or the Case placed, the ticks of its unchanged task lines kept
-method: uv run pytest tests/test_ratified.py -k approved_spec; by hand, a Case ratified in Work Mode
+method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k approved_spec; by hand, a Case ratified in Work Mode
 checked: 2026-10-05
 origin: raw/2026-09-26/1745/ledger.md#case-441.6
 sprint: migration
@@ -15,7 +15,7 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ratified` has written a ratified Case N from the text stored under it into the plan file, after a reply whose `LEDGER` block holds the decision lines of Case N, and `raw/<hi date>/<hi HHMM>/spec.md` stands.
+The `Stop` hook `uv run --project .guppi guppi ratified` has written a ratified Case N from the text stored under it into the plan file, after a reply whose `LEDGER` block holds the decision lines of Case N, and `raw/<hi date>/<hi HHMM>/spec.md` stands.
 
 Then:
 The hook writes the same stored text of Case N into `spec.md`: the heading, `context`, `problem`, `recommend`, `given`, `when` and `then`, the block tagged `then` and the block tagged `tasks`.
@@ -38,3 +38,6 @@ The hook writes the same stored text of Case N into `spec.md`: the heading, `con
 - 2026-10-04 deferred · [[decision-case-630]]
 - 2026-10-05 updated: the Criterion replaced whole — the text stored under Case N in place of its stored answer; with stop_hook_active set the hook writes into spec.md as without it (case 644.5) · [[decision-case-644.5]]
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.7]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

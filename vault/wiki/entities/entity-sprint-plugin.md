@@ -5,7 +5,6 @@ purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a 
 status: draft
 parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]"]
-deferred_by: ["[[decision-case-805]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-756.1
 sprint: plugin
 created: 2026-10-10
@@ -25,7 +24,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 ### The plugin
 
 - the clean version made into a Claude Code plugin
-- [[rule-morph]] — the install step that the first `/hi` of a new install runs
+- [[rule-morph]] — the install step that the first `/hi` after `/guppi:install` runs; what remains: the install skill, its step in `/hi`, the key of `guppi.toml` that marks the install as done, and the clean version that ships that key unset
 - the README on what the project is and what it is for and on its main parts and its use
 - the close of `plugin` — `/sprint-close`, a session of its own
 
@@ -53,3 +52,6 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-14 updated: the clean branch: guppi ship removes each bracket that holds a pointer; the pages are reworded by a Case of the next session (case 807.1) · [[decision-case-807.1]]
 - 2026-10-14 updated: the milestone The clean branch says what remains after the rewording of the pages · [[decision-case-809]]
 - 2026-10-14 updated: the milestone The clean branch says what remains after the fix of guppi ship for the example Case · [[decision-case-815]]
+- 2026-10-15 defer by decision-case-805 superseded · [[decision-case-822.1]]
+- 2026-10-15 updated: the question put off by decision-case-805 is decided by case 822: the passed Estimates of the shipped pages ship, and the tests ship · [[decision-case-822.1]]
+- 2026-10-15 updated: the milestone line of rule-morph names what remains of the install step · [[decision-case-817]]

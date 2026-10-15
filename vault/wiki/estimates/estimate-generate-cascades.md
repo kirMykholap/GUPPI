@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-page-generation]]"
 purpose: The cascade computes built, the archive of a superseded decision and the severity of an Insight, never by hand
-method: pytest tests/test_generate.py, the tests of the cascade
+method: pytest .guppi/tests/test_generate.py, the tests of the cascade
 checked: 2026-09-24
 origin: raw/2026-09-16/1955/ledger.md#case-201.4
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 When:
-`uv run guppi generate` runs the cascade after all entries of a unit.
+`uv run --project .guppi guppi generate` runs the cascade after all entries of a unit.
 
 Then:
 An entity or rule whose live Estimates are all `passed` becomes `built`; a `built` one with a live Estimate not `passed` returns to `draft`; an Estimate standing `archived` with its file still under `wiki/estimates/`, or a slug with no page, is not counted; History `status: a → b · cascade`.
@@ -40,3 +40,5 @@ An entity or rule whose live Estimates are all `passed` becomes `built`; a `buil
 - 2026-09-23 status: pending → passed · raw/2026-09-23/0034/ledger.md#L57
 - 2026-09-25 updated: the Criterion replaced whole — the cascade by the model of case 378; the rules of an Entity left to estimate-generate-writes-rules-from-applies-to (case 398.3) · [[decision-case-398.3]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L35
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

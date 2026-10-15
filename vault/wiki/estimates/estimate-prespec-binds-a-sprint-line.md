@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: A Frontier line of the sprint closed by a Case is a finding of prespec --check unless that Case updates the sprint page; a line left [-] with sprint · defer needs nothing
-method: uv run pytest tests/test_prespec.py -k sprint — a line `· sprint · case N` with and without an update of entity-sprint-<id> under Case N, a `[-] … · sprint · defer` line, a line whose source segment is not `sprint` while the word stands inside the slug of its title
+method: uv run --project .guppi pytest .guppi/tests/test_prespec.py -k sprint — a line `· sprint · case N` with and without an update of entity-sprint-<id> under Case N, a `[-] … · sprint · defer` line, a line whose source segment is not `sprint` while the word stands inside the slug of its title
 checked: 2026-09-27
 origin: raw/2026-09-22/1121/ledger.md#case-314.2
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, sprint]
 ## Criterion
 
 When:
-`uv run guppi prespec --check <plan>` reads a line of the session's Frontier whose source segment, the one before the closer, is `sprint`.
+`uv run --project .guppi guppi prespec --check <plan>` reads a line of the session's Frontier whose source segment, the one before the closer, is `sprint`.
 
 Then:
 A line closed `[x] … · sprint · case N` needs an `update` item of `entity-sprint-<id>` under Case N, in the parent or in any sub-case. Without one, it is the finding `frontier: C<n> closes a sprint item with case N, no update of the sprint page under Case N`.
@@ -36,3 +36,6 @@ A line closed `[x] … · sprint · case N` needs an `update` item of `entity-sp
 - 2026-09-24 status: pending → passed · raw/2026-09-24/1303/ledger.md#L23
 - 2026-09-27 updated: the Criterion replaced whole — a sprint line put off closes [-] · sprint · defer (case 451.3) · [[decision-case-451.3]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L26
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

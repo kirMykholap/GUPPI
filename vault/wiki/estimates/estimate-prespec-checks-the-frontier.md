@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: The Frontier of the session exists and every closed line has a box and a closer that agree with its source
-method: uv run pytest tests/test_prespec.py
+method: uv run --project .guppi pytest .guppi/tests/test_prespec.py
 checked: 2026-10-04
 origin: raw/2026-09-24/1916/ledger.md#case-399.3
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-`uv run guppi prespec --check <plan>` reads the session's `vault/raw/<date>/<HHMM>/frontier.md`, and the title line of `<plan>` may name the `vault/raw/<date>/<HHMM>/spec.md` of a folder that holds `carry.md`.
+`uv run --project .guppi guppi prespec --check <plan>` reads the session's `vault/raw/<date>/<HHMM>/frontier.md`, and the title line of `<plan>` may name the `vault/raw/<date>/<HHMM>/spec.md` of a folder that holds `carry.md`.
 
 Then:
 A missing file is the finding `frontier: <path> is missing`.
@@ -44,3 +44,6 @@ A missing file is the finding `frontier: <path> is missing`.
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L38
 - 2026-10-04 updated: the Criterion replaced whole — defer case N is found in the plan or in the conserved Spec its title line names · [[decision-case-620.2]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0112/ledger.md#L2
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

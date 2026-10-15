@@ -26,7 +26,7 @@ The main agent sends each finding in a Case, with each answer of the report that
 **＋** It then shows the person one list of every round that came back, each question in the shape of `.claude/skills/grill-me/SKILL.md` and numbered `<Case id>.Q<n>` by the Case it belongs to, sends each answer to the `case-guppi` of its Case in one message, and repeats the wait and the list until every `case-guppi` it sent has answered with its Case.
 **＋** In that list the `**Context:**` label of each first round on an item names its Case id and its item of `raw/<date>/<hi HHMM>/frontier.md`, translated, such as `**Context — Case 7 (C2):**`; a horizontal rule stands before the first round of the list and one between the last question of one Case and the round of the next, and no heading or other line of the main agent's own but such a rule marks where a round begins.
 **＋** It then shows every Case built again in one reply, in the showing that `vault/wiki/orchestration.md` sets, for one ratification.
-**－** When an answer brings back a round while another answer is still out, the round is not shown in that turn, and `uv run guppi casecheck` does not refuse the reply that opens with the labelled line.
+**－** When an answer brings back a round while another answer is still out, the round is not shown in that turn, and `uv run --project .guppi guppi casecheck` does not refuse the reply that opens with the labelled line.
 **－** Outside this loop, Cases go out together for one ratification only in a batch, as `vault/wiki/orchestration.md` sets it.
 **－** A question that no answer settles stays in the next list under its number.
 
@@ -47,3 +47,4 @@ The main agent sends each finding in a Case, with each answer of the report that
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L47
 - 2026-10-09 updated: the Criterion replaced whole — a horizontal rule between the rounds of two Cases in the list · [[decision-case-751.3]]
 - 2026-10-09 status: pending → passed · raw/2026-10-09/2049/ledger.md#L16
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

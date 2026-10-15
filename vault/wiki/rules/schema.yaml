@@ -196,7 +196,7 @@ examples:
     purpose: Prevents async calls leaking into the pricing module
     status: built
     enforcement: check
-    implementation_ref: [ruff.toml, tests/lint/test_pricing_sync.py]
+    implementation_ref: [ruff.toml, lint/tests/test_pricing_sync.py]
     estimates: [estimate-pricing-sync-check]
     origin: raw/2026-09-12/ledger.md#case-2
     sprint: 2026-Q3-s4

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-materialize]]"
 purpose: A reading folded into a create that a later supersedes marks moves to the live create of the same slug in the unit, or becomes an estimate entry of its own; no reading folds into a superseded create
-method: uv run pytest tests/test_materialize.py -k refold — create A, a reading, create B with supersedes A, the reading on B; create A, a reading, supersedes A without a new create, an estimate entry; a reading after the mark, not on A
+method: uv run --project .guppi pytest .guppi/tests/test_materialize.py -k refold — create A, a reading, create B with supersedes A, the reading on B; create A, a reading, supersedes A without a new create, an estimate entry; a reading after the mark, not on A
 checked: 2026-09-29
 origin: raw/2026-09-22/1121/ledger.md#case-309
 sprint: migration
@@ -33,3 +33,5 @@ The readings of `folded` move to the live `create` of the same slug in this unit
 - 2026-09-22 status: pending → passed · raw/2026-09-22/1121/ledger.md#L90
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the fold of a reading moved into When (case 489.7) · [[decision-case-489.7]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L29
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

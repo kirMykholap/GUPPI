@@ -22,13 +22,13 @@ Then:
 The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered from `rule-where-to-stop`.
 **＋** The context of `/box`, from `.claude/skills/box/SKILL.md`, holds the same text.
 **＋** The agent ends a reply with a question to the person on a fork that changes a contract, on a hook refusal whose text gives no step it can follow or says that it is a stop, and before an action that git in the repository cannot undo.
-**＋** A fork that changes a contract is a choice that no ratified Case makes, or a ratified Case that turns out wrong: by a text the agent finds wrong or too narrow, or by a finding of `uv run guppi prespec --check` on the plan after a Case ratified in Work Mode.
+**＋** A fork that changes a contract is a choice that no ratified Case makes, or a ratified Case that turns out wrong: by a text the agent finds wrong or too narrow, or by a finding of `uv run --project .guppi guppi prespec --check` on the plan after a Case ratified in Work Mode.
 **＋** Before a task of `raw/<date>/<hi HHMM>/spec.md` whose text opens with `stop:`, the agent stops and asks; the task runs after the person's word.
 **＋** On the branch `main` the agent stops and says so: Work Mode does not start there.
-**＋** In a run of `/box`, the agent stops and asks when `uv run guppi box --check` prints a line, or when a `git merge --ff-only` of `/box` refuses.
+**＋** In a run of `/box`, the agent stops and asks when `uv run --project .guppi guppi box --check` prints a line, or when a `git merge --ff-only` of `/box` refuses.
 **＋** In the merge tasks that the opening Case of a sprint holds by `.claude/skills/sprint-open/SKILL.md`, in the merge task that a review Case holds by `.claude/skills/pr-review/SKILL.md`, and in the tasks that a merge Case holds by `.claude/skills/merge-main/SKILL.md`, the agent stops, shows what stopped it and asks when a `git` or `gh` command refuses, or when the merge of a merge Case leaves in conflict a file that the merge Case does not settle.
 **－** `git merge --no-ff --no-commit` of a merge Case of `.claude/skills/merge-main/SKILL.md` that exits non-zero only on files that the merge Case settles is no refusal, and the run goes on to the tasks that settle them.
-**＋** When the full `make test` run of `/work` after its last task finds a failing test that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` does not hold, and its fix needs a choice that no ratified Case makes, the agent ends a reply with a question to the person that names the test and its failure.
+**＋** When the full `uv run --project .guppi guppi test` run of `/work` after its last task finds a failing test that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` does not hold, and its fix needs a choice that no ratified Case makes, the agent ends a reply with a question to the person that names the test and its failure.
 **＋** When the auto mode classifier of Claude Code refuses a tool call that the run needs, the agent ends a reply with a question to the person that gives the shell command doing what the refused call would do, for the person to type after `!` in the prompt.
 **＋** A reply that stops from the call of `/retro` until `raw/<date>/<hi HHMM>/handoff.md` stands opens with `STOP:`.
 **＋** After the person's answer the run goes on from where it stopped.
@@ -57,3 +57,5 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L55
 - 2026-10-14 updated: the Criterion replaced whole — a fork that changes a contract covers a ratified Case found wrong, by a text the agent finds wrong or by a finding of the check of the plan after a Case ratified in Work Mode (case 806.4) · [[decision-case-806.4]]
 - 2026-10-14 status: pending → passed · raw/2026-10-13/2118/ledger.md#L26
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]

@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-skill-hi]]"
-method: "by hand: the person's answer in the session after the close of a sprint, at the reply that acknowledges the opening Case of /sprint-open, on whether the Frontier came out as the Criterion says, written into the estimate line; unit: the frontier findings of guppi prespec --check in tests/test_prespec.py"
+method: "by hand: the person's answer in the session after the close of a sprint, at the reply that acknowledges the opening Case of /sprint-open, on whether the Frontier came out as the Criterion says, written into the estimate line; unit: the frontier findings of guppi prespec --check in .guppi/tests/test_prespec.py"
 checked: 2026-10-10
 origin: raw/2026-09-12/ledger.md#case-59.2
 sprint: migration
@@ -70,3 +70,4 @@ The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## C
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1713/ledger.md#L14
 - 2026-10-10 updated: the Criterion replaced whole — at an opening the Frontier takes the first milestone from the opening Case, and the opening line stands closed · [[decision-case-769.2]]
 - 2026-10-12 updated: the Criterion replaced whole — an open W line whose reading cannot run now is no Cases source · [[decision-case-781.9]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

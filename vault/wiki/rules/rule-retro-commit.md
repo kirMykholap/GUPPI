@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents the handoff from starting on an uncommitted tree
 status: built
 enforcement: hook
-implementation_ref: [guppi/gate.py, tests/test_gate.py, .claude/settings.json]
+implementation_ref: [.guppi/guppi/gate.py, .guppi/tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-end-of-work]]"
 estimates: ["[[estimate-retro-commit-gates]]"]
 origin: raw/2026-09-10/ledger.md#case-38.2
@@ -23,7 +23,7 @@ separate layer.
 
 ## How it works
 
-`uv run guppi gate` runs on `PreToolUse` with the matcher `Skill`. When
+`uv run --project .guppi guppi gate` runs on `PreToolUse` with the matcher `Skill`. When
 `tool_input.skill` is `handoff` and `git status --porcelain` is not empty, it exits
 2 with the reason `commit first`, which blocks the call once; when the tree is
 clean it exits 0. Any other tool: exit 0; any other skill: exit 0 on the tree — the same hook refuses any skill while a `then` item of the session's Spec has no ledger line, as `rule-ledger-write` sets it (case 122). The hook writes nothing and
@@ -44,3 +44,6 @@ commits nothing. It sees the agent's calls through the `Skill` tool, and — reg
 - 2026-09-30 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the slug of rule-ledger-write stands outside the bracket of its pointer · [[decision-case-809]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

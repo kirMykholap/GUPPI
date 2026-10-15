@@ -19,7 +19,7 @@ The person invokes `/hi`, and Claude Code expands `.claude/skills/hi/SKILL.md` b
 
 Then:
 The context of the first turn holds the output of each block of the skill, in the order of the children of `rule-skill-hi`: the text of the files `rule-internal-context` loads, the lines `Render:`, `Branch:` and `Status:` of `rule-git-context`, and the line `Tail:` of `rule-ledger-tail`.
-**＋** The `allowed-tools` of the skill names `uv run guppi render --sync`, `git branch --show-current`, `git status --short` and `uv run guppi tail`, and neither `git pull` nor `gh`.
+**＋** The `allowed-tools` of the skill names `uv run --project .guppi guppi render --sync`, `git branch --show-current`, `git status --short` and `uv run --project .guppi guppi tail`, and neither `git pull` nor `gh`.
 **－** The agent makes no read-tool call to get any of them.
 
 ## Result
@@ -36,3 +36,4 @@ The context of the first turn holds the output of each block of the skill, in th
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L44
 - 2026-09-30 updated: the Criterion replaced whole — no Pull and no Open issues line; allowed-tools names neither git pull nor gh (case 528.3) · [[decision-case-528.3]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L2
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

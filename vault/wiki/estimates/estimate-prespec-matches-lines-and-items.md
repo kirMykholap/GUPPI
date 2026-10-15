@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: Every decision line of the session has its item under its own Case in the plan, and every item its line
-method: uv run pytest tests/test_prespec.py
+method: uv run --project .guppi pytest .guppi/tests/test_prespec.py
 checked: 2026-09-26
 origin: raw/2026-09-24/1916/ledger.md#case-399.2
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-`uv run guppi prespec --check <plan>` compares the decision lines of the session's window with the items of the plan's `then` blocks.
+`uv run --project .guppi guppi prespec --check <plan>` compares the decision lines of the session's window with the items of the plan's `then` blocks.
 
 Then:
 A decision line whose Case has no heading in the plan is the finding `case N: line [kind][slug]: no Case N heading in the plan`; one whose Case holds no item of its kind and slug is `case N: line [kind][slug] has no item in the plan`.
@@ -34,3 +34,6 @@ A decision line whose Case has no heading in the plan is the finding `case N: li
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L38
 - 2026-09-25 updated: the Criterion replaced whole — a second item of one kind and slug under one Case is a finding (case 426) · [[decision-case-426]]
 - 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L28
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

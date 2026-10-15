@@ -3,12 +3,12 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-materialize]]"
+purpose: One bad entry does not stop the run
+method: pytest in .guppi/tests/test_materialize.py, the tests of the failed and unreadable entries
 origin: raw/2026-09-16/1034/ledger.md#case-189
 sprint: migration
 created: 2026-09-16
 tags: [harness, workflow, ledger, tests]
-purpose: One bad entry does not stop the run
-method: pytest in tests/test_materialize.py, the tests of the failed and unreadable entries
 ---
 
 ## Criterion
@@ -28,7 +28,7 @@ line and replaced when the lift succeeds.
 `merged`, no `line` — is left as it is, with no line on stderr.
 **＋** An unreadable one — not a mapping, or a mapping with none of the three — is
 left as it is, named on stderr once, and the run goes on.
-**＋** The field list in the docstring of `guppi/materialize.py` is complete, every
+**＋** The field list in the docstring of `.guppi/guppi/materialize.py` is complete, every
 field with its writer; a key the code writes and the list does not name is a finding
 of the reading.
 **－** A `MaterializeError` — no `ledger.md`, a Case heading in two files — still
@@ -44,3 +44,5 @@ stops the walk with exit 1.
 - 2026-09-16 created · [[decision-case-189]]
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1651/ledger.md#L32
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

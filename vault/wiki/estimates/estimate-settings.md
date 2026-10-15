@@ -15,11 +15,11 @@ tags: [harness, render]
 ## Criterion
 
 When:
-`uv run guppi render` writes `.claude/settings.json` from `rule-settings` and its children, and the next session starts from that file.
+`uv run --project .guppi guppi render` writes `.claude/settings.json` from `rule-settings` and its children, and the next session starts from that file.
 
 Then:
 The file is the Render of `rule-settings`, and the text of each child replaces its `<!-- child -->` line in the order of `children`: `rule-default-mode`, `rule-permissions`, `rule-hook-registry`, `rule-python-utf8`. That order gives the order of the top-level keys of the file: `permissions`, `hooks`, `env`.
-**＋** The file parses as JSON, and `uv run guppi render --check` exits 0.
+**＋** The file parses as JSON, and `uv run --project .guppi guppi render --check` exits 0.
 **＋** The next session start writes its `session-start` line into `vault/raw/<date>/event_log.md`, from the hooks of the rendered file.
 **－** `rule-settings` holds no rule of its own about what a hook, a permission or a variable of the environment may be.
 
@@ -36,3 +36,4 @@ The file is the Render of `rule-settings`, and the text of each child replaces i
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L48
 - 2026-09-30 updated: the Criterion replaced whole — a fourth child, rule-python-utf8, and the env key after hooks · [[decision-case-534.2]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1306/ledger.md#L44
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

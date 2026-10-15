@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-lint]]"
 purpose: lint reads every live page against the schema of its category and prints one line per finding, exit 1 on any
-method: pytest in tests/test_lint.py, one test per defect class; the live reading once by hand, written into the estimate line
+method: pytest in .guppi/tests/test_lint.py, one test per defect class; the live reading once by hand, written into the estimate line
 checked: 2026-09-24
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow]
 ## Criterion
 
 When:
-`uv run guppi lint` reads the live pages under `vault/wiki/<category>/`.
+`uv run --project .guppi guppi lint` reads the live pages under `vault/wiki/<category>/`.
 
 Then:
 Each finding is one line `<category>/<slug>: <class>: <what>`; exit 1 on any finding, 0 and no output on a clean vault; nothing is written.
@@ -68,3 +68,5 @@ Each finding is one line `<category>/<slug>: <class>: <what>`; exit 1 on any fin
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L33
 - 2026-09-25 updated: the Criterion replaced whole — the run, schema, layout, paths and markers by the model of case 378; links, statuses, method and the unmigrated count moved to their own Estimates (case 401.1) · [[decision-case-401.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L42
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

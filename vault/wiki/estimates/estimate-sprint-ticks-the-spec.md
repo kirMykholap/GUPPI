@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-sprint]]"
 purpose: sprint, once it wrote sprint.md and exits 0, ticks the guppi sprint lines of every Spec under raw/ whose yaml is applied whole
-method: pytest tests/test_sprint.py; by hand, after a librarian's run, the spec.md of each unit under vault/raw/ whose guppi sprint line it ticked, and any guppi sprint-close line there left as it stood
+method: pytest .guppi/tests/test_sprint.py; by hand, after a librarian's run, the spec.md of each unit under vault/raw/ whose guppi sprint line it ticked, and any guppi sprint-close line there left as it stood
 checked: 2026-10-04
 origin: raw/2026-09-18/2054/ledger.md#case-250.2
 sprint: migration
@@ -36,3 +36,4 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L66
 - 2026-10-04 updated: the Criterion replaced whole — a guppi sprint-close line is not ticked by guppi sprint (case 628.5) · [[decision-case-628.5]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L5
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

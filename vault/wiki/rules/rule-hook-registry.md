@@ -31,43 +31,43 @@ agent's Render and is ratified with it; this page holds the registrations only.
 
 <!-- rule-hook-registry -->
     "SessionStart": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi event session-start", "timeout": 30 },
-                   { "type": "command", "command": "uv run guppi render --sync", "timeout": 60 } ] },
+      { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi event session-start", "timeout": 30 },
+                   { "type": "command", "command": "uv run --project .guppi guppi render --sync", "timeout": 60 } ] },
       { "matcher": "compact",
-        "hooks": [ { "type": "command", "command": "uv run guppi recall", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi recall", "timeout": 30 } ] }
 ],
 "UserPromptSubmit": [
-  { "hooks": [ { "type": "command", "command": "uv run guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi context --prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck --prompt", "timeout": 30 }, { "type": "command", "command": "uv run guppi sprint --hi", "timeout": 30 },
-               { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] }
+  { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi context --prompt", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi casecheck --prompt", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi sprint --hi", "timeout": 30 },
+               { "type": "command", "command": "uv run --project .guppi guppi gate", "timeout": 30 } ] }
 ],
 "PreToolUse": [
 
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi prespec", "timeout": 30 } ] },
+        "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi prespec", "timeout": 30 } ] },
       { "matcher": "Skill",
-        "hooks": [ { "type": "command", "command": "uv run guppi gate", "timeout": 30 } ] },
+        "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi gate", "timeout": 30 } ] },
       { "matcher": "Edit|Write|MultiEdit",
-  "hooks": [ { "type": "command", "command": "uv run guppi guard", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified --guard", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi guard", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi ratified --guard", "timeout": 30 } ] },
 { "matcher": "Bash",
-  "hooks": [ { "type": "command", "command": "uv run guppi bashguard", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi bashguard", "timeout": 30 } ] },
 { "matcher": "PowerShell",
-  "hooks": [ { "type": "command", "command": "uv run guppi powershellguard", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi powershellguard", "timeout": 30 } ] },
 { "matcher": "Read",
-  "hooks": [ { "type": "command", "command": "uv run guppi pageread", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi pageread", "timeout": 30 } ] },
 { "matcher": "Grep",
-  "hooks": [ { "type": "command", "command": "uv run guppi grepguard", "timeout": 30 } ] }
+  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi grepguard", "timeout": 30 } ] }
 
     ],
     "PostToolUse": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi event tool", "timeout": 30 } ] },
+      { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi event tool", "timeout": 30 } ] },
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run guppi spec", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run guppi pageread --after", "timeout": 30 } ] }, { "matcher": "Bash|PowerShell", "hooks": [ { "type": "command", "command": "uv run guppi shellwrite", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi spec", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi pageread --after", "timeout": 30 } ] }, { "matcher": "Bash|PowerShell", "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi shellwrite", "timeout": 30 } ] }
     ],
     "Stop": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run guppi context", "timeout": 30 }, { "type": "command", "command": "uv run guppi onward", "timeout": 30 }, { "type": "command", "command": "uv run guppi onward --plan", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi context", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi onward", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi onward --plan", "timeout": 30 } ] }
     ],
     "SubagentStop": [
-      { "hooks": [ { "type": "command", "command": "uv run guppi casecheck --subagent", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi casecheck --subagent", "timeout": 30 } ] }
     ]
 <!-- /rule-hook-registry -->
 
@@ -110,3 +110,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-09 updated: UserPromptSubmit runs guppi sprint --hi, which tells the agent at /hi to start /sprint-open when the sprint is closed (case 743.7) · [[decision-case-743.7]]
 - 2026-10-13 updated: guppi powershellguard registered on PreToolUse of PowerShell (case 796.2) · [[decision-case-796.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-materialize]]"
 purpose: One entry per record line of a ledger, its content lifted from the then block of its Case, nothing invented
-method: pytest in tests/test_materialize.py against a temp vault; the live reading once by hand
+method: pytest in .guppi/tests/test_materialize.py against a temp vault; the live reading once by hand
 checked: 2026-09-30
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 When:
-`uv run guppi materialize` lifts the record lines of a unit's `ledger.md` against the `then` blocks of its `spec.md`.
+`uv run --project .guppi guppi materialize` lifts the record lines of a unit's `ledger.md` against the `then` blocks of its `spec.md`.
 
 Then:
 `materialize.yaml` holds one entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`, `ref`, `source`, `supersedes`, `tags`, `addresses`, `origin`, `line`, `text`, `decision`; from the `then` item found by its slug — `fields`, `sections`, `replace`, `reword`, `change`, `rename`, `impact`; what the block lacks is `incomplete`, never invented.
@@ -84,3 +84,5 @@ Then:
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L28
 - 2026-09-30 updated: the Criterion replaced whole — a sub-case reads no problem or recommend from its parent, and a parent Case gets its own record (case 544.6) · [[decision-case-544.6]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L27
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

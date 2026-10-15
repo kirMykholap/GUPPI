@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-sprint-close]]"
 purpose: Whether after the close of a sprint the brief puts the opening of the next sprint first, /hi takes no item of sprint.md, the ledger hook refuses every decision line but a defer until a create of a sprint page stands, and the pages written from the ledger of the session that opens it carry its id
-method: pytest tests/test_ledger.py -k sprint and tests/test_materialize.py -k sprint; by hand, at the Retro of the session of case 779, .claude/skills/hi/SKILL.md, .claude/skills/sprint-open/SKILL.md and the step of the Render of rule-brief that writes the first line of the brief's Cases read against the Criterion
+method: pytest .guppi/tests/test_ledger.py -k sprint and .guppi/tests/test_materialize.py -k sprint; by hand, at the Retro of the session of case 779, .claude/skills/hi/SKILL.md, .claude/skills/sprint-open/SKILL.md and the step of the Render of rule-brief that writes the first line of the brief's Cases read against the Criterion
 checked: 2026-10-12
 origin: raw/2026-10-04/1439/ledger.md#case-628.3
 sprint: migration
@@ -16,7 +16,7 @@ tags: [sprint, workflow, ledger]
 
 When:
 Someone reads `.claude/skills/hi/SKILL.md`, `.claude/skills/sprint-open/SKILL.md` and the step of the Render of `rule-brief` that writes the `Cases` of Next session in `vault/wiki/brief.md`, for the session that opens after the librarian's run of the session that closes `entity-sprint-<id>` ends with no live sprint page.
-**＋** Or `tests/test_ledger.py` and `tests/test_materialize.py` run `guppi ledger` and `guppi materialize` over a made-up vault with no live sprint page.
+**＋** Or `.guppi/tests/test_ledger.py` and `.guppi/tests/test_materialize.py` run `guppi ledger` and `guppi materialize` over a made-up vault with no live sprint page.
 
 Then:
 The first line of the `Cases` of Next session in `vault/wiki/brief.md` is `open the next sprint — no sprint is open since the close of <id>`.
@@ -38,3 +38,4 @@ The first line of the `Cases` of Next session in `vault/wiki/brief.md` is `open 
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1913/ledger.md#L38
 - 2026-10-12 updated: the Criterion replaced whole — the When names what the check reads, with no reading of a later session; the method runs in the session of case 779 · [[decision-case-779]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/1449/ledger.md#L9
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

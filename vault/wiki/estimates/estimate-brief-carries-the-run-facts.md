@@ -15,14 +15,14 @@ tags: [harness, workflow, librarian]
 ## Criterion
 
 When:
-The librarian `librarian-guppi` writes `vault/wiki/brief.md` in its run, and then runs `uv run guppi archive`.
+The librarian `librarian-guppi` writes `vault/wiki/brief.md` in its run, and then runs `uv run --project .guppi guppi archive`.
 
 Then:
 For each `pending` Estimate whose `method` names the librarian's run, its line under Readings due of `vault/wiki/brief.md` ends with the facts that its `method` and `## Criterion` name, as the steps of the run before the brief printed or left them.
-**＋** After `uv run guppi archive`, the librarian adds its stdout lines at the end of the Readings due line of each `pending` Estimate whose `method` names the archive step, and the close of `rule-close` commits the brief with them.
+**＋** After `uv run --project .guppi guppi archive`, the librarian adds its stdout lines at the end of the Readings due line of each `pending` Estimate whose `method` names the archive step, and the close of `rule-close` commits the brief with them.
 **＋** Each Estimate keeps one line under Readings due, with the Estimate, its `draft` rule and where it is read.
 **－** The line compares nothing and carries no passed or failed, and the librarian writes no ledger line.
-**－** The order of the steps does not change: the brief, then `uv run guppi archive`, then the close.
+**－** The order of the steps does not change: the brief, then `uv run --project .guppi guppi archive`, then the close.
 **－** No line of the brief names the commit of the close.
 
 ## Result
@@ -33,3 +33,4 @@ For each `pending` Estimate whose `method` names the librarian's run, its line u
 
 - 2026-09-29 created · [[decision-case-508.4]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L1
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

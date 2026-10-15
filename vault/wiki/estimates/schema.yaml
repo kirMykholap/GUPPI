@@ -42,7 +42,7 @@ fields:
   purpose: |
     optional; one line. The promise, for the list on the target page: the reader of a rule sees its Estimates by `purpose` and opens only the touched ones. Written from the Case; some older pages carry none, and lint does not ask for it (case 506.1).
   method: |
-    required; one line. How the promise is checked, in one of the four forms lint classifies: a `make <target>` of the Makefile; the word `pytest`; a path under `tests/`; or the words `by hand` — the one spelling of a reading — with where and when it is taken, a session start, the brief of a librarian's run. A reading names its moment by its kind — a `/handoff`, a run of `/box`, a compaction — and any such moment after the render counts, in this session or in an earlier one; the word "first" stands only for an event that has never happened. A reading by hand tied to the first of something after the render or after the change is a finding of the class `moment` of lint and a finding of pre-spec, judged by one predicate of `guppi/lint.py` (case 613.1). Naming a form is not enough by itself: a path under `tests/` must exist and a `make <target>` must stand in the Makefile. On the Estimate of a MOC the form is a `make <target>` of the Makefile alone — there `pytest` or a path by itself earns a finding, and `by hand` passes only when every child's Estimate is a reading or a sibling Estimate of the MOC names such a target; on a MOC with `render_mode: full` the Estimate of a child with `enforcement: render` is not counted, since that child's Render is part of the parent's file and its Estimate promises the child's own behaviour (cases 378.5, 459). A `method` that names none of the forms earns a finding of the class `method`. A page without the field earns the `schema` finding `missing field method` (case 506.1). For `Research` what is measured stands beside one of the forms, never instead of one. Written from the Case (since case 193; case 350).
+    required; one line. How the promise is checked, in one of the four forms lint classifies: a `make <target>` of the Makefile; the word `pytest`; a path under `.guppi/tests/` or under the folder of tests of the project's own code; or the words `by hand` — the one spelling of a reading — with where and when it is taken, a session start, the brief of a librarian's run. A reading names its moment by its kind — a `/handoff`, a run of `/box`, a compaction — and any such moment after the render counts, in this session or in an earlier one; the word "first" stands only for an event that has never happened. A reading by hand tied to the first of something after the render or after the change is a finding of the class `moment` of lint and a finding of pre-spec, judged by one predicate of `.guppi/guppi/lint.py` (case 613.1). Naming a form is not enough by itself: a test path must exist and a `make <target>` must stand in the Makefile. Besides these four forms, the Estimate of a Leaf may name one of the commands `guppi test`, `guppi check` and `guppi style`, which run the tests, the vault checks and the style check of the project. On the Estimate of a MOC the form is a `make <target>` of the Makefile, or the word `pytest` with the test files of its pipeline, each of which must exist — there `pytest` without a test file, a path without `pytest`, or one of the commands of the project alone earns a finding, and `by hand` passes only when every child's Estimate is a reading or a sibling Estimate of the MOC names such a form; on a MOC with `render_mode: full` the Estimate of a child with `enforcement: render` is not counted, since that child's Render is part of the parent's file and its Estimate promises the child's own behaviour (cases 378.5, 459). A `method` that names none of the forms earns a finding of the class `method`. A page without the field earns the `schema` finding `missing field method` (case 506.1). For `Research` what is measured stands beside one of the forms, never instead of one. Written from the Case (since case 193; case 350).
   checked: |
     optional; date. The date of the last reading, or of the person's decision that set the status, which the Case writes (case 669.16): the date the Result opens with, else the date of the reading's unit; written by `generate` on every reading (case 201.1).
   deferred_by: |
@@ -52,7 +52,7 @@ fields:
   sprint: |
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
   core: |
-    optional; `true`. The page ships in the clean version of GUPPI that `guppi ship` writes for the branch `prod`; a page without it stays in this repository only. Set by a Case, never by hand (case 804).
+    optional; `true`. It stands only in the clean version of GUPPI that `guppi ship` writes: `guppi ship` writes it into the copy of each `passed` Estimate whose target page carries `core: true` and whose `method` names no `make` target, and lint reads it there; no Estimate of the repository that builds that version carries it (cases 804, 822).
   created: |
     required; date.
   tags: |
@@ -61,7 +61,7 @@ sections:
   "## Criterion": |
     required. The promise, written once: the `when` and `then` of one Case, verbatim with their operands, as `When:`, `Then:` — no `Given:`: the frame of the Case stays in its Case file and in the Spec (cases 378.2, 513). The Case that creates the Estimate writes it; an `update` that changes the promise replaces it whole and sets the page `pending`; an `update` that names a part alone — a field, a `replace` pair outside it — keeps it; a pair inside it is refused, a changed promise is a Criterion replaced whole (case 378.4); nothing is appended and no `### case N` block exists (case 193). The Criterion that was replaced stays in the Spec of the session that wrote it, reached by `origin`, and in History. For Research the `then` may legitimately be broad ("determine whether we stay inside the latency budget"); for QA it should be exact.
   "## Result": |
-    optional; required on `passed` and `failed`. Omitted while `pending`. Its first line is the date of the reading and the command — `make test-x`, `pytest tests/test_x.py` — or the place of a live reading; the result follows (case 199). On a status set by the person's decision, the first line is the date and the place of the decision — `the person's decision, case N` — and the last reading the page held follows (case 669.16). For QA usually one line more. For Research this is the substance of the page — findings, numbers, the conclusion drawn.
+    optional; required on `passed` and `failed`. Omitted while `pending`. Its first line is the date of the reading and the command — `make test-x`, `pytest app/tests/test_x.py` — or the place of a live reading; the result follows (case 199). On a status set by the person's decision, the first line is the date and the place of the decision — `the person's decision, case N` — and the last reading the page held follows (case 669.16). For QA usually one line more. For Research this is the substance of the page — findings, numbers, the conclusion drawn.
   "## History": |
     required. Appended by hook, never by an agent. Always the last section: `- <date> created · <origin>`, `- <date> status: pending → passed`.
 examples:
@@ -72,7 +72,7 @@ examples:
     status: passed
     target: entity-discount-new-client
     purpose: A client with no completed order gets a 0% discount
-    method: pytest tests/discounts/test_new_client.py
+    method: pytest discounts/tests/test_new_client.py
     checked: 2026-09-08
     origin: raw/2026-09-08/0900/ledger.md#case-2
     sprint: 2026-Q3-s4
@@ -91,7 +91,7 @@ examples:
 
     ## Result
 
-    2026-09-08, `pytest tests/discounts/test_new_client.py`: 3 passed.
+    2026-09-08, `pytest discounts/tests/test_new_client.py`: 3 passed.
 
     ## History
     - 2026-09-08 created · raw/2026-09-08/0900/ledger.md#case-2

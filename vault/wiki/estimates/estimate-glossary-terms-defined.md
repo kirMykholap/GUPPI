@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[entity-glossary]]"
 purpose: Every term names in where a live page that defines it, and no term stands twice
-method: one reading of the table by hand after the librarian's run, plus make lint — no ref finding on entity-glossary
+method: one reading of the table by hand after the librarian's run, plus uv run --project .guppi guppi check — no ref finding on entity-glossary
 checked: 2026-09-30
 origin: raw/2026-09-22/0014/ledger.md#case-306.3
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, harness]
 ## Criterion
 
 When:
-`uv run guppi glossary` reads the `## Terms` table of `entity-glossary` at the librarian's run, and `guppi lint` and a reader read the same table.
+`uv run --project .guppi guppi glossary` reads the `## Terms` table of `entity-glossary` at the librarian's run, and `guppi lint` and a reader read the same table.
 
 Then:
 Each row names in `where` a `[[slug]]` of a live page, and that page says what the term of the row is.
@@ -42,3 +42,5 @@ Each row names in `where` a `[[slug]]` of a live page, and that page says what t
 - 2026-09-30 status: pending → failed · raw/2026-09-30/0248/ledger.md#L4
 - 2026-09-30 status: failed → failed · raw/2026-09-30/1306/ledger.md#L3
 - 2026-09-30 status: failed → passed · raw/2026-09-30/1736/ledger.md#L4
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

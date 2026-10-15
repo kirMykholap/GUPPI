@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-retro]]"
-purpose: Whether Retro writes a failing test or a lint finding that the Baseline of work.md already holds as a line of Observations of handoff.md, not debt, whatever Expected red names, and commits with make test green but for those tests
+purpose: Whether Retro writes a failing test or a lint finding that the Baseline of work.md already holds as a line of Observations of handoff.md, not debt, whatever Expected red names, and commits with uv run --project .guppi guppi test green but for those tests
 method: one reading by hand at a /retro in a session whose work.md Baseline holds a failing test or a lint finding line, recorded in the estimate line
 checked: 2026-10-01
 origin: raw/2026-09-28/1318/ledger.md#case-479.4
@@ -15,15 +15,15 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-The agent calls `/retro` on `PreToolUse Skill` at the end of `/work`, or the person types `/retro` on `UserPromptSubmit`, in a session whose `raw/<date>/<hi HHMM>/work.md` holds a `## Baseline`, and a test fails in the `make test` of Retro, or a lint finding stood in Work Mode.
+The agent calls `/retro` on `PreToolUse Skill` at the end of `/work`, or the person types `/retro` on `UserPromptSubmit`, in a session whose `raw/<date>/<hi HHMM>/work.md` holds a `## Baseline`, and a test fails in the `uv run --project .guppi guppi test` of Retro, or a lint finding stood in Work Mode.
 
 Then:
 Retro counts each failing test and each lint finding line that `## Baseline` holds as red before the work, whatever `## Expected red` names, and writes it as a line of `## Observations` of `raw/<date>/<hi HHMM>/handoff.md`.
 **＋** It is not debt: nothing is fixed or reverted into a patch for it, and it gets no `lesson[error]` line.
-**＋** The commit of Retro needs `make style` clean and `make test` green, except for the failing tests that `## Baseline` holds.
+**＋** The commit of Retro needs `uv run --project .guppi guppi style` clean and `uv run --project .guppi guppi test` green, except for the failing tests that `## Baseline` holds.
 **＋** A failing test that `## Baseline` does not hold is fixed, or reverted into a patch that `## Debt` of `raw/<date>/<hi HHMM>/handoff.md` names.
 **－** Without `work.md` there is no baseline, and no red is excused as red before the work.
-**－** `estimate-guppi-tests-green` still wants `make test` with no failed test on the branch: a red test of the baseline stays red there.
+**－** `estimate-guppi-tests-green` still wants `uv run --project .guppi guppi test` with no failed test on the branch: a red test of the baseline stays red there.
 
 ## Result
 
@@ -36,3 +36,5 @@ Retro counts each failing test and each lint finding line that `## Baseline` hol
 - 2026-09-30 updated: the Criterion replaced whole — the trigger covers the agent's call; a red of the Baseline is a line of Observations of handoff.md, and a patch of any other red test is named in Debt (case 531.4) · [[decision-case-531.4]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L4
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
+- 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
+- 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]

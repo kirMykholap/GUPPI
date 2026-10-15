@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-page-generation]]"
 purpose: An update with rename moves the page to its new slug and rewrites every link to it in the live pages, History and Result untouched
-method: pytest in tests/test_generate.py against a temp vault; the live reading once by hand, the librarian's run on a real rename
+method: pytest in .guppi/tests/test_generate.py against a temp vault; the live reading once by hand, the librarian's run on a real rename
 checked: 2026-09-30
 origin: raw/2026-09-20/0527/ledger.md#case-258.1
 sprint: migration
@@ -37,3 +37,4 @@ The file of the page moves from `<old>.md` to `<new>.md` in its category folder,
 - 2026-09-20 updated: the History line of 262 quoted by hand — its placeholder `[[decision-case-N]]` in a code span — a one-off migration; the Criterion the text of 262; the status the one the reading of 09:38:37 in raw/2026-09-20/0740 leaves (case 264.1) · [[decision-case-264.1]]
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the line on guppi sprint out (case 489.3) · [[decision-case-489.3]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L3
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

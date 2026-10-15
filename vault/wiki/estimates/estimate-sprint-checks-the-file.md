@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-sprint]]"
 purpose: sprint --check names sprint.md when it differs from the render of the live sprint page, or from the closed form when no live sprint page stands, exit 1, and writes nothing
-method: uv run pytest tests/test_sprint.py
+method: uv run --project .guppi pytest .guppi/tests/test_sprint.py
 checked: 2026-10-09
 origin: raw/2026-09-17/1119/ledger.md#case-227
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, sprint]
 ## Criterion
 
 When:
-Someone runs `uv run guppi sprint --check`, by hand or through the target `lint` of the `Makefile`, and it renders the file from the sprint page in memory.
+Someone runs `uv run --project .guppi guppi sprint --check`, by hand or through the target `lint` of the `Makefile`, and it renders the file from the sprint page in memory.
 
 Then:
 When `vault/wiki/sprint.md` differs from the render of the page, stdout holds one line `sprint: <file> differs from entity-sprint-<id>`, the file named by its path from the project root, and the check exits 1. When the file equals the render, the check exits 0 with no output. The file is written in neither case.
@@ -35,3 +35,6 @@ When `vault/wiki/sprint.md` differs from the render of the page, stdout holds on
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L64
 - 2026-10-09 updated: the Criterion replaced whole — with no live sprint page the check compares the closed form; the purpose covers both; the method a test of the session (case 743.9) · [[decision-case-743.9]]
 - 2026-10-09 status: pending → passed · raw/2026-10-08/2352/ledger.md#L34
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

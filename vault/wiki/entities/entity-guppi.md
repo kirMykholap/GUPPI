@@ -1,13 +1,13 @@
 ---
 type: entity
 kind: MOC
-purpose: GUPPI as the thing this repository builds — the harness and the vault it keeps; its parts the sprint, the glossary and the repository of GUPPI on GitHub
+purpose: GUPPI — a Claude Code harness governed by ratified decisions, and the vault it keeps; its parts the sprint and the glossary, and in the repository of GUPPI also that repository on GitHub
 status: built
 children: ["[[entity-sprint]]", "[[entity-glossary]]", "[[entity-guppi-repository]]"]
 estimates: ["[[estimate-guppi-tests-green]]"]
 rules: ["[[rule-harness]]"]
 deferred_by: ["[[decision-case-616]]"]
-code_ref: [guppi/, .claude/]
+code_ref: [.guppi/guppi/, .claude/]
 origin: raw/2026-09-22/0014/ledger.md#case-306.2
 sprint: migration
 created: 2026-09-22
@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-GUPPI as the thing this repository builds: a Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. Its parts the person named: the sprint as a kind (`entity-sprint`) and the glossary (`entity-glossary`), the things of the vault that are content, not rules, and the repository of GUPPI on GitHub (`entity-guppi-repository`), whose rules are its own (case 795.1). `rule-harness` is its guard: the tools of the harness kept equal to the pages that describe them. In a developer's vault this page stands beside the root of the product and keeps GUPPI's own machinery apart from it (case 306.2).
+GUPPI: a Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. Its parts are the sprint as a kind (`entity-sprint`) and the glossary (`entity-glossary`), the things of the vault that are content, not rules. In the repository of GUPPI itself, a third part is that repository on GitHub, `entity-guppi-repository`, whose rules are its own; the clean version of GUPPI does not hold that page (as set in case 795.1). `rule-harness` is its guard: the tools of the harness kept equal to the pages that describe them. In a project that uses GUPPI, this page stands beside the root of the product and keeps GUPPI's own machinery apart from it (as set in case 306.2).
 
 ## History
 
@@ -30,3 +30,5 @@ GUPPI as the thing this repository builds: a Claude Code harness governed by rat
 - 2026-10-13 child entity-guppi-repository added · [[decision-case-795.1]]
 - 2026-10-13 updated: the repository of GUPPI on GitHub is a part (case 795.1) · [[decision-case-795.1]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 updated: GUPPI is described as a harness and a vault, true in any project that uses it · [[decision-case-822.7]]

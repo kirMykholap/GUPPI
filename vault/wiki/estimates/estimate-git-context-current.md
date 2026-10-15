@@ -18,7 +18,7 @@ When:
 The person invokes `/hi`, and `.claude/skills/hi/SKILL.md` runs the commands of `rule-git-context`.
 
 Then:
-The context holds `Render:` with the output of `uv run guppi render --sync` (a diff for each governed file that differed and was written, or nothing), then `Branch:` with the current branch and `Status:` with `git status --short`.
+The context holds `Render:` with the output of `uv run --project .guppi guppi render --sync` (a diff for each governed file that differed and was written, or nothing), then `Branch:` with the current branch and `Status:` with `git status --short`.
 **＋** `git remote -v` prints `origin` with the URL of the repository `GUPPI` on GitHub.
 **－** The skill runs no `git pull`, and the context holds no `Pull:` line.
 
@@ -37,3 +37,4 @@ The context holds `Render:` with the output of `uv run guppi render --sync` (a d
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L1
 - 2026-10-13 updated: the Criterion replaced whole — git remote prints origin, the repository GUPPI on GitHub; /hi still runs no git pull · [[decision-case-787.2]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L23
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

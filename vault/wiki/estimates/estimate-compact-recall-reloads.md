@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-compact-recall]]"
 purpose: After a compaction of a working session the hook's header, the paths of the /hi files, the Spec and the Frontier's text stand in the context; an ordinary session and another source get nothing
-method: pytest tests/test_recall.py on a temp project; live — a compaction of a working session, by hand, the hook's text in the context after it
+method: pytest .guppi/tests/test_recall.py on a temp project; live — a compaction of a working session, by hand, the hook's text in the context after it
 checked: 2026-10-03
 origin: raw/2026-09-21/0019/ledger.md#case-287
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, hooks, harness]
 ## Criterion
 
 When:
-The client compacts the context of a session, on the person's command or on its own, and `SessionStart` fires with `source: compact` and runs `guppi/recall.py`.
+The client compacts the context of a session, on the person's command or on its own, and `SessionStart` fires with `source: compact` and runs `.guppi/guppi/recall.py`.
 
 Then:
 With a `hi` in the session's window, stdout holds a header line, "recall: the context was compacted at HH:MM:SS; the session is" followed by the session folder under the vault, such as raw/2026-09-28/2229/, and "Read before the next reply:". Then comes one path per line: the `@` files of `.claude/skills/hi/SKILL.md` in their order, the session's `frontier.md` when it exists, and the Spec when one exists. Last come the line `Frontier:` and the text of `frontier.md` as it stands.
@@ -37,3 +37,5 @@ With a `hi` in the session's window, stdout holds a header line, "recall: the co
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given, the docs and the lesson out (case 493.1) · [[decision-case-493.1]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L7
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

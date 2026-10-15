@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-plan-mode]]"
 purpose: Across Plan Mode a create whose purpose the vault already carries is named in the Case before ratification, and the pre-spec hook runs before the plan is written, which is still written
-method: make test-plan-mode, the pipeline over tests/test_spec.py and tests/test_prespec.py; the flagging one live reading by hand, written into the estimate line
+method: make test-plan-mode, the pipeline over .guppi/tests/test_spec.py and .guppi/tests/test_prespec.py; the flagging one live reading by hand, written into the estimate line
 checked: 2026-10-03
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
@@ -34,3 +34,4 @@ A `create` for a page whose `purpose` an index line already carries is named in 
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L28
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the writer of the plan named; purpose set (case 493.2) · [[decision-case-493.2]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L6
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

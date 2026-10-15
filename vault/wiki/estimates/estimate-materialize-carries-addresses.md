@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-materialize]]"
 purpose: A decision line's {addresses:<lesson slug>} or a lesson line's {addressed_by:case N} lands on the lesson's entry as addressed_by, at the entry's level; a mark without its pair is incomplete
-method: pytest tests/test_materialize.py on a temp ledger; the live reading the librarian's run on the first marked lesson
+method: pytest .guppi/tests/test_materialize.py on a temp ledger; the live reading the librarian's run on the first marked lesson
 checked: 2026-09-23
 origin: raw/2026-09-20/2106/ledger.md#case-284.3
 sprint: migration
@@ -34,3 +34,4 @@ The lesson entry carries `addressed_by: decision-case-N` at the entry's level, s
 - 2026-09-22 status: pending → passed · raw/2026-09-21/1853/ledger.md#L6
 - 2026-09-23 updated: the Criterion replaced whole — both marks land on the lesson entry by one function (case 377.3) · [[decision-case-377.3]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1355/ledger.md#L38
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

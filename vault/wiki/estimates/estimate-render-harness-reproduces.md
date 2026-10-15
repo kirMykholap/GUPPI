@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-render-harness]]"
 purpose: guppi render writes each governed harness file from its Rule pages, parses every json target before it writes, and --check names a file that differs
-method: "pytest tests/test_render.py, plus by hand on the live vault after a later librarian's render: git diff --stat, then guppi render --check"
+method: "pytest .guppi/tests/test_render.py, plus by hand on the live vault after a later librarian's render: git diff --stat, then guppi render --check"
 checked: 2026-09-29
 origin: raw/2026-09-09/ledger.md#case-18.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, render]
 ## Criterion
 
 When:
-`uv run guppi render` runs without a flag or with `--check`, and reads the Rule pages under `vault/wiki/rules/` that carry `enforcement: render`.
+`uv run --project .guppi guppi render` runs without a flag or with `--check`, and reads the Rule pages under `vault/wiki/rules/` that carry `enforcement: render`.
 
 Then:
 The Render of a `full` page becomes the whole file its `governs` names, without the page's outer markers. Each `<!-- child -->` line is replaced by that child's text in the order of `children`, and the child's markers are kept.
@@ -24,7 +24,7 @@ The Render of a `full` page becomes the whole file its `governs` names, without 
 **＋** A child without `enforcement: render` contributes nothing and needs no marker. A marker line for it in the parent's text gives exit 1, and nothing is written.
 **＋** Every `.json` target is parsed before anything is written. One that does not parse stops the whole write, stderr names the file and the page that owns it, and the run exits 1.
 **＋** `--check` names each file that differs, exits 1 and writes nothing. When every file is identical, it exits 0.
-**＋** Against the live vault, after `uv run guppi render`, `git diff --stat` names only the governed files whose Rule page changed since the last render. The diff of each is the text of that page's Render, and `uv run guppi render --check` then exits 0.
+**＋** Against the live vault, after `uv run --project .guppi guppi render`, `git diff --stat` names only the governed files whose Rule page changed since the last render. The diff of each is the text of that page's Render, and `uv run --project .guppi guppi render --check` then exits 0.
 **－** No file type other than `.json` is parsed.
 
 ## Result
@@ -47,3 +47,5 @@ The Render of a `full` page becomes the whole file its `governs` names, without 
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1229/ledger.md#L28
 - 2026-09-29 updated: the Criterion replaced whole — the unit paragraph and the blocks 85.1, 88.1 and 89.4 into one When and Then, the one-time probe of 139.1 out; purpose and method set, Context and Method out (case 498.1) · [[decision-case-498.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L61
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

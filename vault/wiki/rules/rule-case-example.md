@@ -105,7 +105,7 @@ The Case below is written in the chat form that `case-guppi` writes into its fil
 >   - ref: `entity-cart`
 >   - kind: `QA`
 >   - purpose: `Whether the cart shows its items within 200 ms`
->   - method: `make test-cart, which runs uv run pytest tests/test_cart_view.py -k render_time`
+>   - method: `make test-cart, which runs pytest cart/tests/test_view.py -k render_time`
 >   - tags: `[cart, performance]`
 > - [ ] `src/cart/view.py`: the cart reads its items in one query.
 > - [ ] read `estimate-cart-renders-in-time`
@@ -135,7 +135,7 @@ create:
     ref: entity-cart
     kind: QA
     purpose: Whether the cart shows its items within 200 ms
-    method: make test-cart, which runs uv run pytest tests/test_cart_view.py -k render_time
+    method: make test-cart, which runs pytest cart/tests/test_view.py -k render_time
     tags: [cart, performance]
 update:
   - slug: entity-checkout
@@ -155,3 +155,4 @@ update:
 - 2026-10-08 updated: the cart Estimate of both examples names a make target, the form a MOC's Estimate takes (case 735) · [[decision-case-735]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the history of the examples stands in the bracket of its pointer · [[decision-case-809]]
+- 2026-10-15 updated: the example Estimate names a test path of the example project that the reword of rule-guppi-package does not touch · [[decision-case-819.1]]

@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Keeps raw/ to the sessions not yet turned into pages, by moving an applied session whole into the archive
 status: built
 enforcement: check
-implementation_ref: [guppi/archive.py, tests/test_archive.py]
+implementation_ref: [.guppi/guppi/archive.py, .guppi/tests/test_archive.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-raw-archive]]", "[[estimate-raw-archive-files-a-session-by-its-sprint]]"]
 origin: raw/2026-09-13/ledger.md#case-100.1
@@ -25,7 +25,7 @@ Plan Mode.
 
 ## How it works
 
-`uv run guppi archive` looks at every unit of `vault/raw/` whose date is before
+`uv run --project .guppi guppi archive` looks at every unit of `vault/raw/` whose date is before
 the day of the run: a session folder `raw/<date>/<HHMM>/` holding a `ledger.md`,
 or a date-level `raw/<date>/ledger.md` with its yaml (the shape before case 103).
 The session of the run is never looked at. At the close of a sprint, `guppi sprint-close` moves each done unit the same way whatever its date, the session of the run still left out, as `rule-sprint-close` sets it (case 743.1). A unit is done when its
@@ -64,3 +64,6 @@ coverage of a line is the one function `guppi tail` uses ([[rule-ledger-tail]]).
 - 2026-10-09 updated: the close of a sprint moves the old event logs (case 743.3) · [[decision-case-743.3]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the slug of rule-sprint-close stands outside the brackets of its pointers · [[decision-case-809]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

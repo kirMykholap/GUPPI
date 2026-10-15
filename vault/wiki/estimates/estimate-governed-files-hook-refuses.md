@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-governed-files-hook]]"
 purpose: guppi guard refuses a hand edit of a governed harness file, names its rule and logs the refusal
-method: "pytest tests/test_guard.py, plus by hand in a later session: one Edit of a governed file refused, the rule named, the line in the day's event log"
+method: "pytest .guppi/tests/test_guard.py, plus by hand in a later session: one Edit of a governed file refused, the rule named, the line in the day's event log"
 checked: 2026-10-01
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [hooks, harness, render]
 ## Criterion
 
 When:
-Claude Code runs `uv run guppi guard` on `PreToolUse` of a tool call, and the hook reads the `governs` field of the live Rule pages under `vault/wiki/rules/`.
+Claude Code runs `uv run --project .guppi guppi guard` on `PreToolUse` of a tool call, and the hook reads the `governs` field of the live Rule pages under `vault/wiki/rules/`.
 
 Then:
 An `Edit`, `Write` or `MultiEdit` on a governed path exits 2. Stderr names the file and the slug of the rule that governs it, and the client blocks the call.
@@ -37,3 +37,5 @@ An `Edit`, `Write` or `MultiEdit` on a governed path exits 2. Stderr names the f
 - 2026-09-12 status: pending → passed · raw/2026-09-12/ledger.md#L206
 - 2026-09-29 updated: the Criterion replaced whole — the unit paragraph and the block 91 into one When and Then, the live probe into method; purpose and method set, Context and Method out (case 498.5) · [[decision-case-498.5]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1441/ledger.md#L36
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

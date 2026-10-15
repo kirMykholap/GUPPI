@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-estimates-schema]]"
 purpose: An Estimate page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
-method: pytest tests/test_schemas.py -k estimate on the live vault/wiki/estimates/schema.yaml — a page in the shape, a page without method, then one defect at a time; the live reading make lint, no schema finding on wiki/estimates/
+method: pytest .guppi/tests/test_schemas.py -k estimate on the live vault/wiki/estimates/schema.yaml — a page in the shape, a page without method, then one defect at a time; the live reading uv run --project .guppi guppi check, no schema finding on wiki/estimates/
 checked: 2026-10-13
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
@@ -48,3 +48,5 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 - 2026-10-12 status: pending → passed · raw/2026-10-12/1604/ledger.md#L27
 - 2026-10-13 updated: the Criterion replaced whole — the field core and the shipped values (case 804) · [[decision-case-804.3]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L118
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses aloud a non-blank line of a LEDGER block that does not open with a record prefix, and says why only for the reply just finished
-method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads and a session ledger in a temp vault
 origin: raw/2026-10-06/1448/ledger.md#case-695.1
 sprint: migration
 created: 2026-10-06
@@ -14,7 +14,7 @@ tags: [session, hooks, harness, ledger]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ledger` of `guppi/ledger.py`, in a session with a `hi`, finds in a `LEDGER` block of a text of the main agent a non-blank line that does not open with `- decision[`, `- estimate[` or `- lesson[`.
+The `Stop` hook `uv run --project .guppi guppi ledger` of `.guppi/guppi/ledger.py`, in a session with a `hi`, finds in a `LEDGER` block of a text of the main agent a non-blank line that does not open with `- decision[`, `- estimate[` or `- lesson[`.
 
 Then:
 The line is not written to the ledger.
@@ -34,3 +34,7 @@ The line is not written to the ledger.
 
 - 2026-10-07 created · [[decision-case-695.1]]
 - 2026-10-07 status: pending → passed · raw/2026-10-06/1448/ledger.md#L18
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

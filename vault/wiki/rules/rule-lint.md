@@ -2,9 +2,9 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
-status: built
+status: draft
 enforcement: check
-implementation_ref: [guppi/lint.py, tests/test_lint.py, Makefile]
+implementation_ref: [.guppi/guppi/lint.py, .guppi/guppi/check.py, .guppi/tests/test_lint.py, .guppi/tests/test_check.py]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-catches-a-broken-fence]]", "[[estimate-lint-runs-every-step]]", "[[estimate-lint-reports-a-method-tied-to-a-one-off-moment]]"]
 origin: raw/2026-09-09/ledger.md#case-21
@@ -21,9 +21,9 @@ Estimates do not support, or waits for a reading nobody took from sitting in the
 unnoticed. Pages are written by the generator;
 both drift, and nothing else reads the whole graph at once. Red is a signal, not a
 gate: a `pending` Estimate is red until its reading, but for one whose `method` waits for a later moment — an event it names, a later session, a session of a sprint, the session that closes one, the librarian or `/hi` — since the brief lists it under Readings due and puts it under Work once its moment comes, and a `failed` one is red until it is read again (cases 182, 799); a placeholder is red with the count of its defers (case 186.3).
-`make lint` runs it after `render --check`, `sprint --check`, `backlog --check` and `glossary --check`, and runs `guppi ship --check` after it, which finds a pointer outside its bracket in each file outside `vault/` that the clean version holds (case 807.2); all six only report, so the Makefile's rule — no target writes to the tree — holds (cases 147.7, 227). It runs all six even when one of them is red, so a red step hides no finding of a later one, and it exits non-zero when any step is red (case 587). `parent: rule-harness` names the
-MOC of the harness tools: lint runs with the renderer, in no phase of the session. The
-classes and their order live in the docstring of `guppi/lint.py`.
+`uv run --project .guppi guppi check` runs it after `guppi render --check`, `guppi sprint --check`, `guppi backlog --check` and `guppi glossary --check`, and runs `guppi ship --check` after it, which finds a pointer outside its bracket in each file outside `vault/` that the clean version holds (case 807.2). Where the command `ship` is missing, as in a project that installed GUPPI, it prints one line that it skips that step and runs the other five (case 820). All six only report, so no step writes to the tree (cases 147.7, 227). It runs every step even when one of them is red, so a red step hides no finding of a later one, and it exits non-zero when any step is red (case 587). It needs no tool but `uv`, so a project runs it on any machine (case 820). `parent: rule-harness` names the
+MOC of the harness tools: lint runs with the renderer, in no phase of the session. Where the module of the command `ship` stands, as in the repository that builds the clean version of GUPPI, `guppi lint` also reports each rule or entity with `core: true` that is `draft`, since `guppi ship` builds no clean version while one stands; a project that installed GUPPI gets no such line (case 822). The
+classes and their order live in the docstring of `.guppi/guppi/lint.py`.
 
 ## History
 
@@ -90,3 +90,9 @@ classes and their order live in the docstring of `guppi/lint.py`.
 - 2026-10-13 updated: a pending Estimate whose method waits for a later moment is no longer red; a failed one still is (case 799) · [[decision-case-799]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: make lint runs guppi ship --check as its last step (case 807.2) · [[decision-case-807.2]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 updated: guppi check runs the six vault checks, and skips guppi ship --check where the command ship is missing · [[decision-case-820.1]]
+- 2026-10-15 updated: every live rule, entity and Estimate names guppi check in place of the target lint of the Makefile · [[decision-case-820.7]]
+- 2026-10-15 updated: lint reports a draft page with core: true where the module of ship stands · [[decision-case-822.9]]
+- 2026-10-15 status: built → draft · cascade

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-insights-schema]]"
 purpose: An Insight page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
-method: pytest tests/test_schemas.py -k insights on the live vault/wiki/insights/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/insights/
+method: pytest .guppi/tests/test_schemas.py -k insights on the live vault/wiki/insights/schema.yaml — a page in the shape, then one defect at a time; the live reading uv run --project .guppi guppi check, no schema finding on wiki/insights/
 checked: 2026-10-04
 origin: raw/2026-09-22/0014/ledger.md#case-304.6
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, render, schema]
 ## Criterion
 
 When:
-`uv run guppi render` writes `vault/wiki/insights/schema.yaml` from `rule-insights-schema`, and `uv run guppi lint` reads a page of `vault/wiki/insights/` by the keys of that file.
+`uv run --project .guppi guppi render` writes `vault/wiki/insights/schema.yaml` from `rule-insights-schema`, and `uv run --project .guppi guppi lint` reads a page of `vault/wiki/insights/` by the keys of that file.
 
 Then:
 `vault/wiki/insights/schema.yaml` equals the Render of `rule-insights-schema`.
@@ -41,3 +41,6 @@ Then:
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L25
 - 2026-10-04 updated: the Criterion replaced whole — the prose stands as data, with no claim that it is word for word the old schema.md (case 632.9) · [[decision-case-632.9]]
 - 2026-10-05 status: pending → passed · raw/2026-10-04/2245/ledger.md#L1
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

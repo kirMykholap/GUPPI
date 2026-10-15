@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents a Rule page and the harness file it governs from becoming two copies of one text
 status: built
 enforcement: check
-implementation_ref: [guppi/render.py, guppi/config.py, tests/test_render.py, .claude/settings.json]
+implementation_ref: [.guppi/guppi/render.py, .guppi/guppi/config.py, .guppi/tests/test_render.py, .claude/settings.json]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-render-harness-reproduces]]", "[[estimate-render-sync-reports]]", "[[estimate-render-harness-ticks-the-spec]]"]
 origin: raw/2026-09-09/ledger.md#case-18.1
@@ -51,3 +51,5 @@ edited by hand, the page follows or does not, and the vault stops being the sour
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the pointer stands in a bracket of its own · [[decision-case-809]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

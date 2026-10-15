@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-spec-reconcile]]"
 purpose: Whether the first call of case-guppi on the file of a Case, its name in either form of the id, holds its id in the store, and a call of another case-guppi on that file is refused with a free id
-method: uv run pytest tests/test_ratified.py -k number_held
+method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k number_held
 checked: 2026-10-13
 origin: raw/2026-10-05/1343/ledger.md#case-650.1
 sprint: migration
@@ -15,13 +15,13 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-`case-guppi` calls `Edit`, `Write` or `MultiEdit` on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and `uv run guppi ratified --guard` on `PreToolUse` reads the path, the agent type and the `agent_id` of the call from the hook input, and `<plan>.checked.json` beside the plan file of the session.
+`case-guppi` calls `Edit`, `Write` or `MultiEdit` on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and `uv run --project .guppi guppi ratified --guard` on `PreToolUse` reads the path, the agent type and the `agent_id` of the call from the hook input, and `<plan>.checked.json` beside the plan file of the session.
 
 Then:
-The guard reads the id N from the file name by `case_number` of `guppi/casecheck.py`, a plain id such as `785` or an id of a sprint such as `kir-plugin-12` alike.
+The guard reads the id N from the file name by `case_number` of `.guppi/guppi/casecheck.py`, a plain id such as `785` or an id of a sprint such as `kir-plugin-12` alike.
 **＋** The call is refused when `<plan>.checked.json` holds Case N, or a sub-case of it, under its id alone with an `agent_id` other than the one of the call: exit 2 with the reason on stderr, and the call does not run.
 **＋** The reason names the file and a free id, and tells `case-guppi` to build its Case under that id.
-**＋** The holder is judged by `clashes` and the free id is counted by `new_number` of `guppi/casecheck.py`, the judgments that the check of `rule-case-check` runs.
+**＋** The holder is judged by `clashes` and the free id is counted by `new_number` of `.guppi/guppi/casecheck.py`, the judgments that the check of `rule-case-check` runs.
 **＋** A call that passes while `<plan>.checked.json` holds no entry under N alone writes there, under N, an entry with the `agent_id` of the call and the time, and no text, so the id is held before the agent stops.
 **＋** A refusal writes one line of the refusal to the day's event log.
 **－** A call whose `agent_id` is the one of the entry under N, and an entry with no `agent_id`, are not refused by this check.
@@ -38,3 +38,7 @@ The guard reads the id N from the file name by `case_number` of `guppi/casecheck
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L7
 - 2026-10-13 updated: the Criterion replaced whole — the guard reads a file name in either form of the id and names a free id (case 788.6) · [[decision-case-788.6]]
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L52
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

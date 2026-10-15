@@ -20,7 +20,7 @@ The agent calls `/handoff` on `PreToolUse Skill` after the reply that ends Retro
 Then:
 `raw/<date>/<hi HHMM>/handoff.md` is the report of Retro: under `# Handoff — <date>, <slice or topic>` it holds, in order, `## Notes from memory`, `## Direct instructions to the librarian`, `## What actually got done`, `## Debt`, `## Observations`, `## For the next session` and `## Ask the person`.
 **＋** `## Notes from memory` holds only where the person hesitated, what stayed unclear and which decisions carried caveats. `## Direct instructions to the librarian` holds only what to check first and what may duplicate what, and lists no reading that waits.
-**＋** `## What actually got done` holds the ids of the Cases ratified, the code files and tests changed, the result of `make test` and `make style`, and the readings and lessons written, by their ledger line numbers.
+**＋** `## What actually got done` holds the ids of the Cases ratified, the code files and tests changed, the result of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi style`, and the readings and lessons written, by their ledger line numbers.
 **＋** `## Debt` holds each box of the Spec that is debt and each red test reverted into a patch, with the path of the patch. Under them stands a line with the count of the boxes that wait for the librarian. Then comes one line per Estimate whose reading cannot be taken yet, except one that `## Ask the person` holds: its slug and the moment its reading waits for. These lines stand in the section and are not debt.
 **＋** An Estimate this session creates or updates has no such line in `## Debt`: the Retro of `rule-retro` read it or set it `failed`, unless the person's answer is its reading. An Estimate of the live sprint page `entity-sprint-<id>` whose work is not done, which that Retro left `pending`, has its line, its moment the Retro of the session that finishes its work or the close of the sprint. An Estimate whose `method` waits for an event that has not come, which that Retro left `pending`, has its line, its moment that event.
 **＋** `## Observations` holds what was noticed in Work Mode and Retro, a red before the work and an expected red among them; `## For the next session` holds what needs a decision.
@@ -49,3 +49,5 @@ Then:
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1913/ledger.md#L40
 - 2026-10-12 updated: the Criterion replaced whole — Debt names an Estimate that Retro left pending while its event has not come · [[decision-case-781.4]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/1604/ledger.md#L24
+- 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
+- 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]

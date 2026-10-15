@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook refuses a reading of an Estimate that a decision line of the same session creates or updates until the Retro of that session opens, writes it after, and says why only for the reply just finished
-method: uv run pytest tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads and a session ledger in a temp vault
 checked: 2026-10-05
 origin: raw/2026-09-25/1654/ledger.md#case-428.1
 sprint: migration
@@ -15,12 +15,12 @@ tags: [session, hooks, harness, ledger]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ledger` of `guppi/ledger.py` finds a fresh `estimate[<slug>]` line in a `LEDGER` block of the session, and a decision line `create` or `update` of `<slug>` stands in the session's ledger or among the lines the hook writes on the same `Stop`.
+The `Stop` hook `uv run --project .guppi guppi ledger` of `.guppi/guppi/ledger.py` finds a fresh `estimate[<slug>]` line in a `LEDGER` block of the session, and a decision line `create` or `update` of `<slug>` stands in the session's ledger or among the lines the hook writes on the same `Stop`.
 
 Then:
 While the event log of the session's window holds no mark `retro` of this session after its `hi`, the line is not written: the reading waits for Retro.
 **＋** Once that mark stands, the line is written as any other reading of the `Stop`.
-**＋** The mark is judged by `retro_marked` of `guppi/onward.py`, imported, the one judgment of the mark.
+**＋** The mark is judged by `retro_marked` of `.guppi/guppi/onward.py`, imported, the one judgment of the mark.
 **＋** A line of a reply written before the mark stays refused, and the hook skips it at every later `Stop` without a word.
 **＋** A reading of the old slug of a page that an `update` of this session renames falls under the same rule: the decision line names the old slug.
 **＋** When a refused line stands in the reply just finished, the hook exits 2 with one stderr line per refused line, which names the Case and says that the reading is taken at the Retro of this session.
@@ -40,3 +40,7 @@ While the event log of the session's window holds no mark `retro` of this sessio
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L11
 - 2026-10-05 updated: the Criterion replaced whole — the reading is refused only before the mark retro of the session (case 670.1) · [[decision-case-670.1]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/2103/ledger.md#L1
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

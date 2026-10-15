@@ -15,7 +15,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-`case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, writes a round with an option that rests on whether a check passes, such as `make lint`, `make test` or a check on GitHub.
+`case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, writes a round with an option that rests on whether a check passes, such as `uv run --project .guppi guppi check`, `uv run --project .guppi guppi test` or a check on GitHub.
 
 Then:
 Before it recommends that option, it reads what that check printed at its last run, as `## Flags` and `## Readings at the close` of `vault/wiki/brief.md` report it, judges the option against that output, and quotes it with its source in the `context`.
@@ -33,3 +33,5 @@ Before it recommends that option, it reads what that check printed at its last r
 - 2026-10-13 status: pending → failed · raw/2026-10-13/1426/ledger.md#L28
 - 2026-10-13 updated: the Criterion written again whole and the purpose set to quote the output with its source, after the failed reading of session 1426 (case 801) · [[decision-case-801]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L114
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
+- 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]

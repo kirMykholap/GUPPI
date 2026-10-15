@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-materialize]]"
 purpose: The Criterion materialize lifts from a Case is its when and then, never its given
-method: pytest tests/test_materialize.py on a temp Spec
+method: pytest .guppi/tests/test_materialize.py on a temp Spec
 checked: 2026-10-02
 origin: raw/2026-09-23/1355/ledger.md#case-378.2
 sprint: migration
@@ -32,3 +32,4 @@ The entry's `sections.Criterion` is the `When:` and `Then:` of the Case, verbati
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1355/ledger.md#L39
 - 2026-10-02 updated: the Criterion replaced whole — the lift covers a create and an update that carries set.status, not an update with change alone (case 588.3) · [[decision-case-588.3]]
 - 2026-10-02 status: pending → passed · raw/2026-10-02/1834/ledger.md#L34
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

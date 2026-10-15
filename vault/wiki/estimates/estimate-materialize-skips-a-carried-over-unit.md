@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-materialize]]"
 purpose: A unit holding carry.md is skipped, with one line on stdout
-method: pytest in tests/test_materialize.py, the tests of the skip
+method: pytest in .guppi/tests/test_materialize.py, the tests of the skip
 checked: 2026-09-24
 origin: raw/2026-09-16/1034/ledger.md#case-190.3
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 When:
-`uv run guppi materialize` reaches a unit whose folder holds `carry.md`.
+`uv run --project .guppi guppi materialize` reaches a unit whose folder holds `carry.md`.
 
 Then:
 The unit is skipped and one line naming it is printed on stdout; no `materialize.yaml` is written or extended for it.
@@ -32,3 +32,5 @@ The unit is skipped and one line naming it is printed on stdout; no `materialize
 - 2026-09-17 ref removed · one-off migration · raw/2026-09-16/2238/spec.md#case-210
 - 2026-09-25 updated: the Criterion replaced whole — the Given of case 190.3 out by the model of case 378 (case 401.7) · [[decision-case-401.7]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L32
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

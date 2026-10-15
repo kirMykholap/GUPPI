@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-rules-schema]]"
 purpose: A Rule page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
-method: pytest tests/test_schemas.py -k rules on the live vault/wiki/rules/schema.yaml — a page in the shape, then one defect at a time; the live reading make lint, no schema finding on wiki/rules/ but the placeholders
+method: pytest .guppi/tests/test_schemas.py -k rules on the live vault/wiki/rules/schema.yaml — a page in the shape, then one defect at a time; the live reading uv run --project .guppi guppi check, no schema finding on wiki/rules/ but the placeholders
 checked: 2026-10-13
 origin: raw/2026-09-22/0014/ledger.md#case-305.1
 sprint: migration
@@ -39,3 +39,5 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L63
 - 2026-10-13 updated: the Criterion replaced whole — the field core and the shipped values (case 804) · [[decision-case-804.2]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L117
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

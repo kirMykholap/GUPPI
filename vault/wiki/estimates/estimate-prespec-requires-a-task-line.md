@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: A Case with work has its tasks block, and every Estimate it creates or sets pending has a read line of its own
-method: uv run pytest tests/test_prespec.py
+method: uv run --project .guppi pytest .guppi/tests/test_prespec.py
 checked: 2026-09-26
 origin: raw/2026-09-24/1916/ledger.md#case-399.4
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-`uv run guppi prespec --check <plan>` reads the `tasks` block of each Case of the plan.
+`uv run --project .guppi guppi prespec --check <plan>` reads the `tasks` block of each Case of the plan.
 
 Then:
 A Case with a decision line of a kind other than `defer` in the window and no `tasks` block is the finding `case N: decision lines and no tasks block`.
@@ -34,3 +34,6 @@ A Case with a decision line of a kind other than `defer` in the window and no `t
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L40
 - 2026-09-25 updated: the Criterion replaced whole — a renamed Estimate is read under the slug of its rename (case 432) · [[decision-case-432]]
 - 2026-09-26 status: pending → passed · raw/2026-09-26/1745/ledger.md#L31
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

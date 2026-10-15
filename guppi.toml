@@ -1,3 +1,5 @@
 # guppi settings, rendered from vault/wiki/rules/rule-guppi-config.md
 documentation_lang = "en"
 chat_lang = "ru"
+test = ["uv run --project .guppi pytest -q"]
+style = ["uv run --project .guppi ruff check .", "uv run --project .guppi ruff format --check ."]

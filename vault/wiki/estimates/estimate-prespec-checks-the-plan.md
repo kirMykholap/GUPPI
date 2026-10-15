@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: prespec --check finds the session by its stamp, parses the plan and the ledger lines, and prints one line per finding, exit 1 on any
-method: pytest tests/test_prespec.py, the tests of --check
+method: pytest .guppi/tests/test_prespec.py, the tests of --check
 checked: 2026-09-24
 origin: raw/2026-09-16/1955/ledger.md#case-203.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, workflow, harness, tests]
 ## Criterion
 
 When:
-`uv run guppi prespec --check <plan>` runs.
+`uv run --project .guppi guppi prespec --check <plan>` runs.
 
 Then:
 The stamp is `--session`, else `CLAUDE_SESSION_ID`; with neither, one line on stderr `prespec: no session id; pass --session <stamp> from the hi: line`, exit 2, nothing checked; with no file at `<plan>`, `prespec: no plan file at <plan>`, exit 2.
@@ -55,3 +55,5 @@ The stamp is `--session`, else `CLAUDE_SESSION_ID`; with neither, one line on st
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1126/ledger.md#L40
 - 2026-09-25 updated: the Criterion replaced whole — the run of prespec --check by the model of case 378; the lines, the frontier, the tasks and the form of an item moved to their own Estimates (case 399.1) · [[decision-case-399.1]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L37
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

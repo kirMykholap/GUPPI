@@ -15,7 +15,7 @@ tags: [session, workflow, hooks]
 ## Criterion
 
 When:
-The main agent ends a reply that carries a `- decision[...]` line inside a `LEDGER` block, and the `Stop` hook `guppi/ledger.py` looks in `vault/raw/<date>/event_log.md` for a `hi` line of the session.
+The main agent ends a reply that carries a `- decision[...]` line inside a `LEDGER` block, and the `Stop` hook `.guppi/guppi/ledger.py` looks in `vault/raw/<date>/event_log.md` for a `hi` line of the session.
 
 Then:
 In a session opened without `/hi`, the line reaches no ledger of the session, and the reply the person sees names the cause.
@@ -34,3 +34,4 @@ In a session opened without `/hi`, the line reaches no ledger of the session, an
 - 2026-09-28 updated: the Criterion replaced whole — one When and Then, the session folder of the ledger; purpose and method set, Context and Method out (case 485.1) · [[decision-case-485.1]]
 - 2026-10-05 updated: the method is the make target alone; the live session without /hi is no longer waited for (case 637.4) · [[decision-case-637.4]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/0109/ledger.md#L7
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]

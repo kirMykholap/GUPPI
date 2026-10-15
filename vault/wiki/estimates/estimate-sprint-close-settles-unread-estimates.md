@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-sprint-close]]"
 purpose: At the close of a sprint each pending or failed Estimate is put to the person, who has it read, carries it into the next sprint or archives it unread, before any page moves; an Estimate of the sprint page is read or archived with the sprint page and never carried, and one that stands failed goes with the sprint page; any other Estimate, one whose reading came out failed included, is settled only when the close names it to be carried or archived
-method: pytest tests/test_sprint_close.py -k settle
+method: pytest .guppi/tests/test_sprint_close.py -k settle
 checked: 2026-10-10
 origin: raw/2026-10-03/0317/ledger.md#case-612.4
 sprint: migration
@@ -15,8 +15,8 @@ tags: [sprint, workflow]
 ## Criterion
 
 When:
-`uv run guppi sprint-close --sprint <id>` closes the sprint `entity-sprint-<id>` of the made-up vault of `tests/test_sprint_close.py`, its preview first and then its run with `--apply`, after each Estimate that `entity-sprint-<id>` lists and that does not stand `passed` is read or archived unread, as the person chooses; someone reads the record of the close, `vault/wiki/estimates/` and `vault/archive/` after it.
-**＋** Or the preview `uv run guppi sprint-close --sprint <id>` runs over the live vault, and someone reads its output against `vault/wiki/estimates/`.
+`uv run --project .guppi guppi sprint-close --sprint <id>` closes the sprint `entity-sprint-<id>` of the made-up vault of `.guppi/tests/test_sprint_close.py`, its preview first and then its run with `--apply`, after each Estimate that `entity-sprint-<id>` lists and that does not stand `passed` is read or archived unread, as the person chooses; someone reads the record of the close, `vault/wiki/estimates/` and `vault/archive/` after it.
+**＋** Or the preview `uv run --project .guppi guppi sprint-close --sprint <id>` runs over the live vault, and someone reads its output against `vault/wiki/estimates/`.
 
 Then:
 Before any page of the close moves, the close lists to the person each Estimate under `vault/wiki/estimates/` that stands `pending` or `failed`.
@@ -40,3 +40,5 @@ Before any page of the close moves, the close lists to the person each Estimate 
 - 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L4
 - 2026-10-10 updated: the Criterion replaced whole — a failed Estimate outside the sprint page is settled only when --carry or --archive-unread names it, as guppi/sprint_close.py does; the purpose set anew; the method the pytest run alone, since no sprint page is live to preview · [[decision-case-763.1]]
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1713/ledger.md#L21
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

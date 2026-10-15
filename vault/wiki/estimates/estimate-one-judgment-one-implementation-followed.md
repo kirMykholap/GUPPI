@@ -15,7 +15,7 @@ tags: [harness, workflow, tests]
 ## Criterion
 
 When:
-The agent writes code in `guppi/` that judges a text another part of the pipeline already judges, such as a check beside a writer, a ticker or another check.
+The agent writes code in `.guppi/guppi/` that judges a text another part of the pipeline already judges, such as a check beside a writer, a ticker or another check.
 
 Then:
 The pattern or the predicate lives in one module, and both sides import it.
@@ -33,3 +33,4 @@ The pattern or the predicate lives in one module, and both sides import it.
 - 2026-09-25 status: pending → passed · raw/2026-09-25/1228/ledger.md#L43
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the functions lifted by case 351 out (case 492.3) · [[decision-case-492.3]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L72
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]

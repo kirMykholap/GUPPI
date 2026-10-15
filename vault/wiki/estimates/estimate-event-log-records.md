@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-event-log]]"
-method: pytest in tests/test_event.py and tests/test_gate.py with piped JSON payloads against a temp vault; the git-ignore and timing readings once by hand, through a pipe, written into the estimate line; by hand, one /hi outside plan mode and one in it, the permission_mode of each payload written into the reading
+method: pytest in .guppi/tests/test_event.py and .guppi/tests/test_gate.py with piped JSON payloads against a temp vault; the git-ignore and timing readings once by hand, through a pipe, written into the estimate line; by hand, one /hi outside plan mode and one in it, the permission_mode of each payload written into the reading
 checked: 2026-10-03
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
@@ -14,7 +14,7 @@ tags: [session, hooks, harness]
 ## Criterion
 
 When:
-A session starts, a tool call completes, the person submits a prompt, or the agent calls a skill through `Skill`; `uv run guppi event <name>` and `uv run guppi gate` read the JSON payload through a pipe, its `session_id` the stamp.
+A session starts, a tool call completes, the person submits a prompt, or the agent calls a skill through `Skill`; `uv run --project .guppi guppi event <name>` and `uv run --project .guppi guppi gate` read the JSON payload through a pipe, its `session_id` the stamp.
 
 Then:
 After the start and one tool call, `raw/<date>/event_log.md` carries a `session-start` line with the session's stamp and a `tool` line after it.
@@ -44,3 +44,5 @@ After the start and one tool call, `raw/<date>/event_log.md` carries a `session-
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L27
 - 2026-09-27 updated: the Criterion replaced whole — a /hi outside plan mode writes no hi and exits 2; the Given folded into When (case 445.6) · [[decision-case-445.6]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L4
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

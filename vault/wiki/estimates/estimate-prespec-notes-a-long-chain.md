@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: A chain of more than seven ＋ lines is named without blocking the Spec
-method: pytest tests/test_prespec.py on a temp plan
+method: pytest .guppi/tests/test_prespec.py on a temp plan
 origin: raw/2026-09-23/1355/ledger.md#case-378.8
 sprint: migration
 created: 2026-09-23
@@ -29,3 +29,4 @@ Then:
 
 - 2026-09-23 created · [[decision-case-378.8]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1355/ledger.md#L43
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

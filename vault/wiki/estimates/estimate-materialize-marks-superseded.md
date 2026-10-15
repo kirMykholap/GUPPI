@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-materialize]]"
 purpose: A supersedes marks every entry of the earlier Case, in any unit
-method: pytest in tests/test_materialize.py, the tests of the supersedes mark, a test where two decision lines retire one Case among them
+method: pytest in .guppi/tests/test_materialize.py, the tests of the supersedes mark, a test where two decision lines retire one Case among them
 checked: 2026-10-12
 origin: raw/2026-09-16/1034/ledger.md#case-189
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger, librarian]
 ## Criterion
 
 When:
-`uv run guppi materialize` lifts a decision line that carries one `{supersedes:case N}` block or several, and the entries of each Case N, or of its sub-cases, stand in this unit's `materialize.yaml` or in the `materialize.yaml` of another unit.
+`uv run --project .guppi guppi materialize` lifts a decision line that carries one `{supersedes:case N}` block or several, and the entries of each Case N, or of its sub-cases, stand in this unit's `materialize.yaml` or in the `materialize.yaml` of another unit.
 **＋** A later decision line lifted in the same run, or in a later run, carries a `{supersedes:case N}` block for the same Case N.
 
 Then:
@@ -25,7 +25,7 @@ For each Case N that a block of the line names, every entry with `case: N` gets 
 **＋** The entry of the line carries `supersedes` as a list with one Case per block, in the order of the blocks. The `decisions` record of its Case lists under `supersedes` every Case that its lines name.
 **＋** The `materialize.yaml` of another unit is written with that mark only.
 **＋** An entry marked while no heading of its own Case stands in the unit's `spec.md` carries no `incomplete: [then]`, and its `decisions` record no `case_text` and no `incomplete` for a section.
-**＋** Whether a block covers a Case is judged by `in_family` of `guppi/materialize.py`; `remove_case` of `guppi/ratified.py`, `guppi/prespec.py` and `guppi/casecheck.py` import it.
+**＋** Whether a block covers a Case is judged by `in_family` of `.guppi/guppi/materialize.py`; `remove_case` of `.guppi/guppi/ratified.py`, `.guppi/guppi/prespec.py` and `.guppi/guppi/casecheck.py` import it.
 **－** An entry without `case` — an `estimate` or a `lesson` entry — gets no mark.
 **－** An entry of an existing `materialize.yaml` whose `supersedes` is one value, not a list, is read as a list of one.
 **－** An entry of an existing `materialize.yaml` whose `superseded_by` is one value, not a list, is read as a list of one, and a new mark is appended to that list.
@@ -51,3 +51,6 @@ For each Case N that a block of the line names, every entry with `case: N` gets 
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1831/ledger.md#L5
 - 2026-10-12 updated: the Criterion replaced whole — the superseded_by of an entry lists every Case that retires it; the method is the test run alone (case 776) · [[decision-case-776]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/1449/ledger.md#L7
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

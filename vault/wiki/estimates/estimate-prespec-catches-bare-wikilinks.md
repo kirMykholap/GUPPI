@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: A bare `[[slug]]` in the plan file that names no page is a finding of pre-spec before the Spec is approved
-method: pytest tests/test_prespec.py, the tests of check_bare_links
+method: pytest .guppi/tests/test_prespec.py, the tests of check_bare_links
 checked: 2026-09-29
 origin: raw/2026-09-20/0958/ledger.md#case-264.2
 sprint: migration
@@ -33,3 +33,4 @@ One line `case N: [[slug]] outside a code span names no page` is printed for eve
 - 2026-09-20 status: pending → passed · raw/2026-09-20/0958/ledger.md#L26
 - 2026-09-28 updated: the Criterion replaced whole — When and Then only, Given and the bounds line out (case 484.5) · [[decision-case-484.5]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L33
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

@@ -15,7 +15,7 @@ tags: [harness, workflow, session]
 ## Criterion
 
 When:
-A session starts after `uv run guppi render` has written `.claude/rules/search-leaves-out-decisions.md` from `rule-search-leaves-out-decisions`, and the main agent, `ask-guppi` or `case-guppi` calls Read, or Grep with a `path` that is `vault/wiki/decisions/` or lies in it.
+A session starts after `uv run --project .guppi guppi render` has written `.claude/rules/search-leaves-out-decisions.md` from `rule-search-leaves-out-decisions`, and the main agent, `ask-guppi` or `case-guppi` calls Read, or Grep with a `path` that is `vault/wiki/decisions/` or lies in it.
 
 Then:
 `.claude/rules/search-leaves-out-decisions.md` stands in the context of the main agent, of `ask-guppi` and of `case-guppi`.
@@ -35,3 +35,4 @@ Then:
 - 2026-10-05 status: pending → failed · raw/2026-10-05/1343/ledger.md#L10
 - 2026-10-05 updated: the Criterion replaced whole — the load of the file and the reads of Decision pages only; the Greps move to estimate-search-leaves-out-decisions-by-the-grep-hook; purpose and method set anew (case 664.2) · [[decision-case-664.2]]
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.11]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

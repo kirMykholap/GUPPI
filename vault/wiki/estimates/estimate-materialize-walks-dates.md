@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-materialize]]"
 purpose: Every unit under raw/ is walked, so a line written after the librarian's commit is lifted by the next run
-method: uv run pytest tests/test_materialize.py; live, the librarian's next run over more than one unit
+method: uv run --project .guppi pytest .guppi/tests/test_materialize.py; live, the librarian's next run over more than one unit
 checked: 2026-09-24
 origin: raw/2026-09-10/ledger.md#case-43
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 When:
-`uv run guppi materialize` runs, with `--date` or without.
+`uv run --project .guppi guppi materialize` runs, with `--date` or without.
 
 Then:
 The unit of the walk is a session folder `raw/<date>/<HHMM>/` holding a `ledger.md`: its yaml `raw/<date>/<HHMM>/materialize.yaml`, its Spec `raw/<date>/<HHMM>/spec.md` alone, the `origin` of its entries `raw/<date>/<HHMM>/ledger.md#case-N` and `#L<n>`.
@@ -41,3 +41,6 @@ The unit of the walk is a session folder `raw/<date>/<HHMM>/` holding a `ledger.
 - 2026-09-16 status: pending → passed · raw/2026-09-16/1651/ledger.md#L35
 - 2026-09-25 updated: the Criterion replaced whole — the walk by the model of case 378, the error of a line and of a unit left to estimate-materialize-fails-alone; purpose and method as fields (case 397.4) · [[decision-case-397.4]]
 - 2026-09-25 status: pending → passed · raw/2026-09-24/2214/ledger.md#L30
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

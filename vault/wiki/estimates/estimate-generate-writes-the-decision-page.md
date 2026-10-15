@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-page-generation]]"
 purpose: One Decision page per Case, written before its entries, with its lists, its body and its defers
-method: uv run pytest tests/test_generate.py, the tests of the Decision page
+method: uv run --project .guppi pytest .guppi/tests/test_generate.py, the tests of the Decision page
 checked: 2026-10-11
 origin: raw/2026-09-16/1955/ledger.md#case-201.2
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, ledger]
 ## Criterion
 
 When:
-`uv run guppi generate` reaches the first entry of a Case in `materialize.yaml`, or a `decisions` record with no page yet.
+`uv run --project .guppi guppi generate` reaches the first entry of a Case in `materialize.yaml`, or a `decisions` record with no page yet.
 
 Then:
 One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status: current`, one list per kind present — `create`, `update`, `delete`, `defer` — the slugs in ledger order; `source` when a line carries one; `supersedes`; `origin`, `sprint`, `created`; `tags`, the union of the targets' tags; the body `## Problem` and `## Recommend` from `case_text` when it carries them, and `## Deferred` with one `### [[slug]]` per target of a `defer` line and its `purpose` verbatim.
@@ -59,3 +59,6 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 - 2026-10-06 status: pending → passed · raw/2026-10-05/2249/ledger.md#L22
 - 2026-10-11 updated: the Criterion replaced whole — a page whose superseded_by already names the new page, by an earlier step of the same record too, gets no second History line and no second log line; the method is the test run alone · [[decision-case-773]]
 - 2026-10-11 status: pending → passed · raw/2026-10-10/2350/ledger.md#L9
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

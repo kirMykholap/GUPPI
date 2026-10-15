@@ -29,7 +29,7 @@ is no step the agent can forget or reorder. The `hi` mark in the event log is le
 name: hi
 description: Open a working session — sprint, brief, git state, then the Frontier.
 disable-model-invocation: true
-allowed-tools: Bash(uv run guppi render --sync), Bash(git branch --show-current), Bash(git status --short), Bash(uv run guppi tail)
+allowed-tools: Bash(uv run --project .guppi guppi render --sync), Bash(git branch --show-current), Bash(git status --short), Bash(uv run --project .guppi guppi tail)
 ---
 <!-- rule-internal-context -->
 <!-- rule-git-context -->
@@ -129,3 +129,4 @@ copies of one text, kept identical by hand.
 - 2026-10-12 updated: an open W line whose reading cannot run now stays open under Work and makes no Cases line (case 781) · [[decision-case-781.8]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: each pointer stands in a bracket of its own, the slugs of shipped rules outside it · [[decision-case-809]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi under an id, plain or of a sprint, that the store holds from the answer of another agent goes back to it with a free id, and the other agent's entry is kept
-method: uv run pytest tests/test_casecheck.py -k subagent_clash
+method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k subagent_clash
 checked: 2026-10-13
 origin: raw/2026-10-03/0115/ledger.md#case-610.2
 sprint: migration
@@ -15,7 +15,7 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-`SubagentStop` fires when `case-guppi` stops after it wrote or edited `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and `uv run guppi casecheck --subagent` reads the Cases of that file, `agent_id` of the payload, and `<plan>.checked.json`.
+`SubagentStop` fires when `case-guppi` stops after it wrote or edited `raw/<date>/<hi HHMM>/cases/case-<N>.md`, and `uv run --project .guppi guppi casecheck --subagent` reads the Cases of that file, `agent_id` of the payload, and `<plan>.checked.json`.
 
 Then:
 The hook stores each Case of the file in `<plan>.checked.json` with the `agent_id` of the payload beside its text, its findings and the time of the store.
@@ -24,7 +24,7 @@ The hook stores each Case of the file in `<plan>.checked.json` with the `agent_i
 **＋** Each Case of that file is stored apart, under its id joined with its `agent_id`, and the entry of the other agent under the id alone stays as it was.
 **＋** The Spec hook, the `Stop` comparison and the comparison of a case file with the store read the entry under the id alone.
 **－** An unchanged file whose text its entry apart already holds with this finding is stored again and exits 0, so it is not sent back twice.
-**－** An entry with no `agent_id`, stored before the change or held by `uv run guppi caseid --next`, gives no finding of this check, and neither does a file whose `agent_id` is the one of the entry under the id.
+**－** An entry with no `agent_id`, stored before the change or held by `uv run --project .guppi guppi caseid --next`, gives no finding of this check, and neither does a file whose `agent_id` is the one of the entry under the id.
 
 ## Result
 
@@ -41,3 +41,6 @@ The hook stores each Case of the file in `<plan>.checked.json` with the `agent_i
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L6
 - 2026-10-13 updated: the Criterion replaced whole — an id of a sprint is judged as a plain one, and an id held by guppi caseid --next gives no finding (case 788.7) · [[decision-case-788.7]]
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L53
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

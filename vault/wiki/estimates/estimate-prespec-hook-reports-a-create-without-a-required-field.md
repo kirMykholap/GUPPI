@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-prespec-hook]]"
-purpose: Whether pre-spec reports a create item that lacks a field materialize requires, by one function of guppi/materialize.py, and gives none for a missing type
-method: uv run pytest tests/test_prespec.py tests/test_materialize.py -k required_field
+purpose: Whether pre-spec reports a create item that lacks a field materialize requires, by one function of .guppi/guppi/materialize.py, and gives none for a missing type
+method: uv run --project .guppi pytest .guppi/tests/test_prespec.py .guppi/tests/test_materialize.py -k required_field
 checked: 2026-10-13
 origin: raw/2026-10-09/0200/ledger.md#case-748.2
 sprint: migration
@@ -15,13 +15,13 @@ tags: [harness, workflow, schema]
 ## Criterion
 
 When:
-`judge` of `guppi/prespec.py` — run by `uv run guppi prespec --check <plan> --session <id>`, by the check of a case file of `rule-case-check` or by the check after ratification of `rule-spec-write` — reads a `create` item of a page of `rules`, `entities`, `estimates` or `insights` in the `then` blocks.
+`judge` of `.guppi/guppi/prespec.py` — run by `uv run --project .guppi guppi prespec --check <plan> --session <id>`, by the check of a case file of `rule-case-check` or by the check after ratification of `rule-spec-write` — reads a `create` item of a page of `rules`, `entities`, `estimates` or `insights` in the `then` blocks.
 
 Then:
 A `create` item that lacks a field which `guppi materialize` would name under `incomplete` gives one finding that names the Case, the slug and the missing field.
 **＋** A `create` of a rule of kind `Leaf` with no `ref`, on its item or on its decision line, and no `applies_to` lacks the field `parent`: `judge` gives its finding, and `guppi materialize` names `parent` under `incomplete`.
 **＋** A `create` of a rule of kind `Leaf` with an `applies_to` and no `ref` lacks no `parent`, on either side.
-**＋** The list of required fields and the judgment of what is missing are one function of `guppi/materialize.py`, which the lift and `guppi/prespec.py` both call.
+**＋** The list of required fields and the judgment of what is missing are one function of `.guppi/guppi/materialize.py`, which the lift and `.guppi/guppi/prespec.py` both call.
 **＋** A field counts as present when the item writes it as a key or under `sections`, and the tags count as present when the item or its decision line carries them.
 **－** The finding never names `type`, since the lift fills it from the category.
 **－** An Estimate with no `method` gives no second finding beside the one of the form of its method.
@@ -37,3 +37,7 @@ A `create` item that lacks a field which `guppi materialize` would name under `i
 - 2026-10-09 status: pending → passed · raw/2026-10-09/0200/ledger.md#L21
 - 2026-10-13 updated: the Criterion replaced whole — the parent of a Leaf rule, or its applies_to, is judged by create_lacks on both sides (case 795.2) · [[decision-case-795.2]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L24
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

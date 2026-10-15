@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-raw-archive]]"
 purpose: guppi archive moves a done unit of raw whole into the archive of its date, keeps an undone one with its reason, and never touches the session of the run
-method: "pytest tests/test_archive.py, plus by hand on the archive step of a later librarian's run: its stdout, the raw folder and the origin findings of make lint before and after"
+method: "pytest .guppi/tests/test_archive.py, plus by hand on the archive step of a later librarian's run: its stdout, the raw folder and the origin findings of uv run --project .guppi guppi check before and after"
 checked: 2026-09-29
 origin: raw/2026-09-13/ledger.md#case-100.1
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, librarian, ledger]
 ## Criterion
 
 When:
-`uv run guppi archive` runs, as a step of the librarian's run or by hand, over the units under `vault/raw/<date>/`.
+`uv run --project .guppi guppi archive` runs, as a step of the librarian's run or by hand, over the units under `vault/raw/<date>/`.
 
 Then:
 A unit is a session folder `vault/raw/<date>/<HHMM>/` that holds a `ledger.md`, or a date-level `ledger.md` at the root of `vault/raw/<date>/` with its yaml. A unit is done when its yaml exists, every entry under `entries` carries `applied` or `superseded_by`, and the number of every line of its `ledger.md` that `materialize.parse_line` reads as a record stands in the `line` or `folded` of an entry or under `unparsed`.
@@ -39,3 +39,6 @@ A unit is a session folder `vault/raw/<date>/<HHMM>/` that holds a `ledger.md`, 
 - 2026-09-22 updated: the layout named by its rules (case 318) · [[decision-case-318]]
 - 2026-09-29 updated: the Criterion replaced whole — the block 100.1 as When and Then, the pointer to rule-materialize out; purpose and method set, Context and Method out (case 500.4) · [[decision-case-500.4]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L4
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

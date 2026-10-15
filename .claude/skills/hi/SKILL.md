@@ -2,7 +2,7 @@
 name: hi
 description: Open a working session — sprint, brief, git state, then the Frontier.
 disable-model-invocation: true
-allowed-tools: Bash(uv run guppi render --sync), Bash(git branch --show-current), Bash(git status --short), Bash(uv run guppi tail)
+allowed-tools: Bash(uv run --project .guppi guppi render --sync), Bash(git branch --show-current), Bash(git status --short), Bash(uv run --project .guppi guppi tail)
 ---
 <!-- rule-internal-context -->
 @vault/wiki/sprint.md
@@ -15,13 +15,13 @@ allowed-tools: Bash(uv run guppi render --sync), Bash(git branch --show-current)
 <!-- /rule-internal-context -->
 
 <!-- rule-git-context -->
-Render: !`uv run guppi render --sync`
+Render: !`uv run --project .guppi guppi render --sync`
 Branch: !`git branch --show-current`
 Status: !`git status --short`
 <!-- /rule-git-context -->
 
 <!-- rule-ledger-tail -->
-Tail: !`uv run guppi tail`
+Tail: !`uv run --project .guppi guppi tail`
 <!-- /rule-ledger-tail -->
 
 

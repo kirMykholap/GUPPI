@@ -20,7 +20,7 @@ In Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestrati
 Then:
 In the same reply the main agent shows a short Case of its own in the form of a deferred decision, with no dispatch of `case-guppi`, and carries its `LEDGER` block, with no tool call after it.
 **＋** The block holds one `defer` line for each rule, entity and insight page the Case taken back names, one for each Estimate it updates, and one for the page that each Estimate it updates checks or each Estimate it creates would check, once per page; each line carries `{supersedes:case N}` for the Case or sub-case taken back.
-**＋** At the librarian's run, `guppi/generate.py` adds the short Case to the `deferred_by` of each rule, entity and insight page a `defer` line names, and each such page stands in `vault/wiki/backlog.md`, also when the Case taken back changed only existing Estimates.
+**＋** At the librarian's run, `.guppi/guppi/generate.py` adds the short Case to the `deferred_by` of each rule, entity and insight page a `defer` line names, and each such page stands in `vault/wiki/backlog.md`, also when the Case taken back changed only existing Estimates.
 **＋** The `context` of the short Case names the Case taken back and each Estimate that Case creates; the person's words asking for the take-back are its ratification, and no question asks for it.
 **＋** The `Stop` hook of `rule-spec-write` writes the short Case under `## Deferred` and removes the Case taken back from the plan file.
 **＋** When no part of the Case stays in the plan, the line of its item in `raw/<date>/<hi HHMM>/frontier.md` changes in the same reply from `[x] … · case N` to `[-] … · sprint · defer` for an item of the sprint, `[-] … · backlog · kept` for an item of the backlog, or `[-] … · defer case M` of the short Case for any other source.
@@ -38,3 +38,4 @@ In the same reply the main agent shows a short Case of its own in the form of a 
 - 2026-10-07 status: pending → passed · raw/2026-10-07/1804/ledger.md#L19
 - 2026-10-07 updated: the Criterion replaced whole — the page each updated Estimate checks is put off too, and the reply closes the line by the closer of its source (case 723.1) · [[decision-case-723.1]]
 - 2026-10-07 status: pending → passed · raw/2026-10-07/2114/ledger.md#L21
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]

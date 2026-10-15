@@ -15,10 +15,10 @@ tags: [harness, workflow]
 ## Criterion
 
 When:
-The person types `/grill-me` on `UserPromptSubmit`, or `case-guppi` answers with a round of questions, with `.claude/skills/grill-me/SKILL.md` loaded by `skills: [grill-me]` in `.claude/agents/case-guppi.md`, after `uv run guppi render` wrote `.claude/skills/grill-me/SKILL.md` from `rule-skill-grill-me`.
+The person types `/grill-me` on `UserPromptSubmit`, or `case-guppi` answers with a round of questions, with `.claude/skills/grill-me/SKILL.md` loaded by `skills: [grill-me]` in `.claude/agents/case-guppi.md`, after `uv run --project .guppi guppi render` wrote `.claude/skills/grill-me/SKILL.md` from `rule-skill-grill-me`.
 
 Then:
-`uv run guppi render --check` exits 0: `.claude/skills/grill-me/SKILL.md` equals the Render of `rule-skill-grill-me`.
+`uv run --project .guppi guppi render --check` exits 0: `.claude/skills/grill-me/SKILL.md` equals the Render of `rule-skill-grill-me`.
 **＋** The agent asks in rounds: each round holds every question whose prerequisites are settled, and the agent waits for the answers before the next round.
 **＋** Each question opens with its numbered `❓ **Qn** - **<title>**:` line and closes with its `➡️` line, the recommended answer, together with the lines of a list under it. Its body starts on the next line with one `**Now:**` line that says once what holds today, or that nothing exists yet.
 **＋** The label `**Options:**` stands alone on the line before the first option. Each option starts on its own line, after a blank line, with the mark `🔹` and its name in bold. Directly under its name stands one `**After:**` line, indented two spaces with no list dash before the label, that says what holds with that option.
@@ -53,3 +53,4 @@ Then:
 - 2026-10-03 status: failed → passed · raw/2026-10-03/0115/ledger.md#L7
 - 2026-10-09 updated: the Criterion replaced whole — the After line of an option stands with no list dash (case 744.1) · [[decision-case-744.1]]
 - 2026-10-09 status: pending → passed · raw/2026-10-08/2352/ledger.md#L36
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]

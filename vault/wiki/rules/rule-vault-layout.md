@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents a file from sitting in the vault in a place nobody ratified — under a category it does not belong to, under a name that is not its slug, or at the root of wiki/ with no rule that writes it
 status: built
 enforcement: check
-implementation_ref: [guppi/lint.py, tests/test_lint.py]
+implementation_ref: [.guppi/guppi/lint.py, .guppi/tests/test_lint.py]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-vault-layout-holds]]"]
 origin: raw/2026-09-22/1121/ledger.md#case-315
@@ -29,3 +29,5 @@ No file of `wiki/` is written by hand, but for what a merge of `main` by `/merge
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-13 updated: a merge of main by /merge-main writes the joined text of a conflicted page and git joins log.md and tags.md (case 790) · [[decision-case-790]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

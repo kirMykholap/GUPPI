@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-spec-capture]]"
 purpose: "The hook prints one line after the Spec is written: for a plan that names a conserved Spec, the call of /box with its folder and no question; otherwise the fork, asked by AskUserQuestion with /work and /carry, and the skill picked called"
-method: uv run pytest tests/test_spec.py -k 'fork or box'; by hand, an ExitPlanMode of a session, and an ExitPlanMode of a session that took a conserved Spec
+method: uv run --project .guppi pytest .guppi/tests/test_spec.py -k 'fork or box'; by hand, an ExitPlanMode of a session, and an ExitPlanMode of a session that took a conserved Spec
 checked: 2026-10-03
 origin: raw/2026-09-16/1034/ledger.md#case-190.5
 sprint: migration
@@ -21,7 +21,7 @@ Then:
 The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventName: PostToolUse` and `additionalContext`, that holds one line with the session folder and the Spec file `raw/<hi date>/<hi HHMM>/spec.md`.
 **＋** For `PostToolUse` Claude Code adds to the agent's context only `hookSpecificOutput.additionalContext` from a JSON object on stdout; plain stdout with exit 0 goes to the debug log.
 **＋** The agent sees this line in the `ExitPlanMode` result.
-**＋** When the approved plan names the `spec.md` of a folder under `vault/raw/` that `is_carried_over` of `guppi/materialize.py` judges marked by `carry.md`, the line names that folder and tells the agent to call `.claude/skills/box/SKILL.md` with it, and to ask the person nothing.
+**＋** When the approved plan names the `spec.md` of a folder under `vault/raw/` that `is_carried_over` of `.guppi/guppi/materialize.py` judges marked by `carry.md`, the line names that folder and tells the agent to call `.claude/skills/box/SKILL.md` with it, and to ask the person nothing.
 **＋** For any other plan the line is the fork. The fork line tells the agent to ask the person by `AskUserQuestion` with two options, `/work` (Work Mode on the Spec now) and `/carry` (the Spec conserved for a later session), and to start nothing until the person answers.
 **＋** On the answer, the agent calls `.claude/skills/work/SKILL.md` or `.claude/skills/carry/SKILL.md`, the skill of the option picked.
 **－** A `PostToolUse` hook blocks nothing: the tool has run.
@@ -47,3 +47,6 @@ The stdout of the hook is one JSON object, `hookSpecificOutput` with `hookEventN
 - 2026-10-02 updated: the Criterion replaced whole - ratification.md says a Case is ratified by the person's reply (case 595.18) · [[decision-case-595.18]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L9
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

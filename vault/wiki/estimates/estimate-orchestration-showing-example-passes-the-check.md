@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether the example of a showing in orchestration.md passes the check of rule-case-check of a reply that shows a Case, at its Stop and at the person's next message, so the form the main agent copies stays a form the check accepts
-method: uv run pytest tests/test_orchestration.py -k showing_example, passed and not skipped
+method: uv run --project .guppi pytest .guppi/tests/test_orchestration.py -k showing_example, passed and not skipped
 checked: 2026-10-09
 origin: raw/2026-10-05/1343/ledger.md#case-651.2
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-`tests/test_orchestration.py` runs under `uv run pytest`. It reads the block tagged `showing` in `vault/wiki/orchestration.md`, rendered from `rule-orchestration`, and runs over it the functions of `guppi/casecheck.py` that the check of `rule-case-check` runs over a reply that shows a Case — the comparison of its `Stop` run and the judgment of the layout of its run on `UserPromptSubmit` — with a store whose sub-cases hold the ledger lines the example's `ratification` gives them.
+`.guppi/tests/test_orchestration.py` runs under `uv run --project .guppi pytest`. It reads the block tagged `showing` in `vault/wiki/orchestration.md`, rendered from `rule-orchestration`, and runs over it the functions of `.guppi/guppi/casecheck.py` that the check of `rule-case-check` runs over a reply that shows a Case — the comparison of its `Stop` run and the judgment of the layout of its run on `UserPromptSubmit` — with a store whose sub-cases hold the ledger lines the example's `ratification` gives them.
 
 Then:
 `vault/wiki/orchestration.md` holds, under its own heading at the end of `## Showing and signing a Case`, one block tagged `showing`: a reply that shows a Case with two sub-cases between two horizontal rules — a rule, its heading, one list with an item per sub-case, one `ratification`, a rule and the agent's own text.
@@ -23,8 +23,8 @@ Then:
 **＋** The example is in English; the paragraph before the block says that in the chat the heading, the names and the short texts stand in the language of the chat, that the file goes by `SendUserFile` in the same reply, and that the example passes the check of `rule-case-check` at the `Stop` of the reply and at the person's next message, which is the source of the limits, and that a refusal of the check, or its note at the person's next message, names the limit a showing broke; it lists no other limit.
 **＋** The check finds no text outside the list and the `ratification`, the leading rule included, reads the `ratification` as the showing of each sub-case it names, and finds no difference from the store, and the test passes.
 **＋** The example with the lines of its fence not quoted gives the finding of a text outside the list, and the test asserts it.
-**＋** The test reads the example from `vault/wiki/orchestration.md` and the checks from `guppi/casecheck.py`, and holds no copy of either.
-**－** While `vault/wiki/orchestration.md` holds no block tagged `showing`, both tests of `tests/test_orchestration.py` that read it fail with a message that names the file; no test of the file is skipped.
+**＋** The test reads the example from `vault/wiki/orchestration.md` and the checks from `.guppi/guppi/casecheck.py`, and holds no copy of either.
+**－** While `vault/wiki/orchestration.md` holds no block tagged `showing`, both tests of `.guppi/tests/test_orchestration.py` that read it fail with a message that names the file; no test of the file is skipped.
 
 ## Result
 
@@ -40,3 +40,6 @@ Then:
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L46
 - 2026-10-09 updated: the Criterion replaced whole — the example opens with a horizontal rule · [[decision-case-751.6]]
 - 2026-10-09 status: pending → passed · raw/2026-10-09/2049/ledger.md#L19
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

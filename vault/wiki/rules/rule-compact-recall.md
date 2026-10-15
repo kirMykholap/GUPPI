@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents a working session from going on after a compaction without the texts /hi loads, the Frontier and the Spec in its context
 status: built
 enforcement: hook
-implementation_ref: [guppi/recall.py, guppi/cli.py, tests/test_recall.py, .claude/settings.json]
+implementation_ref: [.guppi/guppi/recall.py, .guppi/guppi/cli.py, .guppi/tests/test_recall.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
 estimates: ["[[estimate-compact-recall-reloads]]"]
 origin: raw/2026-09-21/0019/ledger.md#case-287
@@ -20,7 +20,7 @@ Prevents a working session from going on after a compaction without the texts `/
 
 ## How it works
 
-`uv run guppi recall`, registered on `SessionStart` with the matcher `compact` (`rule-hook-registry`). Reads the payload from stdin; with a `source` other than `compact` or without a `hi` in the session's window — `session_dir` of `guppi/ledger.py`, the ledger hook's own — it prints nothing, exit 0. Otherwise stdout holds one header line naming the time and the session's folder, then one path per line: the `@` lines of `.claude/skills/hi/SKILL.md` in their order, the folder's `frontier.md` when it exists, the Spec — `spec.md` of the folder, or before the approval the plan file the event log names last under `.claude/plans/`, as `guppi gate` finds it (case 122) — then `Frontier:` and the text of `frontier.md`. The list of files is the skill file's, never a copy in the code. Exit 0 always; the hook writes nothing.
+`uv run --project .guppi guppi recall`, registered on `SessionStart` with the matcher `compact` (`rule-hook-registry`). Reads the payload from stdin; with a `source` other than `compact` or without a `hi` in the session's window — `session_dir` of `.guppi/guppi/ledger.py`, the ledger hook's own — it prints nothing, exit 0. Otherwise stdout holds one header line naming the time and the session's folder, then one path per line: the `@` lines of `.claude/skills/hi/SKILL.md` in their order, the folder's `frontier.md` when it exists, the Spec — `spec.md` of the folder, or before the approval the plan file the event log names last under `.claude/plans/`, as `guppi gate` finds it (case 122) — then `Frontier:` and the text of `frontier.md`. The list of files is the skill file's, never a copy in the code. Exit 0 always; the hook writes nothing.
 
 ## History
 
@@ -31,3 +31,6 @@ Prevents a working session from going on after a compaction without the texts `/
 - 2026-10-02 updated: the purpose names the texts /hi loads, no longer the Case schema (case 595.4) · [[decision-case-595.4]]
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-spec-capture]]"
-method: pytest in tests/test_spec.py with piped payloads against a temp vault; by hand, the next approval of a session after the change
+method: pytest in .guppi/tests/test_spec.py with piped payloads against a temp vault; by hand, the next approval of a session after the change
 checked: 2026-09-27
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
@@ -14,12 +14,12 @@ tags: [session, hooks, harness, workflow]
 ## Criterion
 
 When:
-`ExitPlanMode` is approved, and `uv run guppi spec` runs on its `PostToolUse` with the plan in `tool_response.plan`.
+`ExitPlanMode` is approved, and `uv run --project .guppi guppi spec` runs on its `PostToolUse` with the plan in `tool_response.plan`.
 
 Then:
 In a session with a `hi`, the plan is appended to `raw/<hi date>/<hi HHMM>/spec.md` — a `---` separator when the file has content, the stamp `<!-- approved HH:MM:SS · session xxxxxxxx -->` and the plan text — once, even when the hook runs twice.
 **＋** A second approval of the same session appends under `---` and its stamp.
-**＋** The hook changes nothing that stands in the file: earlier documents, the sections the `Stop` hook of `rule-spec-write` wrote and a `## Deferred` section stay as they are, and `uv run guppi materialize` reads their Cases.
+**＋** The hook changes nothing that stands in the file: earlier documents, the sections the `Stop` hook of `rule-spec-write` wrote and a `## Deferred` section stay as they are, and `uv run --project .guppi guppi materialize` reads their Cases.
 **－** Without a `hi` the hook exits 2 naming the session, and the file is untouched.
 **－** The payload of another tool writes nothing: exit 0.
 
@@ -38,3 +38,5 @@ In a session with a `hi`, the plan is appended to `raw/<hi date>/<hi HHMM>/spec.
 - 2026-09-14 status: pending → passed · raw/2026-09-14/1029/ledger.md#L37
 - 2026-09-26 updated: the Criterion replaced whole — the Stop hook of rule-spec-write, not the agent, writes the sections the append leaves (case 441.10) · [[decision-case-441.10]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L35
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

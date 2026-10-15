@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-bash-guard]]"
 purpose: A heredoc with a backslash, a file write or an interpreter it feeds is refused before it runs, with a message that sends the agent to Write and Edit and says the refusal is no finding
-method: uv run pytest tests/test_bashguard.py; the live reading is the first refusal of a session, its message read on stderr
+method: uv run --project .guppi pytest .guppi/tests/test_bashguard.py; the live reading is the first refusal of a session, its message read on stderr
 checked: 2026-10-13
 origin: raw/2026-09-14/1029/ledger.md#case-127
 sprint: migration
@@ -15,7 +15,7 @@ tags: [hooks, harness]
 ## Criterion
 
 When:
-The agent calls `Bash`, and `uv run guppi bashguard` on `PreToolUse` reads `tool_input.command` of the payload and finds every heredoc (`<<` or `<<-`, the marker quoted or not) and its body up to the closing line.
+The agent calls `Bash`, and `uv run --project .guppi guppi bashguard` on `PreToolUse` reads `tool_input.command` of the payload and finds every heredoc (`<<` or `<<-`, the marker quoted or not) and its body up to the closing line.
 
 Then:
 A heredoc whose body holds a backslash, whose marker line writes a file (`>` or `>>` not to `/dev/null`, `tee`), or whose marker line runs an interpreter (`python`, `python3`, `py`, `uv run python`, `node`, `perl` or `ruby`) as one of its commands exits 2 with the reason on stderr: `bashguard: heredoc refused — <a backslash in its body | it writes <path> | it feeds <interpreter>>. Write a whole file with the Write tool and change a file with Edit, never through Bash; only a script goes into the scratchpad, written with the Write tool and run by path. The refusal is this guard working as designed, not an event of the session: do not report it at Retro.`
@@ -40,3 +40,6 @@ A heredoc whose body holds a backslash, whose marker line writes a file (`>` or 
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L35
 - 2026-10-13 updated: the Criterion replaced whole — a heredoc fed into an interpreter is refused (case 796.1) · [[decision-case-796.1]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L25
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

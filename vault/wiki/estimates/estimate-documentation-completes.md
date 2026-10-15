@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-documentation]]"
-method: make test-documentation, the pipeline over tests/test_materialize.py, tests/test_generate.py and tests/test_cleanup.py; the live reading by hand
+method: make test-documentation, the pipeline over .guppi/tests/test_materialize.py, .guppi/tests/test_generate.py and .guppi/tests/test_cleanup.py; the live reading by hand
 checked: 2026-10-01
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -23,8 +23,8 @@ Then:
 **＋** Its report names each page opened to judge whether a create is the same page or a near one, whether a lesson shares its root cause, or why a script failed, with the reason and the outcome, and the one allowed read of `ledger.md`.
 **＋** It edited no yaml entry beyond the marks and the entries of the index check and the synthesis. Its commands are in `event_log.md`, its commit is separate from the session's, and it did not stop to ask.
 **＋** It wrote `vault/wiki/brief.md` with the `Write` tool. The new brief holds no fact taken from the old brief, and the librarian put no file under `vault/` by `cp`, `mv`, a redirect or a heredoc.
-**＋** After `cleanup` and before the brief, it runs `uv run guppi render`, then `uv run guppi sprint`, then `uv run guppi backlog`, then `uv run guppi glossary`. Every line on their stderr is a flag. A file the render could not write is left to the next session start. `make lint` then passes its `render --check` step.
-**＋** After the brief and before the close, it runs `uv run guppi archive`. Every line on its stderr is a flag. The units it moved and the units it kept, with the reason, go into the report. It skips the session of the run, which is the latest session folder of the run day or else the nearest date back, across midnight too. The commit picks the move up.
+**＋** After `cleanup` and before the brief, it runs `uv run --project .guppi guppi render`, then `uv run --project .guppi guppi sprint`, then `uv run --project .guppi guppi backlog`, then `uv run --project .guppi guppi glossary`. Every line on their stderr is a flag. A file the render could not write is left to the next session start. `uv run --project .guppi guppi check` then passes its `render --check` step.
+**＋** After the brief and before the close, it runs `uv run --project .guppi guppi archive`. Every line on its stderr is a flag. The units it moved and the units it kept, with the reason, go into the report. It skips the session of the run, which is the latest session folder of the run day or else the nearest date back, across midnight too. The commit picks the move up.
 **－** Any other read needs no line under Flags and no name in the report: a page under `vault/wiki/` outside `vault/wiki/decisions/`, read for a fact of the brief, the field names of a page or any other need, and the scripts' own files.
 **－** A read that has its line under Flags fails nothing, whatever it read: a Decision page, a Spec, the ledger or the archive.
 **－** A hook's refusal of one of its calls is not worked around by another route: the librarian names the refusal in the report and goes on as the refusal says.
@@ -73,3 +73,6 @@ Then:
 - 2026-10-01 status: pending → failed · raw/2026-10-01/1237/ledger.md#L2
 - 2026-10-01 updated: the Criterion replaced whole — only a read the frame says the job does not need is flagged; the report names only the pages behind a judgment and the one read of the ledger (case 567.1) · [[decision-case-567.1]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L1
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

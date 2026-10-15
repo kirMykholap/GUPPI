@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-decisions-schema]]"
 purpose: A Decision page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
-method: "pytest tests/test_schemas.py -k decision on the live vault/wiki/decisions/schema.yaml — a page in the shape, a page without ## Context, a page without ## Problem, then one defect at a time; the live reading make lint, no schema finding on wiki/decisions/"
+method: "pytest .guppi/tests/test_schemas.py -k decision on the live vault/wiki/decisions/schema.yaml — a page in the shape, a page without ## Context, a page without ## Problem, then one defect at a time; the live reading uv run --project .guppi guppi check, no schema finding on wiki/decisions/"
 checked: 2026-09-30
 origin: raw/2026-09-22/0014/ledger.md#case-304.7
 sprint: migration
@@ -45,3 +45,5 @@ The file equals the Render. Lint reads from it: required `type, case, status, or
 - 2026-09-30 updated: the Criterion replaced whole — Recommend, parent and children in the schema, Problem optional, Context never on the page of a Case with sub-cases (case 544.8) · [[decision-case-544.8]]
 - 2026-09-30 updated: the method runs -k decision, names a page without ## Problem, and expects no schema finding on wiki/decisions/ (case 548) · [[decision-case-548]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L30
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]

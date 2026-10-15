@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-glossary]]"
 purpose: guppi glossary writes glossary.md from the Terms of entity-glossary, one group per parent MOC of where, and refuses a term with no page
-method: pytest tests/test_glossary.py, plus one reading of the rendered glossary.md after the librarian's run
+method: pytest .guppi/tests/test_glossary.py, plus one reading of the rendered glossary.md after the librarian's run
 checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-306.4
 sprint: migration
@@ -15,7 +15,7 @@ tags: [harness, workflow, librarian, session]
 ## Criterion
 
 When:
-`uv run guppi glossary` runs without a flag, from step 6 of the librarian's frame in `.claude/agents/librarian-guppi.md` or by hand, and reads the `## Terms` table of `entity-glossary`.
+`uv run --project .guppi guppi glossary` runs without a flag, from step 6 of the librarian's frame in `.claude/agents/librarian-guppi.md` or by hand, and reads the `## Terms` table of `entity-glossary`.
 
 Then:
 `vault/wiki/glossary.md` is written and the run exits 0. The file holds `# Glossary`, then the line "Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term changes by an `update` of that page", then one group `## [[<moc>]]` for each parent MOC of the pages in `where`, in the order of first appearance in the table. Each group holds the table `| term | meaning | where |` with its rows in the order of the table.
@@ -34,3 +34,5 @@ Then:
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L61
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given and the index.md line out (case 488.1) · [[decision-case-488.1]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L58
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

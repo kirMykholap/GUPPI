@@ -12,7 +12,6 @@ origin: raw/2026-10-12/2349/ledger.md#case-790
 sprint: plugin
 created: 2026-10-12
 tags: [git, workflow, sprint, harness]
-core: true
 ---
 
 ## Purpose
@@ -34,7 +33,7 @@ This session merges `origin/main` into the branch of the open sprint, after the 
 3. `git merge-base HEAD origin/main` prints `<base>`, the last commit of `main` that the branch holds. `gh api repos/{owner}/{repo}/compare/<base>...<hash> --jq '.files[].filename'` names each file that `main` changed since, and `git diff --name-only <base> HEAD` each file that the branch changed. Write the output of these commands, as they printed it, into `raw/<date>/<hi HHMM>/merge.md`. Under it, for each file that both lists name and that the terms below do not settle by a command or by git, write its text on this branch by `git show HEAD:<path>` and on `main` by `gh api "repos/{owner}/{repo}/contents/<path>?ref=<hash>" -H "Accept: application/vnd.github.raw"`.
 4. Dispatch `case-guppi` for the merge Case as `vault/wiki/orchestration.md` sets it, with the path of that file in the prompt and these terms:
    - its first tasks run `git fetch origin` and `git merge --no-ff --no-commit <hash>`, so that Work Mode merges the commit this session read, and its last task runs `git commit -m "merge: main <hash> into <branch> — case N"`;
-   - each file that a command writes — a file that a live rule page names in `governs`, `vault/wiki/glossary.md`, `vault/wiki/sprint.md`, `vault/wiki/backlog.md` and `vault/wiki/brief.md` — takes the text of `main` by `git checkout --theirs -- <path>` when git leaves it in conflict; the tasks `uv run guppi render`, `uv run guppi glossary`, `uv run guppi sprint` and `uv run guppi backlog` write them again, and the librarian of the session writes `brief.md` again;
+   - each file that a command writes — a file that a live rule page names in `governs`, `vault/wiki/glossary.md`, `vault/wiki/sprint.md`, `vault/wiki/backlog.md` and `vault/wiki/brief.md` — takes the text of `main` by `git checkout --theirs -- <path>` when git leaves it in conflict; the tasks `uv run --project .guppi guppi render`, `uv run --project .guppi guppi glossary`, `uv run --project .guppi guppi sprint` and `uv run --project .guppi guppi backlog` write them again, and the librarian of the session writes `brief.md` again;
    - `vault/wiki/log.md` and `vault/wiki/tags.md` are joined by git itself, by their `merge=union` lines in `.gitattributes`, which keep the lines of both sides; no task writes them;
    - for each other file that both sides changed, a page or code, the Case shows its text on the branch and on `main` from `merge.md`, and holds one task that writes the joined text into the file, the text as a sub-point; the person signs or corrects that text, and Work Mode writes it into the file itself, whether or not git left the file in conflict;
    - after the tasks that settle these files, one task runs `git add` on each of their paths, so that no path stands unmerged before the commit;
@@ -51,3 +50,5 @@ This session merges `origin/main` into the branch of the open sprint, after the 
 - 2026-10-13 created · [[decision-case-790]]
 - 2026-10-13 estimate estimate-skill-merge-main-joins-a-conflicted-page added · [[decision-case-790]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 updated: core taken off while the page is draft; a Case gives it back once it is built · [[decision-case-822.8]]

@@ -4,7 +4,7 @@ kind: Leaf
 purpose: Prevents the ledger from being written into a session nothing recorded
 status: built
 enforcement: hook
-implementation_ref: [guppi/event.py, guppi/gate.py, guppi/cli.py, tests/test_gate.py, tests/test_event.py, .claude/settings.json]
+implementation_ref: [.guppi/guppi/event.py, .guppi/guppi/gate.py, .guppi/guppi/cli.py, .guppi/tests/test_gate.py, .guppi/tests/test_event.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
 estimates: ["[[estimate-event-log-records]]"]
 origin: raw/2026-09-09/ledger.md#case-9
@@ -23,7 +23,7 @@ crashes. It is gitignored: debugging material, not traceability. Its governance 
 
 ## How it works
 
-`uv run guppi event <name> [--session ID] [detail ...]` appends one line to
+`uv run --project .guppi guppi event <name> [--session ID] [detail ...]` appends one line to
 `vault/raw/<today>/event_log.md`, creating the folder and the file:
 
 ```
@@ -60,3 +60,6 @@ The hook never fails the session on an error: any error goes to stderr and the e
 - 2026-10-03 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the history of the marks stands in the bracket of its pointer · [[decision-case-809]]
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

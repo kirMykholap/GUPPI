@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: A replace pair inside an Estimate's Criterion is refused before the Spec is approved, so a promise changes only whole
-method: pytest tests/test_prespec.py and tests/test_materialize.py on a temp plan and vault
+method: pytest .guppi/tests/test_prespec.py and .guppi/tests/test_materialize.py on a temp plan and vault
 origin: raw/2026-09-23/1355/ledger.md#case-378.4
 sprint: migration
 created: 2026-09-23
@@ -29,3 +29,4 @@ Then:
 
 - 2026-09-23 created · [[decision-case-378.4]]
 - 2026-09-23 status: pending → passed · raw/2026-09-23/1355/ledger.md#L41
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

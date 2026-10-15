@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-page-generation]]"
 purpose: The rules of every live Entity are the live rules whose applies_to names it, recomputed by the cascade of generate on every run
-method: pytest tests/test_generate.py on a temp vault; the live reading the librarian's run of this session — entity-sprint carries rules [rule-sprint]
+method: pytest .guppi/tests/test_generate.py on a temp vault; the live reading the librarian's run of this session — entity-sprint carries rules [rule-sprint]
 checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-305.3
 sprint: migration
@@ -32,3 +32,4 @@ The `rules` of every live Entity is the slugs of the live rules whose `applies_t
 - 2026-09-22 status: pending → passed · raw/2026-09-22/0014/ledger.md#L59
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out (case 489.5) · [[decision-case-489.5]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L55
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

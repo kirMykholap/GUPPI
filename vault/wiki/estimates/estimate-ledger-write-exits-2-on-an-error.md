@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook exits 2 with the error on stderr when it raises after reading the payload, once a stretch by its own refusal in the transcript, and exits 0 on an error while reading the payload
-method: uv run pytest tests/test_ledger.py — piped payloads, a function of the hook patched to raise
+method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads, a function of the hook patched to raise
 checked: 2026-10-01
 origin: raw/2026-09-30/1736/ledger.md#case-552.4
 sprint: migration
@@ -15,7 +15,7 @@ tags: [session, hooks, harness, ledger]
 ## Criterion
 
 When:
-The `Stop` hook `uv run guppi ledger` fires, and an exception rises in `run` of `guppi/ledger.py` after it has read the payload: while it reads the transcript, the event log or the ledger, or while it judges or appends the lines.
+The `Stop` hook `uv run --project .guppi guppi ledger` fires, and an exception rises in `run` of `.guppi/guppi/ledger.py` after it has read the payload: while it reads the transcript, the event log or the ledger, or while it judges or appends the lines.
 
 Then:
 The hook exits 2 with `ledger: ledger.md not written: <error>` on stderr, so the agent sees the error at the end of that reply.
@@ -35,3 +35,7 @@ The hook exits 2 with `ledger: ledger.md not written: <error>` on stderr, so the
 - 2026-09-30 status: pending → passed · raw/2026-09-30/2042/ledger.md#L31
 - 2026-10-01 updated: the Criterion replaced whole — the error comes back once a stretch, judged by the hook's own refusal in the transcript, not by stop_hook_active (case 577.4) · [[decision-case-577.4]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1725/ledger.md#L9
+- 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]

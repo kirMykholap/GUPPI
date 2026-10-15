@@ -20,7 +20,7 @@ After a live run, the librarian commits at the close, as `.claude/agents/librari
 Then:
 `git log` shows one commit after the Retro commit. It takes `vault/`, `CLAUDE.md`, `.claude` and `guppi.toml`: `git add vault CLAUDE.md .claude guppi.toml`.
 **＋** It stays one commit, separate from the session's, with the message `docs(vault): librarian, <date>`, and never `--amend`.
-**＋** After the commit, `git status` shows no file that `guppi/render.py` wrote as untracked, `guppi.toml` included.
+**＋** After the commit, `git status` shows no file that `.guppi/guppi/render.py` wrote as untracked, `guppi.toml` included.
 **＋** The report reaches the main agent with the counts, the flags and the lint total, in twenty lines or fewer.
 **－** The commit takes no path outside `vault/`, `CLAUDE.md`, `.claude` and `guppi.toml`.
 
@@ -37,3 +37,4 @@ Then:
 - 2026-09-14 status: pending → passed · raw/2026-09-14/0747/ledger.md#L40
 - 2026-09-28 updated: the Criterion replaced whole — the commit takes guppi.toml, and no rendered file stays untracked (case 482) · [[decision-case-482]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L1
+- 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]

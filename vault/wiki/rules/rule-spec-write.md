@@ -16,7 +16,7 @@ core: true
 
 ## Purpose
 
-Prevents a ratified Case from entering the Spec in other words than the Case `case-guppi` wrote into its file, whose `given`, `when`, `then`, `tasks` and `ratification` the person signed and the check of `rule-case-check` stored (case 645.5). `case-guppi` writes the whole Case in English, and a hook copies its stored answer (cases 437, 441; until case 387 the agent wrote each Case into the plan file itself, translated from the chat, and nobody compared the two).
+Prevents a ratified Case from entering the Spec in other words than the Case `case-guppi` wrote into its file, whose `given`, `when`, `then`, `tasks` and `ratification` the person signed and the check of `rule-case-check` stored (case 645.5). `case-guppi` writes the whole Case in the documentation language, and a hook copies its stored answer (cases 437, 441; until case 387 the agent wrote each Case into the plan file itself, translated from the chat, and nobody compared the two).
 
 ## How it works
 
@@ -75,3 +75,4 @@ Prevents a ratified Case from entering the Spec in other words than the Case `ca
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 updated: the Purpose names the language of a Case by its role · [[decision-case-824]]

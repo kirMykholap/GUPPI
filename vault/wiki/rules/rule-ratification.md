@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: "Prevents an agent of a working session from acting without the one rule and the form of the ledger lines: the one rule, the form of the ledger lines, atomicity and the harness stand in ratification.md, which /hi loads and case-guppi reads"
-status: built
+status: draft
 enforcement: render
 implementation_ref: [.guppi/guppi/caseid.py, .guppi/tests/test_caseid.py]
 governs: vault/wiki/ratification.md
@@ -28,7 +28,7 @@ Prevents an agent of a working session from acting without the one rule and the 
 
 ## The one rule
 
-Nothing in the vault or the codebase changes without a Decision ratified by the human. The agent has full autonomy over *how* to implement something once its contract is ratified, and none over the contract itself. When unsure whether something needs ratification: it does. The vault is the only memory: no note outside the repository — not the harness's memory directory, not a file outside `vault/`; what is worth keeping is a `lesson` line or a Case on a Rule page (case 272.1).
+Nothing in the vault or the codebase changes without a Decision ratified by the human. The agent has full autonomy over *how* to implement something once its contract is ratified, and none over the contract itself. When unsure whether something needs ratification: it does. A new tag needs no Decision when a lesson line declares it with its meaning and its {{chat_lang}} aliases, and the librarian's run adds it to `tags.md` (as set in case 827.3). The vault is the only memory: no note outside the repository — not the harness's memory directory, not a file outside `vault/`; what is worth keeping is a `lesson` line or a Case on a Rule page (case 272.1).
 
 `wiki/ratification.md` — the Render of `rule-ratification`, loaded by `/hi` and read whole by `case-guppi`, so both agents hold what each of them needs: the one rule, the form of the ledger lines, atomicity and the harness (case 595). What the main agent alone does is `orchestration.md`; the form of a Case is `case-schema.md`. A session without `/hi` holds no Case: the ledger hook refuses it. A Case is ratified by the person's reply in the chat — a sign-off, a question or their own alternative —, never by a picker tool, and ratifying a parent does not ratify its children.
 
@@ -56,7 +56,7 @@ decision made it exist, the estimate line fills it.
 
 Only the **main agent** writes ledger lines. A subagent that takes a measurement returns it; the main agent records it. A subagent that hits a fork stops and returns — it never decides.
 
-Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with the time of writing. A record is a `- decision[...]`, `- estimate[...]` or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag; the same line anywhere else — bare, or in a block with another tag or none — is a preview and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one. When each line is written, and what a reply that carries a `LEDGER` block does after it, is `orchestration.md`.
+Ledger lines are written by the `Stop` hook, from the reply, verbatim, each with the time of writing. A record is a `- decision[...]`, `- estimate[...]` or `- lesson[...]` line inside a fenced block opened with the `LEDGER` tag; the same line anywhere else — bare, or in a block with another tag or none — is a preview and is never written. A `create` line carries the ratified tags: `{tags:a,b}`. A lesson line whose tag `tags.md` does not hold declares it by one `{newtag:<tag>|<meaning>|<aliases>}` block per new tag, before `trigger:`, the tag also in its `{tags:...}`, the meaning one line and the aliases the {{chat_lang}} words for it; the ledger hook writes the line, and the librarian's run adds the row to `tags.md` (as set in case 827.3). A `knowledge` lesson line carries `{source:...}`, the url or reference the lesson studied — a file of the harness, a probe, a client version; the schema requires it, and a line without it is `incomplete: [source]` in the yaml and a lint finding on the page. An `error` lesson never carries one. When each line is written, and what a reply that carries a `LEDGER` block does after it, is `orchestration.md`.
 
 ## The harness
 
@@ -76,3 +76,5 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file, 
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 updated: the one rule names a new tag a lesson line declares; the lesson line declares it by a newtag block (case 827.3) · [[decision-case-827.3]]
+- 2026-10-15 status: built → draft · cascade

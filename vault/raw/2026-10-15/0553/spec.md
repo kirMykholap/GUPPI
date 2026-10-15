@@ -597,7 +597,7 @@ update:
 - [x] `uv run guppi render`: `vault/wiki/orchestration.md`
 - [x] `uv run guppi render`: `vault/wiki/rules/schema.yaml`
 - [x] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] read `estimate-guppi-package-runs-from-its-own-folder`
+- [x] read `estimate-guppi-package-runs-from-its-own-folder`
 ```
 
 ### Case 819.2 — A reword pair that ends with / changes the start of a path
@@ -646,7 +646,7 @@ update:
 - [x] update `estimate-generate-rewords`
 - [x] `guppi/generate.py`: `reword_pattern` matches an `old` that ends with `/` as the start of a path, and stays the one matching of `reword`, `rename` and the preview of `/pre-spec`; `reword_text` changes `implementation_ref`, `governs` and `code_ref` for such a pair; the docstring says so.
 - [x] `tests/test_generate.py`: a pair `tests/` on a temp vault turns `tests/test_x.py` into `.guppi/tests/test_x.py` in a section, in `method` and in `implementation_ref`, and leaves `.guppi/tests/` and `cart/tests/` alone; a pair that does not end with `/` still matches a whole word only.
-- [ ] read `estimate-generate-rewords`
+- [x] read `estimate-generate-rewords`
 ```
 
 ### Case 819.3 — guppi ship writes the code under .guppi/
@@ -886,7 +886,7 @@ update:
 - [x] `.guppi/guppi/pages.py`: `ship_stands`, the one judgment of whether the module `guppi.ship` stands, which `guppi check`, the list of commands of `.guppi/guppi/cli.py` and the check of a draft page of `guppi lint` import; the docstring names them.
 - [x] `.guppi/guppi/cli.py`: the command `check` in `COMMANDS`.
 - [x] `.guppi/tests/test_check.py`: the order of the steps, every step after a red `guppi backlog --check`, the exit code with one red step and with none, no stdin read, the tree unchanged, and the skip of `guppi ship --check` with its one line when the module is missing.
-- [ ] read `estimate-lint-runs-every-step`
+- [x] read `estimate-lint-runs-every-step`
 ```
 
 ### Case 820.2 — guppi test and guppi style run the commands of guppi.toml
@@ -955,7 +955,7 @@ update:
 - [x] `.guppi/guppi/cli.py`: the commands `test` and `style` in `COMMANDS`.
 - [x] `.guppi/tests/test_commands.py`: the order of the commands, every command after a red one, the exit code with one red command and with none, no stdin read, no shell, and the one line with exit 1 for a missing `guppi.toml` and for a missing key.
 - [x] `uv run guppi render`: `guppi.toml`
-- [ ] read `estimate-guppi-config-runs-the-test-and-style-commands`
+- [x] read `estimate-guppi-config-runs-the-test-and-style-commands`
 ```
 
 ### Case 820.3 — guppi lint takes the new forms of a method
@@ -1554,7 +1554,7 @@ update:
 - [x] update `rule-claude-md`
 - [x] update `estimate-claude-md-rendered`
 - [x] `uv run guppi render`: `CLAUDE.md`
-- [ ] read `estimate-claude-md-rendered`
+- [x] read `estimate-claude-md-rendered`
 ```
 
 ### Case 822.6 — The clean version holds the CI of the checks

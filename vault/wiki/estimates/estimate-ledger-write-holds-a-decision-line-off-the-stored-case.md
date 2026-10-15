@@ -5,6 +5,7 @@ status: passed
 target: "[[rule-ledger-write]]"
 purpose: Whether the ledger hook holds a decision line other than a defer that is not a line of the stored ratification of its Case, an addresses mark set aside, tells the agent once a stretch, and writes it once a copy equal to a stored line stands
 method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads, a session ledger and a store beside a plan file in a temp vault
+checked: 2026-10-15
 origin: raw/2026-10-06/0104/ledger.md#case-688.7
 sprint: migration
 created: 2026-10-06
@@ -23,14 +24,14 @@ The hook compares the line, a `{addresses:<slug>}` block and trailing spaces set
 **＋** For such a line of the reply just finished, the hook exits 2 and prints: "ledger: decision[case <N>] not written — it is not a line of the ratification case-guppi stored for case <N>: copy it again as the summary of case-guppi holds it, alone in a LEDGER block, or send the Case back to its case-guppi when the stored line is wrong."
 **＋** The stderr line is printed only when it does not already stand in a refusal of the hook since the person's last message.
 **＋** A held line is judged again at every `Stop` while it stands in a text of the transcript, and never lands while it differs; a line written again that equals a stored line lands.
-**＋** A line written again with `{addresses:<slug>}` added, as Case 685 asks, lands when the line without the mark equals a stored line.
+**＋** A line written again with `{addresses:<slug>}` added lands when the line without the mark equals a stored line (the mark Case 685 asks for).
 **－** A `defer` line, an `estimate` line and a `lesson` line are not compared.
 **－** A line that `parse_line` of `.guppi/guppi/materialize.py` cannot read, and a line the hook refuses while no live sprint page stands, get that refusal alone and are not compared.
 **－** With `stop_hook_active` set the hook judges the line the same; with the flag set and a transcript it cannot read, the line does not land and the hook prints nothing.
 
 ## Result
 
-2026-10-06, uv run pytest tests/test_ledger.py: 119 passed, the 11 tests of the hold among them — a copy equal to the store lands, a differing copy, a Case with no stored text and a session with no plan file are held with the rest landing, a copy written again equal lands, a copy with the addresses mark lands, a defer is not compared, a held line of an earlier text stays out silently, told once a stretch, the flag with no transcript stays out silently and with a transcript is held
+2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_ledger.py` 150 passed, read on the Criterion of Case 823.3
 
 ## History
 
@@ -40,3 +41,5 @@ The hook compares the line, a `{addresses:<slug>}` block and trailing spaces set
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 updated: the Criterion replaced whole — its pointer stands in a bracket at the end of its sentence · [[decision-case-823.3]]
+- 2026-10-15 status: pending → passed · raw/2026-10-15/1959/ledger.md#L67

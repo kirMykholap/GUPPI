@@ -20,3 +20,4 @@ session_event_logs in guppi/ledger.py walks the event logs back from today and s
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/0553/ledger.md#L61
+- 2026-10-15 deferred · [[decision-case-836]]

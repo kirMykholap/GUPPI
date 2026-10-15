@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-skill-sprint-close]]"
 purpose: Whether /sprint-close refuses on a branch that does not hold origin/main and in a session that ratified another Case, puts off the other Cases lines, sorts the readings and has the closing Case built with the close line, while orchestration.md no longer holds the steps of the closing session
-method: by hand, at the Retro of the session of case 791, the new Render of rule-skill-sprint-close in its spec.md, vault/wiki/orchestration.md and entity-sprint-migration under vault/archive/migration/ read against the Criterion
+method: by hand, at the Retro of the session whose Spec set the new Render of rule-skill-sprint-close that the Criterion describes, that Render in its spec.md, vault/wiki/orchestration.md and entity-sprint-migration under vault/archive/migration/ read against the Criterion (the session of case 791)
 checked: 2026-10-13
 origin: raw/2026-10-08/2352/ledger.md#case-743.8
 sprint: migration
@@ -43,3 +43,4 @@ Writing nothing into `.git`, the main agent first runs `gh api repos/{owner}/{re
 - 2026-10-13 updated: the Criterion replaced whole — /sprint-close refuses while the branch does not hold origin/main · [[decision-case-791]]
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L56
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]]

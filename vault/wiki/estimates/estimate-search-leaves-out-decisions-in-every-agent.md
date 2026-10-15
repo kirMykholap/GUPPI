@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-search-leaves-out-decisions]]"
 purpose: Whether the main agent, ask-guppi and case-guppi load .claude/rules/search-leaves-out-decisions.md, and the text of a Decision page reaches them only by a Read of its path, or a Grep inside vault/wiki/decisions/, for a reason their frame names
-method: "by hand at the /hi of a later session: the transcripts of the main agent and of each ask-guppi and case-guppi of a session after the render of .claude/rules/search-leaves-out-decisions.md by case 664.1, whether the file stands in each context and each Read of a page under vault/wiki/decisions/ and each Grep inside that folder, read against the Criterion, recorded in the estimate line"
+method: "by hand, after a session that runs on the rendered .claude/rules/search-leaves-out-decisions.md: the transcripts of the main agent and of each ask-guppi and case-guppi of that session, whether the file stands in each context and each Read of a page under vault/wiki/decisions/ and each Grep inside that folder, read against the Criterion, recorded in the estimate line (the render of case 664.1)"
 checked: 2026-10-05
 origin: raw/2026-10-05/0109/ledger.md#case-640
 sprint: migration
@@ -36,3 +36,4 @@ Then:
 - 2026-10-05 updated: the Criterion replaced whole — the load of the file and the reads of Decision pages only; the Greps move to estimate-search-leaves-out-decisions-by-the-grep-hook; purpose and method set anew (case 664.2) · [[decision-case-664.2]]
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.11]]
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-15 updated: the pointer of the method stands in a bracket at its end, and the method waits for the event it names · [[decision-case-823.1]]

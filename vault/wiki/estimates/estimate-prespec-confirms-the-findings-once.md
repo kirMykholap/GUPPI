@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: Whether after the findings of pre-spec the same ask-guppi runs confirm their own findings once on the Cases built again, before those Cases are shown, asked by a message that invites no new finding, with no Grep, a verdict line closed or not closed per finding and at most three sentences on why, then a list of what was not checked ending with a line per rule a search broke, and the list of the files read and nothing else, no new finding, a finding not closed fixed or left by the person's answer to a question after the confirmation, the result standing after the horizontal rule of the showing, and no Case confirmed twice
-method: "by hand at the /pre-spec of a later session whose findings send a Case back to its case-guppi, after the render of .claude/skills/pre-spec/SKILL.md and .claude/agents/ask-guppi.md by case 638: the SendMessage calls to ask-guppi, its tool calls and answers, and the replies up to the showing of the Cases built again, read in the transcript against the Criterion, recorded in the estimate line"
+method: "by hand, after a /pre-spec whose findings send a Case back to its case-guppi, on the rendered .claude/skills/pre-spec/SKILL.md and .claude/agents/ask-guppi.md: the SendMessage calls to ask-guppi, its tool calls and answers, and the replies up to the showing of the Cases built again, read in the transcript against the Criterion, recorded in the estimate line (the render of case 638)"
 checked: 2026-10-05
 origin: raw/2026-10-04/2041/ledger.md#case-634.2
 sprint: migration
@@ -40,3 +40,4 @@ The main agent sends each `ask-guppi` run whose findings sent a Case back the Ca
 - 2026-10-05 status: pending → failed · raw/2026-10-05/1343/ledger.md#L41
 - 2026-10-05 deferred · [[decision-case-666]]
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson; the defer of case 666 retired (case 669) · [[decision-case-669.14]]
+- 2026-10-15 updated: the pointer of the method stands in a bracket at its end, and the method waits for the event it names · [[decision-case-823.1]]

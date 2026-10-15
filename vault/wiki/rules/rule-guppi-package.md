@@ -7,6 +7,7 @@ enforcement: check
 implementation_ref: [.guppi/pyproject.toml, .guppi/tests/test_guppi_package.py]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-guppi-package-runs-from-its-own-folder]]", "[[estimate-guppi-package-is-ready-after-the-install]]"]
+deferred_by: ["[[decision-case-834]]"]
 origin: raw/2026-10-15/0553/ledger.md#case-819.1
 sprint: plugin
 created: 2026-10-15
@@ -25,3 +26,4 @@ Prevents a project with GUPPI from depending on files at its root that it does n
 - 2026-10-15 estimate estimate-guppi-package-runs-from-its-own-folder added · [[decision-case-819.1]]
 - 2026-10-15 updated: every live rule, entity and Estimate names the command, the code and the tests of GUPPI under .guppi/, and the page ships · [[decision-case-819.1]]
 - 2026-10-15 estimate estimate-guppi-package-is-ready-after-the-install added · [[decision-case-819.4]]
+- 2026-10-15 deferred · [[decision-case-834]]

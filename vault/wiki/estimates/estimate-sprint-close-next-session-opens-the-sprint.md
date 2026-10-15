@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-sprint-close]]"
 purpose: Whether after the close of a sprint the brief puts the opening of the next sprint first, /hi takes no item of sprint.md, the ledger hook refuses every decision line but a defer until a create of a sprint page stands, and the pages written from the ledger of the session that opens it carry its id
-method: pytest .guppi/tests/test_ledger.py -k sprint and .guppi/tests/test_materialize.py -k sprint; by hand, at the Retro of the session of case 779, .claude/skills/hi/SKILL.md, .claude/skills/sprint-open/SKILL.md and the step of the Render of rule-brief that writes the first line of the brief's Cases read against the Criterion
+method: pytest .guppi/tests/test_ledger.py -k sprint and .guppi/tests/test_materialize.py -k sprint; by hand, at the Retro of the session whose Spec set the step of the Render of rule-brief that writes the first line of the brief's Cases, .claude/skills/hi/SKILL.md, .claude/skills/sprint-open/SKILL.md and that step read against the Criterion (the session of case 779)
 checked: 2026-10-12
 origin: raw/2026-10-04/1439/ledger.md#case-628.3
 sprint: migration
@@ -39,3 +39,4 @@ The first line of the `Cases` of Next session in `vault/wiki/brief.md` is `open 
 - 2026-10-12 updated: the Criterion replaced whole — the When names what the check reads, with no reading of a later session; the method runs in the session of case 779 · [[decision-case-779]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/1449/ledger.md#L9
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]]

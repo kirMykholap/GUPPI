@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether, when the person's one answer takes up two or more Frontier items, the main agent shows their rounds in one list and their Cases in one reply for one ratification, with the waits marked
-method: "by hand at the Retro of session 2249: the replies in its transcript from the dispatch of Cases 682 and 683, taken up together with Case 681 built again, to the reply that acknowledged that batch, read against the Criterion"
+method: "by hand at the Retro of the session that took up the Cases of a batch together with a Case built again: the replies in its transcript from the dispatch of those Cases to the reply that acknowledged that batch, read against the Criterion (session 2249, Cases 682 and 683 with Case 681 built again)"
 origin: raw/2026-10-05/2249/ledger.md#case-684.1
 sprint: migration
 created: 2026-10-05
@@ -33,3 +33,4 @@ The main agent dispatches a `case-guppi` for each item, and shows no round and n
 
 - 2026-10-06 created · [[decision-case-684.1]]
 - 2026-10-06 status: pending → passed · raw/2026-10-05/2249/ledger.md#L23
+- 2026-10-15 updated: the pointers of the method stand in a bracket at its end · [[decision-case-823.1]]

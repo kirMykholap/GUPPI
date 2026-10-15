@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-lint]]"
 purpose: Whether guppi check runs every step, guppi ship --check last, when an earlier one is red, prints the lines of each, exits non-zero when any step is red, and skips guppi ship --check where the command ship is missing
 method: "uv run --project .guppi pytest .guppi/tests/test_check.py; by hand, after the librarian's run that applies the reword of this change: a Grep of make with the target lint over the live rules, entities and Estimates and over .claude/, read against the Criterion"
-checked: 2026-10-14
+checked: 2026-10-15
 origin: raw/2026-10-02/1202/ledger.md#case-587
 sprint: migration
 created: 2026-10-02
@@ -28,7 +28,7 @@ It runs `guppi render --check`, `guppi sprint --check`, `guppi backlog --check`,
 
 ## Result
 
-2026-10-14, uv run pytest tests/test_lint.py -k every_step: 2 passed — LINT_STEPS ends with run guppi ship --check, every step runs after a red backlog step, stdin empty, the tree unchanged; make lint of the working tree exits 0
+2026-10-15, the /hi of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_check.py` 7 passed; a search for `make lint` as whole words outside History and Result over the live rules, entities and Estimates and every file of `.claude/`: 0 hits
 
 ## History
 
@@ -42,3 +42,4 @@ It runs `guppi render --check`, `guppi sprint --check`, `guppi backlog --check`,
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 updated: the Criterion replaced whole — guppi check runs the vault checks in place of the target lint of the Makefile · [[decision-case-820.1]]
+- 2026-10-15 status: pending → passed · raw/2026-10-15/1959/ledger.md#L4

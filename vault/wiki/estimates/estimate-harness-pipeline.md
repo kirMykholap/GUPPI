@@ -5,6 +5,7 @@ status: failed
 target: "[[rule-harness]]"
 method: make test-harness over .guppi/tests/test_render.py and .guppi/tests/test_lint.py; the live reading of uv run --project .guppi guppi check by hand
 checked: 2026-10-15
+deferred_by: ["[[decision-case-833]]"]
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10
@@ -46,3 +47,4 @@ The Purpose says that three rules belong to no phase of the session: the rendere
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
 - 2026-10-15 updated: the Criterion replaced whole — the rules in no pipeline include the folder of the code and the skill of the plugin, and the vault checks run by guppi check · [[decision-case-820.9]]
 - 2026-10-15 status: pending → failed · raw/2026-10-15/1739/ledger.md#L14
+- 2026-10-15 deferred · [[decision-case-833]]

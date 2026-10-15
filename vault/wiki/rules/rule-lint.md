@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed
-status: draft
+status: built
 enforcement: check
 implementation_ref: [.guppi/guppi/lint.py, .guppi/guppi/check.py, .guppi/tests/test_lint.py, .guppi/tests/test_check.py]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-catches-a-broken-fence]]", "[[estimate-lint-runs-every-step]]", "[[estimate-lint-reports-a-method-tied-to-a-one-off-moment]]"]
+deferred_by: ["[[decision-case-838]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -96,3 +97,5 @@ classes and their order live in the docstring of `.guppi/guppi/lint.py`.
 - 2026-10-15 updated: every live rule, entity and Estimate names guppi check in place of the target lint of the Makefile · [[decision-case-820.7]]
 - 2026-10-15 updated: lint reports a draft page with core: true where the module of ship stands · [[decision-case-822.9]]
 - 2026-10-15 status: built → draft · cascade
+- 2026-10-15 deferred · [[decision-case-838]]
+- 2026-10-15 status: draft → built · cascade

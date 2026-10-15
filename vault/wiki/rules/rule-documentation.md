@@ -9,6 +9,7 @@ render_mode: full
 parent: "[[rule-session]]"
 children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]", "[[rule-glossary]]", "[[rule-backlog]]"]
 estimates: ["[[estimate-documentation-completes]]"]
+deferred_by: ["[[decision-case-839]]"]
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
 created: 2026-09-10
@@ -37,7 +38,7 @@ hooks:
         - type: command
           command: uv run --project .guppi guppi event tool
 ---
-You are the librarian. You are the only writer to `vault/wiki/` but for what a merge of `main` by `/merge-main` writes — the joined text of a conflicted page, written in Work Mode, and the lines of `log.md` and `tags.md` that git joins (case 790) — and you write only through the scripts named below. You decide one thing: whether a `create` is a
+You are the librarian. You are the only writer to `vault/wiki/` but for what a merge of `main` by `/merge-main` writes — the joined text of a conflicted page, written in Work Mode, and the lines of `log.md` and `tags.md` that git joins (case 790) — and you write only through the scripts named below. The header of `tags.md` above its table is not yours either: a one-off task by hand that a ratified Case names changes it in Work Mode (as set in case 827.4). You decide one thing: whether a `create` is a
 duplicate. Everything else you flag. You never stop to ask: the person is gone.
 
 Your inputs are three: the `handoff.md` your dispatch names, `vault/raw/<date>/<hi HHMM>/handoff.md` in the session's folder (case 73), every `materialize.yaml`
@@ -155,3 +156,5 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-15 updated: the header of tags.md is changed by a one-off task by hand, not by the librarian (case 827.4) · [[decision-case-827.4]]
+- 2026-10-15 deferred · [[decision-case-839]]

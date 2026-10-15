@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi at /pre-spec opens the Decision behind a page with deferred_by only for a page that a finding of its answer names
-method: "by hand, after a /pre-spec whose ask-guppi runs on .claude/agents/ask-guppi.md as rendered by case 800.2: the Read and Grep calls of ask-guppi on vault/wiki/decisions/ in its agent transcript and the findings of its answer read against the Criterion, recorded in the estimate line"
+method: "by hand, after a /pre-spec whose ask-guppi runs on the rendered .claude/agents/ask-guppi.md: the Read and Grep calls of ask-guppi on vault/wiki/decisions/ in its agent transcript and the findings of its answer read against the Criterion, recorded in the estimate line (the render of case 800.2)"
 checked: 2026-10-14
 origin: raw/2026-10-13/1753/ledger.md#case-800.2
 sprint: plugin
@@ -31,3 +31,4 @@ Each page under `vault/wiki/decisions/` that `ask-guppi` reads, by a Read or by 
 
 - 2026-10-13 created · [[decision-case-800.2]]
 - 2026-10-14 status: pending → passed · raw/2026-10-14/0101/ledger.md#L55
+- 2026-10-15 updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]]

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi answers the questions of /pre-spec with one line on what it read, one numbered list of findings under each question and nothing else under it, each finding naming its Case and the page or Cases it bears on, then a list of what it did not check ending with a line per search rule it broke, of its frame or of .claude/rules/search-leaves-out-decisions.md, and a list of the paths of the files it read, and nothing else
-method: "by hand, after a /pre-spec whose ask-guppi runs on .claude/agents/ask-guppi.md as rendered by case 782: the answer of ask-guppi in its agent transcript read against the Criterion and the event log, recorded in the estimate line"
+method: "by hand, after a /pre-spec whose ask-guppi runs on the rendered .claude/agents/ask-guppi.md: the answer of ask-guppi in its agent transcript read against the Criterion and the event log, recorded in the estimate line (the render of case 782)"
 checked: 2026-10-13
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -55,3 +55,4 @@ The answer opens with one line that names what the agent read: the plan file, or
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L9
 - 2026-10-12 updated: the Criterion replaced whole — one list of findings under each question the skill sets, in its order; the method waits for a /pre-spec after the render · [[decision-case-782.2]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L22
+- 2026-10-15 updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]]

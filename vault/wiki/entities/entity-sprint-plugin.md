@@ -5,6 +5,7 @@ purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a 
 status: draft
 parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]"]
+deferred_by: ["[[decision-case-830]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-756.1
 sprint: plugin
 created: 2026-10-10
@@ -24,7 +25,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 ### The plugin
 
 - the clean version made into a Claude Code plugin
-- [[rule-morph]] — the install step that the first `/hi` after `/guppi:install` runs; what remains: the install skill, its step in `/hi`, the key of `guppi.toml` that marks the install as done, and the clean version that ships that key unset
+- [[rule-morph]] — the setup Case that the first `/hi` after `/guppi:install` puts before the opening of the first sprint; what remains: the setup skill, its step in `/hi` and in `/sprint-open`, the key of `guppi.toml` that marks the setup as done, the pass of the ledger hook for the setup Case while no sprint is open, and the clean version that ships that key unset
 - the README on what the project is and what it is for and on its main parts and its use
 - the close of `plugin` — `/sprint-close`, a session of its own
 
@@ -55,3 +56,5 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-15 defer by decision-case-805 superseded · [[decision-case-822.1]]
 - 2026-10-15 updated: the question put off by decision-case-805 is decided by case 822: the passed Estimates of the shipped pages ship, and the tests ship · [[decision-case-822.1]]
 - 2026-10-15 updated: the milestone line of rule-morph names what remains of the install step · [[decision-case-817]]
+- 2026-10-15 updated: the milestone line of rule-morph names the setup Case, its order before the first sprint and what remains of it · [[decision-case-825]]
+- 2026-10-15 deferred · [[decision-case-830]]

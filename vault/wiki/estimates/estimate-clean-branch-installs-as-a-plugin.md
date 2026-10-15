@@ -6,6 +6,7 @@ target: "[[rule-clean-branch]]"
 purpose: Whether the clean version holds the manifest of the plugin guppi and the catalogue guppi-marketplace, passes claude plugin validate, which CI runs before prod is written, and installs as a plugin with no error
 method: "uv run --project .guppi pytest .guppi/tests/test_ship.py; by hand, after the Work Mode of this change: uv run --project .guppi guppi ship --allow-draft into an empty local folder, claude plugin validate run on that folder, the two files of its .claude-plugin/ and the step of .github/workflows/prod.yml that runs claude plugin validate, and in an empty project an add of that folder as a catalogue and an install of guppi from it, read against the Criterion"
 checked: 2026-10-15
+deferred_by: ["[[decision-case-831]]"]
 origin: raw/2026-10-15/0553/ledger.md#case-816.1
 sprint: plugin
 created: 2026-10-15
@@ -39,3 +40,4 @@ Then:
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 status: pending → failed · raw/2026-10-15/1739/ledger.md#L12
+- 2026-10-15 deferred · [[decision-case-831]]

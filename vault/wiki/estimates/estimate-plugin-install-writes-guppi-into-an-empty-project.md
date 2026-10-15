@@ -6,6 +6,7 @@ target: "[[rule-plugin-install]]"
 purpose: Whether guppi ship puts the skill install into the clean version, and whether /guppi:install copies every file of the plugin but its own into a project that holds none of them, and writes nothing into one that holds one
 method: "uv run --project .guppi pytest .guppi/tests/test_ship.py -k plugin_skill; by hand, after the Work Mode of this change: the clean version written into a local folder by uv run --project .guppi guppi ship --allow-draft; in an empty project, that folder added as a catalogue by /plugin marketplace add, guppi installed by /plugin install guppi@guppi-marketplace, /guppi:install typed and the files of the project read against those of the plugin; in a second empty project with a file CLAUDE.md of its own, /guppi:install typed and its output and the files of that project read against the Criterion"
 checked: 2026-10-15
+deferred_by: ["[[decision-case-831]]"]
 origin: raw/2026-10-15/0553/ledger.md#case-818.1
 sprint: plugin
 created: 2026-10-15
@@ -38,3 +39,4 @@ Then:
 - 2026-10-15 created · [[decision-case-818.1]]
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 status: pending → failed · raw/2026-10-15/1739/ledger.md#L13
+- 2026-10-15 deferred · [[decision-case-831]]

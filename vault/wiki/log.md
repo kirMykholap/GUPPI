@@ -10780,3 +10780,114 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-15 decisions/decision-case-821.6 archived · cleanup
 - 2026-10-15 decisions/decision-case-821.7 archived · cleanup
 - 2026-10-15 decisions/decision-case-821 archived · cleanup
+- 2026-10-15 estimates/estimate-claude-md-rendered status: pending → passed · raw/2026-10-15/1959/ledger.md#L1 · generate
+- 2026-10-15 estimates/estimate-generate-rewords status: pending → passed · raw/2026-10-15/1959/ledger.md#L2 · generate
+- 2026-10-15 estimates/estimate-guppi-config-runs-the-test-and-style-commands status: pending → passed · raw/2026-10-15/1959/ledger.md#L3 · generate
+- 2026-10-15 estimates/estimate-lint-runs-every-step status: pending → passed · raw/2026-10-15/1959/ledger.md#L4 · generate
+- 2026-10-15 estimates/estimate-guppi-package-runs-from-its-own-folder status: pending → failed · raw/2026-10-15/1959/ledger.md#L5 · generate
+- 2026-10-15 decisions/decision-case-823 created · raw/2026-10-15/1959/ledger.md#case-823 · generate
+- 2026-10-15 decisions/decision-case-823.1 created · raw/2026-10-15/1959/ledger.md#case-823.1 · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets created · [[decision-case-823.1]] · generate
+- 2026-10-15 rules/rule-clean-branch estimate estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets added · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-ask-finds updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-ask-query-before-a-create updated: the pointer of the method stands in a bracket at its end, and the method waits for the event it names · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-ask-opens-a-decision-only-for-a-finding updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-case-check-sends-back-a-faulty-round updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-acknowledges-the-opening-with-the-frontier updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-names-related-cases-in-the-dispatch updated: the pointers of the method stand in a bracket at the end of their sentence · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-orchestration-signs-items-taken-together updated: the pointers of the method stand in a bracket at its end · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-prespec-confirms-the-findings-once updated: the pointer of the method stands in a bracket at its end, and the method waits for the event it names · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-search-leaves-out-decisions-in-every-agent updated: the pointer of the method stands in a bracket at its end, and the method waits for the event it names · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-close-leads-the-closing-session updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]] · generate
+- 2026-10-15 estimates/estimate-sprint-close-next-session-opens-the-sprint updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]] · generate
+- 2026-10-15 decisions/decision-case-823.2 created · raw/2026-10-15/1959/ledger.md#case-823.2 · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-then-line-shared-by-siblings updated: the Criterion replaced whole — its pointer stands in a bracket, it promises the note of the hook alone, and the method keeps its pytest run alone · [[decision-case-823.2]] · generate
+- 2026-10-15 decisions/decision-case-823.3 created · raw/2026-10-15/1959/ledger.md#case-823.3 · generate
+- 2026-10-15 estimates/estimate-ledger-write-holds-a-decision-line-off-the-stored-case updated: the Criterion replaced whole — its pointer stands in a bracket at the end of its sentence · [[decision-case-823.3]] · generate
+- 2026-10-15 decisions/decision-case-823.4 created · raw/2026-10-15/1959/ledger.md#case-823.4 · generate
+- 2026-10-15 estimates/estimate-orchestration-defer-example-passes-the-hook updated: the Criterion replaced whole — its pointer stands in a bracket, and the insight stands archived · [[decision-case-823.4]] · generate
+- 2026-10-15 decisions/decision-case-823.5 created · raw/2026-10-15/1959/ledger.md#case-823.5 · generate
+- 2026-10-15 estimates/estimate-ratification-case-id-carries-the-sprint updated: the Criterion replaced whole — its pointers stand in brackets; the method reads the live Renders · [[decision-case-823.5]] · generate
+- 2026-10-15 decisions/decision-case-823.6 created · raw/2026-10-15/1959/ledger.md#case-823.6 · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket updated: the Criterion replaced whole — pre-spec judges the new text of an Estimate whose target carries core: true · [[decision-case-823.6]] · generate
+- 2026-10-15 decisions/decision-case-824 created · raw/2026-10-15/1959/ledger.md#case-824 · generate
+- 2026-10-15 rules/rule-language updated: the Purpose names ASD-STE100 only for a documentation language that is English · [[decision-case-824]] · generate
+- 2026-10-15 rules/rule-spec-write updated: the Purpose names the language of a Case by its role · [[decision-case-824]] · generate
+- 2026-10-15 rules/rule-case-build updated: the Render names the language of an answer in recommend by its placeholder · [[decision-case-824]] · generate
+- 2026-10-15 rules/rule-case-protocol updated: the Render names the language of an answer in recommend by its placeholder · [[decision-case-824]] · generate
+- 2026-10-15 rules/rule-morph updated: the Purpose names the repository of GUPPI where it meant it by this repository · [[decision-case-824]] · generate
+- 2026-10-15 rules/rule-permissions updated: the Purpose names the folder of saved transcripts by how it is named, and the repository of GUPPI where it meant it by this repository · [[decision-case-824]] · generate
+- 2026-10-15 estimates/estimate-clean-branch-ships-neutral-texts updated: the method waits for a tag prod-x.y.z, without which guppi ship writes nothing · [[decision-case-824]] · generate
+- 2026-10-15 decisions/decision-case-825 created · raw/2026-10-15/1959/ledger.md#case-825 · generate
+- 2026-10-15 rules/rule-morph updated: the Purpose tells the start of a new project in order: /guppi:install is no Case, the setup Case comes first at the first /hi, and /sprint-open follows it in the same session; the install Case is named the setup Case · [[decision-case-825]] · generate
+- 2026-10-15 estimates/estimate-morph-sets-up-the-project-at-the-first-hi updated: the Criterion replaced whole — the setup Case comes first at the first /hi and /sprint-open follows it in the same session; /guppi:install is no Case · [[decision-case-825]] · generate
+- 2026-10-15 rules/rule-claude-md updated: the Purpose names the setup Case of rule-morph by its new name · [[decision-case-825]] · generate
+- 2026-10-15 rules/rule-guppi-config updated: the Purpose names the setup Case of rule-morph by its new name · [[decision-case-825]] · generate
+- 2026-10-15 rules/rule-clean-branch updated: the Purpose names the setup Case of rule-morph by its new name · [[decision-case-825]] · generate
+- 2026-10-15 entities/entity-sprint-plugin updated: the milestone line of rule-morph names the setup Case, its order before the first sprint and what remains of it · [[decision-case-825]] · generate
+- 2026-10-15 decisions/decision-case-826 created · raw/2026-10-15/1959/ledger.md#case-826 · generate
+- 2026-10-15 lessons/lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian updated: tagged retro, the tag the ledger hook refused at the Retro of session 1739 · [[decision-case-826]] · generate
+- 2026-10-15 lessons/lesson-box-cannot-act-on-the-prespec-findings-of-a-conserved-spec updated: tagged box, the tag the ledger hook refused at the Retro of session 1739 · [[decision-case-826]] · generate
+- 2026-10-15 decisions/decision-case-827 created · raw/2026-10-15/1959/ledger.md#case-827 · generate
+- 2026-10-15 decisions/decision-case-827.1 created · raw/2026-10-15/1959/ledger.md#case-827.1 · generate
+- 2026-10-15 rules/rule-ledger-write updated: a newtag block of a lesson line declares a new tag for the ledger hook (case 827.1) · [[decision-case-827.1]] · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag updated: the Criterion replaced whole — a newtag block of a lesson line declares a tag (case 827.1) · [[decision-case-827.1]] · generate
+- 2026-10-15 decisions/decision-case-827.2 created · raw/2026-10-15/1959/ledger.md#case-827.2 · generate
+- 2026-10-15 rules/rule-materialize updated: a newtag block of a lesson line adds its tag to new_tags (case 827.2) · [[decision-case-827.2]] · generate
+- 2026-10-15 estimates/estimate-materialize-lifts-a-tag-of-a-lesson created · [[decision-case-827.2]] · generate
+- 2026-10-15 estimates/estimate-materialize-lifts-a-tag-of-a-lesson status: pending → passed · raw/2026-10-15/1959/ledger.md#L72 · generate
+- 2026-10-15 rules/rule-materialize estimate estimate-materialize-lifts-a-tag-of-a-lesson added · [[decision-case-827.2]] · generate
+- 2026-10-15 decisions/decision-case-827.3 created · raw/2026-10-15/1959/ledger.md#case-827.3 · generate
+- 2026-10-15 rules/rule-ratification updated: the one rule names a new tag a lesson line declares; the lesson line declares it by a newtag block (case 827.3) · [[decision-case-827.3]] · generate
+- 2026-10-15 estimates/estimate-ratification-ledger-line-form updated: the Criterion replaced whole — a lesson line declares a new tag by a newtag block (case 827.3) · [[decision-case-827.3]] · generate
+- 2026-10-15 decisions/decision-case-827.4 created · raw/2026-10-15/1959/ledger.md#case-827.4 · generate
+- 2026-10-15 rules/rule-vault-layout updated: the header of tags.md changes by a one-off task by hand; a tag enters from a Case or a lesson line (case 827.4) · [[decision-case-827.4]] · generate
+- 2026-10-15 rules/rule-page-generation updated: the header of tags.md is changed by a one-off task by hand, not by the script (case 827.4) · [[decision-case-827.4]] · generate
+- 2026-10-15 rules/rule-documentation updated: the header of tags.md is changed by a one-off task by hand, not by the librarian (case 827.4) · [[decision-case-827.4]] · generate
+- 2026-10-15 entities/entity-glossary updated: the rows Ratification, Working files and Librarian: a new tag a lesson line declares, and the header of tags.md changed by a one-off task by hand (case 827.4) · [[decision-case-827.4]] · generate
+- 2026-10-15 decisions/decision-case-828 created · raw/2026-10-15/1959/ledger.md#case-828 · generate
+- 2026-10-15 rules/rule-rules-schema deferred · [[decision-case-828]] · generate
+- 2026-10-15 decisions/decision-case-829 created · raw/2026-10-15/1959/ledger.md#case-829 · generate
+- 2026-10-15 estimates/estimate-guppi-tests-green deferred · [[decision-case-829]] · generate
+- 2026-10-15 estimates/estimate-page-schemas-one-file-per-rule deferred · [[decision-case-829]] · generate
+- 2026-10-15 decisions/decision-case-830 created · raw/2026-10-15/1959/ledger.md#case-830 · generate
+- 2026-10-15 entities/entity-sprint-plugin deferred · [[decision-case-830]] · generate
+- 2026-10-15 decisions/decision-case-831 created · raw/2026-10-15/1959/ledger.md#case-831 · generate
+- 2026-10-15 estimates/estimate-clean-branch-installs-as-a-plugin deferred · [[decision-case-831]] · generate
+- 2026-10-15 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project deferred · [[decision-case-831]] · generate
+- 2026-10-15 estimates/estimate-guppi-package-is-ready-after-the-install deferred · [[decision-case-831]] · generate
+- 2026-10-15 decisions/decision-case-832 created · raw/2026-10-15/1959/ledger.md#case-832 · generate
+- 2026-10-15 estimates/estimate-guppi-package-is-ready-after-the-install deferred · [[decision-case-832]] · generate
+- 2026-10-15 decisions/decision-case-833 created · raw/2026-10-15/1959/ledger.md#case-833 · generate
+- 2026-10-15 estimates/estimate-harness-pipeline deferred · [[decision-case-833]] · generate
+- 2026-10-15 decisions/decision-case-834 created · raw/2026-10-15/1959/ledger.md#case-834 · generate
+- 2026-10-15 rules/rule-guppi-package deferred · [[decision-case-834]] · generate
+- 2026-10-15 decisions/decision-case-835 created · raw/2026-10-15/1959/ledger.md#case-835 · generate
+- 2026-10-15 insights/insight-case-build-claims-what-code-does-without-reading-it deferred · [[decision-case-835]] · generate
+- 2026-10-15 decisions/decision-case-836 created · raw/2026-10-15/1959/ledger.md#case-836 · generate
+- 2026-10-15 lessons/lesson-ledger-window-stops-at-a-resume-on-the-next-day deferred · [[decision-case-836]] · generate
+- 2026-10-15 lessons/lesson-case-build-agent-context-grows-on-every-resume deferred · [[decision-case-836]] · generate
+- 2026-10-15 decisions/decision-case-837 created · raw/2026-10-15/1959/ledger.md#case-837 · generate
+- 2026-10-15 estimates/estimate-guppi-package-runs-from-its-own-folder deferred · [[decision-case-837]] · generate
+- 2026-10-15 decisions/decision-case-838 created · raw/2026-10-15/1959/ledger.md#case-838 · generate
+- 2026-10-15 rules/rule-lint deferred · [[decision-case-838]] · generate
+- 2026-10-15 decisions/decision-case-839 created · raw/2026-10-15/1959/ledger.md#case-839 · generate
+- 2026-10-15 rules/rule-documentation deferred · [[decision-case-839]] · generate
+- 2026-10-15 rules/rule-permissions updated: the Purpose names the setup Case of rule-morph as the step that sets the folder name · [[decision-case-825]] · generate
+- 2026-10-15 estimates/estimate-case-check-notes-a-then-line-shared-by-siblings status: pending → passed · raw/2026-10-15/1959/ledger.md#L66 · generate
+- 2026-10-15 estimates/estimate-ledger-write-holds-a-decision-line-off-the-stored-case status: pending → passed · raw/2026-10-15/1959/ledger.md#L67 · generate
+- 2026-10-15 estimates/estimate-orchestration-defer-example-passes-the-hook status: pending → passed · raw/2026-10-15/1959/ledger.md#L68 · generate
+- 2026-10-15 estimates/estimate-ratification-case-id-carries-the-sprint status: pending → passed · raw/2026-10-15/1959/ledger.md#L69 · generate
+- 2026-10-15 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket status: pending → passed · raw/2026-10-15/1959/ledger.md#L70 · generate
+- 2026-10-15 estimates/estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag status: pending → passed · raw/2026-10-15/1959/ledger.md#L71 · generate
+- 2026-10-15 lessons/lesson-case-build-names-a-pytest-config-the-root-run-does-not-read created · raw/2026-10-15/1959/ledger.md#L73 · generate
+- 2026-10-15 insights/insight-case-build-rests-on-an-unchecked-fact-of-a-tool created · raw/2026-10-15/1959/ledger.md#L73 · generate
+- 2026-10-15 lessons/lesson-case-build-recommended-an-unchecked-github-fact updated: clustered under insight-case-build-rests-on-an-unchecked-fact-of-a-tool (synthesis) · raw/2026-10-15/1959/ledger.md#L73 · generate
+- 2026-10-15 lessons/lesson-case-build-names-a-pytest-config-the-root-run-does-not-read updated: clustered under insight-case-build-rests-on-an-unchecked-fact-of-a-tool (synthesis) · raw/2026-10-15/1959/ledger.md#L73 · generate
+- 2026-10-15 rules/rule-claude-md status: draft → built · cascade · generate
+- 2026-10-15 rules/rule-guppi-config status: draft → built · cascade · generate
+- 2026-10-15 rules/rule-lint status: draft → built · cascade · generate
+- 2026-10-15 rules/rule-page-generation status: draft → built · cascade · generate
+- 2026-10-15 rules/rule-ratification status: built → draft · cascade · generate
+- 2026-10-15 tags.md registers retro, box · generate

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether the main agent's prompt to case-guppi names each Case of the session that changes a page the item names or acts at the same moment, by its id, one sentence on what it sets and the path of its case file, and each other Case of a batch of items the person took up in one answer
-method: "by hand at the Retro of session 2249: the Agent calls that dispatched case-guppi for Cases 682 and 683 in its transcript, read against the Criterion; a Case of the batch or a related Case left unnamed counted in the reading line"
+method: "by hand at the Retro of the session that dispatched case-guppi for the Cases of a batch with their related Cases: the Agent calls of that dispatch in its transcript, read against the Criterion (session 2249, Cases 682 and 683); a Case of the batch or a related Case left unnamed counted in the reading line"
 checked: 2026-10-06
 origin: raw/2026-10-01/1441/ledger.md#case-579.1
 sprint: migration
@@ -38,3 +38,4 @@ The prompt of the call names each Case of the session, ratified or already shown
 - 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L29
 - 2026-10-06 updated: the Criterion replaced whole — the prompt of a builder in a batch names each other Case of the batch; the purpose and the method set anew (case 684.2) · [[decision-case-684.2]]
 - 2026-10-06 status: pending → passed · raw/2026-10-05/2249/ledger.md#L24
+- 2026-10-15 updated: the pointers of the method stand in a bracket at the end of their sentence · [[decision-case-823.1]]

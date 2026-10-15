@@ -26,3 +26,5 @@ another.
 | readme | the README of the repository: what the project is, its parts and how to use it | ридми, описание проекта |
 | ci | the continuous integration of the repository on GitHub: its runs, its checks and the branches it writes | CI, CI/CD, непрерывная интеграция |
 | plugin | GUPPI as a Claude Code plugin: its clean version, its install and its use in another project | плагин |
+| retro | the Retro phase: the review of the session's work against its ledger, the readings of Estimates, the lessons and the handoff | ретро, ретроспектива |
+| box | /box: a later session running a conserved Spec on its own branch | бокс, законсервированный спек |

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ratification]]"
 purpose: The written shape of a ledger line and of its marks, as the agent writes them
-method: "by hand: the ledger and the preview of a session where a lesson and the Case that closes its cause stand together, and of a Case that takes up a decision with more than one Case in its deferred_by"
+method: "by hand, after a session whose ledger holds a lesson and the Case that closes its cause together, a Case that takes up a decision with more than one Case in its deferred_by, and a lesson line that declares a new tag: those lines and their preview read against the Criterion"
 checked: 2026-10-04
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
@@ -24,6 +24,7 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 **＋** When a Case of this session closes the root cause of a lesson of this session, the line written second carries the mark: `{addresses:<lesson slug>}` on the decision line when the lesson line stands first, `{addressed_by:case N}` on the lesson line when the decision lines stand first; one mark per lesson.
 **＋** For a Case with sub-cases, the `N` of `{addressed_by:case N}` is the sub-case whose decision line closes the cause, never the parent, which has no decision line.
 **＋** The mark stands in the preview of the ledger lines the person ratifies, or in the `LEDGER` block of the lesson line.
+**＋** A lesson line whose tag `vault/wiki/tags.md` does not hold carries one `{newtag:<tag>|<meaning>|<aliases>}` block per such tag before `trigger:`, the tag also in its `{tags:...}`, the meaning one line and the aliases the words of the chat language for it.
 **－** A lesson whose fix is ratified in another session gets no mark.
 
 ## Result
@@ -49,3 +50,4 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 - 2026-10-02 updated: moved to rule-ratification; the Criterion replaced whole - the form as ratification.md holds it (case 595.16) · [[decision-case-595.16]]
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/1934/ledger.md#L3
+- 2026-10-15 updated: the Criterion replaced whole — a lesson line declares a new tag by a newtag block (case 827.3) · [[decision-case-827.3]]

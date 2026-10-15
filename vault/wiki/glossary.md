@@ -6,7 +6,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 
 | term | meaning | where |
 |---|---|---|
-| Ratification | Human sign-off on a Decision; nothing in vault or code changes without one | [[rule-ratification]] |
+| Ratification | Human sign-off on a Decision; nothing in vault or code changes without one, but a new tag that a lesson line declares with its meaning and aliases | [[rule-ratification]] |
 | Contract vs implementation | A Decision fixes what "done" means, never how; a contract change is a new Case | [[rule-ratification]] |
 | `ref`, `slug`, `supersedes` | A pointer to an existing page (absent: query the vault before a `create`; present: `update`); the page id = filename; the earlier case a ledger line corrects, written `{supersedes:case N}`, one block per Case and several on one line, each of which marks every entry of its Case and of its sub-cases superseded; `generate` clears a defer under the condition that `rule-case-protocol` sets (cases 200.2, 429, 467.3) | [[rule-case-protocol]] |
 | Decision | The atomic unit of work: `create`, `update`, `delete`, `defer`; Read is never one | [[rule-case-protocol]] |
@@ -28,7 +28,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | Renderer | `guppi render` writes the text of a Rule page into the harness file it governs, so the page stays the source; it runs with lint and as the librarian's step after `cleanup` | [[rule-render-harness]] |
 | Harness | The files that `guppi render` writes from the pages of `rules/`, such as `.claude/settings.json` with its hooks, the skills and agents, `CLAUDE.md`, `case-schema.md` and `guppi.toml` | [[rule-harness]] |
 | `CLAUDE.md`, `case-schema.md` | The system prompt, the Render of `rule-claude-md`, whole — the description of the project, `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` in their markers (cases 59.8, 272, 288.3, 360); the Case schema is the Render of `rule-case-protocol`, read by `case-guppi` alone; `/hi` loads, together with the glossary, `orchestration.md`, the Render of `rule-orchestration`, and `ratification.md`, the Render of `rule-ratification`, which the one rule opens (cases 273, 288, 595) | [[rule-claude-md]] |
-| Working files | `log.md`, the feed of page changes written by `generate` and `cleanup`; `tags.md`, the registry of tags ratified in a Case; `raw/` and `archive/`, the working folders of a session | [[rule-vault-layout]] |
+| Working files | `log.md`, the feed of page changes written by `generate` and `cleanup`; `tags.md`, the registry of tags, each from a ratified Case or from a lesson line that declares it, its header changed only by a one-off task by hand that a Case names; `raw/` and `archive/`, the working folders of a session | [[rule-vault-layout]] |
 
 ## [[rule-page-schemas]]
 
@@ -84,7 +84,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | term | meaning | where |
 |---|---|---|
 | Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | [[rule-documentation]] |
-| Librarian | Clean context; the only writer to `wiki/` but for what a merge of `main` by `/merge-main` writes: the joined text of a conflicted page, and the lines of `log.md` and `tags.md` that git joins (case 790); reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
+| Librarian | Clean context; the only writer to `wiki/` but for what a merge of `main` by `/merge-main` writes: the joined text of a conflicted page, and the lines of `log.md` and `tags.md` that git joins (case 790), and the header of `tags.md`, which a one-off task by hand that a Case names changes; reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
 | Session | Five phases in one order under [[rule-session]]: Session Start, Plan Mode, Work Mode, End of Work, Documentation | [[rule-session]] |
 | Work Mode | `/work` runs the approved Spec on a branch other than `main`: a baseline of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check` first, the tasks in the order of the Spec, each box ticked, then the Work readings; it ends with `/retro` | [[rule-work-mode]] |
 

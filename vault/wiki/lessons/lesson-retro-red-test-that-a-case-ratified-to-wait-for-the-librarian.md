@@ -7,7 +7,7 @@ insight: "[[insight-workflow-code-live-before-the-page-it-reads]]"
 origin: raw/2026-10-15/1739/ledger.md#L15
 sprint: plugin
 created: 2026-10-15
-tags: [workflow, tests]
+tags: [workflow, tests, retro]
 ---
 
 ## Trigger
@@ -22,3 +22,4 @@ rule-retro says a red test is never an expected red and is fixed or reverted, wh
 
 - 2026-10-15 created · raw/2026-10-15/1739/ledger.md#L15
 - 2026-10-15 updated: clustered under insight-workflow-code-live-before-the-page-it-reads (synthesis) · raw/2026-10-15/1739/ledger.md#L15
+- 2026-10-15 updated: tagged retro, the tag the ledger hook refused at the Retro of session 1739 · [[decision-case-826]]

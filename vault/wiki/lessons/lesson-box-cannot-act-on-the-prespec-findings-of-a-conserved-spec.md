@@ -6,7 +6,7 @@ status: new
 origin: raw/2026-10-15/1739/ledger.md#L16
 sprint: plugin
 created: 2026-10-15
-tags: [prespec, workflow]
+tags: [prespec, workflow, box]
 ---
 
 ## Trigger
@@ -20,3 +20,4 @@ in session 1739 the ask-guppi run of /pre-spec over the conserved Spec of raw/20
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1739/ledger.md#L16
+- 2026-10-15 updated: tagged box, the tag the ledger hook refused at the Retro of session 1739 · [[decision-case-826]]

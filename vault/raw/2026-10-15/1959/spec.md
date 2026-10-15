@@ -159,19 +159,19 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets`
-- [ ] update `estimate-ask-finds`
-- [ ] update `estimate-ask-query-before-a-create`
-- [ ] update `estimate-ask-opens-a-decision-only-for-a-finding`
-- [ ] update `estimate-case-check-sends-back-a-faulty-round`
-- [ ] update `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
-- [ ] update `estimate-orchestration-names-related-cases-in-the-dispatch`
-- [ ] update `estimate-orchestration-signs-items-taken-together`
-- [ ] update `estimate-prespec-confirms-the-findings-once`
-- [ ] update `estimate-search-leaves-out-decisions-in-every-agent`
-- [ ] update `estimate-skill-sprint-close-leads-the-closing-session`
-- [ ] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
-- [ ] update `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] create `estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets`
+- [x] update `estimate-ask-finds`
+- [x] update `estimate-ask-query-before-a-create`
+- [x] update `estimate-ask-opens-a-decision-only-for-a-finding`
+- [x] update `estimate-case-check-sends-back-a-faulty-round`
+- [x] update `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
+- [x] update `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] update `estimate-orchestration-signs-items-taken-together`
+- [x] update `estimate-prespec-confirms-the-findings-once`
+- [x] update `estimate-search-leaves-out-decisions-in-every-agent`
+- [x] update `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] update `estimate-sprint-close-next-session-opens-the-sprint`
 - [x] `.guppi/pyproject.toml`: under `[tool.pytest.ini_options]`, the marker `live` registered under `markers`, and `addopts` that leaves it out, `-m "not live"`; a comment there holds no pointer.
 - [x] `.guppi/tests/test_ship.py`: a test marked `live`, whose name does not hold `estimate`, runs `ship.ship` over this repository into `tmp_path` with a version it passes, and asserts that no line it gives back names a page under `vault/wiki/estimates/`.
 - [ ] read `estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets`
@@ -204,8 +204,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-notes-a-then-line-shared-by-siblings`
-- [ ] read `estimate-case-check-notes-a-then-line-shared-by-siblings`
+- [x] update `estimate-case-check-notes-a-then-line-shared-by-siblings`
+- [x] read `estimate-case-check-notes-a-then-line-shared-by-siblings`
 ```
 
 ### Case 823.3 — The hold of a ledger line keeps its pointer in a bracket
@@ -242,8 +242,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
-- [ ] read `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
+- [x] update `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
+- [x] read `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
 ```
 
 ### Case 823.4 — The defer example says where its insight stands
@@ -277,8 +277,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-defer-example-passes-the-hook`
-- [ ] read `estimate-orchestration-defer-example-passes-the-hook`
+- [x] update `estimate-orchestration-defer-example-passes-the-hook`
+- [x] read `estimate-orchestration-defer-example-passes-the-hook`
 ```
 
 ### Case 823.5 — The sprint form of a Case id keeps its pointers in brackets
@@ -322,8 +322,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ratification-case-id-carries-the-sprint`
-- [ ] read `estimate-ratification-case-id-carries-the-sprint`
+- [x] update `estimate-ratification-case-id-carries-the-sprint`
+- [x] read `estimate-ratification-case-id-carries-the-sprint`
 ```
 
 ### Case 823.6 — Pre-spec finds a pointer in the new text of a shipped Estimate
@@ -358,10 +358,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
+- [x] update `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
 - [x] `.guppi/guppi/prespec.py`: the reading of the new Criterion in `criterion_notes` moves into one function that `criterion_notes` and `check_pointers` call; `check_pointers` takes the Cases of the plan and judges an Estimate whose target carries `core: true`, by `core_as_left` over the item of the plan that writes the target, else over its live page; `written_texts` adds the `method` of a `create` and of `set`; the module docstring says it.
 - [x] `.guppi/tests/test_prespec.py`: tests whose names hold `pointer` — a pointer outside a bracket in the `method`, in a `sections` value and in the `when` or `then` of the Case of an Estimate of a core target is a finding; the same in an Estimate of a target without `core` is none; an `update` that names a part has no new Criterion judged.
-- [ ] read `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
+- [x] read `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
 ```
 
 ## Case 824 — The shipped rules name the languages by role and GUPPI's repository by name
@@ -470,15 +470,15 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-language`
-- [ ] update `rule-spec-write`
-- [ ] update `rule-case-build`
-- [ ] update `rule-case-protocol`
-- [ ] update `rule-morph`
-- [ ] update `rule-permissions`
-- [ ] update `estimate-clean-branch-ships-neutral-texts`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-language`
+- [x] update `rule-spec-write`
+- [x] update `rule-case-build`
+- [x] update `rule-case-protocol`
+- [x] update `rule-morph`
+- [x] update `rule-permissions`
+- [x] update `estimate-clean-branch-ships-neutral-texts`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ## Case 825 — Setup comes before the first sprint at the first /hi
@@ -600,13 +600,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-morph`
-- [ ] update `estimate-morph-sets-up-the-project-at-the-first-hi`
-- [ ] update `rule-claude-md`
-- [ ] update `rule-guppi-config`
-- [ ] update `rule-permissions`
-- [ ] update `rule-clean-branch`
-- [ ] update `entity-sprint-plugin`
+- [x] update `rule-morph`
+- [x] update `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] update `rule-claude-md`
+- [x] update `rule-guppi-config`
+- [x] update `rule-permissions`
+- [x] update `rule-clean-branch`
+- [x] update `entity-sprint-plugin`
 - [ ] read `estimate-morph-sets-up-the-project-at-the-first-hi`
 ```
 
@@ -672,8 +672,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian`
-- [ ] update `lesson-box-cannot-act-on-the-prespec-findings-of-a-conserved-spec`
+- [x] update `lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian`
+- [x] update `lesson-box-cannot-act-on-the-prespec-findings-of-a-conserved-spec`
 ```
 
 ## Case 827 — A lesson line declares its own new tag
@@ -758,13 +758,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] update `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
+- [x] update `rule-ledger-write`
+- [x] update `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
 - [x] `.guppi/guppi/materialize.py`: `parse_line` gives a lesson record `new_tags`, one entry of `tag`, `meaning` and `aliases` per `{newtag:<tag>|<meaning>|<aliases>}` block before `trigger:` whose tag stands in the line's `{tags:...}` and whose meaning and aliases are not empty; its docstring says so.
 - [x] `.guppi/guppi/tags.py`: `lesson_tags` gives the tags of the `new_tags` of the lesson records it is given; the module docstring names it.
 - [x] `.guppi/guppi/ledger.py`: `refused_tags` adds to the listed tags `lesson_tags` of the records of the session's ledger and of the fresh lines not in `skip`; `tag_message` gives the new stderr line; the module docstring says so.
 - [x] `.guppi/tests/test_ledger.py`: `test_unlisted_tag_in_the_finished_reply_is_refused_aloud_and_the_rest_lands` asserts the new words in place of the words of the handoff; new tests named `test_unlisted_tag_...`: a tag declared on the line itself lands; a tag declared on a lesson line of the session's ledger lands; a block whose tag is not in the `{tags:...}` of its line, or whose aliases are empty, declares nothing; a block on a line refused for its prefix declares nothing.
-- [ ] read `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
+- [x] read `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
 ```
 
 ### Case 827.2 — materialize lifts the tag a lesson line declares
@@ -808,11 +808,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`
-- [ ] create `estimate-materialize-lifts-a-tag-of-a-lesson`
+- [x] update `rule-materialize`
+- [x] create `estimate-materialize-lifts-a-tag-of-a-lesson`
 - [x] `.guppi/guppi/materialize.py`: after the `new_tags` of the Cases of the Spec, the `new_tags` of each lesson record of the unit join the yaml's `new_tags` in ledger order, a tag already there passed by; the module docstring says so.
 - [x] `.guppi/tests/test_materialize.py`: tests named `test_newtag_...` over the Criterion of `estimate-materialize-lifts-a-tag-of-a-lesson`.
-- [ ] read `estimate-materialize-lifts-a-tag-of-a-lesson`
+- [x] read `estimate-materialize-lifts-a-tag-of-a-lesson`
 ```
 
 ### Case 827.3 — ratification.md sets the block that declares a tag
@@ -853,9 +853,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ratification`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/ratification.md`
-- [ ] update `estimate-ratification-ledger-line-form`
+- [x] update `rule-ratification`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/ratification.md`
+- [x] update `estimate-ratification-ledger-line-form`
 - [ ] read `estimate-ratification-ledger-line-form`
 ```
 
@@ -911,12 +911,12 @@ update:
 
 ```tasks
 - [x] `vault/wiki/tags.md`: a one-off edit by hand in Work Mode of its header above the table: the sentence that a tag enters only after a Case ratified it says instead that a tag enters from a tag line of a ratified Case or from a `{newtag:...}` block of a lesson line with its meaning and aliases, and that the librarian's run writes each row and invents none; the table stays as it is.
-- [ ] update `rule-vault-layout`
-- [ ] update `rule-page-generation`
-- [ ] update `rule-documentation`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] update `entity-glossary`
-- [ ] `uv run --project .guppi guppi glossary`
+- [x] update `rule-vault-layout`
+- [x] update `rule-page-generation`
+- [x] update `rule-documentation`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `entity-glossary`
+- [x] `uv run --project .guppi guppi glossary`
 ```
 
 ## Deferred

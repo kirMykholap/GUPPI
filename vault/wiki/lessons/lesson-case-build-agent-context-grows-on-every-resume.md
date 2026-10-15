@@ -20,3 +20,4 @@ a new round or a rebuild resumes the same case-guppi with its whole transcript, 
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/0553/ledger.md#L62
+- 2026-10-15 deferred · [[decision-case-836]]

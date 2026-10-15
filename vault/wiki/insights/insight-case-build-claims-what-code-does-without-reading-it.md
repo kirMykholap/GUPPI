@@ -4,6 +4,7 @@ pattern: case-guppi states what a function or a script of the code does, and bui
 status: open
 children: ["[[lesson-case-build-reused-judgment-not-checked-against-the-other-side]]", "[[lesson-case-build-recommended-on-a-claim-about-code-it-did-not-read]]"]
 severity: 2
+deferred_by: ["[[decision-case-835]]"]
 origin: raw/2026-10-13/2118/ledger.md#L27
 sprint: plugin
 created: 2026-10-13
@@ -21,3 +22,4 @@ One sentence in rule-case-build that before case-guppi states in a round or a co
 ## History
 
 - 2026-10-14 created · raw/2026-10-13/2118/ledger.md#L27
+- 2026-10-15 deferred · [[decision-case-835]]

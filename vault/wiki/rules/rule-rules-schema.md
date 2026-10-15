@@ -8,6 +8,7 @@ governs: vault/wiki/rules/schema.yaml
 render_mode: full
 parent: "[[rule-page-schemas]]"
 estimates: ["[[estimate-rules-schema-checked]]"]
+deferred_by: ["[[decision-case-828]]"]
 origin: raw/2026-09-22/0014/ledger.md#case-305.1
 sprint: migration
 created: 2026-09-22
@@ -255,3 +256,4 @@ examples:
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: each pointer stands in a bracket of its own, the slug of rule-sprint outside it · [[decision-case-809]]
 - 2026-10-15 updated: the example names a test path that the reword of rule-guppi-package does not touch · [[decision-case-819.1]]
+- 2026-10-15 deferred · [[decision-case-828]]

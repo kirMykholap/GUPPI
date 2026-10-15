@@ -5,6 +5,7 @@ status: pending
 target: "[[rule-guppi-package]]"
 purpose: Whether /guppi:install stops and writes nothing when uv is missing, and builds the Python environment .guppi/.venv/ by uv sync after the copy, before it sends the person to /hi
 method: "by hand, after the librarian's run of the session whose Work Mode builds this change: a local copy that uv run --project .guppi guppi ship --allow-draft writes into an empty folder, the plugin guppi installed from it; in an empty project on a machine whose search path holds no uv, /guppi:install typed and its output and the files of the project read; in an empty project on a machine with uv, /guppi:install typed, .guppi/.venv/ read and Claude Code reopened there, read against the Criterion"
+deferred_by: ["[[decision-case-831]]", "[[decision-case-832]]"]
 origin: raw/2026-10-15/0553/ledger.md#case-819.4
 sprint: plugin
 created: 2026-10-15
@@ -26,3 +27,5 @@ Before it writes anything, `/guppi:install` runs `uv --version`.
 ## History
 
 - 2026-10-15 created · [[decision-case-819.4]]
+- 2026-10-15 deferred · [[decision-case-831]]
+- 2026-10-15 deferred · [[decision-case-832]]

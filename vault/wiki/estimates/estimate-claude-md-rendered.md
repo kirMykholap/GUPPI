@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-claude-md]]"
 purpose: CLAUDE.md equals the Render of rule-claude-md with each child between its markers, and every session loads that text
 method: "by hand, after the librarian's run of this change: uv run --project .guppi guppi render --check, and CLAUDE.md as the file holds it and as the session of that run loads it, read against the Criterion"
-checked: 2026-10-02
+checked: 2026-10-15
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
 created: 2026-09-12
@@ -25,7 +25,7 @@ Then:
 
 ## Result
 
-2026-10-02, the session start of 2049: `uv run guppi render --check` exit 0; CLAUDE.md in the session's context: # GUPPI, the one paragraph with vault/, vault/wiki/glossary.md and /hi in code spans, then rule-language, rule-agent-writing and rule-one-judgment-one-implementation between their markers, lines 5 to 23; no @ import, no one rule; rule-claude-md children are those three
+2026-10-15, the /hi of session 1959: `uv run --project .guppi guppi render --check` exit 0; CLAUDE.md lines 1–27: `<!-- project-description -->`, `# GUPPI`, the paragraph, `<!-- /project-description -->`, the paragraph with `vault/`, `vault/wiki/glossary.md` and `/hi` in code spans, then rule-language, rule-agent-writing and rule-one-judgment-one-implementation between their markers; no @ import, no one rule; the text stands in this session's context; the refusal of a hand edit was not tried
 
 ## History
 
@@ -49,3 +49,4 @@ Then:
 - 2026-10-02 status: pending → passed · raw/2026-10-02/2049/ledger.md#L6
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 updated: the Criterion replaced whole — the heading and the description stand between marker lines of their own · [[decision-case-822.5]]
+- 2026-10-15 status: pending → passed · raw/2026-10-15/1959/ledger.md#L1

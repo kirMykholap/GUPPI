@@ -1,4 +1,9 @@
-# The single entry point for this repository's checks. `make help` lists them.
+# The checks of the repository of GUPPI, kept for its own work for now; `make help` lists them.
+# The commands of the checks are `uv run --project .guppi guppi check`, `guppi test` and
+# `guppi style`, which need no tool but `uv`: the target `lint` runs `guppi check`, and the
+# targets `test` and `style` keep their own commands until `guppi.toml` sets the commands of
+# `guppi test` and `guppi style`. The clean version of GUPPI does not hold this file, and a
+# later Case removes it (case 820).
 #
 # Every recipe closes its own standard input. A PowerShell child spawned from a make recipe
 # with stdin inherited hangs (measured 2026-08-26, forty-nine minutes once); no check here
@@ -9,7 +14,7 @@
 # are different kinds of thing.
 #
 # `test` arrived with Slice 1; `lint` and the per-MOC test pipelines with Slice 2, three more
-# with Slice 3. `lint` only checks: the writers are `uv run guppi render`,
+# with Slice 3. `lint` only checks: the writers are `uv run --project .guppi guppi render`,
 # `guppi generate` and `guppi cleanup`.
 #
 # Every recipe runs under a POSIX sh. On Windows, make started from PowerShell finds no
@@ -37,35 +42,28 @@ help: ## list these targets
 	@awk 'BEGIN{FS=":.*## "} /^[a-z-]+:.*## /{printf "  %-7s %s\n", $$1, $$2}' $(MAKEFILE_LIST) < /dev/null
 
 style: ## ruff over the Python in this repository; must be clean before every commit
-	@uv run ruff check . < /dev/null
-	@uv run ruff format --check . < /dev/null
+	@uv run --project .guppi ruff check . < /dev/null
+	@uv run --project .guppi ruff format --check . < /dev/null
 
 test: ## pytest over the harness's own suite
-	@uv run pytest -q < /dev/null
+	@uv run --project .guppi pytest -q < /dev/null
 
-lint: ## the vault: the rendered harness, the sprint file, the backlog and the glossary match their sources, pages pass the checks, and the files outside vault/ that the clean version holds keep each pointer in a bracket of its own; every step runs, red if any is (cases 587, 807.2)
-	@status=0; \
-	uv run guppi render --check < /dev/null || status=1; \
-	uv run guppi sprint --check < /dev/null || status=1; \
-	uv run guppi backlog --check < /dev/null || status=1; \
-	uv run guppi glossary --check < /dev/null || status=1; \
-	uv run guppi lint < /dev/null || status=1; \
-	uv run guppi ship --check < /dev/null || status=1; \
-	exit $$status
+lint: ## the vault checks: guppi check runs each of them, red if any is (cases 587, 820)
+	@uv run --project .guppi guppi check < /dev/null
 
 test-session-start: ## the pipeline over rule-session-start's children
-	@uv run pytest -q tests/test_event.py tests/test_ledger.py < /dev/null
+	@uv run --project .guppi pytest -q .guppi/tests/test_event.py .guppi/tests/test_ledger.py < /dev/null
 
 test-plan-mode: ## the pipeline over rule-plan-mode's children
-	@uv run pytest -q tests/test_spec.py tests/test_prespec.py < /dev/null
+	@uv run --project .guppi pytest -q .guppi/tests/test_spec.py .guppi/tests/test_prespec.py < /dev/null
 
 test-documentation: ## the pipeline over rule-documentation's scripts
-	@uv run pytest -q tests/test_materialize.py tests/test_generate.py tests/test_cleanup.py < /dev/null
+	@uv run --project .guppi pytest -q .guppi/tests/test_materialize.py .guppi/tests/test_generate.py .guppi/tests/test_cleanup.py < /dev/null
 
 test-harness: ## the pipeline over rule-harness's children
-	@uv run pytest -q tests/test_render.py tests/test_lint.py < /dev/null
+	@uv run --project .guppi pytest -q .guppi/tests/test_render.py .guppi/tests/test_lint.py < /dev/null
 
 test-end-of-work: ## the pipeline over rule-end-of-work's children
-	@uv run pytest -q tests/test_gate.py < /dev/null
+	@uv run --project .guppi pytest -q .guppi/tests/test_gate.py < /dev/null
 
 test-session: test-session-start test-plan-mode test-end-of-work test-documentation ## the pipeline over rule-session's children

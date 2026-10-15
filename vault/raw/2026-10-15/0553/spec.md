@@ -107,11 +107,11 @@ update:
 ```tasks
 - [ ] create `estimate-clean-branch-installs-as-a-plugin`
 - [ ] update `rule-clean-branch`
-- [ ] `plugin/plugin.json`: the template of the manifest with no `version`: `name` `guppi`, the `description` `A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into`, `author` `{"name": "kirMykholap"}`, `repository` `https://github.com/kirMykholap/GUPPI`.
-- [ ] `plugin/marketplace.json`: the template of the catalogue: `name` `guppi-marketplace`, `owner` `{"name": "kirMykholap"}`, `plugins` with one entry, `name` `guppi`, `source` `./` and the same description.
-- [ ] `guppi/ship.py`: `guppi ship <folder>` copies `plugin/plugin.json` and `plugin/marketplace.json` into `.claude-plugin/` of the clean version and writes no file of `plugin/`; the docstring names both files.
-- [ ] `.github/workflows/prod.yml`: a step between the build and the commit installs Claude Code and runs `claude plugin validate "$RUNNER_TEMP/clean"`, so that a failed check fails the run before anything is pushed; the comment at the top names that step.
-- [ ] `tests/test_ship.py`: the sample tree holds `plugin/plugin.json` and `plugin/marketplace.json`; the file set of `test_it_writes_the_code_the_harness_and_the_core_pages_only` takes `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` and no file of `plugin/`; a test reads both written files and checks the keys and the values that the `then` of this Case names.
+- [x] `plugin/plugin.json`: the template of the manifest with no `version`: `name` `guppi`, the `description` `A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into`, `author` `{"name": "kirMykholap"}`, `repository` `https://github.com/kirMykholap/GUPPI`.
+- [x] `plugin/marketplace.json`: the template of the catalogue: `name` `guppi-marketplace`, `owner` `{"name": "kirMykholap"}`, `plugins` with one entry, `name` `guppi`, `source` `./` and the same description.
+- [x] `guppi/ship.py`: `guppi ship <folder>` copies `plugin/plugin.json` and `plugin/marketplace.json` into `.claude-plugin/` of the clean version and writes no file of `plugin/`; the docstring names both files.
+- [x] `.github/workflows/prod.yml`: a step between the build and the commit installs Claude Code and runs `claude plugin validate "$RUNNER_TEMP/clean"`, so that a failed check fails the run before anything is pushed; the comment at the top names that step.
+- [x] `tests/test_ship.py`: the sample tree holds `plugin/plugin.json` and `plugin/marketplace.json`; the file set of `test_it_writes_the_code_the_harness_and_the_core_pages_only` takes `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` and no file of `plugin/`; a test reads both written files and checks the keys and the values that the `then` of this Case names.
 - [ ] read `estimate-clean-branch-installs-as-a-plugin`
 ```
 
@@ -160,8 +160,8 @@ update:
 ```tasks
 - [ ] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
 - [ ] update `rule-clean-branch`
-- [ ] `guppi/ship.py`: `guppi ship <folder>` reads the tags `prod-x.y.z` in the history of the commit of the working tree, writes the number of the highest as the `version` of `.claude-plugin/plugin.json`, and exits 1 with a line and nothing written when there is none; the judgment of the form of the tag lives in this module alone; `--check` reads no tag; the docstring says so.
-- [ ] `tests/test_ship.py`: the sample tree carries a tag `prod-x.y.z` in its history, so the tests that build a folder pass; tests that the highest of two such tags is the version, that a tag such as `prod-2` gives no version, that a tree with no such tag exits 1 and writes nothing, and that `--check` passes on such a tree.
+- [x] `guppi/ship.py`: `guppi ship <folder>` reads the tags `prod-x.y.z` in the history of the commit of the working tree, writes the number of the highest as the `version` of `.claude-plugin/plugin.json`, and exits 1 with a line and nothing written when there is none; the judgment of the form of the tag lives in this module alone; `--check` reads no tag; the docstring says so.
+- [x] `tests/test_ship.py`: the sample tree carries a tag `prod-x.y.z` in its history, so the tests that build a folder pass; tests that the highest of two such tags is the version, that a tag such as `prod-2` gives no version, that a tree with no such tag exits 1 and writes nothing, and that `--check` passes on such a tree.
 - [ ] stop: after the Work Mode, the owner places the tag `prod-0.2.0` on the last commit of `plugin` and pushes it; the run it starts writes nothing to `prod` while a page with `core: true` stands `draft`, and a copy built with `--allow-draft` finds its version.
 - [ ] read `estimate-sprint-plugin-ci-writes-a-clean-branch`
 ```
@@ -367,8 +367,8 @@ update:
 - [ ] create `rule-plugin-install`
 - [ ] create `estimate-plugin-install-writes-guppi-into-an-empty-project`
 - [ ] update `rule-clean-branch`
-- [ ] `guppi/ship.py`: `guppi ship <folder>` writes each file under `plugin/skills/` to the same path under `skills/` of the clean version, judged and cleaned by `judged` like each other file, and writes no file of `plugin/skills/` at its own path; `--check` judges each file under `plugin/skills/` in place; the docstring says so.
-- [ ] `tests/test_ship.py`: the sample tree holds `plugin/skills/install/SKILL.md` with a pointer in a bracket of its own; the file set of `test_it_writes_the_code_the_harness_and_the_core_pages_only` takes `skills/install/SKILL.md` and no file under `plugin/skills/`; a test checks that the written skill has lost that bracket; a test checks that `--check` prints a line for a pointer outside a bracket in `plugin/skills/install/SKILL.md`; the names of these tests hold `plugin_skill`.
+- [x] `guppi/ship.py`: `guppi ship <folder>` writes each file under `plugin/skills/` to the same path under `skills/` of the clean version, judged and cleaned by `judged` like each other file, and writes no file of `plugin/skills/` at its own path; `--check` judges each file under `plugin/skills/` in place; the docstring says so.
+- [x] `tests/test_ship.py`: the sample tree holds `plugin/skills/install/SKILL.md` with a pointer in a bracket of its own; the file set of `test_it_writes_the_code_the_harness_and_the_core_pages_only` takes `skills/install/SKILL.md` and no file under `plugin/skills/`; a test checks that the written skill has lost that bracket; a test checks that `--check` prints a line for a pointer outside a bracket in `plugin/skills/install/SKILL.md`; the names of these tests hold `plugin_skill`.
 - [ ] `uv run guppi render`: `plugin/skills/install/SKILL.md`
 - [ ] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
 ```
@@ -569,16 +569,16 @@ update:
 - [ ] update `rule-estimates-schema`
 - [ ] update `rule-rules-schema`
 - [ ] update `rule-guppi-package`
-- [ ] Move, in an order where a command without `--project .guppi` still answers at the root after each step: `guppi/` to `.guppi/guppi/`, `tests/` to `.guppi/tests/`, the package's `pyproject.toml` and `uv.lock` to `.guppi/`, with pytest and ruff and their settings in `.guppi/pyproject.toml`; a new `.guppi/.gitignore` that holds `.venv/`; the root `pyproject.toml` and `uv.lock` rewritten as a development project that takes `guppi` from `.guppi/` as an editable path and holds pytest and ruff with the settings of the tests.
-- [ ] `.guppi/tests/test_guppi_package.py`: the layout of `.guppi/`; no `uv run guppi` and no `uv run pytest` by `reword_pattern` of `guppi/generate.py` in the files of `.claude/`, the `Makefile` and `.github/workflows/`, and none of those and no path that the pairs `guppi/` and `tests/` would change in the parts of a live rule, entity or Estimate that `reword_text` changes; each `COMMAND` of `ledger.py`, `onward.py`, `ratified.py` and `casecheck.py`, in the new form, stands in `.claude/settings.json`; a clean version built into a temporary folder, with `--allow-draft` where it builds from this repository, holds no `pyproject.toml` and no `uv.lock` at its root.
-- [ ] `.guppi/tests/`: each path counted from the test file in `test_generate.py`, `test_case_schema.py`, `test_orchestration.py`, `test_schemas.py`, `test_lint.py` and `test_materialize.py` takes one step more; `LINT_STEPS` of `test_lint.py` take `--project .guppi`; each test that names the command or a path of the code or the tests names it as the code does.
-- [ ] `guppi/ledger.py`, `guppi/onward.py`, `guppi/ratified.py` and `guppi/casecheck.py`: each `COMMAND` holds the command with `--project .guppi`, and the search for the module's own refusals takes the command without it too, until a Case of a later session removes the old form.
-- [ ] `guppi/prespec.py`: `OFF_FORM_LINE` takes a render or sprint line of the form with `--project .guppi` as it takes one without it.
-- [ ] `guppi/lint.py`: `TEST_PATH` reads a test path whole from its start, where no letter, digit, `_`, `-`, `.` or `/` stands before it, so `.guppi/tests/test_x.py`, `tests/test_x.py` and `discounts/tests/test_x.py` are each one path and none is read from the middle of another; lint checks each such path for existence from the root of the project.
-- [ ] `guppi/bashguard.py`: `interpreter` skips the value of `--project` after `uv run`, so `uv run --project .guppi python` fed a script on stdin is judged as `uv run python` is; a test in `test_bashguard.py` and one in `test_powershellguard.py`.
-- [ ] `guppi/`: each docstring, comment and message that names the command, the code or the tests of GUPPI names them as the pages name them after the `reword`.
-- [ ] `Makefile`: each `uv run` line takes `--project .guppi`.
-- [ ] `.github/workflows/prod.yml`: the build runs `uv run --project .guppi guppi ship "$RUNNER_TEMP/clean"`.
+- [x] Move, in an order where a command without `--project .guppi` still answers at the root after each step: `guppi/` to `.guppi/guppi/`, `tests/` to `.guppi/tests/`, the package's `pyproject.toml` and `uv.lock` to `.guppi/`, with pytest and ruff and their settings in `.guppi/pyproject.toml`; a new `.guppi/.gitignore` that holds `.venv/`; the root `pyproject.toml` and `uv.lock` rewritten as a development project that takes `guppi` from `.guppi/` as an editable path and holds pytest and ruff with the settings of the tests.
+- [x] `.guppi/tests/test_guppi_package.py`: the layout of `.guppi/`; no `uv run guppi` and no `uv run pytest` by `reword_pattern` of `guppi/generate.py` in the files of `.claude/`, the `Makefile` and `.github/workflows/`, and none of those and no path that the pairs `guppi/` and `tests/` would change in the parts of a live rule, entity or Estimate that `reword_text` changes; each `COMMAND` of `ledger.py`, `onward.py`, `ratified.py` and `casecheck.py`, in the new form, stands in `.claude/settings.json`; a clean version built into a temporary folder, with `--allow-draft` where it builds from this repository, holds no `pyproject.toml` and no `uv.lock` at its root.
+- [x] `.guppi/tests/`: each path counted from the test file in `test_generate.py`, `test_case_schema.py`, `test_orchestration.py`, `test_schemas.py`, `test_lint.py` and `test_materialize.py` takes one step more; `LINT_STEPS` of `test_lint.py` take `--project .guppi`; each test that names the command or a path of the code or the tests names it as the code does.
+- [x] `guppi/ledger.py`, `guppi/onward.py`, `guppi/ratified.py` and `guppi/casecheck.py`: each `COMMAND` holds the command with `--project .guppi`, and the search for the module's own refusals takes the command without it too, until a Case of a later session removes the old form.
+- [x] `guppi/prespec.py`: `OFF_FORM_LINE` takes a render or sprint line of the form with `--project .guppi` as it takes one without it.
+- [x] `guppi/lint.py`: `TEST_PATH` reads a test path whole from its start, where no letter, digit, `_`, `-`, `.` or `/` stands before it, so `.guppi/tests/test_x.py`, `tests/test_x.py` and `discounts/tests/test_x.py` are each one path and none is read from the middle of another; lint checks each such path for existence from the root of the project.
+- [x] `guppi/bashguard.py`: `interpreter` skips the value of `--project` after `uv run`, so `uv run --project .guppi python` fed a script on stdin is judged as `uv run python` is; a test in `test_bashguard.py` and one in `test_powershellguard.py`.
+- [x] `guppi/`: each docstring, comment and message that names the command, the code or the tests of GUPPI names them as the pages name them after the `reword`.
+- [x] `Makefile`: each `uv run` line takes `--project .guppi`.
+- [x] `.github/workflows/prod.yml`: the build runs `uv run --project .guppi guppi ship "$RUNNER_TEMP/clean"`.
 - [ ] `uv run guppi render`: `.claude/settings.json`
 - [ ] `uv run guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] `uv run guppi render`: `.claude/agents/case-guppi.md`
@@ -644,8 +644,8 @@ update:
 ```tasks
 - [ ] update `rule-page-generation`
 - [ ] update `estimate-generate-rewords`
-- [ ] `guppi/generate.py`: `reword_pattern` matches an `old` that ends with `/` as the start of a path, and stays the one matching of `reword`, `rename` and the preview of `/pre-spec`; `reword_text` changes `implementation_ref`, `governs` and `code_ref` for such a pair; the docstring says so.
-- [ ] `tests/test_generate.py`: a pair `tests/` on a temp vault turns `tests/test_x.py` into `.guppi/tests/test_x.py` in a section, in `method` and in `implementation_ref`, and leaves `.guppi/tests/` and `cart/tests/` alone; a pair that does not end with `/` still matches a whole word only.
+- [x] `guppi/generate.py`: `reword_pattern` matches an `old` that ends with `/` as the start of a path, and stays the one matching of `reword`, `rename` and the preview of `/pre-spec`; `reword_text` changes `implementation_ref`, `governs` and `code_ref` for such a pair; the docstring says so.
+- [x] `tests/test_generate.py`: a pair `tests/` on a temp vault turns `tests/test_x.py` into `.guppi/tests/test_x.py` in a section, in `method` and in `implementation_ref`, and leaves `.guppi/tests/` and `cart/tests/` alone; a pair that does not end with `/` still matches a whole word only.
 - [ ] read `estimate-generate-rewords`
 ```
 
@@ -707,8 +707,8 @@ update:
 ```tasks
 - [ ] update `rule-clean-branch`
 - [ ] update `estimate-clean-branch-writes-a-clean-copy`
-- [ ] `guppi/ship.py`: `ROOT_FILES` holds `CLAUDE.md` and `.gitattributes`; the tree `.guppi` replaces `guppi` in `TREES`; `.guppi/.venv/` and the cache folders of Python, pytest and ruff are skipped by the copy and by `--check`, and the tests under `.guppi/tests/` go as Case 822.2 sets; `.guppi/uv.lock` is not cleaned; the docstring says so.
-- [ ] `tests/test_ship.py`: the sample tree holds `.guppi/guppi/`, `.guppi/pyproject.toml`, `.guppi/uv.lock`, `.guppi/.gitignore`, a file under `.guppi/.venv/`, a cache folder of pytest under `.guppi/`, and a root `pyproject.toml`; the file set of `test_it_writes_the_code_the_harness_and_the_core_pages_only` takes the first four and no file of `.guppi/.venv/`, of the cache folder or the root `pyproject.toml`; the tests under `.guppi/tests/` are judged as Case 822.2 sets.
+- [x] `guppi/ship.py`: `ROOT_FILES` holds `CLAUDE.md` and `.gitattributes`; the tree `.guppi` replaces `guppi` in `TREES`; `.guppi/.venv/` and the cache folders of Python, pytest and ruff are skipped by the copy and by `--check`, and the tests under `.guppi/tests/` go as Case 822.2 sets; `.guppi/uv.lock` is not cleaned; the docstring says so.
+- [x] `tests/test_ship.py`: the sample tree holds `.guppi/guppi/`, `.guppi/pyproject.toml`, `.guppi/uv.lock`, `.guppi/.gitignore`, a file under `.guppi/.venv/`, a cache folder of pytest under `.guppi/`, and a root `pyproject.toml`; the file set of `test_it_writes_the_code_the_harness_and_the_core_pages_only` takes the first four and no file of `.guppi/.venv/`, of the cache folder or the root `pyproject.toml`; the tests under `.guppi/tests/` are judged as Case 822.2 sets.
 - [ ] read `estimate-clean-branch-writes-a-clean-copy`
 ```
 
@@ -882,10 +882,10 @@ update:
 ```tasks
 - [ ] update `rule-lint`
 - [ ] update `estimate-lint-runs-every-step`
-- [ ] `.guppi/guppi/check.py`: `run` runs the six steps in order, each even after a red one, each with its own output and no stdin, exits non-zero when any is red, and skips `guppi ship --check` with one line when `ship_stands` of `.guppi/guppi/pages.py` answers that the module `guppi.ship` is missing; the docstring says so and names `rule-lint`.
-- [ ] `.guppi/guppi/pages.py`: `ship_stands`, the one judgment of whether the module `guppi.ship` stands, which `guppi check`, the list of commands of `.guppi/guppi/cli.py` and the check of a draft page of `guppi lint` import; the docstring names them.
-- [ ] `.guppi/guppi/cli.py`: the command `check` in `COMMANDS`.
-- [ ] `.guppi/tests/test_check.py`: the order of the steps, every step after a red `guppi backlog --check`, the exit code with one red step and with none, no stdin read, the tree unchanged, and the skip of `guppi ship --check` with its one line when the module is missing.
+- [x] `.guppi/guppi/check.py`: `run` runs the six steps in order, each even after a red one, each with its own output and no stdin, exits non-zero when any is red, and skips `guppi ship --check` with one line when `ship_stands` of `.guppi/guppi/pages.py` answers that the module `guppi.ship` is missing; the docstring says so and names `rule-lint`.
+- [x] `.guppi/guppi/pages.py`: `ship_stands`, the one judgment of whether the module `guppi.ship` stands, which `guppi check`, the list of commands of `.guppi/guppi/cli.py` and the check of a draft page of `guppi lint` import; the docstring names them.
+- [x] `.guppi/guppi/cli.py`: the command `check` in `COMMANDS`.
+- [x] `.guppi/tests/test_check.py`: the order of the steps, every step after a red `guppi backlog --check`, the exit code with one red step and with none, no stdin read, the tree unchanged, and the skip of `guppi ship --check` with its one line when the module is missing.
 - [ ] read `estimate-lint-runs-every-step`
 ```
 
@@ -950,10 +950,10 @@ update:
 ```tasks
 - [ ] update `rule-guppi-config`
 - [ ] create `estimate-guppi-config-runs-the-test-and-style-commands`
-- [ ] `.guppi/guppi/config.py`: one function reads the list of commands of a key of `guppi.toml`, and names the file and the key when either is missing; `parse` still checks only the two language keys; the docstring says so.
-- [ ] `.guppi/guppi/commands.py`: `guppi test` and `guppi style` read their key through `.guppi/guppi/config.py`, split each command into its words and run it in the folder of the project with no shell and no stdin, each after a red one, and exit non-zero when any is red, or exit 1 with one line when the file or the key is missing; the docstring names `rule-guppi-config`.
-- [ ] `.guppi/guppi/cli.py`: the commands `test` and `style` in `COMMANDS`.
-- [ ] `.guppi/tests/test_commands.py`: the order of the commands, every command after a red one, the exit code with one red command and with none, no stdin read, no shell, and the one line with exit 1 for a missing `guppi.toml` and for a missing key.
+- [x] `.guppi/guppi/config.py`: one function reads the list of commands of a key of `guppi.toml`, and names the file and the key when either is missing; `parse` still checks only the two language keys; the docstring says so.
+- [x] `.guppi/guppi/commands.py`: `guppi test` and `guppi style` read their key through `.guppi/guppi/config.py`, split each command into its words and run it in the folder of the project with no shell and no stdin, each after a red one, and exit non-zero when any is red, or exit 1 with one line when the file or the key is missing; the docstring names `rule-guppi-config`.
+- [x] `.guppi/guppi/cli.py`: the commands `test` and `style` in `COMMANDS`.
+- [x] `.guppi/tests/test_commands.py`: the order of the commands, every command after a red one, the exit code with one red command and with none, no stdin read, no shell, and the one line with exit 1 for a missing `guppi.toml` and for a missing key.
 - [ ] `uv run guppi render`: `guppi.toml`
 - [ ] read `estimate-guppi-config-runs-the-test-and-style-commands`
 ```
@@ -1000,8 +1000,8 @@ update:
 ```tasks
 - [ ] update `rule-estimates-schema`
 - [ ] update `estimate-lint-checks-the-method`
-- [ ] `.guppi/guppi/lint.py`: `names_a_form` takes the commands `guppi test`, `guppi check` and `guppi style`; `names_a_moc_form` takes the word `pytest` with one or more test paths; `check_method` checks on a MOC that each such path exists, and `sibling_names_a_target` takes a sibling that names such a form; the finding names the new forms; the docstrings say so.
-- [ ] `.guppi/tests/test_lint.py`: on a Leaf each of the three commands passes; on a MOC `pytest` with test files that exist passes, a missing one is a finding, and `pytest` alone, a path alone and a command alone are findings; a sibling with `pytest` and test files lets `by hand` pass; the tests of a `make <target>` stand.
+- [x] `.guppi/guppi/lint.py`: `names_a_form` takes the commands `guppi test`, `guppi check` and `guppi style`; `names_a_moc_form` takes the word `pytest` with one or more test paths; `check_method` checks on a MOC that each such path exists, and `sibling_names_a_target` takes a sibling that names such a form; the finding names the new forms; the docstrings say so.
+- [x] `.guppi/tests/test_lint.py`: on a Leaf each of the three commands passes; on a MOC `pytest` with test files that exist passes, a missing one is a finding, and `pytest` alone, a path alone and a command alone are findings; a sibling with `pytest` and test files lets `by hand` pass; the tests of a `make <target>` stand.
 - [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 - [ ] read `estimate-lint-checks-the-method`
 ```
@@ -1042,8 +1042,8 @@ update:
 
 ```tasks
 - [ ] update `estimate-prespec-catches-a-method-without-a-form`
-- [ ] `.guppi/guppi/prespec.py`: `NO_FORM` and `MOC_NO_FORM` name the new forms; the method check of the plan calls `names_a_form` and `names_a_moc_form` of `.guppi/guppi/lint.py` as before; the docstring says so.
-- [ ] `.guppi/tests/test_prespec.py`: each of the five forms clean on a Leaf; on a MOC `pytest` with a test path clean, and a test path alone, `pytest` alone and `guppi test` alone each the line of a MOC; the lines name the new forms.
+- [x] `.guppi/guppi/prespec.py`: `NO_FORM` and `MOC_NO_FORM` name the new forms; the method check of the plan calls `names_a_form` and `names_a_moc_form` of `.guppi/guppi/lint.py` as before; the docstring says so.
+- [x] `.guppi/tests/test_prespec.py`: each of the five forms clean on a Leaf; on a MOC `pytest` with a test path clean, and a test path alone, `pytest` alone and `guppi test` alone each the line of a MOC; the lines name the new forms.
 - [ ] read `estimate-prespec-catches-a-method-without-a-form`
 ```
 
@@ -1088,10 +1088,10 @@ update:
 ```tasks
 - [ ] update `rule-clean-branch`
 - [ ] create `estimate-clean-branch-ships-no-ship-command`
-- [ ] `.guppi/guppi/pointers.py`: `outside` and the functions and patterns it calls, moved from `.guppi/guppi/ship.py` unchanged; the docstring names it the one judgment of a pointer, which `guppi ship` and `/pre-spec` import.
-- [ ] `.guppi/guppi/ship.py`: imports the judgment of a pointer from `.guppi/guppi/pointers.py` and keeps no copy of it; the copy and `--check` skip `.guppi/guppi/ship.py`; the docstring says so.
-- [ ] `.guppi/guppi/cli.py`: `COMMANDS` holds `ship` only when `ship_stands` of `.guppi/guppi/pages.py` answers that the module `guppi.ship` stands.
-- [ ] `.guppi/tests/test_ship.py`: a clean version built into a temporary folder holds `.guppi/guppi/pointers.py` and no `.guppi/guppi/ship.py`; the code of that folder lists no command `ship`, and `guppi ship` there exits 2 with its line; `--check` prints no line for `.guppi/guppi/ship.py`; the names of these tests hold `ship_command`.
+- [x] `.guppi/guppi/pointers.py`: `outside` and the functions and patterns it calls, moved from `.guppi/guppi/ship.py` unchanged; the docstring names it the one judgment of a pointer, which `guppi ship` and `/pre-spec` import.
+- [x] `.guppi/guppi/ship.py`: imports the judgment of a pointer from `.guppi/guppi/pointers.py` and keeps no copy of it; the copy and `--check` skip `.guppi/guppi/ship.py`; the docstring says so.
+- [x] `.guppi/guppi/cli.py`: `COMMANDS` holds `ship` only when `ship_stands` of `.guppi/guppi/pages.py` answers that the module `guppi.ship` stands.
+- [x] `.guppi/tests/test_ship.py`: a clean version built into a temporary folder holds `.guppi/guppi/pointers.py` and no `.guppi/guppi/ship.py`; the code of that folder lists no command `ship`, and `guppi ship` there exits 2 with its line; `--check` prints no line for `.guppi/guppi/ship.py`; the names of these tests hold `ship_command`.
 - [ ] read `estimate-clean-branch-ships-no-ship-command`
 ```
 
@@ -1124,8 +1124,8 @@ update:
 
 ```tasks
 - [ ] update `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
-- [ ] `.guppi/guppi/prespec.py`: imports `outside` from `.guppi/guppi/pointers.py`; the docstrings name that module.
-- [ ] `.guppi/tests/test_prespec.py`: the test that asserted `prespec.outside is ship.outside` asserts `prespec.outside is pointers.outside`.
+- [x] `.guppi/guppi/prespec.py`: imports `outside` from `.guppi/guppi/pointers.py`; the docstrings name that module.
+- [x] `.guppi/tests/test_prespec.py`: the test that asserted `prespec.outside is ship.outside` asserts `prespec.outside is pointers.outside`.
 - [ ] read `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
 ```
 
@@ -1187,10 +1187,10 @@ update:
 - [ ] update `estimate-harness-make-runs-in-both-shells`
 - [ ] update `rule-lint`
 - [ ] update `rule-guppi-config`
-- [ ] `Makefile`: the target `lint` runs `uv run --project .guppi guppi check` alone; the targets `help`, `test`, `style` and those of the pipelines keep their recipes; the comment at the top says that the file stays until a later Case removes it, that `guppi check`, `guppi test` and `guppi style` are the commands of the checks, and that the clean version does not hold it.
-- [ ] `.guppi/tests/test_lint.py`: the test of the target `lint` of the `Makefile` records one call, `run --project .guppi guppi check`, and its name holds `makefile`; the tests of the steps move to `.guppi/tests/test_check.py`.
-- [ ] `.github/workflows/checks.yml`: the jobs `style`, `test` and `lint` run `uv run --project .guppi guppi style`, `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check`, with no step that installs make; the comment at the top says so.
-- [ ] `.guppi/guppi/`: each docstring, comment and message that names the old commands names `guppi check`, `guppi test` or `guppi style`.
+- [x] `Makefile`: the target `lint` runs `uv run --project .guppi guppi check` alone; the targets `help`, `test`, `style` and those of the pipelines keep their recipes; the comment at the top says that the file stays until a later Case removes it, that `guppi check`, `guppi test` and `guppi style` are the commands of the checks, and that the clean version does not hold it.
+- [x] `.guppi/tests/test_lint.py`: the test of the target `lint` of the `Makefile` records one call, `run --project .guppi guppi check`, and its name holds `makefile`; the tests of the steps move to `.guppi/tests/test_check.py`.
+- [x] `.github/workflows/checks.yml`: the jobs `style`, `test` and `lint` run `uv run --project .guppi guppi style`, `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check`, with no step that installs make; the comment at the top says so.
+- [x] `.guppi/guppi/`: each docstring, comment and message that names the old commands names `guppi check`, `guppi test` or `guppi style`.
 - [ ] `uv run guppi render`: `.claude/skills/work/SKILL.md`
 - [ ] `uv run guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] `uv run guppi render`: `.claude/skills/handoff/SKILL.md`
@@ -1386,8 +1386,8 @@ update:
 - [ ] update `rule-estimates-schema`
 - [ ] update `entity-sprint-plugin`
 - [ ] create `estimate-clean-branch-ships-the-passed-estimates`
-- [ ] `.guppi/guppi/ship.py`: `plan` takes each Estimate whose `status` is `passed`, whose target, read by `slug_of` of `.guppi/guppi/pages.py`, is a page with `core: true` that it writes, and whose `method` holds no match of `MAKE_TARGET` of `.guppi/guppi/lint.py`, imported; `shipped_page` writes `core: true` into such an Estimate and its `## Result` as one line, the date of `checked` and that it passed in the repository of GUPPI; the docstring says so.
-- [ ] `.guppi/tests/test_ship.py`: the sample tree holds a `passed`, a `pending` and a `failed` Estimate of a page with `core: true`, a `passed` one whose `method` names `make test-x`, and a `passed` Estimate of a page without it; the copy holds the first alone, with `core: true`, `origin: guppi` and a Result of one line, and the `estimates` of its target list it alone; `guppi lint` over the copy gives no finding on its `origin`; the names of these tests hold `estimate`.
+- [x] `.guppi/guppi/ship.py`: `plan` takes each Estimate whose `status` is `passed`, whose target, read by `slug_of` of `.guppi/guppi/pages.py`, is a page with `core: true` that it writes, and whose `method` holds no match of `MAKE_TARGET` of `.guppi/guppi/lint.py`, imported; `shipped_page` writes `core: true` into such an Estimate and its `## Result` as one line, the date of `checked` and that it passed in the repository of GUPPI; the docstring says so.
+- [x] `.guppi/tests/test_ship.py`: the sample tree holds a `passed`, a `pending` and a `failed` Estimate of a page with `core: true`, a `passed` one whose `method` names `make test-x`, and a `passed` Estimate of a page without it; the copy holds the first alone, with `core: true`, `origin: guppi` and a Result of one line, and the `estimates` of its target list it alone; `guppi lint` over the copy gives no finding on its `origin`; the names of these tests hold `estimate`.
 - [ ] `uv run guppi render`: `vault/wiki/estimates/schema.yaml`
 - [ ] read `estimate-clean-branch-ships-the-passed-estimates`
 ```
@@ -1439,10 +1439,10 @@ update:
 ```tasks
 - [ ] update `rule-clean-branch`
 - [ ] create `estimate-clean-branch-ships-the-tests`
-- [ ] `.guppi/guppi/pointers.py`: beside `masked`, one function sets aside as samples the strings of a Python file that are not docstrings, read by `tokenize`; `outside` and the cleaning take it for a file under `.guppi/tests/`; the docstring says so.
-- [ ] `.guppi/guppi/ship.py`: the copy and `--check` take the files under `.guppi/tests/` but `.guppi/tests/test_ship.py`, and judge and clean them through that function; the docstring says so.
-- [ ] `.guppi/tests/`: each pointer outside a bracket in a comment or a docstring stands in a bracket of its own at the end of its sentence, and each bare case number there gets the word `case`, so that `guppi ship --check` prints no line on them; a test that needs the `Makefile`, `.github/workflows/prod.yml` or the module `guppi.ship` is skipped where it is missing.
-- [ ] `.guppi/tests/test_ship.py`: the sample tree holds a test file with a pointer in a bracket in a comment, a sample ledger line and a bracket with a pointer in a string, and a file `.guppi/tests/test_ship.py`; the copy holds the first without the bracket of the comment and with both strings unchanged, and no `.guppi/tests/test_ship.py`; `--check` prints a line for a pointer outside a bracket in a comment of a test and none for one in a string; the names of these tests hold `tests`.
+- [x] `.guppi/guppi/pointers.py`: beside `masked`, one function sets aside as samples the strings of a Python file that are not docstrings, read by `tokenize`; `outside` and the cleaning take it for a file under `.guppi/tests/`; the docstring says so.
+- [x] `.guppi/guppi/ship.py`: the copy and `--check` take the files under `.guppi/tests/` but `.guppi/tests/test_ship.py`, and judge and clean them through that function; the docstring says so.
+- [x] `.guppi/tests/`: each pointer outside a bracket in a comment or a docstring stands in a bracket of its own at the end of its sentence, and each bare case number there gets the word `case`, so that `guppi ship --check` prints no line on them; a test that needs the `Makefile`, `.github/workflows/prod.yml` or the module `guppi.ship` is skipped where it is missing.
+- [x] `.guppi/tests/test_ship.py`: the sample tree holds a test file with a pointer in a bracket in a comment, a sample ledger line and a bracket with a pointer in a string, and a file `.guppi/tests/test_ship.py`; the copy holds the first without the bracket of the comment and with both strings unchanged, and no `.guppi/tests/test_ship.py`; `--check` prints a line for a pointer outside a bracket in a comment of a test and none for one in a string; the names of these tests hold `tests`.
 - [ ] read `estimate-clean-branch-ships-the-tests`
 ```
 
@@ -1496,8 +1496,8 @@ update:
 - [ ] update `rule-clean-branch`
 - [ ] update `rule-plugin-install`
 - [ ] create `estimate-clean-branch-writes-the-session-files`
-- [ ] `.guppi/guppi/ship.py`: the copy writes `vault/wiki/sprint.md` by `closed_form` of `.guppi/guppi/sprint.py` for `guppi`, `vault/wiki/backlog.md` and `vault/wiki/glossary.md` by `render` of `.guppi/guppi/backlog.py` and of `.guppi/guppi/glossary.py` over the clean folder, and `vault/wiki/brief.md` and `vault/wiki/log.md` from two fixed texts in this module; no copy of a judgment of those writers stands here; the docstring says so.
-- [ ] `.guppi/tests/test_ship.py`: the copy of the sample tree holds the five files; `sprint.md` equals `closed_form("guppi")`; `guppi sprint --check`, `guppi backlog --check` and `guppi glossary --check` over the copy print nothing and exit 0; `brief.md` opens its Cases with the line of the next sprint; the names of these tests hold `skeleton`.
+- [x] `.guppi/guppi/ship.py`: the copy writes `vault/wiki/sprint.md` by `closed_form` of `.guppi/guppi/sprint.py` for `guppi`, `vault/wiki/backlog.md` and `vault/wiki/glossary.md` by `render` of `.guppi/guppi/backlog.py` and of `.guppi/guppi/glossary.py` over the clean folder, and `vault/wiki/brief.md` and `vault/wiki/log.md` from two fixed texts in this module; no copy of a judgment of those writers stands here; the docstring says so.
+- [x] `.guppi/tests/test_ship.py`: the copy of the sample tree holds the five files; `sprint.md` equals `closed_form("guppi")`; `guppi sprint --check`, `guppi backlog --check` and `guppi glossary --check` over the copy print nothing and exit 0; `brief.md` opens its Cases with the line of the next sprint; the names of these tests hold `skeleton`.
 - [ ] read `estimate-clean-branch-writes-the-session-files`
 ```
 
@@ -1597,9 +1597,9 @@ update:
 ```tasks
 - [ ] update `rule-clean-branch`
 - [ ] create `estimate-clean-branch-ships-the-checks-workflow`
-- [ ] `.guppi/guppi/ship.py`: the copy and `--check` take `.github/workflows/checks.yml` and no other file of `.github/`; the docstring says so.
-- [ ] `.github/workflows/checks.yml`: the comment at the top names no page that the clean version does not hold, such as `rule-github-repository`, and no `Makefile`.
-- [ ] `.guppi/tests/test_ship.py`: the sample tree holds `.github/workflows/checks.yml` with a pointer in a bracket of its comment and `.github/workflows/prod.yml`; the copy holds the first without the bracket and not the second; `--check` prints a line for a pointer outside a bracket in it; the names of these tests hold `checks_workflow`.
+- [x] `.guppi/guppi/ship.py`: the copy and `--check` take `.github/workflows/checks.yml` and no other file of `.github/`; the docstring says so.
+- [x] `.github/workflows/checks.yml`: the comment at the top names no page that the clean version does not hold, such as `rule-github-repository`, and no `Makefile`.
+- [x] `.guppi/tests/test_ship.py`: the sample tree holds `.github/workflows/checks.yml` with a pointer in a bracket of its comment and `.github/workflows/prod.yml`; the copy holds the first without the bracket and not the second; `--check` prints a line for a pointer outside a bracket in it; the names of these tests hold `checks_workflow`.
 - [ ] read `estimate-clean-branch-ships-the-checks-workflow`
 ```
 
@@ -1715,9 +1715,9 @@ update:
 - [ ] update `rule-skill-merge-main`
 - [ ] update `rule-skill-pr-review`
 - [ ] create `estimate-clean-branch-refuses-a-draft-core-page`
-- [ ] `.guppi/guppi/pages.py`: `is_draft_core` judges a rule or an entity with `core: true` whose `status` is `draft`, and `ship_stands` judges whether the module `guppi.ship` can be found; the docstrings name `guppi ship`, `guppi lint`, `guppi check` and the list of commands, which import them.
-- [ ] `.guppi/guppi/ship.py`: before it writes, the build prints `ship: <page>: a page with core: true that is draft` for each page that `is_draft_core` accepts, writes nothing and exits 1; with `--allow-draft` it writes the copy and prints those lines with no exit code; `--check` does not judge the status; the docstring says so.
-- [ ] `.guppi/tests/test_ship.py`: a sample tree with a draft page with `core: true` exits 1 with its line and writes nothing; with `--allow-draft` it writes the copy and exits 0; `--check` prints no line on it; the names of these tests hold `draft_core`.
+- [x] `.guppi/guppi/pages.py`: `is_draft_core` judges a rule or an entity with `core: true` whose `status` is `draft`, and `ship_stands` judges whether the module `guppi.ship` can be found; the docstrings name `guppi ship`, `guppi lint`, `guppi check` and the list of commands, which import them.
+- [x] `.guppi/guppi/ship.py`: before it writes, the build prints `ship: <page>: a page with core: true that is draft` for each page that `is_draft_core` accepts, writes nothing and exits 1; with `--allow-draft` it writes the copy and prints those lines with no exit code; `--check` does not judge the status; the docstring says so.
+- [x] `.guppi/tests/test_ship.py`: a sample tree with a draft page with `core: true` exits 1 with its line and writes nothing; with `--allow-draft` it writes the copy and exits 0; `--check` prints no line on it; the names of these tests hold `draft_core`.
 - [ ] read `estimate-clean-branch-refuses-a-draft-core-page`
 ```
 
@@ -1764,9 +1764,9 @@ update:
 ```tasks
 - [ ] update `rule-lint`
 - [ ] update `estimate-lint-checks-the-statuses`
-- [ ] `.guppi/guppi/lint.py`: a finding of the class `status` for each page that `is_draft_core` accepts, only where `ship_stands` finds the module, both of `.guppi/guppi/pages.py`, imported; the docstring says so.
-- [ ] `.guppi/guppi/check.py` and `.guppi/guppi/cli.py`: each judges whether the module of `ship` stands by `ship_stands` of `.guppi/guppi/pages.py`, imported, and holds no copy of it.
-- [ ] `.guppi/tests/test_lint.py`: a draft page with `core: true` and no Estimate gives the finding where the module `guppi.ship` stands and none where it is missing; a test asserts that `lint`, `check` and `cli` call the same `ship_stands`, and that `lint` and `ship` call the same `is_draft_core`; the names of these tests hold `draft_core`.
+- [x] `.guppi/guppi/lint.py`: a finding of the class `status` for each page that `is_draft_core` accepts, only where `ship_stands` finds the module, both of `.guppi/guppi/pages.py`, imported; the docstring says so.
+- [x] `.guppi/guppi/check.py` and `.guppi/guppi/cli.py`: each judges whether the module of `ship` stands by `ship_stands` of `.guppi/guppi/pages.py`, imported, and holds no copy of it.
+- [x] `.guppi/tests/test_lint.py`: a draft page with `core: true` and no Estimate gives the finding where the module `guppi.ship` stands and none where it is missing; a test asserts that `lint`, `check` and `cli` call the same `ship_stands`, and that `lint` and `ship` call the same `is_draft_core`; the names of these tests hold `draft_core`.
 - [ ] read `estimate-lint-checks-the-statuses`
 ```
 
@@ -1809,7 +1809,7 @@ update:
 ```tasks
 - [ ] update `rule-clean-branch`
 - [ ] create `estimate-clean-branch-ships-a-blank-project-description`
-- [ ] `.guppi/guppi/ship.py`: one function writes the heading `# Project`, a blank line and `Project description: not set yet.` between `<!-- project-description -->` and `<!-- /project-description -->` in the Render of `rule-claude-md` and in `CLAUDE.md` that the copy holds; the docstring says so.
-- [ ] `.guppi/tests/test_ship.py`: the sample tree holds a `rule-claude-md` with `core: true` and its `CLAUDE.md`, both with the block; the copy holds the placeholder in both, every other line unchanged, and `guppi render --check` over the copy exits 0; the names of these tests hold `description`.
+- [x] `.guppi/guppi/ship.py`: one function writes the heading `# Project`, a blank line and `Project description: not set yet.` between `<!-- project-description -->` and `<!-- /project-description -->` in the Render of `rule-claude-md` and in `CLAUDE.md` that the copy holds; the docstring says so.
+- [x] `.guppi/tests/test_ship.py`: the sample tree holds a `rule-claude-md` with `core: true` and its `CLAUDE.md`, both with the block; the copy holds the placeholder in both, every other line unchanged, and `guppi render --check` over the copy exits 0; the names of these tests hold `description`.
 - [ ] read `estimate-clean-branch-ships-a-blank-project-description`
 ```

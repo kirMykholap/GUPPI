@@ -1,11 +1,15 @@
+# The development project of the repository of GUPPI (case 819.1). The package `guppi`, its
+# own `pyproject.toml`, `uv.lock` and tests stand in `.guppi/`, and every caller runs them as
+# `uv run --project .guppi guppi …` and `uv run --project .guppi pytest`. This project takes the
+# package from `.guppi/` as an editable path, so that a command without `--project .guppi` —
+# the hooks a running session read before the move — still runs at the root. `guppi ship`
+# does not write it, and a Case of a later session removes it.
 [project]
-name = "guppi"
+name = "guppi-development"
 version = "0.1.0"
-description = "GUPPI: a Claude Code harness governed by ratified decisions, compiled into an Obsidian vault"
+description = "The development project of the repository of GUPPI; the package stands in .guppi/"
 requires-python = ">=3.12,<3.13"
-# PyYAML is the one runtime dependency: the vault's per-category `schema.yaml` files are
-# read with it. Nothing else is added (owner's decision D3, 2026-09-09).
-dependencies = ["pyyaml>=6.0"]
+dependencies = ["guppi"]
 
 [dependency-groups]
 dev = [
@@ -13,22 +17,16 @@ dev = [
     "ruff>=0.8",
 ]
 
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+guppi = { path = ".guppi", editable = true }
+
 [tool.ruff]
 line-length = 100
 target-version = "py312"
 extend-exclude = ["vault", "docs"]
 
-[project.scripts]
-guppi = "guppi.cli:main"
-
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-
-# The `guppi` entry point needs the project installed into the venv, which needs a build
-# backend. uv's own is a build-time requirement, fetched once, not a runtime dependency.
-[build-system]
-requires = ["uv_build>=0.11,<0.12"]
-build-backend = "uv_build"
-
-[tool.uv.build-backend]
-module-root = ""
+testpaths = [".guppi/tests"]

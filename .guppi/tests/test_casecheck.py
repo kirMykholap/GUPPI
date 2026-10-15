@@ -1,0 +1,2785 @@
+"""`guppi casecheck`: `--subagent`, the `SubagentStop` hook that checks the Case of
+`case-guppi` before the main agent sees it (case 419.3) and writes the file of a Case that
+passed (case 452.1), and the `Stop` hook that compares a shown Case with the checked one (case
+419.4) and requires the sending of its file (case 452.2). Rule page:
+`vault/wiki/rules/rule-case-check.md`.
+
+Every test feeds the payload through a stream, the shape a hook is really handed.
+"""
+
+import io
+import json
+from datetime import UTC, date, datetime
+
+import pytest
+
+from guppi import casecheck
+
+TODAY = date(2026, 9, 9)
+NOW = datetime(2026, 9, 9, 15, 30, 0, tzinfo=UTC)
+SESSION = "44c1aae1-4076-4a58-a7c0-d20bc274047c"
+
+ANSWER = """## Case 7 — example
+
+> **context:**
+> Context.
+
+> **problem:**
+> Problem.
+
+> **recommend:**
+> Advice.
+
+> **given:**
+> `rule-x` — the rule.
+> **＋** `estimate-x-works` — its Estimate.
+
+> **when:**
+> The agent runs `guppi x`.
+
+> **then:**
+> The file is written.
+
+> **tasks:**
+> - [ ] update `rule-x` — one `replace` pair
+>   - old: `` the `old` text ``
+>   - new: `the new text`
+>   - change: `the text changed (case 7)`
+> - [ ] create `estimate-x-works`
+>   - type: `estimate`
+>   - kind: `QA`
+>   - purpose: `X works`
+>   - method: `uv run --project .guppi pytest tests/test_x.py`
+>   - tags: `[harness]`
+> - [ ] read `estimate-x-works`
+
+> **ratification:**
+> ```
+> - decision[case 7][update][rule-x]{ref:rule-x}
+> - decision[case 7][create][estimate-x-works]{ref:rule-x}{tags:harness}
+> ```
+"""
+
+RULE_X = """---
+type: rule
+kind: Leaf
+purpose: Prevents x
+status: draft
+---
+
+## Purpose
+
+Prevents x: the `old` text stands here.
+"""
+
+SHORT_FORM = """## Case 8 — deferred
+
+> **context:**
+> Context.
+
+> **problem:**
+> Problem.
+
+```then
+defer:
+  - slug: rule-y
+    type: rule
+    purpose: Later
+```
+"""
+
+
+@pytest.fixture
+def working(tmp_path):
+    """A working session: `hi` at 15:01, a plan file the agent wrote under `.claude/plans/`."""
+    plan = tmp_path / ".claude" / "plans" / "plan.md"
+    plan.parent.mkdir(parents=True)
+    plan.write_text("# Spec — 2026-09-09, session 1501\n", encoding="utf-8")
+    (tmp_path / "guppi.toml").write_text(
+        'documentation_lang = "en"\nchat_lang = "ru"\n', encoding="utf-8"
+    )
+    log = tmp_path / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    log.parent.mkdir(parents=True)
+    log.write_text(
+        "- 15:01:00 44c1aae1 session-start startup\n"
+        "- 15:01:30 44c1aae1 hi\n"
+        f"- 15:02:00 44c1aae1 tool Write: {plan}\n",
+        encoding="utf-8",
+    )
+    rule = tmp_path / "vault" / "wiki" / "rules" / "rule-x.md"
+    rule.parent.mkdir(parents=True)
+    rule.write_text(RULE_X, encoding="utf-8")
+    return tmp_path
+
+
+def store(project):
+    path = casecheck.store_of(project / ".claude" / "plans" / "plan.md")
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+
+
+def answer(project, text, agent="case-guppi", now=NOW, **fields):
+    payload = {
+        "session_id": SESSION,
+        "agent_type": agent,
+        "last_assistant_message": text,
+        "hook_event_name": "SubagentStop",
+        **fields,
+    }
+    err = io.StringIO()
+    stdin = io.StringIO(json.dumps(payload, ensure_ascii=False))
+    code = casecheck.run(["--subagent"], stdin=stdin, stderr=err, project_dir=project, now=now)
+    return code, err.getvalue()
+
+
+FOLDER = ("vault", "raw", TODAY.isoformat(), "1501")  # the session folder of `working`
+
+
+def case_path(project, case):
+    return casecheck.case_file(project.joinpath(*FOLDER), case)
+
+
+def answer_file(project, content, reads=None, **fields):
+    """`case-guppi` writes `content` into the file of its top-level Case by `Write` and
+    answers with a summary: the check reads the file in place of an answer text (case
+    645.2). It read the page of `rule-x` before, or the transcript lines `reads` give."""
+    first = next(iter(casecheck.split_cases(content)), "0")
+    path = case_path(project, first)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    call = {"type": "tool_use", "name": "Write", "input": {"file_path": str(path), "content": "."}}
+    heading = casecheck.top_heading(content)
+    named = f"\n**Case:** {heading[0]} — {heading[1]}" if heading else ""  # (case 662.1)
+    summary = {"type": "text", "text": f"**Built:** {path}{named}"}
+    agent = project / "agent-file.jsonl"
+    lines = (rule_x_read(project) if reads is None else list(reads)) + [
+        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": [block]}})
+        for block in (call, summary)
+    ]
+    agent.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    fields.setdefault("agent_transcript_path", str(agent))
+    return answer(project, "**Built:**", **fields)
+
+
+def prompt(value="Go on."):
+    """A prompt of the person: the record that opens a turn, `origin.kind` `human` (case 592)."""
+    return {
+        "type": "user",
+        "isSidechain": False,
+        "origin": {"kind": "human"},
+        "message": {"role": "user", "content": value},
+    }
+
+
+def sending(*files, timestamp="2026-09-09T15:29:00.000Z"):
+    """An assistant record holding a `SendUserFile` call, in the shape Claude Code writes it
+    (measured 2026-09-27, session 1255)."""
+    call = {
+        "type": "tool_use",
+        "id": "toolu_01",
+        "name": "SendUserFile",
+        "input": {"files": [str(f) for f in files], "display": "render"},
+    }
+    return {
+        "type": "assistant",
+        "isSidechain": False,
+        "timestamp": timestamp,
+        "message": {"role": "assistant", "content": [call]},
+    }
+
+
+def result():
+    """The tool result that follows a call: a `user` record that opens no turn."""
+    block = {"type": "tool_result", "tool_use_id": "toolu_01", "content": "1 file delivered."}
+    return {"type": "user", "isSidechain": False, "message": {"role": "user", "content": [block]}}
+
+
+def main_transcript(project, records):
+    path = project / "transcript.jsonl"
+    path.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
+    return str(path)
+
+
+def show(project, reply, sent=None, records=None, **fields):
+    """The `Stop` hook on `reply`; its turn sends the file of each top-level Case the reply
+    holds, or the files of `sent`, or is `records` whole."""
+    if records is None:
+        cases = casecheck.split_cases(reply)
+        files = sent if sent is not None else sorted({case_path(project, c) for c in cases})
+        records = [prompt(), sending(*files), result()] if files else [prompt()]
+    fields.setdefault("transcript_path", main_transcript(project, records))
+    payload = {"session_id": SESSION, "last_assistant_message": reply, **fields}
+    err = io.StringIO()
+    stdin = io.StringIO(json.dumps(payload, ensure_ascii=False))
+    code = casecheck.run([], stdin=stdin, stderr=err, project_dir=project, now=NOW)
+    return code, err.getvalue()
+
+
+def noted(project, reply, sent=None, records=None):
+    """The `--prompt` run on `UserPromptSubmit` (cases 699.1, 699.2): the turn, built as `show`
+    builds it, ends with `reply`, and the person's next message follows it in the transcript;
+    `(code, stdout)`."""
+    if records is None:
+        cases = casecheck.split_cases(reply)
+        files = sent if sent is not None else sorted({case_path(project, c) for c in cases})
+        records = [prompt(), sending(*files), result()] if files else [prompt()]
+    turn = [*records, assistant(said(reply)), prompt("Next.")]
+    payload = {
+        "session_id": SESSION,
+        "transcript_path": main_transcript(project, turn),
+        "prompt": "Next.",
+    }
+    out, err = io.StringIO(), io.StringIO()
+    stdin = io.StringIO(json.dumps(payload, ensure_ascii=False))
+    code = casecheck.run(
+        ["--prompt"], stdin=stdin, stdout=out, stderr=err, project_dir=project, now=NOW
+    )
+    assert err.getvalue() == ""
+    return code, out.getvalue()
+
+
+# --- the check on SubagentStop (case 419.3) ---------------------------------------------
+
+
+def test_subagent_a_clean_case_is_stored(working):
+    assert answer(working, ANSWER) == (0, "")
+    entry = store(working)["7"]
+    assert entry["findings"] == []
+    assert entry["text"].startswith("## Case 7 — example\n\n> **context:**")
+    assert entry["text"].endswith("> ```")
+
+
+def test_subagent_a_missing_section_sends_it_back(working):
+    faulty = ANSWER.replace(
+        "> **given:**\n> `rule-x` — the rule.\n> **＋** `estimate-x-works` — its Estimate.\n\n", ""
+    )
+    code, err = answer(working, faulty)
+    assert code == 2 and "case 7: missing section given" in err
+    assert store(working)["7"]["findings"]
+
+
+def test_subagent_sections_out_of_order_and_a_ratification_with_text(working):
+    moved = (
+        ANSWER.replace("> **recommend:**\n> Advice.\n\n", "") + "\n> **recommend:**\n> Advice.\n"
+    )
+    code, err = answer(working, moved)
+    assert code == 2 and "out of the order of the schema" in err
+    chatty = ANSWER.replace("> ```\n> - decision", "> Ratify?\n> ```\n> - decision", 1)
+    code, err = answer(working, chatty)
+    assert code == 2 and "ratification holds one untagged fence" in err
+
+
+def test_subagent_a_finding_of_the_prespec_checks_sends_it_back(working):
+    no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+    code, err = answer(working, no_read)
+    assert code == 2 and "case 7: estimate-x-works has no task line" in err
+
+
+def test_subagent_two_update_lines_of_one_slug_send_it_back(working):  # (case 426)
+    second = "> - [ ] update `rule-x` — the page renamed\n>   - rename: `rule-y`\n"
+    twice = ANSWER.replace(
+        "> - [ ] create `estimate-x-works`", second + "> - [ ] create `estimate-x-works`"
+    )
+    code, err = answer(working, twice)
+    assert code == 2 and "case 7: item [update][rule-x] stands twice" in err
+
+
+def test_subagent_a_finding_is_sent_back_whatever_stop_hook_active_says(working):
+    # Claude Code sets `stop_hook_active` on the second fire after a handback with no
+    # exit 2 of the hook; the store guards the loop — the same faulty text a second time
+    # passes (case 434)
+    no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+    code, err = answer(working, no_read, stop_hook_active=True)
+    assert code == 2 and "estimate-x-works has no task line" in err
+    assert answer(working, no_read, stop_hook_active=True) == (0, "")
+    assert store(working)["7"]["findings"] == ["case 7: estimate-x-works has no task line"]
+
+
+def read_lines(path, content=None, call_id="toolu_read"):
+    """A `Read` call of the subagent on `path` and the tool result that answers it, in the
+    shape Claude Code writes it — the content a string of lines `<n>\\t<line>` (measured
+    2026-10-07, session 0636) — as two transcript lines (case 711.3)."""
+    if content is None:
+        content = path.read_text(encoding="utf-8")
+    numbered = "\n".join(f"{n}\t{line}" for n, line in enumerate(content.splitlines(), 1))
+    use = {"type": "tool_use", "id": call_id, "name": "Read", "input": {"file_path": str(path)}}
+    result = {"type": "tool_result", "tool_use_id": call_id, "content": numbered}
+    return [
+        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": [use]}}),
+        json.dumps({"type": "user", "isSidechain": True, "message": {"content": [result]}}),
+    ]
+
+
+def rule_x_read(project):
+    """`case-guppi` read the page of `rule-x`, the page the pair of ANSWER changes."""
+    return read_lines(project / "vault" / "wiki" / "rules" / "rule-x.md")
+
+
+def transcript(project, *records, reads=None):
+    """A subagent transcript of assistant records, each a list of content blocks, after the
+    `Read` of the page of `rule-x` — or the transcript lines `reads` give."""
+    path = project / "agent.jsonl"
+    lines = rule_x_read(project) if reads is None else list(reads)
+    lines += [
+        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": blocks}})
+        for blocks in records
+    ]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return str(path)
+
+
+def text(value):
+    return {"type": "text", "text": value}
+
+
+def handback(value):
+    return {"type": "tool_use", "name": "SubagentHandback", "input": {"message": value}}
+
+
+def test_subagent_a_handback_then_a_summary_stores_the_handback_case(working):
+    path = transcript(working, [handback(ANSWER)], [text("I sent Case 7.")])
+    assert answer(working, "I sent Case 7.", agent_transcript_path=path) == (0, "")
+    assert store(working)["7"]["text"].startswith("## Case 7")
+
+
+def test_subagent_the_newest_output_with_a_case_is_the_answer(working):
+    # a Case by handback, a newer Case as text, then a question by handback: the text's Case
+    older = ANSWER.replace("The file is written.", "The old file is written.")
+    path = transcript(working, [handback(older)], [text(ANSWER)], [handback("Which page?")])
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+    assert "The old file" not in store(working)["7"]["text"]
+
+
+def test_subagent_a_case_as_text_then_by_handback_then_a_summary_is_stored_once(working):
+    path = transcript(working, [text(ANSWER)], [handback(ANSWER)], [text("Sent.")])
+    assert answer(working, "Sent.", agent_transcript_path=path) == (0, "")
+    assert list(store(working)) == ["7"]
+
+
+def test_subagent_no_output_with_a_case_and_no_transcript_fall_back(working):
+    path = transcript(working, [text("Which page?")], [handback("Which page?")])
+    assert answer(working, "Which page?", agent_transcript_path=path) == (0, "")
+    assert store(working) is None
+    missing = str(working / "none.jsonl")
+    assert answer(working, ANSWER, agent_transcript_path=missing) == (0, "")
+    assert "7" in store(working)
+
+
+def test_subagent_a_foreign_key_of_an_update_is_sent_back(working):
+    # `replace old` under an `update` is not a key of the item (case 436.1)
+    wrong = ANSWER.replace("  - old: ``", "  - replace old: ``").replace(
+        "  - new: `the new text`", "  - replace new: `the new text`"
+    )
+    code, err = answer(working, wrong)
+    assert code == 2 and "`replace old`: not a key of update rule-x" in err
+
+
+def test_subagent_a_schema_the_session_changes_is_not_judged(working):
+    # the categories come from the fences and the session's ledger; a window line with
+    # no item in the answer is no finding (case 436.4)
+    schema = working / "vault" / "wiki" / "estimates" / "schema.yaml"
+    schema.parent.mkdir(parents=True)
+    schema.write_text("properties:\n  required: [type, purpose, method]\n", encoding="utf-8")
+    odd = ANSWER.replace("  - kind: `QA`", "  - flavour: `QA`")
+    code, err = answer(working, odd)
+    assert code == 2 and "`flavour`: not a key of create estimate-x-works" in err
+    folder = working / "vault" / "raw" / TODAY.isoformat() / "1501"
+    folder.mkdir(parents=True)
+    (folder / "ledger.md").write_text(
+        "- 15:10:00 decision[case 5][update][rule-estimates-schema]{ref:rule-estimates-schema}\n",
+        encoding="utf-8",
+    )
+    assert answer(working, odd) == (0, "")
+
+
+def test_subagent_no_plan_file_sends_nothing_back(working):
+    (working / ".claude" / "plans" / "plan.md").unlink()
+    no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+    assert answer(working, no_read) == (0, "")
+
+
+def test_subagent_a_question_and_another_agent_pass_unstored(working):
+    assert answer(working, "Which of the two pages should the Case change?") == (0, "")
+    assert answer(working, ANSWER, agent="ask-guppi") == (0, "")
+    assert store(working) is None
+    assert not (working.joinpath(*FOLDER) / "cases").exists()
+
+
+# --- the file of a built Case (case 452.1) ----------------------------------------------
+
+PARENT = "## Case 9 — parent\n\n> **context:**\n> C.\n\n> **problem:**\n> P.\n\n> **recommend:**\n> A.\n\n"
+
+
+def sub_case(case, then="The file is written."):
+    """A sub-case of Case `9` built from ANSWER, its own ids, slugs and anchor."""
+    n = case.split(".")[1]
+    anchor = "`` the `old` text ``" if n == "1" else "`Prevents x:`"
+    return (
+        ANSWER.replace("## Case 7 — example", f"### Case {case} — part")
+        .replace("case 7", f"case {case}")
+        .replace(
+            "> **context:**\n> Context.\n\n> **problem:**\n> Problem.\n\n> **recommend:**\n> Advice.\n\n",
+            "",
+        )
+        .replace("estimate-x-works", f"estimate-x-works-{n}")
+        .replace("The file is written.", then)
+        .replace("`` the `old` text ``", anchor)
+    )
+
+
+def test_subagent_the_time_of_the_store(working):
+    assert answer(working, ANSWER) == (0, "")
+    assert store(working)["7"]["stored"] == NOW.isoformat()
+
+
+def test_subagent_the_file_is_written_from_the_stored_text(working):
+    assert answer(working, ANSWER + "\n---\n\nThe agent's own words.\n") == (0, "")
+    path = case_path(working, "7")
+    assert path == working.joinpath(*FOLDER, "cases", "case-7.md")
+    assert path.read_text(encoding="utf-8") == store(working)["7"]["text"] + "\n"
+    assert "own words" not in path.read_text(encoding="utf-8")
+
+
+def test_subagent_the_file_is_replaced_whole_when_the_answer_holds_the_top_case(working):
+    assert answer(
+        working, PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+    ) == (0, "")
+    path = case_path(working, "9.2")
+    assert path.name == "case-9.md" and "### Case 9.2" in path.read_text(encoding="utf-8")
+    assert answer(working, PARENT.replace("> C.", "> C2.") + sub_case("9.1")) == (0, "")
+    text = path.read_text(encoding="utf-8")
+    held = store(working)
+    assert text == held["9"]["text"] + "\n\n" + held["9.1"]["text"] + "\n"
+    assert "### Case 9.2" not in text and "> C2." in text
+
+
+def test_subagent_a_sub_case_alone_replaces_its_section_alone(working):
+    assert answer(
+        working, PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+    ) == (0, "")
+    assert answer(working, sub_case("9.1", "The file is written again.")) == (0, "")
+    text = case_path(working, "9").read_text(encoding="utf-8")
+    held = store(working)
+    assert text == "\n\n".join(held[c]["text"] for c in ("9", "9.1", "9.2")) + "\n"
+    assert "The file is written again." in text and text.count("### Case 9.1") == 1
+
+
+def test_subagent_no_file_on_a_finding(working):
+    no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+    assert answer(working, no_read)[0] == 2
+    assert not case_path(working, "7").exists()
+    assert answer(working, no_read) == (0, "")  # repeated: stored again, still no file
+    assert not case_path(working, "7").exists()
+    assert answer(working, ANSWER) == (0, "")
+    clean = case_path(working, "7").read_text(encoding="utf-8")
+    assert answer(working, no_read)[0] == 2
+    assert case_path(working, "7").read_text(encoding="utf-8") == clean  # left as it stood
+
+
+# --- each question of the rounds in recommend (case 544.3) --------------------------------
+
+
+def round_of(*titles):
+    """A round of questions in the template of the skill `grill-me`, one question per title."""
+    parts = ["**Context:**\nThe item.\n"]
+    for n, title in enumerate(titles, 1):
+        parts.append(f"❓ **Q{n}** - **{title}**:\n\n{QUESTION_BODY}")
+    return "\n".join(parts)
+
+
+QUESTION_BODY = (
+    "**Now:** it stands.\n\n**Options:**\n\n🔹 **(a) Keep it**\n  **After:** it stays.\n\n"
+    "🔹 **(b) Change it**\n  **After:** it moves.\n\n➡️ (a).\n"
+)
+
+
+def with_items(*titles):
+    """ANSWER whose `recommend` holds one item per title."""
+    items = "".join(
+        f"> - **{t}**\n>   - Recommended: (a).\n>   - Answer: agreed.\n" for t in titles
+    )
+    return ANSWER.replace("> **recommend:**\n> Advice.\n", "> **recommend:**\n" + items)
+
+
+def test_subagent_rounds_every_title_in_recommend_passes(working):
+    path = transcript(
+        working,
+        [text(round_of("Which page changes?", "Which test?"))],
+        [text(with_items("Which page changes?", "Which test?"))],
+    )
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+def test_subagent_rounds_a_title_missing_from_recommend_is_sent_back(working):
+    path = transcript(
+        working,
+        [text(round_of("Which page changes?", "Which test?"))],
+        [text(with_items("Which page changes?"))],
+    )
+    code, err = answer(working, "", agent_transcript_path=path)
+    assert code == 2
+    assert "case 7: recommend holds no item for the question of the rounds: Which test?" in err
+    assert "Which page changes?" not in err
+
+
+def test_subagent_rounds_a_title_asked_in_two_rounds_is_looked_for_once(working):
+    path = transcript(
+        working,
+        [text(round_of("Which test?"))],
+        [text(round_of("Which test?"))],
+        [text(ANSWER)],
+    )
+    code, err = answer(working, "", agent_transcript_path=path)
+    assert code == 2 and err.count("Which test?") == 1
+    again = transcript(
+        working,
+        [text(round_of("Which test?"))],
+        [text(round_of("Which test?"))],
+        [text(with_items("Which test?"))],
+    )
+    assert answer(working, "", agent_transcript_path=again) == (0, "")
+
+
+def test_subagent_rounds_an_answer_with_no_round_passes(working):
+    path = transcript(working, [text(ANSWER)])
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+def test_subagent_rounds_the_words_after_the_title_are_not_judged(working):
+    items = "> - **Which test?**\n>   - Anything at all.\n"
+    odd = ANSWER.replace("> **recommend:**\n> Advice.\n", "> **recommend:**\n" + items)
+    path = transcript(working, [text(round_of("Which test?"))], [text(odd)])
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+def test_subagent_rounds_a_round_sent_back_for_its_form_gives_no_title(working):
+    # the round sent back stays in the transcript; its changed title is not required (case 601.5)
+    faulty = round_of("Which page?").replace("**Now:** it stands.\n\n", "")
+    path = transcript(
+        working,
+        [text(faulty)],
+        [text(round_of("Which page changes?"))],
+        [text(with_items("Which page changes?"))],
+    )
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+# --- the form of a round (case 601.1) -------------------------------------------------------
+
+
+def round_answer(working, *outputs):
+    """The `--subagent` run on a transcript whose outputs are the given texts, in order."""
+    return answer(
+        working, "", agent_transcript_path=transcript(working, *[[text(o)] for o in outputs])
+    )
+
+
+def test_subagent_round_form_a_round_in_form_passes_unstored(working):
+    assert round_answer(working, round_of("Which page?", "Which test?")) == (0, "")
+    assert store(working) is None
+    assert not (working.joinpath(*FOLDER) / "cases").exists()
+
+
+@pytest.mark.parametrize(
+    ("old", "new", "missing"),
+    [
+        ("**Which page?**:", "**Which page?**", "the title line"),
+        ("**Now:** it stands.\n\n", "", "a `**Now:**` line"),
+        ("**Options:**\n", "**Options:** two\n", "the `**Options:**` label alone"),
+        ("  **After:** it stays.\n", "", None),
+        ("➡️ (a).\n", "", "a `➡️` line"),
+    ],
+)
+def test_subagent_round_form_a_question_out_of_form_is_sent_back(working, old, new, missing):
+    faulty = round_of("Which page?").replace(old, new)
+    if missing is None:  # no option keeps an After line
+        faulty = faulty.replace("  **After:** it moves.\n", "")
+        missing = "an option `🔹` with an `**After:**` line"
+    code, err = round_answer(working, faulty)
+    assert code == 2
+    assert missing in err and "Which page?" in err and "answer with the round whole again" in err
+    assert store(working) is None
+
+
+def test_subagent_round_form_after_lines_with_the_dash_pass(working):
+    """The After line is accepted with or without the list dash (case 744.2)."""
+    dashed = round_of("Which page?").replace("  **After:**", "  - **After:**")
+    assert "- **After:** it stays." in dashed
+    assert round_answer(working, dashed) == (0, "")
+
+
+def test_subagent_round_form_the_same_faulty_round_is_sent_back_once(working):
+    faulty = round_of("Which page?").replace("**Which page?**:", "**Which page?**")
+    assert round_answer(working, faulty)[0] == 2
+    assert round_answer(working, faulty, faulty + "  \n") == (0, "")
+
+
+def test_subagent_round_form_a_fact_and_a_case_are_not_judged_as_rounds(working):
+    fact = "**Fact:** The page says so.\n\n❓ **Q1** - **Which page?**\n"
+    assert round_answer(working, fact) == (0, "")
+    assert round_answer(working, ANSWER) == (0, "")
+
+
+def test_subagent_round_form_an_unreadable_transcript_is_not_judged(working):
+    faulty = round_of("Which page?").replace("**Which page?**:", "**Which page?**")
+    missing = str(working / "none.jsonl")
+    assert answer(working, faulty, agent_transcript_path=missing) == (0, "")
+
+
+def test_subagent_round_form_no_plan_file_still_sends_the_round_back(working):
+    (working / ".claude" / "plans" / "plan.md").unlink()
+    faulty = round_of("Which page?").replace("**Which page?**:", "**Which page?**")
+    code, err = round_answer(working, faulty)
+    assert code == 2 and "the title line" in err
+
+
+def test_subagent_round_form_the_indent_of_a_hand_back_is_set_aside(working):
+    indented = "  " + round_of("Which page?").replace("\n", "\n  ")
+    path = transcript(working, [handback(indented)])
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+
+
+# --- the answer is the newest Case, round or Fact answer (cases 607.1, 607.2) ---------------
+
+LATER = datetime(2026, 9, 9, 15, 40, 0, tzinfo=UTC)
+
+
+def built_then(working, *later):
+    """Case `7` built and stored at NOW, then the `--subagent` run at LATER on a transcript of
+    that Case and the `later` outputs; the outcome, the store and the file as they stood."""
+    assert answer(working, ANSWER) == (0, "")
+    held, file = store(working), case_path(working, "7").read_text(encoding="utf-8")
+    path = transcript(working, [text(ANSWER)], *[[text(output)] for output in later])
+    return answer(working, "", now=LATER, agent_transcript_path=path), held, file
+
+
+def test_subagent_a_case_then_a_round_its_recommend_lacks_leaves_the_case_as_it_stood(working):
+    outcome, held, file = built_then(working, round_of("Which page?"))
+    assert outcome == (0, "")
+    assert store(working) == held
+    assert case_path(working, "7").read_text(encoding="utf-8") == file
+
+
+def test_subagent_a_case_then_a_fact_answer_leaves_the_case_as_it_stood(working):
+    outcome, held, file = built_then(working, "**Fact:** The page says so.")
+    assert outcome == (0, "")
+    assert store(working) == held
+    assert case_path(working, "7").read_text(encoding="utf-8") == file
+
+
+def test_subagent_round_form_a_case_then_a_faulty_round_sends_back_its_form_alone(working):
+    faulty = round_of("Which page?").replace("**Which page?**:", "**Which page?**")
+    (code, err), held, _ = built_then(working, faulty)
+    assert code == 2 and "the title line" in err and "answer with the round whole again" in err
+    assert "case 7" not in err
+    assert store(working) == held
+
+
+def test_subagent_is_fact_and_is_round_share_one_test_of_a_fact():
+    assert casecheck.is_fact("**Fact:** It says so.\n\n❓ **Q1** - **Which?**:\n")
+    assert casecheck.is_fact("  **Fact:** indented by a hand-back.")
+    assert not casecheck.is_fact("❓ **Q1** - **Which?**:\n\n**Fact:** after the question.")
+    assert not casecheck.is_fact(ANSWER.replace("> Context.", "> **Fact:** in a Case."))
+    assert not casecheck.is_round("**Fact:** It says so.\n\n❓ **Q1** - **Which?**:\n")
+    assert casecheck.is_round("❓ **Q1** - **Which?**:\n\n**Fact:** after the question.")
+
+
+# --- a ratified Case built again in another shape (case 610.1) -----------------------------
+
+
+def ledger(project, *lines):
+    """The session's ledger with these decision lines."""
+    folder = project.joinpath(*FOLDER)
+    folder.mkdir(parents=True, exist_ok=True)
+    body = "".join(f"- 15:10:00 {line}\n" for line in lines)
+    (folder / "ledger.md").write_text(body, encoding="utf-8")
+
+
+CASE_9 = ANSWER.replace("## Case 7 — example", "## Case 9 — example").replace("case 7", "case 9")
+FAMILY_9 = PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+LINES_9 = (
+    "decision[case 9.1][update][rule-x]{ref:rule-x}",
+    "decision[case 9.2][update][rule-x]{ref:rule-x}",
+)
+
+
+def test_subagent_shape_a_case_ratified_whole_back_with_sub_cases_is_sent_back(working):
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    code, err = answer_file(working, FAMILY_9)
+    assert code == 2
+    assert (
+        "case 9: case 9 has decision lines in the session's ledger and comes back in another "
+        "shape under its old number — build it again as case 10, its decision lines carrying "
+        "{supersedes:case 9}"
+    ) in err
+    assert case_path(working, "9").read_text(encoding="utf-8") == FAMILY_9  # the hook writes none
+
+
+def test_subagent_shape_a_case_ratified_with_sub_cases_back_whole_marks_its_parent(working):
+    ledger(working, *LINES_9)
+    code, err = answer_file(working, CASE_9)
+    assert code == 2
+    assert "case 9: case 9.1, 9.2 has decision lines" in err
+    assert "{supersedes:case 9}{supersedes:case 9.1}{supersedes:case 9.2}" in err
+
+
+def test_subagent_shape_a_whole_answer_without_a_ratified_sub_case_is_sent_back(working):
+    ledger(working, *LINES_9)
+    code, err = answer_file(working, PARENT + sub_case("9.1"))
+    assert code == 2 and "case 9: case 9.2 has decision lines" in err
+
+
+def test_subagent_shape_the_new_number_counts_the_keys_of_the_store(working):
+    case_12 = ANSWER.replace("## Case 7", "## Case 12").replace("case 7", "case 12")
+    assert answer_file(working, case_12) == (0, "")
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    code, err = answer_file(working, FAMILY_9)
+    assert code == 2 and "build it again as case 13" in err
+
+
+def test_subagent_shape_the_new_id_stands_above_a_case_file(working):
+    # `next_id` counts the Case files of the session (case 788.4)
+    cases = working.joinpath(*FOLDER, "cases")
+    cases.mkdir(parents=True, exist_ok=True)
+    (cases / "case-15.md").write_text("", encoding="utf-8")
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    code, err = answer_file(working, FAMILY_9)
+    assert code == 2 and "build it again as case 16" in err
+
+
+def test_subagent_shape_the_new_id_stands_above_a_decision_page(working):
+    # `next_id` counts the Decision pages, live and archived (case 788.4)
+    archived = working / "vault" / "archive" / "plugin" / "2026-09-01" / "0900" / "decisions"
+    archived.mkdir(parents=True)
+    (archived / "decision-case-20.md").write_text("---\n---\n", encoding="utf-8")
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    code, err = answer_file(working, FAMILY_9)
+    assert code == 2 and "build it again as case 21" in err
+
+
+def test_subagent_shape_new_number_and_the_command_give_the_same_id(working):
+    # the check of a Case built again and `guppi caseid --next`, one count (case 788.4)
+    from guppi import caseid
+
+    sprint = working / "vault" / "wiki" / "sprint.md"
+    sprint.write_text("# Sprint\n\n## plugin\n", encoding="utf-8")
+    ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
+    plan = working / ".claude" / "plans" / "plan.md"
+    casecheck.write_store(plan, {"12": {"agent_id": "a"}})
+    folder = working.joinpath(*FOLDER)
+    records = casecheck.ledger_records(casecheck.ledger_of(folder))
+    counted = casecheck.new_number(records, store(working), "9", working, folder)
+    out = io.StringIO()
+    assert (
+        caseid.run(["--next", "--session", SESSION], stdout=out, project_dir=working, now=NOW) == 0
+    )
+    assert out.getvalue().strip() == counted == "13"
+
+
+@pytest.mark.parametrize(
+    ("lines", "text"),
+    [
+        (LINES_9, sub_case("9.1")),  # a sub-case answered alone
+        (("decision[case 7][update][rule-x]{ref:rule-x}",), ANSWER),  # the same shape
+        (LINES_9, FAMILY_9),  # the same shape, with sub-cases
+        (("decision[case 9][defer][rule-y]",), FAMILY_9),  # only a defer line
+    ],
+)
+def test_subagent_shape_an_answer_in_its_shape_passes(working, lines, text):
+    ledger(working, *lines)
+    assert answer_file(working, text) == (0, "")
+
+
+# --- a ratified Case built again without a target of its lines (case 671.1) ----------------
+
+KEPT_7 = "decision[case 7][update][rule-x]{ref:rule-x}"
+NO_ITEM = "the Case built again has no item for it"
+
+
+def test_subagent_dropped_target_a_renamed_slug_is_sent_back_with_the_new_number(working):
+    ledger(working, KEPT_7, "decision[case 7][create][estimate-x-old]{ref:rule-x}{tags:harness}")
+    code, err = answer_file(working, ANSWER)
+    assert code == 2
+    assert (
+        "case 7: its decision line [create][estimate-x-old] stands in the session's ledger and "
+        f"{NO_ITEM} — put the item back, or change the number in the headings and the ledger "
+        "lines to case 8 by Edit and add {supersedes:case 7}; never write the whole Case again"
+    ) in err
+
+
+def test_subagent_dropped_target_a_dropped_item_is_sent_back(working):
+    ledger(
+        working,
+        KEPT_7,
+        "decision[case 7][create][estimate-x-works]{ref:rule-x}{tags:harness}",
+        "decision[case 7][update][rule-y]{ref:rule-y}",
+    )
+    code, err = answer_file(working, ANSWER)
+    assert code == 2 and "[update][rule-y]" in err and NO_ITEM in err
+    assert "[update][rule-x]" not in err and "[create][estimate-x-works]" not in err
+
+
+@pytest.mark.parametrize(
+    "lines",
+    [
+        (KEPT_7,),  # each item kept, one added
+        (KEPT_7, "decision[case 7][defer][rule-y]"),  # a dropped defer item
+    ],
+)
+def test_subagent_dropped_target_an_answer_that_keeps_its_items_passes(working, lines):
+    ledger(working, *lines)
+    assert answer_file(working, ANSWER) == (0, "")
+
+
+@pytest.mark.parametrize(
+    ("lines", "text"),
+    [
+        (("decision[case 9][update][rule-y]{ref:rule-y}",), FAMILY_9),  # 9 has sub-cases
+        (("decision[case 9.1][update][rule-y]{ref:rule-y}",), CASE_9),  # 9.1 has no section
+    ],
+)
+def test_subagent_dropped_target_a_changed_shape_gets_only_the_shape_finding(working, lines, text):
+    ledger(working, *lines)
+    code, err = answer_file(working, text)
+    assert code == 2 and "comes back in another shape" in err and NO_ITEM not in err
+
+
+# --- a ratified Case built again with another ref or tags on a create line (case 749) ------
+
+CHANGED = "the Case built again holds"
+
+
+def test_subagent_changed_create_line_another_ref_is_sent_back_with_the_new_number(working):
+    ledger(working, KEPT_7, "decision[case 7][create][estimate-x-works]{ref:rule-y}{tags:harness}")
+    code, err = answer_file(working, ANSWER)
+    assert code == 2
+    assert (
+        "case 7: create estimate-x-works: the session's ledger holds "
+        "decision[case 7][create][estimate-x-works]{ref:rule-y}{tags:harness} and "
+        f"{CHANGED} decision[case 7][create][estimate-x-works]{{ref:rule-x}}{{tags:harness}} — "
+        "the librarian builds the page from the first line; write the line back as the ledger "
+        "holds it, or change the number in the headings and the ledger lines to case 8 by "
+        "Edit and add {supersedes:case 7}; never write the whole Case again"
+    ) in err
+    assert NO_ITEM not in err
+
+
+@pytest.mark.parametrize(
+    "line",
+    [
+        "decision[case 7][create][estimate-x-works]{ref:rule-x}",  # a tag added
+        "decision[case 7][create][estimate-x-works]{ref:rule-x}{tags:harness,hooks}",  # removed
+    ],
+)
+def test_subagent_changed_create_line_a_tag_added_or_removed_is_sent_back(working, line):
+    ledger(working, KEPT_7, line)
+    code, err = answer_file(working, ANSWER)
+    assert code == 2 and CHANGED in err and "case 8 by Edit and add {supersedes:case 7}" in err
+
+
+@pytest.mark.parametrize(
+    ("line", "text"),
+    [
+        (  # the same tags in another order
+            "decision[case 7][create][estimate-x-works]{ref:rule-x}{tags:hooks,harness}",
+            ANSWER.replace("{tags:harness}", "{tags:harness,hooks}"),
+        ),
+        (  # a line that differs by a mark alone
+            (
+                "decision[case 7][create][estimate-x-works]{ref:rule-x}{tags:harness}"
+                "{supersedes:case 3}"
+            ),
+            ANSWER,
+        ),
+        ("decision[case 7][update][rule-x]{ref:rule-z}", ANSWER),  # an update, another ref
+    ],
+)
+def test_subagent_changed_create_line_passes_what_is_no_change(working, line, text):
+    ledger(working, KEPT_7, line)
+    assert answer_file(working, text) == (0, "")
+
+
+def test_subagent_changed_create_line_a_number_with_sub_cases_gets_none(working):
+    ledger(working, "decision[case 9][create][estimate-x-works-1]{ref:rule-y}{tags:harness}")
+    code, err = answer_file(working, FAMILY_9)
+    assert code == 2 and "comes back in another shape" in err and CHANGED not in err
+
+
+# --- a number another agent holds (case 610.2) ---------------------------------------------
+
+
+def test_subagent_clash_a_number_another_agent_holds_is_sent_back_and_stored_apart(working):
+    assert answer_file(working, ANSWER, agent_id="a1") == (0, "")
+    other = ANSWER.replace("The file is written.", "Another file is written.")
+    code, err = answer_file(working, other, now=LATER, agent_id="b2")
+    assert code == 2
+    assert (
+        "case 7: the store holds case 7 from the answer of another agent — build this Case "
+        "as case 8"
+    ) in err
+    held = store(working)
+    assert held["7"]["agent_id"] == "a1" and held["7"]["stored"] == NOW.isoformat()
+    assert held["7@b2"]["agent_id"] == "b2" and "Another file" in held["7@b2"]["text"]
+    # the other agent overwrote the file, a gap a Case names in its context; the hook
+    # writes none, and the comparison of a file refuses its showing until it is fixed
+    # (case 645)
+    assert case_path(working, "7").read_text(encoding="utf-8") == other
+    assert casecheck.file_differences(other, held) == ["7"]
+    assert casecheck.against_store("7", "", [], held) is None  # the reading by the number
+    assert answer_file(working, other, now=LATER, agent_id="b2") == (0, "")
+
+
+def test_subagent_clash_a_sub_case_another_agent_holds_is_sent_back(working):
+    assert answer_file(working, FAMILY_9, agent_id="a1") == (0, "")
+    code, err = answer_file(working, sub_case("9.1", "Changed."), agent_id="b2")
+    assert code == 2 and "the store holds case 9 from the answer of another agent" in err
+    assert "Changed." in store(working)["9.1@b2"]["text"]
+
+
+def test_subagent_clash_no_agent_id_and_the_same_agent_give_no_finding(working):
+    again = ANSWER.replace("The file is written.", "The file is written again.")
+    assert answer_file(working, ANSWER) == (0, "")
+    assert answer_file(working, again, agent_id="b2") == (0, "")
+    assert store(working)["7"]["agent_id"] == "b2"
+    once_more = again.replace("written again.", "written once more.")
+    assert answer_file(working, once_more, agent_id="b2") == (0, "")
+    assert list(store(working)) == ["7"]
+
+
+KIR_12 = ANSWER.replace("## Case 7 — example", "## Case kir-plugin-12 — example").replace(
+    "case 7", "case kir-plugin-12"
+)
+
+
+def test_subagent_clash_an_id_of_a_sprint_another_agent_holds_is_sent_back(working):
+    # a Case of a sprint held by another agent gets the next id of its sprint (case 788.7)
+    assert answer_file(working, KIR_12, agent_id="a1") == (0, "")
+    other = KIR_12.replace("The file is written.", "Another file is written.")
+    code, err = answer_file(working, other, now=LATER, agent_id="b2")
+    assert code == 2
+    assert (
+        "case kir-plugin-12: the store holds case kir-plugin-12 from the answer of another "
+        "agent — build this Case as case kir-plugin-13"
+    ) in err
+
+
+def test_subagent_clash_an_id_the_command_holds_gives_no_finding(working):
+    # `guppi caseid --next` holds an id with no agent_id, which no answer clashes with (case 788.7)
+    plan = working / ".claude" / "plans" / "plan.md"
+    casecheck.write_store(plan, {"kir-plugin-12": {"stored": NOW.isoformat()}})
+    assert answer_file(working, KIR_12, agent_id="b2") == (0, "")
+
+
+# --- no problem in a sub-case (case 544.4) --------------------------------------------------
+
+
+def test_subagent_a_sub_case_with_problem_is_sent_back(working):
+    own = sub_case("9.1").replace(
+        "### Case 9.1 — part\n\n", "### Case 9.1 — part\n\n> **problem:**\n> Sub P.\n\n"
+    )
+    code, err = answer(working, PARENT + own)
+    assert code == 2
+    assert "case 9.1: a sub-case carries problem, which stands on its parent only" in err
+
+
+def test_subagent_a_parent_without_problem_still_misses_it(working):
+    bare = PARENT.replace("> **problem:**\n> P.\n\n", "")
+    code, err = answer(working, bare + sub_case("9.1"))
+    assert code == 2 and "case 9: missing section problem" in err
+    assert "carries problem" not in err
+
+
+def test_subagent_a_case_with_no_sub_cases_keeps_its_problem(working):
+    assert answer(working, ANSWER) == (0, "")
+
+
+# --- the language finding of /pre-spec on the answer (case 537) --------------------------
+
+
+@pytest.mark.parametrize(
+    "old, new, part",
+    [
+        ("## Case 7 — example", "## Case 7 — пример", "name"),
+        ("> Context.", "> Контекст.", "context"),
+        ("> Problem.", "> Проблема.", "problem"),
+    ],
+)
+def test_subagent_script_a_letter_outside_the_script_is_a_finding_held_in_the_store(
+    working, old, new, part
+):
+    # the finding stands in the store, so the showing and the Spec refuse it (case 645.7)
+    russian = ANSWER.replace(old, new)
+    code, err = answer_file(working, russian)
+    assert code == 2
+    assert f"case 7: its {part} holds a letter outside the Latin script of English" in err
+    assert store(working)["7"]["findings"]
+    assert answer_file(working, russian) == (0, "")  # the same file again: stored, not sent back
+    assert store(working)["7"]["findings"]
+    assert casecheck.against_store("7", "", [], store(working))
+
+
+def test_subagent_script_an_english_answer_passes(working):
+    assert answer_file(working, ANSWER) == (0, "")
+    assert store(working)["7"]["findings"] == []
+    assert case_path(working, "7").exists()
+
+
+def test_subagent_script_a_russian_quotation_in_then_passes(working):
+    quoted = ANSWER.replace("> The file is written.", "> The file is written: «файл записан».")
+    assert answer_file(working, quoted) == (0, "")
+    assert store(working)["7"]["findings"] == []
+
+
+def test_subagent_script_a_latin_code_span_passes_under_russian(working):
+    # a slug in a code span is Latin in any language (case 589.2)
+    (working / "guppi.toml").write_text(
+        'documentation_lang = "ru"\nchat_lang = "ru"\n', encoding="utf-8"
+    )
+    russian = (
+        ANSWER.replace("## Case 7 — example", "## Case 7 — пример")
+        .replace("> Context.", "> Правило `rule-x` и файл `guppi/x.py`.")
+        .replace("> Problem.", "> Проблема `rule-x`.")
+    )
+    assert answer_file(working, russian) == (0, "")
+    assert store(working)["7"]["findings"] == []
+    assert case_path(working, "7").exists()
+
+
+def test_subagent_script_a_cyrillic_code_span_is_a_finding(working):
+    # inside a code span a letter of another script is judged as in prose (case 589.2)
+    quoted = ANSWER.replace("> Context.", "> Context of `файл`.")
+    code, err = answer_file(working, quoted)
+    assert code == 2
+    assert "case 7: its context holds a letter outside the Latin script of English" in err
+    assert store(working)["7"]["findings"]
+
+
+def test_subagent_script_a_missing_guppi_toml_is_one_finding(working):
+    (working / "guppi.toml").unlink()
+    code, err = answer_file(working, ANSWER)
+    assert code == 2
+    assert "guppi.toml: missing" in err
+    assert store(working)["7"]["findings"] == [
+        "guppi.toml: missing — the language of the repository is not known; no Case is read"
+    ]
+
+
+def test_subagent_the_path_of_the_file_is_one_the_guard_judges(working):
+    # the writer's path stays inside the one predicate of the guard (case 453)
+    for case in ("7", "9.1", "452.12"):
+        assert casecheck.is_case_file(case_path(working, case))
+
+
+# --- the comparison on Stop (case 419.4) ------------------------------------------------
+
+
+LAYOUT = "outside its list and ratification"
+
+
+def compared_alike(result):
+    """A showing of the sections under the heading breaks the layout (case 611), which the
+    `Stop` run no longer refuses (case 699.2); the comparison passes when it gives no reason."""
+    return result == (0, "")
+
+
+def test_stop_the_checked_case_shown_unchanged_passes(working):
+    answer(working, ANSWER)
+    assert compared_alike(show(working, ANSWER + "\n---\n\nRatify?\n"))
+
+
+def test_stop_a_case_not_in_the_store_is_refused(working):
+    code, err = show(working, ANSWER)
+    assert code == 2 and "case 7: not built and checked by case-guppi" in err
+
+
+def test_stop_a_changed_case_is_refused(working):
+    answer(working, ANSWER)
+    code, err = show(working, ANSWER.replace("The file is written.", "The file is written twice."))
+    assert code == 2 and "case 7: its then differ from the answer of case-guppi" in err
+
+
+def test_stop_the_translated_prose_and_heading_pass(working):
+    # the name of the heading, `context`, `problem` and `recommend` are not compared (case 441.3)
+    answer(working, ANSWER)
+    translated = (
+        ANSWER.replace("## Case 7 — example", "## Case 7 — an example")
+        .replace("> Context.", "> The context.\n> Two lines of it.")
+        .replace("> Problem.", "> The problem.")
+        .replace("> Advice.", "> The advice.")
+    )
+    assert compared_alike(show(working, translated))
+
+
+def test_stop_a_changed_mechanical_part_is_refused(working):
+    # `given`, `then`, a task sub-point, a `ratification` line (case 441.3)
+    answer(working, ANSWER)
+    changes = {
+        "given": ANSWER.replace("— its Estimate.", "— its promise."),
+        "tasks": ANSWER.replace("`the new text`", "`the newer text`"),
+        "ratification": ANSWER.replace("{ref:rule-x}", "{ref:rule-y}", 1),
+    }
+    for part, shown in changes.items():
+        assert shown != ANSWER, part
+        code, err = show(working, shown)
+        assert code == 2 and f"its {part} differ" in err, (part, err)
+
+
+RATIFICATION = ANSWER[ANSWER.index("> **ratification:**") :]
+SHORT_SHOWING = (
+    "## Case 7 — example\n\n- **7** — меняет правило x: одна пара `replace` и новое Estimate.\n\n"
+    + RATIFICATION
+    + "\n---\n\nРатифицируешь?\n"
+)
+
+
+def test_stop_a_showing_of_the_ratification_alone_passes(working):
+    # a section the reply does not show is not compared; the short text is not either (case 452.2)
+    answer(working, ANSWER)
+    assert show(working, SHORT_SHOWING) == (0, "")
+    no_when = ANSWER.replace("> **when:**\n> The agent runs `guppi x`.\n\n", "")
+    assert compared_alike(show(working, no_when))
+
+
+def test_stop_a_showing_of_the_ratification_alone_that_differs_is_refused(working):
+    answer(working, ANSWER)
+    code, err = show(working, SHORT_SHOWING.replace("{ref:rule-x}", "{ref:rule-y}", 1))
+    assert code == 2 and "case 7: its ratification differ" in err
+
+
+def test_stop_a_showing_of_the_ratification_alone_with_a_changed_file_is_refused(working):
+    # the showing passes only when the file equals the store too (case 645.11)
+    answer(working, ANSWER)
+    path = case_path(working, "7")
+    path.write_text(ANSWER.replace("The file is written.", "Changed."), encoding="utf-8")
+    code, err = show(working, SHORT_SHOWING)
+    assert code == 2 and f"case 7: {path} differs from the text the check stored" in err
+
+
+# --- a file changed after its check (case 645.4) ---------------------------------------------
+
+
+def test_stop_changed_file_equal_to_the_store_passes(working):
+    answer(working, ANSWER)
+    assert case_path(working, "7").is_file()
+    assert show(working, SHORT_SHOWING) == (0, "")
+
+
+def test_stop_changed_file_a_line_changed_after_the_store_is_refused(working):
+    answer(working, ANSWER)
+    path = case_path(working, "7")
+    path.write_text(path.read_text(encoding="utf-8") + "\nA line.\n", encoding="utf-8")
+    code, err = show(working, SHORT_SHOWING)
+    assert code == 2 and "case 7:" in err and str(path) in err
+
+
+def test_stop_changed_file_a_case_the_store_lacks_is_refused(working):
+    answer(working, ANSWER)
+    path = case_path(working, "7")
+    path.write_text(path.read_text(encoding="utf-8") + "\n" + sub_case("7.1"), encoding="utf-8")
+    code, err = show(working, SHORT_SHOWING)
+    assert code == 2 and "case 7.1:" in err and "differs from the text the check stored" in err
+
+
+def test_stop_a_shown_case_with_no_sending_is_refused(working):
+    # no `SendUserFile` call in the turn, or one only in an earlier turn (case 452.2)
+    answer(working, ANSWER)
+    code, err = show(working, SHORT_SHOWING, sent=[])
+    assert code == 2 and "case 7: no SendUserFile call on" in err
+    assert str(case_path(working, "7")) in err
+    earlier = [prompt(), sending(case_path(working, "7")), result(), prompt("Why?")]
+    code, err = show(working, SHORT_SHOWING, records=earlier)
+    assert code == 2 and "case 7: no SendUserFile call on" in err
+    later = [prompt(), prompt("Show it."), sending(case_path(working, "7")), result()]
+    assert show(working, SHORT_SHOWING, records=later) == (0, "")
+
+
+def refusal():
+    """A `Stop` hook's refusal in the shape Claude Code writes it: a `user` record marked
+    `isMeta`, its text opening with `Stop hook feedback:` (transcripts of sessions 1237 and
+    1441, case 584)."""
+    return {
+        "type": "user",
+        "isSidechain": False,
+        "isMeta": True,
+        "message": {
+            "role": "user",
+            "content": "Stop hook feedback:\n[uv run --project .guppi guppi x]: refused",
+        },
+    }
+
+
+def test_stop_a_sending_before_a_refusal_counts_in_the_turn_of_the_reply(working):
+    # the refusal opens no turn, so the file sent before it counts for the next showing (case 584)
+    answer(working, ANSWER)
+    records = [prompt(), sending(case_path(working, "7")), result(), refusal()]
+    assert show(working, SHORT_SHOWING, records=records) == (0, "")
+
+
+def test_stop_a_sending_of_another_file_is_refused(working):
+    answer(working, ANSWER)
+    code, err = show(working, SHORT_SHOWING, sent=[case_path(working, "8")])
+    assert code == 2 and "case 7: no SendUserFile call on" in err
+
+
+def test_stop_a_sending_names_the_file_by_a_relative_or_an_absolute_path(working):
+    answer(working, ANSWER)
+    relative = "/".join((*FOLDER, "cases", "case-7.md"))
+    assert show(working, SHORT_SHOWING, sent=[relative]) == (0, "")
+
+
+def test_stop_the_acknowledging_reply_is_not_judged_and_needs_no_sending(working):
+    answer(working, ANSWER)
+    ack = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Case 7 — ratified\n\n**Changes:** x.\n"
+    assert show(working, ack, sent=[]) == (0, "")
+
+
+def test_stop_a_case_stored_with_findings_is_refused(working):
+    no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+    answer(working, no_read, stop_hook_active=True)
+    code, err = show(working, no_read)
+    assert code == 2 and "estimate-x-works has no task line" in err
+
+
+def test_stop_a_heading_a_diff_and_a_short_form_are_not_compared(working):
+    ack = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Case 7 — ratified\n\n**Changes:** x.\n"
+    diff = "```DIFF\nCase 7 — context\n- old\n+ new\n```\n"
+    assert show(working, ack, sent=[]) == (0, "")
+    assert show(working, diff, sent=[]) == (0, "")
+    assert show(working, SHORT_FORM, sent=[]) == (0, "")
+
+
+def test_stop_a_case_shown_again_without_recommend_is_compared(working):
+    again = ANSWER.replace("> **recommend:**\n> Advice.\n\n", "")
+    code, err = show(working, again)
+    assert code == 2 and "not built and checked" in err
+    answer(working, again)
+    assert compared_alike(show(working, again))
+
+
+def test_stop_a_parent_is_compared_part_by_part(working):
+    parent = "## Case 9 — parent\n\n> **context:**\n> C.\n\n> **problem:**\n> P.\n\n> **recommend:**\n> A.\n\n"
+    sub = ANSWER.replace("## Case 7 — example", "### Case 9.1 — part").replace("case 7", "case 9.1")
+    sub = sub.replace(
+        "> **context:**\n> Context.\n\n> **problem:**\n> Problem.\n\n> **recommend:**\n> Advice.\n\n",
+        "",
+    )
+    assert answer(working, parent + sub) == (0, "")
+    assert set(store(working)) == {"9", "9.1"}
+    assert compared_alike(show(working, parent + sub))
+    assert compared_alike(show(working, parent.replace("C.", "C!") + sub))  # prose, not compared
+    code, err = show(working, parent + sub.replace("The file is written.", "Written twice."))
+    assert code == 2 and "case 9.1: its then differ" in err
+
+
+def test_stop_the_re_fire_is_compared_again(working):
+    """The flag set after another hook's refusal changes nothing (case 688.2)."""
+    files = [case_path(working, "7")]
+    records = [prompt(), sending(*files), result(), other_refusal()]
+    code, err = show(working, ANSWER, records=records, stop_hook_active=True)
+    assert code == 2 and "case 7: not built and checked by case-guppi" in err
+
+
+# --- the loop guard of the Stop run (case 688.1) ----------------------------------------
+# `estimate-case-check-judges-a-showing-after-a-refusal`
+
+
+def own_refusal(text):
+    """A refusal of the `Stop` run, as Claude Code records it (sessions 1237, 1441)."""
+    content = f"Stop hook feedback:\n[{casecheck.COMMAND}]: {text.rstrip()}"
+    return {"type": "user", "isMeta": True, "message": {"content": content}}
+
+
+def other_refusal():
+    content = "Stop hook feedback:\n[uv run --project .guppi guppi onward --plan]: onward: go on"
+    return {"type": "user", "isMeta": True, "message": {"content": content}}
+
+
+def after_refusals(project, reply, *refused, **fields):
+    """The `Stop` run on `reply`, its turn sending the files of its Cases, after `refused`."""
+    files = sorted({case_path(project, c) for c in casecheck.split_cases(reply)})
+    records = [prompt(), sending(*files), result(), *refused]
+    return show(project, reply, records=records, **fields)
+
+
+def test_guard_a_showing_after_another_hooks_refusal_is_refused(working):
+    code, err = after_refusals(working, ANSWER, other_refusal(), stop_hook_active=True)
+    assert code == 2 and err.startswith("casecheck: case 7: not built")
+
+
+def test_guard_the_same_wrong_showing_is_refused_three_times_then_let_through(working):
+    _, first = show(working, ANSWER)
+    refused = [own_refusal(first)]
+    for _ in range(2):
+        code, err = after_refusals(working, ANSWER, *refused, stop_hook_active=True)
+        assert (code, err) == (2, first)
+        refused.append(own_refusal(err))
+    code, err = after_refusals(working, ANSWER, *refused, stop_hook_active=True)
+    unchecked = (
+        "casecheck: case 7 shown unchecked after three refusals; the Spec hook compares it at "
+        "ratification\n"
+    )
+    assert (code, err) == (0, unchecked)
+
+
+def test_guard_two_cases_are_counted_apart(working):
+    other = ANSWER.replace("## Case 7 —", "## Case 8 —")
+    refused = [own_refusal("casecheck: case 7: not built and checked by case-guppi")] * 3
+    code, err = after_refusals(working, ANSWER + "\n" + other, *refused)
+    assert code == 2 and "case 8:" in err and "case 7:" not in err
+
+
+def test_guard_a_file_not_sent_is_counted_three_times(working):
+    # a text of the agent's own before a round is no reason of the Stop run, so
+    # the count is read on a reason of a shown Case (case 699.3)
+    answer(working, ANSWER)
+    code, err = show(working, SHORT_SHOWING, sent=[])
+    assert code == 2 and "no SendUserFile call on" in err
+    records = [prompt()]
+    assert show(working, SHORT_SHOWING, records=records + [own_refusal(err)] * 2)[0] == 2
+    code, err = show(working, SHORT_SHOWING, records=records + [own_refusal(err)] * 3)
+    assert code == 0 and "shown unchecked after three refusals" in err
+
+
+def test_guard_a_text_before_a_round_is_no_reason_of_the_stop_run(working):
+    # (case 699.3)
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    assert show(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records) == (0, "")
+
+
+def test_guard_the_flag_with_an_unreadable_transcript_passes_silently(working):
+    assert show(
+        working, ANSWER, transcript_path=str(working / "none.jsonl"), stop_hook_active=True
+    ) == (
+        0,
+        "",
+    )
+
+
+# --- a list showing under the heading of a top-level Case (case 561.10) -----------------
+
+LINES_9_1 = (
+    "- decision[case 9.1][update][rule-x]{ref:rule-x}",
+    "- decision[case 9.1][create][estimate-x-works-1]{ref:rule-x}{tags:harness}",
+)
+LINES_9_2 = (
+    "- decision[case 9.2][update][rule-x]{ref:rule-x}",
+    "- decision[case 9.2][create][estimate-x-works-2]{ref:rule-x}{tags:harness}",
+)
+
+
+def list_showing(*lines):
+    fence = "".join(f"> {line}\n" for line in lines)
+    return (
+        "## Case 9 — родитель\n\n- 9.1 — часть: готово, когда файл записан.\n"
+        "- 9.2 — часть: готово, когда страница прочитана.\n\n"
+        f"> **ratification:**\n> ```\n{fence}> ```\n\n---\n\nРатифицируешь?\n"
+    )
+
+
+def built_family(working):
+    family = PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+    assert answer(working, family) == (0, "")
+
+
+def test_stop_list_a_fence_with_the_stored_lines_of_two_sub_cases_passes(working):
+    built_family(working)
+    assert show(working, list_showing(*LINES_9_1, *LINES_9_2)) == (0, "")
+
+
+def test_stop_list_a_missing_line_is_refused(working):
+    built_family(working)
+    code, err = show(working, list_showing(*LINES_9_1, LINES_9_2[0]))
+    assert code == 2 and "case 9.2: its ratification differ" in err
+
+
+def test_stop_list_an_extra_line_is_refused(working):
+    built_family(working)
+    extra = "- decision[case 9.1][update][rule-y]{ref:rule-y}"
+    code, err = show(working, list_showing(*LINES_9_1, extra, *LINES_9_2))
+    assert code == 2 and "case 9.1: its ratification differ" in err
+
+
+def test_stop_list_a_showing_under_each_heading_passes_as_before(working):
+    built_family(working)
+    each = PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
+    assert compared_alike(show(working, each))
+
+
+# --- the layout of a showing (case 611) -------------------------------------------------
+
+
+def test_layout_a_list_showing_and_text_after_the_rule_pass(working):
+    answer(working, ANSWER)
+    assert show(working, SHORT_SHOWING) == (0, "")
+    indented = SHORT_SHOWING.replace(
+        "Estimate.\n\n", "Estimate.\n  Проверка: `estimate-x-works`.\n\n", 1
+    )
+    assert show(working, indented) == (0, "")
+
+
+def test_layout_a_batch_of_list_showings_passes(working):
+    built_family(working)
+    no_pair = ANSWER.replace(">   - old: `` the `old` text ``\n>   - new: `the new text`\n", "")
+    assert answer(working, no_pair) == (0, "")  # 9.1 rewrote the old text (case 711.1)
+    batch = SHORT_SHOWING.split("\n---\n")[0] + "\n" + list_showing(*LINES_9_1, *LINES_9_2)
+    assert show(working, batch) == (0, "")
+
+
+def test_layout_a_sentence_between_the_heading_and_the_list_is_told_at_the_next_message(working):
+    # a sentence between the heading and the list, as a real showing held it
+    # (the showing of Case 610 in session 0115, case 699.2)
+    answer(working, ANSWER)
+    shown = SHORT_SHOWING.replace(
+        "## Case 7 — example\n\n", "## Case 7 — example\n\nCase 608 is renumbered.\n\n"
+    )
+    assert show(working, shown) == (0, "")
+    code, out = noted(working, shown)
+    assert code == 0 and LAYOUT in out and "Case 608 is renumbered." in out
+    assert "not shown again" in out and "after the horizontal rule" in out
+
+
+def test_layout_a_text_before_the_first_heading_is_told_at_the_next_message(working):
+    answer(working, ANSWER)
+    shown = "Here is the Case.\n\n" + SHORT_SHOWING
+    assert show(working, shown) == (0, "")
+    code, out = noted(working, shown)
+    assert code == 0 and LAYOUT in out and "Here is the Case." in out
+
+
+def test_layout_a_section_other_than_ratification_is_told_at_the_next_message(working):
+    answer(working, ANSWER)
+    given = "> **given:**\n> `estimate-x-works` — its Estimate.\n\n"
+    shown = SHORT_SHOWING.replace("> **ratification:**", given + "> **ratification:**", 1)
+    assert LAYOUT not in show(working, shown)[1]  # its comparison is the Stop run's own
+    code, out = noted(working, shown)
+    assert code == 0 and LAYOUT in out and "> **given:**" in out
+
+
+def test_layout_a_list_showing_gives_no_note(working):
+    answer(working, ANSWER)
+    assert noted(working, SHORT_SHOWING) == (0, "")
+
+
+def ruled_batch(between=""):
+    """Two showings of a batch, a rule before the first and one between them (case 751.5)."""
+    first = SHORT_SHOWING.split("\n---\n")[0]
+    second = list_showing(*LINES_9_1, *LINES_9_2).replace("- 9.1 —", between + "- 9.1 —", 1)
+    return "---\n\n" + first + "\n---\n\n" + second
+
+
+def built_batch(working):
+    built_family(working)
+    no_pair = ANSWER.replace(">   - old: `` the `old` text ``\n>   - new: `the new text`\n", "")
+    assert answer(working, no_pair) == (0, "")
+
+
+def test_layout_rules_before_and_between_the_cases_of_a_batch_give_no_note(working):
+    # (case 751.5)
+    built_batch(working)
+    assert show(working, ruled_batch()) == (0, "")
+    assert noted(working, ruled_batch()) == (0, "")
+    assert noted(working, "---\n\n" + SHORT_SHOWING) == (0, "")
+
+
+def test_layout_a_text_in_the_second_case_after_a_rule_is_told(working):
+    # the judgment goes past a rule that a Case heading follows (case 751.5)
+    built_batch(working)
+    shown = ruled_batch(between="A note of mine.\n\n")
+    code, out = noted(working, shown)
+    assert code == 0 and LAYOUT in out and "A note of mine." in out
+    assert "before the Case but a horizontal rule" in out
+
+
+def test_layout_text_after_a_last_rule_that_no_heading_follows_is_not_judged(working):
+    # (case 751.5)
+    answer(working, ANSWER)
+    shown = "---\n\n" + SHORT_SHOWING + "\nMore of my own.\n\n- a list item of mine\n"
+    assert noted(working, shown) == (0, "")
+
+
+def test_layout_a_showing_with_no_file_sent_is_still_refused_at_stop(working):
+    # the file not sent is still a reason of the Stop run (case 699.2)
+    answer(working, ANSWER)
+    code, err = show(working, "Here is the Case.\n\n" + SHORT_SHOWING, sent=[])
+    assert code == 2 and "no SendUserFile call on" in err and LAYOUT not in err
+
+
+def summary_turn(working, before="", after=""):
+    """A turn that dispatches `case-guppi`, takes its summary back and sends the file of Case
+    7, with `before` written before the dispatch and `after` before the sending."""
+    dispatch = assistant(*([said(before)] if before else []), agent_call())
+    call = sending(case_path(working, "7"))
+    if after:
+        call["message"]["content"].insert(0, said(after))
+    summary = f"**Built:** {case_path(working, '7')}\n**Case:** 7 — example"
+    return [prompt(), dispatch, agent_result(summary), call, result()]
+
+
+def test_layout_a_text_after_the_summary_came_back_is_told_at_the_next_message(working):
+    # (cases 692.2, 699.2)
+    answer(working, ANSWER)
+    records = summary_turn(working, after="Showing the Case.")
+    assert show(working, SHORT_SHOWING, records=records) == (0, "")
+    code, out = noted(working, SHORT_SHOWING, records=records)
+    assert code == 0 and LAYOUT in out and "Showing the Case." in out
+    assert "nothing of your own before the Case" in out
+
+
+def test_layout_a_text_before_the_call_that_brought_the_summary_gives_no_note(working):
+    # a text written before the summary came back cannot be taken back (case 692.2)
+    answer(working, ANSWER)
+    records = summary_turn(working, before="Dispatching case-guppi.")
+    assert noted(working, SHORT_SHOWING, records=records) == (0, "")
+
+
+def test_layout_a_case_shown_again_after_a_refusal_gives_no_note(working):
+    # after a refusal only what follows it is judged (case 692.2)
+    answer(working, ANSWER)
+    records = summary_turn(working, after="Showing the Case.")
+    refused = own_refusal("casecheck: case 7: no SendUserFile call on it — send the file")
+    again = [*records, refused, sending(case_path(working, "7")), result()]
+    assert noted(working, SHORT_SHOWING, records=again) == (0, "")
+
+
+def test_layout_a_turn_with_no_summary_judges_no_text_before_its_last_call(working):
+    # (case 692.2)
+    answer(working, ANSWER)
+    call = sending(case_path(working, "7"))
+    call["message"]["content"].insert(0, said("Showing the Case."))
+    assert noted(working, SHORT_SHOWING, records=[prompt(), call, result()]) == (0, "")
+
+
+def test_layout_the_acknowledging_reply_is_not_judged_and_the_re_fire_is(working):
+    answer(working, ANSWER)
+    ack = "```LEDGER\n- decision[case 7][update][rule-x]{ref:rule-x}\n```\n\n## Case 7 — ratified\n\n**Changes:** x.\n"
+    assert noted(working, "A line.\n\n" + ack, sent=[]) == (0, "")
+    shown = "Here is the Case.\n\n" + SHORT_SHOWING
+    files = [case_path(working, "7")]
+    records = [prompt(), sending(*files), result(), other_refusal()]
+    code, out = noted(working, shown, records=records)
+    assert code == 0 and LAYOUT in out  # (case 688.6)
+
+
+# --- how a round of case-guppi opens (case 562) -----------------------------------------
+
+ROUND = (
+    "**Context:** The item is about X.\n\n❓ **Q1** - **Which way?**:\n\n**Now:** A.\n\n➡️ (a).\n"
+)
+SHOWN_ROUND = "**Контекст:** Пункт об X.\n\n❓ **Q1** - **Какой путь?**:\n\n➡️ (a).\n"
+FACT_ANSWER = "**Fact:** The page says so.\n\n❓ **Q1** - **Which way?**:\n"
+PRESPEC_MARK = "- 15:20:00 44c1aae1 prespec\n"
+
+
+def assistant(*blocks):
+    return {
+        "type": "assistant",
+        "isSidechain": False,
+        "message": {"role": "assistant", "content": list(blocks)},
+    }
+
+
+def said(value):
+    return {"type": "text", "text": value}
+
+
+def agent_call(call_id="toolu_a"):
+    return {
+        "type": "tool_use",
+        "id": call_id,
+        "name": "Agent",
+        "input": {"subagent_type": "case-guppi"},
+    }
+
+
+def agent_result(value, call_id="toolu_a"):
+    block = {
+        "type": "tool_result",
+        "tool_use_id": call_id,
+        "content": [said("  " + value.replace("\n", "\n  "))],
+    }
+    return {"type": "user", "isSidechain": False, "message": {"role": "user", "content": [block]}}
+
+
+def notification(value):
+    content = f"<task-notification>\n<task-id>a1</task-id>\n<result>{value}</result>\n</task-notification>"
+    return {
+        "type": "user",
+        "isSidechain": False,
+        "origin": {"kind": "task-notification"},
+        "message": {"role": "user", "content": content},
+    }
+
+
+def with_prespec(working):
+    log = working / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    log.write_text(log.read_text(encoding="utf-8") + PRESPEC_MARK, encoding="utf-8")
+
+
+def test_round_a_reply_that_opens_with_a_line_of_its_own_is_told_at_the_next_message(working):
+    # the Stop run lets it through, the run at the next message gives the note (case 699.1)
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    reply = "Case-guppi asks a round.\n\n" + SHOWN_ROUND
+    assert show(working, reply, records=records) == (0, "")
+    code, out = noted(working, reply, records=records)
+    assert code == 0 and "Case-guppi asks a round." in out and "nothing before it" in out
+    assert "not shown again" in out and out.count("\n") == 1
+
+
+def test_round_before_prespec_a_text_before_the_agent_call_passes(working):
+    # a note stood before the call that brought the round back (session 1448, case 692.1)
+    records = [
+        prompt(),
+        assistant(said("Dispatching case-guppi."), agent_call()),
+        agent_result(ROUND),
+    ]
+    assert noted(working, SHOWN_ROUND, records=records) == (0, "")
+
+
+def test_round_the_prompt_run_on_an_unreadable_payload_prints_nothing(working):
+    out, err = io.StringIO(), io.StringIO()
+    stdin = io.StringIO("not json")
+    code = casecheck.run(
+        ["--prompt"], stdin=stdin, stdout=out, stderr=err, project_dir=working, now=NOW
+    )
+    assert (code, out.getvalue(), err.getvalue()) == (0, "", "")
+
+
+def test_round_the_prompt_run_reads_a_transcript_without_the_new_message(working):
+    # the transcript may not hold the person's new message yet
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    turn = [*records, assistant(said("Mine.\n\n" + SHOWN_ROUND))]
+    payload = {"session_id": SESSION, "transcript_path": main_transcript(working, turn)}
+    out = io.StringIO()
+    stdin = io.StringIO(json.dumps(payload, ensure_ascii=False))
+    assert casecheck.run(["--prompt"], stdin=stdin, stdout=out, project_dir=working, now=NOW) == 0
+    assert "Mine." in out.getvalue()
+
+
+def round_then_text(note="The round came back."):
+    """A turn whose round came back, then a text of the main agent before a later call."""
+    later = {"type": "tool_use", "id": "toolu_b", "name": "Read", "input": {}}
+    block = {"type": "tool_result", "tool_use_id": "toolu_b", "content": "read"}
+    read_result = {"type": "user", "isSidechain": False, "message": {"content": [block]}}
+    return [
+        prompt(),
+        assistant(agent_call()),
+        agent_result(ROUND),
+        assistant(said(note), later),
+        read_result,
+    ]
+
+
+def test_round_before_prespec_a_text_after_the_round_came_back_is_told(working):
+    # (case 692.1)
+    assert show(working, SHOWN_ROUND, records=round_then_text()) == (0, "")
+    code, out = noted(working, SHOWN_ROUND, records=round_then_text())
+    assert code == 0 and "The round came back." in out
+
+
+def test_round_shown_after_a_refusal_with_nothing_before_it_gives_no_note(working):
+    # after a refusal only what follows it is judged (case 692.1)
+    records = [*round_then_text(), own_refusal("casecheck: case 7: no SendUserFile call")]
+    assert noted(working, SHOWN_ROUND, records=records) == (0, "")
+
+
+def test_round_a_reply_that_opens_with_a_line_of_its_own_after_a_refusal_is_told(working):
+    # the first line is judged always (case 692.1)
+    records = [*round_then_text(), own_refusal("casecheck: case 7: no SendUserFile call")]
+    code, out = noted(working, "Again.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "Again." in out
+
+
+def test_round_given_back_in_the_opening_answer_leaves_every_text_judged(working):
+    # the returned answer that opens the turn stands before every text of it (case 692.1)
+    send = {"type": "tool_use", "id": "toolu_s", "name": "SendMessage", "input": {}}
+    records = [notification(ROUND), assistant(said("Both answered."), send), result()]
+    code, out = noted(working, SHOWN_ROUND, records=records)
+    assert code == 0 and "Both answered." in out
+
+
+def test_round_after_prespec_a_text_before_the_call_with_a_question_line_passes(working):
+    with_prespec(working)
+    send = {"type": "tool_use", "id": "toolu_s", "name": "SendMessage", "input": {}}
+    records = [notification(ROUND), assistant(said("The report."), send), result()]
+    assert noted(working, "❓ **561.Q1** - **Какой путь?**:\n", records=records) == (0, "")
+
+
+def test_round_after_prespec_a_reply_that_opens_with_a_line_of_its_own_is_told(working):
+    with_prespec(working)
+    code, out = noted(working, "Both answered.\n\n" + SHOWN_ROUND, records=[notification(ROUND)])
+    assert code == 0 and "Both answered." in out
+
+
+def test_round_a_reply_that_opens_with_the_context_label_or_the_question_passes(working):
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    assert noted(working, SHOWN_ROUND, records=records) == (0, "")
+    question = SHOWN_ROUND[SHOWN_ROUND.index("❓") :]
+    assert noted(working, question, records=records) == (0, "")
+    labelled = SHOWN_ROUND.replace("**Контекст:**", "**Контекст — Case 7 (C2):**")
+    assert noted(working, labelled, records=records) == (0, "")  # (case 699.5)
+
+
+def test_round_a_leading_rule_gives_no_note_and_a_text_after_it_is_told(working):
+    # a horizontal rule before a round is no text of the agent's own (case 751.4)
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND)]
+    assert noted(working, "---\n\n" + SHOWN_ROUND, records=records) == (0, "")
+    assert noted(working, SHOWN_ROUND, records=records) == (0, "")
+    code, out = noted(working, "---\n\nMine.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "Mine." in out and "nothing before it but a horizontal rule" in out
+
+
+@pytest.mark.parametrize(
+    "records",
+    [
+        [prompt(), assistant(agent_call()), agent_result(FACT_ANSWER)],
+        [prompt()],
+        [prompt(), assistant(said("A note."), agent_call()), agent_result(ANSWER)],
+    ],
+)
+def test_round_a_turn_with_no_round_is_not_judged(working, records):
+    own_question = "Мой вопрос.\n\n❓ **Q1** - **Мой?**:\n"
+    assert show(working, own_question, records=records, sent=[]) == (0, "")
+    assert noted(working, own_question, records=records) == (0, "")
+
+
+def test_round_a_record_with_no_origin_opens_no_turn(working):
+    # the record of a local command — string content, no `origin`, no `isMeta` —
+    # does not cut the turn, so a round given back before it is still judged (case 590.3)
+    clear = {
+        "type": "user",
+        "isSidechain": False,
+        "message": {"role": "user", "content": "<command-name>/clear</command-name>"},
+    }
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND), clear]
+    code, out = noted(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "A line of my own." in out
+
+
+def test_round_a_round_whose_title_line_lacks_its_colon_is_a_round(working):
+    # the check knows a round by `is_round`, the mark alone, not QUESTION_LINE (case 601.4)
+    no_colon = ROUND.replace("**Which way?**:", "**Which way?**")
+    records = [prompt(), assistant(agent_call()), agent_result(no_colon)]
+    code, out = noted(working, "A line of my own.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "A line of my own." in out
+
+
+def test_round_a_refusal_of_another_hook_leaves_the_reply_judged(working):
+    """A round shown after a refusal of another hook is judged (case 688.5)."""
+    records = [prompt(), assistant(agent_call()), agent_result(ROUND), other_refusal()]
+    code, out = noted(working, "A line.\n\n" + SHOWN_ROUND, records=records)
+    assert code == 0 and "A line." in out
+
+
+def test_stop_list_the_file_of_the_top_level_case_must_be_sent(working):
+    built_family(working)
+    code, err = show(working, list_showing(*LINES_9_1, *LINES_9_2), sent=[])
+    assert code == 2 and "no SendUserFile call on" in err
+
+
+# --- an open backlog line of the Frontier (case 467.2) ------------------------------------
+
+UPDATE_LINE = "decision[case 7][update][rule-x]{ref:rule-x}"
+
+
+def taken_from_the_backlog(project, line="- [ ] C1 — `rule-x`, taken up · backlog\n"):
+    """`rule-x` deferred by Case `5`, and the Frontier line that takes it up."""
+    rule = project / "vault" / "wiki" / "rules" / "rule-x.md"
+    rule.write_text(
+        RULE_X.replace("status: draft\n", "status: draft\ndeferred_by: [decision-case-5]\n"),
+        encoding="utf-8",
+    )
+    frontier = project.joinpath(*FOLDER) / "frontier.md"
+    frontier.parent.mkdir(parents=True, exist_ok=True)
+    frontier.write_text(f"# Frontier\n\n## Cases\n\n{line}", encoding="utf-8")
+
+
+def test_subagent_backlog_a_case_naming_the_page_without_its_supersedes_is_sent_back(working):
+    taken_from_the_backlog(working)
+    code, err = answer_file(working, ANSWER)
+    assert code == 2
+    assert (
+        "case 7: names rule-x, the page of the open backlog line C1, and no Case among case 7 "
+        "and its sub-cases names it and carries {supersedes:case 5}"
+    ) in err
+
+
+def test_subagent_backlog_a_case_with_every_supersedes_passes(working):
+    taken_from_the_backlog(working)
+    marked = ANSWER.replace(UPDATE_LINE, UPDATE_LINE + "{supersedes:case 5}")
+    assert answer_file(working, marked) == (0, "")
+
+
+def test_subagent_backlog_a_sub_case_that_supersedes_covers_its_sibling(working):
+    taken_from_the_backlog(working)
+    first = sub_case("9.1").replace(
+        "decision[case 9.1][update][rule-x]{ref:rule-x}",
+        "decision[case 9.1][update][rule-x]{ref:rule-x}{supersedes:case 5}",
+    )
+    assert answer_file(working, PARENT + first + "\n" + sub_case("9.2", "The page is read.")) == (
+        0,
+        "",
+    )
+
+
+@pytest.mark.parametrize(
+    "line",
+    ["- [x] C1 — `rule-x`, taken up · backlog · case 7\n", "- [ ] C1 — `rule-x` · brief\n"],
+)
+def test_subagent_backlog_no_open_backlog_line_is_no_finding(working, line):
+    taken_from_the_backlog(working, line)
+    assert answer_file(working, ANSWER) == (0, "")
+
+
+def test_backlog_a_case_naming_the_page_only_in_a_defer_line_is_not_judged(working):
+    taken_from_the_backlog(working)
+    records = [casecheck.parse_line("- decision[case 8][defer][rule-x]")]
+    frontier = working.joinpath(*FOLDER) / "frontier.md"
+    assert casecheck.check_backlog(records, frontier, working) == []
+
+
+# --- the notes of the promise lines (cases 472.1, 472.2) -------------------------------
+
+RECUT = """## Case 7 — recut
+
+> **context:**
+> Context.
+
+> **problem:**
+> Problem.
+
+> **given:**
+> `estimate-x-works` — its Estimate.
+
+> **when:**
+> The agent runs `guppi x`.
+
+> **then:**
+> The file is written.
+
+> **tasks:**
+> - [ ] update `estimate-x-works`
+>   - set: `{status: pending}`
+>   - change: `the Criterion replaced whole (case 7)`
+> - [ ] read `estimate-x-works`
+
+> **ratification:**
+> ```
+> - decision[case 7][update][estimate-x-works]{ref:estimate-x-works}
+> ```
+"""
+
+ESTIMATE_X = """---
+type: estimate
+kind: QA
+status: passed
+target: rule-x
+method: by hand
+---
+
+## Criterion
+
+When:
+The agent runs `guppi x`.
+
+Then:
+The file is written.
+**＋** The log is kept.
+"""
+
+DROPPED = "note: case 7: estimate-x-works: a line of its Criterion is not carried: The log is kept."
+
+
+@pytest.fixture
+def recut(working):
+    page = working / "vault" / "wiki" / "estimates" / "estimate-x-works.md"
+    page.parent.mkdir(parents=True)
+    page.write_text(ESTIMATE_X, encoding="utf-8")
+    return working
+
+
+def test_subagent_note_a_dropped_criterion_line_is_sent_back_once_and_kept(recut):
+    code, err = answer(recut, RECUT)
+    assert code == 2 and DROPPED in err
+    assert store(recut)["7"]["findings"] == [] and store(recut)["7"]["notes"] == [DROPPED]
+    assert case_path(recut, "7").exists()  # a note is no finding: the file is written
+    assert answer(recut, RECUT) == (0, "")
+    assert answer(recut, RECUT.replace("> Context.", "> Context 2.")) == (0, "")
+    assert store(recut)["7"]["notes"] == [DROPPED]  # a later answer keeps the notes sent
+
+
+def test_stop_a_case_with_a_note_is_not_refused(recut):
+    answer(recut, RECUT)
+    listed = "## Case 7 — recut\n\n- **7** — переписывает Criterion.\n\n"
+    listed += RECUT[RECUT.index("> **ratification:**") :]
+    assert show(recut, listed + "\n---\n\nRatify?\n") == (0, "")
+
+
+SAME_PROMISE = (
+    "The check sends each note back to the agent once.",
+    "Each note goes back to the agent once, sent by the check.",
+)
+
+
+def test_subagent_note_siblings_that_share_a_promise_are_sent_back_once(working):
+    text = PARENT + sub_case("9.1", SAME_PROMISE[0]) + "\n" + sub_case("9.2", SAME_PROMISE[1])
+    code, err = answer_file(working, text)
+    assert code == 2 and "note: case 9.2: a then line shares most of its words with case 9.1" in err
+    assert answer_file(working, text) == (0, "")
+
+
+def test_subagent_note_a_sub_case_answered_alone_has_no_sibling(working):
+    assert answer_file(working, sub_case("9.2", SAME_PROMISE[1])) == (0, "")
+
+
+# --- the hook's own error (case 555.1) -------------------------------------------------
+
+
+def boom(*args, **kwargs):
+    raise RuntimeError("boom")
+
+
+def test_error_an_error_of_the_stop_run_exits_2_with_the_advice(working, monkeypatch):
+    answer(working, ANSWER)
+    monkeypatch.setattr(casecheck, "against_store", boom)
+    code, err = show(working, ANSWER)
+    assert code == 2
+    assert err.startswith("casecheck: not checked: boom")
+    assert "show the Case again" in err
+
+
+def test_error_the_re_fire_blocks_until_three_refusals_hold_it(working, monkeypatch):
+    """The same error blocks at each Stop, flag or not, at most three times (case 688.4)."""
+    answer(working, ANSWER)
+    monkeypatch.setattr(casecheck, "against_store", boom)
+    code, err = after_refusals(working, ANSWER, other_refusal(), stop_hook_active=True)
+    assert code == 2 and err.startswith("casecheck: not checked: boom")
+    assert after_refusals(working, ANSWER, *[own_refusal(err)] * 2, stop_hook_active=True)[0] == 2
+    assert after_refusals(working, ANSWER, *[own_refusal(err)] * 3, stop_hook_active=True) == (
+        0,
+        "",
+    )
+
+
+def test_error_with_the_flag_and_no_readable_transcript_exits_0(working, monkeypatch):
+    answer(working, ANSWER)
+    monkeypatch.setattr(casecheck, "against_store", boom)
+    stdin_fields = {"transcript_path": str(working / "none.jsonl"), "stop_hook_active": True}
+    assert show(working, ANSWER, **stdin_fields) == (0, "")
+
+
+def test_error_an_empty_payload_exits_0_with_its_line(working):
+    err = io.StringIO()
+    code = casecheck.run([], stdin=io.StringIO(""), stderr=err, project_dir=working, now=NOW)
+    assert code == 0 and err.getvalue() == "casecheck: payload not readable, nothing checked\n"
+
+
+def test_error_an_error_of_the_subagent_run_exits_0_with_its_line(working, monkeypatch):
+    monkeypatch.setattr(casecheck, "check_answer", boom)
+    assert answer(working, ANSWER) == (0, "casecheck: not checked: boom\n")
+
+
+# --- the other Cases of the session (case 629.1) --------------------------------------------
+
+
+def setting(case, status):
+    """ANSWER as Case `case`, its `update` of `rule-x` setting `status`."""
+    return (
+        ANSWER.replace("## Case 7 — example", f"## Case {case} — example")
+        .replace("case 7", f"case {case}")
+        .replace("estimate-x-works", f"estimate-x-works-{case}")
+        .replace(
+            ">   - change: `the text changed",
+            f">   - set: `{{status: {status}}}`\n>   - change: `the text changed",
+        )
+    )
+
+
+def plan_with(project, text):
+    path = project / ".claude" / "plans" / "plan.md"
+    path.write_text("# Spec — 2026-09-09, session 1501\n\n" + text, encoding="utf-8")
+
+
+PLANNED_5 = (
+    "## Case 5 — planned\n\n```then\nupdate:\n- slug: rule-x\n  set:\n    status: built\n```\n"
+)
+
+
+def test_subagent_session_clash_with_a_case_of_the_plan_is_sent_back(working):
+    plan_with(working, PLANNED_5)
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 5" in err
+    assert not case_path(working, "7").exists()
+
+
+def test_subagent_session_clash_with_a_stored_case_not_ratified_is_sent_back(working):
+    assert answer(working, setting(6, "built")) == (0, "")
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 6" in err
+
+
+def test_subagent_session_clash_none_with_a_stored_case_with_findings(working):
+    faulty = setting(6, "built").replace("> - [ ] read `estimate-x-works-6`\n", "")
+    assert answer(working, faulty)[0] == 2
+    assert store(working)["6"]["findings"]
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def test_subagent_session_clash_none_with_an_entry_joined_with_an_agent_id(working):
+    assert answer(working, setting(6, "built")) == (0, "")
+    path = casecheck.store_of(working / ".claude" / "plans" / "plan.md")
+    held = store(working)
+    path.write_text(json.dumps({"6@b2": held["6"]}), encoding="utf-8")
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def test_subagent_session_clash_none_with_a_case_a_supersedes_mark_names(working):
+    assert answer(working, setting(6, "built")) == (0, "")
+    ledger(working, "decision[case 8][update][rule-y]{ref:rule-y}{supersedes:case 6}")
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def test_subagent_session_clash_none_with_a_stored_case_whose_file_is_empty(working):
+    """A dropped Case, its file emptied, is no other Case of the session (case 701.7)."""
+    assert answer(working, setting(6, "built")) == (0, "")
+    case_path(working, "6").write_text("", encoding="utf-8")
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def stored_part(project, file_text):
+    """The store holds sub-case 6.1 alone, built from `setting(6, "built")`, and
+    the file of its top-level Case `6` holds `file_text` (case 722.1)."""
+    assert answer(project, setting(6, "built")) == (0, "")
+    entry = store(project)["6"]
+    entry["text"] = (
+        entry["text"].replace("## Case 6 —", "## Case 6.1 —").replace("[case 6]", "[case 6.1]")
+    )
+    path = casecheck.store_of(project / ".claude" / "plans" / "plan.md")
+    path.write_text(json.dumps({"6.1": entry}), encoding="utf-8")
+    case_path(project, "6").write_text(file_text, encoding="utf-8")
+    return entry["text"]
+
+
+def test_subagent_session_clash_none_with_a_stored_part_its_file_no_longer_holds(working):
+    """A stored sub-case whose top-level file holds the Case without it is no
+    other Case of the session, and its entry stays in the store (case 722.1)."""
+    stored_part(working, "## Case 6 — example\n\n> **context:**\n> Built again whole.\n")
+    assert answer(working, setting(7, "draft")) == (0, "")
+    assert "6.1" in store(working)
+
+
+def test_subagent_session_clash_with_a_stored_part_its_file_still_holds(working):
+    text = stored_part(working, "")
+    case_path(working, "6").write_text(text, encoding="utf-8")
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 6.1" in err
+
+
+def test_subagent_session_clash_with_the_same_entry_and_a_file_of_text(working):
+    assert answer(working, setting(6, "built")) == (0, "")
+    assert case_path(working, "6").read_text(encoding="utf-8").strip()
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 6" in err
+
+
+def test_subagent_session_clash_none_with_the_answers_own_earlier_version(working):
+    assert answer(working, setting(7, "built")) == (0, "")
+    assert answer(working, setting(7, "draft")) == (0, "")
+
+
+def test_subagent_session_clash_none_between_two_other_cases(working):
+    plan_with(working, PLANNED_5)
+    assert answer(working, setting(6, "draft"))[0] == 2  # 6 clashes with the plan's 5
+    assert answer(working, ANSWER) == (0, "")  # 7 sets nothing; 5 and 6 are not its finding
+
+
+# --- a Case the file of the answer supersedes (case 725.2) ------------------------------------
+# `estimate-case-check-leaves-out-a-case-the-file-supersedes`
+
+
+def marked(text, case, mark):
+    """`text`, the Case `case` of it, its `update` line of `rule-x` carrying `mark`."""
+    line = f"- decision[case {case}][update][rule-x]{{ref:rule-x}}"
+    assert line in text
+    return text.replace(line, line + mark)
+
+
+def test_superseded_by_the_file_a_case_of_the_plan_gives_no_clash(working):
+    plan_with(working, PLANNED_5)
+    assert answer(working, marked(setting(7, "draft"), 7, "{supersedes:case 5}")) == (0, "")
+
+
+def test_superseded_by_the_file_a_case_of_the_plan_gives_no_pair_finding(working):
+    plan_with(working, planned(5, "the `old` text", "the rewritten text"))
+    code, err = answer(working, marked(ANSWER, 7, "{supersedes:case 5}"))
+    assert MISSES not in err and code == 0
+
+
+def test_superseded_by_the_file_a_mark_on_a_sub_case_leaves_its_parent_compared(working):
+    sub = "### Case 5.1 — sub\n\n```then\nupdate:\n- slug: rule-z\n  set:\n    status: built\n```\n"
+    plan_with(working, PLANNED_5 + "\n" + sub)
+    code, err = answer(working, marked(setting(7, "draft"), 7, "{supersedes:case 5.1}"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 5" in err
+
+
+def test_superseded_by_the_file_without_the_mark_the_clash_stands(working):
+    plan_with(working, PLANNED_5)
+    code, err = answer(working, setting(7, "draft"))
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 5" in err
+
+
+def test_subagent_session_clash_the_judgment_is_the_one_of_prespec():
+    blocks = {"5": {"update": [{"slug": "rule-x", "sections": {"Purpose": "a"}}]}}
+    answer_blocks = {"7": {"update": [{"slug": "rule-x", "sections": {"Purpose": "b"}}]}}
+    found = casecheck.session_clashes(answer_blocks, blocks)
+    assert found == [
+        f
+        for f in casecheck.check_same_target({**blocks, **answer_blocks})
+        if f.startswith("case 7")
+    ]
+    assert found == ["case 7: rule-x: writes the section Purpose that case 5 writes too"]
+
+
+# --- a tag line, read by the function of the Spec hook (case 702) -----------------------------
+
+TAG_LINE = (
+    ">   - change: `the text changed (case 7)`\n"
+    "> - [ ] tag `orchestration`\n"
+    ">   - meaning: `the order of the main agent`\n"
+    ">   - aliases: `оркестровка`\n"
+)
+
+
+def test_tag_a_case_file_with_a_tag_line_passes_with_no_finding(working):
+    tagged = ANSWER.replace(">   - change: `the text changed (case 7)`\n", TAG_LINE)
+    assert answer_file(working, tagged) == (0, "")
+
+
+def test_tag_a_case_file_with_a_tag_line_off_the_form_gives_the_hooks_refusal(working):
+    broken = ANSWER.replace(
+        ">   - change: `the text changed (case 7)`\n",
+        TAG_LINE.replace(">   - aliases: `оркестровка`\n", ""),
+    )
+    code, err = answer_file(working, broken)
+    assert code == 2 and "case 7: tag orchestration: no `aliases`" in err
+
+
+# --- a tag that tags.md does not hold (case 703.1) ---------------------------------------------
+# `estimate-case-check-sends-back-an-unlisted-tag`
+
+TAGS_MD = "# Tags\n\n| tag | meaning | aliases (ru) |\n|---|---|---|\n| {} | a tag | тег |\n"
+
+
+def tags_md(project, *tags):
+    path = project / "vault" / "wiki" / "tags.md"
+    rows = "".join(f"| {tag} | a tag | тег |\n" for tag in tags)
+    path.write_text(TAGS_MD.format("session") + rows, encoding="utf-8")
+
+
+def unlisted(case, tag):
+    return (
+        f"case {case}: tag {tag} is not in tags.md: use a tag of tags.md, or declare it by a "
+        "tag line in this Case."
+    )
+
+
+CASE_6_TAGGED = """## Case 6 — a tag declared
+
+> **context:**
+> Context.
+
+> **problem:**
+> Problem.
+
+> **recommend:**
+> Advice.
+
+> **given:**
+> `rule-x` — the rule.
+> **＋** `estimate-x-tagged` — its Estimate.
+
+> **when:**
+> The agent runs `guppi y`.
+
+> **then:**
+> The estimate is written.
+
+> **tasks:**
+> - [ ] create `estimate-x-tagged`
+>   - type: `estimate`
+>   - kind: `QA`
+>   - purpose: `X is tagged`
+>   - method: `uv run --project .guppi pytest tests/test_y.py`
+>   - tags: `[harness]`
+> - [ ] tag `orchestration`
+>   - meaning: `the order of the main agent`
+>   - aliases: `оркестровка`
+> - [ ] read `estimate-x-tagged`
+
+> **ratification:**
+> ```
+> - decision[case 6][create][estimate-x-tagged]{ref:rule-x}{tags:harness}
+> ```
+"""
+
+
+def test_unlisted_tag_on_a_create_and_a_decision_line_is_a_finding(working):
+    tags_md(working, "workflow")
+    code, err = answer_file(working, ANSWER)
+    assert code == 2 and unlisted("7", "harness") in err
+    assert err.count("tag harness is not in tags.md") == 1  # the create and its line, once
+
+
+def test_unlisted_tag_on_a_set_of_tags_is_a_finding(working):
+    tags_md(working, "harness")
+    tagged = ANSWER.replace(
+        ">   - change: `the text changed",
+        ">   - set: `{tags: [hooks]}`\n>   - change: `the text changed",
+    )
+    code, err = answer_file(working, tagged)
+    assert code == 2 and unlisted("7", "hooks") in err
+
+
+def test_unlisted_tag_a_listed_tag_passes(working):
+    tags_md(working, "harness")
+    assert answer_file(working, ANSWER) == (0, "")
+
+
+def test_unlisted_tag_declared_by_a_tag_line_of_the_same_file_passes(working):
+    tags_md(working, "harness")
+    tagged = ANSWER.replace(">   - change: `the text changed (case 7)`\n", TAG_LINE).replace(
+        "{tags:harness}", "{tags:harness,orchestration}"
+    )
+    assert answer_file(working, tagged) == (0, "")
+
+
+def test_unlisted_tag_declared_by_a_ratified_case_of_the_session_passes(working):
+    tags_md(working, "harness")
+    assert answer(working, CASE_6_TAGGED) == (0, "")
+    ledger(working, "decision[case 6][create][estimate-x-tagged]{ref:rule-x}{tags:harness}")
+    uses = ANSWER.replace("{tags:harness}", "{tags:orchestration}").replace(
+        "`[harness]`", "`[orchestration]`"
+    )
+    assert answer_file(working, uses) == (0, "")
+
+
+def test_unlisted_tag_declared_by_a_case_with_no_decision_line_is_a_finding(working):
+    tags_md(working, "harness")
+    stored = answer(working, CASE_6_TAGGED)
+    assert stored == (0, ""), stored[1]
+    uses = ANSWER.replace("{tags:harness}", "{tags:orchestration}").replace(
+        "`[harness]`", "`[orchestration]`"
+    )
+    code, err = answer_file(working, uses)
+    assert code == 2 and unlisted("7", "orchestration") in err
+
+
+def test_unlisted_tag_no_tags_md_judges_no_tag(working):
+    assert not (working / "vault" / "wiki" / "tags.md").exists()
+    assert answer_file(working, ANSWER) == (0, "")
+
+
+def test_unlisted_tag_the_reading_of_tags_md_is_the_one_of_generate():
+    from guppi import generate, tags
+
+    assert generate.registered_tags is tags.registered_tags
+    assert tags.rows_of(TAGS_MD.format("harness")) == {"harness"}
+
+
+# --- the file case-guppi writes (case 645.2) -------------------------------------------------
+
+
+def write_call(path, content):
+    return {
+        "type": "tool_use",
+        "name": "Write",
+        "input": {"file_path": str(path), "content": content},
+    }
+
+
+def edit_call(path, old, new):
+    data = {"file_path": str(path), "old_string": old, "new_string": new}
+    return {"type": "tool_use", "name": "Edit", "input": data}
+
+
+def built(path):
+    return text(f"**Built:** {path}\n**Case:** 7 — example\n\n- 7 — example: `estimate-x-works`")
+
+
+def agent_writes(project, content):
+    """`case-guppi` writes the file of Case `7` by `Write` and answers with a summary."""
+    path = case_path(project, "7")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return path, transcript(project, [write_call(path, content)], [built(path)])
+
+
+NO_READ = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
+
+
+def test_subagent_file_with_a_fault_is_sent_back_and_stored(working):
+    path, agent = agent_writes(working, NO_READ)
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2 and "estimate-x-works has no task line" in err
+    assert store(working)["7"]["findings"] == ["case 7: estimate-x-works has no task line"]
+    assert path.read_text(encoding="utf-8") == NO_READ  # the hook writes no file
+
+
+def test_subagent_file_fixed_by_edit_passes_stored_and_not_written(working):
+    path, _ = agent_writes(working, NO_READ)
+    path.write_text(ANSWER, encoding="utf-8")  # the Edit as it landed
+    old, new = "> - [ ] create", "> - [ ] create"
+    agent = transcript(
+        working, [write_call(path, NO_READ)], [edit_call(path, old, new)], [built(path)]
+    )
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+    assert store(working)["7"]["findings"] == []
+    assert store(working)["7"]["text"] == casecheck.shown_text(
+        "## Case 7 — example", casecheck.split_cases(ANSWER)["7"]
+    )
+    assert path.read_text(encoding="utf-8") == ANSWER
+
+
+def test_subagent_file_unchanged_and_passed_is_not_stored_again(working):
+    _, agent = agent_writes(working, ANSWER)
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+    first = store(working)["7"]["stored"]
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    assert answer(working, "**Built:**", agent_transcript_path=agent, now=later) == (0, "")
+    assert store(working)["7"]["stored"] == first
+
+
+def test_subagent_file_a_round_after_a_built_case_leaves_its_entry(working):
+    path, _ = agent_writes(working, ANSWER)
+    first = transcript(working, [write_call(path, ANSWER)], [built(path)])
+    assert answer(working, "**Built:**", agent_transcript_path=first) == (0, "")
+    entry = store(working)["7"]
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    rounds = transcript(
+        working, [write_call(path, ANSWER)], [built(path)], [text(round_of("Which test?"))]
+    )
+    assert answer(working, "", agent_transcript_path=rounds, now=later) == (0, "")
+    assert store(working)["7"] == entry
+
+
+def test_subagent_file_an_answer_text_with_no_case_file_is_stored_and_written(working):
+    # the old path, kept until the writer is live (case 645.2)
+    agent = transcript(working, [text(ANSWER)])
+    assert answer(working, "", agent_transcript_path=agent) == (0, "")
+    assert "7" in store(working) and case_path(working, "7").is_file()
+
+
+# --- the titles of the rounds in the stored recommend (case 629.4) ---------------------------
+
+
+def test_subagent_rounds_a_sub_case_alone_finds_its_titles_in_the_stored_parent(working):
+    items = "> - **Which page changes?**\n>   - Recommended: (a).\n>   - Answer: agreed.\n"
+    parent = PARENT.replace("> **recommend:**\n> A.\n", "> **recommend:**\n" + items)
+    assert answer(working, parent + sub_case("9.1")) == (0, "")
+    path = transcript(
+        working, [text(round_of("Which page changes?"))], [text(sub_case("9.1", "Again."))]
+    )
+    assert answer(working, "", agent_transcript_path=path) == (0, "")
+    missing = transcript(
+        working, [text(round_of("Which test?"))], [text(sub_case("9.1", "Once more."))]
+    )
+    code, err = answer(working, "", agent_transcript_path=missing)
+    assert code == 2
+    assert "case 9: recommend holds no item for the question of the rounds: Which test?" in err
+
+
+# --- the summary names the Case it built (case 662.3) ------------------------------------
+# `estimate-case-check-sends-back-a-summary-without-the-case-name`
+
+
+def summary_of(path, line=""):
+    """A summary of `case-guppi` for the file at `path`, with `line` after `**Built:**`."""
+    named = f"\n{line}" if line else ""
+    return text(f"**Built:** {path}{named}\n\n- 7 — example: `estimate-x-works`")
+
+
+def written(project, content, *later):
+    path = case_path(project, "7")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return path, [write_call(path, content)], *later
+
+
+def test_subagent_summary_names_the_case_missing_line_is_sent_back(working):
+    path, call = written(working, ANSWER)
+    agent = transcript(working, call, [summary_of(path)])
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2
+    assert str(path) in err and "write `**Case:** 7 — example`" in err
+
+
+def test_subagent_summary_names_the_case_same_id_and_name_passes(working):
+    path, call = written(working, ANSWER)
+    agent = transcript(working, call, [summary_of(path, "**Case:** 7 — example   ")])
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+
+
+def test_subagent_summary_names_the_case_another_name_is_sent_back(working):
+    path, call = written(working, ANSWER)
+    agent = transcript(working, call, [summary_of(path, "**Case:** 7 — the Frontier words")])
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2
+    assert "`**Case:** 7 — the Frontier words`" in err and "write `**Case:** 7 — example`" in err
+
+
+def test_subagent_summary_names_the_case_joins_the_findings_of_the_file(working):
+    path, call = written(working, NO_READ)
+    agent = transcript(working, call, [summary_of(path)])
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2
+    assert err.count("casecheck: ") == 1  # one exit 2 carries both
+    assert "estimate-x-works has no task line" in err and "write `**Case:** 7 — example`" in err
+
+
+def test_subagent_summary_names_the_case_repeated_text_is_not_sent_back_twice(working):
+    path, call = written(working, ANSWER)
+    once = transcript(working, call, [summary_of(path)])
+    assert answer(working, "**Built:**", agent_transcript_path=once)[0] == 2
+    again = transcript(working, call, [summary_of(path)], [summary_of(path)])
+    assert answer(working, "**Built:**", agent_transcript_path=again) == (0, "")
+
+
+def test_subagent_summary_names_the_case_sent_again_once_the_heading_changed(working):
+    path, call = written(working, ANSWER)
+    once = transcript(working, call, [summary_of(path, "**Case:** 7 — example")])
+    assert answer(working, "**Built:**", agent_transcript_path=once) == (0, "")
+    renamed = ANSWER.replace("## Case 7 — example", "## Case 7 — renamed")
+    path.write_text(renamed, encoding="utf-8")  # the Edit of the heading as it landed
+    edit = [edit_call(path, "## Case 7 — example", "## Case 7 — renamed")]
+    stale = summary_of(path, "**Case:** 7 — example")
+    agent = transcript(working, call, [stale], edit, [stale])
+    code, err = answer(working, "**Built:**", agent_transcript_path=agent)
+    assert code == 2 and "write `**Case:** 7 — renamed`" in err
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")  # held once
+    path.write_text(ANSWER, encoding="utf-8")  # named back: the old summary fits again
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+
+
+@pytest.mark.parametrize(
+    "newest",
+    [round_of("Which test?"), "**Fact:**\nThe page says so.", "I built nothing."],
+)
+def test_subagent_summary_names_the_case_a_round_or_fact_is_not_judged(working, newest):
+    _, call = written(working, ANSWER)
+    agent = transcript(working, call, [text(newest)])
+    _, err = answer(working, "", agent_transcript_path=agent)
+    assert "**Case:**" not in err
+
+
+def test_subagent_summary_names_the_case_no_file_written_is_not_judged(working):
+    agent = transcript(working, [summary_of("nowhere")])
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+
+
+# --- the pairs of the session in order (case 711.1) -------------------------------------------
+# `estimate-case-check-applies-the-pairs-of-the-session-in-order`
+
+TWO_PARAGRAPHS = RULE_X.replace(
+    "Prevents x: the `old` text stands here.\n",
+    "Prevents x: the `old` text stands here. Another sentence follows.\n\n"
+    "A second paragraph holds other words.\n",
+)
+MISSES = "case 7: rule-x: a replace anchor is not in the page: the `old` text"
+
+
+def planned(case, old, new):
+    """A Case of the plan, in the Spec form, with one `replace` pair on `rule-x`."""
+    return (
+        f"## Case {case} — planned\n\n```then\nupdate:\n- slug: rule-x\n  replace:\n"
+        f"  - old: {json.dumps(old)}\n    new: {json.dumps(new)}\n```\n\n"
+    )
+
+
+def two_paragraphs(project):
+    path = project / "vault" / "wiki" / "rules" / "rule-x.md"
+    path.write_text(TWO_PARAGRAPHS, encoding="utf-8")
+
+
+def test_session_pairs_an_old_text_another_case_of_the_plan_rewrote_is_a_finding(working):
+    plan_with(working, planned(5, "the `old` text", "the rewritten text"))
+    code, err = answer(working, ANSWER)
+    assert code == 2 and MISSES in err
+
+
+def test_session_pairs_an_old_text_a_stored_case_rewrote_is_a_finding(working):
+    rewrites = setting(6, "built").replace("`the new text`", "`the newer text`")
+    assert answer(working, rewrites)[0] == 0
+    code, err = answer(working, ANSWER)
+    assert code == 2 and MISSES in err
+
+
+def test_session_pairs_an_old_text_that_hits_only_after_another_pair_is_none(working):
+    plan_with(working, planned(5, "stands here.", "stands here. It holds the fresh words."))
+    fresh = ANSWER.replace("`` the `old` text ``", "`the fresh words`")
+    code, err = answer(working, fresh)
+    assert "is not in the page" not in err
+    assert store(working)["7"]["findings"] == []
+    assert code == 2 and "note: case 7: rule-x: a pair changes a sentence that case 5" in err
+
+
+def test_session_pairs_a_miss_between_two_other_cases_is_none(working):
+    two_paragraphs(working)
+    plan_with(
+        working,
+        planned(5, "A second paragraph", "One second paragraph")
+        + planned(6, "A second paragraph", "Two second paragraphs"),
+    )
+    assert answer(working, ANSWER) == (0, "")
+
+
+def test_session_pairs_a_dropped_case_and_a_retired_case_are_not_applied(working):
+    rewrites = setting(6, "built")
+    assert answer(working, rewrites) == (0, "")
+    case_path(working, "6").write_text("", encoding="utf-8")  # dropped (case 701.7)
+    assert answer(working, ANSWER) == (0, "")
+    ledger(working, "decision[case 8][update][rule-y]{ref:rule-y}{supersedes:case 6}")
+    case_path(working, "6").write_text(rewrites, encoding="utf-8")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    assert answer(working, ANSWER.replace("Context.", "Context again."), now=later) == (0, "")
+
+
+def test_session_pairs_with_no_other_case_judges_the_page_on_disk(working):
+    assert answer(working, ANSWER) == (0, "")
+    gone = ANSWER.replace("`` the `old` text ``", "`words not on the page`")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    code, err = answer(working, gone, now=later)
+    assert code == 2 and "a replace anchor is not in the page: words not on the page" in err
+
+
+# --- a sentence two Cases change (case 711.2) ---------------------------------------------------
+# `estimate-case-check-notes-a-sentence-two-cases-change`
+
+SHARED = "note: case 7: rule-x: a pair changes a sentence that case 5 changes too: Prevents x:"
+
+
+def test_shared_sentence_a_pair_in_a_sentence_another_case_wrote_into_is_noted_once(working):
+    plan_with(working, planned(5, "stands here", "stands right here"))
+    code, err = answer(working, ANSWER)
+    assert code == 2 and SHARED in err
+    assert "read both new texts side by side" in err
+    assert store(working)["7"]["findings"] == []  # the note is no finding
+    assert answer(working, ANSWER) == (0, "")  # sent once
+
+
+def test_shared_sentence_another_sentence_of_the_same_paragraph_gives_none(working):
+    two_paragraphs(working)
+    plan_with(working, planned(5, "Another sentence follows", "Another sentence comes"))
+    assert answer(working, ANSWER) == (0, "")
+
+
+def test_shared_sentence_two_pairs_of_the_answer_in_one_sentence_give_none(working):
+    two_paragraphs(working)
+    plan_with(working, planned(5, "A second paragraph", "One second paragraph"))
+    both = ANSWER.replace(
+        ">   - change: `the text changed",
+        ">   - old: `Prevents x:`\n>   - new: `Keeps x out:`\n>   - change: `the text changed",
+    )
+    assert answer(working, both) == (0, "")
+
+
+def test_shared_sentence_the_sentence_runs_to_a_full_stop_and_a_capital():
+    from guppi.prespec import sentence_around
+
+    text = "One here. Two holds x and y. three stays.\n\nNext paragraph."
+    start = text.index("x")
+    begin, finish = sentence_around(text, start, start + 1)
+    assert text[begin:finish] == "Two holds x and y. three stays."
+    begin, finish = sentence_around(text, text.index("Next"), text.index("Next") + 4)
+    assert text[begin:finish] == "Next paragraph."
+
+
+def test_shared_sentence_prespec_check_prints_no_note(working):
+    from guppi import prespec
+
+    blocks = {
+        "5": {"update": [{"slug": "rule-x", "replace": [{"old": "stands here", "new": "stands"}]}]},
+        "7": {"update": [{"slug": "rule-x", "replace": [{"old": "Prevents x:", "new": "Keeps:"}]}]},
+    }
+    assert prespec.check_pairs(blocks, blocks, working) == []
+
+
+# --- the read of the sentence around a pair (case 711.3) -----------------------------------------
+# `estimate-case-check-sends-back-a-pair-whose-sentence-was-not-read`
+
+UNREAD = "the sentence around a pair was not read whole"
+
+
+def grep_lines(project, line):
+    """A `Grep` call of the subagent and its output: the line of the page it printed."""
+    use = {"type": "tool_use", "id": "toolu_grep", "name": "Grep", "input": {"pattern": "old"}}
+    page = project / "vault" / "wiki" / "rules" / "rule-x.md"
+    result = {"type": "tool_result", "tool_use_id": "toolu_grep", "content": f"{page}:9:{line}"}
+    return [
+        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": [use]}}),
+        json.dumps({"type": "user", "isSidechain": True, "message": {"content": [result]}}),
+    ]
+
+
+def test_unread_sentence_a_read_of_the_page_passes(working):
+    assert answer_file(working, ANSWER) == (0, "")
+
+
+def test_unread_sentence_only_a_grep_output_is_a_finding(working):
+    code, err = answer_file(
+        working, ANSWER, reads=grep_lines(working, "Prevents x: the `old` text stands here.")
+    )
+    assert code == 2 and f"case 7: rule-x: {UNREAD}: Prevents x: the `old` text stands here." in err
+    assert "Read the page around it" in err
+
+
+def test_unread_sentence_a_reword_match_on_a_page_not_read_is_a_finding(working):
+    other = working / "vault" / "wiki" / "rules" / "rule-z.md"
+    other.write_text(RULE_X.replace("Prevents x: the `old` text", "Prevents z: it"), "utf-8")
+    reword = ANSWER.replace(
+        ">   - old: `` the `old` text ``\n>   - new: `the new text`\n",
+        ">   - reword old: `stands`\n>   - reword new: `rests`\n",
+    )
+    code, err = answer_file(working, reword)
+    assert code == 2 and f"case 7: rule-z: {UNREAD}" in err
+    assert f"case 7: rule-x: {UNREAD}" not in err  # rule-x was read
+    reads = rule_x_read(working) + read_lines(other, call_id="toolu_z")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    assert answer_file(working, reword, reads=reads, now=later) == (0, "")
+
+
+def test_unread_sentence_a_part_another_case_wrote_needs_a_read_of_its_file(working):
+    plan_with(working, planned(5, "stands here", "stands right here"))
+    file_5 = case_path(working, "5")
+    file_5.parent.mkdir(parents=True, exist_ok=True)
+    file_5.write_text("> - new: `stands right here`\n", encoding="utf-8")
+    code, err = answer_file(working, ANSWER)
+    assert code == 2 and UNREAD in err
+    reads = rule_x_read(working) + read_lines(file_5, call_id="toolu_5")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    _, err = answer_file(
+        working, ANSWER.replace("Context.", "Context again."), reads=reads, now=later
+    )
+    assert UNREAD not in err
+
+
+def test_unread_sentence_a_part_the_answer_wrote_is_not_judged(working):
+    both = ANSWER.replace(
+        ">   - change: `the text changed",
+        ">   - old: `stands here`\n>   - new: `stands right here`\n>   - change: `the text changed",
+    )
+    assert answer_file(working, both) == (0, "")
+
+
+def test_unread_sentence_no_transcript_judges_no_read(working):
+    assert answer(working, ANSWER) == (0, "")
+    missing = str(working / "none.jsonl")
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    changed = ANSWER.replace("Context.", "Context again.")
+    assert answer(working, changed, agent_transcript_path=missing, now=later) == (0, "")
+
+
+# --- a page the cascade archives (case 739.2) ---------------------------------------------
+# `estimate-case-check-notes-a-page-the-cascade-archives`
+
+UPDATE_RULE_X = (
+    "> - [ ] update `rule-x` — one `replace` pair\n"
+    ">   - old: `` the `old` text ``\n"
+    ">   - new: `the new text`\n"
+    ">   - change: `the text changed (case 7)`\n"
+)
+
+
+def cascading(case, *sets):
+    """ANSWER as Case `case`, its `update` of `rule-x` replaced by one `update` per
+    `(slug, status)` of `sets`, each a `set` of the status."""
+    tasks = "".join(
+        f"> - [ ] update `{slug}` — one `set`\n>   - set: `{{status: {status}}}`\n"
+        f">   - change: `{slug} set (case 7)`\n"
+        for slug, status in sets
+    )
+    given = "".join(f"> **＋** `{slug}` — the page.\n" for slug, _ in sets)
+    lines = "".join(f"> - decision[case 7][update][{slug}]{{ref:{slug}}}\n" for slug, _ in sets)
+    text = (
+        ANSWER.replace(UPDATE_RULE_X, tasks)
+        .replace("> **＋** `estimate-x-works`", given + "> **＋** `estimate-x-works`")
+        .replace("> - decision[case 7][update][rule-x]{ref:rule-x}\n", lines)
+    )
+    return (
+        text.replace("## Case 7 — example", f"## Case {case} — example")
+        .replace("case 7", f"case {case}")
+        .replace("estimate-x-works", f"estimate-x-works-{case}")
+    )
+
+
+def planned_items(case, kind, slug, status=None):
+    """A Case of the plan, in the Spec form, with one item of `kind` on `slug`."""
+    body = f"- slug: {slug}\n" + (f"  set:\n    status: {status}\n" if status else "")
+    if kind == "defer":
+        body += "  type: lesson\n"
+    return f"## Case {case} — planned\n\n```then\n{kind}:\n{body}```\n\n"
+
+
+def a_cluster(project):
+    wiki = project / "vault" / "wiki"
+    for category, slug, head in (
+        ("lessons", "lesson-a", "status: clustered\n"),
+        ("lessons", "lesson-b", "status: clustered\n"),
+        ("insights", "insight-i", "status: open\nchildren: [lesson-a, lesson-b]\n"),
+    ):
+        (wiki / category).mkdir(parents=True, exist_ok=True)
+        page = f"---\ntype: {category[:-1]}\n{head}---\n\n## Root cause\n\nx\n"
+        (wiki / category / f"{slug}.md").write_text(page, encoding="utf-8")
+
+
+def archives_note(case, slug, by):
+    return f"note: case {case}: {slug}: updated while the cascade archives it after case {by}"
+
+
+def test_cascade_an_update_of_a_lesson_another_case_archives_is_noted_once(working):
+    a_cluster(working)
+    plan_with(working, planned_items(5, "update", "insight-i", "actioned"))
+    code, err = answer(working, cascading(7, ("lesson-a", "clustered")))
+    assert code == 2 and archives_note(7, "lesson-a", 5) in err
+    assert "drop the update, or say in its context why it stands" in err
+    assert store(working)["7"]["findings"] == []  # the note is no finding
+    assert archives_note(7, "lesson-a", 5) in store(working)["7"]["notes"][0]
+    assert answer(working, cascading(7, ("lesson-a", "clustered"))) == (0, "")  # sent once
+
+
+def test_cascade_an_update_of_a_lesson_a_stored_case_archives_is_noted(working):
+    a_cluster(working)
+    assert answer(working, cascading(5, ("insight-i", "actioned"))) == (0, "")  # stored
+    code, err = answer(working, cascading(7, ("lesson-a", "clustered")))
+    assert code == 2 and archives_note(7, "lesson-a", 5) in err
+
+
+def test_cascade_an_item_of_the_file_that_archives_a_page_another_case_updates_is_noted(working):
+    a_cluster(working)
+    plan_with(working, planned_items(5, "update", "lesson-a", "clustered"))
+    code, err = answer(working, cascading(7, ("insight-i", "actioned")))
+    assert code == 2 and archives_note(5, "lesson-a", 7) in err
+    assert archives_note(5, "lesson-a", 7) in store(working)["7"]["notes"][0]  # under 7
+    assert answer(working, cascading(7, ("insight-i", "actioned"))) == (0, "")
+
+
+def test_cascade_both_inside_the_file_give_one_note(working):
+    a_cluster(working)
+    text = cascading(7, ("lesson-a", "clustered"), ("insight-i", "actioned"))
+    code, err = answer(working, text)
+    assert code == 2 and err.count(archives_note(7, "lesson-a", 7)) == 1
+    assert answer(working, text) == (0, "")
+
+
+def test_cascade_two_other_cases_give_the_file_none(working):
+    a_cluster(working)
+    plan_with(
+        working,
+        planned_items(5, "update", "insight-i", "actioned")
+        + planned_items(6, "update", "lesson-a", "clustered"),
+    )
+    assert answer(working, ANSWER) == (0, "")
+
+
+@pytest.mark.parametrize("kind", ["create", "delete", "defer"])
+def test_cascade_a_create_delete_or_defer_gives_none(working, kind):
+    a_cluster(working)
+    plan_with(working, planned_items(5, kind, "lesson-a"))
+    assert answer(working, cascading(7, ("insight-i", "actioned"))) == (0, "")

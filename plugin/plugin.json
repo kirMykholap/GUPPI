@@ -1,0 +1,8 @@
+{
+  "name": "guppi",
+  "description": "A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into",
+  "author": {
+    "name": "kirMykholap"
+  },
+  "repository": "https://github.com/kirMykholap/GUPPI"
+}

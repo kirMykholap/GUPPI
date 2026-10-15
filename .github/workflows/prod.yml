@@ -1,10 +1,12 @@
 # The clean version of GUPPI written to the branch `prod`, as `rule-clean-branch` sets it.
 # A push to `main`, or a push of a tag `prod-*` on a commit of another branch, runs
-# `guppi ship`; when it exits 0, the run commits its folder to `prod` on top of the last
-# commit, with a message that names the commit it was built from, and adds none when nothing
-# changed. When `guppi ship` exits 1 the run fails and pushes nothing. The run pushes with the
-# deploy key whose private half is the secret `PROD_DEPLOY_KEY`; deploy keys stand on the
-# bypass list of the ruleset on `prod` that `rule-github-repository` sets.
+# `guppi ship`; when it exits 0, a step installs Claude Code and runs `claude plugin validate`
+# on the clean folder, and when that passes the run commits its folder to `prod` on top of the
+# last commit, with a message that names the commit it was built from, and adds none when
+# nothing changed. When `guppi ship` exits 1 or `claude plugin validate` fails, the run fails
+# and pushes nothing. The run pushes with the deploy key whose private half is the secret
+# `PROD_DEPLOY_KEY`; deploy keys stand on the bypass list of the ruleset on `prod` that
+# `rule-github-repository` sets.
 name: prod
 
 on:
@@ -31,7 +33,11 @@ jobs:
           ssh-key: ${{ secrets.PROD_DEPLOY_KEY }}
       - uses: astral-sh/setup-uv@v5
       - name: Build the clean version
-        run: uv run guppi ship "$RUNNER_TEMP/clean"
+        run: uv run --project .guppi guppi ship "$RUNNER_TEMP/clean"
+      - name: Check it as a plugin
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate "$RUNNER_TEMP/clean"
       - name: Commit it to prod
         run: |
           source="$(git rev-parse HEAD)"

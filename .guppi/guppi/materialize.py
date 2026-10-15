@@ -35,7 +35,9 @@ An existing entry the script cannot read — not a mapping, or a mapping with no
 `derived`, `librarian` — is left as it is and named on stderr (cases 142.1, 142.4, 158); the
 librarian's own entries carry `librarian` and no `line`. The `then` item is found by `slug`
 alone (case 320). `new_tags` declared in the `then` block of any Case, with decision lines or
-without, reach the yaml once each.
+without, reach the yaml once each; after them the `new_tags` of each lesson record — the tags
+its `{newtag:<tag>|<meaning>|<aliases>}` blocks declare, read by `parse_line` — join in ledger
+order, a tag already there passed by, so a tag a Case declares keeps its meaning (case 827.2).
 
 The Routing Table (case 364.1). Every ratified Case produces its Decision page
 `decision-case-<N>`, written by `generate` before the effects so that their History lines
@@ -254,7 +256,9 @@ def _past_brackets(text: str, count: int) -> str | None:
 def parse_line(text: str) -> dict | None:
     """The record of one ledger line, or None when the grammar does not match. A space
     between two brackets is read as none, for every kind of line, and a line it cannot read
-    gives None, never an error (case 552.1)."""
+    gives None, never an error (case 552.1). A lesson record carries `new_tags`: the tags its
+    `{newtag:<tag>|<meaning>|<aliases>}` blocks before `trigger:` declare, by `_new_tags`, the
+    one reading of the block that the ledger hook and the lift share (case 827.1)."""
     match = RECORD.match(text.rstrip())
     if not match:
         return None
@@ -300,7 +304,9 @@ def parse_line(text: str) -> dict | None:
     after = _past_brackets(tail, 2)
     if after is None:
         return None
-    options = {k: v.strip() for k, v in BRACES.findall(after.split(" trigger:", 1)[0])}
+    pairs = BRACES.findall(after.split(" trigger:", 1)[0])
+    options = {k: v.strip() for k, v in pairs}
+    tags = _tags(options.get("tags"))
     after = after[after.find("trigger:") :] if "trigger:" in after else after.strip()
     trigger, _, root_cause = after.partition("root_cause:")
     trigger = trigger.strip()
@@ -312,10 +318,26 @@ def parse_line(text: str) -> dict | None:
         "slug": heads[1].strip(),
         "trigger": trigger,
         "root_cause": root_cause.strip(),
-        "tags": _tags(options.get("tags")),
+        "tags": tags,
         "source": options.get("source"),
         "addressed_by": _case_of(options.get("addressed_by")),  # written after its fix (case 377.3)
+        "new_tags": _new_tags(pairs, tags),  # a tag the line declares itself (case 827.1)
     }
+
+
+def _new_tags(pairs: list[tuple[str, str]], tags: list[str]) -> list[dict]:
+    """The tags a lesson line declares by `{newtag:<tag>|<meaning>|<aliases>}` blocks before
+    `trigger:`: one entry of `tag`, `meaning` and `aliases` per block whose tag stands in the
+    line's `{tags:...}` and whose meaning and aliases are not empty, the first block of a tag
+    kept (case 827.1)."""
+    found: list[dict] = []
+    for key, value in pairs:
+        parts = [part.strip() for part in value.split("|", 2)] if key == "newtag" else []
+        if len(parts) != 3 or not all(parts) or parts[0] not in tags:
+            continue
+        if parts[0] not in {entry["tag"] for entry in found}:
+            found.append({"tag": parts[0], "meaning": parts[1], "aliases": parts[2]})
+    return found
 
 
 def _case_of(value: str | None) -> str | None:
@@ -1629,6 +1651,13 @@ def assemble(
         for tag in blocks[case][0].get("new_tags") or []:
             if isinstance(tag, dict) and tag not in data.setdefault("new_tags", []):
                 data["new_tags"].append(tag)
+    # then the tags the lesson lines declare, in ledger order, a tag already there passed by
+    for text in ledger:
+        record = parse_line(text)
+        for tag in (record or {}).get("new_tags") or []:
+            held = {str(t.get("tag")) for t in data.get("new_tags") or [] if isinstance(t, dict)}
+            if tag["tag"] not in held:
+                data.setdefault("new_tags", []).append(dict(tag))
     # decisions: one per case, from the entries of that case
     by_case: dict[str, list[dict]] = {}
     for entry in entries:

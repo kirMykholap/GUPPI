@@ -3273,3 +3273,79 @@ def test_the_context_of_a_case_is_not_judged_for_pointers_and_check_prints_one(t
     _, out, _ = check(tmp_path, plan=plan)
     pointers = [line for line in out.splitlines() if "a pointer outside" in line]
     assert pointers == [POINTER + "a reference to a case: case 4"]
+
+
+# --- a pointer in the new text of an Estimate of a core target (case 823.6) ---------------
+
+
+def with_core_estimate(project_dir, slug="estimate-x-holds", target="rule-x"):
+    folder = project_dir / "vault" / "wiki" / "estimates"
+    folder.mkdir(parents=True, exist_ok=True)
+    text = f'---\ntype: estimate\nstatus: passed\ntarget: "[[{target}]]"\nmethod: pytest\n---\n'
+    text += "\n## Criterion\n\nWhen:\nOld.\n\nThen:\nOld.\n"
+    (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+ESTIMATE_CASE = ["> **when:**", "> It runs since case 9.", "", "> **then:**", "> It passes."]
+
+
+def estimate_pointers(project_dir, item, kind="update", case_lines=None):
+    cases = {"1": case_lines if case_lines is not None else ESTIMATE_CASE}
+    return prespec.check_pointers({"1": {kind: [item]}}, project_dir, cases)
+
+
+def test_a_pointer_in_the_method_of_an_estimate_of_a_core_target_is_a_finding(tmp_path):
+    with_core_rule(tmp_path)
+    with_core_estimate(tmp_path)
+    item = {"slug": "estimate-x-holds", "set": {"method": "pytest, as set in case 12"}}
+    head = "case 1: update estimate-x-holds: a pointer outside a bracket of its own: "
+    assert estimate_pointers(tmp_path, item) == [head + "a reference to a case: case 12"]
+    created = {"slug": "estimate-x-new", "ref": "rule-x", "method": "by hand since session 0051"}
+    (finding,) = [f for f in estimate_pointers(tmp_path, created, "create") if "0051" in f]
+    assert finding.startswith("case 1: create estimate-x-new: ")
+
+
+def test_a_pointer_in_a_sections_value_of_an_estimate_of_a_core_target_is_a_finding(tmp_path):
+    with_core_rule(tmp_path)
+    with_core_estimate(tmp_path)
+    item = {
+        "slug": "estimate-x-holds",
+        "sections": {"Criterion": "When:\nIt runs.\n\nThen:\nIt holds decision-case-7."},
+    }
+    assert [f.rsplit(": ", 1)[1] for f in estimate_pointers(tmp_path, item)] == ["decision-case-7"]
+
+
+def test_a_pointer_in_the_when_or_then_of_the_case_of_an_estimate_is_a_pointer_finding(tmp_path):
+    with_core_rule(tmp_path)
+    with_core_estimate(tmp_path)
+    item = {"slug": "estimate-x-holds", "set": {"status": "pending"}}
+    assert [f.rsplit(": ", 1)[1] for f in estimate_pointers(tmp_path, item)] == ["case 9"]
+    created = {"slug": "estimate-x-new", "ref": "rule-x", "method": "pytest"}
+    assert [f.rsplit(": ", 1)[1] for f in estimate_pointers(tmp_path, created, "create")] == [
+        "case 9"
+    ]
+
+
+def test_an_estimate_of_a_core_target_as_the_plan_leaves_it_is_judged_for_pointers(tmp_path):
+    with_core_rule(tmp_path, core=False)
+    with_core_estimate(tmp_path)
+    item = {"slug": "estimate-x-holds", "set": {"method": "pytest since case 5"}}
+    blocks = {"1": {"update": [item, {"slug": "rule-x", "set": {"core": True}}]}}
+    findings = prespec.check_pointers(blocks, tmp_path, {"1": ESTIMATE_CASE})
+    assert [f.rsplit(": ", 1)[1] for f in findings] == ["case 5"]
+
+
+def test_an_estimate_of_a_target_without_core_is_no_pointer_finding(tmp_path):
+    with_core_rule(tmp_path, core=False)
+    with_core_estimate(tmp_path)
+    item = {"slug": "estimate-x-holds", "set": {"status": "pending", "method": "since case 5"}}
+    assert estimate_pointers(tmp_path, item) == []
+    created = {"slug": "estimate-x-new", "ref": "rule-x", "method": "since case 5"}
+    assert estimate_pointers(tmp_path, created, "create") == []
+
+
+def test_an_update_that_names_a_part_has_no_new_criterion_judged_for_pointers(tmp_path):
+    with_core_rule(tmp_path)
+    with_core_estimate(tmp_path)
+    item = {"slug": "estimate-x-holds", "set": {"method": "pytest"}, "change": "since case 3"}
+    assert estimate_pointers(tmp_path, item) == []

@@ -23,6 +23,9 @@ guppi = "guppi.cli:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# a test marked `live` reads the live vault of this repository and runs only by `-m live`
+markers = ["live: reads the live vault of this repository; run by -m live"]
+addopts = '-m "not live"'
 
 # The `guppi` entry point needs the project installed into the venv, which needs a build
 # backend. uv's own is a build-time requirement, fetched once, not a runtime dependency.

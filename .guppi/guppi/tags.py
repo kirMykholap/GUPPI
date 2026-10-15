@@ -7,7 +7,9 @@ tags of the `new_tags` of a `then` block, the entries that the tag lines of a Ca
 `read_tasks` of `.guppi/guppi/ratified.py` (case 702). `ratified_tags` gives the tags that the tag
 lines of the Cases stored in `<plan>.checked.json` declare, for each stored Case whose family
 holds a decision line among the given ledger records: a Case ratified in the session, whose
-tags `tags.md` gains at the librarian's run. The check of the file of a Case in
+tags `tags.md` gains at the librarian's run. `lesson_tags` gives the tags of the `new_tags` of
+lesson records — the `{newtag:...}` blocks of lesson lines, read by `parse_line` of
+`.guppi/guppi/materialize.py` (case 827.1). The check of the file of a Case in
 `.guppi/guppi/casecheck.py`, the ledger hook in `.guppi/guppi/ledger.py` and `register_tags` of
 `.guppi/guppi/generate.py` share these functions; none of them reads `tags.md` another way. Rule
 pages: `vault/wiki/rules/rule-case-check.md`, `vault/wiki/rules/rule-ledger-write.md`.
@@ -47,6 +49,17 @@ def declared_tags(block: dict | None) -> set[str]:
         tag = str(item.get("tag") or "").strip() if isinstance(item, dict) else ""
         if tag:
             found.add(tag)
+    return found
+
+
+def lesson_tags(records: list[dict]) -> set[str]:
+    """The tags of the `new_tags` of the lesson records given — the tags their
+    `{newtag:...}` blocks declare, as `parse_line` of `.guppi/guppi/materialize.py` reads
+    them (case 827.1)."""
+    found: set[str] = set()
+    for record in records:
+        if isinstance(record, dict) and record.get("record") == "lesson":
+            found |= declared_tags(record)
     return found
 
 

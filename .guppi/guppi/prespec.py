@@ -171,12 +171,17 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - a pointer — a reference to a case, an id `decision-case-N` or a mention of a session by
   its id — that stands outside a bracket of its own in the new text an item writes for a
   page with `core: true`, on the live page or as the plan leaves it: the `new` of a
-  `replace` pair, a `sections` value or a `purpose`, never the `change` line nor the
-  `context`, `problem` or `recommend` of a Case; a pointer in such a bracket, a code span or
-  a fenced block is none. The judgment is `outside` of `.guppi/guppi/pointers.py`, imported,
-  the one `guppi ship` refuses by, and the finding names the Case, the page and the pointer
-  (`check_pointers`) (cases 807.4, 820.6). `plan_findings` alone runs it, not the check after a
-  write.
+  `replace` pair, a `sections` value, a `purpose` or a `method`, never the `change` line nor
+  the `context`, `problem` or `recommend` of a Case; a pointer in such a bracket, a code span
+  or a fenced block is none. An Estimate whose target — the `ref` of a `create`, else the
+  `target` of its live page — carries `core: true`, by `core_as_left` over the item of the plan
+  that writes the target, else over its live page (`core_target`), is judged the same, its new
+  `## Criterion` included: the one under its `sections`, else the `when` and `then` of its
+  Case, for a `create` and an `update` that names no part, read by `new_criterion`, the one
+  reading the note on a Criterion line not carried takes too (case 823.6). The judgment is
+  `outside` of `.guppi/guppi/pointers.py`, imported, the one `guppi ship` refuses by, and the
+  finding names the Case, the page and the pointer (`check_pointers`) (cases 807.4, 820.6).
+  `plan_findings` alone runs it, not the check after a write.
 
 The check after a write (case 414.1): `written_findings` runs the same checks, `judge`, for
 the `Stop` hook of `rule-spec-write` on the Cases it wrote, with the decision lines of the
@@ -1510,29 +1515,71 @@ def core_as_left(item: dict, kind: str, project_dir: Path) -> bool:
 
 def written_texts(item: dict) -> list[str]:
     """The new text an item writes on its page: the `new` of each `replace` pair, each
-    `sections` value and the `purpose`; never its `change` line."""
+    `sections` value, the `purpose` and the `method`, of the item or of its `set`; never its
+    `change` line."""
     texts = [str(p.get("new") or "") for p in item.get("replace") or [] if isinstance(p, dict)]
     sections = item.get("sections")
     if isinstance(sections, dict):
         texts += [str(value or "") for value in sections.values()]
-    texts.append(str(item.get("purpose") or ""))
+    texts += [str(item.get("purpose") or ""), str(item.get("method") or "")]
     if isinstance(item.get("set"), dict):
-        texts.append(str(item["set"].get("purpose") or ""))
+        texts += [str(item["set"].get(key) or "") for key in ("purpose", "method")]
     return [text for text in texts if text]
 
 
-def check_pointers(blocks: dict, project_dir: Path) -> list[str]:
+def new_criterion(item: dict, kind: str, case: str, cases: dict) -> str:
+    """The new `## Criterion` of an Estimate item that writes it whole — a `create`, or an
+    `update` that names no part by `materialize.names_a_part`: the Criterion it writes under
+    `sections`, else the `when` and `then` of its Case; empty for an `update` that names a part.
+    The one reading `criterion_notes` and `check_pointers` share (case 823.6)."""
+    if kind == "update" and names_a_part(item):
+        return ""
+    if written_criterion(item):
+        return str(item["sections"]["Criterion"])
+    return criterion_text(case_texts(cases, case)) if case in cases else ""
+
+
+def target_slug(item: dict, kind: str, project_dir: Path) -> str:
+    """The slug of the target of an Estimate item: the `ref` of a `create`, else what
+    `estimate_target` gives for an `update`; empty when neither stands."""
+    raw = item.get("ref") or "" if kind == "create" else estimate_target(item, project_dir)
+    return str(raw).strip().strip('"').removeprefix("[[").removesuffix("]]").strip()
+
+
+def core_target(target: str, blocks: dict, project_dir: Path) -> bool:
+    """Whether the target of an Estimate carries `core: true` as the plan leaves it: by
+    `core_as_left` over the item of the plan that writes it, else over its live page."""
+    for block in blocks.values():
+        for kind in ("create", "update"):
+            for item in block.get(kind) or []:
+                if isinstance(item, dict) and item.get("slug") == target:
+                    return core_as_left(item, kind, project_dir)
+    return bool(target) and core_as_left({"slug": target}, "update", project_dir)
+
+
+def check_pointers(blocks: dict, project_dir: Path, cases: dict | None = None) -> list[str]:
     """A pointer to a case, a decision or a session outside a bracket of its own in the new
-    text of a page with `core: true`, by `outside` of `.guppi/guppi/pointers.py`, the judgment
-    `guppi ship` removes and refuses by (cases 807.4, 820.6)."""
+    text of a page with `core: true`, or of an Estimate whose target carries `core: true` —
+    its `method` and its new Criterion, by `new_criterion`, included — by `outside` of
+    `.guppi/guppi/pointers.py`, the judgment `guppi ship` removes and refuses by (cases
+    807.4, 820.6, 823.6)."""
+    cases = cases or {}
     findings: list[str] = []
     for case, block in blocks.items():
         for kind in ("create", "update"):
             for item in block.get(kind) or []:
-                if not isinstance(item, dict) or not core_as_left(item, kind, project_dir):
+                if not isinstance(item, dict):
                     continue
                 slug = str(item.get("slug") or "")
-                for text in written_texts(item):
+                texts = written_texts(item)
+                if not core_as_left(item, kind, project_dir):
+                    if category_of(slug) != "estimates" or not core_target(
+                        target_slug(item, kind, project_dir), blocks, project_dir
+                    ):
+                        continue
+                    if not written_criterion(item):
+                        texts.append(new_criterion(item, kind, case, cases))
+                for text in texts:
                     for _, what in outside(text):
                         findings.append(
                             f"case {case}: {kind} {slug}: a pointer outside a bracket of its "
@@ -1700,10 +1747,7 @@ def criterion_notes(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
             path = wiki_root(project_dir) / "estimates" / f"{slug}.md"
             if not path.is_file():
                 continue
-            if written_criterion(item):
-                new = str(item["sections"]["Criterion"])
-            else:
-                new = criterion_text(case_texts(cases, case))
+            new = new_criterion(item, "update", case, cases)
             if not new.strip():
                 continue
             carried = {criterion_line(line) for line in new.splitlines()}
@@ -2010,7 +2054,7 @@ def plan_findings(
     findings += check_untranslated(plan, project_dir)
     cases = split_cases(plan)
     blocks = {case: then_blocks(case_lines)[0] for case, case_lines in cases.items()}
-    findings += check_pointers(blocks, project_dir)
+    findings += check_pointers(blocks, project_dir, cases)
     notes = (
         chain_notes(cases)
         + promise_notes(plan, project_dir)

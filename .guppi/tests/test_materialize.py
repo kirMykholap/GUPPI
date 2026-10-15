@@ -525,6 +525,49 @@ def test_new_tags_come_from_every_case_lines_or_none(tmp_path):  # (case 61)
     ]
 
 
+# --- a tag a lesson line declares (case 827.2) ---------------------------------------------
+# `estimate-materialize-lifts-a-tag-of-a-lesson`
+
+GIT = {"tag": "git", "meaning": "the repository", "aliases": "гит"}
+RETRO = (
+    "- 10:00:09 lesson[error][lesson-retro-a]{tags:hooks,retro}"
+    "{newtag:retro|the Retro phase|ретро} trigger: t root_cause: r\n"
+)
+
+
+def test_newtag_a_tag_a_lesson_line_declares_reaches_new_tags_once(tmp_path):
+    again = "- 10:00:10 lesson[error][lesson-retro-b]{tags:retro}{newtag:retro|later|позже}"
+    seed(tmp_path, ledger=LEDGER + RETRO + again + " trigger: t root_cause: r\n")
+    run(tmp_path)
+    assert load(tmp_path)["new_tags"] == [
+        GIT,
+        {"tag": "retro", "meaning": "the Retro phase", "aliases": "ретро"},
+    ]
+    run(tmp_path)
+    assert [t["tag"] for t in load(tmp_path)["new_tags"]] == ["git", "retro"]
+
+
+def test_newtag_a_tag_a_case_declares_keeps_the_meaning_of_the_case(tmp_path):
+    line = "- 10:00:09 lesson[error][lesson-git-a]{tags:git}{newtag:git|other|другое}"
+    seed(tmp_path, ledger=LEDGER + line + " trigger: t root_cause: r\n")
+    run(tmp_path)
+    assert load(tmp_path)["new_tags"] == [GIT]
+
+
+def test_newtag_a_lesson_record_with_no_new_tags_adds_nothing(tmp_path):
+    seed(tmp_path)
+    run(tmp_path)
+    assert load(tmp_path)["new_tags"] == [GIT]
+
+
+def test_newtag_the_lesson_entry_carries_its_tags_trigger_and_root_cause(tmp_path):
+    seed(tmp_path, ledger=LEDGER + RETRO)
+    run(tmp_path)
+    (entry,) = by_slug(load(tmp_path), "lesson-retro-a")
+    assert entry["tags"] == ["hooks", "retro"]
+    assert entry["sections"] == {"Trigger": "t", "Root cause": "r"}
+
+
 def test_one_decision_entry_per_case_with_case_text_and_targets(tmp_path):
     seed(tmp_path)
     run(tmp_path)

@@ -30,3 +30,6 @@ extend-exclude = ["vault", "docs"]
 
 [tool.pytest.ini_options]
 testpaths = [".guppi/tests"]
+# the same marker as `.guppi/pyproject.toml`: a run from the root reads these settings
+markers = ["live: reads the live vault of this repository; run by -m live"]
+addopts = '-m "not live"'

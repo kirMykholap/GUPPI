@@ -765,8 +765,58 @@ def test_unlisted_tag_in_the_finished_reply_is_refused_aloud_and_the_rest_lands(
     tags_md(working, "hooks")
     code, err = run(payload(last_assistant_message=ledger_block(ESTIMATE, TAGGED, LISTED)), working)
     assert (code, err) == (2, ledger.tag_message("lesson-t-u", ["nope"]) + "\n")
-    assert "from /work to the end of Retro the new tag goes as a line of the handoff" in err
+    assert "or declare the tag on the line by {newtag:<tag>|<meaning>|<aliases>}" in err
+    assert "handoff" not in err
     assert ledger_text(working).splitlines() == [timed(ESTIMATE), timed(LISTED)]
+
+
+# --- a lesson line declares its own new tag (case 827.1) -----------------------------------
+# `estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag`
+
+DECLARED = (
+    "- lesson[error][lesson-t-w]{tags:hooks,nope}{newtag:nope|a tag a lesson declares|тег}"
+    " trigger: t root_cause: r"
+)
+
+
+def test_unlisted_tag_declared_on_the_line_itself_lands(working):
+    tags_md(working, "hooks")
+    assert run(payload(last_assistant_message=ledger_block(DECLARED)), working) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECLARED)]
+
+
+def test_unlisted_tag_declared_on_a_lesson_line_of_the_sessions_ledger_lands(working):
+    tags_md(working, "hooks")
+    seed_ledger(working, DECLARED)
+    assert run(payload(last_assistant_message=ledger_block(TAGGED)), working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(TAGGED)
+
+
+def test_unlisted_tag_declared_on_another_line_of_the_same_stop_lands(working):
+    tags_md(working, "hooks")
+    assert run(payload(last_assistant_message=ledger_block(DECLARED, TAGGED)), working) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECLARED), timed(TAGGED)]
+
+
+def test_unlisted_tag_a_block_outside_its_tags_or_with_empty_aliases_declares_nothing(working):
+    tags_md(working, "hooks")
+    outside = (
+        "- lesson[error][lesson-t-x]{tags:hooks}{newtag:nope|a tag|тег} trigger: t root_cause: r"
+    )
+    code, err = run(payload(last_assistant_message=ledger_block(outside, TAGGED)), working)
+    assert (code, err) == (2, ledger.tag_message("lesson-t-u", ["nope"]) + "\n")
+    empty = "- lesson[error][lesson-t-y]{tags:nope}{newtag:nope|a tag| } trigger: t root_cause: r"
+    code, err = run(payload(last_assistant_message=ledger_block(empty)), working)
+    assert (code, err) == (2, ledger.tag_message("lesson-t-y", ["nope"]) + "\n")
+
+
+def test_unlisted_tag_a_block_on_a_line_refused_for_its_prefix_declares_nothing(working):
+    tags_md(working, "hooks")
+    bare = (
+        "- lesson[knowledge][harness-x]{tags:nope}{newtag:nope|a tag|тег} trigger: a root_cause: b"
+    )
+    code, err = run(payload(last_assistant_message=ledger_block(bare, TAGGED)), working)
+    assert code == 2 and ledger.tag_message("lesson-t-u", ["nope"]) in err
 
 
 def test_unlisted_tag_in_an_earlier_text_waits_without_a_word_then_lands(working):

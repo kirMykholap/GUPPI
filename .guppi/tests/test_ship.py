@@ -28,8 +28,10 @@ import os
 import shutil
 import subprocess
 import sys
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
+
+import pytest
 
 from guppi import backlog, glossary, lint, ship, sprint
 from guppi.pages import read_page
@@ -987,3 +989,11 @@ def test_a_text_without_both_marker_lines_keeps_its_description():
     opening, closing = ship.DESCRIPTION_MARKERS
     for text in ("# GUPPI\n\nx\n", f"{opening}\n# GUPPI\n", f"{closing}\n# GUPPI\n{opening}\n"):
         assert ship.blank_description(text) == text
+
+
+@pytest.mark.live
+def test_live_build_of_this_repository_prints_no_line_on_a_shipped_page_of_the_checks(tmp_path):
+    # the build of this repository from its working tree, with a version the test passes, so
+    # no tag is read; a line on a page with `core: true` is the business of its own check
+    lines, _ = ship.ship(REPO, tmp_path, date(2001, 1, 1), "0.0.0")
+    assert [line for line in lines if "vault/wiki/estimates/" in line] == []

@@ -104,16 +104,18 @@ older one without a word. A line already in a ledger is not fresh and is not jud
 A lesson takes a listed tag (case 703.2). A fresh `lesson[...]` line whose `{tags:...}` holds
 a tag that no row of `vault/wiki/tags.md` holds and that no tag line of a Case of the session
 declares — a decision line of that Case standing in the session's ledger or among the lines
-of the same `Stop`, the Case read from `<plan>.checked.json` — is not written; the rows and the
-tag lines are read by `registered_tags` and `ratified_tags` of `.guppi/guppi/tags.py`, the reading of
-the check of a Case file (`refused_tags`). A line refused for its prefix or its grammar is not
-judged for its tags, `estimate` and `decision` lines are not judged, and with no `tags.md` no
-line is. The hook exits 2 with one stderr line per refused line only when the line stands in
-the reply just finished (`tag_message`): it asks for a tag of `tags.md`, and says that in Plan
-Mode a Case may first declare the tag and that from `/work` to the end of Retro, where no Case
-is ratified, the new tag goes as a line of the handoff. A refused line from an earlier text is
-judged again at every `Stop` without a word, and is written at the first `Stop` where each of
-its tags is listed. A line refused for its tags is not held for its mark (case 703.3): it is
+of the same `Stop`, the Case read from `<plan>.checked.json` — and that no
+`{newtag:<tag>|<meaning>|<aliases>}` block of the line itself or of a lesson line of the
+session's ledger or of the same `Stop` declares (case 827.1) is not written; the rows, the tag
+lines and the blocks are read by `registered_tags`, `ratified_tags` and `lesson_tags` of
+`.guppi/guppi/tags.py`, the reading of the check of a Case file, the blocks by `parse_line` of
+`.guppi/guppi/materialize.py` (`refused_tags`). A line refused for its prefix or its grammar is
+not judged for its tags and its blocks declare nothing, `estimate` and `decision` lines are not
+judged, and with no `tags.md` no line is. The hook exits 2 with one stderr line per refused
+line only when the line stands in the reply just finished (`tag_message`): it asks for a tag of
+`tags.md` or for that block on the line. A refused line from an earlier text is judged again at
+every `Stop` without a word, and is written at the first `Stop` where each of its tags is
+listed or declared. A line refused for its tags is not held for its mark (case 703.3): it is
 passed to `unmarked_lessons` beside the lines refused for their prefix.
 
 A mark names a decision line before it (case 497.1). A fresh `lesson[...]` line whose
@@ -678,14 +680,16 @@ def refused_tags(
     """`(line, slug, tags)` of each fresh `lesson[...]` line whose `{tags:...}` holds a tag
     that no row of `vault/wiki/tags.md` holds and no tag line of a Case of the session
     declares, a decision line of that Case standing in the session's ledger `written` or among
-    the lines of the same `Stop` (case 703.2); `tags` are those tags. A line in `skip`,
+    the lines of the same `Stop` (case 703.2), and no `{newtag:...}` block of a lesson line of
+    `written` or of the fresh lines not in `skip` declares, by `lesson_tags` (case 827.1);
+    `tags` are those tags. A line in `skip`,
     refused for its prefix, is not judged, and with no `tags.md` no line is. The rows and the
     tag lines are read by `registered_tags` and `ratified_tags` of `.guppi/guppi/tags.py`, the
     reading the check of a Case file shares; the store through `.guppi/guppi/casecheck.py`, imported
     here, since that module imports this one."""
     from guppi.casecheck import read_store
     from guppi.materialize import parse_line
-    from guppi.tags import ratified_tags, registered_tags, tags_file
+    from guppi.tags import lesson_tags, ratified_tags, registered_tags, tags_file
 
     registered = registered_tags(tags_file(project_dir))
     if registered is None:
@@ -702,7 +706,12 @@ def refused_tags(
         return []
     records = [r for line in written + fresh if (r := parse_line(f"- {body(line)}"))]
     store = read_store(plan_path(session_event_logs(project_dir, now, stamp), stamp))
-    listed = registered | ratified_tags(store, records)
+    declaring = [
+        r
+        for line in written + [f for f in fresh if f not in skip]
+        if (r := parse_line(f"- {body(line)}"))
+    ]
+    listed = registered | ratified_tags(store, records) | lesson_tags(declaring)
     refused: list[tuple[str, str, list[str]]] = []
     for line, record in lessons:
         missing = [tag for tag in record["tags"] if tag not in listed]
@@ -712,13 +721,13 @@ def refused_tags(
 
 
 def tag_message(slug: str, tags: list[str]) -> str:
-    """The stderr line of a lesson line refused for its tags (case 703.2): from `/work` to the
-    end of Retro no Case is ratified, so the new tag waits for a later session."""
+    """The stderr line of a lesson line refused for its tags (cases 703.2, 827.1): it asks for
+    a tag of `tags.md` or for a `{newtag:...}` block that declares the tag on the line."""
     return (
-        f"ledger: lesson[{slug}] not written — tag {', '.join(tags)} is not in tags.md and no "
-        "ratified Case of this session declares it: write the line again with a tag of "
-        "tags.md; in Plan Mode a Case may first declare the tag by a tag line, and from /work "
-        "to the end of Retro the new tag goes as a line of the handoff to a later session."
+        f"ledger: lesson[{slug}] not written — tag {', '.join(tags)} is not in tags.md and "
+        "nothing of this session declares it: write the line again with a tag of tags.md, or "
+        "declare the tag on the line by {newtag:<tag>|<meaning>|<aliases>}, the tag also in "
+        "its {tags:...}."
     )
 
 

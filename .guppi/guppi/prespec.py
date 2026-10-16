@@ -89,10 +89,11 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   of the file and of the target left to lint — and a `create` with no `method` at all
   (cases 331, 820.4); on the Estimate of a MOC as the plan leaves it — the live page, or a
   `create` or an `update` of the plan that writes `kind: MOC` — one that names neither a
-  `make <target>`, nor the word `pytest` with a test path, nor `by hand`, by
-  `lint.names_a_moc_form`, which `check_method` of lint calls too, in place of the line of
-  no form, the Makefile, the existence of the test files and the children left to lint
-  (cases 733, 820.4); and one whose `method`
+  `make <target>`, nor the word `pytest` with a test path, nor `by hand`, nor, on a MOC
+  with no `parent` as the plan leaves it by `plan_parent` and `pages.has_no_parent`, the
+  command `guppi test`, by `lint.names_a_moc_form`, which `check_method` of lint calls too,
+  in place of the line of no form, the Makefile, the existence of the test files and the
+  children left to lint (cases 733, 820.4, 877.2); and one whose `method`
   ties its reading by hand to the first moment after the render or the change — by
   `lint.tied_to_a_one_off_moment`, the one predicate of the class `moment` of lint (case
   613.1); and one whose `method` waits for another session — a part that names a later
@@ -300,6 +301,7 @@ from guppi.pages import (
     CATEGORIES,
     HISTORY,
     Page,
+    has_no_parent,  # the one judgment of a page with no parent (case 877.2)
     is_core,
     read_category,
     read_page,
@@ -1239,8 +1241,10 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     `lint.waits_for_another_session` (case 781). When the
     target of the Estimate is a MOC as the plan leaves it — by `plan_kind` — a `method` that
     names neither a `make <target>`, nor the word `pytest` with a test path, nor "by hand",
-    by `lint.names_a_moc_form`, the one predicate `check_method` of lint calls too, is a
-    finding in place of the line of no form; whether the Makefile holds the target, whether
+    nor, on a MOC with no `parent` as the plan leaves it — by `plan_parent` and
+    `pages.has_no_parent`, the one predicate lint calls too — the command `guppi test`, by
+    `lint.names_a_moc_form`, the one predicate `check_method` of lint calls too, is a
+    finding in place of the line of no form (case 877.2); whether the Makefile holds the target, whether
     each test file exists and whether the children's Estimates are readings stays with lint
     (cases 733, 820.4). A `defer` of a Lesson or a Decision page, whether its page stands or
     not, is a finding first, by `materialize.defers_a_record`, with `DEFER_OF_A_RECORD` (case
@@ -1259,7 +1263,8 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
 
     def form_finding(target: str, method: str) -> str | None:
         if plan_kind(blocks, target, project_dir) == "MOC":  # the forms of a MOC (case 733)
-            return None if names_a_moc_form(method) else MOC_NO_FORM
+            top = has_no_parent({"parent": plan_parent(blocks, target, project_dir)})
+            return None if names_a_moc_form(method, top) else MOC_NO_FORM  # (case 877.2)
         return None if names_a_form(method) else NO_FORM  # the forms of a Leaf (case 331)
 
     for case, block in blocks.items():
@@ -1341,6 +1346,33 @@ def plan_kind(blocks: dict, slug: str, project_dir: Path) -> str:
     if category not in LEAF_CATEGORIES or not path.is_file():
         return ""
     return str(read_page(path, category).props.get("kind") or "")
+
+
+def plan_parent(blocks: dict, slug: str, project_dir: Path) -> str:
+    """The `parent` of a rule or an entity as the plan leaves it, as `plan_kind` reads its
+    `kind`: the `parent` that the `set` of the last `update` of the plan gives, or the
+    `parent`, else the `ref`, of the last `create` of the plan that writes the page, else the
+    `parent` of the live page; empty when none gives one — a page with no parent by
+    `pages.has_no_parent` (case 877.2)."""
+    updated = ""
+    created = None
+    for block in blocks.values():
+        for item in block.get("create") or []:
+            if isinstance(item, dict) and item.get("slug") == slug:
+                created = str(item.get("parent") or item.get("ref") or "")
+        for item in block.get("update") or []:
+            sets = item.get("set") if isinstance(item, dict) else None
+            if item.get("slug") == slug and isinstance(sets, dict) and sets.get("parent"):
+                updated = str(sets["parent"])
+    if updated:
+        return updated
+    if created is not None:
+        return created
+    category = category_of(slug)
+    path = wiki_root(project_dir) / category / f"{slug}.md"
+    if category not in LEAF_CATEGORIES or not path.is_file():
+        return ""
+    return str(read_page(path, category).props.get("parent") or "")
 
 
 def estimate_target(item: dict, project_dir: Path) -> str:

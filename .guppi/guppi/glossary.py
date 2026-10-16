@@ -29,7 +29,7 @@ import sys
 from pathlib import Path
 
 from guppi.event import project_root
-from guppi.pages import Page, read_vault, wiki_root
+from guppi.pages import Page, has_no_parent, read_vault, wiki_root
 from guppi.render import tick_command_lines
 
 SLUG = "entity-glossary"
@@ -86,8 +86,7 @@ def group_of(slug: str, by_slug: dict[str, Page]) -> str:
     """The parent MOC of the page a `where` names; a page without a parent — a root MOC,
     a placeholder not yet placed — groups under itself."""
     page = by_slug[slug]
-    parent = page.props.get("parent")
-    return str(parent) if parent else slug
+    return slug if has_no_parent(page.props) else str(page.props["parent"])
 
 
 def render(page: Page, by_slug: dict[str, Page]) -> tuple[str | None, str]:

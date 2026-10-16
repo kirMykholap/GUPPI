@@ -156,11 +156,13 @@ def with_rule(project_dir, slug, governs, enforcement=None):
     (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
 
 
-def with_page(project_dir, category, slug, kind="Leaf", estimates=("estimate-x",)):
+def with_page(project_dir, category, slug, kind="Leaf", estimates=("estimate-x",), parent=None):
     folder = project_dir / "vault" / "wiki" / category
     folder.mkdir(parents=True, exist_ok=True)
     text = f"---\ntype: {category[:-1] if category != 'entities' else 'entity'}\n"
     text += f"kind: {kind}\nstatus: built\n"
+    if parent:
+        text += f"parent: {parent}\n"
     text += "estimates: [" + ", ".join(estimates) + "]\n---\n\n## Purpose\n\nx\n"
     (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
 
@@ -1084,13 +1086,13 @@ MOC_NO_FORM = (
 
 
 def test_a_moc_estimate_naming_a_test_file_pytest_or_a_command_alone_is_a_finding(tmp_path):
-    # on a MOC a make target, pytest with a test path or by hand is a form; one line, in
-    # place of no form (cases 733, 820.4)
+    # on a MOC a make target, pytest with a test path or by hand is a form, and guppi test on
+    # a MOC with no parent; one line, in place of no form (cases 733, 820.4, 877.2)
     with_page(tmp_path, "rules", "rule-x", kind="MOC")
     for method in (
         "tests/test_x.py, one case per defect",
         "pytest over the suite",
-        "uv run --project .guppi guppi test over the suite",
+        "uv run --project .guppi guppi check over the vault",
     ):
         item = NO_FORM_CREATE.replace("Run it and look", method)
         code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
@@ -1101,9 +1103,31 @@ def test_a_moc_estimate_naming_a_test_file_pytest_or_a_command_alone_is_a_findin
         "make test-x, the pipeline",
         "uv run --project .guppi pytest .guppi/tests/test_x.py, the pipeline",
         "read by hand at the Retro of this session",
+        "uv run --project .guppi guppi test over the suite",
     ):
         item = NO_FORM_CREATE.replace("Run it and look", method)
         assert check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE) == (0, "", ""), method
+
+
+def test_guppi_test_alone_on_a_moc_with_a_parent_is_a_finding(tmp_path):
+    # the parent is read as the plan leaves it: the live page, a create with a ref, or an
+    # update whose set gives parent (case 877.2)
+    method = "uv run --project .guppi guppi test over the suite"
+    line = "case 1: create estimate-x-again: " + prespec.MOC_NO_FORM
+    with_page(tmp_path, "rules", "rule-x", kind="MOC", parent="rule-top")
+    create = {"slug": "estimate-x-again", "ref": "rule-x", "method": method}
+    assert prespec.check_form({"1": {"create": [create]}}, tmp_path) == [line]
+    # a MOC the plan creates under a ref
+    created = {"slug": "rule-y", "kind": "MOC", "ref": "rule-x"}
+    on_y = {"slug": "estimate-x-again", "ref": "rule-y", "method": method}
+    assert prespec.check_form({"1": {"create": [created, on_y]}}, tmp_path) == [line]
+    # a live MOC with no parent that an update of the plan places under one
+    with_page(tmp_path, "rules", "rule-x", kind="MOC")
+    assert prespec.check_form({"1": {"create": [create]}}, tmp_path) == []
+    placed = {"slug": "rule-x", "set": {"parent": "rule-top"}, "change": "placed"}
+    assert prespec.check_form({"1": {"create": [create]}, "2": {"update": [placed]}}, tmp_path) == [
+        line
+    ]
 
 
 def test_a_moc_estimate_update_judged_by_the_live_target(tmp_path):
@@ -1152,6 +1176,16 @@ def test_the_moc_form_is_one_predicate_lint_and_prespec_share(tmp_path):
         ("uv run --project .guppi guppi test", False),
     ):
         assert lint.names_a_moc_form(method) is form, method
+    # on a MOC with no parent guppi test is a form, and guppi check stays none (case 877.2)
+    assert lint.names_a_moc_form("uv run --project .guppi guppi test", True) is True
+    assert lint.names_a_moc_form("uv run --project .guppi guppi check", True) is False
+    # whether a page has no parent is one predicate of pages, which lint, pre-spec and the
+    # glossary import
+    from guppi import glossary, pages
+
+    assert lint.has_no_parent is pages.has_no_parent
+    assert prespec.has_no_parent is pages.has_no_parent
+    assert glossary.has_no_parent is pages.has_no_parent
 
 
 MOMENT = (

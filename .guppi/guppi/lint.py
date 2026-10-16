@@ -42,9 +42,11 @@ whose `method` waits for no later moment, one finding each — red between a cha
 promise and its reading, by design) (cases 182, 202, 799), `method` (the `method` field
 alone (case 506.3): for a MOC's Estimate a `make <target>` of the Makefile passes whatever
 else it says, and so does the word `pytest` with the test files of its pipeline, each of
-which exists (case 820.3); one that names neither may be a reading when its children's
-Estimates are all readings (case 112.1), or when a sibling Estimate of the MOC names either
-(cases 212, 820.3); on a MOC with `render_mode: full` the Estimates of a child with
+which exists (case 820.3); on a MOC with no `parent`, by `has_no_parent` of
+`.guppi/guppi/pages.py`, the command `guppi test` passes whatever else it says, since the
+whole suite is the check of all its parts (case 877.1); one that names none of these may be
+a reading when its children's Estimates are all readings (case 112.1), or when a sibling
+Estimate of the MOC names a `make <target>` or test files (cases 212, 820.3); on a MOC with `render_mode: full` the Estimates of a child with
 `enforcement: render` are not counted, since that child's Render is part of the parent's
 file and its Estimate promises the child's own behaviour (case 459); for a Leaf's Estimate
 a test file that exists — a path under `.guppi/tests/` or under a folder `tests` of the
@@ -52,9 +54,10 @@ project's own code, read whole by `TEST_PATH` and looked up from the root of the
 (case 819.1) —, the word `pytest`, a `make <target>` of the Makefile, one of the commands
 `guppi test`, `guppi check` and `guppi style` (case 820.3), or a reading — "by hand", the
 one spelling (case 330.1); these forms are one predicate, `names_a_form`, which `pre-spec`
-calls over the plan (case 331), and the three forms of a MOC's Estimate, a `make <target>`,
-`pytest` with test files or a reading, are one predicate too, `names_a_moc_form`, which
-`pre-spec` calls as well (cases 733, 820.3)), `moment` (an Estimate whose `method` ties a
+calls over the plan (case 331), and the forms of a MOC's Estimate, a `make <target>`,
+`pytest` with test files, a reading, or `guppi test` on a MOC with no `parent`, are one
+predicate too, `names_a_moc_form`, which `pre-spec` calls as well (cases 733, 820.3,
+877.1)), `moment` (an Estimate whose `method` ties a
 reading by hand to the first of something after the render or after the change — a part of
 the `method` between two `;` that holds `by hand` and the first of something after the
 render or the change; a reading names the kind of its moment, and any such moment counts,
@@ -98,6 +101,7 @@ from guppi.pages import (
     HISTORY,
     SHIPPED,
     Page,
+    has_no_parent,  # the one judgment of a page with no parent (case 877.1)
     is_core,
     is_draft_core,  # the one judgment of a draft page with `core: true` (case 822)
     read_vault,
@@ -138,6 +142,9 @@ PYTEST = "pytest"
 # the commands of a project that run its tests, its vault checks and its style check, each a
 # form of a Leaf's method (case 820.3)
 GUPPI_COMMAND = re.compile(r"\bguppi (?:test|check|style)(?![\w-])")
+# the command that runs the whole suite, a form of the method of a MOC with no parent
+# (case 877.1)
+GUPPI_TEST = re.compile(r"\bguppi test(?![\w-])")
 CRITERION = "## Criterion"
 RENDER = "## Render"
 WHEN = "## When"
@@ -632,15 +639,22 @@ def names_test_files(method: str) -> bool:
     return PYTEST in method and bool(TEST_PATH.search(method))
 
 
-def names_a_moc_form(method: str) -> bool:
+def names_a_moc_form(method: str, top: bool = False) -> bool:
     """Whether the `method` of a MOC's Estimate names one of the forms a MOC takes: a `make
-    <target>`, the word `pytest` with one or more test paths by `names_test_files`, or the
-    words `by hand`; a test path or the word `pytest` alone, and a command of
-    `GUPPI_COMMAND` alone, is no form on a MOC. The one predicate of this form, which
-    `check_method` and `pre-spec` call; whether the Makefile holds the target, whether each
-    test file exists and whether the children's Estimates are readings is judged by
+    <target>`, the word `pytest` with one or more test paths by `names_test_files`, the
+    words `by hand`, or, when `top` — the MOC has no `parent`, by `has_no_parent` of
+    `.guppi/guppi/pages.py` — the command `guppi test` by `GUPPI_TEST` (case 877.1); a test
+    path or the word `pytest` alone, `guppi check` or `guppi style` alone, and `guppi test`
+    alone on a MOC with a `parent`, is no form on a MOC. The one predicate of this form,
+    which `check_method` and `pre-spec` call; whether the Makefile holds the target, whether
+    each test file exists and whether the children's Estimates are readings is judged by
     `check_method` alone (cases 733, 820.3)."""
-    return bool(MAKE_TARGET.search(method) or names_test_files(method) or is_reading(method))
+    return bool(
+        MAKE_TARGET.search(method)
+        or names_test_files(method)
+        or is_reading(method)
+        or (top and GUPPI_TEST.search(method))
+    )
 
 
 FIRST_AFTER = re.compile(r"\bfirst\b.*?\bafter the (?:render|change)\b")
@@ -815,10 +829,12 @@ def sibling_names_a_target(
 def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> list[Finding]:
     """The `method` field of an Estimate (case 506.3):
     for a MOC's Estimate one that names neither a `make <target>`, nor the word `pytest` with
-    test files, nor "by hand", by `names_a_moc_form`, is a finding (cases 733, 820.3); a
-    `make <target>` of the Makefile passes whatever else it says, and so does `pytest` with
-    test files that each exist, looked up from the root of the project (case 820.3); without
-    either, "by hand" passes when every counted Estimate of the children is a reading (case
+    test files, nor "by hand", nor, on a MOC with no `parent` by `has_no_parent`, `guppi
+    test`, by `names_a_moc_form`, is a finding (cases 733, 820.3, 877.1); on a MOC with no
+    `parent`, `guppi test` passes whatever else it says, before the Makefile, the test files
+    and the children are read (case 877.1); a `make <target>` of the Makefile passes whatever
+    else it says, and so does `pytest` with test files that each exist, looked up from the
+    root of the project (case 820.3); without any of these, "by hand" passes when every counted Estimate of the children is a reading (case
     112.1) or when a sibling Estimate of the MOC names either, by `sibling_names_a_target`
     (cases 212, 820.3); on a MOC with `render_mode: full` the Estimates of a child with
     `enforcement: render` are not counted, by `children_estimates` (case 459); for a Leaf's
@@ -836,7 +852,8 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
     text = makefile.read_text(encoding="utf-8") if makefile.exists() else ""
     match = MAKE_TARGET.search(method)  # the target first (case 112.1)
     if str(target.props.get("kind")) == "MOC":
-        if not names_a_moc_form(method):  # the forms of a MOC (cases 733, 820.3)
+        top = has_no_parent(target.props)
+        if not names_a_moc_form(method, top):  # the forms of a MOC (cases 733, 820.3, 877.1)
             return [
                 Finding(
                     page,
@@ -844,6 +861,8 @@ def check_method(page: Page, by_slug: dict[str, Page], project_dir: Path) -> lis
                     "a MOC's Estimate names no `make <target>` or `pytest` with test files",
                 )
             ]
+        if top and GUPPI_TEST.search(method):  # the whole suite of a top MOC (case 877.1)
+            return []
         if match:
             if not holds_target(text, match.group(1)):
                 return [Finding(page, "method", f"the Makefile has no target {match.group(1)}")]

@@ -1311,15 +1311,22 @@ MOC_NO_FORM = (
 )
 
 
-def seed_moc_method(tmp_path, method, sibling=None):
+def seed_moc_method(tmp_path, method, sibling=None, parent=False):
     """rule-root, a MOC, with one Estimate of `method`, and a second of `sibling` if given;
-    the child rule-x carries a tested Estimate."""
+    the child rule-x carries a tested Estimate. With `parent`, rule-root stands under the MOC
+    rule-top, which has no `parent` (case 877.1)."""
     wiki = seed(tmp_path, rule=rule_page(status="built"))
     slugs = "estimate-root-holds" + (", estimate-root-sibling" if sibling else "")
-    write(
-        wiki / "rules" / "rule-root.md",
-        root_page().replace("estimates: []", f"estimates: [{slugs}]"),
-    )
+    root = root_page().replace("estimates: []", f"estimates: [{slugs}]")
+    if parent:
+        root = root.replace("kind: MOC\n", "kind: MOC\nparent: rule-top\n")
+        write(
+            wiki / "rules" / "rule-top.md",
+            root_page()
+            .replace("Prevents root", "Prevents top")
+            .replace("children: [rule-x]", "children: [rule-root]"),
+        )
+    write(wiki / "rules" / "rule-root.md", root)
     write(
         wiki / "estimates" / "estimate-root-holds.md",
         estimate_page(target="rule-root", method=method),
@@ -1359,11 +1366,23 @@ def test_a_moc_method_naming_pytest_a_path_or_a_command_alone_is_a_finding(tmp_p
     for method in (
         "pytest over the pipeline",
         "tests/test_x.py, the pipeline",
-        "uv run --project .guppi guppi test over the suite",
+        "uv run --project .guppi guppi check over the vault",
+        "`guppi style` over the code",
     ):
         seed_moc_method(tmp_path, method)
         _, lines, _ = run(tmp_path)
         assert lines == [MOC_NO_FORM], method
+    # guppi test alone on a MOC with a parent: its own part is smaller than the suite
+    seed_moc_method(tmp_path, "uv run --project .guppi guppi test over the suite", parent=True)
+    _, lines, _ = run(tmp_path)
+    assert lines == [MOC_NO_FORM]
+
+
+def test_a_moc_method_naming_guppi_test_on_a_moc_with_no_parent_passes(tmp_path):
+    """rule-root has no `parent`, and its child carries a tested Estimate: `guppi test`
+    alone is the whole suite, the check of all its parts (case 877.1)."""
+    seed_moc_method(tmp_path, "uv run --project .guppi guppi test over the suite")
+    assert run(tmp_path) == (0, [], "")
 
 
 def test_a_moc_reading_passes_beside_a_sibling_naming_pytest_with_test_files(tmp_path):

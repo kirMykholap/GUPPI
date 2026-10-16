@@ -73,6 +73,14 @@ def ship_stands() -> bool:
     return importlib.util.find_spec("guppi.ship") is not None
 
 
+def has_no_parent(props: dict) -> bool:
+    """True when the `parent` field of the props is empty or absent: a root MOC, or a
+    placeholder not yet placed. The one judgment of a page with no parent, which `group_of`
+    of `.guppi/guppi/glossary.py`, `check_method` of `.guppi/guppi/lint.py` and
+    `form_finding` of `.guppi/guppi/prespec.py` import (case 877.1)."""
+    return not props.get("parent")
+
+
 def slug_of(value):
     """The slug inside a `[[slug]]` value; any other value as it is."""
     if isinstance(value, str):

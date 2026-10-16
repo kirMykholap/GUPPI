@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-case-build]]"
-purpose: Whether the recommend of each Case case-guppi builds holds one item per question of its rounds — the title, the recommendation and the answer in English as they stood when the person answered it, or a note that it was not answered — each item on the parent or under the one sub-case its answer changed, and a sub-case with no problem
-method: "by hand: the Case files of a later session after the render, each recommend read against the rounds of its Case in the chat"
+purpose: Whether the recommend of each Case case-guppi builds holds one item per question of its rounds — the title, the recommendation and the answer in the language of the repository as they stood when the person answered it, or a note that it was not answered — each item on the parent or under the one sub-case its answer changed, and a sub-case with no problem
+method: "by hand, after a render of rule-case-build: the Case files of a session, each recommend read against the rounds of its Case in the chat"
 checked: 2026-10-05
 origin: raw/2026-09-30/1306/ledger.md#case-544.2
 sprint: migration
@@ -43,3 +43,4 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1441/ledger.md#L34
 - 2026-10-05 updated: the Criterion replaced whole — its moment is the Case written into its file (case 645.13) · [[decision-case-645.13]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L40
+- 2026-10-17 updated: the purpose names the language of the repository by its role, and the method waits for a render · [[decision-case-875]]

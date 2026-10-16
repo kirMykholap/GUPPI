@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-skill-sprint-open]]"
 purpose: Whether /sprint-open has the opening Case name /merge-main before the close line, push the closed sprint's branch and open its pull request into main after the person's word, merge it with a merge commit after its checks pass when the person is the owner, and move the work to a branch named by the new sprint, as the first tasks of Work Mode, with a stop on a refusal and no git task on main
-method: by hand, at the Retro of the session whose Spec set the new Render of rule-skill-sprint-open that the Criterion describes, that Render in its spec.md read against the Criterion (the session of case 789)
+method: "by hand: the Render of rule-skill-sprint-open in .claude/skills/sprint-open/SKILL.md read against the Criterion"
 checked: 2026-10-13
 origin: raw/2026-10-10/2350/ledger.md#case-775.1
 sprint: plugin
@@ -40,3 +40,4 @@ The prompt of the call names the branch that `/hi` printed under `Branch:` from 
 - 2026-10-13 updated: the Criterion replaced whole — the opening Case pushes the closed sprint and opens its pull request; the owner's is merged after its checks pass; /merge-main stands before the close line · [[decision-case-789.1]]
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L54
 - 2026-10-15 updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]]
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

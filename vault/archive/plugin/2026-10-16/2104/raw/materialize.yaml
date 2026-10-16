@@ -1502,6 +1502,8 @@ entries:
       names_a_moc_form of lint.py judges it; put off at the close of Plan Mode of session 2104
   exists: true
   applied: 00:12:15
+  superseded_by:
+  - '877.1'
 - line: 38
   text: decision[case 874][defer][estimate-clean-branch-ships-neutral-texts]{ref:estimate-clean-branch-ships-neutral-texts}
   case: '874'
@@ -1518,6 +1520,8 @@ entries:
       of Plan Mode of session 2104
   exists: true
   applied: 00:12:15
+  superseded_by:
+  - '875'
 - line: 39
   text: decision[case 872.6][update][estimate-orchestration-asks-in-the-grill-me-shape]{ref:rule-orchestration}
   case: '872.6'
@@ -4261,6 +4265,8 @@ decisions:
       test` alone as its method.
   spec: vault/raw/2026-10-16/2104/spec.md
   applied: 00:12:15
+  superseded_by:
+  - decision-case-877.1
 - case: '874'
   decision: decision-case-874
   origin: raw/2026-10-16/2104/ledger.md#case-874
@@ -4281,6 +4287,8 @@ decisions:
       repository of GUPPI.
   spec: vault/raw/2026-10-16/2104/spec.md
   applied: 00:12:15
+  superseded_by:
+  - decision-case-875
 - case: '872.6'
   decision: decision-case-872.6
   origin: raw/2026-10-16/2104/ledger.md#case-872.6

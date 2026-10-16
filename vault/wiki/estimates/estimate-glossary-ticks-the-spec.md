@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-glossary]]"
 purpose: glossary, once it wrote glossary.md and exits 0, ticks the guppi glossary lines of every Spec under raw/ whose yaml is applied whole
-method: pytest .guppi/tests/test_glossary.py, plus one reading of this session's spec.md after the librarian's run
+method: "pytest .guppi/tests/test_glossary.py; by hand, after a librarian's run: the spec.md of its session read against the Criterion"
 checked: 2026-09-29
 origin: raw/2026-09-22/0014/ledger.md#case-306.6
 sprint: migration
@@ -36,3 +36,4 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L3
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the method waits for a librarian's run, with no past moment · [[decision-case-875]]

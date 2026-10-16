@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, on every item, finds the rule that governs what each option of its round changes, the rule a defect breaks where the item reports one, judges each option against it over the whole text the option leaves, names in the After line of an option the part it leaves breaking the rule without recommending it, and names that rule in context
-method: "by hand at the Retro of this session: the new Render of rule-case-build in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
+method: "by hand: the Render of rule-case-build in .claude/agents/case-guppi.md read against the Criterion, recorded in the estimate line"
 checked: 2026-10-13
 origin: raw/2026-10-12/1604/ledger.md#case-780
 sprint: plugin
@@ -33,3 +33,4 @@ Before it recommends an option, it finds the rule that governs what each option 
 - 2026-10-12 status: pending → passed · raw/2026-10-12/1604/ledger.md#L20
 - 2026-10-13 updated: the Criterion and purpose replaced whole — the rule that governs what an option changes is read on every item, not only on an item that reports a defect (case 798.1) · [[decision-case-798.1]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L27
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

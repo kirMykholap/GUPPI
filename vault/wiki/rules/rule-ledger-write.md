@@ -7,6 +7,7 @@ enforcement: hook
 implementation_ref: [.guppi/guppi/ledger.py, .guppi/guppi/materialize.py, .guppi/guppi/gate.py, .guppi/guppi/casecheck.py, .guppi/guppi/tags.py, .guppi/tests/test_ledger.py, .guppi/tests/test_gate.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
 estimates: ["[[estimate-ledger-write-lifts]]", "[[estimate-ledger-write-refuses-a-reading-of-a-change-of-the-session]]", "[[estimate-ledger-write-refuses-a-lesson-without-its-prefix]]", "[[estimate-ledger-write-refuses-a-mark-with-no-decision-line]]", "[[estimate-ledger-write-refuses-a-line-it-cannot-read]]", "[[estimate-ledger-write-exits-2-on-an-error]]", "[[estimate-ledger-write-names-the-kind-of-a-user-record]]", "[[estimate-ledger-write-asks-for-the-mark-of-a-lesson]]", "[[estimate-ledger-write-reminds-of-the-mark-on-a-decision-line]]", "[[estimate-ledger-write-holds-a-decision-line-off-the-stored-case]]", "[[estimate-ledger-write-refuses-a-line-that-is-no-record]]", "[[estimate-ledger-write-refuses-a-lesson-with-an-unlisted-tag]]", "[[estimate-ledger-write-refuses-a-defer-of-a-record]]"]
+deferred_by: ["[[decision-case-876]]"]
 origin: raw/2026-09-09/ledger.md#case-10
 sprint: migration
 created: 2026-09-09
@@ -100,3 +101,4 @@ would materialize pages from it the next day. It also refuses, while no live pag
 - 2026-10-15 updated: a newtag block of a lesson line declares a new tag for the ledger hook (case 827.1) · [[decision-case-827.1]]
 - 2026-10-17 estimate estimate-ledger-write-refuses-a-defer-of-a-record added · [[decision-case-865.4]]
 - 2026-10-17 updated: the hook refuses a defer line of a Lesson or a Decision page (case 865) · [[decision-case-865.4]]
+- 2026-10-17 deferred · [[decision-case-876]]

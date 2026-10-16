@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-skill-sprint-open]]"
 purpose: Whether /sprint-open has the main agent ask the sprint id first, then the opening Case dispatched as Case <id>-1 before any Frontier, ask its goal, its Definition of done, its first milestone and whether to take an item of the backlog, and write the close line
-method: by hand, at the Retro of this session, the new Render of rule-skill-sprint-open in raw/<date>/<hi HHMM>/spec.md read against the Criterion
+method: "by hand: the Render of rule-skill-sprint-open in .claude/skills/sprint-open/SKILL.md read against the Criterion"
 checked: 2026-10-13
 origin: raw/2026-10-08/2352/ledger.md#case-743.6
 sprint: migration
@@ -41,3 +41,4 @@ Before any Frontier is assembled and before any dispatch, the main agent asks th
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1913/ledger.md#L35
 - 2026-10-13 updated: the Criterion replaced whole — the main agent asks the sprint id before the dispatch, and the opening Case is Case <id>-1 (case 788.3) · [[decision-case-788.3]]
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L49
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

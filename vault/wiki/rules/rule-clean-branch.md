@@ -7,6 +7,7 @@ enforcement: check
 implementation_ref: [.guppi/guppi/ship.py, .guppi/tests/test_ship.py, .github/workflows/prod.yml, plugin/plugin.json, plugin/marketplace.json]
 estimates: ["[[estimate-clean-branch-writes-a-clean-copy]]", "[[estimate-clean-branch-code-holds-pointers-only-in-brackets]]", "[[estimate-clean-branch-pages-hold-pointers-only-in-brackets]]", "[[estimate-clean-branch-installs-as-a-plugin]]", "[[estimate-clean-branch-ships-no-ship-command]]", "[[estimate-clean-branch-ships-the-passed-estimates]]", "[[estimate-clean-branch-ships-the-tests]]", "[[estimate-clean-branch-writes-the-session-files]]", "[[estimate-clean-branch-ships-a-blank-project-description]]", "[[estimate-clean-branch-ships-the-checks-workflow]]", "[[estimate-clean-branch-ships-neutral-texts]]", "[[estimate-clean-branch-refuses-a-draft-core-page]]", "[[estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets]]"]
 applies_to: ["[[entity-guppi-repository]]"]
+deferred_by: ["[[decision-case-875]]"]
 origin: raw/2026-10-13/1753/ledger.md#case-804.6
 sprint: plugin
 created: 2026-10-13
@@ -60,3 +61,4 @@ The workflow `.github/workflows/prod.yml` runs it on each push to `main`, and on
 - 2026-10-15 status: built → draft · cascade
 - 2026-10-15 estimate estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets added · [[decision-case-823.1]]
 - 2026-10-15 updated: the Purpose names the setup Case of rule-morph by its new name · [[decision-case-825]]
+- 2026-10-17 deferred · [[decision-case-875]]

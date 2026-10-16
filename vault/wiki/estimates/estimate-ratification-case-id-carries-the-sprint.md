@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ratification]]"
 purpose: Whether every reader of a Case id takes an id that carries its sprint and a plain id from before sprint ids alike, and guppi caseid --next --session <stamp> prints and holds the next id of the open sprint, which the main agent runs only for the id of a new top-level Case and never to check an id, and prints no id without --session or without the plan file of the session
-method: "uv run --project .guppi pytest .guppi/tests/test_caseid.py; by hand at the Retro of the session that sets this method: the Render of rule-orchestration in vault/wiki/orchestration.md and the Render of rule-ratification in vault/wiki/ratification.md read against the Criterion"
+method: "uv run --project .guppi pytest .guppi/tests/test_caseid.py; by hand: the Render of rule-orchestration in vault/wiki/orchestration.md and the Render of rule-ratification in vault/wiki/ratification.md read against the Criterion"
 checked: 2026-10-15
 origin: raw/2026-10-12/2349/ledger.md#case-788.2
 sprint: plugin
@@ -50,3 +50,4 @@ A Case id of a sprint opened after sprint ids came in is the sprint id, a hyphen
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 updated: the Criterion replaced whole — its pointers stand in brackets; the method reads the live Renders · [[decision-case-823.5]]
 - 2026-10-15 status: pending → passed · raw/2026-10-15/1959/ledger.md#L69
+- 2026-10-17 updated: the method reads the Renders where they live, with no past moment · [[decision-case-875]]

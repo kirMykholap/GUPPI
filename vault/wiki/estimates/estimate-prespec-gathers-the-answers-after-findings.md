@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: Whether after the findings of pre-spec the main agent sends nothing to a case-guppi until the person has answered every question of the report, then sends each case-guppi its findings with the answers in one message, ends each waiting turn with one labelled line and writes nothing else while answers are out, gathers every round into one numbered list, and shows the Cases built again in one reply
-method: "by hand at the Retro of this session: the new Render of rule-prespec in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
+method: "by hand: the Render of rule-prespec in .claude/skills/pre-spec/SKILL.md read against the Criterion, recorded in the estimate line"
 checked: 2026-10-09
 origin: raw/2026-09-30/2356/ledger.md#case-561.2
 sprint: migration
@@ -48,3 +48,4 @@ The main agent sends each finding in a Case, with each answer of the report that
 - 2026-10-09 updated: the Criterion replaced whole — a horizontal rule between the rounds of two Cases in the list · [[decision-case-751.3]]
 - 2026-10-09 status: pending → passed · raw/2026-10-09/2049/ledger.md#L16
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

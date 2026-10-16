@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-claude-md]]"
 purpose: CLAUDE.md equals the Render of rule-claude-md with each child between its markers, and every session loads that text
-method: "by hand, after the librarian's run of this change: uv run --project .guppi guppi render --check, and CLAUDE.md as the file holds it and as the session of that run loads it, read against the Criterion"
+method: "by hand, after a render of CLAUDE.md: uv run --project .guppi guppi render --check, and CLAUDE.md as the file holds it and as a session that starts after the render loads it, read against the Criterion"
 checked: 2026-10-15
 origin: raw/2026-09-12/ledger.md#case-71.1
 sprint: migration
@@ -50,3 +50,4 @@ Then:
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 updated: the Criterion replaced whole — the heading and the description stand between marker lines of their own · [[decision-case-822.5]]
 - 2026-10-15 status: pending → passed · raw/2026-10-15/1959/ledger.md#L1
+- 2026-10-17 updated: the method waits for a render, with no past moment · [[decision-case-875]]

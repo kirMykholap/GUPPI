@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "863"
-status: current
+status: archived
 defer: ["[[decision-case-855]]"]
 supersedes: ["[[decision-case-858]]"]
+superseded_by: ["[[decision-case-876]]"]
 origin: raw/2026-10-16/1712/ledger.md#case-863
 sprint: plugin
 created: 2026-10-16
@@ -27,3 +28,6 @@ Its Context says that Case 851 makes /hi go on to /sprint-open, while the ratifi
 ## History
 
 - 2026-10-16 created · raw/2026-10-16/1712/ledger.md#case-863
+- 2026-10-17 superseded by decision-case-876 · [[decision-case-876]]
+- 2026-10-17 archived · superseded
+- 2026-10-17 archived · cleanup

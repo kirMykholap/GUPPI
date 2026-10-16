@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi searches .guppi/guppi/ for an existing implementation of a judgment before a task of its Case adds code that judges a text, reads whole the function each side calls for it, asks the person where they answer differently, and the task imports one judgment and tests both sides where they parted
-method: "by hand at the Retro of this session: the new Render of rule-case-build in raw/<date>/<hi HHMM>/spec.md read against the Criterion, and the findings of ask-guppi at the /pre-spec of this session read for a task of a Case built by case-guppi that adds a second copy of a judgment or names as shared a function that answers differently from the one the other side calls, the count in the estimate line"
+method: "by hand: the Render of rule-case-build in .claude/agents/case-guppi.md read against the Criterion, and the findings of ask-guppi at a /pre-spec read for a task of a Case built by case-guppi that adds a second copy of a judgment or names as shared a function that answers differently from the one the other side calls, the count in the estimate line"
 checked: 2026-10-13
 origin: raw/2026-10-09/2049/ledger.md#case-752
 sprint: migration
@@ -39,3 +39,4 @@ Before it writes the task, `case-guppi` searches `.guppi/guppi/` for the words o
 - 2026-10-13 updated: the Criterion replaced whole — case-guppi reads the function each side calls before it names a shared judgment, asks the person where they part, and a test runs both sides over that input (case 785) · [[decision-case-785]]
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L44
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

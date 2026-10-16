@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "874"
-status: current
+status: archived
 defer: ["[[estimate-clean-branch-ships-neutral-texts]]"]
+superseded_by: ["[[decision-case-875]]"]
 origin: raw/2026-10-16/2104/ledger.md#case-874
 sprint: plugin
 created: 2026-10-16
@@ -26,3 +27,6 @@ The rewrite of the sentences of eight shipped rules and about forty shipped Esti
 ## History
 
 - 2026-10-17 created · raw/2026-10-16/2104/ledger.md#case-874
+- 2026-10-17 superseded by decision-case-875 · [[decision-case-875]]
+- 2026-10-17 archived · superseded
+- 2026-10-17 archived · cleanup

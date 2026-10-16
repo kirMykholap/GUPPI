@@ -11175,3 +11175,81 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-17 lessons/lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian archived · cleanup
 - 2026-10-17 lessons/lesson-subagents-parallel-on-one-tree-red-mid-flight archived · cleanup
 - 2026-10-17 decisions/decision-case-835 archived · cleanup
+- 2026-10-17 decisions/decision-case-875 created · raw/2026-10-17/0027/ledger.md#case-875 · generate
+- 2026-10-17 decisions/decision-case-874 superseded by decision-case-875 · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-clean-branch-ships-neutral-texts defer by decision-case-874 superseded · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-clean-branch-ships-neutral-texts updated: the Criterion replaced whole — the purpose and the method of the shipped Estimates hold no sentence true only in the repository of GUPPI, and the read rules of rule-permissions are exempt · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-clean-branch deferred · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-spec-box updated: the sprint line of the Purpose moves into the bracket of its pointer · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-vault-layout updated: the Purpose names the live sprint page as the source of sprint.md · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-morph updated: the sprint lines of the Purpose move into the brackets of their pointers · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-guppi-config updated: the sprint line of the Purpose moves into the bracket of its pointer · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-documentation updated: the Render no longer names the Makefile, which the clean version does not hold · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-bash-guard updated: the machine and the sessions of the Purpose move into the brackets of their pointers · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-claude-md updated: how the file was written before the page moves into the bracket of its pointer · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-tests-clock-pinned updated: the dated lessons of the Purpose move into the bracket of their pointer · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-shell-write-check updated: the lessons of the Purpose move into the bracket of their pointer · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-python-utf8 updated: the measured code page and the reading of the Purpose move into the bracket of their pointer · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-powershell-guard updated: the sessions of the Purpose move into the bracket of their pointer · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-page-read updated: the event of the Purpose moves into the bracket of its pointer · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-skill-hi updated: How it works loses the plan of the renderer, and its sessions move into the brackets of their pointers · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-retro updated: the Render no longer says that gh is not available · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-ratification-case-id-carries-the-sprint updated: the method reads the Renders where they live, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-skill-sprint-close-leads-the-closing-session updated: the method reads the Render where it lives and the closed sprint page, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-sprint-close-takes-the-readings-in-groups updated: the method names no dated session folder · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-guppi-config-fills-the-languages updated: the method names the languages by the codes of guppi.toml, not as English and Russian · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-claude-md-rendered updated: the method waits for a render, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-git-context-current updated: the method waits for a /hi, not for the first push to GitHub · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-guppi-package-runs-from-its-own-folder updated: the purpose names no Makefile, and the method waits for a render, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-permissions updated: the method names the folder of the project's saved transcripts by its role · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-hi-no-read-calls updated: the method waits for a /hi, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-orchestration-acknowledges-the-opening-with-the-frontier updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-orchestration-marks-each-round-of-a-batch updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-orchestration-sets-off-each-reply-of-case-guppi updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter updated: the method waits for a render, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-prespec-catches-a-command-line-off-form updated: the method waits for a /pre-spec, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-prespec-catches-a-superseded-case updated: the method waits for such a /pre-spec, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-prespec-gathers-the-answers-after-findings updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-render-harness-ticks-the-spec updated: the method waits for a librarian's run, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-glossary-ticks-the-spec updated: the method waits for a librarian's run, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-rules-schema-checked updated: the method waits for a librarian's run, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-skill-sprint-open-asks-the-opening-questions updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-skill-sprint-open-refuses-a-taken-sprint-id updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-sprint-close-next-session-opens-the-sprint updated: the method reads the Renders where they live, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-case-build-answers-what-done-means updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-case-build-finds-an-existing-judgment updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-case-build-judges-options-against-the-broken-rule updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-case-build-offers-a-page-for-code-no-page-covers updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-case-build-reads-the-last-output-of-a-check updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-case-build-checks-a-fact-of-an-outside-tool updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-case-example-passes-the-check updated: the method reads the Renders where they live, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-generate-writes-rules-from-applies-to updated: the method waits for a run of guppi generate, with no past moment · [[decision-case-875]] · generate
+- 2026-10-17 decisions/decision-case-876 created · raw/2026-10-17/0027/ledger.md#case-876 · generate
+- 2026-10-17 decisions/decision-case-836 superseded by decision-case-876 · [[decision-case-876]] · generate
+- 2026-10-17 decisions/decision-case-863 superseded by decision-case-876 · [[decision-case-876]] · generate
+- 2026-10-17 rules/rule-ledger-write deferred · [[decision-case-876]] · generate
+- 2026-10-17 rules/rule-orchestration deferred · [[decision-case-876]] · generate
+- 2026-10-17 decisions/decision-case-877 created · raw/2026-10-17/0027/ledger.md#case-877 · generate
+- 2026-10-17 decisions/decision-case-877.1 created · raw/2026-10-17/0027/ledger.md#case-877.1 · generate
+- 2026-10-17 decisions/decision-case-873 superseded by decision-case-877.1 · [[decision-case-877.1]] · generate
+- 2026-10-17 rules/rule-estimates-schema defer by decision-case-873 superseded · [[decision-case-877.1]] · generate
+- 2026-10-17 rules/rule-estimates-schema updated: the Estimate of a MOC with no parent may name guppi test alone; the defer of case 873 retired · [[decision-case-877.1]] · generate
+- 2026-10-17 estimates/estimate-lint-checks-the-method updated: the Criterion replaced whole — on a MOC with no parent, guppi test passes · [[decision-case-877.1]] · generate
+- 2026-10-17 decisions/decision-case-877.2 created · raw/2026-10-17/0027/ledger.md#case-877.2 · generate
+- 2026-10-17 estimates/estimate-prespec-catches-a-method-without-a-form updated: the Criterion replaced whole — on a MOC with no parent, guppi test is a form · [[decision-case-877.2]] · generate
+- 2026-10-17 rules/rule-harness updated: the Makefile of the repository of GUPPI moves into the bracket of its pointer · [[decision-case-875]] · generate
+- 2026-10-17 rules/rule-guppi-package updated: the root files and the Makefile of the repository of GUPPI move into the bracket of their pointer · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-case-build-records-the-rounds-in-recommend updated: the purpose names the language of the repository by its role, and the method waits for a render · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-python-utf8-output-intact updated: the purpose and the method name the code page of the locale, not cp1252 · [[decision-case-875]] · generate
+- 2026-10-17 estimates/estimate-lint-checks-the-method status: pending → passed · raw/2026-10-17/0027/ledger.md#L57 · generate
+- 2026-10-17 estimates/estimate-prespec-catches-a-method-without-a-form status: pending → passed · raw/2026-10-17/0027/ledger.md#L58 · generate
+- 2026-10-17 lessons/lesson-ratified-defer-only-case-wants-its-fence-in-the-reply created · raw/2026-10-17/0027/ledger.md#L59 · generate
+- 2026-10-17 decisions/decision-case-836 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-863 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-873 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-874 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-836 archived · cleanup
+- 2026-10-17 decisions/decision-case-863 archived · cleanup
+- 2026-10-17 decisions/decision-case-873 archived · cleanup
+- 2026-10-17 decisions/decision-case-874 archived · cleanup

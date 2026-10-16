@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-build]]"
 purpose: Whether the Render of rule-case-build gives case-guppi WebFetch among its tools and tells it to read in the documentation of a tool outside the repository the behaviour an option rests on before it recommends that option, to give the address of the page in context, and not to recommend an option whose fact the documentation does not settle
-method: "by hand at the Retro of this session: the new Render of rule-case-build in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
+method: "by hand: the Render of rule-case-build in .claude/agents/case-guppi.md read against the Criterion, recorded in the estimate line"
 origin: raw/2026-10-16/2104/ledger.md#case-871
 sprint: plugin
 created: 2026-10-16
@@ -31,3 +31,4 @@ Its `tools` line holds `WebFetch`.
 
 - 2026-10-17 created · [[decision-case-871]]
 - 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L46
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

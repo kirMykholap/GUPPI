@@ -19,9 +19,7 @@ core: true
 ## Purpose
 
 Prevents the system prompt from holding a line nobody ratified. `CLAUDE.md` is the
-one file every session reads first; until this page it was hand-written around one
-rendered section, and a ratified sentence went into the file instead of the page
-(case 56). Now the file is the Render of this page, whole, with `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` spliced into their markers; a change to it is an `update` of one of the four. The Render holds the description of the project and the three children; the glossary, `orchestration.md` and `ratification.md` arrive with `/hi`, the one rule opens `ratification.md`, and the Case schema reaches `case-guppi` alone (cases 272, 273.3, 288.3, 595). The heading and the description of the project stand between the lines `<!-- project-description -->` and `<!-- /project-description -->`: in the clean version of GUPPI a heading and a line that says the description is not set yet stand there, until the setup Case of a project writes its own description (case 822).
+one file every session reads first (until this page it was hand-written around one rendered section, and a ratified sentence went into the file instead of the page, case 56). The file is the Render of this page, whole, with `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` spliced into their markers; a change to it is an `update` of one of the four. The Render holds the description of the project and the three children; the glossary, `orchestration.md` and `ratification.md` arrive with `/hi`, the one rule opens `ratification.md`, and the Case schema reaches `case-guppi` alone (cases 272, 273.3, 288.3, 595). The heading and the description of the project stand between the lines `<!-- project-description -->` and `<!-- /project-description -->`: in the clean version of GUPPI a heading and a line that says the description is not set yet stand there, until the setup Case of a project writes its own description (case 822).
 
 ## Render
 
@@ -87,3 +85,4 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 - 2026-10-15 status: built → draft · cascade
 - 2026-10-15 updated: the Purpose names the setup Case of rule-morph by its new name · [[decision-case-825]]
 - 2026-10-15 status: draft → built · cascade
+- 2026-10-17 updated: how the file was written before the page moves into the bracket of its pointer · [[decision-case-875]]

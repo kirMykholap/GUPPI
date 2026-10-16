@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-skill-sprint-open]]"
 purpose: Whether the ledger hook refuses the create of a sprint page that has_page finds live or archived, writes one that it does not find, and opens no sprint by a refused line
-method: "uv run --project .guppi pytest .guppi/tests/test_ledger.py -k taken_sprint; by hand at the Retro of this session: the new Render of rule-skill-sprint-open in raw/<date>/<hi HHMM>/spec.md read against the Criterion"
+method: "uv run --project .guppi pytest .guppi/tests/test_ledger.py -k taken_sprint; by hand: the Render of rule-skill-sprint-open in .claude/skills/sprint-open/SKILL.md read against the Criterion"
 origin: raw/2026-10-12/2349/ledger.md#case-788.1
 sprint: plugin
 created: 2026-10-12
@@ -35,3 +35,4 @@ The ledger hook refuses the line when `has_page` of `.guppi/guppi/materialize.py
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

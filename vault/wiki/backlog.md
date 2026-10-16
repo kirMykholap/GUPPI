@@ -1,18 +1,19 @@
 # Backlog
 
-13 items
+14 items
 
 ## Conserved Specs
 
 ## Deferred
 
 - `entity-guppi` — GUPPI — a Claude Code harness governed by ratified decisions, and the vault it keeps; its parts the sprint and the glossary, and in the repository of GUPPI also that repository on GitHub · put off in 1 session
+- `rule-clean-branch` — Prevents a reference to a case, a mention of a session of this repository or a page that stays in this repository from reaching the clean version of GUPPI that other people install · put off in 5 sessions
 - `rule-documentation` — Prevents a ratified decision from ending the session without becoming a vault page · put off in 1 session
-- `rule-estimates-schema` — Prevents an Estimate page from carrying a field or section outside the shape lint checks, or lacking one it needs · put off in 1 session
 - `rule-guppi-package` — Prevents a project with GUPPI from depending on files at its root that it does not own, or on a command that runs only in the repository of GUPPI · put off in 0 sessions
+- `rule-ledger-write` — Prevents a ratified line from existing only in a chat reply, or landing in a session no /hi opened · put off in 2 sessions
 - `rule-lint` — Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed · put off in 0 sessions
+- `rule-orchestration` — Prevents the main agent from loading the form of a Case it does not build: what it alone does in a working session - the Frontier, the dispatch of case-guppi, the showing and signing of a Case, the moment of each ledger line, the defers and the acknowledging reply - stands in orchestration.md, which /hi loads · put off in 8 sessions
 - `rule-page-generation` — Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified · put off in 1 session
-- `estimate-clean-branch-ships-neutral-texts` — Whether the rules, the entities and CLAUDE.md of the clean version describe GUPPI and the languages in words that hold in any project and hold no other sentence true only in the repository of GUPPI, and which sentences of the shipped Estimates hold only there · put off in 1 session
 - `estimate-git-context-offers-git-init` — Whether /hi in a folder that is no git repository asks to run git init -b main, runs it on the person's yes and ends, ends on a no, and opens no sprint and writes no Frontier either way · put off in 0 sessions
 - `estimate-guppi-package-is-ready-after-the-install` — Whether /guppi:install runs uv --version before it writes anything and, where it passes, asks nothing about uv and builds the Python environment .guppi/.venv/ by uv sync after the copy before it sends the person to /hi · put off in 0 sessions
 - `estimate-plugin-install-offers-to-install-uv` — Whether /guppi:install, where uv is missing, asks to install uv by its standalone installer, stops with nothing written on a no, and on a yes goes on once uv --version passes or sends the person to a new terminal · put off in 0 sessions

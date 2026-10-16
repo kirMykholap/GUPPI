@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether the list of the rounds of a batch marks where each Case's round begins by a horizontal rule, by its Context label, which names the Case and its item, and by its question numbers, with no heading of the main agent's own, and whether the Cases of a batch shown for one ratification stand apart by a horizontal rule
-method: "by hand at the Retro of this session: the new Render of rule-orchestration in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
+method: "by hand: the Render of rule-orchestration in vault/wiki/orchestration.md read against the Criterion, recorded in the estimate line"
 checked: 2026-10-09
 origin: raw/2026-10-07/0211/ledger.md#case-699.5
 sprint: migration
@@ -35,3 +35,4 @@ The `**Context:**` paragraph of each first round on an item opens with a label t
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L45
 - 2026-10-09 updated: the Criterion replaced whole — a horizontal rule between the rounds and between the showings of two Cases of a batch · [[decision-case-751.2]]
 - 2026-10-09 status: pending → passed · raw/2026-10-09/2049/ledger.md#L15
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

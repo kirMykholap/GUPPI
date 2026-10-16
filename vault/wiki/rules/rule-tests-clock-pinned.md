@@ -17,8 +17,7 @@ core: true
 ## Purpose
 
 Prevents a test from passing on the day it is written and failing later because
-the code read the real clock. Two lessons of 2026-09-10 and 09-11 went red a day
-after they were written: the test pinned a date, the code read `datetime.now()`.
+the code read the real clock. A test that pins a date goes red a day after it is written when the code reads `datetime.now()` (two lessons of 2026-09-10 and 09-11 went red that way, case 145.1).
 Every `run()` of `.guppi/guppi/` takes `now`; this Rule makes forgetting it fail at once.
 
 ## How it works
@@ -44,3 +43,4 @@ without `now` writes a time dated 2001 (case 145.1).
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the dated lessons of the Purpose move into the bracket of their pointer · [[decision-case-875]]

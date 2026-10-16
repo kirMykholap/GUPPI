@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: A supersedes of the session's window whose Case still stands in the plan is a finding of prespec --check; a line of the superseded Case needs no item
-method: pytest .guppi/tests/test_prespec.py on a temp plan; the live reading the first /pre-spec of a later session whose window holds a supersedes of a Case of that session — this session's /pre-spec runs on the old check
+method: "pytest .guppi/tests/test_prespec.py on a temp plan; by hand, after a /pre-spec whose window holds a supersedes of a Case of its session: its findings read against the Criterion"
 checked: 2026-10-05
 origin: raw/2026-09-21/1853/ledger.md#case-299.2
 sprint: migration
@@ -40,3 +40,4 @@ A `{supersedes:case N}` in the session's window while `## Case N` or `### Case N
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the method waits for such a /pre-spec, with no past moment · [[decision-case-875]]

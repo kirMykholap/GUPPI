@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 purpose: A tasks line that names render or sprint outside the first code span is a finding of prespec --check; the ticker's form passes
-method: pytest .guppi/tests/test_prespec.py on a temp plan; the live reading /pre-spec of this session on its own plan
+method: "pytest .guppi/tests/test_prespec.py on a temp plan; by hand, after a /pre-spec: its findings on its own plan read against the Criterion"
 checked: 2026-09-29
 origin: raw/2026-09-20/1749/ledger.md#case-279.2
 sprint: migration
@@ -34,3 +34,4 @@ A `tasks` line whose text after the box opens with the word `render` or `sprint`
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L73
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the method waits for a /pre-spec, with no past moment · [[decision-case-875]]

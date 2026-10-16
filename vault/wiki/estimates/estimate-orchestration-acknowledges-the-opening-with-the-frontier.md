@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether the Frontier is written and the readings of /hi taken before the reply that acknowledges the opening Case of a sprint, and whether that reply shows the Frontier, holds the readings in its LEDGER block and puts the Ask questions before the question which item is next
-method: by hand, at the Retro of the session whose Spec set the new Render of rule-orchestration that the Criterion describes, that Render in its spec.md read against the Criterion (the session of case 769)
+method: "by hand: the Render of rule-orchestration in vault/wiki/orchestration.md read against the Criterion"
 origin: raw/2026-10-10/1913/ledger.md#case-769.4
 sprint: plugin
 created: 2026-10-10
@@ -33,3 +33,4 @@ Before that reply, the agent writes `raw/<date>/<hi HHMM>/frontier.md` as `rule-
 - 2026-10-10 created · [[decision-case-769.4]]
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1913/ledger.md#L37
 - 2026-10-15 updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]]
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

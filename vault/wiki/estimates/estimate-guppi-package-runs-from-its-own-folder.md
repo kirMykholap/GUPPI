@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-guppi-package]]"
-purpose: Whether the code, the settings, the lock and the tests of GUPPI stand under .guppi/, every hook, skill, agent, Makefile line and page runs them through uv run --project .guppi, the modules and the guards take that form, and the clean version holds no pyproject.toml at its root
-method: "by hand, after the librarian's run of the session that changes the example of a path pair in rule-page-generation: uv run --project .guppi pytest .guppi/tests/test_guppi_package.py, then a session opened in this repository, /hi typed there, and the output of its hooks read against the Criterion"
+purpose: Whether the code, the settings, the lock and the tests of GUPPI stand under .guppi/, every hook, skill, agent and page runs them through uv run --project .guppi, the modules and the guards take that form, and the clean version holds no pyproject.toml at its root
+method: "by hand, after a render of the harness: uv run --project .guppi pytest .guppi/tests/test_guppi_package.py, then a session opened in the project, /hi typed there, and the output of its hooks read against the Criterion"
 checked: 2026-10-16
 origin: raw/2026-10-15/0553/ledger.md#case-819.1
 sprint: plugin
@@ -42,3 +42,4 @@ The package `guppi`, its `pyproject.toml`, its lock file `uv.lock`, its tests an
 - 2026-10-16 defer by decision-case-837 superseded · [[decision-case-840.2]]
 - 2026-10-16 updated: read again after the example of a path pair changes in rule-page-generation and estimate-generate-rewords; the Criterion stands, the method waits for the librarian's run that writes the new example · [[decision-case-840.2]]
 - 2026-10-16 status: pending → passed · raw/2026-10-16/0342/ledger.md#L1
+- 2026-10-17 updated: the purpose names no Makefile, and the method waits for a render, with no past moment · [[decision-case-875]]

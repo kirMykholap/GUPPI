@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "873"
-status: current
+status: archived
 defer: ["[[rule-estimates-schema]]"]
+superseded_by: ["[[decision-case-877.1]]"]
 origin: raw/2026-10-16/2104/ledger.md#case-873
 sprint: plugin
 created: 2026-10-16
@@ -26,3 +27,6 @@ Whether the Estimate of a MOC with no parent may name guppi test alone as its me
 ## History
 
 - 2026-10-17 created · raw/2026-10-16/2104/ledger.md#case-873
+- 2026-10-17 superseded by decision-case-877.1 · [[decision-case-877.1]]
+- 2026-10-17 archived · superseded
+- 2026-10-17 archived · cleanup

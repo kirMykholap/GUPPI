@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, on an item that points to code no page covers, reads that code and offers in a round a page only for the thing the Case changes, or the path added to a page that describes it, and puts the chosen page into the same Case
-method: "by hand at the Retro of this session: the new Render of rule-case-build in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
+method: "by hand: the Render of rule-case-build in .claude/agents/case-guppi.md read against the Criterion, recorded in the estimate line"
 origin: raw/2026-10-13/1753/ledger.md#case-803
 sprint: plugin
 created: 2026-10-13
@@ -32,3 +32,4 @@ It reads that code in parts, the functions the Case changes and the places that 
 
 - 2026-10-13 created · [[decision-case-803]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L115
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

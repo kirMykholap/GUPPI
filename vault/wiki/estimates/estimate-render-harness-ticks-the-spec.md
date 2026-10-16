@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-render-harness]]"
 purpose: render, once it wrote the harness and exits 0, ticks the guppi render lines of every Spec under raw/ whose yaml is applied whole
-method: pytest .guppi/tests/test_render.py, plus one reading of this session's spec.md after the librarian's run
+method: "pytest .guppi/tests/test_render.py; by hand, after a librarian's run: the spec.md of its session read against the Criterion"
 checked: 2026-09-29
 origin: raw/2026-09-17/1119/ledger.md#case-226.2
 sprint: migration
@@ -37,3 +37,4 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 - 2026-09-29 updated: the Criterion replaced whole — When and Then only, Given out, the yaml applied whole stated (case 491.4) · [[decision-case-491.4]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1134/ledger.md#L62
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the method waits for a librarian's run, with no past moment · [[decision-case-875]]

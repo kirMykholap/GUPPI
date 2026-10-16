@@ -16,7 +16,7 @@ core: true
 
 ## Purpose
 
-Prevents a heredoc from carrying a backslash escape, writing a file or feeding a script to an interpreter through the Bash tool. On this Windows machine the tool's shell layer interprets backslash escapes inside a heredoc body before the interpreter reads it, whatever the quoting of the marker; three sessions (H, L, M) broke edit scripts that way with the lesson live, and a heredoc that writes a file fails on quotes in its body. A heredoc with neither, fed to Python, rewrote a source file in three more sessions, and `Path.write_text` left CRLF line endings in it (`insight-workflow-file-changed-through-a-shell-command`, `lesson-work-mode-edited-a-source-file-through-the-shell`): a source file changes by Edit, and a script goes into the scratchpad and runs by path. A lesson the agent has to remember is not a rule; a `PreToolUse` hook cannot be skipped. A script run by path or passed by `-c` or `-e` passes. The mechanism stands in the docstring of `.guppi/guppi/bashguard.py`, and a PowerShell call is the rule `rule-powershell-guard` (cases 127, 796.1).
+Prevents a heredoc from carrying a backslash escape, writing a file or feeding a script to an interpreter through the Bash tool. The tool's shell layer may interpret backslash escapes inside a heredoc body before the interpreter reads it, whatever the quoting of the marker, and a heredoc that writes a file fails on quotes in its body (on the Windows machine where GUPPI is built, three sessions broke edit scripts that way with the lesson live, case 127). A heredoc with neither, fed to Python, can rewrite a source file, and on Windows `Path.write_text` leaves CRLF line endings in it, so a source file changes by Edit, and a script goes into the scratchpad and runs by path (it did so in three more sessions, `insight-workflow-file-changed-through-a-shell-command`, `lesson-work-mode-edited-a-source-file-through-the-shell`, case 796.1). A lesson the agent has to remember is not a rule; a `PreToolUse` hook cannot be skipped. A script run by path or passed by `-c` or `-e` passes. The mechanism stands in the docstring of `.guppi/guppi/bashguard.py`, and a PowerShell call is the rule `rule-powershell-guard` (cases 127, 796.1).
 
 ## History
 
@@ -35,3 +35,4 @@ Prevents a heredoc from carrying a backslash escape, writing a file or feeding a
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the machine and the sessions of the Purpose move into the brackets of their pointers · [[decision-case-875]]

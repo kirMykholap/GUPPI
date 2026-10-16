@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-skill-hi]]"
 purpose: After /hi the output of every block of the skill is in the first turn's context with no read call
-method: "by hand, after the librarian's run of the session that sets this Criterion: at the first /hi after it, the first turn's context and the tool calls before it read in the transcript, and the allowed-tools of .claude/skills/hi/SKILL.md, written into the estimate line"
+method: "by hand, after a /hi: the first turn's context and the tool calls before it read in the transcript, and the allowed-tools of .claude/skills/hi/SKILL.md, written into the estimate line"
 checked: 2026-10-16
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
@@ -39,3 +39,4 @@ The context of the first turn holds the output of each block of the skill, in th
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-16 updated: the Criterion replaced whole — allowed-tools names guppi gitstate in place of the two git commands · [[decision-case-851.2]]
 - 2026-10-16 status: pending → passed · raw/2026-10-16/1712/ledger.md#L1
+- 2026-10-17 updated: the method waits for a /hi, with no past moment · [[decision-case-875]]

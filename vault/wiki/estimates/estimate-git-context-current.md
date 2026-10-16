@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-git-context]]"
 purpose: At /hi the context holds the render sync, the branch and the status, and the skill runs no git pull
-method: "by hand, after the first /hi that follows the first push to GitHub: the first turn's context, the output of git remote -v and .claude/skills/hi/SKILL.md read against the Criterion, written into the estimate line"
+method: "by hand, after a /hi: the first turn's context, the output of git remote -v and .claude/skills/hi/SKILL.md read against the Criterion, written into the estimate line"
 checked: 2026-10-13
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
@@ -38,3 +38,4 @@ The context holds `Render:` with the output of `uv run --project .guppi guppi re
 - 2026-10-13 updated: the Criterion replaced whole — git remote prints origin, the repository GUPPI on GitHub; /hi still runs no git pull · [[decision-case-787.2]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L23
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-17 updated: the method waits for a /hi, not for the first push to GitHub · [[decision-case-875]]

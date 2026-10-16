@@ -348,59 +348,59 @@ defer:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-ships-neutral-texts`
-- [ ] defer `rule-clean-branch`
-- [ ] update `rule-spec-box`
-- [ ] update `rule-vault-layout`
-- [ ] update `rule-morph`
-- [ ] update `rule-guppi-config`
-- [ ] update `rule-documentation`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] update `rule-bash-guard`
-- [ ] update `rule-harness`
-- [ ] update `rule-guppi-package`
-- [ ] update `rule-claude-md`
-- [ ] update `rule-tests-clock-pinned`
-- [ ] update `rule-shell-write-check`
-- [ ] update `rule-python-utf8`
-- [ ] update `rule-powershell-guard`
-- [ ] update `rule-page-read`
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-retro`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/retro/SKILL.md`
-- [ ] update `estimate-ratification-case-id-carries-the-sprint`
-- [ ] update `estimate-skill-sprint-close-leads-the-closing-session`
-- [ ] update `estimate-sprint-close-takes-the-readings-in-groups`
-- [ ] update `estimate-guppi-config-fills-the-languages`
-- [ ] update `estimate-claude-md-rendered`
-- [ ] update `estimate-git-context-current`
-- [ ] update `estimate-guppi-package-runs-from-its-own-folder`
-- [ ] update `estimate-permissions`
-- [ ] update `estimate-hi-no-read-calls`
-- [ ] update `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
-- [ ] update `estimate-orchestration-marks-each-round-of-a-batch`
-- [ ] update `estimate-orchestration-sets-off-each-reply-of-case-guppi`
-- [ ] update `estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter`
-- [ ] update `estimate-prespec-catches-a-command-line-off-form`
-- [ ] update `estimate-prespec-catches-a-superseded-case`
-- [ ] update `estimate-prespec-gathers-the-answers-after-findings`
-- [ ] update `estimate-render-harness-ticks-the-spec`
-- [ ] update `estimate-glossary-ticks-the-spec`
-- [ ] update `estimate-rules-schema-checked`
-- [ ] update `estimate-skill-sprint-open-asks-the-opening-questions`
-- [ ] update `estimate-skill-sprint-open-refuses-a-taken-sprint-id`
-- [ ] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
-- [ ] update `estimate-sprint-close-next-session-opens-the-sprint`
-- [ ] update `estimate-case-build-answers-what-done-means`
-- [ ] update `estimate-case-build-finds-an-existing-judgment`
-- [ ] update `estimate-case-build-judges-options-against-the-broken-rule`
-- [ ] update `estimate-case-build-offers-a-page-for-code-no-page-covers`
-- [ ] update `estimate-case-build-reads-the-last-output-of-a-check`
-- [ ] update `estimate-case-build-checks-a-fact-of-an-outside-tool`
-- [ ] update `estimate-case-example-passes-the-check`
-- [ ] update `estimate-generate-writes-rules-from-applies-to`
-- [ ] update `estimate-case-build-records-the-rounds-in-recommend`
-- [ ] update `estimate-python-utf8-output-intact`
+- [x] update `estimate-clean-branch-ships-neutral-texts`
+- [x] defer `rule-clean-branch`
+- [x] update `rule-spec-box`
+- [x] update `rule-vault-layout`
+- [x] update `rule-morph`
+- [x] update `rule-guppi-config`
+- [x] update `rule-documentation`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-bash-guard`
+- [x] update `rule-harness`
+- [x] update `rule-guppi-package`
+- [x] update `rule-claude-md`
+- [x] update `rule-tests-clock-pinned`
+- [x] update `rule-shell-write-check`
+- [x] update `rule-python-utf8`
+- [x] update `rule-powershell-guard`
+- [x] update `rule-page-read`
+- [x] update `rule-skill-hi`
+- [x] update `rule-retro`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `estimate-ratification-case-id-carries-the-sprint`
+- [x] update `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] update `estimate-sprint-close-takes-the-readings-in-groups`
+- [x] update `estimate-guppi-config-fills-the-languages`
+- [x] update `estimate-claude-md-rendered`
+- [x] update `estimate-git-context-current`
+- [x] update `estimate-guppi-package-runs-from-its-own-folder`
+- [x] update `estimate-permissions`
+- [x] update `estimate-hi-no-read-calls`
+- [x] update `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
+- [x] update `estimate-orchestration-marks-each-round-of-a-batch`
+- [x] update `estimate-orchestration-sets-off-each-reply-of-case-guppi`
+- [x] update `estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter`
+- [x] update `estimate-prespec-catches-a-command-line-off-form`
+- [x] update `estimate-prespec-catches-a-superseded-case`
+- [x] update `estimate-prespec-gathers-the-answers-after-findings`
+- [x] update `estimate-render-harness-ticks-the-spec`
+- [x] update `estimate-glossary-ticks-the-spec`
+- [x] update `estimate-rules-schema-checked`
+- [x] update `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] update `estimate-skill-sprint-open-refuses-a-taken-sprint-id`
+- [x] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] update `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] update `estimate-case-build-answers-what-done-means`
+- [x] update `estimate-case-build-finds-an-existing-judgment`
+- [x] update `estimate-case-build-judges-options-against-the-broken-rule`
+- [x] update `estimate-case-build-offers-a-page-for-code-no-page-covers`
+- [x] update `estimate-case-build-reads-the-last-output-of-a-check`
+- [x] update `estimate-case-build-checks-a-fact-of-an-outside-tool`
+- [x] update `estimate-case-example-passes-the-check`
+- [x] update `estimate-generate-writes-rules-from-applies-to`
+- [x] update `estimate-case-build-records-the-rounds-in-recommend`
+- [x] update `estimate-python-utf8-output-intact`
 - [ ] read `estimate-clean-branch-ships-neutral-texts`
 ```
 
@@ -479,13 +479,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-estimates-schema`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] update `estimate-lint-checks-the-method`
+- [x] update `rule-estimates-schema`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] update `estimate-lint-checks-the-method`
 - [x] `.guppi/guppi/pages.py`: a predicate `has_no_parent(props)`, true when the `parent` field is empty; `group_of` of `.guppi/guppi/glossary.py` imports it in place of its own test of `parent`.
 - [x] `.guppi/guppi/lint.py`: a pattern `GUPPI_TEST` for the command `guppi test` beside `GUPPI_COMMAND`; `names_a_moc_form(method, top=False)` passes `guppi test` when `top`; `check_method` passes `top` by `has_no_parent` of the target and returns no finding for `guppi test` on a MOC with no `parent` before the Makefile, the test files and the children are read; the module docstring and the docstrings of `names_a_moc_form` and `check_method` say so.
 - [x] `.guppi/tests/test_lint.py`: `test_a_moc_method_naming_pytest_a_path_or_a_command_alone_is_a_finding` asserts the finding for `guppi test` alone on a MOC with a `parent`, written so that lint finds nothing else on it, and for `guppi check` and `guppi style` alone on `rule-root`; a new test asserts that `guppi test` alone on `rule-root`, which has no `parent` and whose child carries a tested Estimate, gets no finding.
-- [ ] read `estimate-lint-checks-the-method`
+- [x] read `estimate-lint-checks-the-method`
 ```
 
 ### Case 877.2 — Pre-spec passes guppi test on a MOC with no parent
@@ -525,10 +525,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-catches-a-method-without-a-form`
+- [x] update `estimate-prespec-catches-a-method-without-a-form`
 - [x] `.guppi/guppi/prespec.py`: `plan_parent(blocks, slug, project_dir)` beside `plan_kind` — as `plan_kind` reads `kind`, the `parent` that the `set` of the last `update` of the plan gives, or the `parent`, else the `ref`, of the last `create` of the plan that writes the page, else the `parent` of the live page; `form_finding` passes `top` by `has_no_parent` of `.guppi/guppi/pages.py` to `names_a_moc_form`; the module docstring and the docstring of `check_form` say so.
 - [x] `.guppi/tests/test_prespec.py`: `test_a_moc_estimate_naming_a_test_file_pytest_or_a_command_alone_is_a_finding` moves `guppi test` alone on the live MOC with no `parent` to the clean list and asserts the line for `guppi check` alone; a new test asserts the line for `guppi test` alone on a live MOC with a `parent` and on a MOC that a `create` of the plan writes with a `ref`; `test_the_moc_form_is_one_predicate_lint_and_prespec_share` asserts that `names_a_moc_form` with `top` passes `guppi test` and refuses `guppi check`, and that lint, pre-spec and `group_of` of `.guppi/guppi/glossary.py` use the one `has_no_parent` of `.guppi/guppi/pages.py`.
-- [ ] read `estimate-prespec-catches-a-method-without-a-form`
+- [x] read `estimate-prespec-catches-a-method-without-a-form`
 ```
 
 ## Deferred

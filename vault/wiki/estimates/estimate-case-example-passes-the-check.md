@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-example]]"
 purpose: Whether the example Case of case-example.md, in the chat form case-guppi writes, passes the check the SubagentStop hook runs over the file of a Case, so the form it shows stays a form the scripts accept
-method: uv run --project .guppi pytest .guppi/tests/test_case_schema.py, passed and not skipped; at the Retro of the session that creates it, the new Renders of rule-case-example and rule-case-protocol in the Spec read against the Criterion
+method: "uv run --project .guppi pytest .guppi/tests/test_case_schema.py, passed and not skipped; by hand: the Renders of rule-case-example and rule-case-protocol in vault/wiki/case-example.md and vault/wiki/case-schema.md read against the Criterion"
 origin: raw/2026-10-07/1804/ledger.md#case-717.1
 sprint: migration
 created: 2026-10-07
@@ -38,3 +38,4 @@ Then:
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the method reads the Renders where they live, with no past moment · [[decision-case-875]]

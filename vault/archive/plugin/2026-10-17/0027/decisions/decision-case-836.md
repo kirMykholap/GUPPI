@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "836"
-status: current
+status: archived
 defer: ["[[lesson-ledger-window-stops-at-a-resume-on-the-next-day]]", "[[lesson-case-build-agent-context-grows-on-every-resume]]"]
+superseded_by: ["[[decision-case-876]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-836
 sprint: plugin
 created: 2026-10-15
@@ -30,3 +31,6 @@ No Case fixes the context of a resumed case-guppi that only grows; put off at th
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-836
+- 2026-10-17 superseded by decision-case-876 · [[decision-case-876]]
+- 2026-10-17 archived · superseded
+- 2026-10-17 archived · cleanup

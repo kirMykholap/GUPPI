@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-sprint-close]]"
 purpose: Whether the session that closes a sprint sorts the pending and failed Estimates into groups by the kind of moment their method names, sets up each moment it can in its Work Mode, and carries or archives unread only those still unread and those read failed that the sprint page does not list
-method: "by hand, in the session that changes this page: the closing Case in the spec.md and the ledger.md of the last session that closed a sprint, now vault/raw/2026-10-10/1555/, read against the Criterion"
+method: "by hand, after the Work Mode of a session that closed a sprint: the closing Case in the spec.md and the ledger.md of that session read against the Criterion"
 checked: 2026-10-10
 origin: raw/2026-10-04/1439/ledger.md#case-628.2
 sprint: migration
@@ -34,3 +34,4 @@ The `context` of the closing Case sorts each Estimate under `vault/wiki/estimate
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1555/ledger.md#L5
 - 2026-10-10 updated: the Criterion replaced whole — the close line also names an Estimate read failed in Work Mode that the sprint page does not list; the purpose and the method set anew · [[decision-case-763.2]]
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1713/ledger.md#L22
+- 2026-10-17 updated: the method names no dated session folder · [[decision-case-875]]

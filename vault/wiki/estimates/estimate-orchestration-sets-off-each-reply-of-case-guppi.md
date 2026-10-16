@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether each reply of case-guppi that the main agent shows — a round, a Fact answer or a built Case — stands between two horizontal rules, with the agent's own text after the second
-method: "by hand at the Retro of this session: the new Render of rule-orchestration in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
+method: "by hand: the Render of rule-orchestration in vault/wiki/orchestration.md read against the Criterion, recorded in the estimate line"
 origin: raw/2026-10-09/2049/ledger.md#case-751.1
 sprint: migration
 created: 2026-10-09
@@ -30,3 +30,4 @@ A horizontal rule stands on its own line before the reply of `case-guppi`.
 
 - 2026-10-09 created · [[decision-case-751.1]]
 - 2026-10-09 status: pending → passed · raw/2026-10-09/2049/ledger.md#L14
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

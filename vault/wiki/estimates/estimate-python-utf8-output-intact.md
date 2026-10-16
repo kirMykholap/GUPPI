@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-python-utf8]]"
-purpose: A Python script the agent runs through the Bash tool with no encoding set prints a dash and a character outside cp1252 intact, and the hooks keep their output
-method: "uv run --project .guppi guppi render --check and json.load of .claude/settings.json; then by hand at a later session start: a Python script run through the Bash tool with no encoding in the command prints a dash and a character outside cp1252, and the tool output shows both; the Stop line of guppi context shows its dash"
+purpose: A Python script the agent runs through the Bash tool with no encoding set prints a dash and a character outside the code page of the locale intact, and the hooks keep their output
+method: "uv run --project .guppi guppi render --check and json.load of .claude/settings.json; by hand, after a session start: a Python script run through the Bash tool with no encoding in the command prints a dash and a character outside the code page of the locale, and the tool output shows both; the Stop line of guppi context shows its dash"
 checked: 2026-10-01
 origin: raw/2026-09-30/0248/ledger.md#case-534.1
 sprint: migration
@@ -34,3 +34,4 @@ Then:
 - 2026-09-30 created · [[decision-case-534.1]]
 - 2026-10-01 status: pending → passed · raw/2026-10-01/1237/ledger.md#L41
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-17 updated: the purpose and the method name the code page of the locale, not cp1252 · [[decision-case-875]]

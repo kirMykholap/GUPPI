@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-build]]"
 purpose: Whether each Case case-guppi builds creates or replaces an Estimate or names the one that already checks the change, offers that Estimate by slug in a round on the promise, names it in context after an answer that no new Estimate is created, and asks in a round when it can do neither
-method: "by hand at the Retro of this session: the new Render of rule-case-build in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
+method: "by hand: the Render of rule-case-build in .claude/agents/case-guppi.md read against the Criterion, recorded in the estimate line"
 checked: 2026-10-13
 origin: raw/2026-09-30/2356/ledger.md#case-561.11
 sprint: migration
@@ -37,3 +37,4 @@ Each Case and sub-case of the file creates an Estimate or replaces the Criterion
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L39
 - 2026-10-13 updated: the Criterion replaced whole — the round on the promise names the existing Estimate, and an answer of no new Estimate closes the promise only with it named (case 800.1) · [[decision-case-800.1]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L113
+- 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]

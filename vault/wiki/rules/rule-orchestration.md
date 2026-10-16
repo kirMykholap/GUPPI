@@ -8,6 +8,7 @@ governs: vault/wiki/orchestration.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-orchestration-acknowledging-reply]]", "[[estimate-orchestration-shows-the-frontier-after-a-closed-line]]", "[[estimate-orchestration-defers-in-one-reply]]", "[[estimate-orchestration-shows-the-built-case]]", "[[estimate-orchestration-forwards-a-discussion-question]]", "[[estimate-orchestration-asks-in-the-grill-me-shape]]", "[[estimate-orchestration-puts-the-harness-before-plan-mode]]", "[[estimate-orchestration-names-related-cases-in-the-dispatch]]", "[[estimate-orchestration-loaded]]", "[[estimate-orchestration-signs-a-batch-together]]", "[[estimate-orchestration-showing-example-passes-the-check]]", "[[estimate-orchestration-defer-example-passes-the-hook]]", "[[estimate-orchestration-signs-items-taken-together]]", "[[estimate-orchestration-says-when-a-rendered-change-lands]]", "[[estimate-orchestration-marks-each-round-of-a-batch]]", "[[estimate-orchestration-takes-back-a-ratified-case]]", "[[estimate-orchestration-batches-cases-out-at-once]]", "[[estimate-orchestration-sets-off-each-reply-of-case-guppi]]", "[[estimate-orchestration-acknowledges-the-opening-with-the-frontier]]", "[[estimate-orchestration-rechecks-a-sibling-after-a-joint-send]]"]
+deferred_by: ["[[decision-case-876]]"]
 origin: raw/2026-10-02/1834/ledger.md#case-595.2
 sprint: migration
 created: 2026-09-25
@@ -204,3 +205,4 @@ The reply that acknowledges a ratification has four parts, in this order: the `L
 - 2026-10-17 updated: in Plan Mode an Other Case line raises no question: the main agent sends the other Case back by itself, and the person agrees or not at its showing (case 872.3) · [[decision-case-872.3]]
 - 2026-10-17 updated: an Other Case line of a batch raises no question: the other Case joins the batch by itself (case 872.5) · [[decision-case-872.5]]
 - 2026-10-17 status: built → draft · cascade
+- 2026-10-17 deferred · [[decision-case-876]]

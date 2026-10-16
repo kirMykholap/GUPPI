@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-close]]"
-purpose: The librarian's run ends in one separate commit of vault, CLAUDE.md, .claude and guppi.toml, with no rendered file left untracked, and a report of twenty lines or fewer
-method: "by hand after the next librarian run: git log shows its commit and the paths it touched, git status shows no untracked file the render wrote, and the report is read in the transcript"
+purpose: The librarian's run ends in one separate commit of vault and each file the render writes, with no rendered file left modified or untracked, and a report of twenty lines or fewer
+method: "uv run --project .guppi pytest .guppi/tests/test_render.py -k paths; by hand, after the librarian's run of the next session, whose .claude/agents/librarian-guppi.md holds the new Render of rule-close: git log shows its commit and the paths it touched, git status shows no file the render wrote as modified or untracked, and the report is read in the transcript"
 checked: 2026-09-29
 origin: raw/2026-09-10/ledger.md#case-36.1
 sprint: migration
@@ -15,14 +15,16 @@ tags: [harness, workflow, git, librarian]
 ## Criterion
 
 When:
-After a live run, the librarian commits at the close, as `.claude/agents/librarian-guppi.md` says.
+After a live run, the librarian commits at the close, as `.claude/agents/librarian-guppi.md` says, with the list that `uv run --project .guppi guppi render --paths` prints.
 
 Then:
-`git log` shows one commit after the Retro commit. It takes `vault/`, `CLAUDE.md`, `.claude` and `guppi.toml`: `git add vault CLAUDE.md .claude guppi.toml`.
-**＋** It stays one commit, separate from the session's, with the message `docs(vault): librarian, <date>`, and never `--amend`.
-**＋** After the commit, `git status` shows no file that `.guppi/guppi/render.py` wrote as untracked, `guppi.toml` included.
+`uv run --project .guppi guppi render --paths` prints each file that `guppi render` writes, one path per line, and writes nothing.
+**＋** `git log` shows one commit after the Retro commit, separate from the session's, with the message `docs(vault): librarian, <date>`, and never `--amend`.
+**＋** The commit takes `vault/` and each file of that list: `git add vault $(uv run --project .guppi guppi render --paths)`.
+**＋** After the commit, `git status` shows no file that `.guppi/guppi/render.py` wrote as modified or untracked.
 **＋** The report reaches the main agent with the counts, the flags and the lint total, in twenty lines or fewer.
-**－** The commit takes no path outside `vault/`, `CLAUDE.md`, `.claude` and `guppi.toml`.
+**－** The commit takes no path that neither `vault/` nor that list names.
+**－** In a project without `rule-plugin-install`, the list and the commit name no `plugin/skills/install/SKILL.md`.
 
 ## Result
 
@@ -38,3 +40,4 @@ Then:
 - 2026-09-28 updated: the Criterion replaced whole — the commit takes guppi.toml, and no rendered file stays untracked (case 482) · [[decision-case-482]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L1
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
+- 2026-10-16 updated: the Criterion replaced whole — the commit takes vault and each file that guppi render --paths prints · [[decision-case-857]]

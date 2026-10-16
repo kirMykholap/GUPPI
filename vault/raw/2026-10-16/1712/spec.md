@@ -101,13 +101,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-rules-schema`
-- [ ] update `rule-entities-schema`
-- [ ] update `rule-ratification`
-- [ ] update `estimate-clean-branch-ships-neutral-texts`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/entities/schema.yaml`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/ratification.md`
+- [x] update `rule-rules-schema`
+- [x] update `rule-entities-schema`
+- [x] update `rule-ratification`
+- [x] update `estimate-clean-branch-ships-neutral-texts`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/entities/schema.yaml`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/ratification.md`
 - [ ] read `estimate-clean-branch-ships-neutral-texts`
 ```
 
@@ -159,11 +159,11 @@ delete:
 ```
 
 ```tasks
-- [ ] delete `estimate-skill-sprint-close-migration-merged-into-main`
-- [ ] update `rule-skill-sprint-close`
-- [ ] update `estimate-sprint-close-archives-done-insights-and-lone-lessons`
-- [ ] update `estimate-sprint-close-archives-the-decisions`
-- [ ] update `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
+- [x] delete `estimate-skill-sprint-close-migration-merged-into-main`
+- [x] update `rule-skill-sprint-close`
+- [x] update `estimate-sprint-close-archives-done-insights-and-lone-lessons`
+- [x] update `estimate-sprint-close-archives-the-decisions`
+- [x] update `estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest`
 ```
 
 ### Case 856.3 — A core page comes into a project with its passed Estimates
@@ -202,9 +202,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-rules-schema`
-- [ ] update `estimate-rules-schema-checked`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] update `rule-rules-schema`
+- [x] update `estimate-rules-schema-checked`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
 - [ ] read `estimate-rules-schema-checked`
 ```
 
@@ -266,11 +266,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-close`
-- [ ] update `estimate-close-commits`
+- [x] update `rule-close`
+- [x] update `estimate-close-commits`
 - [x] `.guppi/guppi/render.py`: the option `--paths`, in the group of `--check` and `--sync`, prints the keys of `plan`, one per line, writes nothing, ticks nothing and exits 0; a render error goes to stderr with exit 1 and prints no path; the docstring names the option and the close commit that reads it.
 - [x] `.guppi/tests/test_render.py`: tests `paths` — a vault with a `full` and a `partial` page on two files prints each `governs` path once and writes nothing; a render error prints no path and exits 1.
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-close-commits`
 ```
 
@@ -331,7 +331,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-writes-the-session-files`
+- [x] update `estimate-clean-branch-writes-the-session-files`
 - [ ] read `estimate-clean-branch-writes-the-session-files`
 ```
 
@@ -377,7 +377,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-harness-pipeline`
+- [x] update `estimate-harness-pipeline`
 ```
 
 ## Case 861 — estimate-guppi-tests-green takes a method that fits a MOC and leaves the backlog
@@ -440,7 +440,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-tests-green`
+- [x] update `estimate-guppi-tests-green`
 ```
 
 ## Deferred

@@ -5,7 +5,6 @@ status: passed
 target: "[[rule-harness]]"
 method: make test-harness over .guppi/tests/test_render.py and .guppi/tests/test_lint.py; the live reading of uv run --project .guppi guppi check by hand
 checked: 2026-10-16
-deferred_by: ["[[decision-case-833]]", "[[decision-case-849]]"]
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
 created: 2026-09-10
@@ -50,3 +49,6 @@ The Purpose says that three rules belong to no phase of the session: the rendere
 - 2026-10-15 deferred · [[decision-case-833]]
 - 2026-10-16 deferred · [[decision-case-849]]
 - 2026-10-16 status: failed → passed · raw/2026-10-16/0342/ledger.md#L16
+- 2026-10-16 defer by decision-case-833 superseded · [[decision-case-860]]
+- 2026-10-16 defer by decision-case-849 superseded · [[decision-case-860]]
+- 2026-10-16 updated: the defers of case 833 and case 849 retired — the Estimate passed at the /hi of session 0342 · [[decision-case-860]]

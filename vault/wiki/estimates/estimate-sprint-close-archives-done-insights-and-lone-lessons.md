@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-sprint-close]]"
 purpose: At the close of a sprint its actioned Insights and its error lessons that joined no Insight go to the archive, and its knowledge lessons and open Insights stay
-method: pytest .guppi/tests/test_sprint_close.py -k insights; by hand, the output of the preview uv run --project .guppi guppi sprint-close --sprint migration over the live vault read against the Then
+method: pytest .guppi/tests/test_sprint_close.py -k insights; by hand, the output of the preview uv run --project .guppi guppi sprint-close --sprint <id> over the live vault, <id> the sprint that vault/wiki/sprint.md names, read against the Then
 checked: 2026-10-04
 origin: raw/2026-10-03/0317/ledger.md#case-612.2
 sprint: migration
@@ -36,3 +36,4 @@ Each Insight under `vault/wiki/insights/` whose `sprint` is `<id>` and that stan
 - 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L2
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-16 updated: the hand step previews the open sprint, not migration · [[decision-case-856.2]]

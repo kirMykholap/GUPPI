@@ -4,9 +4,8 @@ kind: QA
 status: passed
 target: "[[entity-guppi]]"
 purpose: uv run --project .guppi guppi test is green on the branch — the whole suite of the harness
-method: uv run --project .guppi guppi test, 0 failed; read after each Work Mode
+method: "by hand, after each Work Mode: uv run --project .guppi guppi test, read against the Criterion, 0 failed"
 checked: 2026-09-29
-deferred_by: ["[[decision-case-829]]"]
 origin: raw/2026-09-22/0014/ledger.md#case-306.2
 sprint: migration
 created: 2026-09-22
@@ -36,3 +35,5 @@ pytest reports no failed test and no error, and `uv run --project .guppi guppi t
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
 - 2026-10-15 deferred · [[decision-case-829]]
+- 2026-10-16 defer by decision-case-829 superseded · [[decision-case-861]]
+- 2026-10-16 updated: the method a reading by hand of guppi test, a form that fits a MOC; the defer of case 829 retired · [[decision-case-861]]

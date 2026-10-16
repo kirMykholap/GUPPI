@@ -153,7 +153,7 @@ update:
 
 ```tasks
 - [x] update `estimate-hi-no-read-calls`
-- [ ] read `estimate-hi-no-read-calls`
+- [x] read `estimate-hi-no-read-calls`
 ```
 
 ### Case 851.3 — guppi gitstate prints the state of git or one line outside a repository

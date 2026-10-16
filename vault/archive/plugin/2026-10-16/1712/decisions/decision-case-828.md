@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "828"
-status: current
+status: archived
 defer: ["[[rule-rules-schema]]"]
+superseded_by: ["[[decision-case-856.3]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-828
 sprint: plugin
 created: 2026-10-15
@@ -26,3 +27,6 @@ Its text still says a core page ships without its Estimates, after Case 822.1 sh
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-828
+- 2026-10-16 superseded by decision-case-856.3 · [[decision-case-856.3]]
+- 2026-10-16 archived · superseded
+- 2026-10-16 archived · cleanup

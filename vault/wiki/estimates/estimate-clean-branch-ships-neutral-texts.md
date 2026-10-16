@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-clean-branch]]"
 purpose: Whether the rules, the entities and CLAUDE.md of the clean version describe GUPPI and the languages in words that hold in any project and hold no other sentence true only in the repository of GUPPI, and which sentences of the shipped Estimates hold only there
-method: "by hand, after a tag prod-x.y.z stands in the history of HEAD and after the librarian's run of the session that set this method: uv run --project .guppi guppi ship --allow-draft into an empty temporary folder, and the pages and the files it wrote read against the Criterion, each sentence that holds only in the repository of GUPPI listed in the estimate line (the session of case 824)"
+method: "by hand, after the librarian's run of the session that set this method, with a tag prod-x.y.z in the history of HEAD: uv run --project .guppi guppi ship --allow-draft into an empty temporary folder, and each sentence of the pages and the files it wrote read whole against the Criterion, never found by a keyword search, each sentence that holds only in the repository of GUPPI listed in the estimate line (the session of case 856)"
 checked: 2026-10-16
 origin: raw/2026-10-15/0553/ledger.md#case-822.7
 sprint: plugin
@@ -34,3 +34,4 @@ Then:
 - 2026-10-15 created · [[decision-case-822.7]]
 - 2026-10-15 updated: the method waits for a tag prod-x.y.z, without which guppi ship writes nothing · [[decision-case-824]]
 - 2026-10-16 status: pending → failed · raw/2026-10-16/0342/ledger.md#L2
+- 2026-10-16 updated: read again after the three sentences are rewritten; the method waits for the librarian's run of this session and reads each sentence whole · [[decision-case-856.1]]

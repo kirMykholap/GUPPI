@@ -484,6 +484,8 @@ entries:
       of Cases 852 and 853; put off at /hi of session 0342
   exists: true
   applied: 05:25:46
+  superseded_by:
+  - '859'
 - line: 16
   text: 'estimate[estimate-harness-pipeline][passed] 2026-10-16, /hi of session 0342, on the committed
     tree: `make test-harness` 144 passed; `uv run --project .guppi guppi render --check`, `sprint --check`,
@@ -1254,6 +1256,8 @@ decisions:
       the fix of Case 851 lands only at the render after the librarian's run.
   spec: vault/raw/2026-10-16/0342/spec.md
   applied: 05:25:46
+  superseded_by:
+  - decision-case-859
 - case: '851.3'
   decision: decision-case-851.3
   origin: raw/2026-10-16/0342/ledger.md#case-851.3

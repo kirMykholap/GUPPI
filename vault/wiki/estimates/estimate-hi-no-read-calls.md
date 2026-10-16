@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-hi]]"
 purpose: After /hi the output of every block of the skill is in the first turn's context with no read call
 method: "by hand, after the librarian's run of the session that sets this Criterion: at the first /hi after it, the first turn's context and the tool calls before it read in the transcript, and the allowed-tools of .claude/skills/hi/SKILL.md, written into the estimate line"
-checked: 2026-09-30
+checked: 2026-10-16
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -24,7 +24,7 @@ The context of the first turn holds the output of each block of the skill, in th
 
 ## Result
 
-2026-09-30, /hi of session 0248, the first turn's context and the transcript: the context holds the text of sprint.md, backlog.md, brief.md, case-schema.md and glossary.md, then Render:, Branch:, Status:, Tail:, in the order of the children of rule-skill-hi; allowed-tools names `uv run guppi render --sync`, `git branch --show-current`, `git status --short`, `uv run guppi tail` and neither `git pull` nor `gh`; the agent's first tool call was a Bash over Estimate pages, and it made no read-tool call for any of the four blocks
+2026-10-16, /hi of session 1712, the first turn's context and .claude/skills/hi/SKILL.md: the context holds the text of sprint.md, backlog.md, brief.md, orchestration.md, where-to-stop.md, ratification.md and glossary.md, then Render:, Branch: with the output of guppi gitstate (the branch plugin and Status:), and Tail:, in the order of the blocks of the skill; allowed-tools names uv run --project .guppi guppi render --sync, uv run --project .guppi guppi gitstate and uv run --project .guppi guppi tail, and no git pull, git init or gh; the agent's first tool calls were Reads of four Estimate pages, and it made no read-tool call for any block
 
 ## History
 
@@ -38,3 +38,4 @@ The context of the first turn holds the output of each block of the skill, in th
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L2
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-16 updated: the Criterion replaced whole — allowed-tools names guppi gitstate in place of the two git commands · [[decision-case-851.2]]
+- 2026-10-16 status: pending → passed · raw/2026-10-16/1712/ledger.md#L1

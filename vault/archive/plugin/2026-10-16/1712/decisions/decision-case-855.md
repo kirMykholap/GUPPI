@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "855"
-status: current
+status: archived
 defer: ["[[estimate-clean-branch-writes-the-session-files]]"]
+superseded_by: ["[[decision-case-859]]"]
 origin: raw/2026-10-16/0342/ledger.md#case-855
 sprint: plugin
 created: 2026-10-16
@@ -26,3 +27,7 @@ Failed at Retro of session 0104 on the first /hi outside a git repository; its r
 ## History
 
 - 2026-10-16 created · raw/2026-10-16/0342/ledger.md#case-855
+- 2026-10-16 superseded by decision-case-859 · [[decision-case-859]]
+- 2026-10-16 deferred · [[decision-case-863]]
+- 2026-10-16 archived · superseded
+- 2026-10-16 archived · cleanup

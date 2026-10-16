@@ -7,7 +7,7 @@ enforcement: render
 governs: .claude/skills/sprint-close/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-skill-sprint-close-leads-the-closing-session]]", "[[estimate-skill-sprint-close-migration-merged-into-main]]"]
+estimates: ["[[estimate-skill-sprint-close-leads-the-closing-session]]"]
 origin: raw/2026-10-08/2352/ledger.md#case-743.8
 sprint: migration
 created: 2026-10-08
@@ -52,3 +52,4 @@ This session closes the sprint that `vault/wiki/sprint.md` names. Its Plan Mode 
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: each pointer stands in a bracket of its own, the link to rule-sprint-close outside it · [[decision-case-809]]
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-16 updated: estimate-skill-sprint-close-migration-merged-into-main removed from estimates · [[decision-case-856.2]]

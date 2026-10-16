@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[rule-skill-sprint-close]]"
 purpose: Whether the session that opens the sprint plugin moves main to the last commit of migration by a fast-forward, goes on on the branch plugin, deletes migration and ticks the merge line of the closing Spec
 method: "by hand, at the Retro of the session that opens the sprint plugin: git branch --list, git log -1 main against the last commit of migration that Work Mode printed, the uv run --project .guppi guppi test run of its Work Mode against work.md, and vault/raw/2026-10-10/1555/spec.md"
@@ -33,3 +33,5 @@ Then:
 - 2026-10-10 created · [[decision-case-762]]
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1713/ledger.md#L20
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
+- 2026-10-16 deleted · [[decision-case-856.2]]
+- 2026-10-16 archived · cleanup

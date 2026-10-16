@@ -61,7 +61,7 @@ fields:
   sprint: |
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
   core: |
-    optional; `true`. The page ships in the clean version of GUPPI that `guppi ship` writes for the branch `prod`; a page without it stays in this repository only. Set by a Case, never by hand (case 804).
+    optional; `true`. The page is part of GUPPI: in the repository of GUPPI, `guppi ship` writes it into the clean version that a project installs; a page without it is a page of the project that holds it. Set by a Case, never by hand (case 804).
   created: |
     required; date.
   tags: |

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-rules-schema]]"
 purpose: A Rule page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
-method: pytest .guppi/tests/test_schemas.py -k rules on the live vault/wiki/rules/schema.yaml — a page in the shape, then one defect at a time; the live reading uv run --project .guppi guppi check, no schema finding on wiki/rules/ but the placeholders
+method: "pytest .guppi/tests/test_schemas.py -k rules on the live vault/wiki/rules/schema.yaml — a page in the shape, then one defect at a time; by hand, after the librarian's run of the session that sets this method: the live vault/wiki/rules/schema.yaml read against the Criterion, and the live reading uv run --project .guppi guppi check, no schema finding on wiki/rules/ but the placeholders"
 checked: 2026-10-13
 origin: raw/2026-09-22/0014/ledger.md#case-305.1
 sprint: migration
@@ -22,7 +22,8 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 **＋** The file also holds `ordered_children: true`, which lint does not read.
 **＋** A Rule page with these fields, values and sections has no `schema` finding; one lacking a required field, with a value outside the list, with a conditional not met or lacking a required section has one finding per defect; a rule with `applies_to` on a live Entity has none.
 **＋** A Rule page in the shape with `core: true`, `origin: guppi` and `sprint: guppi` has no `schema` finding.
-**＋** `fields` and `sections` describe each name of these lists, `core` among them, and the descriptions of `origin` and `sprint` name the value `guppi` on a page with `core: true` in the clean version; `description` holds the introduction, Ordering, MOCs and enforcement, Enforcement, the sentence on the edge Rule → Entity, the one on the guard of the agent's own conduct and the one that a page with `core: true` comes into a new project without its Estimates, which that project writes through its own Cases; `examples` holds the example pages.
+**＋** `fields` and `sections` describe each name of these lists, `core` among them, and the descriptions of `origin` and `sprint` name the value `guppi` on a page with `core: true` in the clean version; `description` holds the introduction, Ordering, MOCs and enforcement, Enforcement, the sentence on the edge Rule → Entity, the one on the guard of the agent's own conduct and the one on the Estimates that a shipped page brings along; `examples` holds the example pages.
+**＋** That last sentence says that a shipped page arrives with each of its Estimates that passed in the repository it came from and whose `method` names no target of the `Makefile`, and that the receiving project writes its other Estimates through its own Cases.
 
 ## Result
 
@@ -41,3 +42,4 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1753/ledger.md#L117
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
+- 2026-10-16 updated: the Criterion replaced whole — the description says that a page with core: true comes into a new project with its passed Estimates · [[decision-case-856.3]]

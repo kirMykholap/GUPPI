@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "849"
-status: current
+status: archived
 defer: ["[[estimate-harness-pipeline]]"]
+superseded_by: ["[[decision-case-860]]"]
 origin: raw/2026-10-16/0104/ledger.md#case-849
 sprint: plugin
 created: 2026-10-16
@@ -26,3 +27,6 @@ Failed unread at Retro of session 1739; its method names no moment after the lib
 ## History
 
 - 2026-10-16 created · raw/2026-10-16/0104/ledger.md#case-849
+- 2026-10-16 superseded by decision-case-860 · [[decision-case-860]]
+- 2026-10-16 archived · superseded
+- 2026-10-16 archived · cleanup

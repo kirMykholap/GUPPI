@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-sprint-close]]"
 purpose: At the close of a sprint the sprint page and its own Estimates go to the archive, and every other passed Estimate stays live
-method: pytest .guppi/tests/test_sprint_close.py -k sprint_page; by hand, the output of the preview uv run --project .guppi guppi sprint-close --sprint migration over the live vault read against the Then
+method: pytest .guppi/tests/test_sprint_close.py -k sprint_page; by hand, the output of the preview uv run --project .guppi guppi sprint-close --sprint <id> over the live vault, <id> the sprint that vault/wiki/sprint.md names, read against the Then
 checked: 2026-10-04
 origin: raw/2026-10-03/0317/ledger.md#case-612.3
 sprint: migration
@@ -35,3 +35,4 @@ Then:
 - 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L3
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-16 updated: the hand step previews the open sprint, not migration · [[decision-case-856.2]]

@@ -10989,3 +10989,67 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-16 rules/rule-git-context status: built → draft · cascade · generate
 - 2026-10-16 rules/rule-harness status: draft → built · cascade · generate
 - 2026-10-16 rules/rule-plugin-install status: built → draft · cascade · generate
+- 2026-10-16 estimates/estimate-hi-no-read-calls status: pending → passed · raw/2026-10-16/1712/ledger.md#L1 · generate
+- 2026-10-16 decisions/decision-case-856 created · raw/2026-10-16/1712/ledger.md#case-856 · generate
+- 2026-10-16 decisions/decision-case-856.1 created · raw/2026-10-16/1712/ledger.md#case-856.1 · generate
+- 2026-10-16 rules/rule-rules-schema updated: the description of core names the repository of GUPPI and says that a page without it is a page of the project that holds it · [[decision-case-856.1]] · generate
+- 2026-10-16 rules/rule-entities-schema updated: the description of core names the repository of GUPPI and says that a page without it is a page of the project that holds it · [[decision-case-856.1]] · generate
+- 2026-10-16 rules/rule-ratification updated: the sentence on plain Case ids names the list PLAIN_SPRINTS, and the sprints migration and plugin stand in the bracket of its pointer · [[decision-case-856.1]] · generate
+- 2026-10-16 estimates/estimate-clean-branch-ships-neutral-texts updated: read again after the three sentences are rewritten; the method waits for the librarian's run of this session and reads each sentence whole · [[decision-case-856.1]] · generate
+- 2026-10-16 decisions/decision-case-856.2 created · raw/2026-10-16/1712/ledger.md#case-856.2 · generate
+- 2026-10-16 estimates/estimate-skill-sprint-close-migration-merged-into-main deleted · [[decision-case-856.2]] · generate
+- 2026-10-16 rules/rule-skill-sprint-close updated: estimate-skill-sprint-close-migration-merged-into-main removed from estimates · [[decision-case-856.2]] · generate
+- 2026-10-16 estimates/estimate-sprint-close-archives-done-insights-and-lone-lessons updated: the hand step previews the open sprint, not migration · [[decision-case-856.2]] · generate
+- 2026-10-16 estimates/estimate-sprint-close-archives-the-decisions updated: the hand step previews the open sprint, not migration · [[decision-case-856.2]] · generate
+- 2026-10-16 estimates/estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest updated: the hand step previews the open sprint, not migration · [[decision-case-856.2]] · generate
+- 2026-10-16 decisions/decision-case-856.3 created · raw/2026-10-16/1712/ledger.md#case-856.3 · generate
+- 2026-10-16 decisions/decision-case-828 superseded by decision-case-856.3 · [[decision-case-856.3]] · generate
+- 2026-10-16 rules/rule-rules-schema defer by decision-case-828 superseded · [[decision-case-856.3]] · generate
+- 2026-10-16 rules/rule-rules-schema updated: a page with core: true comes into a new project with its passed Estimates · [[decision-case-856.3]] · generate
+- 2026-10-16 estimates/estimate-rules-schema-checked updated: the Criterion replaced whole — the description says that a page with core: true comes into a new project with its passed Estimates · [[decision-case-856.3]] · generate
+- 2026-10-16 decisions/decision-case-857 created · raw/2026-10-16/1712/ledger.md#case-857 · generate
+- 2026-10-16 rules/rule-close updated: the commit takes vault and each file that guppi render --paths prints, in place of four fixed paths · [[decision-case-857]] · generate
+- 2026-10-16 estimates/estimate-close-commits updated: the Criterion replaced whole — the commit takes vault and each file that guppi render --paths prints · [[decision-case-857]] · generate
+- 2026-10-16 decisions/decision-case-858 created · raw/2026-10-16/1712/ledger.md#case-858 · generate
+- 2026-10-16 decisions/decision-case-859 created · raw/2026-10-16/1712/ledger.md#case-859 · generate
+- 2026-10-16 decisions/decision-case-855 superseded by decision-case-859 · [[decision-case-859]] · generate
+- 2026-10-16 estimates/estimate-clean-branch-writes-the-session-files defer by decision-case-855 superseded · [[decision-case-859]] · generate
+- 2026-10-16 estimates/estimate-clean-branch-writes-the-session-files updated: the Criterion replaced whole — the first /hi whose Branch: line names a branch starts /sprint-open, and the /hi of the git step is no part of the promise; the defer of case 855 retired · [[decision-case-859]] · generate
+- 2026-10-16 decisions/decision-case-860 created · raw/2026-10-16/1712/ledger.md#case-860 · generate
+- 2026-10-16 decisions/decision-case-833 superseded by decision-case-860 · [[decision-case-860]] · generate
+- 2026-10-16 estimates/estimate-harness-pipeline defer by decision-case-833 superseded · [[decision-case-860]] · generate
+- 2026-10-16 decisions/decision-case-849 superseded by decision-case-860 · [[decision-case-860]] · generate
+- 2026-10-16 estimates/estimate-harness-pipeline defer by decision-case-849 superseded · [[decision-case-860]] · generate
+- 2026-10-16 estimates/estimate-harness-pipeline updated: the defers of case 833 and case 849 retired — the Estimate passed at the /hi of session 0342 · [[decision-case-860]] · generate
+- 2026-10-16 decisions/decision-case-861 created · raw/2026-10-16/1712/ledger.md#case-861 · generate
+- 2026-10-16 decisions/decision-case-829 superseded by decision-case-861 · [[decision-case-861]] · generate
+- 2026-10-16 estimates/estimate-guppi-tests-green defer by decision-case-829 superseded · [[decision-case-861]] · generate
+- 2026-10-16 estimates/estimate-guppi-tests-green updated: the method a reading by hand of guppi test, a form that fits a MOC; the defer of case 829 retired · [[decision-case-861]] · generate
+- 2026-10-16 decisions/decision-case-862 created · raw/2026-10-16/1712/ledger.md#case-862 · generate
+- 2026-10-16 estimates/estimate-git-context-offers-git-init deferred · [[decision-case-862]] · generate
+- 2026-10-16 estimates/estimate-plugin-install-offers-to-install-uv deferred · [[decision-case-862]] · generate
+- 2026-10-16 estimates/estimate-plugin-install-undoes-the-copy-when-uv-sync-fails deferred · [[decision-case-862]] · generate
+- 2026-10-16 estimates/estimate-guppi-package-is-ready-after-the-install deferred · [[decision-case-862]] · generate
+- 2026-10-16 decisions/decision-case-863 created · raw/2026-10-16/1712/ledger.md#case-863 · generate
+- 2026-10-16 decisions/decision-case-858 superseded by decision-case-863 · [[decision-case-863]] · generate
+- 2026-10-16 decisions/decision-case-855 deferred · [[decision-case-863]] · generate
+- 2026-10-16 lessons/lesson-case-build-leans-on-a-precedent-it-did-not-read created · raw/2026-10-16/1712/ledger.md#L24 · generate
+- 2026-10-16 lessons/lesson-case-build-states-a-predicate-wider-than-the-code created · raw/2026-10-16/1712/ledger.md#L25 · generate
+- 2026-10-16 lessons/lesson-case-build-states-what-a-past-decision-did-from-its-effect-on-one-page created · raw/2026-10-16/1712/ledger.md#L26 · generate
+- 2026-10-16 insights/insight-case-build-claims-what-code-does-without-reading-it updated: child lesson-case-build-states-a-predicate-wider-than-the-code added (synthesis) · raw/2026-10-16/1712/ledger.md#L25 · generate
+- 2026-10-16 lessons/lesson-case-build-states-a-predicate-wider-than-the-code updated: clustered under insight-case-build-claims-what-code-does-without-reading-it (synthesis) · raw/2026-10-16/1712/ledger.md#L25 · generate
+- 2026-10-16 rules/rule-close status: built → draft · cascade · generate
+- 2026-10-16 rules/rule-rules-schema status: built → draft · cascade · generate
+- 2026-10-16 decisions/decision-case-828 archived · superseded · generate
+- 2026-10-16 decisions/decision-case-829 archived · superseded · generate
+- 2026-10-16 decisions/decision-case-833 archived · superseded · generate
+- 2026-10-16 decisions/decision-case-849 archived · superseded · generate
+- 2026-10-16 decisions/decision-case-855 archived · superseded · generate
+- 2026-10-16 decisions/decision-case-858 archived · superseded · generate
+- 2026-10-16 estimates/estimate-skill-sprint-close-migration-merged-into-main archived · cleanup
+- 2026-10-16 decisions/decision-case-828 archived · cleanup
+- 2026-10-16 decisions/decision-case-829 archived · cleanup
+- 2026-10-16 decisions/decision-case-833 archived · cleanup
+- 2026-10-16 decisions/decision-case-849 archived · cleanup
+- 2026-10-16 decisions/decision-case-855 archived · cleanup
+- 2026-10-16 decisions/decision-case-858 archived · cleanup

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "829"
-status: current
+status: archived
 defer: ["[[estimate-guppi-tests-green]]", "[[estimate-page-schemas-one-file-per-rule]]"]
+superseded_by: ["[[decision-case-861]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-829
 sprint: plugin
 created: 2026-10-15
@@ -30,3 +31,6 @@ Its method says by hand while a child Estimate names a test file, a lint finding
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-829
+- 2026-10-16 superseded by decision-case-861 · [[decision-case-861]]
+- 2026-10-16 archived · superseded
+- 2026-10-16 archived · cleanup

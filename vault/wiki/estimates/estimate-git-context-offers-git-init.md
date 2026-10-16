@@ -5,6 +5,7 @@ status: pending
 target: "[[rule-git-context]]"
 purpose: Whether /hi in a folder that is no git repository asks to run git init -b main, runs it on the person's yes and ends, ends on a no, and opens no sprint and writes no Frontier either way
 method: "by hand, after the librarian's run: in an empty folder that is no git repository, GUPPI installed by /guppi:install from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, Claude Code opened there, /hi typed and answered no, /hi typed again and answered yes, then /hi typed a third time, and the replies, the context of each /hi, the session folders and git branch --show-current read against the Criterion"
+deferred_by: ["[[decision-case-862]]"]
 origin: raw/2026-10-16/0342/ledger.md#case-851.1
 sprint: plugin
 created: 2026-10-16
@@ -27,3 +28,4 @@ Before `/sprint-open` and before the Frontier, the agent says that GUPPI works o
 ## History
 
 - 2026-10-16 created · [[decision-case-851.1]]
+- 2026-10-16 deferred · [[decision-case-862]]

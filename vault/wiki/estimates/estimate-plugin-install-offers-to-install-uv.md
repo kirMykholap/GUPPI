@@ -5,6 +5,7 @@ status: pending
 target: "[[rule-plugin-install]]"
 purpose: Whether /guppi:install, where uv is missing, asks to install uv by its standalone installer, stops with nothing written on a no, and on a yes goes on once uv --version passes or sends the person to a new terminal
 method: "by hand, after the librarian's run of the session that sets this Criterion, with a tag prod-x.y.z in the history of HEAD: the clean version written into a local folder by uv run --project .guppi guppi ship --allow-draft, that folder added as a catalogue by /plugin marketplace add and guppi installed from it by /plugin install guppi@guppi-marketplace; in an empty project with Claude Code started from a terminal whose PATH holds no folder of uv, /guppi:install typed and the offer answered no, then /guppi:install typed again and the offer answered yes; the replies, the files of the project and uv --version in a new terminal read against the Criterion"
+deferred_by: ["[[decision-case-862]]"]
 origin: raw/2026-10-16/0342/ledger.md#case-852.1
 sprint: plugin
 created: 2026-10-16
@@ -28,3 +29,4 @@ Before it writes anything, the agent says that GUPPI needs the tool `uv` and ask
 ## History
 
 - 2026-10-16 created · [[decision-case-852.1]]
+- 2026-10-16 deferred · [[decision-case-862]]

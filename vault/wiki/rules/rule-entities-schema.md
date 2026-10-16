@@ -85,7 +85,7 @@ fields:
   sprint: |
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
   core: |
-    optional; `true`. The page ships in the clean version of GUPPI that `guppi ship` writes for the branch `prod`; a page without it stays in this repository only. Set by a Case, never by hand (case 804).
+    optional; `true`. The page is part of GUPPI: in the repository of GUPPI, `guppi ship` writes it into the clean version that a project installs; a page without it is a page of the project that holds it. Set by a Case, never by hand (case 804).
   created: |
     required; date.
   tags: |
@@ -174,3 +174,4 @@ examples:
 - 2026-10-13 updated: the field core, and the value guppi of origin and sprint on a page of the clean version (case 804) · [[decision-case-804.1]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: each pointer stands in a bracket of its own · [[decision-case-809]]
+- 2026-10-16 updated: the description of core names the repository of GUPPI and says that a page without it is a page of the project that holds it · [[decision-case-856.1]]

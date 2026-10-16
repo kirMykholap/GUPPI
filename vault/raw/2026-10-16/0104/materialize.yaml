@@ -482,6 +482,8 @@ entries:
       run that writes the text it reads; put off again at the close of Plan Mode of session 0104
   exists: true
   applied: 03:31:22
+  superseded_by:
+  - '860'
 - line: 14
   text: decision[case 850][update][estimate-sprint-plugin-ci-writes-a-clean-branch]{ref:entity-sprint-plugin}
   case: '850'
@@ -1669,6 +1671,8 @@ decisions:
       run.
   spec: vault/raw/2026-10-16/0104/spec.md
   applied: 03:31:22
+  superseded_by:
+  - decision-case-860
 - case: '850'
   decision: decision-case-850
   origin: raw/2026-10-16/0104/ledger.md#case-850

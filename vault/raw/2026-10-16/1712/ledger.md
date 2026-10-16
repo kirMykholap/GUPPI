@@ -1,0 +1,26 @@
+- 17:14:52 estimate[estimate-hi-no-read-calls][passed] 2026-10-16, /hi of session 1712, the first turn's context and .claude/skills/hi/SKILL.md: the context holds the text of sprint.md, backlog.md, brief.md, orchestration.md, where-to-stop.md, ratification.md and glossary.md, then Render:, Branch: with the output of guppi gitstate (the branch plugin and Status:), and Tail:, in the order of the blocks of the skill; allowed-tools names uv run --project .guppi guppi render --sync, uv run --project .guppi guppi gitstate and uv run --project .guppi guppi tail, and no git pull, git init or gh; the agent's first tool calls were Reads of four Estimate pages, and it made no read-tool call for any block
+- 17:54:49 decision[case 856.1][update][rule-rules-schema]{ref:rule-rules-schema}
+- 17:54:49 decision[case 856.1][update][rule-entities-schema]{ref:rule-entities-schema}
+- 17:54:49 decision[case 856.1][update][rule-ratification]{ref:rule-ratification}
+- 17:54:49 decision[case 856.1][update][estimate-clean-branch-ships-neutral-texts]{ref:rule-clean-branch}
+- 17:54:49 decision[case 856.2][delete][estimate-skill-sprint-close-migration-merged-into-main]{ref:estimate-skill-sprint-close-migration-merged-into-main}
+- 17:54:49 decision[case 856.2][update][rule-skill-sprint-close]{ref:rule-skill-sprint-close}
+- 17:54:49 decision[case 856.2][update][estimate-sprint-close-archives-done-insights-and-lone-lessons]{ref:rule-sprint-close}
+- 17:54:49 decision[case 856.2][update][estimate-sprint-close-archives-the-decisions]{ref:rule-sprint-close}
+- 17:54:49 decision[case 856.2][update][estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest]{ref:rule-sprint-close}
+- 17:54:49 decision[case 856.3][update][rule-rules-schema]{ref:rule-rules-schema}{supersedes:case 828}
+- 17:54:49 decision[case 856.3][update][estimate-rules-schema-checked]{ref:rule-rules-schema}
+- 18:05:51 decision[case 857][update][rule-close]{ref:rule-close}
+- 18:05:51 decision[case 857][update][estimate-close-commits]{ref:rule-close}
+- 18:26:25 decision[case 858][update][decision-case-855]{ref:decision-case-855}
+- 18:42:07 decision[case 859][update][estimate-clean-branch-writes-the-session-files]{ref:rule-clean-branch}{supersedes:case 855}
+- 18:56:03 decision[case 860][update][estimate-harness-pipeline]{ref:rule-harness}{supersedes:case 833}{supersedes:case 849}
+- 18:56:03 decision[case 861][update][estimate-guppi-tests-green]{ref:entity-guppi}{supersedes:case 829}
+- 18:56:58 decision[case 862][defer][estimate-git-context-offers-git-init]{ref:estimate-git-context-offers-git-init}
+- 18:56:58 decision[case 862][defer][estimate-plugin-install-offers-to-install-uv]{ref:estimate-plugin-install-offers-to-install-uv}
+- 18:56:58 decision[case 862][defer][estimate-plugin-install-undoes-the-copy-when-uv-sync-fails]{ref:estimate-plugin-install-undoes-the-copy-when-uv-sync-fails}
+- 18:56:58 decision[case 862][defer][estimate-guppi-package-is-ready-after-the-install]{ref:estimate-guppi-package-is-ready-after-the-install}
+- 19:23:16 decision[case 863][defer][decision-case-855]{ref:decision-case-855}{supersedes:case 858}
+- 19:38:19 lesson[error][lesson-case-build-leans-on-a-precedent-it-did-not-read]{tags:case-build,prespec} trigger: Case 858 of session 1712 added an `updated:` History line to decision-case-855 and its context leaned on the form Case 358 used on decision-case-347; ask-guppi at /pre-spec found that rule-decisions-schema allows that line only for a Case that signs a page's text after the fact, case-guppi then read Case 358 and found it signed a text while Case 858 corrected one, and the ratified Case 858 was taken back by Case 863 root_cause: case-guppi matched the form of a History line in a precedent it cited and read neither the Problem of that precedent nor the purpose the rule names for the line
+- 19:38:19 lesson[error][lesson-case-build-states-a-predicate-wider-than-the-code]{tags:case-build,prespec} trigger: the context of Case 856 and the new Render of rule-rules-schema in Case 856.3 said a page with core: true ships with each passed Estimate, citing the predicate at line 360 of .guppi/guppi/ship.py; ask-guppi at /pre-spec found that `ships` (lines 359–367) also leaves out an Estimate whose method names a Makefile target, such as estimate-harness-pipeline, and the ratified Case was built again root_cause: case-guppi cited the predicate by its line and summarised its first condition only, without reading the whole function it named
+- 19:38:19 lesson[error][lesson-case-build-states-what-a-past-decision-did-from-its-effect-on-one-page]{tags:case-build,prespec} trigger: the context of Case 861 said case 820.7 moved every page from the Makefile targets to guppi test; ask-guppi at /pre-spec found the History of rule-harness keeps the Makefile and seven Estimates still name a `make test-<x>` target, and the ratified Case was built again root_cause: case-guppi stated the reach of a past Decision from what it saw on the one page in front of it, without reading the History of the rule that Decision changed

@@ -1,0 +1,59 @@
+- 01:24:30 decision[case 875][update][estimate-clean-branch-ships-neutral-texts]{ref:rule-clean-branch}{supersedes:case 874}
+- 01:24:30 decision[case 875][defer][rule-clean-branch]{ref:rule-clean-branch}
+- 01:24:30 decision[case 875][update][rule-spec-box]{ref:rule-spec-box}
+- 01:24:30 decision[case 875][update][rule-vault-layout]{ref:rule-vault-layout}
+- 01:24:30 decision[case 875][update][rule-morph]{ref:rule-morph}
+- 01:24:30 decision[case 875][update][rule-guppi-config]{ref:rule-guppi-config}
+- 01:24:30 decision[case 875][update][rule-documentation]{ref:rule-documentation}
+- 01:24:30 decision[case 875][update][rule-bash-guard]{ref:rule-bash-guard}
+- 01:24:30 decision[case 875][update][rule-claude-md]{ref:rule-claude-md}
+- 01:24:30 decision[case 875][update][rule-tests-clock-pinned]{ref:rule-tests-clock-pinned}
+- 01:24:30 decision[case 875][update][rule-shell-write-check]{ref:rule-shell-write-check}
+- 01:24:30 decision[case 875][update][rule-python-utf8]{ref:rule-python-utf8}
+- 01:24:30 decision[case 875][update][rule-powershell-guard]{ref:rule-powershell-guard}
+- 01:24:30 decision[case 875][update][rule-page-read]{ref:rule-page-read}
+- 01:24:30 decision[case 875][update][rule-skill-hi]{ref:rule-skill-hi}
+- 01:24:30 decision[case 875][update][rule-retro]{ref:rule-retro}
+- 01:24:30 decision[case 875][update][estimate-ratification-case-id-carries-the-sprint]{ref:rule-ratification}
+- 01:24:30 decision[case 875][update][estimate-skill-sprint-close-leads-the-closing-session]{ref:rule-skill-sprint-close}
+- 01:24:30 decision[case 875][update][estimate-sprint-close-takes-the-readings-in-groups]{ref:rule-sprint-close}
+- 01:24:30 decision[case 875][update][estimate-guppi-config-fills-the-languages]{ref:rule-guppi-config}
+- 01:24:30 decision[case 875][update][estimate-claude-md-rendered]{ref:rule-claude-md}
+- 01:24:30 decision[case 875][update][estimate-git-context-current]{ref:rule-git-context}
+- 01:24:30 decision[case 875][update][estimate-guppi-package-runs-from-its-own-folder]{ref:rule-guppi-package}
+- 01:24:30 decision[case 875][update][estimate-permissions]{ref:rule-permissions}
+- 01:24:30 decision[case 875][update][estimate-hi-no-read-calls]{ref:rule-skill-hi}
+- 01:24:30 decision[case 875][update][estimate-orchestration-acknowledges-the-opening-with-the-frontier]{ref:rule-orchestration}
+- 01:24:30 decision[case 875][update][estimate-orchestration-marks-each-round-of-a-batch]{ref:rule-orchestration}
+- 01:24:30 decision[case 875][update][estimate-orchestration-sets-off-each-reply-of-case-guppi]{ref:rule-orchestration}
+- 01:24:30 decision[case 875][update][estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter]{ref:rule-powershell-guard}
+- 01:24:30 decision[case 875][update][estimate-prespec-catches-a-command-line-off-form]{ref:rule-prespec}
+- 01:24:30 decision[case 875][update][estimate-prespec-catches-a-superseded-case]{ref:rule-prespec}
+- 01:24:30 decision[case 875][update][estimate-prespec-gathers-the-answers-after-findings]{ref:rule-prespec}
+- 01:24:30 decision[case 875][update][estimate-render-harness-ticks-the-spec]{ref:rule-render-harness}
+- 01:24:30 decision[case 875][update][estimate-glossary-ticks-the-spec]{ref:rule-glossary}
+- 01:24:30 decision[case 875][update][estimate-rules-schema-checked]{ref:rule-rules-schema}
+- 01:24:30 decision[case 875][update][estimate-skill-sprint-open-asks-the-opening-questions]{ref:rule-skill-sprint-open}
+- 01:24:30 decision[case 875][update][estimate-skill-sprint-open-refuses-a-taken-sprint-id]{ref:rule-skill-sprint-open}
+- 01:24:30 decision[case 875][update][estimate-skill-sprint-open-merges-the-closed-sprint-branch]{ref:rule-skill-sprint-open}
+- 01:24:30 decision[case 875][update][estimate-sprint-close-next-session-opens-the-sprint]{ref:rule-sprint-close}
+- 01:24:30 decision[case 875][update][estimate-case-build-answers-what-done-means]{ref:rule-case-build}
+- 01:24:30 decision[case 875][update][estimate-case-build-finds-an-existing-judgment]{ref:rule-case-build}
+- 01:24:30 decision[case 875][update][estimate-case-build-judges-options-against-the-broken-rule]{ref:rule-case-build}
+- 01:24:30 decision[case 875][update][estimate-case-build-offers-a-page-for-code-no-page-covers]{ref:rule-case-build}
+- 01:24:30 decision[case 875][update][estimate-case-build-reads-the-last-output-of-a-check]{ref:rule-case-build}
+- 01:24:30 decision[case 875][update][estimate-case-build-checks-a-fact-of-an-outside-tool]{ref:rule-case-build}
+- 01:24:30 decision[case 875][update][estimate-case-example-passes-the-check]{ref:rule-case-example}
+- 01:24:30 decision[case 875][update][estimate-generate-writes-rules-from-applies-to]{ref:rule-page-generation}
+- 01:36:31 decision[case 876][defer][rule-ledger-write]{ref:rule-ledger-write}{supersedes:case 836}{supersedes:case 863}
+- 01:36:31 decision[case 876][defer][rule-orchestration]{ref:rule-orchestration}{supersedes:case 836}
+- 01:50:30 decision[case 877.1][update][rule-estimates-schema]{ref:rule-estimates-schema}{supersedes:case 873}
+- 01:50:30 decision[case 877.1][update][estimate-lint-checks-the-method]{ref:rule-lint}
+- 01:50:30 decision[case 877.2][update][estimate-prespec-catches-a-method-without-a-form]{ref:rule-prespec}
+- 02:11:51 decision[case 875][update][rule-harness]{ref:rule-harness}
+- 02:11:51 decision[case 875][update][rule-guppi-package]{ref:rule-guppi-package}
+- 02:11:51 decision[case 875][update][estimate-case-build-records-the-rounds-in-recommend]{ref:rule-case-build}
+- 02:11:51 decision[case 875][update][estimate-python-utf8-output-intact]{ref:rule-python-utf8}
+- 02:20:16 estimate[estimate-lint-checks-the-method][passed] 2026-10-17, Retro of session 0027, uv run --project .guppi pytest .guppi/tests/test_lint.py: 111 passed; guppi test alone on rule-root with no parent passes, on a MOC with a parent and guppi check or guppi style alone on any MOC each give the MOC finding; live guppi lint prints one method line, estimate-harness-make-runs-in-both-shells (in the Baseline), and none for estimate-claude-md-rendered
+- 02:20:16 estimate[estimate-prespec-catches-a-method-without-a-form][passed] 2026-10-17, Retro of session 0027, uv run --project .guppi pytest .guppi/tests/test_prespec.py: 267 passed; guppi test alone is clean on a live MOC with no parent and a finding on a live MOC with a parent, on a MOC a create of the plan writes under a ref, and on a live MOC an update of the plan places under a parent; guppi check alone is a finding; lint, pre-spec and group_of of glossary.py share has_no_parent of pages.py
+- 02:20:30 lesson[error][lesson-ratified-defer-only-case-wants-its-fence-in-the-reply]{tags:hooks,case-build} trigger: Case 876, built by case-guppi with only defer lines, was ratified, and the Stop hook guppi ratified refused the acknowledging reply with "case 876: no fence tagged then with its defer items"; case-guppi could not add the fence to the case file, since the case-file check read its lines as task lines and refused them root_cause: deferred_section of .guppi/guppi/ratified.py takes any Case whose lines in a reply are all defer for a short-form Case and reads its then fence from the reply, while a Case case-guppi builds holds its defers as task lines in its file, so a full Case with only defer lines passes the case-file check and fails the ratification hook until the main agent shows it again in the short form

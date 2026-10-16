@@ -1,4 +1,4 @@
-"""`guppi render [--check | --sync]` — the harness written from its Rule pages.
+"""`guppi render [--check | --sync | --paths]` — the harness written from its Rule pages.
 
 Every page under `vault/wiki/rules/` with `enforcement: render` carries the text of a
 harness file in its `## Render` section, between `<!-- slug -->` and `<!-- /slug -->`.
@@ -27,6 +27,10 @@ updated, or a hand edit that is now gone and may deserve a Case (case 115). An
 identical file gets neither; a render error goes to stderr and nothing is written. `--sync`
 always exits 0, since a `SessionStart` hook cannot block and its stdout is added to the
 agent's context.
+`--paths` prints each file the render writes — the keys of `plan`, one per line — writes
+nothing, ticks nothing and exits 0; a render error goes to stderr with exit 1 and no path is
+printed. The close commit of the librarian adds `vault` and this list, as the Render of
+`rule-close` sets it, so a rendered file outside `vault` is never left out (case 857).
 Claude Code reads the agent files under `.claude/agents/` at session start, so an agent the
 librarian renders can be called from the next session (case 139.1): the librarian's render
 is its last step before the commit. The rendered files are committed by the librarian, in its own commit
@@ -37,7 +41,7 @@ Once the plain `guppi render` wrote the files and exits 0, it ticks — in the `
 every unit under `vault/raw/` whose `materialize.yaml` is applied whole, a carried-over
 unit passed by — every unticked task line that opens with a code span holding `guppi
 render`, and a `read` line that names the command later is not one (cases 226.2, 235);
-`--check`, `--sync` and an exit 1 tick nothing, and nothing is said either way. A yaml is
+`--check`, `--sync`, `--paths` and an exit 1 tick nothing, and nothing is said either way. A yaml is
 applied whole when every entry carries `applied` or `superseded_by` and none `failed`, as
 `guppi archive` counts it (case 250.1). The tick is `tick_command_lines`, shared with
 `guppi sprint`, which ticks its own lines the same way (case 250.2).
@@ -329,6 +333,11 @@ def parser() -> argparse.ArgumentParser:
         action="store_true",
         help="print a diff for each file that differs, then write it; always exit 0",
     )
+    mode.add_argument(
+        "--paths",
+        action="store_true",
+        help="print each file the render writes, one per line; write nothing",
+    )
     return p
 
 
@@ -348,6 +357,10 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None) -> i
         check_json(outputs, units)
         if args.sync:
             sync(project_dir, outputs, stdout)
+            return 0
+        if args.paths:
+            for governs in outputs:
+                print(governs, file=stdout)
             return 0
     except RenderError as exc:
         print(f"render: {exc}", file=stderr)

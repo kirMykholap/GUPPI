@@ -466,6 +466,39 @@ def test_sync_and_check_together_are_a_bad_invocation(tmp_path):
     assert code == 2
 
 
+# --- `--paths` (case 857): `estimate-close-commits` ---
+
+
+def test_paths_prints_each_governed_file_once_and_writes_nothing(tmp_path):
+    """A `full` frame with two `partial` children on one file and a lone `partial` on another:
+    each `governs` path is printed once, and neither file is written or changed."""
+    frame_vault(tmp_path)
+    rule(tmp_path, "rule-three", "partial", "CLAUDE.md", ONE.replace("rule-one", "rule-three"))
+    claude = tmp_path / "CLAUDE.md"
+    before = "# Title\n\n<!-- rule-three -->\nold text\n<!-- /rule-three -->\n"
+    claude.write_text(before, encoding="utf-8", newline="\n")
+    code, out, err = run(["--paths"], tmp_path)
+    assert (code, err) == (0, "")
+    assert sorted(out.splitlines()) == ["CLAUDE.md", "out/SKILL.md"]
+    assert not (tmp_path / "out" / "SKILL.md").exists()
+    assert claude.read_text(encoding="utf-8") == before
+
+
+def test_paths_on_a_render_error_prints_no_path_and_exits_1(tmp_path):
+    for slug in ("rule-a", "rule-b"):
+        rule(tmp_path, slug, "full", "out/X.md", f"<!-- {slug} -->\nx\n<!-- /{slug} -->")
+    code, out, err = run(["--paths"], tmp_path)
+    assert (code, out) == (1, "")
+    assert "out/X.md" in err
+    assert not (tmp_path / "out" / "X.md").exists()
+
+
+def test_paths_with_check_or_sync_is_a_bad_invocation(tmp_path):
+    frame_vault(tmp_path)
+    assert run(["--paths", "--check"], tmp_path)[0] == 2
+    assert run(["--paths", "--sync"], tmp_path)[0] == 2
+
+
 JSON_FRAME = """<!-- rule-json -->
 {
   "permissions": {

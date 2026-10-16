@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "837"
-status: current
+status: archived
 defer: ["[[estimate-guppi-package-runs-from-its-own-folder]]"]
+superseded_by: ["[[decision-case-840.2]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-837
 sprint: plugin
 created: 2026-10-15
@@ -26,3 +27,6 @@ Read failed: its test finds the example tests/ in rule-page-generation and estim
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-837
+- 2026-10-16 superseded by decision-case-840.2 · [[decision-case-840.2]]
+- 2026-10-16 archived · superseded
+- 2026-10-16 archived · cleanup

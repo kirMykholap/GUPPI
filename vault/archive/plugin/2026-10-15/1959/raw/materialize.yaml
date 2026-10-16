@@ -1305,6 +1305,8 @@ entries:
       the close of Plan Mode of session 1959
   exists: true
   applied: '22:56:45'
+  superseded_by:
+  - '847'
 - line: 53
   text: decision[case 831][defer][estimate-clean-branch-installs-as-a-plugin]{ref:estimate-clean-branch-installs-as-a-plugin}
   case: '831'
@@ -1320,6 +1322,10 @@ entries:
       the close of Plan Mode of session 1959'
   exists: true
   applied: '22:56:45'
+  superseded_by:
+  - '842'
+  - '843'
+  - '846'
 - line: 54
   text: decision[case 831][defer][estimate-plugin-install-writes-guppi-into-an-empty-project]{ref:estimate-plugin-install-writes-guppi-into-an-empty-project}
   case: '831'
@@ -1335,6 +1341,10 @@ entries:
       Plan Mode of session 1959'
   exists: true
   applied: '22:56:45'
+  superseded_by:
+  - '842'
+  - '843'
+  - '846'
 - line: 55
   text: decision[case 831][defer][estimate-guppi-package-is-ready-after-the-install]{ref:estimate-guppi-package-is-ready-after-the-install}
   case: '831'
@@ -1350,6 +1360,10 @@ entries:
       at the close of Plan Mode of session 1959
   exists: true
   applied: '22:56:45'
+  superseded_by:
+  - '842'
+  - '843'
+  - '846'
 - line: 56
   text: decision[case 832][defer][estimate-guppi-package-is-ready-after-the-install]{ref:estimate-guppi-package-is-ready-after-the-install}
   case: '832'
@@ -1365,6 +1379,8 @@ entries:
       of Plan Mode of session 1959
   exists: true
   applied: '22:56:45'
+  superseded_by:
+  - '846'
 - line: 57
   text: decision[case 833][defer][estimate-harness-pipeline]{ref:estimate-harness-pipeline}
   case: '833'
@@ -1455,6 +1471,8 @@ entries:
       put off at the close of Plan Mode of session 1959'
   exists: true
   applied: '22:56:45'
+  superseded_by:
+  - '840.2'
 - line: 63
   text: decision[case 838][defer][rule-lint]{ref:rule-lint}
   case: '838'
@@ -3644,6 +3662,8 @@ decisions:
     problem: No Case of this session sets the tag that the milestone line names.
   spec: vault/raw/2026-10-15/1959/spec.md
   applied: '22:56:45'
+  superseded_by:
+  - decision-case-847
 - case: '831'
   decision: decision-case-831
   origin: raw/2026-10-15/1959/ledger.md#case-831
@@ -3670,6 +3690,10 @@ decisions:
     problem: No Case of this session lets these readings run before a tag `prod-x.y.z` stands.
   spec: vault/raw/2026-10-15/1959/spec.md
   applied: '22:56:45'
+  superseded_by:
+  - decision-case-842
+  - decision-case-843
+  - decision-case-846
 - case: '832'
   decision: decision-case-832
   origin: raw/2026-10-15/1959/ledger.md#case-832
@@ -3686,6 +3710,8 @@ decisions:
     problem: No Case of this session makes the `when` of this Estimate agree with its `method`.
   spec: vault/raw/2026-10-15/1959/spec.md
   applied: '22:56:45'
+  superseded_by:
+  - decision-case-846
 - case: '833'
   decision: decision-case-833
   origin: raw/2026-10-15/1959/ledger.md#case-833
@@ -3772,6 +3798,8 @@ decisions:
     problem: No Case of this session settles the example against the Criterion that forbids the path.
   spec: vault/raw/2026-10-15/1959/spec.md
   applied: '22:56:45'
+  superseded_by:
+  - decision-case-840.2
 - case: '838'
   decision: decision-case-838
   origin: raw/2026-10-15/1959/ledger.md#case-838

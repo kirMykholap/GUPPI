@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "832"
-status: current
+status: archived
 defer: ["[[estimate-guppi-package-is-ready-after-the-install]]"]
+superseded_by: ["[[decision-case-846]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-832
 sprint: plugin
 created: 2026-10-15
@@ -26,3 +27,6 @@ Its when names the branch prod while its method reads a local copy; put off at t
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-832
+- 2026-10-16 superseded by decision-case-846 · [[decision-case-846]]
+- 2026-10-16 archived · superseded
+- 2026-10-16 archived · cleanup

@@ -65,9 +65,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] update `estimate-generate-rewords`
-- [ ] read `estimate-generate-rewords`
+- [x] update `rule-page-generation`
+- [x] update `estimate-generate-rewords`
+- [x] read `estimate-generate-rewords`
 ```
 
 ### Case 840.2 — The package Estimate is read again after the new example lands
@@ -114,7 +114,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-package-runs-from-its-own-folder`
+- [x] update `estimate-guppi-package-runs-from-its-own-folder`
 - [ ] read `estimate-guppi-package-runs-from-its-own-folder`
 ```
 
@@ -169,7 +169,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
+- [x] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
 - [x] `git tag prod-0.2.0` on the last commit of `plugin`, as the first task of Work Mode, before the readings of the other Cases of this batch; local only.
 - [x] by hand: `git tag --list prod-* --merged HEAD` prints `prod-0.2.0`, and `uv run --project .guppi guppi ship --allow-draft <folder>` into an empty folder writes `.claude-plugin/plugin.json` with `version` `0.2.0`.
 ```
@@ -243,7 +243,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-installs-as-a-plugin`
+- [x] update `estimate-clean-branch-installs-as-a-plugin`
 - [ ] read `estimate-clean-branch-installs-as-a-plugin`
 ```
 
@@ -315,9 +315,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
 - [x] `uv run --project .guppi pytest .guppi/tests/test_ship.py -k plugin_skill`
-- [ ] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
 ```
 
 ## Case 844 — The tests of the clean version are read after a version tag
@@ -373,8 +373,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-ships-the-tests`
-- [ ] read `estimate-clean-branch-ships-the-tests`
+- [x] update `estimate-clean-branch-ships-the-tests`
+- [x] read `estimate-clean-branch-ships-the-tests`
 ```
 
 ## Case 845 — The check of the session files is read after the tag
@@ -438,8 +438,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-writes-the-session-files`
-- [ ] read `estimate-clean-branch-writes-the-session-files`
+- [x] update `estimate-clean-branch-writes-the-session-files`
+- [x] read `estimate-clean-branch-writes-the-session-files`
 ```
 
 ## Case 846 — The install check reads a local copy of the clean version
@@ -502,7 +502,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-package-is-ready-after-the-install`
+- [x] update `estimate-guppi-package-is-ready-after-the-install`
 - [x] By hand, after the task of Case 841 that sets the tag `prod-0.2.0`: `uv run --project .guppi guppi ship --allow-draft <folder>` into an empty local folder outside the repository, and the parts of the readings of Cases 843 and 845 that the agent runs.
 - [x] stop: before the push of the tag `prod-0.2.0` by the `stop:` task of Case 850, the one stop for every install by hand of this batch; the person adds that folder by `/plugin marketplace add <folder>`, installs the plugin by `/plugin install guppi@guppi-marketplace` and, in one go, works in four empty projects: in the project on the machine with `uv`, types `/guppi:install`, reopens Claude Code there and types `/hi` (for Cases 843, 845 and 846); in a project with a `CLAUDE.md` of its own, types `/guppi:install` (for Case 843); in a project with Claude Code started from a terminal whose `PATH` holds no folder of `uv`, types `/guppi:install` (for Case 846); in a project with Claude Code started from a terminal with `UV_OFFLINE=1` and `UV_CACHE_DIR` set to an empty folder, types `/guppi:install` (for Case 846); then the person tells what each project showed; right after the installs, the output of `/guppi:install` and the files of the project with `uv` and of the project with a `CLAUDE.md` of its own are read against the Criterion of `estimate-plugin-install-writes-guppi-into-an-empty-project`, and the projects of Case 846 against the Criterion of `estimate-guppi-package-is-ready-after-the-install`.
 - [ ] read `estimate-guppi-package-is-ready-after-the-install`
@@ -553,8 +553,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run --project .guppi guppi sprint`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run --project .guppi guppi sprint`
 ```
 
 ## Case 850 — The tag prod-0.2.0 is pushed after the install readings, on the person's word
@@ -601,7 +601,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
+- [x] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
 - [x] stop: on the person's word, `git push origin prod-0.2.0`; then `gh run list --workflow prod.yml` and `gh run view` of the run it starts: it fails at the step that builds the clean version, on the draft pages with `core: true`, and `git ls-remote origin prod` shows no new commit; the result goes into the handoff.
 ```
 

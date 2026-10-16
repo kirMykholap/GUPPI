@@ -1443,7 +1443,7 @@ update:
 - [x] `.guppi/guppi/ship.py`: the copy and `--check` take the files under `.guppi/tests/` but `.guppi/tests/test_ship.py`, and judge and clean them through that function; the docstring says so.
 - [x] `.guppi/tests/`: each pointer outside a bracket in a comment or a docstring stands in a bracket of its own at the end of its sentence, and each bare case number there gets the word `case`, so that `guppi ship --check` prints no line on them; a test that needs the `Makefile`, `.github/workflows/prod.yml` or the module `guppi.ship` is skipped where it is missing.
 - [x] `.guppi/tests/test_ship.py`: the sample tree holds a test file with a pointer in a bracket in a comment, a sample ledger line and a bracket with a pointer in a string, and a file `.guppi/tests/test_ship.py`; the copy holds the first without the bracket of the comment and with both strings unchanged, and no `.guppi/tests/test_ship.py`; `--check` prints a line for a pointer outside a bracket in a comment of a test and none for one in a string; the names of these tests hold `tests`.
-- [ ] read `estimate-clean-branch-ships-the-tests`
+- [x] read `estimate-clean-branch-ships-the-tests`
 ```
 
 ### Case 822.3 — The clean version holds the session files as skeletons
@@ -1498,7 +1498,7 @@ update:
 - [x] create `estimate-clean-branch-writes-the-session-files`
 - [x] `.guppi/guppi/ship.py`: the copy writes `vault/wiki/sprint.md` by `closed_form` of `.guppi/guppi/sprint.py` for `guppi`, `vault/wiki/backlog.md` and `vault/wiki/glossary.md` by `render` of `.guppi/guppi/backlog.py` and of `.guppi/guppi/glossary.py` over the clean folder, and `vault/wiki/brief.md` and `vault/wiki/log.md` from two fixed texts in this module; no copy of a judgment of those writers stands here; the docstring says so.
 - [x] `.guppi/tests/test_ship.py`: the copy of the sample tree holds the five files; `sprint.md` equals `closed_form("guppi")`; `guppi sprint --check`, `guppi backlog --check` and `guppi glossary --check` over the copy print nothing and exit 0; `brief.md` opens its Cases with the line of the next sprint; the names of these tests hold `skeleton`.
-- [ ] read `estimate-clean-branch-writes-the-session-files`
+- [x] read `estimate-clean-branch-writes-the-session-files`
 ```
 
 ### Case 822.5 — CLAUDE.md holds the description of the project between marker lines

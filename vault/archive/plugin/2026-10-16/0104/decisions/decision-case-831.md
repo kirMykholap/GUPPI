@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "831"
-status: current
+status: archived
 defer: ["[[estimate-clean-branch-installs-as-a-plugin]]", "[[estimate-plugin-install-writes-guppi-into-an-empty-project]]", "[[estimate-guppi-package-is-ready-after-the-install]]"]
+superseded_by: ["[[decision-case-842]]", "[[decision-case-843]]", "[[decision-case-846]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-831
 sprint: plugin
 created: 2026-10-15
@@ -34,3 +35,8 @@ Its reading needs a local copy that guppi ship writes only after a tag prod-x.y.
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-831
+- 2026-10-16 superseded by decision-case-842 · [[decision-case-842]]
+- 2026-10-16 superseded by decision-case-843 · [[decision-case-843]]
+- 2026-10-16 superseded by decision-case-846 · [[decision-case-846]]
+- 2026-10-16 archived · superseded
+- 2026-10-16 archived · cleanup

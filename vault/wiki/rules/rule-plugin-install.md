@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a project that installs the plugin guppi from getting a part of GUPPI, or from losing a file of its own to it
-status: draft
+status: built
 enforcement: render
 governs: plugin/skills/install/SKILL.md
 render_mode: full
@@ -45,3 +45,4 @@ Install GUPPI into the project of this session, the folder that Claude Code was 
 - 2026-10-15 estimate estimate-plugin-install-writes-guppi-into-an-empty-project added · [[decision-case-818.1]]
 - 2026-10-15 updated: /guppi:install checks uv before it writes and builds the Python environment by uv sync after the copy · [[decision-case-819.4]]
 - 2026-10-15 updated: what a new project gets is set in rule-clean-branch · [[decision-case-822.3]]
+- 2026-10-16 status: draft → built · cascade

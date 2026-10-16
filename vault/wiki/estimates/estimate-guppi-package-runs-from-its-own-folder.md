@@ -1,12 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-guppi-package]]"
 purpose: Whether the code, the settings, the lock and the tests of GUPPI stand under .guppi/, every hook, skill, agent, Makefile line and page runs them through uv run --project .guppi, the modules and the guards take that form, and the clean version holds no pyproject.toml at its root
-method: "uv run --project .guppi pytest .guppi/tests/test_guppi_package.py; by hand, after the librarian's run of the session whose Work Mode moves the code: a session opened in this repository, /hi typed there, and the output of its hooks read against the Criterion"
+method: "by hand, after the librarian's run of the session that changes the example of a path pair in rule-page-generation: uv run --project .guppi pytest .guppi/tests/test_guppi_package.py, then a session opened in this repository, /hi typed there, and the output of its hooks read against the Criterion"
 checked: 2026-10-15
-deferred_by: ["[[decision-case-837]]"]
 origin: raw/2026-10-15/0553/ledger.md#case-819.1
 sprint: plugin
 created: 2026-10-15
@@ -40,3 +39,5 @@ The package `guppi`, its `pyproject.toml`, its lock file `uv.lock`, its tests an
 - 2026-10-15 created · [[decision-case-819.1]]
 - 2026-10-15 status: pending → failed · raw/2026-10-15/1959/ledger.md#L5
 - 2026-10-15 deferred · [[decision-case-837]]
+- 2026-10-16 defer by decision-case-837 superseded · [[decision-case-840.2]]
+- 2026-10-16 updated: read again after the example of a path pair changes in rule-page-generation and estimate-generate-rewords; the Criterion stands, the method waits for the librarian's run that writes the new example · [[decision-case-840.2]]

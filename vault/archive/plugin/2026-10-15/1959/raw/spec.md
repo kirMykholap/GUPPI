@@ -174,7 +174,7 @@ update:
 - [x] update `estimate-sprint-close-next-session-opens-the-sprint`
 - [x] `.guppi/pyproject.toml`: under `[tool.pytest.ini_options]`, the marker `live` registered under `markers`, and `addopts` that leaves it out, `-m "not live"`; a comment there holds no pointer.
 - [x] `.guppi/tests/test_ship.py`: a test marked `live`, whose name does not hold `estimate`, runs `ship.ship` over this repository into `tmp_path` with a version it passes, and asserts that no line it gives back names a page under `vault/wiki/estimates/`.
-- [ ] read `estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets`
+- [x] read `estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets`
 ```
 
 ### Case 823.2 — The sibling note keeps its pointer in a bracket

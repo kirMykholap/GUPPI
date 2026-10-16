@@ -1,12 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-plugin-install]]"
 purpose: Whether guppi ship puts the skill install into the clean version, and whether /guppi:install copies every file of the plugin but its own into a project that holds none of them, and writes nothing into one that holds one
 method: "uv run --project .guppi pytest .guppi/tests/test_ship.py -k plugin_skill; by hand, after the Work Mode of this change: the clean version written into a local folder by uv run --project .guppi guppi ship --allow-draft; in an empty project, that folder added as a catalogue by /plugin marketplace add, guppi installed by /plugin install guppi@guppi-marketplace, /guppi:install typed and the files of the project read against those of the plugin; in a second empty project with a file CLAUDE.md of its own, /guppi:install typed and its output and the files of that project read against the Criterion"
-checked: 2026-10-15
-deferred_by: ["[[decision-case-831]]"]
+checked: 2026-10-16
 origin: raw/2026-10-15/0553/ledger.md#case-818.1
 sprint: plugin
 created: 2026-10-15
@@ -32,7 +31,7 @@ Then:
 
 ## Result
 
-2026-10-15, Retro, not read: plugin/skills/install/SKILL.md is written only by the librarian's render of rule-plugin-install, and guppi ship --allow-draft exits 1 with no tag prod-x.y.z, so no local copy holds the skill install after the Work Mode
+2026-10-16, Retro of session 0104, tag prod-0.2.0 local: test_ship.py -k plugin_skill 2 passed; guppi ship --allow-draft into scratchpad/ship-plugin wrote skills/install/SKILL.md and no folder plugin/; guppi ship --check printed nothing, exit 0; in C:\PROJECTS\test /guppi:install copied every file of the copy but .claude-plugin/plugin.json, .claude-plugin/marketplace.json and skills/install/SKILL.md, none differing, .claude/skills/ holding hi, work and the other bare names; in C:\PROJECTS\test-claude-md, which held its own CLAUDE.md, it named CLAUDE.md, wrote nothing and stopped; the copy unchanged after the installs
 
 ## History
 
@@ -40,3 +39,6 @@ Then:
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 status: pending → failed · raw/2026-10-15/1739/ledger.md#L13
 - 2026-10-15 deferred · [[decision-case-831]]
+- 2026-10-16 defer by decision-case-831 superseded · [[decision-case-843]]
+- 2026-10-16 updated: set to pending with its Criterion unchanged, for a reading once a tag prod-x.y.z stands · [[decision-case-843]]
+- 2026-10-16 status: pending → passed · raw/2026-10-16/0104/ledger.md#L16

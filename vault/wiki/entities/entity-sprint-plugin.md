@@ -5,7 +5,6 @@ purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a 
 status: draft
 parent: "[[entity-sprint]]"
 estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]"]
-deferred_by: ["[[decision-case-830]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-756.1
 sprint: plugin
 created: 2026-10-10
@@ -20,7 +19,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 
 ### The clean branch
 
-- [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint; what remains: once Work Mode commits the fix of `guppi ship` that cleans the text around the example Case (case 815), the owner pushes `plugin` and a tag `prod-2` on its last commit, and the CI run it starts is read by its Estimate
+- [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint; what remains: the owner pushes `plugin` and a tag of the form `prod-x.y.z` on its last commit, and the CI run it starts is read by its Estimate; while a page with `core: true` stands `draft`, that run writes nothing to `prod`
 
 ### The plugin
 
@@ -58,3 +57,5 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-15 updated: the milestone line of rule-morph names what remains of the install step · [[decision-case-817]]
 - 2026-10-15 updated: the milestone line of rule-morph names the setup Case, its order before the first sprint and what remains of it · [[decision-case-825]]
 - 2026-10-15 deferred · [[decision-case-830]]
+- 2026-10-16 defer by decision-case-830 superseded · [[decision-case-847]]
+- 2026-10-16 updated: the milestone The clean branch names the tag form prod-x.y.z and the draft core pages that stop the run; the defer of decision-case-830 taken up · [[decision-case-847]]

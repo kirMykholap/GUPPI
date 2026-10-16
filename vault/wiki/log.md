@@ -10891,3 +10891,61 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-15 rules/rule-page-generation status: draft → built · cascade · generate
 - 2026-10-15 rules/rule-ratification status: built → draft · cascade · generate
 - 2026-10-15 tags.md registers retro, box · generate
+- 2026-10-16 estimates/estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets status: pending → passed · raw/2026-10-16/0104/ledger.md#L1 · generate
+- 2026-10-16 decisions/decision-case-840 created · raw/2026-10-16/0104/ledger.md#case-840 · generate
+- 2026-10-16 decisions/decision-case-840.1 created · raw/2026-10-16/0104/ledger.md#case-840.1 · generate
+- 2026-10-16 rules/rule-page-generation updated: the example of a path pair is docs/, a folder that names no path of GUPPI · [[decision-case-840.1]] · generate
+- 2026-10-16 estimates/estimate-generate-rewords updated: the Criterion replaced whole — the example of a path pair is docs/ → site/docs/; the method keeps the test alone · [[decision-case-840.1]] · generate
+- 2026-10-16 decisions/decision-case-840.2 created · raw/2026-10-16/0104/ledger.md#case-840.2 · generate
+- 2026-10-16 decisions/decision-case-837 superseded by decision-case-840.2 · [[decision-case-840.2]] · generate
+- 2026-10-16 estimates/estimate-guppi-package-runs-from-its-own-folder defer by decision-case-837 superseded · [[decision-case-840.2]] · generate
+- 2026-10-16 estimates/estimate-guppi-package-runs-from-its-own-folder updated: read again after the example of a path pair changes in rule-page-generation and estimate-generate-rewords; the Criterion stands, the method waits for the librarian's run that writes the new example · [[decision-case-840.2]] · generate
+- 2026-10-16 decisions/decision-case-841 created · raw/2026-10-16/0104/ledger.md#case-841 · generate
+- 2026-10-16 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch updated: the tag prod-0.2.0 placed on plugin, local; its push is a stop: task of case 850; the Criterion stands, and the reading waits for a run that writes prod · [[decision-case-841]] · generate
+- 2026-10-16 decisions/decision-case-842 created · raw/2026-10-16/0104/ledger.md#case-842 · generate
+- 2026-10-16 decisions/decision-case-831 superseded by decision-case-842 · [[decision-case-842]] · generate
+- 2026-10-16 estimates/estimate-clean-branch-installs-as-a-plugin defer by decision-case-831 superseded · [[decision-case-842]] · generate
+- 2026-10-16 estimates/estimate-clean-branch-installs-as-a-plugin updated: read again once a tag prod-x.y.z stands; the Criterion stands, the method waits for the tag and names the person's install · [[decision-case-842]] · generate
+- 2026-10-16 decisions/decision-case-843 created · raw/2026-10-16/0104/ledger.md#case-843 · generate
+- 2026-10-16 decisions/decision-case-831 superseded by decision-case-843 · [[decision-case-843]] · generate
+- 2026-10-16 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project defer by decision-case-831 superseded · [[decision-case-843]] · generate
+- 2026-10-16 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project updated: set to pending with its Criterion unchanged, for a reading once a tag prod-x.y.z stands · [[decision-case-843]] · generate
+- 2026-10-16 decisions/decision-case-844 created · raw/2026-10-16/0104/ledger.md#case-844 · generate
+- 2026-10-16 estimates/estimate-clean-branch-ships-the-tests updated: the method waits for a tag prod-x.y.z in the history of HEAD, which guppi ship needs; the Criterion stands · [[decision-case-844]] · generate
+- 2026-10-16 decisions/decision-case-845 created · raw/2026-10-16/0104/ledger.md#case-845 · generate
+- 2026-10-16 estimates/estimate-clean-branch-writes-the-session-files updated: the method waits for a tag prod-x.y.z in the history of HEAD, without which guppi ship writes nothing; the Criterion stands · [[decision-case-845]] · generate
+- 2026-10-16 decisions/decision-case-846 created · raw/2026-10-16/0104/ledger.md#case-846 · generate
+- 2026-10-16 decisions/decision-case-831 superseded by decision-case-846 · [[decision-case-846]] · generate
+- 2026-10-16 estimates/estimate-guppi-package-is-ready-after-the-install defer by decision-case-831 superseded · [[decision-case-846]] · generate
+- 2026-10-16 decisions/decision-case-832 superseded by decision-case-846 · [[decision-case-846]] · generate
+- 2026-10-16 estimates/estimate-guppi-package-is-ready-after-the-install defer by decision-case-832 superseded · [[decision-case-846]] · generate
+- 2026-10-16 estimates/estimate-guppi-package-is-ready-after-the-install updated: the Criterion replaced whole — the install comes from a local copy that guppi ship --allow-draft writes, not from the branch prod; the method makes uv missing by the PATH of a terminal, makes uv sync fail offline and reads the person's answer · [[decision-case-846]] · generate
+- 2026-10-16 decisions/decision-case-847 created · raw/2026-10-16/0104/ledger.md#case-847 · generate
+- 2026-10-16 decisions/decision-case-830 superseded by decision-case-847 · [[decision-case-847]] · generate
+- 2026-10-16 entities/entity-sprint-plugin defer by decision-case-830 superseded · [[decision-case-847]] · generate
+- 2026-10-16 entities/entity-sprint-plugin updated: the milestone The clean branch names the tag form prod-x.y.z and the draft core pages that stop the run; the defer of decision-case-830 taken up · [[decision-case-847]] · generate
+- 2026-10-16 decisions/decision-case-848 created · raw/2026-10-16/0104/ledger.md#case-848 · generate
+- 2026-10-16 rules/rule-guppi-package deferred · [[decision-case-848]] · generate
+- 2026-10-16 decisions/decision-case-849 created · raw/2026-10-16/0104/ledger.md#case-849 · generate
+- 2026-10-16 estimates/estimate-harness-pipeline deferred · [[decision-case-849]] · generate
+- 2026-10-16 decisions/decision-case-850 created · raw/2026-10-16/0104/ledger.md#case-850 · generate
+- 2026-10-16 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch updated: the push of the tag prod-0.2.0 runs after the install readings, on the person's word; the Criterion stands, and the reading waits for a run that writes prod · [[decision-case-850]] · generate
+- 2026-10-16 estimates/estimate-generate-rewords status: pending → passed · raw/2026-10-16/0104/ledger.md#L15 · generate
+- 2026-10-16 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project status: pending → passed · raw/2026-10-16/0104/ledger.md#L16 · generate
+- 2026-10-16 estimates/estimate-clean-branch-ships-the-tests status: pending → failed · raw/2026-10-16/0104/ledger.md#L17 · generate
+- 2026-10-16 estimates/estimate-clean-branch-writes-the-session-files status: pending → failed · raw/2026-10-16/0104/ledger.md#L18 · generate
+- 2026-10-16 lessons/lesson-hi-fails-outside-a-git-repository created · raw/2026-10-16/0104/ledger.md#L19 · generate
+- 2026-10-16 lessons/lesson-case-build-opens-a-new-case-for-a-task-asked-into-its-own created · raw/2026-10-16/0104/ledger.md#L20 · generate
+- 2026-10-16 lessons/lesson-case-build-reads-a-sibling-case-file-mid-rebuild created · raw/2026-10-16/0104/ledger.md#L21 · generate
+- 2026-10-16 insights/insight-subagents-read-a-sibling-mid-flight created · raw/2026-10-16/0104/ledger.md#L21 · generate
+- 2026-10-16 lessons/lesson-subagents-parallel-on-one-tree-red-mid-flight updated: clustered under insight-subagents-read-a-sibling-mid-flight (synthesis) · raw/2026-10-16/0104/ledger.md#L21 · generate
+- 2026-10-16 lessons/lesson-case-build-reads-a-sibling-case-file-mid-rebuild updated: clustered under insight-subagents-read-a-sibling-mid-flight (synthesis) · raw/2026-10-16/0104/ledger.md#L21 · generate
+- 2026-10-16 rules/rule-plugin-install status: draft → built · cascade · generate
+- 2026-10-16 decisions/decision-case-830 archived · superseded · generate
+- 2026-10-16 decisions/decision-case-831 archived · superseded · generate
+- 2026-10-16 decisions/decision-case-832 archived · superseded · generate
+- 2026-10-16 decisions/decision-case-837 archived · superseded · generate
+- 2026-10-16 decisions/decision-case-830 archived · cleanup
+- 2026-10-16 decisions/decision-case-831 archived · cleanup
+- 2026-10-16 decisions/decision-case-832 archived · cleanup
+- 2026-10-16 decisions/decision-case-837 archived · cleanup

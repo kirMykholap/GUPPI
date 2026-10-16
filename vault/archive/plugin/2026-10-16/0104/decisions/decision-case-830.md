@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "830"
-status: current
+status: archived
 defer: ["[[entity-sprint-plugin]]"]
+superseded_by: ["[[decision-case-847]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-830
 sprint: plugin
 created: 2026-10-15
@@ -26,3 +27,6 @@ Its milestone line names a tag prod-2 where guppi ship needs a tag prod-x.y.z; p
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-830
+- 2026-10-16 superseded by decision-case-847 · [[decision-case-847]]
+- 2026-10-16 archived · superseded
+- 2026-10-16 archived · cleanup

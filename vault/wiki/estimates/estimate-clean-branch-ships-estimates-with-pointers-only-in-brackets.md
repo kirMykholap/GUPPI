@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-clean-branch]]"
 purpose: Whether each Estimate that guppi ship takes into the clean version holds each pointer to a case, a decision or a session in a bracket of its own, so that the build prints no line on it
 method: "by hand, after the librarian's run of this session: uv run --project .guppi pytest .guppi/tests/test_ship.py -m live, read against the Criterion"
+checked: 2026-10-16
 origin: raw/2026-10-15/1959/ledger.md#case-823.1
 sprint: plugin
 created: 2026-10-15
@@ -23,6 +24,11 @@ No `ship:` line of that build names a page under `vault/wiki/estimates/`.
 **－** The test reads no tag `prod-x.y.z`, and a page with `core: true` stays with `estimate-clean-branch-pages-hold-pointers-only-in-brackets`.
 **－** A run of `uv run --project .guppi pytest` without `-m live` leaves the test out, by the settings of `.guppi/pyproject.toml`.
 
+## Result
+
+2026-10-16, /hi of session 0104, uv run --project .guppi pytest .guppi/tests/test_ship.py -m live: 1 passed, 50 deselected — no ship: line names a page under vault/wiki/estimates/; git diff 312ece88~1 312ece88 over the 34 Estimates the librarian's run changed: the pointers of purpose, method and Criterion stand on each page as before, one added (case 824 on estimate-clean-branch-ships-neutral-texts)
+
 ## History
 
 - 2026-10-15 created · [[decision-case-823.1]]
+- 2026-10-16 status: pending → passed · raw/2026-10-16/0104/ledger.md#L1

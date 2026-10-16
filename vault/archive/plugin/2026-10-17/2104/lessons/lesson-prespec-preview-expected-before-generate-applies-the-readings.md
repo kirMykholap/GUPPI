@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the main agent wrote the expected output of a command from the end state of the session, not from the state of the pages when the command runs, and did not check the order ledger → generate → close
-status: clustered
+status: archived
 insight: "[[insight-workflow-code-live-before-the-page-it-reads]]"
 origin: raw/2026-10-10/1555/ledger.md#L6
 sprint: migration
@@ -22,3 +22,5 @@ the main agent wrote the expected output of a command from the end state of the 
 
 - 2026-10-10 created · raw/2026-10-10/1555/ledger.md#L6
 - 2026-10-10 updated: clustered under insight-workflow-code-live-before-the-page-it-reads (synthesis) · raw/2026-10-10/1555/ledger.md#L6
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

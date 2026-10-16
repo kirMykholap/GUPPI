@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: case-guppi builds a Case on a fact of how an outside tool behaves — what GitHub accepts, which config file pytest reads from the root — that neither the round nor /pre-spec checked, so the fact proves false in Work Mode after the person ratified the Case
-status: open
+status: actioned
 children: ["[[lesson-case-build-recommended-an-unchecked-github-fact]]", "[[lesson-case-build-names-a-pytest-config-the-root-run-does-not-read]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-871]]"
 origin: raw/2026-10-15/1959/ledger.md#L73
 sprint: plugin
 created: 2026-10-15
@@ -21,3 +22,4 @@ One sentence in rule-case-build that when a recommended option rests on how an o
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#L73
+- 2026-10-17 updated: actioned: case-guppi gains WebFetch and reads the documentation of an outside tool before it recommends on it, in rule-case-build (case 871) · [[decision-case-871]]

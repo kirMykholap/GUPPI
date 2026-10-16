@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi may open a new top-level Case where the main agent named an existing one, and the sibling Cases built again in parallel learn the new id only after every case-guppi has answered
-status: clustered
+status: archived
 insight: "[[insight-case-build-opens-a-new-case-where-one-was-named]]"
 origin: raw/2026-10-16/0104/ledger.md#L20
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi may open a new top-level Case where the main agent named an existing 
 
 - 2026-10-16 created · raw/2026-10-16/0104/ledger.md#L20
 - 2026-10-16 updated: clustered under insight-case-build-opens-a-new-case-where-one-was-named (synthesis) · raw/2026-10-16/0342/ledger.md#L20
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi cited the predicate by its line and summarised its first condition only, without reading the whole function it named
-status: clustered
+status: archived
 insight: "[[insight-case-build-claims-what-code-does-without-reading-it]]"
 origin: raw/2026-10-16/1712/ledger.md#L25
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi cited the predicate by its line and summarised its first condition on
 
 - 2026-10-16 created · raw/2026-10-16/1712/ledger.md#L25
 - 2026-10-16 updated: clustered under insight-case-build-claims-what-code-does-without-reading-it (synthesis) · raw/2026-10-16/1712/ledger.md#L25
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

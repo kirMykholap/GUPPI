@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-prespec]]"
 purpose: An item of the plan carries one promise per Case, names a page that exists or is created, and no file
 method: uv run --project .guppi pytest .guppi/tests/test_prespec.py
-checked: 2026-10-13
+checked: 2026-10-17
 origin: raw/2026-09-24/1916/ledger.md#case-399.5
 sprint: migration
 created: 2026-09-24
@@ -20,19 +20,21 @@ When:
 Then:
 A Case whose `then` block holds two or more Estimate items that set a new Criterion — a `create`, or an `update` that names no part of the page by `names_a_part` of `.guppi/guppi/materialize.py` — is the finding `case N: two promises in one Case — split it`, whether each item writes its Criterion under `sections` or lifts it.
 **＋** An `update` of an Estimate whose page does not exist is the finding `case N: update <slug>: no such Estimate page`.
+**＋** A `defer` of a Lesson or a Decision page, whether its page stands or not, is the finding `case N: defer <slug>: a Lesson or a Decision page carries no deferred_by, so no list shows its defer — defer the rule or entity page whose change settles it`, a short Case under `## Deferred` of the plan included.
 **＋** A `defer` of an Estimate whose page stands neither under `vault/wiki/estimates/` nor in a folder `estimates/` under `vault/archive/` outside a `raw/` folder is the finding `case N: defer <slug>: no such Estimate page — defer the page it would check`, a short Case under `## Deferred` of the plan included.
-**＋** A `defer` of an Insight, a Lesson or a Decision page whose page stands neither under `vault/wiki/<category>/` nor in a folder `<category>` under `vault/archive/` outside a `raw/` folder is the finding `case N: defer <slug>: no such page — a placeholder is written only for a rule or an entity`, a short Case under `## Deferred` of the plan included.
-**＋** The judgment of both is `defer_writes_no_page` of `.guppi/guppi/materialize.py`, which asks `has_page` and which the `defer` of `.guppi/guppi/generate.py` imports too.
+**＋** A `defer` of an Insight whose page stands neither under `vault/wiki/insights/` nor in a folder `insights/` under `vault/archive/` outside a `raw/` folder is the finding `case N: defer <slug>: no such page — a placeholder is written only for a rule or an entity`, a short Case under `## Deferred` of the plan included.
+**＋** The judgment of a Lesson or a Decision page is `defers_a_record` of `.guppi/guppi/materialize.py`, and the judgment of a page that does not stand is `defer_writes_no_page` of the same module, which asks `has_page`; the `defer` of `.guppi/guppi/generate.py` imports both.
 **＋** A `create` of an Estimate whose `ref` names neither a live rule or entity nor a rule or entity a `create` item of the plan carries is the finding `case N: create <slug>: ref <ref> names no live page`.
 **＋** An `update` item carrying `file` is the finding `case N: file <path>; the file route is gone (case 320)`, naming the rule that governs the path when one does.
 **＋** A key of an item of any kind that `item_keys` of `.guppi/guppi/materialize.py` does not give its kind and category — `slug` a key of every kind — is the finding `case N: <kind> <slug>: key <key> is not a key of this item`.
 **－** An `update` of an Estimate that names a part alone — `set` without `status`, a `replace` pair, a section other than `Criterion` — is not counted.
+**－** A `defer` of a Lesson or a Decision page with no page gives the finding of a Lesson or a Decision page alone, not the finding of a page that does not stand.
 **－** A `defer` of a rule or an entity with no page is not a finding.
 **－** A `create` or a `defer` of a category with no schema file, or of one whose schema rule a decision line of the session creates or updates, is not judged by its keys (case 308.2).
 
 ## Result
 
-2026-10-13, uv run pytest tests/test_prespec.py: 242 passed — a defer of an Insight or a Lesson with no page is the finding of defer_writes_no_page, a rule or an entity with no page is none
+2026-10-17, Retro of session 2104: uv run --project .guppi pytest .guppi/tests/test_prespec.py green within guppi test (1748 passed): a defer of a Lesson or a Decision page, live, archived or with no page, under a Case heading and under ## Deferred, gives the new finding alone; an Insight with no page still gives NO_DEFERRED_PAGE; a rule, an entity, an Insight and an Estimate that stand give none
 
 ## History
 
@@ -50,3 +52,5 @@ A Case whose `then` block holds two or more Estimate items that set a new Criter
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the Criterion replaced whole — a defer of a Lesson or a Decision page is a finding, whether the page stands or not · [[decision-case-865.2]]
+- 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L52

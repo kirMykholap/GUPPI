@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Rule page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/rules/schema.yaml
 render_mode: full
@@ -260,3 +260,4 @@ examples:
 - 2026-10-16 defer by decision-case-828 superseded · [[decision-case-856.3]]
 - 2026-10-16 updated: a page with core: true comes into a new project with its passed Estimates · [[decision-case-856.3]]
 - 2026-10-16 status: built → draft · cascade
+- 2026-10-17 status: draft → built · cascade

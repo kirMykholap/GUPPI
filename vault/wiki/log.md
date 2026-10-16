@@ -11053,3 +11053,125 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-16 decisions/decision-case-849 archived · cleanup
 - 2026-10-16 decisions/decision-case-855 archived · cleanup
 - 2026-10-16 decisions/decision-case-858 archived · cleanup
+- 2026-10-17 estimates/estimate-rules-schema-checked status: pending → passed · raw/2026-10-16/2104/ledger.md#L1 · generate
+- 2026-10-17 estimates/estimate-clean-branch-ships-neutral-texts status: pending → failed · raw/2026-10-16/2104/ledger.md#L2 · generate
+- 2026-10-17 decisions/decision-case-865 created · raw/2026-10-16/2104/ledger.md#case-865 · generate
+- 2026-10-17 decisions/decision-case-865.1 created · raw/2026-10-16/2104/ledger.md#case-865.1 · generate
+- 2026-10-17 rules/rule-page-generation updated: a defer of a Lesson or a Decision page fails as an entry, whether the page stands or not (case 865) · [[decision-case-865.1]] · generate
+- 2026-10-17 estimates/estimate-generate-writes updated: the Criterion replaced whole — a defer of a Lesson or a Decision page fails alone, whether the page stands or not · [[decision-case-865.1]] · generate
+- 2026-10-17 decisions/decision-case-865.2 created · raw/2026-10-16/2104/ledger.md#case-865.2 · generate
+- 2026-10-17 estimates/estimate-prespec-checks-the-form-of-an-item updated: the Criterion replaced whole — a defer of a Lesson or a Decision page is a finding, whether the page stands or not · [[decision-case-865.2]] · generate
+- 2026-10-17 decisions/decision-case-865.3 created · raw/2026-10-16/2104/ledger.md#case-865.3 · generate
+- 2026-10-17 rules/rule-spec-write updated: the hook refuses a short defer of a Lesson or a Decision page (case 865) · [[decision-case-865.3]] · generate
+- 2026-10-17 rules/rule-orchestration updated: a defer never names a Lesson or a Decision page; the hooks refuse it at the reply that carries it (case 865) · [[decision-case-865.3]] · generate
+- 2026-10-17 estimates/estimate-spec-write-writes-a-defer updated: the Criterion replaced whole — a short defer of a Lesson or a Decision page is refused and not written · [[decision-case-865.3]] · generate
+- 2026-10-17 decisions/decision-case-865.4 created · raw/2026-10-16/2104/ledger.md#case-865.4 · generate
+- 2026-10-17 estimates/estimate-ledger-write-refuses-a-defer-of-a-record created · [[decision-case-865.4]] · generate
+- 2026-10-17 estimates/estimate-ledger-write-refuses-a-defer-of-a-record status: pending → passed · raw/2026-10-16/2104/ledger.md#L44 · generate
+- 2026-10-17 rules/rule-ledger-write estimate estimate-ledger-write-refuses-a-defer-of-a-record added · [[decision-case-865.4]] · generate
+- 2026-10-17 rules/rule-ledger-write updated: the hook refuses a defer line of a Lesson or a Decision page (case 865) · [[decision-case-865.4]] · generate
+- 2026-10-17 decisions/decision-case-866 created · raw/2026-10-16/2104/ledger.md#case-866 · generate
+- 2026-10-17 rules/rule-close updated: the close command is run by the Bash tool · [[decision-case-866]] · generate
+- 2026-10-17 decisions/decision-case-867 created · raw/2026-10-16/2104/ledger.md#case-867 · generate
+- 2026-10-17 decisions/decision-case-829 superseded by decision-case-867 · [[decision-case-867]] · generate
+- 2026-10-17 estimates/estimate-page-schemas-one-file-per-rule defer by decision-case-829 superseded · [[decision-case-867]] · generate
+- 2026-10-17 estimates/estimate-page-schemas-one-file-per-rule updated: the method names pytest with the test files of the MOC; the reading by hand after the first render is gone · [[decision-case-867]] · generate
+- 2026-10-17 decisions/decision-case-868 created · raw/2026-10-16/2104/ledger.md#case-868 · generate
+- 2026-10-17 rules/rule-case-build updated: a test over a live file that the same session changes passes on the old text and the new until the text lands; its red is no note for the handoff (case 868) · [[decision-case-868]] · generate
+- 2026-10-17 estimates/estimate-case-build-keeps-the-old-form-until-the-writer-is-live updated: the Criterion replaced whole — a test over a live file that the same session changes passes on the old text and the new until the text lands · [[decision-case-868]] · generate
+- 2026-10-17 insights/insight-workflow-code-live-before-the-page-it-reads updated: actioned: a test over a live file that the same session changes passes on the old text and the new until the text lands, in rule-case-build (case 868) · [[decision-case-868]] · generate
+- 2026-10-17 decisions/decision-case-869 created · raw/2026-10-16/2104/ledger.md#case-869 · generate
+- 2026-10-17 decisions/decision-case-835 superseded by decision-case-869 · [[decision-case-869]] · generate
+- 2026-10-17 insights/insight-case-build-claims-what-code-does-without-reading-it defer by decision-case-835 superseded · [[decision-case-869]] · generate
+- 2026-10-17 rules/rule-case-build updated: case-guppi reads whole the function that decides a claim it states about code, and names it in context (case 869) · [[decision-case-869]] · generate
+- 2026-10-17 estimates/estimate-case-build-reads-the-code-it-states created · [[decision-case-869]] · generate
+- 2026-10-17 rules/rule-case-build estimate estimate-case-build-reads-the-code-it-states added · [[decision-case-869]] · generate
+- 2026-10-17 insights/insight-case-build-claims-what-code-does-without-reading-it updated: actioned: case-guppi reads whole the function that decides a claim it states about code, and names it in context (case 869) · [[decision-case-869]] · generate
+- 2026-10-17 decisions/decision-case-870 created · raw/2026-10-16/2104/ledger.md#case-870 · generate
+- 2026-10-17 rules/rule-case-build updated: case-guppi builds a change under the number of the Case a message names, and asks in a round before it puts a second behaviour of a ratified Case into a new Case beside it (case 870) · [[decision-case-870]] · generate
+- 2026-10-17 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — a change goes under the number of the named Case, and a round comes before a new Case beside a ratified one · [[decision-case-870]] · generate
+- 2026-10-17 insights/insight-case-build-opens-a-new-case-where-one-was-named updated: actioned: case-guppi builds a change under the number of the Case a message names, and asks in a round before a new Case beside a ratified one, in rule-case-build (case 870) · [[decision-case-870]] · generate
+- 2026-10-17 decisions/decision-case-871 created · raw/2026-10-16/2104/ledger.md#case-871 · generate
+- 2026-10-17 rules/rule-case-build updated: case-guppi gains WebFetch and reads the documentation of an outside tool before it recommends an option that rests on how that tool behaves; an unsettled fact is said and its option not recommended (case 871) · [[decision-case-871]] · generate
+- 2026-10-17 estimates/estimate-case-build-checks-a-fact-of-an-outside-tool created · [[decision-case-871]] · generate
+- 2026-10-17 estimates/estimate-case-build-checks-a-fact-of-an-outside-tool status: pending → passed · raw/2026-10-16/2104/ledger.md#L46 · generate
+- 2026-10-17 rules/rule-case-build estimate estimate-case-build-checks-a-fact-of-an-outside-tool added · [[decision-case-871]] · generate
+- 2026-10-17 insights/insight-case-build-rests-on-an-unchecked-fact-of-a-tool updated: actioned: case-guppi gains WebFetch and reads the documentation of an outside tool before it recommends on it, in rule-case-build (case 871) · [[decision-case-871]] · generate
+- 2026-10-17 decisions/decision-case-872 created · raw/2026-10-16/2104/ledger.md#case-872 · generate
+- 2026-10-17 decisions/decision-case-872.1 created · raw/2026-10-16/2104/ledger.md#case-872.1 · generate
+- 2026-10-17 rules/rule-case-build updated: case-guppi reads no file of a Case built at the same time, names the Cases its Case rests on in a Sibling line, and reads their finished files when their build has ended (case 872.1) · [[decision-case-872.1]] · generate
+- 2026-10-17 estimates/estimate-case-build-reads-no-sibling-file-mid-send created · [[decision-case-872.1]] · generate
+- 2026-10-17 rules/rule-case-build estimate estimate-case-build-reads-no-sibling-file-mid-send added · [[decision-case-872.1]] · generate
+- 2026-10-17 insights/insight-subagents-read-a-sibling-mid-flight updated: actioned: Cases built at the same time read no sibling file mid-build, and a second pass reads the finished files, in rule-case-build, rule-orchestration and rule-prespec (case 872) · [[decision-case-872.1]] · generate
+- 2026-10-17 decisions/decision-case-872.4 created · raw/2026-10-16/2104/ledger.md#case-872.4 · generate
+- 2026-10-17 estimates/estimate-case-build-reads-by-need-and-in-parts updated: the Criterion replaced whole — the case file of a Case built at the same time is read only after its build has ended · [[decision-case-872.4]] · generate
+- 2026-10-17 decisions/decision-case-872.2 created · raw/2026-10-16/2104/ledger.md#case-872.2 · generate
+- 2026-10-17 rules/rule-orchestration updated: Cases sent at the same time name each other as built at the same time, and a second pass, one Case at a time, sends back each Case whose summary carries a Sibling line (case 872.2) · [[decision-case-872.2]] · generate
+- 2026-10-17 rules/rule-prespec updated: the Cases sent back after the findings and with the answers name each other as built at the same time, and the second pass of orchestration.md comes before the confirmation of ask-guppi (case 872.2) · [[decision-case-872.2]] · generate
+- 2026-10-17 estimates/estimate-orchestration-rechecks-a-sibling-after-a-joint-send created · [[decision-case-872.2]] · generate
+- 2026-10-17 rules/rule-orchestration estimate estimate-orchestration-rechecks-a-sibling-after-a-joint-send added · [[decision-case-872.2]] · generate
+- 2026-10-17 decisions/decision-case-872.3 created · raw/2026-10-16/2104/ledger.md#case-872.3 · generate
+- 2026-10-17 rules/rule-orchestration updated: in Plan Mode an Other Case line raises no question: the main agent sends the other Case back by itself, and the person agrees or not at its showing (case 872.3) · [[decision-case-872.3]] · generate
+- 2026-10-17 rules/rule-case-build updated: in Plan Mode the main agent sends the Case an Other Case line names back with no question to the person (case 872.3) · [[decision-case-872.3]] · generate
+- 2026-10-17 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — in Plan Mode an Other Case line raises no question, and the main agent sends the other Case back by itself · [[decision-case-872.3]] · generate
+- 2026-10-17 decisions/decision-case-872.5 created · raw/2026-10-16/2104/ledger.md#case-872.5 · generate
+- 2026-10-17 rules/rule-orchestration updated: an Other Case line of a batch raises no question: the other Case joins the batch by itself (case 872.5) · [[decision-case-872.5]] · generate
+- 2026-10-17 estimates/estimate-orchestration-signs-items-taken-together updated: the Criterion replaced whole — an Other Case line of a batch raises no question, and the other Case joins the batch by itself · [[decision-case-872.5]] · generate
+- 2026-10-17 decisions/decision-case-873 created · raw/2026-10-16/2104/ledger.md#case-873 · generate
+- 2026-10-17 rules/rule-estimates-schema deferred · [[decision-case-873]] · generate
+- 2026-10-17 decisions/decision-case-874 created · raw/2026-10-16/2104/ledger.md#case-874 · generate
+- 2026-10-17 estimates/estimate-clean-branch-ships-neutral-texts deferred · [[decision-case-874]] · generate
+- 2026-10-17 decisions/decision-case-872.6 created · raw/2026-10-16/2104/ledger.md#case-872.6 · generate
+- 2026-10-17 estimates/estimate-orchestration-asks-in-the-grill-me-shape updated: the Criterion replaced whole — the question on another Case after a clash stands in Work Mode only · [[decision-case-872.6]] · generate
+- 2026-10-17 decisions/decision-case-872.7 created · raw/2026-10-16/2104/ledger.md#case-872.7 · generate
+- 2026-10-17 estimates/estimate-case-build-checks-the-finished-case updated: the Criterion replaced whole — the finished Case is held against a Case built at the same time only after its build has ended · [[decision-case-872.7]] · generate
+- 2026-10-17 decisions/decision-case-872.8 created · raw/2026-10-16/2104/ledger.md#case-872.8 · generate
+- 2026-10-17 estimates/estimate-orchestration-signs-a-batch-together updated: the Criterion replaced whole — the batch takes the second pass before its Cases are shown · [[decision-case-872.8]] · generate
+- 2026-10-17 estimates/estimate-generate-writes status: pending → passed · raw/2026-10-16/2104/ledger.md#L42 · generate
+- 2026-10-17 estimates/estimate-spec-write-writes-a-defer status: pending → passed · raw/2026-10-16/2104/ledger.md#L43 · generate
+- 2026-10-17 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-10-16/2104/ledger.md#L45 · generate
+- 2026-10-17 estimates/estimate-case-build-reads-by-need-and-in-parts status: pending → passed · raw/2026-10-16/2104/ledger.md#L47 · generate
+- 2026-10-17 estimates/estimate-case-build-checks-the-finished-case status: pending → passed · raw/2026-10-16/2104/ledger.md#L48 · generate
+- 2026-10-17 estimates/estimate-orchestration-asks-in-the-grill-me-shape status: pending → passed · raw/2026-10-16/2104/ledger.md#L49 · generate
+- 2026-10-17 estimates/estimate-orchestration-signs-a-batch-together status: pending → passed · raw/2026-10-16/2104/ledger.md#L50 · generate
+- 2026-10-17 lessons/lesson-case-build-parallel-cases-clash-on-one-page created · raw/2026-10-16/2104/ledger.md#L51 · generate
+- 2026-10-17 estimates/estimate-prespec-checks-the-form-of-an-item status: pending → passed · raw/2026-10-16/2104/ledger.md#L52 · generate
+- 2026-10-17 insights/insight-case-build-sibling-texts-unchecked-before-the-showing created · raw/2026-10-16/2104/ledger.md#L51 · generate
+- 2026-10-17 insights/insight-case-build-sibling-texts-unchecked-before-the-showing updated: born actioned, its cause closed by case 872.1 (synthesis) · raw/2026-10-16/2104/ledger.md#L51 · generate
+- 2026-10-17 lessons/lesson-case-build-sub-cases-contradicted-each-other updated: clustered under insight-case-build-sibling-texts-unchecked-before-the-showing (synthesis) · raw/2026-10-16/2104/ledger.md#L51 · generate
+- 2026-10-17 lessons/lesson-case-build-parallel-cases-clash-on-one-page updated: clustered under insight-case-build-sibling-texts-unchecked-before-the-showing (synthesis) · raw/2026-10-16/2104/ledger.md#L51 · generate
+- 2026-10-17 rules/rule-case-build status: built → draft · cascade · generate
+- 2026-10-17 rules/rule-orchestration status: built → draft · cascade · generate
+- 2026-10-17 rules/rule-rules-schema status: draft → built · cascade · generate
+- 2026-10-17 decisions/decision-case-835 archived · superseded · generate
+- 2026-10-17 lessons/lesson-case-build-reused-judgment-not-checked-against-the-other-side archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-recommended-on-a-claim-about-code-it-did-not-read archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-states-a-predicate-wider-than-the-code archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-opens-a-new-case-for-a-task-asked-into-its-own archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-rebuilds-a-ratified-case-under-a-new-number-in-plan-mode archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-recommended-an-unchecked-github-fact archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-names-a-pytest-config-the-root-run-does-not-read archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-sub-cases-contradicted-each-other archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-parallel-cases-clash-on-one-page archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-subagents-parallel-on-one-tree-red-mid-flight archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-reads-a-sibling-case-file-mid-rebuild archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-prespec-preview-expected-before-generate-applies-the-readings archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-reading-moment-before-the-render-it-reads archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-chose-a-key-its-own-session-adds archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian archived · insight actioned · generate
+- 2026-10-17 lessons/lesson-case-build-chose-a-key-its-own-session-adds archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-names-a-pytest-config-the-root-run-does-not-read archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-opens-a-new-case-for-a-task-asked-into-its-own archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-parallel-cases-clash-on-one-page archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-reads-a-sibling-case-file-mid-rebuild archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-rebuilds-a-ratified-case-under-a-new-number-in-plan-mode archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-recommended-an-unchecked-github-fact archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-recommended-on-a-claim-about-code-it-did-not-read archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-reused-judgment-not-checked-against-the-other-side archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-states-a-predicate-wider-than-the-code archived · cleanup
+- 2026-10-17 lessons/lesson-case-build-sub-cases-contradicted-each-other archived · cleanup
+- 2026-10-17 lessons/lesson-case-reading-moment-before-the-render-it-reads archived · cleanup
+- 2026-10-17 lessons/lesson-prespec-preview-expected-before-generate-applies-the-readings archived · cleanup
+- 2026-10-17 lessons/lesson-retro-red-test-that-a-case-ratified-to-wait-for-the-librarian archived · cleanup
+- 2026-10-17 lessons/lesson-subagents-parallel-on-one-tree-red-mid-flight archived · cleanup
+- 2026-10-17 decisions/decision-case-835 archived · cleanup

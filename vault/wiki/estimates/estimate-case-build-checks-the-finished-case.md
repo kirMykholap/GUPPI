@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi checks its finished Case before it answers — the chosen options, the pages that name a slug the change makes false, the live texts that name a field, term or command whose behaviour the change touches, glossary rows and Estimates included, the sentences of a page it changes that state the changed behaviour in other words, the rules that act at the moment the change sets, the Cases of the session its prompt names or the check of its file names in a finding or a note, the purpose and method of an Estimate whose Criterion it replaces, what each search printed and that the context keeps only the searches the Case rests on, the sentences of its sub-cases that speak of one behaviour, field or term whatever page each changes — counted by what ask-guppi still finds at pre-spec
 method: by hand, the text of .claude/agents/case-guppi.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec, read against the Criterion; the findings of ask-guppi at the /pre-spec of that session, when it ran, read for each Case case-guppi built — a Case that departs from a chosen option, a page naming a changed slug that the Case misses, a glossary row or an Estimate naming a changed field, term or command that the Case misses, a sentence of a page the Case changes that states the changed behaviour in other words and that the Case misses, a rule acting at the same moment that the Case misses, a Case of the session named in the prompt whose page or moment the Case clashes with, an Estimate whose purpose or method still states the promise its replaced Criterion dropped, a claim of context that its search did not print, a search in context that the Case does not rest on, two sub-cases whose texts on one behaviour, field or term contradict — the count of each in the estimate line
-checked: 2026-10-12
+checked: 2026-10-17
 origin: raw/2026-09-30/1306/ledger.md#case-544.1
 sprint: migration
 created: 2026-09-30
@@ -30,10 +30,11 @@ It puts each option the person chose in its rounds, or the person's own words wh
 **＋** A claim of `context` about a text names the search it rests on: its pattern, the paths it ran over, and each file the search printed, a file it does not read included, or the count it printed; just before it answers, it runs each search that `context` names again, with the pattern and the paths that `context` writes, and the files and counts in `context` are the ones that run printed, not the files it read during the build; it claims nothing the search did not print.
 **＋** In a Case with sub-cases, it lists each behaviour, field and term that a sub-case sets, reads side by side every sentence of the new texts of all its sub-cases that speaks of it, whatever page each sub-case changes, and the Case holds no contradiction between them.
 **－** A hit in a History line, in `log.md` or in `brief.md` is not read.
+**－** The case file of a Case that the prompt or a message names as built at the same time it does not read in that build and does not name in `given`; it holds its new text against that file only after a later message says that the build of that Case has ended, as `estimate-case-build-reads-no-sibling-file-mid-send` checks.
 
 ## Result
 
-2026-10-12, Retro, the new Render of rule-case-build in the Spec of session 2252 read against the Criterion of case 784: the replace sets the side-by-side reading of all sub-cases by behaviour, field or term whatever page each changes, and the Grep of the live pages outside decisions/ and .claude/ for each changed field, term or command, glossary rows and Criteria included; ask-guppi at the /pre-spec of session 2252, Cases built under the earlier Render: 782 none, 784 none, 783 four — two sub-cases whose texts on one field contradict 1 (whether an Estimate has a page), a rule acting at the same moment that the Case misses 1 (rule-prespec routing of a finding on a short Case), a new sentence wider than a line of the Criterion it carries 1, a Criterion line promising a status a schema forbids 1; every other kind 0
+2026-10-17, Retro of session 2104: the new Render of rule-case-build in spec.md read against the Criterion of case 872.7: each line maps to a sentence of the check paragraph, and a Case built at the same time is neither read nor named in given until its build ends; findings of ask-guppi at the /pre-spec of this session by kind: an Estimate naming the changed thing that the Case misses 5, a Case of the session whose page clashes 3, a claim of context its search did not print 2, a rule acting at the same moment missed 1, a Criterion that waits for a later session 2, the other kinds 0
 
 ## History
 
@@ -61,3 +62,5 @@ It puts each option the person chose in its rounds, or the person's own words wh
 - 2026-10-08 status: pending → passed · raw/2026-10-08/0213/ledger.md#L9
 - 2026-10-12 updated: the Criterion replaced whole — sub-cases read side by side by the behaviour, field or term they speak of, whatever page each changes, and a search for the name of each changed field, term or command (case 784) · [[decision-case-784]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/2252/ledger.md#L15
+- 2026-10-17 updated: the Criterion replaced whole — the finished Case is held against a Case built at the same time only after its build has ended · [[decision-case-872.7]]
+- 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L48

@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: case-guppi opens a new top-level Case under a new number where the main agent named an existing Case to change, so the named Case stays as it was and the Cases that name it are built again
-status: open
+status: actioned
 children: ["[[lesson-case-build-opens-a-new-case-for-a-task-asked-into-its-own]]", "[[lesson-case-build-rebuilds-a-ratified-case-under-a-new-number-in-plan-mode]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-870]]"
 origin: raw/2026-10-16/0342/ledger.md#L20
 sprint: plugin
 created: 2026-10-16
@@ -21,3 +22,4 @@ One sentence in rule-case-build that case-guppi builds a change under the Case t
 ## History
 
 - 2026-10-16 created · raw/2026-10-16/0342/ledger.md#L20
+- 2026-10-17 updated: actioned: case-guppi builds a change under the number of the Case a message names, and asks in a round before a new Case beside a ratified one, in rule-case-build (case 870) · [[decision-case-870]]

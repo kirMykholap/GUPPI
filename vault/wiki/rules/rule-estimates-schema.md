@@ -8,6 +8,7 @@ governs: vault/wiki/estimates/schema.yaml
 render_mode: full
 parent: "[[rule-page-schemas]]"
 estimates: ["[[estimate-estimates-schema-checked]]"]
+deferred_by: ["[[decision-case-873]]"]
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
@@ -183,3 +184,4 @@ examples:
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 updated: a method may name guppi test, guppi check or guppi style, and the Estimate of a MOC may name pytest with the test files of its pipeline · [[decision-case-820.3]]
 - 2026-10-15 updated: the field core of an Estimate is written by guppi ship into the copy of each passed Estimate of a shipped page · [[decision-case-822.1]]
+- 2026-10-17 deferred · [[decision-case-873]]

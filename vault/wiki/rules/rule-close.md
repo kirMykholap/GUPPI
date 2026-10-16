@@ -24,8 +24,7 @@ changed must be readable as one separate diff, six months on.
 ## Render
 
 <!-- rule-close -->
-Close. Run `uv run --project .guppi guppi check` and keep its output for the report. Commit the vault with the
-files the render wrote: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then return a report of at most twenty
+Close. Run `uv run --project .guppi guppi check` and keep its output for the report. Commit the vault with the files the render wrote, by the Bash tool, since the command is written for a POSIX shell: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then return a report of at most twenty
 lines: pages created and updated per category, entries marked incomplete or failed,
 pages archived, the flags you raised, the lint total. Nothing else.
 <!-- /rule-close -->
@@ -45,3 +44,4 @@ pages archived, the flags you raised, the lint total. Nothing else.
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
 - 2026-10-16 updated: the commit takes vault and each file that guppi render --paths prints, in place of four fixed paths · [[decision-case-857]]
 - 2026-10-16 status: built → draft · cascade
+- 2026-10-17 updated: the close command is run by the Bash tool · [[decision-case-866]]

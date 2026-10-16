@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-page-generation]]"
 purpose: What generate writes to a page for each kind of entry of a materialize.yaml, and nothing an entry does not carry
 method: pytest in .guppi/tests/test_generate.py against a temp vault; the live reading once by hand
-checked: 2026-10-13
+checked: 2026-10-17
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -26,18 +26,20 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 **＋** An `estimate` sets `status`, overwrites `## Result`, writes `checked` — the date the `result` opens with, else the yaml's date — and appends History `status: a → b · <ledger pointer>`.
 **＋** A `delete` sets `archived` with History `deleted`; a `delete` outside the vault is a line on stdout, the entry applied, no page written.
 **＋** A `defer` with a page appends the decision slug to `deferred_by` (rule, entity, insight, estimate) with History `deferred`; without a page it writes a placeholder `draft` with the Case's fields and `deferred_by` for a rule or an entity only.
+**＋** The folders whose page takes `deferred_by` are `DEFERRABLE` of `.guppi/guppi/materialize.py`, which `.guppi/guppi/generate.py` imports; they are the folders whose `schema.yaml` under `vault/wiki/` lists `deferred_by`.
 **＋** A `lesson` writes the lesson only, `source` when the line carries it; no Estimate is created.
 **＋** Every ref field is written as `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`; a slug without a category prefix stays bare; read through the brackets.
 **＋** A `create` in `insights` applies only with the mark `librarian`; a `delete` of an Insight is refused always.
 **＋** History lines and `log.md` lines carry the date of the run and end with `[[decision-case-N]]` or the ledger pointer; `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a used and undeclared one goes to stderr.
-**－** A `defer` of an Estimate, an Insight, a Lesson or a Decision page whose page stands neither under `vault/wiki/<category>/` nor in a folder `<category>` under `vault/archive/` outside a `raw/` folder, by `defer_writes_no_page` of `.guppi/guppi/materialize.py`, which asks `has_page`, writes no page: the entry fails alone (`estimate-generate-fails-alone`), with `generate: <slug>: an Estimate is deferred only with its page — defer the page it would check` on stderr for an Estimate, and `generate: <slug>: a placeholder is written only for a rule or an entity — defer a page that stands` for the other kinds.
+**－** A `defer` of a Lesson or a Decision page, by `defers_a_record` of `.guppi/guppi/materialize.py`, whether its page stands or not, changes no page and appends nothing to `vault/wiki/log.md`: the entry fails alone (`estimate-generate-fails-alone`), with `generate: <slug>: a Lesson or a Decision page carries no deferred_by, so no list shows its defer — defer the rule or entity page whose change settles it` on stderr.
+**－** A `defer` of an Estimate or an Insight whose page stands neither under `vault/wiki/<category>/` nor in a folder `<category>` under `vault/archive/` outside a `raw/` folder, by `defer_writes_no_page` of `.guppi/guppi/materialize.py`, which asks `has_page`, writes no page: the entry fails alone (`estimate-generate-fails-alone`), with `generate: <slug>: an Estimate is deferred only with its page — defer the page it would check` on stderr for an Estimate, and `generate: <slug>: a placeholder is written only for a rule or an entity — defer a page that stands` for an Insight.
 **－** No body section is derived from a ref field; a section the entry does not name under `sections` or reach by `replace` is not touched.
 **－** An `update` of an Estimate whose `set` carries `method` drops no section.
 **－** `criterion_block` on an `update` and an entry of kind `remove_criterion` are not applied: a shape the script does not know — the entry fails alone (`estimate-generate-fails-alone`).
 
 ## Result
 
-2026-10-13, uv run pytest tests/test_generate.py: 127 passed — a defer of an Insight, a Lesson and a Decision page with no page writes no page and fails alone; an Insight archived in an insights folder is marked there
+2026-10-17, Retro of session 2104: uv run --project .guppi guppi test 1748 passed, 6 skipped, 1 deselected, the new tests of test_generate.py among them: a defer of a live Decision page, of one under vault/archive/, of a live Lesson and of a Decision page with no page changes no page, writes no log.md line, prints DEFER_OF_A_RECORD and fails alone while the other entries apply; a defer of a rule, an entity, an Insight and an Estimate that stand marks deferred_by; DEFERRABLE matches the live schema files
 
 ## History
 
@@ -92,3 +94,5 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L45
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the Criterion replaced whole — a defer of a Lesson or a Decision page fails alone, whether the page stands or not · [[decision-case-865.1]]
+- 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L42

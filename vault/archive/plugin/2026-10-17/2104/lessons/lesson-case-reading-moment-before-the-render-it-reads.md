@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi set the moment of a reading from the end state of the session, not from the state of the governed file at that moment, and checked no order of Retro → generate → render; ask-guppi was asked only whether its own findings were closed
-status: clustered
+status: archived
 insight: "[[insight-workflow-code-live-before-the-page-it-reads]]"
 origin: raw/2026-10-10/1713/ledger.md#L23
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi set the moment of a reading from the end state of the session, not fr
 
 - 2026-10-10 created · raw/2026-10-10/1713/ledger.md#L23
 - 2026-10-10 updated: clustered under insight-workflow-code-live-before-the-page-it-reads (synthesis) · raw/2026-10-10/1713/ledger.md#L23
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

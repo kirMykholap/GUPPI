@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi recommended an option that rested on a fact of GitHub it said it could not read ("Whether GitHub accepts the built-in Actions account there is not something I can read from the repository. The first run will show it"), and neither the round nor /pre-spec checked GitHub's documentation before the contract was ratified
-status: clustered
+status: archived
 insight: "[[insight-case-build-rests-on-an-unchecked-fact-of-a-tool]]"
 origin: raw/2026-10-13/1753/ledger.md#L121
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi recommended an option that rested on a fact of GitHub it said it coul
 
 - 2026-10-13 created · raw/2026-10-13/1753/ledger.md#L121
 - 2026-10-15 updated: clustered under insight-case-build-rests-on-an-unchecked-fact-of-a-tool (synthesis) · raw/2026-10-15/1959/ledger.md#L73
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

@@ -108,7 +108,7 @@ update:
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/entities/schema.yaml`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/ratification.md`
-- [ ] read `estimate-clean-branch-ships-neutral-texts`
+- [x] read `estimate-clean-branch-ships-neutral-texts`
 ```
 
 ### Case 856.2 — The shipped Estimates name no past event and no sprint of GUPPI
@@ -205,7 +205,7 @@ update:
 - [x] update `rule-rules-schema`
 - [x] update `estimate-rules-schema-checked`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
-- [ ] read `estimate-rules-schema-checked`
+- [x] read `estimate-rules-schema-checked`
 ```
 
 ## Case 857 — The close commit takes each file the render writes

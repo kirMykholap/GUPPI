@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi stated what a script lists without reading the function that decides it, so a recommendation the person signed rested on a false claim about the code and had to be replaced in a later round
-status: clustered
+status: archived
 insight: "[[insight-case-build-claims-what-code-does-without-reading-it]]"
 origin: raw/2026-10-13/2118/ledger.md#L27
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi stated what a script lists without reading the function that decides 
 
 - 2026-10-14 created · raw/2026-10-13/2118/ledger.md#L27
 - 2026-10-14 updated: clustered under insight-case-build-claims-what-code-does-without-reading-it (synthesis) · raw/2026-10-13/2118/ledger.md#L27
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

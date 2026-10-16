@@ -77,12 +77,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
+- [x] update `rule-page-generation`
 - [x] `.guppi/guppi/materialize.py`: `DEFERRABLE`, the folders `rules`, `entities`, `insights` and `estimates`, moved here from `.guppi/guppi/generate.py`; a predicate `defers_a_record(slug)`, true when `category_of(slug)` is a folder of `CATEGORIES` outside `DEFERRABLE`; a constant `DEFER_OF_A_RECORD`, the text `a Lesson or a Decision page carries no deferred_by, so no list shows its defer — defer the rule or entity page whose change settles it`; the docstring of the predicate names `.guppi/guppi/generate.py`, `.guppi/guppi/prespec.py`, `.guppi/guppi/ratified.py` and `.guppi/guppi/ledger.py` as the modules that import it; the line `defer existing` of the routing table says that a Lesson or a Decision page is refused (case 865).
 - [x] `.guppi/guppi/generate.py`: imports `DEFERRABLE`, `defers_a_record` and `DEFER_OF_A_RECORD` from `.guppi/guppi/materialize.py` in place of its own constant; in `defer`, an entry for which `defers_a_record` is true fails first, before `defer_writes_no_page` and before any page is read, with `DEFER_OF_A_RECORD`, and no page or `log.md` line is written; the module docstring and the docstring of `defer` say so (case 865).
 - [x] `.guppi/tests/test_generate.py`: a `defer` of a live Decision page, of a Decision page under `vault/archive/`, of a live Lesson and of a Decision page with no page each changes no page, prints `generate: <slug>: ` and `DEFER_OF_A_RECORD` on stderr, exits 1 and lets the other entries apply; a `defer` of a rule, an entity, an Insight and an Estimate that stand still appends to `deferred_by`; `generate.defers_a_record` is `materialize.defers_a_record` and `generate.DEFERRABLE` is `materialize.DEFERRABLE`; for each folder of `CATEGORIES`, the live `vault/wiki/<folder>/schema.yaml` lists `deferred_by` among its optional properties exactly when the folder is in `DEFERRABLE`.
-- [ ] update `estimate-generate-writes`
-- [ ] read `estimate-generate-writes`
+- [x] update `estimate-generate-writes`
+- [x] read `estimate-generate-writes`
 ```
 
 ### Case 865.2 — Pre-spec reports a defer of a Lesson or a Decision page
@@ -127,8 +127,8 @@ update:
 ```tasks
 - [x] `.guppi/guppi/prespec.py`: `check_form` judges each `defer` item whose slug has a category by `materialize.defers_a_record` first, imported, and reports `case N: defer <slug>: ` and `materialize.DEFER_OF_A_RECORD`; only an item it does not report goes on to `defer_writes_no_page`; the module docstring and the docstring of `check_form` say that a `defer` of a Lesson or a Decision page is a finding whether its page stands or not, and that the finding of a page that does not stand covers an Estimate and an Insight (case 865).
 - [x] `.guppi/tests/test_prespec.py`: a `defer` of a live Decision page, of a Decision page under `vault/archive/` and of a live Lesson, under a Case heading and under `## Deferred`, each gives the new finding; a `defer` of a Lesson with no page gives the new finding alone; a `defer` of an Insight with no page still gives `NO_DEFERRED_PAGE`; a `defer` of a rule, an entity, an Insight and an Estimate that stand gives none; `prespec.defers_a_record` is `materialize.defers_a_record`.
-- [ ] update `estimate-prespec-checks-the-form-of-an-item`
-- [ ] read `estimate-prespec-checks-the-form-of-an-item`
+- [x] update `estimate-prespec-checks-the-form-of-an-item`
+- [x] read `estimate-prespec-checks-the-form-of-an-item`
 ```
 
 ### Case 865.3 — The plan hook refuses a short defer of a Lesson or a Decision page
@@ -178,14 +178,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-spec-write`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [x] `.guppi/guppi/ratified.py`: `deferred_section` refuses Case N when a `defer` line of the reply of Case N has a slug for which `materialize.defers_a_record`, imported, is true, before it reads the `then` block, with `case N: defer <slug>: ` and `materialize.DEFER_OF_A_RECORD`, and writes nothing of the Case; the paragraph `The defer` of the module docstring says so (case 865).
 - [x] `.guppi/tests/test_ratified.py`: a reply with a short defer of a live Decision page, and one of a Lesson with no page, gets the error and leaves the plan file unchanged; a short defer of an entity in the same reply as a refused one is still written; `ratified.defers_a_record` is `materialize.defers_a_record`.
 - [x] `uv run --project .guppi pytest .guppi/tests/test_orchestration.py`: the short-form example of `vault/wiki/orchestration.md` still passes the hook.
-- [ ] update `estimate-spec-write-writes-a-defer`
-- [ ] read `estimate-spec-write-writes-a-defer`
+- [x] update `estimate-spec-write-writes-a-defer`
+- [x] read `estimate-spec-write-writes-a-defer`
 ```
 
 ### Case 865.4 — The ledger hook refuses a defer line of a Lesson or a Decision page
@@ -232,11 +232,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-ledger-write-refuses-a-defer-of-a-record`
-- [ ] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-refuses-a-defer-of-a-record`
+- [x] update `rule-ledger-write`
 - [x] `.guppi/guppi/ledger.py`: a function `refused_defers(fresh)`, the fresh decision lines of kind `defer`, read by `materialize.parse_line`, whose slug `materialize.defers_a_record` judges true, both imported inside the function; `run` leaves them out of the lines it writes and prints `ledger: line not written — <body>: ` and `materialize.DEFER_OF_A_RECORD` for each that stands in the reply just finished, told once a stretch by `untold`; the module docstring says so (case 865).
 - [x] `.guppi/tests/test_ledger.py`: a reply whose block holds a `defer` line of a live Decision page, of a Lesson with no page and of a rule writes the line of the rule alone, prints the refusal for the two others and exits 2; the same lines in an earlier text land neither, with no stderr line; one test runs `ledger.refused_defers` and `ratified.write_defers` over the same short defer of a Decision page, and over one of a rule, and asserts that both refuse the first and pass the second.
-- [ ] read `estimate-ledger-write-refuses-a-defer-of-a-record`
+- [x] read `estimate-ledger-write-refuses-a-defer-of-a-record`
 ```
 
 ## Case 866 — The close command names the Bash tool
@@ -281,8 +281,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-close`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-close`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
 ```
 
 ## Case 867 — The check of the page schemas names its test files
@@ -336,7 +336,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-page-schemas-one-file-per-rule`
+- [x] update `estimate-page-schemas-one-file-per-rule`
 - [x] `uv run --project .guppi pytest .guppi/tests/test_schemas.py .guppi/tests/test_render.py .guppi/tests/test_lint.py .guppi/tests/test_guard.py`: the four files of the new `method` pass.
 ```
 
@@ -406,12 +406,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
 - [ ] read `estimate-case-build-keeps-the-old-form-until-the-writer-is-live`
 - [x] `.guppi/tests/test_guppi_package.py`: the paragraph of the module docstring that says the tests over `.claude/` and the pages are red until the librarian's run and that this red is a note for the handoff now says that these tests were red then (case 819.1), and that a test like these now passes on the text before the change and on the text after it until the text lands, as `rule-case-build` sets it (case 868).
-- [ ] update `insight-workflow-code-live-before-the-page-it-reads`
+- [x] update `insight-workflow-code-live-before-the-page-it-reads`
 ```
 
 ## Case 869 — case-guppi reads the function that decides a claim it states about code
@@ -477,10 +477,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-reads-the-code-it-states`
-- [ ] update `insight-case-build-claims-what-code-does-without-reading-it`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-reads-the-code-it-states`
+- [x] update `insight-case-build-claims-what-code-does-without-reading-it`
 - [ ] read `estimate-case-build-reads-the-code-it-states`
 ```
 
@@ -581,11 +581,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] read `estimate-case-build-writes-the-case`
-- [ ] update `insight-case-build-opens-a-new-case-where-one-was-named`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] read `estimate-case-build-writes-the-case`
+- [x] update `insight-case-build-opens-a-new-case-where-one-was-named`
 ```
 
 ## Case 871 — case-guppi reads the documentation of an outside tool before it recommends on it
@@ -672,11 +672,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-checks-a-fact-of-an-outside-tool`
-- [ ] read `estimate-case-build-checks-a-fact-of-an-outside-tool`
-- [ ] update `insight-case-build-rests-on-an-unchecked-fact-of-a-tool`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-checks-a-fact-of-an-outside-tool`
+- [x] read `estimate-case-build-checks-a-fact-of-an-outside-tool`
+- [x] update `insight-case-build-rests-on-an-unchecked-fact-of-a-tool`
 ```
 
 ## Case 872 — Cases built at the same time read no sibling mid-build
@@ -775,11 +775,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-reads-no-sibling-file-mid-send`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-reads-no-sibling-file-mid-send`
 - [ ] read `estimate-case-build-reads-no-sibling-file-mid-send`
-- [ ] update `insight-subagents-read-a-sibling-mid-flight`
+- [x] update `insight-subagents-read-a-sibling-mid-flight`
 ```
 
 ### Case 872.4 — The reading by need leaves out a Case built at the same time
@@ -819,8 +819,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-by-need-and-in-parts`
-- [ ] read `estimate-case-build-reads-by-need-and-in-parts`
+- [x] update `estimate-case-build-reads-by-need-and-in-parts`
+- [x] read `estimate-case-build-reads-by-need-and-in-parts`
 ```
 
 ### Case 872.2 — The main agent re-sends a Case that rests on a sibling, once, one at a time
@@ -873,11 +873,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `rule-prespec`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] create `estimate-orchestration-rechecks-a-sibling-after-a-joint-send`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-prespec`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] create `estimate-orchestration-rechecks-a-sibling-after-a-joint-send`
 - [ ] read `estimate-orchestration-rechecks-a-sibling-after-a-joint-send`
 ```
 
@@ -954,11 +954,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-orchestration-shows-the-built-case`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-orchestration-shows-the-built-case`
 - [ ] read `estimate-orchestration-shows-the-built-case`
 ```
 
@@ -1006,9 +1006,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `estimate-orchestration-signs-items-taken-together`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `estimate-orchestration-signs-items-taken-together`
 - [ ] read `estimate-orchestration-signs-items-taken-together`
 ```
 
@@ -1054,8 +1054,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-asks-in-the-grill-me-shape`
-- [ ] read `estimate-orchestration-asks-in-the-grill-me-shape`
+- [x] update `estimate-orchestration-asks-in-the-grill-me-shape`
+- [x] read `estimate-orchestration-asks-in-the-grill-me-shape`
 ```
 
 ### Case 872.7 — The finished Case is held against a sibling only after its build
@@ -1100,8 +1100,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-checks-the-finished-case`
-- [ ] read `estimate-case-build-checks-the-finished-case`
+- [x] update `estimate-case-build-checks-the-finished-case`
+- [x] read `estimate-case-build-checks-the-finished-case`
 ```
 
 ### Case 872.8 — A batch of a ratified Case asked to change takes the second pass
@@ -1142,8 +1142,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-signs-a-batch-together`
-- [ ] read `estimate-orchestration-signs-a-batch-together`
+- [x] update `estimate-orchestration-signs-a-batch-together`
+- [x] read `estimate-orchestration-signs-a-batch-together`
 ```
 
 ## Deferred

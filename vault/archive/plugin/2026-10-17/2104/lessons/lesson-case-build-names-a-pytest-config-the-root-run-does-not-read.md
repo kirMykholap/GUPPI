@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the Case named the file of the pytest settings from where the package lives, without checking which config file a run from the root of the repository reads
-status: clustered
+status: archived
 insight: "[[insight-case-build-rests-on-an-unchecked-fact-of-a-tool]]"
 origin: raw/2026-10-15/1959/ledger.md#L73
 sprint: plugin
@@ -22,3 +22,5 @@ the Case named the file of the pytest settings from where the package lives, wit
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#L73
 - 2026-10-15 updated: clustered under insight-case-build-rests-on-an-unchecked-fact-of-a-tool (synthesis) · raw/2026-10-15/1959/ledger.md#L73
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

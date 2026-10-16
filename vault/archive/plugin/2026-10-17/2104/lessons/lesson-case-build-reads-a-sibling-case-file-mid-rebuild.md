@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: Cases sent back in one message are built again in parallel, and a case-guppi that reads the file of a sibling Case reads what stands at that moment, before the sibling's rebuild ends
-status: clustered
+status: archived
 insight: "[[insight-subagents-read-a-sibling-mid-flight]]"
 origin: raw/2026-10-16/0104/ledger.md#L21
 sprint: plugin
@@ -22,3 +22,5 @@ Cases sent back in one message are built again in parallel, and a case-guppi tha
 
 - 2026-10-16 created · raw/2026-10-16/0104/ledger.md#L21
 - 2026-10-16 updated: clustered under insight-subagents-read-a-sibling-mid-flight (synthesis) · raw/2026-10-16/0104/ledger.md#L21
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

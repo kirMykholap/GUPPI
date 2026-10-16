@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi took the Work Mode rule of orchestration.md — a new top-level Case that supersedes a ratified one — for a change asked in Plan Mode, where a ratified Case changes under its own number, and it took a new id itself, though only the main agent gets one from guppi caseid
-status: clustered
+status: archived
 insight: "[[insight-case-build-opens-a-new-case-where-one-was-named]]"
 origin: raw/2026-10-16/0342/ledger.md#L20
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi took the Work Mode rule of orchestration.md — a new top-level Case 
 
 - 2026-10-16 created · raw/2026-10-16/0342/ledger.md#L20
 - 2026-10-16 updated: clustered under insight-case-build-opens-a-new-case-where-one-was-named (synthesis) · raw/2026-10-16/0342/ledger.md#L20
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

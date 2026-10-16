@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "835"
-status: current
+status: archived
 defer: ["[[insight-case-build-claims-what-code-does-without-reading-it]]"]
+superseded_by: ["[[decision-case-869]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-835
 sprint: plugin
 created: 2026-10-15
@@ -26,3 +27,6 @@ Stale counts and facts in the contexts of Cases 816 to 822; put off at the close
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-835
+- 2026-10-17 superseded by decision-case-869 · [[decision-case-869]]
+- 2026-10-17 archived · superseded
+- 2026-10-17 archived · cleanup

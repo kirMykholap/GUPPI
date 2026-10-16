@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: agents that work at once read files that another agent of the same run is still writing, so what one agent reads or measures is the other agent's half-done state, not its result
-status: open
+status: actioned
 children: ["[[lesson-subagents-parallel-on-one-tree-red-mid-flight]]", "[[lesson-case-build-reads-a-sibling-case-file-mid-rebuild]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-872.1]]"
 origin: raw/2026-10-16/0104/ledger.md#L21
 sprint: plugin
 created: 2026-10-16
@@ -21,3 +22,4 @@ One sentence in rule-case-build that Cases sent back in one message are built ag
 ## History
 
 - 2026-10-16 created · raw/2026-10-16/0104/ledger.md#L21
+- 2026-10-17 updated: actioned: Cases built at the same time read no sibling file mid-build, and a second pass reads the finished files, in rule-case-build, rule-orchestration and rule-prespec (case 872) · [[decision-case-872.1]]

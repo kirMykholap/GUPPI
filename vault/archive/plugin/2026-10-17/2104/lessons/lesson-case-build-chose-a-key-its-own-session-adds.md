@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi let a Case of a session use a form of an update that only the code of that session's Work Mode would accept, though every check of the Case file runs the code that stands before Work Mode
-status: clustered
+status: archived
 insight: "[[insight-workflow-code-live-before-the-page-it-reads]]"
 origin: raw/2026-10-12/2349/ledger.md#L58
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi let a Case of a session use a form of an update that only the code of
 
 - 2026-10-13 created · raw/2026-10-12/2349/ledger.md#L58
 - 2026-10-13 updated: clustered under insight-workflow-code-live-before-the-page-it-reads (synthesis) · raw/2026-10-12/2349/ledger.md#L58
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

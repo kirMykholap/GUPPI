@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: case-guppi wrote each sub-case's new text against its own page as the rounds settled it, and checked no new text against the new texts of the sibling sub-cases or against the other Estimates and rows that speak of the same field before it wrote the Case.
-status: new
+status: archived
+insight: "[[insight-case-build-sibling-texts-unchecked-before-the-showing]]"
 origin: raw/2026-10-12/1604/ledger.md#L29
 sprint: plugin
 created: 2026-10-12
@@ -20,3 +21,6 @@ case-guppi wrote each sub-case's new text against its own page as the rounds set
 ## History
 
 - 2026-10-12 created · raw/2026-10-12/1604/ledger.md#L29
+- 2026-10-17 updated: clustered under insight-case-build-sibling-texts-unchecked-before-the-showing (synthesis) · raw/2026-10-16/2104/ledger.md#L51
+- 2026-10-17 archived · insight actioned
+- 2026-10-17 archived · cleanup

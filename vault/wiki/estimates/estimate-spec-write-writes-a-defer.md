@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer, then by hand a defer the person asks for
-checked: 2026-10-05
+checked: 2026-10-17
 origin: raw/2026-09-25/1228/ledger.md#case-421.1
 sprint: migration
 created: 2026-09-25
@@ -21,16 +21,18 @@ Then:
 The hook writes that Case under `## Deferred` of the plan file while `spec.md` in the session's folder does not stand, and of that `spec.md` once it stands: the heading, `context`, `problem` and the `then` block as the reply shows them.
 **＋** The section of Case N is replaced when it stands there, appended at the end of `## Deferred` otherwise; the heading `## Deferred` is added when the file has none.
 **＋** A reply with no showing of Case N, or a `then` block without a `defer` item carrying `slug`, `type` and `purpose` for each `defer` line of the reply: exit 2 with the reason on stderr.
+**＋** A `defer` line of Case N whose slug names a Lesson or a Decision page, by `defers_a_record` of `.guppi/guppi/materialize.py`, whether its page stands or not: exit 2 with `case N: defer <slug>: a Lesson or a Decision page carries no deferred_by, so no list shows its defer — defer the rule or entity page whose change settles it` on stderr, and nothing of the Case is written.
 **＋** A key of a `defer` item that `item_keys` of `.guppi/guppi/materialize.py` does not give a `defer` of its category: exit 2 with `` `<key>`: not a key of defer <slug> `` on stderr, and nothing of the Case is written.
 **＋** A `then` block that holds a YAML comment — a `#` at the start of a line or after a space or a tab, outside a quoted value and outside a `|` or `>` block — as the function of `.guppi/guppi/materialize.py` judges it: exit 2 with the line of the comment and the advice to quote the value on stderr, and nothing of the Case is written.
 **＋** With `stop_hook_active` set, the hook writes and refuses as without it, as `estimate-spec-write-answers-a-refusal` sets it, and a reason it already gave in the stretch is not given again, as `estimate-spec-write-tells-each-reason-once` sets it.
+**－** A `defer` line of a rule, an entity, an Insight or an Estimate is not refused by `defers_a_record`.
 **－** A `#` inside a quoted value or inside a `|` or `>` block is text, not a comment, and is no refusal.
 **－** A `defer` of a category with no schema file, or of one whose schema rule a decision line of the session or of the reply creates or updates, is not judged by its keys (case 308.2).
 **－** The check after the write does not run on the Case.
 
 ## Result
 
-2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py -k defer 14 passed; the defers 657, 658 and 659 the person asked for, written while spec.md did not stand: 657 under `## Deferred` after Case 656, its section equal to the reply's text before its LEDGER block; 658 appended after 657; 659 refused once at the reply that carried only its line ("case 659: no fence tagged then with its defer items"), then written at the next reply that showed the short form and repeated the line, its section equal to that showing, one `## Deferred` heading; not exercised: a defer shown again, the key and YAML-comment refusals, the write into spec.md
+2026-10-17, Retro of session 2104: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer green within guppi test (1748 passed): a short defer of a live Decision page or of a Lesson with no page exits 2 with DEFER_OF_A_RECORD and leaves the plan unchanged, a short defer of an entity beside it is written; by hand, the short defers of cases 873 and 874 the person asked for stand under ## Deferred of vault/raw/2026-10-16/2104/spec.md, written before the new code
 
 ## History
 
@@ -51,3 +53,5 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the Criterion replaced whole — a short defer of a Lesson or a Decision page is refused and not written · [[decision-case-865.3]]
+- 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L43

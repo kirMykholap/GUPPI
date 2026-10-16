@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-orchestration]]"
-purpose: Whether each question the main agent puts to the person itself, at pre-spec, at /hi, at a stop of Work Mode, after a clash on whether another Case is built again, or at pre-spec on whether a finding of ask-guppi not closed is fixed or left, takes the question shape of grill-me, the exceptions kept in their own form
-method: by hand at the close of a later session, each question of the main agent's own read in the transcript
-checked: 2026-10-07
+purpose: Whether each question the main agent puts to the person itself, at pre-spec, at /hi, at a stop of Work Mode, in Work Mode after a clash on whether another Case changes, or at pre-spec on whether a finding of ask-guppi not closed is fixed or left, takes the question shape of grill-me, the exceptions kept in their own form
+method: "by hand at the Retro of the session that changes it: the new Render of rule-orchestration in the Spec read against the Criterion, recorded in the estimate line"
+checked: 2026-10-17
 origin: raw/2026-09-30/2356/ledger.md#case-561.13
 sprint: migration
 created: 2026-09-30
@@ -19,7 +19,7 @@ The main agent puts a question to the person itself, outside a round of `case-gu
 - a decision it needs in the report of `/pre-spec`;
 - a question at `/hi`;
 - a question at a stop of Work Mode;
-- the question whether another Case of the session is built again after a Case was bounded around a clash with it;
+- in Work Mode, the question whether another Case of the session changes after a Case was bounded around a clash with it;
 - at `/pre-spec`, after the `ask-guppi` runs confirm their findings, the question whether each finding not closed is fixed or left.
 
 This is with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
@@ -28,10 +28,11 @@ Then:
 Each such question takes the question shape of `.claude/skills/grill-me/SKILL.md`: its numbered `❓ **Qn** - **<title>**:` line, one `**Now:**` line, the label `**Options:**`, each option on a `🔹` line with one `**After:**` item, and the `➡️` line with the recommended answer.
 **＋** It stands in Russian, and its labels may stand translated.
 **－** The question which Frontier item is next, the question of an open `A` line at `/hi` — the Estimate by slug and its question —, the question that asks for the sign-off of a shown Case, the question whether to go on to `/pre-spec` when no line under `## Cases` is open, and the choice between `/work` and `/carry` of `rule-spec-capture` keep their own form.
+**－** In Plan Mode the main agent puts no question whether another Case is built again after a clash.
 
 ## Result
 
-2026-10-07, Retro, the new Render of rule-orchestration in the Spec (case 697.4): its anchor stands once; the question whether to go on to /pre-spec joins the questions that keep their own form, as the Criterion lists them
+2026-10-17, Retro of session 2104: the new Render of rule-orchestration in spec.md, the six replace pairs of cases 865.3 to 872.5 applied in order, each old found once, read against the Criterion of case 872.6: the question in Work Mode whether another Case changes after a clash stands in the list of grill-me questions, Plan Mode puts no such question, the shape and the chat language stand
 
 ## History
 
@@ -44,3 +45,5 @@ Each such question takes the question shape of `.claude/skills/grill-me/SKILL.md
 - 2026-10-05 status: pending → passed · raw/2026-10-04/2245/ledger.md#L14
 - 2026-10-07 updated: the Criterion replaced whole — the question whether to go on to /pre-spec keeps its own form · [[decision-case-697.4]]
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L39
+- 2026-10-17 updated: the Criterion replaced whole — the question on another Case after a clash stands in Work Mode only · [[decision-case-872.6]]
+- 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L49

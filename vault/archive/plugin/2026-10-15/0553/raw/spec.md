@@ -162,7 +162,7 @@ update:
 - [x] update `rule-clean-branch`
 - [x] `guppi/ship.py`: `guppi ship <folder>` reads the tags `prod-x.y.z` in the history of the commit of the working tree, writes the number of the highest as the `version` of `.claude-plugin/plugin.json`, and exits 1 with a line and nothing written when there is none; the judgment of the form of the tag lives in this module alone; `--check` reads no tag; the docstring says so.
 - [x] `tests/test_ship.py`: the sample tree carries a tag `prod-x.y.z` in its history, so the tests that build a folder pass; tests that the highest of two such tags is the version, that a tag such as `prod-2` gives no version, that a tree with no such tag exits 1 and writes nothing, and that `--check` passes on such a tree.
-- [ ] stop: after the Work Mode, the owner places the tag `prod-0.2.0` on the last commit of `plugin` and pushes it; the run it starts writes nothing to `prod` while a page with `core: true` stands `draft`, and a copy built with `--allow-draft` finds its version.
+- [x] stop: after the Work Mode, the owner places the tag `prod-0.2.0` on the last commit of `plugin` and pushes it; the run it starts writes nothing to `prod` while a page with `core: true` stands `draft`, and a copy built with `--allow-draft` finds its version.
 - [ ] read `estimate-sprint-plugin-ci-writes-a-clean-branch`
 ```
 

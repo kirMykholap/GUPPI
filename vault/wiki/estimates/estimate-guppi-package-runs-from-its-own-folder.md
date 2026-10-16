@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-guppi-package]]"
 purpose: Whether the code, the settings, the lock and the tests of GUPPI stand under .guppi/, every hook, skill, agent, Makefile line and page runs them through uv run --project .guppi, the modules and the guards take that form, and the clean version holds no pyproject.toml at its root
 method: "by hand, after the librarian's run of the session that changes the example of a path pair in rule-page-generation: uv run --project .guppi pytest .guppi/tests/test_guppi_package.py, then a session opened in this repository, /hi typed there, and the output of its hooks read against the Criterion"
-checked: 2026-10-15
+checked: 2026-10-16
 origin: raw/2026-10-15/0553/ledger.md#case-819.1
 sprint: plugin
 created: 2026-10-15
@@ -32,7 +32,7 @@ The package `guppi`, its `pyproject.toml`, its lock file `uv.lock`, its tests an
 
 ## Result
 
-2026-10-15, the /hi of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_guppi_package.py` 1 failed, 11 passed — `test_no_live_page_names_the_old_command_or_path_where_a_reword_changes_it[tests/]` on rules/rule-page-generation and estimates/estimate-generate-rewords; the hooks of this session's /hi printed the `hi:` line and an empty Render and Tail, no error, and the Bash guard ran as `uv run --project .guppi guppi bashguard`
+2026-10-16, /hi of session 0342: `uv run --project .guppi pytest -q .guppi/tests/test_guppi_package.py` 12 passed; `uv run --project .guppi guppi test` 1715 passed, 6 skipped, 1 deselected; a grep of `.claude/`, `Makefile` and `.github/workflows/` found no `uv run` without `--project .guppi` (93 with it); `.guppi/` holds `pyproject.toml` with pytest and ruff, `uv.lock`, `tests/` and a `.gitignore` with `.venv/`; `guppi ship --allow-draft` into an empty folder wrote no `pyproject.toml` and no `uv.lock` at its root; the hooks of this /hi printed the `hi:` line and an empty Render and Tail, no error
 
 ## History
 
@@ -41,3 +41,4 @@ The package `guppi`, its `pyproject.toml`, its lock file `uv.lock`, its tests an
 - 2026-10-15 deferred · [[decision-case-837]]
 - 2026-10-16 defer by decision-case-837 superseded · [[decision-case-840.2]]
 - 2026-10-16 updated: read again after the example of a path pair changes in rule-page-generation and estimate-generate-rewords; the Criterion stands, the method waits for the librarian's run that writes the new example · [[decision-case-840.2]]
+- 2026-10-16 status: pending → passed · raw/2026-10-16/0342/ledger.md#L1

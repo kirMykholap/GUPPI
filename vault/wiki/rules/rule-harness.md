@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: Prevents the tools of the harness from drifting apart from the pages that describe them
-status: draft
+status: built
 children: ["[[rule-render-harness]]", "[[rule-settings]]", "[[rule-lint]]", "[[rule-page-schemas]]", "[[rule-vault-layout]]", "[[rule-governed-files-hook]]", "[[rule-claude-md]]", "[[rule-bash-guard]]", "[[rule-tests-clock-pinned]]", "[[rule-context-size]]", "[[rule-page-read]]", "[[rule-guppi-config]]", "[[rule-search-leaves-out-decisions]]", "[[rule-shell-write-check]]", "[[rule-powershell-guard]]", "[[rule-plugin-install]]", "[[rule-guppi-package]]"]
 estimates: ["[[estimate-harness-pipeline]]", "[[estimate-harness-make-runs-in-both-shells]]"]
 applies_to: ["[[entity-guppi]]"]
@@ -75,3 +75,4 @@ Prevents the tools of the harness from drifting apart from the pages that descri
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
 - 2026-10-15 updated: the Purpose names the folder of the code of GUPPI and the skill of the plugin among the rules that run in no pipeline · [[decision-case-820.9]]
 - 2026-10-15 status: built → draft · cascade
+- 2026-10-16 status: draft → built · cascade

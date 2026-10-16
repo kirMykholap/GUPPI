@@ -21,7 +21,7 @@ Keeps a session from writing anything before a Case is ratified. Plan Mode is th
 form of the whole model: the agent reads, forms Cases and waits for a sign-off, and
 the harness enforces it rather than the agent's memory. `defaultMode` is one key,
 but it decides what a session may do from its first turn, so it is a rule of its
-own and not a line of the registry (case 85.4).
+own and not a line of the registry (case 85.4). One write comes before a Case: at `/hi` in a folder that is no git repository, the agent runs `git init -b main` on the person's yes, which writes `.git/`, since a session of GUPPI needs a git repository, as `rule-git-context` sets it (as set in case 851.1).
 
 ## Render
 
@@ -37,3 +37,4 @@ own and not a line of the registry (case 85.4).
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-16 updated: one exception: git init -b main at /hi on the person's yes · [[decision-case-851.1]]

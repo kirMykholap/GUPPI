@@ -115,7 +115,7 @@ update:
 
 ```tasks
 - [x] update `estimate-guppi-package-runs-from-its-own-folder`
-- [ ] read `estimate-guppi-package-runs-from-its-own-folder`
+- [x] read `estimate-guppi-package-runs-from-its-own-folder`
 ```
 
 ## Case 841 — The tag prod-0.2.0 stands on plugin before the readings of the batch
@@ -244,7 +244,7 @@ update:
 
 ```tasks
 - [x] update `estimate-clean-branch-installs-as-a-plugin`
-- [ ] read `estimate-clean-branch-installs-as-a-plugin`
+- [x] read `estimate-clean-branch-installs-as-a-plugin`
 ```
 
 ## Case 843 — The install by hand reads the plugin install again
@@ -505,7 +505,7 @@ update:
 - [x] update `estimate-guppi-package-is-ready-after-the-install`
 - [x] By hand, after the task of Case 841 that sets the tag `prod-0.2.0`: `uv run --project .guppi guppi ship --allow-draft <folder>` into an empty local folder outside the repository, and the parts of the readings of Cases 843 and 845 that the agent runs.
 - [x] stop: before the push of the tag `prod-0.2.0` by the `stop:` task of Case 850, the one stop for every install by hand of this batch; the person adds that folder by `/plugin marketplace add <folder>`, installs the plugin by `/plugin install guppi@guppi-marketplace` and, in one go, works in four empty projects: in the project on the machine with `uv`, types `/guppi:install`, reopens Claude Code there and types `/hi` (for Cases 843, 845 and 846); in a project with a `CLAUDE.md` of its own, types `/guppi:install` (for Case 843); in a project with Claude Code started from a terminal whose `PATH` holds no folder of `uv`, types `/guppi:install` (for Case 846); in a project with Claude Code started from a terminal with `UV_OFFLINE=1` and `UV_CACHE_DIR` set to an empty folder, types `/guppi:install` (for Case 846); then the person tells what each project showed; right after the installs, the output of `/guppi:install` and the files of the project with `uv` and of the project with a `CLAUDE.md` of its own are read against the Criterion of `estimate-plugin-install-writes-guppi-into-an-empty-project`, and the projects of Case 846 against the Criterion of `estimate-guppi-package-is-ready-after-the-install`.
-- [ ] read `estimate-guppi-package-is-ready-after-the-install`
+- [x] read `estimate-guppi-package-is-ready-after-the-install`
 ```
 
 ## Case 847 — The milestone of the clean branch names the tag form that guppi ship reads

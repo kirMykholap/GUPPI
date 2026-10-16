@@ -116,11 +116,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-git-context`
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-default-mode`
-- [ ] create `estimate-git-context-offers-git-init`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-git-context`
+- [x] update `rule-skill-hi`
+- [x] update `rule-default-mode`
+- [x] create `estimate-git-context-offers-git-init`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
 - [ ] read `estimate-git-context-offers-git-init`
 ```
 
@@ -152,7 +152,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hi-no-read-calls`
+- [x] update `estimate-hi-no-read-calls`
 - [ ] read `estimate-hi-no-read-calls`
 ```
 
@@ -191,8 +191,8 @@ create:
 - [x] `.guppi/guppi/gitstate.py`: the command `guppi gitstate`, which runs `git rev-parse --is-inside-work-tree` in the project folder; when it prints `true`, the command prints the output of `git branch --show-current`, then the line `Status:` and the lines of `git status --short`; otherwise, a failed or missing git included, the one line `none: this folder is no git repository`; exit 0 in each case.
 - [x] `.guppi/guppi/cli.py`: `gitstate` in `COMMANDS`.
 - [x] `.guppi/tests/test_gitstate.py`: the command in a temporary folder with no git repository above it prints the one line and exits 0; after `git init -b main` in that folder it prints `main`, the line `Status:` and a line for an untracked file, and exits 0.
-- [ ] create `estimate-git-context-gitstate-exits-zero`
-- [ ] read `estimate-git-context-gitstate-exits-zero`
+- [x] create `estimate-git-context-gitstate-exits-zero`
+- [x] read `estimate-git-context-gitstate-exits-zero`
 ```
 
 ## Case 852 — /guppi:install offers to install uv when it is missing
@@ -272,10 +272,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-plugin-install`
+- [x] update `rule-plugin-install`
 - [x] Read the standalone installer commands of `https://docs.astral.sh/uv/getting-started/installation/` against the two commands of the new step 1 of `rule-plugin-install` in the Spec; a command that differs is a fork by condition 1 of `rule-where-to-stop`.
-- [ ] create `estimate-plugin-install-offers-to-install-uv`
-- [ ] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
+- [x] create `estimate-plugin-install-offers-to-install-uv`
+- [x] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
 - [ ] read `estimate-plugin-install-offers-to-install-uv`
 ```
 
@@ -310,7 +310,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-package-is-ready-after-the-install`
+- [x] update `estimate-guppi-package-is-ready-after-the-install`
 - [ ] read `estimate-guppi-package-is-ready-after-the-install`
 ```
 
@@ -372,9 +372,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-plugin-install`
-- [ ] create `estimate-plugin-install-undoes-the-copy-when-uv-sync-fails`
-- [ ] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
+- [x] update `rule-plugin-install`
+- [x] create `estimate-plugin-install-undoes-the-copy-when-uv-sync-fails`
+- [x] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
 - [ ] read `estimate-plugin-install-undoes-the-copy-when-uv-sync-fails`
 ```
 

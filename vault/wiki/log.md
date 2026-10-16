@@ -10949,3 +10949,43 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-16 decisions/decision-case-831 archived · cleanup
 - 2026-10-16 decisions/decision-case-832 archived · cleanup
 - 2026-10-16 decisions/decision-case-837 archived · cleanup
+- 2026-10-16 estimates/estimate-guppi-package-runs-from-its-own-folder status: pending → passed · raw/2026-10-16/0342/ledger.md#L1 · generate
+- 2026-10-16 estimates/estimate-clean-branch-ships-neutral-texts status: pending → failed · raw/2026-10-16/0342/ledger.md#L2 · generate
+- 2026-10-16 estimates/estimate-clean-branch-installs-as-a-plugin status: pending → passed · raw/2026-10-16/0342/ledger.md#L3 · generate
+- 2026-10-16 estimates/estimate-guppi-package-is-ready-after-the-install status: pending → failed · raw/2026-10-16/0342/ledger.md#L4 · generate
+- 2026-10-16 decisions/decision-case-851 created · raw/2026-10-16/0342/ledger.md#case-851 · generate
+- 2026-10-16 decisions/decision-case-851.1 created · raw/2026-10-16/0342/ledger.md#case-851.1 · generate
+- 2026-10-16 rules/rule-git-context updated: the branch and the status come from guppi gitstate, and outside a git repository /hi asks to run git init -b main and ends · [[decision-case-851.1]] · generate
+- 2026-10-16 rules/rule-skill-hi updated: allowed-tools names guppi gitstate in place of the two git commands, and /sprint-open waits for the git step · [[decision-case-851.1]] · generate
+- 2026-10-16 estimates/estimate-git-context-offers-git-init created · [[decision-case-851.1]] · generate
+- 2026-10-16 rules/rule-git-context estimate estimate-git-context-offers-git-init added · [[decision-case-851.1]] · generate
+- 2026-10-16 decisions/decision-case-851.2 created · raw/2026-10-16/0342/ledger.md#case-851.2 · generate
+- 2026-10-16 estimates/estimate-hi-no-read-calls updated: the Criterion replaced whole — allowed-tools names guppi gitstate in place of the two git commands · [[decision-case-851.2]] · generate
+- 2026-10-16 decisions/decision-case-852 created · raw/2026-10-16/0342/ledger.md#case-852 · generate
+- 2026-10-16 decisions/decision-case-852.1 created · raw/2026-10-16/0342/ledger.md#case-852.1 · generate
+- 2026-10-16 rules/rule-plugin-install updated: when uv is missing, /guppi:install asks to install it by the standalone installer of uv and goes on once uv --version passes · [[decision-case-852.1]] · generate
+- 2026-10-16 estimates/estimate-plugin-install-offers-to-install-uv created · [[decision-case-852.1]] · generate
+- 2026-10-16 rules/rule-plugin-install estimate estimate-plugin-install-offers-to-install-uv added · [[decision-case-852.1]] · generate
+- 2026-10-16 decisions/decision-case-852.2 created · raw/2026-10-16/0342/ledger.md#case-852.2 · generate
+- 2026-10-16 estimates/estimate-guppi-package-is-ready-after-the-install updated: the Criterion replaced whole — the missing uv is left to estimate-plugin-install-offers-to-install-uv and the failed uv sync to the Estimate of case 853, and the method drops the project with no uv and the offline project · [[decision-case-852.2]] · generate
+- 2026-10-16 decisions/decision-case-853 created · raw/2026-10-16/0342/ledger.md#case-853 · generate
+- 2026-10-16 rules/rule-plugin-install updated: when uv sync fails, /guppi:install deletes what it copied, says the install did not finish and sends the person to /guppi:install, not to /hi · [[decision-case-853]] · generate
+- 2026-10-16 estimates/estimate-plugin-install-undoes-the-copy-when-uv-sync-fails created · [[decision-case-853]] · generate
+- 2026-10-16 rules/rule-plugin-install estimate estimate-plugin-install-undoes-the-copy-when-uv-sync-fails added · [[decision-case-853]] · generate
+- 2026-10-16 estimates/estimate-clean-branch-ships-the-tests status: failed → passed · raw/2026-10-16/0342/ledger.md#L14 · generate
+- 2026-10-16 decisions/decision-case-855 created · raw/2026-10-16/0342/ledger.md#case-855 · generate
+- 2026-10-16 estimates/estimate-clean-branch-writes-the-session-files deferred · [[decision-case-855]] · generate
+- 2026-10-16 estimates/estimate-harness-pipeline status: failed → passed · raw/2026-10-16/0342/ledger.md#L16 · generate
+- 2026-10-16 rules/rule-default-mode updated: one exception: git init -b main at /hi on the person's yes · [[decision-case-851.1]] · generate
+- 2026-10-16 decisions/decision-case-851.3 created · raw/2026-10-16/0342/ledger.md#case-851.3 · generate
+- 2026-10-16 estimates/estimate-git-context-gitstate-exits-zero created · [[decision-case-851.3]] · generate
+- 2026-10-16 estimates/estimate-git-context-gitstate-exits-zero status: pending → passed · raw/2026-10-16/0342/ledger.md#L19 · generate
+- 2026-10-16 rules/rule-git-context estimate estimate-git-context-gitstate-exits-zero added · [[decision-case-851.3]] · generate
+- 2026-10-16 lessons/lesson-case-build-rebuilds-a-ratified-case-under-a-new-number-in-plan-mode created · raw/2026-10-16/0342/ledger.md#L20 · generate
+- 2026-10-16 lessons/lesson-case-build-claims-a-page-stands-without-reading-the-path-it-changes created · raw/2026-10-16/0342/ledger.md#L21 · generate
+- 2026-10-16 insights/insight-case-build-opens-a-new-case-where-one-was-named created · raw/2026-10-16/0342/ledger.md#L20 · generate
+- 2026-10-16 lessons/lesson-case-build-opens-a-new-case-for-a-task-asked-into-its-own updated: clustered under insight-case-build-opens-a-new-case-where-one-was-named (synthesis) · raw/2026-10-16/0342/ledger.md#L20 · generate
+- 2026-10-16 lessons/lesson-case-build-rebuilds-a-ratified-case-under-a-new-number-in-plan-mode updated: clustered under insight-case-build-opens-a-new-case-where-one-was-named (synthesis) · raw/2026-10-16/0342/ledger.md#L20 · generate
+- 2026-10-16 rules/rule-git-context status: built → draft · cascade · generate
+- 2026-10-16 rules/rule-harness status: draft → built · cascade · generate
+- 2026-10-16 rules/rule-plugin-install status: built → draft · cascade · generate

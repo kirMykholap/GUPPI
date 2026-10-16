@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-skill-hi]]"
 purpose: After /hi the output of every block of the skill is in the first turn's context with no read call
-method: "by hand at the /hi of the next session: the first turn's context and the tool calls before it read in the transcript, written into the estimate line"
+method: "by hand, after the librarian's run of the session that sets this Criterion: at the first /hi after it, the first turn's context and the tool calls before it read in the transcript, and the allowed-tools of .claude/skills/hi/SKILL.md, written into the estimate line"
 checked: 2026-09-30
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
@@ -18,8 +18,8 @@ When:
 The person invokes `/hi`, and Claude Code expands `.claude/skills/hi/SKILL.md` before the agent's first turn.
 
 Then:
-The context of the first turn holds the output of each block of the skill, in the order of the children of `rule-skill-hi`: the text of the files `rule-internal-context` loads, the lines `Render:`, `Branch:` and `Status:` of `rule-git-context`, and the line `Tail:` of `rule-ledger-tail`.
-**＋** The `allowed-tools` of the skill names `uv run --project .guppi guppi render --sync`, `git branch --show-current`, `git status --short` and `uv run --project .guppi guppi tail`, and neither `git pull` nor `gh`.
+The context of the first turn holds the output of each block of the skill, in the order of the children of `rule-skill-hi`: the text of the files `rule-internal-context` loads, the line `Render:` and the output of `uv run --project .guppi guppi gitstate` under the line `Branch:` of `rule-git-context`, and the line `Tail:` of `rule-ledger-tail`.
+**＋** The `allowed-tools` of the skill names `uv run --project .guppi guppi render --sync`, `uv run --project .guppi guppi gitstate` and `uv run --project .guppi guppi tail`, and neither `git pull`, `git init` nor `gh`.
 **－** The agent makes no read-tool call to get any of them.
 
 ## Result
@@ -37,3 +37,4 @@ The context of the first turn holds the output of each block of the skill, in th
 - 2026-09-30 updated: the Criterion replaced whole — no Pull and no Open issues line; allowed-tools names neither git pull nor gh (case 528.3) · [[decision-case-528.3]]
 - 2026-09-30 status: pending → passed · raw/2026-09-30/0248/ledger.md#L2
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-16 updated: the Criterion replaced whole — allowed-tools names guppi gitstate in place of the two git commands · [[decision-case-851.2]]

@@ -2,12 +2,13 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from starting on a branch it does not know
-status: built
+status: draft
 enforcement: render
+implementation_ref: [.guppi/guppi/gitstate.py, .guppi/tests/test_gitstate.py]
 governs: .claude/skills/hi/SKILL.md
 render_mode: partial
 parent: "[[rule-skill-hi]]"
-estimates: ["[[estimate-git-context-current]]"]
+estimates: ["[[estimate-git-context-current]]", "[[estimate-git-context-offers-git-init]]", "[[estimate-git-context-gitstate-exits-zero]]"]
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -28,13 +29,14 @@ disagrees with the first.
 
 <!-- rule-git-context -->
 Render: !`uv run --project .guppi guppi render --sync`
-Branch: !`git branch --show-current`
-Status: !`git status --short`
+Branch: !`uv run --project .guppi guppi gitstate`
+
+When the line `Branch:` above reads `none: this folder is no git repository`, take this step first, before `/sprint-open` and before the Frontier (as set in case 851.1). Say that GUPPI works only in a git repository, and ask the person whether you run `git init -b main`, which names the first branch `main`. On the person's yes, run `git init -b main` with the Bash tool, say that the repository is made, and tell the person to type `/hi` again. On a no, tell the person to type `/hi` again after `git init -b main`. After either answer, start no `/sprint-open`, write no Frontier, and end the reply.
 <!-- /rule-git-context -->
 
 ## How it works
 
-The `Render:` line runs `uv run --project .guppi guppi render --sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line is a Frontier item like the one of the session start (case 115). `/hi` runs no `git pull` (from case 528 to case 787 the repository had no remote: `origin` had been the product repository this vault was split from and `migration` had no upstream, so the pull that stood first in this block failed at every session start; since case 787 `origin` is the public repository `GUPPI` on GitHub). The local `main` follows `origin/main` in the opening Case of a sprint, by `git fetch origin` and `git merge --ff-only origin/main` (case 789.1), and a sprint branch takes `main` by the merge Case of `/merge-main` (case 790).
+The `Render:` line runs `uv run --project .guppi guppi render --sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line is a Frontier item like the one of the session start (case 115). `uv run --project .guppi guppi gitstate` of `.guppi/guppi/gitstate.py` prints the branch, then `Status:` and the status, or, in a folder that is no git repository, one line that says so, and it exits 0 in each case, since Claude Code stops the whole skill on a `!` command that fails: two git commands stood on these lines until a first `/hi` in an empty project stopped on a git error (as set in case 851). `/hi` runs no `git pull` (from case 528 to case 787 the repository had no remote: `origin` had been the product repository this vault was split from and `migration` had no upstream, so the pull that stood first in this block failed at every session start; since case 787 `origin` is the public repository `GUPPI` on GitHub). The local `main` follows `origin/main` in the opening Case of a sprint, by `git fetch origin` and `git merge --ff-only origin/main` (case 789.1), and a sprint branch takes `main` by the merge Case of `/merge-main` (case 790).
 
 ## History
 
@@ -57,3 +59,7 @@ The `Render:` line runs `uv run --project .guppi guppi render --sync` once more 
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the history of the remote stands in the bracket of its pointers · [[decision-case-809]]
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-16 updated: the branch and the status come from guppi gitstate, and outside a git repository /hi asks to run git init -b main and ends · [[decision-case-851.1]]
+- 2026-10-16 estimate estimate-git-context-offers-git-init added · [[decision-case-851.1]]
+- 2026-10-16 estimate estimate-git-context-gitstate-exits-zero added · [[decision-case-851.3]]
+- 2026-10-16 status: built → draft · cascade

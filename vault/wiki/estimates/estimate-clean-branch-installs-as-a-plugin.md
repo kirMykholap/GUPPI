@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-clean-branch]]"
 purpose: Whether the clean version holds the manifest of the plugin guppi and the catalogue guppi-marketplace, passes claude plugin validate, which CI runs before prod is written, and installs as a plugin with no error
 method: "uv run --project .guppi pytest .guppi/tests/test_ship.py; by hand, after a tag prod-x.y.z stands in the history of HEAD: uv run --project .guppi guppi ship --allow-draft into an empty local folder, claude plugin validate run on that folder, the two files of its .claude-plugin/ and the step of .github/workflows/prod.yml that runs claude plugin validate read against the Criterion, then the person's answer after the person adds that folder as a catalogue by /plugin marketplace add <folder> and installs guppi by /plugin install guppi@guppi-marketplace in an empty project open in Claude Code"
-checked: 2026-10-15
+checked: 2026-10-16
 origin: raw/2026-10-15/0553/ledger.md#case-816.1
 sprint: plugin
 created: 2026-10-15
@@ -30,7 +30,7 @@ Then:
 
 ## Result
 
-2026-10-15, Retro, not read: uv run --project .guppi pytest .guppi/tests/test_ship.py passed (50), but the by-hand part needs uv run --project .guppi guppi ship --allow-draft, which exits 1 with no tag prod-x.y.z in the history; the tag is the stop task of Case 816.2, not placed; the install in an empty project was not run
+2026-10-16, /hi of session 0342, the person's answer: in every test folder of session 0104 the catalogue `scratchpad/ship-plugin` added and the plugin `guppi` installed from it with no error
 
 ## History
 
@@ -42,3 +42,4 @@ Then:
 - 2026-10-15 deferred · [[decision-case-831]]
 - 2026-10-16 defer by decision-case-831 superseded · [[decision-case-842]]
 - 2026-10-16 updated: read again once a tag prod-x.y.z stands; the Criterion stands, the method waits for the tag and names the person's install · [[decision-case-842]]
+- 2026-10-16 status: pending → passed · raw/2026-10-16/0342/ledger.md#L3

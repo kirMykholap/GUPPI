@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-harness]]"
 method: make test-harness over .guppi/tests/test_render.py and .guppi/tests/test_lint.py; the live reading of uv run --project .guppi guppi check by hand
-checked: 2026-10-15
+checked: 2026-10-16
 deferred_by: ["[[decision-case-833]]", "[[decision-case-849]]"]
 origin: raw/2026-09-10/ledger.md#case-37
 sprint: migration
@@ -24,7 +24,7 @@ The Purpose says that three rules belong to no phase of the session: the rendere
 
 ## Result
 
-2026-10-15, Retro, not read: make test-harness 144 passed, render/sprint/glossary --check exit 0 with no output, but guppi backlog --check exits 1 (backlog.md differs from its sources) after /work deleted carry.md of raw/2026-10-15/0553/, until the librarian's guppi backlog; the new Purpose of rule-harness lands only at the librarian's run
+2026-10-16, /hi of session 0342, on the committed tree: `make test-harness` 144 passed; `uv run --project .guppi guppi render --check`, `sprint --check`, `backlog --check` and `glossary --check` each exit 0 with no output; the Purpose of `rule-harness` names the renderer, the page `settings.json` is assembled from and lint as belonging to no phase, the order of `guppi check` (harness files, sprint, backlog, glossary, pages), and the fourteen rules that run in no pipeline as the Criterion lists them
 
 ## History
 
@@ -49,3 +49,4 @@ The Purpose says that three rules belong to no phase of the session: the rendere
 - 2026-10-15 status: pending → failed · raw/2026-10-15/1739/ledger.md#L14
 - 2026-10-15 deferred · [[decision-case-833]]
 - 2026-10-16 deferred · [[decision-case-849]]
+- 2026-10-16 status: failed → passed · raw/2026-10-16/0342/ledger.md#L16

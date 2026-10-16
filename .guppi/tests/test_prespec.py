@@ -3161,7 +3161,7 @@ def no_page(slug):
 
 
 @pytest.mark.parametrize("under_deferred", [True, False])
-@pytest.mark.parametrize("slug, kind", [("insight-later", "insight"), ("lesson-later", "lesson")])
+@pytest.mark.parametrize("slug, kind", [("insight-later", "insight")])
 def test_a_defer_of_another_kind_with_no_page_is_a_finding(tmp_path, slug, kind, under_deferred):
     code, out, _ = check_kind_defer(tmp_path, slug, kind, under_deferred)
     assert code == 1
@@ -3197,6 +3197,68 @@ def test_a_defer_of_an_insight_live_or_archived_in_an_insights_folder_is_none(tm
 
 def test_a_defer_of_an_entity_with_no_page_is_none(tmp_path):
     assert check_kind_defer(tmp_path, "entity-later", "entity") == (0, "", "")
+
+
+# --- a defer of a Lesson or a Decision page, whether its page stands or not (case 865) -------
+
+
+def record(slug):
+    return (
+        f"case 2: defer {slug}: a Lesson or a Decision page carries no deferred_by, so no list"
+        " shows its defer — defer the rule or entity page whose change settles it"
+    )
+
+
+def stand(project_dir, folder, slug, kind):
+    path = project_dir / "vault" / folder / f"{slug}.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f"---\ntype: {kind}\n---\n", encoding="utf-8", newline="\n")
+
+
+@pytest.mark.parametrize("under_deferred", [True, False])
+@pytest.mark.parametrize(
+    "slug, kind, folder",
+    [
+        ("decision-case-9", "decision", "wiki/decisions"),
+        ("decision-case-9", "decision", "archive/plugin/2026-09-01/0900/decisions"),
+        ("lesson-later", "lesson", "wiki/lessons"),
+    ],
+)
+def test_a_defer_of_a_lesson_or_a_decision_page_that_stands_is_a_finding(
+    tmp_path, slug, kind, folder, under_deferred
+):
+    stand(tmp_path, folder, slug, kind)
+    code, out, _ = check_kind_defer(tmp_path, slug, kind, under_deferred)
+    assert code == 1
+    assert out.splitlines() == [record(slug)]
+
+
+def test_a_defer_of_a_lesson_with_no_page_gives_the_record_finding_alone(tmp_path):
+    code, out, _ = check_kind_defer(tmp_path, "lesson-later", "lesson")
+    assert code == 1
+    assert out.splitlines() == [record("lesson-later")]
+
+
+@pytest.mark.parametrize(
+    "slug, kind, folder",
+    [
+        ("rule-later", "rule", "wiki/rules"),
+        ("entity-later", "entity", "wiki/entities"),
+        ("insight-later", "insight", "wiki/insights"),
+        ("estimate-later", "estimate", "wiki/estimates"),
+    ],
+)
+def test_a_defer_of_a_page_that_takes_deferred_by_and_stands_is_none(tmp_path, slug, kind, folder):
+    stand(tmp_path, folder, slug, kind)
+    assert check_kind_defer(tmp_path, slug, kind) == (0, "", "")
+
+
+def test_prespec_judges_a_defer_of_a_record_by_the_one_shared_predicate():
+    # CLAUDE.md, one judgment: the check that reports it and the script that fails it (case 865)
+    from guppi import materialize
+
+    assert prespec.defers_a_record is materialize.defers_a_record
+    assert prespec.DEFER_OF_A_RECORD is materialize.DEFER_OF_A_RECORD
 
 
 # --- a pointer outside its bracket in the new text of a core page (case 807.4) -----------

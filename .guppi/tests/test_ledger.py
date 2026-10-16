@@ -1785,3 +1785,64 @@ def test_stray_and_record_lines_share_one_reading_of_the_block():
     text = ledger_block(ESTIMATE, NEAR_MISS, "", NOTE) + "```\n" + NOTE + "\n```\n"
     assert ledger.ledger_lines(text) == [ESTIMATE]
     assert ledger.stray_lines(text) == [NEAR_MISS, NOTE]
+
+
+# --- a defer of a Lesson or a Decision page is refused (case 865) --------------------------
+# `estimate-ledger-write-refuses-a-defer-of-a-record`
+
+DEFER_DECISION = "- decision[case 11][defer][decision-case-9]{ref:decision-case-9}"
+DEFER_LESSON = "- decision[case 11][defer][lesson-gone]{ref:lesson-gone}"
+DEFER_RULE = "- decision[case 11][defer][rule-later]{ref:rule-later}"
+
+
+def live_decision(project_dir):
+    path = project_dir / "vault" / "wiki" / "decisions" / "decision-case-9.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("---\ntype: decision\n---\n", encoding="utf-8")
+
+
+def test_record_a_defer_of_a_lesson_or_a_decision_page_is_refused_and_told(working):
+    from guppi.materialize import DEFER_OF_A_RECORD
+
+    live_decision(working)
+    reply = ledger_block(DEFER_DECISION, DEFER_LESSON, DEFER_RULE)
+    code, err = run(payload(last_assistant_message=reply), working)
+    assert code == 2
+    for line in (DEFER_DECISION, DEFER_LESSON):
+        assert f"ledger: line not written — {line[2:]}: {DEFER_OF_A_RECORD}" in err
+    assert ledger_text(working) == f"{timed(DEFER_RULE)}\n"
+
+
+def test_record_a_defer_of_a_record_in_an_earlier_text_lands_neither_without_a_word(working):
+    live_decision(working)
+    block = ledger_block(DEFER_DECISION, DEFER_LESSON, DEFER_RULE)
+    transcript = write_transcript(working, transcript_line(block))
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert ledger_text(working) == f"{timed(DEFER_RULE)}\n"
+
+
+def short_defer(slug, kind):
+    return (
+        "## Case 11 — later\n\n> **context:**\n> C.\n\n> **problem:**\n> P.\n\n"
+        f"```then\ndefer:\n  - slug: {slug}\n    type: {kind}\n    purpose: Later\n```\n"
+    )
+
+
+@pytest.mark.parametrize(
+    "line, slug, kind, refused",
+    [
+        (DEFER_DECISION, "decision-case-9", "decision", True),
+        (DEFER_RULE, "rule-later", "rule", False),
+    ],
+)
+def test_record_the_ledger_hook_and_the_plan_hook_answer_alike(tmp_path, line, slug, kind, refused):
+    # CLAUDE.md, one judgment: both hooks over the same short defer (case 865)
+    from guppi import ratified
+    from guppi.materialize import parse_line
+
+    target = tmp_path / "plan.md"
+    errors = ratified.write_defers(short_defer(slug, kind), [parse_line(line)], target)
+    assert bool(ledger.refused_defers([timed(line)])) is refused
+    assert bool(errors) is refused
+    assert target.is_file() is not refused

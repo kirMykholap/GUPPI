@@ -1860,17 +1860,9 @@ def defer_error(slug):
     )
 
 
-@pytest.mark.parametrize(
-    "category, slug, kind",
-    [
-        ("insights", "insight-unborn", "insight"),
-        ("lessons", "lesson-unborn", "lesson"),
-        ("decisions", "decision-case-9", "decision"),
-    ],
-)
-def test_a_defer_with_no_page_of_another_kind_writes_no_page_and_fails_alone(
-    tmp_path, category, slug, kind
-):
+def test_a_defer_with_no_page_of_another_kind_writes_no_page_and_fails_alone(tmp_path):
+    # a Lesson or a Decision page fails by `defers_a_record` first (case 865)
+    category, slug, kind = "insights", "insight-unborn", "insight"
     seed(tmp_path, entries=[ROOT, kind_defer(category, slug, kind)])
     code, _, err = run(tmp_path)
     assert code == 1 and defer_error(slug) in err
@@ -1907,6 +1899,96 @@ def test_a_defer_of_an_insight_archived_in_an_insights_folder_marks_it_there(tmp
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     assert props(path.read_text(encoding="utf-8"))["deferred_by"] == ["decision-case-2"]
+
+
+# --- a defer of a Lesson or a Decision page fails, whether its page stands or not (case 865) --
+
+RECORD_TEXT = {
+    "decisions": "---\ntype: decision\nstatus: current\n---\n\n## History\n",
+    "lessons": "---\ntype: lesson\nstatus: new\n---\n\n## History\n",
+}
+
+
+@pytest.mark.parametrize(
+    "category, slug, folder",
+    [
+        ("decisions", "decision-case-9", "wiki/decisions"),
+        ("decisions", "decision-case-9", "archive/plugin/2026-09-01/0900/decisions"),
+        ("lessons", "lesson-old", "wiki/lessons"),
+        ("decisions", "decision-case-9", None),
+    ],
+)
+def test_a_defer_of_a_lesson_or_a_decision_page_changes_no_page_and_fails_alone(
+    tmp_path, category, slug, folder
+):
+    kind = category.rstrip("s")
+    later = kind_defer("rules", "rule-root", "rule")
+    seed(tmp_path, entries=[ROOT, kind_defer(category, slug, kind), later])
+    path = None
+    if folder:
+        path = tmp_path / "vault" / folder / f"{slug}.md"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(RECORD_TEXT[category], encoding="utf-8", newline="\n")
+    code, _, err = run(tmp_path)
+    assert code == 1 and f"generate: {slug}: {generate.DEFER_OF_A_RECORD}" in err
+    entries = load_yaml(tmp_path)["entries"]
+    assert entries[0]["applied"] and entries[1]["failed"] and entries[2]["applied"]
+    if path is not None:
+        assert path.read_text(encoding="utf-8") == RECORD_TEXT[category]
+    else:
+        assert not list(tmp_path.joinpath("vault").rglob(f"{slug}.md"))
+    assert slug not in page(tmp_path, "", "log").split("# Log", 1)[1]
+    assert props(page(tmp_path, "rules", "rule-root"))["deferred_by"] == ["decision-case-2"]
+
+
+STANDING_TEXT = {
+    "rules": "---\ntype: rule\nstatus: draft\n---\n\n## History\n",
+    "entities": "---\ntype: entity\nstatus: draft\n---\n\n## History\n",
+    "insights": "---\ntype: insight\nstatus: open\n---\n\n## History\n",
+    "estimates": "---\ntype: estimate\nstatus: pending\n---\n\n## History\n",
+}
+
+
+@pytest.mark.parametrize(
+    "category, slug",
+    [
+        ("rules", "rule-standing"),
+        ("entities", "entity-standing"),
+        ("insights", "insight-standing"),
+        ("estimates", "estimate-standing"),
+    ],
+)
+def test_a_defer_of_a_page_that_takes_deferred_by_still_marks_it(tmp_path, category, slug):
+    text = STANDING_TEXT[category]
+    seed(
+        tmp_path,
+        entries=[ROOT, kind_defer(category, slug, category.rstrip("s"))],
+        pages=[(category, slug, text)],
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert props(page(tmp_path, category, slug))["deferred_by"] == ["decision-case-2"]
+
+
+def test_generate_judges_a_defer_of_a_record_by_the_one_shared_judgment():
+    # CLAUDE.md, one judgment: generate imports the predicate and the folders (case 865)
+    from guppi import materialize
+
+    assert generate.defers_a_record is materialize.defers_a_record
+    assert generate.DEFERRABLE is materialize.DEFERRABLE
+    assert generate.DEFER_OF_A_RECORD is materialize.DEFER_OF_A_RECORD
+
+
+def test_deferrable_matches_the_page_formats_that_list_deferred_by():
+    # the second holder of the same fact: the live schema files (case 865)
+    from guppi import materialize
+
+    for folder in materialize.CATEGORIES:
+        schema = yaml.safe_load(
+            (REPO / "vault" / "wiki" / folder / "schema.yaml").read_text(encoding="utf-8")
+        )
+        optional = (schema.get("properties") or {}).get("optional") or []
+        assert ("deferred_by" in optional) == (folder in materialize.DEFERRABLE), folder
 
 
 def test_generate_and_lint_judge_a_placeholder_by_one_table():

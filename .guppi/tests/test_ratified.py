@@ -777,6 +777,57 @@ def test_write_a_defer_with_a_hash_in_quotes_or_a_block_is_written(working, purp
     assert "## b" in plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)[1]
 
 
+# --- a short defer of a Lesson or a Decision page is refused (case 865) ----------------------
+# `estimate-spec-write-writes-a-defer`
+
+
+def record_error(case, slug):
+    return f"case {case}: defer {slug}: {materialize.DEFER_OF_A_RECORD}"
+
+
+def plan_text(working):
+    plan = plan_of(working)
+    return plan.read_text(encoding="utf-8") if plan.is_file() else ""
+
+
+@pytest.mark.parametrize(
+    "slug, kind, folder",
+    [("decision-case-3", "decision", "decisions"), ("lesson-gone", "lesson", None)],
+)
+def test_write_a_short_defer_of_a_lesson_or_a_decision_page_is_refused(working, slug, kind, folder):
+    if folder:
+        path = working / "vault" / "wiki" / folder / f"{slug}.md"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(f"---\ntype: {kind}\n---\n", encoding="utf-8", newline="\n")
+    before = plan_text(working)
+    case = short_case(8, slug).replace("type: rule", f"type: {kind}")
+    reply = case + "```LEDGER\n" + defer_line(8, slug) + "```\n"
+    code, err = stop(working, reply, reply)
+    assert code == 2 and record_error(8, slug) in err
+    assert plan_text(working) == before
+
+
+def test_write_a_short_defer_of_an_entity_beside_a_refused_one_is_written(working):
+    reply = (
+        short_case(8, "decision-case-3").replace("type: rule", "type: decision")
+        + short_case(9, "entity-z").replace("type: rule", "type: entity")
+        + "```LEDGER\n"
+        + defer_line(8, "decision-case-3")
+        + defer_line(9, "entity-z")
+        + "```\n"
+    )
+    code, err = stop(working, reply, reply)
+    assert code == 2 and record_error(8, "decision-case-3") in err
+    deferred = plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)[1]
+    assert "## Case 9 —" in deferred and "## Case 8 —" not in deferred
+
+
+def test_the_plan_hook_judges_a_defer_of_a_record_by_the_one_shared_predicate():
+    # CLAUDE.md, one judgment (case 865)
+    assert ratified.defers_a_record is materialize.defers_a_record
+    assert ratified.DEFER_OF_A_RECORD is materialize.DEFER_OF_A_RECORD
+
+
 # --- a tag line declares a new tag (case 702) ------------------------------------------------
 # `estimate-spec-write-reads-a-new-tag`
 

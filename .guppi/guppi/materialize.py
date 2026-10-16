@@ -56,7 +56,9 @@ can name it (case 52.4), and an effect on each target:
     delete    none, no category     outside the vault: the Decision page records it, `generate`
                                     marks it applied, nothing to archive
     defer     existing              the Decision's slug appended to the target's `deferred_by`,
-                                    shown in its index line (case 52.3)
+                                    shown in its index line (case 52.3); a Lesson or a
+                                    Decision page is refused by `defers_a_record`, whether
+                                    its page stands or not (case 865)
     defer     none                  a minimal placeholder page, born with `deferred_by`, for a
                                     rule or an entity only; an entry of any other kind with
                                     no page by `defer_writes_no_page` fails in `generate`
@@ -814,6 +816,26 @@ def has_page(project_dir: Path, category: str, slug: str) -> bool:
 
 # the folders whose `defer` with no page writes a placeholder page (case 786)
 PLACEHOLDER_CATEGORIES = ("rules", "entities")
+
+# the folders whose page takes `deferred_by`: a `defer` marks it (cases 124.2, 781, 865)
+DEFERRABLE = ("rules", "entities", "insights", "estimates")
+
+DEFER_OF_A_RECORD = (
+    "a Lesson or a Decision page carries no deferred_by, so no list shows its defer — "
+    "defer the rule or entity page whose change settles it"
+)
+
+
+def defers_a_record(slug: str) -> bool:
+    """True when a `defer` names a Lesson or a Decision page: the category of `slug`, by
+    `category_of`, is a vault folder of `CATEGORIES` outside `DEFERRABLE`, whose page
+    carries no `deferred_by`, so `guppi backlog` would never list the item, whether the page
+    stands or not. The one judgment of such a defer, imported by `.guppi/guppi/generate.py`,
+    which fails the entry, `.guppi/guppi/prespec.py`, which reports it, `.guppi/guppi/ratified.py`,
+    which refuses the short Case, and `.guppi/guppi/ledger.py`, which refuses its line, each
+    with `DEFER_OF_A_RECORD` (case 865)."""
+    category = category_of(slug)
+    return category in CATEGORIES and category not in DEFERRABLE
 
 
 def defer_writes_no_page(project_dir: Path, category: str, slug: str) -> bool:

@@ -9,10 +9,11 @@ parts that a `reword` changes — each found by `reword_pattern` and `reword_tex
 Each `COMMAND` of a hook that finds its own refusals by it stands in `.claude/settings.json`.
 The clean version holds no `pyproject.toml` and no `uv.lock` at its root.
 
-Between the Work Mode that moves the code and the librarian's run that renders the harness
-and applies the `reword`, the files of `.claude/` and the pages still name the old command,
-so the tests over them are red; that red is a note for the handoff. Rule page:
-`vault/wiki/rules/rule-guppi-package.md`.
+Between the Work Mode that moved the code and the librarian's run that rendered the harness
+and applied the `reword`, the files of `.claude/` and the pages still named the old command,
+so the tests over them were red then (case 819.1). A test like these now passes on the text
+before the change and on the text after it until the text lands, as `rule-case-build` sets
+it (case 868). Rule page: `vault/wiki/rules/rule-guppi-package.md`.
 """
 
 import copy

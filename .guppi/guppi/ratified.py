@@ -66,6 +66,10 @@ a key of a `defer` item that `materialize.item_keys` does not give it (case 436.
 fence tagged `then` that holds a YAML comment by `materialize.then_comments` — after a space
 YAML drops the rest of the line, so a value without quotes is cut there, and after a tab
 PyYAML, the library the scripts use, refuses the whole block (cases 521.1, 526) — is a refusal.
+So is a `defer` line of the Case whose slug names a Lesson or a Decision page, by
+`materialize.defers_a_record`, whether its page stands or not, judged before the fence tagged
+`then` is read, with `materialize.DEFER_OF_A_RECORD`: neither page carries `deferred_by`, so no
+list would show the item, and nothing of the Case is written (case 865).
 
 The check after the write (case 414.1). Each Case written in the run, and its sub-cases, goes
 through the checks of `guppi prespec --check` — `prespec.written_findings`, imported inside
@@ -149,9 +153,11 @@ from guppi.ledger import (
 from guppi.materialize import (
     CASE_HEADING,
     DECISION_KINDS,
+    DEFER_OF_A_RECORD,
     HEADING,
     category_of,
     closes_fence,
+    defers_a_record,
     fence_for,
     fence_opening,
     in_family,
@@ -643,7 +649,12 @@ def defer_only(records: list[dict]) -> list[str]:
 def deferred_section(reply: str, case: str, records: list[dict], keys_for=None):
     """`(section, errors)`: the short form of Case N as the reply shows it — the heading,
     `context`, `problem` and its fence tagged `then` — checked against the reply's `defer`
-    lines of Case N, and each key of a `defer` item against `keys_for` (case 436.3)."""
+    lines of Case N, and each key of a `defer` item against `keys_for` (case 436.3). A `defer`
+    line of Case N whose slug names a Lesson or a Decision page, by `defers_a_record`, refuses
+    the Case before its `then` block is read, with `DEFER_OF_A_RECORD` (case 865)."""
+    refused = [r["slug"] for r in records if r["case"] == case and defers_a_record(str(r["slug"]))]
+    if refused:
+        return [], [f"case {case}: defer {slug}: {DEFER_OF_A_RECORD}" for slug in refused]
     lines = split_cases(reply).get(case)
     if lines is None:
         return [], [f"case {case}: the reply that defers it does not show it"]

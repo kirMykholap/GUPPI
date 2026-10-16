@@ -178,6 +178,14 @@ line of an `entity-sprint-` slug, so the session after a close opens the next sp
 Readings and lessons pass. The hook exits 2 with one stderr line per refused line only when
 it stands in the reply just finished, and the line is written at the first `Stop` after the
 `create` stands. Judged by `refused_without_sprint`, over lines read by `parse_line`.
+
+No defer of a record (case 865). A fresh `defer` decision line whose slug names a Lesson or a
+Decision page, by `defers_a_record` of `.guppi/guppi/materialize.py`, whether its page stands
+or not, is not written, from any text of the transcript: neither page carries `deferred_by`,
+so no list would show the item. When it stands in the reply just finished, the hook exits 2
+with `ledger: line not written — <line>: ` and `DEFER_OF_A_RECORD` on stderr, told once a
+stretch by `untold`; the other lines of the block land. Judged by `refused_defers`; the hook
+of `rule-spec-write` refuses the short Case of the same line by the same predicate.
 """
 
 import json
@@ -953,6 +961,24 @@ def refused_without_sprint(
     return [line for line, r in decisions if line in fresh and r["kind"] != "defer"]
 
 
+def refused_defers(fresh: list[str]) -> list[str]:
+    """Each fresh `defer` decision line whose slug names a Lesson or a Decision page, by
+    `defers_a_record` of `.guppi/guppi/materialize.py`, whether its page stands or not:
+    neither page carries `deferred_by`, so no list would show the item (case 865). The hook
+    of `rule-spec-write` refuses the short Case of the same line by the same predicate. The
+    lines are read by `parse_line`, the one parse of a ledger line."""
+    from guppi.materialize import defers_a_record, parse_line
+
+    return [
+        line
+        for line in fresh
+        if (record := parse_line(f"- {body(line)}"))
+        and record["record"] == "decision"
+        and record["kind"] == "defer"
+        and defers_a_record(str(record["slug"]))
+    ]
+
+
 def append(path: Path, lines: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8", newline="\n") as handle:
@@ -1007,6 +1033,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         # the lines with a tag refused (case 703.2)
         tagged = refused_tags(project_dir, now, stamp, fresh, written, prefixed)
         marks = refused_marks(fresh, written, prefixed)  # the marks refused (case 497.1)
+        records_deferred = refused_defers(fresh)  # a Lesson or a Decision page (case 865)
         taken = refused_taken_sprint(project_dir, fresh)  # a sprint id taken (case 788.1)
         taken_lines = frozenset(line for line, _ in taken)
         # the lines written with no sprint open (case 628.3)
@@ -1044,6 +1071,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             | {line for line, _ in held}
             | {line for line, _ in copied}
             | dropped
+            | set(records_deferred)
         )
         fresh = [line for line in fresh if line not in out]
         if fresh:
@@ -1099,6 +1127,13 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                     "sprint first: ratify the Case that creates entity-sprint-<id>, then repeat "
                     "the line; a defer, a reading and a lesson pass."
                 )
+        from guppi.materialize import DEFER_OF_A_RECORD  # it imports this module
+
+        messages += [  # a defer of a Lesson or a Decision page (case 865)
+            f"ledger: line not written — {body(line)}: {DEFER_OF_A_RECORD}"
+            for line in records_deferred
+            if body(line) in finished
+        ]
         messages += [message for _, message in held]
         # one line per held Case (case 688.7)
         messages += list(

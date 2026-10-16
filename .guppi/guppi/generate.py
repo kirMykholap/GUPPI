@@ -53,7 +53,9 @@ its `deferred_by` — a rule, an entity or an Insight (case 124.2), or an Estima
 without a page it writes a placeholder, `status: draft`, with the fields the Case gave,
 for a rule or an entity only: a `defer` of any other kind with no page by
 `defer_writes_no_page` of `.guppi/guppi/materialize.py` writes no page and fails alone (cases 783,
-786). A
+786). A `defer` of a Lesson or a Decision page, by `defers_a_record` of the same module,
+writes no page and no `log.md` line and fails alone, whether the page stands or not, with
+`DEFER_OF_A_RECORD` (case 865). A
 `lesson` writes the lesson alone, `source` when the line carries it (case 53.1). Every ref
 field (`REF_FIELDS`) is written as a quoted wikilink, `"[[slug]]"`; a slug without a
 category prefix stays bare; readers strip the brackets (case 172). A `create` in
@@ -183,10 +185,13 @@ from guppi.event import project_root
 from guppi.lint import CODE_SPAN, PATH_START
 from guppi.materialize import (
     CATEGORIES,
+    DEFER_OF_A_RECORD,
+    DEFERRABLE,
     ITEM_KEYS,
     PREFIXES,
     SINGULAR,
     defer_writes_no_page,
+    defers_a_record,
     dump_yaml,
     load_yaml,
     unit_sprint,
@@ -236,7 +241,6 @@ SECTION_ORDER = {  # no section derived from a ref field (case 166.2)
         "Context", "Problem", "Recommend", "Given", "When", "Criterion", "Deferred", "Note",
     ],
 }  # fmt: skip
-DEFERRABLE = ("rules", "entities", "insights", "estimates")  # a `defer` marks (cases 124.2, 781)
 LIBRARIAN_ONLY = "an Insight is made and retired by the librarian, never created or deleted by a decision (case 171)"
 INITIAL_STATUS = {
     "entities": "draft",
@@ -1109,8 +1113,13 @@ class Vault:
         """A `defer` marks its target `deferred_by` — a Rule, an Entity or an Insight (case
         124.2), or an Estimate (case 781) — or writes a placeholder page when the target does
         not exist, for a rule or an entity only: an entry of any other kind with no page by
-        `defer_writes_no_page` fails alone, before any page is read (cases 783, 786)."""
+        `defer_writes_no_page` fails alone, before any page is read (cases 783, 786). A
+        `defer` of a Lesson or a Decision page, by `defers_a_record`, fails first, whether its
+        page stands or not, with `DEFER_OF_A_RECORD`: no page and no `log.md` line (case 865)."""
         slug, category = entry["slug"], entry["category"]
+        if defers_a_record(slug):
+            self.error(slug, DEFER_OF_A_RECORD)
+            return
         if defer_writes_no_page(self.project_dir, category, slug):
             self.error(
                 slug,

@@ -75,10 +75,12 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - the form of an Estimate item (case 203.1): a Case whose `then` block holds two or more
   Estimate items that set a new Criterion — a `create`, or an `update` that names no part of
   the page by `materialize.names_a_part`, written or lifted (one promise per Case: split
-  it) (case 472.3); an `update` of an Estimate whose page does not exist; a `defer` of an
-  Estimate, an Insight, a Lesson or a Decision page whose page
-  `materialize.defer_writes_no_page` does not find, the judgment by which `generate` fails
-  the entry, a short Case under `## Deferred` included (cases 783, 786); a `create` of an
+  it) (case 472.3); an `update` of an Estimate whose page does not exist; a `defer` of a
+  Lesson or a Decision page, whether its page stands or not, by `materialize.defers_a_record`
+  with `materialize.DEFER_OF_A_RECORD` (case 865); a `defer` of an Estimate or an Insight
+  whose page `materialize.defer_writes_no_page` does not find — both the judgments by which
+  `generate` fails the entry — a short Case under `## Deferred` included (cases 783, 786); a
+  `create` of an
   Estimate whose `ref` names neither a live rule or entity nor one a `create` of the same
   plan carries (case 221); a `create` of an Estimate, or an `update` carrying
   `set: {method: …}`, whose `method` names none of the forms lint classifies — a `make
@@ -270,6 +272,7 @@ from guppi.lint import (
 )
 from guppi.materialize import (
     DECISION_KINDS,
+    DEFER_OF_A_RECORD,
     SINGULAR,
     case_texts,
     category_of,
@@ -277,6 +280,7 @@ from guppi.materialize import (
     create_lacks,
     criterion_text,
     defer_writes_no_page,
+    defers_a_record,
     fence_breaks,
     fenced_lines,
     find_item,
@@ -1238,11 +1242,13 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     by `lint.names_a_moc_form`, the one predicate `check_method` of lint calls too, is a
     finding in place of the line of no form; whether the Makefile holds the target, whether
     each test file exists and whether the children's Estimates are readings stays with lint
-    (cases 733, 820.4). A `defer` with no page by `materialize.defer_writes_no_page`
-    — the one judgment, by which `generate` fails such an entry — is a finding, a short Case
-    under `## Deferred` included: an Estimate with `NO_DEFERRED_ESTIMATE` (case 783), an
-    Insight, a Lesson or a Decision page with `NO_DEFERRED_PAGE`; a `defer` of a rule or an
-    entity with no page is not (case 786)."""
+    (cases 733, 820.4). A `defer` of a Lesson or a Decision page, whether its page stands or
+    not, is a finding first, by `materialize.defers_a_record`, with `DEFER_OF_A_RECORD` (case
+    865); only a `defer` it does not report goes on to `materialize.defer_writes_no_page` —
+    the two judgments by which `generate` fails such an entry — and a `defer` with no page is
+    a finding, a short Case under `## Deferred` included: an Estimate with
+    `NO_DEFERRED_ESTIMATE` (case 783), an Insight with `NO_DEFERRED_PAGE`; a `defer` of a rule
+    or an entity with no page is not (case 786)."""
     findings: list[str] = []
     created = {  # the rules and entities the plan itself creates (case 221)
         str(item.get("slug"))
@@ -1305,7 +1311,9 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
         for item in block.get("defer") or []:  # a defer that writes no page (cases 783, 786)
             slug = item.get("slug") if isinstance(item, dict) else None
             category = category_of(slug) if slug else None
-            if category and defer_writes_no_page(project_dir, category, slug):
+            if category and defers_a_record(slug):  # a Lesson or a Decision page (case 865)
+                findings.append(f"case {case}: defer {slug}: {DEFER_OF_A_RECORD}")
+            elif category and defer_writes_no_page(project_dir, category, slug):
                 line = NO_DEFERRED_ESTIMATE if category == "estimates" else NO_DEFERRED_PAGE
                 findings.append(f"case {case}: defer {slug}: {line}")
         if promises >= 2:

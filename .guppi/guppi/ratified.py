@@ -4,7 +4,9 @@ the Spec (case 387.2). `guppi ratified --guard` — the `PreToolUse` hook of
 (case 445.1), and of the file of a built Case under `cases/` (case 453).
 
 The write. After a reply whose `LEDGER` block holds `- decision[case N]` lines of a kind other
-than `defer`, the hook reads `<plan>.checked.json` for the answer of `case-guppi` stored under
+than `defer`, or lines that are all `defer` of a Case N that the same reply does not show in the
+short form, by `casecheck.is_short_form` — a Case `case-guppi` built (case 879.1) — the hook
+reads `<plan>.checked.json` for the answer of `case-guppi` stored under
 Case N, and the session's transcript for the `SendUserFile` calls on
 `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case — by
 `casecheck.sent`, the one reading of a sending, and `casecheck.case_file` — and for the last
@@ -56,12 +58,13 @@ leaves with it once the marks of the session's ledger and of the reply retire ea
 sub-cases with a decision line, by `prespec.retired_whole`, imported, and the parent holds no
 decision line of its own; a parent with a line of its own stays (case 722.2).
 
-The defer (case 421.1). A Case whose lines in the reply are all `defer` — beside the lines of
-other Cases or alone — is written from the same reply, which shows it in the short form: the
-heading, `context`, `problem` and its fence tagged `then`, each `defer` line with an item of
+The defer (case 421.1). A short put-off — a Case whose lines in the reply are all `defer`,
+beside the lines of other Cases or alone, and that the same reply shows in the short form, by
+`casecheck.is_short_form`, the one judgment of the `Stop` check of a showing too (case 879.1) —
+is written from that reply: the heading, `context`, `problem` and its fence tagged `then`, each `defer` line with an item of
 `slug`, `type` and `purpose`. It goes under `## Deferred` of the plan file, or of `spec.md` in
 the session's folder once that file stands (case 542), its section replaced when it stands and
-appended otherwise; the check after the write does not run on it. No showing, a missing item,
+appended otherwise; the check after the write does not run on it. A missing item,
 a key of a `defer` item that `materialize.item_keys` does not give it (case 436.3), or a
 fence tagged `then` that holds a YAML comment by `materialize.then_comments` — after a space
 YAML drops the rest of the line, so a value without quotes is cut there, and after a tab
@@ -526,16 +529,17 @@ def write_text(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8", newline="")
 
 
-def ratified_cases(records: list[dict]) -> tuple[list[str], dict]:
-    """The Cases a reply's ledger lines ratify, in order, a defer-only Case left out; and the
-    `ref` of each `create` by `(case, slug)`."""
+def ratified_cases(records: list[dict], reply: str) -> tuple[list[str], dict]:
+    """The Cases a reply's ledger lines ratify, in order, a short put-off of `defer_only` left
+    out (case 879.1); and the `ref` of each `create` by `(case, slug)`."""
     kinds: dict[str, set[str]] = {}
     refs: dict = {}
     for record in records:
         kinds.setdefault(record["case"], set()).add(record["kind"])
         if record["kind"] == "create" and record.get("ref"):
             refs[(record["case"], record["slug"])] = record["ref"]
-    return [case for case, seen in kinds.items() if seen != {"defer"}], refs
+    short = set(defer_only(records, reply))
+    return [case for case in kinds if case not in short], refs
 
 
 def find_showing(messages: list[str], case: str):
@@ -637,13 +641,22 @@ def write_case(
 # --- a deferred Case (case 421.1) ---------------------------------------------------
 
 
-def defer_only(records: list[dict]) -> list[str]:
-    """The Cases whose lines in a reply are all `defer`, in order; lines of other Cases may
-    stand beside them."""
+def defer_only(records: list[dict], reply: str) -> list[str]:
+    """The short put-offs of a reply, in order: the Cases whose lines are all `defer` and that
+    the reply shows in the short form, by `casecheck.is_short_form`, the one judgment of the
+    short form (case 879.1); lines of other Cases may stand beside them. A Case of `defer`
+    lines that the reply does not show so is a Case built by `case-guppi`."""
+    from guppi.casecheck import is_short_form  # it imports this module
+
     kinds: dict[str, set[str]] = {}
     for record in records:
         kinds.setdefault(record["case"], set()).add(record["kind"])
-    return [case for case, seen in kinds.items() if seen == {"defer"}]
+    shown = split_cases(reply)
+    return [
+        case
+        for case, seen in kinds.items()
+        if seen == {"defer"} and case in shown and is_short_form(shown[case])
+    ]
 
 
 def deferred_section(reply: str, case: str, records: list[dict], keys_for=None):
@@ -717,10 +730,10 @@ def place_deferred(document: str, case: str, section: list[str]) -> str:
 def write_defers(
     reply: str, records: list[dict], target: Path, keys_for=None, written: set | None = None
 ) -> list[str]:
-    """Each defer-only Case of the reply under `## Deferred` of `target`; the errors. Each
+    """Each short put-off of the reply under `## Deferred` of `target`; the errors. Each
     Case written is added to `written`."""
     problems: list[str] = []
-    for case in defer_only(records):
+    for case in defer_only(records, reply):
         section, errors = deferred_section(reply, case, records, keys_for)
         if errors:
             problems += errors
@@ -995,7 +1008,7 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
         for record in (parse_line(line) for line in ledger_lines(reply))
         if record and record.get("record") == "decision"
     ]
-    cases, refs = ratified_cases(records)
+    cases, refs = ratified_cases(records, reply)
     plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
     keys_for = key_judge(project_dir, window_schema_free(folder, reply))
     approved = folder / SPEC_FILE  # the approved Spec, once `guppi spec` wrote it (case 441.6)
@@ -1062,7 +1075,7 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
                 if isinstance(parent, dict):  # its prose from its stored answer only (case 441.6)
                     write_parent(plan, case, str(parent.get("text") or ""), approved)
     checked = set(written)  # the check after the write reads the Cases of `write_case` only
-    if defer_only(records):
+    if defer_only(records, reply):
         target = (
             approved if approved.is_file() else plan
         )  # once spec.md stands, a defer goes there (case 542)

@@ -596,13 +596,107 @@ def test_write_a_defer_once_the_spec_stands_goes_into_it(working):
 
 
 def test_write_a_defer_not_shown_or_without_its_item_is_refused(working):
+    # a reply with no short form takes the path of a built Case (case 879.1)
     bare = "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
     code, err = stop(working, bare, bare)
-    assert code == 2 and "case 8: the reply that defers it does not show it" in err
+    assert code == 2 and "case 8: not built and checked by case-guppi — dispatch it" in err
     other = short_case(8, "rule-other") + bare
     code, err = stop(working, other, other)
     assert code == 2 and "no defer item with slug, type and purpose for rule-y" in err
     assert "Case 8" not in plan_of(working).read_text(encoding="utf-8")
+
+
+# --- a built Case made only of put-offs (case 879) ---------------------------------------
+
+BUILT_DEFER = """## Case 7 — отложено целиком
+
+> **context:**
+> Контекст.
+
+> **problem:**
+> Проблема.
+
+> **recommend:**
+> Совет.
+
+> **given:**
+> `rule-x` — the rule.
+
+> **when:**
+> The person puts `rule-x` off.
+
+> **then:**
+> The put-off stands.
+
+> **tasks:**
+> - [ ] defer `rule-x`
+>   - type: `rule`
+>   - purpose: `Later`
+
+> **ratification:**
+> ```
+> - decision[case 7][defer][rule-x]{ref:rule-x}
+> ```
+
+---
+
+Ratify?
+"""
+
+DEFER_LINES = "- decision[case 7][defer][rule-x]{ref:rule-x}\n"
+ACK_DEFER = f"```LEDGER\n{DEFER_LINES}```\n\n## Case 7 — ratified\n\n**Changes:** the put-off.\n"
+
+
+def test_write_built_defer_case_is_copied_from_its_file(working):
+    assert stop(working, ACK_DEFER, BUILT_DEFER, ACK_DEFER) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    assert "## Deferred" not in plan and "## Case 7 — отложено целиком" in plan
+    lines = split_cases(plan)["7"]
+    sections = materialize.quoted_sections(lines, ratified.SPEC_SECTIONS)
+    assert list(sections) == ["context", "problem", "recommend", "given", "when", "then"]
+    block, errors = then_blocks(lines)
+    assert errors == [] and block == {
+        "defer": [{"slug": "rule-x", "type": "rule", "purpose": "Later"}]
+    }
+    assert ratified.tagged_blocks(lines, "tasks") == ["- [ ] defer `rule-x`"]
+
+
+def test_write_built_defer_case_with_no_store_is_refused(working):
+    code, err = stop(working, ACK_DEFER, BUILT_DEFER, ACK_DEFER, built=False)
+    assert code == 2 and "case 7: not built and checked by case-guppi" in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_superseded_by_a_built_defer_case_leaves_the_plan(working):
+    seed_old(working)
+    ack = ACK_DEFER.replace("{ref:rule-x}\n", "{ref:rule-x}{supersedes:case 5}\n", 1)
+    assert stop(working, ack, BUILT_DEFER, ack) == (0, "")
+    text = plan_of(working).read_text(encoding="utf-8")
+    assert "Case 5" not in text and "## Case 7 —" in text
+
+
+def test_write_built_defer_case_beside_a_short_form_keeps_the_short_one_under_deferred(working):
+    reply = (
+        short_case(8, "rule-y") + "```LEDGER\n" + DEFER_LINES + defer_line(8, "rule-y") + "```\n"
+    )
+    assert stop(working, reply, BUILT_DEFER, reply) == (0, "")
+    head, deferred = plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)
+    assert "## Case 7 — отложено целиком" in head and "Case 7" not in deferred
+    assert "## Case 8 — отложено" in deferred
+
+
+def test_changed_file_built_defer_case_changed_after_the_store_writes_nothing(working):
+    build(working, BUILT_DEFER)
+    path = file_of_7(working, BUILT_DEFER.replace("The put-off stands.", "Changed."))
+    code, err = stop(working, ACK_DEFER, BUILT_DEFER, ACK_DEFER, built=False)
+    assert code == 2 and f"{path} differs from the text the check stored" in err
+    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+
+
+def test_checks_the_written_case_built_defer_a_finding_exits_2(working):
+    out = BUILT_DEFER.replace("The put-off stands.", "The file `guppi/y.py` is written.")
+    code, err = stop(working, ACK_DEFER, out, ACK_DEFER)
+    assert code == 2 and "case 7: guppi/y.py is not named in its given" in err
 
 
 def test_write_no_plan_file_in_the_event_log_is_refused(working):

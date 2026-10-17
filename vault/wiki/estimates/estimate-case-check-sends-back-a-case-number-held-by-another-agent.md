@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi under an id, plain or of a sprint, that the store holds from the answer of another agent goes back to it with a free id, and the other agent's entry is kept
 method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k subagent_clash
-checked: 2026-10-13
+checked: 2026-10-17
 origin: raw/2026-10-03/0115/ledger.md#case-610.2
 sprint: migration
 created: 2026-10-03
@@ -24,11 +24,11 @@ The hook stores each Case of the file in `<plan>.checked.json` with the `agent_i
 **＋** Each Case of that file is stored apart, under its id joined with its `agent_id`, and the entry of the other agent under the id alone stays as it was.
 **＋** The Spec hook, the `Stop` comparison and the comparison of a case file with the store read the entry under the id alone.
 **－** An unchanged file whose text its entry apart already holds with this finding is stored again and exits 0, so it is not sent back twice.
-**－** An entry with no `agent_id`, stored before the change or held by `uv run --project .guppi guppi caseid --next`, gives no finding of this check, and neither does a file whose `agent_id` is the one of the entry under the id.
+**－** An entry with no `agent_id`, such as one held by `uv run --project .guppi guppi caseid --next`, gives no finding of this check, and neither does a file whose `agent_id` is the one of the entry under the id (an entry stored before case 610.2 holds none either).
 
 ## Result
 
-2026-10-13, uv run pytest tests/test_casecheck.py -k subagent_clash: 5 passed — Case kir-plugin-12 held by another agent is sent back as kir-plugin-13; an id held by guppi caseid --next with no agent_id gives no finding
+2026-10-17, Retro of session 1805: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k subagent_clash 5 passed
 
 ## History
 
@@ -44,3 +44,5 @@ The hook stores each Case of the file in `<plan>.checked.json` with the `agent_i
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the Criterion replaced whole — an entry with no agent_id named by what holds it, the entries from before the change in a bracket at the end of the sentence · [[decision-case-880.5]]
+- 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L62

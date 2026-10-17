@@ -75,12 +75,12 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-spec-write-copies-a-built-defer-only-case`
-- [ ] update `rule-spec-write`
-- [ ] update `rule-spec-capture`
+- [x] create `estimate-spec-write-copies-a-built-defer-only-case`
+- [x] update `rule-spec-write`
+- [x] update `rule-spec-capture`
 - [x] `.guppi/guppi/ratified.py`: `defer_only(records, reply)` returns the Cases whose lines are all `defer` and whose lines in the reply, by `split_cases`, pass `is_short_form` of `.guppi/guppi/casecheck.py`, imported inside the function since that module imports this one; `ratified_cases(records, reply)` leaves out only those Cases; `stop` and `write_defers` pass the reply; the module docstring, under the write and under the defer, says so.
 - [x] `.guppi/tests/test_ratified.py`: tests whose names hold `built_defer`, set up as the tests of a built Case set up its store and its sending: a built Case whose lines are all `defer`, stored and its file sent, after its acknowledging reply stands in the plan outside `## Deferred` with `given`, `when`, `then` and a block tagged `then` of its `defer` items; with no store entry the reply exits 2 with `not built and checked by case-guppi`; its `{supersedes:case M}` removes Case M; a short form shown in the same reply as a built Case of put-offs still goes under `## Deferred`. `test_write_a_defer_not_shown_or_without_its_item_is_refused` asserts for the bare reply the refusal `case 8: not built and checked by case-guppi — dispatch it`.
-- [ ] read `estimate-spec-write-copies-a-built-defer-only-case`
+- [x] read `estimate-spec-write-copies-a-built-defer-only-case`
 ```
 
 ### Case 879.2 — A short put-off is the one the reply shows
@@ -119,8 +119,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-writes-a-defer`
-- [ ] read `estimate-spec-write-writes-a-defer`
+- [x] update `estimate-spec-write-writes-a-defer`
+- [x] read `estimate-spec-write-writes-a-defer`
 ```
 
 ### Case 879.3 — A built Case made only of put-offs is compared with its file
@@ -154,9 +154,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-refuses-a-changed-case-file`
+- [x] update `estimate-spec-write-refuses-a-changed-case-file`
 - [x] `.guppi/tests/test_ratified.py`: a test whose name holds `changed_file` and `built_defer`: a built Case whose lines are all `defer`, its file changed after the store, exits 2 at its acknowledging reply and stands neither in the plan nor under `## Deferred`.
-- [ ] read `estimate-spec-write-refuses-a-changed-case-file`
+- [x] read `estimate-spec-write-refuses-a-changed-case-file`
 ```
 
 ### Case 879.4 — A built Case made only of put-offs is checked after the write
@@ -193,9 +193,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-checks-the-written-case`
+- [x] update `estimate-spec-write-checks-the-written-case`
 - [x] `.guppi/tests/test_ratified.py`: a test whose name holds `checks_the_written` and `built_defer`: a built Case whose lines are all `defer`, written at its acknowledging reply, goes through the checks after the write, and a finding on it exits 2 with the finding naming its Case.
-- [ ] read `estimate-spec-write-checks-the-written-case`
+- [x] read `estimate-spec-write-checks-the-written-case`
 ```
 
 ## Case 880 — The Criteria of shipped Estimates hold in any project
@@ -265,8 +265,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-claude-md-rendered`
-- [ ] read `estimate-claude-md-rendered`
+- [x] update `estimate-claude-md-rendered`
+- [x] read `estimate-claude-md-rendered`
 ```
 
 ### Case 880.2 — The test-code reading of case-guppi names no Insight
@@ -295,8 +295,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-the-test-code-over-a-changed-text`
-- [ ] read `estimate-case-build-reads-the-test-code-over-a-changed-text`
+- [x] update `estimate-case-build-reads-the-test-code-over-a-changed-text`
+- [x] read `estimate-case-build-reads-the-test-code-over-a-changed-text`
 ```
 
 ### Case 880.3 — The changed-check reading of case-guppi names no Insight
@@ -325,8 +325,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check`
-- [ ] read `estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check`
+- [x] update `estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check`
+- [x] read `estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check`
 ```
 
 ### Case 880.4 — The check of round titles names its function by its role
@@ -358,8 +358,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-requires-each-question-of-the-rounds`
-- [ ] read `estimate-case-check-requires-each-question-of-the-rounds`
+- [x] update `estimate-case-check-requires-each-question-of-the-rounds`
+- [x] read `estimate-case-check-requires-each-question-of-the-rounds`
 ```
 
 ### Case 880.5 — An entry with no agent id is named by what holds it
@@ -391,8 +391,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
-- [ ] read `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] update `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
+- [x] read `estimate-case-check-sends-back-a-case-number-held-by-another-agent`
 ```
 
 ### Case 880.6 — The context of /hi promises no remote of GUPPI
@@ -419,8 +419,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-git-context-current`
-- [ ] read `estimate-git-context-current`
+- [x] update `estimate-git-context-current`
+- [x] read `estimate-git-context-current`
 ```
 
 ### Case 880.7 — The repository of GUPPI has its remote on GitHub
@@ -448,8 +448,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-guppi-repository-remote-on-github`
-- [ ] read `estimate-guppi-repository-remote-on-github`
+- [x] create `estimate-guppi-repository-remote-on-github`
+- [x] read `estimate-guppi-repository-remote-on-github`
 ```
 
 ### Case 880.8 — The package of GUPPI runs from its own folder in any project
@@ -487,8 +487,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-package-runs-from-its-own-folder`
-- [ ] read `estimate-guppi-package-runs-from-its-own-folder`
+- [x] update `estimate-guppi-package-runs-from-its-own-folder`
+- [x] read `estimate-guppi-package-runs-from-its-own-folder`
 ```
 
 ### Case 880.9 — The repository of GUPPI keeps its development project
@@ -524,8 +524,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-guppi-repository-keeps-the-development-project`
-- [ ] read `estimate-guppi-repository-keeps-the-development-project`
+- [x] create `estimate-guppi-repository-keeps-the-development-project`
+- [x] read `estimate-guppi-repository-keeps-the-development-project`
 ```
 
 ### Case 880.10 — The defer example names no Insight
@@ -560,8 +560,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-defer-example-passes-the-hook`
-- [ ] read `estimate-orchestration-defer-example-passes-the-hook`
+- [x] update `estimate-orchestration-defer-example-passes-the-hook`
+- [x] read `estimate-orchestration-defer-example-passes-the-hook`
 ```
 
 ### Case 880.11 — The pointer check of the plan names no command that does not ship
@@ -594,8 +594,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
-- [ ] read `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
+- [x] update `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
+- [x] read `estimate-prespec-hook-reports-a-pointer-outside-a-bracket`
 ```
 
 ### Case 880.12 — A placeholder is filled by generate, named by its command
@@ -621,8 +621,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-marks-exists`
-- [ ] read `estimate-materialize-marks-exists`
+- [x] update `estimate-materialize-marks-exists`
+- [x] read `estimate-materialize-marks-exists`
 ```
 
 ### Case 880.13 — The command-line check of the plan keeps its case number in a bracket
@@ -649,8 +649,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-catches-a-command-line-off-form`
-- [ ] read `estimate-prespec-catches-a-command-line-off-form`
+- [x] update `estimate-prespec-catches-a-command-line-off-form`
+- [x] read `estimate-prespec-catches-a-command-line-off-form`
 ```
 
 ### Case 880.14 — One judgment, one implementation holds for any code
@@ -679,8 +679,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-one-judgment-one-implementation-followed`
-- [ ] read `estimate-one-judgment-one-implementation-followed`
+- [x] update `estimate-one-judgment-one-implementation-followed`
+- [x] read `estimate-one-judgment-one-implementation-followed`
 ```
 
 ### Case 880.15 — The sprints with plain ids are those of the fixed list
@@ -723,8 +723,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ratification-case-id-carries-the-sprint`
-- [ ] read `estimate-ratification-case-id-carries-the-sprint`
+- [x] update `estimate-ratification-case-id-carries-the-sprint`
+- [x] read `estimate-ratification-case-id-carries-the-sprint`
 ```
 
 ### Case 880.16 — The closing skill names no closed sprint and no skill that does not ship
@@ -761,8 +761,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-skill-sprint-close-leads-the-closing-session`
-- [ ] read `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] update `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] read `estimate-skill-sprint-close-leads-the-closing-session`
 ```
 
 ### Case 880.17 — The sprint check runs within guppi check
@@ -791,8 +791,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-checks-the-file`
-- [ ] read `estimate-sprint-checks-the-file`
+- [x] update `estimate-sprint-checks-the-file`
+- [x] read `estimate-sprint-checks-the-file`
 ```
 
 ### Case 880.18 — The pinned clock holds for every run of the tests
@@ -823,8 +823,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-tests-clock-pinned`
-- [ ] read `estimate-tests-clock-pinned`
+- [x] update `estimate-tests-clock-pinned`
+- [x] read `estimate-tests-clock-pinned`
 ```
 
 ### Case 880.19 — Where to stop names only the merges that ship
@@ -869,8 +869,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
-- [ ] read `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] read `estimate-where-to-stop-stops-only-on-its-conditions`
 ```
 
 ### Case 880.20 — The repository of GUPPI stops in its merge tasks
@@ -903,8 +903,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-guppi-repository-stops-in-the-merge-tasks`
-- [ ] read `estimate-guppi-repository-stops-in-the-merge-tasks`
+- [x] create `estimate-guppi-repository-stops-in-the-merge-tasks`
+- [x] read `estimate-guppi-repository-stops-in-the-merge-tasks`
 ```
 
 ### Case 880.21 — The rest of the rewrite stays put off by name
@@ -932,6 +932,6 @@ defer:
 ```
 
 ```tasks
-- [ ] update `rule-clean-branch`
-- [ ] defer `rule-clean-branch`
+- [x] update `rule-clean-branch`
+- [x] defer `rule-clean-branch`
 ```

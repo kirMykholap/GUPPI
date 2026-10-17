@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-sprint]]"
 purpose: sprint --check names sprint.md when it differs from the render of the live sprint page, or from the closed form when no live sprint page stands, exit 1, and writes nothing
 method: uv run --project .guppi pytest .guppi/tests/test_sprint.py
-checked: 2026-10-09
+checked: 2026-10-17
 origin: raw/2026-09-17/1119/ledger.md#case-227
 sprint: migration
 created: 2026-09-17
@@ -15,17 +15,17 @@ tags: [harness, sprint]
 ## Criterion
 
 When:
-Someone runs `uv run --project .guppi guppi sprint --check`, by hand or through the target `lint` of the `Makefile`, and it renders the file from the sprint page in memory.
+Someone runs `uv run --project .guppi guppi sprint --check`, by hand or through `uv run --project .guppi guppi check`, and it renders the file from the sprint page in memory.
 
 Then:
 When `vault/wiki/sprint.md` differs from the render of the page, stdout holds one line `sprint: <file> differs from entity-sprint-<id>`, the file named by its path from the project root, and the check exits 1. When the file equals the render, the check exits 0 with no output. The file is written in neither case.
-**＋** The target `lint` of the `Makefile` runs it after `render --check` and before `guppi lint`.
+**＋** `uv run --project .guppi guppi check` runs it after `guppi render --check` and before `guppi lint`.
 **＋** With no live sprint page, the check compares the file with the closed form that `estimate-sprint-marks-a-closed-sprint` sets, and the line on stdout reads `sprint: <file> differs from the closed form of <id>`.
 **－** A render error, such as two sprint pages, a slug with no page, or no sprint page and no file, is one line on stderr and exit 1, as with `guppi sprint`.
 
 ## Result
 
-2026-10-09, uv run pytest tests/test_sprint.py; 29 passed, the closed file silent with exit 0 and a differing one named as the closed form of migration with exit 1
+2026-10-17, Retro of session 1805: uv run --project .guppi pytest .guppi/tests/test_sprint.py 29 passed; STEPS of .guppi/guppi/check.py runs render --check, then sprint --check, backlog, glossary, then lint
 
 ## History
 
@@ -38,3 +38,5 @@ When `vault/wiki/sprint.md` differs from the render of the page, stdout holds on
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the Criterion replaced whole — the check runs within guppi check, not by a target of the Makefile · [[decision-case-880.17]]
+- 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L74

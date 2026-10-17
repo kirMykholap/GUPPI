@@ -59,6 +59,9 @@ entries:
       of `rule-guppi-config` and the read rules of the Render of `rule-permissions`, which the setup Case
       of `rule-morph` sets, are no part of this promise.'
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 2
   text: decision[case 875][defer][rule-clean-branch]{ref:rule-clean-branch}
   case: '875'
@@ -76,6 +79,9 @@ entries:
       one group at a time; put off by the person in session 0027
   exists: true
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 3
   text: decision[case 875][update][rule-spec-box]{ref:rule-spec-box}
   case: '875'
@@ -90,6 +96,9 @@ entries:
     new: Both wait for a second part (a line of the Backlog of `entity-sprint-migration`, case 591).
   change: the sprint line of the Purpose moves into the bracket of its pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 4
   text: decision[case 875][update][rule-vault-layout]{ref:rule-vault-layout}
   case: '875'
@@ -104,6 +113,9 @@ entries:
     new: '`sprint.md` from the live sprint page `entity-sprint-<id>` under `rule-sprint`'
   change: the Purpose names the live sprint page as the source of sprint.md
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 5
   text: decision[case 875][update][rule-morph]{ref:rule-morph}
   case: '875'
@@ -130,6 +142,9 @@ entries:
       and 825).
   change: the sprint lines of the Purpose move into the brackets of their pointers
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 6
   text: decision[case 875][update][rule-guppi-config]{ref:rule-guppi-config}
   case: '875'
@@ -146,6 +161,9 @@ entries:
       cases 476.1, 802).
   change: the sprint line of the Purpose moves into the bracket of its pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 7
   text: decision[case 875][update][rule-documentation]{ref:rule-documentation}
   case: '875'
@@ -160,6 +178,9 @@ entries:
     new: '`.guppi/guppi/` and `.guppi/tests/` are the scripts'' own files'
   change: the Render no longer names the Makefile, which the clean version does not hold
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 8
   text: decision[case 875][update][rule-bash-guard]{ref:rule-bash-guard}
   case: '875'
@@ -186,6 +207,9 @@ entries:
       `lesson-work-mode-edited-a-source-file-through-the-shell`, case 796.1).
   change: the machine and the sessions of the Purpose move into the brackets of their pointers
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 9
   text: decision[case 875][update][rule-claude-md]{ref:rule-claude-md}
   case: '875'
@@ -204,6 +228,9 @@ entries:
       of this page
   change: how the file was written before the page moves into the bracket of its pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 10
   text: decision[case 875][update][rule-tests-clock-pinned]{ref:rule-tests-clock-pinned}
   case: '875'
@@ -220,6 +247,9 @@ entries:
       (two lessons of 2026-09-10 and 09-11 went red that way, case 145.1).
   change: the dated lessons of the Purpose move into the bracket of their pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 11
   text: decision[case 875][update][rule-shell-write-check]{ref:rule-shell-write-check}
   case: '875'
@@ -237,6 +267,9 @@ entries:
       case 710.1).
   change: the lessons of the Purpose move into the bracket of their pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 12
   text: decision[case 875][update][rule-python-utf8]{ref:rule-python-utf8}
   case: '875'
@@ -256,6 +289,9 @@ entries:
       534).
   change: the measured code page and the reading of the Purpose move into the bracket of their pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 13
   text: decision[case 875][update][rule-powershell-guard]{ref:rule-powershell-guard}
   case: '875'
@@ -273,6 +309,9 @@ entries:
       `lesson-work-mode-edited-a-source-file-through-the-shell`, case 796.2).
   change: the sessions of the Purpose move into the bracket of their pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 14
   text: decision[case 875][update][rule-page-read]{ref:rule-page-read}
   case: '875'
@@ -289,6 +328,9 @@ entries:
       History of `rule-hook-registry`, in session 0051, [[lesson-hooks-matching-hooks-of-one-event-run-in-parallel]]).
   change: the event of the Purpose moves into the bracket of its pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 15
   text: decision[case 875][update][rule-skill-hi]{ref:rule-skill-hi}
   case: '875'
@@ -318,6 +360,9 @@ entries:
   change: How it works loses the plan of the renderer, and its sessions move into the brackets of their
     pointers
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 16
   text: decision[case 875][update][rule-retro]{ref:rule-retro}
   case: '875'
@@ -332,6 +377,9 @@ entries:
     new: Name a bug that needs a decision
   change: the Render no longer says that gh is not available
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 17
   text: decision[case 875][update][estimate-ratification-case-id-carries-the-sprint]{ref:rule-ratification}
   case: '875'
@@ -347,6 +395,9 @@ entries:
       read against the Criterion'
   change: the method reads the Renders where they live, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 18
   text: decision[case 875][update][estimate-skill-sprint-close-leads-the-closing-session]{ref:rule-skill-sprint-close}
   case: '875'
@@ -361,6 +412,9 @@ entries:
       and the closed sprint page the Criterion names, under vault/archive/, read against the Criterion'
   change: the method reads the Render where it lives and the closed sprint page, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 19
   text: decision[case 875][update][estimate-sprint-close-takes-the-readings-in-groups]{ref:rule-sprint-close}
   case: '875'
@@ -375,6 +429,9 @@ entries:
       and the ledger.md of that session read against the Criterion'
   change: the method names no dated session folder
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 20
   text: decision[case 875][update][estimate-guppi-config-fills-the-languages]{ref:rule-guppi-config}
   case: '875'
@@ -391,6 +448,9 @@ entries:
       and chat_lang'
   change: the method names the languages by the codes of guppi.toml, not as English and Russian
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 21
   text: decision[case 875][update][estimate-claude-md-rendered]{ref:rule-claude-md}
   case: '875'
@@ -405,6 +465,9 @@ entries:
       as the file holds it and as a session that starts after the render loads it, read against the Criterion'
   change: the method waits for a render, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 22
   text: decision[case 875][update][estimate-git-context-current]{ref:rule-git-context}
   case: '875'
@@ -419,6 +482,9 @@ entries:
       read against the Criterion, written into the estimate line'
   change: the method waits for a /hi, not for the first push to GitHub
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 23
   text: decision[case 875][update][estimate-guppi-package-runs-from-its-own-folder]{ref:rule-guppi-package}
   case: '875'
@@ -437,6 +503,9 @@ entries:
       the Criterion'
   change: the purpose names no Makefile, and the method waits for a render, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 24
   text: decision[case 875][update][estimate-permissions]{ref:rule-permissions}
   case: '875'
@@ -458,6 +527,9 @@ entries:
       pending until the person gives that word
   change: the method names the folder of the project's saved transcripts by its role
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 25
   text: decision[case 875][update][estimate-hi-no-read-calls]{ref:rule-skill-hi}
   case: '875'
@@ -472,6 +544,9 @@ entries:
       transcript, and the allowed-tools of .claude/skills/hi/SKILL.md, written into the estimate line'
   change: the method waits for a /hi, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 26
   text: decision[case 875][update][estimate-orchestration-acknowledges-the-opening-with-the-frontier]{ref:rule-orchestration}
   case: '875'
@@ -486,6 +561,9 @@ entries:
       Criterion'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 27
   text: decision[case 875][update][estimate-orchestration-marks-each-round-of-a-batch]{ref:rule-orchestration}
   case: '875'
@@ -500,6 +578,9 @@ entries:
       Criterion, recorded in the estimate line'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 28
   text: decision[case 875][update][estimate-orchestration-sets-off-each-reply-of-case-guppi]{ref:rule-orchestration}
   case: '875'
@@ -514,6 +595,9 @@ entries:
       Criterion, recorded in the estimate line'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 29
   text: decision[case 875][update][estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter]{ref:rule-powershell-guard}
   case: '875'
@@ -528,6 +612,9 @@ entries:
       the PowerShell entry of .claude/settings.json read against the Criterion'
   change: the method waits for a render, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 30
   text: decision[case 875][update][estimate-prespec-catches-a-command-line-off-form]{ref:rule-prespec}
   case: '875'
@@ -542,6 +629,9 @@ entries:
       on its own plan read against the Criterion'
   change: the method waits for a /pre-spec, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 31
   text: decision[case 875][update][estimate-prespec-catches-a-superseded-case]{ref:rule-prespec}
   case: '875'
@@ -556,6 +646,9 @@ entries:
       holds a supersedes of a Case of its session: its findings read against the Criterion'
   change: the method waits for such a /pre-spec, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 32
   text: decision[case 875][update][estimate-prespec-gathers-the-answers-after-findings]{ref:rule-prespec}
   case: '875'
@@ -570,6 +663,9 @@ entries:
       Criterion, recorded in the estimate line'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 33
   text: decision[case 875][update][estimate-render-harness-ticks-the-spec]{ref:rule-render-harness}
   case: '875'
@@ -584,6 +680,9 @@ entries:
       session read against the Criterion'
   change: the method waits for a librarian's run, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 34
   text: decision[case 875][update][estimate-glossary-ticks-the-spec]{ref:rule-glossary}
   case: '875'
@@ -598,6 +697,9 @@ entries:
       session read against the Criterion'
   change: the method waits for a librarian's run, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 35
   text: decision[case 875][update][estimate-rules-schema-checked]{ref:rule-rules-schema}
   case: '875'
@@ -614,6 +716,9 @@ entries:
       finding on wiki/rules/ but the placeholders'
   change: the method waits for a librarian's run, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 36
   text: decision[case 875][update][estimate-skill-sprint-open-asks-the-opening-questions]{ref:rule-skill-sprint-open}
   case: '875'
@@ -628,6 +733,9 @@ entries:
       against the Criterion'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 37
   text: decision[case 875][update][estimate-skill-sprint-open-refuses-a-taken-sprint-id]{ref:rule-skill-sprint-open}
   case: '875'
@@ -642,6 +750,9 @@ entries:
       Render of rule-skill-sprint-open in .claude/skills/sprint-open/SKILL.md read against the Criterion'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 38
   text: decision[case 875][update][estimate-skill-sprint-open-merges-the-closed-sprint-branch]{ref:rule-skill-sprint-open}
   case: '875'
@@ -656,6 +767,9 @@ entries:
       against the Criterion'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 39
   text: decision[case 875][update][estimate-sprint-close-next-session-opens-the-sprint]{ref:rule-sprint-close}
   case: '875'
@@ -671,6 +785,9 @@ entries:
       .claude/skills/hi/SKILL.md and .claude/skills/sprint-open/SKILL.md read against the Criterion'
   change: the method reads the Renders where they live, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 40
   text: decision[case 875][update][estimate-case-build-answers-what-done-means]{ref:rule-case-build}
   case: '875'
@@ -685,6 +802,9 @@ entries:
       recorded in the estimate line'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 41
   text: decision[case 875][update][estimate-case-build-finds-an-existing-judgment]{ref:rule-case-build}
   case: '875'
@@ -701,6 +821,9 @@ entries:
       one the other side calls, the count in the estimate line'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 42
   text: decision[case 875][update][estimate-case-build-judges-options-against-the-broken-rule]{ref:rule-case-build}
   case: '875'
@@ -715,6 +838,9 @@ entries:
       recorded in the estimate line'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 43
   text: decision[case 875][update][estimate-case-build-offers-a-page-for-code-no-page-covers]{ref:rule-case-build}
   case: '875'
@@ -729,6 +855,9 @@ entries:
       recorded in the estimate line'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 44
   text: decision[case 875][update][estimate-case-build-reads-the-last-output-of-a-check]{ref:rule-case-build}
   case: '875'
@@ -743,6 +872,9 @@ entries:
       recorded in the estimate line'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 45
   text: decision[case 875][update][estimate-case-build-checks-a-fact-of-an-outside-tool]{ref:rule-case-build}
   case: '875'
@@ -757,6 +889,9 @@ entries:
       recorded in the estimate line'
   change: the method reads the Render where it lives, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 46
   text: decision[case 875][update][estimate-case-example-passes-the-check]{ref:rule-case-example}
   case: '875'
@@ -772,6 +907,9 @@ entries:
       vault/wiki/case-schema.md read against the Criterion'
   change: the method reads the Renders where they live, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 47
   text: decision[case 875][update][estimate-generate-writes-rules-from-applies-to]{ref:rule-page-generation}
   case: '875'
@@ -786,6 +924,9 @@ entries:
       entity-sprint carries rules [rule-sprint]'
   change: the method waits for a run of guppi generate, with no past moment
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 48
   text: decision[case 876][defer][rule-ledger-write]{ref:rule-ledger-write}{supersedes:case 836}{supersedes:case
     863}
@@ -990,6 +1131,9 @@ entries:
       under a POSIX shell on Windows too, and a later Case removes it, case 820).'
   change: the Makefile of the repository of GUPPI moves into the bracket of its pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 54
   text: decision[case 875][update][rule-guppi-package]{ref:rule-guppi-package}
   case: '875'
@@ -1017,6 +1161,9 @@ entries:
       Case removes them, as set in case 819).'
   change: the root files and the Makefile of the repository of GUPPI move into the bracket of their pointer
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 55
   text: decision[case 875][update][estimate-case-build-records-the-rounds-in-recommend]{ref:rule-case-build}
   case: '875'
@@ -1035,6 +1182,9 @@ entries:
       against the rounds of its Case in the chat'
   change: the purpose names the language of the repository by its role, and the method waits for a render
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 56
   text: decision[case 875][update][estimate-python-utf8-output-intact]{ref:rule-python-utf8}
   case: '875'
@@ -1053,6 +1203,9 @@ entries:
       the Stop line of guppi context shows its dash'
   change: the purpose and the method name the code page of the locale, not cp1252
   applied: 02:21:47
+  superseded_by:
+  - '878.22'
+  - '880.21'
 - line: 57
   text: 'estimate[estimate-lint-checks-the-method][passed] 2026-10-17, Retro of session 0027, uv run --project
     .guppi pytest .guppi/tests/test_lint.py: 111 passed; guppi test alone on rule-root with no parent
@@ -1575,6 +1728,9 @@ decisions:
   supersedes:
   - decision-case-874
   applied: 02:21:47
+  superseded_by:
+  - decision-case-878.22
+  - decision-case-880.21
 - case: '876'
   decision: decision-case-876
   origin: raw/2026-10-17/0027/ledger.md#case-876

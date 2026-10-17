@@ -4,8 +4,8 @@ kind: QA
 status: passed
 target: "[[rule-git-context]]"
 purpose: At /hi the context holds the render sync, the branch and the status, and the skill runs no git pull
-method: "by hand, after a /hi: the first turn's context, the output of git remote -v and .claude/skills/hi/SKILL.md read against the Criterion, written into the estimate line"
-checked: 2026-10-13
+method: "by hand, after a /hi: the first turn's context and .claude/skills/hi/SKILL.md read against the Criterion, written into the estimate line"
+checked: 2026-10-17
 origin: raw/2026-09-09/ledger.md#case-11
 sprint: migration
 created: 2026-09-09
@@ -19,12 +19,11 @@ The person invokes `/hi`, and `.claude/skills/hi/SKILL.md` runs the commands of 
 
 Then:
 The context holds `Render:` with the output of `uv run --project .guppi guppi render --sync` (a diff for each governed file that differed and was written, or nothing), then `Branch:` with the current branch and `Status:` with `git status --short`.
-**＋** `git remote -v` prints `origin` with the URL of the repository `GUPPI` on GitHub.
 **－** The skill runs no `git pull`, and the context holds no `Pull:` line.
 
 ## Result
 
-2026-10-13, Work Mode of session 1426, the first /hi after the first push to GitHub (session 2349): the first turn's context holds Render: (no output), Branch: plugin, Status: (no output); `git remote -v` prints origin https://github.com/kirMykholap/GUPPI.git (fetch) and (push); .claude/skills/hi/SKILL.md holds Render:, Branch:, Status: in the rule-git-context markers and no `git pull` and no `Pull:`
+2026-10-17, Retro of session 1805: the first turn of the /hi of this session held Render: with the empty output of guppi render --sync, Branch: plugin and Status: with the empty git status; .claude/skills/hi/SKILL.md runs guppi render --sync and guppi gitstate, which prints the branch and Status: with git status --short; no git pull and no Pull: line
 
 ## History
 
@@ -39,3 +38,5 @@ The context holds `Render:` with the output of `uv run --project .guppi guppi re
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L23
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-17 updated: the method waits for a /hi, not for the first push to GitHub · [[decision-case-875]]
+- 2026-10-17 updated: the Criterion replaced whole — the line on the remote of the repository of GUPPI moved to estimate-guppi-repository-remote-on-github; the method reads no git remote · [[decision-case-880.6]]
+- 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L63

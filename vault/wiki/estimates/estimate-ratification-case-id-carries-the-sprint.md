@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-ratification]]"
-purpose: Whether every reader of a Case id takes an id that carries its sprint and a plain id from before sprint ids alike, and guppi caseid --next --session <stamp> prints and holds the next id of the open sprint, which the main agent runs only for the id of a new top-level Case and never to check an id, and prints no id without --session or without the plan file of the session
+purpose: Whether every reader of a Case id takes an id that carries its sprint and a plain id alike, and guppi caseid --next --session <stamp> prints and holds the next id of the open sprint, which the main agent runs only for the id of a new top-level Case and never to check an id, and prints no id without --session or without the plan file of the session
 method: "uv run --project .guppi pytest .guppi/tests/test_caseid.py; by hand: the Render of rule-orchestration in vault/wiki/orchestration.md and the Render of rule-ratification in vault/wiki/ratification.md read against the Criterion"
-checked: 2026-10-15
+checked: 2026-10-17
 origin: raw/2026-10-12/2349/ledger.md#case-788.2
 sprint: plugin
 created: 2026-10-12
@@ -20,9 +20,9 @@ When:
 **＋** Or `uv run --project .guppi guppi caseid --next` runs without `--session`, or with a stamp whose session has no plan file.
 
 Then:
-A Case id of a sprint opened after sprint ids came in is the sprint id, a hyphen and the number of the Case in that sprint, from 1, with a dot for each sub-case level, such as `kir-plugin-12.1`, and its Case file is `case-<id>.md` of its top-level Case (sprint ids came in with case 788.2).
+A Case id of a sprint that `PLAIN_SPRINTS` of `.guppi/guppi/caseid.py` does not list is the sprint id, a hyphen and the number of the Case in that sprint, from 1, with a dot for each sub-case level, such as `kir-plugin-12.1`, and its Case file is `case-<id>.md` of its top-level Case (sprint ids came in with case 788.2).
 **＋** The readers read a Case id through `.guppi/guppi/caseid.py`, which takes both forms and reads the sprint id as the text before the last hyphen ahead of the number.
-**＋** The sprints `migration` and `plugin` keep plain ids to their close, by a fixed list in `.guppi/guppi/caseid.py` (both opened before case 788.2).
+**＋** The sprints that `PLAIN_SPRINTS`, a fixed list in `.guppi/guppi/caseid.py`, names keep plain ids to their close (the sprints of that list opened before case 788.2).
 **＋** The main agent creates the plan file of its session with its title line before its first run of the command.
 **＋** `uv run --project .guppi guppi caseid --next --session <stamp>` takes the open sprint from the `create` decision line of a sprint page in `raw/<date>/<hi HHMM>/ledger.md` of the session of that stamp, else from the first heading of `vault/wiki/sprint.md`, and prints the next id of that sprint.
 **＋** It holds the id it prints in `<plan>.checked.json` of the plan file of that session, under that id, with no `agent_id` and no text, so that the next run prints the id after it.
@@ -30,11 +30,11 @@ A Case id of a sprint opened after sprint ids came in is the sprint id, a hyphen
 **－** The main agent runs the command only to get the id of a new top-level Case, once for each Case, and never to check an id or what the store holds, since each run holds a new id.
 **－** Without `--session` the command prints no id: it prints its usage error and exits 2.
 **－** With a stamp whose session has no plan file, the command prints no id, holds nothing, prints one line on stderr and exits 1.
-**－** An id with no sprint part, such as `785.1`, stays a Case from before sprint ids, and no page, file or citation is renamed.
+**－** An id with no sprint part, such as `785.1`, stays as it is, and no page, file or citation is renamed.
 
 ## Result
 
-2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_caseid.py` 23 passed; vault/wiki/ratification.md gives the form `case kir-plugin-12.1`, the plain ids of migration and plugin to their close, `caseid --next --session <stamp>` that prints and holds the id and prints none without `--session` or the plan file, and the opening Case `<id>-1`; vault/wiki/orchestration.md has the main agent create the plan file with its title line before the first run, run the command once per new top-level Case and never to check, the opening Case's id set by /sprint-open; this session ran it for Cases 823 to 839 after the plan file stood
+2026-10-17, Retro of session 1805: uv run --project .guppi pytest .guppi/tests/test_caseid.py 23 passed; vault/wiki/ratification.md names the sprints of PLAIN_SPRINTS as keeping plain ids and caseid --next --session as printing and holding the next id; vault/wiki/orchestration.md has the plan file created before the first run, the command run once per new top-level Case and never to check an id, and the opening Case of a sprint with the id /sprint-open sets
 
 ## History
 
@@ -51,3 +51,5 @@ A Case id of a sprint opened after sprint ids came in is the sprint id, a hyphen
 - 2026-10-15 updated: the Criterion replaced whole — its pointers stand in brackets; the method reads the live Renders · [[decision-case-823.5]]
 - 2026-10-15 status: pending → passed · raw/2026-10-15/1959/ledger.md#L69
 - 2026-10-17 updated: the method reads the Renders where they live, with no past moment · [[decision-case-875]]
+- 2026-10-17 updated: the Criterion replaced whole — the sprints with plain ids named by the fixed list PLAIN_SPRINTS, not as migration and plugin, the pointers kept in brackets · [[decision-case-880.15]]
+- 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L72

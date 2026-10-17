@@ -11253,3 +11253,188 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-17 decisions/decision-case-863 archived · cleanup
 - 2026-10-17 decisions/decision-case-873 archived · cleanup
 - 2026-10-17 decisions/decision-case-874 archived · cleanup
+- 2026-10-17 estimates/estimate-clean-branch-ships-neutral-texts status: pending → failed · raw/2026-10-17/1805/ledger.md#L1 · generate
+- 2026-10-17 decisions/decision-case-878 created · raw/2026-10-17/1805/ledger.md#case-878 · generate
+- 2026-10-17 decisions/decision-case-878.1 created · raw/2026-10-17/1805/ledger.md#case-878.1 · generate
+- 2026-10-17 decisions/decision-case-878.2 created · raw/2026-10-17/1805/ledger.md#case-878.2 · generate
+- 2026-10-17 decisions/decision-case-878.3 created · raw/2026-10-17/1805/ledger.md#case-878.3 · generate
+- 2026-10-17 decisions/decision-case-878.4 created · raw/2026-10-17/1805/ledger.md#case-878.4 · generate
+- 2026-10-17 decisions/decision-case-878.5 created · raw/2026-10-17/1805/ledger.md#case-878.5 · generate
+- 2026-10-17 decisions/decision-case-878.6 created · raw/2026-10-17/1805/ledger.md#case-878.6 · generate
+- 2026-10-17 decisions/decision-case-878.7 created · raw/2026-10-17/1805/ledger.md#case-878.7 · generate
+- 2026-10-17 decisions/decision-case-878.8 created · raw/2026-10-17/1805/ledger.md#case-878.8 · generate
+- 2026-10-17 decisions/decision-case-878.9 created · raw/2026-10-17/1805/ledger.md#case-878.9 · generate
+- 2026-10-17 decisions/decision-case-878.10 created · raw/2026-10-17/1805/ledger.md#case-878.10 · generate
+- 2026-10-17 decisions/decision-case-878.11 created · raw/2026-10-17/1805/ledger.md#case-878.11 · generate
+- 2026-10-17 decisions/decision-case-878.12 created · raw/2026-10-17/1805/ledger.md#case-878.12 · generate
+- 2026-10-17 decisions/decision-case-878.13 created · raw/2026-10-17/1805/ledger.md#case-878.13 · generate
+- 2026-10-17 decisions/decision-case-878.14 created · raw/2026-10-17/1805/ledger.md#case-878.14 · generate
+- 2026-10-17 decisions/decision-case-878.15 created · raw/2026-10-17/1805/ledger.md#case-878.15 · generate
+- 2026-10-17 decisions/decision-case-878.16 created · raw/2026-10-17/1805/ledger.md#case-878.16 · generate
+- 2026-10-17 decisions/decision-case-878.17 created · raw/2026-10-17/1805/ledger.md#case-878.17 · generate
+- 2026-10-17 decisions/decision-case-878.18 created · raw/2026-10-17/1805/ledger.md#case-878.18 · generate
+- 2026-10-17 decisions/decision-case-878.19 created · raw/2026-10-17/1805/ledger.md#case-878.19 · generate
+- 2026-10-17 decisions/decision-case-878.20 created · raw/2026-10-17/1805/ledger.md#case-878.20 · generate
+- 2026-10-17 decisions/decision-case-878.21 created · raw/2026-10-17/1805/ledger.md#case-878.21 · generate
+- 2026-10-17 decisions/decision-case-878.22 created · raw/2026-10-17/1805/ledger.md#case-878.22 · generate
+- 2026-10-17 decisions/decision-case-875 superseded by decision-case-878.22 · [[decision-case-878.22]] · generate
+- 2026-10-17 rules/rule-clean-branch defer by decision-case-875 superseded · [[decision-case-878.22]] · generate
+- 2026-10-17 decisions/decision-case-879 created · raw/2026-10-17/1805/ledger.md#case-879 · generate
+- 2026-10-17 decisions/decision-case-879.1 created · raw/2026-10-17/1805/ledger.md#case-879.1 · generate
+- 2026-10-17 estimates/estimate-spec-write-copies-a-built-defer-only-case created · [[decision-case-879.1]] · generate
+- 2026-10-17 estimates/estimate-spec-write-copies-a-built-defer-only-case status: pending → passed · raw/2026-10-17/1805/ledger.md#L54 · generate
+- 2026-10-17 rules/rule-spec-write estimate estimate-spec-write-copies-a-built-defer-only-case added · [[decision-case-879.1]] · generate
+- 2026-10-17 rules/rule-spec-write updated: a Case built by case-guppi with only defer lines is copied from its stored file; only a Case the reply shows in the short form goes under ## Deferred · [[decision-case-879.1]] · generate
+- 2026-10-17 rules/rule-spec-capture updated: the Spec hook writes under ## Deferred only a Case the reply shows in the short form · [[decision-case-879.1]] · generate
+- 2026-10-17 decisions/decision-case-879.2 created · raw/2026-10-17/1805/ledger.md#case-879.2 · generate
+- 2026-10-17 estimates/estimate-spec-write-writes-a-defer updated: the Criterion replaced whole — the short form judged by is_short_form; a reply with no short form is no short put-off · [[decision-case-879.2]] · generate
+- 2026-10-17 decisions/decision-case-879.3 created · raw/2026-10-17/1805/ledger.md#case-879.3 · generate
+- 2026-10-17 estimates/estimate-spec-write-refuses-a-changed-case-file updated: the Criterion replaced whole — a built Case with only defer lines is compared with its file; only a Case shown in the short form is not · [[decision-case-879.3]] · generate
+- 2026-10-17 decisions/decision-case-879.4 created · raw/2026-10-17/1805/ledger.md#case-879.4 · generate
+- 2026-10-17 estimates/estimate-spec-write-checks-the-written-case updated: the Criterion replaced whole — a built Case with only defer lines is checked after the write; only a Case shown in the short form is not · [[decision-case-879.4]] · generate
+- 2026-10-17 decisions/decision-case-880 created · raw/2026-10-17/1805/ledger.md#case-880 · generate
+- 2026-10-17 decisions/decision-case-880.1 created · raw/2026-10-17/1805/ledger.md#case-880.1 · generate
+- 2026-10-17 decisions/decision-case-878.1 superseded by decision-case-880.1 · [[decision-case-880.1]] · generate
+- 2026-10-17 estimates/estimate-claude-md-rendered updated: the Criterion replaced whole — the heading and the description of the project said by their role, not as those of GUPPI · [[decision-case-880.1]] · generate
+- 2026-10-17 decisions/decision-case-880.2 created · raw/2026-10-17/1805/ledger.md#case-880.2 · generate
+- 2026-10-17 decisions/decision-case-878.2 superseded by decision-case-880.2 · [[decision-case-880.2]] · generate
+- 2026-10-17 estimates/estimate-case-build-reads-the-test-code-over-a-changed-text updated: the Criterion replaced whole — the line on an Insight of the repository of GUPPI dropped · [[decision-case-880.2]] · generate
+- 2026-10-17 decisions/decision-case-880.3 created · raw/2026-10-17/1805/ledger.md#case-880.3 · generate
+- 2026-10-17 decisions/decision-case-878.3 superseded by decision-case-880.3 · [[decision-case-880.3]] · generate
+- 2026-10-17 estimates/estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check updated: the Criterion replaced whole — the line on an Insight of the repository of GUPPI dropped · [[decision-case-880.3]] · generate
+- 2026-10-17 decisions/decision-case-880.4 created · raw/2026-10-17/1805/ledger.md#case-880.4 · generate
+- 2026-10-17 decisions/decision-case-878.4 superseded by decision-case-880.4 · [[decision-case-880.4]] · generate
+- 2026-10-17 estimates/estimate-case-check-requires-each-question-of-the-rounds updated: the Criterion replaced whole — the function that judges the form of a round named by its role, its case number in a bracket · [[decision-case-880.4]] · generate
+- 2026-10-17 decisions/decision-case-880.5 created · raw/2026-10-17/1805/ledger.md#case-880.5 · generate
+- 2026-10-17 decisions/decision-case-878.5 superseded by decision-case-880.5 · [[decision-case-880.5]] · generate
+- 2026-10-17 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent updated: the Criterion replaced whole — an entry with no agent_id named by what holds it, the entries from before the change in a bracket at the end of the sentence · [[decision-case-880.5]] · generate
+- 2026-10-17 decisions/decision-case-880.6 created · raw/2026-10-17/1805/ledger.md#case-880.6 · generate
+- 2026-10-17 decisions/decision-case-878.6 superseded by decision-case-880.6 · [[decision-case-880.6]] · generate
+- 2026-10-17 estimates/estimate-git-context-current updated: the Criterion replaced whole — the line on the remote of the repository of GUPPI moved to estimate-guppi-repository-remote-on-github; the method reads no git remote · [[decision-case-880.6]] · generate
+- 2026-10-17 decisions/decision-case-880.7 created · raw/2026-10-17/1805/ledger.md#case-880.7 · generate
+- 2026-10-17 decisions/decision-case-878.7 superseded by decision-case-880.7 · [[decision-case-880.7]] · generate
+- 2026-10-17 estimates/estimate-guppi-repository-remote-on-github created · [[decision-case-880.7]] · generate
+- 2026-10-17 estimates/estimate-guppi-repository-remote-on-github status: pending → passed · raw/2026-10-17/1805/ledger.md#L64 · generate
+- 2026-10-17 entities/entity-guppi-repository estimate estimate-guppi-repository-remote-on-github added · [[decision-case-880.7]] · generate
+- 2026-10-17 decisions/decision-case-880.8 created · raw/2026-10-17/1805/ledger.md#case-880.8 · generate
+- 2026-10-17 decisions/decision-case-878.8 superseded by decision-case-880.8 · [[decision-case-880.8]] · generate
+- 2026-10-17 estimates/estimate-guppi-package-runs-from-its-own-folder updated: the Criterion replaced whole — the Makefile, prod.yml, the root pyproject.toml, the clean version and the records of the repository of GUPPI moved to estimate-guppi-repository-keeps-the-development-project · [[decision-case-880.8]] · generate
+- 2026-10-17 decisions/decision-case-880.9 created · raw/2026-10-17/1805/ledger.md#case-880.9 · generate
+- 2026-10-17 decisions/decision-case-878.9 superseded by decision-case-880.9 · [[decision-case-880.9]] · generate
+- 2026-10-17 estimates/estimate-guppi-repository-keeps-the-development-project created · [[decision-case-880.9]] · generate
+- 2026-10-17 estimates/estimate-guppi-repository-keeps-the-development-project status: pending → passed · raw/2026-10-17/1805/ledger.md#L66 · generate
+- 2026-10-17 entities/entity-guppi-repository estimate estimate-guppi-repository-keeps-the-development-project added · [[decision-case-880.9]] · generate
+- 2026-10-17 decisions/decision-case-880.10 created · raw/2026-10-17/1805/ledger.md#case-880.10 · generate
+- 2026-10-17 decisions/decision-case-878.11 superseded by decision-case-880.10 · [[decision-case-880.10]] · generate
+- 2026-10-17 estimates/estimate-orchestration-defer-example-passes-the-hook updated: the Criterion replaced whole — the line on an Insight of the repository of GUPPI dropped; the hook runs over a short put-off, the term of case 879.1 · [[decision-case-880.10]] · generate
+- 2026-10-17 decisions/decision-case-880.11 created · raw/2026-10-17/1805/ledger.md#case-880.11 · generate
+- 2026-10-17 decisions/decision-case-878.12 superseded by decision-case-880.11 · [[decision-case-880.11]] · generate
+- 2026-10-17 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket updated: the Criterion replaced whole — the clause on guppi ship, which the clean version does not hold, dropped · [[decision-case-880.11]] · generate
+- 2026-10-17 decisions/decision-case-880.12 created · raw/2026-10-17/1805/ledger.md#case-880.12 · generate
+- 2026-10-17 decisions/decision-case-878.13 superseded by decision-case-880.12 · [[decision-case-880.12]] · generate
+- 2026-10-17 estimates/estimate-materialize-marks-exists updated: the Criterion replaced whole — the writer that fills a placeholder named by its command, its case number in a bracket · [[decision-case-880.12]] · generate
+- 2026-10-17 decisions/decision-case-880.13 created · raw/2026-10-17/1805/ledger.md#case-880.13 · generate
+- 2026-10-17 decisions/decision-case-878.14 superseded by decision-case-880.13 · [[decision-case-880.13]] · generate
+- 2026-10-17 estimates/estimate-prespec-catches-a-command-line-off-form updated: the Criterion replaced whole — the bare case number written in a bracket with the word case · [[decision-case-880.13]] · generate
+- 2026-10-17 decisions/decision-case-880.14 created · raw/2026-10-17/1805/ledger.md#case-880.14 · generate
+- 2026-10-17 decisions/decision-case-878.15 superseded by decision-case-880.14 · [[decision-case-880.14]] · generate
+- 2026-10-17 estimates/estimate-one-judgment-one-implementation-followed updated: the Criterion replaced whole — the code that judges a text is any code, not only that of the package of GUPPI · [[decision-case-880.14]] · generate
+- 2026-10-17 decisions/decision-case-880.15 created · raw/2026-10-17/1805/ledger.md#case-880.15 · generate
+- 2026-10-17 decisions/decision-case-878.16 superseded by decision-case-880.15 · [[decision-case-880.15]] · generate
+- 2026-10-17 estimates/estimate-ratification-case-id-carries-the-sprint updated: the Criterion replaced whole — the sprints with plain ids named by the fixed list PLAIN_SPRINTS, not as migration and plugin, the pointers kept in brackets · [[decision-case-880.15]] · generate
+- 2026-10-17 decisions/decision-case-880.16 created · raw/2026-10-17/1805/ledger.md#case-880.16 · generate
+- 2026-10-17 decisions/decision-case-878.17 superseded by decision-case-880.16 · [[decision-case-880.16]] · generate
+- 2026-10-17 estimates/estimate-skill-sprint-close-leads-the-closing-session updated: the Criterion replaced whole — the step before the close said without the skill merge-main, and no line on the close line of a closed sprint of the repository of GUPPI; the method reads no archived sprint page · [[decision-case-880.16]] · generate
+- 2026-10-17 decisions/decision-case-880.17 created · raw/2026-10-17/1805/ledger.md#case-880.17 · generate
+- 2026-10-17 decisions/decision-case-878.18 superseded by decision-case-880.17 · [[decision-case-880.17]] · generate
+- 2026-10-17 estimates/estimate-sprint-checks-the-file updated: the Criterion replaced whole — the check runs within guppi check, not by a target of the Makefile · [[decision-case-880.17]] · generate
+- 2026-10-17 decisions/decision-case-880.18 created · raw/2026-10-17/1805/ledger.md#case-880.18 · generate
+- 2026-10-17 decisions/decision-case-878.19 superseded by decision-case-880.18 · [[decision-case-880.18]] · generate
+- 2026-10-17 estimates/estimate-tests-clock-pinned updated: the Criterion replaced whole — every run of the tests is under the fixture, not the targets of the Makefile · [[decision-case-880.18]] · generate
+- 2026-10-17 decisions/decision-case-880.19 created · raw/2026-10-17/1805/ledger.md#case-880.19 · generate
+- 2026-10-17 decisions/decision-case-878.20 superseded by decision-case-880.19 · [[decision-case-880.19]] · generate
+- 2026-10-17 estimates/estimate-where-to-stop-stops-only-on-its-conditions updated: the Criterion replaced whole — the stops in the merge tasks of the skills pr-review and merge-main, which the clean version does not hold, moved to estimate-guppi-repository-stops-in-the-merge-tasks; a stop that a skill of the project sets for its own tasks is left room · [[decision-case-880.19]] · generate
+- 2026-10-17 decisions/decision-case-880.20 created · raw/2026-10-17/1805/ledger.md#case-880.20 · generate
+- 2026-10-17 decisions/decision-case-878.21 superseded by decision-case-880.20 · [[decision-case-880.20]] · generate
+- 2026-10-17 estimates/estimate-guppi-repository-stops-in-the-merge-tasks created · [[decision-case-880.20]] · generate
+- 2026-10-17 estimates/estimate-guppi-repository-stops-in-the-merge-tasks status: pending → passed · raw/2026-10-17/1805/ledger.md#L77 · generate
+- 2026-10-17 entities/entity-guppi-repository estimate estimate-guppi-repository-stops-in-the-merge-tasks added · [[decision-case-880.20]] · generate
+- 2026-10-17 decisions/decision-case-880.21 created · raw/2026-10-17/1805/ledger.md#case-880.21 · generate
+- 2026-10-17 decisions/decision-case-875 superseded by decision-case-880.21 · [[decision-case-880.21]] · generate
+- 2026-10-17 decisions/decision-case-878 superseded by decision-case-880.21 · [[decision-case-880.21]] · generate
+- 2026-10-17 decisions/decision-case-878.10 superseded by decision-case-880.21 · [[decision-case-880.21]] · generate
+- 2026-10-17 decisions/decision-case-878.22 superseded by decision-case-880.21 · [[decision-case-880.21]] · generate
+- 2026-10-17 rules/rule-clean-branch updated: the put-off of case 875 taken up and put off again with the rest of the Criterion sentences named · [[decision-case-880.21]] · generate
+- 2026-10-17 rules/rule-clean-branch deferred · [[decision-case-880.21]] · generate
+- 2026-10-17 estimates/estimate-case-build-reads-the-code-it-states status: pending → passed · raw/2026-10-17/1805/ledger.md#L53 · generate
+- 2026-10-17 estimates/estimate-spec-write-writes-a-defer status: pending → failed · raw/2026-10-17/1805/ledger.md#L55 · generate
+- 2026-10-17 estimates/estimate-spec-write-refuses-a-changed-case-file status: pending → passed · raw/2026-10-17/1805/ledger.md#L56 · generate
+- 2026-10-17 estimates/estimate-spec-write-checks-the-written-case status: pending → passed · raw/2026-10-17/1805/ledger.md#L57 · generate
+- 2026-10-17 estimates/estimate-claude-md-rendered status: pending → passed · raw/2026-10-17/1805/ledger.md#L58 · generate
+- 2026-10-17 estimates/estimate-case-build-reads-the-test-code-over-a-changed-text status: pending → passed · raw/2026-10-17/1805/ledger.md#L59 · generate
+- 2026-10-17 estimates/estimate-case-build-reads-the-texts-a-test-runs-through-a-changed-check status: pending → passed · raw/2026-10-17/1805/ledger.md#L60 · generate
+- 2026-10-17 estimates/estimate-case-check-requires-each-question-of-the-rounds status: pending → passed · raw/2026-10-17/1805/ledger.md#L61 · generate
+- 2026-10-17 estimates/estimate-case-check-sends-back-a-case-number-held-by-another-agent status: pending → passed · raw/2026-10-17/1805/ledger.md#L62 · generate
+- 2026-10-17 estimates/estimate-git-context-current status: pending → passed · raw/2026-10-17/1805/ledger.md#L63 · generate
+- 2026-10-17 estimates/estimate-guppi-package-runs-from-its-own-folder status: pending → passed · raw/2026-10-17/1805/ledger.md#L65 · generate
+- 2026-10-17 estimates/estimate-orchestration-defer-example-passes-the-hook status: pending → passed · raw/2026-10-17/1805/ledger.md#L67 · generate
+- 2026-10-17 estimates/estimate-prespec-hook-reports-a-pointer-outside-a-bracket status: pending → passed · raw/2026-10-17/1805/ledger.md#L68 · generate
+- 2026-10-17 estimates/estimate-materialize-marks-exists status: pending → passed · raw/2026-10-17/1805/ledger.md#L69 · generate
+- 2026-10-17 estimates/estimate-prespec-catches-a-command-line-off-form status: pending → passed · raw/2026-10-17/1805/ledger.md#L70 · generate
+- 2026-10-17 estimates/estimate-one-judgment-one-implementation-followed status: pending → passed · raw/2026-10-17/1805/ledger.md#L71 · generate
+- 2026-10-17 estimates/estimate-ratification-case-id-carries-the-sprint status: pending → passed · raw/2026-10-17/1805/ledger.md#L72 · generate
+- 2026-10-17 estimates/estimate-skill-sprint-close-leads-the-closing-session status: pending → passed · raw/2026-10-17/1805/ledger.md#L73 · generate
+- 2026-10-17 estimates/estimate-sprint-checks-the-file status: pending → passed · raw/2026-10-17/1805/ledger.md#L74 · generate
+- 2026-10-17 estimates/estimate-tests-clock-pinned status: pending → passed · raw/2026-10-17/1805/ledger.md#L75 · generate
+- 2026-10-17 estimates/estimate-where-to-stop-stops-only-on-its-conditions status: pending → passed · raw/2026-10-17/1805/ledger.md#L76 · generate
+- 2026-10-17 lessons/lesson-brief-lists-transcript-readings-under-work created · raw/2026-10-17/1805/ledger.md#L78 · generate
+- 2026-10-17 entities/entity-guppi-repository status: draft → built · cascade · generate
+- 2026-10-17 rules/rule-spec-write status: built → draft · cascade · generate
+- 2026-10-17 decisions/decision-case-875 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.1 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.10 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.11 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.12 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.13 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.14 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.15 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.16 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.17 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.18 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.19 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.2 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.20 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.21 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.22 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.3 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.4 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.5 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.6 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.7 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.8 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878.9 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-878 archived · superseded · generate
+- 2026-10-17 decisions/decision-case-875 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.1 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.10 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.11 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.12 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.13 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.14 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.15 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.16 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.17 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.18 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.19 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.2 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.20 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.21 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.22 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.3 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.4 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.5 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.6 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.7 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.8 archived · cleanup
+- 2026-10-17 decisions/decision-case-878.9 archived · cleanup
+- 2026-10-17 decisions/decision-case-878 archived · cleanup

@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the check of each answer of case-guppi sends back a Case whose recommend misses the title of a question of its rounds in the grill-me form
 method: "pytest .guppi/tests/test_casecheck.py -k rounds over a temp agent transcript: a round and a Case whose recommend holds every title, one that misses a title, a title asked in two rounds, a round out of form whose titles are not required, an answer with no round, and an answer of sub-cases alone whose titles stand in the recommend of its stored parent"
-checked: 2026-10-05
+checked: 2026-10-17
 origin: raw/2026-09-30/1306/ledger.md#case-544.3
 sprint: migration
 created: 2026-09-30
@@ -19,7 +19,7 @@ When:
 
 Then:
 `uv run --project .guppi guppi casecheck --subagent` takes the title of each question of those rounds from its line `❓ **Q<n>** - **<title>**:`, the title line of the template of `.claude/skills/grill-me/SKILL.md`.
-**＋** It takes titles only from a round that the function of `.guppi/guppi/casecheck.py` that judges the form of a round finds in form, the function the check of 601.1 sends a round back by; a round out of form gives no title.
+**＋** It takes titles only from a round that the function of `.guppi/guppi/casecheck.py` that judges the form of a round finds in form, the function by which the check sends a round out of form back; a round out of form gives no title (as set in case 601.1).
 **＋** A title that no item of a `recommend` opens with, in bold, among the Cases of the answer and the entries of `<plan>.checked.json` under the number alone of each Case of their family that the answer does not hold, is a finding of the top-level Case — of the first Case of the answer when it holds sub-cases alone — that names the title, sent back and stored as any other finding.
 **－** An answer with no earlier round gives no such finding.
 **－** A title asked in more than one round is looked for once.
@@ -28,7 +28,7 @@ Then:
 
 ## Result
 
-2026-10-05, at the /hi of session 0109: uv run pytest -q tests/test_casecheck.py -k rounds 8 passed, 122 deselected
+2026-10-17, Retro of session 1805: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k rounds 8 passed
 
 ## History
 
@@ -41,3 +41,5 @@ Then:
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-17 updated: the Criterion replaced whole — the function that judges the form of a round named by its role, its case number in a bracket · [[decision-case-880.4]]
+- 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L61

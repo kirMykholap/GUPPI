@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: failed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer, then by hand a defer the person asks for
@@ -15,12 +15,12 @@ tags: [hooks, harness, workflow]
 ## Criterion
 
 When:
-The `Stop` hook `uv run --project .guppi guppi ratified` runs after a reply whose `LEDGER` block holds lines of a Case N that are all `defer` — beside the lines of other Cases or alone — and the same reply shows `## Case N —` in the short form: `context`, `problem` and a fence tagged `then` with its `defer` items.
+The `Stop` hook `uv run --project .guppi guppi ratified` runs after a reply whose `LEDGER` block holds lines of a Case N that are all `defer` — beside the lines of other Cases or alone — and the same reply shows `## Case N —` in the short form, by `is_short_form` of `.guppi/guppi/casecheck.py`: `context`, `problem` and a fence tagged `then` with its `defer` items, no `given` and no `when`.
 
 Then:
 The hook writes that Case under `## Deferred` of the plan file while `spec.md` in the session's folder does not stand, and of that `spec.md` once it stands: the heading, `context`, `problem` and the `then` block as the reply shows them.
 **＋** The section of Case N is replaced when it stands there, appended at the end of `## Deferred` otherwise; the heading `## Deferred` is added when the file has none.
-**＋** A reply with no showing of Case N, or a `then` block without a `defer` item carrying `slug`, `type` and `purpose` for each `defer` line of the reply: exit 2 with the reason on stderr.
+**＋** A `then` block without a `defer` item carrying `slug`, `type` and `purpose` for each `defer` line of the reply: exit 2 with the reason on stderr.
 **＋** A `defer` line of Case N whose slug names a Lesson or a Decision page, by `defers_a_record` of `.guppi/guppi/materialize.py`, whether its page stands or not: exit 2 with `case N: defer <slug>: a Lesson or a Decision page carries no deferred_by, so no list shows its defer — defer the rule or entity page whose change settles it` on stderr, and nothing of the Case is written.
 **＋** A key of a `defer` item that `item_keys` of `.guppi/guppi/materialize.py` does not give a `defer` of its category: exit 2 with `` `<key>`: not a key of defer <slug> `` on stderr, and nothing of the Case is written.
 **＋** A `then` block that holds a YAML comment — a `#` at the start of a line or after a space or a tab, outside a quoted value and outside a `|` or `>` block — as the function of `.guppi/guppi/materialize.py` judges it: exit 2 with the line of the comment and the advice to quote the value on stderr, and nothing of the Case is written.
@@ -32,7 +32,7 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 
 ## Result
 
-2026-10-17, Retro of session 2104: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer green within guppi test (1748 passed): a short defer of a live Decision page or of a Lesson with no page exits 2 with DEFER_OF_A_RECORD and leaves the plan unchanged, a short defer of an entity beside it is written; by hand, the short defers of cases 873 and 874 the person asked for stand under ## Deferred of vault/raw/2026-10-16/2104/spec.md, written before the new code
+2026-10-17, Retro, not read: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer 24 passed, a bare reply now refused with case 8: not built and checked by case-guppi — dispatch it; the by-hand part, a defer the person asks for, did not come in session 1805: its one put-off, C1, was an item of the sprint with no short Case
 
 ## History
 
@@ -55,3 +55,5 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the Criterion replaced whole — a short defer of a Lesson or a Decision page is refused and not written · [[decision-case-865.3]]
 - 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L43
+- 2026-10-17 updated: the Criterion replaced whole — the short form judged by is_short_form; a reply with no short form is no short put-off · [[decision-case-879.2]]
+- 2026-10-17 status: pending → failed · raw/2026-10-17/1805/ledger.md#L55

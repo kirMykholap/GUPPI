@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-orchestration]]"
-purpose: Whether the example of a short-form defer in orchestration.md passes the Stop hook that writes a defer-only Case into the Spec, so the form the main agent copies stays a form the hook accepts
+purpose: Whether the example of a short-form defer in orchestration.md passes the Stop hook that writes a short put-off into the Spec, so the form the main agent copies stays a form the hook accepts
 method: uv run --project .guppi pytest .guppi/tests/test_orchestration.py -k defer_example, passed and not skipped
-checked: 2026-10-15
+checked: 2026-10-17
 origin: raw/2026-10-05/1343/ledger.md#case-651.3
 sprint: migration
 created: 2026-10-05
@@ -15,7 +15,7 @@ tags: [session, workflow, harness]
 ## Criterion
 
 When:
-`.guppi/tests/test_orchestration.py` runs under `uv run --project .guppi pytest`. It reads the block tagged `defer` in `vault/wiki/orchestration.md`, rendered from `rule-orchestration`, and runs over it, as the text of a reply, the functions of `.guppi/guppi/ratified.py` that the `Stop` hook of `rule-spec-write` runs over a defer-only Case, in a temporary project that holds the schema files of the vault and a plan file, with one `defer` record for each item of the example.
+`.guppi/tests/test_orchestration.py` runs under `uv run --project .guppi pytest`. It reads the block tagged `defer` in `vault/wiki/orchestration.md`, rendered from `rule-orchestration`, and runs over it, as the text of a reply, the functions of `.guppi/guppi/ratified.py` that the `Stop` hook of `rule-spec-write` runs over a short put-off, a Case of `defer` lines that the reply shows in the short form, in a temporary project that holds the schema files of the vault and a plan file, with one `defer` record for each item of the example.
 
 Then:
 `vault/wiki/orchestration.md` holds, under its own heading at the end of `## The short form — deferred decisions`, one block tagged `defer`: a Case in the short form with its heading, `context`, `problem` and a fence tagged `then` whose `defer:` holds a list, one item per target, each item opening with `- slug:` and carrying `type` and `purpose`.
@@ -23,12 +23,11 @@ Then:
 **＋** The hook writes the example under `## Deferred` of the plan file with no error, and the test passes.
 **＋** The example with its `defer:` items written as one mapping gives the error that no fence tagged `then` holds its `defer` items, and the test asserts it.
 **＋** The test reads the example from `vault/wiki/orchestration.md` and the hook from `.guppi/guppi/ratified.py`, and holds no copy of either.
-**＋** `insight-workflow-case-schema-silent-on-what-the-scripts-accept` stands archived with `status: archived` (addressed by case 651.3).
 **－** While `vault/wiki/orchestration.md` holds no block tagged `defer`, both tests of `.guppi/tests/test_orchestration.py` that read it fail with a message that names the file; no test of the file is skipped.
 
 ## Result
 
-2026-10-15, the Retro of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_orchestration.py -k defer_example -rs` 2 passed, none skipped; insight-workflow-case-schema-silent-on-what-the-scripts-accept stands under vault/archive/migration/2026-10-10/1555/insights/ with `status: archived` and not under vault/wiki/insights/
+2026-10-17, Retro of session 1805: uv run --project .guppi pytest .guppi/tests/test_orchestration.py -k defer_example 2 passed, none skipped, over the defer block of vault/wiki/orchestration.md and write_defers of .guppi/guppi/ratified.py after the change of Case 879
 
 ## History
 
@@ -41,3 +40,5 @@ Then:
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 updated: the Criterion replaced whole — its pointer stands in a bracket, and the insight stands archived · [[decision-case-823.4]]
 - 2026-10-15 status: pending → passed · raw/2026-10-15/1959/ledger.md#L68
+- 2026-10-17 updated: the Criterion replaced whole — the line on an Insight of the repository of GUPPI dropped; the hook runs over a short put-off, the term of case 879.1 · [[decision-case-880.10]]
+- 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L67

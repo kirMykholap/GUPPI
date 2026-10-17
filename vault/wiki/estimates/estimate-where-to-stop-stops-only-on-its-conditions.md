@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-where-to-stop]]"
 purpose: "Whether the run from /work to the librarian stops for the person on each condition of vault/wiki/where-to-stop.md and on no other, with the text loaded by /work and a stop after the call of /retro opening with STOP:"
 method: by hand, the text of vault/wiki/where-to-stop.md as rendered and the lines of .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md that load it, or, at the Retro of the session that changes it, the new Render of rule-where-to-stop in the Spec and those lines, read against each line of the Criterion, recorded in the estimate line; a line of the Criterion that the text does not set is named
-checked: 2026-10-14
+checked: 2026-10-17
 origin: raw/2026-09-29/2024/ledger.md#case-531.7
 sprint: migration
 created: 2026-09-29
@@ -26,19 +26,18 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 **＋** Before a task of `raw/<date>/<hi HHMM>/spec.md` whose text opens with `stop:`, the agent stops and asks; the task runs after the person's word.
 **＋** On the branch `main` the agent stops and says so: Work Mode does not start there.
 **＋** In a run of `/box`, the agent stops and asks when `uv run --project .guppi guppi box --check` prints a line, or when a `git merge --ff-only` of `/box` refuses.
-**＋** In the merge tasks that the opening Case of a sprint holds by `.claude/skills/sprint-open/SKILL.md`, in the merge task that a review Case holds by `.claude/skills/pr-review/SKILL.md`, and in the tasks that a merge Case holds by `.claude/skills/merge-main/SKILL.md`, the agent stops, shows what stopped it and asks when a `git` or `gh` command refuses, or when the merge of a merge Case leaves in conflict a file that the merge Case does not settle.
-**－** `git merge --no-ff --no-commit` of a merge Case of `.claude/skills/merge-main/SKILL.md` that exits non-zero only on files that the merge Case settles is no refusal, and the run goes on to the tasks that settle them.
+**＋** In the merge tasks that the opening Case of a sprint holds by `.claude/skills/sprint-open/SKILL.md`, the agent stops, shows what stopped it and asks when a `git` or `gh` command refuses.
 **＋** When the full `uv run --project .guppi guppi test` run of `/work` after its last task finds a failing test that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` does not hold, and its fix needs a choice that no ratified Case makes, the agent ends a reply with a question to the person that names the test and its failure.
 **＋** When the auto mode classifier of Claude Code refuses a tool call that the run needs, the agent ends a reply with a question to the person that gives the shell command doing what the refused call would do, for the person to type after `!` in the prompt.
 **＋** A reply that stops from the call of `/retro` until `raw/<date>/<hi HHMM>/handoff.md` stands opens with `STOP:`.
 **＋** After the person's answer the run goes on from where it stopped.
 **＋** After the person has run the command that a refusal of the auto mode classifier gave, the run goes on from where it stopped.
 **＋** `vault/wiki/case-schema.md` names a task line that opens with `stop:` as a task that waits for the person's word.
-**－** No other point stops the run: any other red test, at `/retro` too, a reading that only the person can take, an observation or a doubt ends as a lesson or a line of `raw/<date>/<hi HHMM>/handoff.md`.
+**－** No other point stops the run, but a stop that a skill the project holds sets in the tasks of its own Case: any other red test, at `/retro` too, a reading that only the person can take, an observation or a doubt ends as a lesson or a line of `raw/<date>/<hi HHMM>/handoff.md`.
 
 ## Result
 
-2026-10-14, Retro, the new Render of rule-where-to-stop in raw/2026-10-13/2118/spec.md (Case 806.4) read against the Criterion: 1 replace anchor stands once; 18 Criterion lines met — condition 1 now covers a ratified Case found wrong by a text the agent finds wrong or too narrow or by a finding of prespec --check after a Case ratified in Work Mode, and under /box no Case is built; the lines on the context of /work and /box and on stop: tasks are met by .claude/skills/work/SKILL.md, .claude/skills/box/SKILL.md line 7 and vault/wiki/case-schema.md line 19
+2026-10-17, Retro of session 1805: .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md load @vault/wiki/where-to-stop.md; its eight conditions set the fork, the hook refusal, the action git cannot undo, the stop: task, the branch main, the stops of /box and of the merge tasks of the opening Case of a sprint, the seventh red test and the refusal of the auto mode classifier, STOP: from /retro to handoff.md and the run going on after the answer; vault/wiki/case-schema.md names a task that opens with stop:; its other merge stops are those of /pr-review and /merge-main, skills this project holds, and nothing else is a stop
 
 ## History
 
@@ -59,3 +58,5 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 - 2026-10-14 status: pending → passed · raw/2026-10-13/2118/ledger.md#L26
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
+- 2026-10-17 updated: the Criterion replaced whole — the stops in the merge tasks of the skills pr-review and merge-main, which the clean version does not hold, moved to estimate-guppi-repository-stops-in-the-merge-tasks; a stop that a skill of the project sets for its own tasks is left room · [[decision-case-880.19]]
+- 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L76

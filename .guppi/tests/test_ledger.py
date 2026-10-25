@@ -379,6 +379,52 @@ def test_the_walk_stops_at_the_first_date_holding_this_sessions_start(tmp_path):
     assert code == 2
 
 
+# --- a start on a later date that opens no session ends no walk (case 884) ----------------
+# `estimate-ledger-write-keeps-the-window-past-a-later-resume`
+
+HI_DAY = date(2026, 9, 6)
+LATER_LINES = {
+    "resume": "- 10:00:00 44c1aae1 session-start resume\n",
+    "compact": "- 10:00:00 44c1aae1 session-start compact\n",
+    "clear": "- 10:00:00 44c1aae1 session-start clear\n",
+    "grep": "- 10:00:00 44c1aae1 tool Grep: 44c1aae1 session-start\n",
+    "bash": '- 10:00:00 44c1aae1 tool Bash: grep -n "x 44c1aae1 session-start" vault/raw\n',
+}
+
+
+def seed_later_date(tmp_path, later):
+    """`/hi` and the plan file on HI_DAY, a day of tool lines between, and on today the line
+    `later` of the same stamp, which opens no session."""
+    write_event_log(tmp_path, EVENT_LOG_WITH_HI, day=HI_DAY)
+    for day, text in ((date(2026, 9, 7), ONLY_TOOLS_TODAY), (TODAY, later + ONLY_TOOLS_TODAY)):
+        path = tmp_path / "vault" / "raw" / day.isoformat() / "event_log.md"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8")
+
+
+@pytest.mark.parametrize("kind", sorted(LATER_LINES))
+def test_a_later_date_start_or_tool_line_keeps_the_window_of_the_hi(tmp_path, kind):
+    seed_later_date(tmp_path, LATER_LINES[kind])
+    folder = tmp_path / "vault" / "raw" / HI_DAY.isoformat() / "1501"
+    assert ledger.session_dir(tmp_path, NOW, "44c1aae1") == folder
+    logs = ledger.session_event_logs(tmp_path, NOW, "44c1aae1")
+    assert [day for day, _ in logs] == ["2026-09-06", "2026-09-07", "2026-09-09"]
+    plan = tmp_path / ".claude" / "plans" / "plan.md"
+    assert ledger.plan_path(logs, "44c1aae1") == plan
+    code, err = run(payload(last_assistant_message=REPLY), tmp_path)
+    assert (code, err) == (0, "")
+    assert (folder / "ledger.md").read_text(encoding="utf-8") == (
+        f"{timed(DECISION)}\n{timed(ESTIMATE)}\n"
+    )
+    assert not (tmp_path / "vault" / "raw" / TODAY.isoformat() / "1501").exists()
+
+
+def test_a_later_date_startup_of_the_stamp_still_ends_the_walk(tmp_path):
+    seed_later_date(tmp_path, "- 10:00:00 44c1aae1 session-start startup\n")
+    assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is None
+    assert [d for d, _ in ledger.session_event_logs(tmp_path, NOW, "44c1aae1")] == ["2026-09-09"]
+
+
 # --- the Stop hook reads the whole session back (case 55.2) -----------------------------
 
 

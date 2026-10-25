@@ -11,8 +11,12 @@ are ratified); only a LEDGER block is a record. Rule page:
 The hook first asks the event log whether this is a working session: a `hi` line of
 this session's id must follow its first `session-start` (case 111.3); a start of another
 session changes nothing, an unstamped `hi` does not count. The log it reads is `raw/<date>/event_log.md` of every date from today back to the
-first that holds a `session-start` of this session, joined in date order, so a session that
-crosses midnight keeps its window (case 55.1). Without a `hi`, and with lines to write, the
+first that holds a start line of this session of the kind `startup` or `fork`, joined in
+date order, so a session that crosses midnight keeps its window (case 55.1). Each line is
+read by its form through `event_of`, never by a search of the whole text of a log: a
+`resume`, `compact` or `clear` start on a later date ends no walk, nor does a tool line
+whose text quotes a start line, so a session resumed days after its `hi` keeps its folder
+and its plan file (case 884). Without a `hi`, and with lines to write, the
 hook exits 2 and says why on stderr, so the person is told rather than left believing the
 lines were recorded. An error of the hook itself after it has read the payload — an
 exception while it reads the transcript, the event log or the ledger, or judges or appends
@@ -490,7 +494,8 @@ def hi_recorded(event_log: str, stamp: str) -> bool:
     (case 111.3). The `hi` is written by the `UserPromptSubmit` hook with the session id,
     so a start of another session — before, between, after — changes nothing, and a `hi`
     of another stamp does not count. A further start of the same session — `compact`,
-    `resume` — does not close the window either (case 14). A `--------` `hi` never counts
+    `resume` — does not close the window either (case 14), on a later date too, since the
+    walk of `session_event_logs` passes it (case 884). A `--------` `hi` never counts
     (case 136.3)."""
     return hi_moment([("", event_log)], stamp) is not None
 
@@ -502,13 +507,50 @@ def ledger_path(project_dir: Path, now, stamp: str) -> Path | None:
     return None if folder is None else folder / "ledger.md"
 
 
+NEW_SESSION = ("startup", "fork")  # the kinds of start that open a session (case 884)
+
+
+def parse_event(line: str) -> tuple[str, str, str, str] | None:
+    """`(time, stamp, event, rest)` of a line of the event log in the form `- HH:MM:SS
+    <stamp> <event> <rest>`; None for any other line. The one reading of a line of the log
+    by its form, which `event_of`, `hi_stamps` and through them the walk of the window share,
+    so a tool line whose text quotes a start line is a `tool` event and no start (case 884)."""
+    parts = line.split(" ", 3)
+    if len(parts) < 4 or parts[0] != "-":
+        return None
+    event, _, rest = parts[3].partition(" ")
+    return parts[1], parts[2], event, rest
+
+
+def event_of(line: str, stamp: str) -> tuple[str, str, str] | None:
+    """`(time, event, rest)` of a line of the event log that this stamp wrote, by
+    `parse_event`; None for any other line."""
+    parsed = parse_event(line)
+    if parsed is None or parsed[1] != stamp:
+        return None
+    return parsed[0], parsed[2], parsed[3]
+
+
+def hi_stamps(text: str) -> list[str]:
+    """The stamps of the `hi` lines of a log, in order and each once, by `parse_event`; a
+    `--------` `hi` never counts (case 136.3)."""
+    stamps: list[str] = []
+    for line in text.splitlines():
+        parsed = parse_event(line)
+        if parsed and parsed[2] == "hi" and parsed[1] != "--------" and parsed[1] not in stamps:
+            stamps.append(parsed[1])
+    return stamps
+
+
 def session_event_logs(project_dir: Path, now, stamp: str) -> list[tuple[str, str]]:
     """`(date, text)` of the event log of every date from today back to the first holding a
-    `session-start` of this session, in date order (case 55.1). With no such date, every
-    log up to today is returned and the window check fails on its own."""
+    start line of this session of the kind `startup` or `fork`, read line by line by
+    `event_of`, in date order (case 55.1). A start of the kind `resume`, `compact` or
+    `clear` on a later date ends no walk, and neither does a tool line that quotes the
+    start, so a session resumed days after its `hi` keeps its window (case 884). With no
+    such date, every log up to today is returned and the window check fails on its own."""
     raw = project_dir / "vault" / "raw"
     today = now.date().isoformat()
-    marker = f" {stamp} session-start"
     chosen: list[tuple[str, str]] = []
     if raw.is_dir():
         dates = sorted(
@@ -520,28 +562,40 @@ def session_event_logs(project_dir: Path, now, stamp: str) -> list[tuple[str, st
                 continue
             text = log.read_text(encoding="utf-8")
             chosen.append((name, text))
-            if marker in text:
+            if any(opens_session(line, stamp) for line in text.splitlines()):
                 break
     return list(reversed(chosen))
+
+
+def opens_session(line: str, stamp: str) -> bool:
+    """Whether `line` is a start line of this stamp that opens a session, of a kind in
+    `NEW_SESSION` (case 884)."""
+    event = event_of(line, stamp)
+    return (
+        event is not None
+        and event[1] == "session-start"
+        and event[2].split(" ", 1)[0] in NEW_SESSION
+    )
 
 
 def hi_moment(logs: list[tuple[str, str]], stamp: str) -> tuple[str, str] | None:
     """`(date, time)` of the `hi` that opens this session's window: the first `hi` of this
     stamp after its first `session-start`, over the `(date, text)` logs of
-    `session_event_logs` in date order; lines of other sessions are skipped (case 111.3).
+    `session_event_logs` in date order, each line read by `event_of`; lines of other
+    sessions are skipped (case 111.3).
     A stamped `hi` is the one opener: the old fallback — a `--------` `hi` bound by position,
     for the sessions opened before the hook — was removed once those sessions had closed
     (cases 111.6, 136.3)."""
     ours = False
     for day, text in logs:
         for line in text.splitlines():
-            parts = line.split(" ", 3)
-            if len(parts) < 4 or parts[0] != "-" or parts[2] != stamp:
+            event = event_of(line, stamp)
+            if event is None:
                 continue
-            time, event = parts[1], parts[3].split(" ", 1)[0]
-            if event == "session-start":
+            time, kind = event[0], event[1]
+            if kind == "session-start":
                 ours = True
-            elif event == "hi" and ours:
+            elif kind == "hi" and ours:
                 return (day, time)
     return None
 

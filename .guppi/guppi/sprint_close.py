@@ -30,10 +30,14 @@ runs the line after `guppi generate`, finds it done; a refused run ticks nothing
 After that, the close empties `vault/raw/` as far as it can (cases 743.1, 743.3). It moves each
 unit that `.guppi/guppi/archive.py` judges done by `archive.sweep` with `close=True`, whatever its
 date, and prints its lines: the session of the run, a unit not yet turned into pages and a
-conserved Spec stay. Then it moves each `vault/raw/<date>/event_log.md` dated before the day
-before the date of the session of the run to `vault/archive/<id>/<date>/event_log.md`, one
-line `archive: raw/<date>/event_log.md → archive/<id>/<date>/event_log.md` per log, since the
-hooks of the open session read only the logs back to the start of that session; a log whose
+conserved Spec stay. Then it moves each `vault/raw/<date>/event_log.md` dated before the
+start of the session of the run — the first date of the logs that `session_event_logs` of
+`.guppi/guppi/ledger.py` walks for its stamp, the stamp whose `hi` line `session_dir` takes to
+the newest session folder — to `vault/archive/<id>/<date>/event_log.md`, one line `archive:
+raw/<date>/event_log.md → archive/<id>/<date>/event_log.md` per log, since the hooks of the
+open session read only the logs back to the start of that session, days before its `hi`
+too; with no session folder, or no such stamp or more than one, no log moves and one line
+`archive: event logs kept: <reason>` says why (case 886); a log whose
 target exists stays, with one line on stderr. A date folder the moves leave empty is removed.
 `.gitignore` leaves the moved logs out of git. The preview names each unit and each log the
 close would move and moves none; a refused close moves none. Exit 0 on a preview or a close,
@@ -46,14 +50,13 @@ import argparse
 import io
 import shutil
 import sys
-from datetime import date as Date
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 from guppi import archive, cleanup
 from guppi.event import project_root
 from guppi.generate import HISTORY, as_list, write_page
-from guppi.ledger import SPRINT_PAGE
+from guppi.ledger import SPRINT_PAGE, hi_stamps, session_dir, session_event_logs
 from guppi.materialize import session_of_run, units_with
 from guppi.pages import Page, read_vault, wiki_root
 from guppi.render import command_line
@@ -230,27 +233,47 @@ def tick(project_dir: Path, sprint: str) -> int:
     return ticked
 
 
-def old_logs(project_dir: Path, now) -> list[Path]:
-    """Each `vault/raw/<date>/event_log.md` dated before the day before the date of the
-    session of the run — the logs no hook of the open session reads (case 743.3)."""
+def old_logs(project_dir: Path, now) -> tuple[list[Path], str | None]:
+    """Each `vault/raw/<date>/event_log.md` dated before the start of the session of the
+    run — the logs no hook of the open session reads (cases 743.3, 886) — and None; or no
+    log and the reason. The session of the run is the one stamp among the `hi` lines of the
+    log of the date of the newest session folder for which `session_dir` of
+    `.guppi/guppi/ledger.py` names that folder, and its start the first date of
+    `session_event_logs` for that stamp: the close asks the window the hooks read and holds
+    no second copy of it. With no session folder, or no such stamp or more than one, no log
+    moves."""
     raw = project_dir / "vault" / "raw"
-    if not raw.is_dir():
-        return []
-    today = now.date().isoformat()
-    session = session_of_run(project_dir, today)
-    start = Date.fromisoformat(session[0] if session else today)
-    limit = (start - timedelta(days=1)).isoformat()
-    return sorted(
-        folder / "event_log.md"
-        for folder in raw.iterdir()
-        if folder.is_dir() and folder.name < limit and (folder / "event_log.md").is_file()
+    logs = sorted(
+        path / "event_log.md"
+        for path in (raw.iterdir() if raw.is_dir() else [])
+        if path.is_dir() and (path / "event_log.md").is_file()
     )
+    session = session_of_run(project_dir, now.date().isoformat())
+    if session is None:
+        return [], "no session folder in vault/raw/" if logs else None
+    day, hhmm = session
+    if not any(log.parent.name < day for log in logs):
+        return [], None  # no log older than the session folder: nothing to judge
+    folder = raw / day / hhmm
+    log_of_day = raw / day / "event_log.md"
+    text = log_of_day.read_text(encoding="utf-8") if log_of_day.is_file() else ""
+    stamps = [s for s in hi_stamps(text) if session_dir(project_dir, now, s) == folder]
+    if len(stamps) != 1:
+        some = "no stamp" if not stamps else f"the stamps {', '.join(stamps)}"
+        return [], f"{some} whose hi leads to raw/{day}/{hhmm}"
+    start = session_event_logs(project_dir, now, stamps[0])[0][0]
+    return [log for log in logs if log.parent.name < start], None
 
 
 def move_logs(project_dir: Path, sprint: str, now, stdout, stderr, apply: bool = True) -> bool:
-    """Move the old logs under `vault/archive/<sprint>/<date>/`; True when one failed."""
+    """Move the old logs under `vault/archive/<sprint>/<date>/`; True when one failed. When
+    the session of the run cannot be told, one line `archive: event logs kept: <reason>` on
+    stdout, and the exit code does not change (case 886)."""
     failed = False
-    for log in old_logs(project_dir, now):
+    logs, reason = old_logs(project_dir, now)
+    if reason:
+        print(f"archive: event logs kept: {reason}", file=stdout)
+    for log in logs:
         date = log.parent.name
         target = project_dir / "vault" / "archive" / sprint / date / "event_log.md"
         where = f"archive/{sprint}/{date}/event_log.md"

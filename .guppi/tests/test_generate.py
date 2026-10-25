@@ -3803,3 +3803,64 @@ def test_a_supersedes_of_a_parent_of_an_earlier_run_leaves_an_archived_child_alo
     assert SUPERSEDED_BY_SIX not in archived
     marked = page(tmp_path, "decisions", "decision-case-5.3")  # already names the Case
     assert SUPERSEDED_BY_SIX not in marked.split("## History")[1]
+
+
+# --- a retired Case replaces no earlier decision (case 883) ---------------------------------
+# `estimate-generate-writes-the-decision-page`
+
+
+def seed_retired(tmp_path, retiring_supersedes):
+    """Decision `2` defers `rule-a` and has the sub-case `2.1`; Case `3` supersedes `2` and
+    names `rule-a`, but Case `4` retired Case `3` before its entries applied."""
+    pages = [
+        (
+            "decisions",
+            "decision-case-2",
+            decision_page("2", "current", "children: [decision-case-2.1]\ndefer: [rule-a]\n"),
+        ),
+        ("decisions", "decision-case-2.1", decision_page("2.1", "current")),
+        ("rules", "rule-a", page_text("rules", "rule-a", deferred_by="[decision-case-2]")),
+    ]
+    target = [{"kind": "update", "category": "rules", "slug": "rule-a"}]
+    decisions = [
+        family_record(
+            "3",
+            targets=target,
+            supersedes=["decision-case-2"],
+            superseded_by=["decision-case-4"],
+        ),
+        family_record("4", targets=target, supersedes=retiring_supersedes),
+    ]
+    seed(tmp_path, entries=[ROOT], decisions=decisions, pages=pages)
+
+
+def test_a_retired_case_carries_out_none_of_its_supersedes(tmp_path):
+    seed_retired(tmp_path, ["decision-case-3"])
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert props(page(tmp_path, "decisions", "decision-case-3"))["supersedes"] == [
+        "decision-case-2"
+    ]
+    for case in ("2", "2.1"):
+        text = page(tmp_path, "decisions", f"decision-case-{case}")
+        assert props(text)["status"] == "current" and "superseded_by" not in props(text)
+        assert "decision-case-3" not in text
+    rule = page(tmp_path, "rules", "rule-a")
+    assert props(rule)["deferred_by"] == ["decision-case-2"]
+    assert "decision-case-3" not in rule.split("## History")[1]
+    log = (tmp_path / "vault" / "wiki" / "log.md").read_text(encoding="utf-8")
+    assert "superseded by decision-case-3" not in log and "[[decision-case-3]]" not in log
+
+
+def test_a_retiring_case_that_names_the_earlier_decision_alone_replaces_it(tmp_path):
+    seed_retired(tmp_path, ["decision-case-3", "decision-case-2"])
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    for case in ("2", "2.1"):
+        text = page(tmp_path, "decisions", f"decision-case-{case}")
+        assert props(text)["superseded_by"] == ["decision-case-4"]
+        assert "decision-case-3" not in text
+    rule = page(tmp_path, "rules", "rule-a")
+    assert "deferred_by" not in props(rule)
+    assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-4]]" in rule
+    assert "decision-case-3" not in rule.split("## History")[1]

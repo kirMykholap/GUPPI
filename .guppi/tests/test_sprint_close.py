@@ -433,34 +433,87 @@ def test_sweep_a_refused_close_moves_no_unit(tmp_path):
     assert snapshot(tmp_path) == before
 
 
-def log(project_dir, date):
+STAMP = "5e55104a"
+START = f"- 09:00:00 {STAMP} session-start startup\n"
+HI = f"- 12:00:30 {STAMP} hi\n"  # the `hi` of the session folder `DATE/1200`
+
+
+def log(project_dir, date, text=""):
     path = project_dir / "vault" / "raw" / date / "event_log.md"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(f"log of {date}\n", encoding="utf-8")
+    path.write_text(f"- 08:00:00 {STAMP} tool Bash: log of {date}\n" + text, encoding="utf-8")
     return path
 
 
-def event_log_vault(tmp_path):
+def event_log_vault(tmp_path, texts=None):
+    """The session of the run, `DATE/1200`, and a log on five dates; `texts` adds lines to
+    the log of a date, by default the start and the `hi` of the session on `DATE`."""
     seed(tmp_path, [])
     raw_unit(tmp_path, f"{DATE}/1200", APPLIED)  # the session of the run, on 2026-10-05
+    texts = {DATE: START + HI} if texts is None else texts
     for date in ("2026-10-02", "2026-10-03", "2026-10-04", DATE, "2026-10-06"):
-        log(tmp_path, date)
+        log(tmp_path, date, texts.get(date, ""))
     return tmp_path
+
+
+def moved_and_kept(tmp_path, moved, kept, out):
+    raw = tmp_path / "vault" / "raw"
+    base = tmp_path / "vault" / "archive" / SPRINT
+    for date in moved:
+        assert (
+            (base / date / "event_log.md")
+            .read_text(encoding="utf-8")
+            .startswith(f"- 08:00:00 {STAMP} tool Bash: log of {date}\n")
+        )
+        assert not (raw / date).exists()
+        assert f"archive: raw/{date}/event_log.md → archive/{SPRINT}/{date}/event_log.md" in out
+    for date in kept:
+        assert (raw / date / "event_log.md").exists()
+        assert f"archive: raw/{date}/event_log.md →" not in out
 
 
 def test_event_log_old_logs_move_and_their_empty_folders_go(tmp_path):
     event_log_vault(tmp_path)
     code, out, err = run(tmp_path, "--apply")
     assert code == 0, err
-    raw = tmp_path / "vault" / "raw"
-    base = tmp_path / "vault" / "archive" / SPRINT
-    for date in ("2026-10-02", "2026-10-03"):
-        assert (base / date / "event_log.md").read_text(encoding="utf-8") == f"log of {date}\n"
-        assert not (raw / date).exists()
-        assert f"archive: raw/{date}/event_log.md → archive/{SPRINT}/{date}/event_log.md" in out
-    # the day before the session, the session's date and a later date stay
-    for date in ("2026-10-04", DATE, "2026-10-06"):
-        assert (raw / date / "event_log.md").exists()
+    # the session started on its own date: the logs before it move, it and a later date stay
+    moved_and_kept(tmp_path, ("2026-10-02", "2026-10-03", "2026-10-04"), (DATE, "2026-10-06"), out)
+
+
+def test_event_log_a_start_days_before_the_hi_keeps_the_logs_from_the_start(tmp_path):
+    event_log_vault(tmp_path, {"2026-10-03": START, DATE: HI})
+    code, out, err = run(tmp_path, "--apply")
+    assert code == 0, err
+    moved_and_kept(tmp_path, ("2026-10-02",), ("2026-10-03", "2026-10-04", DATE), out)
+
+
+def test_event_log_a_later_resume_of_the_stamp_keeps_the_same_logs(tmp_path):
+    resume = f"- 11:00:00 {STAMP} session-start resume\n"
+    event_log_vault(tmp_path, {"2026-10-03": START, "2026-10-04": resume, DATE: resume + HI})
+    code, out, err = run(tmp_path, "--apply")
+    assert code == 0, err
+    moved_and_kept(tmp_path, ("2026-10-02",), ("2026-10-03", "2026-10-04", DATE), out)
+
+
+def test_event_log_no_hi_that_leads_to_the_folder_moves_no_log(tmp_path):
+    event_log_vault(tmp_path, {DATE: START})
+    code, out, err = run(tmp_path, "--apply")
+    assert code == 0, err
+    assert f"archive: event logs kept: no stamp whose hi leads to raw/{DATE}/1200" in out
+    moved_and_kept(tmp_path, (), ("2026-10-02", "2026-10-03", "2026-10-04", DATE), out)
+
+
+def test_event_log_two_stamps_at_the_time_of_the_folder_move_no_log(tmp_path):
+    other = "0da7e5ab"
+    lines = START + HI + f"- 09:30:00 {other} session-start startup\n- 12:00:50 {other} hi\n"
+    event_log_vault(tmp_path, {DATE: lines})
+    code, out, err = run(tmp_path, "--apply")
+    assert code == 0, err
+    assert (
+        f"archive: event logs kept: the stamps {STAMP}, {other} whose hi leads to raw/{DATE}/1200"
+        in out
+    )
+    moved_and_kept(tmp_path, (), ("2026-10-02", "2026-10-03", "2026-10-04", DATE), out)
 
 
 def test_event_log_a_taken_target_is_a_stderr_line_and_exit_1(tmp_path):

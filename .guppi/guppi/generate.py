@@ -96,8 +96,11 @@ superseding Case names drop it from their `deferred_by` as above (case 683). The
 sets each page in the `children` of the earlier page, at any depth, that stands `current`
 `superseded`, a page of an earlier run too, with one History line; a child page `archived`
 or already `superseded` is left as it stands, and no `deferred_by` is cleared through a
-child (case 660.3). An existing page is skipped; a
-`create` marked `exists` writes no page, its Decision page is still written.
+child (case 660.3). A record that carries `superseded_by` — a Case a later Case retired
+before its entries applied — still gets its page with its `supersedes`, but carries out
+none of them: no earlier page or page of its `children` changes, no `deferred_by` is
+cleared, and no line of History or of `log.md` names it (case 883). An existing page is
+skipped; a `create` marked `exists` writes no page, its Decision page is still written.
 
 One bad entry never stops the run (case 201.3): an entry that fails — a collision, a `ref`
 naming no page, a `replace` absent or not unique, an unexpected shape, an unknown kind,
@@ -106,7 +109,8 @@ skipped; the rest apply; exit 1. Every applied entry is marked `applied: <time>`
 `failed` mark is dropped on apply (case 53.3), so a rerun writes nothing. An entry with
 `failed` and no `kind` — a line `materialize` could not lift — is skipped with its mark
 kept and one stderr line (case 142.2); an entry with `superseded_by` is not applied and
-leaves no line, only its Case's Decision page is written (case 151). A `create`, `update`,
+leaves no line, only its Case's Decision page is written, and that page's `supersedes`
+changes no other page (cases 151, 883). A `create`, `update`,
 `delete` or `defer` entry whose `case`, `kind` and `slug` match an applied entry of the same
 yaml — a Case ratified again in its session, its lines written again with a mark added — is
 a repeat: like an `update` with no content it changes no page, appends nothing to `log.md`
@@ -1256,6 +1260,8 @@ class Vault:
         page = Page(category="decisions", slug=slug, path=path, props=props, sections=sections)
         self.history(page, "created", record["origin"])
         self.save(page)
+        if record.get("superseded_by"):  # a retired Case replaces nothing (case 883)
+            return
         for earlier in record.get("supersedes") or []:
             other = self.find(earlier)
             if other is None:

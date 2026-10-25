@@ -1,0 +1,55 @@
+- 00:48:14 decision[case 881.1][update][rule-git-context]{ref:rule-git-context}
+- 00:48:14 decision[case 881.2][update][rule-harness]{ref:rule-harness}
+- 00:48:14 decision[case 881.3][update][rule-morph]{ref:rule-morph}
+- 00:48:14 decision[case 881.4][update][rule-one-judgment-one-implementation]{ref:rule-one-judgment-one-implementation}
+- 00:48:14 decision[case 881.5][update][rule-page-generation]{ref:rule-page-generation}
+- 00:48:14 decision[case 881.6][update][rule-permissions]{ref:rule-permissions}
+- 00:48:14 decision[case 881.7][update][rule-ratification]{ref:rule-ratification}
+- 00:48:14 decision[case 881.8][update][rule-decisions-schema]{ref:rule-decisions-schema}
+- 00:48:14 decision[case 881.9][update][rule-lessons-schema]{ref:rule-lessons-schema}
+- 00:48:14 decision[case 881.10][update][rule-search-leaves-out-decisions]{ref:rule-search-leaves-out-decisions}
+- 00:48:14 decision[case 881.11][update][estimate-generate-writes-rules-from-applies-to]{ref:rule-page-generation}
+- 00:48:14 decision[case 881.12][update][rule-skill-hi]{ref:rule-skill-hi}
+- 00:48:14 decision[case 881.13][update][rule-retro-onward]{ref:rule-retro-onward}
+- 00:48:14 decision[case 881.14][update][rule-spec-reconcile]{ref:rule-spec-reconcile}
+- 00:48:14 decision[case 881.15][update][rule-skill-grill-me]{ref:rule-skill-grill-me}
+- 00:48:14 decision[case 881.16][update][rule-ledger-write]{ref:rule-ledger-write}
+- 00:48:14 decision[case 881.17][update][rule-page-read]{ref:rule-page-read}
+- 00:48:14 decision[case 881.18][update][rule-event-log]{ref:rule-event-log}
+- 00:48:14 decision[case 881.19][update][rule-rules-schema]{ref:rule-rules-schema}
+- 00:48:14 decision[case 881.20][update][rule-estimates-schema]{ref:rule-estimates-schema}
+- 00:48:14 decision[case 881.21][update][rule-entities-schema]{ref:rule-entities-schema}
+- 00:48:14 decision[case 881.22][update][rule-insights-schema]{ref:rule-insights-schema}
+- 00:48:14 decision[case 881.23][update][rule-page-schemas]{ref:rule-page-schemas}
+- 00:48:14 decision[case 881.24][update][entity-glossary]{ref:entity-glossary}
+- 00:48:14 decision[case 881.25][update][estimate-spec-capture-appends]{ref:rule-spec-capture}
+- 21:53:27 lesson[error][lesson-session-window-cut-by-a-resume-on-a-later-date]{tags:session,hooks,ledger} trigger: session 2307 (hi 2026-10-17 23:07) was resumed on 2026-10-24 after a pause of a week; the hook wrote `392fc00e session-start resume` into vault/raw/2026-10-24/event_log.md, and on 2026-10-25 `guppi caseid --next --session 392fc00e` printed `caseid: no plan file of session 392fc00e — no id printed`; the person removed the resume line by hand and the next run printed 882 root_cause: `session_event_logs` of .guppi/guppi/ledger.py walks the event logs back from today and stops at the first date that holds any `session-start` of the stamp, a `resume` included, so the window of a session resumed on a later date no longer holds its `hi` or the Write of its plan file, and `session_dir`, `plan_path` and every reader of the window lose the session
+- 22:11:27 decision[case 882.1][update][estimate-glossary-checks-the-file]{ref:rule-glossary}
+- 22:11:27 decision[case 882.2][update][estimate-orchestration-asks-in-the-grill-me-shape]{ref:rule-orchestration}
+- 22:11:27 decision[case 882.3][update][rule-clean-branch]{ref:rule-clean-branch}{supersedes:case 880.21}
+- 22:11:27 decision[case 882.3][defer][rule-clean-branch]{ref:rule-clean-branch}
+- 22:31:48 decision[case 883][update][rule-page-generation]{ref:rule-page-generation}
+- 22:31:48 decision[case 883][update][estimate-generate-writes-the-decision-page]{ref:rule-page-generation}
+- 22:31:48 decision[case 883][update][rule-decisions-schema]{ref:rule-decisions-schema}
+- 22:31:48 decision[case 883][update][entity-glossary]{ref:entity-glossary}
+- 22:46:26 decision[case 884][update][rule-ledger-write]{ref:rule-ledger-write}{supersedes:case 876}{addresses:lesson-session-window-cut-by-a-resume-on-a-later-date}
+- 22:46:26 decision[case 884][create][estimate-ledger-write-keeps-the-window-past-a-later-resume]{ref:rule-ledger-write}{tags:session,hooks,ledger}
+- 22:59:01 decision[case 885][defer][estimate-spec-write-writes-a-defer]{ref:estimate-spec-write-writes-a-defer}
+- 22:59:01 decision[case 885][defer][estimate-close-commits]{ref:estimate-close-commits}
+- 22:59:01 decision[case 885][defer][estimate-clean-branch-writes-the-session-files]{ref:estimate-clean-branch-writes-the-session-files}
+- 23:38:51 lesson[error][lesson-session-window-cut-by-a-tool-line-that-names-the-start]{tags:session,hooks,ledger} trigger: on 2026-10-25 in session 2307 the ledger hook refused a reply with "no /hi recorded for session 392fc00e" twice: a Grep of a case-guppi and then a Bash check of the main agent held the stamp, a space and the word session-start in their pattern or command, the event hook logged each under this session's stamp in vault/raw/2026-10-25/event_log.md, and the person removed those lines by hand each time root_cause: `session_event_logs` of .guppi/guppi/ledger.py tests the marker as a substring of the whole text of a day's log, so any logged tool line whose text holds the stamp followed by the start word ends the walk on a day with no `hi`, and the window loses the session
+- 00:04:45 decision[case 884][update][rule-ledger-write]{ref:rule-ledger-write}{supersedes:case 876}{addresses:lesson-session-window-cut-by-a-resume-on-a-later-date}{addresses:lesson-session-window-cut-by-a-tool-line-that-names-the-start}
+- 00:04:45 decision[case 884][update][rule-orchestration]{ref:rule-orchestration}
+- 00:04:45 decision[case 884][defer][rule-orchestration]{ref:rule-orchestration}
+- 00:04:45 decision[case 886][update][estimate-sprint-close-moves-old-event-logs]{ref:rule-sprint-close}
+- 00:04:45 decision[case 886][update][rule-raw-archive]{ref:rule-raw-archive}
+- 00:04:45 decision[case 887][defer][rule-case-check]{ref:rule-case-check}
+- 00:04:45 decision[case 887][defer][rule-orchestration]{ref:rule-orchestration}
+- 00:04:55 lesson[error][lesson-casecheck-reads-a-sibling-from-the-plan-as-last-ratified]{tags:case-build,hooks,prespec} trigger: at /pre-spec of session 2307 the Stop check of rule-case-check refused the showing of Case 881 three times with "case 881.24: entity-glossary: the sentence around a pair was not read whole", though its case-guppi read `entity-glossary` and the file of Case 883 whole each in one Read root_cause: `other_blocks` of .guppi/guppi/casecheck.py takes the `then` block of another Case from the plan, where Case 883 stood as ratified before /pre-spec, while `unread_sentences` looks for the part that Case wrote in a Read of its current file `cases/case-883.md`, which /pre-spec had changed, so the part of a sibling built again can never be found until that sibling is ratified again
+- 00:07:24 decision[case 881.26][update][rule-vault-layout]{ref:rule-vault-layout}
+- 00:21:51 estimate[estimate-glossary-checks-the-file][passed] 2026-10-26, Retro: `uv run --project .guppi pytest .guppi/tests/test_glossary.py` 8 passed; `uv run --project .guppi guppi glossary --check` in the working tree exit 0, no output
+- 00:21:51 estimate[estimate-orchestration-asks-in-the-grill-me-shape][passed] 2026-10-26, Retro, by hand: vault/wiki/orchestration.md as rendered has each question the main agent puts itself (the report of /pre-spec, a question at /hi, a stop of Work Mode, the question after a clash in Work Mode, the question after the ask-guppi confirmation) take the shape of .claude/skills/grill-me/SKILL.md "in Russian, the labels translated or not", Russian being the language of the chat of this repository; the question of the next item, of an A line, of a sign-off, of going on to /pre-spec and the /work or /carry choice keep their own form
+- 00:21:51 estimate[estimate-generate-writes-the-decision-page][passed] 2026-10-26, Retro: `uv run --project .guppi pytest .guppi/tests/test_generate.py` 141 passed, the two new tests of case 883 among them, both failing on the code before the change
+- 00:21:51 estimate[estimate-ledger-write-keeps-the-window-past-a-later-resume][passed] 2026-10-26, Retro: `uv run --project .guppi pytest .guppi/tests/test_ledger.py -k later_date` 6 passed (resume, compact, clear, a tool Grep line and a tool Bash line on a later date; a later startup still ends the walk), 5 of them failing on the code before the change; by hand, `session_dir` over the live event logs names raw/2026-10-14/1907 for the stamp 44ee5004 and raw/2026-10-17/2307 for this session
+- 00:21:51 estimate[estimate-sprint-close-moves-old-event-logs][passed] 2026-10-26, Retro: `uv run --project .guppi pytest .guppi/tests/test_sprint_close.py -k event_log` 7 passed, 5 of them failing on the code before the change; .gitignore lines 47–48 leave out vault/raw/*/event_log.md and vault/archive/*/*/event_log.md; by hand, `old_logs` over the live vault moves the logs of 2026-10-09 to 2026-10-16 and keeps those from 2026-10-17, the start of this session, on
+- 00:21:58 lesson[error][lesson-prespec-loop-stalls-when-one-case-waits-after-a-partial-ratification]{tags:prespec,orchestration} trigger: at /pre-spec of session 2307, after the person ratified Cases 882, 883, 884 and 886 and Case 881 still had to go back to its case-guppi, the acknowledging reply ended with the Frontier as orchestration.md sets it, no hook sent the agent on, and the session stood until the person asked "чего стоим? что дальше?" root_cause: the reply that carries a LEDGER block may call no tool after it, and the hook of rule-prespec-onward sends the agent on only once every Case built again is ratified, so a batch ratified in part leaves the step that sends the rest back to no turn

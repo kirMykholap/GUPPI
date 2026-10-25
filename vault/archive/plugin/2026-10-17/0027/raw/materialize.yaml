@@ -948,6 +948,8 @@ entries:
       moved here from the defer of the lesson by Case 836
   exists: true
   applied: 02:21:47
+  superseded_by:
+  - '884'
 - line: 49
   text: decision[case 876][defer][rule-orchestration]{ref:rule-orchestration}{supersedes:case 836}
   case: '876'
@@ -967,6 +969,8 @@ entries:
       the defer of the lesson by Case 836
   exists: true
   applied: 02:21:47
+  superseded_by:
+  - '884'
 - line: 50
   text: decision[case 877.1][update][rule-estimates-schema]{ref:rule-estimates-schema}{supersedes:case
     873}
@@ -1760,6 +1764,8 @@ decisions:
   - decision-case-836
   - decision-case-863
   applied: 02:21:47
+  superseded_by:
+  - decision-case-884
 - case: '877.1'
   decision: decision-case-877.1
   origin: raw/2026-10-17/0027/ledger.md#case-877.1

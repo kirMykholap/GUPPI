@@ -13,15 +13,15 @@ core: true
 
 ## Purpose
 
-Prevents a new install of GUPPI from running on the settings of another machine or project: at the first `/hi` after `/guppi:install`, while `guppi.toml` does not mark the setup as done, one setup Case that the person ratifies sets them, before the first sprint opens. The plugin `guppi` installs GUPPI by its skill `/guppi:install`, which copies the files of the clean version into the project, the settings among them, as `rule-plugin-install` sets it. Until the setup Case, those settings name another project: `guppi.toml` holds the languages and the commands of the keys `test` and `style` of the repository of GUPPI, `CLAUDE.md` holds a blank description of the project, the read rules of [[rule-permissions]] name the folder of the saved transcripts of the repository of GUPPI under `~/.claude/projects`, and the code takes the main branch to be `main` (as set in case 693).
+Prevents a new install of GUPPI from running on the settings of another machine or project: at the first `/hi` after `/guppi:install`, while `guppi.toml` does not mark the setup as done, one setup Case that the person ratifies sets them, before the first sprint opens. The plugin `guppi` installs GUPPI by its skill `/guppi:install`, which copies the files of the clean version into the project, the settings among them. Until the setup Case, those settings name another project: `guppi.toml` holds the languages and the commands of the keys `test` and `style` of the repository of GUPPI, `CLAUDE.md` holds a blank description of the project, the read rules of [[rule-permissions]] name the folder of the saved transcripts of the repository of GUPPI under `~/.claude/projects`, and the code takes the main branch to be `main` (as set in case 693).
 
 A new project starts in this order. The install is no Case; the setup and the opening of the first sprint are Cases.
 
-1. The person installs the plugin `guppi`, which the catalogue `guppi-marketplace` lists, as [[rule-plugin-install]] sets it.
+1. The person installs the plugin `guppi`, which the catalogue `guppi-marketplace` lists.
 2. The person types `/guppi:install` in the project. It copies the files of GUPPI and builds its Python environment. It decides nothing, so it is no Case, and the person ratifies nothing at it.
 3. The person reopens Claude Code in the project and types `/hi`, which opens the session as [[rule-skill-hi]] sets it: a Case lives only inside a session that `/hi` opened.
 4. While `guppi.toml` does not mark the setup as done, `/hi` puts the setup Case first, before the opening of a sprint and before the Frontier. The person ratifies or corrects it.
-5. Once the setup Case is ratified, `/hi` starts `/sprint-open` in the same session, since the clean version holds the sprint `guppi` closed ([[rule-clean-branch]]). The opening Case of [[rule-skill-sprint-open]] opens the first sprint of the project, and the Frontier comes after it.
+5. Once the setup Case is ratified, `/hi` starts `/sprint-open` in the same session, since the clean version holds the sprint `guppi` closed. The opening Case of [[rule-skill-sprint-open]] opens the first sprint of the project, and the Frontier comes after it.
 6. The Work Mode of that session writes the settings of the setup Case and runs the tasks of the opening Case.
 
 The ledger hook of [[rule-ledger-write]] refuses each decision line but a `defer` while no sprint is open. While `guppi.toml` does not mark the setup as done, it writes the decision lines of the setup Case all the same, so that the setup Case is ratified before the opening Case.
@@ -49,3 +49,4 @@ The setup step does not set the category set: every project takes the developmen
 - 2026-10-15 updated: the Purpose names the repository of GUPPI where it meant it by this repository · [[decision-case-824]]
 - 2026-10-15 updated: the Purpose tells the start of a new project in order: /guppi:install is no Case, the setup Case comes first at the first /hi, and /sprint-open follows it in the same session; the install Case is named the setup Case · [[decision-case-825]]
 - 2026-10-17 updated: the sprint lines of the Purpose move into the brackets of their pointers · [[decision-case-875]]
+- 2026-10-26 updated: the Purpose names no rule page that stays in the repository of GUPPI · [[decision-case-881.3]]

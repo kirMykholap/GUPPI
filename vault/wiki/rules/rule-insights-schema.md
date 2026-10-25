@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents an Insight page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/insights/schema.yaml`, the file `guppi lint` reads for every page of `wiki/insights/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the former `schema.md` as data — lint refuses a listed name without a description and a description without a name (case 304.8).
+Prevents an Insight page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/insights/schema.yaml`, the file `guppi lint` reads for every page of `wiki/insights/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the schema as data — lint refuses a listed name without a description and a description without a name (case 304.8).
 
 ## Render
 
@@ -129,3 +129,4 @@ examples:
 - 2026-10-07 updated: a Case names a decision of its own session in addressed_by by the bare slug; generate adds the brackets (case 712) · [[decision-case-712]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the slug of rule-sprint-close stands outside the brackets of its pointers · [[decision-case-809]]
+- 2026-10-26 updated: the Purpose names no former file · [[decision-case-881.22]]

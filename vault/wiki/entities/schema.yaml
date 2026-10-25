@@ -57,7 +57,7 @@ fields:
   code_ref: |
     optional; list of paths. Code, commits or PRs. Allowed on both kinds: a Leaf points at files, a MOC may point at the directory or module it corresponds to. The field is the link; no body section repeats it (case 166.1).
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N`, and lint also accepts the date form `raw/YYYY-MM-DD/ledger.md#case-N` (the form of the pages of the repository of GUPPI born before 2026-09-13, case 103.6). The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
   sprint: |
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
   core: |

@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents a Rule page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/rules/schema.yaml`, the file `guppi lint` reads for every page of `wiki/rules/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the former `schema.md` as data — lint refuses a listed name without a description and a description without a name (case 304.8). `applies_to` is the edge Rule → Entity, written in the Case; the Entity's `rules` is its backlink, computed (case 305).
+Prevents a Rule page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/rules/schema.yaml`, the file `guppi lint` reads for every page of `wiki/rules/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the schema as data — lint refuses a listed name without a description and a description without a name (case 304.8). `applies_to` is the edge Rule → Entity, written in the Case; the Entity's `rules` is its backlink, computed (case 305).
 
 ## Render
 
@@ -89,7 +89,7 @@ fields:
   applies_to: |
     optional; list of quoted wikilinks `"[[entity-slug]]"`. The Entities this rule is the guard of (case 240.2): a rule that guards a thing names it here — `rule-sprint` → `entity-sprint`, `rule-harness` → `entity-guppi`; a rule of the process — a phase MOC and its steps — carries none; written in the Case, never computed. The Entity's `rules` is the backlink, written by the cascade of `generate` (case 305). The field is the link; no body section repeats it.
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N`, and lint also accepts the date form `raw/YYYY-MM-DD/ledger.md#case-N` (the form of the pages of the repository of GUPPI born before 2026-09-13, case 103.6). On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
   sprint: |
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
   core: |
@@ -261,3 +261,4 @@ examples:
 - 2026-10-16 updated: a page with core: true comes into a new project with its passed Estimates · [[decision-case-856.3]]
 - 2026-10-16 status: built → draft · cascade
 - 2026-10-17 status: draft → built · cascade
+- 2026-10-26 updated: the old forms said by what lint accepts, their dates in brackets · [[decision-case-881.19]]

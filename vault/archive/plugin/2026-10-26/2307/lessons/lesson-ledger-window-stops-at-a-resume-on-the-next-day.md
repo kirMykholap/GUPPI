@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: session_event_logs in guppi/ledger.py walks the event logs back from today and stops at the newest date that holds a session-start of the stamp, which is the resume of 2026-10-15, so the startup and the hi of 2026-10-14 are never read and hi_moment finds no hi
-status: new
+status: archived
+insight: "[[insight-ledger-window-ends-at-any-start-text-of-the-stamp]]"
 origin: raw/2026-10-15/0553/ledger.md#L61
 sprint: plugin
 created: 2026-10-15
@@ -21,3 +22,6 @@ session_event_logs in guppi/ledger.py walks the event logs back from today and s
 
 - 2026-10-15 created · raw/2026-10-15/0553/ledger.md#L61
 - 2026-10-15 deferred · [[decision-case-836]]
+- 2026-10-26 updated: clustered under insight-ledger-window-ends-at-any-start-text-of-the-stamp (synthesis) · raw/2026-10-17/2307/ledger.md#L26
+- 2026-10-26 archived · insight actioned
+- 2026-10-26 archived · cleanup

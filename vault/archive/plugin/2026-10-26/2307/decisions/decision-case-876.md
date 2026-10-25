@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "876"
-status: current
+status: archived
 defer: ["[[rule-ledger-write]]", "[[rule-orchestration]]"]
 supersedes: ["[[decision-case-836]]", "[[decision-case-863]]"]
+superseded_by: ["[[decision-case-884]]"]
 origin: raw/2026-10-17/0027/ledger.md#case-876
 sprint: plugin
 created: 2026-10-17
@@ -31,3 +32,6 @@ Each round and each rebuild resumes the same case-guppi by SendMessage with its 
 ## History
 
 - 2026-10-17 created · raw/2026-10-17/0027/ledger.md#case-876
+- 2026-10-26 superseded by decision-case-884 · [[decision-case-884]]
+- 2026-10-26 archived · superseded
+- 2026-10-26 archived · cleanup

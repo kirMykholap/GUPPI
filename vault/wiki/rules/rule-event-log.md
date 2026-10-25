@@ -42,7 +42,7 @@ one more decision to maintain. The `hi` line is written by `guppi event prompt` 
 
 The hook never fails the session on an error: any error goes to stderr and the exit code is 0; its one exit 2 is the refusal of a `/hi` outside plan mode (case 445.6).
 
-**A limit lifted.** With the stamp on the `hi` line a `hi` of one session never belongs to another, so two sessions open at once are told apart (until case 111 the `hi` line carried `--------` and the ledger hook looked for a `hi` after the last `session-start` of its own session, and on 2026-09-14 a session restored by `resume` in the same second took the `hi` of the session that typed it; case 111.1).
+**Two sessions at once.** With the stamp on the `hi` line a `hi` of one session never belongs to another, so two sessions open at once are told apart (until case 111 the `hi` line carried `--------` and the ledger hook looked for a `hi` after the last `session-start` of its own session, and on 2026-09-14 a session restored by `resume` in the same second took the `hi` of the session that typed it; case 111.1).
 
 ## History
 
@@ -63,3 +63,4 @@ The hook never fails the session on an error: any error goes to stderr and the e
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-26 updated: the label of the stamp paragraph says what holds, not what was lifted · [[decision-case-881.18]]

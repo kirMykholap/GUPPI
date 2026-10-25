@@ -1571,6 +1571,8 @@ entries:
   change: the put-off of case 875 taken up and put off again with the rest of the Criterion sentences
     named
   applied: '21:10:11'
+  superseded_by:
+  - '882.3'
 - line: 52
   text: decision[case 880.21][defer][rule-clean-branch]{ref:rule-clean-branch}
   case: '880.21'
@@ -1598,6 +1600,8 @@ entries:
       1805'
   exists: true
   applied: '21:10:11'
+  superseded_by:
+  - '882.3'
 - line: 53
   text: 'estimate[estimate-case-build-reads-the-code-it-states][passed] 2026-10-17, Work readings of session
     1805: the findings of ask-guppi at the /pre-spec of session 1805, whose Cases 878, 879 and 880 case-guppi
@@ -5414,6 +5418,8 @@ decisions:
   - decision-case-878.10
   - decision-case-878.22
   applied: '21:10:11'
+  superseded_by:
+  - decision-case-882.3
 - case: '878'
   decision: decision-case-878
   origin: raw/2026-10-17/1805/ledger.md#case-878

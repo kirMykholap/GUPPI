@@ -65,7 +65,7 @@ fields:
   applies_to: |
     optional; list of quoted wikilinks `"[[entity-slug]]"`. The Entities this rule is the guard of (case 240.2): a rule that guards a thing names it here — `rule-sprint` → `entity-sprint`, `rule-harness` → `entity-guppi`; a rule of the process — a phase MOC and its steps — carries none; written in the Case, never computed. The Entity's `rules` is the backlink, written by the cascade of `generate` (case 305). The field is the link; no body section repeats it.
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N`, and lint also accepts the date form `raw/YYYY-MM-DD/ledger.md#case-N` (the form of the pages of the repository of GUPPI born before 2026-09-13, case 103.6). On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
   sprint: |
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
   core: |

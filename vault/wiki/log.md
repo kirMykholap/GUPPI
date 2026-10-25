@@ -11438,3 +11438,116 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-17 decisions/decision-case-878.8 archived · cleanup
 - 2026-10-17 decisions/decision-case-878.9 archived · cleanup
 - 2026-10-17 decisions/decision-case-878 archived · cleanup
+- 2026-10-26 decisions/decision-case-881 created · raw/2026-10-17/2307/ledger.md#case-881 · generate
+- 2026-10-26 decisions/decision-case-881.1 created · raw/2026-10-17/2307/ledger.md#case-881.1 · generate
+- 2026-10-26 rules/rule-git-context updated: the history of the git commands and the merge by /merge-main stand in brackets with their case · [[decision-case-881.1]] · generate
+- 2026-10-26 decisions/decision-case-881.2 created · raw/2026-10-17/2307/ledger.md#case-881.2 · generate
+- 2026-10-26 rules/rule-harness updated: the skill of the plugin stands in the bracket as a rule of the repository of GUPPI, and the count of the rules leaves · [[decision-case-881.2]] · generate
+- 2026-10-26 decisions/decision-case-881.3 created · raw/2026-10-17/2307/ledger.md#case-881.3 · generate
+- 2026-10-26 rules/rule-morph updated: the Purpose names no rule page that stays in the repository of GUPPI · [[decision-case-881.3]] · generate
+- 2026-10-26 decisions/decision-case-881.4 created · raw/2026-10-17/2307/ledger.md#case-881.4 · generate
+- 2026-10-26 rules/rule-one-judgment-one-implementation updated: the Insight it actions stands in the bracket of its case · [[decision-case-881.4]] · generate
+- 2026-10-26 decisions/decision-case-881.5 created · raw/2026-10-17/2307/ledger.md#case-881.5 · generate
+- 2026-10-26 rules/rule-page-generation updated: the merge by /merge-main stands in the bracket as a fact of the repository of GUPPI · [[decision-case-881.5]] · generate
+- 2026-10-26 decisions/decision-case-881.6 created · raw/2026-10-17/2307/ledger.md#case-881.6 · generate
+- 2026-10-26 rules/rule-permissions updated: the folder of the saved transcripts said by its role, the folder of the repository of GUPPI in brackets · [[decision-case-881.6]] · generate
+- 2026-10-26 decisions/decision-case-881.7 created · raw/2026-10-17/2307/ledger.md#case-881.7 · generate
+- 2026-10-26 rules/rule-ratification updated: a Case id with no sprint part said as the form of the sprints PLAIN_SPRINTS lists · [[decision-case-881.7]] · generate
+- 2026-10-26 decisions/decision-case-881.8 created · raw/2026-10-17/2307/ledger.md#case-881.8 · generate
+- 2026-10-26 rules/rule-decisions-schema updated: the old forms said by what lint accepts, their dates in brackets · [[decision-case-881.8]] · generate
+- 2026-10-26 decisions/decision-case-881.9 created · raw/2026-10-17/2307/ledger.md#case-881.9 · generate
+- 2026-10-26 rules/rule-lessons-schema updated: the old forms said by what lint accepts, their dates in brackets · [[decision-case-881.9]] · generate
+- 2026-10-26 decisions/decision-case-881.10 created · raw/2026-10-17/2307/ledger.md#case-881.10 · generate
+- 2026-10-26 rules/rule-search-leaves-out-decisions updated: the Purpose gives the reasons of the rule, its trials in brackets, and names no lesson · [[decision-case-881.10]] · generate
+- 2026-10-26 decisions/decision-case-881.11 created · raw/2026-10-17/2307/ledger.md#case-881.11 · generate
+- 2026-10-26 estimates/estimate-generate-writes-rules-from-applies-to updated: the method reads the rules of each live Entity, and names no page of the repository of GUPPI · [[decision-case-881.11]] · generate
+- 2026-10-26 decisions/decision-case-881.12 created · raw/2026-10-17/2307/ledger.md#case-881.12 · generate
+- 2026-10-26 rules/rule-skill-hi updated: the second plan file stands in the bracket of its case · [[decision-case-881.12]] · generate
+- 2026-10-26 decisions/decision-case-881.13 created · raw/2026-10-17/2307/ledger.md#case-881.13 · generate
+- 2026-10-26 rules/rule-retro-onward updated: the stopped run stands in the bracket of its case · [[decision-case-881.13]] · generate
+- 2026-10-26 decisions/decision-case-881.14 created · raw/2026-10-17/2307/ledger.md#case-881.14 · generate
+- 2026-10-26 rules/rule-spec-reconcile updated: the old comparison stands in the bracket of its cases · [[decision-case-881.14]] · generate
+- 2026-10-26 decisions/decision-case-881.15 created · raw/2026-10-17/2307/ledger.md#case-881.15 · generate
+- 2026-10-26 rules/rule-skill-grill-me updated: the past of the skill stands in the bracket of its case · [[decision-case-881.15]] · generate
+- 2026-10-26 decisions/decision-case-881.16 created · raw/2026-10-17/2307/ledger.md#case-881.16 · generate
+- 2026-10-26 rules/rule-ledger-write updated: the past of the hook stands in the bracket of its case · [[decision-case-881.16]] · generate
+- 2026-10-26 decisions/decision-case-881.17 created · raw/2026-10-17/2307/ledger.md#case-881.17 · generate
+- 2026-10-26 rules/rule-page-read updated: the reason for a hook given without the old doubt, the weighing in the bracket of its case · [[decision-case-881.17]] · generate
+- 2026-10-26 decisions/decision-case-881.18 created · raw/2026-10-17/2307/ledger.md#case-881.18 · generate
+- 2026-10-26 rules/rule-event-log updated: the label of the stamp paragraph says what holds, not what was lifted · [[decision-case-881.18]] · generate
+- 2026-10-26 decisions/decision-case-881.19 created · raw/2026-10-17/2307/ledger.md#case-881.19 · generate
+- 2026-10-26 rules/rule-rules-schema updated: the old forms said by what lint accepts, their dates in brackets · [[decision-case-881.19]] · generate
+- 2026-10-26 decisions/decision-case-881.20 created · raw/2026-10-17/2307/ledger.md#case-881.20 · generate
+- 2026-10-26 rules/rule-estimates-schema updated: the old forms said by what lint accepts, their dates in brackets · [[decision-case-881.20]] · generate
+- 2026-10-26 decisions/decision-case-881.21 created · raw/2026-10-17/2307/ledger.md#case-881.21 · generate
+- 2026-10-26 rules/rule-entities-schema updated: the old forms said by what lint accepts, their dates in brackets · [[decision-case-881.21]] · generate
+- 2026-10-26 decisions/decision-case-881.22 created · raw/2026-10-17/2307/ledger.md#case-881.22 · generate
+- 2026-10-26 rules/rule-insights-schema updated: the Purpose names no former file · [[decision-case-881.22]] · generate
+- 2026-10-26 decisions/decision-case-881.23 created · raw/2026-10-17/2307/ledger.md#case-881.23 · generate
+- 2026-10-26 rules/rule-page-schemas updated: the Purpose names no former file · [[decision-case-881.23]] · generate
+- 2026-10-26 decisions/decision-case-881.24 created · raw/2026-10-17/2307/ledger.md#case-881.24 · generate
+- 2026-10-26 entities/entity-glossary updated: the retired terms, the merge by /merge-main and the date of the old origin form stand in brackets with their case · [[decision-case-881.24]] · generate
+- 2026-10-26 decisions/decision-case-881.25 created · raw/2026-10-17/2307/ledger.md#case-881.25 · generate
+- 2026-10-26 estimates/estimate-spec-capture-appends updated: the part by hand of the method names its moment by its kind · [[decision-case-881.25]] · generate
+- 2026-10-26 lessons/lesson-session-window-cut-by-a-resume-on-a-later-date created · raw/2026-10-17/2307/ledger.md#L26 · generate
+- 2026-10-26 decisions/decision-case-882 created · raw/2026-10-17/2307/ledger.md#case-882 · generate
+- 2026-10-26 decisions/decision-case-882.1 created · raw/2026-10-17/2307/ledger.md#case-882.1 · generate
+- 2026-10-26 estimates/estimate-glossary-checks-the-file updated: the Criterion replaced whole — the check runs as guppi check runs it, not as a target of the Makefile; the method reads at Retro · [[decision-case-882.1]] · generate
+- 2026-10-26 decisions/decision-case-882.2 created · raw/2026-10-17/2307/ledger.md#case-882.2 · generate
+- 2026-10-26 estimates/estimate-orchestration-asks-in-the-grill-me-shape updated: the Criterion replaced whole — the question stands in the language of the chat, not in Russian; the method reads at the Retro of a session that changes the Criterion too · [[decision-case-882.2]] · generate
+- 2026-10-26 decisions/decision-case-882.3 created · raw/2026-10-17/2307/ledger.md#case-882.3 · generate
+- 2026-10-26 decisions/decision-case-880.21 superseded by decision-case-882.3 · [[decision-case-882.3]] · generate
+- 2026-10-26 rules/rule-clean-branch defer by decision-case-880.21 superseded · [[decision-case-882.3]] · generate
+- 2026-10-26 rules/rule-clean-branch updated: the put-off of case 880.21 taken up and put off again, two Criteria of its list rewritten by case 882 · [[decision-case-882.3]] · generate
+- 2026-10-26 rules/rule-clean-branch deferred · [[decision-case-882.3]] · generate
+- 2026-10-26 decisions/decision-case-883 created · raw/2026-10-17/2307/ledger.md#case-883 · generate
+- 2026-10-26 rules/rule-page-generation updated: a Case that a later Case retired carries out none of its supersedes · [[decision-case-883]] · generate
+- 2026-10-26 estimates/estimate-generate-writes-the-decision-page updated: the Criterion replaced whole — the supersedes of a retired Case changes no other page · [[decision-case-883]] · generate
+- 2026-10-26 rules/rule-decisions-schema updated: a Decision page does not go superseded by a later Case that another Case retired before its entries applied · [[decision-case-883]] · generate
+- 2026-10-26 entities/entity-glossary updated: a Decision page does not go superseded by a later Case that another Case retired before its entries applied · [[decision-case-883]] · generate
+- 2026-10-26 decisions/decision-case-884 created · raw/2026-10-17/2307/ledger.md#case-884 · generate
+- 2026-10-26 decisions/decision-case-876 superseded by decision-case-884 · [[decision-case-884]] · generate
+- 2026-10-26 rules/rule-ledger-write defer by decision-case-876 superseded · [[decision-case-884]] · generate
+- 2026-10-26 rules/rule-orchestration defer by decision-case-876 superseded · [[decision-case-884]] · generate
+- 2026-10-26 rules/rule-ledger-write updated: the window of a session reaches back past a resume or a compaction on a later date to its startup or fork start line, read by its form, so a tool line that names the start ends no walk · [[decision-case-884]] · generate
+- 2026-10-26 estimates/estimate-ledger-write-keeps-the-window-past-a-later-resume created · [[decision-case-884]] · generate
+- 2026-10-26 estimates/estimate-ledger-write-keeps-the-window-past-a-later-resume status: pending → passed · raw/2026-10-17/2307/ledger.md#L53 · generate
+- 2026-10-26 rules/rule-ledger-write estimate estimate-ledger-write-keeps-the-window-past-a-later-resume added · [[decision-case-884]] · generate
+- 2026-10-26 decisions/decision-case-885 created · raw/2026-10-17/2307/ledger.md#case-885 · generate
+- 2026-10-26 estimates/estimate-spec-write-writes-a-defer deferred · [[decision-case-885]] · generate
+- 2026-10-26 estimates/estimate-close-commits deferred · [[decision-case-885]] · generate
+- 2026-10-26 estimates/estimate-clean-branch-writes-the-session-files deferred · [[decision-case-885]] · generate
+- 2026-10-26 lessons/lesson-session-window-cut-by-a-tool-line-that-names-the-start created · raw/2026-10-17/2307/ledger.md#L40 · generate
+- 2026-10-26 rules/rule-orchestration updated: the put-off of decision-case-876 carried over unchanged by case 884, which takes up the other put-off of that Decision · [[decision-case-884]] · generate
+- 2026-10-26 rules/rule-orchestration deferred · [[decision-case-884]] · generate
+- 2026-10-26 decisions/decision-case-886 created · raw/2026-10-17/2307/ledger.md#case-886 · generate
+- 2026-10-26 estimates/estimate-sprint-close-moves-old-event-logs updated: the Criterion replaced whole — the close keeps the event logs from the start date of the open session, found by the window of the hooks · [[decision-case-886]] · generate
+- 2026-10-26 rules/rule-raw-archive updated: the close of a sprint keeps the event logs from the start date of the open session · [[decision-case-886]] · generate
+- 2026-10-26 decisions/decision-case-887 created · raw/2026-10-17/2307/ledger.md#case-887 · generate
+- 2026-10-26 rules/rule-case-check deferred · [[decision-case-887]] · generate
+- 2026-10-26 rules/rule-orchestration deferred · [[decision-case-887]] · generate
+- 2026-10-26 lessons/lesson-casecheck-reads-a-sibling-from-the-plan-as-last-ratified created · raw/2026-10-17/2307/ledger.md#L48 · generate
+- 2026-10-26 decisions/decision-case-881.26 created · raw/2026-10-17/2307/ledger.md#case-881.26 · generate
+- 2026-10-26 rules/rule-vault-layout updated: the merge by /merge-main stands in the bracket as a fact of the repository of GUPPI · [[decision-case-881.26]] · generate
+- 2026-10-26 estimates/estimate-glossary-checks-the-file status: pending → passed · raw/2026-10-17/2307/ledger.md#L50 · generate
+- 2026-10-26 estimates/estimate-orchestration-asks-in-the-grill-me-shape status: pending → passed · raw/2026-10-17/2307/ledger.md#L51 · generate
+- 2026-10-26 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-10-17/2307/ledger.md#L52 · generate
+- 2026-10-26 estimates/estimate-sprint-close-moves-old-event-logs status: pending → passed · raw/2026-10-17/2307/ledger.md#L54 · generate
+- 2026-10-26 lessons/lesson-prespec-loop-stalls-when-one-case-waits-after-a-partial-ratification created · raw/2026-10-17/2307/ledger.md#L55 · generate
+- 2026-10-26 insights/insight-ledger-window-ends-at-any-start-text-of-the-stamp created · raw/2026-10-17/2307/ledger.md#L26 · generate
+- 2026-10-26 insights/insight-ledger-window-ends-at-any-start-text-of-the-stamp updated: born actioned, its cause closed by case 884 (synthesis) · raw/2026-10-17/2307/ledger.md#L26 · generate
+- 2026-10-26 lessons/lesson-ledger-window-stops-at-a-resume-on-the-next-day updated: clustered under insight-ledger-window-ends-at-any-start-text-of-the-stamp (synthesis) · raw/2026-10-17/2307/ledger.md#L26 · generate
+- 2026-10-26 lessons/lesson-session-window-cut-by-a-resume-on-a-later-date updated: clustered under insight-ledger-window-ends-at-any-start-text-of-the-stamp (synthesis) · raw/2026-10-17/2307/ledger.md#L26 · generate
+- 2026-10-26 insights/insight-ledger-window-ends-at-any-start-text-of-the-stamp updated: child lesson-session-window-cut-by-a-tool-line-that-names-the-start added (synthesis) · raw/2026-10-17/2307/ledger.md#L40 · generate
+- 2026-10-26 lessons/lesson-session-window-cut-by-a-tool-line-that-names-the-start updated: clustered under insight-ledger-window-ends-at-any-start-text-of-the-stamp (synthesis) · raw/2026-10-17/2307/ledger.md#L40 · generate
+- 2026-10-26 decisions/decision-case-876 archived · superseded · generate
+- 2026-10-26 decisions/decision-case-880.21 archived · superseded · generate
+- 2026-10-26 lessons/lesson-ledger-window-stops-at-a-resume-on-the-next-day archived · insight actioned · generate
+- 2026-10-26 lessons/lesson-session-window-cut-by-a-resume-on-a-later-date archived · insight actioned · generate
+- 2026-10-26 lessons/lesson-session-window-cut-by-a-tool-line-that-names-the-start archived · insight actioned · generate
+- 2026-10-26 lessons/lesson-ledger-window-stops-at-a-resume-on-the-next-day archived · cleanup
+- 2026-10-26 lessons/lesson-session-window-cut-by-a-resume-on-a-later-date archived · cleanup
+- 2026-10-26 lessons/lesson-session-window-cut-by-a-tool-line-that-names-the-start archived · cleanup
+- 2026-10-26 decisions/decision-case-876 archived · cleanup
+- 2026-10-26 decisions/decision-case-880.21 archived · cleanup
+- 2026-10-26 decisions/decision-case-880 child decision-case-880.21 archived · cleanup

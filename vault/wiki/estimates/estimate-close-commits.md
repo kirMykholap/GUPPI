@@ -6,6 +6,7 @@ target: "[[rule-close]]"
 purpose: The librarian's run ends in one separate commit of vault and each file the render writes, with no rendered file left modified or untracked, and a report of twenty lines or fewer
 method: "uv run --project .guppi pytest .guppi/tests/test_render.py -k paths; by hand, after the librarian's run of the next session, whose .claude/agents/librarian-guppi.md holds the new Render of rule-close: git log shows its commit and the paths it touched, git status shows no file the render wrote as modified or untracked, and the report is read in the transcript"
 checked: 2026-09-29
+deferred_by: ["[[decision-case-885]]"]
 origin: raw/2026-09-10/ledger.md#case-36.1
 sprint: migration
 created: 2026-09-10
@@ -41,3 +42,4 @@ Then:
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1432/ledger.md#L1
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-16 updated: the Criterion replaced whole — the commit takes vault and each file that guppi render --paths prints · [[decision-case-857]]
+- 2026-10-26 deferred · [[decision-case-885]]

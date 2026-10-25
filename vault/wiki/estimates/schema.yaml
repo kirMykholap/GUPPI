@@ -48,7 +48,7 @@ fields:
   deferred_by: |
     optional; list. The Decision pages whose `defer` puts the reading of this Estimate off into `backlog.md`; written by `generate` on a defer and cleared by it on a later `supersedes`, under the condition that `rule-case-protocol` sets, never by hand (case 781).
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N`, and lint also accepts the date form `raw/YYYY-MM-DD/ledger.md#case-N` (the form of the pages of the repository of GUPPI born before 2026-09-13, case 103.6). The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
   sprint: |
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
   core: |

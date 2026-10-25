@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents an Estimate page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/estimates/schema.yaml`, the file `guppi lint` reads for every page of `wiki/estimates/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the former `schema.md` as data — lint refuses a listed name without a description and a description without a name (case 304.8).
+Prevents an Estimate page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/estimates/schema.yaml`, the file `guppi lint` reads for every page of `wiki/estimates/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the schema as data — lint refuses a listed name without a description and a description without a name (case 304.8).
 
 ## Render
 
@@ -72,7 +72,7 @@ fields:
   deferred_by: |
     optional; list. The Decision pages whose `defer` puts the reading of this Estimate off into `backlog.md`; written by `generate` on a defer and cleared by it on a later `supersedes`, under the condition that `rule-case-protocol` sets, never by hand (case 781).
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13 (case 103.6). The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N`, and lint also accepts the date form `raw/YYYY-MM-DD/ledger.md#case-N` (the form of the pages of the repository of GUPPI born before 2026-09-13, case 103.6). The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there (case 804).
   sprint: |
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
   core: |
@@ -186,3 +186,4 @@ examples:
 - 2026-10-17 deferred · [[decision-case-873]]
 - 2026-10-17 defer by decision-case-873 superseded · [[decision-case-877.1]]
 - 2026-10-17 updated: the Estimate of a MOC with no parent may name guppi test alone; the defer of case 873 retired · [[decision-case-877.1]]
+- 2026-10-26 updated: the old forms said by what lint accepts, their dates in brackets · [[decision-case-881.20]]

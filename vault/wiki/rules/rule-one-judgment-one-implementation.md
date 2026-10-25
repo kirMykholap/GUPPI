@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents one judgment of the pipeline from living in two implementations that drift apart under a green suite. The rule cannot be checked in substance, so its guard is the one `rule-agent-writing` has: the text stands in `CLAUDE.md`, which every session and every subagent reads, `render --check` keeps it identical to this page, and the governed-files hook refuses a hand edit. It actions `insight-harness-one-rule-implemented-twice-drifts` (case 360).
+Prevents one judgment of the pipeline from living in two implementations that drift apart under a green suite. The rule cannot be checked in substance, so its guard is the one `rule-agent-writing` has: the text stands in `CLAUDE.md`, which every session and every subagent reads, `render --check` keeps it identical to this page, and the governed-files hook refuses a hand edit (it actions `insight-harness-one-rule-implemented-twice-drifts`, case 360).
 
 ## Render
 
@@ -37,3 +37,4 @@ Where code judges the same text in two places — a check and a writer, a ticker
 - 2026-09-29 status: built → draft · cascade
 - 2026-09-29 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-10-26 updated: the Insight it actions stands in the bracket of its case · [[decision-case-881.4]]

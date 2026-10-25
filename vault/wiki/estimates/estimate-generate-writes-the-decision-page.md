@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-page-generation]]"
 purpose: One Decision page per Case, written before its entries, with its lists, its body and its defers
 method: uv run --project .guppi pytest .guppi/tests/test_generate.py, the tests of the Decision page
-checked: 2026-10-11
+checked: 2026-10-26
 origin: raw/2026-09-16/1955/ledger.md#case-201.2
 sprint: migration
 created: 2026-09-16
@@ -32,10 +32,11 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 **－** A page whose `superseded_by` already names the new page gets no second History line and no second line in `vault/wiki/log.md`, whether an earlier run put the name there or an earlier step of the same record did, such as a sub-case page reached through the `children` of its parent and named in `supersedes` too.
 **－** A page in `children` that stands `archived` or `superseded` is left as it is.
 **－** The page of a sub-case carries no `## Problem`, and a `case_text` with no `recommend` gives no `## Recommend`.
+**－** A record that carries `superseded_by`, a Case that a later Case retired, still gets its page with its `supersedes`, but that `supersedes` changes no other page: no earlier page or page in its `children` changes `status` or takes the record into `superseded_by`, no target loses a `deferred_by`, and no History line and no line of `vault/wiki/log.md` names the retired page for such a change.
 
 ## Result
 
-2026-10-11, Retro of session 2350, uv run pytest tests/test_generate.py: 115 passed; the new test test_a_sub_case_superseded_with_its_parent_and_named_too_takes_one_line fails without the change of guppi/generate.py and passes with it — a sub-case page superseded through its parent and named in supersedes too holds one superseded by History line and log.md one line for it
+2026-10-26, Retro: `uv run --project .guppi pytest .guppi/tests/test_generate.py` 141 passed, the two new tests of case 883 among them, both failing on the code before the change
 
 ## History
 
@@ -62,3 +63,5 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-26 updated: the Criterion replaced whole — the supersedes of a retired Case changes no other page · [[decision-case-883]]
+- 2026-10-26 status: pending → passed · raw/2026-10-17/2307/ledger.md#L52

@@ -2,7 +2,7 @@
 type: decision
 case: "880"
 status: current
-children: ["[[decision-case-880.1]]", "[[decision-case-880.2]]", "[[decision-case-880.3]]", "[[decision-case-880.4]]", "[[decision-case-880.5]]", "[[decision-case-880.6]]", "[[decision-case-880.7]]", "[[decision-case-880.8]]", "[[decision-case-880.9]]", "[[decision-case-880.10]]", "[[decision-case-880.11]]", "[[decision-case-880.12]]", "[[decision-case-880.13]]", "[[decision-case-880.14]]", "[[decision-case-880.15]]", "[[decision-case-880.16]]", "[[decision-case-880.17]]", "[[decision-case-880.18]]", "[[decision-case-880.19]]", "[[decision-case-880.20]]", "[[decision-case-880.21]]"]
+children: ["[[decision-case-880.1]]", "[[decision-case-880.2]]", "[[decision-case-880.3]]", "[[decision-case-880.4]]", "[[decision-case-880.5]]", "[[decision-case-880.6]]", "[[decision-case-880.7]]", "[[decision-case-880.8]]", "[[decision-case-880.9]]", "[[decision-case-880.10]]", "[[decision-case-880.11]]", "[[decision-case-880.12]]", "[[decision-case-880.13]]", "[[decision-case-880.14]]", "[[decision-case-880.15]]", "[[decision-case-880.16]]", "[[decision-case-880.17]]", "[[decision-case-880.18]]", "[[decision-case-880.19]]", "[[decision-case-880.20]]"]
 origin: raw/2026-10-17/1805/ledger.md#case-880
 sprint: plugin
 created: 2026-10-17
@@ -46,3 +46,4 @@ The clean version of GUPPI ships Criteria of `passed` Estimates with sentences t
 ## History
 
 - 2026-10-17 created · raw/2026-10-17/1805/ledger.md#case-880
+- 2026-10-26 child decision-case-880.21 archived · cleanup

@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents a Lesson page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/lessons/schema.yaml`, the file `guppi lint` reads for every page of `wiki/lessons/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the former `schema.md` as data — lint refuses a listed name without a description and a description without a name (case 304.8).
+Prevents a Lesson page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/lessons/schema.yaml`, the file `guppi lint` reads for every page of `wiki/lessons/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the schema as data — lint refuses a listed name without a description and a description without a name (case 304.8).
 
 ## Render
 
@@ -62,7 +62,7 @@ fields:
   insight: |
     required on `clustered`; quoted wikilink `"[[slug]]"`. The Insight this belongs to, once clustered. Written by the script. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). The field is the link; no body section repeats it (case 166.1).
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#L<n>` — the date form, `raw/YYYY-MM-DD/ledger.md#L<n>`, on pages born before 2026-09-13 (case 103.6). The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one.
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#L<n>`, and lint also accepts the date form `raw/YYYY-MM-DD/ledger.md#L<n>` (the form of the pages of the repository of GUPPI born before 2026-09-13, case 103.6). The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one.
   sprint: |
     required; the sprint id.
   created: |
@@ -141,3 +141,4 @@ examples:
 - 2026-10-04 updated: a new error Lesson is archived at the close of its sprint (case 627.2) · [[decision-case-627.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the slug of rule-sprint-close stands outside the brackets of its pointers · [[decision-case-809]]
+- 2026-10-26 updated: the old forms said by what lint accepts, their dates in brackets · [[decision-case-881.9]]

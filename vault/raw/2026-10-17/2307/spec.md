@@ -96,7 +96,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-git-context`
+- [x] update `rule-git-context`
 ```
 
 ### Case 881.2 — The harness names the plugin skill only in this repository
@@ -124,7 +124,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-harness`
+- [x] update `rule-harness`
 ```
 
 ### Case 881.3 — The setup rule names no page that stays in this repository
@@ -159,7 +159,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-morph`
+- [x] update `rule-morph`
 ```
 
 ### Case 881.4 — One judgment names its Insight in a bracket
@@ -185,7 +185,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-one-judgment-one-implementation`
+- [x] update `rule-one-judgment-one-implementation`
 ```
 
 ### Case 881.5 — Page generation names the merge skill only in this repository
@@ -213,7 +213,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
+- [x] update `rule-page-generation`
 ```
 
 ### Case 881.6 — The permissions name the folder of the transcripts by its role
@@ -246,7 +246,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-permissions`
+- [x] update `rule-permissions`
 ```
 
 ### Case 881.7 — A plain Case id is the form of the listed sprints
@@ -276,8 +276,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ratification`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/ratification.md`
+- [x] update `rule-ratification`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/ratification.md`
 ```
 
 ### Case 881.8 — The schema of decisions says its forms for any project
@@ -312,8 +312,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-decisions-schema`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] update `rule-decisions-schema`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/decisions/schema.yaml`
 ```
 
 ### Case 881.9 — The schema of lessons says its forms for any project
@@ -344,8 +344,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-lessons-schema`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/lessons/schema.yaml`
+- [x] update `rule-lessons-schema`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/lessons/schema.yaml`
 ```
 
 ### Case 881.10 — The rule on Decision pages gives its reasons, not its trials
@@ -373,7 +373,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-search-leaves-out-decisions`
+- [x] update `rule-search-leaves-out-decisions`
 ```
 
 ### Case 881.11 — The method of the rules of an Entity reads every Entity
@@ -401,7 +401,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-writes-rules-from-applies-to`
+- [x] update `estimate-generate-writes-rules-from-applies-to`
 ```
 
 ### Case 881.12 — The skill of a session tells the second plan file in a bracket
@@ -428,7 +428,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
+- [x] update `rule-skill-hi`
 ```
 
 ### Case 881.13 — The onward hook tells the stopped run in a bracket
@@ -454,7 +454,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro-onward`
+- [x] update `rule-retro-onward`
 ```
 
 ### Case 881.14 — The guard of the plan tells its old comparison in a bracket
@@ -481,7 +481,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-reconcile`
+- [x] update `rule-spec-reconcile`
 ```
 
 ### Case 881.15 — The interview skill tells its past in a bracket
@@ -508,7 +508,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-grill-me`
+- [x] update `rule-skill-grill-me`
 ```
 
 ### Case 881.16 — The ledger hook tells its past in a bracket
@@ -538,7 +538,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
+- [x] update `rule-ledger-write`
 ```
 
 ### Case 881.17 — The page-read hook gives its reason without the old doubt
@@ -566,7 +566,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-read`
+- [x] update `rule-page-read`
 ```
 
 ### Case 881.18 — The event log names two sessions at once by what holds
@@ -594,7 +594,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-event-log`
+- [x] update `rule-event-log`
 ```
 
 ### Case 881.19 — The schema of rules says its forms for any project
@@ -625,8 +625,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-rules-schema`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] update `rule-rules-schema`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
 ```
 
 ### Case 881.20 — The schema of Estimates says its forms for any project
@@ -658,8 +658,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-estimates-schema`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] update `rule-estimates-schema`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
 ```
 
 ### Case 881.21 — The schema of entities says its forms for any project
@@ -690,8 +690,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-entities-schema`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/entities/schema.yaml`
+- [x] update `rule-entities-schema`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/entities/schema.yaml`
 ```
 
 ### Case 881.22 — The schema of Insights names no former file
@@ -719,7 +719,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-insights-schema`
+- [x] update `rule-insights-schema`
 ```
 
 ### Case 881.23 — The schemas MOC names no former file
@@ -746,7 +746,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-schemas`
+- [x] update `rule-page-schemas`
 ```
 
 ### Case 881.24 — The glossary tells its retired terms and the merge skill in brackets
@@ -782,8 +782,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-glossary`
-- [ ] `uv run --project .guppi guppi glossary`
+- [x] update `entity-glossary`
+- [x] `uv run --project .guppi guppi glossary`
 ```
 
 ### Case 881.25 — The method of the Spec capture names its moment by its kind
@@ -811,7 +811,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-capture-appends`
+- [x] update `estimate-spec-capture-appends`
 ```
 
 ### Case 881.26 — The vault layout names the merge skill only in this repository
@@ -839,7 +839,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-vault-layout`
+- [x] update `rule-vault-layout`
 ```
 
 ## Case 882 — Two shipped Criteria hold in any project, the rest stays put off
@@ -895,8 +895,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-glossary-checks-the-file`
-- [ ] read `estimate-glossary-checks-the-file`
+- [x] update `estimate-glossary-checks-the-file`
+- [x] read `estimate-glossary-checks-the-file`
 ```
 
 ### Case 882.2 — The main agent asks its own questions in the language of the chat
@@ -935,8 +935,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-asks-in-the-grill-me-shape`
-- [ ] read `estimate-orchestration-asks-in-the-grill-me-shape`
+- [x] update `estimate-orchestration-asks-in-the-grill-me-shape`
+- [x] read `estimate-orchestration-asks-in-the-grill-me-shape`
 ```
 
 ### Case 882.3 — The rest of the rewrite stays put off by name
@@ -964,8 +964,8 @@ defer:
 ```
 
 ```tasks
-- [ ] update `rule-clean-branch`
-- [ ] defer `rule-clean-branch`
+- [x] update `rule-clean-branch`
+- [x] defer `rule-clean-branch`
 ```
 
 ## Case 883 — A retired Case replaces no earlier decision
@@ -1048,16 +1048,16 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] update `estimate-generate-writes-the-decision-page`
-- [ ] update `rule-decisions-schema`
-- [ ] update `entity-glossary`
+- [x] update `rule-page-generation`
+- [x] update `estimate-generate-writes-the-decision-page`
+- [x] update `rule-decisions-schema`
+- [x] update `entity-glossary`
 - [x] `.guppi/guppi/generate.py`: `Vault.decision` walks the record's `supersedes` only when the record carries no `superseded_by`; the module docstring says so in the paragraph on `supersedes` and beside the sentence of case 151.
 - [x] `.guppi/guppi/materialize.py`: the module docstring says that the `{supersedes:case N}` of a Case that a later Case retires makes no decision `superseded` in `generate`.
 - [x] `.guppi/tests/test_generate.py`: a record with `superseded_by` and `supersedes` leaves the earlier page, its `children` and the `deferred_by` of the target its Case names as they stood, with no History line and no line of `log.md` naming it, while its own page lists `supersedes`; and where the retiring record names the same earlier decision, the earlier page and the target name the retiring page alone.
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] `uv run --project .guppi guppi glossary`
-- [ ] read `estimate-generate-writes-the-decision-page`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] `uv run --project .guppi guppi glossary`
+- [x] read `estimate-generate-writes-the-decision-page`
 ```
 
 ## Case 884 — The window of a session reaches back past a later resume
@@ -1138,11 +1138,11 @@ defer:
 ```tasks
 - [x] `.guppi/guppi/ledger.py`: `session_event_logs` stops only at a date that holds a start line of the stamp of the kind `startup` or `fork`, read line by line by its form through one function that `hi_moment` calls too, never by a search of the whole text of the log; the module docstring and the docstrings of `session_event_logs` and `hi_recorded` say so.
 - [x] `.guppi/tests/test_ledger.py`: tests with names that hold `later_date`: a `startup` and a `hi` on one date and a `resume` of the stamp on a later date, with a date between them; the same with a `compact`, with a `clear`, and with a `tool Grep:` line and a `tool Bash:` line whose text holds the stamp, a space and the word `session-start`. The ledger hook writes the lines into the folder of the `hi` date, `session_dir` names that folder, and `plan_path` names the plan file written on the date of the `hi`.
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-keeps-the-window-past-a-later-resume`
-- [ ] update `rule-orchestration`
-- [ ] defer `rule-orchestration`
-- [ ] read `estimate-ledger-write-keeps-the-window-past-a-later-resume`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-keeps-the-window-past-a-later-resume`
+- [x] update `rule-orchestration`
+- [x] defer `rule-orchestration`
+- [x] read `estimate-ledger-write-keeps-the-window-past-a-later-resume`
 ```
 
 ## Case 886 — The sprint close keeps the event logs from the start of the open session
@@ -1211,9 +1211,9 @@ update:
 ```tasks
 - [x] `.guppi/guppi/sprint_close.py`: `old_logs` finds the stamp of the session of the run among the stamps of the `hi` lines of the log of the date of the newest session folder, as the one stamp for which `session_dir` of `.guppi/guppi/ledger.py` names that folder, and keeps each log dated on or after the first date of `session_event_logs` for that stamp; with no session folder, or no such stamp or more than one, it moves no log and `move_logs` prints one line `archive: event logs kept: <reason>` on stdout, with no change to the exit code; the module docstring and the docstring of `old_logs` say so in place of the day before.
 - [x] `.guppi/tests/test_sprint_close.py`: the tests whose names hold `event_log` write logs with a `startup` and a `hi` line of one stamp; a test where the `startup` stands two days before the date of the session folder keeps the logs from the `startup` date; a test with a `resume` of the stamp on a later date, run after the task of Case 884 on `.guppi/guppi/ledger.py`, keeps the same logs; tests with no `hi` line that leads to the folder, and with `hi` lines of two stamps at the time of the folder, move no log and print the line on stdout.
-- [ ] update `estimate-sprint-close-moves-old-event-logs`
-- [ ] update `rule-raw-archive`
-- [ ] read `estimate-sprint-close-moves-old-event-logs`
+- [x] update `estimate-sprint-close-moves-old-event-logs`
+- [x] update `rule-raw-archive`
+- [x] read `estimate-sprint-close-moves-old-event-logs`
 ```
 
 ## Deferred

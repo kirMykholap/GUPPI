@@ -6,6 +6,7 @@ target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer, then by hand a defer the person asks for
 checked: 2026-10-17
+deferred_by: ["[[decision-case-885]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-421.1
 sprint: migration
 created: 2026-09-25
@@ -57,3 +58,4 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L43
 - 2026-10-17 updated: the Criterion replaced whole — the short form judged by is_short_form; a reply with no short form is no short put-off · [[decision-case-879.2]]
 - 2026-10-17 status: pending → failed · raw/2026-10-17/1805/ledger.md#L55
+- 2026-10-26 deferred · [[decision-case-885]]

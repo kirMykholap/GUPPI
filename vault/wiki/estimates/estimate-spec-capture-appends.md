@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-spec-capture]]"
-method: pytest in .guppi/tests/test_spec.py with piped payloads against a temp vault; by hand, the next approval of a session after the change
+method: "pytest in .guppi/tests/test_spec.py with piped payloads against a temp vault; by hand, at the approval of a plan in a session: the spec.md of that session read against the Criterion"
 checked: 2026-09-27
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
@@ -40,3 +40,4 @@ In a session with a `hi`, the plan is appended to `raw/<hi date>/<hi HHMM>/spec.
 - 2026-09-27 status: pending → passed · raw/2026-09-27/1819/ledger.md#L35
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-26 updated: the part by hand of the method names its moment by its kind · [[decision-case-881.25]]

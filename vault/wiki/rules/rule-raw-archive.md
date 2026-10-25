@@ -37,7 +37,7 @@ reads as a record has its number in the `line` or `folded` of an entry or under
 its yaml and everything else at the date root to
 `vault/archive/<sprint>/<date>/raw/`, and with it every `<HHMM>/` folder of the
 date without a ledger of its own, each to
-`vault/archive/<sprint>/<date>/<HHMM>/raw/`. `<sprint>` is the `sprint` field of the unit's own `materialize.yaml`, so a session that leaves after the next sprint opened goes to the folder of its own sprint; a unit whose yaml holds none takes the first `## <id>` heading of `sprint.md` (case 743.2). `event_log.md` stays in `vault/raw/<date>/`: it is gitignored and the ledger hook walks it for the `hi` window. The close of a sprint moves each log dated before the day before the session of its run to `vault/archive/<id>/<date>/`, `<id>` the sprint it closes, still gitignored, as `rule-sprint-close` sets it (case 743.3). No file is cut and no
+`vault/archive/<sprint>/<date>/<HHMM>/raw/`. `<sprint>` is the `sprint` field of the unit's own `materialize.yaml`, so a session that leaves after the next sprint opened goes to the folder of its own sprint; a unit whose yaml holds none takes the first `## <id>` heading of `sprint.md` (case 743.2). `event_log.md` stays in `vault/raw/<date>/`: it is gitignored and the ledger hook walks it for the `hi` window. The close of a sprint moves each log dated before the start of the session of its run, the first date of the logs the ledger hook walks for that session, to `vault/archive/<id>/<date>/`, `<id>` the sprint it closes, still gitignored, as `rule-sprint-close` sets it (as set in cases 743.3 and 886). No file is cut and no
 pointer is rewritten: `raw/<date>/<HHMM>/ledger.md#case-N`, the date form and
 `#L<n>` stay the name of a ledger, which lint resolves in `raw/` or in the archive.
 
@@ -67,3 +67,4 @@ coverage of a line is the one function `guppi tail` uses ([[rule-ledger-tail]]).
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-26 updated: the close of a sprint keeps the event logs from the start date of the open session · [[decision-case-886]]

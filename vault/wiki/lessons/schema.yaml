@@ -38,7 +38,7 @@ fields:
   insight: |
     required on `clustered`; quoted wikilink `"[[slug]]"`. The Insight this belongs to, once clustered. Written by the script. The scripts read the slug through the brackets; a slug without a category prefix stays bare (case 148.2). The field is the link; no body section repeats it (case 166.1).
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#L<n>` — the date form, `raw/YYYY-MM-DD/ledger.md#L<n>`, on pages born before 2026-09-13 (case 103.6). The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one.
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#L<n>`, and lint also accepts the date form `raw/YYYY-MM-DD/ledger.md#L<n>` (the form of the pages of the repository of GUPPI born before 2026-09-13, case 103.6). The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one.
   sprint: |
     required; the sprint id.
   created: |

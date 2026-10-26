@@ -80,16 +80,16 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] update `estimate-generate-writes-the-decision-page`
-- [ ] update `rule-decisions-schema`
-- [ ] update `entity-glossary`
+- [x] update `rule-page-generation`
+- [x] update `estimate-generate-writes-the-decision-page`
+- [x] update `rule-decisions-schema`
+- [x] update `entity-glossary`
 - [x] `.guppi/guppi/generate.py`: `Vault.decision` writes a new page `status: superseded` when its record carries `superseded_by`, and takes each slug of it into the page's `superseded_by` by `take_superseded_by` before it saves the page; the module docstring says so where it says that the status of the two-line page follows the mechanism, and in the paragraph of case 883.
 - [x] `.guppi/guppi/materialize.py`: the module docstring says that the `{supersedes:case N}` of a Case that a later Case retires still makes `superseded` the earlier Case whose entries it marked before they applied, since that Case's record carries the mark and its new page is written `superseded`.
 - [x] `.guppi/tests/test_generate.py`: in a chain where B supersedes A and C supersedes B alone, with no page of A yet, the entries of A are not applied, the page of A ends `superseded` or `archived` with `superseded_by` B alone, one History line and one line of `log.md` `superseded by decision-case-B`, and no name of C; and where B stands, the page of A gets that line once.
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] `uv run --project .guppi guppi glossary`
-- [ ] read `estimate-generate-writes-the-decision-page`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] `uv run --project .guppi guppi glossary`
+- [x] read `estimate-generate-writes-the-decision-page`
 ```
 
 ## Case 889 — After /pre-spec the hook sends the agent on while a Case is still out
@@ -161,10 +161,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-onward-sends-the-agent-on`
+- [x] update `estimate-prespec-onward-sends-the-agent-on`
 - [x] `.guppi/guppi/onward.py`: `plan_onward` no longer returns None when a Case is still out; the module docstring of `guppi onward --plan` drops "no file under cases/ was written after the last decision line" from the conditions of exit 2 and says that a Case still out changes only the reason; the text of `ONLY_THE_PERSON`, which each reason carries, asks for `STOP:` only for a question the person must answer or a Case that waits only for the person's word, and, while a `case-guppi` has not answered, for the end of the turn that `vault/wiki/orchestration.md` sets for a Case out, and the docstring says the same.
 - [x] `.guppi/tests/test_onward.py`: the tests that asserted exit 0 because a Case was still out — `test_loop_a_case_built_again_and_not_ratified_keeps_it_silent`, `test_supersede_a_case_file_after_its_last_line_keeps_it_silent`, the case `{supersedes:case 5.1}` of `test_supersede_marks_on_each_sub_case_with_lines_retire_the_parent`, `test_plan_a_case_file_newer_than_its_last_decision_line_is_silent`, `test_plan_a_case_with_no_reply_that_ratified_it_is_out` and `test_plan_a_record_with_no_readable_time_counts_none_of_its_lines` — assert exit 2 with the reason of the Cases still out, and are renamed to say so; a new test has a reply that ratifies one Case of two built again after the `prespec` line and asserts exit 2, and one more asserts exit 2 at the answer with no `LEDGER` block to a reminder of the ledger hook while a Case is still out; the tests that tell a Case not out by the exit code alone — `test_supersede_a_mark_in_ledger_md_sends_it_on`, `test_supersede_a_mark_in_a_reply_of_the_transcript_sends_it_on`, `test_supersede_a_mark_in_the_reply_that_ended_sends_it_on`, the case `{supersedes:case 5.1}{supersedes:case 5.2}` of `test_supersede_marks_on_each_sub_case_with_lines_retire_the_parent`, `test_plan_a_case_file_older_than_its_last_decision_line_is_no_case_out`, `test_plan_a_case_ratified_by_an_earlier_reply_of_the_stretch_is_not_out` and `test_plan_a_case_ratified_before_the_persons_last_message_is_not_out` — assert the reason of the exit or of the loop, never the reason of the Cases still out; a test asserts that `ONLY_THE_PERSON` names `orchestration.md` for a `case-guppi` that has not answered and no longer names a Case still out with its `case-guppi` for `STOP:`.
-- [ ] read `estimate-prespec-onward-sends-the-agent-on`
+- [x] read `estimate-prespec-onward-sends-the-agent-on`
 ```
 
 ### Case 889.2 — The hook names the Cases still out and says what to do
@@ -213,11 +213,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] update `estimate-prespec-onward-tells-the-loop-from-its-end`
+- [x] update `rule-prespec-onward`
+- [x] update `estimate-prespec-onward-tells-the-loop-from-its-end`
 - [x] `.guppi/guppi/onward.py`: one function returns the ids of the Cases still out, by the judgment `case_out` makes today, and `case_out` returns whether that list holds any; `plan_onward` returns a third reason, with the ids of that function and the text of `ONLY_THE_PERSON`, when the list holds any, before it chooses between the reason of the exit and the reason of the loop.
 - [x] `.guppi/tests/test_onward.py`: a test asserts that the third reason names each Case still out by id and none that is not out, that it holds `case-guppi`, `orchestration.md` and `STOP:`, and that it holds neither the reason of the exit nor the reason of the loop; a test asserts that the ids come from the function that `case_out` uses.
-- [ ] read `estimate-prespec-onward-tells-the-loop-from-its-end`
+- [x] read `estimate-prespec-onward-tells-the-loop-from-its-end`
 ```
 
 ## Case 890 — The check reads a Case built again as its file holds it, and the clean Cases of a batch go first
@@ -290,11 +290,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-check-takes-a-case-built-again-from-its-file`
-- [ ] update `rule-case-check`
+- [x] create `estimate-case-check-takes-a-case-built-again-from-its-file`
+- [x] update `rule-case-check`
 - [x] `.guppi/guppi/casecheck.py`: in `other_blocks`, for each Case of the plan, the entry of the store under the same id with no findings and a text, whose top-level file is not `dropped` and is not `left_by_its_file`, gives its `then` block in place of the plan's, in the plan's order; the docstring of `other_blocks` and the passage of the module docstring that says "each Case of the plan file, then each entry of the store under the number alone that the plan does not hold" say so.
 - [x] `.guppi/tests/test_casecheck.py`: tests named `built_again_sibling`: a Case of the plan built again in the store with a pair that writes a new sentence, and an answer whose pair matches in that sentence with a `Read` of the page and of the file of that Case, gives no finding that the sentence was not read; an old text that only the plan's version wrote gives the answer a finding of `check_pairs`; an entry with findings, and an entry whose file no longer holds its heading, leave the plan's text; the first two fail on the code before the change.
-- [ ] read `estimate-case-check-takes-a-case-built-again-from-its-file`
+- [x] read `estimate-case-check-takes-a-case-built-again-from-its-file`
 ```
 
 ### Case 890.2 — The clash check names the text of a Case built again
@@ -336,9 +336,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-clash-with-another-case`
+- [x] update `estimate-case-check-sends-back-a-clash-with-another-case`
 - [x] `.guppi/tests/test_casecheck.py`: a test named `session_clash` has a Case of the plan that sets a field to one value and its entry built again in the store that sets another, and asserts that an answer clashes with the stored value and not with the plan's; it fails on the code before the change.
-- [ ] read `estimate-case-check-sends-back-a-clash-with-another-case`
+- [x] read `estimate-case-check-sends-back-a-clash-with-another-case`
 ```
 
 ### Case 890.3 — The clean Cases of a batch are shown while the faulty one goes back
@@ -387,10 +387,10 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-orchestration-shows-the-clean-cases-of-a-batch-first`
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-shows-the-clean-cases-of-a-batch-first`
+- [x] create `estimate-orchestration-shows-the-clean-cases-of-a-batch-first`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-shows-the-clean-cases-of-a-batch-first`
 ```
 
 ### Case 890.4 — The loop after the findings shows the clean Cases first
@@ -441,10 +441,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `estimate-prespec-gathers-the-answers-after-findings`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] read `estimate-prespec-gathers-the-answers-after-findings`
+- [x] update `rule-prespec`
+- [x] update `estimate-prespec-gathers-the-answers-after-findings`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] read `estimate-prespec-gathers-the-answers-after-findings`
 ```
 
 ## Deferred

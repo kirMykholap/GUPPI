@@ -6,6 +6,7 @@ target: "[[rule-clean-branch]]"
 purpose: Whether the rules, the entities and CLAUDE.md of the clean version, and the purpose and the method of each shipped Estimate, describe GUPPI and the languages in words that hold in any project and hold no other sentence true only in the repository of GUPPI, and which sentences of the Criterion of the shipped Estimates hold only there
 method: "by hand, after the librarian's run of the session that set this method, with a tag prod-x.y.z in the history of HEAD: uv run --project .guppi guppi ship --allow-draft into an empty temporary folder, and each sentence of the pages and the files it wrote read whole against the Criterion, never found by a keyword search, each sentence of the Criterion of a shipped Estimate that holds only in the repository of GUPPI listed in the estimate line"
 checked: 2026-10-17
+deferred_by: ["[[decision-case-891]]"]
 origin: raw/2026-10-15/0553/ledger.md#case-822.7
 sprint: plugin
 created: 2026-10-15
@@ -41,3 +42,4 @@ Then:
 - 2026-10-17 defer by decision-case-874 superseded · [[decision-case-875]]
 - 2026-10-17 updated: the Criterion replaced whole — the purpose and the method of the shipped Estimates hold no sentence true only in the repository of GUPPI, and the read rules of rule-permissions are exempt · [[decision-case-875]]
 - 2026-10-17 status: pending → failed · raw/2026-10-17/1805/ledger.md#L1
+- 2026-10-26 deferred · [[decision-case-891]]

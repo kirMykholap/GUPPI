@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "887"
-status: current
+status: archived
 defer: ["[[rule-case-check]]", "[[rule-orchestration]]"]
+superseded_by: ["[[decision-case-890.1]]", "[[decision-case-890.3]]"]
 origin: raw/2026-10-17/2307/ledger.md#case-887
 sprint: plugin
 created: 2026-10-17
@@ -30,3 +31,7 @@ A batch is shown and ratified whole, so one Case the check refuses holds back th
 ## History
 
 - 2026-10-26 created · raw/2026-10-17/2307/ledger.md#case-887
+- 2026-10-26 superseded by decision-case-890.1 · [[decision-case-890.1]]
+- 2026-10-26 superseded by decision-case-890.3 · [[decision-case-890.3]]
+- 2026-10-26 archived · superseded
+- 2026-10-26 archived · cleanup

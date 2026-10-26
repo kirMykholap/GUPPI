@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified Case from entering the Spec in other words than the Case case-guppi wrote into its file, whose given, when, then, tasks and ratification the person signed and the check of rule-case-check stored
-status: draft
+status: built
 enforcement: hook
 implementation_ref: [.guppi/guppi/ratified.py, .guppi/tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
@@ -80,3 +80,4 @@ Prevents a ratified Case from entering the Spec in other words than the Case `ca
 - 2026-10-17 estimate estimate-spec-write-copies-a-built-defer-only-case added · [[decision-case-879.1]]
 - 2026-10-17 updated: a Case built by case-guppi with only defer lines is copied from its stored file; only a Case the reply shows in the short form goes under ## Deferred · [[decision-case-879.1]]
 - 2026-10-17 status: built → draft · cascade
+- 2026-10-26 status: draft → built · cascade

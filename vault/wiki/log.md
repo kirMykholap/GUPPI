@@ -11551,3 +11551,46 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-26 decisions/decision-case-876 archived · cleanup
 - 2026-10-26 decisions/decision-case-880.21 archived · cleanup
 - 2026-10-26 decisions/decision-case-880 child decision-case-880.21 archived · cleanup
+- 2026-10-26 decisions/decision-case-888 created · raw/2026-10-26/0118/ledger.md#case-888 · generate
+- 2026-10-26 rules/rule-page-generation updated: a Case replaced before its entries applied gets its Decision page superseded at once, naming the Case its record names · [[decision-case-888]] · generate
+- 2026-10-26 estimates/estimate-generate-writes-the-decision-page updated: the Criterion replaced whole — the new page of a record with superseded_by is written superseded · [[decision-case-888]] · generate
+- 2026-10-26 rules/rule-decisions-schema updated: a Decision page whose own entries never applied is written superseded, naming the Case that replaced it · [[decision-case-888]] · generate
+- 2026-10-26 entities/entity-glossary updated: the row Decision (status): a page whose own entries never applied is written superseded, naming the Case that replaced it · [[decision-case-888]] · generate
+- 2026-10-26 decisions/decision-case-889 created · raw/2026-10-26/0118/ledger.md#case-889 · generate
+- 2026-10-26 decisions/decision-case-889.1 created · raw/2026-10-26/0118/ledger.md#case-889.1 · generate
+- 2026-10-26 estimates/estimate-prespec-onward-sends-the-agent-on updated: the Criterion replaced whole — a Case still out no longer keeps the hook silent; it changes only its reason · [[decision-case-889.1]] · generate
+- 2026-10-26 decisions/decision-case-889.2 created · raw/2026-10-26/0118/ledger.md#case-889.2 · generate
+- 2026-10-26 rules/rule-prespec-onward updated: a Case still out no longer keeps the hook silent after /pre-spec: a third reason names each such Case and says what to do · [[decision-case-889.2]] · generate
+- 2026-10-26 estimates/estimate-prespec-onward-tells-the-loop-from-its-end updated: the Criterion replaced whole — a third reason names each Case still out in place of the silence · [[decision-case-889.2]] · generate
+- 2026-10-26 decisions/decision-case-890 created · raw/2026-10-26/0118/ledger.md#case-890 · generate
+- 2026-10-26 decisions/decision-case-890.1 created · raw/2026-10-26/0118/ledger.md#case-890.1 · generate
+- 2026-10-26 decisions/decision-case-887 superseded by decision-case-890.1 · [[decision-case-890.1]] · generate
+- 2026-10-26 rules/rule-case-check defer by decision-case-887 superseded · [[decision-case-890.1]] · generate
+- 2026-10-26 estimates/estimate-case-check-takes-a-case-built-again-from-its-file created · [[decision-case-890.1]] · generate
+- 2026-10-26 estimates/estimate-case-check-takes-a-case-built-again-from-its-file status: pending → passed · raw/2026-10-26/0118/ledger.md#L20 · generate
+- 2026-10-26 rules/rule-case-check estimate estimate-case-check-takes-a-case-built-again-from-its-file added · [[decision-case-890.1]] · generate
+- 2026-10-26 rules/rule-case-check updated: a Case built again after its ratification counts as its stored text holds it, not as the plan holds it · [[decision-case-890.1]] · generate
+- 2026-10-26 decisions/decision-case-890.2 created · raw/2026-10-26/0118/ledger.md#case-890.2 · generate
+- 2026-10-26 estimates/estimate-case-check-sends-back-a-clash-with-another-case updated: the Criterion replaced whole — a Case of the plan built again after its ratification is compared as its stored text holds it · [[decision-case-890.2]] · generate
+- 2026-10-26 decisions/decision-case-890.3 created · raw/2026-10-26/0118/ledger.md#case-890.3 · generate
+- 2026-10-26 decisions/decision-case-887 superseded by decision-case-890.3 · [[decision-case-890.3]] · generate
+- 2026-10-26 rules/rule-orchestration defer by decision-case-887 superseded · [[decision-case-890.3]] · generate
+- 2026-10-26 estimates/estimate-orchestration-shows-the-clean-cases-of-a-batch-first created · [[decision-case-890.3]] · generate
+- 2026-10-26 estimates/estimate-orchestration-shows-the-clean-cases-of-a-batch-first status: pending → passed · raw/2026-10-26/0118/ledger.md#L22 · generate
+- 2026-10-26 rules/rule-orchestration estimate estimate-orchestration-shows-the-clean-cases-of-a-batch-first added · [[decision-case-890.3]] · generate
+- 2026-10-26 rules/rule-orchestration updated: a Case of a batch with a stored finding goes back to its case-guppi and the other Cases are shown for ratification · [[decision-case-890.3]] · generate
+- 2026-10-26 decisions/decision-case-890.4 created · raw/2026-10-26/0118/ledger.md#case-890.4 · generate
+- 2026-10-26 rules/rule-prespec updated: step 7 sends a Case built again with a stored finding back and shows the others for ratification; step 3 makes that reply its one exception · [[decision-case-890.4]] · generate
+- 2026-10-26 estimates/estimate-prespec-gathers-the-answers-after-findings updated: the Criterion replaced whole — after a refusal for a stored finding, step 7 sends that Case back and shows the others · [[decision-case-890.4]] · generate
+- 2026-10-26 decisions/decision-case-891 created · raw/2026-10-26/0118/ledger.md#case-891 · generate
+- 2026-10-26 estimates/estimate-clean-branch-ships-neutral-texts deferred · [[decision-case-891]] · generate
+- 2026-10-26 estimates/estimate-spec-write-writes-a-defer deferred · [[decision-case-891]] · generate
+- 2026-10-26 estimates/estimate-generate-writes-the-decision-page status: pending → passed · raw/2026-10-26/0118/ledger.md#L17 · generate
+- 2026-10-26 estimates/estimate-prespec-onward-sends-the-agent-on status: pending → passed · raw/2026-10-26/0118/ledger.md#L18 · generate
+- 2026-10-26 estimates/estimate-prespec-onward-tells-the-loop-from-its-end status: pending → passed · raw/2026-10-26/0118/ledger.md#L19 · generate
+- 2026-10-26 estimates/estimate-case-check-sends-back-a-clash-with-another-case status: pending → passed · raw/2026-10-26/0118/ledger.md#L21 · generate
+- 2026-10-26 estimates/estimate-prespec-gathers-the-answers-after-findings status: pending → passed · raw/2026-10-26/0118/ledger.md#L23 · generate
+- 2026-10-26 estimates/estimate-spec-write-writes-a-defer status: failed → passed · raw/2026-10-26/0118/ledger.md#L24 · generate
+- 2026-10-26 rules/rule-spec-write status: draft → built · cascade · generate
+- 2026-10-26 decisions/decision-case-887 archived · superseded · generate
+- 2026-10-26 decisions/decision-case-887 archived · cleanup

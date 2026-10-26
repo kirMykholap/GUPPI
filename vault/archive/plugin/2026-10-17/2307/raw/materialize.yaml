@@ -1049,6 +1049,9 @@ entries:
       /pre-spec makes a showing fail until it is ratified again; put off in session 2307
   exists: true
   applied: 00:25:10
+  superseded_by:
+  - '890.1'
+  - '890.3'
 - line: 47
   text: decision[case 887][defer][rule-orchestration]{ref:rule-orchestration}
   case: '887'
@@ -1065,6 +1068,9 @@ entries:
       after; put off in session 2307
   exists: true
   applied: 00:25:10
+  superseded_by:
+  - '890.1'
+  - '890.3'
 - line: 48
   text: 'lesson[error][lesson-casecheck-reads-a-sibling-from-the-plan-as-last-ratified]{tags:case-build,hooks,prespec}
     trigger: at /pre-spec of session 2307 the Stop check of rule-case-check refused the showing of Case
@@ -4891,6 +4897,9 @@ decisions:
       may be ratified in parts when the check refuses one of its Cases.
   spec: vault/raw/2026-10-17/2307/spec.md
   applied: 00:25:10
+  superseded_by:
+  - decision-case-890.1
+  - decision-case-890.3
 - case: '881.26'
   decision: decision-case-881.26
   origin: raw/2026-10-17/2307/ledger.md#case-881.26

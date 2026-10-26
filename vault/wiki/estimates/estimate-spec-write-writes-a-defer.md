@@ -1,12 +1,12 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
 method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer, then by hand a defer the person asks for
-checked: 2026-10-17
-deferred_by: ["[[decision-case-885]]"]
+checked: 2026-10-26
+deferred_by: ["[[decision-case-885]]", "[[decision-case-891]]"]
 origin: raw/2026-09-25/1228/ledger.md#case-421.1
 sprint: migration
 created: 2026-09-25
@@ -33,7 +33,7 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 
 ## Result
 
-2026-10-17, Retro, not read: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer 24 passed, a bare reply now refused with case 8: not built and checked by case-guppi — dispatch it; the by-hand part, a defer the person asks for, did not come in session 1805: its one put-off, C1, was an item of the sprint with no short Case
+2026-10-26, Retro of 0118, uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer: 24 passed; by hand, the defer the person asked for at the close of Plan Mode: the Stop hook wrote Case 891 under a new heading ## Deferred of the plan file, its heading, context, problem and then block as the reply showed them, and spec.md of 0118 holds it the same
 
 ## History
 
@@ -59,3 +59,5 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-10-17 updated: the Criterion replaced whole — the short form judged by is_short_form; a reply with no short form is no short put-off · [[decision-case-879.2]]
 - 2026-10-17 status: pending → failed · raw/2026-10-17/1805/ledger.md#L55
 - 2026-10-26 deferred · [[decision-case-885]]
+- 2026-10-26 deferred · [[decision-case-891]]
+- 2026-10-26 status: failed → passed · raw/2026-10-26/0118/ledger.md#L24

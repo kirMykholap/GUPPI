@@ -3864,3 +3864,46 @@ def test_a_retiring_case_that_names_the_earlier_decision_alone_replaces_it(tmp_p
     assert "deferred_by" not in props(rule)
     assert f"- {DATE} defer by decision-case-2 superseded · [[decision-case-4]]" in rule
     assert "decision-case-3" not in rule.split("## History")[1]
+
+
+# --- a Case replaced before its entries applied is written superseded (case 888) ------------
+# `estimate-generate-writes-the-decision-page`
+
+
+def seed_replaced(tmp_path, retired):
+    """Case `2` (A) creates `rule-root`; Case `3` (B) supersedes A before its entries
+    applied; with `retired`, Case `4` (C) retires B alone and names no A. No page of A
+    stands yet."""
+    entry = dict(ROOT, case="2", decision="decision-case-2", superseded_by=["3"])
+    target = [{"kind": "create", "category": "rules", "slug": "rule-root"}]
+    b = family_record("3", supersedes=["decision-case-2"])
+    decisions = [family_record("2", targets=target, superseded_by=["decision-case-3"]), b]
+    if retired:
+        b["superseded_by"] = ["decision-case-4"]
+        decisions.append(family_record("4", supersedes=["decision-case-3"]))
+    seed(tmp_path, entries=[entry], decisions=decisions)
+
+
+def assert_replaced_by_b(tmp_path):
+    text = page(tmp_path, "decisions", "decision-case-2")
+    assert props(text)["status"] in ("superseded", "archived")
+    assert props(text)["superseded_by"] == ["decision-case-3"]
+    assert text.split("## History")[1].count("superseded by decision-case-3") == 1
+    log = (tmp_path / "vault" / "wiki" / "log.md").read_text(encoding="utf-8")
+    assert log.count("decisions/decision-case-2 superseded by decision-case-3") == 1
+    return text
+
+
+def test_a_case_replaced_by_a_retired_case_is_written_superseded(tmp_path):
+    seed_replaced(tmp_path, retired=True)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert not (tmp_path / "vault" / "wiki" / "rules" / "rule-root.md").exists()
+    assert "decision-case-4" not in assert_replaced_by_b(tmp_path)
+
+
+def test_a_case_replaced_by_a_standing_case_gets_its_line_once(tmp_path):
+    seed_replaced(tmp_path, retired=False)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert_replaced_by_b(tmp_path)

@@ -330,10 +330,65 @@ def test_loop_only_case_files_older_than_the_prespec_line_send_it_on_with_the_lo
     assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.TO_LOOP + "\n")
 
 
-def test_loop_a_case_built_again_and_not_ratified_keeps_it_silent(tmp_path):
+def test_loop_a_case_built_again_and_not_ratified_is_named_as_out(tmp_path):
     folder = plan_session(tmp_path, log=START + HI + PRESPEC)
     with_case_file(folder, "8", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
-    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.to_out(["8"]) + "\n")
+
+
+# --- a Case still out changes only the reason (case 889) ----------------------------------
+# `estimate-prespec-onward-sends-the-agent-on`, `estimate-prespec-onward-tells-the-loop-from-its-end`
+
+BUILT = datetime(2026, 9, 30, 11, 30, 0, tzinfo=UTC)  # after the `prespec` line
+
+
+def test_out_a_reply_that_ratifies_one_case_of_two_names_the_other(tmp_path):
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC)
+    with_case_file(folder, "7", BUILT)
+    with_case_file(folder, "8", BUILT)
+    code, err = run_plan(payload(RATIFIED), tmp_path)
+    assert (code, err) == (2, onward.to_out(["8"]) + "\n")
+    assert "8" in err.split(" were built")[0] and "7" not in err.split(" were built")[0]
+    assert "case-guppi" in err and "orchestration.md" in err and "STOP:" in err
+    for reason in (onward.TO_EXIT, onward.TO_LOOP):
+        assert reason.removesuffix(onward.ONLY_THE_PERSON) not in err
+
+
+def test_out_names_each_case_still_out_and_none_other(tmp_path):
+    ledger = "- 11:10:00 decision[case 5][update][rule-y]{ref:rule-y}\n"
+    folder = plan_session(tmp_path, ledger=ledger)
+    with_case_file(folder, "5", datetime(2026, 9, 30, 11, 0, 0, tzinfo=UTC))  # ratified after
+    with_case_file(folder, "8", BUILT)
+    with_case_file(folder, "9", BUILT)
+    assert onward.cases_out(folder, [], NOW) == ["8", "9"]
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.to_out(["8", "9"]) + "\n")
+
+
+def test_out_the_answer_with_no_block_to_a_reminder_names_the_case_out(tmp_path):
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC)
+    with_case_file(folder, "7", BUILT)
+    with_case_file(folder, "8", BUILT)
+    reminded = "ledger: lesson[lesson-x] has no mark — did case 7 fix its cause?"
+    ratified = reply(RATIFIED, "2026-09-30T11:40:00Z")
+    records = [human(), ratified, refusal(LEDGER, reminded), refusal(PLAN, onward.TO_EXIT)]
+    path = transcript(tmp_path, *records, reply())
+    stdin = payload("Case 7 fixed no cause of it.", stop_hook_active=True, transcript_path=path)
+    assert run_plan(stdin, tmp_path) == (2, onward.to_out(["8"]) + "\n")
+
+
+def test_out_only_the_person_names_orchestration_for_a_case_guppi_not_answered():
+    text = onward.ONLY_THE_PERSON
+    assert "orchestration.md" in text and "case-guppi has not answered" in text
+    assert "a Case still out with its case-guppi" not in text
+    assert "STOP:" in text and "waits only for the person's word" in text
+
+
+def test_out_the_ids_come_from_the_function_case_out_uses():
+    import inspect
+
+    assert "cases_out" in inspect.getsource(onward.case_out)
+    assert "cases_out" in inspect.getsource(onward.plan_onward)
+    assert "case_out(" not in inspect.getsource(onward.plan_onward)
 
 
 def test_loop_an_emptied_case_file_after_prespec_alone_sends_it_on_with_the_loop(tmp_path):
@@ -359,7 +414,7 @@ def test_loop_the_empty_file_is_judged_by_the_function_of_casecheck():
     from guppi import casecheck
 
     assert "dropped" in inspect.getsource(onward.built_after)
-    assert "dropped" in inspect.getsource(onward.case_out)
+    assert "dropped" in inspect.getsource(onward.cases_out)
     assert not hasattr(onward, "dropped") and callable(casecheck.dropped)
 
 
@@ -443,39 +498,42 @@ def replaced_session(tmp_path, ledger=REPLACED):
     return folder
 
 
-def test_supersede_a_case_file_after_its_last_line_keeps_it_silent(tmp_path):
+def test_supersede_a_case_file_after_its_last_line_is_named_as_out(tmp_path):
     replaced_session(tmp_path)
-    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.to_out(["5"]) + "\n")
 
 
 def test_supersede_a_mark_in_ledger_md_sends_it_on(tmp_path):
     replaced_session(tmp_path, REPLACED + f"- 11:30:00 {BY_6}\n")
-    assert run_plan(payload(RATIFIED), tmp_path)[0] == 2
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.TO_EXIT + "\n")
 
 
 def test_supersede_a_mark_in_a_reply_of_the_transcript_sends_it_on(tmp_path):
     replaced_session(tmp_path)
     marked = f"```LEDGER\n- {BY_6}\n```"
     path = transcript(tmp_path, human(), reply(marked, "2026-09-30T11:30:00Z"))
-    assert run_plan(payload(LESSON, transcript_path=path), tmp_path)[0] == 2
+    assert run_plan(payload(LESSON, transcript_path=path), tmp_path) == (2, onward.TO_EXIT + "\n")
 
 
 def test_supersede_a_mark_in_the_reply_that_ended_sends_it_on(tmp_path):
     replaced_session(tmp_path)
-    assert run_plan(payload(f"```LEDGER\n- {BY_6}\n```\n## Frontier"), tmp_path)[0] == 2
+    stdin = payload(f"```LEDGER\n- {BY_6}\n```\n## Frontier")
+    assert run_plan(stdin, tmp_path) == (2, onward.TO_EXIT + "\n")
 
 
 @pytest.mark.parametrize(
-    "marks, code", [("{supersedes:case 5.1}{supersedes:case 5.2}", 2), ("{supersedes:case 5.1}", 0)]
+    "marks, out",
+    [("{supersedes:case 5.1}{supersedes:case 5.2}", False), ("{supersedes:case 5.1}", True)],
 )
-def test_supersede_marks_on_each_sub_case_with_lines_retire_the_parent(tmp_path, marks, code):
+def test_supersede_marks_on_each_sub_case_with_lines_retire_the_parent(tmp_path, marks, out):
     ledger = (
         "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
         "- 11:10:00 decision[case 5.2][update][rule-z]{ref:rule-z}\n"
         f"- 11:30:00 decision[case 6][update][rule-y]{{ref:rule-y}}{marks}\n"
     )
     replaced_session(tmp_path, ledger)
-    assert run_plan(payload(RATIFIED), tmp_path)[0] == code
+    reason = onward.to_out(["5"]) if out else onward.TO_EXIT
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, reason + "\n")
 
 
 def test_plan_an_open_cases_line_is_silent(tmp_path):
@@ -494,11 +552,11 @@ def test_plan_a_reply_with_no_ledger_block_is_silent(tmp_path):
     assert run_plan(payload("## Frontier"), tmp_path) == (0, "")
 
 
-def test_plan_a_case_file_newer_than_its_last_decision_line_is_silent(tmp_path):
+def test_plan_a_case_file_newer_than_its_last_decision_line_is_named_as_out(tmp_path):
     ledger = "- 11:10:00 decision[case 5.1][update][rule-y]{ref:rule-y}\n"
     folder = plan_session(tmp_path, ledger=ledger)
     with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
-    assert run_plan(payload(RATIFIED), tmp_path) == (0, "")
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.to_out(["5"]) + "\n")
 
 
 def test_plan_a_case_file_older_than_its_last_decision_line_is_no_case_out(tmp_path):
@@ -506,7 +564,7 @@ def test_plan_a_case_file_older_than_its_last_decision_line_is_no_case_out(tmp_p
     folder = plan_session(tmp_path, ledger=ledger)
     with_case_file(folder, "5", datetime(2026, 9, 30, 11, 0, 0, tzinfo=UTC))
     with_case_file(folder, "7", datetime(2026, 9, 30, 11, 30, 0, tzinfo=UTC))  # ratified now
-    assert run_plan(payload(RATIFIED), tmp_path)[0] == 2
+    assert run_plan(payload(RATIFIED), tmp_path) == (2, onward.TO_EXIT + "\n")
 
 
 def test_plan_the_flag_with_a_transcript_it_cannot_read_is_silent(tmp_path):
@@ -565,7 +623,7 @@ def test_plan_a_case_ratified_by_an_earlier_reply_of_the_stretch_is_not_out(tmp_
     with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
     ratified = "```LEDGER\n- decision[case 5.1][update][rule-y]{ref:rule-y}\n```"
     path = transcript(tmp_path, human(), reply(ratified, "2026-09-30T11:30:00Z"))
-    assert run_plan(payload(LESSON, transcript_path=path), tmp_path)[0] == 2
+    assert run_plan(payload(LESSON, transcript_path=path), tmp_path) == (2, onward.TO_EXIT + "\n")
 
 
 def test_plan_a_case_ratified_before_the_persons_last_message_is_not_out(tmp_path):
@@ -582,7 +640,7 @@ def test_plan_a_case_ratified_before_the_persons_last_message_is_not_out(tmp_pat
         human("C2"),
         reply("the next Case", "2026-09-30T11:40:00Z"),
     )
-    assert run_plan(payload(LESSON, transcript_path=path), tmp_path)[0] == 2
+    assert run_plan(payload(LESSON, transcript_path=path), tmp_path) == (2, onward.TO_EXIT + "\n")
 
 
 @pytest.mark.parametrize("text", ["", "  \n\t\n"])
@@ -611,7 +669,8 @@ def test_plan_a_case_with_no_reply_that_ratified_it_is_out(tmp_path):
     folder = plan_session(tmp_path, ledger=ledger)
     with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
     path = transcript(tmp_path, human(), reply("no block", "2026-09-30T11:30:00Z"))
-    assert run_plan(payload(LESSON, transcript_path=path), tmp_path) == (0, "")
+    stdin = payload(LESSON, transcript_path=path)
+    assert run_plan(stdin, tmp_path) == (2, onward.to_out(["5"]) + "\n")
 
 
 def test_plan_a_record_with_no_readable_time_counts_none_of_its_lines(tmp_path):
@@ -620,7 +679,8 @@ def test_plan_a_record_with_no_readable_time_counts_none_of_its_lines(tmp_path):
     with_case_file(folder, "5", datetime(2026, 9, 30, 11, 20, 0, tzinfo=UTC))
     ratified = "```LEDGER\n- decision[case 5.1][update][rule-y]{ref:rule-y}\n```"
     path = transcript(tmp_path, human(), reply(ratified, "not a time"))
-    assert run_plan(payload(LESSON, transcript_path=path), tmp_path) == (0, "")
+    stdin = payload(LESSON, transcript_path=path)
+    assert run_plan(stdin, tmp_path) == (2, onward.to_out(["5"]) + "\n")
 
 
 def test_plan_a_reply_that_opens_with_stop_is_let_through(tmp_path):

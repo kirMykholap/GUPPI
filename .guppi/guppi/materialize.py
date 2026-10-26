@@ -68,8 +68,11 @@ The category of a slug comes from its prefix, which pre-spec guards; a slug with
 `unknown` (case 320). A `{supersedes:case N}` makes the earlier decision `superseded`, and
 `generate` takes its slug out of a target's `deferred_by` under the condition that
 `rule-case-protocol` sets (cases 52.3, 549). The `{supersedes:case N}` of a Case that a
-later Case retires makes no decision `superseded` in `generate`: the record of the retired
-Case carries `superseded_by`, and its page carries out none of its `supersedes` (case 883).
+later Case retires makes no page `superseded` through its own page in `generate`: the
+record of the retired Case carries `superseded_by`, and its page carries out none of its
+`supersedes` (case 883). It still makes `superseded` the earlier Case whose entries it
+marked before they applied: that Case's record carries the mark, and `generate` writes
+its new page `superseded` (case 888).
 
 No Estimate is derived (cases 189, 194.1). An Estimate has its own ledger line and its own
 entry; the `ref` of the line is the Estimate itself. Its Criterion is the `when` and

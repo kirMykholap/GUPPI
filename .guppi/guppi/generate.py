@@ -84,8 +84,10 @@ lines with its `purpose` verbatim (case 186.1); no `## Given`, no `## When`, no
 `## Criterion` list — the contract lives on the Estimate; pages written before keep the
 sections they carry and are not rewritten. A record with
 `superseded_by` and no `case_text` — a Case superseded in its own session and gone from the
-Spec (case 299.1) — gets a two-line body naming the superseding Decision; its status
-follows the mechanism as for any superseded page (case 299.4). A `supersedes` sets
+Spec (case 299.1) — gets a two-line body naming the superseding Decision (case 299.4). A
+new page whose record carries `superseded_by` is written `superseded` at once and takes
+each slug of that list into its own `superseded_by` with one History line, whether or
+not another Case retired the later Case in turn (case 888). A `supersedes` sets
 the earlier page `superseded`, appends to its `superseded_by` and removes its slug from
 the `deferred_by` of each target of its `defer` list that a decision line of the
 superseding Case names; a target the Case does not name keeps it, and a later Case that
@@ -99,7 +101,8 @@ or already `superseded` is left as it stands, and no `deferred_by` is cleared th
 child (case 660.3). A record that carries `superseded_by` — a Case a later Case retired
 before its entries applied — still gets its page with its `supersedes`, but carries out
 none of them: no earlier page or page of its `children` changes, no `deferred_by` is
-cleared, and no line of History or of `log.md` names it (case 883). An existing page is
+cleared, and no line of History or of `log.md` names it (case 883); its own page is
+written `superseded`, naming the Case its record names (case 888). An existing page is
 skipped; a `create` marked `exists` writes no page, its Decision page is still written.
 
 One bad entry never stops the run (case 201.3): an entry that fails — a collision, a `ref`
@@ -1259,6 +1262,10 @@ class Vault:
             )
         page = Page(category="decisions", slug=slug, path=path, props=props, sections=sections)
         self.history(page, "created", record["origin"])
+        if record.get("superseded_by"):  # replaced before its entries applied (case 888)
+            page.props["status"] = "superseded"
+            for later in as_list(record["superseded_by"]):
+                self.take_superseded_by(page, str(later))
         self.save(page)
         if record.get("superseded_by"):  # a retired Case replaces nothing (case 883)
             return

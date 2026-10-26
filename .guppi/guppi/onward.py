@@ -42,18 +42,22 @@ does not stand; `frontier.md` holds no open line under `## Cases`, by
 `prespec.open_case_items`, the one judgment the check of `/pre-spec` reports; the reply
 carries a `LEDGER` block, by `ledger.ledger_lines`, or the ledger hook refused the reply that
 ended just before it, by `ledger.sent_back_last`, so the answer with no block to its reminder
-is sent on too (case 696.2); no file under `cases/` was written after the last decision line
-of its Case, or of a sub-case, in `ledger.md`, in any reply of the main agent in the
-transcript at the moment of its record (`transcript_replies`) (cases 597.2, 604) or in that
-block — a Case built again and not yet ratified is still out, while one ratified again with
-lines the ledger already held counts as ratified for the rest of the session, after a later
+is sent on too (case 696.2); its own refusal, `uv run --project .guppi guppi onward --plan`,
+is not spent, as above (case 597.1), the flag counting only when the transcript cannot be
+read; and the reply does not open with `STOP:`. A Case still out changes only the reason
+(case 889.1): when a file under `cases/` was written after the last decision line of its
+Case, or of a sub-case, in `ledger.md`, in any reply of the main agent in the transcript at
+the moment of its record (`transcript_replies`) (cases 597.2, 604) or in that block, by
+`cases_out`, it names each such Case by id and tells the agent to send each one that must
+change to its `case-guppi` (case 889.2) — a Case built again and not yet ratified is still
+out, while one ratified again with lines the ledger already held counts as ratified for
+the rest of the session, after a later
 message of the person too, and a Case that a `{supersedes:case N}` mark of those lines
 retires, whole or sub-case by sub-case, is never out, judged by
 `prespec.superseded_in_window` and `prespec.retired_whole`, no judgment of a mark written
 here (case 696.1), nor is a file that holds nothing but blank space, the file of a dropped
-Case, judged by `casecheck.dropped`, the one judgment of an empty Case file (case 701.1); its own refusal, `uv run --project .guppi guppi onward --plan`, is not spent, as above
-(case 597.1), the flag counting only when the transcript cannot be read; and the reply does
-not open with `STOP:`. When a file under `cases/` that holds more than blank space was
+Case, judged by `casecheck.dropped`, the one judgment of an empty Case file (case 701.1).
+With no Case still out, when a file under `cases/` that holds more than blank space was
 written after the last `prespec` line, its time read on the date of the event log that
 holds it (`built_after`) (cases 686.1, 701.2),
 it tells the agent that the Cases built again on the findings are ratified, to run
@@ -65,7 +69,10 @@ after the findings: to send each finding in a Case to its `case-guppi`, or, when
 goes back, to run the check and exit. After a reply the ledger hook sent back — a line it
 refused or held, or its reminder of a lesson with no mark (cases 685.1, 688.7) — `spent`
 lets it fire again at the next reply. Each reason adds that, when only the person can go
-on, the agent opens its reply with `STOP:` and asks the person. The time of a line of
+on — a question the person must answer, or a Case that waits only for the person's word —
+the agent opens its reply with `STOP:` and asks the person, and that while a `case-guppi`
+has not answered the agent ends the turn as `vault/wiki/orchestration.md` sets it for a
+Case out (case 889.1). The time of a line of
 `ledger.md` is read on the `hi` date and rolls to the next date when it runs backwards, so a
 session across midnight keeps its order; a decision line of the reply counts as written now.
 It counts nothing, calls no model and writes nothing. An error of its own after it has read
@@ -110,8 +117,14 @@ REASON = (
     "with STOP: and ask the person instead."
 )
 ONLY_THE_PERSON = (
-    " If only the person can go on — a Case still out with its case-guppi, or a question the "
-    "person must answer — open your reply with STOP: and ask the person instead."
+    " If only the person can go on — a question the person must answer, or a Case that waits "
+    "only for the person's word — open your reply with STOP: and ask the person instead."
+    " While a case-guppi has not answered, end the turn as vault/wiki/orchestration.md sets "
+    "it for a Case out, and go on in the turn its answer opens."
+)
+TO_OUT = (
+    "onward: the Cases {ids} were built again and are not ratified yet. Send each one that "
+    "must change to its case-guppi, as the loop after the findings of /pre-spec sets it."
 )
 TO_EXIT = (
     "onward: the Cases built again on the findings of /pre-spec are ratified. Run uv run "
@@ -239,33 +252,45 @@ def session_decisions(ledger: str, reply: list[str], replies=()) -> list[dict]:
     return [r for r in map(parse_line, lines) if r and r["record"] == "decision"]
 
 
-def case_out(folder: Path, reply: list[str], now, payload: dict | None = None) -> bool:
-    """Whether a file under `cases/` was written after the last decision line of its Case or
-    of a sub-case, in `ledger.md`, in a reply of the transcript or in the reply that ended — a
-    Case built and not yet ratified (cases 561.5, 597.2, 604). A Case that a
-    `{supersedes:case N}` mark of those lines retires, whole or sub-case by sub-case, is never
-    out, by `superseded_in_window` and `retired_whole` of `.guppi/guppi/prespec.py`; no judgment of a
-    mark is written here (case 696.1). A file that holds nothing but blank space, the file of
-    a dropped Case, is never out, by `dropped` of `.guppi/guppi/casecheck.py` (case 701.1)."""
+def cases_out(folder: Path, reply: list[str], now, payload: dict | None = None) -> list[str]:
+    """The ids, in the order of their file names, of the Cases whose file under `cases/` was
+    written after the last decision line of the Case or of a sub-case, in `ledger.md`, in a
+    reply of the transcript or in the reply that ended — a Case built and not yet ratified
+    (cases 561.5, 597.2, 604, 889.2). A Case that a `{supersedes:case N}` mark of those lines
+    retires, whole or sub-case by sub-case, is never out, by `superseded_in_window` and
+    `retired_whole` of `.guppi/guppi/prespec.py`; no judgment of a mark is written here (case
+    696.1). A file that holds nothing but blank space, the file of a dropped Case, is never
+    out, by `dropped` of `.guppi/guppi/casecheck.py` (case 701.1)."""
     from guppi.casecheck import dropped
     from guppi.prespec import retired_whole, superseded_in_window
 
     cases = folder / "cases"
     if not cases.is_dir():
-        return False
+        return []
     ledger = folder / "ledger.md"
     text = ledger.read_text(encoding="utf-8") if ledger.exists() else ""
     replies = transcript_replies(payload) if payload else []
     moments = last_decisions(text, folder.parent.name, reply, now, replies)
     records = session_decisions(text, reply, replies)
     superseded = superseded_in_window(records)
-    for path in cases.glob(f"{CASE_FILE}*.md"):
+    out = []
+    for path in sorted(cases.glob(f"{CASE_FILE}*.md")):
         case = path.stem.removeprefix(CASE_FILE)
         if dropped(path) or retired_whole(case, superseded, records):
             continue
         if case not in moments or path.stat().st_mtime > moments[case]:
-            return True
-    return False
+            out.append(case)
+    return out
+
+
+def case_out(folder: Path, reply: list[str], now, payload: dict | None = None) -> bool:
+    """Whether `cases_out` names any Case — the one judgment of a Case still out."""
+    return bool(cases_out(folder, reply, now, payload))
+
+
+def to_out(ids: list[str]) -> str:
+    """The reason that names the Cases still out and says what to do (case 889.2)."""
+    return TO_OUT.format(ids=", ".join(ids)) + ONLY_THE_PERSON
 
 
 def plan_onward(payload: dict, project_dir: Path, now) -> str | None:
@@ -288,8 +313,9 @@ def plan_onward(payload: dict, project_dir: Path, now) -> str | None:
     lines = ledger_lines(reply)
     if not lines and not sent_back_last(payload, LEDGER):
         return None
-    if case_out(folder, lines, now, payload):
-        return None
+    out = cases_out(folder, lines, now, payload)
+    if out:  # a Case still out changes only the reason (case 889.1)
+        return to_out(out)
     return TO_EXIT if built_after(folder, mark, now) else TO_LOOP
 
 

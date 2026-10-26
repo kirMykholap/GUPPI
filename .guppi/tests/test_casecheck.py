@@ -2676,6 +2676,76 @@ def test_unread_sentence_no_transcript_judges_no_read(working):
     assert answer(working, changed, agent_transcript_path=missing, now=later) == (0, "")
 
 
+# --- a Case built again counts as its file holds it (case 890.1) ---------------------------
+# `estimate-case-check-takes-a-case-built-again-from-its-file`
+
+AGAIN = "stands in a new place"
+
+
+def as_case(case, text):
+    """ANSWER as Case `case`."""
+    return (
+        text.replace("## Case 7 — example", f"## Case {case} — example")
+        .replace("case 7", f"case {case}")
+        .replace("estimate-x-works", f"estimate-x-works-{case}")
+    )
+
+
+def built_again_sibling(project):
+    """Case 5 stands in the plan as ratified, its pair writing `stands right here`; it was
+    built again since, and the store and its file hold its pair writing `AGAIN`."""
+    plan_with(project, planned(5, "stands here", "stands right here"))
+    again = ANSWER.replace(
+        ">   - old: `` the `old` text ``\n>   - new: `the new text`\n",
+        f">   - old: `stands here`\n>   - new: `{AGAIN}`\n",
+    )
+    assert answer(project, as_case(5, again)) == (0, "")
+    assert AGAIN in case_path(project, "5").read_text(encoding="utf-8")
+
+
+def test_built_again_sibling_a_part_it_wrote_is_read_in_its_file(working):
+    built_again_sibling(working)
+    reads = rule_x_read(working) + read_lines(case_path(working, "5"), call_id="toolu_5")
+    _, err = answer_file(working, ANSWER, reads=reads)
+    assert UNREAD not in err and "is not in the page" not in err
+
+
+def test_built_again_sibling_an_old_text_only_the_plan_wrote_is_a_finding(working):
+    built_again_sibling(working)
+    gone = ANSWER.replace("`` the `old` text ``", "`stands right here`")
+    code, err = answer(working, gone)
+    assert code == 2 and "a replace anchor is not in the page: stands right here" in err
+
+
+def test_built_again_sibling_an_entry_with_findings_leaves_the_plan_text(working):
+    built_again_sibling(working)
+    path = casecheck.store_of(working / ".claude" / "plans" / "plan.md")
+    held = store(working)
+    held["5"]["findings"] = ["case 5: a finding"]
+    path.write_text(json.dumps(held), encoding="utf-8")
+    _, err = answer(working, ANSWER.replace("`` the `old` text ``", "`stands right here`"))
+    assert "is not in the page" not in err
+
+
+def test_built_again_sibling_a_file_without_its_heading_leaves_the_plan_text(working):
+    built_again_sibling(working)
+    case_path(working, "5").write_text("## Case 6 — another\n\n> **context:**\n> x\n", "utf-8")
+    _, err = answer(working, ANSWER.replace("`` the `old` text ``", "`stands right here`"))
+    assert "is not in the page" not in err
+
+
+def test_subagent_session_clash_with_a_case_built_again_takes_its_stored_value(working):
+    """A Case of the plan built again in the store is compared as the store holds it, not
+    as the plan holds it (case 890.2)."""
+    plan_with(working, PLANNED_5)  # the plan's Case 5 sets status `built`
+    assert answer(working, setting(5, "draft")) == (0, "")  # built again: `draft`
+    _, err = answer(working, setting(7, "draft"))
+    assert "another value than case 5" not in err
+    later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
+    code, err = answer(working, setting(7, "built"), now=later)
+    assert code == 2 and "case 7: rule-x: sets status to another value than case 5" in err
+
+
 # --- a page the cascade archives (case 739.2) ---------------------------------------------
 # `estimate-case-check-notes-a-page-the-cascade-archives`
 

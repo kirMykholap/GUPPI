@@ -45,7 +45,10 @@ alone judged with its stored parent (`stored_parents`) is gone: the check reads 
 file of a Case (cases 629.3, 645.2). The Cases of the answer are judged with the
 other Cases of the session by `prespec.check_same_target`, imported: each Case of the plan
 file, then each entry of the store under the number alone that the plan does not hold, its
-section built by `ratified.case_section` — leaving out an entry with findings, a Case a
+section built by `ratified.case_section`; a Case of the plan built again after its
+ratification, whose entry under the number alone holds no finding and whose top-level Case
+file holds its heading, is taken as that entry holds it, in the plan's order, so the words
+its pairs wrote are judged and looked for in a read of its file (case 890.1) — leaving out an entry with findings, a Case a
 `{supersedes}` mark of the session's ledger names, a Case a `{supersedes}` mark on a
 decision line of the answer's own `ratification` names, read by `ratification_records`, a
 mark on a sub-case leaving out that sub-case alone (case 725.2), a Case the answer holds,
@@ -968,7 +971,10 @@ def other_blocks(
 ) -> dict[str, dict]:
     """Case id → its `then` block, for the other Cases of the session in the order they are
     judged (case 629.1): each Case of the plan, then each entry of the store under the
-    number alone that the plan does not hold — its section built by `ratified.case_section` —
+    number alone that the plan does not hold — its section built by `ratified.case_section` —;
+    a Case of the plan whose entry under the number alone holds no finding and whose
+    top-level Case file stands and holds its heading, a Case built again after its
+    ratification, is taken as that entry holds it, in the plan's order (case 890.1) —
     leaving out an entry with findings, a Case a `{supersedes}` mark of the ledger names, a
     Case a `{supersedes}` mark on a decision line of the answer's own `ratification` names,
     read by `ratification_records` — a mark on a sub-case leaves out that sub-case alone
@@ -989,27 +995,37 @@ def other_blocks(
             or any(in_family(case, n) for n in retired)
         )
 
+    def stored(key: str, entry) -> dict | None:
+        if not isinstance(entry, dict):
+            return None
+        if entry.get("findings") or not isinstance(entry.get("text"), str):
+            return None
+        if folder is not None and dropped(case_file(folder, key)):
+            return None  # a dropped Case is no other Case of the session (case 701.7)
+        if folder is not None and left_by_its_file(case_file(folder, key), key):
+            return None  # a part its Case built again no longer holds (case 722.1)
+        chat = split_cases(entry["text"]).get(key)
+        if chat is None:
+            return None
+        section, errors = case_section(key, headings(entry["text"]).get(key, ""), chat, {})
+        return then_blocks(section)[0] if section and not errors else None
+
     blocks: dict[str, dict] = {}
     planned = split_cases(plan or "")
     for case, lines in planned.items():
-        if not left_out(case):
-            blocks[case] = then_blocks(lines)[0]
+        if left_out(case):
+            continue
+        again = None  # a Case built again after its ratification, as its file holds it
+        if folder is not None and case_file(folder, case).is_file():
+            again = stored(case, (store or {}).get(case))  # (case 890.1)
+        blocks[case] = again if again is not None else then_blocks(lines)[0]
     for key, entry in (store or {}).items():
         key = str(key)
-        if AGENT_KEY in key or key in planned or left_out(key) or not isinstance(entry, dict):
+        if AGENT_KEY in key or key in planned or left_out(key):
             continue
-        if entry.get("findings") or not isinstance(entry.get("text"), str):
-            continue
-        if folder is not None and dropped(case_file(folder, key)):
-            continue  # a dropped Case is no other Case of the session (case 701.7)
-        if folder is not None and left_by_its_file(case_file(folder, key), key):
-            continue  # a part its Case built again no longer holds (case 722.1)
-        chat = split_cases(entry["text"]).get(key)
-        if chat is None:
-            continue
-        section, errors = case_section(key, headings(entry["text"]).get(key, ""), chat, {})
-        if section and not errors:
-            blocks[key] = then_blocks(section)[0]
+        block = stored(key, entry)
+        if block is not None:
+            blocks[key] = block
     return blocks
 
 

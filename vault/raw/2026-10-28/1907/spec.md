@@ -52,8 +52,8 @@ update:
 
 ```tasks
 - [x] `.guppi/tests/test_casecheck.py`: the docstring of `built_again_sibling` opens with `The sibling Case stands in the plan as ratified`, and the comment after `plan_with(working, PLANNED_5)` reads `the plan's sibling Case sets status built`, in a code span as it stands; no other line changes.
-- [ ] update `estimate-clean-branch-code-holds-pointers-only-in-brackets`
-- [ ] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] update `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
 ```
 
 ## Case 893 — The clean copy keeps the event logs out of git, and its texts are read again
@@ -140,10 +140,10 @@ defer:
 - [x] `.gitignore`: the comment on the event logs and its two lines `vault/raw/*/event_log.md` and `vault/archive/*/*/event_log.md` are removed; no other line changes.
 - [x] `.guppi/guppi/ship.py`: `plan` takes `vault/.gitignore` into the copy when it stands in the working tree, and the module docstring names it among the files the copy writes.
 - [x] `.guppi/tests/test_ship.py`: `tree` writes `vault/.gitignore` with the two lines, `test_it_writes_the_code_the_harness_and_the_core_pages_only` expects it in the set of written files, and a new test asserts that the copy holds it with the same text.
-- [ ] update `rule-clean-branch`
-- [ ] defer `rule-clean-branch`
-- [ ] update `estimate-clean-branch-writes-a-clean-copy`
-- [ ] read `estimate-clean-branch-writes-a-clean-copy`
+- [x] update `rule-clean-branch`
+- [x] defer `rule-clean-branch`
+- [x] update `estimate-clean-branch-writes-a-clean-copy`
+- [x] read `estimate-clean-branch-writes-a-clean-copy`
 ```
 
 ### Case 893.2 — The neutral texts of the copy are read again
@@ -176,7 +176,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-ships-neutral-texts`
+- [x] update `estimate-clean-branch-ships-neutral-texts`
 ```
 
 ## Case 894 — The guard writes the file of case-guppi, so no permission prompt comes
@@ -260,11 +260,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-reconcile`
-- [ ] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+- [x] update `rule-spec-reconcile`
+- [x] update `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
 - [x] `.guppi/guppi/ratified.py`: after `guard_refusal` and `held_number` let a call of `case-guppi` on a case file through, `guard` writes the content of a `Write`, or applies the `old_string`, `new_string` and `replace_all` of an `Edit` and of each edit of a `MultiEdit` in order on the text read and written as UTF-8 with no change of line ends, writes one event-log line `ratified wrote <tool> <path>` and exits 2 with one stderr line that names the file, says that the hook wrote it and tells the agent not to make the call again; an old string missing, found more than once without `replace_all`, or a file that does not exist is refused with that reason and writes nothing; `held_number` tells its own error apart, so that on that error and on an error of the write the call runs with exit 0 and one stderr line; the module docstring says so.
 - [x] `.guppi/tests/test_ratified.py`: the tests of the guard and of `-k number_held` that expect a call of `case-guppi` on a case file to exit 0 expect the hook's write and exit 2 instead, and their `Edit` calls carry an `old_string`; new tests cover a `Write` written whole, an `Edit` once and with `replace_all`, a `MultiEdit` in order, a missing old string, an old string found twice and a missing file each refused with the file unchanged, an error of the write and an error of the number check each letting the call run with exit 0, and the `ratified wrote` line with no `tool` line.
-- [ ] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+- [x] read `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
 ```
 
 ### Case 894.2 — The allow list says why case files stay off it
@@ -312,8 +312,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-permissions`
-- [ ] update `estimate-permissions`
+- [x] update `rule-permissions`
+- [x] update `estimate-permissions`
 - [ ] read `estimate-permissions`
 ```
 
@@ -387,10 +387,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ## Case 895 — A test shows whether a helper goes on after a compaction
@@ -468,7 +468,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-case-build-goes-on-after-a-compaction`
+- [x] create `estimate-case-build-goes-on-after-a-compaction`
 - [x] by hand in Work Mode: set up the test folder under the temporary area of the session (the agent file of the test helper with `autoCompactWindow: 100000`, a hook on `SubagentStop` and `PostCompact` that appends one line to a log, large text files), run `claude -p` there with `--permission-mode acceptEdits` and with `--resume` and the session id of the first run for the later runs, read the transcript of the test helper and the log, and record what the test found as a `knowledge` lesson line with the test as its source.
-- [ ] read `estimate-case-build-goes-on-after-a-compaction`
+- [x] read `estimate-case-build-goes-on-after-a-compaction`
 ```

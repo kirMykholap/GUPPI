@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-permissions]]"
-method: the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of .guppi/tests/test_render.py; the live probe is the person's word on the client's prompt at a Write of work.md in Work Mode, recorded in the estimate line; the live probe of the transcripts and of the mode of case-guppi is the person's word on the client's prompt, in a session after the librarian's render, at a Grep of a subagent whose path is the folder of the project's saved transcripts under ~/.claude/projects/ itself and at one whose path is a file under it, at the Write of the Case file of case-guppi, and at a Read of case-guppi on a path outside the project that no rule names, recorded in the estimate line — never the agent's, which cannot see the prompt; the Estimate stays pending until the person gives that word
+method: "the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of .guppi/tests/test_render.py; by hand, after the first Case file that case-guppi writes in Plan Mode of a session after the Work Mode that changes the guard of rule-spec-reconcile: the person's word on whether the client asked at that write, and at a Grep of a subagent whose path is the folder of the project's saved transcripts itself and at one whose path is a file under it, recorded in the estimate line, never the agent's, which cannot see the prompt"
 checked: 2026-10-07
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
@@ -16,17 +16,17 @@ tags: [harness, session]
 When:
 The agent writes or edits a working file of the session — `frontier.md`, `spec.md`, `handoff.md`, `work.md` or `carry.md` under `vault/raw/**` — or `vault/wiki/brief.md`; or `case-guppi` writes the file of its Case.
 **＋** Or an agent of the session, `case-guppi` among them, calls Read, Grep or Glob with the folder `~/.claude/projects/c--PROJECTS-GUPPI` itself as its path, or a path under it.
-**＋** Or `case-guppi` calls Read, Grep or Glob on a path outside the project that no rule of the allow list names.
 
 Then:
 The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`, `spec.md`, `handoff.md` and `work.md` under `vault/raw/**`, Write for `carry.md` under `vault/raw/**`, Edit and Write for `vault/wiki/brief.md`, `Read(~/.claude/projects/c--PROJECTS-GUPPI)` and `Read(~/.claude/projects/c--PROJECTS-GUPPI/**)`.
 **＋** `.claude/settings.json` is rendered from `rule-permissions`; the JSON case of `.guppi/tests/test_render.py` fixes the shape of the block.
-**＋** Whether the client asked is seen by the person only; the agent's reply does not tell an approved call from one not asked.
-**＋** The client's prompt is the person's word: the reading line records whether the client asked, from the person, never from the agent.
+**＋** Whether the client asked is seen by the person only: the reading line records it from the person, never from the agent, whose reply does not tell an approved call from one not asked.
 **＋** In Plan Mode the client asks before every edit of the main agent outside the plan file, allow list or not.
 **＋** A Read, Grep or Glob whose path is `~/.claude/projects/c--PROJECTS-GUPPI` itself or a path under it runs with no prompt, in Plan Mode too.
-**＋** `case-guppi` writes the file of its Case with no prompt in Plan Mode, and its Read, Grep or Glob on a path outside the project that no rule of the allow list names runs with no prompt to the person.
+**＋** `case-guppi` writes the file of its Case with no prompt in Plan Mode, since the guard of `rule-spec-reconcile` makes the write and stops its call.
 **－** A prompt in Plan Mode on an edit of the main agent, approved by the person, is not a finding and not a `failed`.
+**－** An error of the guard of `rule-spec-reconcile` while it writes that file lets the call run, and the client may ask the person that one time; that prompt is not a finding and not a `failed`.
+**－** A Read, Grep or Glob of `case-guppi` on a path outside the project that no rule of the allow list names is not bound by this Criterion: it may ask the person.
 **－** `deny` and `ask` are empty; nothing else under `vault/wiki/` is allowed, no path under `cases/` is on the allow list, no other path outside the project is on it, and no Edit or Write rule names `~/.claude/projects/c--PROJECTS-GUPPI`.
 
 ## Result
@@ -53,3 +53,4 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0636/ledger.md#L12
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the method names the folder of the project's saved transcripts by its role · [[decision-case-875]]
+- 2026-10-28 updated: the Criterion replaced whole — case-guppi writes its Case file with no prompt in Plan Mode by the guard of rule-spec-reconcile, and a read outside the project that no rule names is not bound; the method follows (case 894.2) · [[decision-case-894.2]]

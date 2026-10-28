@@ -683,6 +683,8 @@ entries:
       at the close of Plan Mode of session 0118
   exists: true
   applied: 02:58:30
+  superseded_by:
+  - '893.2'
 - line: 16
   text: decision[case 891][defer][estimate-spec-write-writes-a-defer]{ref:estimate-spec-write-writes-a-defer}
   case: '891'
@@ -698,6 +700,8 @@ entries:
       close of Plan Mode of session 0118
   exists: true
   applied: 02:58:30
+  superseded_by:
+  - '893.2'
 - line: 17
   text: 'estimate[estimate-generate-writes-the-decision-page][passed] 2026-10-26, Retro of 0118, uv run
     --project .guppi pytest .guppi/tests/test_generate.py: 143 passed; the new tests of case 888 — a page
@@ -1830,6 +1834,8 @@ decisions:
       or sets when the by-hand part of the defer reading is taken.
   spec: vault/raw/2026-10-26/0118/spec.md
   applied: 02:58:30
+  superseded_by:
+  - decision-case-893.2
 - case: '889'
   decision: decision-case-889
   origin: raw/2026-10-26/0118/ledger.md#case-889

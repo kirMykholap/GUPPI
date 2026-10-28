@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-clean-branch]]"
-purpose: "Whether guppi ship writes the code under .guppi/ without its cache folders, the harness and the pages with core: true, removes whole each bracket that holds a pointer, writes a link to a page it leaves out as its slug, writes the shipped values, exits 1 on a pointer outside such a bracket and on a bare case number in a comment or a docstring of a Python file, lists the brackets with words under --review, and judges in place under --check each file outside vault/ that it writes"
+purpose: "Whether guppi ship writes the code under .guppi/ without its cache folders, the harness, vault/.gitignore for the event logs and the pages with core: true, removes whole each bracket that holds a pointer, writes a link to a page it leaves out as its slug, writes the shipped values, exits 1 on a pointer outside such a bracket and on a bare case number in a comment or a docstring of a Python file, lists the brackets with words under --review, and judges in place under --check each file outside vault/ that it writes"
 method: uv run --project .guppi pytest .guppi/tests/test_ship.py
-checked: 2026-10-15
+checked: 2026-10-28
 origin: raw/2026-10-13/1753/ledger.md#case-804.6
 sprint: plugin
 created: 2026-10-13
@@ -20,7 +20,7 @@ When:
 **＋** Or `uv run --project .guppi guppi ship --check` judges the working tree and writes no folder.
 
 Then:
-It writes `.guppi/` — what it writes of its tests, its Python environment and the module of the command `ship` is what `estimate-clean-branch-ships-the-tests` and `estimate-clean-branch-ships-no-ship-command` set — then `.claude/`, `CLAUDE.md`, `.gitattributes`, the `schema.yaml` of each category, `vault/wiki/tags.md`, each page under `vault/wiki/` with `core: true`, and each file rendered from such a page.
+It writes `.guppi/` — what it writes of its tests, its Python environment and the module of the command `ship` is what `estimate-clean-branch-ships-the-tests` and `estimate-clean-branch-ships-no-ship-command` set — then `.claude/`, `CLAUDE.md`, `.gitattributes`, `vault/.gitignore`, whose lines keep each `event_log.md` under `vault/raw/` and `vault/archive/` out of git, the `schema.yaml` of each category, `vault/wiki/tags.md`, each page under `vault/wiki/` with `core: true`, and each file rendered from such a page.
 **＋** In each file it writes, it removes whole each bracket that holds a pointer — a reference to a case, an id `decision-case-N` or a mention of a session by its id — with every word in it and the space before it, and each `[[decision-case-N]]` link, but in a string of a test file, as `estimate-clean-branch-ships-the-tests` sets it; a bracket that holds no pointer stays as it is.
 **＋** It writes each other `[[…]]` link of a Markdown file to a page or a file it does not write as the slug in a code span.
 **＋** Each page it writes carries `origin: guppi`, `sprint: guppi`, the date of the run in `created` and a `## History` of one line that says the page shipped with GUPPI, and its link fields keep only the pages it writes.
@@ -40,7 +40,7 @@ It writes `.guppi/` — what it writes of its tests, its Python environment and 
 
 ## Result
 
-2026-10-15, uv run --project .guppi pytest .guppi/tests/test_ship.py: 50 passed, exit 0
+2026-10-28, Retro: uv run --project .guppi pytest .guppi/tests/test_ship.py, 51 passed, 1 deselected; test_it_writes_the_code_the_harness_and_the_core_pages_only holds vault/.gitignore in the set of written files and test_it_writes_the_lines_that_keep_the_event_logs_out_of_git finds it with the same text
 
 ## History
 
@@ -60,3 +60,5 @@ It writes `.guppi/` — what it writes of its tests, its Python environment and 
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 updated: the Criterion replaced whole — the code ships under .guppi/, and the root pyproject.toml and uv.lock do not ship · [[decision-case-819.3]]
 - 2026-10-15 status: pending → passed · raw/2026-10-15/1739/ledger.md#L1
+- 2026-10-28 updated: the Criterion replaced whole — the copy writes vault/.gitignore, which keeps the event logs out of git · [[decision-case-893.1]]
+- 2026-10-28 status: pending → passed · raw/2026-10-28/1907/ledger.md#L16

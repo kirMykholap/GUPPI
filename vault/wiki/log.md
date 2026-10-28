@@ -11594,3 +11594,48 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-26 rules/rule-spec-write status: draft → built · cascade · generate
 - 2026-10-26 decisions/decision-case-887 archived · superseded · generate
 - 2026-10-26 decisions/decision-case-887 archived · cleanup
+- 2026-10-28 decisions/decision-case-892 created · raw/2026-10-28/1907/ledger.md#case-892 · generate
+- 2026-10-28 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets updated: the Criterion replaced whole — the tests under .guppi/tests/ hold pointers only in brackets too · [[decision-case-892]] · generate
+- 2026-10-28 decisions/decision-case-893 created · raw/2026-10-28/1907/ledger.md#case-893 · generate
+- 2026-10-28 decisions/decision-case-893.1 created · raw/2026-10-28/1907/ledger.md#case-893.1 · generate
+- 2026-10-28 decisions/decision-case-882.3 superseded by decision-case-893.1 · [[decision-case-893.1]] · generate
+- 2026-10-28 rules/rule-clean-branch defer by decision-case-882.3 superseded · [[decision-case-893.1]] · generate
+- 2026-10-28 rules/rule-clean-branch updated: the clean version writes vault/.gitignore, which keeps the event logs out of git · [[decision-case-893.1]] · generate
+- 2026-10-28 rules/rule-clean-branch deferred · [[decision-case-893.1]] · generate
+- 2026-10-28 estimates/estimate-clean-branch-writes-a-clean-copy updated: the Criterion replaced whole — the copy writes vault/.gitignore, which keeps the event logs out of git · [[decision-case-893.1]] · generate
+- 2026-10-28 decisions/decision-case-893.2 created · raw/2026-10-28/1907/ledger.md#case-893.2 · generate
+- 2026-10-28 decisions/decision-case-891 superseded by decision-case-893.2 · [[decision-case-893.2]] · generate
+- 2026-10-28 estimates/estimate-clean-branch-ships-neutral-texts defer by decision-case-891 superseded · [[decision-case-893.2]] · generate
+- 2026-10-28 estimates/estimate-clean-branch-ships-neutral-texts updated: put-off taken up — the clean version keeps the event logs out of git by vault/.gitignore; the method waits for the librarian's run of session 1907 · [[decision-case-893.2]] · generate
+- 2026-10-28 decisions/decision-case-894 created · raw/2026-10-28/1907/ledger.md#case-894 · generate
+- 2026-10-28 decisions/decision-case-894.1 created · raw/2026-10-28/1907/ledger.md#case-894.1 · generate
+- 2026-10-28 rules/rule-spec-reconcile updated: the guard writes the file of case-guppi itself and stops the call, so no permission prompt comes in Plan Mode (case 894.1) · [[decision-case-894.1]] · generate
+- 2026-10-28 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan updated: the Criterion replaced whole — the guard writes the file of case-guppi itself and stops the call; the purpose and the method follow (case 894.1) · [[decision-case-894.1]] · generate
+- 2026-10-28 decisions/decision-case-894.2 created · raw/2026-10-28/1907/ledger.md#case-894.2 · generate
+- 2026-10-28 rules/rule-permissions updated: case-guppi stays in plan mode in Plan Mode whatever its permissionMode; the guard of rule-spec-reconcile writes its Case file, and a read outside the project that no rule names may ask (case 894.2) · [[decision-case-894.2]] · generate
+- 2026-10-28 estimates/estimate-permissions updated: the Criterion replaced whole — case-guppi writes its Case file with no prompt in Plan Mode by the guard of rule-spec-reconcile, and a read outside the project that no rule names is not bound; the method follows (case 894.2) · [[decision-case-894.2]] · generate
+- 2026-10-28 decisions/decision-case-894.3 created · raw/2026-10-28/1907/ledger.md#case-894.3 · generate
+- 2026-10-28 rules/rule-case-build updated: the guard writes the Case file for case-guppi and stops the call; case-guppi takes that line as the write done (case 894.3) · [[decision-case-894.3]] · generate
+- 2026-10-28 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — permissionMode auto applies only in default or dontAsk mode; in Plan Mode the guard writes the Case file, and case-guppi takes its line as the write done and reads the file before its next Edit (case 894.3) · [[decision-case-894.3]] · generate
+- 2026-10-28 decisions/decision-case-895 created · raw/2026-10-28/1907/ledger.md#case-895 · generate
+- 2026-10-28 estimates/estimate-case-build-goes-on-after-a-compaction created · [[decision-case-895]] · generate
+- 2026-10-28 estimates/estimate-case-build-goes-on-after-a-compaction status: pending → failed · raw/2026-10-28/1907/ledger.md#L19 · generate
+- 2026-10-28 rules/rule-case-build estimate estimate-case-build-goes-on-after-a-compaction added · [[decision-case-895]] · generate
+- 2026-10-28 estimates/estimate-case-build-reads-no-sibling-file-mid-send status: pending → passed · raw/2026-10-28/1907/ledger.md#L13 · generate
+- 2026-10-28 estimates/estimate-orchestration-rechecks-a-sibling-after-a-joint-send status: pending → passed · raw/2026-10-28/1907/ledger.md#L14 · generate
+- 2026-10-28 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets status: pending → passed · raw/2026-10-28/1907/ledger.md#L15 · generate
+- 2026-10-28 estimates/estimate-clean-branch-writes-a-clean-copy status: pending → passed · raw/2026-10-28/1907/ledger.md#L16 · generate
+- 2026-10-28 estimates/estimate-spec-reconcile-refuses-an-edit-of-the-plan status: pending → passed · raw/2026-10-28/1907/ledger.md#L17 · generate
+- 2026-10-28 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-10-28/1907/ledger.md#L18 · generate
+- 2026-10-28 lessons/lesson-case-build-subagent-compaction-fires-below-its-window created · raw/2026-10-28/1907/ledger.md#L20 · generate
+- 2026-10-28 lessons/lesson-hooks-guard-broken-mid-edit-of-its-own-contract created · raw/2026-10-28/1907/ledger.md#L21 · generate
+- 2026-10-28 lessons/lesson-prespec-ask-guppi-opened-a-decision-outside-its-frame created · raw/2026-10-28/1907/ledger.md#L22 · generate
+- 2026-10-28 insights/insight-ask-guppi-reads-a-decision-outside-its-frame created · raw/2026-10-28/1907/ledger.md#L22 · generate
+- 2026-10-28 lessons/lesson-ask-guppi-read-a-decision-page-without-a-reason updated: clustered under insight-ask-guppi-reads-a-decision-outside-its-frame (synthesis) · raw/2026-10-28/1907/ledger.md#L22 · generate
+- 2026-10-28 lessons/lesson-prespec-ask-guppi-opened-a-decision-outside-its-frame updated: clustered under insight-ask-guppi-reads-a-decision-outside-its-frame (synthesis) · raw/2026-10-28/1907/ledger.md#L22 · generate
+- 2026-10-28 rules/rule-permissions status: built → draft · cascade · generate
+- 2026-10-28 decisions/decision-case-882.3 archived · superseded · generate
+- 2026-10-28 decisions/decision-case-891 archived · superseded · generate
+- 2026-10-28 decisions/decision-case-882.3 archived · cleanup
+- 2026-10-28 decisions/decision-case-891 archived · cleanup
+- 2026-10-28 decisions/decision-case-882 child decision-case-882.3 archived · cleanup

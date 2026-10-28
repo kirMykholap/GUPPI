@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "891"
-status: current
+status: archived
 defer: ["[[estimate-clean-branch-ships-neutral-texts]]", "[[estimate-spec-write-writes-a-defer]]"]
+superseded_by: ["[[decision-case-893.2]]"]
 origin: raw/2026-10-26/0118/ledger.md#case-891
 sprint: plugin
 created: 2026-10-26
@@ -30,3 +31,6 @@ The Stop hook writes a deferred Case into the Spec as the reply showed it; put o
 ## History
 
 - 2026-10-26 created · raw/2026-10-26/0118/ledger.md#case-891
+- 2026-10-28 superseded by decision-case-893.2 · [[decision-case-893.2]]
+- 2026-10-28 archived · superseded
+- 2026-10-28 archived · cleanup

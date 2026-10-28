@@ -2,7 +2,7 @@
 type: decision
 case: "882"
 status: current
-children: ["[[decision-case-882.1]]", "[[decision-case-882.2]]", "[[decision-case-882.3]]"]
+children: ["[[decision-case-882.1]]", "[[decision-case-882.2]]"]
 origin: raw/2026-10-17/2307/ledger.md#case-882
 sprint: plugin
 created: 2026-10-17
@@ -34,3 +34,4 @@ The clean version ships the Criteria of `passed` Estimates with sentences true o
 ## History
 
 - 2026-10-26 created · raw/2026-10-17/2307/ledger.md#case-882
+- 2026-10-28 child decision-case-882.3 archived · cleanup

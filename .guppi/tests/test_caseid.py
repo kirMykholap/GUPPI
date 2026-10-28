@@ -128,8 +128,8 @@ def test_held_number_reads_both_forms(session, case):
         "agent_id": "agent-b",
         "tool_input": {"file_path": str(casecheck.case_file(folder_of(session), case))},
     }
-    held = ratified.held_number(payload, session, NOW, io.StringIO())
-    assert held is not None and f"holds case {case} in the store" in held[1]
+    refused, judged = ratified.held_number(payload, session, NOW, io.StringIO())
+    assert judged and refused is not None and f"holds case {case} in the store" in refused[1]
 
 
 # --- guppi caseid --next ------------------------------------------------------------------

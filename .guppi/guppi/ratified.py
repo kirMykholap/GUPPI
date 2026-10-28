@@ -93,7 +93,15 @@ agent writes before the first dispatch of `case-guppi` — and is refused otherw
 uses too — is refused the same way, whatever its name and whether it stands, the reason naming
 the file and that `case-guppi` alone writes it (case 453), unless the hook input names
 `case-guppi` as `agent_type`, which Claude Code gives a hook fired inside a subagent (measured
-2026-10-05, session 0311): that call passes, and any `Edit`, `Write` or `MultiEdit` of
+2026-10-05, session 0311): the hook makes that call itself, by `builder_write`, since Claude
+Code keeps a subagent in plan mode in Plan Mode whatever its `permissionMode` and would ask
+the person — the content of a `Write`, or each `old_string` of an `Edit` or a `MultiEdit`
+replaced by its `new_string` in order, once or at each match with `replace_all` — writes one
+line `ratified wrote <tool> <path>` to the day's event log and exits 2 with one line that says
+the file is written and the call is not to be made again; an old string missing, found more
+than once without `replace_all`, or a file that does not exist is refused with that reason and
+writes nothing, and an error of the number check below or of the write lets the call run with
+one line on stderr (case 894.1). Any `Edit`, `Write` or `MultiEdit` of
 `case-guppi` outside such a folder is refused (case 645.3). Unless another agent holds the
 number of the file (case 650.1): on a call of `case-guppi` on `case-<N>.md`, N by
 `casecheck.case_number`, the guard reads the store of the session's plan file, and when
@@ -918,15 +926,17 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
     )
 
 
-def held_number(payload: dict, project_dir: Path, now, stderr) -> tuple[str, str] | None:
-    """`(path, reason)` when a call of `case-guppi` on `case-<N>.md` under `cases/` meets
-    Case N, or a sub-case of it, held in the store under its number alone by another
+def held_number(
+    payload: dict, project_dir: Path, now, stderr
+) -> tuple[tuple[str, str] | None, bool]:
+    """`((path, reason), True)` when a call of `case-guppi` on `case-<N>.md` under `cases/`
+    meets Case N, or a sub-case of it, held in the store under its number alone by another
     `agent_id` — by `casecheck.clashes`, the reason naming a free number by
     `casecheck.new_number` (case 650.1). A call that passes while the store holds no entry under N writes
     there an entry with its `agent_id` and the time and no text. A call with no `agent_id`, a
     file with no number and a session with no plan file are not judged and write nothing; an
-    error while finding the plan or reading or writing the store lets the call run, with one
-    line on stderr, as the guard does on its own error."""
+    error while finding the plan or reading or writing the store prints one line on stderr and
+    gives `(None, False)`, so the guard lets the call run and writes no file (case 894.1)."""
     from guppi.casecheck import (  # it imports this module
         AGENT,
         case_number,
@@ -940,33 +950,81 @@ def held_number(payload: dict, project_dir: Path, now, stderr) -> tuple[str, str
     )
 
     if payload.get("tool_name") not in EDIT_TOOLS or payload.get("agent_type") != AGENT:
-        return None
+        return None, True
     tool_input = payload.get("tool_input")
     raw = tool_input.get("file_path") if isinstance(tool_input, dict) else None
     agent_id = str(payload.get("agent_id") or "")
     if not raw or not agent_id or not is_case_file(Path(str(raw))):
-        return None
+        return None, True
     number = case_number(raw)
     if number is None:
-        return None
+        return None, True
     try:
         stamp = session_stamp(None, payload)
         plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
         if plan is None or not plan.is_file():
-            return None
+            return None, True
         store = held_store(plan)
         if clashes({number: []}, store, agent_id):
             folder = session_dir(project_dir, now, stamp)
             free = new_number(ledger_records(ledger_of(folder)), store, number, project_dir, folder)
-            return str(raw), (
+            reason = (
                 f"{raw}: another case-guppi holds case {number} in the store — build this "
                 f"Case as case {free}, in cases/case-{free}.md (rule-spec-reconcile)"
             )
+            return (str(raw), reason), True
         if number not in store:
             store[number] = {"agent_id": agent_id, "stored": now.isoformat()}
             write_store(plan, store)
     except Exception as exc:  # noqa: BLE001 — the call runs, as on any error of the guard
         print(f"ratified: number not held: {exc}", file=stderr)
+        return None, False
+    return None, True
+
+
+def builder_file(payload: dict) -> Path | None:
+    """The file under `cases/` that a call of `case-guppi` names, which the guard writes
+    itself (case 894.1); None for any other call."""
+    from guppi.casecheck import AGENT, is_case_file  # it imports this module
+
+    if payload.get("tool_name") not in EDIT_TOOLS or payload.get("agent_type") != AGENT:
+        return None
+    tool_input = payload.get("tool_input")
+    raw = tool_input.get("file_path") if isinstance(tool_input, dict) else None
+    if not raw or not is_case_file(Path(str(raw))):
+        return None
+    return Path(str(raw))
+
+
+def builder_write(payload: dict, path: Path) -> str | None:
+    """Make the write of `case-guppi` on `path` as the tool would (case 894.1): the content of
+    a `Write`, or each `old_string` of an `Edit` or of the `edits` of a `MultiEdit` replaced by
+    its `new_string` in order, once or at each match with `replace_all`, the text read and
+    written as UTF-8 with its line ends as they stand. None once written; the reason, with the
+    file left as it stands, when an old string is missing, is found more than once without
+    `replace_all`, or the file to edit does not exist. An error of the write raises."""
+    tool = payload.get("tool_name")
+    tool_input = payload["tool_input"]
+    if tool == "Write":
+        text = str(tool_input.get("content") or "")
+    else:
+        if not path.is_file():
+            return f"{path} does not exist; write it whole by Write (rule-spec-reconcile)"
+        text = path.read_bytes().decode("utf-8")
+        edits = tool_input.get("edits") if tool == "MultiEdit" else [tool_input]
+        for edit in edits or []:
+            old, new = str(edit.get("old_string") or ""), str(edit.get("new_string") or "")
+            found = text.count(old) if old else 0
+            if not found:
+                return f"{path}: the old string is not in the file; nothing written (rule-spec-reconcile)"
+            if found > 1 and not edit.get("replace_all"):
+                return (
+                    f"{path}: the old string is found {found} times and replace_all is not "
+                    "set; nothing written (rule-spec-reconcile)"
+                )
+            text = text.replace(old, new) if edit.get("replace_all") else text.replace(old, new, 1)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(text.encode("utf-8"))
     return None
 
 
@@ -974,22 +1032,48 @@ def guard(payload: dict, project_dir: Path, now, stderr) -> int:
     """`PreToolUse`: refuse the agent's edit of the plan file, of its store (case 445.1) and
     of a file of a built Case under `cases/` (case 453), by `guard_refusal`, and a call of
     `case-guppi` on the file of a Case another agent holds, by `held_number` (case 650.1).
-    A refusal writes one line to the day's event log first: a refused call has no
-    `PostToolUse`, so it leaves no `tool` line, and a refusal not written is nowhere."""
+    A call of `case-guppi` on its file that both let through the guard writes itself, by
+    `builder_write`, and stops with exit 2 and one line that says so, since Claude Code keeps a
+    subagent in plan mode in Plan Mode and would ask the person (case 894.1); an error of
+    `held_number` or of the write lets the call run. A refusal and a write each write one line
+    to the day's event log first: a stopped call has no `PostToolUse`, so it leaves no `tool`
+    line, and a refusal not written is nowhere."""
+    tool = str(payload.get("tool_name"))
     refused = guard_refusal(payload)
     if refused is None:
-        refused = held_number(payload, project_dir, now, stderr)
+        refused, held = held_number(payload, project_dir, now, stderr)
+        target = builder_file(payload)
+        if refused is None and held and target is not None:
+            try:
+                reason = builder_write(payload, target)
+            except Exception as exc:  # noqa: BLE001 — the call runs, as on any error of the guard
+                print(f"ratified: not written: {exc}", file=stderr)
+                return 0
+            if reason is None:
+                event(project_dir, now, payload, ["wrote", tool, str(target)], stderr)
+                print(
+                    f"ratified: {target} is written by this hook as the {tool} sets it; do not "
+                    f"make the call again, and Read the file before its next Edit "
+                    f"(rule-spec-reconcile)",
+                    file=stderr,
+                )
+                return 2
+            refused = str(target), reason
     if refused is None:
         return 0
     path, reason = refused
-    tool = str(payload.get("tool_name"))
-    try:
-        line = format_line("ratified", payload, ["refused", tool, path], None, now)
-        append(log_path(project_dir, now), line)
-    except Exception as exc:  # noqa: BLE001 — the refusal stands whatever the log does
-        print(f"ratified: refusal not logged: {exc}", file=stderr)
+    event(project_dir, now, payload, ["refused", tool, path], stderr)
     print(f"ratified: {reason}", file=stderr)
     return 2
+
+
+def event(project_dir: Path, now, payload: dict, words: list[str], stderr) -> None:
+    """One line `ratified <words>` in the day's event log; the call is stopped whatever the
+    log does."""
+    try:
+        append(log_path(project_dir, now), format_line("ratified", payload, words, None, now))
+    except Exception as exc:  # noqa: BLE001 — the stop stands whatever the log does
+        print(f"ratified: {words[0]} not logged: {exc}", file=stderr)
 
 
 def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None = None) -> int:

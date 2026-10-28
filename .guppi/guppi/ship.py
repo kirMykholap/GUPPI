@@ -3,7 +3,8 @@
 Builds the clean version from the working tree into an empty folder (case 804.6): `.guppi/`,
 the package `guppi` with its `pyproject.toml`, `uv.lock` and `.gitignore`, and its tests
 `.guppi/tests/` (case 822); `.claude/`; the root files of `ROOT_FILES`, `CLAUDE.md`
-and `.gitattributes`; the `schema.yaml` of each category, `vault/wiki/tags.md`, each page
+and `.gitattributes`; `VAULT_IGNORE`, `vault/.gitignore`, whose lines keep the daily event
+logs under `vault/raw/` and `vault/archive/` out of git (case 893.1); the `schema.yaml` of each category, `vault/wiki/tags.md`, each page
 but an Estimate that `is_core` of `.guppi/guppi/pages.py` accepts and each file that the
 Render of such a page governs — but `LEFT_OUT`, the files of this project: the session files
 of `SKELETONS` and `guppi.toml`, and this module, `.guppi/guppi/ship.py`, with its tests
@@ -151,6 +152,9 @@ TREES = (".guppi", ".claude")
 # the CI of the checks, the one file of `.github/` the copy takes; the workflow that writes
 # `prod` stays here (case 822)
 CI = ".github/workflows/checks.yml"
+# the lines that keep the daily event logs out of git, which the copy takes so that a
+# project that installs GUPPI ignores its logs too (case 893.1)
+VAULT_IGNORE = "vault/.gitignore"
 # the description of the project in `CLAUDE.md` and in the Render of its page: the copy
 # writes `BLANK_DESCRIPTION` between the marker lines (case 822)
 DESCRIBED_FILE, DESCRIBED_PAGE = "CLAUDE.md", "rule-claude-md"
@@ -468,6 +472,7 @@ def plan(project_dir: Path) -> tuple[dict[str, str], list[Page], set[str], set[s
 
     names = [name for name in ROOT_FILES if (project_dir / name).is_file()]
     names.append(CI)
+    names.append(VAULT_IGNORE)
     for top in TREES:
         names += tree_files(project_dir, top)
     names += [f"vault/wiki/{category}/schema.yaml" for category in CATEGORIES]

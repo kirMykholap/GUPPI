@@ -54,6 +54,8 @@ GLOSSARY_PAGE = (
 # which it neither writes nor judges, so its pointer outside a bracket prints nothing
 CHECKS_WORKFLOW = "# The checks of a pull request (case 787).\non: push\n"
 PROD_WORKFLOW = "# since case 804 it writes prod\non: push\n"
+# the lines that keep the daily event logs out of git, which the copy writes as they stand
+VAULT_IGNORE = "# The daily event logs.\nraw/*/event_log.md\narchive/*/*/event_log.md\n"
 
 
 def write(path: Path, text: str) -> None:
@@ -113,6 +115,7 @@ def tree(root: Path, tags: tuple[str, ...] = ("prod-0.2.0",), **pages: str) -> N
     write(root / "guppi.toml", "documentation_lang = 'en'\n")
     write(root / ".github" / "workflows" / "checks.yml", CHECKS_WORKFLOW)
     write(root / ".github" / "workflows" / "prod.yml", PROD_WORKFLOW)
+    write(root / "vault" / ".gitignore", VAULT_IGNORE)
     write(root / "vault" / "raw" / "2026-10-13" / "1753" / "frontier.md", "# Frontier\n")
     write(root / "vault" / "archive" / "plugin" / "x.md", "# old\n")
     wiki = root / "vault" / "wiki"
@@ -164,6 +167,7 @@ def test_it_writes_the_code_the_harness_and_the_core_pages_only(tmp_path):
         ".guppi/.gitignore",
         ".claude/settings.json",
         ".github/workflows/checks.yml",
+        "vault/.gitignore",
         ".claude-plugin/plugin.json",
         ".claude-plugin/marketplace.json",
         "skills/install/SKILL.md",
@@ -174,6 +178,13 @@ def test_it_writes_the_code_the_harness_and_the_core_pages_only(tmp_path):
         "vault/wiki/entities/entity-x.md",
         "vault/wiki/entities/entity-glossary.md",
     }
+
+
+def test_it_writes_the_lines_that_keep_the_event_logs_out_of_git(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    assert run(root, out) == (0, [])
+    assert (out / "vault" / ".gitignore").read_text(encoding="utf-8") == VAULT_IGNORE
 
 
 def test_it_writes_a_file_a_core_page_renders_and_not_one_a_loose_page_renders(tmp_path):

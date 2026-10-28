@@ -2692,7 +2692,7 @@ def as_case(case, text):
 
 
 def built_again_sibling(project):
-    """Case 5 stands in the plan as ratified, its pair writing `stands right here`; it was
+    """The sibling Case stands in the plan as ratified, its pair writing `stands right here`; it was
     built again since, and the store and its file hold its pair writing `AGAIN`."""
     plan_with(project, planned(5, "stands here", "stands right here"))
     again = ANSWER.replace(
@@ -2737,7 +2737,7 @@ def test_built_again_sibling_a_file_without_its_heading_leaves_the_plan_text(wor
 def test_subagent_session_clash_with_a_case_built_again_takes_its_stored_value(working):
     """A Case of the plan built again in the store is compared as the store holds it, not
     as the plan holds it (case 890.2)."""
-    plan_with(working, PLANNED_5)  # the plan's Case 5 sets status `built`
+    plan_with(working, PLANNED_5)  # the plan's sibling Case sets status `built`
     assert answer(working, setting(5, "draft")) == (0, "")  # built again: `draft`
     _, err = answer(working, setting(7, "draft"))
     assert "another value than case 5" not in err

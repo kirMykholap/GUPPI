@@ -237,8 +237,8 @@ def stop(project, reply, *messages, built=True, sent=None, sent_at=SENT, extra=(
     return code, err.getvalue()
 
 
-def guard(project, tool, path, content=None, **fields):
-    tool_input = {"file_path": str(path)}
+def guard(project, tool, path, content=None, edit=None, **fields):
+    tool_input = {"file_path": str(path), **(edit or {})}
     if content is not None:
         tool_input["content"] = content
     fields.setdefault("session_id", SESSION)
@@ -1350,12 +1350,116 @@ def test_guard_a_file_of_another_name_under_cases_is_refused(working):
     assert code == 2 and "case-guppi alone writes it" in err
 
 
-@pytest.mark.parametrize("tool", ["Edit", "Write"])
-def test_guard_case_guppi_writes_under_cases(working, tool):
+WRITTEN = "is written by this hook"
+
+
+def test_guard_case_guppi_writes_under_cases(working):
     # the hook input names the agent type inside a subagent (measured in session 0311; case
-    # 645.3)
+    # 645.3); the hook makes the write itself and stops the call (case 894.1)
     path = case_path(working, "7")
-    assert guard(working, tool, path, "## Case 7 — x\n", agent_type="case-guppi") == (0, "")
+    code, err = guard(working, "Write", path, "## Case 7 — x\n", agent_type="case-guppi")
+    assert code == 2 and err.count("\n") == 1 and WRITTEN in err and str(path) in err
+    assert "do not make the call again" in err
+    assert path.read_text(encoding="utf-8") == "## Case 7 — x\n"
+    edit = {"old_string": "x", "new_string": "y"}
+    code, err = guard(working, "Edit", path, edit=edit, agent_type="case-guppi")
+    assert code == 2 and WRITTEN in err
+    assert path.read_text(encoding="utf-8") == "## Case 7 — y\n"
+
+
+# --- the write of the guard (case 894.1): `estimate-spec-reconcile-refuses-an-edit-of-the-plan`
+
+
+def made(project, text):
+    path = case_path(project, "7")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(text.encode("utf-8"))
+    return path
+
+
+def by_builder(project, tool, path, content=None, edit=None):
+    return guard(project, tool, path, content, edit, agent_type="case-guppi")
+
+
+def test_guard_write_a_write_is_written_whole_over_the_file(working):
+    path = made(working, "old\n")
+    assert by_builder(working, "Write", path, "## Case 7 — new\n\nbody\n")[0] == 2
+    assert path.read_text(encoding="utf-8") == "## Case 7 — new\n\nbody\n"
+
+
+def test_guard_write_an_edit_replaces_once_and_keeps_the_line_ends(working):
+    path = made(working, "a b\r\nc\r\n")
+    assert by_builder(working, "Edit", path, edit={"old_string": "b", "new_string": "B"})[0] == 2
+    assert path.read_bytes() == b"a B\r\nc\r\n"
+
+
+def test_guard_write_an_edit_with_replace_all_replaces_each_match(working):
+    path = made(working, "x x x\n")
+    edit = {"old_string": "x", "new_string": "y", "replace_all": True}
+    assert by_builder(working, "Edit", path, edit=edit)[0] == 2
+    assert path.read_text(encoding="utf-8") == "y y y\n"
+
+
+def test_guard_write_a_multi_edit_applies_its_edits_in_order(working):
+    path = made(working, "one two\n")
+    edits = [
+        {"old_string": "one", "new_string": "three"},
+        {"old_string": "three two", "new_string": "four"},
+    ]
+    assert by_builder(working, "MultiEdit", path, edit={"edits": edits})[0] == 2
+    assert path.read_text(encoding="utf-8") == "four\n"
+
+
+@pytest.mark.parametrize(
+    ("tool", "edit", "reason"),
+    [
+        ("Edit", {"old_string": "missing", "new_string": "y"}, "is not in the file"),
+        ("Edit", {"old_string": "x", "new_string": "y"}, "found 2 times"),
+        (
+            "MultiEdit",
+            {
+                "edits": [
+                    {"old_string": "x y", "new_string": "z"},
+                    {"old_string": "gone", "new_string": "w"},
+                ]
+            },
+            "is not in the file",
+        ),
+    ],
+    ids=["missing", "twice", "a multi edit with one missing"],
+)
+def test_guard_write_an_edit_that_cannot_apply_is_refused_and_leaves_the_file(
+    working, tool, edit, reason
+):
+    path = made(working, "x y x\n")
+    code, err = by_builder(working, tool, path, edit=edit)
+    assert code == 2 and reason in err and WRITTEN not in err
+    assert path.read_text(encoding="utf-8") == "x y x\n"
+    assert f"ratified refused {tool} " in logged(working)
+
+
+def test_guard_write_an_edit_of_a_missing_file_is_refused(working):
+    path = case_path(working, "7")
+    code, err = by_builder(working, "Edit", path, edit={"old_string": "x", "new_string": "y"})
+    assert code == 2 and "does not exist" in err and not path.exists()
+
+
+def test_guard_write_an_error_of_the_write_lets_the_call_run(working, monkeypatch):
+    monkeypatch.setattr(ratified, "builder_write", boom)
+    code, err = by_builder(working, "Write", case_path(working, "7"), "## Case 7 — x\n")
+    assert code == 0 and err == "ratified: not written: boom\n"
+
+
+def test_guard_write_writes_its_line_and_no_tool_line(working):
+    log = working / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    before = log.read_text(encoding="utf-8").splitlines()
+    path = case_path(working, "7")
+    assert by_builder(working, "Write", path, "## Case 7 — x\n")[0] == 2
+    after = log.read_text(encoding="utf-8").splitlines()[len(before) :]
+    (line,) = after  # the event log cuts a long path
+    assert line.startswith("- 15:30:00 44c1aae1 ratified wrote Write ")
+    assert " tool " not in line
+    assert plan_path(session_event_logs(working, NOW, "44c1aae1"), "44c1aae1") == plan_of(working)
 
 
 @pytest.mark.parametrize("agent", [None, "claude"])
@@ -1434,14 +1538,24 @@ def hold(project, data):
 
 
 def builder(project, tool, agent_id="agent-a", case="7"):
+    """A call of `case-guppi` on `case-<case>.md`: a `Write` of one line, or an `Edit` of
+    that line once a `Write` made it; the guard writes either itself (case 894.1)."""
     fields = {"agent_type": "case-guppi"}
     if agent_id:
         fields["agent_id"] = agent_id
-    return guard(project, tool, case_path(project, case), "## Case 7 — x\n", **fields)
+    edit = {"old_string": "x", "new_string": "x"} if tool == "Edit" else None
+    content = None if tool == "Edit" else "## Case 7 — x\n"
+    return guard(project, tool, case_path(project, case), content, edit, **fields)
+
+
+def passed(result):
+    """The guard let the number through and wrote the file itself (case 894.1)."""
+    code, err = result
+    return code == 2 and err.count("\n") == 1 and "is written by this hook" in err
 
 
 def test_number_held_a_first_write_passes_and_holds_the_number(working):
-    assert builder(working, "Write") == (0, "")
+    assert passed(builder(working, "Write"))
     assert store_data(working) == {"7": {"agent_id": "agent-a", "stored": NOW.isoformat()}}
 
 
@@ -1465,26 +1579,27 @@ def test_number_held_a_sub_case_held_by_another_agent_refuses_its_parent(working
 def test_number_held_the_same_agent_passes(working):
     held = {"7": {"agent_id": "agent-a", "text": "x", "findings": [], "stored": STORED}}
     hold(working, held)
-    assert builder(working, "Edit") == (0, "")
+    made(working, "## Case 7 — x\n")
+    assert passed(builder(working, "Edit"))
     assert store_data(working) == held
 
 
 def test_number_held_an_entry_with_no_agent_id_is_not_refused_or_written(working):
     held = {"7": {"text": "x", "findings": [], "stored": STORED}}
     hold(working, held)
-    assert builder(working, "Write", agent_id="agent-b") == (0, "")
+    assert passed(builder(working, "Write", agent_id="agent-b"))
     assert store_data(working) == held
 
 
 def test_number_held_a_call_with_no_agent_id_writes_nothing(working):
-    assert builder(working, "Write", agent_id=None) == (0, "")
+    assert passed(builder(working, "Write", agent_id=None))
     assert store_data(working) is None
 
 
 def test_number_held_no_plan_file_writes_nothing(working):
     log = working / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
     log.write_text("- 15:01:00 44c1aae1 session-start startup\n- 15:01:30 44c1aae1 hi\n")
-    assert builder(working, "Write") == (0, "")
+    assert passed(builder(working, "Write"))
     assert store_data(working) is None
 
 
@@ -1494,12 +1609,14 @@ def test_number_held_a_store_that_cannot_be_read_lets_the_call_run(working):
     code, err = builder(working, "Write")
     assert code == 0 and err.count("\n") == 1 and "number not held" in err
     assert path.read_text(encoding="utf-8") == "not json"
+    assert not case_path(working, "7").exists()  # the call runs; the guard wrote nothing
 
 
 def test_number_held_a_store_that_cannot_be_written_lets_the_call_run(working, monkeypatch):
     monkeypatch.setattr(casecheck, "write_store", boom)
     code, err = builder(working, "Write")
     assert code == 0 and err.count("\n") == 1 and "number not held" in err
+    assert not case_path(working, "7").exists()
 
 
 def test_number_held_a_file_with_no_number_is_not_judged():
@@ -1524,11 +1641,11 @@ def test_number_held_an_id_of_a_sprint_held_by_another_agent_is_refused(working)
 
 
 def test_number_held_an_id_of_a_sprint_held_by_the_same_agent_passes(working):
-    assert builder(working, "Write", case="kir-plugin-12") == (0, "")
+    assert passed(builder(working, "Write", case="kir-plugin-12"))
     assert store_data(working) == {
         "kir-plugin-12": {"agent_id": "agent-a", "stored": NOW.isoformat()}
     }
-    assert builder(working, "Edit", case="kir-plugin-12") == (0, "")
+    assert passed(builder(working, "Edit", case="kir-plugin-12"))
 
 
 # --- the hook's own error (case 554) ---------------------------------------------------

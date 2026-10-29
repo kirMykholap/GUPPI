@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-context-size]]"
 purpose: After each reply the person sees the size of the context and its change since the last reply
-method: uv run --project .guppi pytest .guppi/tests/test_context.py; the live reading by hand, the line after the replies of a session in the VS Code chat
+method: uv run --project .guppi pytest .guppi/tests/test_context.py; the live reading by hand, the line after the replies of a session in the chat
 checked: 2026-10-02
 origin: raw/2026-09-24/1303/ledger.md#case-392.1
 sprint: migration
@@ -41,3 +41,4 @@ With no error of its own, the hook prints JSON with a `systemMessage` of one lin
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-29 updated: method names the chat, not the VS Code chat · [[decision-case-898.3]]

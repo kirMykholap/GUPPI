@@ -1,12 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-clean-branch]]"
 purpose: Whether guppi ship writes sprint.md in the closed form of the sprint guppi, backlog.md and glossary.md by their writers, a brief.md that opens the next sprint and a log.md with its heading alone, so that the checks of those files pass and the first /hi of a new project in a git repository starts /sprint-open
 method: "uv run --project .guppi pytest .guppi/tests/test_ship.py -k skeleton; by hand, after the librarian's run of the session that set this method, with a tag prod-x.y.z in the history of HEAD: in an empty folder that is no git repository, guppi installed from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, the copy and the folder being those of the reading of estimate-git-context-offers-git-init where that reading runs at the same commit, /guppi:install typed, Claude Code reopened, /hi typed until its git step has run git init -b main, the next /hi typed, and guppi sprint --check, guppi backlog --check and guppi glossary --check run over the copy, read against the Criterion"
-checked: 2026-10-16
-deferred_by: ["[[decision-case-885]]"]
+checked: 2026-10-29
 origin: raw/2026-10-15/0553/ledger.md#case-822.3
 sprint: plugin
 created: 2026-10-15
@@ -30,7 +29,7 @@ It writes `vault/wiki/sprint.md` as `closed_form` of `.guppi/guppi/sprint.py` wr
 
 ## Result
 
-2026-10-16, Retro of session 0104, tag prod-0.2.0 local: test_ship.py -k skeleton 3 passed; over scratchpad/ship-plugin guppi sprint --check, guppi backlog --check and guppi glossary --check exit 0, sprint.md opens "## guppi — closed", the Cases of brief.md open with "open the next sprint — no sprint is open since the close of guppi", log.md holds its heading and paragraph alone; in C:\PROJECTS\test, an empty folder and no git repository, the first /hi after /guppi:install and a reopen stopped on `Shell command failed for pattern "!`git branch --show-current`": fatal: not a git repository`, so it did not start /sprint-open; after git init, /hi started /sprint-open before the Frontier
+2026-10-29, Work Mode of session 0327: test_ship.py -k skeleton 3 passed in the repository; guppi ship --allow-draft into scratchpad/checks-0327 exit 0; there sprint.md holds "## guppi — closed", the Cases of Next session of brief.md open with "open the next sprint — no sprint is open since the close of guppi", log.md holds its heading and one paragraph, backlog.md "0 items"; guppi sprint --check, backlog --check and glossary --check exit 0 with no output; in install A (C:/tmp/guppi-0327-a) the first /hi whose Branch line named main started /sprint-open, and frontier.md was written after the opening Case
 
 ## History
 
@@ -41,3 +40,6 @@ It writes `vault/wiki/sprint.md` as `closed_form` of `.guppi/guppi/sprint.py` wr
 - 2026-10-16 defer by decision-case-855 superseded · [[decision-case-859]]
 - 2026-10-16 updated: the Criterion replaced whole — the first /hi whose Branch: line names a branch starts /sprint-open, and the /hi of the git step is no part of the promise; the defer of case 855 retired · [[decision-case-859]]
 - 2026-10-26 deferred · [[decision-case-885]]
+- 2026-10-29 defer by decision-case-885 superseded · [[decision-case-900.2]]
+- 2026-10-29 updated: the defer retired, the reading taken at the install stop of Work Mode · [[decision-case-900.2]]
+- 2026-10-29 status: pending → passed · raw/2026-10-29/0327/ledger.md#L33

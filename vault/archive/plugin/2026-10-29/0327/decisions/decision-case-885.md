@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "885"
-status: current
+status: archived
 defer: ["[[estimate-spec-write-writes-a-defer]]", "[[estimate-close-commits]]", "[[estimate-clean-branch-writes-the-session-files]]"]
+superseded_by: ["[[decision-case-900.2]]"]
 origin: raw/2026-10-17/2307/ledger.md#case-885
 sprint: plugin
 created: 2026-10-17
@@ -34,3 +35,6 @@ guppi ship writes the session files of a new project so that its first /hi start
 ## History
 
 - 2026-10-26 created · raw/2026-10-17/2307/ledger.md#case-885
+- 2026-10-29 superseded by decision-case-900.2 · [[decision-case-900.2]]
+- 2026-10-29 archived · superseded
+- 2026-10-29 archived · cleanup

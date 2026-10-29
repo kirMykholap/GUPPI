@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-case-protocol]]"
 purpose: A built Case carries the whole contract in given, when and then, in the file the person is sent
 method: one reading by hand of the Cases of a session, at its close
-checked: 2026-10-05
+checked: 2026-10-29
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -25,13 +25,13 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 **＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item writes content that content stands as sub-points; no `contract` line and no "block N" line.
 **＋** `tasks` holds no `by hand` box whose moment comes after Work Mode of the Case's own session — the librarian's run of that session or a later session; such a check stands as the reading of an Estimate or is left to the `uv run --project .guppi guppi check` of the librarian's run.
 **＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate of that page whose Criterion speaks of the change.
-**＋** `ratification` holds only the preview of the ledger lines in an untagged fence; in the chat the Case stands as the short text and that `ratification` of `estimate-orchestration-shows-the-built-case`, and the reply ends with a plain question.
+**＋** `ratification` holds only the preview of the ledger lines in an untagged fence; in the chat the Case stands as the short text and that `ratification`, as `vault/wiki/orchestration.md` sets the showing, and the reply ends with a plain question.
 **＋** A Case with sub-cases stands in one file and is sent in one reply: the parent's `context`, `problem` and `recommend`, then each sub-case whole, with its own `recommend` when it has one.
 **－** A case number, a count, a line number or a quotation in `context`, `problem` or `recommend` is no fault of the form.
 
 ## Result
 
-2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson; the defer of case 665 retired. The last reading before it, which left the page failed: 2026-10-05, by hand at the Work readings of session 1343, cases/case-650.md to case-656.md against vault/wiki/case-schema.md: headings, sub-cases in one file, sections in the order of the table each one blockquote, context opening with the mechanism, recommend as the table sets, ＋/－ lines, tasks naming each Estimate with sub-points and no by-hand box after Work Mode, one untagged fence of ledger lines, a plain question at each showing, no complaint of the person; failed: `given` holds two things on a line in 650.1, 650.2 (`guppi/ratified.py` and `tests/test_ratified.py`), 653.1 and 654, and states state in 656 ("on the allow list", "with `permissionMode: acceptEdits`") and 653.1; `then` of 652 holds a count ("both tests of `tests/test_case_schema.py` fail"); the passed reading of 2026-10-03 accepted paired `given` lines of the same form in cases 607–610
+2026-10-29, Retro of session 0327: the Case files 898, 899, 900, 901 of raw/2026-10-29/0327/cases: each opens with ## Case N — name and its sub-cases with ### Case N.M; the parent holds context, problem, recommend and each sub-case given, when, then, tasks, ratification, each a blockquote opening **name:** (counts per file: 898 3 sub-cases, 899 10, 900 5, 901 5); the SubagentStop check of rule-case-check passed each file; the by hand boxes of 900.2 ran in Work Mode of this session; the person raised no complaint on the length or clarity of a Case; not every sentence of the four files was read against each line of the Criterion
 
 ## History
 
@@ -69,3 +69,5 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-10-05 deferred · [[decision-case-665]]
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson; the defer of case 665 retired (case 669) · [[decision-case-669.13]]
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
+- 2026-10-29 updated: the Criterion replaced whole — it names no Estimate that the clean version does not hold · [[decision-case-901.3]]
+- 2026-10-29 status: pending → passed · raw/2026-10-29/0327/ledger.md#L39

@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: the main agent stated a fact about the subagents' tool calls from its own impression of their summaries, which do not show their tool errors, instead of from a run over their transcripts
-status: new
+status: clustered
+insight: "[[insight-orchestration-writes-from-its-own-reading]]"
 origin: raw/2026-10-28/2312/ledger.md#L28
 sprint: plugin
 created: 2026-10-28
@@ -20,3 +21,4 @@ the main agent stated a fact about the subagents' tool calls from its own impres
 ## History
 
 - 2026-10-29 created · raw/2026-10-28/2312/ledger.md#L28
+- 2026-10-29 updated: clustered under insight-orchestration-writes-from-its-own-reading (synthesis) · raw/2026-10-29/0327/ledger.md#L45

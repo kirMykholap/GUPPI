@@ -62,7 +62,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-ships-neutral-texts`
+- [x] update `estimate-clean-branch-ships-neutral-texts`
 - [ ] read `estimate-clean-branch-ships-neutral-texts`
 ```
 
@@ -104,10 +104,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-no-sibling-file-mid-send`
-- [ ] update `estimate-orchestration-rechecks-a-sibling-after-a-joint-send`
-- [ ] update `estimate-case-build-reads-the-code-it-states`
-- [ ] update `estimate-permissions`
+- [x] update `estimate-case-build-reads-no-sibling-file-mid-send`
+- [x] update `estimate-orchestration-rechecks-a-sibling-after-a-joint-send`
+- [x] update `estimate-case-build-reads-the-code-it-states`
+- [x] update `estimate-permissions`
 ```
 
 ### Case 898.3 — The other methods wait for a kind of moment
@@ -155,11 +155,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-brief-carries-the-run-facts`
-- [ ] update `estimate-language-followed`
-- [ ] update `estimate-ledger-tail`
-- [ ] update `estimate-context-size-shown-after-each-reply`
-- [ ] update `estimate-one-judgment-one-implementation-followed`
+- [x] update `estimate-brief-carries-the-run-facts`
+- [x] update `estimate-language-followed`
+- [x] update `estimate-ledger-tail`
+- [x] update `estimate-context-size-shown-after-each-reply`
+- [x] update `estimate-one-judgment-one-implementation-followed`
 ```
 
 ## Case 900 — The install readings are taken up from the backlog
@@ -216,8 +216,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-git-context-offers-git-init`
-- [ ] read `estimate-git-context-offers-git-init`
+- [x] update `estimate-git-context-offers-git-init`
+- [x] read `estimate-git-context-offers-git-init`
 ```
 
 ### Case 900.2 — The clean copy writes the session files
@@ -252,11 +252,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-writes-the-session-files`
+- [x] update `estimate-clean-branch-writes-the-session-files`
 - [x] by hand: `uv run --project .guppi pytest .guppi/tests/test_ship.py -k skeleton` in the repository; then `uv run --project .guppi guppi ship --allow-draft <folder>` into an empty temporary folder used only for the checks, and `uv run --project .guppi guppi sprint --check`, `uv run --project .guppi guppi backlog --check` and `uv run --project .guppi guppi glossary --check` run in that folder; each output kept for the readings of Case 900.
 - [x] by hand: `uv run --project .guppi guppi ship --allow-draft <folder>` into a second empty temporary folder, the catalogue of the installs, in which no command runs, so that it holds no `.guppi/.venv/`.
 - [x] stop: the person adds that second folder as a catalogue by `/plugin marketplace add <folder>`, installs the plugin by `/plugin install guppi@guppi-marketplace`, and makes three installs by `/guppi:install`, each into its own empty folder: one with no git on a machine with `uv`, with Claude Code reopened, `/hi` answered no, `/hi` answered yes and `/hi` typed a third time; one with Claude Code started from a terminal whose PATH holds no folder of `uv`, with the offer answered no, then `/guppi:install` typed again and the offer answered yes, and `uv --version` run in a new terminal; one with Claude Code started from a terminal with `UV_OFFLINE=1` and `UV_CACHE_DIR` set to an empty folder; the person reports the replies and whether Claude Code asked, and the agent reads the files and folders of each project, for the readings of Case 900.
-- [ ] read `estimate-clean-branch-writes-the-session-files`
+- [x] read `estimate-clean-branch-writes-the-session-files`
 ```
 
 ### Case 900.3 — The Python environment is ready after the install
@@ -288,8 +288,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-package-is-ready-after-the-install`
-- [ ] read `estimate-guppi-package-is-ready-after-the-install`
+- [x] update `estimate-guppi-package-is-ready-after-the-install`
+- [x] read `estimate-guppi-package-is-ready-after-the-install`
 ```
 
 ### Case 900.4 — The install offers to install uv
@@ -319,8 +319,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plugin-install-offers-to-install-uv`
-- [ ] read `estimate-plugin-install-offers-to-install-uv`
+- [x] update `estimate-plugin-install-offers-to-install-uv`
+- [x] read `estimate-plugin-install-offers-to-install-uv`
 ```
 
 ### Case 900.5 — The install undoes the copy when uv sync fails
@@ -350,8 +350,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plugin-install-undoes-the-copy-when-uv-sync-fails`
-- [ ] read `estimate-plugin-install-undoes-the-copy-when-uv-sync-fails`
+- [x] update `estimate-plugin-install-undoes-the-copy-when-uv-sync-fails`
+- [x] read `estimate-plugin-install-undoes-the-copy-when-uv-sync-fails`
 ```
 
 ## Case 901 — The Criteria of shipped Estimates read in this session hold in an installed project
@@ -427,8 +427,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-close-next-session-opens-the-sprint`
-- [ ] read `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] update `estimate-sprint-close-next-session-opens-the-sprint`
+- [x] read `estimate-sprint-close-next-session-opens-the-sprint`
 ```
 
 ### Case 901.2 — Cases out at once are a batch
@@ -462,8 +462,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-batches-cases-out-at-once`
-- [ ] read `estimate-orchestration-batches-cases-out-at-once`
+- [x] update `estimate-orchestration-batches-cases-out-at-once`
+- [x] read `estimate-orchestration-batches-cases-out-at-once`
 ```
 
 ### Case 901.3 — The file of a Case keeps the form of the schema
@@ -500,8 +500,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-case-form`
-- [ ] read `estimate-case-protocol-case-form`
+- [x] update `estimate-case-protocol-case-form`
+- [x] read `estimate-case-protocol-case-form`
 ```
 
 ### Case 901.4 — A lesson line carries its source
@@ -528,8 +528,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-lifts-a-lesson`
-- [ ] read `estimate-materialize-lifts-a-lesson`
+- [x] update `estimate-materialize-lifts-a-lesson`
+- [x] read `estimate-materialize-lifts-a-lesson`
 ```
 
 ### Case 901.5 — Every reader judges a fence alike
@@ -564,6 +564,6 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-materialize-judges-a-fence`
-- [ ] read `estimate-materialize-judges-a-fence`
+- [x] update `estimate-materialize-judges-a-fence`
+- [x] read `estimate-materialize-judges-a-fence`
 ```

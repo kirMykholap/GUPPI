@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-language]]"
 purpose: The section stands in CLAUDE.md with the languages set in rule-guppi-config, and what a session writes into the repository is in the documentation language, slugs and paths unchanged
-method: one reading by hand in the next session — CLAUDE.md against the Render of rule-guppi-config, and the session's commit, Spec and Case files against the section
+method: "by hand, after the close of a session: CLAUDE.md against the Render of rule-guppi-config, and the commit, the Spec and the Case files of that session against the section"
 checked: 2026-09-28
 origin: raw/2026-09-20/1308/ledger.md#case-272.2
 sprint: migration
@@ -41,3 +41,4 @@ Then:
 - 2026-09-28 status: pending → failed · raw/2026-09-28/0000/ledger.md#L31
 - 2026-09-28 updated: the Criterion replaced whole — the languages come from rule-guppi-config, and the language of the agent's text in the chat leaves the promise (case 476.4) · [[decision-case-476.4]]
 - 2026-09-28 status: pending → passed · raw/2026-09-28/2000/ledger.md#L20
+- 2026-10-29 updated: method names a kind of moment, not the next session · [[decision-case-898.3]]

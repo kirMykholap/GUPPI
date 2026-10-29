@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether the main agent names the Cases it sends to case-guppi at the same time as built at the same time, and, once all have answered, sends back each Case whose summary carries a Sibling line, one at a time and once, before the Cases are shown together
-method: "by hand, after the first send of two or more Cases to case-guppi at the same time under the new Render of rule-orchestration: the prompts and messages of the main agent from that send to the showing of its Cases read against the Criterion, recorded in the estimate line"
+method: "by hand, after a send of two or more Cases to case-guppi at the same time: the prompts and messages of the main agent from that send to the showing of its Cases read against the Criterion, recorded in the estimate line"
 checked: 2026-10-28
 origin: raw/2026-10-16/2104/ledger.md#case-872.2
 sprint: plugin
@@ -33,3 +33,4 @@ The prompt or message to each `case-guppi` names each other Case of that send as
 
 - 2026-10-17 created · [[decision-case-872.2]]
 - 2026-10-28 status: pending → passed · raw/2026-10-28/1907/ledger.md#L14
+- 2026-10-29 updated: method names a kind of moment, not the first send under the new Render · [[decision-case-898.2]]

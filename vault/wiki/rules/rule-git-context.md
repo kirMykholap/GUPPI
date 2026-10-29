@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from starting on a branch it does not know
-status: draft
+status: built
 enforcement: render
 implementation_ref: [.guppi/guppi/gitstate.py, .guppi/tests/test_gitstate.py]
 governs: .claude/skills/hi/SKILL.md
@@ -64,3 +64,4 @@ The `Render:` line runs `uv run --project .guppi guppi render --sync` once more 
 - 2026-10-16 estimate estimate-git-context-gitstate-exits-zero added · [[decision-case-851.3]]
 - 2026-10-16 status: built → draft · cascade
 - 2026-10-26 updated: the history of the git commands and the merge by /merge-main stand in brackets with their case · [[decision-case-881.1]]
+- 2026-10-29 status: draft → built · cascade

@@ -11696,3 +11696,125 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-29 decisions/decision-case-793 archived · cleanup
 - 2026-10-29 decisions/decision-case-839 archived · cleanup
 - 2026-10-29 decisions/decision-case-884 archived · cleanup
+- 2026-10-29 estimates/estimate-clean-branch-ships-neutral-texts status: failed → failed · raw/2026-10-29/0327/ledger.md#L1 · generate
+- 2026-10-29 decisions/decision-case-898 created · raw/2026-10-29/0327/ledger.md#case-898 · generate
+- 2026-10-29 decisions/decision-case-898.1 created · raw/2026-10-29/0327/ledger.md#case-898.1 · generate
+- 2026-10-29 estimates/estimate-clean-branch-ships-neutral-texts updated: the Criterion replaced whole — a sentence that holds as it reads in an installed project passes, and a method may wait for a kind of moment that comes again in any project · [[decision-case-898.1]] · generate
+- 2026-10-29 decisions/decision-case-898.2 created · raw/2026-10-29/0327/ledger.md#case-898.2 · generate
+- 2026-10-29 estimates/estimate-case-build-reads-no-sibling-file-mid-send updated: method names a kind of moment, not the first send under the new Render · [[decision-case-898.2]] · generate
+- 2026-10-29 estimates/estimate-orchestration-rechecks-a-sibling-after-a-joint-send updated: method names a kind of moment, not the first send under the new Render · [[decision-case-898.2]] · generate
+- 2026-10-29 estimates/estimate-case-build-reads-the-code-it-states updated: method names a kind of moment, not the first /pre-spec under the Render that set this Criterion · [[decision-case-898.2]] · generate
+- 2026-10-29 estimates/estimate-permissions updated: method names a kind of moment, not the first Case file after a past change of the guard · [[decision-case-898.2]] · generate
+- 2026-10-29 decisions/decision-case-898.3 created · raw/2026-10-29/0327/ledger.md#case-898.3 · generate
+- 2026-10-29 estimates/estimate-brief-carries-the-run-facts updated: method names a kind of moment, not the first librarian run under this Render · [[decision-case-898.3]] · generate
+- 2026-10-29 estimates/estimate-language-followed updated: method names a kind of moment, not the next session · [[decision-case-898.3]] · generate
+- 2026-10-29 estimates/estimate-ledger-tail updated: method names a kind of moment, not the /hi of the next session · [[decision-case-898.3]] · generate
+- 2026-10-29 estimates/estimate-context-size-shown-after-each-reply updated: method names the chat, not the VS Code chat · [[decision-case-898.3]] · generate
+- 2026-10-29 estimates/estimate-one-judgment-one-implementation-followed updated: method names a kind of moment, not the next Work Mode session · [[decision-case-898.3]] · generate
+- 2026-10-29 decisions/decision-case-899 created · raw/2026-10-29/0327/ledger.md#case-899 · generate
+- 2026-10-29 decisions/decision-case-899 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.1 created · raw/2026-10-29/0327/ledger.md#case-899.1 · generate
+- 2026-10-29 decisions/decision-case-899.1 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.2 created · raw/2026-10-29/0327/ledger.md#case-899.2 · generate
+- 2026-10-29 decisions/decision-case-899.2 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.3 created · raw/2026-10-29/0327/ledger.md#case-899.3 · generate
+- 2026-10-29 decisions/decision-case-899.3 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.4 created · raw/2026-10-29/0327/ledger.md#case-899.4 · generate
+- 2026-10-29 decisions/decision-case-899.4 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.4 superseded by decision-case-901.2 · [[decision-case-901.2]] · generate
+- 2026-10-29 decisions/decision-case-899.5 created · raw/2026-10-29/0327/ledger.md#case-899.5 · generate
+- 2026-10-29 decisions/decision-case-899.5 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.5 superseded by decision-case-901.3 · [[decision-case-901.3]] · generate
+- 2026-10-29 decisions/decision-case-899.6 created · raw/2026-10-29/0327/ledger.md#case-899.6 · generate
+- 2026-10-29 decisions/decision-case-899.6 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.6 superseded by decision-case-901.2 · [[decision-case-901.2]] · generate
+- 2026-10-29 decisions/decision-case-899.7 created · raw/2026-10-29/0327/ledger.md#case-899.7 · generate
+- 2026-10-29 decisions/decision-case-899.7 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.7 superseded by decision-case-901.3 · [[decision-case-901.3]] · generate
+- 2026-10-29 decisions/decision-case-899.8 created · raw/2026-10-29/0327/ledger.md#case-899.8 · generate
+- 2026-10-29 decisions/decision-case-899.8 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.8 superseded by decision-case-901.4 · [[decision-case-901.4]] · generate
+- 2026-10-29 decisions/decision-case-899.9 created · raw/2026-10-29/0327/ledger.md#case-899.9 · generate
+- 2026-10-29 decisions/decision-case-899.9 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.9 superseded by decision-case-901.5 · [[decision-case-901.5]] · generate
+- 2026-10-29 decisions/decision-case-899.10 created · raw/2026-10-29/0327/ledger.md#case-899.10 · generate
+- 2026-10-29 decisions/decision-case-899.10 superseded by decision-case-901.1 · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-899.10 superseded by decision-case-901.4 · [[decision-case-901.4]] · generate
+- 2026-10-29 decisions/decision-case-900 created · raw/2026-10-29/0327/ledger.md#case-900 · generate
+- 2026-10-29 decisions/decision-case-900.1 created · raw/2026-10-29/0327/ledger.md#case-900.1 · generate
+- 2026-10-29 decisions/decision-case-862 superseded by decision-case-900.1 · [[decision-case-900.1]] · generate
+- 2026-10-29 estimates/estimate-git-context-offers-git-init defer by decision-case-862 superseded · [[decision-case-900.1]] · generate
+- 2026-10-29 estimates/estimate-git-context-offers-git-init updated: the defer retired, the reading taken at the install stop of Work Mode; the method states that it runs where the command ship stands · [[decision-case-900.1]] · generate
+- 2026-10-29 decisions/decision-case-900.2 created · raw/2026-10-29/0327/ledger.md#case-900.2 · generate
+- 2026-10-29 decisions/decision-case-885 superseded by decision-case-900.2 · [[decision-case-900.2]] · generate
+- 2026-10-29 estimates/estimate-clean-branch-writes-the-session-files defer by decision-case-885 superseded · [[decision-case-900.2]] · generate
+- 2026-10-29 estimates/estimate-clean-branch-writes-the-session-files updated: the defer retired, the reading taken at the install stop of Work Mode · [[decision-case-900.2]] · generate
+- 2026-10-29 decisions/decision-case-900.3 created · raw/2026-10-29/0327/ledger.md#case-900.3 · generate
+- 2026-10-29 decisions/decision-case-862 superseded by decision-case-900.3 · [[decision-case-900.3]] · generate
+- 2026-10-29 estimates/estimate-guppi-package-is-ready-after-the-install defer by decision-case-862 superseded · [[decision-case-900.3]] · generate
+- 2026-10-29 estimates/estimate-guppi-package-is-ready-after-the-install updated: the defer retired, the reading taken at the install stop of Work Mode; the method states that it runs where the command ship stands and names no Estimate the clean version leaves out · [[decision-case-900.3]] · generate
+- 2026-10-29 decisions/decision-case-900.4 created · raw/2026-10-29/0327/ledger.md#case-900.4 · generate
+- 2026-10-29 decisions/decision-case-862 superseded by decision-case-900.4 · [[decision-case-900.4]] · generate
+- 2026-10-29 estimates/estimate-plugin-install-offers-to-install-uv defer by decision-case-862 superseded · [[decision-case-900.4]] · generate
+- 2026-10-29 estimates/estimate-plugin-install-offers-to-install-uv updated: the defer retired, the reading taken at the install stop of Work Mode · [[decision-case-900.4]] · generate
+- 2026-10-29 decisions/decision-case-900.5 created · raw/2026-10-29/0327/ledger.md#case-900.5 · generate
+- 2026-10-29 decisions/decision-case-862 superseded by decision-case-900.5 · [[decision-case-900.5]] · generate
+- 2026-10-29 estimates/estimate-plugin-install-undoes-the-copy-when-uv-sync-fails defer by decision-case-862 superseded · [[decision-case-900.5]] · generate
+- 2026-10-29 estimates/estimate-plugin-install-undoes-the-copy-when-uv-sync-fails updated: the defer retired, the reading taken at the install stop of Work Mode · [[decision-case-900.5]] · generate
+- 2026-10-29 decisions/decision-case-901 created · raw/2026-10-29/0327/ledger.md#case-901 · generate
+- 2026-10-29 decisions/decision-case-901.1 created · raw/2026-10-29/0327/ledger.md#case-901.1 · generate
+- 2026-10-29 estimates/estimate-sprint-close-next-session-opens-the-sprint updated: the Criterion replaced whole — it names no Estimate that the clean version does not hold · [[decision-case-901.1]] · generate
+- 2026-10-29 decisions/decision-case-901.2 created · raw/2026-10-29/0327/ledger.md#case-901.2 · generate
+- 2026-10-29 estimates/estimate-orchestration-batches-cases-out-at-once updated: the Criterion replaced whole — it names no Estimate that the clean version does not hold; the method reads the Render as it stands · [[decision-case-901.2]] · generate
+- 2026-10-29 decisions/decision-case-901.3 created · raw/2026-10-29/0327/ledger.md#case-901.3 · generate
+- 2026-10-29 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — it names no Estimate that the clean version does not hold · [[decision-case-901.3]] · generate
+- 2026-10-29 decisions/decision-case-901.4 created · raw/2026-10-29/0327/ledger.md#case-901.4 · generate
+- 2026-10-29 estimates/estimate-materialize-lifts-a-lesson updated: the Criterion replaced whole — the yamls of earlier sessions, not a past day of GUPPI · [[decision-case-901.4]] · generate
+- 2026-10-29 decisions/decision-case-901.5 created · raw/2026-10-29/0327/ledger.md#case-901.5 · generate
+- 2026-10-29 estimates/estimate-materialize-judges-a-fence updated: the Criterion replaced whole — no list of the code names a past change of GUPPI removed · [[decision-case-901.5]] · generate
+- 2026-10-29 estimates/estimate-git-context-offers-git-init status: pending → passed · raw/2026-10-29/0327/ledger.md#L32 · generate
+- 2026-10-29 estimates/estimate-clean-branch-writes-the-session-files status: pending → passed · raw/2026-10-29/0327/ledger.md#L33 · generate
+- 2026-10-29 estimates/estimate-guppi-package-is-ready-after-the-install status: pending → passed · raw/2026-10-29/0327/ledger.md#L34 · generate
+- 2026-10-29 estimates/estimate-plugin-install-offers-to-install-uv status: pending → passed · raw/2026-10-29/0327/ledger.md#L35 · generate
+- 2026-10-29 estimates/estimate-plugin-install-undoes-the-copy-when-uv-sync-fails status: pending → passed · raw/2026-10-29/0327/ledger.md#L36 · generate
+- 2026-10-29 estimates/estimate-sprint-close-next-session-opens-the-sprint status: pending → passed · raw/2026-10-29/0327/ledger.md#L37 · generate
+- 2026-10-29 estimates/estimate-orchestration-batches-cases-out-at-once status: pending → passed · raw/2026-10-29/0327/ledger.md#L38 · generate
+- 2026-10-29 estimates/estimate-case-protocol-case-form status: pending → passed · raw/2026-10-29/0327/ledger.md#L39 · generate
+- 2026-10-29 estimates/estimate-materialize-lifts-a-lesson status: pending → passed · raw/2026-10-29/0327/ledger.md#L40 · generate
+- 2026-10-29 estimates/estimate-materialize-judges-a-fence status: pending → passed · raw/2026-10-29/0327/ledger.md#L41 · generate
+- 2026-10-29 lessons/lesson-plugin-cli-withholds-approval-of-a-long-plan created · raw/2026-10-29/0327/ledger.md#L42 · generate
+- 2026-10-29 lessons/lesson-sprint-open-asks-no-goal-of-a-new-project created · raw/2026-10-29/0327/ledger.md#L43 · generate
+- 2026-10-29 lessons/lesson-plugin-install-hooks-of-the-copy-run-at-once created · raw/2026-10-29/0327/ledger.md#L44 · generate
+- 2026-10-29 lessons/lesson-orchestration-retyped-a-ratification-line created · raw/2026-10-29/0327/ledger.md#L45 · generate
+- 2026-10-29 insights/insight-orchestration-writes-from-its-own-reading created · raw/2026-10-29/0327/ledger.md#L45 · generate
+- 2026-10-29 lessons/lesson-orchestration-claimed-a-reading-before-taking-it updated: clustered under insight-orchestration-writes-from-its-own-reading (synthesis) · raw/2026-10-29/0327/ledger.md#L45 · generate
+- 2026-10-29 lessons/lesson-orchestration-retyped-a-ratification-line updated: clustered under insight-orchestration-writes-from-its-own-reading (synthesis) · raw/2026-10-29/0327/ledger.md#L45 · generate
+- 2026-10-29 rules/rule-git-context status: draft → built · cascade · generate
+- 2026-10-29 rules/rule-guppi-package status: draft → built · cascade · generate
+- 2026-10-29 rules/rule-plugin-install status: draft → built · cascade · generate
+- 2026-10-29 decisions/decision-case-862 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-885 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.1 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.10 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.2 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.3 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.4 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.5 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.6 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.7 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.8 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899.9 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-899 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-862 archived · cleanup
+- 2026-10-29 decisions/decision-case-885 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.1 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.10 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.2 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.3 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.4 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.5 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.6 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.7 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.8 archived · cleanup
+- 2026-10-29 decisions/decision-case-899.9 archived · cleanup
+- 2026-10-29 decisions/decision-case-899 archived · cleanup

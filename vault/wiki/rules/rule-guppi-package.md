@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a project with GUPPI from depending on files at its root that it does not own, or on a command that runs only in the repository of GUPPI
-status: draft
+status: built
 enforcement: check
 implementation_ref: [.guppi/pyproject.toml, .guppi/tests/test_guppi_package.py]
 parent: "[[rule-harness]]"
@@ -29,3 +29,4 @@ Prevents a project with GUPPI from depending on files at its root that it does n
 - 2026-10-15 deferred · [[decision-case-834]]
 - 2026-10-16 deferred · [[decision-case-848]]
 - 2026-10-17 updated: the root files and the Makefile of the repository of GUPPI move into the bracket of their pointer · [[decision-case-875]]
+- 2026-10-29 status: draft → built · cascade

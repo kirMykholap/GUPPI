@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-one-judgment-one-implementation]]"
 purpose: CLAUDE.md holds the rule between its markers, and the code of a session keeps one judgment in one implementation
-method: render --check exit 0, then by hand the section in CLAUDE.md and the diff of the next Work Mode session — a judgment made in two places imported from one module, or a test over both sides
+method: render --check exit 0, then by hand the section in CLAUDE.md and the diff of the Work Mode of a session — a judgment made in two places imported from one module, or a test over both sides
 checked: 2026-10-17
 origin: raw/2026-09-23/0034/ledger.md#case-360
 sprint: migration
@@ -36,3 +36,4 @@ The pattern or the predicate lives in one module, and both sides import it.
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the Criterion replaced whole — the code that judges a text is any code, not only that of the package of GUPPI · [[decision-case-880.14]]
 - 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L71
+- 2026-10-29 updated: method names a kind of moment, not the next Work Mode session · [[decision-case-898.3]]

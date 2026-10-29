@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a project that installs the plugin guppi from getting a part of GUPPI, or from losing a file of its own to it
-status: draft
+status: built
 enforcement: render
 governs: plugin/skills/install/SKILL.md
 render_mode: full
@@ -54,3 +54,4 @@ Install GUPPI into the project of this session, the folder that Claude Code was 
 - 2026-10-16 updated: when uv sync fails, /guppi:install deletes what it copied, says the install did not finish and sends the person to /guppi:install, not to /hi · [[decision-case-853]]
 - 2026-10-16 estimate estimate-plugin-install-undoes-the-copy-when-uv-sync-fails added · [[decision-case-853]]
 - 2026-10-16 status: built → draft · cascade
+- 2026-10-29 status: draft → built · cascade

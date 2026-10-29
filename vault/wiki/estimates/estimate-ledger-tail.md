@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ledger-tail]]"
 purpose: guppi tail prints every ledger record line that no materialize.yaml covers, and /hi shows it as Tail
-method: "pytest .guppi/tests/test_tail.py; by hand at the /hi of the next session: the Tail line against a run of uv run --project .guppi guppi tail by hand, written into the estimate line"
+method: "pytest .guppi/tests/test_tail.py; by hand, after a /hi: the Tail line against a run of uv run --project .guppi guppi tail by hand, written into the estimate line"
 checked: 2026-09-29
 origin: raw/2026-09-13/ledger.md#case-101.2
 sprint: migration
@@ -38,3 +38,4 @@ The script walks the date-level ledger of a date first, then its session ledgers
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-29 updated: method names a kind of moment, not the /hi of the next session · [[decision-case-898.3]]

@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-brief]]"
 purpose: Whether the brief ends the Readings due line of each pending Estimate read at the librarian's run with the facts its method and Criterion name, the stdout of guppi archive included, with no comparison or verdict, one line per Estimate
-method: "by hand at the /hi of the session after the first librarian run whose frame holds this Render: vault/wiki/brief.md read against the run's report in the previous transcript, recorded in the estimate line"
+method: "by hand, after a librarian's run: vault/wiki/brief.md read against the run's report in the transcript of that run, recorded in the estimate line"
 checked: 2026-09-29
 origin: raw/2026-09-29/1134/ledger.md#case-508.4
 sprint: migration
@@ -34,3 +34,4 @@ For each `pending` Estimate whose `method` names the librarian's run, its line u
 - 2026-09-29 created · [[decision-case-508.4]]
 - 2026-09-29 status: pending → passed · raw/2026-09-29/1753/ledger.md#L1
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-29 updated: method names a kind of moment, not the first librarian run under this Render · [[decision-case-898.3]]

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "862"
-status: current
+status: archived
 defer: ["[[estimate-git-context-offers-git-init]]", "[[estimate-plugin-install-offers-to-install-uv]]", "[[estimate-plugin-install-undoes-the-copy-when-uv-sync-fails]]", "[[estimate-guppi-package-is-ready-after-the-install]]"]
+superseded_by: ["[[decision-case-900.1]]", "[[decision-case-900.3]]", "[[decision-case-900.4]]", "[[decision-case-900.5]]"]
 origin: raw/2026-10-16/1712/ledger.md#case-862
 sprint: plugin
 created: 2026-10-16
@@ -38,3 +39,9 @@ Whether .guppi is ready after /guppi:install on a machine with uv; its hand read
 ## History
 
 - 2026-10-16 created · raw/2026-10-16/1712/ledger.md#case-862
+- 2026-10-29 superseded by decision-case-900.1 · [[decision-case-900.1]]
+- 2026-10-29 superseded by decision-case-900.3 · [[decision-case-900.3]]
+- 2026-10-29 superseded by decision-case-900.4 · [[decision-case-900.4]]
+- 2026-10-29 superseded by decision-case-900.5 · [[decision-case-900.5]]
+- 2026-10-29 archived · superseded
+- 2026-10-29 archived · cleanup

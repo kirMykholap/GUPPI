@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-materialize]]"
 purpose: "Every reader of a fence judges it by the functions of .guppi/guppi/materialize.py, as CommonMark does: a fence closes only on a run of its own character at least as long"
 method: uv run --project .guppi pytest .guppi/tests/test_materialize.py -k fence
-checked: 2026-09-29
+checked: 2026-10-29
 origin: raw/2026-09-26/2300/ledger.md#case-444.1
 sprint: migration
 created: 2026-09-26
@@ -24,11 +24,11 @@ A line opens a fence when, after at most three spaces of indent inside the block
 **＋** `fence_breaks` is built on `fence_opening` and `closes_fence`, so each break it reports is a line these readers keep as content, or an end of section they reach inside a fence.
 **＋** A fenced value under a sub-point of `tasks` that holds a shorter fence of the same character is read whole, together with the inner fence.
 **＋** Every one of these readers takes the judgment from the functions of `.guppi/guppi/materialize.py`, and they all give the same answer for the same text.
-**－** No reader keeps a fence pattern of its own: the `FENCE` of `.guppi/guppi/ledger.py`, the `OPEN_FENCE` of `.guppi/guppi/ratified.py`, and the tests on three backticks in `.guppi/guppi/ratified.py` and `.guppi/guppi/casecheck.py` are removed.
+**－** No reader keeps a fence pattern or a test on three backticks of its own.
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_materialize.py -k fence: 14 passed; grep finds no FENCE or OPEN_FENCE pattern and no three-backtick test in guppi/ledger.py, ratified.py, casecheck.py, lint.py
+2026-10-29, Retro of session 0327: uv run --project .guppi pytest .guppi/tests/test_materialize.py -k fence: 14 passed
 
 ## History
 
@@ -40,3 +40,5 @@ A line opens a fence when, after at most three spaces of indent inside the block
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-29 updated: the Criterion replaced whole — no list of the code names a past change of GUPPI removed · [[decision-case-901.5]]
+- 2026-10-29 status: pending → passed · raw/2026-10-29/0327/ledger.md#L41

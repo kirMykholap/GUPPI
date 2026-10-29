@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi reads no case file of a Case that its prompt or a message names as built at the same time and names none in given, names in context and in a Sibling line of its summary each such Case its Case rests on, and reads the finished file whole once a message says that build has ended
-method: "by hand, after the first send of two or more Cases to case-guppi at the same time under the new Render of rule-case-build: the tool calls and the summary of each case-guppi of that send read against the Criterion, recorded in the estimate line"
+method: "by hand, after a send of two or more Cases to case-guppi at the same time: the tool calls and the summary of each case-guppi of that send read against the Criterion, recorded in the estimate line"
 checked: 2026-10-28
 origin: raw/2026-10-16/2104/ledger.md#case-872.1
 sprint: plugin
@@ -33,3 +33,4 @@ Then:
 
 - 2026-10-17 created · [[decision-case-872.1]]
 - 2026-10-28 status: pending → passed · raw/2026-10-28/1907/ledger.md#L13
+- 2026-10-29 updated: method names a kind of moment, not the first send under the new Render · [[decision-case-898.2]]

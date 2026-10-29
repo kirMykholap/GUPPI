@@ -1,6 +1,6 @@
 """`guppi casecheck`: `--subagent`, the `SubagentStop` hook that checks the Case of
-`case-guppi` before the main agent sees it (case 419.3) and writes the file of a Case that
-passed (case 452.1), and the `Stop` hook that compares a shown Case with the checked one (case
+`case-guppi` wrote into its file before the main agent sees it (cases 419.3, 645.2, 904.1),
+and the `Stop` hook that compares a shown Case with the checked one (case
 419.4) and requires the sending of its file (case 452.2). Rule page:
 `vault/wiki/rules/rule-case-check.md`.
 
@@ -118,6 +118,16 @@ def store(project):
 
 
 def answer(project, text, agent="case-guppi", now=NOW, **fields):
+    """The `--subagent` run on an answer. A text that holds a Case, given with no transcript,
+    is written into the file of each of its top-level Cases by a `Write` call of a transcript
+    that read the page of `rule-x` first, since the check reads only those files (case
+    904.1)."""
+    if (
+        agent == casecheck.AGENT
+        and "agent_transcript_path" not in fields
+        and casecheck.split_cases(text)
+    ):
+        fields["agent_transcript_path"] = written_answer(project, text)
     payload = {
         "session_id": SESSION,
         "agent_type": agent,
@@ -136,6 +146,46 @@ FOLDER = ("vault", "raw", TODAY.isoformat(), "1501")  # the session folder of `w
 
 def case_path(project, case):
     return casecheck.case_file(project.joinpath(*FOLDER), case)
+
+
+def written_answer(project, text):
+    """A transcript in which `case-guppi` read the page of `rule-x`, wrote the sections of each
+    top-level Case of `text` into its file by `Write`, and answered with a summary; its path."""
+    agent = project / "agent-answer.jsonl"
+    lines = rule_x_read(project) + [
+        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": [block]}})
+        for block in written_blocks(project, text)
+    ]
+    agent.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return str(agent)
+
+
+def written_blocks(project, text):
+    """The sections of each top-level Case of `text` written into its file, and the blocks of
+    the subagent that did it: a `Write` call per file, then the summary that names the first
+    (case 904.1)."""
+    groups: dict[str, list[str]] = {}
+    top = None
+    for line in text.splitlines():
+        heading = casecheck.split_cases(line)
+        if heading:
+            top = casecheck.top_case(next(iter(heading)))
+        if top is not None:
+            groups.setdefault(top, []).append(line)
+    blocks = []
+    for case, lines in groups.items():
+        path = case_path(project, case)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        content = "\n".join(lines) + "\n"
+        path.write_text(content, encoding="utf-8")
+        blocks.append(
+            {"type": "tool_use", "name": "Write", "input": {"file_path": str(path), "content": "."}}
+        )
+    first = case_path(project, next(iter(groups)))
+    heading = casecheck.top_heading(first.read_text(encoding="utf-8"))
+    named = f"\n**Case:** {heading[0]} — {heading[1]}" if heading else ""
+    blocks.append({"type": "text", "text": f"**Built:** {first}{named}"})
+    return blocks
 
 
 def answer_file(project, content, reads=None, **fields):
@@ -316,13 +366,21 @@ def rule_x_read(project):
 
 def transcript(project, *records, reads=None):
     """A subagent transcript of assistant records, each a list of content blocks, after the
-    `Read` of the page of `rule-x` — or the transcript lines `reads` give."""
+    `Read` of the page of `rule-x` — or the transcript lines `reads` give. A text block that
+    holds a Case is written into its file, by `written_blocks`, as `case-guppi` does (case
+    904.1)."""
     path = project / "agent.jsonl"
     lines = rule_x_read(project) if reads is None else list(reads)
-    lines += [
-        json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": blocks}})
-        for blocks in records
-    ]
+    for blocks in records:
+        written = []
+        for block in blocks:
+            if block.get("type") == "text" and casecheck.split_cases(block["text"]):
+                written += written_blocks(project, block["text"])
+            else:
+                written.append(block)
+        lines.append(
+            json.dumps({"type": "assistant", "isSidechain": True, "message": {"content": written}})
+        )
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return str(path)
 
@@ -335,33 +393,28 @@ def handback(value):
     return {"type": "tool_use", "name": "SubagentHandback", "input": {"message": value}}
 
 
-def test_subagent_a_handback_then_a_summary_stores_the_handback_case(working):
+def test_subagent_a_case_given_only_by_handback_is_not_stored(working):
+    # no file of `cases/` named: no Case checked or stored (case 904.1)
     path = transcript(working, [handback(ANSWER)], [text("I sent Case 7.")])
     assert answer(working, "I sent Case 7.", agent_transcript_path=path) == (0, "")
-    assert store(working)["7"]["text"].startswith("## Case 7")
+    assert store(working) is None
+    assert not case_path(working, "7").exists()
 
 
-def test_subagent_the_newest_output_with_a_case_is_the_answer(working):
-    # a Case by handback, a newer Case as text, then a question by handback: the text's Case
-    older = ANSWER.replace("The file is written.", "The old file is written.")
-    path = transcript(working, [handback(older)], [text(ANSWER)], [handback("Which page?")])
-    assert answer(working, "", agent_transcript_path=path) == (0, "")
-    assert "The old file" not in store(working)["7"]["text"]
+def test_subagent_a_case_in_the_answer_text_alone_is_not_stored(working):
+    # the old path is gone: an answer text is never read as a Case (case 904.1)
+    missing = str(working / "none.jsonl")
+    assert answer(working, ANSWER, agent_transcript_path=missing) == (0, "")
+    path = transcript(working, [handback("Which page?")])
+    assert answer(working, ANSWER, agent_transcript_path=path) == (0, "")
+    assert store(working) is None
+    assert not (working.joinpath(*FOLDER) / "cases").exists()
 
 
-def test_subagent_a_case_as_text_then_by_handback_then_a_summary_is_stored_once(working):
-    path = transcript(working, [text(ANSWER)], [handback(ANSWER)], [text("Sent.")])
-    assert answer(working, "Sent.", agent_transcript_path=path) == (0, "")
-    assert list(store(working)) == ["7"]
-
-
-def test_subagent_no_output_with_a_case_and_no_transcript_fall_back(working):
+def test_subagent_no_output_with_a_case_stores_nothing(working):
     path = transcript(working, [text("Which page?")], [handback("Which page?")])
     assert answer(working, "Which page?", agent_transcript_path=path) == (0, "")
     assert store(working) is None
-    missing = str(working / "none.jsonl")
-    assert answer(working, ANSWER, agent_transcript_path=missing) == (0, "")
-    assert "7" in store(working)
 
 
 def test_subagent_a_foreign_key_of_an_update_is_sent_back(working):
@@ -383,7 +436,7 @@ def test_subagent_a_schema_the_session_changes_is_not_judged(working):
     code, err = answer(working, odd)
     assert code == 2 and "`flavour`: not a key of create estimate-x-works" in err
     folder = working / "vault" / "raw" / TODAY.isoformat() / "1501"
-    folder.mkdir(parents=True)
+    folder.mkdir(parents=True, exist_ok=True)
     (folder / "ledger.md").write_text(
         "- 15:10:00 decision[case 5][update][rule-estimates-schema]{ref:rule-estimates-schema}\n",
         encoding="utf-8",
@@ -431,12 +484,12 @@ def test_subagent_the_time_of_the_store(working):
     assert store(working)["7"]["stored"] == NOW.isoformat()
 
 
-def test_subagent_the_file_is_written_from_the_stored_text(working):
-    assert answer(working, ANSWER + "\n---\n\nThe agent's own words.\n") == (0, "")
+def test_subagent_the_hook_leaves_the_file_as_case_guppi_wrote_it(working):
+    # the hook writes no file of a Case (case 904.1)
+    assert answer(working, ANSWER) == (0, "")
     path = case_path(working, "7")
     assert path == working.joinpath(*FOLDER, "cases", "case-7.md")
-    assert path.read_text(encoding="utf-8") == store(working)["7"]["text"] + "\n"
-    assert "own words" not in path.read_text(encoding="utf-8")
+    assert path.read_text(encoding="utf-8") == ANSWER
 
 
 def test_subagent_the_file_is_replaced_whole_when_the_answer_holds_the_top_case(working):
@@ -452,27 +505,14 @@ def test_subagent_the_file_is_replaced_whole_when_the_answer_holds_the_top_case(
     assert "### Case 9.2" not in text and "> C2." in text
 
 
-def test_subagent_a_sub_case_alone_replaces_its_section_alone(working):
-    assert answer(
-        working, PARENT + sub_case("9.1") + "\n" + sub_case("9.2", "The page is read.")
-    ) == (0, "")
-    assert answer(working, sub_case("9.1", "The file is written again.")) == (0, "")
-    text = case_path(working, "9").read_text(encoding="utf-8")
-    held = store(working)
-    assert text == "\n\n".join(held[c]["text"] for c in ("9", "9.1", "9.2")) + "\n"
-    assert "The file is written again." in text and text.count("### Case 9.1") == 1
-
-
-def test_subagent_no_file_on_a_finding(working):
+def test_subagent_a_finding_leaves_the_file_as_it_stands(working):
     no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
     assert answer(working, no_read)[0] == 2
-    assert not case_path(working, "7").exists()
-    assert answer(working, no_read) == (0, "")  # repeated: stored again, still no file
-    assert not case_path(working, "7").exists()
+    assert case_path(working, "7").read_text(encoding="utf-8") == no_read
+    assert answer(working, no_read) == (0, "")  # repeated: stored again, not sent back
     assert answer(working, ANSWER) == (0, "")
-    clean = case_path(working, "7").read_text(encoding="utf-8")
     assert answer(working, no_read)[0] == 2
-    assert case_path(working, "7").read_text(encoding="utf-8") == clean  # left as it stood
+    assert case_path(working, "7").read_text(encoding="utf-8") == no_read
 
 
 # --- each question of the rounds in recommend (case 544.3) --------------------------------
@@ -638,7 +678,7 @@ def test_subagent_round_form_the_indent_of_a_hand_back_is_set_aside(working):
     assert answer(working, "", agent_transcript_path=path) == (0, "")
 
 
-# --- the answer is the newest Case, round or Fact answer (cases 607.1, 607.2) ---------------
+# --- a round or a Fact answer after a built Case (cases 607.1, 607.2) ------------------------
 
 LATER = datetime(2026, 9, 9, 15, 40, 0, tzinfo=UTC)
 
@@ -2007,7 +2047,6 @@ def test_subagent_session_clash_with_a_case_of_the_plan_is_sent_back(working):
     plan_with(working, PLANNED_5)
     code, err = answer(working, setting(7, "draft"))
     assert code == 2 and "case 7: rule-x: sets status to another value than case 5" in err
-    assert not case_path(working, "7").exists()
 
 
 def test_subagent_session_clash_with_a_stored_case_not_ratified_is_sent_back(working):
@@ -2360,11 +2399,13 @@ def test_subagent_file_a_round_after_a_built_case_leaves_its_entry(working):
     assert store(working)["7"] == entry
 
 
-def test_subagent_file_an_answer_text_with_no_case_file_is_stored_and_written(working):
-    # the old path, kept until the writer is live (case 645.2)
-    agent = transcript(working, [text(ANSWER)])
-    assert answer(working, "", agent_transcript_path=agent) == (0, "")
-    assert "7" in store(working) and case_path(working, "7").is_file()
+def test_subagent_file_an_answer_text_with_no_case_file_is_not_stored(working):
+    # the old path is gone: an output that holds a Case, with no file written (case 904.1)
+    agent = working / "agent-text.jsonl"
+    output = {"type": "assistant", "isSidechain": True, "message": {"content": [text(ANSWER)]}}
+    agent.write_text("\n".join(rule_x_read(working) + [json.dumps(output)]) + "\n", "utf-8")
+    assert answer(working, ANSWER, agent_transcript_path=str(agent)) == (0, "")
+    assert store(working) is None and not case_path(working, "7").exists()
 
 
 def note_path(project):
@@ -2544,10 +2585,20 @@ def test_session_pairs_an_old_text_a_stored_case_rewrote_is_a_finding(working):
     assert code == 2 and MISSES in err
 
 
+def sibling_read(project, new):
+    """The reads of a subagent that read the page of `rule-x` and the file of Case `5`, which
+    wrote `new` into its sentence (case 711.3)."""
+    file_5 = case_path(project, "5")
+    file_5.parent.mkdir(parents=True, exist_ok=True)
+    file_5.write_text(f"> - new: `{new}`\n", encoding="utf-8")
+    return rule_x_read(project) + read_lines(file_5, call_id="toolu_5")
+
+
 def test_session_pairs_an_old_text_that_hits_only_after_another_pair_is_none(working):
     plan_with(working, planned(5, "stands here.", "stands here. It holds the fresh words."))
     fresh = ANSWER.replace("`` the `old` text ``", "`the fresh words`")
-    code, err = answer(working, fresh)
+    reads = sibling_read(working, "stands here. It holds the fresh words.")
+    code, err = answer_file(working, fresh, reads=reads)
     assert "is not in the page" not in err
     assert store(working)["7"]["findings"] == []
     assert code == 2 and "note: case 7: rule-x: a pair changes a sentence that case 5" in err
@@ -2590,11 +2641,12 @@ SHARED = "note: case 7: rule-x: a pair changes a sentence that case 5 changes to
 
 def test_shared_sentence_a_pair_in_a_sentence_another_case_wrote_into_is_noted_once(working):
     plan_with(working, planned(5, "stands here", "stands right here"))
-    code, err = answer(working, ANSWER)
+    reads = sibling_read(working, "stands right here")
+    code, err = answer_file(working, ANSWER, reads=reads)
     assert code == 2 and SHARED in err
     assert "read both new texts side by side" in err
     assert store(working)["7"]["findings"] == []  # the note is no finding
-    assert answer(working, ANSWER) == (0, "")  # sent once
+    assert answer_file(working, ANSWER, reads=reads) == (0, "")  # sent once
 
 
 def test_shared_sentence_another_sentence_of_the_same_paragraph_gives_none(working):
@@ -2701,12 +2753,15 @@ def test_unread_sentence_a_part_the_answer_wrote_is_not_judged(working):
     assert answer_file(working, both) == (0, "")
 
 
-def test_unread_sentence_no_transcript_judges_no_read(working):
+def test_unread_sentence_no_transcript_checks_nothing(working):
+    # a transcript the hook cannot read names no file: nothing is checked (case 904.1)
     assert answer(working, ANSWER) == (0, "")
+    held = store(working)
     missing = str(working / "none.jsonl")
     later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
     changed = ANSWER.replace("Context.", "Context again.")
     assert answer(working, changed, agent_transcript_path=missing, now=later) == (0, "")
+    assert store(working) == held
 
 
 # --- a Case built again counts as its file holds it (case 890.1) ---------------------------

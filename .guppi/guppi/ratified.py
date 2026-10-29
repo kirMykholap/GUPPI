@@ -87,7 +87,8 @@ store `<plan>.checked.json`, the hook refuses every `Edit` and `MultiEdit`, ever
 store, and every `Write` of a plan file that exists: exit 2 with the reason on stderr, which
 Claude Code shows the agent, and the call does not run. A `Write` of a plan file that does not
 exist passes when its content, trimmed, is one line that opens with `# ` — the title line the
-agent writes before the first dispatch of `case-guppi` — and is refused otherwise. Every
+agent writes before the first dispatch of `case-guppi` — and is refused otherwise; the hooks
+find the plan by that write in the event log, so no hook can create it. Every
 `Edit`, `Write` and `MultiEdit` of a file under the `cases/` folder of a session folder
 `vault/raw/<date>/<HHMM>/` — by `casecheck.is_case_file`, the judgment the writer of the file
 uses too — is refused the same way, whatever its name and whether it stands, the reason naming
@@ -101,7 +102,10 @@ line `ratified wrote <tool> <path>` to the day's event log and exits 2 with one 
 the file is written and the call is not to be made again; an old string missing, found more
 than once without `replace_all`, or a file that does not exist is refused with that reason and
 writes nothing, and an error of the number check below or of the write lets the call run with
-one line on stderr (case 894.1). Any `Edit`, `Write` or `MultiEdit` of
+one line on stderr, and Claude Code may ask the person that one time (case 894.1). A call of
+`case-guppi` on any other file under `cases/`, such as its working note `note-<N>.md`, whose
+name gives no number, holds no number and is written by the hook the same way (case 896.2).
+Any `Edit`, `Write` or `MultiEdit` of
 `case-guppi` outside such a folder is refused (case 645.3). Unless another agent holds the
 number of the file (case 650.1): on a call of `case-guppi` on `case-<N>.md`, N by
 `casecheck.case_number`, the guard reads the store of the session's plan file, and when
@@ -113,7 +117,10 @@ before the agent stops. A call with no `agent_id`, a file with no number and a s
 plan file are not judged and write nothing; an error while the guard finds the plan or reads
 or writes the store lets the call run, with one line on stderr. A refusal
 writes one line to the day's event log; a refused call has no `PostToolUse`, so it leaves no
-`tool` line and `plan_path` still names the plan. A file outside `.claude/plans/` and outside
+`tool` line and `plan_path` still names the plan. The hooks of `rule-spec-write` and
+`rule-case-check` write the plan and the store with no tool call, and so does this hook for the
+entry that holds a number and for the file of `case-guppi`; the guard does not judge those
+writes (case 453). A file outside `.claude/plans/` and outside
 such a `cases/` folder is not judged, nor is a write through a shell; a payload the hook cannot
 read exits 0 with one line on stderr. The comparison of an
 edited plan with a ratified copy `<plan>.ratified.md` and its marks `<plan>.waiting.json`

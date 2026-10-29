@@ -1,17 +1,14 @@
 """`guppi casecheck --subagent` — the `SubagentStop` hook that checks the Case `case-guppi`
-wrote into its file, or answered with on the old path, before the main agent sees it (cases
-419.3, 645.2); `guppi casecheck` — the `Stop` hook
+wrote into its file before the main agent sees it (cases 419.3, 645.2, 904.1);
+`guppi casecheck` — the `Stop` hook
 that compares each Case the main agent shows with the one the check stored (case 419.4);
 `guppi casecheck --prompt` — the `UserPromptSubmit` hook that tells the agent, at the
 person's next message, of a round or a Case its last reply showed after a text of its own
 (cases 699.1, 699.2).
 
-The check. For an answer of `case-guppi` (`agent_type`), the hook takes as the answer the
-newest output of the subagent in `agent_transcript_path` that holds a Case heading, that
-`is_round` finds a round, or that `is_fact` finds a Fact answer — a text or the `message` of
-a `SubagentHandback` call, whichever stands later; an output that is none of the three, such
-as a summary after a hand-back, is passed over — or `last_assistant_message` when the
-transcript is not readable or holds no such output (cases 434, 607.1); the transcript is
+The check. For an answer of `case-guppi` (`agent_type`), the hook takes the Cases of each
+file of `cases/` the subagent wrote, as `The file` below sets it, and calls them the answer;
+an output of the subagent is never read as a Case (case 904.1); the transcript is
 read by `ledger.read_records`. It reads the Cases of the answer in the chat
 form, builds the section of each in the Spec in memory by `ratified.case_section` — the one
 reading of the Spec hook, which refuses a sub-point outside `materialize.item_keys` (case
@@ -147,12 +144,9 @@ Case is no file of a Case, and a transcript that names only the note names no su
 file stands: a file whose Cases the store holds under their ids with the same text — line
 ends and trailing spaces aside, by `file_differences`, the one comparison of a file with the
 store — and no findings is not checked or stored again, so the time of its store stands;
-any other is checked whole as an answer is and stored; the hook writes no such file. Until a
-reading of `estimate-case-build-writes-the-case` passes live, a transcript that names no such
-file and whose newest output holds a Case heading is read the old way: that output is
-checked and stored, and with no finding written by `write_case_files` — the file replaced
-whole when it holds the top-level Case, the section of each sub-case replaced or placed
-after its family otherwise (case 452.1); a Case of a later session removes this path. A finding exits 2 with the findings on stderr, and Claude Code sends the agent
+any other is checked whole as an answer is and stored; the hook writes no such file. A
+transcript that names no such file gets no check of a Case and no store, whatever its newest
+output holds (case 904.1). A finding exits 2 with the findings on stderr, and Claude Code sends the agent
 back (measured 2026-09-25, session 0051), whatever `stop_hook_active` says: Claude Code sets it
 on the second fire after a handback with no exit 2 of this hook (measured 2026-09-26, session
 1337). The store guards the loop: when every Case with findings stands in the store with the
@@ -380,7 +374,6 @@ from guppi.ratified import (
     case_section,
     headings,
     key_judge,
-    place,
 )
 from guppi.tags import declared_tags, ratified_tags, registered_tags, tags_file
 
@@ -475,27 +468,6 @@ def case_number(path) -> str | None:
     (case 650.1)."""
     match = CASE_NAME.match(Path(str(path)).name)
     return match.group(1) if match else None
-
-
-def write_case_files(folder: Path, cases: list[str], store: dict) -> None:
-    """Each top-level Case of an answer into its `case_file`, from the text `store` holds
-    (case 452.1): replaced whole when the answer holds the top-level Case — its sections in
-    the order of the answer, a blank line between — and otherwise only the section of each
-    sub-case of the answer replaced, or placed after its family, by `ratified.place`."""
-    groups: dict[str, list[str]] = {}
-    for case in cases:
-        groups.setdefault(top_case(case), []).append(case)
-    for top, members in groups.items():
-        path = case_file(folder, top)
-        texts = {case: str(store[case]["text"]) for case in members}
-        if top in members:
-            text = "\n\n".join(texts[case] for case in members) + "\n"
-        else:
-            text = path.read_text(encoding="utf-8") if path.is_file() else ""
-            for case in members:
-                text = place(text, case, [*texts[case].splitlines(), ""])
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(text, encoding="utf-8", newline="")
 
 
 # --- a sending (cases 452.2, 452.3) -------------------------------------------------------
@@ -1320,23 +1292,6 @@ def outputs(record: dict) -> list[str]:
     return found
 
 
-def answer_of(payload: dict) -> str:
-    """The answer of the subagent (cases 434, 607.1): the newest output in
-    `agent_transcript_path` that holds a Case heading, that `is_round` finds a round, or that
-    `is_fact` finds a Fact answer — a text or the `message` of a `SubagentHandback` call,
-    whichever stands later; an output that is none of the three, such as a summary after a
-    hand-back, is passed over. `last_assistant_message` when the transcript is not readable
-    or holds no such output."""
-    records = read_records(payload.get("agent_transcript_path"))
-    for record in reversed(records or []):
-        if record.get("type") != "assistant":
-            continue
-        for text in reversed(outputs(record)):
-            if split_cases(text) or is_round(text) or is_fact(text):
-                return text
-    return str(payload.get("last_assistant_message") or "")
-
-
 def round_titles(payload: dict) -> list[str]:
     """The title of each question of the rounds of the subagent, in order: the outputs in
     `agent_transcript_path` that hold no Case heading, each line `❓ **Q<n>** - **<title>**:`
@@ -1590,15 +1545,13 @@ def changed_file(folder: Path, case: str, store: dict) -> str | None:
 def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     """The files of `cases/` the subagent wrote or edited, each checked whole and stored,
     one the store holds unchanged with no findings skipped; the hook writes none of them
-    (case 645.2). With no such file and a newest output that holds a Case heading, the old path —
-    that output checked, stored and, with no finding, written by `write_case_files` — until a
-    reading of `estimate-case-build-writes-the-case` passes live."""
+    (case 645.2). With no such file no Case is checked or stored, whatever the newest output
+    of the subagent holds (case 904.1)."""
     if payload.get("agent_type") != AGENT:
         return 0
     form = faulty_round(payload)  # a round out of form, sent back with no store (case 601.1)
     files = [path for path in written_case_files(payload, project_dir) if path.is_file()]
-    text = "" if files else answer_of(payload)
-    if not files and not split_cases(text):
+    if not files:
         return send_back(form, stderr)
     stamp = session_stamp(None, payload)
     folder = session_dir(project_dir, now, stamp)
@@ -1612,9 +1565,9 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     findings: list[str] = []
     fresh: list[str] = []
     repeated = True
-    texts = [path.read_text(encoding="utf-8") for path in files] or [text]
+    texts = [path.read_text(encoding="utf-8") for path in files]
     for each in texts:
-        if files and not stored_with_findings(each, store) and not file_differences(each, store):
+        if not stored_with_findings(each, store) and not file_differences(each, store):
             continue  # unchanged and passed: its time of store stands (case 645.2)
         found, new, same = judge_and_store(
             each, payload, project_dir, now, store, window, frontier, plan_text, folder
@@ -1624,8 +1577,6 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
         repeated = repeated and same
     named = summary_findings(payload, files, store)  # the `**Case:**` line (case 662.3)
     write_store(plan, store)
-    if not files and not findings and folder is not None:  # the old path (cases 452.1, 645.2)
-        write_case_files(folder, list(split_cases(text)), store)
     if (findings and not repeated) or fresh:  # the store guards the loop (cases 434, 472.1)
         return send_back(findings + fresh + named + form, stderr)
     return send_back(named + form, stderr)
@@ -2024,9 +1975,9 @@ def is_round(text: str) -> bool:
 
 
 def is_fact(text: str) -> bool:
-    """A Fact answer of `case-guppi`, the one test of it that `is_round` and `answer_of`
-    share (case 607.1): no Case heading, and a line that opens with `**Fact:**` before any
-    line that opens with `❓`. The lines are read with their indent set aside."""
+    """A Fact answer of `case-guppi`, the test of it that `is_round` runs (cases 607.1,
+    904.1): no Case heading, and a line that opens with `**Fact:**` before any line that
+    opens with `❓`. The lines are read with their indent set aside."""
     lines = [line.strip() for line in text.splitlines()]
     if split_cases("\n".join(lines)):
         return False

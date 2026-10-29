@@ -2,10 +2,9 @@
 into its file, passes the check the `SubagentStop` hook runs over that file (case 717.1,
 `estimate-case-example-passes-the-check`; before it case 646). The test holds no copy of
 the example or of the checks: it reads the block tagged `case` from the rendered page and
-runs `casecheck.check_answer` over it. While `case-example.md` does not stand — until the
-librarian's render writes it — the example is read from `vault/wiki/case-schema.md`, where
-it stood before. A page that holds no block tagged `case` fails both tests with a message
-that names the file it read, so an example a render lost does not pass unseen (case 652).
+runs `casecheck.check_answer` over it. The example is read from `case-example.md` alone: a
+file that does not stand, or that holds no block tagged `case`, fails both tests with a
+message that names it, so an example a render lost does not pass unseen (cases 652, 904.3).
 """
 
 import shutil
@@ -17,19 +16,18 @@ from guppi import casecheck
 from guppi.materialize import closes_fence, fence_opening, quoted_sections, split_cases
 
 ROOT = Path(__file__).resolve().parents[2]
-SCHEMA = ROOT / "vault" / "wiki" / "case-schema.md"
 EXAMPLE = ROOT / "vault" / "wiki" / "case-example.md"  # the examples' own file (case 717.1)
 ANCHOR = "the buyer pays at `/checkout/pay`"  # the `old` of the example's pair
 PADDED = f"`` {ANCHOR} ``"
 
 
-def example(path: Path | None = None) -> str:
-    """The first block tagged `case` of the page — `case-example.md`, or `case-schema.md`
-    while the first does not stand (case 717.1) — its lines as they stand, the quote
-    markers of the Case kept, which `tagged_blocks` would remove; the fence judged by
-    `fence_opening` and `closes_fence`, the one judgment of a fence (case 444.1)."""
-    if path is None:
-        path = EXAMPLE if EXAMPLE.is_file() else SCHEMA
+def example(path: Path = EXAMPLE) -> str:
+    """The first block tagged `case` of `case-example.md` (cases 717.1, 904.3), its lines as
+    they stand, the quote markers of the Case kept, which `tagged_blocks` would remove; the
+    fence judged by `fence_opening` and `closes_fence`, the one judgment of a fence (case
+    444.1). A file that does not stand fails the test with its name."""
+    if not path.is_file():
+        pytest.fail(f"{path} does not stand — the example of case 717.1 is gone (case 904.3)")
     opening, kept = None, []
     for line in path.read_text(encoding="utf-8").splitlines():
         if opening is None:

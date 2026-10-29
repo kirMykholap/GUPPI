@@ -42,7 +42,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-writes-a-defer`
+- [x] update `estimate-spec-write-writes-a-defer`
 ```
 
 ## Case 903 — The close check waits for a kind of run, and the report gets a check of its own
@@ -99,7 +99,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-close-commits`
+- [x] update `estimate-close-commits`
 - [ ] read `estimate-close-commits`
 ```
 
@@ -136,7 +136,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-close-reports-in-twenty-lines`
+- [x] create `estimate-close-reports-in-twenty-lines`
 - [ ] read `estimate-close-reports-in-twenty-lines`
 ```
 
@@ -208,12 +208,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-faulty-case`
-- [ ] update `rule-spec-reconcile`
+- [x] update `estimate-case-check-sends-back-a-faulty-case`
+- [x] update `rule-spec-reconcile`
 - [x] `.guppi/guppi/casecheck.py`: `subagent` reads only the files `case-<N>.md` the subagent wrote; the old path, `answer_of` and `write_case_files` are removed where nothing else calls them, and the docstring of the module, of `subagent` and of `is_fact` follow.
 - [x] `.guppi/tests/test_casecheck.py`: the helper `answer` writes a Case text into its file with a `Write` call in the transcript when no transcript is given; each test of the old path is removed or asserts that nothing is stored.
 - [x] by hand, in Work Mode: `## How it works` of `vault/wiki/rules/rule-spec-reconcile.md` removed; each fact of it that the docstring of `.guppi/guppi/ratified.py` does not hold moved there, the clause on the old path of `rule-case-check` not carried.
-- [ ] read `estimate-case-check-sends-back-a-faulty-case`
+- [x] read `estimate-case-check-sends-back-a-faulty-case`
 ```
 
 ### Case 904.2 — The shape check names a file of sub-cases alone
@@ -249,8 +249,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
-- [ ] read `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- [x] update `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
+- [x] read `estimate-case-check-sends-back-a-ratified-case-in-another-shape`
 ```
 
 ### Case 904.3 — The example test reads only case-example.md
@@ -292,10 +292,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-example-passes-the-check`
-- [ ] update `rule-case-example`
+- [x] update `estimate-case-example-passes-the-check`
+- [x] update `rule-case-example`
 - [x] `.guppi/tests/test_case_schema.py`: `example` reads `vault/wiki/case-example.md` alone; a missing file fails both tests by `pytest.fail` with a message that names it; the docstring of the module and of `example` follow, and `SCHEMA` leaves where nothing else reads it.
-- [ ] read `estimate-case-example-passes-the-check`
+- [x] read `estimate-case-example-passes-the-check`
 ```
 
 ## Case 908 — Three checks name the transcripts folder and the chat language by role
@@ -367,7 +367,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-permissions`
+- [x] update `estimate-permissions`
 - [ ] read `estimate-permissions`
 ```
 
@@ -401,8 +401,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-forwards-a-discussion-question`
-- [ ] read `estimate-orchestration-forwards-a-discussion-question`
+- [x] update `estimate-orchestration-forwards-a-discussion-question`
+- [x] read `estimate-orchestration-forwards-a-discussion-question`
 ```
 
 ### Case 908.3 — The showing check names the chat language by role
@@ -455,7 +455,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-shows-the-built-case`
+- [x] update `estimate-orchestration-shows-the-built-case`
 - [ ] read `estimate-orchestration-shows-the-built-case`
 ```
 
@@ -530,9 +530,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-plugin-install`
-- [ ] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
-- [ ] create `estimate-plugin-install-runs-no-hook-before-uv-sync`
+- [x] update `rule-plugin-install`
+- [x] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
+- [x] create `estimate-plugin-install-runs-no-hook-before-uv-sync`
 - [ ] read `estimate-plugin-install-runs-no-hook-before-uv-sync`
 ```
 
@@ -570,7 +570,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-package-is-ready-after-the-install`
+- [x] update `estimate-guppi-package-is-ready-after-the-install`
 - [ ] read `estimate-guppi-package-is-ready-after-the-install`
 ```
 

@@ -7,7 +7,7 @@ enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-close-commits]]"]
+estimates: ["[[estimate-close-commits]]", "[[estimate-close-reports-in-twenty-lines]]"]
 origin: raw/2026-09-10/ledger.md#case-36.1
 sprint: migration
 created: 2026-09-10
@@ -45,3 +45,4 @@ pages archived, the flags you raised, the lint total. Nothing else.
 - 2026-10-16 updated: the commit takes vault and each file that guppi render --paths prints, in place of four fixed paths · [[decision-case-857]]
 - 2026-10-16 status: built → draft · cascade
 - 2026-10-17 updated: the close command is run by the Bash tool · [[decision-case-866]]
+- 2026-10-29 estimate estimate-close-reports-in-twenty-lines added · [[decision-case-903.2]]

@@ -63,7 +63,7 @@ update:
 
 ```tasks
 - [x] update `estimate-clean-branch-ships-neutral-texts`
-- [ ] read `estimate-clean-branch-ships-neutral-texts`
+- [x] read `estimate-clean-branch-ships-neutral-texts`
 ```
 
 ### Case 898.2 — The methods of the Case builder and the orchestration wait for a kind of moment

@@ -49,3 +49,4 @@ Prevents a ratified Case from changing in what the scripts apply without the per
 - 2026-10-26 updated: the old comparison stands in the bracket of its cases · [[decision-case-881.14]]
 - 2026-10-28 updated: the guard writes the file of case-guppi itself and stops the call, so no permission prompt comes in Plan Mode (case 894.1) · [[decision-case-894.1]]
 - 2026-10-29 updated: the hook writes any file of case-guppi under cases/, its working note included (case 896.2) · [[decision-case-896.2]]
+- 2026-10-29 updated: How it works removed by hand, a one-off, its facts in the docstring of .guppi/guppi/ratified.py; the clause on the old path of rule-case-check dropped · [[decision-case-904.1]]

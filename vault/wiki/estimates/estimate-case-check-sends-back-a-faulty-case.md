@@ -22,17 +22,17 @@ Then:
 **＋** A file whose Cases `<plan>.checked.json` already holds with the same text, line ends and trailing spaces aside, and with no findings is not checked or stored again, so the time of its store stands.
 **＋** Any other such file is checked whole: each Case is read in the chat form by the functions of `.guppi/guppi/ratified.py`, its section of the Spec is built in memory as the Spec hook writes it, and `judge` of `.guppi/guppi/prespec.py` runs over them, the decision lines of the `ratification` fences standing for the ledger and, with the session's window, giving the categories whose schema rule the session changes.
 **＋** It checks the chat form besides: the sections in the order of the schema, none missing that the schema requires, and a `ratification` that holds one untagged fence of ledger lines and nothing else.
-**＋** Each Case of the file is stored, its text as the file holds it, with its findings and the time of the store, in `<plan>.checked.json`; the hook does not write that file.
+**＋** Each Case of the file is stored, its text as the file holds it, with its findings and the time of the store, in `<plan>.checked.json`; the hook writes no file of a Case.
 **＋** A finding exits 2 with the findings on stderr, each naming its Case, and `case-guppi` fixes the file and stops again, whatever `stop_hook_active` says.
-**＋** Until a reading of `estimate-case-build-writes-the-case` passes live, a transcript that names no such file and whose newest output holds a Case heading is read the old way: that output is checked and stored as the Cases of a file are, and with no finding the hook writes it into `raw/<date>/<hi HHMM>/cases/case-<N>.md` — the whole file when it holds the top-level Case, the section of each sub-case otherwise. A Case of a later session removes this path.
 **－** A finding for a Case whose text the store already holds with findings is stored again and exits 0, so an unchanged file is not sent back twice.
+**－** A transcript that names no file `case-<N>.md` gets no check of a Case, whatever its newest output holds: a Case given only in the text of an answer is not checked, stored or written into a file.
 **－** An output of the subagent with no Case heading — a summary, a round or a `**Fact:**` answer — is not read as a Case; the form of a round is the promise of `estimate-case-check-sends-back-a-faulty-round`.
 **－** A subagent of another type, and a transcript the hook cannot read, get none of these checks, and nothing is stored. A session with no plan file is not sent back for a fault of a Case.
 **－** A file of another name under `cases/`, such as the working note `note-<N>.md` of `case-guppi`, is no such file: it is not read as a Case, stored or sent back, and a transcript whose calls name no file `case-<N>.md`, though they name the note, is read as one that names no such file.
 
 ## Result
 
-2026-10-29, Retro of session 2312: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k subagent: 122 passed; test_subagent_file_a_note_beside_the_case_file_is_not_a_case finds written_case_files giving case-7.md alone and only Case 7 stored; test_subagent_file_a_round_after_only_the_note_stores_nothing finds no file, no store and cases_out of onward.py empty for note-7.md
+2026-10-29, Retro of session 1930, uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k subagent: 120 passed, 114 deselected; the old path is gone from subagent of casecheck.py (answer_of and write_case_files removed); test_subagent_a_case_given_only_by_handback_is_not_stored, test_subagent_a_case_in_the_answer_text_alone_is_not_stored and test_subagent_file_an_answer_text_with_no_case_file_is_not_stored assert that a Case given only in an answer text is not checked, stored or written; test_subagent_the_hook_leaves_the_file_as_case_guppi_wrote_it asserts the hook writes no file of a Case; the full run 1790 passed, 6 skipped, 1 deselected
 
 ## History
 
@@ -54,3 +54,5 @@ Then:
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-29 updated: the Criterion replaced whole — only a file case-<N>.md under cases/ is a file of a Case, so the working note of case-guppi is no Case; the method is the tests alone · [[decision-case-896.4]]
 - 2026-10-29 status: pending → passed · raw/2026-10-28/2312/ledger.md#L26
+- 2026-10-29 updated: the Criterion replaced whole — the check reads only the files case-<N>.md that case-guppi wrote; the old path of the answer text is gone · [[decision-case-904.1]]
+- 2026-10-29 status: pending → passed · raw/2026-10-29/1930/ledger.md#L22

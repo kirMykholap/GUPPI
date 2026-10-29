@@ -2,12 +2,13 @@
 type: rule
 kind: Leaf
 purpose: Prevents a project that installs the plugin guppi from getting a part of GUPPI, or from losing a file of its own to it
-status: built
+status: draft
 enforcement: render
 governs: plugin/skills/install/SKILL.md
 render_mode: full
 parent: "[[rule-harness]]"
-estimates: ["[[estimate-plugin-install-writes-guppi-into-an-empty-project]]", "[[estimate-plugin-install-offers-to-install-uv]]", "[[estimate-plugin-install-undoes-the-copy-when-uv-sync-fails]]"]
+estimates: ["[[estimate-plugin-install-writes-guppi-into-an-empty-project]]", "[[estimate-plugin-install-offers-to-install-uv]]", "[[estimate-plugin-install-undoes-the-copy-when-uv-sync-fails]]", "[[estimate-plugin-install-runs-no-hook-before-uv-sync]]"]
+deferred_by: ["[[decision-case-911]]"]
 origin: raw/2026-10-15/0553/ledger.md#case-818.1
 sprint: plugin
 created: 2026-10-15
@@ -17,7 +18,7 @@ ref: rule-harness
 
 ## Purpose
 
-Prevents a project that installs the plugin `guppi` from getting a part of GUPPI, or from losing a file of its own to it. The plugin, which the catalogue `guppi-marketplace` on the branch `prod` lists, is an installer. It carries one skill of its own, `install`, which the person types as `/guppi:install` in the project to install into. `guppi ship` copies the skill from `plugin/skills/install/SKILL.md`, which the Render of this page writes, to `skills/install/SKILL.md` of the clean version ([[rule-clean-branch]]). The skill first runs `uv --version`; when the tool `uv` is missing, it says that GUPPI needs it and asks the person whether it installs `uv` by the standalone installer of `uv`, runs that installer on a yes and `uv --version` again, and writes nothing into the project until `uv --version` passes; on a no, a failed installer or a `uv` that this session of Claude Code does not find yet, it stops and tells the person what to do (case 852.1). It copies into the project each file of the plugin but its own files, those under `.claude-plugin/`, `skills/` and `.git/`. Those files are the code of GUPPI in `.guppi/`, the harness `.claude/` and `CLAUDE.md`, the files at the root and the pages with `core: true`, as `guppi ship` built them. It writes nothing when one of those files already stands in the project, and it runs no `guppi` and no `git` command. After the copy it runs `uv sync --project .guppi`, which builds the Python environment `.guppi/.venv/`, so that the first hook of the project does not wait for it ([[rule-guppi-package]], case 819). When `uv sync` fails, the skill shows its output, deletes each file it copied and each folder it made, says that the install did not finish and that the person types `/guppi:install` again, and does not send the person to `/hi` (case 853). The project then runs on its own copy: its first `/hi` renders the harness from its own rule pages, and [[rule-morph]] sets its settings there. The skills of the project keep their bare names, such as `/hi`; only the skill of the plugin carries the prefix of the plugin (case 818). This page has no `core: true`, so a project that installs GUPPI does not hold it. What a new project gets beside the pages with `core: true` — the tests, the session files as skeletons and the CI of its checks — is set in [[rule-clean-branch]] (case 822).
+Prevents a project that installs the plugin `guppi` from getting a part of GUPPI, or from losing a file of its own to it. The plugin, which the catalogue `guppi-marketplace` on the branch `prod` lists, is an installer. It carries one skill of its own, `install`, which the person types as `/guppi:install` in the project to install into. `guppi ship` copies the skill from `plugin/skills/install/SKILL.md`, which the Render of this page writes, to `skills/install/SKILL.md` of the clean version ([[rule-clean-branch]]). The skill first runs `uv --version`; when the tool `uv` is missing, it says that GUPPI needs it and asks the person whether it installs `uv` by the standalone installer of `uv`, runs that installer on a yes and `uv --version` again, and writes nothing into the project until `uv --version` passes; on a no, a failed installer or a `uv` that this session of Claude Code does not find yet, it stops and tells the person what to do (case 852.1). It copies into the project each file of the plugin but its own files, those under `.claude-plugin/`, `skills/` and `.git/`. Those files are the code of GUPPI in `.guppi/`, the harness `.claude/` and `CLAUDE.md`, the files at the root and the pages with `core: true`, as `guppi ship` built them. It writes nothing when one of those files already stands in the project, and it runs no `guppi` and no `git` command. After the copy it runs `uv sync --project .guppi`, which builds the Python environment `.guppi/.venv/`, so that the first hook of the project does not wait for it ([[rule-guppi-package]], case 819). It copies `.claude/settings.json`, which holds the hooks of the project, only after `uv sync` passes, since Claude Code picks up that file in the same session: no hook of the copy runs before `uv sync` builds `.guppi/.venv/`, and none runs after a failed `uv sync` (as set in case 912). When `uv sync` fails, the skill shows its output, deletes each file it copied and each folder it made, says that the install did not finish and that the person types `/guppi:install` again, and does not send the person to `/hi` (case 853). The project then runs on its own copy: its first `/hi` renders the harness from its own rule pages, and [[rule-morph]] sets its settings there. The skills of the project keep their bare names, such as `/hi`; only the skill of the plugin carries the prefix of the plugin (case 818). This page has no `core: true`, so a project that installs GUPPI does not hold it. What a new project gets beside the pages with `core: true` — the tests, the session files as skeletons and the CI of its checks — is set in [[rule-clean-branch]] (case 822).
 
 ## Render
 
@@ -36,10 +37,11 @@ Install GUPPI into the project of this session, the folder that Claude Code was 
    - Then run `uv --version` again. When it passes, go on with step 2. When it fails, say that this session of Claude Code does not find the new `uv` yet, and that the person opens a new terminal, starts Claude Code there in this project and types `/guppi:install` again, and stop.
 2. List each file under `${CLAUDE_PLUGIN_ROOT}`, but the files under `.claude-plugin/`, `skills/` and `.git/`. These are the files to install, each at the same path in the project.
 3. Check which of those paths already stand in the project. When one or more stand, list them, say that the install writes nothing into a project that already holds one of its files, and stop. Write nothing.
-4. Otherwise copy each file to its path in the project, with the folders it needs. Change no other file. Run no `guppi` command and no `git` command.
-5. Check that each file now stands in the project. When one is missing, name it and stop.
+4. Otherwise copy each file to its path in the project, with the folders it needs, but `.claude/settings.json`, which step 7 copies once `uv sync` passes, so that no hook of the project runs before then. Change no other file. Run no `guppi` command and no `git` command.
+5. Check that each file you copied in step 4 now stands in the project. When one is missing, name it and stop.
 6. Run `uv sync --project .guppi` in the project, which builds the Python environment of GUPPI in `.guppi/.venv/`. When it fails, show its output, then delete each file you copied in step 4 and each folder you made for them, `.guppi/` with its `.venv/` included, so that the project holds only what it held before. Delete nothing else. Say that the install did not finish and that the project stands as before, and that the person types `/guppi:install` again once the cause that the output shows is fixed, and stop. Do not tell the person to run `uv sync`, to reopen Claude Code or to type `/hi`.
-7. Say that GUPPI is installed, and that the person reopens Claude Code in this project and types `/hi`. When step 1 installed `uv`, say that the person starts Claude Code from a new terminal, so that the hooks of the project find `uv`.
+7. Copy `.claude/settings.json` from `${CLAUDE_PLUGIN_ROOT}` to its path in the project, and check that it stands. When it is missing, name it and stop.
+8. Say that GUPPI is installed, and that the person reopens Claude Code in this project and types `/hi`. When step 1 installed `uv`, say that the person starts Claude Code from a new terminal, so that the hooks of the project find `uv`.
 <!-- /rule-plugin-install -->
 
 ## History
@@ -55,3 +57,7 @@ Install GUPPI into the project of this session, the folder that Claude Code was 
 - 2026-10-16 estimate estimate-plugin-install-undoes-the-copy-when-uv-sync-fails added · [[decision-case-853]]
 - 2026-10-16 status: built → draft · cascade
 - 2026-10-29 status: draft → built · cascade
+- 2026-10-29 deferred · [[decision-case-911]]
+- 2026-10-29 updated: the install copies .claude/settings.json only after uv sync passes, so no hook of the copy runs before uv sync or after a rollback · [[decision-case-912.1]]
+- 2026-10-29 estimate estimate-plugin-install-runs-no-hook-before-uv-sync added · [[decision-case-912.1]]
+- 2026-10-29 status: built → draft · cascade

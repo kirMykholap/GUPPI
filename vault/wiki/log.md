@@ -11818,3 +11818,65 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-29 decisions/decision-case-899.8 archived · cleanup
 - 2026-10-29 decisions/decision-case-899.9 archived · cleanup
 - 2026-10-29 decisions/decision-case-899 archived · cleanup
+- 2026-10-29 estimates/estimate-clean-branch-ships-neutral-texts status: pending → passed · raw/2026-10-29/1930/ledger.md#L1 · generate
+- 2026-10-29 decisions/decision-case-902 created · raw/2026-10-29/1930/ledger.md#case-902 · generate
+- 2026-10-29 decisions/decision-case-885 superseded by decision-case-902 · [[decision-case-902]] · generate
+- 2026-10-29 estimates/estimate-spec-write-writes-a-defer defer by decision-case-885 superseded · [[decision-case-902]] · generate
+- 2026-10-29 decisions/decision-case-891 superseded by decision-case-902 · [[decision-case-902]] · generate
+- 2026-10-29 estimates/estimate-spec-write-writes-a-defer defer by decision-case-891 superseded · [[decision-case-902]] · generate
+- 2026-10-29 estimates/estimate-spec-write-writes-a-defer updated: the defers of decision-case-885 and decision-case-891 taken up: the by-hand reading they waited for passed on 2026-10-26 · [[decision-case-902]] · generate
+- 2026-10-29 decisions/decision-case-903 created · raw/2026-10-29/1930/ledger.md#case-903 · generate
+- 2026-10-29 decisions/decision-case-903.1 created · raw/2026-10-29/1930/ledger.md#case-903.1 · generate
+- 2026-10-29 decisions/decision-case-885 superseded by decision-case-903.1 · [[decision-case-903.1]] · generate
+- 2026-10-29 estimates/estimate-close-commits defer by decision-case-885 superseded · [[decision-case-903.1]] · generate
+- 2026-10-29 estimates/estimate-close-commits updated: the Criterion replaced whole without the report, which estimate-close-reports-in-twenty-lines checks; the method waits for a librarian's run that holds the Render of rule-close, and reads no transcript · [[decision-case-903.1]] · generate
+- 2026-10-29 decisions/decision-case-903.2 created · raw/2026-10-29/1930/ledger.md#case-903.2 · generate
+- 2026-10-29 estimates/estimate-close-reports-in-twenty-lines created · [[decision-case-903.2]] · generate
+- 2026-10-29 rules/rule-close estimate estimate-close-reports-in-twenty-lines added · [[decision-case-903.2]] · generate
+- 2026-10-29 decisions/decision-case-904 created · raw/2026-10-29/1930/ledger.md#case-904 · generate
+- 2026-10-29 decisions/decision-case-904.1 created · raw/2026-10-29/1930/ledger.md#case-904.1 · generate
+- 2026-10-29 estimates/estimate-case-check-sends-back-a-faulty-case updated: the Criterion replaced whole — the check reads only the files case-<N>.md that case-guppi wrote; the old path of the answer text is gone · [[decision-case-904.1]] · generate
+- 2026-10-29 rules/rule-spec-reconcile updated: How it works removed by hand, a one-off, its facts in the docstring of .guppi/guppi/ratified.py; the clause on the old path of rule-case-check dropped · [[decision-case-904.1]] · generate
+- 2026-10-29 decisions/decision-case-904.2 created · raw/2026-10-29/1930/ledger.md#case-904.2 · generate
+- 2026-10-29 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape updated: the Criterion replaced whole — a file of sub-cases alone gets no finding, in place of an answer on the old path · [[decision-case-904.2]] · generate
+- 2026-10-29 decisions/decision-case-904.3 created · raw/2026-10-29/1930/ledger.md#case-904.3 · generate
+- 2026-10-29 estimates/estimate-case-example-passes-the-check updated: the Criterion replaced whole — the test reads case-example.md alone, and a missing file fails both tests with its name · [[decision-case-904.3]] · generate
+- 2026-10-29 rules/rule-case-example updated: implementation_ref names the test of the example · [[decision-case-904.3]] · generate
+- 2026-10-29 decisions/decision-case-905 created · raw/2026-10-29/1930/ledger.md#case-905 · generate
+- 2026-10-29 decisions/decision-case-905 superseded by decision-case-912.1 · [[decision-case-912.1]] · generate
+- 2026-10-29 decisions/decision-case-907 created · raw/2026-10-29/1930/ledger.md#case-907 · generate
+- 2026-10-29 rules/rule-ratification deferred · [[decision-case-907]] · generate
+- 2026-10-29 decisions/decision-case-908 created · raw/2026-10-29/1930/ledger.md#case-908 · generate
+- 2026-10-29 decisions/decision-case-908.1 created · raw/2026-10-29/1930/ledger.md#case-908.1 · generate
+- 2026-10-29 estimates/estimate-permissions updated: the Criterion replaced whole — the transcripts folder is named as the one the Render of rule-permissions names, not by the folder name of the repository of GUPPI · [[decision-case-908.1]] · generate
+- 2026-10-29 decisions/decision-case-908.2 created · raw/2026-10-29/1930/ledger.md#case-908.2 · generate
+- 2026-10-29 estimates/estimate-orchestration-forwards-a-discussion-question updated: the Criterion replaced whole — the answer is shown in the language of the chat, not named as Russian; the method is read at the Retro of a session that holds such a question, from its own tool calls, not in the transcript of a later session · [[decision-case-908.2]] · generate
+- 2026-10-29 decisions/decision-case-909 created · raw/2026-10-29/1930/ledger.md#case-909 · generate
+- 2026-10-29 rules/rule-spec-capture deferred · [[decision-case-909]] · generate
+- 2026-10-29 decisions/decision-case-910 created · raw/2026-10-29/1930/ledger.md#case-910 · generate
+- 2026-10-29 rules/rule-skill-sprint-open deferred · [[decision-case-910]] · generate
+- 2026-10-29 decisions/decision-case-911 created · raw/2026-10-29/1930/ledger.md#case-911 · generate
+- 2026-10-29 rules/rule-plugin-install deferred · [[decision-case-911]] · generate
+- 2026-10-29 decisions/decision-case-912 created · raw/2026-10-29/1930/ledger.md#case-912 · generate
+- 2026-10-29 decisions/decision-case-912.1 created · raw/2026-10-29/1930/ledger.md#case-912.1 · generate
+- 2026-10-29 rules/rule-plugin-install updated: the install copies .claude/settings.json only after uv sync passes, so no hook of the copy runs before uv sync or after a rollback · [[decision-case-912.1]] · generate
+- 2026-10-29 estimates/estimate-plugin-install-runs-no-hook-before-uv-sync created · [[decision-case-912.1]] · generate
+- 2026-10-29 rules/rule-plugin-install estimate estimate-plugin-install-runs-no-hook-before-uv-sync added · [[decision-case-912.1]] · generate
+- 2026-10-29 decisions/decision-case-912.2 created · raw/2026-10-29/1930/ledger.md#case-912.2 · generate
+- 2026-10-29 estimates/estimate-guppi-package-is-ready-after-the-install updated: the Criterion replaced whole — the install copies every file but .claude/settings.json before uv sync, and that file after uv sync passes · [[decision-case-912.2]] · generate
+- 2026-10-29 decisions/decision-case-908.3 created · raw/2026-10-29/1930/ledger.md#case-908.3 · generate
+- 2026-10-29 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — the round, the name of a Case and its short text are shown in the language of the chat, not named as Russian · [[decision-case-908.3]] · generate
+- 2026-10-29 estimates/estimate-case-check-sends-back-a-faulty-case status: pending → passed · raw/2026-10-29/1930/ledger.md#L22 · generate
+- 2026-10-29 estimates/estimate-case-check-sends-back-a-ratified-case-in-another-shape status: pending → passed · raw/2026-10-29/1930/ledger.md#L23 · generate
+- 2026-10-29 estimates/estimate-case-example-passes-the-check status: pending → passed · raw/2026-10-29/1930/ledger.md#L24 · generate
+- 2026-10-29 estimates/estimate-orchestration-forwards-a-discussion-question status: pending → passed · raw/2026-10-29/1930/ledger.md#L25 · generate
+- 2026-10-29 lessons/lesson-case-build-changes-a-step-without-reading-what-reads-it created · raw/2026-10-29/1930/ledger.md#L26 · generate
+- 2026-10-29 insights/insight-case-build-changes-a-step-without-reading-its-readers created · raw/2026-10-29/1930/ledger.md#L26 · generate
+- 2026-10-29 lessons/lesson-case-build-claims-a-page-stands-without-reading-the-path-it-changes updated: clustered under insight-case-build-changes-a-step-without-reading-its-readers (synthesis) · raw/2026-10-29/1930/ledger.md#L26 · generate
+- 2026-10-29 lessons/lesson-case-build-changes-a-step-without-reading-what-reads-it updated: clustered under insight-case-build-changes-a-step-without-reading-its-readers (synthesis) · raw/2026-10-29/1930/ledger.md#L26 · generate
+- 2026-10-29 rules/rule-clean-branch status: draft → built · cascade · generate
+- 2026-10-29 rules/rule-guppi-package status: built → draft · cascade · generate
+- 2026-10-29 rules/rule-permissions status: built → draft · cascade · generate
+- 2026-10-29 rules/rule-plugin-install status: built → draft · cascade · generate
+- 2026-10-29 decisions/decision-case-905 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-905 archived · cleanup

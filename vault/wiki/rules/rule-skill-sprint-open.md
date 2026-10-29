@@ -9,6 +9,7 @@ governs: .claude/skills/sprint-open/SKILL.md
 render_mode: full
 parent: "[[rule-session-start]]"
 estimates: ["[[estimate-skill-sprint-open-asks-the-opening-questions]]", "[[estimate-skill-sprint-open-starts-at-hi]]", "[[estimate-skill-sprint-open-merges-the-closed-sprint-branch]]", "[[estimate-skill-sprint-open-refuses-a-taken-sprint-id]]"]
+deferred_by: ["[[decision-case-910]]"]
 origin: raw/2026-10-08/2352/ledger.md#case-743.6
 sprint: migration
 created: 2026-10-08
@@ -66,3 +67,4 @@ No sprint is open: the first heading of `vault/wiki/sprint.md` marks the last sp
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-29 updated: the opening Case writes the merge line of /merge-main and names /pr-review only where the skill stands in the project (case 897.1) · [[decision-case-897.1]]
+- 2026-10-29 deferred · [[decision-case-910]]

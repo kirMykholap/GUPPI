@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-guppi-package]]"
-purpose: Whether /guppi:install runs uv --version before it writes anything and, where it passes, asks nothing about uv and builds the Python environment .guppi/.venv/ by uv sync after the copy before it sends the person to /hi
-method: "by hand, after a tag prod-x.y.z stands in the history of HEAD, in a repository that holds the module of the command ship: the agent writes the clean version into a local folder by uv run --project .guppi guppi ship --allow-draft; then, at a stop of Work Mode, the person adds that folder as a catalogue, installs the plugin guppi from it and, in an empty project on the machine with uv, types /guppi:install, reopens Claude Code there and types /hi; the person's answer on the output of the install, the files of the project and its .guppi/.venv/, read against the Criterion; the copy and the project may be those of another install reading at the same commit"
+purpose: Whether /guppi:install runs uv --version before it writes anything and, where it passes, asks nothing about uv, copies every file but .claude/settings.json, builds the Python environment .guppi/.venv/ by uv sync, and copies .claude/settings.json only then, before it sends the person to /hi
+method: "by hand, after the librarian's run of the session that sets this Criterion, with a tag prod-x.y.z in the history of HEAD: the agent writes the clean version into a local folder by uv run --project .guppi guppi ship --allow-draft; then, at a stop of Work Mode, the person adds that folder as a catalogue, installs the plugin guppi from it and, in an empty project on the machine with uv, types /guppi:install, reopens Claude Code there and types /hi; the person's answer on the output of the install, the order of its steps, the files of the project and its .guppi/.venv/, read against the Criterion; the copy and the project may be those of the reading of estimate-plugin-install-runs-no-hook-before-uv-sync"
 checked: 2026-10-29
 origin: raw/2026-10-15/0553/ledger.md#case-819.4
 sprint: plugin
@@ -19,7 +19,8 @@ The person writes the clean version into a local folder by `uv run --project .gu
 
 Then:
 Before it writes anything, `/guppi:install` runs `uv --version`.
-**＋** After it copies the files, it runs `uv sync --project .guppi` in the project, which builds the Python environment `.guppi/.venv/` before it tells the person to reopen Claude Code and type `/hi`.
+**＋** It copies each file of the install but `.claude/settings.json`, and then runs `uv sync --project .guppi` in the project, which builds the Python environment `.guppi/.venv/`.
+**＋** Once `uv sync` passes, it copies `.claude/settings.json`, and then tells the person to reopen Claude Code and type `/hi`.
 **＋** The hooks of the project find that environment built at the first `/hi`.
 **－** Where `uv --version` passes, it asks nothing about `uv`.
 
@@ -41,3 +42,4 @@ Before it writes anything, `/guppi:install` runs `uv --version`.
 - 2026-10-29 defer by decision-case-862 superseded · [[decision-case-900.3]]
 - 2026-10-29 updated: the defer retired, the reading taken at the install stop of Work Mode; the method states that it runs where the command ship stands and names no Estimate the clean version leaves out · [[decision-case-900.3]]
 - 2026-10-29 status: pending → passed · raw/2026-10-29/0327/ledger.md#L34
+- 2026-10-29 updated: the Criterion replaced whole — the install copies every file but .claude/settings.json before uv sync, and that file after uv sync passes · [[decision-case-912.2]]

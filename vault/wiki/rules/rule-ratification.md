@@ -10,6 +10,7 @@ render_mode: full
 parent: "[[rule-plan-mode]]"
 children: ["[[rule-atomicity]]"]
 estimates: ["[[estimate-ratification-ledger-line-form]]", "[[estimate-ratification-loaded]]", "[[estimate-ratification-case-id-carries-the-sprint]]"]
+deferred_by: ["[[decision-case-907]]"]
 origin: raw/2026-10-02/1834/ledger.md#case-595.3
 sprint: migration
 created: 2026-10-02
@@ -80,3 +81,4 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file, 
 - 2026-10-15 status: built → draft · cascade
 - 2026-10-16 updated: the sentence on plain Case ids names the list PLAIN_SPRINTS, and the sprints migration and plugin stand in the bracket of its pointer · [[decision-case-856.1]]
 - 2026-10-26 updated: a Case id with no sprint part said as the form of the sprints PLAIN_SPRINTS lists · [[decision-case-881.7]]
+- 2026-10-29 deferred · [[decision-case-907]]

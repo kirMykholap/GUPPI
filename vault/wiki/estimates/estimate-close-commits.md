@@ -3,10 +3,9 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-close]]"
-purpose: The librarian's run ends in one separate commit of vault and each file the render writes, with no rendered file left modified or untracked, and a report of twenty lines or fewer
-method: "uv run --project .guppi pytest .guppi/tests/test_render.py -k paths; by hand, after the librarian's run of the next session, whose .claude/agents/librarian-guppi.md holds the new Render of rule-close: git log shows its commit and the paths it touched, git status shows no file the render wrote as modified or untracked, and the report is read in the transcript"
+purpose: The librarian's run ends in one separate commit of vault and each file the render writes, with no rendered file left modified or untracked
+method: "uv run --project .guppi pytest .guppi/tests/test_render.py -k paths; by hand, after a librarian's run whose .claude/agents/librarian-guppi.md, when the run starts, holds the Render of rule-close: git log shows the commit of that run and the paths it touched, and git status shows no file the render wrote as modified or untracked"
 checked: 2026-09-29
-deferred_by: ["[[decision-case-885]]"]
 origin: raw/2026-09-10/ledger.md#case-36.1
 sprint: migration
 created: 2026-09-10
@@ -23,7 +22,6 @@ Then:
 **＋** `git log` shows one commit after the Retro commit, separate from the session's, with the message `docs(vault): librarian, <date>`, and never `--amend`.
 **＋** The commit takes `vault/` and each file of that list: `git add vault $(uv run --project .guppi guppi render --paths)`.
 **＋** After the commit, `git status` shows no file that `.guppi/guppi/render.py` wrote as modified or untracked.
-**＋** The report reaches the main agent with the counts, the flags and the lint total, in twenty lines or fewer.
 **－** The commit takes no path that neither `vault/` nor that list names.
 **－** In a project without `rule-plugin-install`, the list and the commit name no `plugin/skills/install/SKILL.md`.
 
@@ -43,3 +41,5 @@ Then:
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-16 updated: the Criterion replaced whole — the commit takes vault and each file that guppi render --paths prints · [[decision-case-857]]
 - 2026-10-26 deferred · [[decision-case-885]]
+- 2026-10-29 defer by decision-case-885 superseded · [[decision-case-903.1]]
+- 2026-10-29 updated: the Criterion replaced whole without the report, which estimate-close-reports-in-twenty-lines checks; the method waits for a librarian's run that holds the Render of rule-close, and reads no transcript · [[decision-case-903.1]]

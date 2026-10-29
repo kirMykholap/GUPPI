@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Lets the session write its own working files and read this project's saved transcripts without asking, and nothing else
-status: built
+status: draft
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -75,3 +75,4 @@ a refusal that matters has a hook behind it (case 85.5).
 - 2026-10-28 updated: case-guppi stays in plan mode in Plan Mode whatever its permissionMode; the guard of rule-spec-reconcile writes its Case file, and a read outside the project that no rule names may ask (case 894.2) · [[decision-case-894.2]]
 - 2026-10-28 status: built → draft · cascade
 - 2026-10-29 status: draft → built · cascade
+- 2026-10-29 status: built → draft · cascade

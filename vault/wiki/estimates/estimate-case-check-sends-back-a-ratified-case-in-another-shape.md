@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-case-check]]"
 purpose: A Case that has decision lines in the session and comes back from case-guppi in another shape under its old number goes back to case-guppi with a new number to build it under
 method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k shape
-checked: 2026-10-13
+checked: 2026-10-29
 origin: raw/2026-10-03/0115/ledger.md#case-610.1
 sprint: migration
 created: 2026-10-03
@@ -24,12 +24,12 @@ For a file that holds a top-level Case N, the hook reads the decision lines of a
 **＋** The judgment comes from one function of `.guppi/guppi/casecheck.py`, and the new id from `next_id` of `.guppi/guppi/caseid.py`, which the command for the next id runs too.
 **＋** The finding tells `case-guppi` to build the Case under the new id. Its decision lines carry one `{supersedes:case N}` for the number N, and one `{supersedes:case M}` for each number M of the family that has a decision line.
 **＋** The hook exits 2 with the finding on stderr, and `case-guppi` fixes the file or writes the Case under the new id.
-**－** An answer on the old path that holds sub-cases of Case N without Case N gets no finding of this check.
+**－** A file that holds sub-cases of Case N without Case N gets no finding of this check.
 **－** A Case whose family has no decision line other than `defer` in the session's ledger gets no finding of this check. Neither does a Case built again with a section for each number of its family that has such a line and no sub-case under any of them.
 
 ## Result
 
-2026-10-13, uv run pytest tests/test_casecheck.py -k shape: 13 passed — the new id stands above an id held only by the store, only by a Case file and only by a Decision page, and new_number and guppi caseid --next give the same id
+2026-10-29, Retro of session 1930, uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k shape: 13 passed, 221 deselected; shape_findings unchanged, its parametrized test gives a file of sub-case 9.1 alone no finding
 
 ## History
 
@@ -45,3 +45,5 @@ For a file that holds a top-level Case N, the hook reads the decision lines of a
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-29 updated: the Criterion replaced whole — a file of sub-cases alone gets no finding, in place of an answer on the old path · [[decision-case-904.2]]
+- 2026-10-29 status: pending → passed · raw/2026-10-29/1930/ledger.md#L23

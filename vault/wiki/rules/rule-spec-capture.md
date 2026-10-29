@@ -7,6 +7,7 @@ enforcement: hook
 implementation_ref: [.guppi/guppi/spec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-spec-capture-appends]]", "[[estimate-spec-capture-offers-the-fork]]"]
+deferred_by: ["[[decision-case-909]]"]
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
 created: 2026-09-09
@@ -58,3 +59,4 @@ into the context — `/work`, Work Mode on the Spec, or `/carry` to conserve it 
 - 2026-10-14 updated: the slug of rule-spec-box stands outside the bracket of its pointer · [[decision-case-809]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the Spec hook writes under ## Deferred only a Case the reply shows in the short form · [[decision-case-879.1]]
+- 2026-10-29 deferred · [[decision-case-909]]

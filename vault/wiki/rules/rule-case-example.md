@@ -4,6 +4,7 @@ kind: Leaf
 purpose: Prevents a Case from being written in a form the check of its file refuses because the agent that writes it saw no example of the form
 status: built
 enforcement: render
+implementation_ref: [.guppi/tests/test_case_schema.py]
 governs: vault/wiki/case-example.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
@@ -156,3 +157,4 @@ update:
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the history of the examples stands in the bracket of its pointer · [[decision-case-809]]
 - 2026-10-15 updated: the example Estimate names a test path of the example project that the reword of rule-guppi-package does not touch · [[decision-case-819.1]]
+- 2026-10-29 updated: implementation_ref names the test of the example · [[decision-case-904.3]]

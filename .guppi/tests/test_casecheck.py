@@ -2367,6 +2367,39 @@ def test_subagent_file_an_answer_text_with_no_case_file_is_stored_and_written(wo
     assert "7" in store(working) and case_path(working, "7").is_file()
 
 
+def note_path(project):
+    """The working note `case-guppi` keeps beside the file of Case `7` (case 896.4)."""
+    return case_path(project, "7").parent / "note-7.md"
+
+
+def test_subagent_file_a_note_beside_the_case_file_is_not_a_case(working):
+    path, _ = agent_writes(working, ANSWER)
+    note = note_path(working)
+    note.write_text("Q1 answered: (a).\n", encoding="utf-8")
+    agent = transcript(
+        working,
+        [write_call(note, "Q1 answered: (a).\n")],
+        [write_call(path, ANSWER)],
+        [built(path)],
+    )
+    assert casecheck.written_case_files({"agent_transcript_path": agent}, working) == [path]
+    assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
+    assert set(store(working)) == {"7"}
+
+
+def test_subagent_file_a_round_after_only_the_note_stores_nothing(working):
+    from guppi import onward
+
+    note = note_path(working)
+    note.parent.mkdir(parents=True, exist_ok=True)
+    note.write_text("Q1 asked.\n", encoding="utf-8")
+    agent = transcript(working, [write_call(note, "Q1 asked.\n")], [text(round_of("Which test?"))])
+    assert casecheck.written_case_files({"agent_transcript_path": agent}, working) == []
+    assert answer(working, "", agent_transcript_path=agent) == (0, "")
+    assert store(working) is None
+    assert onward.cases_out(working.joinpath(*FOLDER), [], NOW) == []
+
+
 # --- the titles of the rounds in the stored recommend (case 629.4) ---------------------------
 
 

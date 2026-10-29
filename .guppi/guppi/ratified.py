@@ -896,8 +896,8 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
     builder = payload.get("agent_type") == AGENT  # the field Claude Code gives (case 645.3)
     if builder and not is_case_file(path):
         return str(path), (
-            f"{path} is outside cases/ of the session folder; case-guppi writes the file of "
-            f"its Case alone (rule-spec-reconcile)"
+            f"{path} is outside cases/ of the session folder; case-guppi writes only under "
+            f"cases/ of a session folder (rule-spec-reconcile)"
         )
     if is_store(path):
         return str(path), (

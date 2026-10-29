@@ -139,8 +139,11 @@ This check of the read is the hook's own, not one of `/pre-spec`.
 The file (case 645.2). `case-guppi` writes its Case into
 `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case, named by
 `case_file`, and fixes it by `Edit`. The hook takes each file under the `cases/` folder of a
-session folder, judged by `is_case_file`, that a `Write`, `Edit` or `MultiEdit` call of the
-subagent in `agent_transcript_path` names (`written_case_files`), and reads its Cases as the
+session folder, judged by `is_case_file`, and named `case-<N>.md`, judged by `case_number`,
+that a `Write`, `Edit` or `MultiEdit` call of the subagent in `agent_transcript_path` names
+(`written_case_files`); the working note `note-<N>.md` that `case-guppi` keeps beside its
+Case is no file of a Case, and a transcript that names only the note names no such file
+(case 896.4). The hook reads the Cases of each file it takes as the
 file stands: a file whose Cases the store holds under their ids with the same text — line
 ends and trailing spaces aside, by `file_differences`, the one comparison of a file with the
 store — and no findings is not checked or stored again, so the time of its store stands;
@@ -1523,10 +1526,12 @@ EDIT_CALLS = ("Write", "Edit", "MultiEdit")  # the calls that write a file of a 
 
 
 def written_case_files(payload: dict, project_dir: Path) -> list[Path]:
-    """Each file under the `cases/` folder of a session folder, by `is_case_file`, that a
-    `Write`, `Edit` or `MultiEdit` call of the subagent in `agent_transcript_path` names, in
-    the order of its first call, a relative path read from `project_dir`; none when the
-    transcript is not readable (case 645.2)."""
+    """Each file under the `cases/` folder of a session folder, by `is_case_file`, and named
+    `case-<N>.md`, by `case_number`, that a `Write`, `Edit` or `MultiEdit` call of the subagent
+    in `agent_transcript_path` names, in the order of its first call, a relative path read from
+    `project_dir`; none when the transcript is not readable (case 645.2). A file of another
+    name there, such as the working note `note-<N>.md` of `case-guppi`, is no file of a Case
+    (case 896.4)."""
     found: dict[str, Path] = {}
     for record in read_records(payload.get("agent_transcript_path")) or []:
         if not isinstance(record, dict) or record.get("type") != "assistant":
@@ -1543,7 +1548,7 @@ def written_case_files(payload: dict, project_dir: Path) -> list[Path]:
                 continue
             path = Path(str(data["file_path"]))
             path = path if path.is_absolute() else project_dir / path
-            if is_case_file(path):
+            if is_case_file(path) and case_number(path):
                 found.setdefault(str(path), path)
     return list(found.values())
 

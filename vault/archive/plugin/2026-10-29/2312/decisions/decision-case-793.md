@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "793"
-status: current
+status: archived
 defer: ["[[rule-page-generation]]"]
+superseded_by: ["[[decision-case-897.3]]"]
 origin: raw/2026-10-12/2349/ledger.md#case-793
 sprint: plugin
 created: 2026-10-12
@@ -26,3 +27,6 @@ An update of a page can remove a section, heading and text, so that a Leaf loses
 ## History
 
 - 2026-10-13 created · raw/2026-10-12/2349/ledger.md#case-793
+- 2026-10-29 superseded by decision-case-897.3 · [[decision-case-897.3]]
+- 2026-10-29 archived · superseded
+- 2026-10-29 archived · cleanup

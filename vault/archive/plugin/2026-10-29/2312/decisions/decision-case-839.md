@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "839"
-status: current
+status: archived
 defer: ["[[rule-documentation]]"]
+superseded_by: ["[[decision-case-897.3]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-839
 sprint: plugin
 created: 2026-10-15
@@ -26,3 +27,6 @@ The librarian's close does not commit plugin/skills/install/SKILL.md that the re
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-839
+- 2026-10-29 superseded by decision-case-897.3 · [[decision-case-897.3]]
+- 2026-10-29 archived · superseded
+- 2026-10-29 archived · cleanup

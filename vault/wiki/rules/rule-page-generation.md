@@ -7,7 +7,7 @@ enforcement: check
 implementation_ref: [.guppi/guppi/generate.py, .guppi/tests/test_generate.py]
 parent: "[[rule-documentation]]"
 estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]", "[[estimate-generate-rewords]]", "[[estimate-generate-writes-rules-from-applies-to]]", "[[estimate-generate-replace-takes-the-leading-indent]]"]
-deferred_by: ["[[decision-case-793]]"]
+deferred_by: ["[[decision-case-897.3]]"]
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -18,7 +18,7 @@ core: true
 ## Purpose
 
 Prevents a ratified decision from ending the session without a page, or a page from
-carrying a field nobody ratified. The script is the only writer to `wiki/` (in the repository of GUPPI but for what a merge of `main` by `/merge-main` writes: the joined text of a page that both a branch and `main` changed, which the merge Case signs and Work Mode writes, the script then writing the History line and the status that the Case sets, and the lines of both sides of `log.md` and `tags.md`, which git joins by their `merge=union` lines in `.gitattributes`, case 790). The header of `tags.md` above its table is not written by the script: a one-off task by hand that a ratified Case names changes it in Work Mode (as set in case 827.4). It lays
+carrying a field nobody ratified. The script is the only writer to `wiki/` but for what a merge of `main` into a branch writes: the joined text of a page that both a branch and `main` changed, which a Case signs and Work Mode writes, the script then writing the History line and the status that the Case sets, and the lines of both sides of `log.md` and `tags.md`, which git joins by their `merge=union` lines in `.gitattributes` (as set in case 790). The header of `tags.md` above its table is not written by the script: a one-off task by hand that a ratified Case names changes it in Work Mode (as set in case 827.4). It lays
 the content of `materialize.yaml` into schema fields and invents nothing: what it writes beyond that content is computed from the pages, the Specs and the ledgers of `raw/` by the steps this page names — the cascade, the ticks of the Spec, the links of a `rename`, the words of a `reword` (case 369); no section is derived from a ref field, no Estimate from a flag, and the Criterion of an
 Estimate is replaced whole by the text its Case signed (cases 166.2, 194.1, 201.1). A page is always created, even incomplete: red lint is an accurate signal of debt, a decision with no page is the ledger and the vault disagreeing silently. An exception is a `defer` with no page of anything but a rule or an entity: it writes no page and fails as an entry. A check that was never created has no reading to put off, and the short Case puts off the page it would check instead (case 783); an Insight is made only by the librarian, and the format of an Insight, a Lesson or a Decision page has no status for a stand-in page (case 786). A `defer` of a Lesson or a Decision page writes nothing and fails as an entry too, whether the page stands or not, since neither format has `deferred_by` and no list would show the item (as set in case 865). A slug
 collision is an error, never a rename — with one exception: a `create` whose slug is a
@@ -160,3 +160,6 @@ entry never stops the run: it is marked `failed`, reported, and the rest apply (
 - 2026-10-26 updated: the merge by /merge-main stands in the bracket as a fact of the repository of GUPPI · [[decision-case-881.5]]
 - 2026-10-26 updated: a Case that a later Case retired carries out none of its supersedes · [[decision-case-883]]
 - 2026-10-26 updated: a Case replaced before its entries applied gets its Decision page superseded at once, naming the Case its record names · [[decision-case-888]]
+- 2026-10-29 defer by decision-case-793 superseded · [[decision-case-897.3]]
+- 2026-10-29 updated: the merge exception covers any merge of main into a branch, with no skill named; the put-off on the removal of a section taken up and put off again (case 897.3) · [[decision-case-897.3]]
+- 2026-10-29 deferred · [[decision-case-897.3]]

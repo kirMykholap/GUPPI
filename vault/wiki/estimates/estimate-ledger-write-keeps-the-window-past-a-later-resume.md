@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-ledger-write]]"
 purpose: A session resumed or compacted on a later date than its /hi, or whose log on a later date holds a tool line with the text of its start line, keeps its hi, its folder and its plan file in every reader of its window
-method: "uv run --project .guppi pytest .guppi/tests/test_ledger.py -k later_date; by hand: session_dir of .guppi/guppi/ledger.py for the stamp 44ee5004 over the live event logs, run by uv run --project .guppi python, names raw/2026-10-14/1907"
+method: uv run --project .guppi pytest .guppi/tests/test_ledger.py -k later_date
 origin: raw/2026-10-17/2307/ledger.md#case-884
 sprint: plugin
 created: 2026-10-17
@@ -32,3 +32,4 @@ Then:
 
 - 2026-10-26 created · [[decision-case-884]]
 - 2026-10-26 status: pending → passed · raw/2026-10-17/2307/ledger.md#L53
+- 2026-10-29 updated: the method keeps the tests alone; the check by hand on a past session of GUPPI is gone · [[decision-case-897.5]]

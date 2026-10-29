@@ -84,7 +84,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | term | meaning | where |
 |---|---|---|
 | Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | [[rule-documentation]] |
-| Librarian | Clean context; the only writer to `wiki/` but for the header of `tags.md`, which a one-off task by hand that a Case names changes (and in the repository of GUPPI for what a merge of `main` by `/merge-main` writes: the joined text of a conflicted page, and the lines of `log.md` and `tags.md` that git joins, case 790); reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
+| Librarian | Clean context; the only writer to `wiki/` but for the header of `tags.md`, which a one-off task by hand that a Case names changes, and for what a merge of `main` into a branch writes: the joined text of a conflicted page, and the lines of `log.md` and `tags.md` that git joins (as set in case 790); reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
 | Session | Five phases in one order under [[rule-session]]: Session Start, Plan Mode, Work Mode, End of Work, Documentation | [[rule-session]] |
 | Work Mode | `/work` runs the approved Spec on a branch other than `main`: a baseline of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check` first, the tasks in the order of the Spec, each box ticked, then the Work readings; it ends with `/retro` | [[rule-work-mode]] |
 

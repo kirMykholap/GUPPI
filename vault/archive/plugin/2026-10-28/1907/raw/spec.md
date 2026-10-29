@@ -314,7 +314,7 @@ update:
 ```tasks
 - [x] update `rule-permissions`
 - [x] update `estimate-permissions`
-- [ ] read `estimate-permissions`
+- [x] read `estimate-permissions`
 ```
 
 ### Case 894.3 — case-guppi takes the guard's line as the write done

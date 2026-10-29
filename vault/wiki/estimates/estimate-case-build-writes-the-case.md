@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-case-build]]"
-purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame, writes it into its file and answers with a short summary, empties the file of a Case it drops, and undoes a change the person dropped on a ratified Case
+purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame, writes it into its file and answers with a short summary, keeps a working note it reads again after a compaction, empties the file of a Case it drops, and undoes a change the person dropped on a ratified Case
 method: by hand, the text of .claude/agents/case-guppi.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec, read against the Criterion; the tokens and seconds of each dispatch of case-guppi in that session, when there was one, in the estimate line
-checked: 2026-10-28
+checked: 2026-10-29
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -41,6 +41,9 @@ Then:
 **＋** In Work Mode a round may also come when it builds a new Case that replaces a sub-case of a ratified Case.
 **＋** It runs on `model: opus` with `effort: medium`, the tools Read, Grep, Glob, Write, Edit and WebFetch, and `permissionMode: auto`, which Claude Code applies only while the session runs in `default` or `dontAsk` mode.
 **＋** In Plan Mode the guard of `rule-spec-reconcile` writes the text of its `Write` or `Edit` into its file and stops the call; a line of the guard that says the file is written it takes as the write done, does not make the call again, and reads the file by `Read` before its next `Edit` of it.
+**＋** `.claude/agents/case-guppi.md` sets `autoCompactWindow: 400000`, so Claude Code compacts the context of `case-guppi` before it reaches 400000 tokens.
+**＋** Before each answer, and first when a message brings the person's answers or a change, `case-guppi` writes `raw/<date>/<hi HHMM>/cases/note-<N>.md` whole by `Write`, N the id of the top-level Case: each question of its rounds by its title with its recommendation and the person's answer, the pages and files it read for the frame, the forks still open, and what is still to do.
+**＋** When its context opens with a summary of earlier work, it reads that note by `Read` before anything else, goes on from what it says, and reads again the pages and files its next step needs.
 **＋** Sent the drop of its Case, which has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, it writes empty text into the file of that Case by `Write` and answers with a first line `**Dropped:**` and the path of the file, and nothing else. A file of its own that it leaves behind, when it builds the Case again under another number, it empties the same way only when that Case has no decision line in that ledger.
 **＋** Sent the drop of a change to its Case, which has a decision line in `raw/<date>/<hi HHMM>/ledger.md` and which it changed after the Case was last ratified, it undoes by `Edit` each edit it made since then in every section but `recommend`. `recommend` keeps its items and gains one item `**Change**`: its `Asked:` line says that the person dropped the change, and its `Taken:` line says that the Case went back to its ratified form. It answers with the summary again, so that the check of `rule-case-check` finds an item for each question of its rounds.
 **－** It does not put a change asked on a named Case into a new top-level Case without the person's answer to a round.
@@ -50,12 +53,13 @@ Then:
 **－** It does not write the whole Case again to fix a finding, make a change or undo a change.
 **－** A later round on the item, a round after a message on a Case it built and a round in Work Mode carry no context.
 **－** The context carries no Case heading, so the hook of `rule-case-check` neither checks nor stores the round as a Case; it judges only the form of the questions of the round, not its context.
-**－** It writes no file but the file of its Case, the file it leaves behind under an earlier number of the same Case, and the file of a new Case it builds beside a ratified Case, and no ledger line.
+**－** It writes no file but the file of its Case, the file it leaves behind under an earlier number of the same Case, the file of a new Case it builds beside a ratified Case and its note, and no ledger line.
+**－** It asks no question again whose answer its note holds.
 **－** It empties no file of a Case that has a decision line in `raw/<date>/<hi HHMM>/ledger.md`, the file it leaves behind when it builds that Case again under a new number included: sent the drop of such a Case that it did not change after the Case was last ratified, it answers under a first line `**Fact:**` that the Case is ratified, and the file stands.
 
 ## Result
 
-2026-10-28, Retro, the new Render of rule-case-build in the Spec (Case 894.3) against the Criterion: its replace says that the guard writes the text of the Write or Edit into the case file and stops the call with a line that says the file is written, which is no failure and no call to make again, and that case-guppi reads the file by Read before its next Edit; the old text stands once in rule-case-build; the frontmatter keeps model opus, effort medium, the six tools and permissionMode auto; the other lines of the Criterion are unchanged; subagent tokens at the last answer of each dispatch: Case 892 74357, Case 893 158976, Case 894 196571, Case 895 190753
+2026-10-29, Retro of session 2312, the new Render of rule-case-build in raw/2026-10-28/2312/spec.md (Case 896.2) read against the new Criterion: it sets autoCompactWindow: 400000 under permissionMode: auto, has case-guppi write cases/note-<N>.md whole by Write before each answer and first on the person's answers or a change, with the four lists, read the note first when its context opens with a summary, read again what its next step needs, ask no question again whose answer the note holds, and write no file but its Case files and its note; each old text of the four replaces stands once in vault/wiki/rules/rule-case-build.md; the other lines of the Criterion are carried from the Criterion read passed in session 1907
 
 ## History
 
@@ -92,3 +96,5 @@ Then:
 - 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L45
 - 2026-10-28 updated: the Criterion replaced whole — permissionMode auto applies only in default or dontAsk mode; in Plan Mode the guard writes the Case file, and case-guppi takes its line as the write done and reads the file before its next Edit (case 894.3) · [[decision-case-894.3]]
 - 2026-10-28 status: pending → passed · raw/2026-10-28/1907/ledger.md#L18
+- 2026-10-29 updated: the Criterion replaced whole — case-guppi compacts before 400 000 tokens and keeps a working note it reads again after a compaction · [[decision-case-896.2]]
+- 2026-10-29 status: pending → passed · raw/2026-10-28/2312/ledger.md#L25

@@ -8,7 +8,6 @@ governs: vault/wiki/orchestration.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-orchestration-acknowledging-reply]]", "[[estimate-orchestration-shows-the-frontier-after-a-closed-line]]", "[[estimate-orchestration-defers-in-one-reply]]", "[[estimate-orchestration-shows-the-built-case]]", "[[estimate-orchestration-forwards-a-discussion-question]]", "[[estimate-orchestration-asks-in-the-grill-me-shape]]", "[[estimate-orchestration-puts-the-harness-before-plan-mode]]", "[[estimate-orchestration-names-related-cases-in-the-dispatch]]", "[[estimate-orchestration-loaded]]", "[[estimate-orchestration-signs-a-batch-together]]", "[[estimate-orchestration-showing-example-passes-the-check]]", "[[estimate-orchestration-defer-example-passes-the-hook]]", "[[estimate-orchestration-signs-items-taken-together]]", "[[estimate-orchestration-says-when-a-rendered-change-lands]]", "[[estimate-orchestration-marks-each-round-of-a-batch]]", "[[estimate-orchestration-takes-back-a-ratified-case]]", "[[estimate-orchestration-batches-cases-out-at-once]]", "[[estimate-orchestration-sets-off-each-reply-of-case-guppi]]", "[[estimate-orchestration-acknowledges-the-opening-with-the-frontier]]", "[[estimate-orchestration-rechecks-a-sibling-after-a-joint-send]]", "[[estimate-orchestration-shows-the-clean-cases-of-a-batch-first]]"]
-deferred_by: ["[[decision-case-884]]"]
 origin: raw/2026-10-02/1834/ledger.md#case-595.2
 sprint: migration
 created: 2026-09-25
@@ -213,3 +212,5 @@ The reply that acknowledges a ratification has four parts, in this order: the `L
 - 2026-10-26 defer by decision-case-887 superseded · [[decision-case-890.3]]
 - 2026-10-26 estimate estimate-orchestration-shows-the-clean-cases-of-a-batch-first added · [[decision-case-890.3]]
 - 2026-10-26 updated: a Case of a batch with a stored finding goes back to its case-guppi and the other Cases are shown for ratification · [[decision-case-890.3]]
+- 2026-10-29 defer by decision-case-884 superseded · [[decision-case-896.2]]
+- 2026-10-29 updated: the put-off on the growing context of case-guppi taken up: it compacts before 400 000 tokens and keeps a working note (case 896.2) · [[decision-case-896.2]]

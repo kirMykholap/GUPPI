@@ -11639,3 +11639,60 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-28 decisions/decision-case-882.3 archived · cleanup
 - 2026-10-28 decisions/decision-case-891 archived · cleanup
 - 2026-10-28 decisions/decision-case-882 child decision-case-882.3 archived · cleanup
+- 2026-10-29 decisions/decision-case-896 created · raw/2026-10-28/2312/ledger.md#case-896 · generate
+- 2026-10-29 decisions/decision-case-896.1 created · raw/2026-10-28/2312/ledger.md#case-896.1 · generate
+- 2026-10-29 estimates/estimate-case-build-goes-on-after-a-compaction updated: the Criterion replaced whole — the compaction comes below the set size, as the test showed · [[decision-case-896.1]] · generate
+- 2026-10-29 decisions/decision-case-896.2 created · raw/2026-10-28/2312/ledger.md#case-896.2 · generate
+- 2026-10-29 decisions/decision-case-884 superseded by decision-case-896.2 · [[decision-case-896.2]] · generate
+- 2026-10-29 rules/rule-orchestration defer by decision-case-884 superseded · [[decision-case-896.2]] · generate
+- 2026-10-29 rules/rule-case-build updated: case-guppi compacts before 400 000 tokens and keeps a working note it reads again after a compaction (case 896.2) · [[decision-case-896.2]] · generate
+- 2026-10-29 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — case-guppi compacts before 400 000 tokens and keeps a working note it reads again after a compaction · [[decision-case-896.2]] · generate
+- 2026-10-29 rules/rule-orchestration updated: the put-off on the growing context of case-guppi taken up: it compacts before 400 000 tokens and keeps a working note (case 896.2) · [[decision-case-896.2]] · generate
+- 2026-10-29 decisions/decision-case-896.3 created · raw/2026-10-28/2312/ledger.md#case-896.3 · generate
+- 2026-10-29 estimates/estimate-case-build-goes-on-after-a-live-compaction created · [[decision-case-896.3]] · generate
+- 2026-10-29 rules/rule-case-build estimate estimate-case-build-goes-on-after-a-live-compaction added · [[decision-case-896.3]] · generate
+- 2026-10-29 decisions/decision-case-896.4 created · raw/2026-10-28/2312/ledger.md#case-896.4 · generate
+- 2026-10-29 rules/rule-case-check updated: the check takes only a file case-<N>.md under cases/ as a file of a Case, so the working note of case-guppi is no Case (case 896.4) · [[decision-case-896.4]] · generate
+- 2026-10-29 estimates/estimate-case-check-sends-back-a-faulty-case updated: the Criterion replaced whole — only a file case-<N>.md under cases/ is a file of a Case, so the working note of case-guppi is no Case; the method is the tests alone · [[decision-case-896.4]] · generate
+- 2026-10-29 estimates/estimate-clean-branch-ships-neutral-texts status: failed → failed · raw/2026-10-28/2312/ledger.md#L8 · generate
+- 2026-10-29 decisions/decision-case-897 created · raw/2026-10-28/2312/ledger.md#case-897 · generate
+- 2026-10-29 decisions/decision-case-897.1 created · raw/2026-10-28/2312/ledger.md#case-897.1 · generate
+- 2026-10-29 rules/rule-skill-sprint-open updated: the opening Case writes the merge line of /merge-main and names /pr-review only where the skill stands in the project (case 897.1) · [[decision-case-897.1]] · generate
+- 2026-10-29 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch updated: the Criterion replaced whole — the /merge-main line only where the project holds that skill, and /pr-review named the same way · [[decision-case-897.1]] · generate
+- 2026-10-29 decisions/decision-case-897.2 created · raw/2026-10-28/2312/ledger.md#case-897.2 · generate
+- 2026-10-29 rules/rule-skill-sprint-close updated: step 1 names /merge-main only where the project holds that skill (case 897.2) · [[decision-case-897.2]] · generate
+- 2026-10-29 rules/rule-where-to-stop updated: condition 6 names the merge tasks of /pr-review and /merge-main only where the project holds the skill (case 897.2) · [[decision-case-897.2]] · generate
+- 2026-10-29 decisions/decision-case-897.3 created · raw/2026-10-28/2312/ledger.md#case-897.3 · generate
+- 2026-10-29 decisions/decision-case-839 superseded by decision-case-897.3 · [[decision-case-897.3]] · generate
+- 2026-10-29 rules/rule-documentation defer by decision-case-839 superseded · [[decision-case-897.3]] · generate
+- 2026-10-29 decisions/decision-case-793 superseded by decision-case-897.3 · [[decision-case-897.3]] · generate
+- 2026-10-29 rules/rule-page-generation defer by decision-case-793 superseded · [[decision-case-897.3]] · generate
+- 2026-10-29 rules/rule-documentation updated: the merge exception covers any merge of main into a branch, with no skill named; the put-off on the commit of the rendered files taken up and closed, since the close commits each file the render writes (case 897.3) · [[decision-case-897.3]] · generate
+- 2026-10-29 decisions/decision-case-897.4 created · raw/2026-10-28/2312/ledger.md#case-897.4 · generate
+- 2026-10-29 rules/rule-case-protocol updated: the reason of the bracket rule says that guppi ship runs in the repository of GUPPI (case 897.4) · [[decision-case-897.4]] · generate
+- 2026-10-29 decisions/decision-case-897.5 created · raw/2026-10-28/2312/ledger.md#case-897.5 · generate
+- 2026-10-29 estimates/estimate-ledger-write-keeps-the-window-past-a-later-resume updated: the method keeps the tests alone; the check by hand on a past session of GUPPI is gone · [[decision-case-897.5]] · generate
+- 2026-10-29 estimates/estimate-case-build-reads-the-code-it-states updated: the method waits for the first /pre-spec after the Render; the reading at the Retro of a past session is gone · [[decision-case-897.5]] · generate
+- 2026-10-29 decisions/decision-case-897.6 created · raw/2026-10-28/2312/ledger.md#case-897.6 · generate
+- 2026-10-29 estimates/estimate-clean-branch-ships-neutral-texts updated: read again after the texts of case 897 land; the method waits for the librarian's run of session 2312 · [[decision-case-897.6]] · generate
+- 2026-10-29 estimates/estimate-permissions status: pending → passed · raw/2026-10-28/2312/ledger.md#L18 · generate
+- 2026-10-29 rules/rule-spec-reconcile updated: the hook writes any file of case-guppi under cases/, its working note included (case 896.2) · [[decision-case-896.2]] · generate
+- 2026-10-29 rules/rule-vault-layout updated: the merge exception covers any merge of main into a branch, with no skill named (case 897.3) · [[decision-case-897.3]] · generate
+- 2026-10-29 rules/rule-page-generation updated: the merge exception covers any merge of main into a branch, with no skill named; the put-off on the removal of a section taken up and put off again (case 897.3) · [[decision-case-897.3]] · generate
+- 2026-10-29 rules/rule-page-generation deferred · [[decision-case-897.3]] · generate
+- 2026-10-29 entities/entity-glossary updated: Librarian: the merge exception covers any merge of main into a branch, with no skill named (case 897.3) · [[decision-case-897.3]] · generate
+- 2026-10-29 estimates/estimate-case-build-goes-on-after-a-compaction status: pending → passed · raw/2026-10-28/2312/ledger.md#L24 · generate
+- 2026-10-29 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-10-28/2312/ledger.md#L25 · generate
+- 2026-10-29 estimates/estimate-case-check-sends-back-a-faulty-case status: pending → passed · raw/2026-10-28/2312/ledger.md#L26 · generate
+- 2026-10-29 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch status: pending → passed · raw/2026-10-28/2312/ledger.md#L27 · generate
+- 2026-10-29 lessons/lesson-orchestration-claimed-a-reading-before-taking-it created · raw/2026-10-28/2312/ledger.md#L28 · generate
+- 2026-10-29 lessons/lesson-case-build-judged-a-check-by-the-last-stretch-of-the-transcript created · raw/2026-10-28/2312/ledger.md#L29 · generate
+- 2026-10-29 insights/insight-case-build-claims-what-code-does-without-reading-it updated: child lesson-case-build-judged-a-check-by-the-last-stretch-of-the-transcript added, reopened from actioned (synthesis) · raw/2026-10-28/2312/ledger.md#L29 · generate
+- 2026-10-29 lessons/lesson-case-build-judged-a-check-by-the-last-stretch-of-the-transcript updated: clustered under insight-case-build-claims-what-code-does-without-reading-it (synthesis) · raw/2026-10-28/2312/ledger.md#L29 · generate
+- 2026-10-29 rules/rule-permissions status: draft → built · cascade · generate
+- 2026-10-29 decisions/decision-case-793 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-839 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-884 archived · superseded · generate
+- 2026-10-29 decisions/decision-case-793 archived · cleanup
+- 2026-10-29 decisions/decision-case-839 archived · cleanup
+- 2026-10-29 decisions/decision-case-884 archived · cleanup

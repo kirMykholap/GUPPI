@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, before it states what a function or a script of the repository does, prints or leaves out, reads whole the function that decides it, names its file and the function in context, and keeps out a claim about code it did not read
-method: "by hand at the Retro of this session: the new Render of rule-case-build in raw/<date>/<hi HHMM>/spec.md read against the Criterion; by hand, after the first /pre-spec of a session whose Cases case-guppi built with .claude/agents/case-guppi.md rendered from that Render: the findings of ask-guppi at that /pre-spec read for a claim of a Case about what code of the repository does that its context does not back by the function it read, the count in the estimate line"
+method: "by hand, after the first /pre-spec of a session whose Cases case-guppi built with .claude/agents/case-guppi.md rendered from the Render of rule-case-build that sets this Criterion: the findings of ask-guppi at that /pre-spec read for a claim of a Case about what code of the repository does that its context does not back by the function it read, the count in the estimate line"
 checked: 2026-10-17
 origin: raw/2026-10-16/2104/ledger.md#case-869
 sprint: plugin
@@ -31,3 +31,4 @@ Before it states the claim, `case-guppi` reads whole the function that decides i
 
 - 2026-10-17 created · [[decision-case-869]]
 - 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L53
+- 2026-10-29 updated: the method waits for the first /pre-spec after the Render; the reading at the Retro of a past session is gone · [[decision-case-897.5]]

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-permissions]]"
 method: "the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of .guppi/tests/test_render.py; by hand, after the first Case file that case-guppi writes in Plan Mode of a session after the Work Mode that changes the guard of rule-spec-reconcile: the person's word on whether the client asked at that write, and at a Grep of a subagent whose path is the folder of the project's saved transcripts itself and at one whose path is a file under it, recorded in the estimate line, never the agent's, which cannot see the prompt"
-checked: 2026-10-07
+checked: 2026-10-29
 origin: raw/2026-09-12/ledger.md#case-85.5
 sprint: migration
 created: 2026-09-12
@@ -31,7 +31,7 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 
 ## Result
 
-2026-10-07, Plan Mode of session 0636, the person's word: no permission prompt came while case-guppi built and wrote the files of Cases 703–708, in permissionMode auto; the agent did not count which paths those dispatches read; the person: "A1 я думаю passed. Никаких разрешений не было"
+2026-10-29, Plan Mode of session 2312: the allow list of .claude/settings.json holds the thirteen entries of the Criterion, with no deny and no ask; uv run --project .guppi python -m pytest .guppi/tests/test_render.py -k "json or permission": 4 passed; case-guppi wrote and edited the files of Cases 896 and 897 through the guard of rule-spec-reconcile (two Write and twelve Edit calls, each written by the guard); the main agent ran Grep with paths under ~/.claude/projects/c--PROJECTS-GUPPI (the session folder and its subagents folder); no subagent called Grep with that folder itself as its path in this session; the person: "не спрашивал, все ок"
 
 ## History
 
@@ -54,3 +54,4 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the method names the folder of the project's saved transcripts by its role · [[decision-case-875]]
 - 2026-10-28 updated: the Criterion replaced whole — case-guppi writes its Case file with no prompt in Plan Mode by the guard of rule-spec-reconcile, and a read outside the project that no rule names is not bound; the method follows (case 894.2) · [[decision-case-894.2]]
+- 2026-10-29 status: pending → passed · raw/2026-10-28/2312/ledger.md#L18

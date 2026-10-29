@@ -4,8 +4,8 @@ kind: QA
 status: passed
 target: "[[rule-case-check]]"
 purpose: A Case of case-guppi that the checks refuse goes back to it before the main agent sees it
-method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k subagent, then by hand in a session after the render a file of case-guppi the hook sends back, fixed by Edit and passed, and a live round after a built Case, which leaves the stored entry of that Case as it stood
-checked: 2026-10-05
+method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k subagent
+checked: 2026-10-29
 origin: raw/2026-09-25/1228/ledger.md#case-419.3
 sprint: migration
 created: 2026-09-25
@@ -18,7 +18,7 @@ When:
 `SubagentStop` fires when `case-guppi` stops; its payload carries `last_assistant_message`, `agent_transcript_path` and `stop_hook_active`, and it may fire twice after one message to the subagent, the second time after a `SubagentHandback` call, with `stop_hook_active` true though no hook exited 2.
 
 Then:
-`uv run --project .guppi guppi casecheck --subagent` takes each file under the `cases/` folder of a session folder, judged by `is_case_file` of `.guppi/guppi/casecheck.py`, that a `Write` or `Edit` call of the subagent in `agent_transcript_path` names, and reads its Cases as the file stands now.
+`uv run --project .guppi guppi casecheck --subagent` takes each file `case-<N>.md` under the `cases/` folder of a session folder, judged by `is_case_file` and `case_number` of `.guppi/guppi/casecheck.py`, that a `Write` or `Edit` call of the subagent in `agent_transcript_path` names, and reads its Cases as the file stands now.
 **＋** A file whose Cases `<plan>.checked.json` already holds with the same text, line ends and trailing spaces aside, and with no findings is not checked or stored again, so the time of its store stands.
 **＋** Any other such file is checked whole: each Case is read in the chat form by the functions of `.guppi/guppi/ratified.py`, its section of the Spec is built in memory as the Spec hook writes it, and `judge` of `.guppi/guppi/prespec.py` runs over them, the decision lines of the `ratification` fences standing for the ledger and, with the session's window, giving the categories whose schema rule the session changes.
 **＋** It checks the chat form besides: the sections in the order of the schema, none missing that the schema requires, and a `ratification` that holds one untagged fence of ledger lines and nothing else.
@@ -28,10 +28,11 @@ Then:
 **－** A finding for a Case whose text the store already holds with findings is stored again and exits 0, so an unchanged file is not sent back twice.
 **－** An output of the subagent with no Case heading — a summary, a round or a `**Fact:**` answer — is not read as a Case; the form of a round is the promise of `estimate-case-check-sends-back-a-faulty-round`.
 **－** A subagent of another type, and a transcript the hook cannot read, get none of these checks, and nothing is stored. A session with no plan file is not sent back for a fault of a Case.
+**－** A file of another name under `cases/`, such as the working note `note-<N>.md` of `case-guppi`, is no such file: it is not read as a Case, stored or sent back, and a transcript whose calls name no file `case-<N>.md`, though they name the note, is read as one that names no such file.
 
 ## Result
 
-2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson. The last reading before it, which left the page pending: 2026-10-04, the Work readings of session 0112: `uv run pytest -q tests/test_casecheck.py -k subagent` 72 passed, 45 deselected; live in session 0112 (transcript b76bfabb): the SubagentStop hook sent back the answer of Case 625 (agent a309e5b8dc383eed8) with "casecheck: case 625: /box is not named in its given; case 625: /pre-spec is not named in its given", and case-guppi answered again; the store glimmering-waddling-wigderson.checked.json holds 624, 625, 626, 626.1 and 626.2, each with its agent_id, the time of the store and no findings; cases/case-625.md was written at 02:24:10.05 after its store at 02:24:09.93, and cases/case-626.md, holding 626, 626.1 and 626.2, at 02:30:50.09 after its store at 02:30:49.96; a live round after a built Case: agent ad744674f53077ad2 built Case 626 at 02:09:40 and, sent the findings of /pre-spec, answered with the round Q6 at 02:23:52, which no hook feedback followed; the store and the file now hold the answer of 02:30:49, so their state between the round and that answer was not recorded and rests on the tests; not exercised: a `**Fact:**` answer
+2026-10-29, Retro of session 2312: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k subagent: 122 passed; test_subagent_file_a_note_beside_the_case_file_is_not_a_case finds written_case_files giving case-7.md alone and only Case 7 stored; test_subagent_file_a_round_after_only_the_note_stores_nothing finds no file, no store and cases_out of onward.py empty for note-7.md
 
 ## History
 
@@ -51,3 +52,5 @@ Then:
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-29 updated: the Criterion replaced whole — only a file case-<N>.md under cases/ is a file of a Case, so the working note of case-guppi is no Case; the method is the tests alone · [[decision-case-896.4]]
+- 2026-10-29 status: pending → passed · raw/2026-10-28/2312/ledger.md#L26

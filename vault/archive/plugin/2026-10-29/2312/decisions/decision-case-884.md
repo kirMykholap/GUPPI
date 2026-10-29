@@ -1,11 +1,12 @@
 ---
 type: decision
 case: "884"
-status: current
+status: archived
 create: ["[[estimate-ledger-write-keeps-the-window-past-a-later-resume]]"]
 update: ["[[rule-ledger-write]]", "[[rule-ledger-write]]", "[[rule-orchestration]]"]
 defer: ["[[rule-orchestration]]"]
 supersedes: ["[[decision-case-876]]"]
+superseded_by: ["[[decision-case-896.2]]"]
 origin: raw/2026-10-17/2307/ledger.md#case-884
 sprint: plugin
 created: 2026-10-17
@@ -46,3 +47,6 @@ Each round and each rebuild resumes the same case-guppi by SendMessage with its 
 ## History
 
 - 2026-10-26 created · raw/2026-10-17/2307/ledger.md#case-884
+- 2026-10-29 superseded by decision-case-896.2 · [[decision-case-896.2]]
+- 2026-10-29 archived · superseded
+- 2026-10-29 archived · cleanup

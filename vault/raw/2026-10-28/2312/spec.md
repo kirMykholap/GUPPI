@@ -69,8 +69,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-goes-on-after-a-compaction`
-- [ ] read `estimate-case-build-goes-on-after-a-compaction`
+- [x] update `estimate-case-build-goes-on-after-a-compaction`
+- [x] read `estimate-case-build-goes-on-after-a-compaction`
 ```
 
 ### Case 896.2 — case-guppi compacts before 400 000 tokens and keeps a note
@@ -170,13 +170,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] update `rule-orchestration`
-- [ ] update `rule-spec-reconcile`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] update `rule-orchestration`
+- [x] update `rule-spec-reconcile`
 - [x] `.guppi/guppi/ratified.py`: the refusal of `guard_refusal` for a file of `case-guppi` outside `cases/` says that `case-guppi` writes only under `cases/` of a session folder, the words `outside cases/` kept (case 896.2).
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 896.3 — The real helper goes on after a compaction
@@ -211,7 +211,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-case-build-goes-on-after-a-live-compaction`
+- [x] create `estimate-case-build-goes-on-after-a-live-compaction`
 - [ ] read `estimate-case-build-goes-on-after-a-live-compaction`
 ```
 
@@ -266,11 +266,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-sends-back-a-faulty-case`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-sends-back-a-faulty-case`
 - [x] `.guppi/guppi/casecheck.py`: `written_case_files` keeps only a file whose name `case_number` reads; the module docstring under "The file" and the docstring of `written_case_files` say so (case 896.4).
 - [x] `.guppi/tests/test_casecheck.py`: two tests whose names hold `subagent`. In the first, `case-guppi` wrote `note-<N>.md` and `case-<N>.md`, and only the Case file is checked and stored. In the second, `case-guppi` wrote only `note-<N>.md` and answered with a round, and nothing is stored or sent back for the note. In the same test, `cases_out` of `.guppi/guppi/onward.py` counts no Case out for the note, so both readers pass over `note-<N>.md` alike.
-- [ ] read `estimate-case-check-sends-back-a-faulty-case`
+- [x] read `estimate-case-check-sends-back-a-faulty-case`
 ```
 
 ## Case 897 — The clean copy names no skill it lacks and no moment of a past session
@@ -380,10 +380,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] read `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] update `rule-skill-sprint-open`
+- [x] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] read `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
 ```
 
 ### Case 897.2 — The closing session and the stops name the merge skills only where they stand
@@ -418,10 +418,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-close`
-- [ ] update `rule-where-to-stop`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/sprint-close/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/where-to-stop.md`
+- [x] update `rule-skill-sprint-close`
+- [x] update `rule-where-to-stop`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-close/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/where-to-stop.md`
 ```
 
 ### Case 897.3 — Any merge of `main` keeps its share of the wiki in every shipped text
@@ -472,13 +472,13 @@ defer:
 ```
 
 ```tasks
-- [ ] update `rule-documentation`
-- [ ] update `rule-vault-layout`
-- [ ] update `rule-page-generation`
-- [ ] defer `rule-page-generation`
-- [ ] update `entity-glossary`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] `uv run --project .guppi guppi glossary`
+- [x] update `rule-documentation`
+- [x] update `rule-vault-layout`
+- [x] update `rule-page-generation`
+- [x] defer `rule-page-generation`
+- [x] update `entity-glossary`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] `uv run --project .guppi guppi glossary`
 ```
 
 ### Case 897.4 — The schema says where the reason of the bracket rule holds
@@ -505,8 +505,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-case-protocol`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
 ```
 
 ### Case 897.5 — Two shipped methods wait for no past moment
@@ -539,8 +539,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-keeps-the-window-past-a-later-resume`
-- [ ] update `estimate-case-build-reads-the-code-it-states`
+- [x] update `estimate-ledger-write-keeps-the-window-past-a-later-resume`
+- [x] update `estimate-case-build-reads-the-code-it-states`
 ```
 
 ### Case 897.6 — The neutral texts are read after this session's librarian
@@ -565,5 +565,5 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-ships-neutral-texts`
+- [x] update `estimate-clean-branch-ships-neutral-texts`
 ```

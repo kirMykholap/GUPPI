@@ -497,8 +497,8 @@ def test_paths_on_a_render_error_prints_no_path_and_exits_1(tmp_path):
 
 
 def test_paths_in_a_child_process_ends_each_line_in_a_bare_line_feed(tmp_path):
-    """Case 914: run as the close command runs it, `--paths` writes no carriage return, on
-    Windows too, so `$(...)` hands `git add` each path as it stands."""
+    """Run as the close command runs it, `--paths` writes no carriage return, on Windows
+    too, so `$(...)` hands `git add` each path as it stands (case 914)."""
     frame_vault(tmp_path)
     rule(
         tmp_path, "rule-three", "full", "CLAUDE.md", "<!-- rule-three -->\nx\n<!-- /rule-three -->"

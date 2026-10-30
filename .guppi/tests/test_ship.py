@@ -817,6 +817,38 @@ def test_check_judges_the_comments_of_the_tests_and_not_their_strings(tmp_path):
     ]
 
 
+# --- the code and the tests of .guppi/, judged with no read of the vault; each test name
+# holds live_code (case 919.2) ---------------------------------------------------------------
+
+
+def live_code_lines(root: Path) -> list[str]:
+    """The `ship:` lines of each file under `.guppi/` of `root` that the copy takes, judged
+    by `ship.judged` with no slug known or loose, so that no page is read."""
+    lines = []
+    for name in ship.tree_files(root, ".guppi"):
+        if name in ship.LEFT_OUT or name in ship.NOT_CLEANED:
+            continue
+        text = ship.read_text(root / name)
+        if text is None:
+            continue
+        lines += ship.judged(name, text, set(), set())[1]
+    return lines
+
+
+def test_the_live_code_holds_no_pointer_outside_a_bracket():
+    assert live_code_lines(REPO) == []
+
+
+def test_the_live_code_check_finds_a_docstring_that_opens_with_a_case(tmp_path):
+    write(
+        tmp_path / ".guppi" / "tests" / "test_z.py",
+        'def test_z():\n    """Case 5: it reads."""\n',
+    )
+    assert live_code_lines(tmp_path) == [
+        "ship: .guppi/tests/test_z.py:2: a reference to a case: Case 5"
+    ]
+
+
 # --- the session files as skeletons; each test name holds skeleton (case 822) ---------------
 
 

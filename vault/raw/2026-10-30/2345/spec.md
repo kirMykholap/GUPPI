@@ -1,0 +1,424 @@
+<!-- approved 01:01:07 · session 36fe5fe4 -->
+
+# Session 2345 — Plan Mode of 2026-10-30
+
+## Case 944 — The librarian writes its report into the session folder
+
+> **context:**
+> The librarian ends its run with a report, and `/handoff`, or `/box` in a session that `/box` runs, shows it to the person unchanged. No file of the repository holds that report, and `/hi` reads no transcript of an earlier session (case 670.5), so the method of `estimate-close-reports-the-run` asks the person whether the report was complete. At the /hi of this session the person answered from memory on the report of session 2005, and the ledger holds that reading as passed; the person said the Estimate is wrong, since the agent should read and check the report by itself. The `## Result` of the page also holds an earlier failed reading that rested on another report than the one the method meant. With this Case the librarian writes its report by the `Write` tool into `report.md` in the session folder, the folder of the `handoff.md` its dispatch names, before its commit, so the commit of the run takes the file, and it returns the text of that file unchanged. `rule-close` is a Leaf with `core: true` and status `draft`; its Render is the close step of `.claude/agents/librarian-guppi.md`, and the Case rewrites that paragraph whole by one pair; its `## Purpose` stands, since it speaks of the commit only. The Criterion of `estimate-close-reports-the-run` is replaced whole, and its `purpose` and `method` are set anew, since both name the report as `/handoff` shows it and the person's answer; the Estimate goes `pending`, and the passed reading of this session stays in its History. No line of the old Criterion is carried word for word, by the person's choice of a Criterion replaced whole. Its `When` lines, on the run that `/handoff` or `/box` dispatches and the showing of its report, become one `when` line on that run reaching the close. Its lines on the parts of the report, on what the report does not hold and on the limit of lines now speak of the file. Its line on the exit code of `uv run --project .guppi guppi test` that `/box` shows beside the report is dropped, since that exit code is a line of `/box` and never enters the file. The Criterion promises the file and what it holds; that the returned text equals the file stands in the Render only, since the event log of the run keeps a tool name and one input field, never the text written (read in `.guppi/guppi/event.py`, the module docstring and `tool_detail`), and the chat of an earlier session is not read. The librarian's run of this session still loads the old frame when it starts, so the first run that writes `report.md` is that of the next session, and the reading waits for it. The frame already says that a hook's refusal of a call is named in the report; a refused commit comes after the file is written, so the new Render places such a refusal after the text of the file in the returned report, which keeps the two sentences from contradicting each other. A finding of `/pre-spec` on the ratified Case showed that step 1 of the Render of `rule-documentation`, which is `built` and has `core: true`, tells the librarian to write the report and stop when `guppi materialize` exits 1, before any close or commit; the person chose that such a run writes no `report.md` and returns its report as text, as today, and the Case rewrites that sentence by one pair, while the Criterion, whose `when` is a run that reaches the close, does not change. A Grep of `write the report and stop|exits 1, write the report` over the repository outside `vault/raw/` printed `.claude/agents/librarian-guppi.md`, `vault/wiki/rules/rule-documentation.md`, `vault/archive/migration/2026-09-10/raw/materialize.yaml` and `vault/archive/migration/2026-09-10/raw/spec.md`; the two archived files are records of an earlier session and stand, and the agent file follows by the render. The sentence of that Render that the librarian writes only through the scripts named below stands: it follows the sentence on `vault/wiki/`, the same frame already names a write outside the scripts, `vault/wiki/brief.md` by the `Write` tool, and `report.md` lies outside `vault/wiki/`, its write set in the close step. The `## Purpose` and `## How it works` of `rule-documentation` say nothing of where the report goes, and the Criterion of its Estimate `estimate-documentation-completes` has no line on the stop at step 1, so both stand. `estimate-close-commits` stands: its Criterion lets the commit take any path under `vault/`, and `report.md` lies there. `estimate-documentation-completes` stands: `report.md` is no page of `vault/wiki/`, and the librarian writes it by `Write`, not by `cp`, `mv`, a redirect or a heredoc. A Grep of `rule-close|librarian-guppi\.md|close-reports|no test result` over `.guppi/` printed `.guppi/guppi/onward.py` and `.guppi/guppi/render.py`, neither under `.guppi/tests/`, so no test reads the changed file live. A Grep of `librarian.{0,40}report|report of the librarian|its report` over `vault/wiki/` printed the files `rule-handoff`, `rule-spec-box`, `rule-where-to-stop`, `rule-skill-hi`, `rule-retro`, `rule-case-protocol`, `case-schema.md`, `where-to-stop.md`, `glossary.md`, `entity-glossary`, `estimate-close-reports-the-run`, `estimate-handoff-dispatches`, `estimate-spec-box-runs-a-conserved-spec`, `estimate-documentation-completes`, `estimate-orchestration-states-a-subagent-fact-from-its-transcript`, `estimate-sprint-close-runs-in-the-librarian-run`, `estimate-where-to-stop-stops-only-on-its-conditions`, `estimate-synthesis-clusters`, `lesson-hi-reads-the-end-state-of-a-command-that-failed-first`, `lesson-librarian-writes-a-total-no-count-printed`, `lesson-brief-lists-transcript-readings-under-work`, `lesson-hooks-subagentstop-reads-the-last-text-not-the-handback`, `lesson-harness-a-paths-rule-misses-a-new-file-and-a-compaction`, `insight-case-build-changes-a-step-without-reading-its-readers` and `log.md`, 25 files; the hits read outside the lessons, the Insight and `log.md` say that `/handoff` and `/box` show the report unchanged, or name the report as the end of a run, and each stays true, since the report the librarian returns is still the one they show.
+
+> **problem:**
+> The Estimate of the librarian's report can be read only by the person, from a text shown once in the chat of an earlier session, so the agent cannot check it by itself.
+
+> **recommend:**
+> - **How the agent reads the report**
+>   - Recommended: (a) the librarian writes the report into `report.md` in the session folder before its commit and returns the same text.
+>   - Answer: agreed, (a).
+> - **What happens to the promise and to today's passed reading**
+>   - Recommended: (a) one Estimate: its Criterion replaced whole with the file, its `purpose` and `method` set anew, its status `pending`.
+>   - Answer: agreed, (a).
+> - **What the Estimate promises about the text the librarian sends back**
+>   - Recommended: (a) the Estimate promises the file and its content only; the frame still tells the librarian to return the text of the file unchanged.
+>   - Answer: agreed, (a).
+> - **Change**
+>   - Asked: after a finding of `/pre-spec`, the person chose that a run that stops at step 1 of the frame, when `guppi materialize` exits 1, writes no `report.md` and returns its report as text, as today; the Criterion does not change.
+>   - Taken: an `update` of `rule-documentation` rewrites step 1 of its Render so; `context` says why the line on the scripts as the only way to write stands.
+
+> **given:**
+> `rule-close`: the Rule whose Render is the close step of the librarian.
+> **＋** `rule-documentation`: the Rule whose Render is the frame of the librarian, step 1 among its steps.
+> **＋** `.claude/agents/librarian-guppi.md`: the frame of the librarian, rendered from both.
+> **＋** `estimate-close-reports-the-run`: its Criterion is replaced whole.
+> **＋** `.claude/skills/handoff/SKILL.md`: dispatches the librarian's run and shows its report.
+> **＋** `.claude/skills/box/SKILL.md`: dispatches the librarian's run in a session that `/box` runs.
+> **＋** `vault/raw/<date>/<hi HHMM>/report.md`: the file the run writes.
+
+> **when:**
+> The librarian's run that `/handoff` of `.claude/skills/handoff/SKILL.md` dispatches, or that `/box` of `.claude/skills/box/SKILL.md` dispatches in a session that `/box` runs, reaches the close of `.claude/agents/librarian-guppi.md`.
+
+> **then:**
+> Before its commit, the librarian writes its report by the `Write` tool into `vault/raw/<date>/<hi HHMM>/report.md`, the folder of the `handoff.md` its dispatch names.
+> **＋** The commit of the run takes that file.
+> **＋** The file gives the pages created and updated per category, the entries marked incomplete or failed, the pages archived, the flags the run raised and the lint total.
+> **＋** The file gives each part that another step of `.claude/agents/librarian-guppi.md` sends to the report.
+> **－** The file holds no test result and no list of files.
+> **－** No limit of lines binds the file.
+
+```then
+update:
+- slug: rule-close
+  replace:
+  - old: 'Run `uv run --project .guppi guppi check` and keep its output for the report. Commit the vault with the files the render wrote, by the Bash tool, since the command is written for a POSIX shell: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then return a report: pages created and updated per category, entries marked incomplete or failed, pages archived, the flags you raised, the lint total, and each part that another step of this frame sends to the report. Nothing else: no test result and no list of files (as set in case 913).'
+    new: 'Run `uv run --project .guppi guppi check` and keep its output for the report. Write the report by the `Write` tool into `report.md` in the session''s folder, the folder of the `handoff.md` your dispatch names (as set in case 944). The report gives the pages created and updated per category, the entries marked incomplete or failed, the pages archived, the flags you raised, the lint total, and each part that another step of this frame sends to the report. Nothing else: no test result and no list of files (as set in case 913). Commit the vault with the files the render wrote, by the Bash tool, since the command is written for a POSIX shell: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then return the text of `report.md` unchanged as your report, and after it the refusal of any call that came after the file was written (as set in case 944).'
+  change: the librarian writes its report into report.md of the session folder before its commit and returns that text
+- slug: rule-documentation
+  replace:
+  - old: 1. Run `uv run --project .guppi guppi materialize`. If it exits 1, write the report and stop.
+    new: 1. Run `uv run --project .guppi guppi materialize`. If it exits 1, return the report as text, write no `report.md`, and stop (as set in case 944).
+  change: a run that stops at step 1 returns its report as text and writes no report.md
+- slug: estimate-close-reports-the-run
+  set:
+    status: pending
+    purpose: Whether the librarian writes its report into report.md of the session folder before its commit, the commit takes it, and the file gives the counts, the marks, the archived pages, the flags, the lint total and each part another step of its frame sends to the report, with no test result and no list of files
+    method: 'by hand, after a librarian''s run whose .claude/agents/librarian-guppi.md, when the run starts, holds the Render of rule-close that writes report.md: the agent reads report.md of the session folder of that run, as the commit of the run holds it by git show, against the Criterion'
+  change: the Criterion replaced whole — the report is written into report.md of the session folder and the agent reads that file
+```
+
+```tasks
+- [ ] update `rule-close`
+- [ ] update `rule-documentation`
+- [ ] update `estimate-close-reports-the-run`
+- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [ ] read `estimate-close-reports-the-run`
+```
+
+## Case 945 — A stop writes each command it asks the person to run whole
+
+> **context:**
+> When Work Mode stops for the person to do something by hand, the agent's reply lists the steps. No rule sets how those steps are written. At the stop of Work Mode of session 2005, the steps wrote out the start command with `UV_OFFLINE=1` and `UV_CACHE_DIR` only for the second test project. The step for the fourth project said "the same two variables as in step 4". The person started it in a new window, which kept neither variable, and the fourth project installed online. So the reading of `estimate-plugin-install-sets-aside-the-files-of-the-project` did not happen (lesson `lesson-plugin-install-steps-named-the-offline-variables-by-reference`, ledger line L56 of session 2005). The steps came from one `then` line of Case 943.1, which asked for "the steps for each project" and set no form.
+>
+> `rule-where-to-stop` renders `vault/wiki/where-to-stop.md`, which `/work`, `/box` and `/hi` load. It sets when the agent stops and that the reply ends with the question to the person. It says nothing on the form of steps the person runs by hand. The person chose to add the guard there, for every stop, and to check it by a new Estimate, read at the next stop whose reply gives the person commands to run. The new sentence goes after the sentence that ends the reply with the question, so the eight numbered conditions keep their numbers. The page has `core: true`, so the pointer to this Case stands in a bracket at the end of its sentence.
+>
+> `estimate-where-to-stop-stops-only-on-its-conditions` stands `passed`. Its Criterion speaks of when the agent stops and that it asks. One of its lines also speaks of what a reply holds: on a refusal of the auto mode classifier, the reply gives the shell command that does what the refused call would do, for the person to type after `!`. That line promises that the command is given; the new sentence sets how a command the person runs is written, and its own Estimate checks that. The new text adds one sentence after the eight conditions and leaves the text that sets each line of that Criterion word for word, so each line still holds and its Criterion stands. This Case does not set it `pending`. Its `method` names a reading at the Retro of the session that changes the Render; the new Render makes no line of its Criterion false, so that reading would find what its last Result found, and this Case does not ask for it. The deferral of the reading of `estimate-plugin-install-sets-aside-the-files-of-the-project` is Frontier item C6, and this Case leaves it out.
+>
+> A Grep of `.guppi/` for `where-to-stop|where_to_stop` printed `.guppi/tests/test_gate.py`, `.guppi/guppi/gate.py`, `.guppi/tests/test_onward.py` and `.guppi/guppi/onward.py`; each hit names the path inside a message string, and none reads the text of the file, so no test needs a change. A Grep of `.claude/` for `where-to-stop|stop:` printed `.claude/skills/work/SKILL.md`, `.claude/skills/box/SKILL.md`, `.claude/skills/hi/SKILL.md`, `.claude/skills/pr-review/SKILL.md`, `.claude/skills/sprint-open/SKILL.md` and `.claude/skills/retro/SKILL.md`; they load the file or name a condition by its number, and the new sentence changes no number. A Grep of `vault/wiki/rules/` for `STOP:|reply that stops|the question to the person` printed `rule-prespec-onward.md`, `rule-where-to-stop.md`, `rule-retro-onward.md` and `rule-retro.md`, and the same Grep of `.claude/` printed `.claude/skills/retro/SKILL.md`. Each of the other hits sets that a stop reply opens with `STOP:`, and none sets what the steps of the reply hold, so this Case does not cover the `STOP:` opening. The lesson stands in the ledger of session 2005, and the ledger of this session holds no `error` lesson, so no line carries `{addresses:...}`.
+
+> **problem:**
+> A stop reply may write a command once and then point to it from a later step. A new window keeps none of the variables, so the person runs a different command than the check needs.
+
+> **recommend:**
+> - **Which text carries the guard?**
+>   - Recommended: (a) `rule-where-to-stop`, a paragraph on the stop reply.
+>   - Answer: agreed, (a).
+> - **Which check closes the Case?**
+>   - Recommended: (a) a new check, read at the next stop with steps by hand.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `rule-where-to-stop`: sets when Work Mode stops and how the reply ends.
+> **＋** `vault/wiki/where-to-stop.md`: the Render of `rule-where-to-stop`, loaded by `/work`, `/box` and `/hi`.
+> **＋** `estimate-where-to-stop-writes-each-step-whole`: the new check of the steps of a stop reply.
+
+> **when:**
+> Work Mode stops on a condition of `vault/wiki/where-to-stop.md`, and the reply asks the person to run commands by hand.
+
+> **then:**
+> Each step of the reply writes out whole each command it asks the person to run, as the person types it, with each variable, folder and flag the command needs.
+> **＋** A step that starts a program in a new window or terminal writes the variables that the start needs in its own command.
+> **－** No step names a part of its command by a reference to another step.
+
+```then
+create:
+- slug: estimate-where-to-stop-writes-each-step-whole
+  ref: rule-where-to-stop
+  kind: QA
+  purpose: Whether a stop reply that asks the person to run commands by hand writes each command whole in each step, its variables included, with no reference to another step
+  method: 'by hand, after the first stop of Work Mode under the new text of vault/wiki/where-to-stop.md whose reply asks the person to run commands by hand: that reply read against each line of the Criterion, recorded in the estimate line'
+  tags:
+  - session
+  - workflow
+  - harness
+update:
+- slug: rule-where-to-stop
+  replace:
+  - old: To stop, end the reply with the question to the person.
+    new: To stop, end the reply with the question to the person. Where the question asks the person to run commands by hand, write each command whole in each step that runs it, as the person types it, with each variable, folder and flag it needs; a step names no part of its command by a reference to another step, since a new window or terminal keeps none of them (as set in case 945).
+  change: a stop reply writes each command it asks the person to run whole
+```
+
+```tasks
+- [ ] update `rule-where-to-stop`
+- [ ] `uv run --project .guppi guppi render`: `vault/wiki/where-to-stop.md`
+- [ ] create `estimate-where-to-stop-writes-each-step-whole`
+- [ ] read `estimate-where-to-stop-writes-each-step-whole`
+```
+
+## Case 946 — The moved facts stand as the code bears them out
+
+> **context:**
+> Case 942.1 removed `## How it works` from each Leaf of `vault/wiki/rules/` and moved its facts into the docstrings of the code. The agent of session 2005 found two facts that do not match today's code, and it moved neither. At /hi of this session, the reading of `estimate-rules-schema-leaf-carries-no-how-it-works` was `failed` on those two facts. The first fact is the last sentence of the old section of `rule-governed-files-hook`, which said that subagents get no project hook. The archived Spec of session 2026-09-12/0454 holds that sentence. The sentence is false. The Claude Code hooks page (https://code.claude.com/docs/en/hooks) says that hooks from settings files also run inside subagents and that the hook input then carries `agent_id` and `agent_type`. In this build, the `PostToolUse` hook `pageread` added its context to the reads of `case-guppi`, which is a subagent. The docstring of `.guppi/guppi/ratified.py` also records the `agent_type` that Claude Code gives a hook fired inside a subagent (measured 2026-10-05). I read `run`, `governed`, `relative` and `key` of `.guppi/guppi/guard.py`: no condition reads the agent, so the hook refuses an edit of a subagent the same way.
+>
+> The second fact is the condition under which the Spec hook removes a parent. The old section of `rule-spec-write`, as the archived Spec of session 2026-10-07/2114 holds it (case 722.2), removes the parent when it holds no decision line of its own that no mark retires. The docstring says the parent holds no decision line of its own. I read `remove_superseded`, `ancestors` and `remove_case` of `.guppi/guppi/ratified.py`, `retired_whole`, `retired_by` and `superseded_in_window` of `.guppi/guppi/prespec.py`, and `in_family` of `.guppi/guppi/materialize.py`. The parent step tests `parent not in own`, so the docstring states that step as written. But a mark retires the parent's own line only when it names the parent or a Case above it, by `in_family`. Such a mark puts that Case among the removed Cases, and `remove_case` removes it with all its sub-cases. So the two texts give the same result. The old wording therefore stays true in `vault/wiki/case-schema.md`, in its source `rule-case-protocol` and in the Criterion of `estimate-spec-write-removes-a-superseded-case`, and these stand. The test `test_superseded_a_parent_with_a_line_of_its_own_stays` of `.guppi/tests/test_ratified.py` covers the parent step, and the code does not change.
+>
+> The rule that governs is `rule-rules-schema`: a Leaf keeps its mechanism in the docstring of its code. `CLAUDE.md` asks for a real source for each claim, so a false fact is corrected, never moved. The Criterion of `estimate-rules-schema-leaf-carries-no-how-it-works` asks that each fact stand in the docstring, which a corrected fact cannot meet, so Case 946.1 replaces that Criterion and sets its `purpose` and `method` anew. Two lines of the old Criterion do not carry over on purpose: its `When`, which waited for the librarian's run that has already applied Case 942.1, and the fact line that asked for each fact as it stood. Case 946.2 likewise drops the line of the Criterion of `estimate-shell-write-check-repairs-and-reports` that a shell call of a subagent is not checked. A Grep for `does not inherit|inherit no project hook` printed `vault/wiki/brief.md`, `vault/wiki/rules/rule-documentation.md`, `vault/wiki/rules/rule-shell-write-check.md` and `vault/wiki/estimates/estimate-shell-write-check-repairs-and-reports.md` over `vault/wiki/`, nothing over `.claude/`, and `.guppi/guppi/shellwrite.py` over `.guppi/guppi/`. The brief is not read. Case 946.2 fixes the other four. I read `run`, `lines_for`, `judge` and `changed_files` of `.guppi/guppi/shellwrite.py`, and no condition reads the agent. The Render of `rule-documentation` keeps the librarian's own `PostToolUse` hook, and only the reason given in its `## How it works` goes. This Case does not judge whether that hook is still needed. The Criterion of `estimate-governed-files-hook-refuses` says nothing about subagents, so it stands. A Grep of `.guppi/tests/` for `How it works`, the slugs of the Estimates and `librarian-guppi.md` found no test that reads a live file this Case changes. The session's ledger holds no `error` lesson.
+
+> **problem:**
+> Two facts of the removed `## How it works` sections stand in no docstring. One fact is false, and its false reason also stands in four other live texts. The Estimate on the moved facts asks for each fact as it stood, so it cannot pass.
+
+> **recommend:**
+> - **What the docstring of guard.py says about subagents**
+>   - Recommended: (a) the docstring states the true fact: Claude Code runs the hook on a call of a subagent too, and the hook refuses it the same way.
+>   - Answer: agreed, (a).
+> - **Whether the Case also fixes the same false reason elsewhere**
+>   - Recommended: (a) a second sub-case fixes the docstring of `shellwrite.py`, the Purpose of `rule-shell-write-check`, the Criterion of its Estimate and the `## How it works` of `rule-documentation`.
+>   - Answer: agreed, (a).
+> - **What the docstring of ratified.py says about removing a parent**
+>   - Recommended: (a) the docstring adds one clause that joins the two wordings; the code does not change.
+>   - Answer: agreed, (a).
+> - **How the Estimate on the moved facts is checked**
+>   - Recommended: (a) replace the Criterion of `estimate-rules-schema-leaf-carries-no-how-it-works` whole, and set its purpose and method anew.
+>   - Answer: agreed, (a).
+
+### Case 946.1 — Each moved fact stands in the docstring as the code bears it out
+
+> **given:**
+> `estimate-rules-schema-leaf-carries-no-how-it-works`: its Criterion is replaced whole, and its purpose and method are set anew.
+> **＋** `.guppi/guppi/guard.py`: the hook of `rule-governed-files-hook`, whose docstring gains the fact on subagents.
+> **＋** `.guppi/guppi/ratified.py`: the Spec hook of `rule-spec-write`, whose docstring gains the clause on a retired parent.
+> **＋** `rule-rules-schema`: the rule that a Leaf keeps its mechanism in the docstring of its code.
+> **＋** `rule-internal-context`: its `## Purpose` holds the facts of its old section.
+> **＋** `vault/wiki/rules/`: the Rule pages that the reading covers.
+
+> **when:**
+> After Work Mode writes the docstrings of `.guppi/guppi/guard.py` and `.guppi/guppi/ratified.py`, an agent reads each Leaf page of `vault/wiki/rules/` and the docstring of the code that its `implementation_ref` names.
+
+> **then:**
+> No Leaf page of `vault/wiki/rules/` carries a section `## How it works`.
+> **＋** Each fact that such a section held stands, as the code bears it out, in the docstring of the code that the page's `implementation_ref` names, and for `rule-internal-context` in its `## Purpose`; a fact that the code does not bear out stands there corrected.
+> **＋** The docstring of `.guppi/guppi/guard.py` says that Claude Code runs the hook on a call of a subagent too, and that the hook refuses such a call the same way.
+> **＋** The docstring of `.guppi/guppi/ratified.py` says that a parent whose own decision line a mark retires is named by that mark or lies under a Case it names, and leaves by that mark with its sub-cases.
+> **－** A remark on what stood before some Case does not move into the docstrings or the Purpose.
+> **－** A MOC page of `vault/wiki/rules/` keeps its `## How it works`.
+
+```then
+update:
+- slug: estimate-rules-schema-leaf-carries-no-how-it-works
+  set:
+    status: pending
+    purpose: Whether no Leaf page of vault/wiki/rules/ carries How it works, each fact it held standing as the code bears it out in the docstring of its code or, for rule-internal-context, in its Purpose, a fact the code does not bear out standing corrected
+    method: 'by hand at Retro of the session that changes it: a Grep for ^## How it works over vault/wiki/rules/ and the kind of each page it prints, no Leaf among them; the docstrings of .guppi/guppi/guard.py and .guppi/guppi/ratified.py read against the How it works sections that git show 9d19aafe prints as removed, recorded in the estimate line'
+  change: the Criterion replaced whole — a fact the code does not bear out stands corrected in the docstring
+```
+
+```tasks
+- [x] `.guppi/guppi/guard.py`: the module docstring says that Claude Code runs the hook on a call of a subagent too, and that the hook reads no agent, so it refuses an edit of a governed file by a subagent the same way.
+- [x] `.guppi/guppi/ratified.py`: in the paragraph of the module docstring on the removal, after "a parent with a line of its own stays", one clause says that a parent whose own line a mark retires is named by that mark or lies under a Case it names, and leaves by that mark with its sub-cases; `remove_superseded` does not change.
+- [ ] update `estimate-rules-schema-leaf-carries-no-how-it-works`
+- [ ] read `estimate-rules-schema-leaf-carries-no-how-it-works`
+```
+
+### Case 946.2 — A shell call of a subagent is checked like any other
+
+> **given:**
+> `.guppi/guppi/shellwrite.py`: the hook of `rule-shell-write-check`, whose docstring drops the false reason.
+> **＋** `rule-shell-write-check`: its Purpose says what the hook does not check.
+> **＋** `estimate-shell-write-check-repairs-and-reports`: its Criterion is replaced whole without the line on subagents.
+> **＋** `rule-documentation`: its `## How it works` gives the reason for the librarian's own hook.
+> **＋** `.claude/settings.json`: the file that registers the hook.
+> **＋** `rule-hook-registry`: the rule whose Render writes the registration.
+
+> **when:**
+> A call of the `Bash` or `PowerShell` tool ends, and `uv run --project .guppi guppi shellwrite` of `.guppi/guppi/shellwrite.py` on `PostToolUse` reads each file that `git` lists as changed or new and not ignored.
+
+> **then:**
+> In each such file the hook turns every CRLF line ending into LF, and removes a UTF-8 byte-order mark at its start.
+> **＋** For each file it repaired, one line of `hookSpecificOutput.additionalContext` names the file and what it repaired, and tells the agent to change a file with Edit or Write, never through a shell command; a line on a removed mark also asks the agent to check the characters of the file.
+> **＋** A file that opens with a UTF-16 byte-order mark, or that is not valid UTF-8, is not changed: its line names the file and the fault and tells the agent to restore the file with Write.
+> **＋** The hook reads every changed or new file at each such call, so a file left faulty is named again at the next call.
+> **＋** `.claude/settings.json` registers the hook on `PostToolUse` with the matcher `Bash|PowerShell`, by the Render of `rule-hook-registry`.
+> **－** A file outside the repository, a file that `git` ignores, and a file with a NUL byte and no UTF-16 mark are neither read for a fault nor changed.
+> **－** A call that leaves no faulty file adds nothing to the context.
+> **－** A payload the hook cannot read, or a `git` call that fails, gives exit 0 and one line on stderr; the hook never raises.
+
+```then
+update:
+- slug: rule-shell-write-check
+  replace:
+  - old: A file whose characters changed but which stays valid UTF-8 with no mark is not caught, and a shell call of a subagent is not checked, since a subagent does not inherit the project's hooks (case 710.1).
+    new: A file whose characters changed but which stays valid UTF-8 with no mark is not caught (case 710.1). A shell call of a subagent is checked the same way, since Claude Code runs the hooks of `.claude/settings.json` inside a subagent too.
+  change: a shell call of a subagent is checked, since Claude Code runs the project's hooks inside a subagent
+- slug: rule-documentation
+  replace:
+  - old: writes its commands to the event log, since a subagent does not inherit the project's hooks;
+    new: writes its commands to the event log;
+  change: How it works drops the false reason that a subagent does not get the project's hooks
+- slug: estimate-shell-write-check-repairs-and-reports
+  set:
+    status: pending
+  change: the Criterion replaced whole — the line that a shell call of a subagent is not checked removed
+```
+
+```tasks
+- [x] `.guppi/guppi/shellwrite.py`: the module docstring drops the sentence that a shell call of a subagent is not checked, and says that Claude Code runs the hooks of `.claude/settings.json` inside a subagent too, so a shell call of a subagent is checked the same way.
+- [ ] update `rule-shell-write-check`
+- [ ] update `rule-documentation`
+- [ ] update `estimate-shell-write-check-repairs-and-reports`
+- [ ] read `estimate-shell-write-check-repairs-and-reports`
+```
+
+## Case 947 — The pre-Spec check reads the ledger of the conserved Spec for a backlog line it puts off
+
+> **context:**
+> When a session takes a conserved Spec, `/box` runs it, and the agent closes each other open line of the Frontier as left. A line whose target a `defer` item of that Spec puts off closes `[-] … · defer case N`, N being the Case of that Spec, with no ledger line of this session (case 620.1). For a line of the source `backlog`, that closer is `[-] … · backlog · defer case N`. `guppi prespec --check` judges such a line by `check_backlog_defer_line`, which looks for the `defer` lines of Case N and their `{supersedes:case M}` marks only among the decision lines of the session's window. The lines of a Case of the conserved Spec stand in the `ledger.md` of the folder that `/carry` marked, outside that window. So the check reports that no defer line of Case N names a page of the title. The same judgment feeds the hook on `ExitPlanMode`, so the finding stops a `/box` session, which ratifies no Case of its own and cannot fix it. Before Case 937 the line was a finding too, through `PUT_OFF_CLOSER`. A line of another source is judged against the `defer` items of the conserved Spec by `conserved_blocks` and passes. A Glob `vault/raw/**/carry.md` printed nothing, so no conserved Spec waits today and no session has met the finding. The handoff of session 2005 left it as a line, and the person chose that the check also reads the ledger of the conserved Spec and judges the line as for a Case of the session, marks included.
+>
+> I read in `.guppi/guppi/prespec.py` the module docstring, `window_lines`, `session_decisions`, `deferred_pages`, `decided_on_its_page`, `check_backlog_line`, `check_backlog_defer_line`, `conserved_blocks`, `has_defer_item`, `check_frontier`, `judge` and `plan_findings`, and `conserved_spec_named` of `.guppi/guppi/box.py`. `plan_findings` passes `check_frontier` the records of `window_lines`, which reads the session's own `ledger.md` and the date-level ledgers from the `hi` on. `conserved_spec_named` returns the folder of the conserved Spec only when `carry.md` marks it, and `/carry` keeps `guppi materialize` off that folder, so the page's `deferred_by` does not yet hold Case N. The new reading takes the lines of that folder's `ledger.md` by `TIMED_RECORD` and `session_decisions`, so a decision line is parsed by `materialize.parse_line` as everywhere else, and the judgment stays `decided_on_its_page` with `by_defer`; a Grep for `"ledger\.md"` over `.guppi/guppi` printed `archive.py`, `casecheck.py`, `caseid.py`, `materialize.py`, `lint.py`, `ledger.py`, `prespec.py`, `ratified.py`, `onward.py` and `tail.py`, and none of them holds a reader of the decision lines of a whole session ledger that this Case could import instead, so the task adds no second copy of a judgment, as `rule-one-judgment-one-implementation` sets it.
+>
+> The Criterion of `estimate-prespec-checks-the-frontier` says that the check reads the decision lines of the session's window, so this Case replaces it; its `purpose` and its `method`, the run of `.guppi/tests/test_prespec.py`, still hold. Three lines of the old Criterion are not carried word for word, by intent: the second line of `When` gains the ledger of the conserved folder, the line on `defer case N` after `sprint` and `backlog` gains its last sentence on where the lines of Case N stand, and the `－` line on a title line that names no folder holding `carry.md` gains the backlog line judged against the window alone; each keeps the rest of its old text. A Grep for `decision lines of the session's window` over `vault/wiki/`, `.claude/` and `.guppi/guppi/` printed `.guppi/guppi/gate.py`, `estimate-prespec-requires-a-backlog-item-decided-on-its-page`, `estimate-prespec-notes-a-page-the-cascade-archives`, `estimate-prespec-matches-lines-and-items` and `estimate-prespec-checks-the-frontier`. The other hits stand: `gate.py` and the matching of lines and items speak of the plan's own Cases, the cascade note of the plan's `then` blocks, and `estimate-prespec-requires-a-backlog-item-decided-on-its-page` of lines closed `[x] … · backlog · case N`, which a `/box` session does not write. The texts that set the closer stand: `orchestration.md` and the skill of `rule-skill-hi` ask of Case N a `defer` line that names the page with the marks, and `/pre-spec` reports the line otherwise, which stays true; `estimate-hi-takes-a-conserved-spec` names the closer and not the check. `estimate-orchestration-closes-a-backlog-item-deferred-again` stands, a finding of `/pre-spec` named: its Criterion asks that the agent take the closer only for a Case whose decision lines meet the backlog rule of `estimate-prespec-checks-the-frontier`, and its `When` covers a Case of the session only; for such a Case the rule judges the same lines of the session's window after this Case as before it, and the ledger of the conserved folder adds only the lines of a Case of the conserved Spec, which that `When` does not cover. A Case of the conserved Spec whose `defer` lacks a mark is still a finding, since `generate` would then keep the old defer beside the new one; the agent may close such a line `kept`. The tests of the Frontier check build their files under a temporary folder; `test_the_live_code_holds_no_pointer_outside_a_bracket` of `.guppi/tests/test_ship.py` reads the live code, so each pointer to a Case in a new docstring stands in a bracket at the end of its sentence. The brief reports `uv run --project .guppi guppi test` at the close of session 2005 as "1819 passed, 6 skipped, 1 deselected, exit 0", and no output of `guppi prespec --check`. The session's ledger holds no `lesson[error]` line, so no line carries `{addresses:...}`.
+
+> **problem:**
+> `guppi prespec --check` reports a backlog line that a Case of the conserved Spec puts off again, closed `[-] … · backlog · defer case N` as the `/box` closer sets it, because it looks for the decision lines of that Case only in the session's window. The finding stops the exit from Plan Mode of a session that cannot fix it.
+
+> **recommend:**
+> - **What the check reads for a backlog line put off by a Case of the saved Spec**
+>   - Recommended: (a) also read the saved Spec's own ledger, and judge the line as for a Case of the current session, marks included.
+>   - Answer: agreed, (a).
+
+> **given:**
+> `.guppi/guppi/prespec.py`: the Frontier check `check_frontier` and `check_backlog_defer_line`, which judge a backlog line closed `defer case N`.
+> **＋** `.guppi/guppi/box.py`: `conserved_spec_named`, which finds the folder of the conserved Spec that the title line of the plan names.
+> **＋** `.guppi/tests/test_prespec.py`: the tests of the Frontier check.
+> **＋** `.guppi/tests/test_ship.py`: its test of pointers in the live code reads the new docstrings.
+> **＋** `estimate-prespec-checks-the-frontier`: its Criterion is replaced whole.
+> **＋** `vault/raw/<date>/<HHMM>/frontier.md`: the Frontier the check reads.
+> **＋** `vault/raw/<date>/<HHMM>/spec.md` and `vault/raw/<date>/<HHMM>/ledger.md`: the conserved Spec that the title line of the plan may name, and the ledger of its folder.
+> **＋** `rule-one-judgment-one-implementation`: the line of a Case of the conserved Spec is judged by the one judgment of a page decided by a Case.
+
+> **when:**
+> `uv run --project .guppi guppi prespec --check <plan>` reads the session's `vault/raw/<date>/<HHMM>/frontier.md`, and the title line of `<plan>` may name the `vault/raw/<date>/<HHMM>/spec.md` of a folder that holds `carry.md`.
+> **＋** The check reads the decision lines of the session's window, the decision lines of the `vault/raw/<date>/<HHMM>/ledger.md` of that folder when the title line names one, and the pages of the vault.
+
+> **then:**
+> A missing file is the finding `frontier: <path> is missing`.
+> **＋** An open line under `## Cases` is a finding. An open line under `## Work` or `## Ask` is not.
+> **＋** A closed line whose last segment after ` · ` is none of `case N`, `work`, `defer`, `kept` and `defer case N` is a finding.
+> **＋** These pairings of box and closer are findings: `[x]` with `defer`, `kept` or `defer case N`, and `[-]` with `case N` or `work`.
+> **＋** `defer` is clean only after the source segment `sprint`, the segment before the closer. `kept` is clean only after the source `backlog`. After any other source, each one is a finding.
+> **＋** `defer case N` after the source `sprint` is a finding. After the source `backlog`, it is a finding when no `defer` line of Case N or of its sub-cases names a slug that the title, the text before the first ` · `, names in a code span. It is also a finding for each Case M of the `deferred_by` of such a page when no Case among Case N and its sub-cases both names the page on a `defer` line and carries `{supersedes:case M}`. The lines of Case N are those of the session's window and, for a Case of the conserved Spec, those of the `ledger.md` of its folder.
+> **＋** After another source, `defer case N` is a finding when there is no `defer` item under Case N in the plan, and none under Case N of the `spec.md` that the title line of the plan names.
+> **＋** A line closed `case N` is a finding when the plan has no heading of Case N.
+> **－** A title line that names no folder holding `carry.md` adds no Case and no ledger: `defer case N` after the source `backlog` is then judged against the session's window alone, and after a source other than `sprint` or `backlog` against the plan alone.
+> **－** A line that is not a box line, such as `Backlog: N items` or an indented `- near` line, is not read. No line of another session's Frontier file is read.
+
+```then
+update:
+- slug: estimate-prespec-checks-the-frontier
+  set:
+    status: pending
+  change: the Criterion replaced whole — a backlog line closed defer case N by a Case of the conserved Spec is judged against the ledger of that Spec's folder too
+```
+
+```tasks
+- [x] `.guppi/guppi/prespec.py`: a new function beside `conserved_blocks` returns the decision records of the `ledger.md` of the folder that `conserved_spec_named` finds for the plan, its lines taken by `TIMED_RECORD` and parsed by `session_decisions`, and none for a plan whose title line names no folder holding `carry.md`. `check_frontier` reads them once, at the first backlog line closed `defer case N`, and passes `check_backlog_defer_line` the window's records with them. The module docstring and the docstrings of `check_frontier` and `check_backlog_defer_line` say this, each pointer to a Case in a bracket at the end of its sentence, as `test_the_live_code_holds_no_pointer_outside_a_bracket` of `.guppi/tests/test_ship.py` reads the live code.
+- [x] `.guppi/tests/test_prespec.py`: new tests, each with a conserved Spec under a temporary folder and a plan whose title line names it. A backlog line closed `defer case 7`, whose Case 7 defers the page in the ledger of the conserved folder with the mark of each Case of the page's `deferred_by`, is clean while the session's window holds no line of Case 7. The same line is a finding that names the mark when that `defer` lacks one. The same line is the finding that no defer line of Case 7 names a page of its title when the folder holds no `carry.md`.
+- [ ] update `estimate-prespec-checks-the-frontier`
+- [ ] read `estimate-prespec-checks-the-frontier`
+```
+
+## Case 948 — case-guppi reads each text that lists the members of a list it adds to
+
+> **context:**
+> `estimate-case-build-reads-the-readers-of-a-changed-step` checks the sentence of case 924 in the Render of `rule-case-build`: a Case that changes what a step writes, copies or shows searches for the name of that output and reads each step that reads it. Its reading at the Retro of session 2005, line 54 of `vault/raw/2026-10-30/2005/ledger.md`, came out `failed`: at the `/pre-spec` of session 1713, finding 1.2 was Case 931, which added `drop` to the keys of a page `update` and left two texts that list those keys one by one, the sentence of `case-schema.md` on the sub-point keys that the hook of `rule-spec-write` reads, and the sentence of `rule-materialize` that lists the keys the lift carries. Both texts were fixed in that session: the file of Case 931, built again after `/pre-spec`, holds a second pair on `rule-case-protocol` that adds `drop` to that list, and line 30 of `vault/wiki/case-schema.md` now holds `drop` among the keys; Case 935.1 added `drop` to the sentence of `rule-materialize`, and that page's History holds the line of `decision-case-935.1`. So no Case is needed for the two texts. The miss has one shape: a new member of a list is a word no text holds yet, so a search for it finds nothing, while a search for a member already in the list finds each text that lists them; the file of Case 931 built again says that a Grep of `` `rename` `` over `vault/wiki` printed both texts. The sentence of case 924 names outputs and paths, and the sentence of case 784 names a field, term or command whose behaviour changes; neither names a new member of a list, and both stand, since the new sentence adds to them and changes neither. A finding of `/pre-spec` named `estimate-case-build-checks-the-finished-case`, which I read: its When is `case-guppi` about to answer with a built Case, and one line of its Then is the search for the name of each field, term or command whose behaviour the Case changes, the sentence of case 784; its `purpose` and `method` count what `ask-guppi` still finds at `/pre-spec` among the checks they list. Its Criterion stands: the new sentence changes none of the searches it lists, and a search for the name of a changed thing cannot find a list that a new member is missing from, since that member stands in no text yet. The new search is a promise of its own: it can fail while the search of case 784 passes, and the fix is another sentence, so by the rule of atomicity in `ratification.md` it gets its own Estimate, not a line added to that Criterion. The rule on a failed Estimate is line 35 of `rule-estimates-schema`: a `failed` Estimate is debt until a human decides, and archival is the default absent a decision to fix. The person chose to fix it: Case 948.1 adds to the Render one sentence on a new member of a list and creates `estimate-case-build-reads-each-list-of-a-new-member` to check it; a Glob `vault/**/*list*member*` printed nothing, so the slug is free. Case 948.2 sets the failed Estimate `pending` again, its Criterion written back word for word, its `purpose` kept since it states the same promise, and its `method` set anew to wait for the `/pre-spec` of the first session on the new Render. The brief reports the last `guppi check` under `## Flags`: `estimate-case-build-reads-the-readers-of-a-changed-step: unread: failed`. In `.guppi/guppi/lint.py` I read `check_unread`, `waits_for_a_later_moment`, `waits_for_an_event` with `EVENT_PART` and `ANOTHER_SESSION`, `method_of`, `tied_to_a_one_off_moment` with `is_reading` and `FIRST_AFTER`: a `failed` Estimate is always an `unread` finding, and a `pending` one is none when a part of its `method` between two `;` opens with `after`, or with `by hand, after`, and names its event before a colon; the new methods hold such a part, and no part that holds `by hand` names a first thing after the render or the change. The check of this file noted that two `then` lines of Case 948.2 share most of their words with lines of Case 948.1: the line on what enters the Case and the `－` line on History, `log.md` and `brief.md`. They stand, since they are lines of the promises of two Estimates: Case 948.2 writes back the Criterion of the old Estimate word for word, and Case 948.1 states the same bounds for the texts that list the members of a list. A Grep of `case-guppi\.md|rule-case-build|agents/` over `.guppi/tests` printed `test_guppi_package.py`, where the hit is a sentence of its docstring, and no test reads `.claude/agents/case-guppi.md` live. `insight-case-build-changes-a-step-without-reading-its-readers` stands `actioned`, its fix the sentence of case 924, which this Case keeps. The session's ledger holds no `error` lesson.
+
+> **problem:**
+> The reading of `estimate-case-build-reads-the-readers-of-a-changed-step` failed: a Case that added a key to a list missed two texts that list the keys, since no instruction of `case-guppi` names a search for the members already in a list, and the failed Estimate is debt.
+
+> **recommend:**
+> - **What does this Case do with the failed reading?**
+>   - Recommended: (a) widen the instruction for a new member of a list that texts spell out, with a new Estimate.
+>   - Answer: (a).
+> - **What happens to the failed Estimate?**
+>   - Recommended: (a) it waits again for a new reading, its promise word for word, its method on the next `/pre-spec`.
+>   - Answer: agreed, (a).
+> - **When is the new instruction checked?**
+>   - Recommended: (a) at the Retro of this session and at the next `/pre-spec`.
+>   - Answer: agreed, (a).
+
+### Case 948.1 — case-guppi searches for a member already in a list it adds to
+
+> **given:**
+> `rule-case-build`: its Render, `.claude/agents/case-guppi.md`, gains the sentence on a new member of a list.
+> **＋** `estimate-case-build-reads-each-list-of-a-new-member`: the new check of that sentence.
+> **＋** `vault/wiki/` outside `decisions/`, `.claude/` and `.guppi/guppi/`: the texts the search runs over.
+
+> **when:**
+> `case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, builds a Case that adds a member to a list that texts spell out one by one — a key of an item, a kind, a status or a field — and is about to answer with its summary.
+
+> **then:**
+> It searches the live pages of `vault/wiki/` outside `decisions/`, `.claude/` and `.guppi/guppi/` for a member that stands in the list already.
+> **＋** It reads each hit that lists the members of the list.
+> **＋** Each text that lists the members and would miss the new member enters the Case, or the `context` of the Case names it and says why it stands.
+> **－** A hit in a History line, in `log.md` or in `brief.md` is not read.
+
+```then
+create:
+- slug: estimate-case-build-reads-each-list-of-a-new-member
+  ref: rule-case-build
+  kind: QA
+  purpose: Whether case-guppi, when its Case adds a member to a list that texts spell out one by one, searches for a member already in the list and enters each text that would miss the new member in the Case, or names it in context
+  method: 'by hand, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec read against the Criterion, recorded in the estimate line; after the /pre-spec of the first session whose case-guppi runs on the Render of rule-case-build that holds the sentence on a new member of a list: the findings of ask-guppi at that /pre-spec read for a Case that adds a member to a list and misses a text that lists the members, the count in the estimate line'
+  tags:
+  - session
+  - workflow
+  - harness
+  - case-build
+update:
+- slug: rule-case-build
+  replace:
+  - old: '`context` names it and says why it stands (as set in case 924).'
+    new: '`context` names it and says why it stands (as set in case 924). When the Case adds a member to a list that texts spell out one by one — a key of an item, a kind, a status or a field — Grep the live pages of `vault/wiki/` outside `decisions/`, `.claude/` and `.guppi/guppi/` for a member that stands in the list already, since the new member stands in no text yet, and read each hit that lists the members; a hit in a History line, in `log.md` or in `brief.md` is not read; each text that would miss the new member enters the Case, or `context` names it and says why it stands (as set in case 948.1).'
+  change: case-guppi searches for a member already in a list its Case adds to, and reads each text that lists the members
+```
+
+```tasks
+- [ ] update `rule-case-build`
+- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [ ] create `estimate-case-build-reads-each-list-of-a-new-member`
+- [ ] read `estimate-case-build-reads-each-list-of-a-new-member`
+```
+
+### Case 948.2 — The reading of the readers of a changed step waits for the next /pre-spec
+
+> **given:**
+> `estimate-case-build-reads-the-readers-of-a-changed-step`: set `pending`, its Criterion written back, its `method` set anew.
+> **＋** `rule-case-build`: its Render, `.claude/agents/case-guppi.md`, holds the sentence on the readers of a changed step.
+> **＋** `vault/wiki/rules/` and `.claude/`: the texts the search runs over.
+
+> **when:**
+> `case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, builds a Case that changes what a step of a skill, an agent or a hook writes, copies or shows, or adds a path on which a step does so, and is about to answer with its summary.
+
+> **then:**
+> It searches `vault/wiki/rules/` and `.claude/` for the name of that output — a line such as `Branch:`, a file or a list — and for the name of the step.
+> **＋** It reads each step and skill that reads that output or does the same step, the steps after it in the same text and the new path its own Case adds included.
+> **＋** Each step or skill that the change makes false enters the Case, or the `context` of the Case names it and says why it stands.
+> **－** A hit in a History line, in `log.md` or in `brief.md` is not read.
+
+```then
+update:
+- slug: estimate-case-build-reads-the-readers-of-a-changed-step
+  set:
+    status: pending
+    method: 'by hand, after the /pre-spec of the first session whose case-guppi runs on the Render of rule-case-build that holds the sentence on a new member of a list: the findings of ask-guppi at that /pre-spec read for a Case that changes a step and misses a step or skill that reads its output or does the same step, the count in the estimate line'
+  sections:
+    Criterion: |-
+      When:
+      `case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, builds a Case that changes what a step of a skill, an agent or a hook writes, copies or shows, or adds a path on which a step does so, and is about to answer with its summary.
+
+      Then:
+      It searches `vault/wiki/rules/` and `.claude/` for the name of that output — a line such as `Branch:`, a file or a list — and for the name of the step.
+      **＋** It reads each step and skill that reads that output or does the same step, the steps after it in the same text and the new path its own Case adds included.
+      **＋** Each step or skill that the change makes false enters the Case, or the `context` of the Case names it and says why it stands.
+      **－** A hit in a History line, in `log.md` or in `brief.md` is not read.
+  change: pending again after the failed reading of session 2005, the Criterion written back unchanged; the method waits for the /pre-spec of the first session on the Render with the sentence on a new member of a list
+```
+
+```tasks
+- [ ] update `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
+```
+
+## Deferred
+
+## Case 949 — The offline reading of the plugin install put off
+
+> **context:**
+> At the /hi of session 2345 the person put off the reading of `estimate-plugin-install-sets-aside-the-files-of-the-project`. Its event, the librarian's run of session 1713, came, and at the stop of Work Mode of session 2005 three projects ran; the project started with `UV_OFFLINE=1` and an empty `UV_CACHE_DIR` installed online (L56), so the putting back of the set-aside files after a failed `uv sync` was not seen.
+
+> **problem:**
+> No session has yet seen the install of a project with files of its own fail at `uv sync` offline, so no Case of this session can take the reading.
+
+```then
+defer:
+  - slug: estimate-plugin-install-sets-aside-the-files-of-the-project
+    type: estimate
+    purpose: "Whether the install sets aside the files of the project and puts them back after a failed uv sync; its offline reading waits for an install started with UV_OFFLINE=1 and an empty UV_CACHE_DIR, which no session has run offline yet"
+```

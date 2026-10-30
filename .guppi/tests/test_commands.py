@@ -6,10 +6,12 @@ names the file and the key, with exit 1 and nothing run. A fake command, a Pytho
 records each call: its words, its folder and what it read from stdin."""
 
 import io
+import json
 import os
 import shlex
 import subprocess
 import sys
+import tomllib
 from pathlib import Path
 
 from guppi import config
@@ -126,3 +128,50 @@ def test_a_missing_key_is_one_line_and_exit_1(tmp_path, monkeypatch):
 def test_the_keys_of_the_commands_do_not_stop_the_render():
     text = LANGUAGES + "test = ['uv run pytest']\nstyle = ['uv run ruff check .']\n"
     assert config.parse(text, "guppi.toml") == {"documentation_lang": "en", "chat_lang": "ru"}
+
+
+PYTEST_SETTINGS = Path(__file__).resolve().parents[1] / "pyproject.toml"
+
+
+def pytest_section() -> str:
+    """The `[tool.pytest.ini_options]` of `.guppi/pyproject.toml`, as TOML text."""
+    options = tomllib.loads(PYTEST_SETTINGS.read_text(encoding="utf-8"))["tool"]["pytest"]
+    lines = [f"{key} = {json.dumps(value)}" for key, value in options["ini_options"].items()]
+    return "[tool.pytest.ini_options]\n" + "\n".join(lines) + "\n"
+
+
+def run_guppi_tests(root: Path) -> str:
+    """The last line of `pytest -q .guppi/tests` run in the folder of the project."""
+    done = subprocess.run(
+        [sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", ".guppi/tests"],
+        check=False,
+        cwd=root,
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    assert done.returncode == 0, done.stdout + done.stderr
+    return done.stdout.strip().splitlines()[-1]
+
+
+def test_the_test_command_finds_the_settings_of_guppi_whatever_the_root_holds(tmp_path):
+    """The key `test` names `.guppi/tests` (case 929): pytest starts its search for settings
+    there and takes those of `.guppi/pyproject.toml`, the `live` marker included, with no
+    root `pyproject.toml` and beside one that holds other pytest settings."""
+    root = tmp_path / "project"
+    tests = root / ".guppi" / "tests"
+    tests.mkdir(parents=True)
+    (root / ".guppi" / "pyproject.toml").write_text(pytest_section(), encoding="utf-8")
+    (tests / "test_sample.py").write_text(
+        "import pytest\n\n\ndef test_plain():\n    pass\n\n\n"
+        "@pytest.mark.live\ndef test_live():\n    pass\n",
+        encoding="utf-8",
+    )
+    alone = run_guppi_tests(root)
+    assert "1 passed" in alone and "1 deselected" in alone
+    (root / "pyproject.toml").write_text(
+        '[tool.pytest.ini_options]\ntestpaths = ["elsewhere"]\naddopts = "-m live"\n',
+        encoding="utf-8",
+    )
+    beside = run_guppi_tests(root)
+    assert "1 passed" in beside and "1 deselected" in beside

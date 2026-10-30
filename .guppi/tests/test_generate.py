@@ -3907,3 +3907,95 @@ def test_a_case_replaced_by_a_standing_case_gets_its_line_once(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     assert_replaced_by_b(tmp_path)
+
+
+# --- `drop` removes the sections it names, heading and text (case 931) ------------------------
+
+
+def leaf_rule(enforcement="check", render=False):
+    """A Leaf rule with `## Purpose`, `## How it works` and `## History`, and `## Render` when
+    `render` is set."""
+    governs = "governs: x.md\nrender_mode: full\n" if enforcement == "render" else ""
+    rendered = "## Render\n\nThe text.\n\n" if render else ""
+    return (
+        f"---\ntype: rule\nkind: Leaf\npurpose: Prevents a leaf\nstatus: draft\n"
+        f"enforcement: {enforcement}\nimplementation_ref: [guppi/x.py]\n{governs}"
+        "estimates: []\norigin: x\nsprint: s\ncreated: 2026-09-09\ntags: [harness]\n---\n\n"
+        f"## Purpose\n\nPrevents a leaf.\n\n{rendered}"
+        "## How it works\n\nIt works so.\n\n## History\n\n- old\n"
+    )
+
+
+def drop_entry(names, slug="rule-leaf", category="rules", change="the section leaves"):
+    entry = {
+        "line": 2,
+        "text": "",
+        "case": "2",
+        "kind": "update",
+        "category": category,
+        "slug": slug,
+        "origin": f"raw/{DATE}/ledger.md#case-2",
+        "decision": "decision-case-2",
+        "drop": names,
+    }
+    if change:
+        entry["change"] = change
+    return entry
+
+
+def test_a_drop_removes_the_heading_and_the_text_and_writes_history(tmp_path):
+    seed(
+        tmp_path,
+        entries=[drop_entry(["How it works"])],
+        pages=[("rules", "rule-leaf", leaf_rule())],
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    text = page(tmp_path, "rules", "rule-leaf")
+    assert "## How it works" not in text and "It works so." not in text
+    assert "## Purpose\n\nPrevents a leaf.\n" in text
+    assert f"- {DATE} updated: the section leaves · [[decision-case-2]]" in text
+
+
+def test_an_item_with_drop_alone_applies(tmp_path):
+    entry = drop_entry(["How it works"], change=None)
+    seed(tmp_path, entries=[entry], pages=[("rules", "rule-leaf", leaf_rule())])
+    code, out, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert "nothing applied" not in out
+    assert "## How it works" not in page(tmp_path, "rules", "rule-leaf")
+    assert load_yaml(tmp_path)["entries"][0]["applied"]
+
+
+def test_a_drop_of_a_name_the_page_lacks_fails_and_leaves_the_page(tmp_path):
+    seed(tmp_path, entries=[drop_entry(["Context"])], pages=[("rules", "rule-leaf", leaf_rule())])
+    code, _, err = run(tmp_path)
+    assert code == 1 and "generate: rule-leaf: drop: Context is not on the page" in err
+    assert page(tmp_path, "rules", "rule-leaf") == leaf_rule()
+    assert "failed" in load_yaml(tmp_path)["entries"][0]
+
+
+@pytest.mark.parametrize(
+    "name, slug, category, text",
+    [
+        ("Purpose", "rule-leaf", "rules", leaf_rule()),
+        ("Render", "rule-leaf", "rules", leaf_rule("render", render=True)),
+        ("Criterion", "estimate-child", "estimates", estimate_page("c")),
+    ],
+)
+def test_a_drop_of_a_section_the_schema_requires_fails(tmp_path, name, slug, category, text):
+    seed(tmp_path, entries=[drop_entry([name], slug, category)], pages=[(category, slug, text)])
+    code, _, err = run(tmp_path)
+    assert code == 1 and f"generate: {slug}: drop: {name} is required by the schema" in err
+    assert page(tmp_path, category, slug) == text
+
+
+def test_a_drop_of_render_on_a_check_rule_applies(tmp_path):
+    seed(
+        tmp_path,
+        entries=[drop_entry(["Render"])],
+        pages=[("rules", "rule-leaf", leaf_rule("check", render=True))],
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == "", err
+    assert "## Render" not in page(tmp_path, "rules", "rule-leaf")

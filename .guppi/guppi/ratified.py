@@ -34,7 +34,8 @@ parent's heading, `context`, `problem` and `recommend` from the parent's stored 
 from the reply (cases 441.6, 544.5, 544.10). The chat form the hook reads: a task line opening with `create`, `update`,
 `delete` or `defer` and the slug in its first code span is an item; its sub-points are its
 keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new` under
-`reword`, `set` (a YAML flow mapping), `change`, `rename`, `sections.<Name>`, the fields of a
+`reword`, `set` (a YAML flow mapping), `change`, `rename`, `sections.<Name>`, `drop`, a YAML
+flow list of section names (case 931), the fields of a
 `create` — each value one code span, with as many backticks as the value needs and padded by
 one space on each side when it holds a backtick, an unpadded one refused (case 402), or a fenced
 block under the sub-point; a sub-point that reads into no key `materialize.item_keys` gives its

@@ -811,6 +811,13 @@ def test_write_a_foreign_key_of_an_update_or_a_delete_is_refused(working):
     assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
 
 
+def test_read_a_drop_under_an_update_is_a_list_of_section_names(working):
+    # `drop` names the sections an `update` removes (case 931)
+    tasks = "- [ ] update `rule-x`\n  - drop: `[How it works]`\n"
+    _, block, errors = ratified.read_tasks(tasks, ratified.key_judge(working, set()))
+    assert errors == [] and block["update"][0]["drop"] == ["How it works"]
+
+
 def test_read_an_old_under_a_delete_is_refused(working):
     # a `delete` takes `slug`, `impact` and `change` only (case 436.1)
     tasks = "- [ ] delete `rule-x`\n  - impact: `none`\n  - old: `a`\n"
@@ -837,6 +844,7 @@ def test_write_the_keys_of_a_create_are_judged_by_its_schema(working, tmp_path):
         "reword",
         "change",
         "rename",
+        "drop",
     }
 
 

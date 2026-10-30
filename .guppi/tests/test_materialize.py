@@ -1196,6 +1196,10 @@ PART_LEDGER = """- decision[case 23][update][estimate-part-purpose]{ref:estimate
 - decision[case 27][update][estimate-part-both]{ref:estimate-part-both}
 - decision[case 28][update][estimate-part-written]{ref:estimate-part-written}
 - decision[case 29][update][estimate-part-change]{ref:estimate-part-change}
+- decision[case 30][update][estimate-part-drop-criterion]{ref:estimate-part-drop-criterion}
+- decision[case 31][update][estimate-part-drop-status]{ref:estimate-part-drop-status}
+- decision[case 32][update][estimate-part-drop-result]{ref:estimate-part-drop-result}
+- decision[case 33][update][estimate-part-drop-how]{ref:estimate-part-drop-how}
 """
 
 PART_CASE = """## Case {n} — {title}
@@ -1250,6 +1254,15 @@ PART_ITEMS = [
         "    set: {purpose: The new line}\n    sections:\n      Criterion: |\n        When:\n        The written one.\n",
     ),
     ("29", "estimate-part-change", "a History note alone", ""),
+    ("30", "estimate-part-drop-criterion", "a drop of the Criterion", "    drop: [Criterion]\n"),
+    (
+        "31",
+        "estimate-part-drop-status",
+        "a drop of the Criterion beside a status",
+        "    drop: [Criterion]\n    set: {status: pending}\n",
+    ),
+    ("32", "estimate-part-drop-result", "a drop of the Result", "    drop: [Result]\n"),
+    ("33", "estimate-part-drop-how", "a drop of How it works", "    drop: [How it works]\n"),
 ]
 
 PART_PAGE = """---
@@ -1322,6 +1335,27 @@ def test_a_change_alone_lifts_nothing_and_sets_no_status(tmp_path):
     (entry,) = of_case(seed_parts(tmp_path), "29")
     assert entry["change"] == "a History note alone"
     assert "sections" not in entry and "set" not in entry and "incomplete" not in entry
+
+
+def test_an_update_item_with_drop_gives_its_entry_drop_and_one_without_none(tmp_path):
+    # the lift carries `drop` as written (case 935.1)
+    entries = seed_parts(tmp_path)
+    (dropped,) = of_case(entries, "33")
+    assert dropped["drop"] == ["How it works"]
+    (plain,) = of_case(entries, "29")
+    assert "drop" not in plain
+
+
+def test_a_drop_of_the_criterion_is_incomplete_and_lifts_nothing(tmp_path):
+    # a Criterion changes only whole; a `drop` of it is marked at the lift (case 935.2)
+    entries = seed_parts(tmp_path)
+    (alone,) = of_case(entries, "30")
+    assert alone["incomplete"] == ["criterion"]
+    assert "sections" not in alone and "set" not in alone
+    (beside,) = of_case(entries, "31")
+    assert beside["incomplete"] == ["criterion"] and "sections" not in beside
+    (result,) = of_case(entries, "32")
+    assert "incomplete" not in result and "sections" not in result and "set" not in result
 
 
 def test_a_status_named_is_the_whole_replacement_beside_the_field(tmp_path):
@@ -2509,6 +2543,7 @@ def test_item_keys_answers_for_each_kind_as_the_lift_does(tmp_path):
         "reword",
         "change",
         "rename",
+        "drop",
     }
     assert materialize.item_keys("delete", "rules", tmp_path) == {"slug", "impact", "change"}
     assert materialize.item_keys("create", "rules", tmp_path) is None  # no schema file

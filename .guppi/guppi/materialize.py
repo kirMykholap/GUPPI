@@ -84,7 +84,8 @@ item set a status itself. An `update` item that names a part of the page — `se
 `status`, a `replace` pair, a section other than `Criterion` — and writes no Criterion
 changes that part alone: nothing is lifted and no status is set; a pair whose `old` stands
 in the page's `## Criterion` is `incomplete: [criterion]` — a Criterion changes only whole
-(case 378.4). An `update` item that carries `change` alone names its History: it lifts
+(case 378.4); a `drop` is such a part, and a `drop` that names `Criterion` is `incomplete:
+[criterion]` (case 935.2). An `update` item that carries `change` alone names its History: it lifts
 nothing and sets no status, and `generate` writes its History line; only `set.status` or a
 Criterion written under `sections` replaces the Criterion (case 588.2). An Estimate `create` keeps `kind`, `purpose`, `method` and
 `tags` as fields — a `ref` on the item is the entry's `ref`, never a page field (case 201.1);
@@ -117,7 +118,8 @@ route removed by case 320), `slug`, `ref`, `source`, `supersedes` (a list, one C
 the Case when the item wrote none), `replace`, `change`, `rename` (an update's new slug,
 carried as written; `generate` checks it) (case 258.2), `reword` (a list of `{old, new}`
 pairs, carried as written; a mapping or a scalar under it is `incomplete: [reword]`) (case
-274.3), `impact`, `incomplete` (what the block lacks: a required field, `then`, `change`,
+274.3), `drop` (a list of section names, carried as written; `generate` removes each)
+(case 935.1), `impact`, `incomplete` (what the block lacks: a required field, `then`, `change`,
 `criterion`, `purpose`, `source`, `reword`; `comment` on each decision entry of a Case whose
 fence tagged `then` holds a YAML comment by `then_comments`, which `guppi ratified` imports
 — the entry keeps what YAML read, and `generate` still applies it; `addresses` when the mark
@@ -905,9 +907,10 @@ DEFER_KEYS = ("type", "purpose")  # a defer's own keys, not fields of its target
 CREATE_SKIPPED = ("slug", "sections", "estimate", "file", "parent_create", "parent_tags")
 # The closed keys of an `update` and a `delete` (case 436.1): what `_lift_item` lifts and
 # `generate` applies; any other key of these kinds is dropped here and refused by the Spec
-# hook and by pre-spec, which import this list.
+# hook and by pre-spec, which import this list. `drop` names the sections an `update`
+# removes, heading and text (case 931).
 ITEM_KEYS = {
-    "update": ("slug", "set", "sections", "replace", "reword", "change", "rename"),
+    "update": ("slug", "set", "sections", "replace", "reword", "change", "rename", "drop"),
     "delete": ("slug", "impact", "change"),
 }
 
@@ -1109,6 +1112,11 @@ def names_a_part(entry: dict) -> bool:
     return not ("status" in sets or sections.get("Criterion"))
 
 
+def drops_criterion(drop) -> bool:
+    """Whether the `drop` of an item names the section `Criterion` (case 935.2)."""
+    return isinstance(drop, list) and "Criterion" in drop
+
+
 def touches_criterion(project_dir: Path, slug: str, replaces) -> bool:
     """Whether the `old` of a `replace` pair stands in the `## Criterion` of the live
     Estimate page; no page, no pair, or an `old` elsewhere — False. An `old` absent from
@@ -1138,10 +1146,15 @@ def lift_criterion(entry: dict, texts: dict[str, str], project_dir: Path | None 
     `Criterion`, or `change` alone, its History (case 588.2) — and writes no Criterion
     changes that part alone: nothing is lifted and no status is set; a pair whose `old`
     stands in the page's `## Criterion` is `incomplete: [criterion]` — a Criterion changes
-    only whole (case 378.4). So the Criterion is lifted only for a `create`, an `update`
+    only whole (case 378.4). A `drop` is such a part; a `drop` that names `Criterion` is
+    `incomplete: [criterion]` before anything else is judged, and nothing is lifted
+    (case 935.2). So the Criterion is lifted only for a `create`, an `update`
     with `set.status` or one that writes it, and `pending` is set only on one that writes
     its Criterion with no status of its own."""
     if entry.get("category") != "estimates" or entry.get("kind") not in ("create", "update"):
+        return
+    if entry["kind"] == "update" and drops_criterion(entry.get("drop")):
+        entry.setdefault("incomplete", []).append("criterion")
         return
     if entry["kind"] == "update" and names_a_part(entry):
         if project_dir is not None and touches_criterion(

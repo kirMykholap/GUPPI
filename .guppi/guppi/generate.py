@@ -14,14 +14,16 @@ target's `estimates`, History `child <slug> added` / `estimate <slug> added`, se
 the end of the run when the parent comes later in the yaml. An Estimate page carries
 `purpose`, `method` and `checked` as fields after `target`, its `## Criterion` from
 `sections`; neither `## Context` nor `## Method` is written. An `update` whose `set`
-carries `method` drops no section (case 506.6), and an `update` with `sections.Criterion`
-does not fail for want of a `method` field (case 506.5). A
+carries `method` removes no section by itself (case 506.6), and an `update` with
+`sections.Criterion` does not fail for want of a `method` field (case 506.5). A
 `create` whose slug is a placeholder —
 `status: draft`, no `kind` — fills it, `created` and `deferred_by` kept, History `created
 over placeholder` (case 101.1); any other existing page is a collision, never a rename. An
 `update` applies `set` to the frontmatter, `sections` as whole replacements — an Estimate's
 Criterion is replaced whole this way (case 194.1) — `replace` inside the body (whitespace
-collapsed, exactly one occurrence), History `updated: <change>`; an update with none of
+collapsed, exactly one occurrence), then `drop`, the sections it names removed, heading and
+text — a name the page lacks or a section its schema requires fails the entry (case 931) —,
+History `updated: <change>`; an update with none of
 those prints `nothing applied`. An `update` whose entry carries `rename: <new slug>` moves
 the page first — `wiki/<category>/<old>.md` to `<new>.md`, the same category prefix, History
 `renamed from <old>` — then applies the rest to the new file; every live page of `wiki/`,
@@ -181,6 +183,7 @@ walk goes on, with exit 1 at the end.
 
 import argparse
 import copy
+import dataclasses
 import json
 import re
 import sys
@@ -189,7 +192,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root
-from guppi.lint import CODE_SPAN, PATH_START
+from guppi.lint import CODE_SPAN, PATH_START, check_schema, load_schema
 from guppi.materialize import (
     CATEGORIES,
     DEFER_OF_A_RECORD,
@@ -920,9 +923,36 @@ class Vault:
             if not self.replace(page, str(item.get("old", "")), str(item.get("new", ""))):
                 self.error(slug, f"replace: {item.get('old', '')[:60]!r} is absent or not unique")
                 return
+        if entry.get("drop") and not self.drop(page, entry["drop"]):
+            return
         change = entry.get("change") or "updated"
         self.history(page, f"updated: {change}", self.pointer(entry))
         self.save(page)
+
+    def drop(self, page: Page, names) -> bool:
+        """Each section `names` lists leaves the page, heading and text (case 931). A name the
+        page lacks, or one whose removal gives a schema finding the page does not give — a
+        section its category's schema requires — fails the entry; False then, and nothing
+        of the item is saved."""
+        if not isinstance(names, list):
+            self.error(page.slug, "drop: expected a list of section names")
+            return False
+        schema = load_schema(self.wiki, page.category)
+        for name in names:
+            heading = f"## {name}"
+            if heading not in page.sections:
+                self.error(page.slug, f"drop: {name} is not on the page")
+                return False
+            if schema is not None:
+                before = {f.text for f in check_schema(page, schema)}
+                rest = {k: v for k, v in page.sections.items() if k != heading}
+                without = dataclasses.replace(page, sections=rest)
+                after = {f.text for f in check_schema(without, schema)}
+                if after - before:
+                    self.error(page.slug, f"drop: {name} is required by the schema")
+                    return False
+            del page.sections[heading]
+        return True
 
     # rename (case 258.1)
 

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "848"
-status: current
+status: archived
 defer: ["[[rule-guppi-package]]"]
+superseded_by: ["[[decision-case-929]]"]
 origin: raw/2026-10-16/0104/ledger.md#case-848
 sprint: plugin
 created: 2026-10-16
@@ -26,3 +27,6 @@ Whether the root pyproject.toml keeps the pytest settings beside .guppi/pyprojec
 ## History
 
 - 2026-10-16 created · raw/2026-10-16/0104/ledger.md#case-848
+- 2026-10-30 superseded by decision-case-929 · [[decision-case-929]]
+- 2026-10-30 archived · superseded
+- 2026-10-30 archived · cleanup

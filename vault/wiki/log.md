@@ -12031,3 +12031,76 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-30 lessons/lesson-prespec-ask-guppi-opened-a-decision-outside-its-frame archived · cleanup
 - 2026-10-30 decisions/decision-case-893.1 archived · cleanup
 - 2026-10-30 decisions/decision-case-893 child decision-case-893.1 archived · cleanup
+- 2026-10-30 decisions/decision-case-927 created · raw/2026-10-30/1713/ledger.md#case-927 · generate
+- 2026-10-30 decisions/decision-case-838 superseded by decision-case-927 · [[decision-case-927]] · generate
+- 2026-10-30 rules/rule-lint defer by decision-case-838 superseded · [[decision-case-927]] · generate
+- 2026-10-30 estimates/estimate-harness-make-runs-in-both-shells updated: the method names the targets as make help, make style, make test and make lint, so lint reads no target with · [[decision-case-927]] · generate
+- 2026-10-30 rules/rule-lint updated: the defer of case 838 is taken up: the method of estimate-harness-make-runs-in-both-shells names real targets, and the check stands · [[decision-case-927]] · generate
+- 2026-10-30 decisions/decision-case-928 created · raw/2026-10-30/1713/ledger.md#case-928 · generate
+- 2026-10-30 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets updated: the Criterion replaced whole — the reading runs by guppi ship --check --review, which no draft page with core: true stops · [[decision-case-928]] · generate
+- 2026-10-30 decisions/decision-case-929 created · raw/2026-10-30/1713/ledger.md#case-929 · generate
+- 2026-10-30 decisions/decision-case-834 superseded by decision-case-929 · [[decision-case-929]] · generate
+- 2026-10-30 rules/rule-guppi-package defer by decision-case-834 superseded · [[decision-case-929]] · generate
+- 2026-10-30 decisions/decision-case-848 superseded by decision-case-929 · [[decision-case-929]] · generate
+- 2026-10-30 rules/rule-guppi-package defer by decision-case-848 superseded · [[decision-case-929]] · generate
+- 2026-10-30 rules/rule-guppi-config updated: the key test names the folder .guppi/tests, so pytest reads the settings of .guppi/pyproject.toml in any project · [[decision-case-929]] · generate
+- 2026-10-30 rules/rule-guppi-package updated: taken up: the test command names .guppi/tests, so pytest finds the tests of GUPPI with no root pyproject.toml; the root pyproject.toml of the repository of GUPPI keeps its pytest settings until the Case that removes it · [[decision-case-929]] · generate
+- 2026-10-30 estimates/estimate-guppi-config-runs-the-test-and-style-commands updated: the Criterion replaced whole — the key test names .guppi/tests, and its command runs those tests with the settings of .guppi/pyproject.toml whatever the root holds · [[decision-case-929]] · generate
+- 2026-10-30 decisions/decision-case-931 created · raw/2026-10-30/1713/ledger.md#case-931 · generate
+- 2026-10-30 decisions/decision-case-897.3 superseded by decision-case-931 · [[decision-case-931]] · generate
+- 2026-10-30 rules/rule-page-generation defer by decision-case-897.3 superseded · [[decision-case-931]] · generate
+- 2026-10-30 rules/rule-page-generation updated: an update drops a named section, heading and text; a section the page lacks or its schema requires fails the entry; the put-off of case 897.3 taken up · [[decision-case-931]] · generate
+- 2026-10-30 estimates/estimate-generate-writes updated: the Criterion replaced whole — an update drops a named section, and a section the page lacks or its schema requires fails the entry · [[decision-case-931]] · generate
+- 2026-10-30 rules/rule-case-protocol updated: an update holds drop, a list of sections to remove, and the hook of rule-spec-write reads it as a sub-point · [[decision-case-931]] · generate
+- 2026-10-30 decisions/decision-case-932 created · raw/2026-10-30/1713/ledger.md#case-932 · generate
+- 2026-10-30 decisions/decision-case-932.1 created · raw/2026-10-30/1713/ledger.md#case-932.1 · generate
+- 2026-10-30 decisions/decision-case-911 superseded by decision-case-932.1 · [[decision-case-932.1]] · generate
+- 2026-10-30 rules/rule-plugin-install defer by decision-case-911 superseded · [[decision-case-932.1]] · generate
+- 2026-10-30 rules/rule-plugin-install updated: taken up: the install sets aside a CLAUDE.md, a file under .claude/, a .gitattributes or a .github/workflows/checks.yml of the project in guppi-set-aside/, the settings file only after uv sync passes, and stops only on a clash elsewhere · [[decision-case-932.1]] · generate
+- 2026-10-30 estimates/estimate-plugin-install-sets-aside-the-files-of-the-project created · [[decision-case-932.1]] · generate
+- 2026-10-30 rules/rule-plugin-install estimate estimate-plugin-install-sets-aside-the-files-of-the-project added · [[decision-case-932.1]] · generate
+- 2026-10-30 decisions/decision-case-932.2 created · raw/2026-10-30/1713/ledger.md#case-932.2 · generate
+- 2026-10-30 rules/rule-morph updated: the setup Case shows what the files that /guppi:install set aside hold; the person keeps or drops each part, a kept part goes into the page that writes its file or, where none does, into the file by a task, and guppi-set-aside/ is deleted · [[decision-case-932.2]] · generate
+- 2026-10-30 estimates/estimate-morph-takes-in-the-set-aside-files created · [[decision-case-932.2]] · generate
+- 2026-10-30 rules/rule-morph estimate estimate-morph-takes-in-the-set-aside-files added · [[decision-case-932.2]] · generate
+- 2026-10-30 decisions/decision-case-932.3 created · raw/2026-10-30/1713/ledger.md#case-932.3 · generate
+- 2026-10-30 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project updated: the Criterion replaced whole — the refusal of a project that holds a file of the install leaves it, since the install now sets such files aside · [[decision-case-932.3]] · generate
+- 2026-10-30 decisions/decision-case-932.4 created · raw/2026-10-30/1713/ledger.md#case-932.4 · generate
+- 2026-10-30 estimates/estimate-plugin-install-runs-no-hook-before-uv-sync updated: the Criterion replaced whole — the refusal of a project that holds a file of the install leaves it, since the install now sets such files aside · [[decision-case-932.4]] · generate
+- 2026-10-30 decisions/decision-case-934 created · raw/2026-10-30/1713/ledger.md#case-934 · generate
+- 2026-10-30 decisions/decision-case-909 superseded by decision-case-934 · [[decision-case-934]] · generate
+- 2026-10-30 rules/rule-spec-capture defer by decision-case-909 superseded · [[decision-case-934]] · generate
+- 2026-10-30 rules/rule-spec-capture deferred · [[decision-case-934]] · generate
+- 2026-10-30 decisions/decision-case-932.5 created · raw/2026-10-30/1713/ledger.md#case-932.5 · generate
+- 2026-10-30 estimates/estimate-morph-sets-up-the-project-at-the-first-hi updated: the Criterion replaced whole — the files that /guppi:install sets aside count beside its copy among the changes before the setup Case · [[decision-case-932.5]] · generate
+- 2026-10-30 decisions/decision-case-935 created · raw/2026-10-30/1713/ledger.md#case-935 · generate
+- 2026-10-30 decisions/decision-case-935.1 created · raw/2026-10-30/1713/ledger.md#case-935.1 · generate
+- 2026-10-30 rules/rule-materialize updated: the lift carries drop, a list of section names, when the item carries it · [[decision-case-935.1]] · generate
+- 2026-10-30 estimates/estimate-materialize-assembles updated: the Criterion replaced whole — an entry takes drop from its then item · [[decision-case-935.1]] · generate
+- 2026-10-30 decisions/decision-case-935.2 created · raw/2026-10-30/1713/ledger.md#case-935.2 · generate
+- 2026-10-30 rules/rule-materialize updated: a drop is a named part, and a drop of the Criterion of an Estimate is incomplete: [criterion] · [[decision-case-935.2]] · generate
+- 2026-10-30 estimates/estimate-materialize-changes-a-named-part-alone updated: the Criterion replaced whole — drop is a named part, and a drop of the Criterion is incomplete · [[decision-case-935.2]] · generate
+- 2026-10-30 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets status: pending → passed · raw/2026-10-30/1713/ledger.md#L22 · generate
+- 2026-10-30 estimates/estimate-generate-writes status: pending → passed · raw/2026-10-30/1713/ledger.md#L23 · generate
+- 2026-10-30 estimates/estimate-materialize-assembles status: pending → passed · raw/2026-10-30/1713/ledger.md#L24 · generate
+- 2026-10-30 estimates/estimate-materialize-changes-a-named-part-alone status: pending → passed · raw/2026-10-30/1713/ledger.md#L25 · generate
+- 2026-10-30 estimates/estimate-ask-opens-a-decision-only-for-a-finding status: pending → passed · raw/2026-10-30/1713/ledger.md#L26 · generate
+- 2026-10-30 estimates/estimate-ask-finds status: pending → passed · raw/2026-10-30/1713/ledger.md#L27 · generate
+- 2026-10-30 estimates/estimate-search-leaves-out-decisions-in-every-agent status: pending → passed · raw/2026-10-30/1713/ledger.md#L28 · generate
+- 2026-10-30 lessons/lesson-orchestration-dispatch-named-a-case-of-the-same-wording-not-related created · raw/2026-10-30/1713/ledger.md#L29 · generate
+- 2026-10-30 lessons/lesson-frontier-closed-a-backlog-item-deferred-again-as-a-case created · raw/2026-10-30/1713/ledger.md#L30 · generate
+- 2026-10-30 rules/rule-guppi-config status: built → draft · cascade · generate
+- 2026-10-30 rules/rule-plugin-install status: built → draft · cascade · generate
+- 2026-10-30 decisions/decision-case-834 archived · superseded · generate
+- 2026-10-30 decisions/decision-case-838 archived · superseded · generate
+- 2026-10-30 decisions/decision-case-848 archived · superseded · generate
+- 2026-10-30 decisions/decision-case-897.3 archived · superseded · generate
+- 2026-10-30 decisions/decision-case-909 archived · superseded · generate
+- 2026-10-30 decisions/decision-case-911 archived · superseded · generate
+- 2026-10-30 decisions/decision-case-834 archived · cleanup
+- 2026-10-30 decisions/decision-case-838 archived · cleanup
+- 2026-10-30 decisions/decision-case-848 archived · cleanup
+- 2026-10-30 decisions/decision-case-897.3 archived · cleanup
+- 2026-10-30 decisions/decision-case-909 archived · cleanup
+- 2026-10-30 decisions/decision-case-911 archived · cleanup
+- 2026-10-30 decisions/decision-case-897 child decision-case-897.3 archived · cleanup

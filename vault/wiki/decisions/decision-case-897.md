@@ -2,7 +2,7 @@
 type: decision
 case: "897"
 status: current
-children: ["[[decision-case-897.1]]", "[[decision-case-897.2]]", "[[decision-case-897.3]]", "[[decision-case-897.4]]", "[[decision-case-897.5]]", "[[decision-case-897.6]]"]
+children: ["[[decision-case-897.1]]", "[[decision-case-897.2]]", "[[decision-case-897.4]]", "[[decision-case-897.5]]", "[[decision-case-897.6]]"]
 origin: raw/2026-10-28/2312/ledger.md#case-897
 sprint: plugin
 created: 2026-10-28
@@ -55,3 +55,4 @@ The clean copy fails its check of neutral texts again: shipped rules send a new 
 ## History
 
 - 2026-10-29 created · raw/2026-10-28/2312/ledger.md#case-897
+- 2026-10-30 child decision-case-897.3 archived · cleanup

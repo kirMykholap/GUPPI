@@ -7,7 +7,6 @@ enforcement: check
 implementation_ref: [.guppi/guppi/lint.py, .guppi/guppi/check.py, .guppi/tests/test_lint.py, .guppi/tests/test_check.py]
 parent: "[[rule-harness]]"
 estimates: ["[[estimate-lint-catches]]", "[[estimate-lint-finds-a-broken-link]]", "[[estimate-lint-checks-the-statuses]]", "[[estimate-lint-checks-the-method]]", "[[estimate-lint-catches-a-broken-fence]]", "[[estimate-lint-runs-every-step]]", "[[estimate-lint-reports-a-method-tied-to-a-one-off-moment]]"]
-deferred_by: ["[[decision-case-838]]"]
 origin: raw/2026-09-09/ledger.md#case-21
 sprint: migration
 created: 2026-09-09
@@ -99,3 +98,5 @@ classes and their order live in the docstring of `.guppi/guppi/lint.py`.
 - 2026-10-15 status: built → draft · cascade
 - 2026-10-15 deferred · [[decision-case-838]]
 - 2026-10-15 status: draft → built · cascade
+- 2026-10-30 defer by decision-case-838 superseded · [[decision-case-927]]
+- 2026-10-30 updated: the defer of case 838 is taken up: the method of estimate-harness-make-runs-in-both-shells names real targets, and the check stands · [[decision-case-927]]

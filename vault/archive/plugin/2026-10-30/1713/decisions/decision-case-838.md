@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "838"
-status: current
+status: archived
 defer: ["[[rule-lint]]"]
+superseded_by: ["[[decision-case-927]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-838
 sprint: plugin
 created: 2026-10-15
@@ -26,3 +27,6 @@ guppi lint reads make with the targets in a method as the target with; put off a
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-838
+- 2026-10-30 superseded by decision-case-927 · [[decision-case-927]]
+- 2026-10-30 archived · superseded
+- 2026-10-30 archived · cleanup

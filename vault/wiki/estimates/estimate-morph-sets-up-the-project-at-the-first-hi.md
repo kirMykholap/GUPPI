@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: pending
 target: "[[rule-morph]]"
-purpose: Whether the first /hi after /guppi:install, in a project whose guppi.toml does not mark the setup as done, puts one setup Case first, before the opening of the first sprint, with the values it finds and the values the person gives, and whether the settings change only by the copy, the render of /hi and the render after that Case is ratified
+purpose: Whether the first /hi after /guppi:install, in a project whose guppi.toml does not mark the setup as done, puts one setup Case first, before the opening of the first sprint, with the values it finds and the values the person gives, and whether the settings change only by the copy and the setting aside of /guppi:install, the render of /hi and the render after that Case is ratified
 method: "by hand, after the session whose Work Mode builds the setup skill of rule-morph, its step in /hi and in /sprint-open and the pass of the ledger hook for the setup Case: in an empty project, the plugin guppi installed, /guppi:install typed, Claude Code reopened and /hi typed; the transcript of that session, its ledger and the files its Work Mode writes read against the Criterion, recorded in the estimate line"
 origin: raw/2026-10-13/1753/ledger.md#case-802
 sprint: plugin
@@ -24,7 +24,7 @@ Then:
 **＋** Every value stands in that one setup Case, which the person ratifies or corrects.
 **＋** The Work Mode of the same session writes the settings by the render of the rule pages that hold them, such as `guppi.toml` from `rule-guppi-config`, the description of the project in `CLAUDE.md` from `rule-claude-md` and the read rules of the saved transcripts from `rule-permissions`, and `guppi.toml` then marks the setup as done.
 **－** `/guppi:install` is no Case, and the person ratifies nothing at it.
-**－** Between `/guppi:install` and the ratified setup Case, no settings file changes but by the copy of `/guppi:install` and the render that `/hi` runs.
+**－** Between `/guppi:install` and the ratified setup Case, no settings file changes but by the copy and the setting aside of `/guppi:install` and the render that `/hi` runs.
 **－** The setup step is no skill named `install`.
 **－** The setup step does not ask for the category set: the project takes the development set, as `entity-sprint-plugin` keeps the category set as data in its `## Backlog`.
 **－** The setup step reads no code of the project and creates no page for it.
@@ -35,3 +35,4 @@ Then:
 - 2026-10-13 created · [[decision-case-802]]
 - 2026-10-15 updated: the Criterion replaced whole — the install Case comes at the first /hi after /guppi:install, while guppi.toml does not mark the install as done · [[decision-case-817]]
 - 2026-10-15 updated: the Criterion replaced whole — the setup Case comes first at the first /hi and /sprint-open follows it in the same session; /guppi:install is no Case · [[decision-case-825]]
+- 2026-10-30 updated: the Criterion replaced whole — the files that /guppi:install sets aside count beside its copy among the changes before the setup Case · [[decision-case-932.5]]

@@ -784,7 +784,7 @@ update:
 
 ```tasks
 - [x] update `estimate-search-leaves-out-decisions-in-every-agent`
-- [ ] read `estimate-search-leaves-out-decisions-in-every-agent`
+- [x] read `estimate-search-leaves-out-decisions-in-every-agent`
 ```
 
 ### Case 925.4 — ask-guppi names a Decision by its slug and opens none
@@ -829,7 +829,7 @@ update:
 - [x] update `rule-ask`
 - [x] update `estimate-ask-opens-a-decision-only-for-a-finding`
 - [x] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] read `estimate-ask-opens-a-decision-only-for-a-finding`
+- [x] read `estimate-ask-opens-a-decision-only-for-a-finding`
 ```
 
 ### Case 925.5 — A finding on a put-off page names its Decision by slug
@@ -868,7 +868,7 @@ update:
 
 ```tasks
 - [x] update `estimate-ask-finds`
-- [ ] read `estimate-ask-finds`
+- [x] read `estimate-ask-finds`
 ```
 
 ### Case 925.6 — The check of the history cut leaves a refused Read out

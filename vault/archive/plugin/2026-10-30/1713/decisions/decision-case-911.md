@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "911"
-status: current
+status: archived
 defer: ["[[rule-plugin-install]]"]
+superseded_by: ["[[decision-case-932.1]]"]
 origin: raw/2026-10-29/1930/ledger.md#case-911
 sprint: plugin
 created: 2026-10-29
@@ -26,3 +27,6 @@ Lets GUPPI install into an existing project that holds its own .claude/settings.
 ## History
 
 - 2026-10-29 created · raw/2026-10-29/1930/ledger.md#case-911
+- 2026-10-30 superseded by decision-case-932.1 · [[decision-case-932.1]]
+- 2026-10-30 archived · superseded
+- 2026-10-30 archived · cleanup

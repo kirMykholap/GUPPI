@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "834"
-status: current
+status: archived
 defer: ["[[rule-guppi-package]]"]
+superseded_by: ["[[decision-case-929]]"]
 origin: raw/2026-10-15/1959/ledger.md#case-834
 sprint: plugin
 created: 2026-10-15
@@ -26,3 +27,6 @@ Not confirmed whether pytest collects .guppi/tests/ from the root of a project w
 ## History
 
 - 2026-10-15 created · raw/2026-10-15/1959/ledger.md#case-834
+- 2026-10-30 superseded by decision-case-929 · [[decision-case-929]]
+- 2026-10-30 archived · superseded
+- 2026-10-30 archived · cleanup

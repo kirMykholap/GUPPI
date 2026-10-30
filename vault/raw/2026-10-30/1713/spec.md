@@ -47,8 +47,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-harness-make-runs-in-both-shells`
-- [ ] update `rule-lint`
+- [x] update `estimate-harness-make-runs-in-both-shells`
+- [x] update `rule-lint`
 ```
 
 ## Case 928 — The reading of the clean code runs by guppi ship --check --review
@@ -102,8 +102,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-code-holds-pointers-only-in-brackets`
-- [ ] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] update `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
 ```
 
 ## Case 929 — The test command names the folder of the tests of GUPPI
@@ -166,10 +166,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-guppi-config`
-- [ ] `uv run --project .guppi guppi render`: `guppi.toml`
-- [ ] update `rule-guppi-package`
-- [ ] update `estimate-guppi-config-runs-the-test-and-style-commands`
+- [x] update `rule-guppi-config`
+- [x] `uv run --project .guppi guppi render`: `guppi.toml`
+- [x] update `rule-guppi-package`
+- [x] update `estimate-guppi-config-runs-the-test-and-style-commands`
 - [x] `.guppi/tests/test_commands.py`: a test writes a project with no root `pyproject.toml`, a `.guppi/pyproject.toml` with the pytest settings of `.guppi/pyproject.toml` (`testpaths`, the `live` marker, `addopts`) and `.guppi/tests/` with one plain test and one `live` test, runs pytest by `sys.executable -m pytest -q .guppi/tests` in the folder of that project, and asserts one passed and one deselected; a second run, with a root `pyproject.toml` that holds other pytest settings, answers the same.
 - [ ] read `estimate-guppi-config-runs-the-test-and-style-commands`
 ```
@@ -269,17 +269,17 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-page-generation`
-- [ ] update `estimate-generate-writes`
-- [ ] update `rule-case-protocol`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] update `rule-page-generation`
+- [x] update `estimate-generate-writes`
+- [x] update `rule-case-protocol`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
 - [x] `.guppi/guppi/materialize.py`: `drop` joins `ITEM_KEYS["update"]`, and the comment above it names it.
 - [x] `.guppi/guppi/generate.py`: `Generator.update` applies `drop` after `set`, `sections` and `replace` of the item and before `save`; for each name it fails the entry with `generate: <slug>: drop: <name> is not on the page`, or with `generate: <slug>: drop: <name> is required by the schema`, when `check_schema` of `.guppi/guppi/lint.py`, imported with `load_schema`, gives over a copy of the page without the section a finding it does not give over the page; a failure returns before `save`. The module docstring names `drop` beside `replace`.
 - [x] `.guppi/guppi/ratified.py`: the docstring that lists the sub-points of an item names `drop`.
 - [x] `.guppi/tests/test_generate.py`: tests that a `drop` of `How it works` on a Leaf removes the heading and the text and writes History `updated: <change>`; that an item with `drop` alone applies; that a name the page lacks fails the entry and leaves the page as it was; that `drop` of `Purpose` on a rule, of `Render` on a rule with `enforcement: render`, and of `Criterion` on an Estimate each fail the entry; that `drop` of `Render` on a rule with `enforcement: check` applies.
 - [x] `.guppi/tests/test_materialize.py`: `test_item_keys_answers_for_each_kind_as_the_lift_does` holds `drop` among the update keys.
 - [x] `.guppi/tests/test_ratified.py`: a test that `read_tasks` reads a sub-point `drop` with the value `[How it works]` of an update item into the list `["How it works"]`, with no error.
-- [ ] read `estimate-generate-writes`
+- [x] read `estimate-generate-writes`
 ```
 
 ## Case 932 — An existing project sets its own files aside to install GUPPI
@@ -383,9 +383,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-plugin-install`
-- [ ] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
-- [ ] create `estimate-plugin-install-sets-aside-the-files-of-the-project`
+- [x] update `rule-plugin-install`
+- [x] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
+- [x] create `estimate-plugin-install-sets-aside-the-files-of-the-project`
 - [ ] read `estimate-plugin-install-sets-aside-the-files-of-the-project`
 ```
 
@@ -435,8 +435,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-morph`
-- [ ] create `estimate-morph-takes-in-the-set-aside-files`
+- [x] update `rule-morph`
+- [x] create `estimate-morph-takes-in-the-set-aside-files`
 - [ ] read `estimate-morph-takes-in-the-set-aside-files`
 ```
 
@@ -479,7 +479,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
 - [ ] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
 ```
 
@@ -515,7 +515,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plugin-install-runs-no-hook-before-uv-sync`
+- [x] update `estimate-plugin-install-runs-no-hook-before-uv-sync`
 - [ ] read `estimate-plugin-install-runs-no-hook-before-uv-sync`
 ```
 
@@ -560,7 +560,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] update `estimate-morph-sets-up-the-project-at-the-first-hi`
 - [ ] read `estimate-morph-sets-up-the-project-at-the-first-hi`
 ```
 
@@ -615,7 +615,7 @@ defer:
 ```
 
 ```tasks
-- [ ] defer `rule-spec-capture`
+- [x] defer `rule-spec-capture`
 ```
 
 ## Case 935 — The lift carries `drop` and guards the Criterion from it
@@ -668,11 +668,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`
-- [ ] update `estimate-materialize-assembles`
+- [x] update `rule-materialize`
+- [x] update `estimate-materialize-assembles`
 - [x] `.guppi/guppi/materialize.py`: the docstring that lists the fields an entry takes from the `then` block names `drop`, a list of section names carried as written.
 - [x] `.guppi/tests/test_materialize.py`: a test that an `update` item with `drop: [How it works]` gives its entry `drop` equal to `["How it works"]`, and an item without `drop` gives an entry with no `drop`.
-- [ ] read `estimate-materialize-assembles`
+- [x] read `estimate-materialize-assembles`
 ```
 
 ### Case 935.2 — The lift marks a `drop` of the Criterion
@@ -714,9 +714,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-materialize`
-- [ ] update `estimate-materialize-changes-a-named-part-alone`
+- [x] update `rule-materialize`
+- [x] update `estimate-materialize-changes-a-named-part-alone`
 - [x] `.guppi/guppi/materialize.py`: a function `drops_criterion(drop) -> bool`, True when `drop` is a list that holds the name `Criterion`; `lift_criterion` calls it first for an Estimate `update` and, when it is True, appends `criterion` to the entry's `incomplete` and returns before `names_a_part`. The docstrings of `lift_criterion` and of the module, where they list the named parts, name `drop` and the mark.
 - [x] `.guppi/tests/test_materialize.py`: tests that an Estimate `update` with `drop: [Criterion]` and `change` gets `incomplete: [criterion]`, no `sections.Criterion` and no `set`; that one with `drop: [Criterion]` and `set: {status: pending}` gets `incomplete: [criterion]` and no `sections.Criterion`; that one with `drop: [Result]` and `change` gets no `incomplete`, no `sections.Criterion` and no `set`.
-- [ ] read `estimate-materialize-changes-a-named-part-alone`
+- [x] read `estimate-materialize-changes-a-named-part-alone`
 ```

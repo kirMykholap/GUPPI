@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-harness]]"
 purpose: Whether the Makefile that this repository keeps for now runs its targets help, style, test and lint under a POSIX sh from PowerShell as from Git Bash, its target lint runs guppi check alone, and it stops with a message when no sh is found
-method: "uv run --project .guppi pytest .guppi/tests/test_lint.py -k makefile; by hand, after the Work Mode that builds this change: make with the targets help, style, test and lint from PowerShell and from Git Bash on Windows, read against the Criterion"
+method: "uv run --project .guppi pytest .guppi/tests/test_lint.py -k makefile; by hand, after the Work Mode that builds this change: make help, make style, make test and make lint from PowerShell and from Git Bash on Windows, read against the Criterion"
 checked: 2026-10-15
 origin: raw/2026-09-27/1819/ledger.md#case-457
 sprint: migration
@@ -39,3 +39,4 @@ Make runs each recipe under a POSIX `sh`, with stdin read from `/dev/null`, and 
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-15 updated: the Criterion replaced whole — the Makefile stays for now, and its target lint runs guppi check · [[decision-case-820.7]]
 - 2026-10-15 status: pending → passed · raw/2026-10-15/1739/ledger.md#L11
+- 2026-10-30 updated: the method names the targets as make help, make style, make test and make lint, so lint reads no target with · [[decision-case-927]]

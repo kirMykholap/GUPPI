@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi at /pre-spec reads no Decision page, the Decision of a page with deferred_by left unread whether a finding names the page or not
 method: "by hand, after a /pre-spec whose ask-guppi runs on the rendered .claude/agents/ask-guppi.md: the Read and Grep calls of ask-guppi on vault/wiki/decisions/ in its agent transcript read against the Criterion, recorded in the estimate line (the render of case 925.4)"
-checked: 2026-10-14
+checked: 2026-10-30
 origin: raw/2026-10-13/1753/ledger.md#case-800.2
 sprint: plugin
 created: 2026-10-13
@@ -26,7 +26,7 @@ Then:
 
 ## Result
 
-2026-10-14, Work readings of session 0101, the agent transcript of the ask-guppi run of this session's /pre-spec, which ran on .claude/agents/ask-guppi.md as rendered by case 800.2: of its 85 tool calls no Read and no Grep names a path under vault/wiki/decisions/; the 6 Greps over vault/wiki or the repository root match the 6 times the string !**/decisions/** stands in the transcript; the pages with deferred_by that Case 809 changes (rule-page-generation, rule-work-mode, entity-sprint-plugin) had their Decisions left unread
+2026-10-30, Retro of session 1713, the agent transcript of the ask-guppi of /pre-spec (dispatched 19:12:17, event_log.md): no Read and no Grep of it names vault/wiki/decisions/; the Decisions of rule-page-generation (897.3) and rule-plugin-install (911), pages of the plan that carry deferred_by, were left unread
 
 ## History
 
@@ -34,3 +34,4 @@ Then:
 - 2026-10-14 status: pending → passed · raw/2026-10-14/0101/ledger.md#L55
 - 2026-10-15 updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]]
 - 2026-10-30 updated: the Criterion replaced whole — ask-guppi reads no Decision page at /pre-spec (case 925.4) · [[decision-case-925.4]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/1713/ledger.md#L26

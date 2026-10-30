@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "909"
-status: current
+status: archived
 defer: ["[[rule-spec-capture]]"]
+superseded_by: ["[[decision-case-934]]"]
 origin: raw/2026-10-29/1930/ledger.md#case-909
 sprint: plugin
 created: 2026-10-29
@@ -26,3 +27,6 @@ Lets a Spec be approved in the Claude Code CLI, which withholds the approval of 
 ## History
 
 - 2026-10-29 created · raw/2026-10-29/1930/ledger.md#case-909
+- 2026-10-30 superseded by decision-case-934 · [[decision-case-934]]
+- 2026-10-30 archived · superseded
+- 2026-10-30 archived · cleanup

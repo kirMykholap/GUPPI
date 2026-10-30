@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a setting of guppi from being written by hand into the texts that use it, or changed outside a ratified decision
-status: built
+status: draft
 enforcement: render
 implementation_ref: [.guppi/guppi/config.py, .guppi/guppi/commands.py, .guppi/tests/test_config.py, .guppi/tests/test_commands.py]
 governs: guppi.toml
@@ -28,7 +28,7 @@ It also sets how the project tests its code and checks its style: the key `test`
 # guppi settings, rendered from vault/wiki/rules/rule-guppi-config.md
 documentation_lang = "en"
 chat_lang = "ru"
-test = ["uv run --project .guppi pytest -q"]
+test = ["uv run --project .guppi pytest -q .guppi/tests"]
 style = ["uv run --project .guppi ruff check .", "uv run --project .guppi ruff format --check ."]
 <!-- /rule-guppi-config -->
 
@@ -48,3 +48,5 @@ style = ["uv run --project .guppi ruff check .", "uv run --project .guppi ruff f
 - 2026-10-15 updated: the Purpose names the setup Case of rule-morph by its new name · [[decision-case-825]]
 - 2026-10-15 status: draft → built · cascade
 - 2026-10-17 updated: the sprint line of the Purpose moves into the bracket of its pointer · [[decision-case-875]]
+- 2026-10-30 updated: the key test names the folder .guppi/tests, so pytest reads the settings of .guppi/pyproject.toml in any project · [[decision-case-929]]
+- 2026-10-30 status: built → draft · cascade

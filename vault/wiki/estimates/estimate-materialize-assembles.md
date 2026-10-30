@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-materialize]]"
 purpose: One entry per record line of a ledger, its content lifted from the then block of its Case, nothing invented
 method: pytest in .guppi/tests/test_materialize.py against a temp vault; the live reading once by hand
-checked: 2026-09-30
+checked: 2026-10-30
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -18,7 +18,7 @@ When:
 `uv run --project .guppi guppi materialize` lifts the record lines of a unit's `ledger.md` against the `then` blocks of its `spec.md`.
 
 Then:
-`materialize.yaml` holds one entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`, `ref`, `source`, `supersedes`, `tags`, `addresses`, `origin`, `line`, `text`, `decision`; from the `then` item found by its slug — `fields`, `sections`, `replace`, `reword`, `change`, `rename`, `impact`; what the block lacks is `incomplete`, never invented.
+`materialize.yaml` holds one entry per record line, in ledger order: `case`, `kind`, `category` from the slug prefix, `slug`, `ref`, `source`, `supersedes`, `tags`, `addresses`, `origin`, `line`, `text`, `decision`; from the `then` item found by its slug — `fields`, `sections`, `replace`, `reword`, `change`, `rename`, `drop`, `impact`; what the block lacks is `incomplete`, never invented.
 **＋** `reword` is carried as a list of `{old, new}` pairs; a mapping or a scalar under it is `incomplete: [reword]`.
 **＋** An Estimate has its own line and its own entry, the `ref` of the line the Estimate itself; the entry of its `create` keeps `kind`, `purpose`, `method` and `tags` as fields.
 **＋** One decision record per Case: `decision`, `case_text`, `targets`; a sub-case reads a missing `context` and `given` from its parent, never `problem`, `recommend` or `when`, and carries `parent`, the `decision` of its parent.
@@ -31,7 +31,7 @@ Then:
 
 ## Result
 
-2026-09-30, uv run pytest tests/test_materialize.py: 110 passed; by hand, vault/raw/2026-09-30/1306/materialize.yaml: 53 entries, 52 applied, unparsed empty, 21 decision records; the parents 543 and 544 carry children (4 and 11), no targets, case_text context and problem; the sub-case 544.1 carries parent decision-case-544 and case_text context, given, when, then, no problem; the create of estimate-case-build-checks-the-finished-case keeps kind, method, purpose and tags as fields, ref rule-case-build
+2026-10-30, Retro of session 1713, uv run --project .guppi pytest -q .guppi/tests/test_materialize.py: 143 passed; an update item with drop: [How it works] gives its entry drop == ["How it works"], one without drop gives no drop
 
 ## History
 
@@ -86,3 +86,5 @@ Then:
 - 2026-09-30 status: pending → passed · raw/2026-09-30/1736/ledger.md#L27
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-30 updated: the Criterion replaced whole — an entry takes drop from its then item · [[decision-case-935.1]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/1713/ledger.md#L24

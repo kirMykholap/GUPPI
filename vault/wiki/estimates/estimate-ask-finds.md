@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi answers the questions of /pre-spec with one line on what it read, one numbered list of findings under each question and nothing else under it, each finding naming its Case and the page or Cases it bears on, then a list of what it did not check ending with a line per search rule it broke, of its frame or of .claude/rules/search-leaves-out-decisions.md, and a list of the paths of the files it read, and nothing else
 method: "by hand, after a /pre-spec whose ask-guppi runs on the rendered .claude/agents/ask-guppi.md: the answer of ask-guppi in its agent transcript read against the Criterion and the event log, recorded in the estimate line (the render of case 925.4)"
-checked: 2026-10-13
+checked: 2026-10-30
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
 created: 2026-09-09
@@ -32,7 +32,7 @@ The answer opens with one line that names what the agent read: the plan file, or
 
 ## Result
 
-2026-10-13, Work Mode of session 1426, by hand: the first answer of the ask-guppi run at the /pre-spec of session 1426 (event log `16:53:56 6f2e6cde tool Agent: ask-guppi`), on .claude/agents/ask-guppi.md as rendered at commit 279c853 (case 782): it opens with one line on the plan file and the Cases it checked (795–799, no ## Deferred); four numbered lists in the order of the questions (3, 1, 1, 2 findings), each finding names its Case and the page or Cases it bears on; the finding on rule-page-generation, which carries deferred_by, gives the ## Problem of decision-case-793; then a list of what was not checked whose last line names the search rule broken (a Grep of decision-case-616.md) and says no finding rests on it; then the list of files read; ask-guppi.md lists no question of /pre-spec; no summary or list of what holds
+2026-10-30, Retro of session 1713, the first answer of the ask-guppi of /pre-spec in its agent transcript and event_log.md line 2238: it opens with the line that names the plan and Cases 927, 928, 929, 931, 932.1–932.4 and 934; one numbered list under each of the four questions in the order of the skill, "none" under questions 3 and 4; each finding names its Case and the page it bears on; then the list of what it did not check, ending with the line that no search broke a rule of its frame or of search-leaves-out-decisions.md, then the paths it read; the dispatch stands in the event log
 
 ## History
 
@@ -57,3 +57,4 @@ The answer opens with one line that names what the agent read: the plan file, or
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L22
 - 2026-10-15 updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]]
 - 2026-10-30 updated: the Criterion replaced whole — a finding on a page with deferred_by names its Decision by slug, with none of its text (case 925.5) · [[decision-case-925.5]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/1713/ledger.md#L27

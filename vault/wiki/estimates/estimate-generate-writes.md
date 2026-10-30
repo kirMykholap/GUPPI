@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-page-generation]]"
 purpose: What generate writes to a page for each kind of entry of a materialize.yaml, and nothing an entry does not carry
 method: pytest in .guppi/tests/test_generate.py against a temp vault; the live reading once by hand
-checked: 2026-10-17
+checked: 2026-10-30
 origin: raw/2026-09-10/ledger.md#case-32
 sprint: migration
 created: 2026-09-10
@@ -22,6 +22,7 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 **＋** An Estimate page carries `purpose`, `method` and `checked` as fields, in that order after `target`, and `deferred_by` after `checked` once a `defer` marks it; `## Criterion` from `sections`; neither `## Context` nor `## Method` is written.
 **＋** A `create` whose slug is a placeholder (`draft`, no `kind`) fills it: `created` and `deferred_by` kept, History `created over placeholder`; any other existing page is a collision, not a rename.
 **＋** An `update` applies `set` to the frontmatter, `sections` as whole replacements, `replace` inside the body (whitespace collapsed, exactly one occurrence), History `updated: <change>`; an `update` of an Estimate with `sections.Criterion` replaces the section whole.
+**＋** An `update` whose item carries `drop`, a list of section names, removes each section it names from the page, its heading and its text; an item that carries `drop` alone applies.
 **＋** An `update`, `estimate`, `delete` or `defer` whose slug is not under `vault/wiki/` finds the page under `vault/archive/` (`raw/` folders excluded) and edits it there.
 **＋** An `estimate` sets `status`, overwrites `## Result`, writes `checked` — the date the `result` opens with, else the yaml's date — and appends History `status: a → b · <ledger pointer>`.
 **＋** A `delete` sets `archived` with History `deleted`; a `delete` outside the vault is a line on stdout, the entry applied, no page written.
@@ -31,15 +32,17 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 **＋** Every ref field is written as `"[[slug]]"`, a list as `["[[a]]", "[[b]]"]`; a slug without a category prefix stays bare; read through the brackets.
 **＋** A `create` in `insights` applies only with the mark `librarian`; a `delete` of an Insight is refused always.
 **＋** History lines and `log.md` lines carry the date of the run and end with `[[decision-case-N]]` or the ledger pointer; `log.md` is appended after each entry; a tag of `new_tags` lands in `tags.md`, a used and undeclared one goes to stderr.
+**－** A name under `drop` of a section the page does not carry fails the entry alone (`estimate-generate-fails-alone`), with the name on stderr, and nothing of `set`, `sections`, `replace` or `drop` of the item is written to the page.
+**－** A name under `drop` of a section that the schema of the page's category requires of the page fails the entry the same way: `check_schema` of `.guppi/guppi/lint.py`, run over the page with the section and without it, gives a finding without it that it does not give with it.
 **－** A `defer` of a Lesson or a Decision page, by `defers_a_record` of `.guppi/guppi/materialize.py`, whether its page stands or not, changes no page and appends nothing to `vault/wiki/log.md`: the entry fails alone (`estimate-generate-fails-alone`), with `generate: <slug>: a Lesson or a Decision page carries no deferred_by, so no list shows its defer — defer the rule or entity page whose change settles it` on stderr.
 **－** A `defer` of an Estimate or an Insight whose page stands neither under `vault/wiki/<category>/` nor in a folder `<category>` under `vault/archive/` outside a `raw/` folder, by `defer_writes_no_page` of `.guppi/guppi/materialize.py`, which asks `has_page`, writes no page: the entry fails alone (`estimate-generate-fails-alone`), with `generate: <slug>: an Estimate is deferred only with its page — defer the page it would check` on stderr for an Estimate, and `generate: <slug>: a placeholder is written only for a rule or an entity — defer a page that stands` for an Insight.
-**－** No body section is derived from a ref field; a section the entry does not name under `sections` or reach by `replace` is not touched.
-**－** An `update` of an Estimate whose `set` carries `method` drops no section.
+**－** No body section is derived from a ref field; a section the entry does not name under `sections` or `drop`, or reach by `replace`, is not touched.
+**－** The `set` of an `update` of an Estimate that carries `method` removes no section by itself.
 **－** `criterion_block` on an `update` and an entry of kind `remove_criterion` are not applied: a shape the script does not know — the entry fails alone (`estimate-generate-fails-alone`).
 
 ## Result
 
-2026-10-17, Retro of session 2104: uv run --project .guppi guppi test 1748 passed, 6 skipped, 1 deselected, the new tests of test_generate.py among them: a defer of a live Decision page, of one under vault/archive/, of a live Lesson and of a Decision page with no page changes no page, writes no log.md line, prints DEFER_OF_A_RECORD and fails alone while the other entries apply; a defer of a rule, an entity, an Insight and an Estimate that stand marks deferred_by; DEFERRABLE matches the live schema files
+2026-10-30, Retro of session 1713, uv run --project .guppi pytest -q .guppi/tests/test_generate.py: 150 passed, among them the drop tests of case 931 — a drop of How it works removes heading and text with History updated, a drop alone applies, a name the page lacks fails and leaves the page, a drop of Purpose, of Render on a render rule and of Criterion on an Estimate fails as required by the schema, a drop of Render on a check rule applies
 
 ## History
 
@@ -96,3 +99,5 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the Criterion replaced whole — a defer of a Lesson or a Decision page fails alone, whether the page stands or not · [[decision-case-865.1]]
 - 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L42
+- 2026-10-30 updated: the Criterion replaced whole — an update drops a named section, and a section the page lacks or its schema requires fails the entry · [[decision-case-931]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/1713/ledger.md#L23

@@ -17,9 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents work starting without the current sprint and the previous session's handover.
-Both are vault files, both fail the same way — missing file or wrong path — so they are
-one rule rather than two.
+Prevents work starting without the current sprint and the previous session's handover. Both are vault files, both fail the same way — missing file or wrong path — so they are one rule rather than two. Were `orchestration.md` and `ratification.md` imported by `CLAUDE.md` rather than listed here, a session without `/hi` would carry their text too (as set in case 595). Were `case-schema.md` listed, every working session would carry the form of a Case that only `case-guppi` needs, and that agent reads it itself (as set in case 595). Were `glossary.md` in the `@` import of `CLAUDE.md` rather than here, every subagent would load it, and none of them needs it (as set in case 288.1). A category schema on this list would load text that a session needs only when it writes a page of that category, and it is read then. A file left off this list is missing after a compaction too, since `guppi recall` prints back the paths of these lines (as set in case 287). Without `where-to-stop.md` after `orchestration.md`, Plan Mode, which plans with the person the run from the approved Spec to the librarian, would not hold the conditions on which that run stops for the person, and the main agent could promise the person a turn inside it (as set in case 689.1).
 
 ## Render
 
@@ -32,12 +30,6 @@ one rule rather than two.
 @vault/wiki/ratification.md
 @vault/wiki/glossary.md
 <!-- /rule-internal-context -->
-
-## How it works
-
-`orchestration.md` and `ratification.md` are listed in place of `case-schema.md` (since case 595; `case-schema.md` was listed from case 273): they reach a working session here and not through `CLAUDE.md`, so a session without `/hi` carries none of their text, and the form of a Case, `case-schema.md`, reaches only `case-guppi`, which reads it itself. `glossary.md` is listed here and not in the `@` import of `CLAUDE.md`, which every subagent loads and none of them needs (since case 288.1). The category schemas are not listed:
-they are read when a page of their category is written. After a compaction `guppi recall`
-prints the paths of these lines back (case 287). `where-to-stop.md` is listed after `orchestration.md` (since case 689.1): the run from the approved Spec to the librarian stops for the person only on its conditions, and Plan Mode, which plans that run with the person, holds the same list, so the main agent promises no turn of the person inside it.
 
 ## History
 
@@ -58,3 +50,4 @@ prints the paths of these lines back (case 287). `where-to-stop.md` is listed af
 - 2026-10-06 updated: /hi loads where-to-stop.md after orchestration.md (case 689.1) · [[decision-case-689.1]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: each pointer stands in a bracket of its own · [[decision-case-809]]
+- 2026-10-30 updated: ## How it works left the Leaf, its reasons in the Purpose as the failures each line of the list prevents · [[decision-case-942.1]]

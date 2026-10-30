@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-guppi-package]]"
 purpose: Whether /guppi:install runs uv --version before it writes anything and, where it passes, asks nothing about uv, copies every file but .claude/settings.json, builds the Python environment .guppi/.venv/ by uv sync, and copies .claude/settings.json only then, before it sends the person to /hi
-method: "by hand, after the librarian's run of the session that sets this Criterion, with a tag prod-x.y.z in the history of HEAD: in the repository of GUPPI, the agent writes the clean version into a local folder by uv run --project .guppi guppi ship --allow-draft; then, at a stop of Work Mode, the person adds that folder as a catalogue, installs the plugin guppi from it and, in an empty project on the machine with uv, types /guppi:install, reopens Claude Code there and types /hi; the person's answer on the output of the install, the order of its steps, the files of the project and its .guppi/.venv/, read against the Criterion; the copy and the project may be those of the reading of estimate-plugin-install-runs-no-hook-before-uv-sync"
-checked: 2026-10-29
+method: "by hand, at Retro of the session that sets this Criterion, with a tag prod-x.y.z in the history of HEAD: in the repository of GUPPI, the agent writes the clean version into a local folder by uv run --project .guppi guppi ship --allow-draft in Work Mode; then, at a stop of Work Mode, the person adds that folder as a catalogue, installs the plugin guppi from it and, in an empty project on the machine with uv, types /guppi:install, reopens Claude Code there and types /hi; the person's answer on the output of the install, the order of its steps, the files of the project and its .guppi/.venv/, read against the Criterion; the copy and the project may be those of the reading of estimate-plugin-install-runs-no-hook-before-uv-sync"
+checked: 2026-10-30
 origin: raw/2026-10-15/0553/ledger.md#case-819.4
 sprint: plugin
 created: 2026-10-15
@@ -15,7 +15,7 @@ tags: [plugin, harness]
 ## Criterion
 
 When:
-In the repository of GUPPI, the person writes the clean version into a local folder by `uv run --project .guppi guppi ship --allow-draft <folder>`, adds that folder as a catalogue by `/plugin marketplace add <folder>`, installs the plugin by `/plugin install guppi@guppi-marketplace` and types `/guppi:install` in an empty project open in Claude Code, as `rule-plugin-install` sets it.
+In the repository of GUPPI, the agent writes the clean version into a local folder by `uv run --project .guppi guppi ship --allow-draft <folder>`; the person adds that folder as a catalogue by `/plugin marketplace add <folder>`, installs the plugin by `/plugin install guppi@guppi-marketplace` and types `/guppi:install` in an empty project open in Claude Code, as `rule-plugin-install` sets it.
 
 Then:
 Before it writes anything, `/guppi:install` runs `uv --version`.
@@ -26,7 +26,7 @@ Before it writes anything, `/guppi:install` runs `uv --version`.
 
 ## Result
 
-2026-10-29, Work Mode of session 0327, install A, transcript c284601c of C:/tmp/guppi-0327-a: /guppi:install ran uv --version first (uv 0.11.32), asked nothing about uv, copied 467 files, then uv sync --project .guppi EXIT=0, and its last message said to reopen Claude Code and type /hi; .guppi/.venv already stood when uv sync ran: a hook of the copied project made it at 17:59:19, and uv sync at 17:59:21 printed "Checked 9 packages"; at the first /hi the hooks ran (event_log: session-start, hi, tool calls)
+2026-10-30, Retro of session 2005: the person's answer at the stop of Work Mode, "по a1 - проблем не заметил"; transcript 589efbd9 of p1-empty: uv --version first (uv 0.11.32), nothing asked about uv, 467 files copied without .claude/settings.json, uv sync --project .guppi exit 0 "Creating virtual environment at: .guppi\.venv", then .claude/settings.json copied, then the message to reopen Claude Code and type /hi; at the first /hi (transcript 73386ca9) the hooks ran and /sprint-open opened
 
 ## History
 
@@ -44,3 +44,5 @@ Before it writes anything, `/guppi:install` runs `uv --version`.
 - 2026-10-29 status: pending → passed · raw/2026-10-29/0327/ledger.md#L34
 - 2026-10-29 updated: the Criterion replaced whole — the install copies every file but .claude/settings.json before uv sync, and that file after uv sync passes · [[decision-case-912.2]]
 - 2026-10-30 updated: the Criterion replaced whole and the method set — both state that the install starts in the repository of GUPPI · [[decision-case-918.4]]
+- 2026-10-30 updated: the Criterion replaced whole — the agent writes the clean copy; the reading at Retro of the session that sets it · [[decision-case-943.3]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/2005/ledger.md#L50

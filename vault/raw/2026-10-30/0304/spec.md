@@ -295,7 +295,7 @@ update:
 
 ```tasks
 - [x] update `estimate-synthesis-clusters`
-- [ ] read `estimate-synthesis-clusters`
+- [x] read `estimate-synthesis-clusters`
 ```
 
 ### Case 920.5 — The defer of the clean branch ends
@@ -533,7 +533,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [x] create `estimate-orchestration-states-a-subagent-fact-from-its-transcript`
-- [ ] read `estimate-orchestration-states-a-subagent-fact-from-its-transcript`
+- [x] read `estimate-orchestration-states-a-subagent-fact-from-its-transcript`
 - [x] update `insight-orchestration-writes-from-its-own-reading`
 ```
 
@@ -604,7 +604,7 @@ update:
 - [x] create `estimate-case-build-reads-the-readers-of-a-changed-step`
 - [x] update `insight-case-build-changes-a-step-without-reading-its-readers`
 - [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] read `estimate-case-build-reads-the-readers-of-a-changed-step`
 ```
 
 ## Case 925 — A hook keeps ask-guppi from reading a Decision page
@@ -975,5 +975,5 @@ update:
 - [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [x] update `estimate-case-build-reads-the-code-it-states`
 - [x] update `insight-case-build-claims-what-code-does-without-reading-it`
-- [ ] read `estimate-case-build-reads-the-code-it-states`
+- [x] read `estimate-case-build-reads-the-code-it-states`
 ```

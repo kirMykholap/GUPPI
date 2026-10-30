@@ -18,10 +18,6 @@ core: true
 
 Prevents an agent from reading the History of a vault page it did not ask for. Every page ends with `## History`, the record of its changes; it is a third of the text of a rule and a quarter of an Estimate, and an agent that reads it takes old wordings for the current rule (an agent read the order of the `Stop` hooks from the History of `rule-hook-registry`, in session 0051, [[lesson-hooks-matching-hooks-of-one-event-run-in-parallel]]). The page keeps its History, whole in Obsidian; a hook cuts it from a read, and the agent reads it only by asking for its lines. The cut is a hook and not a file under `.claude/rules/`, since such a file is text that the agent may follow (a rule in `.claude/rules/` was weighed and not taken, case 420.1).
 
-## How it works
-
-`uv run --project .guppi guppi pageread` on `PreToolUse` of `Read`. For a file under `vault/wiki/` read with neither `offset` nor `limit`, it finds the line of the page's own `## History` heading by `pages.history_line` — the walk of `split_sections`, so a heading inside a render block does not count — and returns `updatedInput` with `limit` set to the line before it, with no permission decision. `uv run --project .guppi guppi pageread --after` on `PostToolUse` of `Read` adds one line of `additionalContext` after such a call: the History is cut, its first and last line, and a `Read` with `offset` at its first line shows it. A call with its own `offset` or `limit`, a file with no `## History` — `brief.md`, `sprint.md`, `glossary.md`, `log.md`, `case-schema.md` — and a file outside `vault/wiki/` pass unchanged. The page on disk is never changed. The hooks read stdin as UTF-8 and never raise; an error lets the call pass whole.
-
 ## History
 
 - 2026-09-25 created · [[decision-case-420.1]]
@@ -34,3 +30,4 @@ Prevents an agent from reading the History of a vault page it did not ask for. E
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the event of the Purpose moves into the bracket of its pointer · [[decision-case-875]]
 - 2026-10-26 updated: the reason for a hook given without the old doubt, the weighing in the bracket of its case · [[decision-case-881.17]]
+- 2026-10-30 updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/pageread.py · [[decision-case-942.1]]

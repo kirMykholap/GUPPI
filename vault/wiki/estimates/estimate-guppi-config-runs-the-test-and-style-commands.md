@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-guppi-config]]"
 purpose: Whether guppi test and guppi style run the commands that the keys test and style of guppi.toml list, in order and each after a red one, exit non-zero when any is red, and exit 1 with one line when the file or the key is missing; and whether the command of the key test runs the tests of .guppi/tests with the settings of .guppi/pyproject.toml whatever the root of the project holds
 method: "uv run --project .guppi pytest .guppi/tests/test_commands.py; by hand, after the librarian's run that renders guppi.toml with the key test that names .guppi/tests: uv run --project .guppi guppi test and uv run --project .guppi guppi style in this repository, and a Grep for make test and make style over the live rules, entities and Estimates and over .claude/, read against the Criterion"
-checked: 2026-10-15
+checked: 2026-10-30
 origin: raw/2026-10-15/0553/ledger.md#case-820.2
 sprint: plugin
 created: 2026-10-15
@@ -30,10 +30,11 @@ It reads the list of commands of the key `test`, or of the key `style`, from `gu
 
 ## Result
 
-2026-10-15, the /hi of session 1959: `uv run --project .guppi pytest -q .guppi/tests/test_commands.py` 7 passed; guppi.toml holds `test = ["uv run --project .guppi pytest -q"]` and `style` the two ruff commands; `uv run --project .guppi guppi style` exit 0, printing "All checks passed!" and "98 files already formatted"; `uv run --project .guppi guppi test` exit 1 on 1 failed, 1699 passed, 6 skipped; a search for `make test`, `make style` and `make lint` as whole words outside History and Result over the live rules, entities and Estimates and every file of `.claude/`: 0 hits
+2026-10-30, the /hi of session 2005: guppi.toml holds test = ["uv run --project .guppi pytest -q .guppi/tests"] and style the two ruff commands; uv run --project .guppi pytest -q .guppi/tests/test_commands.py 8 passed; uv run --project .guppi guppi style exit 0, "All checks passed!" and "100 files already formatted"; uv run --project .guppi guppi test exit 0, 1814 passed, 6 skipped, 1 deselected, with a pyproject.toml of its own at the root; a search for make test, make style and make lint as whole words outside History and Result: 0 hits in .claude/, and over the live rules, entities and Estimates 2 hits, the method of this Estimate, which names the search, and the method of estimate-harness-make-runs-in-both-shells, the Estimate of the Makefile's own targets that case 927 set, read as no call of the tests by make
 
 ## History
 
 - 2026-10-15 created · [[decision-case-820.2]]
 - 2026-10-15 status: pending → passed · raw/2026-10-15/1959/ledger.md#L3
 - 2026-10-30 updated: the Criterion replaced whole — the key test names .guppi/tests, and its command runs those tests with the settings of .guppi/pyproject.toml whatever the root holds · [[decision-case-929]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/2005/ledger.md#L1

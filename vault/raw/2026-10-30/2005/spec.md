@@ -82,8 +82,8 @@ update:
 - [x] `.guppi/guppi/generate.py`: one new function takes the slugs of the title of a Frontier line, from the text after the item id. It reads the code spans by `CODE_SPAN` in the text before the first ` · ` and trims each one of its backticks and of the spaces inside them. `frontier_marks` calls it, and so does `deferred_pages` of `.guppi/guppi/prespec.py`, which no longer reads a code span after the first ` · `.
 - [x] `.guppi/guppi/prespec.py`: in `check_frontier`, a line closed `[-] … · backlog · defer case N` goes to a new function beside `check_backlog_line`. That function calls `decided_on_its_page` with `by_defer` for each slug that the new function of `generate.py` takes from the title, and for each page of `deferred_pages`, and gives the two findings of the Criterion, each naming the Frontier line, the page and, for a missing mark, `{supersedes:case M}`. The finding that an item is deferred by a Case stays for the source `sprint` alone. The module docstring and the docstring of `check_frontier` say this. Each pointer to a Case in a new docstring or comment stands in a bracket at the end of its sentence, as `test_the_live_code_holds_no_pointer_outside_a_bracket` of `.guppi/tests/test_ship.py` reads the live code.
 - [x] `.guppi/tests/test_prespec.py`: `test_defer_case_n_after_sprint_or_backlog_is_a_finding` keeps the source `sprint` alone. New tests: a backlog line closed `defer case N` whose Case defers the page with the mark of each Case of its `deferred_by` is clean; one whose Case has no `defer` line that names a slug of the title is a finding; one whose `defer` lacks a mark is a finding that names the mark; and `decided_on_its_page` over one set of lines counts a `defer` line as naming the page only with `by_defer`. One more test runs `frontier_marks` and `deferred_pages` over the same lines, one with a code span after the first ` · ` and one with spaces inside its backticks, and asserts that they take the same slugs.
-- [ ] update `estimate-prespec-checks-the-frontier`
-- [ ] read `estimate-prespec-checks-the-frontier`
+- [x] update `estimate-prespec-checks-the-frontier`
+- [x] read `estimate-prespec-checks-the-frontier`
 ```
 
 ### Case 937.2 — The main agent closes a backlog item deferred again by that Case
@@ -131,12 +131,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `rule-skill-hi`
-- [ ] create `estimate-orchestration-closes-a-backlog-item-deferred-again`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-orchestration-closes-a-backlog-item-deferred-again`
+- [x] update `rule-orchestration`
+- [x] update `rule-skill-hi`
+- [x] create `estimate-orchestration-closes-a-backlog-item-deferred-again`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] read `estimate-orchestration-closes-a-backlog-item-deferred-again`
 ```
 
 ### Case 937.3 — The check of a case file asks the same of a Case that defers a backlog item again
@@ -171,8 +171,8 @@ update:
 ```tasks
 - [x] `.guppi/guppi/casecheck.py`: `check_backlog` judges a top-level Case that names the page only on `defer` lines by `decided_on_its_page` with `by_defer`, and gives the same finding for each missing mark. The docstring of the module and of `check_backlog` say this, each pointer to a Case in a bracket at the end of its sentence.
 - [x] `.guppi/tests/test_casecheck.py`: `test_backlog_a_case_naming_the_page_only_in_a_defer_line_is_not_judged` changes. A `defer` of the page without `{supersedes:case M}` gets the finding, and one with the mark of each Case of the page's `deferred_by` gets none.
-- [ ] update `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
-- [ ] read `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
+- [x] update `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
+- [x] read `estimate-case-check-requires-a-backlog-item-decided-on-its-page`
 ```
 
 ## Case 938 — The dispatch names a Case that set the form of a text a check reads
@@ -231,9 +231,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-names-related-cases-in-the-dispatch`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-names-related-cases-in-the-dispatch`
 ```
 
@@ -294,9 +294,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
-- [ ] update `rule-clean-branch`
-- [ ] read `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
+- [x] update `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
+- [x] update `rule-clean-branch`
+- [x] read `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
 ```
 
 ## Case 942 — The Leaf rules lose How it works, its facts in their code
@@ -448,18 +448,18 @@ update:
 - [x] `.guppi/guppi/pageread.py`: its module docstring takes each fact of the `## How it works` of `rule-page-read` that it does not hold, but for a remark on what stood before some Case; each pointer to a Case in a bracket at the end of its sentence.
 - [x] `.guppi/guppi/guard.py`: its module docstring takes each fact of the `## How it works` of `rule-governed-files-hook` that it does not hold, but for a remark on what stood before some Case; each pointer to a Case in a bracket at the end of its sentence.
 - [x] `uv run --project .guppi guppi test`: exit 0, `test_the_live_code_holds_no_pointer_outside_a_bracket` of `.guppi/tests/test_ship.py` among the passed.
-- [ ] update `rule-tests-clock-pinned`
-- [ ] update `rule-spec-write`
-- [ ] update `rule-compact-recall`
-- [ ] update `rule-event-log`
-- [ ] update `rule-retro-commit`
-- [ ] update `rule-raw-archive`
-- [ ] update `rule-git-context`
-- [ ] update `rule-ledger-tail`
-- [ ] update `rule-page-read`
-- [ ] update `rule-governed-files-hook`
-- [ ] update `rule-internal-context`
-- [ ] create `estimate-rules-schema-leaf-carries-no-how-it-works`
+- [x] update `rule-tests-clock-pinned`
+- [x] update `rule-spec-write`
+- [x] update `rule-compact-recall`
+- [x] update `rule-event-log`
+- [x] update `rule-retro-commit`
+- [x] update `rule-raw-archive`
+- [x] update `rule-git-context`
+- [x] update `rule-ledger-tail`
+- [x] update `rule-page-read`
+- [x] update `rule-governed-files-hook`
+- [x] update `rule-internal-context`
+- [x] create `estimate-rules-schema-leaf-carries-no-how-it-works`
 - [ ] read `estimate-rules-schema-leaf-carries-no-how-it-works`
 ```
 
@@ -505,9 +505,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-rules-schema`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
-- [ ] update `estimate-rules-schema-checked`
+- [x] update `rule-rules-schema`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] update `estimate-rules-schema-checked`
 - [ ] read `estimate-rules-schema-checked`
 ```
 
@@ -574,8 +574,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-plugin-install`
-- [ ] update `rule-guppi-package`
+- [x] update `rule-plugin-install`
+- [x] update `rule-guppi-package`
 - [x] `uv run --project .guppi guppi ship --allow-draft <folder>` into a new empty folder outside the repository.
 - [x] The five test projects made outside the repository, the files of each as its method names them, and what each holds recorded.
 - [x] stop: in Work Mode, the person installs the clean copy into the five projects by the steps the agent gives, and answers the question of `estimate-guppi-package-is-ready-after-the-install`.
@@ -618,8 +618,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
-- [ ] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
 ```
 
 ### Case 943.3 — The check of the package after the install names the agent as the one who writes the copy
@@ -654,8 +654,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-package-is-ready-after-the-install`
-- [ ] read `estimate-guppi-package-is-ready-after-the-install`
+- [x] update `estimate-guppi-package-is-ready-after-the-install`
+- [x] read `estimate-guppi-package-is-ready-after-the-install`
 ```
 
 ## Deferred

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a project with GUPPI from depending on files at its root that it does not own, or on a command that runs only in the repository of GUPPI
-status: draft
+status: built
 enforcement: check
 implementation_ref: [.guppi/pyproject.toml, .guppi/tests/test_guppi_package.py]
 parent: "[[rule-harness]]"
@@ -33,3 +33,5 @@ Prevents a project with GUPPI from depending on files at its root that it does n
 - 2026-10-30 defer by decision-case-834 superseded · [[decision-case-929]]
 - 2026-10-30 defer by decision-case-848 superseded · [[decision-case-929]]
 - 2026-10-30 updated: taken up: the test command names .guppi/tests, so pytest finds the tests of GUPPI with no root pyproject.toml; the root pyproject.toml of the repository of GUPPI keeps its pytest settings until the Case that removes it · [[decision-case-929]]
+- 2026-10-30 updated: the install by hand of its reading taken at a stop of Work Mode of session 2005 · [[decision-case-943.1]]
+- 2026-10-30 status: draft → built · cascade

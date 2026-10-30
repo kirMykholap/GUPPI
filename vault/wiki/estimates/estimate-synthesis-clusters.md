@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-synthesis]]"
 method: "by hand, after a librarian's run whose `materialize.yaml` holds at least two lesson entries: the yaml and the report read against the Criterion"
-checked: 2026-10-05
+checked: 2026-10-30
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
 created: 2026-09-10
@@ -29,7 +29,7 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 
 ## Result
 
-2026-10-05, by hand at the /hi of session 1616: raw/2026-10-05/1343/materialize.yaml, brief.md and the report of the librarian run of 1343 (agent a7869c913e9461fdd, transcript f5706873); the yaml holds three lesson entries (L42–L44); the brief names `^(root_cause|deferred_by):` over lessons/ (81 lines) and `^(pattern|deferred_by):` over insights/ (31 lines) and gives one line per lesson, each joined to a live Insight; each join is one update of the Insight with the lesson added to `children` and one update of the lesson (status clustered, insight set), all six entries `librarian: synthesis`; at synthesis the librarian opened three pages, insight-harness-one-rule-implemented-twice-drifts, insight-workflow-case-schema-silent-on-what-the-scripts-accept and insight-case-show-built-case-retyped-by-hand (calls 16–18), and no lesson page; the report names all three with their outcome; its read of the 0311 yaml was a handoff check, outside the synthesis
+2026-10-30, Work readings of session 2005: raw/2026-10-30/1713/materialize.yaml holds 2 lesson entries (L29, L30); brief.md names ^(root_cause|deferred_by): over lessons/ (52 lines) and ^(pattern|deferred_by): over insights/ (12 lines) and gives one line per lesson, each none with why; both lessons stay new and stand under Synthesis, not under Flags; the synthesis added no entry; the librarian (agent a3bfe59073516787c of session 5c343872) opened insight-case-build-sibling-texts-unchecked-before-the-showing and lesson-frontier-sprint-line-closed-by-a-case-that-updates-no-sprint-page, and its report names both with the outcome; it also printed line 4, the root_cause index line, of three lesson pages whose lines the Grep had printed as "[Omitted long matching line]", read here as the output of the Grep, not as an opening
 
 ## History
 
@@ -53,3 +53,4 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 - 2026-10-05 updated: the Criterion replaced whole — a page is named in the report when it is opened to judge a shared cause; a read of only its status, insight, children and tags is not (case 654) · [[decision-case-654]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1616/ledger.md#L5
 - 2026-10-30 updated: the Criterion replaced whole — the flag of a read is named in the repository of GUPPI only; the method names its event · [[decision-case-920.4]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/2005/ledger.md#L52

@@ -171,7 +171,7 @@ update:
 - [x] update `rule-guppi-package`
 - [x] update `estimate-guppi-config-runs-the-test-and-style-commands`
 - [x] `.guppi/tests/test_commands.py`: a test writes a project with no root `pyproject.toml`, a `.guppi/pyproject.toml` with the pytest settings of `.guppi/pyproject.toml` (`testpaths`, the `live` marker, `addopts`) and `.guppi/tests/` with one plain test and one `live` test, runs pytest by `sys.executable -m pytest -q .guppi/tests` in the folder of that project, and asserts one passed and one deselected; a second run, with a root `pyproject.toml` that holds other pytest settings, answers the same.
-- [ ] read `estimate-guppi-config-runs-the-test-and-style-commands`
+- [x] read `estimate-guppi-config-runs-the-test-and-style-commands`
 ```
 
 ## Case 931 — A page update drops a section
@@ -480,7 +480,7 @@ update:
 
 ```tasks
 - [x] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
-- [ ] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
 ```
 
 ### Case 932.4 — The check of the settings file before `uv sync` promises no refusal
@@ -516,7 +516,7 @@ update:
 
 ```tasks
 - [x] update `estimate-plugin-install-runs-no-hook-before-uv-sync`
-- [ ] read `estimate-plugin-install-runs-no-hook-before-uv-sync`
+- [x] read `estimate-plugin-install-runs-no-hook-before-uv-sync`
 ```
 
 ### Case 932.5 — The check of the setup Case counts the setting aside among the changes of the install

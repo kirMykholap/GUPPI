@@ -12104,3 +12104,74 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-30 decisions/decision-case-909 archived · cleanup
 - 2026-10-30 decisions/decision-case-911 archived · cleanup
 - 2026-10-30 decisions/decision-case-897 child decision-case-897.3 archived · cleanup
+- 2026-10-30 estimates/estimate-guppi-config-runs-the-test-and-style-commands status: pending → passed · raw/2026-10-30/2005/ledger.md#L1 · generate
+- 2026-10-30 decisions/decision-case-936 created · raw/2026-10-30/2005/ledger.md#case-936 · generate
+- 2026-10-30 estimates/estimate-search-leaves-out-decisions-refuses-ask-guppi deferred · [[decision-case-936]] · generate
+- 2026-10-30 decisions/decision-case-937 created · raw/2026-10-30/2005/ledger.md#case-937 · generate
+- 2026-10-30 decisions/decision-case-937.1 created · raw/2026-10-30/2005/ledger.md#case-937.1 · generate
+- 2026-10-30 estimates/estimate-prespec-checks-the-frontier updated: the Criterion replaced whole — a backlog item that a Case defers again closes defer case N, checked against the defer lines of that Case and the marks of each Case of the page's deferred_by · [[decision-case-937.1]] · generate
+- 2026-10-30 decisions/decision-case-937.2 created · raw/2026-10-30/2005/ledger.md#case-937.2 · generate
+- 2026-10-30 rules/rule-orchestration updated: the Frontier closer of a backlog item that a Case defers again with a new wording: [-] … · backlog · defer case N · [[decision-case-937.2]] · generate
+- 2026-10-30 rules/rule-skill-hi updated: the closer [-] … · backlog · defer case N for a backlog item that a Case defers again · [[decision-case-937.2]] · generate
+- 2026-10-30 estimates/estimate-orchestration-closes-a-backlog-item-deferred-again created · [[decision-case-937.2]] · generate
+- 2026-10-30 estimates/estimate-orchestration-closes-a-backlog-item-deferred-again status: pending → passed · raw/2026-10-30/2005/ledger.md#L46 · generate
+- 2026-10-30 rules/rule-orchestration estimate estimate-orchestration-closes-a-backlog-item-deferred-again added · [[decision-case-937.2]] · generate
+- 2026-10-30 decisions/decision-case-938 created · raw/2026-10-30/2005/ledger.md#case-938 · generate
+- 2026-10-30 rules/rule-orchestration updated: a Case that sets the form of a text a check reads, or how the check reads it, is related to an item whose Case may write text of that kind · [[decision-case-938]] · generate
+- 2026-10-30 estimates/estimate-orchestration-names-related-cases-in-the-dispatch updated: the Criterion replaced whole — a Case that sets the form of a text a check reads is related to an item whose Case may write text of that kind; purpose and method set anew · [[decision-case-938]] · generate
+- 2026-10-30 decisions/decision-case-939 created · raw/2026-10-30/2005/ledger.md#case-939 · generate
+- 2026-10-30 estimates/estimate-clean-branch-pages-hold-pointers-only-in-brackets updated: the Criterion replaced whole — the reading passes --allow-draft, so no draft page with core: true stops it · [[decision-case-939]] · generate
+- 2026-10-30 decisions/decision-case-940 created · raw/2026-10-30/2005/ledger.md#case-940 · generate
+- 2026-10-30 decisions/decision-case-940 superseded by decision-case-942.1 · [[decision-case-942.1]] · generate
+- 2026-10-30 decisions/decision-case-940 superseded by decision-case-942.2 · [[decision-case-942.2]] · generate
+- 2026-10-30 decisions/decision-case-941 created · raw/2026-10-30/2005/ledger.md#case-941 · generate
+- 2026-10-30 decisions/decision-case-941 superseded by decision-case-943.1 · [[decision-case-943.1]] · generate
+- 2026-10-30 decisions/decision-case-941 superseded by decision-case-943.2 · [[decision-case-943.2]] · generate
+- 2026-10-30 decisions/decision-case-941 superseded by decision-case-943.3 · [[decision-case-943.3]] · generate
+- 2026-10-30 decisions/decision-case-937.3 created · raw/2026-10-30/2005/ledger.md#case-937.3 · generate
+- 2026-10-30 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page updated: the Criterion replaced whole — a Case that names the page of an open backlog line only on defer lines needs the mark of each Case of its deferred_by too; the method is the test alone · [[decision-case-937.3]] · generate
+- 2026-10-30 rules/rule-clean-branch updated: --allow-draft also serves the reading of the pages by --review · [[decision-case-939]] · generate
+- 2026-10-30 decisions/decision-case-942 created · raw/2026-10-30/2005/ledger.md#case-942 · generate
+- 2026-10-30 decisions/decision-case-942.1 created · raw/2026-10-30/2005/ledger.md#case-942.1 · generate
+- 2026-10-30 rules/rule-tests-clock-pinned updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/tests/conftest.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-spec-write updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/ratified.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-compact-recall updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/recall.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-event-log updated: ## How it works left the Leaf, its mechanism in the docstrings of .guppi/guppi/event.py and .guppi/guppi/gate.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-retro-commit updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/gate.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-raw-archive updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/archive.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-git-context updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/gitstate.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-ledger-tail updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/tail.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-page-read updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/pageread.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-governed-files-hook updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/guard.py · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-internal-context updated: ## How it works left the Leaf, its reasons in the Purpose as the failures each line of the list prevents · [[decision-case-942.1]] · generate
+- 2026-10-30 estimates/estimate-rules-schema-leaf-carries-no-how-it-works created · [[decision-case-942.1]] · generate
+- 2026-10-30 rules/rule-rules-schema estimate estimate-rules-schema-leaf-carries-no-how-it-works added · [[decision-case-942.1]] · generate
+- 2026-10-30 decisions/decision-case-942.2 created · raw/2026-10-30/2005/ledger.md#case-942.2 · generate
+- 2026-10-30 rules/rule-rules-schema updated: a Leaf carries no How it works; the section leaves the three examples of a Leaf · [[decision-case-942.2]] · generate
+- 2026-10-30 estimates/estimate-rules-schema-checked updated: the Criterion replaced whole — the description of How it works says a Leaf carries none, and no example of a Leaf carries it · [[decision-case-942.2]] · generate
+- 2026-10-30 decisions/decision-case-943 created · raw/2026-10-30/2005/ledger.md#case-943 · generate
+- 2026-10-30 decisions/decision-case-943.1 created · raw/2026-10-30/2005/ledger.md#case-943.1 · generate
+- 2026-10-30 rules/rule-plugin-install updated: the install by hand of its readings taken at a stop of Work Mode of session 2005 · [[decision-case-943.1]] · generate
+- 2026-10-30 rules/rule-guppi-package updated: the install by hand of its reading taken at a stop of Work Mode of session 2005 · [[decision-case-943.1]] · generate
+- 2026-10-30 decisions/decision-case-943.2 created · raw/2026-10-30/2005/ledger.md#case-943.2 · generate
+- 2026-10-30 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project updated: the Criterion replaced whole — the agent writes the clean copy; the reading at Retro of the session that sets it · [[decision-case-943.2]] · generate
+- 2026-10-30 decisions/decision-case-943.3 created · raw/2026-10-30/2005/ledger.md#case-943.3 · generate
+- 2026-10-30 estimates/estimate-guppi-package-is-ready-after-the-install updated: the Criterion replaced whole — the agent writes the clean copy; the reading at Retro of the session that sets it · [[decision-case-943.3]] · generate
+- 2026-10-30 estimates/estimate-prespec-checks-the-frontier status: pending → passed · raw/2026-10-30/2005/ledger.md#L45 · generate
+- 2026-10-30 estimates/estimate-case-check-requires-a-backlog-item-decided-on-its-page status: pending → passed · raw/2026-10-30/2005/ledger.md#L47 · generate
+- 2026-10-30 estimates/estimate-clean-branch-pages-hold-pointers-only-in-brackets status: pending → passed · raw/2026-10-30/2005/ledger.md#L48 · generate
+- 2026-10-30 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project status: pending → passed · raw/2026-10-30/2005/ledger.md#L49 · generate
+- 2026-10-30 estimates/estimate-guppi-package-is-ready-after-the-install status: pending → passed · raw/2026-10-30/2005/ledger.md#L50 · generate
+- 2026-10-30 estimates/estimate-plugin-install-runs-no-hook-before-uv-sync status: pending → passed · raw/2026-10-30/2005/ledger.md#L51 · generate
+- 2026-10-30 estimates/estimate-synthesis-clusters status: pending → passed · raw/2026-10-30/2005/ledger.md#L52 · generate
+- 2026-10-30 estimates/estimate-orchestration-states-a-subagent-fact-from-its-transcript status: pending → passed · raw/2026-10-30/2005/ledger.md#L53 · generate
+- 2026-10-30 estimates/estimate-case-build-reads-the-readers-of-a-changed-step status: pending → failed · raw/2026-10-30/2005/ledger.md#L54 · generate
+- 2026-10-30 estimates/estimate-case-build-reads-the-code-it-states status: pending → passed · raw/2026-10-30/2005/ledger.md#L55 · generate
+- 2026-10-30 lessons/lesson-plugin-install-steps-named-the-offline-variables-by-reference created · raw/2026-10-30/2005/ledger.md#L56 · generate
+- 2026-10-30 rules/rule-guppi-config status: draft → built · cascade · generate
+- 2026-10-30 rules/rule-guppi-package status: draft → built · cascade · generate
+- 2026-10-30 rules/rule-rules-schema status: built → draft · cascade · generate
+- 2026-10-30 decisions/decision-case-940 archived · superseded · generate
+- 2026-10-30 decisions/decision-case-941 archived · superseded · generate
+- 2026-10-30 decisions/decision-case-940 archived · cleanup
+- 2026-10-30 decisions/decision-case-941 archived · cleanup

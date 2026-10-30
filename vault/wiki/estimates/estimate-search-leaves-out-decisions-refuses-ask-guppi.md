@@ -5,6 +5,7 @@ status: pending
 target: "[[rule-search-leaves-out-decisions]]"
 purpose: Whether the PreToolUse hook grepguard refuses a Read of a Decision page and a Grep inside vault/wiki/decisions/ made by ask-guppi, and leaves the same calls of every other agent unchanged
 method: "uv run --project .guppi pytest .guppi/tests/test_grepguard.py; by hand, after the first /pre-spec that runs once the librarian's run has rendered .claude/settings.json: each Read and each Grep of ask-guppi on vault/wiki/decisions/ in its agent transcript refused, recorded in the estimate line"
+deferred_by: ["[[decision-case-936]]"]
 origin: raw/2026-10-30/0304/ledger.md#case-925.1
 sprint: plugin
 created: 2026-10-30
@@ -26,3 +27,4 @@ The hook refuses the call by `permissionDecision: deny`, with a reason that name
 ## History
 
 - 2026-10-30 created · [[decision-case-925.1]]
+- 2026-10-30 deferred · [[decision-case-936]]

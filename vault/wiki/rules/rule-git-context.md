@@ -34,10 +34,6 @@ Branch: !`uv run --project .guppi guppi gitstate`
 When the line `Branch:` above reads `none: this folder is no git repository`, take this step first, before `/sprint-open` and before the Frontier (as set in case 851.1). Say that GUPPI works only in a git repository, and ask the person whether you run `git init -b main`, which names the first branch `main`. On the person's yes, run `git init -b main` with the Bash tool, say that the repository is made, and tell the person to type `/hi` again. On a no, tell the person to type `/hi` again after `git init -b main`. After either answer, start no `/sprint-open`, write no Frontier, and end the reply.
 <!-- /rule-git-context -->
 
-## How it works
-
-The `Render:` line runs `uv run --project .guppi guppi render --sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line is a Frontier item like the one of the session start (case 115). `uv run --project .guppi guppi gitstate` of `.guppi/guppi/gitstate.py` prints the branch, then `Status:` and the status, or, in a folder that is no git repository, one line that says so, and it exits 0 in each case, since Claude Code stops the whole skill on a `!` command that fails (two git commands stood on these lines until a first `/hi` in an empty project stopped on a git error, as set in case 851). `/hi` runs no `git pull` (from case 528 to case 787 the repository had no remote: `origin` had been the product repository this vault was split from and `migration` had no upstream, so the pull that stood first in this block failed at every session start; since case 787 `origin` is the public repository `GUPPI` on GitHub). The local `main` follows `origin/main` in the opening Case of a sprint, by `git fetch origin` and `git merge --ff-only origin/main` (case 789.1; in the repository of GUPPI a sprint branch takes `main` by the merge Case of `/merge-main`, case 790).
-
 ## History
 
 - 2026-09-09 created · raw/2026-09-09/ledger.md#case-11
@@ -65,3 +61,4 @@ The `Render:` line runs `uv run --project .guppi guppi render --sync` once more 
 - 2026-10-16 status: built → draft · cascade
 - 2026-10-26 updated: the history of the git commands and the merge by /merge-main stand in brackets with their case · [[decision-case-881.1]]
 - 2026-10-29 status: draft → built · cascade
+- 2026-10-30 updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/gitstate.py · [[decision-case-942.1]]

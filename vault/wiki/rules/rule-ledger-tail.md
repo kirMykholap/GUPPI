@@ -30,27 +30,6 @@ reading comes with the next librarian, the fact that it failed comes at once.
 Tail: !`uv run --project .guppi guppi tail`
 <!-- /rule-ledger-tail -->
 
-## How it works
-
-`uv run --project .guppi guppi tail` walks every `ledger.md` under `vault/raw/`: the date-level
-ledger of a date first (the shape before case 103), then the session ledgers
-`raw/<date>/<HHMM>/ledger.md` in folder order, dates ascending. For each it reads
-the `materialize.yaml` beside it and prints every line that
-`materialize.parse_line` reads as a record and whose number is neither in the
-`line` or `folded` of an entry nor under `unparsed`, as
-`<date> L<n>: <the line as in the ledger>` or `<date>/<HHMM> L<n>: <the line>`.
-A ledger without a yaml beside it prints every record line it has; a ledger fully
-covered prints nothing, and with an empty tail the output is empty. Exit 0 always;
-a ledger that cannot be read is a line on stderr and the walk goes on. `hi` is
-never in the tail: it goes to the event log. A line outside the ledger grammar is
-not printed — it is either `unparsed` in the yaml or not a record. The coverage of
-a line is the one function `guppi archive` uses to call a unit done
-([[rule-raw-archive]]), so the two scripts cannot disagree; after the archive the
-walk holds only the sessions not yet done. The Render splices one line into the
-`/hi` skill, between the markers of this page, after `rule-git-context`; the
-Frontier text of [[rule-skill-hi]] makes a `failed` reading or a lesson of the tail
-an item, and a decision line not.
-
 ## History
 
 - 2026-09-10 deferred, placeholder · raw/2026-09-10/ledger.md#case-45
@@ -74,3 +53,4 @@ an item, and a decision line not.
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-30 updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/tail.py · [[decision-case-942.1]]

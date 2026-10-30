@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-rules-schema]]"
 purpose: A Rule page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: "pytest .guppi/tests/test_schemas.py -k rules on the live vault/wiki/rules/schema.yaml — a page in the shape, then one defect at a time; by hand, after a librarian's run: the live vault/wiki/rules/schema.yaml read against the Criterion, and the live reading uv run --project .guppi guppi check, no schema finding on wiki/rules/ but the placeholders"
@@ -24,6 +24,7 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 **＋** A Rule page in the shape with `core: true`, `origin: guppi` and `sprint: guppi` has no `schema` finding.
 **＋** `fields` and `sections` describe each name of these lists, `core` among them, and the descriptions of `origin` and `sprint` name the value `guppi` on a page with `core: true` in the clean version; `description` holds the introduction, Ordering, MOCs and enforcement, Enforcement, the sentence on the edge Rule → Entity, the one on the guard of the agent's own conduct and the one on the Estimates that a shipped page brings along; `examples` holds the example pages.
 **＋** That last sentence says that a shipped page arrives with each of its Estimates that passed in the repository it came from and whose `method` names no target of the `Makefile`, and that the receiving project writes its other Estimates through its own Cases.
+**＋** The description of `## How it works` under `sections` says that the section is for a MOC alone and that a Leaf carries none, and no example of a Leaf under `examples` carries the section.
 
 ## Result
 
@@ -45,3 +46,4 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 - 2026-10-16 updated: the Criterion replaced whole — the description says that a page with core: true comes into a new project with its passed Estimates · [[decision-case-856.3]]
 - 2026-10-17 status: pending → passed · raw/2026-10-16/2104/ledger.md#L1
 - 2026-10-17 updated: the method waits for a librarian's run, with no past moment · [[decision-case-875]]
+- 2026-10-30 updated: the Criterion replaced whole — the description of How it works says a Leaf carries none, and no example of a Leaf carries it · [[decision-case-942.2]]

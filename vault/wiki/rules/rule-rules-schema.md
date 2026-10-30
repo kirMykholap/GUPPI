@@ -2,12 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Rule page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/rules/schema.yaml
 render_mode: full
 parent: "[[rule-page-schemas]]"
-estimates: ["[[estimate-rules-schema-checked]]"]
+estimates: ["[[estimate-rules-schema-checked]]", "[[estimate-rules-schema-leaf-carries-no-how-it-works]]"]
 origin: raw/2026-09-22/0014/ledger.md#case-305.1
 sprint: migration
 created: 2026-09-22
@@ -104,7 +104,7 @@ sections:
   "## Render": |
     required on `render`. The text written into `governs`, wrapped in `<!-- slug -->` markers. This section is the implementation. On a rendering MOC it is the frame, containing the children's markers.
   "## How it works": |
-    optional. MOC only: why the steps are in this order, and what breaks if they are reordered. On a Leaf the promise lives in its Estimates and the mechanism in the docstring of its code, or in its Render; a Leaf that still carries the section keeps it until its next touch, when the section leaves (cases 193, 200.2).
+    optional. MOC only: why the steps are in this order, and what breaks if they are reordered. A Leaf carries none: its promise lives in its Estimates and its mechanism in the docstring of its code, or in its Render (as set in cases 193, 200.2 and 942.2).
   "## History": |
     required. Appended by hook, never by an agent. Always the last section.
 examples:
@@ -172,11 +172,6 @@ examples:
     Both are vault files, both fail the same way — missing file or wrong path — so they are
     one rule rather than two.
 
-    ## How it works
-    `case-schema.md` is listed here (since case 273); the glossary arrives through `@import`
-    in `CLAUDE.md`, the category schemas are read when a page of their category is written,
-    and re-reading either would duplicate context that is already present.
-
     ## Render
     <!-- rule-internal-context -->
     @wiki/sprint.md
@@ -206,10 +201,6 @@ examples:
     anything — exit 2 is a no-op there — so without this guard a decision ratified before the
     workspace resolves would silently land outside the session.
 
-    ## How it works
-    PreToolUse, matched on writes to `ledger.md`. Reads the readiness flag written when the
-    workspace was resolved; exits 2 and blocks the write if it is missing.
-
     ## History
     - 2026-09-08 created · raw/2026-09-08/ledger.md#case-6
     - 2026-09-09 status: draft → built
@@ -231,10 +222,6 @@ examples:
     ## Purpose
     Prevents async calls leaking into the pricing module. Pricing runs inside a synchronous
     transaction; an await there does not fail loudly, it produces a partially applied price.
-
-    ## How it works
-    A lint rule flags `async def` and `await` under `src/pricing/`. Runs in CI, so the
-    violation surfaces at the change that introduces it rather than at the next incident.
 
     ## History
     - 2026-09-12 created · raw/2026-09-12/ledger.md#case-2
@@ -262,3 +249,6 @@ examples:
 - 2026-10-16 status: built → draft · cascade
 - 2026-10-17 status: draft → built · cascade
 - 2026-10-26 updated: the old forms said by what lint accepts, their dates in brackets · [[decision-case-881.19]]
+- 2026-10-30 estimate estimate-rules-schema-leaf-carries-no-how-it-works added · [[decision-case-942.1]]
+- 2026-10-30 updated: a Leaf carries no How it works; the section leaves the three examples of a Leaf · [[decision-case-942.2]]
+- 2026-10-30 status: built → draft · cascade

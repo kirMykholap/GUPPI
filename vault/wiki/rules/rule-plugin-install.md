@@ -65,3 +65,4 @@ Install GUPPI into the project of this session, the folder that Claude Code was 
 - 2026-10-30 updated: taken up: the install sets aside a CLAUDE.md, a file under .claude/, a .gitattributes or a .github/workflows/checks.yml of the project in guppi-set-aside/, the settings file only after uv sync passes, and stops only on a clash elsewhere · [[decision-case-932.1]]
 - 2026-10-30 estimate estimate-plugin-install-sets-aside-the-files-of-the-project added · [[decision-case-932.1]]
 - 2026-10-30 status: built → draft · cascade
+- 2026-10-30 updated: the install by hand of its readings taken at a stop of Work Mode of session 2005 · [[decision-case-943.1]]

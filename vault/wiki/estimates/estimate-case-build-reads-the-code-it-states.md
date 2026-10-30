@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, before it states what a function or a script of the repository does, prints or leaves out, reads whole the function that decides it, each function it calls on the way and the place where its caller takes the input it walks over, takes no name or docstring of a function for a reading of it, names in context the file and each function it read, and keeps out a claim about code it did not read
 method: "by hand, after a /pre-spec of a session whose Cases case-guppi built with .claude/agents/case-guppi.md rendered from a Render of rule-case-build that asks, for a claim about code, for each function called on the way and the place where the caller takes the input: the findings of ask-guppi at that /pre-spec read for a claim of a Case about what code of the repository does that its context does not back by the functions it read — the deciding function, each function it calls on the way and the place where its caller takes the input — the count in the estimate line"
-checked: 2026-10-17
+checked: 2026-10-30
 origin: raw/2026-10-16/2104/ledger.md#case-869
 sprint: plugin
 created: 2026-10-16
@@ -30,7 +30,7 @@ Before it states the claim, `case-guppi` reads whole the function that decides i
 
 ## Result
 
-2026-10-17, Work readings of session 1805: the findings of ask-guppi at the /pre-spec of session 1805, whose Cases 878, 879 and 880 case-guppi built with .claude/agents/case-guppi.md rendered from the Render of rule-case-build (the findings of the first such /pre-spec, of session 0027, stand only in its transcript, which a reading does not open); seven findings, on a contradiction of two sub-cases, pointers in brackets, a term after Case 879, an Estimate left unnamed, a method this session could not take and a check of the librarian's run; 0 claims of a Case about what code of the repository does that its context does not back by the function it read
+2026-10-30, Retro of session 2005: the findings of ask-guppi (agent a974fa00e14da398d) at the /pre-spec of session 2005, whose Cases case-guppi built on the Render of rule-case-build: 8 findings, on a Purpose that describes behaviour, a split of Case 940, a /box edge, a third copy of one judgment, two Criteria that name the person as the writer of the copy, the uses of --allow-draft and two Estimates left unnamed; 0 claims of a Case about what code of the repository does that its context does not back by the functions it read
 
 ## History
 
@@ -39,3 +39,4 @@ Before it states the claim, `case-guppi` reads whole the function that decides i
 - 2026-10-29 updated: the method waits for the first /pre-spec after the Render; the reading at the Retro of a past session is gone · [[decision-case-897.5]]
 - 2026-10-29 updated: method names a kind of moment, not the first /pre-spec under the Render that set this Criterion · [[decision-case-898.2]]
 - 2026-10-30 updated: the Criterion replaced whole — the functions called on the way and the source of the input are read too, and a name or a docstring is no reading · [[decision-case-926]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/2005/ledger.md#L55

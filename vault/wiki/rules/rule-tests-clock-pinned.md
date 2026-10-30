@@ -20,19 +20,6 @@ Prevents a test from passing on the day it is written and failing later because
 the code read the real clock. A test that pins a date goes red a day after it is written when the code reads `datetime.now()` (two lessons of 2026-09-10 and 09-11 went red that way, case 145.1).
 Every `run()` of `.guppi/guppi/` takes `now`; this Rule makes forgetting it fail at once.
 
-## How it works
-
-`.guppi/tests/conftest.py` holds one autouse fixture. Before every test it walks every
-module under `.guppi/guppi/` that carries a `datetime` attribute and replaces it, with
-pytest's `monkeypatch`, by a subclass of `datetime` whose `now(tz=None)` returns
-`2001-01-01 00:00:00 UTC`; `astimezone` gives the same second. A test that calls a
-`run()` without `now`, or code that reads the clock outside `run()`, sees the year
-2001 and fails on the day it is written, not on a later one. The list of modules is
-built by the walk, never by hand. `datetime.strptime`, `fromisoformat` and the
-constructor of the subclass work as before. A test that passes `now` does not
-notice the fixture. `.guppi/tests/test_conftest.py` checks the fixture itself: a `run()`
-without `now` writes a time dated 2001 (case 145.1).
-
 ## History
 
 - 2026-09-14 created · [[decision-case-145.1]]
@@ -44,3 +31,4 @@ without `now` writes a time dated 2001 (case 145.1).
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the dated lessons of the Purpose move into the bracket of their pointer · [[decision-case-875]]
+- 2026-10-30 updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/tests/conftest.py · [[decision-case-942.1]]

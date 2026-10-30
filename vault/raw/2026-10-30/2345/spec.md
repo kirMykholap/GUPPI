@@ -65,10 +65,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-close`
-- [ ] update `rule-documentation`
-- [ ] update `estimate-close-reports-the-run`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-close`
+- [x] update `rule-documentation`
+- [x] update `estimate-close-reports-the-run`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-close-reports-the-run`
 ```
 
@@ -127,9 +127,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-where-to-stop`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/where-to-stop.md`
-- [ ] create `estimate-where-to-stop-writes-each-step-whole`
+- [x] update `rule-where-to-stop`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/where-to-stop.md`
+- [x] create `estimate-where-to-stop-writes-each-step-whole`
 - [ ] read `estimate-where-to-stop-writes-each-step-whole`
 ```
 
@@ -193,8 +193,8 @@ update:
 ```tasks
 - [x] `.guppi/guppi/guard.py`: the module docstring says that Claude Code runs the hook on a call of a subagent too, and that the hook reads no agent, so it refuses an edit of a governed file by a subagent the same way.
 - [x] `.guppi/guppi/ratified.py`: in the paragraph of the module docstring on the removal, after "a parent with a line of its own stays", one clause says that a parent whose own line a mark retires is named by that mark or lies under a Case it names, and leaves by that mark with its sub-cases; `remove_superseded` does not change.
-- [ ] update `estimate-rules-schema-leaf-carries-no-how-it-works`
-- [ ] read `estimate-rules-schema-leaf-carries-no-how-it-works`
+- [x] update `estimate-rules-schema-leaf-carries-no-how-it-works`
+- [x] read `estimate-rules-schema-leaf-carries-no-how-it-works`
 ```
 
 ### Case 946.2 — A shell call of a subagent is checked like any other
@@ -240,10 +240,10 @@ update:
 
 ```tasks
 - [x] `.guppi/guppi/shellwrite.py`: the module docstring drops the sentence that a shell call of a subagent is not checked, and says that Claude Code runs the hooks of `.claude/settings.json` inside a subagent too, so a shell call of a subagent is checked the same way.
-- [ ] update `rule-shell-write-check`
-- [ ] update `rule-documentation`
-- [ ] update `estimate-shell-write-check-repairs-and-reports`
-- [ ] read `estimate-shell-write-check-repairs-and-reports`
+- [x] update `rule-shell-write-check`
+- [x] update `rule-documentation`
+- [x] update `estimate-shell-write-check-repairs-and-reports`
+- [x] read `estimate-shell-write-check-repairs-and-reports`
 ```
 
 ## Case 947 — The pre-Spec check reads the ledger of the conserved Spec for a backlog line it puts off
@@ -300,8 +300,8 @@ update:
 ```tasks
 - [x] `.guppi/guppi/prespec.py`: a new function beside `conserved_blocks` returns the decision records of the `ledger.md` of the folder that `conserved_spec_named` finds for the plan, its lines taken by `TIMED_RECORD` and parsed by `session_decisions`, and none for a plan whose title line names no folder holding `carry.md`. `check_frontier` reads them once, at the first backlog line closed `defer case N`, and passes `check_backlog_defer_line` the window's records with them. The module docstring and the docstrings of `check_frontier` and `check_backlog_defer_line` say this, each pointer to a Case in a bracket at the end of its sentence, as `test_the_live_code_holds_no_pointer_outside_a_bracket` of `.guppi/tests/test_ship.py` reads the live code.
 - [x] `.guppi/tests/test_prespec.py`: new tests, each with a conserved Spec under a temporary folder and a plan whose title line names it. A backlog line closed `defer case 7`, whose Case 7 defers the page in the ledger of the conserved folder with the mark of each Case of the page's `deferred_by`, is clean while the session's window holds no line of Case 7. The same line is a finding that names the mark when that `defer` lacks one. The same line is the finding that no defer line of Case 7 names a page of its title when the folder holds no `carry.md`.
-- [ ] update `estimate-prespec-checks-the-frontier`
-- [ ] read `estimate-prespec-checks-the-frontier`
+- [x] update `estimate-prespec-checks-the-frontier`
+- [x] read `estimate-prespec-checks-the-frontier`
 ```
 
 ## Case 948 — case-guppi reads each text that lists the members of a list it adds to
@@ -360,9 +360,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-reads-each-list-of-a-new-member`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-reads-each-list-of-a-new-member`
 - [ ] read `estimate-case-build-reads-each-list-of-a-new-member`
 ```
 
@@ -402,7 +402,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] update `estimate-case-build-reads-the-readers-of-a-changed-step`
 - [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
 ```
 

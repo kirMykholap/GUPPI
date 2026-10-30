@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents the run from /work to the librarian from stopping where the person is not needed, or going on where only the person can decide
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/where-to-stop.md
 render_mode: full
-estimates: ["[[estimate-where-to-stop-stops-only-on-its-conditions]]"]
+estimates: ["[[estimate-where-to-stop-stops-only-on-its-conditions]]", "[[estimate-where-to-stop-writes-each-step-whole]]"]
 origin: raw/2026-09-29/2024/ledger.md#case-531.7
 sprint: migration
 created: 2026-09-29
@@ -34,7 +34,7 @@ From the approved Spec to the librarian's report the run needs no person: `/box`
 7. The full `uv run --project .guppi guppi test` run of `/work` after its last task finds a failing test that `## Baseline` of `work.md` does not hold, and its fix needs a choice that no ratified Case makes: name the test and its failure, and go on as the person's word says (case 736.3).
 8. The auto mode classifier of Claude Code refuses a tool call that the run needs: give the person the shell command that does what the refused call would do, to type after `!` in the prompt, and go on after the person has run it (case 741).
 
-To stop, end the reply with the question to the person. From the call of `/retro` until `handoff.md` stands, open that reply with `STOP:`, so that the hook of `rule-retro-onward` lets it end. Nothing else is a stop: a red test other than that of the seventh condition, a reading that only the person can take, an observation or a doubt goes on as a lesson or a line of `handoff.md`, as `/retro` says. After the person's answer, the run goes on from where it stopped.
+To stop, end the reply with the question to the person. Where the question asks the person to run commands by hand, write each command whole in each step that runs it, as the person types it, with each variable, folder and flag it needs; a step names no part of its command by a reference to another step, since a new window or terminal keeps none of them (as set in case 945). From the call of `/retro` until `handoff.md` stands, open that reply with `STOP:`, so that the hook of `rule-retro-onward` lets it end. Nothing else is a stop: a red test other than that of the seventh condition, a reading that only the person can take, an observation or a doubt goes on as a lesson or a line of `handoff.md`, as `/retro` says. After the person's answer, the run goes on from where it stopped.
 <!-- /rule-where-to-stop -->
 
 ## History
@@ -55,3 +55,6 @@ To stop, end the reply with the question to the person. From the call of `/retro
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
 - 2026-10-29 updated: condition 6 names the merge tasks of /pr-review and /merge-main only where the project holds the skill (case 897.2) · [[decision-case-897.2]]
+- 2026-10-31 updated: a stop reply writes each command it asks the person to run whole · [[decision-case-945]]
+- 2026-10-31 estimate estimate-where-to-stop-writes-each-step-whole added · [[decision-case-945]]
+- 2026-10-31 status: built → draft · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Rule page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/rules/schema.yaml
 render_mode: full
@@ -252,3 +252,4 @@ examples:
 - 2026-10-30 estimate estimate-rules-schema-leaf-carries-no-how-it-works added · [[decision-case-942.1]]
 - 2026-10-30 updated: a Leaf carries no How it works; the section leaves the three examples of a Leaf · [[decision-case-942.2]]
 - 2026-10-30 status: built → draft · cascade
+- 2026-10-31 status: draft → built · cascade

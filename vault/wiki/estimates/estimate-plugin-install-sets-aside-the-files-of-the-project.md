@@ -5,6 +5,7 @@ status: pending
 target: "[[rule-plugin-install]]"
 purpose: Whether /guppi:install moves each file of the project at a path of the install that is CLAUDE.md, a file under .claude/, .gitattributes or .github/workflows/checks.yml into guppi-set-aside/ with .set-aside added, the settings file only after uv sync passes, lists them in its last message, puts them back when uv sync fails, and stops on a clash at any other path
 method: "by hand, after the librarian's run of the session that sets this Criterion, with a tag prod-x.y.z in the history of HEAD: the clean version written into a local folder by uv run --project .guppi guppi ship --allow-draft, that folder added as a catalogue by /plugin marketplace add and guppi installed from it by /plugin install guppi@guppi-marketplace; in a project that holds a CLAUDE.md, a .claude/settings.json with a hook and a .gitattributes of its own, /guppi:install typed; in a second such project with Claude Code started from a terminal with UV_OFFLINE=1 and UV_CACHE_DIR set to an empty folder, /guppi:install typed; in a third project with a file under vault/ of its own, /guppi:install typed; the transcripts and the files of the three projects before and after read against the Criterion"
+deferred_by: ["[[decision-case-949]]"]
 origin: raw/2026-10-30/1713/ledger.md#case-932.1
 sprint: plugin
 created: 2026-10-30
@@ -28,3 +29,4 @@ Before it copies, the agent moves each file of the project at a path of the inst
 ## History
 
 - 2026-10-30 created · [[decision-case-932.1]]
+- 2026-10-31 deferred · [[decision-case-949]]

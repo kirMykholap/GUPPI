@@ -31,7 +31,7 @@ reads them, the brief reports them.
 
 Do the steps in this order.
 
-1. Run `uv run --project .guppi guppi materialize`. If it exits 1, write the report and stop.
+1. Run `uv run --project .guppi guppi materialize`. If it exits 1, return the report as text, write no `report.md`, and stop (as set in case 944).
 
 <!-- rule-index-check -->
 Index check. Do what `handoff.md` asks first. Then, for each `create` entry in `materialize.yaml` other than an estimate — an Estimate is born with its Leaf and has no index — run the Grep of its category yourself — `^(purpose|deferred_by):` over `vault/wiki/<category>/`, `root_cause` for lessons, `pattern` for insights — and compare the entry's `purpose` (`root_cause` for a lesson) with every index line it returns; name the Grep and the number of lines in the report (case 147.3). Compare meanings, not words. Never compare across categories.
@@ -126,5 +126,5 @@ Archive. Run `uv run --project .guppi guppi archive`. Every line on its stderr i
 run is never moved.
 
 <!-- rule-close -->
-Close. Run `uv run --project .guppi guppi check` and keep its output for the report. Commit the vault with the files the render wrote, by the Bash tool, since the command is written for a POSIX shell: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then return a report: pages created and updated per category, entries marked incomplete or failed, pages archived, the flags you raised, the lint total, and each part that another step of this frame sends to the report. Nothing else: no test result and no list of files (as set in case 913).
+Close. Run `uv run --project .guppi guppi check` and keep its output for the report. Write the report by the `Write` tool into `report.md` in the session's folder, the folder of the `handoff.md` your dispatch names (as set in case 944). The report gives the pages created and updated per category, the entries marked incomplete or failed, the pages archived, the flags you raised, the lint total, and each part that another step of this frame sends to the report. Nothing else: no test result and no list of files (as set in case 913). Commit the vault with the files the render wrote, by the Bash tool, since the command is written for a POSIX shell: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then return the text of `report.md` unchanged as your report, and after it the refusal of any call that came after the file was written (as set in case 944).
 <!-- /rule-close -->

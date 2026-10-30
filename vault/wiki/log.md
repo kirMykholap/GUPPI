@@ -12175,3 +12175,37 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-30 decisions/decision-case-941 archived · superseded · generate
 - 2026-10-30 decisions/decision-case-940 archived · cleanup
 - 2026-10-30 decisions/decision-case-941 archived · cleanup
+- 2026-10-31 estimates/estimate-rules-schema-leaf-carries-no-how-it-works status: pending → failed · raw/2026-10-30/2345/ledger.md#L1 · generate
+- 2026-10-31 estimates/estimate-rules-schema-checked status: pending → passed · raw/2026-10-30/2345/ledger.md#L2 · generate
+- 2026-10-31 estimates/estimate-close-reports-the-run status: pending → passed · raw/2026-10-30/2345/ledger.md#L3 · generate
+- 2026-10-31 decisions/decision-case-944 created · raw/2026-10-30/2345/ledger.md#case-944 · generate
+- 2026-10-31 rules/rule-close updated: the librarian writes its report into report.md of the session folder before its commit and returns that text · [[decision-case-944]] · generate
+- 2026-10-31 estimates/estimate-close-reports-the-run updated: the Criterion replaced whole — the report is written into report.md of the session folder and the agent reads that file · [[decision-case-944]] · generate
+- 2026-10-31 decisions/decision-case-945 created · raw/2026-10-30/2345/ledger.md#case-945 · generate
+- 2026-10-31 rules/rule-where-to-stop updated: a stop reply writes each command it asks the person to run whole · [[decision-case-945]] · generate
+- 2026-10-31 estimates/estimate-where-to-stop-writes-each-step-whole created · [[decision-case-945]] · generate
+- 2026-10-31 rules/rule-where-to-stop estimate estimate-where-to-stop-writes-each-step-whole added · [[decision-case-945]] · generate
+- 2026-10-31 decisions/decision-case-946 created · raw/2026-10-30/2345/ledger.md#case-946 · generate
+- 2026-10-31 decisions/decision-case-946.1 created · raw/2026-10-30/2345/ledger.md#case-946.1 · generate
+- 2026-10-31 estimates/estimate-rules-schema-leaf-carries-no-how-it-works updated: the Criterion replaced whole — a fact the code does not bear out stands corrected in the docstring · [[decision-case-946.1]] · generate
+- 2026-10-31 decisions/decision-case-946.2 created · raw/2026-10-30/2345/ledger.md#case-946.2 · generate
+- 2026-10-31 rules/rule-shell-write-check updated: a shell call of a subagent is checked, since Claude Code runs the project's hooks inside a subagent · [[decision-case-946.2]] · generate
+- 2026-10-31 rules/rule-documentation updated: How it works drops the false reason that a subagent does not get the project's hooks · [[decision-case-946.2]] · generate
+- 2026-10-31 estimates/estimate-shell-write-check-repairs-and-reports updated: the Criterion replaced whole — the line that a shell call of a subagent is not checked removed · [[decision-case-946.2]] · generate
+- 2026-10-31 decisions/decision-case-947 created · raw/2026-10-30/2345/ledger.md#case-947 · generate
+- 2026-10-31 estimates/estimate-prespec-checks-the-frontier updated: the Criterion replaced whole — a backlog line closed defer case N by a Case of the conserved Spec is judged against the ledger of that Spec's folder too · [[decision-case-947]] · generate
+- 2026-10-31 decisions/decision-case-948 created · raw/2026-10-30/2345/ledger.md#case-948 · generate
+- 2026-10-31 decisions/decision-case-948.1 created · raw/2026-10-30/2345/ledger.md#case-948.1 · generate
+- 2026-10-31 rules/rule-case-build updated: case-guppi searches for a member already in a list its Case adds to, and reads each text that lists the members · [[decision-case-948.1]] · generate
+- 2026-10-31 estimates/estimate-case-build-reads-each-list-of-a-new-member created · [[decision-case-948.1]] · generate
+- 2026-10-31 rules/rule-case-build estimate estimate-case-build-reads-each-list-of-a-new-member added · [[decision-case-948.1]] · generate
+- 2026-10-31 decisions/decision-case-948.2 created · raw/2026-10-30/2345/ledger.md#case-948.2 · generate
+- 2026-10-31 estimates/estimate-case-build-reads-the-readers-of-a-changed-step updated: pending again after the failed reading of session 2005, the Criterion written back unchanged; the method waits for the /pre-spec of the first session on the Render with the sentence on a new member of a list · [[decision-case-948.2]] · generate
+- 2026-10-31 decisions/decision-case-949 created · raw/2026-10-30/2345/ledger.md#case-949 · generate
+- 2026-10-31 estimates/estimate-plugin-install-sets-aside-the-files-of-the-project deferred · [[decision-case-949]] · generate
+- 2026-10-31 rules/rule-documentation updated: a run that stops at step 1 returns its report as text and writes no report.md · [[decision-case-944]] · generate
+- 2026-10-31 estimates/estimate-rules-schema-leaf-carries-no-how-it-works status: pending → passed · raw/2026-10-30/2345/ledger.md#L18 · generate
+- 2026-10-31 estimates/estimate-shell-write-check-repairs-and-reports status: pending → passed · raw/2026-10-30/2345/ledger.md#L19 · generate
+- 2026-10-31 estimates/estimate-prespec-checks-the-frontier status: pending → passed · raw/2026-10-30/2345/ledger.md#L20 · generate
+- 2026-10-31 rules/rule-rules-schema status: draft → built · cascade · generate
+- 2026-10-31 rules/rule-where-to-stop status: built → draft · cascade · generate

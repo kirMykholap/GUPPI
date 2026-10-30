@@ -5,6 +5,7 @@ status: passed
 target: "[[rule-shell-write-check]]"
 purpose: Whether the hook after a Bash or PowerShell call turns CRLF into LF and removes a UTF-8 byte-order mark in each changed or new file of the repository and names each file it repaired, and names without a change a file in UTF-16 or not valid UTF-8
 method: uv run --project .guppi pytest .guppi/tests/test_shellwrite.py
+checked: 2026-10-31
 origin: raw/2026-10-07/0636/ledger.md#case-710.1
 sprint: migration
 created: 2026-10-07
@@ -25,11 +26,10 @@ In each such file the hook turns every CRLF line ending into LF, and removes a U
 **－** A file outside the repository, a file that `git` ignores, and a file with a NUL byte and no UTF-16 mark are neither read for a fault nor changed.
 **－** A call that leaves no faulty file adds nothing to the context.
 **－** A payload the hook cannot read, or a `git` call that fails, gives exit 0 and one line on stderr; the hook never raises.
-**－** A shell call of a subagent is not checked, since a subagent does not inherit the hooks of `.claude/settings.json`.
 
 ## Result
 
-2026-10-07, Retro of session 0636, uv run pytest tests/test_shellwrite.py; 12 passed; the registration on PostToolUse with the matcher Bash|PowerShell stands in the replace pair of rule-hook-registry in the Spec, and .claude/settings.json follows at the librarian's render
+2026-10-31, Retro of session 2345, on the Criterion of Case 946.2: uv run --project .guppi pytest .guppi/tests/test_shellwrite.py 12 passed; .claude/settings.json registers uv run --project .guppi guppi shellwrite on PostToolUse with the matcher Bash|PowerShell; the docstring of .guppi/guppi/shellwrite.py no longer says that a shell call of a subagent is not checked
 
 ## History
 
@@ -39,3 +39,5 @@ In each such file the hook turns every CRLF line ending into LF, and removes a U
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-31 updated: the Criterion replaced whole — the line that a shell call of a subagent is not checked removed · [[decision-case-946.2]]
+- 2026-10-31 status: pending → passed · raw/2026-10-30/2345/ledger.md#L19

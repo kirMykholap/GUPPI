@@ -59,7 +59,7 @@ reads them, the brief reports them.
 
 Do the steps in this order.
 
-1. Run `uv run --project .guppi guppi materialize`. If it exits 1, write the report and stop.
+1. Run `uv run --project .guppi guppi materialize`. If it exits 1, return the report as text, write no `report.md`, and stop (as set in case 944).
 
 <!-- rule-index-check -->
 
@@ -96,8 +96,7 @@ brief, so the brief sees the final graph and the lint output. The render runs af
 cleanup, since cleanup is the last step that changes which pages are live and where
 they lie, and the close commits the pages together with the files they render into,
 apart from the session's own commit (case 89). The agent's own `PostToolUse`
-hook writes its commands to the event log, since a subagent does not inherit the
-project's hooks; the hook is part of this Render and is ratified with it.
+hook writes its commands to the event log; the hook is part of this Render and is ratified with it.
 
 ## History
 
@@ -159,3 +158,5 @@ project's hooks; the hook is part of this Render and is ratified with it.
 - 2026-10-17 updated: the Render no longer names the Makefile, which the clean version does not hold · [[decision-case-875]]
 - 2026-10-29 defer by decision-case-839 superseded · [[decision-case-897.3]]
 - 2026-10-29 updated: the merge exception covers any merge of main into a branch, with no skill named; the put-off on the commit of the rendered files taken up and closed, since the close commits each file the render writes (case 897.3) · [[decision-case-897.3]]
+- 2026-10-31 updated: How it works drops the false reason that a subagent does not get the project's hooks · [[decision-case-946.2]]
+- 2026-10-31 updated: a run that stops at step 1 returns its report as text and writes no report.md · [[decision-case-944]]

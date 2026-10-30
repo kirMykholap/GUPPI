@@ -460,7 +460,7 @@ update:
 - [x] update `rule-governed-files-hook`
 - [x] update `rule-internal-context`
 - [x] create `estimate-rules-schema-leaf-carries-no-how-it-works`
-- [ ] read `estimate-rules-schema-leaf-carries-no-how-it-works`
+- [x] read `estimate-rules-schema-leaf-carries-no-how-it-works`
 ```
 
 ### Case 942.2 — The rule schema says a Leaf carries no How it works
@@ -508,7 +508,7 @@ update:
 - [x] update `rule-rules-schema`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
 - [x] update `estimate-rules-schema-checked`
-- [ ] read `estimate-rules-schema-checked`
+- [x] read `estimate-rules-schema-checked`
 ```
 
 ## Case 943 — Work Mode stops for the install by hand into five projects, and the agent writes the copy in two checks

@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-clean-branch]]"
 purpose: Whether the code, the tests and the root files of this repository hold each pointer to a case, a decision or a session in a bracket of its own, and no case number without the word case before it, so that guppi ship --check prints no line on them and no bracket it removes from them holds a word the sentence needs
 method: "by hand, at Retro: the lines of uv run --project .guppi guppi ship --check over the working tree, and of uv run --project .guppi guppi ship --review into an empty temporary folder, on .guppi/guppi/, .guppi/tests/, Makefile, pyproject.toml and .gitattributes, read against the Criterion"
-checked: 2026-10-28
+checked: 2026-10-30
 origin: raw/2026-10-13/2118/ledger.md#case-807.3
 sprint: plugin
 created: 2026-10-13
@@ -26,7 +26,7 @@ Then:
 
 ## Result
 
-2026-10-28, Retro: uv run --project .guppi guppi ship --check printed 0 lines; uv run --project .guppi guppi ship --review --allow-draft into an empty temporary folder printed 67 lines on .guppi/guppi/ and .guppi/tests/ and none on Makefile, pyproject.toml or .gitattributes, each a bracket of pointers and the words that go with them (what a pointer sets, a measurement date, a session); in test_casecheck.py the docstring of built_again_sibling and the comment after plan_with(working, PLANNED_5) name the sibling Case with no number; the rewording changed only that comment and that docstring, and uv run --project .guppi guppi test gives 1790 passed, 6 skipped, 1 deselected, no failing test
+2026-10-30, Retro of session 0304, uv run --project .guppi guppi ship --check, guppi ship --review into an empty scratchpad folder, .guppi/tests/test_casecheck.py and guppi test: --check exit 0 with no line; --review without --allow-draft printed only the 9 lines of the draft pages with core: true, exit 1, and wrote nothing, so it was run with --allow-draft, exit 0, 297 lines, 70 of them on .guppi/guppi/ and .guppi/tests/, each a bracket of pointers with their words (the shape before a case, measured on a date or in a session, an Estimate slug), none on Makefile, pyproject.toml or .gitattributes; the docstring of built_again_sibling names the sibling Case and the comment after plan_with(working, PLANNED_5) at line 2828 names the plan's sibling Case, with no number; guppi test 1803 passed, 6 skipped, 1 deselected, no failing test
 
 ## History
 
@@ -40,3 +40,5 @@ Then:
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
 - 2026-10-28 updated: the Criterion replaced whole — the tests under .guppi/tests/ hold pointers only in brackets too · [[decision-case-892]]
 - 2026-10-28 status: pending → passed · raw/2026-10-28/1907/ledger.md#L15
+- 2026-10-30 updated: pending again: guppi ship --check printed a line on .guppi/tests/test_render.py; the Criterion stands · [[decision-case-919.1]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/0304/ledger.md#L33

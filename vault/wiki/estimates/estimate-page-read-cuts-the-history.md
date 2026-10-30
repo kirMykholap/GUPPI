@@ -4,8 +4,8 @@ kind: QA
 status: passed
 target: "[[rule-page-read]]"
 purpose: A Read of a vault page returns its frontmatter and body, and its History only when asked for
-method: uv run --project .guppi pytest .guppi/tests/test_pageread.py, then by hand a Read of a vault page in the main agent and in a subagent after the render
-checked: 2026-09-25
+method: uv run --project .guppi pytest .guppi/tests/test_pageread.py, then by hand in Work Mode a Read of a vault page in the main agent and in a subagent, recorded in the estimate line
+checked: 2026-10-30
 origin: raw/2026-09-25/1228/ledger.md#case-420.1
 sprint: migration
 created: 2026-09-25
@@ -24,10 +24,11 @@ When the call carries neither `offset` nor `limit` and the file holds its own `#
 **＋** An `Edit` of the page after the cut read works as after a whole read.
 **－** A call with its own `offset` or `limit`, a file with no `## History`, and a file outside `vault/wiki/` are not changed, and no line is added.
 **－** The page on disk is not changed: in Obsidian it shows whole.
+**－** A `Read` that another hook on `PreToolUse` of `Read` refuses does not run, and the agent gets no text of the page: `estimate-search-leaves-out-decisions-refuses-ask-guppi` reads that refusal.
 
 ## Result
 
-2026-09-25, uv run pytest tests/test_pageread.py: 10 passed; by hand, a Read of vault/wiki/rules/rule-context-size.md with no offset in the main agent and in a subagent (Explore): both got lines 1–24, no `## History` line, and the line `pageread: the History of rules/rule-context-size.md is cut, lines 25–34; a Read with offset 25 shows how the page changed (rule-page-read)`
+2026-10-30, Work Mode and Retro of session 0304, uv run --project .guppi pytest .guppi/tests/test_pageread.py and a Read of vault/wiki/rules/rule-page-read.md with no offset or limit: tests passed; in the main agent and in a general-purpose subagent the Read stopped at line 24, held no ## History line, and brought the additionalContext "pageread: the History of rules/rule-page-read.md is cut, lines 25–36; a Read with offset 25 shows how the page changed (rule-page-read).", in the subagent read in its transcript
 
 ## History
 
@@ -37,3 +38,5 @@ When the call carries neither `offset` nor `limit` and the file holds its own `#
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-30 updated: the Criterion replaced whole — a Read that another hook refuses is outside the promise (case 925.6) · [[decision-case-925.6]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/0304/ledger.md#L39

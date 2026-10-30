@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: ask-guppi, at /pre-spec, reads the text of a Decision page under vault/wiki/decisions/ for a reason its frame does not name, before any finding names the page that points to it, and nothing but the agent's own judgment stops that read, since the hook leaves a Grep or Read whose path lies under vault/wiki/decisions/ unchanged
-status: open
+status: actioned
 children: ["[[lesson-ask-guppi-read-a-decision-page-without-a-reason]]", "[[lesson-prespec-ask-guppi-opened-a-decision-outside-its-frame]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-925.1]]"
 origin: raw/2026-10-28/1907/ledger.md#L22
 sprint: plugin
 created: 2026-10-28
@@ -21,3 +22,4 @@ A Case could have the hook of case 664.1, for ask-guppi alone, refuse a Read or 
 ## History
 
 - 2026-10-28 created · raw/2026-10-28/1907/ledger.md#L22
+- 2026-10-30 updated: actioned: a hook refuses every Decision read of ask-guppi (case 925.1) · [[decision-case-925.1]]

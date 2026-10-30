@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-ratification]]"
 purpose: Whether every reader of a Case id takes an id that carries its sprint and a plain id alike, and guppi caseid --next --session <stamp> prints and holds the next id of the open sprint, which the main agent runs only for the id of a new top-level Case and never to check an id, and prints no id without --session or without the plan file of the session
 method: "uv run --project .guppi pytest .guppi/tests/test_caseid.py; by hand: the Render of rule-orchestration in vault/wiki/orchestration.md and the Render of rule-ratification in vault/wiki/ratification.md read against the Criterion"
-checked: 2026-10-17
+checked: 2026-10-30
 origin: raw/2026-10-12/2349/ledger.md#case-788.2
 sprint: plugin
 created: 2026-10-12
@@ -23,6 +23,7 @@ Then:
 A Case id of a sprint that `PLAIN_SPRINTS` of `.guppi/guppi/caseid.py` does not list is the sprint id, a hyphen and the number of the Case in that sprint, from 1, with a dot for each sub-case level, such as `kir-plugin-12.1`, and its Case file is `case-<id>.md` of its top-level Case (sprint ids came in with case 788.2).
 **＋** The readers read a Case id through `.guppi/guppi/caseid.py`, which takes both forms and reads the sprint id as the text before the last hyphen ahead of the number.
 **＋** The sprints that `PLAIN_SPRINTS`, a fixed list in `.guppi/guppi/caseid.py`, names keep plain ids to their close (the sprints of that list opened before case 788.2).
+**＋** In the repository of GUPPI, that list names the sprints opened before sprint ids came in.
 **＋** The main agent creates the plan file of its session with its title line before its first run of the command.
 **＋** `uv run --project .guppi guppi caseid --next --session <stamp>` takes the open sprint from the `create` decision line of a sprint page in `raw/<date>/<hi HHMM>/ledger.md` of the session of that stamp, else from the first heading of `vault/wiki/sprint.md`, and prints the next id of that sprint.
 **＋** It holds the id it prints in `<plan>.checked.json` of the plan file of that session, under that id, with no `agent_id` and no text, so that the next run prints the id after it.
@@ -34,7 +35,7 @@ A Case id of a sprint that `PLAIN_SPRINTS` of `.guppi/guppi/caseid.py` does not 
 
 ## Result
 
-2026-10-17, Retro of session 1805: uv run --project .guppi pytest .guppi/tests/test_caseid.py 23 passed; vault/wiki/ratification.md names the sprints of PLAIN_SPRINTS as keeping plain ids and caseid --next --session as printing and holding the next id; vault/wiki/orchestration.md has the plan file created before the first run, the command run once per new top-level Case and never to check an id, and the opening Case of a sprint with the id /sprint-open sets
+2026-10-30, Retro of session 0304, uv run --project .guppi pytest .guppi/tests/test_caseid.py, vault/wiki/orchestration.md and vault/wiki/ratification.md read against the Criterion of case 922: tests passed; ratification.md gives the sprint id form, PLAIN_SPRINTS keeping plain ids to their close with, in the repository of GUPPI, the sprints migration and plugin, every reader taking both forms, no id renamed, and caseid --next printing no id without --session or the plan file; orchestration.md has the plan file created first, the command run only for the id of a new top-level Case, once each, and the opening Case's id set by /sprint-open
 
 ## History
 
@@ -53,3 +54,5 @@ A Case id of a sprint that `PLAIN_SPRINTS` of `.guppi/guppi/caseid.py` does not 
 - 2026-10-17 updated: the method reads the Renders where they live, with no past moment · [[decision-case-875]]
 - 2026-10-17 updated: the Criterion replaced whole — the sprints with plain ids named by the fixed list PLAIN_SPRINTS, not as migration and plugin, the pointers kept in brackets · [[decision-case-880.15]]
 - 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L72
+- 2026-10-30 updated: the Criterion replaced whole — a sentence states that, in the repository of GUPPI, PLAIN_SPRINTS names the sprints opened before sprint ids came in · [[decision-case-922]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/0304/ledger.md#L37

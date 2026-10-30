@@ -41,7 +41,7 @@
 { "matcher": "PowerShell",
   "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi powershellguard", "timeout": 30 } ] },
 { "matcher": "Read",
-  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi pageread", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi pageread", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi grepguard", "timeout": 30 } ] },
 { "matcher": "Grep",
   "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi grepguard", "timeout": 30 } ] }
 

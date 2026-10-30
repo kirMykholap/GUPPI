@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: case-guppi changes what a step or a line does from the one step in front of it and does not read the other steps that read or repeat what it changes — the next step of the Render, the other skill that does the same step, the new path its own Case adds — so the change holds for the step it looked at only and /pre-spec finds the rest after the person ratified the Case
-status: open
+status: actioned
 children: ["[[lesson-case-build-claims-a-page-stands-without-reading-the-path-it-changes]]", "[[lesson-case-build-changes-a-step-without-reading-what-reads-it]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-924]]"
 origin: raw/2026-10-29/1930/ledger.md#L26
 sprint: plugin
 created: 2026-10-29
@@ -21,3 +22,4 @@ A suggestion: when a Case changes what a step writes, copies or shows, case-gupp
 ## History
 
 - 2026-10-29 created · raw/2026-10-29/1930/ledger.md#L26
+- 2026-10-30 updated: actioned: case-guppi reads the steps that read or repeat a step its Case changes · [[decision-case-924]]

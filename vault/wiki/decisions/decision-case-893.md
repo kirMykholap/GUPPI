@@ -2,7 +2,7 @@
 type: decision
 case: "893"
 status: current
-children: ["[[decision-case-893.1]]", "[[decision-case-893.2]]"]
+children: ["[[decision-case-893.2]]"]
 origin: raw/2026-10-28/1907/ledger.md#case-893
 sprint: plugin
 created: 2026-10-28
@@ -31,3 +31,4 @@ The clean copy says that the event log is gitignored but ships no file that igno
 ## History
 
 - 2026-10-28 created · raw/2026-10-28/1907/ledger.md#case-893
+- 2026-10-30 child decision-case-893.1 archived · cleanup

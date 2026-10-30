@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-synthesis]]"
-method: one reading by hand of the yaml and the report after a live librarian run whose yaml holds at least two lesson entries
+method: "by hand, after a librarian's run whose `materialize.yaml` holds at least two lesson entries: the yaml and the report read against the Criterion"
 checked: 2026-10-05
 origin: raw/2026-09-10/ledger.md#case-35.2
 sprint: migration
@@ -25,7 +25,7 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 **＋** Every page the librarian opens at synthesis to judge whether a lesson shares its root cause is named in the report with the outcome: the Insight it joined, or none and why. A read of its Trigger, Root cause, `root_cause`, Pattern or `pattern` outside the two Greps is such an opening.
 **＋** A lesson without a pair stays `new`, and its line in the brief is no flag.
 **－** A read at synthesis of only the fields `status`, `insight`, `children` and `tags` of a page under `vault/wiki/lessons/` or `vault/wiki/insights/`, made to learn which lessons are grouped or which lessons an Insight holds, is not named in the report and fails nothing here.
-**－** A read of another session's `materialize.yaml` or of a page under `vault/archive/` fails nothing here: an actioned Insight stays live with its pattern in its index line until the close of its sprint, and the flag of such a read is the promise of `estimate-documentation-completes`.
+**－** A read of another session's `materialize.yaml` or of a page under `vault/archive/` fails nothing here: an actioned Insight stays live with its pattern in its index line until the close of its sprint, and, in the repository of GUPPI, the flag of such a read is the promise of `estimate-documentation-completes`.
 
 ## Result
 
@@ -52,3 +52,4 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 - 2026-10-05 status: pending → failed · raw/2026-10-05/0311/ledger.md#L1
 - 2026-10-05 updated: the Criterion replaced whole — a page is named in the report when it is opened to judge a shared cause; a read of only its status, insight, children and tags is not (case 654) · [[decision-case-654]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1616/ledger.md#L5
+- 2026-10-30 updated: the Criterion replaced whole — the flag of a read is named in the repository of GUPPI only; the method names its event · [[decision-case-920.4]]

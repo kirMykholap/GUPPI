@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: the main agent writes a fact or a line that a source of record holds — a ratification line of a case-guppi summary, the tool calls of a transcript — from its own reading or impression instead of copying it from that source or reading it there first, so what it writes can differ from the source
-status: open
+status: actioned
 children: ["[[lesson-orchestration-claimed-a-reading-before-taking-it]]", "[[lesson-orchestration-retyped-a-ratification-line]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-923]]"
 origin: raw/2026-10-29/0327/ledger.md#L45
 sprint: plugin
 created: 2026-10-29
@@ -21,3 +22,4 @@ A suggestion, not a decision — rule-orchestration could say that a ratificatio
 ## History
 
 - 2026-10-29 created · raw/2026-10-29/0327/ledger.md#L45
+- 2026-10-30 updated: actioned: the main agent states what a subagent did only after it reads the fact in its transcript, in rule-orchestration; the ratification lines of a showing were already copied from the summary and checked by rule-case-check (case 923) · [[decision-case-923]]

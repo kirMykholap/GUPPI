@@ -1,11 +1,12 @@
 ---
 type: decision
 case: "893.1"
-status: current
+status: archived
 parent: "[[decision-case-893]]"
 update: ["[[rule-clean-branch]]", "[[estimate-clean-branch-writes-a-clean-copy]]"]
 defer: ["[[rule-clean-branch]]"]
 supersedes: ["[[decision-case-882.3]]"]
+superseded_by: ["[[decision-case-920.5]]"]
 origin: raw/2026-10-28/1907/ledger.md#case-893.1
 sprint: plugin
 created: 2026-10-28
@@ -21,3 +22,6 @@ The rest of the rewrite of the sentences inside the Criterion of shipped Estimat
 ## History
 
 - 2026-10-28 created · raw/2026-10-28/1907/ledger.md#case-893.1
+- 2026-10-30 superseded by decision-case-920.5 · [[decision-case-920.5]]
+- 2026-10-30 archived · superseded
+- 2026-10-30 archived · cleanup

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: The main agent wrote the ratification lines of the showing from its own reading of the defers instead of copying them from the summary of case-guppi.
-status: clustered
+status: archived
 insight: "[[insight-orchestration-writes-from-its-own-reading]]"
 origin: raw/2026-10-29/0327/ledger.md#L45
 sprint: plugin
@@ -22,3 +22,5 @@ The main agent wrote the ratification lines of the showing from its own reading 
 
 - 2026-10-29 created · raw/2026-10-29/0327/ledger.md#L45
 - 2026-10-29 updated: clustered under insight-orchestration-writes-from-its-own-reading (synthesis) · raw/2026-10-29/0327/ledger.md#L45
+- 2026-10-30 archived · insight actioned
+- 2026-10-30 archived · cleanup

@@ -53,7 +53,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
 { "matcher": "PowerShell",
   "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi powershellguard", "timeout": 30 } ] },
 { "matcher": "Read",
-  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi pageread", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi pageread", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi grepguard", "timeout": 30 } ] },
 { "matcher": "Grep",
   "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi grepguard", "timeout": 30 } ] }
 
@@ -111,3 +111,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-13 updated: guppi powershellguard registered on PreToolUse of PowerShell (case 796.2) · [[decision-case-796.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-10-30 updated: the hook grepguard registered on PreToolUse of Read beside pageread (case 925.1) · [[decision-case-925.1]]

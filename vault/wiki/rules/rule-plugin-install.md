@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a project that installs the plugin guppi from getting a part of GUPPI, or from losing a file of its own to it
-status: draft
+status: built
 enforcement: render
 governs: plugin/skills/install/SKILL.md
 render_mode: full
@@ -61,3 +61,4 @@ Install GUPPI into the project of this session, the folder that Claude Code was 
 - 2026-10-29 updated: the install copies .claude/settings.json only after uv sync passes, so no hook of the copy runs before uv sync or after a rollback · [[decision-case-912.1]]
 - 2026-10-29 estimate estimate-plugin-install-runs-no-hook-before-uv-sync added · [[decision-case-912.1]]
 - 2026-10-29 status: built → draft · cascade
+- 2026-10-30 status: draft → built · cascade

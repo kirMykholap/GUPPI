@@ -67,8 +67,8 @@ update:
 
 ```tasks
 - [x] `.guppi/tests/test_render.py`: the docstring of `test_paths_in_a_child_process_ends_each_line_in_a_bare_line_feed` reads `Run as the close command runs it, --paths writes no carriage return, on Windows too, so $(...) hands git add each path as it stands (case 914).`, its code spans kept as they stand, in two lines of at most 100 characters.
-- [ ] update `estimate-clean-branch-code-holds-pointers-only-in-brackets`
-- [ ] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] update `estimate-clean-branch-code-holds-pointers-only-in-brackets`
+- [x] read `estimate-clean-branch-code-holds-pointers-only-in-brackets`
 ```
 
 ### Case 919.2 — guppi test judges the code and the tests for a stray pointer
@@ -110,9 +110,9 @@ update:
 
 ```tasks
 - [x] `.guppi/tests/test_ship.py`: a helper that walks the files under `.guppi/` of a root by `ship.tree_files`, but `ship.LEFT_OUT` and `ship.NOT_CLEANED`, reads each by `ship.read_text` and returns the lines of `ship.judged` with empty sets of known and loose slugs; a test with no mark `live` that asserts the helper returns no line on `REPO`; a test that asserts it returns the line of a docstring that opens with `Case 5:` in a test file under a temporary root; the name of each test holds `live_code`.
-- [ ] create `estimate-clean-branch-tests-judge-the-live-code`
-- [ ] update `rule-clean-branch`
-- [ ] read `estimate-clean-branch-tests-judge-the-live-code`
+- [x] create `estimate-clean-branch-tests-judge-the-live-code`
+- [x] update `rule-clean-branch`
+- [x] read `estimate-clean-branch-tests-judge-the-live-code`
 ```
 
 ## Case 920 — Four shipped checks drop the words that hold only in GUPPI, and the defer of the clean branch ends
@@ -185,9 +185,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-compact-recall-reloads`
+- [x] update `estimate-compact-recall-reloads`
 - [x] stop: in Work Mode, the person runs `/compact` in the working session, so that the hook of `rule-compact-recall` fires with `source: compact`.
-- [ ] read `estimate-compact-recall-reloads`
+- [x] read `estimate-compact-recall-reloads`
 ```
 
 ### Case 920.2 — The vault-query check names the languages by their role
@@ -220,7 +220,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-query-before-a-create`
+- [x] update `estimate-ask-query-before-a-create`
 - [ ] read `estimate-ask-query-before-a-create`
 ```
 
@@ -254,7 +254,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-synthesis-keeps-actioned-by-the-mark`
+- [x] update `estimate-synthesis-keeps-actioned-by-the-mark`
 - [ ] read `estimate-synthesis-keeps-actioned-by-the-mark`
 ```
 
@@ -294,7 +294,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-synthesis-clusters`
+- [x] update `estimate-synthesis-clusters`
 - [ ] read `estimate-synthesis-clusters`
 ```
 
@@ -322,7 +322,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-clean-branch`
+- [x] update `rule-clean-branch`
 ```
 
 ## Case 921 — An Ask question at /hi names the place of the text it asks about
@@ -393,10 +393,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `estimate-hi-takes-its-readings`
-- [ ] read `estimate-hi-takes-its-readings`
+- [x] update `rule-skill-hi`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `estimate-hi-takes-its-readings`
+- [x] read `estimate-hi-takes-its-readings`
 ```
 
 ## Case 922 — The Case-id check states where its list of plain sprints matters
@@ -463,8 +463,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ratification-case-id-carries-the-sprint`
-- [ ] read `estimate-ratification-case-id-carries-the-sprint`
+- [x] update `estimate-ratification-case-id-carries-the-sprint`
+- [x] read `estimate-ratification-case-id-carries-the-sprint`
 ```
 
 ## Case 923 — The main agent states what a subagent did only from its transcript
@@ -530,11 +530,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] create `estimate-orchestration-states-a-subagent-fact-from-its-transcript`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] create `estimate-orchestration-states-a-subagent-fact-from-its-transcript`
 - [ ] read `estimate-orchestration-states-a-subagent-fact-from-its-transcript`
-- [ ] update `insight-orchestration-writes-from-its-own-reading`
+- [x] update `insight-orchestration-writes-from-its-own-reading`
 ```
 
 ## Case 924 — case-guppi reads the steps that read or repeat a step it changes
@@ -600,10 +600,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] create `estimate-case-build-reads-the-readers-of-a-changed-step`
-- [ ] update `insight-case-build-changes-a-step-without-reading-its-readers`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] create `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] update `insight-case-build-changes-a-step-without-reading-its-readers`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
 ```
 
@@ -701,14 +701,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-search-leaves-out-decisions`
-- [ ] update `rule-hook-registry`
-- [ ] create `estimate-search-leaves-out-decisions-refuses-ask-guppi`
-- [ ] update `insight-ask-guppi-reads-a-decision-outside-its-frame`
+- [x] update `rule-search-leaves-out-decisions`
+- [x] update `rule-hook-registry`
+- [x] create `estimate-search-leaves-out-decisions-refuses-ask-guppi`
+- [x] update `insight-ask-guppi-reads-a-decision-outside-its-frame`
 - [x] `.guppi/guppi/grepguard.py`: `before` refuses a `Read` whose `file_path`, and a `Grep` whose searched path, lies in `vault/wiki/decisions/` when the payload's `agent_type` is `ask-guppi`, by `permissionDecision: deny` with a reason that names the path and `rule-search-leaves-out-decisions`, judged by `pageread.inside` over the folder the exclusion already uses; every other call keeps its behaviour, and the module docstring says so.
 - [x] `.guppi/tests/test_grepguard.py`: tests that a `Read` of a Decision page and a `Grep` of that folder and of a file in it by `ask-guppi` are refused; that the same calls by `case-guppi`, by the librarian and with no `agent_type` pass unchanged; that a `Read` of `ask-guppi` outside the folder passes; that a `Grep` of `ask-guppi` over the wiki still gets the exclusion.
-- [ ] `uv run --project .guppi guppi render`: `.claude/rules/search-leaves-out-decisions.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] `uv run --project .guppi guppi render`: `.claude/rules/search-leaves-out-decisions.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
 - [ ] read `estimate-search-leaves-out-decisions-refuses-ask-guppi`
 ```
 
@@ -744,8 +744,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-search-leaves-out-decisions-by-the-grep-hook`
-- [ ] read `estimate-search-leaves-out-decisions-by-the-grep-hook`
+- [x] update `estimate-search-leaves-out-decisions-by-the-grep-hook`
+- [x] read `estimate-search-leaves-out-decisions-by-the-grep-hook`
 ```
 
 ### Case 925.3 — The check of Decision reads gives ask-guppi no reason
@@ -783,7 +783,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-search-leaves-out-decisions-in-every-agent`
+- [x] update `estimate-search-leaves-out-decisions-in-every-agent`
 - [ ] read `estimate-search-leaves-out-decisions-in-every-agent`
 ```
 
@@ -826,9 +826,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] update `estimate-ask-opens-a-decision-only-for-a-finding`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-ask`
+- [x] update `estimate-ask-opens-a-decision-only-for-a-finding`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-ask-opens-a-decision-only-for-a-finding`
 ```
 
@@ -867,7 +867,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-finds`
+- [x] update `estimate-ask-finds`
 - [ ] read `estimate-ask-finds`
 ```
 
@@ -904,8 +904,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-page-read-cuts-the-history`
-- [ ] read `estimate-page-read-cuts-the-history`
+- [x] update `estimate-page-read-cuts-the-history`
+- [x] read `estimate-page-read-cuts-the-history`
 ```
 
 ## Case 926 — case-guppi reads what a function calls and the input it walks over before it states what the function does
@@ -971,9 +971,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-reads-the-code-it-states`
-- [ ] update `insight-case-build-claims-what-code-does-without-reading-it`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-reads-the-code-it-states`
+- [x] update `insight-case-build-claims-what-code-does-without-reading-it`
 - [ ] read `estimate-case-build-reads-the-code-it-states`
 ```

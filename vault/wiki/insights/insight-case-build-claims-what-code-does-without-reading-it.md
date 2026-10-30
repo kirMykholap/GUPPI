@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: case-guppi states what a function or a script of the code does, and builds a Case or a recommendation on that claim, without reading the function that decides it, so the claim proves false after the person has signed it and the Case is built again
-status: open
+status: actioned
 children: ["[[lesson-case-build-reused-judgment-not-checked-against-the-other-side]]", "[[lesson-case-build-recommended-on-a-claim-about-code-it-did-not-read]]", "[[lesson-case-build-states-a-predicate-wider-than-the-code]]", "[[lesson-case-build-judged-a-check-by-the-last-stretch-of-the-transcript]]"]
-severity: 1
-addressed_by: "[[decision-case-869]]"
+severity: 0
+addressed_by: "[[decision-case-926]]"
 origin: raw/2026-10-13/2118/ledger.md#L27
 sprint: plugin
 created: 2026-10-13
@@ -27,3 +27,4 @@ One sentence in rule-case-build that before case-guppi states in a round or a co
 - 2026-10-17 defer by decision-case-835 superseded · [[decision-case-869]]
 - 2026-10-17 updated: actioned: case-guppi reads whole the function that decides a claim it states about code, and names it in context (case 869) · [[decision-case-869]]
 - 2026-10-29 updated: child lesson-case-build-judged-a-check-by-the-last-stretch-of-the-transcript added, reopened from actioned (synthesis) · raw/2026-10-28/2312/ledger.md#L29
+- 2026-10-30 updated: actioned again: case-guppi reads each function called on the way and where the caller takes the input, and takes no name or docstring for a reading (case 926) · [[decision-case-926]]

@@ -11944,3 +11944,90 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-30 lessons/lesson-hi-reads-the-end-state-of-a-command-that-failed-first created · raw/2026-10-29/2341/ledger.md#L40 · generate
 - 2026-10-30 lessons/lesson-hi-asks-a-reading-of-a-text-it-names-no-place-of created · raw/2026-10-29/2341/ledger.md#L41 · generate
 - 2026-10-30 rules/rule-permissions status: draft → built · cascade · generate
+- 2026-10-30 estimates/estimate-close-commits status: pending → passed · raw/2026-10-30/0304/ledger.md#L1 · generate
+- 2026-10-30 estimates/estimate-plugin-install-runs-no-hook-before-uv-sync status: pending → passed · raw/2026-10-30/0304/ledger.md#L2 · generate
+- 2026-10-30 decisions/decision-case-919 created · raw/2026-10-30/0304/ledger.md#case-919 · generate
+- 2026-10-30 decisions/decision-case-919.1 created · raw/2026-10-30/0304/ledger.md#case-919.1 · generate
+- 2026-10-30 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets updated: pending again: guppi ship --check printed a line on .guppi/tests/test_render.py; the Criterion stands · [[decision-case-919.1]] · generate
+- 2026-10-30 decisions/decision-case-919.2 created · raw/2026-10-30/0304/ledger.md#case-919.2 · generate
+- 2026-10-30 estimates/estimate-clean-branch-tests-judge-the-live-code created · [[decision-case-919.2]] · generate
+- 2026-10-30 estimates/estimate-clean-branch-tests-judge-the-live-code status: pending → passed · raw/2026-10-30/0304/ledger.md#L34 · generate
+- 2026-10-30 rules/rule-clean-branch estimate estimate-clean-branch-tests-judge-the-live-code added · [[decision-case-919.2]] · generate
+- 2026-10-30 rules/rule-clean-branch updated: a test of guppi test judges the code and the tests under .guppi/ for a pointer outside its bracket · [[decision-case-919.2]] · generate
+- 2026-10-30 decisions/decision-case-920 created · raw/2026-10-30/0304/ledger.md#case-920 · generate
+- 2026-10-30 decisions/decision-case-920.1 created · raw/2026-10-30/0304/ledger.md#case-920.1 · generate
+- 2026-10-30 estimates/estimate-compact-recall-reloads updated: the Criterion replaced whole — the example session folder is a pattern, not a folder of this repository · [[decision-case-920.1]] · generate
+- 2026-10-30 decisions/decision-case-920.2 created · raw/2026-10-30/0304/ledger.md#case-920.2 · generate
+- 2026-10-30 estimates/estimate-ask-query-before-a-create updated: the Criterion replaced whole — the languages are named by their role · [[decision-case-920.2]] · generate
+- 2026-10-30 decisions/decision-case-920.3 created · raw/2026-10-30/0304/ledger.md#case-920.3 · generate
+- 2026-10-30 estimates/estimate-synthesis-keeps-actioned-by-the-mark updated: the Criterion replaced whole — the case number stands in a pointer bracket; the method names its event · [[decision-case-920.3]] · generate
+- 2026-10-30 decisions/decision-case-920.4 created · raw/2026-10-30/0304/ledger.md#case-920.4 · generate
+- 2026-10-30 estimates/estimate-synthesis-clusters updated: the Criterion replaced whole — the flag of a read is named in the repository of GUPPI only; the method names its event · [[decision-case-920.4]] · generate
+- 2026-10-30 decisions/decision-case-920.5 created · raw/2026-10-30/0304/ledger.md#case-920.5 · generate
+- 2026-10-30 decisions/decision-case-893.1 superseded by decision-case-920.5 · [[decision-case-920.5]] · generate
+- 2026-10-30 rules/rule-clean-branch defer by decision-case-893.1 superseded · [[decision-case-920.5]] · generate
+- 2026-10-30 rules/rule-clean-branch updated: the defer of case 893.1 taken up: its four Criteria rewritten by case 920, its other checks held by a Frontier item or passed · [[decision-case-920.5]] · generate
+- 2026-10-30 decisions/decision-case-921 created · raw/2026-10-30/0304/ledger.md#case-921 · generate
+- 2026-10-30 rules/rule-skill-hi updated: an Ask question that asks the person to judge a text names its place and quotes it when it stands in a file; the reading line names that place as its source · [[decision-case-921]] · generate
+- 2026-10-30 estimates/estimate-hi-takes-its-readings updated: the Criterion replaced whole — an Ask question that asks the person to judge a text names its place and quotes it when it stands in a file, and the reading line names that place · [[decision-case-921]] · generate
+- 2026-10-30 decisions/decision-case-922 created · raw/2026-10-30/0304/ledger.md#case-922 · generate
+- 2026-10-30 estimates/estimate-ratification-case-id-carries-the-sprint updated: the Criterion replaced whole — a sentence states that, in the repository of GUPPI, PLAIN_SPRINTS names the sprints opened before sprint ids came in · [[decision-case-922]] · generate
+- 2026-10-30 decisions/decision-case-923 created · raw/2026-10-30/0304/ledger.md#case-923 · generate
+- 2026-10-30 rules/rule-orchestration updated: the main agent states what a subagent did only after it reads the fact in its transcript (case 923) · [[decision-case-923]] · generate
+- 2026-10-30 estimates/estimate-orchestration-states-a-subagent-fact-from-its-transcript created · [[decision-case-923]] · generate
+- 2026-10-30 rules/rule-orchestration estimate estimate-orchestration-states-a-subagent-fact-from-its-transcript added · [[decision-case-923]] · generate
+- 2026-10-30 insights/insight-orchestration-writes-from-its-own-reading updated: actioned: the main agent states what a subagent did only after it reads the fact in its transcript, in rule-orchestration; the ratification lines of a showing were already copied from the summary and checked by rule-case-check (case 923) · [[decision-case-923]] · generate
+- 2026-10-30 decisions/decision-case-924 created · raw/2026-10-30/0304/ledger.md#case-924 · generate
+- 2026-10-30 rules/rule-case-build updated: case-guppi reads the steps and skills that read or repeat the output of a step its Case changes, and the new path its Case adds · [[decision-case-924]] · generate
+- 2026-10-30 estimates/estimate-case-build-reads-the-readers-of-a-changed-step created · [[decision-case-924]] · generate
+- 2026-10-30 rules/rule-case-build estimate estimate-case-build-reads-the-readers-of-a-changed-step added · [[decision-case-924]] · generate
+- 2026-10-30 insights/insight-case-build-changes-a-step-without-reading-its-readers updated: actioned: case-guppi reads the steps that read or repeat a step its Case changes · [[decision-case-924]] · generate
+- 2026-10-30 decisions/decision-case-925 created · raw/2026-10-30/0304/ledger.md#case-925 · generate
+- 2026-10-30 decisions/decision-case-925.1 created · raw/2026-10-30/0304/ledger.md#case-925.1 · generate
+- 2026-10-30 rules/rule-search-leaves-out-decisions updated: the hook refuses a Read of a Decision page and a Grep inside vault/wiki/decisions/ by ask-guppi (case 925.1) · [[decision-case-925.1]] · generate
+- 2026-10-30 rules/rule-hook-registry updated: the hook grepguard registered on PreToolUse of Read beside pageread (case 925.1) · [[decision-case-925.1]] · generate
+- 2026-10-30 estimates/estimate-search-leaves-out-decisions-refuses-ask-guppi created · [[decision-case-925.1]] · generate
+- 2026-10-30 rules/rule-search-leaves-out-decisions estimate estimate-search-leaves-out-decisions-refuses-ask-guppi added · [[decision-case-925.1]] · generate
+- 2026-10-30 decisions/decision-case-925.2 created · raw/2026-10-30/0304/ledger.md#case-925.2 · generate
+- 2026-10-30 estimates/estimate-search-leaves-out-decisions-by-the-grep-hook updated: the Criterion replaced whole — the hook refuses the Decision reads of ask-guppi alone (case 925.2) · [[decision-case-925.2]] · generate
+- 2026-10-30 decisions/decision-case-925.3 created · raw/2026-10-30/0304/ledger.md#case-925.3 · generate
+- 2026-10-30 estimates/estimate-search-leaves-out-decisions-in-every-agent updated: the Criterion replaced whole — ask-guppi reads no Decision page, case-guppi keeps the reasons of its frame (case 925.3) · [[decision-case-925.3]] · generate
+- 2026-10-30 decisions/decision-case-925.4 created · raw/2026-10-30/0304/ledger.md#case-925.4 · generate
+- 2026-10-30 rules/rule-ask updated: ask-guppi opens no Decision page and names the Decision of a page with deferred_by by its slug; case-guppi, running the recipe itself, keeps the two reasons (case 925.4) · [[decision-case-925.4]] · generate
+- 2026-10-30 estimates/estimate-ask-opens-a-decision-only-for-a-finding updated: the Criterion replaced whole — ask-guppi reads no Decision page at /pre-spec (case 925.4) · [[decision-case-925.4]] · generate
+- 2026-10-30 decisions/decision-case-925.5 created · raw/2026-10-30/0304/ledger.md#case-925.5 · generate
+- 2026-10-30 estimates/estimate-ask-finds updated: the Criterion replaced whole — a finding on a page with deferred_by names its Decision by slug, with none of its text (case 925.5) · [[decision-case-925.5]] · generate
+- 2026-10-30 decisions/decision-case-926 created · raw/2026-10-30/0304/ledger.md#case-926 · generate
+- 2026-10-30 rules/rule-case-build updated: case-guppi reads, for a claim about code, each function called on the way and where the caller takes the input, and takes no name or docstring for a reading (case 926) · [[decision-case-926]] · generate
+- 2026-10-30 estimates/estimate-case-build-reads-the-code-it-states updated: the Criterion replaced whole — the functions called on the way and the source of the input are read too, and a name or a docstring is no reading · [[decision-case-926]] · generate
+- 2026-10-30 insights/insight-case-build-claims-what-code-does-without-reading-it updated: actioned again: case-guppi reads each function called on the way and where the caller takes the input, and takes no name or docstring for a reading (case 926) · [[decision-case-926]] · generate
+- 2026-10-30 insights/insight-ask-guppi-reads-a-decision-outside-its-frame updated: actioned: a hook refuses every Decision read of ask-guppi (case 925.1) · [[decision-case-925.1]] · generate
+- 2026-10-30 decisions/decision-case-925.6 created · raw/2026-10-30/0304/ledger.md#case-925.6 · generate
+- 2026-10-30 estimates/estimate-page-read-cuts-the-history updated: the Criterion replaced whole — a Read that another hook refuses is outside the promise (case 925.6) · [[decision-case-925.6]] · generate
+- 2026-10-30 estimates/estimate-clean-branch-code-holds-pointers-only-in-brackets status: pending → passed · raw/2026-10-30/0304/ledger.md#L33 · generate
+- 2026-10-30 estimates/estimate-compact-recall-reloads status: pending → passed · raw/2026-10-30/0304/ledger.md#L35 · generate
+- 2026-10-30 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-10-30/0304/ledger.md#L36 · generate
+- 2026-10-30 estimates/estimate-ratification-case-id-carries-the-sprint status: pending → passed · raw/2026-10-30/0304/ledger.md#L37 · generate
+- 2026-10-30 estimates/estimate-search-leaves-out-decisions-by-the-grep-hook status: pending → passed · raw/2026-10-30/0304/ledger.md#L38 · generate
+- 2026-10-30 estimates/estimate-page-read-cuts-the-history status: pending → passed · raw/2026-10-30/0304/ledger.md#L39 · generate
+- 2026-10-30 rules/rule-ask status: built → draft · cascade · generate
+- 2026-10-30 rules/rule-plugin-install status: draft → built · cascade · generate
+- 2026-10-30 rules/rule-search-leaves-out-decisions status: built → draft · cascade · generate
+- 2026-10-30 rules/rule-synthesis status: built → draft · cascade · generate
+- 2026-10-30 decisions/decision-case-893.1 archived · superseded · generate
+- 2026-10-30 lessons/lesson-ask-guppi-read-a-decision-page-without-a-reason archived · insight actioned · generate
+- 2026-10-30 lessons/lesson-prespec-ask-guppi-opened-a-decision-outside-its-frame archived · insight actioned · generate
+- 2026-10-30 lessons/lesson-case-build-claims-a-page-stands-without-reading-the-path-it-changes archived · insight actioned · generate
+- 2026-10-30 lessons/lesson-case-build-changes-a-step-without-reading-what-reads-it archived · insight actioned · generate
+- 2026-10-30 lessons/lesson-case-build-judged-a-check-by-the-last-stretch-of-the-transcript archived · insight actioned · generate
+- 2026-10-30 lessons/lesson-orchestration-claimed-a-reading-before-taking-it archived · insight actioned · generate
+- 2026-10-30 lessons/lesson-orchestration-retyped-a-ratification-line archived · insight actioned · generate
+- 2026-10-30 lessons/lesson-ask-guppi-read-a-decision-page-without-a-reason archived · cleanup
+- 2026-10-30 lessons/lesson-case-build-changes-a-step-without-reading-what-reads-it archived · cleanup
+- 2026-10-30 lessons/lesson-case-build-claims-a-page-stands-without-reading-the-path-it-changes archived · cleanup
+- 2026-10-30 lessons/lesson-case-build-judged-a-check-by-the-last-stretch-of-the-transcript archived · cleanup
+- 2026-10-30 lessons/lesson-orchestration-claimed-a-reading-before-taking-it archived · cleanup
+- 2026-10-30 lessons/lesson-orchestration-retyped-a-ratification-line archived · cleanup
+- 2026-10-30 lessons/lesson-prespec-ask-guppi-opened-a-decision-outside-its-frame archived · cleanup
+- 2026-10-30 decisions/decision-case-893.1 archived · cleanup
+- 2026-10-30 decisions/decision-case-893 child decision-case-893.1 archived · cleanup

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi answers the questions of /pre-spec with one line on what it read, one numbered list of findings under each question and nothing else under it, each finding naming its Case and the page or Cases it bears on, then a list of what it did not check ending with a line per search rule it broke, of its frame or of .claude/rules/search-leaves-out-decisions.md, and a list of the paths of the files it read, and nothing else
-method: "by hand, after a /pre-spec whose ask-guppi runs on the rendered .claude/agents/ask-guppi.md: the answer of ask-guppi in its agent transcript read against the Criterion and the event log, recorded in the estimate line (the render of case 782)"
+method: "by hand, after a /pre-spec whose ask-guppi runs on the rendered .claude/agents/ask-guppi.md: the answer of ask-guppi in its agent transcript read against the Criterion and the event log, recorded in the estimate line (the render of case 925.4)"
 checked: 2026-10-13
 origin: raw/2026-09-09/ledger.md#case-23.1
 sprint: migration
@@ -21,7 +21,7 @@ Then:
 The answer opens with one line that names what the agent read: the plan file, or the Spec that the plan's title line names, and the Cases it checked.
 **＋** Then stands one numbered list of findings under each question that `.claude/skills/pre-spec/SKILL.md` sets, in the order of that file.
 **＋** Each finding names its Case and the page or the Cases it bears on; a question with no finding says "none".
-**＋** A finding that names a page carrying `deferred_by` gives the `## Problem` of the Decision that field names.
+**＋** A finding that names a page carrying `deferred_by` names the Decision that field names by its slug and quotes none of its text.
 **＋** After the findings stands one list of what the questions ask that the agent did not check. The list says "none" when the agent checked all of it and its searches broke no rule of `.claude/agents/ask-guppi.md` or of `.claude/rules/search-leaves-out-decisions.md`. Its last lines name each rule of those files that a search broke, one line each, and say whether a finding rests on what that search printed. Then stands a list of the paths of the files the agent read.
 **＋** The dispatch stands in `vault/raw/<date>/event_log.md`.
 **－** The findings are not put under the lines `exists`, `near`, `missing`, `rules` and tags/slug: those lines answer a question whether a thing exists.
@@ -56,3 +56,4 @@ The answer opens with one line that names what the agent read: the plan file, or
 - 2026-10-12 updated: the Criterion replaced whole — one list of findings under each question the skill sets, in its order; the method waits for a /pre-spec after the render · [[decision-case-782.2]]
 - 2026-10-13 status: pending → passed · raw/2026-10-13/1426/ledger.md#L22
 - 2026-10-15 updated: the pointer of the method stands in a bracket at its end · [[decision-case-823.1]]
+- 2026-10-30 updated: the Criterion replaced whole — a finding on a page with deferred_by names its Decision by slug, with none of its text (case 925.5) · [[decision-case-925.5]]

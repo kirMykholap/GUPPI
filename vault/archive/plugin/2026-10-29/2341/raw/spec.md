@@ -142,7 +142,7 @@ update:
 - [x] `.guppi/guppi/render.py`: in `run`, the `--paths` branch sets its output stream to `newline="\n"` by `reconfigure` where the stream has it, before it prints; the docstring of `--paths` says each line ends in a bare line feed.
 - [x] `.guppi/tests/test_render.py`: a test whose name holds `paths` runs `guppi render --paths` as a child process over a small vault in a temp folder and asserts that its output, read as bytes, holds no carriage return and one line per `governs` path.
 - [x] update `estimate-close-commits`
-- [ ] read `estimate-close-commits`
+- [x] read `estimate-close-commits`
 ```
 
 ## Case 915 — The Case marks the lesson it fixes, and the ledger hook stops asking

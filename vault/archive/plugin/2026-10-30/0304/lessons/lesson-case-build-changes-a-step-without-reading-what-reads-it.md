@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi wrote what a step does and changed one step of a Render from the step it was looking at, without reading the other skill that does the same step or the next step of the Render that reads the list the change alters
-status: clustered
+status: archived
 insight: "[[insight-case-build-changes-a-step-without-reading-its-readers]]"
 origin: raw/2026-10-29/1930/ledger.md#L26
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi wrote what a step does and changed one step of a Render from the step
 
 - 2026-10-29 created · raw/2026-10-29/1930/ledger.md#L26
 - 2026-10-29 updated: clustered under insight-case-build-changes-a-step-without-reading-its-readers (synthesis) · raw/2026-10-29/1930/ledger.md#L26
+- 2026-10-30 archived · insight actioned
+- 2026-10-30 archived · cleanup

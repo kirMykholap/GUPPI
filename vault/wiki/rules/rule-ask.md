@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a create from being proposed without the vault having been asked whether it already holds the thing, or forbids it
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/ask-guppi.md
 render_mode: full
@@ -34,7 +34,7 @@ decide nothing and propose nothing.
 Always start with the Grep of the rules, whatever the question but the confirmation of your findings at /pre-spec set at the end: pattern `^(purpose|deferred_by):` over `vault/wiki/rules/`, output with content; the harness is governed by these pages, and a proposal that crosses one of them must be named. Then one Grep per other category the question touches: `^(purpose|deferred_by):` over `vault/wiki/entities/`, `^(root_cause|deferred_by):` over `vault/wiki/lessons/`, `^(pattern|deferred_by):` over `vault/wiki/insights/`. One line per page — `<category>/<slug>.md:<field>: <text>` — is the index line; decisions and estimates have none (case 147.2). At `/pre-spec`, after these Greps, Grep and Read as each finding needs, including the search behind a count that a `context` states; a count whose search covers `vault/wiki/decisions/` is not run again and is no finding, since a Decision page states its own at its moment (case 633.2). When the question is about a check, reach the Estimates through the `estimates` field of the page it is about, and open them only when the question asks what they say. Open a page only
 when the question asks what it says, or when its index line is not enough to judge;
 then report its `status` too, since a `draft` page is something already decided.
-Grep the rules of the vault itself — `vault/wiki/rules/` — when the proposal may cross one. Do not open or grep `vault/wiki/decisions/` except for two reasons: a page in your answer carries `deferred_by` — open the decision it names and give its `## Problem` on the `exists` or `near` line, or, at `/pre-spec`, in the finding that names the page, since a deferred decision is something already decided; at `/pre-spec` you open it only after a finding of yours names the page, never to judge whether a finding stands, and a page that carries `deferred_by` and stands in no finding has its Decision left closed (case 800.2); or the question asks why something was decided — reach the Decision through the page's `origin`. Decisions have no index on purpose.
+Grep the rules of the vault itself — `vault/wiki/rules/` — when the proposal may cross one. Run as the agent `ask-guppi`, you open and grep no page under `vault/wiki/decisions/`, and a hook refuses such a Read or Grep (as set in cases 925.1 and 925.4). A page in your answer that carries `deferred_by` you name with the slug of the Decision that field names, on the `exists` or `near` line, or, at `/pre-spec`, in the finding that names the page, since a deferred decision is something already decided, and you quote none of its text; a question why something was decided you answer with the slug of the Decision that the page's `origin` points to. A caller that runs this recipe itself, `case-guppi`, opens or greps `vault/wiki/decisions/` only for two reasons: a page in its answer carries `deferred_by` — it opens the decision that field names and gives its `## Problem` on the `exists` or `near` line — or the question asks why something was decided — it reaches the Decision through the page's `origin`. Decisions have no index on purpose.
 Compare meanings, not words; the aliases column of `vault/wiki/tags.md` maps {{chat_lang}} words to tags. Never compare across categories.
 
 To a question whether a thing exists — what is close, what is missing, which rule it crosses, which tags fit, whether a slug is free — answer with exactly these five lines, each present, "none" when empty:
@@ -102,3 +102,5 @@ At `/pre-spec`, where the caller asks you to judge every Case of the plan with i
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-13 status: built → draft · cascade
 - 2026-10-14 status: draft → built · cascade
+- 2026-10-30 updated: ask-guppi opens no Decision page and names the Decision of a page with deferred_by by its slug; case-guppi, running the recipe itself, keeps the two reasons (case 925.4) · [[decision-case-925.4]]
+- 2026-10-30 status: built → draft · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -110,3 +110,4 @@ outcome, clustered or not. The archive is not needed: an actioned Insight stays 
 - 2026-10-05 status: draft → built · cascade
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-14 updated: the slug of rule-sprint-close stands outside the bracket of its pointer · [[decision-case-809]]
+- 2026-10-30 status: built → draft · cascade

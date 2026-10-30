@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi described the behaviour of written_case_files from its name and docstring without following what its loop over agent_transcript_path collects, and did not search for an existing judgment of the name of a Case file before adding one
-status: clustered
+status: archived
 insight: "[[insight-case-build-claims-what-code-does-without-reading-it]]"
 origin: raw/2026-10-28/2312/ledger.md#L29
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi described the behaviour of written_case_files from its name and docst
 
 - 2026-10-29 created · raw/2026-10-28/2312/ledger.md#L29
 - 2026-10-29 updated: clustered under insight-case-build-claims-what-code-does-without-reading-it (synthesis) · raw/2026-10-28/2312/ledger.md#L29
+- 2026-10-30 archived · insight actioned
+- 2026-10-30 archived · cleanup

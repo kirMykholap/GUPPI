@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-close]]"
 purpose: The librarian's run ends in one separate commit of vault and each file the render writes, by the close command as its frame writes it, with no rendered file left modified or untracked
 method: "uv run --project .guppi pytest .guppi/tests/test_render.py -k paths, on Windows too, where the test that runs guppi render --paths as a child process reads its output as bytes; by hand, after a librarian's run whose .claude/agents/librarian-guppi.md, when the run starts, holds the Render of rule-close: git log shows the commit of that run and the paths it touched, and git status shows no file the render wrote as modified or untracked"
@@ -28,7 +28,7 @@ Then:
 
 ## Result
 
-2026-10-30, at the /hi of session 2341, from the librarian's run of session 1930 as its saved chat and its report show it: the close command as rule-close writes it failed at its first run, `git add` exiting 128 with "fatal: pathspec '.claude/agents/ask-guppi.md?' did not match any files", since guppi render --paths printed CRLF on Windows; the librarian re-ran it with tr -d '\r' on the path list, and that run made 07181305; the passed reading of this session read the end state alone
+2026-10-30, at the /hi of session 0304, by uv run --project .guppi pytest .guppi/tests/test_render.py -k paths, guppi render --paths, git log, git status and vault/raw/2026-10-30/event_log.md: 4 passed; guppi render --paths printed 32 lines and 0 carriage returns; the librarian's run of session 2341 ran the close command as librarian-guppi.md writes it once, at 03:02:18, with no tr -d, and it made a24e2ce2 "docs(vault): librarian, 2026-10-29", a commit of its own whose parent is the Retro commit fe125a85, touching only vault/ and .claude/agents/case-guppi.md and .claude/agents/librarian-guppi.md, lines 3 and 8 of that list; git status printed nothing after it; at the start of that run librarian-guppi.md held the same close command and the report text of rule-close from before Case 913
 
 ## History
 
@@ -47,3 +47,4 @@ Then:
 - 2026-10-30 status: pending → passed · raw/2026-10-29/2341/ledger.md#L1
 - 2026-10-30 status: passed → failed · raw/2026-10-29/2341/ledger.md#L8
 - 2026-10-30 updated: the Criterion replaced whole — guppi render --paths ends each line with a bare line feed, on Windows too, and the close command passes each path to git add as it stands · [[decision-case-914]]
+- 2026-10-30 status: pending → passed · raw/2026-10-30/0304/ledger.md#L1

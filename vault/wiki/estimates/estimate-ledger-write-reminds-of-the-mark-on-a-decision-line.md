@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-ledger-write]]"
-purpose: Whether the ledger hook writes the decision lines of a reply that follow an unmarked lesson of the session, then reminds the agent once a stretch of the addresses mark, and stops once a decision line carries it
-method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads and a session ledger in a temp vault
-checked: 2026-10-07
+purpose: Whether the ledger hook writes the decision lines of a reply that follow an unmarked lesson of the session with no reminder of the addresses mark, and lands a decision line that carries it
+method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads and a session ledger in a temp vault; by hand, at the Retro of the session that changes it, the new Render of rule-orchestration in the Spec read against the Criterion
+checked: 2026-10-30
 origin: raw/2026-10-06/0104/ledger.md#case-685.1
 sprint: migration
 created: 2026-10-06
@@ -15,22 +15,18 @@ tags: [session, hooks, harness, ledger]
 ## Criterion
 
 When:
-The `Stop` hook `uv run --project .guppi guppi ledger` of `.guppi/guppi/ledger.py` writes fresh decision lines of the reply just finished, and a `lesson[<slug>]` line stands before them, in the session's ledger or among the lines the same `Stop` writes, with no `{addressed_by:...}` and no decision line after it that carries `{addresses:<slug>}`.
+The `Stop` hook `uv run --project .guppi guppi ledger` of `.guppi/guppi/ledger.py` writes fresh decision lines of the reply just finished, and a `lesson[<slug>]` line of the session stands before them, in the session's ledger or among the lines of the same `Stop`, with no `{addressed_by:...}` and no decision line after it that carries `{addresses:<slug>}`.
 
 Then:
-The hook writes every line of the `Stop` as it would without the reminder, and holds back no line for the mark.
-**＋** After the write, for each such lesson the hook exits 2 and prints: "ledger: lesson[<slug>] has no mark — did a Case of this session fix its cause? Then write the decision line of the Case or sub-case that fixed it again with {addresses:<slug>} added, alone in a LEDGER block; otherwise go on without it."
-**＋** The stderr line names no Case, however many fresh decision lines follow the lesson.
-**＋** The stderr line is printed only when it does not already stand in a refusal of the hook since the person's last message.
-**＋** A decision line written again with `{addresses:<slug>}` lands beside the first line, the hook reminds of that lesson no more, and `guppi materialize` gives the lesson entry `addressed_by`.
-**＋** The hook judges which lessons no mark links to a Case by one function of `.guppi/guppi/materialize.py`, over the ledger lines in their order.
-**－** A lesson that carries `{addressed_by:...}`, that a decision line after it marks, or that stands after every fresh decision line brings no reminder; nor does a fresh lesson line that the same `Stop` holds back or refuses.
-**－** A `defer` line, and a decision line from an earlier text of the transcript, bring no reminder.
-**－** A session with no `hi` gets no reminder. With `stop_hook_active` set and a transcript the hook cannot read, the lines land and the hook prints nothing.
+The hook writes every line of the `Stop` and prints no line about the lesson.
+**＋** When no other refusal of the hook stands at that `Stop`, it exits 0.
+**＋** A decision line that carries `{addresses:<slug>}` lands in the session's ledger as any decision line of its Case does.
+**＋** `.guppi/guppi/ledger.py` holds no question about a lesson before a Case, and the new Render of `rule-orchestration` in the Spec names no reply that answers one.
+**－** The hook holds back no decision line because it lacks `{addresses:...}`.
 
 ## Result
 
-2026-10-07, uv run pytest tests/test_ledger.py: 126 passed; the reminder after the write names no Case with fresh lines of cases 9 and 8.1, is told once a stretch so a later ratification of case 9 is silent, ends once a decision line carries the mark, and comes for no defer line
+2026-10-30, Retro of session 2341: uv run --project .guppi pytest .guppi/tests/test_ledger.py 155 passed, among them a lesson before fresh decision lines of one Case and of several Cases giving (0, ""), a decision line with {addresses:lesson-x} landing, no decision line held for the mark, and ledger holding no reminder_message or unaddressed; the new Render of rule-orchestration in the Spec replaces the one reply that answered the reminder with the mark the summary of case-guppi holds, and a Grep of reminder over rule-orchestration finds no other such reply, only the booking example
 
 ## History
 
@@ -42,3 +38,5 @@ The hook writes every line of the `Stop` as it would without the reminder, and h
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-30 updated: the Criterion replaced whole — no reminder of a lesson with no mark · [[decision-case-915.1]]
+- 2026-10-30 status: pending → passed · raw/2026-10-29/2341/ledger.md#L30

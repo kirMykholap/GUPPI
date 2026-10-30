@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-case-build]]"
 purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame, writes it into its file and answers with a short summary, keeps a working note it reads again after a compaction, empties the file of a Case it drops, and undoes a change the person dropped on a ratified Case
 method: by hand, the text of .claude/agents/case-guppi.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec, read against the Criterion; the tokens and seconds of each dispatch of case-guppi in that session, when there was one, in the estimate line
-checked: 2026-10-29
+checked: 2026-10-30
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -24,9 +24,9 @@ Then:
 `case-guppi` starts with `.claude/skills/grill-me/SKILL.md` in its context by `skills: [grill-me]` in `.claude/agents/case-guppi.md`, and reads `vault/wiki/case-schema.md` and `vault/wiki/ratification.md` whole before it answers.
 **＋** Before a `create` without a `ref`, it runs the vault query of `.claude/agents/ask-guppi.md` itself, and the `context` of the Case gives the answer.
 **＋** It reads each page and file the `given` names, the Criterion of each Estimate such a page lists, and, for a Case that adds or changes a hook, the hooks on the same event in `.claude/settings.json`; each contradiction is fixed in the Case, or the `context` says why it stands.
-**＋** While a fork is open — the bound, the alternative, the promise, the split, the exceptions or what is left not done — its answer is a round of questions in the form of `.claude/skills/grill-me/SKILL.md`, in English, with no Case heading and nothing else but the context of a first round.
+**＋** While a fork is open — the bound, the alternative, the promise, the split, the exceptions or what is left not done — its answer is a round of questions in the form of `.claude/skills/grill-me/SKILL.md`, in the language of the repository, with no Case heading and nothing else but the context of a first round.
 **＋** The first round on an item opens, before its first question, with one prose paragraph under the label `**Context:**`: what the item is about, what the thing does today and where it goes wrong, and what the round decides — a sentence per part where one is enough, a part with nothing to say left out.
-**＋** When no fork is open, it writes the Case whole in English in the chat form of `vault/wiki/case-schema.md`, its ledger lines in the form of `vault/wiki/ratification.md`, from the heading to the fence of `ratification` and nothing else, into `raw/<date>/<hi HHMM>/cases/case-<N>.md` by `Write`, N the id of the top-level Case.
+**＋** When no fork is open, it writes the Case whole in the language of the repository in the chat form of `vault/wiki/case-schema.md`, its ledger lines in the form of `vault/wiki/ratification.md`, from the heading to the fence of `ratification` and nothing else, into `raw/<date>/<hi HHMM>/cases/case-<N>.md` by `Write`, N the id of the top-level Case.
 **＋** Its answer is then a summary alone: a first line `**Built:**` and the path of the file; a second line `**Case:**` with the id and the name of the top-level Case as the heading of the file writes them, a Case with sub-cases included; then one list item per Case and sub-case with its id and name, the Estimate that checks it and one line on what that Estimate checks, and under the item its ledger lines in an untagged fence, as the file holds them.
 **＋** When the `context` of a Case says that another Case of the session should change instead, the item of that Case in the summary carries a line `**Other Case:**` that names the other Case and the change it needs.
 **＋** Where an Estimate that the Case creates, or whose Criterion it replaces, already makes the promise behind that change, the change it names is a pointer to that Estimate, never that promise written again.
@@ -59,7 +59,7 @@ Then:
 
 ## Result
 
-2026-10-29, Retro of session 2312, the new Render of rule-case-build in raw/2026-10-28/2312/spec.md (Case 896.2) read against the new Criterion: it sets autoCompactWindow: 400000 under permissionMode: auto, has case-guppi write cases/note-<N>.md whole by Write before each answer and first on the person's answers or a change, with the four lists, read the note first when its context opens with a summary, read again what its next step needs, ask no question again whose answer the note holds, and write no file but its Case files and its note; each old text of the four replaces stands once in vault/wiki/rules/rule-case-build.md; the other lines of the Criterion are carried from the Criterion read passed in session 1907
+2026-10-30, Retro of session 2341: rule-case-build writes the language of a round and of a Case by the placeholder {{documentation_lang}}, which the render fills with English, the language of this repository, and its only literal "in English" is a History line; .claude/agents/case-guppi.md holds model opus, effort medium, the six tools, permissionMode auto, autoCompactWindow 400000 and skills [grill-me]; the Spec changes of cases 915.2 and 916.2 add steps that contradict no line of the Criterion; the dispatches of case-guppi in this session, last tokens and seconds summed over their runs: 913 182663 and 500 s, 914 101488 and 319 s, 915 198085 and 665 s, 916 161352 and 536 s, 917 142356 and 420 s, 918 152327 and 470 s
 
 ## History
 
@@ -98,3 +98,5 @@ Then:
 - 2026-10-28 status: pending → passed · raw/2026-10-28/1907/ledger.md#L18
 - 2026-10-29 updated: the Criterion replaced whole — case-guppi compacts before 400 000 tokens and keeps a working note it reads again after a compaction · [[decision-case-896.2]]
 - 2026-10-29 status: pending → passed · raw/2026-10-28/2312/ledger.md#L25
+- 2026-10-30 updated: the Criterion replaced whole — the round and the Case stand in the language of the repository, named by its role · [[decision-case-918.2]]
+- 2026-10-30 status: pending → passed · raw/2026-10-29/2341/ledger.md#L38

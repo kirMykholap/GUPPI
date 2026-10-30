@@ -7,7 +7,7 @@
 ## Deferred
 
 - `entity-guppi` — GUPPI — a Claude Code harness governed by ratified decisions, and the vault it keeps; its parts the sprint and the glossary, and in the repository of GUPPI also that repository on GitHub · put off in 1 session
-- `rule-clean-branch` — Prevents a reference to a case, a mention of a session of this repository or a page that stays in this repository from reaching the clean version of GUPPI that other people install · put off in 12 sessions
+- `rule-clean-branch` — Prevents a reference to a case, a mention of a session of this repository or a page that stays in this repository from reaching the clean version of GUPPI that other people install · put off in 13 sessions
 - `rule-guppi-package` — Prevents a project with GUPPI from depending on files at its root that it does not own, or on a command that runs only in the repository of GUPPI · put off in 0 sessions
 - `rule-lint` — Prevents a page that breaks the schema, points nowhere, or claims a status its Estimates do not support from sitting in the vault unnoticed · put off in 0 sessions
 - `rule-page-generation` — Prevents a ratified decision from ending the session without a page, or a page from carrying a field nobody ratified · put off in 1 session

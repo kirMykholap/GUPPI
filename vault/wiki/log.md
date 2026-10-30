@@ -11880,3 +11880,67 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-29 rules/rule-plugin-install status: built → draft · cascade · generate
 - 2026-10-29 decisions/decision-case-905 archived · superseded · generate
 - 2026-10-29 decisions/decision-case-905 archived · cleanup
+- 2026-10-30 estimates/estimate-close-commits status: pending → passed · raw/2026-10-29/2341/ledger.md#L1 · generate
+- 2026-10-30 estimates/estimate-permissions status: pending → passed · raw/2026-10-29/2341/ledger.md#L2 · generate
+- 2026-10-30 estimates/estimate-close-reports-in-twenty-lines status: pending → failed · raw/2026-10-29/2341/ledger.md#L3 · generate
+- 2026-10-30 lessons/lesson-librarian-writes-a-total-no-count-printed created · raw/2026-10-29/2341/ledger.md#L4 · generate
+- 2026-10-30 estimates/estimate-close-reports-in-twenty-lines status: failed → passed · raw/2026-10-29/2341/ledger.md#L5 · generate
+- 2026-10-30 decisions/decision-case-913 created · raw/2026-10-29/2341/ledger.md#case-913 · generate
+- 2026-10-30 rules/rule-close updated: the report gives each part another step of the frame sends to it, no test result and no list of files, and has no limit of lines · [[decision-case-913]] · generate
+- 2026-10-30 estimates/estimate-close-reports-the-run renamed from `estimate-close-reports-in-twenty-lines` · [[decision-case-913]] · generate
+- 2026-10-30 rules/rule-close ref `estimate-close-reports-in-twenty-lines` → `estimate-close-reports-the-run` · [[decision-case-913]] · generate
+- 2026-10-30 estimates/estimate-close-reports-the-run updated: the Criterion replaced whole — the report gives each part its frame sends to it, no test result and no list of files, and has no limit of lines; renamed from estimate-close-reports-in-twenty-lines · [[decision-case-913]] · generate
+- 2026-10-30 estimates/estimate-close-commits status: passed → failed · raw/2026-10-29/2341/ledger.md#L8 · generate
+- 2026-10-30 decisions/decision-case-914 created · raw/2026-10-29/2341/ledger.md#case-914 · generate
+- 2026-10-30 estimates/estimate-close-commits updated: the Criterion replaced whole — guppi render --paths ends each line with a bare line feed, on Windows too, and the close command passes each path to git add as it stands · [[decision-case-914]] · generate
+- 2026-10-30 decisions/decision-case-915 created · raw/2026-10-29/2341/ledger.md#case-915 · generate
+- 2026-10-30 decisions/decision-case-915.1 created · raw/2026-10-29/2341/ledger.md#case-915.1 · generate
+- 2026-10-30 rules/rule-ledger-write updated: the hook no longer reminds the agent of a lesson with no mark; the Case carries the mark · [[decision-case-915.1]] · generate
+- 2026-10-30 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line updated: the Criterion replaced whole — no reminder of a lesson with no mark · [[decision-case-915.1]] · generate
+- 2026-10-30 rules/rule-orchestration updated: no reply answers a reminder of a lesson with no mark; the reply that acknowledges a ratification carries the mark the summary holds · [[decision-case-915.1]] · generate
+- 2026-10-30 rules/rule-prespec-onward updated: the reminder of a lesson with no mark is gone from the refusals it follows · [[decision-case-915.1]] · generate
+- 2026-10-30 decisions/decision-case-915.2 created · raw/2026-10-29/2341/ledger.md#case-915.2 · generate
+- 2026-10-30 rules/rule-case-build updated: case-guppi weighs each error lesson of the session with no mark and writes the addresses mark on the Case that fixes it · [[decision-case-915.2]] · generate
+- 2026-10-30 estimates/estimate-case-build-marks-the-lesson-its-case-fixes created · [[decision-case-915.2]] · generate
+- 2026-10-30 estimates/estimate-case-build-marks-the-lesson-its-case-fixes status: pending → passed · raw/2026-10-29/2341/ledger.md#L31 · generate
+- 2026-10-30 rules/rule-case-build estimate estimate-case-build-marks-the-lesson-its-case-fixes added · [[decision-case-915.2]] · generate
+- 2026-10-30 decisions/decision-case-915.3 created · raw/2026-10-29/2341/ledger.md#case-915.3 · generate
+- 2026-10-30 rules/rule-ledger-write updated: the hold of a lesson written after a Case covers only an error lesson · [[decision-case-915.3]] · generate
+- 2026-10-30 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson updated: the Criterion replaced whole — only an error lesson is held for its mark · [[decision-case-915.3]] · generate
+- 2026-10-30 decisions/decision-case-916 created · raw/2026-10-29/2341/ledger.md#case-916 · generate
+- 2026-10-30 decisions/decision-case-916.1 created · raw/2026-10-29/2341/ledger.md#case-916.1 · generate
+- 2026-10-30 rules/rule-orchestration updated: an Other Case line that names a Frontier item with no Case yet keeps its change for that item's Case, sends it to that item's case-guppi when the item is in the same batch, or sends it back to the Case that wrote it when the item ends with no Case · [[decision-case-916.1]] · generate
+- 2026-10-30 estimates/estimate-orchestration-passes-a-change-to-an-item-not-built created · [[decision-case-916.1]] · generate
+- 2026-10-30 estimates/estimate-orchestration-passes-a-change-to-an-item-not-built status: pending → passed · raw/2026-10-29/2341/ledger.md#L33 · generate
+- 2026-10-30 rules/rule-orchestration estimate estimate-orchestration-passes-a-change-to-an-item-not-built added · [[decision-case-916.1]] · generate
+- 2026-10-30 estimates/estimate-orchestration-shows-the-built-case updated: the method waits for a line Other Case that names a Case of the session · [[decision-case-916.1]] · generate
+- 2026-10-30 estimates/estimate-orchestration-signs-items-taken-together updated: the method waits for a line Other Case that names a Case of the session · [[decision-case-916.1]] · generate
+- 2026-10-30 decisions/decision-case-916.2 created · raw/2026-10-29/2341/ledger.md#case-916.2 · generate
+- 2026-10-30 rules/rule-case-build updated: case-guppi names a Frontier item with no Case yet on the Other Case line, and the Case of that item takes the change its prompt carries · [[decision-case-916.2]] · generate
+- 2026-10-30 estimates/estimate-case-build-names-an-item-not-built-on-the-other-case-line created · [[decision-case-916.2]] · generate
+- 2026-10-30 estimates/estimate-case-build-names-an-item-not-built-on-the-other-case-line status: pending → passed · raw/2026-10-29/2341/ledger.md#L34 · generate
+- 2026-10-30 rules/rule-case-build estimate estimate-case-build-names-an-item-not-built-on-the-other-case-line added · [[decision-case-916.2]] · generate
+- 2026-10-30 decisions/decision-case-917 created · raw/2026-10-29/2341/ledger.md#case-917 · generate
+- 2026-10-30 decisions/decision-case-917.1 created · raw/2026-10-29/2341/ledger.md#case-917.1 · generate
+- 2026-10-30 estimates/estimate-sprint-close-moves-old-event-logs updated: the Criterion replaced whole — the moved logs are left out of git by vault/.gitignore, and the method reads that file · [[decision-case-917.1]] · generate
+- 2026-10-30 decisions/decision-case-917.2 created · raw/2026-10-29/2341/ledger.md#case-917.2 · generate
+- 2026-10-30 estimates/estimate-event-log-records updated: the Criterion replaced whole — git check-ignore reports the log ignored by vault/.gitignore; the method drops the /hi readings by hand · [[decision-case-917.2]] · generate
+- 2026-10-30 decisions/decision-case-918 created · raw/2026-10-29/2341/ledger.md#case-918 · generate
+- 2026-10-30 decisions/decision-case-918.1 created · raw/2026-10-29/2341/ledger.md#case-918.1 · generate
+- 2026-10-30 estimates/estimate-case-build-records-the-rounds-in-recommend updated: the Criterion replaced whole — the answer stands in the language of the repository, named by its role · [[decision-case-918.1]] · generate
+- 2026-10-30 decisions/decision-case-918.2 created · raw/2026-10-29/2341/ledger.md#case-918.2 · generate
+- 2026-10-30 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — the round and the Case stand in the language of the repository, named by its role · [[decision-case-918.2]] · generate
+- 2026-10-30 decisions/decision-case-918.3 created · raw/2026-10-29/2341/ledger.md#case-918.3 · generate
+- 2026-10-30 estimates/estimate-python-utf8-output-intact updated: the Criterion replaced whole — the character lies outside the code page of the locale, not cp1252 · [[decision-case-918.3]] · generate
+- 2026-10-30 decisions/decision-case-918.4 created · raw/2026-10-29/2341/ledger.md#case-918.4 · generate
+- 2026-10-30 estimates/estimate-guppi-package-is-ready-after-the-install updated: the Criterion replaced whole and the method set — both state that the install starts in the repository of GUPPI · [[decision-case-918.4]] · generate
+- 2026-10-30 estimates/estimate-ledger-write-reminds-of-the-mark-on-a-decision-line status: pending → passed · raw/2026-10-29/2341/ledger.md#L30 · generate
+- 2026-10-30 estimates/estimate-ledger-write-asks-for-the-mark-of-a-lesson status: pending → passed · raw/2026-10-29/2341/ledger.md#L32 · generate
+- 2026-10-30 estimates/estimate-sprint-close-moves-old-event-logs status: pending → passed · raw/2026-10-29/2341/ledger.md#L35 · generate
+- 2026-10-30 estimates/estimate-event-log-records status: pending → passed · raw/2026-10-29/2341/ledger.md#L36 · generate
+- 2026-10-30 estimates/estimate-case-build-records-the-rounds-in-recommend status: pending → passed · raw/2026-10-29/2341/ledger.md#L37 · generate
+- 2026-10-30 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-10-29/2341/ledger.md#L38 · generate
+- 2026-10-30 estimates/estimate-python-utf8-output-intact status: pending → passed · raw/2026-10-29/2341/ledger.md#L39 · generate
+- 2026-10-30 lessons/lesson-hi-reads-the-end-state-of-a-command-that-failed-first created · raw/2026-10-29/2341/ledger.md#L40 · generate
+- 2026-10-30 lessons/lesson-hi-asks-a-reading-of-a-text-it-names-no-place-of created · raw/2026-10-29/2341/ledger.md#L41 · generate
+- 2026-10-30 rules/rule-permissions status: draft → built · cascade · generate

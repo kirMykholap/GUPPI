@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-orchestration]]"
 purpose: Whether, when the person's one answer takes up two or more Frontier items, the main agent shows their rounds in one list and their Cases in one reply for one ratification, with the waits marked
-method: "by hand, after the first batch of items taken up together in Plan Mode under the new Render of rule-orchestration in which a summary carries a line Other Case: the replies of the main agent from the dispatch of the batch to the reply that acknowledged it read against the Criterion, recorded in the estimate line"
+method: "by hand, after the first batch of items taken up together in Plan Mode under the new Render of rule-orchestration in which a summary carries a line Other Case naming a Case of the session: the replies of the main agent from the dispatch of the batch to the reply that acknowledged it read against the Criterion, recorded in the estimate line"
 origin: raw/2026-10-05/2249/ledger.md#case-684.1
 sprint: migration
 created: 2026-10-05
@@ -36,3 +36,4 @@ The main agent dispatches a `case-guppi` for each item, and shows no round and n
 - 2026-10-06 status: pending → passed · raw/2026-10-05/2249/ledger.md#L23
 - 2026-10-15 updated: the pointers of the method stand in a bracket at its end · [[decision-case-823.1]]
 - 2026-10-17 updated: the Criterion replaced whole — an Other Case line of a batch raises no question, and the other Case joins the batch by itself · [[decision-case-872.5]]
+- 2026-10-30 updated: the method waits for a line Other Case that names a Case of the session · [[decision-case-916.1]]

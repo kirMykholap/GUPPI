@@ -78,9 +78,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-close`
-- [ ] update `estimate-close-reports-in-twenty-lines`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-close`
+- [x] update `estimate-close-reports-in-twenty-lines`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-close-reports-the-run`
 ```
 
@@ -141,7 +141,7 @@ update:
 ```tasks
 - [x] `.guppi/guppi/render.py`: in `run`, the `--paths` branch sets its output stream to `newline="\n"` by `reconfigure` where the stream has it, before it prints; the docstring of `--paths` says each line ends in a bare line feed.
 - [x] `.guppi/tests/test_render.py`: a test whose name holds `paths` runs `guppi render --paths` as a child process over a small vault in a temp folder and asserts that its output, read as bytes, holds no carriage return and one line per `governs` path.
-- [ ] update `estimate-close-commits`
+- [x] update `estimate-close-commits`
 - [ ] read `estimate-close-commits`
 ```
 
@@ -227,17 +227,17 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] update `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
-- [ ] update `rule-orchestration`
-- [ ] update `rule-prespec-onward`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-ledger-write`
+- [x] update `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
+- [x] update `rule-orchestration`
+- [x] update `rule-prespec-onward`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [x] `.guppi/guppi/ledger.py`: remove `unaddressed`, `reminder_message` and the `reminders` of `run`; remove the paragraph of the module docstring on the reminder (case 685.1) and its mention in the paragraph on the hold.
 - [x] `.guppi/guppi/materialize.py`: remove `unlinked_lessons`.
 - [x] `.guppi/guppi/onward.py`: the docstring names a line the ledger hook refused or held, and no reminder.
 - [x] `.guppi/tests/test_ledger.py`: replace the tests of the reminder and `test_unlinked_lessons_reads_the_marks_of_both_kinds` with tests that a lesson before fresh decision lines brings no stderr line and exit 0, that a decision line with `{addresses:<slug>}` lands, and that the hook holds back no decision line for the mark; `test_a_lesson_before_every_decision_line_is_not_asked` expects `(0, "")`.
 - [x] `uv run --project .guppi pytest .guppi/tests/test_ledger.py .guppi/tests/test_onward.py`
-- [ ] read `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
+- [x] read `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
 ```
 
 ### Case 915.2 — case-guppi marks the error lesson its Case fixes
@@ -279,10 +279,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] create `estimate-case-build-marks-the-lesson-its-case-fixes`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-marks-the-lesson-its-case-fixes`
+- [x] update `rule-case-build`
+- [x] create `estimate-case-build-marks-the-lesson-its-case-fixes`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-marks-the-lesson-its-case-fixes`
 ```
 
 ### Case 915.3 — The ledger hook holds only an error lesson for its mark
@@ -325,12 +325,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] update `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] update `rule-ledger-write`
+- [x] update `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
 - [x] `.guppi/guppi/ledger.py`: `unmarked_lessons` leaves out a `knowledge` lesson line by the `kind` that `parse_line` gives, unless a line of its slug carries `{addressed_by:...}`, so that it is still dropped beside that line; the docstring of the hold (case 682.1) says so.
 - [x] `.guppi/tests/test_ledger.py`: a test that a `lesson[knowledge]` line after a decision line lands at its first `Stop` with exit 0, and one that a `lesson[knowledge]` line beside a marked line of its slug is dropped.
 - [x] `uv run --project .guppi pytest .guppi/tests/test_ledger.py`
-- [ ] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+- [x] read `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
 ```
 
 ## Case 916 — A change left to an item with no Case yet waits for that item's Case
@@ -416,12 +416,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-orchestration-passes-a-change-to-an-item-not-built`
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] update `estimate-orchestration-signs-items-taken-together`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-passes-a-change-to-an-item-not-built`
+- [x] update `rule-orchestration`
+- [x] create `estimate-orchestration-passes-a-change-to-an-item-not-built`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] update `estimate-orchestration-signs-items-taken-together`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-passes-a-change-to-an-item-not-built`
 ```
 
 ### Case 916.2 — case-guppi names the item not yet built, and its Case takes the change
@@ -461,10 +461,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] create `estimate-case-build-names-an-item-not-built-on-the-other-case-line`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-names-an-item-not-built-on-the-other-case-line`
+- [x] update `rule-case-build`
+- [x] create `estimate-case-build-names-an-item-not-built-on-the-other-case-line`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-names-an-item-not-built-on-the-other-case-line`
 ```
 
 ## Case 917 — The event log checks name vault/.gitignore
@@ -528,9 +528,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-close-moves-old-event-logs`
+- [x] update `estimate-sprint-close-moves-old-event-logs`
 - [x] `.guppi/guppi/sprint_close.py`: the module docstring line `` `.gitignore` leaves the moved logs out of git. `` names `vault/.gitignore`.
-- [ ] read `estimate-sprint-close-moves-old-event-logs`
+- [x] read `estimate-sprint-close-moves-old-event-logs`
 ```
 
 ### Case 917.2 — The event log check names vault/.gitignore
@@ -565,8 +565,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-event-log-records`
-- [ ] read `estimate-event-log-records`
+- [x] update `estimate-event-log-records`
+- [x] read `estimate-event-log-records`
 ```
 
 ## Case 918 — Four shipped checks hold in any project
@@ -634,8 +634,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-records-the-rounds-in-recommend`
-- [ ] read `estimate-case-build-records-the-rounds-in-recommend`
+- [x] update `estimate-case-build-records-the-rounds-in-recommend`
+- [x] read `estimate-case-build-records-the-rounds-in-recommend`
 ```
 
 ### Case 918.2 — The case-build check names the language by its role
@@ -707,8 +707,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ### Case 918.3 — The UTF-8 check names the code page of the locale
@@ -740,8 +740,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-python-utf8-output-intact`
-- [ ] read `estimate-python-utf8-output-intact`
+- [x] update `estimate-python-utf8-output-intact`
+- [x] read `estimate-python-utf8-output-intact`
 ```
 
 ### Case 918.4 — The install check states that it runs in the repository of GUPPI
@@ -778,6 +778,6 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-guppi-package-is-ready-after-the-install`
+- [x] update `estimate-guppi-package-is-ready-after-the-install`
 - [ ] read `estimate-guppi-package-is-ready-after-the-install`
 ```

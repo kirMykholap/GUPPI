@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
-method: "by hand at the Retro of the session that changes it: the new Render of rule-orchestration in the Spec, read against the Criterion; after the first summary of case-guppi in Plan Mode that carries a line Other Case under that Render: the replies of the main agent from that summary to the showing of the other Case read against the Criterion, recorded in the estimate line"
+method: "by hand at the Retro of the session that changes it: the new Render of rule-orchestration in the Spec, read against the Criterion; after the first summary of case-guppi in Plan Mode that carries a line Other Case naming a Case of the session under that Render: the replies of the main agent from that summary to the showing of the other Case read against the Criterion, recorded in the estimate line"
 checked: 2026-10-14
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
@@ -96,3 +96,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-17 updated: the Criterion replaced whole — in Plan Mode an Other Case line raises no question, and the main agent sends the other Case back by itself · [[decision-case-872.3]]
 - 2026-10-29 updated: the Criterion replaced whole — the round, the name of a Case and its short text are shown in the language of the chat, not named as Russian · [[decision-case-908.3]]
+- 2026-10-30 updated: the method waits for a line Other Case that names a Case of the session · [[decision-case-916.1]]

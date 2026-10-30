@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-case-build]]"
 purpose: Whether the recommend of each Case case-guppi builds holds one item per question of its rounds — the title, the recommendation and the answer in the language of the repository as they stood when the person answered it, or a note that it was not answered — each item on the parent or under the one sub-case its answer changed, and a sub-case with no problem
 method: "by hand, after a render of rule-case-build: the Case files of a session, each recommend read against the rounds of its Case in the chat"
-checked: 2026-10-05
+checked: 2026-10-30
 origin: raw/2026-09-30/1306/ledger.md#case-544.2
 sprint: migration
 created: 2026-09-30
@@ -18,7 +18,7 @@ When:
 `case-guppi` writes a Case into `raw/<date>/<hi HHMM>/cases/case-<N>.md`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build` and `vault/wiki/case-schema.md` rendered from `rule-case-protocol`.
 
 Then:
-The `recommend` of the Case is a list with one item per question of the rounds of `case-guppi` on the Case: the item's first line is the title of the question in bold as the round wrote it, with a sub-item `Recommended:` with what the agent recommended and a sub-item `Answer:` with the person's answer in English, both as they stood when the person answered that question.
+The `recommend` of the Case is a list with one item per question of the rounds of `case-guppi` on the Case: the item's first line is the title of the question in bold as the round wrote it, with a sub-item `Recommended:` with what the agent recommended and a sub-item `Answer:` with the person's answer in the language of the repository, both as they stood when the person answered that question.
 **＋** A later question that replaced an earlier one is an item of its own, and the earlier item keeps its own recommendation and answer.
 **＋** A question asked in more than one round is one item, with the recommendation and the answer of the last round in which the person answered it.
 **＋** A question the person left unanswered is asked again in the next round under the same title; a question never answered has one item, whose `Answer:` sub-item says it was not answered and names the later question that replaced it, if one did.
@@ -31,7 +31,7 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 
 ## Result
 
-2026-10-05, by hand at the Work readings of session 1343, the case files 650–656 of the first session after the render of session 0311 against the rounds in transcript f5706873: 21 questions in the rounds and 21 items in the recommend of their parents (650 Q1–Q3, 651 Q1–Q8, 652 Q1, 653 Q1–Q3, 654 Q1, 655 Q1–Q3, 656 Q1–Q2), each with the question's title in bold, `Recommended:` matching the ➡️ choice and `Answer:` in English, the person's condition on 651 Q7 and the choice against the recommendation on 655 Q2 kept, no quotation of the person; not exercised: a question left unanswered, a `**Change**` item, an item under a sub-case
+2026-10-30, Retro of session 2341, the Case files case-913.md to case-918.md under the current render of rule-case-build: each recommend holds one item per question of the rounds of its Case, its title in bold as the round wrote it, Recommended and Answer in English, the language of this repository, with no Russian words quoted; Case 915 keeps the question the person answered with none of the options as an item of its own beside the later questions; 913, 915, 916 and 918 carry a Change item for each fix of /pre-spec, while 917 carries none for its fix of finding 3.1, a fix the main agent proposed and the person agreed to, not a change the person asked for on the shown Case
 
 ## History
 
@@ -44,3 +44,5 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 - 2026-10-05 updated: the Criterion replaced whole — its moment is the Case written into its file (case 645.13) · [[decision-case-645.13]]
 - 2026-10-05 status: pending → passed · raw/2026-10-05/1343/ledger.md#L40
 - 2026-10-17 updated: the purpose names the language of the repository by its role, and the method waits for a render · [[decision-case-875]]
+- 2026-10-30 updated: the Criterion replaced whole — the answer stands in the language of the repository, named by its role · [[decision-case-918.1]]
+- 2026-10-30 status: pending → passed · raw/2026-10-29/2341/ledger.md#L37

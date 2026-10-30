@@ -3,8 +3,8 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-event-log]]"
-method: pytest in .guppi/tests/test_event.py and .guppi/tests/test_gate.py with piped JSON payloads against a temp vault; the git-ignore and timing readings once by hand, through a pipe, written into the estimate line; by hand, one /hi outside plan mode and one in it, the permission_mode of each payload written into the reading
-checked: 2026-10-03
+method: pytest in .guppi/tests/test_event.py and .guppi/tests/test_gate.py with piped JSON payloads against a temp vault; by hand at Retro, git check-ignore on the event log of the day and one hook run through a pipe, timed, both written into the estimate line
+checked: 2026-10-30
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
 created: 2026-09-09
@@ -22,11 +22,11 @@ After the start and one tool call, `raw/<date>/event_log.md` carries a `session-
 **＋** On `/hi` whose `permission_mode` is any other value — `default`, `acceptEdits`, `auto`, `dontAsk`, `bypassPermissions` — or is missing or empty, a second `/hi` included: no line, nothing on stdout, exit 2 with a reason on stderr that tells the person to turn plan mode on and type `/hi` again; Claude Code blocks the prompt, and the skill does not run.
 **＋** Any other prompt is silent, and its `permission_mode` is not read: exit 0; an error goes to stderr only, exit 0.
 **＋** A call of `pre-spec`, `retro` or `handoff` through `Skill` that the gate lets through appends `- HH:MM:SS <stamp> <mark>` — `prespec`, `retro`, `handoff` — in the form `guppi event` writes; a refusal writes no line; `hi` and other skills get no mark.
-**＋** `git check-ignore` reports the log ignored by `.gitignore`; a hook invocation with piped stdin that refuses nothing exits 0 and finishes under 2 s.
+**＋** `git check-ignore` reports the log ignored by `vault/.gitignore`; a hook invocation with piped stdin that refuses nothing exits 0 and finishes under 2 s.
 
 ## Result
 
-2026-10-03, at the /hi of session 1416: `uv run pytest -q tests/test_event.py tests/test_gate.py` 74 passed; `git check-ignore -v` names `.gitignore:47` for vault/raw/2026-10-03/event_log.md; `uv run guppi event prompt` through a pipe on a plain prompt exited 0 in 187 ms and wrote no line; by hand, session 682b0e2f: the /hi of 14:16:36 came in permission mode `auto`, the hook refused it telling the person to turn plan mode on and type /hi again, Claude Code blocked the prompt, the skill did not run and the event log holds no line for it; the /hi of 14:16:59 in plan mode wrote `14:16:59 682b0e2f hi` after `14:16:26 682b0e2f session-start startup` with a tool line after it, and its `hi:` line names raw/2026-10-03/1416/; the `prespec` mark of session 26e79919 stands at 14:08:34 beside its Skill call; not exercised: a second /hi printing `hi: already recorded`
+2026-10-30, Retro of session 2341: uv run --project .guppi pytest .guppi/tests/test_event.py .guppi/tests/test_gate.py 74 passed; git check-ignore -v vault/raw/2026-10-29/event_log.md prints vault/.gitignore:2:raw/*/event_log.md; one guppi event prompt run through a pipe with a made-up prompt payload exited 0 in 0.24 s
 
 ## History
 
@@ -46,3 +46,5 @@ After the start and one tool call, `raw/<date>/event_log.md` carries a `session-
 - 2026-10-03 status: pending → passed · raw/2026-10-03/1416/ledger.md#L4
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-30 updated: the Criterion replaced whole — git check-ignore reports the log ignored by vault/.gitignore; the method drops the /hi readings by hand · [[decision-case-917.2]]
+- 2026-10-30 status: pending → passed · raw/2026-10-29/2341/ledger.md#L36

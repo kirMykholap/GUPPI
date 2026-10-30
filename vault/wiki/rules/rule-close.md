@@ -7,7 +7,7 @@ enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-close-commits]]", "[[estimate-close-reports-in-twenty-lines]]"]
+estimates: ["[[estimate-close-commits]]", "[[estimate-close-reports-the-run]]"]
 origin: raw/2026-09-10/ledger.md#case-36.1
 sprint: migration
 created: 2026-09-10
@@ -24,9 +24,7 @@ changed must be readable as one separate diff, six months on.
 ## Render
 
 <!-- rule-close -->
-Close. Run `uv run --project .guppi guppi check` and keep its output for the report. Commit the vault with the files the render wrote, by the Bash tool, since the command is written for a POSIX shell: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then return a report of at most twenty
-lines: pages created and updated per category, entries marked incomplete or failed,
-pages archived, the flags you raised, the lint total. Nothing else.
+Close. Run `uv run --project .guppi guppi check` and keep its output for the report. Commit the vault with the files the render wrote, by the Bash tool, since the command is written for a POSIX shell: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then return a report: pages created and updated per category, entries marked incomplete or failed, pages archived, the flags you raised, the lint total, and each part that another step of this frame sends to the report. Nothing else: no test result and no list of files (as set in case 913).
 <!-- /rule-close -->
 
 ## History
@@ -46,3 +44,5 @@ pages archived, the flags you raised, the lint total. Nothing else.
 - 2026-10-16 status: built → draft · cascade
 - 2026-10-17 updated: the close command is run by the Bash tool · [[decision-case-866]]
 - 2026-10-29 estimate estimate-close-reports-in-twenty-lines added · [[decision-case-903.2]]
+- 2026-10-30 updated: the report gives each part another step of the frame sends to it, no test result and no list of files, and has no limit of lines · [[decision-case-913]]
+- 2026-10-30 ref `estimate-close-reports-in-twenty-lines` → `estimate-close-reports-the-run` · [[decision-case-913]]

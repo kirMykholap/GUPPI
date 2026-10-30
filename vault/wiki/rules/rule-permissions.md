@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Lets the session write its own working files and read this project's saved transcripts without asking, and nothing else
-status: draft
+status: built
 enforcement: render
 governs: .claude/settings.json
 render_mode: partial
@@ -76,3 +76,4 @@ a refusal that matters has a hook behind it (case 85.5).
 - 2026-10-28 status: built → draft · cascade
 - 2026-10-29 status: draft → built · cascade
 - 2026-10-29 status: built → draft · cascade
+- 2026-10-30 status: draft → built · cascade

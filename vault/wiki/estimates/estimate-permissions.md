@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-permissions]]"
 method: "the allow list of the rendered .claude/settings.json against the Criterion, and the JSON case of .guppi/tests/test_render.py; by hand, after a Case file that case-guppi writes in Plan Mode: the person's word on whether the client asked at that write, and at a Grep of a subagent whose path is the folder of the project's saved transcripts itself and at one whose path is a file under it, recorded in the estimate line, never the agent's, which cannot see the prompt"
 checked: 2026-10-29
@@ -31,7 +31,7 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 
 ## Result
 
-2026-10-29, Plan Mode of session 2312: the allow list of .claude/settings.json holds the thirteen entries of the Criterion, with no deny and no ask; uv run --project .guppi python -m pytest .guppi/tests/test_render.py -k "json or permission": 4 passed; case-guppi wrote and edited the files of Cases 896 and 897 through the guard of rule-spec-reconcile (two Write and twelve Edit calls, each written by the guard); the main agent ran Grep with paths under ~/.claude/projects/c--PROJECTS-GUPPI (the session folder and its subagents folder); no subagent called Grep with that folder itself as its path in this session; the person: "не спрашивал, все ок"
+2026-10-29, at the /hi of session 2341: the allow list of .claude/settings.json holds the thirteen entries of the Criterion, deny and ask absent; uv run --project .guppi pytest .guppi/tests/test_render.py -k "json or permission": 4 passed, 33 deselected; the person, on the Plan Mode of session 1930: "нет" — the client did not ask at the writes of the case files under vault/raw/2026-10-29/1930/cases/, and no prompt came at a Grep or Read of a subagent on the folder of saved transcripts
 
 ## History
 
@@ -57,3 +57,4 @@ The allow list of `.claude/settings.json` holds Edit and Write for `frontier.md`
 - 2026-10-29 status: pending → passed · raw/2026-10-28/2312/ledger.md#L18
 - 2026-10-29 updated: method names a kind of moment, not the first Case file after a past change of the guard · [[decision-case-898.2]]
 - 2026-10-29 updated: the Criterion replaced whole — the transcripts folder is named as the one the Render of rule-permissions names, not by the folder name of the repository of GUPPI · [[decision-case-908.1]]
+- 2026-10-30 status: pending → passed · raw/2026-10-29/2341/ledger.md#L2

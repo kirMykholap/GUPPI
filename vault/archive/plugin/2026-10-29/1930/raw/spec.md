@@ -100,7 +100,7 @@ update:
 
 ```tasks
 - [x] update `estimate-close-commits`
-- [ ] read `estimate-close-commits`
+- [x] read `estimate-close-commits`
 ```
 
 ### Case 903.2 — The person reads the librarian's report
@@ -137,7 +137,7 @@ create:
 
 ```tasks
 - [x] create `estimate-close-reports-in-twenty-lines`
-- [ ] read `estimate-close-reports-in-twenty-lines`
+- [x] read `estimate-close-reports-in-twenty-lines`
 ```
 
 ## Case 904 — The case check and the example test drop their fallbacks
@@ -368,7 +368,7 @@ update:
 
 ```tasks
 - [x] update `estimate-permissions`
-- [ ] read `estimate-permissions`
+- [x] read `estimate-permissions`
 ```
 
 ### Case 908.2 — The discussion-question check names the chat language by role

@@ -12,7 +12,9 @@ no page governs, or a payload the hook cannot read: exit 0, the last with one li
 stderr. The hook never raises. It runs as `uv run --project .guppi guppi guard`, on
 `PreToolUse` with the matcher `Edit|Write|MultiEdit`. No governed file has a hand-written
 part; `CLAUDE.md` is a full Render (case 59.8). `guppi render` writes through Bash, not
-through these tools, and passes. Rule page: `vault/wiki/rules/rule-governed-files-hook.md`.
+through these tools, and passes. Claude Code runs this hook on a call of a subagent too, and
+the hook reads no agent, so it refuses an edit of a governed file by a subagent the same way.
+Rule page: `vault/wiki/rules/rule-governed-files-hook.md`.
 """
 
 import os

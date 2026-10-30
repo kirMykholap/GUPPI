@@ -833,6 +833,53 @@ def test_backlog_deferred_again_without_a_mark_names_the_mark(tmp_path):
     ]
 
 
+# --- a backlog item put off again by a Case of the conserved Spec (case 947) ---------------
+
+BOX_BACKLOG_FRONTIER = (
+    "# Frontier\n\n- [-] F1 — `rule-later`, put off again · backlog · defer case 7\n"
+)
+
+
+def with_conserved_ledger(project_dir, line, carried=True):
+    with_conserved(project_dir, carried=carried)
+    with_deferred(project_dir, "rule-later", ("decision-case-5",))
+    folder = project_dir / "vault" / "raw" / CONSERVED_UNIT[0] / CONSERVED_UNIT[1]
+    (folder / "ledger.md").write_text(line, encoding="utf-8", newline="\n")
+
+
+def test_backlog_deferred_again_by_a_case_of_the_conserved_ledger_passes(tmp_path):
+    with_conserved_ledger(
+        tmp_path, "- 12:00:00 decision[case 7][defer][rule-later]{supersedes:case 5}\n"
+    )
+    frontier = BOX_BACKLOG_FRONTIER
+    assert check(tmp_path, plan=BOX_PLAN, ledger="", frontier=frontier) == (0, "", "")
+
+
+def test_backlog_deferred_again_by_the_conserved_ledger_without_a_mark_names_it(tmp_path):
+    with_conserved_ledger(tmp_path, "- 12:00:00 decision[case 7][defer][rule-later]\n")
+    code, out, _ = check(tmp_path, plan=BOX_PLAN, ledger="", frontier=BOX_BACKLOG_FRONTIER)
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "frontier: F1: no Case among case 7 and its sub-cases defers rule-later and carries "
+            "{supersedes:case 5}"
+        )
+    ]
+
+
+def test_backlog_deferred_again_reads_no_ledger_of_a_folder_without_carry_md(tmp_path):
+    line = "- 12:00:00 decision[case 7][defer][rule-later]{supersedes:case 5}\n"
+    with_conserved_ledger(tmp_path, line, carried=False)
+    code, out, _ = check(tmp_path, plan=BOX_PLAN, ledger="", frontier=BOX_BACKLOG_FRONTIER)
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "frontier: F1 closes a backlog item with defer case 7, and no defer line of Case 7 "
+            "names a page of its title"
+        )
+    ]
+
+
 def test_a_defer_line_names_the_page_only_by_defer():
     records = [
         {"case": "2", "kind": "defer", "slug": "rule-x", "supersedes": ["7"]},

@@ -18,8 +18,9 @@ reaches the agent (case 255); a call that leaves no faulty file prints nothing.
 
 A file whose characters a tool changed but which stays valid UTF-8 with no mark is not
 caught. Another tool passes. A payload the hook cannot read, or a `git` call that fails,
-gives exit 0 and one line on stderr; the hook never raises. A shell call of a subagent is not
-checked, since a subagent does not inherit the hooks of `.claude/settings.json`. Rule page:
+gives exit 0 and one line on stderr; the hook never raises. Claude Code runs the hooks of
+`.claude/settings.json` inside a subagent too, so a shell call of a subagent is checked the
+same way. Rule page:
 `vault/wiki/rules/rule-shell-write-check.md`.
 """
 

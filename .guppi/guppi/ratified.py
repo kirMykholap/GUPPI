@@ -60,7 +60,9 @@ its sub-cases — or of `N.M` alone — from the plan and `spec.md` when it stan
 `## Deferred` too; a Case N neither holds is no refusal (case 445.3). A parent of such an `N.M`
 leaves with it once the marks of the session's ledger and of the reply retire each of its
 sub-cases with a decision line, by `prespec.retired_whole`, imported, and the parent holds no
-decision line of its own; a parent with a line of its own stays (case 722.2).
+decision line of its own; a parent with a line of its own stays (case 722.2). A parent whose
+own line a mark retires is named by that mark or lies under a Case it names, and so leaves by
+that mark with its sub-cases.
 
 The defer (case 421.1). A short put-off — a Case whose lines in the reply are all `defer`,
 beside the lines of other Cases or alone, and that the same reply shows in the short form, by

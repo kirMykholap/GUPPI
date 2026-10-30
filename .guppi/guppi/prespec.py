@@ -54,7 +54,9 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   `sprint` (cases 356.2, 451.2); after the source `backlog`, a line whose title names no slug
   that a `defer` line of Case N or of a sub-case names, and each Case M of the `deferred_by`
   of a page such a line names when no Case among them both defers the page and carries
-  `{supersedes:case M}` — `decided_on_its_page` with `by_defer` (case 937.1); `defer case N`
+  `{supersedes:case M}` — `decided_on_its_page` with `by_defer` (case 937.1), the decision
+  lines read from the window and, when the title line of the plan names a conserved Spec, from
+  the `ledger.md` of its folder, since a Case of that Spec has its lines there (case 947); `defer case N`
   after another source with no `defer` item
   under Case N in the plan, nor under Case N of the conserved Spec that the title line of
   the plan names — `conserved_spec_named` of `.guppi/guppi/box.py`, the judgment the hook of
@@ -656,7 +658,9 @@ def check_backlog_defer_line(
     Case N puts off again with a new wording: a `defer` line of Case N or of a sub-case names
     a slug of its title, and for each page of the title that carries `deferred_by` and that
     such a line names, each Case M there is marked `{supersedes:case M}` by a Case among them
-    that names the page on a `defer` line (case 937.1)."""
+    that names the page on a `defer` line (case 937.1). `records` holds the window's decision
+    lines and, in a session that runs a conserved Spec, those of the ledger of its folder, so a
+    Case of that Spec is judged as a Case of the session (case 947)."""
     findings: list[str] = []
     defers = {
         str(r["slug"])
@@ -711,6 +715,25 @@ def conserved_blocks(plan: str, project_dir: Path | None) -> dict[str, dict]:
     return {case: then_blocks(lines)[0] for case, lines in cases.items()}
 
 
+def conserved_decisions(plan: str, project_dir: Path | None) -> list[dict]:
+    """The decision records of the `ledger.md` of the conserved Spec whose folder the title
+    line of the plan names, by `conserved_spec_named`, its timed lines read by
+    `session_decisions`; none for a plan whose title line names no folder holding `carry.md`
+    (case 947)."""
+    if project_dir is None:
+        return []
+    folder = conserved_spec_named(plan, project_dir)
+    ledger = folder / "ledger.md" if folder is not None else None
+    if ledger is None or not ledger.is_file():
+        return []
+    lines = [
+        (folder.name, number, line)
+        for number, line in enumerate(ledger.read_text(encoding="utf-8").splitlines(), 1)
+        if TIMED_RECORD.match(line)
+    ]
+    return session_decisions(lines)
+
+
 def has_defer_item(blocks: dict, case: str) -> bool:
     """Whether the merged `then` block of Case `case` holds a `defer` item."""
     defers = blocks.get(case, {}).get("defer") or []
@@ -742,7 +765,8 @@ def check_frontier(
     `defer case N` after the source `sprint` is a finding — a sprint item is deferred by no
     Case (case 356.2). After the source `backlog` it is an item that Case N puts off again,
     judged by `check_backlog_defer_line` against `records` and the pages of `project_dir`
-    (case 937.1). After another source it needs a `defer` item under Case N, in the
+    (case 937.1), with the decision lines of the ledger of the conserved Spec that the title
+    line of `plan` names added, read once at the first such line (case 947). After another source it needs a `defer` item under Case N, in the
     plan or in the conserved Spec that the title line of `plan` names, a Case of the Spec
     the session runs by `/box` (case 620.2); a title line that names no folder holding
     `carry.md` adds no Case. A line
@@ -756,6 +780,7 @@ def check_frontier(
     text = path.read_text(encoding="utf-8")
     findings = [f"frontier: {item} is open" for item in open_case_items(text)]
     conserved: dict[str, dict] | None = None  # read once, at the first `defer case N` it needs
+    conserved_records: list[dict] | None = None  # read once, at the first backlog `defer case N`
     for line in text.splitlines():
         match = FRONTIER_LINE.match(line)
         if not match:
@@ -798,8 +823,10 @@ def check_frontier(
                 findings += check_backlog_line(item, rest, case, records or [], project_dir)
         elif closer.group(3) is not None and source == BACKLOG_SOURCE:
             if project_dir is not None:
+                if conserved_records is None:
+                    conserved_records = conserved_decisions(plan, project_dir)
                 findings += check_backlog_defer_line(
-                    item, rest, closer.group(3), records or [], project_dir
+                    item, rest, closer.group(3), (records or []) + conserved_records, project_dir
                 )
         elif closer.group(3) is not None and source in PUT_OFF_CLOSER:
             findings.append(

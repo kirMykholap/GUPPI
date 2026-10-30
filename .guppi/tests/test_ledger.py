@@ -1531,9 +1531,9 @@ def test_a_lesson_from_an_earlier_text_lands_without_a_word(working):
 
 
 def test_a_lesson_before_every_decision_line_is_not_asked(working):
-    """It is not held; the reminder after the write tells it (case 685.1)."""
+    """It is not held, and no reminder follows the write (case 915.1)."""
     code, err = run(asking(working, ledger_block(LESSON, DECISION)), working)
-    assert (code, err) == (2, ledger.reminder_message("lesson-x") + "\n")
+    assert (code, err) == (0, "")
     assert ledger_text(working).splitlines() == [timed(LESSON), timed(DECISION)]
 
 
@@ -1571,123 +1571,61 @@ def test_with_the_flag_and_a_readable_transcript_the_lesson_is_still_asked(worki
     assert ledger_text(working) == f"{timed(DECISION)}\n"
 
 
-# --- a lesson before a Case is reminded of its mark (case 685.1) ---------------------------
+# --- a lesson before a Case brings no reminder (case 915.1) --------------------------------
 # `estimate-ledger-write-reminds-of-the-mark-on-a-decision-line`
 
 MARKED_AGAIN = DECISION + "{addresses:lesson-x}"
 
 
-def reminder(slug):
-    return ledger.reminder_message(slug) + "\n"
-
-
-def test_reminder_comes_after_the_write(working):
+def test_a_lesson_before_fresh_decision_lines_brings_no_line(working):
     seed_ledger(working, LESSON)
     code, err = run(asking(working, ledger_block(DECISION)), working)
-    assert (code, err) == (2, reminder("lesson-x"))
-    assert err == (
-        "ledger: lesson[lesson-x] has no mark — did a Case of this session fix its cause? Then write the "
-        "decision line of the Case or sub-case that fixed it again with "
-        "{addresses:lesson-x} added, alone in a LEDGER block; otherwise go on without it.\n"
-    )
+    assert (code, err) == (0, "")
     assert ledger_text(working).splitlines() == [f"- 15:01:50 {LESSON[2:]}", timed(DECISION)]
 
 
-def test_reminder_names_no_case_with_fresh_lines_of_several_cases(working):
-    """The reminder names no Case with fresh lines of several Cases (case 694.2)."""
+def test_a_lesson_before_fresh_lines_of_several_cases_brings_no_line(working):
     seed_ledger(working, SUB_2, LESSON)
     code, err = run(asking(working, ledger_block(CASE_9, SUB_1, CASE_9)), working)
-    assert (code, err) == (2, reminder("lesson-x"))
+    assert (code, err) == (0, "")
+    assert "has no mark" not in err
 
 
-def test_reminder_is_told_once_a_stretch(working):
-    """With no Case named, a ratification of other Cases in the same stretch
-    gives the same line, already told (case 694.2)."""
+def test_a_decision_line_with_the_addresses_mark_lands(working):
     seed_ledger(working, LESSON)
-    path = stretch(working, own_refusal(reminder("lesson-x").rstrip("\n")))
-    assert run(
-        payload(last_assistant_message=ledger_block(DECISION), transcript_path=path), working
-    ) == (0, "")
-    stdin = payload(last_assistant_message=ledger_block(CASE_9), transcript_path=path)
-    assert run(stdin, working) == (0, "")
-
-
-def test_reminder_ends_once_a_decision_line_carries_the_mark(working):
-    from guppi import materialize
-
-    seed_ledger(working, LESSON, DECISION)
     code, err = run(asking(working, ledger_block(MARKED_AGAIN)), working)
     assert (code, err) == (0, "")
     assert ledger_text(working).splitlines()[-1] == timed(MARKED_AGAIN)
-    assert run(asking(working, ledger_block(CASE_9)), working) == (0, "")
-    lines = ledger_text(working).splitlines()
-    assert materialize.unlinked_lessons(lines) == []
-    record = materialize.parse_line(lines[0])
-    assert record["slug"] == "lesson-x" and not record["addressed_by"]
 
 
-def test_reminder_not_for_a_defer_line(working):
+def test_no_decision_line_is_held_for_the_mark(working):
     seed_ledger(working, LESSON)
-    defer = "- decision[case 5][defer][estimate-x-holds]"
-    assert run(asking(working, ledger_block(defer)), working) == (0, "")
-    assert ledger_text(working).splitlines()[-1] == timed(defer)
-
-
-def test_reminder_not_for_a_lesson_after_every_decision_line(working):
-    code, err = run(
-        payload(
-            last_assistant_message=ledger_block(DECISION, LESSON), transcript_path=asked(working)
-        ),
-        working,
-    )
+    code, err = run(asking(working, ledger_block(DECISION, CASE_9)), working)
     assert (code, err) == (0, "")
-    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON)]
+    assert ledger_text(working).splitlines()[-2:] == [timed(DECISION), timed(CASE_9)]
 
 
-def test_reminder_not_for_a_lesson_already_marked(working):
-    seed_ledger(working, DECISION, LESSON_MARKED)
-    assert run(asking(working, ledger_block(CASE_9)), working) == (0, "")
+def test_the_hook_holds_no_reminder_of_a_lesson():
+    assert not hasattr(ledger, "reminder_message")
+    assert not hasattr(ledger, "unaddressed")
 
 
-def test_reminder_not_for_a_fresh_lesson_the_same_stop_holds_back(working):
-    code, err = run(asking(working, ledger_block(SUB_1, LESSON, CASE_9)), working)
-    assert (code, err) == (2, held_refusal())
-    assert ledger_text(working).splitlines() == [timed(SUB_1), timed(CASE_9)]
+# --- a knowledge lesson is never held for its mark (case 915.3) ----------------------------
+# `estimate-ledger-write-asks-for-the-mark-of-a-lesson`
+
+KNOWLEDGE = "- lesson[knowledge][lesson-x]{source:docs} trigger: a root_cause: b"
 
 
-def test_reminder_not_for_a_decision_line_of_an_earlier_text(working):
-    seed_ledger(working, LESSON)
-    path = write_transcript(working, person(), transcript_line(ledger_block(DECISION)))
-    stdin = payload(last_assistant_message="Nothing.", transcript_path=path)
-    assert run(stdin, working) == (0, "")
-    assert ledger_text(working).splitlines()[-1] == timed(DECISION)
+def test_a_knowledge_lesson_after_a_decision_line_lands_at_its_first_stop(working):
+    code, err = run(asking(working, ledger_block(DECISION, KNOWLEDGE)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(KNOWLEDGE)]
 
 
-def test_reminder_not_without_hi(tmp_path):
-    write_event_log(tmp_path, "- 15:01:00 44c1aae1 session-start startup\n")
-    code, err = run(asking(tmp_path, ledger_block(LESSON, DECISION)), tmp_path)
-    assert code == 2 and "no /hi recorded" in err and "has no mark" not in err
-
-
-def test_reminder_with_the_flag_and_no_readable_transcript_says_nothing(working):
-    seed_ledger(working, LESSON)
-    stdin = payload(last_assistant_message=ledger_block(DECISION), stop_hook_active=True)
-    assert run(stdin, working) == (0, "")
-    assert ledger_text(working).splitlines()[-1] == timed(DECISION)
-
-
-def test_unlinked_lessons_reads_the_marks_of_both_kinds():
-    from guppi.materialize import unlinked_lessons
-
-    lines = [
-        LESSON,
-        DECISION,
-        LESSON.replace("lesson-x", "lesson-y"),
-        MARKED_AGAIN,
-        LESSON_MARKED.replace("lesson-x", "lesson-z"),
-    ]
-    assert unlinked_lessons(lines) == [2]
-    assert unlinked_lessons([LESSON, LESSON_MARKED]) == []
+def test_a_knowledge_lesson_beside_a_marked_line_of_its_slug_is_dropped(working):
+    code, err = run(asking(working, ledger_block(DECISION, KNOWLEDGE, LESSON_MARKED)), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON_MARKED)]
 
 
 # --- a decision line is a copy of the stored Case (case 688.7) -----------------------------

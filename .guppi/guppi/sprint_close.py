@@ -39,7 +39,7 @@ open session read only the logs back to the start of that session, days before i
 too; with no session folder, or no such stamp or more than one, no log moves and one line
 `archive: event logs kept: <reason>` says why (case 886); a log whose
 target exists stays, with one line on stderr. A date folder the moves leave empty is removed.
-`.gitignore` leaves the moved logs out of git. The preview names each unit and each log the
+`vault/.gitignore` leaves the moved logs out of git. The preview names each unit and each log the
 close would move and moves none; a refused close moves none. Exit 0 on a preview or a close,
 1 on a refusal or an error — a unit or a log that failed to move too, after the other moves —
 2 on bad arguments.

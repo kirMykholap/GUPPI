@@ -135,7 +135,7 @@ there are any. A refused line from an earlier text is judged again at every `Sto
 a word, and is written at the first `Stop` where a decision line of its Case stands in the
 ledger before it.
 
-A lesson after a Case is asked for its mark (case 682.1). A fresh `lesson[...]` line with no
+A lesson after a Case is asked for its mark (case 682.1). A fresh `lesson[error]` line with no
 `{addressed_by:...}` that a decision line of the session stands before — in the session's
 ledger, or earlier among the lines of the same `Stop` — is held once: when it stands in the
 reply just finished and the hook's question about it does not yet stand in a refusal of the
@@ -146,22 +146,11 @@ lesson, since the hook cannot tell which Case a lesson relates to (case 694.1).
 The line written again unchanged, or a line that stands only in an earlier text, is written as
 it stands; with `stop_hook_active` set and a transcript the hook cannot read, too. An
 unmarked line is never written beside a `lesson[<slug>]` line with the mark in the session's
-ledger or in the same `Stop`: it is dropped without a word. A line refused for its prefix is
-not asked; a lesson before every decision line is not asked, and a decision line is never held
+ledger or in the same `Stop`: it is dropped without a word. A `lesson[knowledge]` line records
+a fact that no Case fixes, so it is never held for its mark and lands at its first `Stop`,
+dropped all the same beside a marked line of its slug (case 915.3). A line refused for its
+prefix is not asked; a lesson before every decision line is not asked, and a decision line is never held
 for its `{addresses:...}`. Judged by `unmarked_lessons`, over lines read by `parse_line`.
-
-A lesson before a Case is reminded of its mark (case 685.1). The hook writes the lines of the
-`Stop` first; then, for each lesson of the session that no mark links to a Case — no
-`{addressed_by:...}` on a line of its slug and no decision line after it with
-`{addresses:<slug>}`, judged by `unlinked_lessons` of `.guppi/guppi/materialize.py` over the
-session's ledger followed by the lines this `Stop` writes — that fresh decision lines of the
-reply just finished follow, a `defer` and a line of an earlier text left out, it exits 2 with
-one stderr line asking whether a Case of this session fixed its cause and asking for its
-decision line written again with `{addresses:<slug>}`, alone in a `LEDGER` block
-(`unaddressed`, `reminder_message`). The line names no Case (case 694.2), so it is the same
-for one lesson at every ratification; it is told once a stretch, by `untold`, and a decision
-line written again with the mark ends it. A line held back or refused at the same `Stop` is
-not written, so it brings no reminder.
 
 A decision line is a copy of the stored Case (case 688.7). A fresh decision line other than
 a `defer` is not written while it is not a line of the `ratification` stored for its Case id
@@ -827,7 +816,9 @@ def unmarked_lessons(
     session's ledger `written` followed by `fresh` (case 682.1); a line in `skip`, refused
     for its prefix, is not judged. `cases` are the Cases of the decision lines before it, in
     the order first seen. `dropped` is true when a `lesson[<slug>]` line with the mark stands
-    in `written` or `fresh`: the unmarked line is never written beside it. The lines are read
+    in `written` or `fresh`: the unmarked line is never written beside it. A `knowledge` line is
+    left out, so it is never held, unless such a marked line of its slug stands, so that it is
+    still dropped beside it (case 915.3). The lines are read
     by `parse_line` of `.guppi/guppi/materialize.py`, the one parse of a ledger line."""
     from guppi.materialize import parse_line
 
@@ -852,6 +843,8 @@ def unmarked_lessons(
             or not cases
         ):
             continue
+        if record["kind"] == "knowledge" and record["slug"] not in marked:
+            continue  # a fact: no Case fixes its cause (case 915.3)
         found.append((line, record["slug"], list(cases), record["slug"] in marked))
     return found
 
@@ -864,51 +857,6 @@ def held_message(slug: str) -> str:
         f"ledger: lesson[{slug}] held — did a Case of this session fix its cause? Then add "
         f"{{addressed_by:case <N>}}, the Case or sub-case that fixed it, and repeat the line; "
         "otherwise repeat it unchanged."
-    )
-
-
-def unaddressed(
-    written: list[str], landed: list[str], finished: set[str]
-) -> list[tuple[str, list[str]]]:
-    """`(slug, cases)` of each lesson of the session that no mark links to a Case and that
-    fresh decision lines of the reply just finished follow (case 685.1), over the session's
-    ledger `written` followed by the lines this `Stop` writes, `landed`: a line held back or
-    refused is not among them, so it brings no reminder. `cases` are the Cases of those
-    decision lines after the lesson — a `defer` and a line of an earlier text left out — in
-    the order first seen; the stderr line names none of them (case 694.2), and it is told once
-    a stretch. Judged by `unlinked_lessons` of `.guppi/guppi/materialize.py`, the one judgment of the
-    link; imported here, since `materialize` imports this module."""
-    from guppi.materialize import parse_line, unlinked_lessons
-
-    ordered = [f"- {body(line)}" for line in written + landed]
-    records = [parse_line(line) for line in ordered]
-    found: list[tuple[str, list[str]]] = []
-    for index in unlinked_lessons(ordered):
-        cases: list[str] = []
-        for at in range(index + 1, len(ordered)):
-            record = records[at]
-            if (
-                record
-                and record["record"] == "decision"
-                and record["kind"] != "defer"
-                and at >= len(written)
-                and body(ordered[at]) in finished
-                and record["case"] not in cases
-            ):
-                cases.append(record["case"])
-        if cases:
-            found.append((records[index]["slug"], cases))
-    return found
-
-
-def reminder_message(slug: str) -> str:
-    """The stderr line of the reminder of a lesson with no mark (case 685.1): whether a Case
-    of this session fixed its cause, then how to mark it. It names no Case, so the line is the
-    same for one lesson at every ratification and is told once a stretch (case 694.2)."""
-    return (
-        f"ledger: lesson[{slug}] has no mark — did a Case of this session fix its cause? Then "
-        f"write the decision line of the Case or sub-case that fixed it again with "
-        f"{{addresses:{slug}}} added, alone in a LEDGER block; otherwise go on without it."
     )
 
 
@@ -1130,8 +1078,6 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         fresh = [line for line in fresh if line not in out]
         if fresh:
             append(path, fresh)
-        # after the write, once a stretch (case 685.1)
-        reminders = [reminder_message(slug) for slug, _ in unaddressed(written, fresh, finished)]
         messages = [
             "ledger: line not written — the grammar of a ledger line does not read it: "
             f"{body(line)}. Write it again in the form of the table in ratification.md."
@@ -1195,7 +1141,6 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
                 off_store_message(case) for line, case in copied if body(line) in finished
             )
         )
-        messages += reminders
         loud = untold(messages, told, payload)  # each refused line once a stretch (case 577.3)
         for message in loud:
             print(message, file=stderr)

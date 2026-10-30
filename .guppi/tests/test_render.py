@@ -6,6 +6,9 @@ temp folder; nothing here touches the repository's own pages.
 
 import io
 import json
+import os
+import subprocess
+import sys
 
 import pytest
 import yaml
@@ -491,6 +494,26 @@ def test_paths_on_a_render_error_prints_no_path_and_exits_1(tmp_path):
     assert (code, out) == (1, "")
     assert "out/X.md" in err
     assert not (tmp_path / "out" / "X.md").exists()
+
+
+def test_paths_in_a_child_process_ends_each_line_in_a_bare_line_feed(tmp_path):
+    """Case 914: run as the close command runs it, `--paths` writes no carriage return, on
+    Windows too, so `$(...)` hands `git add` each path as it stands."""
+    frame_vault(tmp_path)
+    rule(
+        tmp_path, "rule-three", "full", "CLAUDE.md", "<!-- rule-three -->\nx\n<!-- /rule-three -->"
+    )
+    done = subprocess.run(
+        [sys.executable, "-P", "-m", "guppi.cli", "render", "--paths"],
+        check=False,
+        cwd=tmp_path,
+        env=dict(os.environ, CLAUDE_PROJECT_DIR=str(tmp_path)),
+        capture_output=True,
+        timeout=60,
+    )
+    assert (done.returncode, done.stderr) == (0, b"")
+    assert b"\r" not in done.stdout
+    assert sorted(done.stdout.decode("utf-8").split("\n")) == ["", "CLAUDE.md", "out/SKILL.md"]
 
 
 def test_paths_with_check_or_sync_is_a_bad_invocation(tmp_path):

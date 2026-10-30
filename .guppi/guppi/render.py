@@ -27,9 +27,10 @@ updated, or a hand edit that is now gone and may deserve a Case (case 115). An
 identical file gets neither; a render error goes to stderr and nothing is written. `--sync`
 always exits 0, since a `SessionStart` hook cannot block and its stdout is added to the
 agent's context.
-`--paths` prints each file the render writes — the keys of `plan`, one per line — writes
-nothing, ticks nothing and exits 0; a render error goes to stderr with exit 1 and no path is
-printed. The close commit of the librarian adds `vault` and this list, as the Render of
+`--paths` prints each file the render writes — the keys of `plan`, one per line, each line
+ending in a bare line feed, on Windows too, so that `$(...)` in a POSIX shell hands `git add`
+each path as it stands (case 914) — writes nothing, ticks nothing and exits 0; a render error
+goes to stderr with exit 1 and no path is printed. The close commit of the librarian adds `vault` and this list, as the Render of
 `rule-close` sets it, so a rendered file outside `vault` is never left out (case 857).
 Claude Code reads the agent files under `.claude/agents/` at session start, so an agent the
 librarian renders can be called from the next session (case 139.1): the librarian's render
@@ -359,6 +360,8 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None) -> i
             sync(project_dir, outputs, stdout)
             return 0
         if args.paths:
+            if hasattr(stdout, "reconfigure"):  # no CR for the shell that reads it (case 914)
+                stdout.reconfigure(newline="\n")
             for governs in outputs:
                 print(governs, file=stdout)
             return 0

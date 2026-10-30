@@ -41,8 +41,8 @@ of the line, through which `prespec.window` finds it too; `raw/<hi date>/<hi HHM
 does not stand; `frontier.md` holds no open line under `## Cases`, by
 `prespec.open_case_items`, the one judgment the check of `/pre-spec` reports; the reply
 carries a `LEDGER` block, by `ledger.ledger_lines`, or the ledger hook refused the reply that
-ended just before it, by `ledger.sent_back_last`, so the answer with no block to its reminder
-is sent on too (case 696.2); its own refusal, `uv run --project .guppi guppi onward --plan`,
+ended just before it, by `ledger.sent_back_last`, so the answer with no block to a line it
+refused or held is sent on too (case 696.2); its own refusal, `uv run --project .guppi guppi onward --plan`,
 is not spent, as above (case 597.1), the flag counting only when the transcript cannot be
 read; and the reply does not open with `STOP:`. A Case still out changes only the reason
 (case 889.1): when a file under `cases/` was written after the last decision line of its
@@ -67,7 +67,7 @@ the report of `/pre-spec`, before any Case is built again, or only the emptied f
 dropped Case — it sends the agent on with the loop
 after the findings: to send each finding in a Case to its `case-guppi`, or, when no Case
 goes back, to run the check and exit. After a reply the ledger hook sent back — a line it
-refused or held, or its reminder of a lesson with no mark (cases 685.1, 688.7) — `spent`
+refused or held (case 688.7) — `spent`
 lets it fire again at the next reply. Each reason adds that, when only the person can go
 on — a question the person must answer, or a Case that waits only for the person's word —
 the agent opens its reply with `STOP:` and asks the person, and that while a `case-guppi`

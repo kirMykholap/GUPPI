@@ -5,12 +5,27 @@ debugging material, not traceability: gitignored, written by hooks rather than b
 instructions, so it still fills when the agent deviates or crashes. Rule page:
 `vault/wiki/rules/rule-event-log.md`.
 
-Line format: `- HH:MM:SS <first 8 of session_id | --------> <event> <detail>`.
+Line format: `- HH:MM:SS <first 8 of session_id | --------> <event> <detail>`. For example:
+
+    - 15:02:11 a1b2c3d4 session-start startup
+    - 15:02:40 -------- hi
+    - 15:03:05 a1b2c3d4 tool Bash: git status --short
+    - 15:04:12 a1b2c3d4 tool Agent: Explore
+
+The hook runs as `uv run --project .guppi guppi event <name>` and creates the day's folder
+and the file when they do not stand. When a hook is the caller, the payload comes from
+stdin: `session_id`, `tool_name` and the most telling field of `tool_input` — `command`,
+`subagent_type`, `skill`, `file_path`, `pattern` or `description`, the first that stands —
+the detail cut to 80 characters on one line. It is registered on `SessionStart`
+(`session-start`) and on `PostToolUse` with no matcher (`tool`): every tool, because this is
+a debugging record and a filter is one more decision to maintain.
 
 `guppi event prompt`, the `UserPromptSubmit` hook, is the one event with a filter: it
 writes `hi` with the session's stamp when the prompt is `/hi` (arguments allowed) and no
-`hi` of this session follows its first `session-start` yet; any other prompt, a second
-`/hi`, or a payload without a session id writes nothing (case 111.1). On `/hi` it also
+`hi` of this session follows its first `session-start` yet in the logs the ledger hook walks;
+any other prompt, a second `/hi`, or a payload without a session id writes nothing (case
+111.1). With the stamp on the `hi` line, a `hi` of one session never belongs to another, so
+two sessions open at once are told apart (case 111.1). On `/hi` it also
 prints one line on stdout, which Claude Code adds to the context: `hi: HH:MM:SS <stamp> →
 raw/<date>/<HHMM>/` for the line it wrote, `hi: already recorded at HH:MM:SS → raw/<date>/
 <HHMM>/` for the one that exists; the `/hi` skill takes the session's folder from it (case

@@ -2,7 +2,8 @@
 Spec is ahead of the ledger: on `PreToolUse` for the agent's call through the `Skill`
 tool, on `UserPromptSubmit` for the person's typed `/pre-spec`, `/retro` or `/handoff`.
 
-Reads the hook payload from stdin. Two refusals, each exit 2 with the reason on stderr,
+It runs as `uv run --project .guppi guppi gate`, on `PreToolUse` with the matcher `Skill`
+and on `UserPromptSubmit`. Reads the hook payload from stdin. Two refusals, each exit 2 with the reason on stderr,
 which blocks the call once; the hook writes nothing and commits nothing.
 
 Two entries, one gate (case 169.1). A typed slash command is expanded by the client into

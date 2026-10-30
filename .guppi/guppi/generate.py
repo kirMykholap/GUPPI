@@ -656,15 +656,24 @@ def frontiers(project_dir: Path) -> list[tuple[tuple[str, str], Path]]:
     return sorted(found, key=lambda item: item[0], reverse=True)
 
 
+def title_slugs(rest: str) -> list[str]:
+    """The slugs of the title of a Frontier line, from `rest`, the text after its item id:
+    each code span of the text before the first ` · `, trimmed of its backticks and of the
+    spaces inside them, in order. A code span of a later segment names no item of the line.
+    The one reading of the backlog count and of the page checks of `/pre-spec` and of the
+    file of `case-guppi` (case 937.1)."""
+    title = rest.split(FRONTIER_SEPARATOR)[0]
+    return [span.strip("`").strip() for span in CODE_SPAN.findall(title)]
+
+
 def frontier_marks(path: Path) -> list[tuple[str, set[str]]]:
-    """`(box, slugs)` per line of a Frontier: its box, and the slugs its title — the text
-    before the first ` · ` — holds in code spans (case 354.1)."""
+    """`(box, slugs)` per line of a Frontier: its box, and the slugs of its title by
+    `title_slugs` (case 354.1)."""
     marks: list[tuple[str, set[str]]] = []
     for line in path.read_text(encoding="utf-8").splitlines():
         match = FRONTIER_LINE.match(line)
         if match:
-            title = match.group(3).split(FRONTIER_SEPARATOR)[0]
-            marks.append((match.group(1), {s.strip("`") for s in CODE_SPAN.findall(title)}))
+            marks.append((match.group(1), set(title_slugs(match.group(3)))))
     return marks
 
 

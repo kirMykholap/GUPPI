@@ -17,8 +17,9 @@ a `Read` with `offset` at its first line shows it.
 A call with its own `offset` or `limit`, a file with no `## History` — `brief.md`,
 `sprint.md`, `glossary.md`, `log.md`, `case-schema.md` — a file outside `vault/wiki/`, any
 other tool, or a payload the hook cannot read pass unchanged: exit 0, nothing printed. The
-page on disk is never changed. The payload is read as UTF-8; the hook never raises. Rule
-page: `vault/wiki/rules/rule-page-read.md`.
+page on disk is never changed. The payload is read as UTF-8; the hook never raises, and an
+error lets the call pass whole. Both hooks run as `uv run --project .guppi guppi pageread`,
+with `--after` on `PostToolUse`. Rule page: `vault/wiki/rules/rule-page-read.md`.
 """
 
 import json

@@ -17,7 +17,8 @@ of `casecheck.against_store` — and a Case whose file no `SendUserFile` call se
 time the store holds for Case N, a store that holds no time included (case 452.3), and a Case
 whose file holds a Case that differs from the text the store holds under its id or that the
 store does not hold, by `casecheck.changed_file`, the one judgment the `Stop` check of a
-showing runs (case 645.5); a reply with no showing is no refusal. Otherwise it writes the stored answer (case 437) into the plan file
+showing runs (case 645.5); a reply with no showing is no refusal. On a refusal nothing of
+Case N is written (case 437). Otherwise it writes the stored answer (case 437) into the plan file
 `ledger.plan_path` names, outside the repository, and into no copy (case 445.2): the heading,
 `context`, `problem`, `recommend`, `given`, `when` and `then` as the stored answer holds them —
 a sub-case's own `recommend` under its heading (case 544.5); a `context`, `problem` or
@@ -31,17 +32,19 @@ into it too (case 441.6): every section of the Case there replaced — an approv
 one session leaves it twice — or the section placed in the last approved document; a task
 line whose text stood in a replaced section keeps its box. A sub-case also writes its
 parent's heading, `context`, `problem` and `recommend` from the parent's stored answer, never
-from the reply (cases 441.6, 544.5, 544.10). The chat form the hook reads: a task line opening with `create`, `update`,
-`delete` or `defer` and the slug in its first code span is an item; its sub-points are its
+from the reply (cases 441.6, 544.5, 544.10). No plan file, or a sub-point the hook cannot
+read, is a refusal with the reason on stderr. The chat form the hook reads: a task line
+opening with `create`, `update`, `delete` or `defer` and the slug in its first code span is an item; its sub-points are its
 keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new` under
 `reword`, `set` (a YAML flow mapping), `change`, `rename`, `sections.<Name>`, `drop`, a YAML
 flow list of section names (case 931), the fields of a
 `create` — each value one code span, with as many backticks as the value needs and padded by
 one space on each side when it holds a backtick, an unpadded one refused (case 402), or a fenced
 block under the sub-point; a sub-point that reads into no key `materialize.item_keys` gives its
-item is refused, and nothing of the Case is written — a `create` or a `defer` of a category with
-no schema file, or of one whose schema rule the session's ledger or the reply changes, not
-judged (cases 308.2, 436.1); a `create` of an Estimate takes its `ref` from its ledger line when
+item is refused, and nothing of the Case is written — `slug` a key of every kind, and
+`item_keys` the one judgment `materialize` lifts by and `generate` applies by; a `create` or a
+`defer` of a category with no schema file, or of one whose schema rule the session's ledger or
+the reply changes, not judged (cases 308.2, 436.1); a `create` of an Estimate takes its `ref` from its ledger line when
 no sub-point gives one. A task line opening with `tag` and the tag in its first code span
 declares a new tag and is no task: its sub-points `meaning` and `aliases`, each one code span,
 make one entry of `new_tags` at the head of the block tagged `then`, in the order of the lines,
@@ -67,9 +70,11 @@ is written from that reply: the heading, `context`, `problem` and its fence tagg
 the session's folder once that file stands (case 542), its section replaced when it stands and
 appended otherwise; the check after the write does not run on it. A missing item,
 a key of a `defer` item that `materialize.item_keys` does not give it (case 436.3), or a
-fence tagged `then` that holds a YAML comment by `materialize.then_comments` — after a space
-YAML drops the rest of the line, so a value without quotes is cut there, and after a tab
-PyYAML, the library the scripts use, refuses the whole block (cases 521.1, 526) — is a refusal.
+fence tagged `then` that holds a YAML comment by `materialize.then_comments` — a `#` at the
+start of a line or after a space or a tab, outside a quoted value and outside a `|` or `>`
+block; after a space YAML drops the rest of the line, so a value without quotes is cut
+there, and after a tab PyYAML, the library the scripts use, refuses the whole block (cases
+521.1, 526) — is a refusal.
 So is a `defer` line of the Case whose slug names a Lesson or a Decision page, by
 `materialize.defers_a_record`, whether its page stands or not, judged before the fence tagged
 `then` is read, with `materialize.DEFER_OF_A_RECORD`: neither page carries `deferred_by`, so no
@@ -79,8 +84,8 @@ The check after the write (case 414.1). Each Case written in the run, and its su
 through the checks of `guppi prespec --check` — `prespec.written_findings`, imported inside
 the function since `.guppi/guppi/prespec.py` imports this module — with the decision lines of the
 reply added to the window's, since the ledger hook runs in parallel on the same `Stop`; the
-Frontier and the grammar of the window stay with `/pre-spec`. A finding is a refusal; the
-written Case stays.
+Frontier, the translation and the grammar of the window stay with `/pre-spec`. A finding is a
+refusal, each finding on stderr naming its Case; the written Case stays.
 
 The guard (case 445.1). On `Edit`, `Write` or `MultiEdit` of a plan file — a `.md` file under
 `.claude/plans/`, by `ledger.is_plan_file`, the judgment `plan_path` uses too — or of its
@@ -131,14 +136,16 @@ A refusal exits 2 with the reason on stderr, which Claude Code hands back to the
 hook writes, removes and checks whether `stop_hook_active` is set or not: Claude Code keeps the
 flag set from the first refusal of any `Stop` hook until the person's next message, so a Case
 whose lines a reply repeats after a refusal is written at that reply (case 644.1). It guards
-its own loop by its refusals in the stretch, read by `ledger.own_refusals` under `COMMAND`: a
+its own loop by its refusals in the stretch — the transcript after the person's last message —
+read by `ledger.own_refusals` under `COMMAND`: a
 reason that already stands in one of them is not printed again, by `ledger.untold`, and the
 hook exits 2 only while a reason not yet given is left; with the flag set and a transcript it
 cannot read it prints nothing and exits 0 (case 644.8). Outside a working session — no `hi` —
 it does nothing. It never raises. An error of its own after it has read the payload exits 2 on
 `Stop`, with the error and the advice to repeat the ledger lines on stderr, so the agent sees
 it — once a stretch, and silent with the flag set and a transcript it cannot read (case
-644.7); an error while it reads the payload, and any error of the guard, exits 0 with the error
+644.7). A Case not yet written then is written at the reply that repeats its lines, and one
+written before the error stays and is replaced then. An error while it reads the payload, and any error of the guard, exits 0 with the error
 on stderr (case 554). `untranslated` is the language
 finding `guppi prespec --check` imports, a letter outside the script of the documentation
 language judged by `config.outside` (cases 387.4, 445.4, 476.3); a Latin letter in a code

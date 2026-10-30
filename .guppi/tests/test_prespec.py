@@ -15,7 +15,7 @@ from datetime import UTC, date, datetime
 
 import pytest
 
-from guppi import prespec
+from guppi import generate, prespec
 
 TODAY = date(2026, 9, 9)
 NOW = datetime(2026, 9, 9, 18, 40, 5, tzinfo=UTC)
@@ -595,16 +595,14 @@ def test_a_box_finding_and_a_source_finding_are_both_given(tmp_path):
     ]
 
 
-@pytest.mark.parametrize(("source", "closer"), [("sprint", "defer"), ("backlog", "kept")])
-def test_defer_case_n_after_sprint_or_backlog_is_a_finding(tmp_path, source, closer):
-    # the defer item under Case `2` stands: a sprint or backlog item is not deferred by a
-    # Case
-    frontier = CLEAN_FRONTIER + f"- [-] F2 — `rule-later` · {source} · defer case 2\n"
+def test_defer_case_n_after_sprint_or_backlog_is_a_finding(tmp_path):
+    # the defer item under Case `2` stands: a sprint item is not deferred by a Case; a
+    # backlog item put off again is judged on its page below (case 937.1)
+    frontier = CLEAN_FRONTIER + "- [-] F2 — `rule-later` · sprint · defer case 2\n"
     code, out, _ = check_deferring(tmp_path, frontier)
     assert code == 1
     finding = (
-        f"frontier: F2 defers a {source} item by a Case; a {source} item put off "
-        f"closes [-] with {closer}"
+        "frontier: F2 defers a sprint item by a Case; a sprint item put off closes [-] with defer"
     )
     assert out.splitlines() == [finding]
 
@@ -785,6 +783,83 @@ def test_backlog_a_page_without_defers_or_a_line_of_another_source_is_no_finding
     with_deferred(tmp_path, slug, deferred_by)
     frontier = BACKLOG_LINE.format(slug=slug, source=source)
     assert check(tmp_path, frontier=frontier) == (0, "", "")
+
+
+# --- a backlog item put off again by a Case (case 937.1) ----------------------------------
+
+DEFER_AGAIN_PLAN = (
+    PLAN + "\n## Case 2 — put off again\n\n```then\ndefer:\n  - slug: rule-z\n    type: rule\n"
+    "    purpose: p\n```\n"
+)
+DEFER_AGAIN_LINE = "- [-] F2 — `rule-z`, put off again · backlog · defer case 2\n"
+
+
+def check_deferred_again(project_dir, defer_line, plan=DEFER_AGAIN_PLAN):
+    return check(
+        project_dir, plan=plan, ledger=LINE + defer_line, frontier=CLEAN_FRONTIER + DEFER_AGAIN_LINE
+    )
+
+
+def test_backlog_deferred_again_with_the_mark_of_each_case_passes(tmp_path):
+    with_deferred(tmp_path, "rule-z", ("decision-case-7", "decision-case-8"))
+    line = "- 16:00:01 decision[case 2][defer][rule-z]{supersedes:case 7}{supersedes:case 8}\n"
+    assert check_deferred_again(tmp_path, line) == (0, "", "")
+
+
+def test_backlog_deferred_again_by_no_defer_of_its_title_is_a_finding(tmp_path):
+    with_deferred(tmp_path, "rule-z")
+    line = "- 16:00:01 decision[case 2][defer][rule-other]{supersedes:case 7}\n"
+    plan = DEFER_AGAIN_PLAN.replace("slug: rule-z", "slug: rule-other")
+    code, out, _ = check_deferred_again(tmp_path, line, plan=plan)
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "frontier: F2 closes a backlog item with defer case 2, and no defer line of Case 2 "
+            "names a page of its title"
+        )
+    ]
+
+
+def test_backlog_deferred_again_without_a_mark_names_the_mark(tmp_path):
+    with_deferred(tmp_path, "rule-z", ("decision-case-7", "decision-case-8"))
+    line = "- 16:00:01 decision[case 2][defer][rule-z]{supersedes:case 7}\n"
+    code, out, _ = check_deferred_again(tmp_path, line)
+    assert code == 1
+    assert out.splitlines() == [
+        (
+            "frontier: F2: no Case among case 2 and its sub-cases defers rule-z and carries "
+            "{supersedes:case 8}"
+        )
+    ]
+
+
+def test_a_defer_line_names_the_page_only_by_defer():
+    records = [
+        {"case": "2", "kind": "defer", "slug": "rule-x", "supersedes": ["7"]},
+        {"case": "3", "kind": "update", "slug": "rule-x", "supersedes": ["7"]},
+    ]
+    judge = prespec.decided_on_its_page
+    assert judge("rule-x", ["7"], records, "2") == (False, ["7"])
+    assert judge("rule-x", ["7"], records, "2", by_defer=True) == (True, [])
+    assert judge("rule-x", ["7"], records, "3") == (True, [])
+    assert judge("rule-x", ["7"], records, "3", by_defer=True) == (False, ["7"])
+
+
+@pytest.mark.parametrize(
+    "line",
+    [
+        "- [-] F2 — `rule-x`, put off again · backlog · `rule-y` · defer case 2",
+        "- [-] F2 — ` rule-x `, put off again · backlog · defer case 2",
+    ],
+)
+def test_the_count_and_the_page_check_take_the_same_slugs_of_a_title(tmp_path, line):
+    for slug in ("rule-x", "rule-y"):
+        with_deferred(tmp_path, slug)
+    frontier = tmp_path / "frontier.md"
+    frontier.write_text(f"# Frontier\n\n{line}\n", encoding="utf-8")
+    [(_, counted)] = generate.frontier_marks(frontier)
+    rest = generate.FRONTIER_LINE.match(line).group(3)
+    assert counted == set(prespec.deferred_pages(rest, tmp_path)) == {"rule-x"}
 
 
 def test_a_clean_frontier_passes(tmp_path):

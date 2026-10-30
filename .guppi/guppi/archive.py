@@ -1,13 +1,16 @@
 """`guppi archive` — an applied unit of `raw/` moves whole into the archive of its date.
 
-A unit is a session folder `vault/raw/<date>/<HHMM>/` holding a `ledger.md`, or a
-date-level `vault/raw/<date>/ledger.md` with its yaml (the shape before case 103). Only
+It runs as `uv run --project .guppi guppi archive`. A unit is a session folder
+`vault/raw/<date>/<HHMM>/` holding a `ledger.md`, or a date-level `vault/raw/<date>/ledger.md`
+with its yaml (the shape before case 103). A folder without `ledger.md` is not a unit. Only
 units dated before the day of the run are looked at, and never the session of the run —
 the latest `<HHMM>/` folder of the run day, else the nearest date back — since Retro and
 the readings still write into it after the librarian's commit. A unit is done when its
 `materialize.yaml` exists, every entry under `entries` carries `applied` or `superseded_by`,
 and every line of its `ledger.md` that `materialize.parse_line` reads as a record has its
-number in the `line` or `folded` of an entry or under `unparsed` (case 100.1).
+number in the `line` or `folded` of an entry or under `unparsed` (case 100.1). An entry that
+a supersedes from another unit did not mark keeps its unit in `raw/`; that gap belongs to
+`rule-materialize`.
 
 A done session moves whole to `vault/archive/<sprint>/<date>/<HHMM>/raw/`, `<sprint>` the
 `sprint` field of the unit's own `materialize.yaml`, so a session that leaves after the next
@@ -30,7 +33,10 @@ The close of a sprint walks the units by the same `sweep` with `close=True` (cas
 limit of the date drops, so a done unit of the run day moves too, the session of the run still
 left out, and a unit that `is_carried_over` of `.guppi/guppi/materialize.py` judges carried over is
 kept with the reason `carried over`, since `backlog.md` and `/box` find a conserved Spec only
-in `raw/`. With `apply=False` the walk names each unit it would move as `archive: raw/<unit>
+in `raw/`. The close then moves each `event_log.md` dated before the start of the session of
+its run — the first date of the logs the ledger hook walks for that session — to
+`vault/archive/<id>/<date>/`, `<id>` the sprint it closes, still gitignored, as
+`rule-sprint-close` sets it (cases 743.3, 886). With `apply=False` the walk names each unit it would move as `archive: raw/<unit>
 would move → archive/<sprint>/<unit>[/raw]` and moves none. The run of `guppi archive` keeps
 the limit of the date and its reasons. The coverage of a line is the one function `guppi tail` uses (`rule-ledger-tail`). Rule page:
 `vault/wiki/rules/rule-raw-archive.md`.

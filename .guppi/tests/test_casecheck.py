@@ -1870,10 +1870,22 @@ def test_subagent_backlog_no_open_backlog_line_is_no_finding(working, line):
 
 
 def test_backlog_a_case_naming_the_page_only_in_a_defer_line_is_not_judged(working):
+    # a Case that puts the item off again needs the mark of each Case of its deferred_by too
+    # (case 937.3)
     taken_from_the_backlog(working)
-    records = [casecheck.parse_line("- decision[case 8][defer][rule-x]")]
     frontier = working.joinpath(*FOLDER) / "frontier.md"
-    assert casecheck.check_backlog(records, frontier, working) == []
+    unmarked = [casecheck.parse_line("- decision[case 8][defer][rule-x]")]
+    assert casecheck.check_backlog(unmarked, frontier, working) == [
+        (
+            "8",
+            (
+                "case 8: names rule-x, the page of the open backlog line C1, and no Case among "
+                "case 8 and its sub-cases names it and carries {supersedes:case 5}"
+            ),
+        )
+    ]
+    marked = [casecheck.parse_line("- decision[case 8][defer][rule-x]{supersedes:case 5}")]
+    assert casecheck.check_backlog(marked, frontier, working) == []
 
 
 # --- the notes of the promise lines (cases 472.1, 472.2) -------------------------------

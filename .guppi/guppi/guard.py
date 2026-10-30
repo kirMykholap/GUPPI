@@ -9,7 +9,10 @@ stderr, which Claude Code shows the agent and which blocks the tool. One line go
 day's `event_log.md` first: a blocked call has no `PostToolUse`, so a refusal the hook does
 not write is nowhere (case 91). Any other tool, a path
 no page governs, or a payload the hook cannot read: exit 0, the last with one line on
-stderr. The hook never raises. Rule page: `vault/wiki/rules/rule-governed-files-hook.md`.
+stderr. The hook never raises. It runs as `uv run --project .guppi guppi guard`, on
+`PreToolUse` with the matcher `Edit|Write|MultiEdit`. No governed file has a hand-written
+part; `CLAUDE.md` is a full Render (case 59.8). `guppi render` writes through Bash, not
+through these tools, and passes. Rule page: `vault/wiki/rules/rule-governed-files-hook.md`.
 """
 
 import os

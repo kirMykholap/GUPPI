@@ -51,7 +51,11 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   only `case N` or `work`, `[-]` only `defer`, `kept` or `defer case N` (case 451.2);
   `defer` after a source segment — the one standing immediately before the closer — other
   than `sprint`, `kept` after one other than `backlog`; `defer case N` after the source
-  `sprint` or `backlog` (cases 356.2, 451.2), and after another source with no `defer` item
+  `sprint` (cases 356.2, 451.2); after the source `backlog`, a line whose title names no slug
+  that a `defer` line of Case N or of a sub-case names, and each Case M of the `deferred_by`
+  of a page such a line names when no Case among them both defers the page and carries
+  `{supersedes:case M}` — `decided_on_its_page` with `by_defer` (case 937.1); `defer case N`
+  after another source with no `defer` item
   under Case N in the plan, nor under Case N of the conserved Spec that the title line of
   the plan names — `conserved_spec_named` of `.guppi/guppi/box.py`, the judgment the hook of
   `rule-spec-capture` reads the same line by (case 620.2); `case N` whose heading the plan lacks, and after the source `sprint` with
@@ -248,6 +252,7 @@ from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 3
     replace_hits,
     replace_once,
     reword_pattern,
+    title_slugs,
 )
 from guppi.ledger import (
     hi_moment,
@@ -583,12 +588,12 @@ DECISION_PAGE = "decision-case-"
 
 
 def deferred_pages(title: str, project_dir: Path) -> dict[str, list[str]]:
-    """Each live page the title of a Frontier line names in a code span that carries
-    `deferred_by`, with the ids of the Cases there — `decision-case-M` read as `M` (case 467).
-    A page without `deferred_by` — an open Insight, a note of the sprint page — is left out."""
+    """Each live page of the title of a Frontier line — `title`, the text after its item
+    id, read by `generate.title_slugs` (case 937.1) — that carries `deferred_by`, with the ids
+    of the Cases there — `decision-case-M` read as `M` (case 467). A page without
+    `deferred_by` — an open Insight, a note of the sprint page — is left out."""
     pages: dict[str, list[str]] = {}
-    for span in CODE_SPAN.findall(title):
-        slug = span.strip("`").strip()
+    for slug in title_slugs(title):
         category = category_of(slug)
         path = wiki_root(project_dir) / category / f"{slug}.md" if category else None
         if path is None or not path.exists():
@@ -601,7 +606,7 @@ def deferred_pages(title: str, project_dir: Path) -> dict[str, list[str]]:
 
 
 def decided_on_its_page(
-    slug: str, deferred: list[str], records: list[dict], case: str
+    slug: str, deferred: list[str], records: list[dict], case: str, *, by_defer: bool = False
 ) -> tuple[bool, list[str]]:
     """The one judgment of a backlog item taken up by Case N, run by `/pre-spec` on a
     closed line (case 467.1) and by the check of the answer of `case-guppi` on an open one
@@ -609,9 +614,12 @@ def decided_on_its_page(
     Returns whether a line of them other than a `defer` names the page, and each Case M of
     the page's `deferred_by` for which no Case among them both names the page on such a line
     and carries `{supersedes:case M}` — `generate` clears a defer only from the pages the
-    superseding Case names (case 467.3)."""
+    superseding Case names (case 467.3). With `by_defer`, the judgment of an item put off
+    again, only the `defer` lines name the page (case 937.1)."""
     ours = [r for r in records if str(r["case"]) == case or str(r["case"]).startswith(f"{case}.")]
-    naming = {str(r["case"]) for r in ours if r["slug"] == slug and r["kind"] != "defer"}
+    naming = {
+        str(r["case"]) for r in ours if r["slug"] == slug and (r["kind"] == "defer") == by_defer
+    }
     carried: dict[str, set[str]] = {}
     for record in ours:
         marks = {str(s) for s in record.get("supersedes") or []}
@@ -636,6 +644,36 @@ def check_backlog_line(
         for m in missing:
             findings.append(
                 f"frontier: {item}: no Case among case {case} and its sub-cases names {slug} "
+                f"and carries {{supersedes:case {m}}}"
+            )
+    return findings
+
+
+def check_backlog_defer_line(
+    item: str, title: str, case: str, records: list[dict], project_dir: Path
+) -> list[str]:
+    """A Frontier line of the source `backlog` closed `[-] · defer case N`, an item that
+    Case N puts off again with a new wording: a `defer` line of Case N or of a sub-case names
+    a slug of its title, and for each page of the title that carries `deferred_by` and that
+    such a line names, each Case M there is marked `{supersedes:case M}` by a Case among them
+    that names the page on a `defer` line (case 937.1)."""
+    findings: list[str] = []
+    defers = {
+        str(r["slug"])
+        for r in records
+        if r["kind"] == "defer"
+        and (str(r["case"]) == case or str(r["case"]).startswith(f"{case}."))
+    }
+    if not defers & set(title_slugs(title)):
+        findings.append(
+            f"frontier: {item} closes a backlog item with defer case {case}, and no defer "
+            f"line of Case {case} names a page of its title"
+        )
+    for slug, deferred in deferred_pages(title, project_dir).items():
+        named, missing = decided_on_its_page(slug, deferred, records, case, by_defer=True)
+        for m in missing if named else []:
+            findings.append(
+                f"frontier: {item}: no Case among case {case} and its sub-cases defers {slug} "
                 f"and carries {{supersedes:case {m}}}"
             )
     return findings
@@ -701,8 +739,10 @@ def check_frontier(
     closer; the word inside the slug of a title is not the source (case 335). `defer` alone
     is clean only after the source `sprint`, a sprint item left for a later session, and
     `kept` only after the source `backlog`, an item of `backlog.md` left as it stands.
-    `defer case N` after the source `sprint` or `backlog` is a finding — neither is deferred
-    by a Case (case 356.2) — and after another source it needs a `defer` item under Case N, in the
+    `defer case N` after the source `sprint` is a finding — a sprint item is deferred by no
+    Case (case 356.2). After the source `backlog` it is an item that Case N puts off again,
+    judged by `check_backlog_defer_line` against `records` and the pages of `project_dir`
+    (case 937.1). After another source it needs a `defer` item under Case N, in the
     plan or in the conserved Spec that the title line of `plan` names, a Case of the Spec
     the session runs by `/box` (case 620.2); a title line that names no folder holding
     `carry.md` adds no Case. A line
@@ -756,6 +796,11 @@ def check_frontier(
                 )
             elif source == BACKLOG_SOURCE and box == "x" and project_dir is not None:
                 findings += check_backlog_line(item, rest, case, records or [], project_dir)
+        elif closer.group(3) is not None and source == BACKLOG_SOURCE:
+            if project_dir is not None:
+                findings += check_backlog_defer_line(
+                    item, rest, closer.group(3), records or [], project_dir
+                )
         elif closer.group(3) is not None and source in PUT_OFF_CLOSER:
             findings.append(
                 f"frontier: {item} defers a {source} item by a Case; a {source} item put off "

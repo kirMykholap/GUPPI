@@ -3,8 +3,8 @@ after the client compacted its context (case 287).
 
 `/hi` loads the session's texts once, through the `@` lines of its skill; a compaction keeps
 `CLAUDE.md` and a capped part of the skill's body, and the rest survives only in the summary.
-This hook is registered on `SessionStart` with the matcher `compact` (`rule-hook-registry`)
-and prints, on stdout, what to read before the next reply — paths, not texts: a hook's
+This hook, `uv run --project .guppi guppi recall`, is registered on `SessionStart` with the
+matcher `compact` (`rule-hook-registry`) and prints, on stdout, what to read before the next reply — paths, not texts: a hook's
 stdout over 10,000 characters is saved to a file and the agent gets a preview.
 
 Reads the payload from stdin. With a `source` other than `compact`, or without a `hi` in

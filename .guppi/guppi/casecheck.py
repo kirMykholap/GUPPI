@@ -20,7 +20,9 @@ stay with `/pre-spec` (case 445.2), but for one check: for each open line of the
 of the answer that, itself or through a sub-case, names the page on a decision line other
 than a `defer` gets a finding for each Case of that list when no Case among it and its
 sub-cases both names the page and carries its `{supersedes}` — `prespec.decided_on_its_page`,
-the judgment `/pre-spec` runs on a closed line (case 467.2). It checks besides the
+the judgment `/pre-spec` runs on a closed line (case 467.2); a Case that names the page only
+on `defer` lines, an item put off again, gets the same finding by that function with
+`by_defer` (case 937.3). It checks besides the
 chat form: the sections in the order of the schema; the ones a Case needs — a parent's
 `context` and `problem`, and `when`, `then`, `tasks` and `ratification` of a Case with no
 sub-cases (`given` too, unless it is a sub-case); and a `ratification` of one untagged fence of
@@ -675,13 +677,19 @@ def check_backlog(
     """`(top-level case, finding)` for each open `backlog` line of the Frontier and each
     page of its title with `deferred_by`, against each top-level Case of the answer that,
     itself or through a sub-case, names the page on a decision line other than a `defer` — by
-    `prespec.decided_on_its_page`, the judgment `/pre-spec` runs (case 467.2)."""
+    `prespec.decided_on_its_page`, the judgment `/pre-spec` runs (case 467.2). A top-level
+    Case that names the page only on `defer` lines, an item put off again, is judged by the
+    same function with `by_defer` and gets the same finding (case 937.3)."""
     findings: list[tuple[str, str]] = []
     tops = list(dict.fromkeys(top_case(str(r["case"])) for r in records))
     for item, title in open_backlog_lines(frontier):
         for slug, deferred in deferred_pages(title, project_dir).items():
             for top in tops:
                 named, missing = decided_on_its_page(slug, deferred, records, top)
+                if not named:
+                    named, missing = decided_on_its_page(
+                        slug, deferred, records, top, by_defer=True
+                    )
                 for m in missing if named else []:
                     finding = (
                         f"case {top}: names {slug}, the page of the open backlog line "

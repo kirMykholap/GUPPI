@@ -7,7 +7,15 @@ included — it prints the one line `none: this folder is no git repository`. It
 stops the whole skill on a `!` command that fails (case 851.3). It writes nothing. This module
 holds the one judgment of whether a folder is a git repository: `git` of `.guppi/guppi/box.py`
 and `dirty` of `.guppi/guppi/gate.py` give an empty text when git fails and do not tell the
-two apart. Rule page: `vault/wiki/rules/rule-git-context.md`.
+two apart.
+
+The block of `/hi` holds a `Render:` line too. It runs `uv run --project .guppi guppi render
+--sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line
+is a Frontier item like the one of the session start (case 115). `/hi` runs no `git pull`.
+`origin` is the public repository `GUPPI` on GitHub (case 787). The local `main` follows
+`origin/main` in the opening Case of a sprint, by `git fetch origin` and `git merge --ff-only
+origin/main` (case 789.1). In the repository of GUPPI a sprint branch takes `main` by the
+merge Case of `/merge-main` (case 790). Rule page: `vault/wiki/rules/rule-git-context.md`.
 """
 
 import argparse

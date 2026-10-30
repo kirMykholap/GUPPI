@@ -7,9 +7,17 @@ record and whose number is neither in the `line` or `folded` of an entry nor und
 `unparsed` of the `materialize.yaml` beside it, as `<date> L<n>: <the line>` or
 `<date>/<HHMM> L<n>: <the line>`. A ledger without a yaml prints every record line it has;
 a ledger fully covered prints nothing; with an empty tail the output is empty. Exit 0
-always; a ledger that cannot be read is a line on stderr and the walk goes on. The
-coverage of a line is the one function `guppi archive` uses (case 101.2). `/hi` splices
-the output into its context as `Tail:`. Rule page: `vault/wiki/rules/rule-ledger-tail.md`.
+always; a ledger that cannot be read is a line on stderr and the walk goes on. `hi` is never
+in the tail: it goes to the event log. A line outside the ledger grammar is not printed — it
+is either `unparsed` in the yaml or not a record. The coverage of a line is the one function
+`guppi archive` uses to call a unit done, so the two scripts cannot disagree (case 101.2).
+After the archive the walk holds only the sessions not yet done.
+
+`/hi` runs it as `uv run --project .guppi guppi tail` and splices the output into its context
+as `Tail:`, one line between the markers of `rule-ledger-tail`, after the block of
+`rule-git-context`. The Frontier text of `rule-skill-hi` makes a `failed` reading or a lesson
+of the tail an item, and a decision line not. Rule page:
+`vault/wiki/rules/rule-ledger-tail.md`.
 """
 
 import argparse

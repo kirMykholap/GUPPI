@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents implementation starting before the plan, branch and baseline exist
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/work/SKILL.md
 render_mode: full
@@ -140,3 +140,4 @@ When the last task is done, run `uv run --project .guppi guppi test` in full and
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
+- 2026-10-31 status: draft → built · cascade

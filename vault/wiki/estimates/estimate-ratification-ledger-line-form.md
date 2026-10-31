@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-ratification]]"
 purpose: The written shape of a ledger line and of its marks, as the agent writes them
-method: "by hand, after a session whose ledger holds a lesson and the Case that closes its cause together, a Case that takes up a decision with more than one Case in its deferred_by, and a lesson line that declares a new tag: those lines and their preview read against the Criterion"
+method: "by hand, after a lesson line that declares a new tag by a newtag block: that line read in the ledger of its session and its LEDGER block in the transcript of that session under ~/.claude/projects/; with it, the decision and lesson lines that carry an addresses or addressed_by mark in vault/archive/plugin/2026-10-14/0232/raw/ledger.md, vault/archive/plugin/2026-10-14/1536/raw/ledger.md, vault/archive/plugin/2026-10-16/2104/raw/ledger.md, vault/archive/plugin/2026-10-17/2307/raw/ledger.md and vault/archive/plugin/2026-10-29/2341/raw/ledger.md, and the line in vault/archive/migration/2026-10-04/1439/raw/ledger.md that takes up a page with two Cases in its deferred_by, each with its preview in the transcript of its session, read against the Criterion, all recorded in one estimate line (the take-up line is that of case 629.2)"
 checked: 2026-10-04
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
@@ -51,3 +51,4 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 - 2026-10-03 updated: method names the kind of its moment (case 613.3) · [[decision-case-613.3]]
 - 2026-10-04 status: pending → passed · raw/2026-10-04/1934/ledger.md#L3
 - 2026-10-15 updated: the Criterion replaced whole — a lesson line declares a new tag by a newtag block (case 827.3) · [[decision-case-827.3]]
+- 2026-10-31 updated: the method reads the marks and the take-up line in archived ledgers and waits only for a lesson line that declares a new tag, the Criterion written back unchanged · [[decision-case-961.5]]

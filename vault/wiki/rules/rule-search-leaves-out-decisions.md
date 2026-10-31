@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: "Prevents the text of a Decision page from entering the context of an agent through a search of the vault: a hook leaves the Decision pages out of every Grep over the wiki, and the main agent, ask-guppi and case-guppi read a Decision page only for a reason of their frame"
-status: draft
+status: built
 enforcement: render
 implementation_ref: [.guppi/guppi/grepguard.py, .guppi/tests/test_grepguard.py, .claude/settings.json]
 governs: .claude/rules/search-leaves-out-decisions.md
@@ -49,3 +49,4 @@ This file binds the main agent, `ask-guppi` and `case-guppi` (case 640). The lib
 - 2026-10-30 estimate estimate-search-leaves-out-decisions-refuses-ask-guppi added · [[decision-case-925.1]]
 - 2026-10-30 status: built → draft · cascade
 - 2026-10-31 updated: the frame of ask-guppi names the hook trial as its one reason to try a call on a Decision page (case 954.3) · [[decision-case-954.3]]
+- 2026-10-31 status: draft → built · cascade

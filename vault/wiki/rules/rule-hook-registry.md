@@ -67,7 +67,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
       { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi context", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi onward", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi onward --plan", "timeout": 30 } ] }
     ],
     "SubagentStop": [
-      { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi casecheck --subagent", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi casecheck --subagent", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi libreport", "timeout": 30 } ] }
     ]
 <!-- /rule-hook-registry -->
 
@@ -112,3 +112,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-30 updated: the hook grepguard registered on PreToolUse of Read beside pageread (case 925.1) · [[decision-case-925.1]]
+- 2026-10-31 updated: the SubagentStop hook guppi libreport registered · [[decision-case-965]]

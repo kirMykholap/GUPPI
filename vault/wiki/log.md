@@ -12259,3 +12259,94 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-31 decisions/decision-case-910 archived · cleanup
 - 2026-10-31 decisions/decision-case-934 archived · cleanup
 - 2026-10-31 decisions/decision-case-936 archived · cleanup
+- 2026-10-31 estimates/estimate-guppi-keeps-no-defer-of-its-shape status: pending → passed · raw/2026-10-31/0431/ledger.md#L1 · generate
+- 2026-10-31 estimates/estimate-close-reports-the-run status: pending → failed · raw/2026-10-31/0431/ledger.md#L2 · generate
+- 2026-10-31 decisions/decision-case-956 created · raw/2026-10-31/0431/ledger.md#case-956 · generate
+- 2026-10-31 decisions/decision-case-956.1 created · raw/2026-10-31/0431/ledger.md#case-956.1 · generate
+- 2026-10-31 decisions/decision-case-956.1 superseded by decision-case-965 · [[decision-case-965]] · generate
+- 2026-10-31 decisions/decision-case-956.2 created · raw/2026-10-31/0431/ledger.md#case-956.2 · generate
+- 2026-10-31 rules/rule-close updated: the librarian returns its report as text and writes no report.md; a hook copies the text into the file · [[decision-case-956.2]] · generate
+- 2026-10-31 rules/rule-documentation updated: step 1 no longer says that a stopped run writes no report.md, since the hook copies every returned report · [[decision-case-956.2]] · generate
+- 2026-10-31 estimates/estimate-close-reports-the-run updated: the Criterion replaced whole — the hook writes report.md from the report the librarian returns · [[decision-case-956.2]] · generate
+- 2026-10-31 decisions/decision-case-956.3 created · raw/2026-10-31/0431/ledger.md#case-956.3 · generate
+- 2026-10-31 rules/rule-handoff updated: /handoff shows report.md and commits it alone after the librarian's commit · [[decision-case-956.3]] · generate
+- 2026-10-31 estimates/estimate-handoff-dispatches updated: the Criterion replaced whole — /handoff shows report.md and commits it alone · [[decision-case-956.3]] · generate
+- 2026-10-31 decisions/decision-case-956.4 created · raw/2026-10-31/0431/ledger.md#case-956.4 · generate
+- 2026-10-31 rules/rule-spec-box updated: /box shows report.md and commits it alone after the librarian's commit · [[decision-case-956.4]] · generate
+- 2026-10-31 estimates/estimate-spec-box-runs-a-conserved-spec updated: the Criterion replaced whole — /box shows report.md and commits it alone · [[decision-case-956.4]] · generate
+- 2026-10-31 decisions/decision-case-957 created · raw/2026-10-31/0431/ledger.md#case-957 · generate
+- 2026-10-31 insights/insight-plugin-cli-withholds-approval-of-a-long-plan deferred · [[decision-case-957]] · generate
+- 2026-10-31 decisions/decision-case-959 created · raw/2026-10-31/0431/ledger.md#case-959 · generate
+- 2026-10-31 estimates/estimate-sprint-keeps-one-live-page created · [[decision-case-959]] · generate
+- 2026-10-31 estimates/estimate-sprint-keeps-one-live-page status: pending → passed · raw/2026-10-31/0431/ledger.md#L40 · generate
+- 2026-10-31 entities/entity-sprint estimate estimate-sprint-keeps-one-live-page added · [[decision-case-959]] · generate
+- 2026-10-31 entities/entity-sprint updated: the sprint as a kind gets its Estimate over all sprints · [[decision-case-959]] · generate
+- 2026-10-31 decisions/decision-case-960 created · raw/2026-10-31/0431/ledger.md#case-960 · generate
+- 2026-10-31 decisions/decision-case-960.1 created · raw/2026-10-31/0431/ledger.md#case-960.1 · generate
+- 2026-10-31 rules/rule-estimates-schema updated: a reading by hand names the place where its evidence is saved, a transcript included · [[decision-case-960.1]] · generate
+- 2026-10-31 rules/rule-case-protocol updated: a method names the place where the evidence of its reading by hand is saved · [[decision-case-960.1]] · generate
+- 2026-10-31 estimates/estimate-estimates-schema-method-names-its-evidence created · [[decision-case-960.1]] · generate
+- 2026-10-31 estimates/estimate-estimates-schema-method-names-its-evidence status: pending → passed · raw/2026-10-31/0431/ledger.md#L41 · generate
+- 2026-10-31 rules/rule-estimates-schema estimate estimate-estimates-schema-method-names-its-evidence added · [[decision-case-960.1]] · generate
+- 2026-10-31 decisions/decision-case-960.2 created · raw/2026-10-31/0431/ledger.md#case-960.2 · generate
+- 2026-10-31 estimates/estimate-where-to-stop-writes-each-step-whole updated: the method reads the reply of any such stop in the transcript of its session, the Criterion written back unchanged · [[decision-case-960.2]] · generate
+- 2026-10-31 decisions/decision-case-960.3 created · raw/2026-10-31/0431/ledger.md#case-960.3 · generate
+- 2026-10-31 estimates/estimate-case-build-reads-the-readers-of-a-changed-step updated: the method reads the findings of any such /pre-spec in the agent transcript of ask-guppi, the Criterion written back unchanged · [[decision-case-960.3]] · generate
+- 2026-10-31 decisions/decision-case-961 created · raw/2026-10-31/0431/ledger.md#case-961 · generate
+- 2026-10-31 decisions/decision-case-961.1 created · raw/2026-10-31/0431/ledger.md#case-961.1 · generate
+- 2026-10-31 estimates/estimate-orchestration-shows-the-built-case updated: the method reads the showing of Cases 960 and 956 in the transcript of session 0431, the Criterion written back unchanged · [[decision-case-961.1]] · generate
+- 2026-10-31 decisions/decision-case-961.2 created · raw/2026-10-31/0431/ledger.md#case-961.2 · generate
+- 2026-10-31 estimates/estimate-orchestration-names-related-cases-in-the-dispatch updated: the method reads the dispatch of Case 961 in the transcript of session 0431, the Criterion written back unchanged · [[decision-case-961.2]] · generate
+- 2026-10-31 decisions/decision-case-961.3 created · raw/2026-10-31/0431/ledger.md#case-961.3 · generate
+- 2026-10-31 estimates/estimate-case-build-reads-each-list-of-a-new-member updated: the method reads the build of Case 956 and the /pre-spec of session 0431 in their transcripts, the Criterion written back unchanged · [[decision-case-961.3]] · generate
+- 2026-10-31 decisions/decision-case-961.4 created · raw/2026-10-31/0431/ledger.md#case-961.4 · generate
+- 2026-10-31 estimates/estimate-ask-query-before-a-create updated: the method reads the builds of Cases 787 and 804 in their transcripts and case files, the Criterion written back unchanged · [[decision-case-961.4]] · generate
+- 2026-10-31 decisions/decision-case-961.5 created · raw/2026-10-31/0431/ledger.md#case-961.5 · generate
+- 2026-10-31 estimates/estimate-ratification-ledger-line-form updated: the method reads the marks and the take-up line in archived ledgers and waits only for a lesson line that declares a new tag, the Criterion written back unchanged · [[decision-case-961.5]] · generate
+- 2026-10-31 decisions/decision-case-961.6 created · raw/2026-10-31/0431/ledger.md#case-961.6 · generate
+- 2026-10-31 decisions/decision-case-961.6 superseded by decision-case-964 · [[decision-case-964]] · generate
+- 2026-10-31 decisions/decision-case-962 created · raw/2026-10-31/0431/ledger.md#case-962 · generate
+- 2026-10-31 entities/entity-sprint-plugin updated: the Backlog takes the open work of rule-work-mode and rule-spec-box as notes · [[decision-case-962]] · generate
+- 2026-10-31 estimates/estimate-backlog-keeps-the-work-taken-out-of-a-built-page created · [[decision-case-962]] · generate
+- 2026-10-31 rules/rule-backlog estimate estimate-backlog-keeps-the-work-taken-out-of-a-built-page added · [[decision-case-962]] · generate
+- 2026-10-31 decisions/decision-case-963 created · raw/2026-10-31/0431/ledger.md#case-963 · generate
+- 2026-10-31 rules/rule-estimates-schema deferred · [[decision-case-963]] · generate
+- 2026-10-31 decisions/decision-case-956.5 created · raw/2026-10-31/0431/ledger.md#case-956.5 · generate
+- 2026-10-31 estimates/estimate-close-commits updated: the Criterion replaced whole — the commit of report.md by /handoff or /box may follow the librarian's commit · [[decision-case-956.5]] · generate
+- 2026-10-31 decisions/decision-case-964 created · raw/2026-10-31/0431/ledger.md#case-964 · generate
+- 2026-10-31 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: the method reads Case 964, ratified in the Work Mode of session 0431 and staged on purpose, the Criterion written back unchanged · [[decision-case-964]] · generate
+- 2026-10-31 decisions/decision-case-965 created · raw/2026-10-31/0431/ledger.md#case-965 · generate
+- 2026-10-31 rules/rule-librarian-report-copy created · [[decision-case-965]] · generate
+- 2026-10-31 rules/rule-documentation child rule-librarian-report-copy added · [[decision-case-965]] · generate
+- 2026-10-31 rules/rule-librarian-report-copy updated: core set as a boolean · [[decision-case-965]] · generate
+- 2026-10-31 estimates/estimate-librarian-report-copy-writes-the-file created · [[decision-case-965]] · generate
+- 2026-10-31 estimates/estimate-librarian-report-copy-writes-the-file status: pending → passed · raw/2026-10-31/0431/ledger.md#L39 · generate
+- 2026-10-31 rules/rule-librarian-report-copy estimate estimate-librarian-report-copy-writes-the-file added · [[decision-case-965]] · generate
+- 2026-10-31 rules/rule-hook-registry updated: the SubagentStop hook guppi libreport registered · [[decision-case-965]] · generate
+- 2026-10-31 estimates/estimate-search-leaves-out-decisions-refuses-ask-guppi status: pending → passed · raw/2026-10-31/0431/ledger.md#L36 · generate
+- 2026-10-31 estimates/estimate-orchestration-starts-ask-guppi-for-a-hook-test status: pending → passed · raw/2026-10-31/0431/ledger.md#L37 · generate
+- 2026-10-31 estimates/estimate-ask-tries-a-decision-call-only-for-a-hook-trial status: pending → passed · raw/2026-10-31/0431/ledger.md#L38 · generate
+- 2026-10-31 estimates/estimate-where-to-stop-writes-each-step-whole status: pending → passed · raw/2026-10-31/0431/ledger.md#L42 · generate
+- 2026-10-31 estimates/estimate-case-build-reads-the-readers-of-a-changed-step status: pending → failed · raw/2026-10-31/0431/ledger.md#L43 · generate
+- 2026-10-31 estimates/estimate-ask-query-before-a-create status: pending → failed · raw/2026-10-31/0431/ledger.md#L44 · generate
+- 2026-10-31 estimates/estimate-orchestration-shows-the-built-case status: pending → failed · raw/2026-10-31/0431/ledger.md#L45 · generate
+- 2026-10-31 estimates/estimate-orchestration-names-related-cases-in-the-dispatch status: pending → failed · raw/2026-10-31/0431/ledger.md#L46 · generate
+- 2026-10-31 estimates/estimate-case-build-reads-each-list-of-a-new-member status: pending → failed · raw/2026-10-31/0431/ledger.md#L47 · generate
+- 2026-10-31 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline status: pending → passed · raw/2026-10-31/0431/ledger.md#L48 · generate
+- 2026-10-31 lessons/lesson-librarian-claude-code-refuses-a-report-file-of-a-subagent-by-its-name created · raw/2026-10-31/0431/ledger.md#L49 · generate
+- 2026-10-31 lessons/lesson-spec-write-lifts-a-create-value-as-a-string created · raw/2026-10-31/0431/ledger.md#L50 · generate
+- 2026-10-31 entities/entity-guppi status: draft → built · cascade · generate
+- 2026-10-31 entities/entity-sprint status: draft → built · cascade · generate
+- 2026-10-31 rules/rule-backlog status: built → draft · cascade · generate
+- 2026-10-31 rules/rule-handoff status: built → draft · cascade · generate
+- 2026-10-31 rules/rule-librarian-report-copy status: draft → built · cascade · generate
+- 2026-10-31 rules/rule-search-leaves-out-decisions status: draft → built · cascade · generate
+- 2026-10-31 rules/rule-spec-box status: built → draft · cascade · generate
+- 2026-10-31 rules/rule-where-to-stop status: draft → built · cascade · generate
+- 2026-10-31 rules/rule-work-mode status: draft → built · cascade · generate
+- 2026-10-31 decisions/decision-case-956.1 archived · superseded · generate
+- 2026-10-31 decisions/decision-case-961.6 archived · superseded · generate
+- 2026-10-31 decisions/decision-case-956.1 archived · cleanup
+- 2026-10-31 decisions/decision-case-961.6 archived · cleanup
+- 2026-10-31 decisions/decision-case-956 child decision-case-956.1 archived · cleanup
+- 2026-10-31 decisions/decision-case-961 child decision-case-961.6 archived · cleanup

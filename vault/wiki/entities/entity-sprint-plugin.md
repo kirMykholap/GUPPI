@@ -31,6 +31,8 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 ## Backlog
 
 - The category set as data: the person sets the categories of a project, the development set entity, rule, estimate by default, and the harness holds them as data, so a changed set rewrites no rule; taken out of rule-morph (case 802); the categories discussion of session 1119, vault/archive/migration/2026-09-17/1119/raw/categories-discussion.md
+- The rest of Work Mode past the skill /work: the test of each Estimate written first and turned green, and the full model the person plans; taken out of rule-work-mode (case 962)
+- The Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session; taken out of rule-spec-box (case 962)
 
 ## Closed
 
@@ -59,3 +61,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-15 deferred · [[decision-case-830]]
 - 2026-10-16 defer by decision-case-830 superseded · [[decision-case-847]]
 - 2026-10-16 updated: the milestone The clean branch names the tag form prod-x.y.z and the draft core pages that stop the run; the defer of decision-case-830 taken up · [[decision-case-847]]
+- 2026-10-31 updated: the Backlog takes the open work of rule-work-mode and rule-spec-box as notes · [[decision-case-962]]

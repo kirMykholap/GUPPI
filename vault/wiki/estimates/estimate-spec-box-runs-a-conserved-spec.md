@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-box]]"
-purpose: Whether /box checks a conserved Spec, runs it on its own branch brought up to the shared branch by a fast-forward, merges the branch back by a fast-forward after the handoff, and has the librarian write the pages on the shared branch, stopping when the check or a merge refuses
-method: "uv run --project .guppi guppi render --check; by hand, a session that takes a conserved Spec at the Frontier and runs it by /box: git log, the branches, the folders of the session and of the conserved Spec, the dispatch line and the librarian's commit, recorded in the estimate line"
+purpose: Whether /box checks a conserved Spec, runs it on its own branch brought up to the shared branch by a fast-forward, merges the branch back by a fast-forward after the handoff, has the librarian write the pages on the shared branch, and shows report.md and commits it alone after the librarian's commit, stopping when the check or a merge refuses
+method: "uv run --project .guppi guppi render --check; by hand, after a session that runs a conserved Spec by /box on the Render of rule-spec-box that commits report.md: git log, the branches, the folders of the session and of the conserved Spec, the librarian's commit and the commit of report.md, and the dispatch line and the text shown to the person read in the transcript of that session under ~/.claude/projects/, recorded in the estimate line with that transcript named"
 checked: 2026-10-04
 origin: raw/2026-10-02/1202/ledger.md#case-593.2
 sprint: migration
@@ -23,9 +23,10 @@ Then:
 **＋** Otherwise the agent commits the tree, runs `git switch` to `spec/<date>-<HHMM>`, and brings that branch up to the branch it came from by `git merge --ff-only`; when the merge refuses, it switches back, shows the refusal and asks the person.
 **＋** It calls `/work` with the folder, and Work Mode, the Work readings, `/retro` and `/handoff` run in one turn.
 **＋** After `handoff.md` stands, it switches back, brings the branch it came from up to `spec/<date>-<HHMM>` by `git merge --ff-only`, deletes `spec/<date>-<HHMM>` by `git branch -d` and runs `uv run --project .guppi guppi test`; a merge that refuses is a stop.
-**＋** Then it dispatches `librarian-guppi` with the path of the session's `handoff.md`, and shows the librarian's report unchanged with the exit code of `uv run --project .guppi guppi test`.
+**＋** Then it dispatches `librarian-guppi` with the path of the session's `handoff.md`, shows the text of `vault/raw/<hi date>/<hi HHMM>/report.md` unchanged, or, when no `report.md` stands there, the returned report unchanged and one line that says that `report.md` is missing, and then the exit code of `uv run --project .guppi guppi test`.
+**＋** When `report.md` stands, it commits it alone, in one commit after the librarian's, with the message `docs(vault): librarian report, <hi date>`, and never with `--amend`.
 **－** Nothing under `vault/wiki/` is written on `spec/<date>-<HHMM>`, and the librarian runs once, on the branch the session came from.
-**－** No commit follows the handoff but the librarian's own.
+**－** No commit follows the handoff but the librarian's and the commit of `report.md`.
 
 ## Result
 
@@ -38,3 +39,4 @@ Then:
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L3
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
+- 2026-10-31 updated: the Criterion replaced whole — /box shows report.md and commits it alone · [[decision-case-956.4]]

@@ -7,7 +7,7 @@ enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: full
 parent: "[[rule-session]]"
-children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]", "[[rule-glossary]]", "[[rule-backlog]]"]
+children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]", "[[rule-page-generation]]", "[[rule-cleanup]]", "[[rule-raw-archive]]", "[[rule-brief]]", "[[rule-close]]", "[[rule-sprint]]", "[[rule-glossary]]", "[[rule-backlog]]", "[[rule-librarian-report-copy]]"]
 estimates: ["[[estimate-documentation-completes]]"]
 origin: raw/2026-09-10/ledger.md#case-36
 sprint: migration
@@ -59,7 +59,7 @@ reads them, the brief reports them.
 
 Do the steps in this order.
 
-1. Run `uv run --project .guppi guppi materialize`. If it exits 1, return the report as text, write no `report.md`, and stop (as set in case 944).
+1. Run `uv run --project .guppi guppi materialize`. If it exits 1, return the report as text and stop (as set in cases 944 and 956).
 
 <!-- rule-index-check -->
 
@@ -160,3 +160,5 @@ hook writes its commands to the event log; the hook is part of this Render and i
 - 2026-10-29 updated: the merge exception covers any merge of main into a branch, with no skill named; the put-off on the commit of the rendered files taken up and closed, since the close commits each file the render writes (case 897.3) · [[decision-case-897.3]]
 - 2026-10-31 updated: How it works drops the false reason that a subagent does not get the project's hooks · [[decision-case-946.2]]
 - 2026-10-31 updated: a run that stops at step 1 returns its report as text and writes no report.md · [[decision-case-944]]
+- 2026-10-31 updated: step 1 no longer says that a stopped run writes no report.md, since the hook copies every returned report · [[decision-case-956.2]]
+- 2026-10-31 child rule-librarian-report-copy added · [[decision-case-965]]

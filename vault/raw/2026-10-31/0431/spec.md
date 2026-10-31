@@ -80,11 +80,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-close`
-- [ ] update `rule-documentation`
-- [ ] update `estimate-close-reports-the-run`
+- [x] update `rule-close`
+- [x] update `rule-documentation`
+- [x] update `estimate-close-reports-the-run`
 - [x] by hand in Work Mode: the main agent dispatches a `general-purpose` subagent that calls `Write` on three files in a new folder outside the repository: `report.md` with a text in the form of a report, `close.md` with the same text, and `report.md` in a second new folder with one plain line. The subagent returns what Claude Code answered to each call, and the main agent records the result as a `knowledge` lesson line with its `source`.
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-close-reports-the-run`
 ```
 
@@ -129,9 +129,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-handoff`
-- [ ] update `estimate-handoff-dispatches`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/handoff/SKILL.md`
+- [x] update `rule-handoff`
+- [x] update `estimate-handoff-dispatches`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/handoff/SKILL.md`
 - [ ] by hand, once, after `/handoff` of this session shows the librarian's report: when `vault/raw/2026-10-31/0431/report.md` stands, the main agent shows its text to the person unchanged and commits it alone by the Bash tool, `git add vault/raw/2026-10-31/0431/report.md && git commit -m "docs(vault): librarian report, 2026-10-31"`, never `--amend`, since the skill of this session still says to make no commit after the librarian; when no such file stands, it says so in one line.
 - [ ] read `estimate-handoff-dispatches`
 ```
@@ -178,9 +178,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-box`
-- [ ] update `estimate-spec-box-runs-a-conserved-spec`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/box/SKILL.md`
+- [x] update `rule-spec-box`
+- [x] update `estimate-spec-box-runs-a-conserved-spec`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/box/SKILL.md`
 - [ ] read `estimate-spec-box-runs-a-conserved-spec`
 ```
 
@@ -215,7 +215,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-close-commits`
+- [x] update `estimate-close-commits`
 - [ ] read `estimate-close-commits`
 ```
 
@@ -269,9 +269,9 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-keeps-one-live-page`
-- [ ] update `entity-sprint`
-- [ ] read `estimate-sprint-keeps-one-live-page`
+- [x] create `estimate-sprint-keeps-one-live-page`
+- [x] update `entity-sprint`
+- [x] read `estimate-sprint-keeps-one-live-page`
 ```
 
 ## Case 960 — A reading by hand names where its evidence is saved
@@ -342,12 +342,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-estimates-schema`
-- [ ] update `rule-case-protocol`
-- [ ] create `estimate-estimates-schema-method-names-its-evidence`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
-- [ ] read `estimate-estimates-schema-method-names-its-evidence`
+- [x] update `rule-estimates-schema`
+- [x] update `rule-case-protocol`
+- [x] create `estimate-estimates-schema-method-names-its-evidence`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] read `estimate-estimates-schema-method-names-its-evidence`
 ```
 
 ### Case 960.2 — The reading of a stop that asks for commands reads its transcript
@@ -376,8 +376,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-where-to-stop-writes-each-step-whole`
-- [ ] read `estimate-where-to-stop-writes-each-step-whole`
+- [x] update `estimate-where-to-stop-writes-each-step-whole`
+- [x] read `estimate-where-to-stop-writes-each-step-whole`
 ```
 
 ### Case 960.3 — The reading of the findings at a pre-spec reads its transcript
@@ -408,8 +408,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-the-readers-of-a-changed-step`
-- [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] update `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] read `estimate-case-build-reads-the-readers-of-a-changed-step`
 ```
 
 ## Case 961 — Estimates that wait for a rare event are read in this session
@@ -486,8 +486,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```
 
 ### Case 961.2 — The dispatch that names related Cases is read in this session
@@ -522,8 +522,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-names-related-cases-in-the-dispatch`
-- [ ] read `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] update `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] read `estimate-orchestration-names-related-cases-in-the-dispatch`
 ```
 
 ### Case 961.3 — The search for a new member of a list is read in this session
@@ -554,8 +554,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-each-list-of-a-new-member`
-- [ ] read `estimate-case-build-reads-each-list-of-a-new-member`
+- [x] update `estimate-case-build-reads-each-list-of-a-new-member`
+- [x] read `estimate-case-build-reads-each-list-of-a-new-member`
 ```
 
 ### Case 961.4 — The vault query before a create is read from two earlier builds
@@ -589,8 +589,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-query-before-a-create`
-- [ ] read `estimate-ask-query-before-a-create`
+- [x] update `estimate-ask-query-before-a-create`
+- [x] read `estimate-ask-query-before-a-create`
 ```
 
 ### Case 961.5 — The form of a ledger line waits only for a new tag
@@ -625,7 +625,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ratification-ledger-line-form`
+- [x] update `estimate-ratification-ledger-line-form`
 - [ ] read `estimate-ratification-ledger-line-form`
 ```
 
@@ -687,9 +687,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-plugin`
-- [ ] create `estimate-backlog-keeps-the-work-taken-out-of-a-built-page`
-- [ ] `uv run --project .guppi guppi sprint`
+- [x] update `entity-sprint-plugin`
+- [x] create `estimate-backlog-keeps-the-work-taken-out-of-a-built-page`
+- [x] `uv run --project .guppi guppi sprint`
 - [ ] read `estimate-backlog-keeps-the-work-taken-out-of-a-built-page`
 ```
 
@@ -749,9 +749,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 - [x] stop: in Work Mode, the main agent dispatches `case-guppi` for a new top-level Case under the id that `uv run --project .guppi guppi caseid --next --session <stamp>` prints, which replaces Case 961.6 whole with one change: the bracket at the end of the `method` names the id of that new Case as the Case ratified in Work Mode; the person ratifies it, and the run goes on as `.claude/skills/work/SKILL.md` sets it.
-- [ ] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 ```
 
 ## Case 965 — The hook copies the librarian's report into the session folder, and its Rule is born core
@@ -826,15 +826,15 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-librarian-report-copy`
-- [ ] update `rule-librarian-report-copy`
-- [ ] create `estimate-librarian-report-copy-writes-the-file`
-- [ ] update `rule-hook-registry`
+- [x] create `rule-librarian-report-copy`
+- [x] update `rule-librarian-report-copy`
+- [x] create `estimate-librarian-report-copy-writes-the-file`
+- [x] update `rule-hook-registry`
 - [x] `.guppi/guppi/libreport.py`: the hook as `then` sets it, importing `subagent_outputs` from `casecheck.py`, `session_dir` from `ledger.py` and `session_stamp` and `read_payload` from `event.py`; written in this Work Mode under 956.1, ticked with no new run.
 - [x] `.guppi/guppi/cli.py`: the command `libreport` runs `libreport.run`; written in this Work Mode under 956.1, ticked with no new run.
 - [x] `.guppi/tests/test_libreport.py`: one test per line of `then`, over a transcript and an event log under a temporary folder: a last text, a last handback message, a second fire, another agent, and no transcript, no output or no session folder; written in this Work Mode under 956.1, ticked with no new run.
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
-- [ ] read `estimate-librarian-report-copy-writes-the-file`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] read `estimate-librarian-report-copy-writes-the-file`
 ```
 
 ## Deferred

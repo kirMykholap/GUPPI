@@ -55,7 +55,7 @@
       { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi context", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi onward", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi onward --plan", "timeout": 30 } ] }
     ],
     "SubagentStop": [
-      { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi casecheck --subagent", "timeout": 30 } ] }
+      { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi casecheck --subagent", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi libreport", "timeout": 30 } ] }
     ]
   },
   "env": {

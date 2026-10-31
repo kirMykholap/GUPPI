@@ -60,7 +60,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-build-reads-each-list-of-a-new-member`
-- [ ] read `estimate-case-build-reads-each-list-of-a-new-member`
+- [x] read `estimate-case-build-reads-each-list-of-a-new-member`
 ```
 
 ### Case 950.2 — The showing reading reads the live Render with the replies
@@ -117,7 +117,7 @@ update:
 
 ```tasks
 - [x] update `estimate-orchestration-shows-the-built-case`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```
 
 ## Case 952 — The opening Case offers no sprint goal made up from the vault
@@ -307,7 +307,7 @@ update:
 ```tasks
 - [x] update `estimate-search-leaves-out-decisions-refuses-ask-guppi`
 - [x] by hand, in Work Mode: `uv run --project .guppi pytest .guppi/tests/test_grepguard.py` passes.
-- [ ] read `estimate-search-leaves-out-decisions-refuses-ask-guppi`
+- [x] read `estimate-search-leaves-out-decisions-refuses-ask-guppi`
 ```
 
 ### Case 954.2 — The main agent may start ask-guppi to test a hook that judges its calls
@@ -351,7 +351,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] create `estimate-orchestration-starts-ask-guppi-for-a-hook-test`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-starts-ask-guppi-for-a-hook-test`
+- [x] read `estimate-orchestration-starts-ask-guppi-for-a-hook-test`
 ```
 
 ### Case 954.3 — The frame of ask-guppi names the hook trial as its one Decision call
@@ -409,7 +409,7 @@ update:
 - [x] create `estimate-ask-tries-a-decision-call-only-for-a-hook-trial`
 - [x] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
 - [x] `uv run --project .guppi guppi render`: `.claude/rules/search-leaves-out-decisions.md`
-- [ ] read `estimate-ask-tries-a-decision-call-only-for-a-hook-trial`
+- [x] read `estimate-ask-tries-a-decision-call-only-for-a-hook-trial`
 ```
 
 ## Case 955 — The shape of GUPPI is settled by the sprint plugin
@@ -460,5 +460,5 @@ update:
 ```tasks
 - [x] update `entity-guppi`
 - [x] create `estimate-guppi-keeps-no-defer-of-its-shape`
-- [ ] read `estimate-guppi-keeps-no-defer-of-its-shape`
+- [x] read `estimate-guppi-keeps-no-defer-of-its-shape`
 ```

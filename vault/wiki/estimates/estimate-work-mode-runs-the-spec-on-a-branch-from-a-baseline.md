@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-work-mode]]"
 purpose: Whether /work stops on main, writes the baseline of uv run --project .guppi guppi test and uv run --project .guppi guppi check into work.md before the first change — running a command itself when its substitution is empty — and keeps it on a resume, runs the tasks of the Spec of the session or of the folder /box gives it in order with their ticks but leaves a guppi sprint-close line to the librarian, names that folder under Conserved Spec and deletes its carry.md, marks an expected red under Expected red, runs the check of the plan before the first task of a Case ratified in Work Mode, stops on its finding and ticks a task of that Case whose work already stands, and after the last task runs uv run --project .guppi guppi test in full and holds each failing test against the baseline, fixing a new one within ratified work
-method: "by hand, at Retro: the new Render of rule-work-mode in the Spec read against each line of the Criterion, recorded in the estimate line; uv run --project .guppi guppi render --check; by hand, after the first /work that runs on the rendered .claude/skills/work/SKILL.md and in which a Case is ratified in Work Mode: the end of the turn after its acknowledging reply, the check of the plan before its first task, what followed a finding and the ticks of its tasks read against the Criterion, recorded in the estimate line"
-checked: 2026-10-08
+method: "by hand, at Retro: uv run --project .guppi guppi render --check; .claude/skills/work/SKILL.md read against each line of the Criterion; a Case ratified in the Work Mode of the session that replaces a sub-case of a ratified Case, the end of the turn after its acknowledging reply, the check of the plan before its first task, what followed a finding and the ticks of its tasks read in the transcript of the session under ~/.claude/projects/ and in its spec.md and work.md against the Criterion, recorded in the estimate line with the transcript named (Case 964, ratified in Work Mode, which replaces Case 961.6, staged in session 2026-10-31/0431)"
+checked: 2026-10-31
 origin: raw/2026-09-28/1318/ledger.md#case-479.2
 sprint: migration
 created: 2026-09-28
@@ -41,7 +41,7 @@ Then:
 
 ## Result
 
-2026-10-08, Retro, the new Render of rule-work-mode in vault/raw/2026-10-08/1547/spec.md (Case 736.2) read against each line of the Criterion of 736.2: the empty-substitution, main, baseline, resume, task order and ticks, sprint-close, Expected red and /box lines stand in the current Render; the new replace adds the full make test run after the last task, held against ## Baseline of work.md — a Baseline failure goes on, a new one within ratified work is fixed, one needing a choice no ratified Case makes is the stop of where-to-stop.md, any other goes on to /retro; both replace targets stand once in the page; the /work of this session at the fork ran on migration and wrote work.md before any change (make test exit 0, make lint exit 2, 14 lines); render --check waits for the librarian's render; a /work that /box calls and the /work of a session that closes a sprint were not observed
+2026-10-31, Retro of session 0431, uv run --project .guppi guppi render --check (exit 0), .claude/skills/work/SKILL.md against each line of the Criterion, main transcript 8727d5ce-2d69-40eb-8203-769b95b5cc28.jsonl lines 1434–1810, vault/raw/2026-10-31/0431/spec.md and work.md: on branch plugin the baseline was written once before the first change; Case 964, ratified in Work Mode, replaced 961.6; the reply that acknowledged it ended the turn, and at the person's next message guppi prespec --check ran on the plan before any task of the new Case, printing no finding; a finding of the Stop check of rule-case-check on the showing of Case 965 went to its case-guppi and the fixed Case was shown again; the stop: task and the three code tasks whose work stood were ticked with no new run; the full guppi test after the tasks had no new failure
 
 ## History
 
@@ -57,3 +57,5 @@ Then:
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
+- 2026-10-31 updated: the method reads Case 964, ratified in the Work Mode of session 0431 and staged on purpose, the Criterion written back unchanged · [[decision-case-964]]
+- 2026-10-31 status: pending → passed · raw/2026-10-31/0431/ledger.md#L48

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a conserved Spec from being built on a branch that lacks the current vault, or its pages from being written anywhere but on the shared branch
-status: built
+status: draft
 enforcement: render
 implementation_ref: [.guppi/guppi/box.py, .guppi/tests/test_box.py]
 governs: .claude/skills/box/SKILL.md
@@ -40,7 +40,7 @@ The argument is the folder of a conserved Spec, `vault/raw/<date>/<HHMM>/`, whic
 3. Run `git switch spec/<date>-<HHMM>`, then `git merge --ff-only <shared branch>`. When the merge refuses, run `git switch <shared branch>`, show the refusal and ask the person.
 4. Call `/work` with the folder as its argument. Work Mode, the Work readings, `/retro` and `/handoff` run as their skills say, in one turn; `/handoff` dispatches nothing and comes back here.
 5. Run `git switch <shared branch>`, then `git merge --ff-only spec/<date>-<HHMM>`. When the merge refuses, show the refusal and ask the person. Then run `git branch -d spec/<date>-<HHMM>` and `uv run --project .guppi guppi test`.
-6. Dispatch the `librarian-guppi` agent with one line: `Materialize <hi date> from vault/raw/<hi date>/<hi HHMM>/handoff.md.`. Wait for its report and show it to the person unchanged, then one line with the exit code of `uv run --project .guppi guppi test`. Do not commit after this, and write no `LEDGER` block.
+6. Dispatch the `librarian-guppi` agent with one line: `Materialize <hi date> from vault/raw/<hi date>/<hi HHMM>/handoff.md.`. Wait for its report. Read `vault/raw/<hi date>/<hi HHMM>/report.md`, which a hook writes from that report, and show its text to the person unchanged, or, when no `report.md` stands there, the returned report unchanged and one line that says that `report.md` is missing; then one line with the exit code of `uv run --project .guppi guppi test`. When `report.md` stands, commit it alone: `git add vault/raw/<hi date>/<hi HHMM>/report.md && git commit -m "docs(vault): librarian report, <hi date>"`, never `--amend`. Make no other commit after this, and write no `LEDGER` block (as set in case 956).
 
 The stops of steps 1, 3 and 5 are condition 6 of `vault/wiki/where-to-stop.md`.
 <!-- /rule-spec-box -->
@@ -67,3 +67,5 @@ The stops of steps 1, 3 and 5 are condition 6 of `vault/wiki/where-to-stop.md`.
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
 - 2026-10-17 updated: the sprint line of the Purpose moves into the bracket of its pointer · [[decision-case-875]]
+- 2026-10-31 updated: /box shows report.md and commits it alone after the librarian's commit · [[decision-case-956.4]]
+- 2026-10-31 status: built → draft · cascade

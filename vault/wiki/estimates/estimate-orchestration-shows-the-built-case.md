@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
-method: "by hand, after the first summary of case-guppi in Plan Mode that carries a line Other Case naming a Case of the session, in a session that opens on the Render of rule-orchestration that lets the main agent start ask-guppi in Work Mode for a test of a hook that judges its calls: vault/wiki/orchestration.md read against the Criterion, and the replies of the main agent from that summary to the showing of the other Case read against the Criterion, both recorded in one estimate line"
-checked: 2026-10-14
+method: "by hand, at Retro: vault/wiki/orchestration.md read against the Criterion, and the replies of the main agent from a summary of case-guppi in Plan Mode that carries a line Other Case naming a Case of the session to the reply that shows the two Cases, read in the transcript of the session under ~/.claude/projects/ against the Criterion, both recorded in one estimate line with the transcript named (the summary of Case 960 that names Case 956, in session 2026-10-31/0431)"
+checked: 2026-10-31
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
 created: 2026-09-24
@@ -47,7 +47,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-10-14, session 0232, the new Render of rule-orchestration in spec.md of session 0232: the Work Mode sentence gives the dispatch of a new top-level Case under the id that `uv run guppi caseid --next --session <stamp>` prints, `<stamp>` the stamp of the hi: line, as the replaced Criterion line says; this session changes no other sentence the Criterion reads
+2026-10-31, Retro of session 0431, vault/wiki/orchestration.md and main transcript 8727d5ce-2d69-40eb-8203-769b95b5cc28.jsonl lines 779–826: after the summary of Case 960 carried Other Case: Case 956, the main agent asked nothing, sent the change to the case-guppi of 956 by SendMessage, ended the turn with one Waiting line, sent both files by SendUserFile with display render and showed both Cases with headings, lists and ratification blocks as the summaries held them, and both were ratified again in one reply; but the answer of the case-guppi of 956 (line 796) opened with three paragraphs and **Built:** only on its fourth line, and the main agent showed it as a built Case where the Criterion takes an answer with no first line **Built:**, **Fact:** or **Dropped:** for a round
 
 ## History
 
@@ -99,3 +99,5 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-29 updated: the Criterion replaced whole — the round, the name of a Case and its short text are shown in the language of the chat, not named as Russian · [[decision-case-908.3]]
 - 2026-10-30 updated: the method waits for a line Other Case that names a Case of the session · [[decision-case-916.1]]
 - 2026-10-31 updated: the Criterion replaced whole — the line on ask-guppi at pre-spec takes the exception of the start that estimate-orchestration-starts-ask-guppi-for-a-hook-test reads, and one line leaves that start out of this promise; the method reads the live Render with the replies after the first summary with a line Other Case in a session on the Render that lets the main agent start ask-guppi for a hook test, in one estimate line, with no Retro part · [[decision-case-950.2]]
+- 2026-10-31 updated: the method reads the showing of Cases 960 and 956 in the transcript of session 0431, the Criterion written back unchanged · [[decision-case-961.1]]
+- 2026-10-31 status: pending → failed · raw/2026-10-31/0431/ledger.md#L45

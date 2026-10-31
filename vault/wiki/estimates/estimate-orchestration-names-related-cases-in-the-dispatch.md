@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-orchestration]]"
 purpose: Whether the main agent's prompt to case-guppi names each Case of the session that changes a page the item names, acts at the same moment, or sets the form of a text a check reads, or how the check reads it, where the Case of the item may write text of that kind, by its id, one sentence on what it sets and the path of its case file, and each other Case of a batch of items the person took up in one answer
-method: "by hand, after the first dispatch of case-guppi under the new Render of rule-orchestration in which a Case of the session sets the form of a text a check reads and the Case of the item may write text of that kind: the Agent call of that dispatch in its transcript, read against the Criterion; a related Case left unnamed counted in the reading line"
-checked: 2026-10-06
+method: "by hand, at Retro: an Agent call that dispatched case-guppi for the Case of an item while a Case of the session sets the form of the method of an Estimate and the Case of the item may write such a method, read in the transcript of the session under ~/.claude/projects/ against the Criterion, a related Case left unnamed counted in the reading line and the transcript named (the dispatch of Case 961, which names Case 960, in session 2026-10-31/0431)"
+checked: 2026-10-31
 origin: raw/2026-10-01/1441/ledger.md#case-579.1
 sprint: migration
 created: 2026-10-01
@@ -29,7 +29,7 @@ The prompt of the call names each Case of the session, ratified or already shown
 
 ## Result
 
-2026-10-06, the transcript of session 2249: the Agent call of Case 682 named Case 683 by id and Frontier item C12 and Case 681 with its case file; the call of Case 683 named Case 682 by id and C11, Case 681 with its case file, and Cases 676, 677, 679, 680 with their files
+2026-10-31, Retro of session 0431, main transcript 8727d5ce-2d69-40eb-8203-769b95b5cc28.jsonl line 841, the Agent call that dispatched case-guppi for Case 961: it named the related Case 960 by its id and its file path, 0 related Cases left unnamed, but its sentence on Case 960 named only its new Estimate and not the pages it changes (rule-estimates-schema, rule-case-protocol, estimate-where-to-stop-writes-each-step-whole), so the line "one sentence on what it sets and which pages it changes" is met only in part
 
 ## History
 
@@ -42,3 +42,5 @@ The prompt of the call names each Case of the session, ratified or already shown
 - 2026-10-06 status: pending → passed · raw/2026-10-05/2249/ledger.md#L24
 - 2026-10-15 updated: the pointers of the method stand in a bracket at the end of their sentence · [[decision-case-823.1]]
 - 2026-10-30 updated: the Criterion replaced whole — a Case that sets the form of a text a check reads is related to an item whose Case may write text of that kind; purpose and method set anew · [[decision-case-938]]
+- 2026-10-31 updated: the method reads the dispatch of Case 961 in the transcript of session 0431, the Criterion written back unchanged · [[decision-case-961.2]]
+- 2026-10-31 status: pending → failed · raw/2026-10-31/0431/ledger.md#L46

@@ -4,6 +4,7 @@ pattern: The Claude Code CLI withholds the approval of a plan above the size it 
 status: open
 children: ["[[lesson-plugin-cli-withholds-approval-of-a-long-plan]]", "[[lesson-plugin-cli-withholds-approval-in-every-window]]"]
 severity: 2
+deferred_by: ["[[decision-case-957]]"]
 origin: raw/2026-10-31/0128/ledger.md#L16
 sprint: plugin
 created: 2026-10-31
@@ -21,3 +22,4 @@ A suggestion for a Case, not a decision. Options named in the handoff of session
 ## History
 
 - 2026-10-31 created · raw/2026-10-31/0128/ledger.md#L16
+- 2026-10-31 deferred · [[decision-case-957]]

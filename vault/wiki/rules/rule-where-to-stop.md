@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the run from /work to the librarian from stopping where the person is not needed, or going on where only the person can decide
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/where-to-stop.md
 render_mode: full
@@ -58,3 +58,4 @@ To stop, end the reply with the question to the person. Where the question asks 
 - 2026-10-31 updated: a stop reply writes each command it asks the person to run whole · [[decision-case-945]]
 - 2026-10-31 estimate estimate-where-to-stop-writes-each-step-whole added · [[decision-case-945]]
 - 2026-10-31 status: built → draft · cascade
+- 2026-10-31 status: draft → built · cascade

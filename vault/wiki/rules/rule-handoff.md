@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the session's memory from being lost between the commit and the librarian
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/handoff/SKILL.md
 render_mode: full
@@ -43,7 +43,7 @@ If Tree above is not empty, stop and say "commit first". Otherwise write `vault/
 - `## Ask the person`: one line per reading that only the person can take — the Estimate by slug, the mark `needs the person`, and the question the person answers.
 A thing is said once: a Case, a box, a reading, a lesson or an observation that one section names stands in another section only with what that section's kind adds about it — a caveat in `## Notes from memory`, what to check first in `## Direct instructions to the librarian` — and no section says again what another section says of it (cases 468.2, 531.5, 624). The file names no commit, no number of an item and no end of an item. Write it from memory; do not re-read the artifacts. Short or empty sections are normal.
 
-Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box` runs, as you wrote it in this turn — dispatch nothing: go back to the step of `/box` that follows `/handoff`, which merges the branch and dispatches the librarian (case 591). In any other session, dispatch the `librarian-guppi` agent with one line: `Materialize <date> from vault/raw/<date>/<hi HHMM>/handoff.md.`, the path of the file you just wrote. Wait for its report and show it to the person unchanged. Do not commit after this, and write no `LEDGER` block.
+Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box` runs, as you wrote it in this turn — dispatch nothing: go back to the step of `/box` that follows `/handoff`, which merges the branch and dispatches the librarian (case 591). In any other session, dispatch the `librarian-guppi` agent with one line: `Materialize <date> from vault/raw/<date>/<hi HHMM>/handoff.md.`, the path of the file you just wrote. Wait for its report. Read `vault/raw/<date>/<hi HHMM>/report.md`, which a hook writes from that report, and show its text to the person unchanged; when no `report.md` stands there, show the returned report unchanged and one line that says that `report.md` is missing. When `report.md` stands, commit it alone, by the Bash tool: `git add vault/raw/<date>/<hi HHMM>/report.md && git commit -m "docs(vault): librarian report, <date>"`, never `--amend`. Make no other commit after this, and write no `LEDGER` block (as set in case 956).
 <!-- /rule-handoff -->
 
 ## History
@@ -72,3 +72,5 @@ Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box`
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
 - 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]
+- 2026-10-31 updated: /handoff shows report.md and commits it alone after the librarian's commit · [[decision-case-956.3]]
+- 2026-10-31 status: built → draft · cascade

@@ -701,6 +701,20 @@ def waits_for_an_event(part: str) -> bool:
     return bool(EVENT_PART.match(part.strip()))
 
 
+def names_its_event_inside_a_part(method: str) -> bool:
+    """Whether a `method` holds a part between two `;` that names its event behind another
+    word: `EVENT_PART` found after a word boundary inside the stripped part, which
+    `waits_for_an_event` does not accept — "and by hand, after the first session start: the
+    file read" waits for nothing, while "by hand, after X: …" and "after X: …" wait. The one
+    predicate of this judgment, which `pre-spec` imports for its note; the lint run does not
+    call it, so the live pages give no finding by it (case 972)."""
+    return any(
+        re.search(rf"\b(?:{EVENT_PART.pattern})", part.strip(), re.IGNORECASE)
+        and not waits_for_an_event(part)
+        for part in method.split(CLAUSE)
+    )
+
+
 def waits_for_another_session(method: str) -> bool:
     """Whether a `method` waits for another session: a part between two `;` that names a
     later session, the next session, a session after another, a session of a sprint — "a

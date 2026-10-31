@@ -863,6 +863,20 @@ def test_waits_a_part_that_waits_for_an_event_it_names_is_no_wait(tmp_path):
     assert not lint.waits_for_an_event("read after a pull request: x")
 
 
+def test_off_form_a_part_that_names_its_event_behind_another_word():
+    # the form of a wait behind another word waits for nothing (case 972)
+    for part, inside in (
+        ("and by hand, after X: read", True),
+        ("read after X: read", True),
+        ("by hand, after X: read", False),
+        ("after X: read", False),
+        ("after X", False),
+    ):
+        assert lint.names_its_event_inside_a_part(part) is inside, part
+    assert lint.names_its_event_inside_a_part("pytest tests/test_x.py; and by hand, after X: read")
+    assert not lint.names_its_event_inside_a_part("pytest tests/test_x.py; hereafter X: read")
+
+
 def test_waits_the_lint_run_gives_no_finding_on_a_live_page(tmp_path):
     method = "pytest tests/test_x.py; by hand in a later session"
     seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method=method))

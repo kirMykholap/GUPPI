@@ -218,7 +218,14 @@ left with no live child, the Decision page of a superseded Case — judged by
 `generate.archived_by_cascade`, the function the cascade calls; the note names the Case
 whose item or mark sets off the archive, which may be the Case of the `update` itself or a
 sibling sub-case (case 739.1). The check of the file of a Case in `.guppi/guppi/casecheck.py`
-imports it.
+imports it. And, by `wait_form_notes`, one note per Estimate item whose `method` names its
+event behind another word — `after`, or `by hand, after`, and an event before a colon, after a
+word boundary but not at the start of a part, such as `and by hand, after X: …` — by
+`lint.names_its_event_inside_a_part`, the one predicate: the `method` of a `create`, of an
+`update` with `set: {method: …}`, and the `method` an `update` keeps on its live page when it
+replaces the Criterion whole, by `kept_method`, whatever the target. Such a part waits for no
+event, or names a moment of the Case's own session; the agent answers the note in one line
+(case 972).
 
 The sentence of a pair (cases 711.2, 711.3). `check_pairs` records the span each pair writes
 into a section, with its Case. Given the Cases of an answer of `case-guppi` as `own`, it
@@ -274,6 +281,7 @@ from guppi.lint import (
     method_of,
     names_a_form,
     names_a_moc_form,
+    names_its_event_inside_a_part,
     tied_to_a_one_off_moment,
     unmet_conditions,
     waits_for_another_session,
@@ -1471,18 +1479,70 @@ def kept_method_waits(item: dict, project_dir: Path) -> bool:
     sprint page, by `ledger.is_sprint_page`: its Estimate may wait for a later session of its
     sprint (case 772.5). A part of the kept `method` that opens with `after`, or with `by hand,
     after`, and names its event before a colon waits for that event, and the shared
-    predicate passes it by (case 781)."""
+    predicate passes it by (case 781). It reads the kept `method` by `kept_method`."""
+    kept = kept_method(item, project_dir)
+    if kept is None or is_sprint_page(kept[1]):
+        return False
+    return waits_for_another_session(kept[0])
+
+
+def kept_method(item: dict, project_dir: Path) -> tuple[str, str] | None:
+    """The `method` that an `update` of an Estimate keeps, with the `target` of its live
+    page: the `update` replaces the Criterion whole — it names no part of the page, by
+    `materialize.names_a_part` — writes no `method`, sets no status in `DECIDED`, and its live
+    page holds a `method`. None otherwise. The one reading of the kept `method`, which
+    `kept_method_waits` and `wait_form_notes` call (cases 715, 972)."""
     sets = item.get("set") if isinstance(item.get("set"), dict) else {}
     if names_a_part(item) or "method" in sets or str(sets.get("status")) in DECIDED:
-        return False
+        return None
     path = wiki_root(project_dir) / "estimates" / f"{item.get('slug')}.md"
     if not path.is_file():
-        return False
+        return None
     page = read_page(path, "estimates")
-    if is_sprint_page(page.props.get("target")):
-        return False
     method = method_of(page)
-    return method is not None and waits_for_another_session(method)
+    if method is None:
+        return None
+    return method, str(page.props.get("target") or "")
+
+
+OFF_FORM_WAIT = (
+    "names its event inside a part — open the part with after, or with by hand, after, "
+    "or answer that it names a moment of this session"
+)
+
+
+def wait_form_notes(blocks: dict, project_dir: Path) -> list[str]:
+    """One note per Estimate item whose `method` names its event behind another word, by
+    `lint.names_its_event_inside_a_part`, the one predicate (case 972): the `method` of a
+    `create`, of an `update` that carries `set: {method: …}`, and the `method` an `update`
+    keeps on its live page, by `kept_method`, whatever the target. A part that opens with
+    `after`, or with `by hand, after`, gives none. A note, not a finding: such a part may name
+    a moment of the Case's own session, and the agent answers the note in one line."""
+    notes: list[str] = []
+    for case, block in blocks.items():
+        for item in block.get("create") or []:
+            slug = item.get("slug") if isinstance(item, dict) else None
+            if (
+                slug
+                and category_of(slug) == "estimates"
+                and names_its_event_inside_a_part(str(item.get("method") or ""))
+            ):
+                notes.append(f"note: case {case}: create {slug}: method {OFF_FORM_WAIT}")
+        for item in block.get("update") or []:
+            slug = item.get("slug") if isinstance(item, dict) else None
+            if not slug or category_of(slug) != "estimates":
+                continue
+            sets = item.get("set") if isinstance(item.get("set"), dict) else {}
+            if "method" in sets:
+                if names_its_event_inside_a_part(str(sets.get("method") or "")):
+                    notes.append(f"note: case {case}: update {slug}: method {OFF_FORM_WAIT}")
+            elif (kept := kept_method(item, project_dir)) and names_its_event_inside_a_part(
+                kept[0]
+            ):
+                notes.append(
+                    f"note: case {case}: update {slug}: the method on the page {OFF_FORM_WAIT}"
+                )
+    return notes
 
 
 def created_page(item: dict, category: str, project_dir: Path) -> tuple[dict, set[str]] | None:
@@ -2174,6 +2234,7 @@ def plan_findings(
         + promise_notes(plan, project_dir)
         + defer_notes(cases)
         + cascade_notes(blocks, records, project_dir)
+        + wait_form_notes(blocks, project_dir)
     )
     return findings, notes
 

@@ -1475,6 +1475,50 @@ def test_kept_method_that_waits_for_an_event_is_clean(tmp_path):
     assert f"case 1: update estimate-x: {KEPT_WAITS}" in out
 
 
+OFF_FORM_METHOD = (
+    "pytest tests/test_x.py; and by hand, after a pull request from a second account: "
+    "the output read"
+)
+OFF_FORM = (
+    "names its event inside a part — open the part with after, or with by hand, after, "
+    "or answer that it names a moment of this session"
+)
+
+
+def test_off_form_a_wait_behind_another_word_is_a_note(tmp_path):
+    # a note, no exit code, for a method written, set or kept off the form (case 972)
+    with_page(tmp_path, "rules", "rule-x")
+    item = NO_FORM_CREATE.replace("Run it and look", f'"{OFF_FORM_METHOD}"')
+    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+    assert (code, out.splitlines()) == (
+        0,
+        [f"note: case 1: create estimate-x-again: method {OFF_FORM}"],
+    )
+    with_estimate(tmp_path)
+    update = (
+        f'update:\n  - slug: estimate-x\n    set: {{method: "{OFF_FORM_METHOD}"}}\n'
+        "    change: recut\n"
+    )
+    code, out, _ = check(tmp_path, plan=create_plan(update), ledger=UPDATE_LINE)
+    assert (code, out.splitlines()) == (0, [f"note: case 1: update estimate-x: method {OFF_FORM}"])
+    with_method(tmp_path, f"'{OFF_FORM_METHOD}'")
+    code, out, _ = check(
+        tmp_path, plan=create_plan("update:\n" + ESTIMATE_UPDATE), ledger=UPDATE_LINE
+    )
+    assert code == 0
+    assert f"note: case 1: update estimate-x: the method on the page {OFF_FORM}" in out.splitlines()
+
+
+def test_off_form_a_part_that_opens_with_the_form_gives_no_note(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    method = OFF_FORM_METHOD.replace("; and by hand, after", "; by hand, after")
+    item = NO_FORM_CREATE.replace("Run it and look", f'"{method}"')
+    assert check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE) == (0, "", "")
+    with_method(tmp_path, f"'{method}'")
+    _, out, _ = check(tmp_path, plan=create_plan("update:\n" + ESTIMATE_UPDATE), ledger=UPDATE_LINE)
+    assert OFF_FORM not in out
+
+
 def test_kept_method_of_an_estimate_of_a_sprint_page_is_clean(tmp_path):
     # the live page's target is a sprint page (case 772.5)
     with_page(tmp_path, "rules", "rule-x")

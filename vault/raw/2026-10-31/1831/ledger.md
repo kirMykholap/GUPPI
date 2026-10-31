@@ -1,0 +1,32 @@
+- 18:42:10 estimate[estimate-backlog-keeps-the-work-taken-out-of-a-built-page][passed] 2026-10-31, at the /hi of session 1831, by hand, vault/wiki/backlog.md read against the Criterion: under `## Deferred`, line 14 "The rest of Work Mode past the skill /work: the test of each Estimate written first and turned green, and the full model the person plans; taken out of rule-work-mode (case 962) · put off in 0 sessions" and line 15 "The Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session; taken out of rule-spec-box (case 962) · put off in 0 sessions"; rule-work-mode stands `built` and rule-spec-box `draft` (Grep `^status:` over vault/wiki/rules/), so the line of a `built` page stands
+- 19:46:53 decision[case 966][update][rule-case-build]{ref:rule-case-build}
+- 19:46:53 decision[case 966][update][estimate-case-build-reads-the-readers-of-a-changed-step]{ref:rule-case-build}
+- 21:13:25 decision[case 967.1][create][entity-link-graph]{ref:entity-guppi}{tags:harness,workflow}
+- 21:13:25 decision[case 967.1][update][entity-guppi]{ref:entity-guppi}
+- 21:13:25 decision[case 967.1][create][estimate-link-graph-prints-the-neighbours]{ref:entity-link-graph}{tags:harness}
+- 21:13:25 decision[case 967.2][update][rule-case-build]{ref:rule-case-build}
+- 21:13:25 decision[case 967.2][create][estimate-case-build-reads-the-link-graph-of-what-it-changes]{ref:rule-case-build}{tags:session,workflow,harness,case-build}
+- 21:13:25 decision[case 967.3][create][rule-link-graph-at-session-start]{ref:rule-harness}{tags:harness,session}
+- 21:13:25 decision[case 967.3][update][rule-hook-registry]{ref:rule-hook-registry}
+- 21:13:25 decision[case 967.3][update][rule-harness]{ref:rule-harness}
+- 21:13:25 decision[case 967.3][create][estimate-link-graph-at-session-start-writes-the-file]{ref:rule-link-graph-at-session-start}{tags:harness,session}
+- 21:31:23 decision[case 968][update][rule-case-protocol]{ref:rule-case-protocol}
+- 21:31:23 decision[case 968][create][estimate-materialize-lifts-a-create-value-by-the-schema]{ref:rule-materialize}{tags:harness,schema}
+- 21:53:55 decision[case 969.1][update][rule-estimates-schema]{ref:rule-estimates-schema}{supersedes:case 963}
+- 21:53:55 decision[case 969.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 21:53:55 decision[case 969.1][update][estimate-estimates-schema-checked]{ref:rule-estimates-schema}
+- 21:53:55 decision[case 969.2][update][estimate-lint-checks-the-statuses]{ref:rule-lint}
+- 21:53:55 decision[case 969.3][delete][estimate-backlog-keeps-the-work-taken-out-of-a-built-page]
+- 21:53:55 decision[case 969.3][delete][estimate-guppi-keeps-no-defer-of-its-shape]
+- 22:13:05 decision[case 970.1][update][rule-case-build]{ref:rule-case-build}
+- 22:13:05 decision[case 970.1][create][estimate-case-build-runs-the-vault-query-first]{ref:rule-case-build}{tags:session,workflow,harness,case-build}
+- 22:13:05 decision[case 970.2][update][rule-ask]{ref:rule-ask}
+- 22:13:05 decision[case 970.2][update][estimate-ask-query-before-a-create]{ref:rule-ask}
+- 22:13:05 decision[case 970.3][update][estimate-ask-searches-at-prespec]{ref:rule-ask}
+- 22:15:04 decision[case 971][defer][estimate-orchestration-shows-the-built-case]{ref:estimate-orchestration-shows-the-built-case}
+- 22:15:04 decision[case 971][defer][estimate-orchestration-names-related-cases-in-the-dispatch]{ref:estimate-orchestration-names-related-cases-in-the-dispatch}
+- 22:15:04 decision[case 971][defer][estimate-case-build-reads-each-list-of-a-new-member]{ref:estimate-case-build-reads-each-list-of-a-new-member}
+- 22:15:04 decision[case 971][defer][estimate-close-reports-the-run]{ref:estimate-close-reports-the-run}
+- 22:50:33 estimate[estimate-link-graph-prints-the-neighbours][passed] 2026-10-31, Retro of session 1831: uv run --project .guppi pytest .guppi/tests/test_links.py, 13 passed, each line of the Criterion over a vault in a temporary folder (block form, field, [[slug]], path-field and body-name links outside History, agent, skill and command names of a rendered file to the page that renders or runs them, links in, a file in a named folder, purpose lines of a lesson and an insight, no Decision page, an unknown name exits 1); by hand in Work Mode: uv run --project .guppi guppi links .claude/skills/sprint-open/SKILL.md printed "- out agent case-guppi: rule-case-build — Prevents a Case from being shown before one agent has built it …", and uv run --project .guppi guppi links .claude/agents/case-guppi.md printed "- out skill grill-me: rule-skill-grill-me — Prevents an interview from acting on a plan …"; guppi links decision-case-966 printed "links: decision-case-966 is neither a live page nor a file", exit 1
+- 22:50:33 estimate[estimate-lint-checks-the-statuses][passed] 2026-10-31, Retro of session 1831: uv run --project .guppi guppi test, 1851 passed, 8 skipped, 1 deselected, test_lint.py among them, with test_a_one_time_estimate_on_a_rule_is_a_status_finding (one finding "target rule-x is not a sprint page; once: true marks a one-time Estimate") and test_a_one_time_estimate_on_a_sprint_page_or_one_without_once_has_none, read against the Criterion of Case 969.2
+- 22:50:48 lesson[error][lesson-case-build-names-a-file-without-the-readers-of-its-folder]{tags:case-build,harness} trigger: in Work Mode of session 1831 the full guppi test run failed on test_the_live_code_holds_no_pointer_outside_a_bracket of test_ship.py, since guppi links --write wrote .guppi/links.md and the tree walk of ship.py copies every file under .guppi/ but those of LEFT_OUT, so the clean version would carry the graph; Work Mode added .guppi/links.md to LEFT_OUT of .guppi/guppi/ship.py root_cause: Case 967.3 put a new generated file under .guppi/ and read its readers by the name of the file only; the readers of the folder, the tree walk of guppi ship and its test of the live code, hold no word of the file

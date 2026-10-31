@@ -690,7 +690,7 @@ update:
 - [x] update `entity-sprint-plugin`
 - [x] create `estimate-backlog-keeps-the-work-taken-out-of-a-built-page`
 - [x] `uv run --project .guppi guppi sprint`
-- [ ] read `estimate-backlog-keeps-the-work-taken-out-of-a-built-page`
+- [x] read `estimate-backlog-keeps-the-work-taken-out-of-a-built-page`
 ```
 
 ## Case 964 — The Case ratified in Work Mode names itself in the method

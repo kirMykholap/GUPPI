@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[entity-guppi]]"
 purpose: Whether entity-guppi keeps no defer of the question of its future shape and the backlog lists no line for it, once the librarian's run applies the Case that retires the defer
 method: "by hand, after the librarian's run that applies the Case: vault/wiki/entities/entity-guppi.md and vault/wiki/backlog.md read against the Criterion"
@@ -30,3 +30,5 @@ The `deferred_by` of `entity-guppi` does not name `decision-case-616`.
 
 - 2026-10-31 created · [[decision-case-955]]
 - 2026-10-31 status: pending → passed · raw/2026-10-31/0431/ledger.md#L1
+- 2026-10-31 deleted · [[decision-case-969.3]]
+- 2026-10-31 archived · cleanup

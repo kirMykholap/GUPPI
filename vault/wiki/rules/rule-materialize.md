@@ -2,11 +2,11 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from needing the ledger beyond its one read or the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: built
+status: draft
 enforcement: check
 implementation_ref: [.guppi/guppi/materialize.py, .guppi/tests/test_materialize.py]
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]", "[[estimate-materialize-lifts-when-and-then]]", "[[estimate-materialize-lifts-a-create-by-the-schema]]", "[[estimate-materialize-changes-a-named-part-alone]]", "[[estimate-materialize-judges-a-fence]]", "[[estimate-materialize-marks-a-comment]]", "[[estimate-materialize-fills-the-type-from-the-category]]", "[[estimate-materialize-lifts-a-tag-of-a-lesson]]"]
+estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]", "[[estimate-materialize-lifts-when-and-then]]", "[[estimate-materialize-lifts-a-create-by-the-schema]]", "[[estimate-materialize-changes-a-named-part-alone]]", "[[estimate-materialize-judges-a-fence]]", "[[estimate-materialize-marks-a-comment]]", "[[estimate-materialize-fills-the-type-from-the-category]]", "[[estimate-materialize-lifts-a-tag-of-a-lesson]]", "[[estimate-materialize-lifts-a-create-value-by-the-schema]]"]
 origin: raw/2026-09-10/ledger.md#case-31
 sprint: migration
 created: 2026-09-10
@@ -145,3 +145,5 @@ ratified and its work not done (case 190.3). A reading — an `estimate` line �
 - 2026-10-15 estimate estimate-materialize-lifts-a-tag-of-a-lesson added · [[decision-case-827.2]]
 - 2026-10-30 updated: the lift carries drop, a list of section names, when the item carries it · [[decision-case-935.1]]
 - 2026-10-30 updated: a drop is a named part, and a drop of the Criterion of an Estimate is incomplete: [criterion] · [[decision-case-935.2]]
+- 2026-10-31 estimate estimate-materialize-lifts-a-create-value-by-the-schema added · [[decision-case-968]]
+- 2026-10-31 status: built → draft · cascade

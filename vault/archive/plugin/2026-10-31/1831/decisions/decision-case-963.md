@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "963"
-status: current
+status: archived
 defer: ["[[rule-estimates-schema]]"]
+superseded_by: ["[[decision-case-969.1]]"]
 origin: raw/2026-10-31/0431/ledger.md#case-963
 sprint: plugin
 created: 2026-10-31
@@ -26,3 +27,6 @@ Tell one-time Estimates apart from those that promise a lasting behaviour: a one
 ## History
 
 - 2026-10-31 created · raw/2026-10-31/0431/ledger.md#case-963
+- 2026-10-31 superseded by decision-case-969.1 · [[decision-case-969.1]]
+- 2026-10-31 archived · superseded
+- 2026-10-31 archived · cleanup

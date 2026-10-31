@@ -20,7 +20,7 @@
   "hooks": {
     "SessionStart": [
       { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi event session-start", "timeout": 30 },
-                   { "type": "command", "command": "uv run --project .guppi guppi render --sync", "timeout": 60 } ] },
+                   { "type": "command", "command": "uv run --project .guppi guppi render --sync", "timeout": 60 }, { "type": "command", "command": "uv run --project .guppi guppi links --write", "timeout": 60 } ] },
       { "matcher": "compact",
         "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi recall", "timeout": 30 } ] }
 ],

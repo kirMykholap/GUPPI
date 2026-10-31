@@ -2,12 +2,12 @@
 type: rule
 kind: Leaf
 purpose: "Prevents a deferred item from dropping out of sight: a defer, an open Insight, a sprint item without a turn or a conserved Spec that no list shows to the next session"
-status: draft
+status: built
 enforcement: check
 implementation_ref: [.guppi/guppi/backlog.py, .guppi/tests/test_backlog.py]
 governs: vault/wiki/backlog.md
 parent: "[[rule-documentation]]"
-estimates: ["[[estimate-backlog-renders]]", "[[estimate-backlog-checks-the-file]]", "[[estimate-backlog-keeps-the-work-taken-out-of-a-built-page]]"]
+estimates: ["[[estimate-backlog-renders]]", "[[estimate-backlog-checks-the-file]]"]
 origin: raw/2026-09-27/1255/ledger.md#case-451.4
 sprint: migration
 created: 2026-09-27
@@ -41,3 +41,5 @@ Prevents a deferred item from dropping out of sight (before case 451 the brief c
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
 - 2026-10-31 estimate estimate-backlog-keeps-the-work-taken-out-of-a-built-page added · [[decision-case-962]]
 - 2026-10-31 status: built → draft · cascade
+- 2026-10-31 status: draft → built · cascade
+- 2026-10-31 estimate estimate-backlog-keeps-the-work-taken-out-of-a-built-page archived · cleanup

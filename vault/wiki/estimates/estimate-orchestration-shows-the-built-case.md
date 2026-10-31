@@ -6,6 +6,7 @@ target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
 method: "by hand, at Retro: vault/wiki/orchestration.md read against the Criterion, and the replies of the main agent from a summary of case-guppi in Plan Mode that carries a line Other Case naming a Case of the session to the reply that shows the two Cases, read in the transcript of the session under ~/.claude/projects/ against the Criterion, both recorded in one estimate line with the transcript named (the summary of Case 960 that names Case 956, in session 2026-10-31/0431)"
 checked: 2026-10-31
+deferred_by: ["[[decision-case-971]]"]
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
 created: 2026-09-24
@@ -101,3 +102,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-31 updated: the Criterion replaced whole — the line on ask-guppi at pre-spec takes the exception of the start that estimate-orchestration-starts-ask-guppi-for-a-hook-test reads, and one line leaves that start out of this promise; the method reads the live Render with the replies after the first summary with a line Other Case in a session on the Render that lets the main agent start ask-guppi for a hook test, in one estimate line, with no Retro part · [[decision-case-950.2]]
 - 2026-10-31 updated: the method reads the showing of Cases 960 and 956 in the transcript of session 0431, the Criterion written back unchanged · [[decision-case-961.1]]
 - 2026-10-31 status: pending → failed · raw/2026-10-31/0431/ledger.md#L45
+- 2026-10-31 deferred · [[decision-case-971]]

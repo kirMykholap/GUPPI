@@ -12350,3 +12350,72 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-31 decisions/decision-case-961.6 archived · cleanup
 - 2026-10-31 decisions/decision-case-956 child decision-case-956.1 archived · cleanup
 - 2026-10-31 decisions/decision-case-961 child decision-case-961.6 archived · cleanup
+- 2026-10-31 estimates/estimate-backlog-keeps-the-work-taken-out-of-a-built-page status: pending → passed · raw/2026-10-31/1831/ledger.md#L1 · generate
+- 2026-10-31 decisions/decision-case-966 created · raw/2026-10-31/1831/ledger.md#case-966 · generate
+- 2026-10-31 rules/rule-case-build updated: case-guppi follows a changed step to each agent, skill or hook that carries it out, and to each skill such an agent loads, beside the word search · [[decision-case-966]] · generate
+- 2026-10-31 estimates/estimate-case-build-reads-the-readers-of-a-changed-step updated: pending again after the failed reading of session 0431, the Criterion written back unchanged; the method waits for the /pre-spec of the first session on the Render that follows a step to the one who carries it out · [[decision-case-966]] · generate
+- 2026-10-31 decisions/decision-case-967 created · raw/2026-10-31/1831/ledger.md#case-967 · generate
+- 2026-10-31 decisions/decision-case-967.1 created · raw/2026-10-31/1831/ledger.md#case-967.1 · generate
+- 2026-10-31 entities/entity-link-graph created · [[decision-case-967.1]] · generate
+- 2026-10-31 entities/entity-guppi child entity-link-graph added · [[decision-case-967.1]] · generate
+- 2026-10-31 entities/entity-guppi updated: the graph of the links between pages and harness files is a part of GUPPI · [[decision-case-967.1]] · generate
+- 2026-10-31 estimates/estimate-link-graph-prints-the-neighbours created · [[decision-case-967.1]] · generate
+- 2026-10-31 estimates/estimate-link-graph-prints-the-neighbours status: pending → passed · raw/2026-10-31/1831/ledger.md#L30 · generate
+- 2026-10-31 entities/entity-link-graph estimate estimate-link-graph-prints-the-neighbours added · [[decision-case-967.1]] · generate
+- 2026-10-31 decisions/decision-case-967.2 created · raw/2026-10-31/1831/ledger.md#case-967.2 · generate
+- 2026-10-31 rules/rule-case-build updated: case-guppi reads the block of each page and file its Case changes in the graph of links, and opens each neighbour that bears on the change · [[decision-case-967.2]] · generate
+- 2026-10-31 estimates/estimate-case-build-reads-the-link-graph-of-what-it-changes created · [[decision-case-967.2]] · generate
+- 2026-10-31 rules/rule-case-build estimate estimate-case-build-reads-the-link-graph-of-what-it-changes added · [[decision-case-967.2]] · generate
+- 2026-10-31 decisions/decision-case-967.3 created · raw/2026-10-31/1831/ledger.md#case-967.3 · generate
+- 2026-10-31 rules/rule-link-graph-at-session-start created · [[decision-case-967.3]] · generate
+- 2026-10-31 rules/rule-harness child rule-link-graph-at-session-start added · [[decision-case-967.3]] · generate
+- 2026-10-31 rules/rule-hook-registry updated: the SessionStart hook guppi links --write registered · [[decision-case-967.3]] · generate
+- 2026-10-31 rules/rule-harness updated: the hook that writes the graph of links at the start of a session belongs to the harness · [[decision-case-967.3]] · generate
+- 2026-10-31 estimates/estimate-link-graph-at-session-start-writes-the-file created · [[decision-case-967.3]] · generate
+- 2026-10-31 rules/rule-link-graph-at-session-start estimate estimate-link-graph-at-session-start-writes-the-file added · [[decision-case-967.3]] · generate
+- 2026-10-31 decisions/decision-case-968 created · raw/2026-10-31/1831/ledger.md#case-968 · generate
+- 2026-10-31 rules/rule-case-protocol updated: the form of a field of a create whose allowed values are not text · [[decision-case-968]] · generate
+- 2026-10-31 estimates/estimate-materialize-lifts-a-create-value-by-the-schema created · [[decision-case-968]] · generate
+- 2026-10-31 rules/rule-materialize estimate estimate-materialize-lifts-a-create-value-by-the-schema added · [[decision-case-968]] · generate
+- 2026-10-31 decisions/decision-case-969 created · raw/2026-10-31/1831/ledger.md#case-969 · generate
+- 2026-10-31 decisions/decision-case-969.1 created · raw/2026-10-31/1831/ledger.md#case-969.1 · generate
+- 2026-10-31 decisions/decision-case-963 superseded by decision-case-969.1 · [[decision-case-969.1]] · generate
+- 2026-10-31 rules/rule-estimates-schema defer by decision-case-963 superseded · [[decision-case-969.1]] · generate
+- 2026-10-31 rules/rule-estimates-schema updated: the field once marks a one-time Estimate, which targets the live sprint page; the defer of case 963 retired · [[decision-case-969.1]] · generate
+- 2026-10-31 rules/rule-case-protocol updated: a one-time Estimate is created on the live sprint page with once: true · [[decision-case-969.1]] · generate
+- 2026-10-31 estimates/estimate-estimates-schema-checked updated: the Criterion replaced whole — the optional field once with its one value true; the method waits for the render of the schema · [[decision-case-969.1]] · generate
+- 2026-10-31 decisions/decision-case-969.2 created · raw/2026-10-31/1831/ledger.md#case-969.2 · generate
+- 2026-10-31 estimates/estimate-lint-checks-the-statuses updated: the Criterion replaced whole — a one-time Estimate whose target is not a sprint page is a status finding · [[decision-case-969.2]] · generate
+- 2026-10-31 decisions/decision-case-969.3 created · raw/2026-10-31/1831/ledger.md#case-969.3 · generate
+- 2026-10-31 estimates/estimate-backlog-keeps-the-work-taken-out-of-a-built-page deleted · [[decision-case-969.3]] · generate
+- 2026-10-31 estimates/estimate-guppi-keeps-no-defer-of-its-shape deleted · [[decision-case-969.3]] · generate
+- 2026-10-31 decisions/decision-case-970 created · raw/2026-10-31/1831/ledger.md#case-970 · generate
+- 2026-10-31 decisions/decision-case-970.1 created · raw/2026-10-31/1831/ledger.md#case-970.1 · generate
+- 2026-10-31 rules/rule-case-build updated: case-guppi makes the Grep of the rules of its vault query its first Grep of the vault once it sees a create without a ref · [[decision-case-970.1]] · generate
+- 2026-10-31 estimates/estimate-case-build-runs-the-vault-query-first created · [[decision-case-970.1]] · generate
+- 2026-10-31 rules/rule-case-build estimate estimate-case-build-runs-the-vault-query-first added · [[decision-case-970.1]] · generate
+- 2026-10-31 decisions/decision-case-970.2 created · raw/2026-10-31/1831/ledger.md#case-970.2 · generate
+- 2026-10-31 rules/rule-ask updated: the vault query runs the index Grep of every category whatever the question, each pattern as written with no word added · [[decision-case-970.2]] · generate
+- 2026-10-31 estimates/estimate-ask-query-before-a-create updated: the Criterion replaced whole — the query opens with the rules and runs every other index Grep with its pattern as written; the moment in the build is read by estimate-case-build-runs-the-vault-query-first · [[decision-case-970.2]] · generate
+- 2026-10-31 decisions/decision-case-970.3 created · raw/2026-10-31/1831/ledger.md#case-970.3 · generate
+- 2026-10-31 estimates/estimate-ask-searches-at-prespec updated: the Criterion replaced whole — at /pre-spec too the agent runs the index Grep of every category with its pattern as written · [[decision-case-970.3]] · generate
+- 2026-10-31 decisions/decision-case-971 created · raw/2026-10-31/1831/ledger.md#case-971 · generate
+- 2026-10-31 estimates/estimate-orchestration-shows-the-built-case deferred · [[decision-case-971]] · generate
+- 2026-10-31 estimates/estimate-orchestration-names-related-cases-in-the-dispatch deferred · [[decision-case-971]] · generate
+- 2026-10-31 estimates/estimate-case-build-reads-each-list-of-a-new-member deferred · [[decision-case-971]] · generate
+- 2026-10-31 estimates/estimate-close-reports-the-run deferred · [[decision-case-971]] · generate
+- 2026-10-31 estimates/estimate-lint-checks-the-statuses status: pending → passed · raw/2026-10-31/1831/ledger.md#L31 · generate
+- 2026-10-31 lessons/lesson-case-build-names-a-file-without-the-readers-of-its-folder created · raw/2026-10-31/1831/ledger.md#L32 · generate
+- 2026-10-31 insights/insight-case-build-changes-a-step-without-reading-its-readers updated: child lesson-case-build-names-a-file-without-the-readers-of-its-folder added, open again from actioned (synthesis) · raw/2026-10-31/1831/ledger.md#L32 · generate
+- 2026-10-31 lessons/lesson-case-build-names-a-file-without-the-readers-of-its-folder updated: clustered under insight-case-build-changes-a-step-without-reading-its-readers (synthesis) · raw/2026-10-31/1831/ledger.md#L32 · generate
+- 2026-10-31 entities/entity-link-graph status: draft → built · cascade · generate
+- 2026-10-31 rules/rule-backlog status: draft → built · cascade · generate
+- 2026-10-31 rules/rule-estimates-schema status: built → draft · cascade · generate
+- 2026-10-31 rules/rule-materialize status: built → draft · cascade · generate
+- 2026-10-31 entities/entity-link-graph rules: [rule-link-graph-at-session-start] · cascade · generate
+- 2026-10-31 decisions/decision-case-963 archived · superseded · generate
+- 2026-10-31 estimates/estimate-backlog-keeps-the-work-taken-out-of-a-built-page archived · cleanup
+- 2026-10-31 estimates/estimate-guppi-keeps-no-defer-of-its-shape archived · cleanup
+- 2026-10-31 decisions/decision-case-963 archived · cleanup
+- 2026-10-31 entities/entity-guppi estimate estimate-guppi-keeps-no-defer-of-its-shape archived · cleanup
+- 2026-10-31 rules/rule-backlog estimate estimate-backlog-keeps-the-work-taken-out-of-a-built-page archived · cleanup

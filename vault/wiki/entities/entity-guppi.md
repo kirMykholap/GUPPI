@@ -1,10 +1,10 @@
 ---
 type: entity
 kind: MOC
-purpose: GUPPI — a Claude Code harness governed by ratified decisions, and the vault it keeps; its parts the sprint and the glossary, and in the repository of GUPPI also that repository on GitHub
+purpose: GUPPI — a Claude Code harness governed by ratified decisions, and the vault it keeps; its parts the sprint, the glossary and the graph of the links between pages and harness files, and in the repository of GUPPI also that repository on GitHub
 status: built
-children: ["[[entity-sprint]]", "[[entity-glossary]]", "[[entity-guppi-repository]]"]
-estimates: ["[[estimate-guppi-tests-green]]", "[[estimate-guppi-keeps-no-defer-of-its-shape]]"]
+children: ["[[entity-sprint]]", "[[entity-glossary]]", "[[entity-guppi-repository]]", "[[entity-link-graph]]"]
+estimates: ["[[estimate-guppi-tests-green]]"]
 rules: ["[[rule-harness]]"]
 code_ref: [.guppi/guppi/, .claude/]
 origin: raw/2026-09-22/0014/ledger.md#case-306.2
@@ -16,7 +16,7 @@ core: true
 
 ## Purpose
 
-GUPPI: a Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. Its parts are the sprint as a kind (`entity-sprint`) and the glossary (`entity-glossary`), the things of the vault that are content, not rules. In the repository of GUPPI itself, a third part is that repository on GitHub, `entity-guppi-repository`, whose rules are its own; the clean version of GUPPI does not hold that page (as set in case 795.1). `rule-harness` is its guard: the tools of the harness kept equal to the pages that describe them. In a project that uses GUPPI, this page stands beside the root of the product and keeps GUPPI's own machinery apart from it (as set in case 306.2).
+GUPPI: a Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. Its parts are the sprint as a kind (`entity-sprint`), the glossary (`entity-glossary`) and the graph of the links between the pages and the harness files (`entity-link-graph`), the things of GUPPI that are not rules (as set in case 967.1). In the repository of GUPPI itself, a third part is that repository on GitHub, `entity-guppi-repository`, whose rules are its own; the clean version of GUPPI does not hold that page (as set in case 795.1). `rule-harness` is its guard: the tools of the harness kept equal to the pages that describe them. In a project that uses GUPPI, this page stands beside the root of the product and keeps GUPPI's own machinery apart from it (as set in case 306.2).
 
 ## History
 
@@ -36,3 +36,6 @@ GUPPI: a Claude Code harness governed by ratified decisions, and the Obsidian va
 - 2026-10-31 estimate estimate-guppi-keeps-no-defer-of-its-shape added · [[decision-case-955]]
 - 2026-10-31 status: built → draft · cascade
 - 2026-10-31 status: draft → built · cascade
+- 2026-10-31 child entity-link-graph added · [[decision-case-967.1]]
+- 2026-10-31 updated: the graph of the links between pages and harness files is a part of GUPPI · [[decision-case-967.1]]
+- 2026-10-31 estimate estimate-guppi-keeps-no-defer-of-its-shape archived · cleanup

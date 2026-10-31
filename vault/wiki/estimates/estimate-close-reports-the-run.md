@@ -6,6 +6,7 @@ target: "[[rule-close]]"
 purpose: Whether report.md of the session folder holds the report the librarian returned last at its close, and gives the counts, the marks, the archived pages, the flags, the lint total and each part another step of its frame sends to the report, with no test result and no list of files
 method: "by hand, after the librarian's run of a session that starts with the hook of rule-librarian-report-copy in .claude/settings.json and whose .claude/agents/librarian-guppi.md, when the run starts, holds the Render of rule-close that returns the report as text: the agent reads report.md of the session folder of that run, as the commit of /handoff or /box holds it by git show, beside the last output of the librarian read in its agent transcript under ~/.claude/projects/, against the Criterion, the transcript named in the estimate line"
 checked: 2026-10-31
+deferred_by: ["[[decision-case-971]]"]
 origin: raw/2026-10-29/1930/ledger.md#case-903.2
 sprint: plugin
 created: 2026-10-29
@@ -39,3 +40,4 @@ Then:
 - 2026-10-31 updated: the Criterion replaced whole — the report is written into report.md of the session folder and the agent reads that file · [[decision-case-944]]
 - 2026-10-31 status: pending → failed · raw/2026-10-31/0431/ledger.md#L2
 - 2026-10-31 updated: the Criterion replaced whole — the hook writes report.md from the report the librarian returns · [[decision-case-956.2]]
+- 2026-10-31 deferred · [[decision-case-971]]

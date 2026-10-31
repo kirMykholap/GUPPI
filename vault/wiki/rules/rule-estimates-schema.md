@@ -2,13 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents an Estimate page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: built
+status: draft
 enforcement: render
 governs: vault/wiki/estimates/schema.yaml
 render_mode: full
 parent: "[[rule-page-schemas]]"
 estimates: ["[[estimate-estimates-schema-checked]]", "[[estimate-estimates-schema-method-names-its-evidence]]"]
-deferred_by: ["[[decision-case-963]]"]
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
@@ -31,7 +30,7 @@ description: |
 
   An Estimate is one promise, one way to check it and the last result with its date (case 182). It is always a Leaf — never inline on another page, never a MOC. Grouping is what the parent Entity's recursion already does. One action (`when`) — one Estimate; the ＋/－ lines stay in its `then` while one run checks them; a line with a test or a reading of its own is split off, and the axis of the split is the promise, not the method.
 
-  `purpose`, `method` and `checked` are one line each (the fields of the model of case 182). `method` is required on every page (case 506.1); `purpose` is written from the Case and stays optional, since some older pages carry none; `checked` is written by `generate` on every reading (case 201.1). `target` names an Entity or a Rule; lint reports any other category (case 53.1).
+  `purpose`, `method` and `checked` are one line each (the fields of the model of case 182). `method` is required on every page (case 506.1); `purpose` is written from the Case and stays optional, since some older pages carry none; `checked` is written by `generate` on every reading (case 201.1). `target` names an Entity or a Rule; lint reports any other category (case 53.1). An Estimate that checks one state of the data once, rather than a behaviour that lasts, targets the live sprint page and carries `once: true`: it leaves with the sprint page at the close, keeps no page with `core: true` in `draft` and is not written into the clean version, and lint reports one whose target is not a sprint page (as set in case 969.1).
 
   A `failed` Estimate is debt, not an endpoint: its target stays `draft` and the librarian surfaces it in `brief.md` until a human decides. The person may decide to close it: a Case then sets it `passed` or `failed` by that decision, its Criterion written back unchanged (case 669.16). Absent a decision to fix, the default is archival — something that cannot pass its own criterion should not sit in the vault pretending to be work in progress.
 
@@ -42,11 +41,12 @@ description: |
   `Result` is overwritten, not appended. It is about one run of one check: a test that passed, broke and was fixed leaves one current result; the sequence of changes is what History is for. Same for Research: the page states what we currently believe, and History records that the belief changed. `Criterion` is replaced, not appended: a rule changes → the Estimate the Case names goes `pending` → the test or the reading → `passed`.
 properties:
   required: [type, kind, status, target, method, origin, sprint, created, tags]
-  optional: [purpose, checked, deferred_by, core]
+  optional: [purpose, checked, deferred_by, core, once]
   values:
     kind: [QA, Research]
     status: [pending, passed, failed]
     core: [true]
+    once: [true]
 body:
   required: ["## Criterion", "## History"]
   optional: ["## Result"]
@@ -78,6 +78,8 @@ fields:
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes (case 804).
   core: |
     optional; `true`. It stands only in the clean version of GUPPI that `guppi ship` writes: `guppi ship` writes it into the copy of each `passed` Estimate whose target page carries `core: true` and whose `method` names no `make` target, and lint reads it there; no Estimate of the repository that builds that version carries it (cases 804, 822).
+  once: |
+    optional; `true`. It marks a one-time Estimate: one that checks one state of the data once, such as the lines of a file after a run, rather than a behaviour that lasts. Its `target` is the live sprint page `entity-sprint-<id>`, so it leaves with that page at the close of the sprint, keeps no page with `core: true` in `draft` and is never written into the clean version; lint reports an Estimate with `once: true` whose `target` is not a sprint page (as set in case 969.1).
   created: |
     required; date.
   tags: |
@@ -191,3 +193,6 @@ examples:
 - 2026-10-31 updated: a reading by hand names the place where its evidence is saved, a transcript included · [[decision-case-960.1]]
 - 2026-10-31 estimate estimate-estimates-schema-method-names-its-evidence added · [[decision-case-960.1]]
 - 2026-10-31 deferred · [[decision-case-963]]
+- 2026-10-31 defer by decision-case-963 superseded · [[decision-case-969.1]]
+- 2026-10-31 updated: the field once marks a one-time Estimate, which targets the live sprint page; the defer of case 963 retired · [[decision-case-969.1]]
+- 2026-10-31 status: built → draft · cascade

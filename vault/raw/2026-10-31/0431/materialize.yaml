@@ -1012,6 +1012,8 @@ entries:
       sorts them; put off at /hi of session 0431'
   exists: true
   applied: '18:22:36'
+  superseded_by:
+  - '969.1'
 - line: 30
   text: decision[case 956.5][update][estimate-close-commits]{ref:rule-close}
   case: '956.5'
@@ -3104,6 +3106,8 @@ decisions:
       a lasting behaviour.
   spec: vault/raw/2026-10-31/0431/spec.md
   applied: '18:22:36'
+  superseded_by:
+  - decision-case-969.1
 - case: '956.5'
   decision: decision-case-956.5
   origin: raw/2026-10-31/0431/ledger.md#case-956.5

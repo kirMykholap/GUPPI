@@ -32,7 +32,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
 <!-- rule-hook-registry -->
     "SessionStart": [
       { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi event session-start", "timeout": 30 },
-                   { "type": "command", "command": "uv run --project .guppi guppi render --sync", "timeout": 60 } ] },
+                   { "type": "command", "command": "uv run --project .guppi guppi render --sync", "timeout": 60 }, { "type": "command", "command": "uv run --project .guppi guppi links --write", "timeout": 60 } ] },
       { "matcher": "compact",
         "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi recall", "timeout": 30 } ] }
 ],
@@ -113,3 +113,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-30 updated: the hook grepguard registered on PreToolUse of Read beside pageread (case 925.1) · [[decision-case-925.1]]
 - 2026-10-31 updated: the SubagentStop hook guppi libreport registered · [[decision-case-965]]
+- 2026-10-31 updated: the SessionStart hook guppi links --write registered · [[decision-case-967.3]]

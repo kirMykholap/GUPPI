@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-ask]]"
-purpose: Whether the vault query that case-guppi runs before a create without a ref, by the recipe of ask-guppi, starts with the rules, finds an existing page by meaning in either language, and names the rule a proposal crosses and the state of a named slug
-method: "by hand, at Retro: the agent transcripts under ~/.claude/projects/ of the two builds of case-guppi that create rule-github-repository and rule-clean-branch with no ref, their Grep and Glob calls read against the Criterion, and the context of vault/archive/plugin/2026-10-12/2349/raw/cases/case-787.md and vault/archive/plugin/2026-10-13/1753/raw/cases/case-804.md read with them, recorded in one estimate line with the transcripts named (Cases 787.1 and 804.6, of the sessions 2026-10-12/2349 and 2026-10-13/1753)"
+purpose: Whether the vault query that case-guppi runs before a create without a ref, by the recipe of ask-guppi, opens with the rules and runs the index Grep of every other category with its pattern as written, finds an existing page by meaning in either language, and names the rule a proposal crosses and the state of a named slug
+method: "by hand, after the first build of case-guppi whose Case proposes a create without a ref and that runs on .claude/agents/ask-guppi.md rendered from the Render of rule-ask that runs every category whatever the question: the Grep, Glob and Read calls of that build, read in its agent transcript under ~/.claude/projects/ against the Criterion, and the context of its case file read with them, the transcript and the line numbers in the estimate line"
 checked: 2026-10-31
 origin: raw/2026-10-04/0112/ledger.md#case-626.2
 sprint: migration
@@ -18,12 +18,14 @@ When:
 `case-guppi`, following `.claude/agents/case-guppi.md`, builds a Case that proposes a `create` without a `ref` and, before it answers, runs itself the vault query of `.claude/agents/ask-guppi.md` as rendered from `rule-ask`.
 
 Then:
-It starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then runs one Grep per other category the question touches.
+The query opens with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then runs, whatever the question, the Grep `^(purpose|deferred_by):` over `vault/wiki/entities/`, `^(root_cause|deferred_by):` over `vault/wiki/lessons/` and `^(pattern|deferred_by):` over `vault/wiki/insights/`.
+**＋** Each of those four Greps takes its pattern as the recipe writes it, with no word added.
 **＋** A page that already holds the thing is found by meaning, whether the person's words name it in the language of the chat or in the language of the repository, and the `context` of the Case names its slug.
 **＋** A proposal that crosses a rule or a lesson, such as a `SessionStart` hook meant to block, names that rule or lesson in the `context`.
 **＋** The slug the Case writes is checked by a Glob over `vault/archive/`, and the `context` says it is free, live with its category, or archived at its path by the Decision that the archived page's `origin` names.
 **＋** An archived page is opened only when the question names its slug and asks what it said or why it was withdrawn.
 **－** The archive is not searched by meaning: a page the `context` names as existing or near is a live page.
+**－** Where the query stands among the other searches of the build is outside this promise: `estimate-case-build-runs-the-vault-query-first` reads it.
 
 ## Result
 
@@ -37,3 +39,4 @@ It starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/`, then
 - 2026-10-30 updated: the Criterion replaced whole — the languages are named by their role · [[decision-case-920.2]]
 - 2026-10-31 updated: the method reads the builds of Cases 787 and 804 in their transcripts and case files, the Criterion written back unchanged · [[decision-case-961.4]]
 - 2026-10-31 status: pending → failed · raw/2026-10-31/0431/ledger.md#L44
+- 2026-10-31 updated: the Criterion replaced whole — the query opens with the rules and runs every other index Grep with its pattern as written; the moment in the build is read by estimate-case-build-runs-the-vault-query-first · [[decision-case-970.2]]

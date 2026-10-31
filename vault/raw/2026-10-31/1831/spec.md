@@ -51,9 +51,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-reads-the-readers-of-a-changed-step`
 - [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
 ```
 
@@ -165,14 +165,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `entity-link-graph`
-- [ ] update `entity-guppi`
-- [ ] create `estimate-link-graph-prints-the-neighbours`
+- [x] create `entity-link-graph`
+- [x] update `entity-guppi`
+- [x] create `estimate-link-graph-prints-the-neighbours`
 - [x] `.guppi/guppi/links.py`: the command `links`, which imports `links_of` of `.guppi/guppi/lint.py` over the page with its `## History` left out, `REWORD_PATH_FIELDS` of `.guppi/guppi/generate.py`, `render_units`, `fill_placeholders` and `plan` of `.guppi/guppi/render.py`, `key` and `relative` of `.guppi/guppi/guard.py`, and `COMMANDS` of `.guppi/guppi/cli.py` inside the function that reads the names of commands, since `cli.py` imports the module.
 - [x] `.guppi/guppi/cli.py`: `COMMANDS` holds `links`.
 - [x] `.guppi/guppi/pages.py`: its docstring names `links` among the modules that share it.
 - [x] `.guppi/tests/test_links.py`: the test of each line of the Criterion over a vault in a temporary folder.
-- [ ] read `estimate-link-graph-prints-the-neighbours`
+- [x] read `estimate-link-graph-prints-the-neighbours`
 ```
 
 ### Case 967.2 — The builder reads the links of what its Case changes
@@ -214,9 +214,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-reads-the-link-graph-of-what-it-changes`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-reads-the-link-graph-of-what-it-changes`
 - [ ] read `estimate-case-build-reads-the-link-graph-of-what-it-changes`
 ```
 
@@ -286,11 +286,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-link-graph-at-session-start`
-- [ ] update `rule-hook-registry`
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
-- [ ] update `rule-harness`
-- [ ] create `estimate-link-graph-at-session-start-writes-the-file`
+- [x] create `rule-link-graph-at-session-start`
+- [x] update `rule-hook-registry`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] update `rule-harness`
+- [x] create `estimate-link-graph-at-session-start-writes-the-file`
 - [x] `.guppi/guppi/links.py`: `--write` writes every block into `.guppi/links.md`, prints one line on stderr on an error and exits 0.
 - [x] `.guppi/.gitignore`: a line `links.md` after `.venv/`.
 - [x] `.guppi/tests/test_links.py`: the test of `--write` over a vault in a temporary folder.
@@ -369,9 +369,9 @@ update:
 - [x] `.guppi/guppi/prespec.py`: `core_as_left` reads the `core` of a `create` through that function.
 - [x] `.guppi/guppi/lint.py`: `check_schema` imports the function that judges whether a value is one of the allowed values.
 - [x] `.guppi/tests/test_materialize.py`: one test that runs `read_tasks`, the lift and `core_as_left` over `core` written as a code span `true`, as a fenced `true` and as a value outside the list, and asserts that they read alike; and a test of each line of the Criterion.
-- [ ] update `rule-case-protocol`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
-- [ ] create `estimate-materialize-lifts-a-create-value-by-the-schema`
+- [x] update `rule-case-protocol`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] create `estimate-materialize-lifts-a-create-value-by-the-schema`
 - [ ] read `estimate-materialize-lifts-a-create-value-by-the-schema`
 ```
 
@@ -456,11 +456,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-estimates-schema`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] update `rule-case-protocol`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
-- [ ] update `estimate-estimates-schema-checked`
+- [x] update `rule-estimates-schema`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] update `rule-case-protocol`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] update `estimate-estimates-schema-checked`
 - [x] `.guppi/tests/test_schemas.py`: a test that an Estimate page in the shape with `once: true` has no finding, and a test that one with `once: false` has one finding, run only where the live schema lists `once` among its values, so that it passes before the render and after it; a Case of a later session removes that condition.
 - [ ] read `estimate-estimates-schema-checked`
 ```
@@ -505,8 +505,8 @@ update:
 ```tasks
 - [x] `.guppi/guppi/lint.py`: `check_status` gives one `status` finding `target <slug> is not a sprint page; once: true marks a one-time Estimate` for an Estimate whose `once` is `True` and whose `target` `is_sprint_page` of `.guppi/guppi/ledger.py`, imported, does not accept; the docstring of the class `status` names the finding.
 - [x] `.guppi/tests/test_lint.py`: a test of the finding over a vault in a temporary folder: an Estimate with `once: true` on a rule has one finding, one on a sprint page has none, and one without `once` has none.
-- [ ] update `estimate-lint-checks-the-statuses`
-- [ ] read `estimate-lint-checks-the-statuses`
+- [x] update `estimate-lint-checks-the-statuses`
+- [x] read `estimate-lint-checks-the-statuses`
 ```
 
 ### Case 969.3 — The two known one-time Estimates leave the live pages
@@ -538,8 +538,8 @@ delete:
 ```
 
 ```tasks
-- [ ] delete `estimate-backlog-keeps-the-work-taken-out-of-a-built-page`
-- [ ] delete `estimate-guppi-keeps-no-defer-of-its-shape`
+- [x] delete `estimate-backlog-keeps-the-work-taken-out-of-a-built-page`
+- [x] delete `estimate-guppi-keeps-no-defer-of-its-shape`
 ```
 
 ## Case 970 — The vault query comes first and runs whole
@@ -600,9 +600,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-runs-the-vault-query-first`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-runs-the-vault-query-first`
 - [ ] read `estimate-case-build-runs-the-vault-query-first`
 ```
 
@@ -645,9 +645,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] update `estimate-ask-query-before-a-create`
+- [x] update `rule-ask`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `estimate-ask-query-before-a-create`
 - [ ] read `estimate-ask-query-before-a-create`
 ```
 
@@ -682,7 +682,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-searches-at-prespec`
+- [x] update `estimate-ask-searches-at-prespec`
 - [ ] read `estimate-ask-searches-at-prespec`
 ```
 

@@ -12209,3 +12209,53 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-31 estimates/estimate-prespec-checks-the-frontier status: pending → passed · raw/2026-10-30/2345/ledger.md#L20 · generate
 - 2026-10-31 rules/rule-rules-schema status: draft → built · cascade · generate
 - 2026-10-31 rules/rule-where-to-stop status: built → draft · cascade · generate
+- 2026-10-31 decisions/decision-case-950 created · raw/2026-10-31/0128/ledger.md#case-950 · generate
+- 2026-10-31 decisions/decision-case-950.1 created · raw/2026-10-31/0128/ledger.md#case-950.1 · generate
+- 2026-10-31 estimates/estimate-case-build-reads-each-list-of-a-new-member updated: the Criterion written back unchanged; the method reads the live Render with the findings of the first /pre-spec whose plan holds a Case that adds a member to a list, in one estimate line, with no Retro part · [[decision-case-950.1]] · generate
+- 2026-10-31 decisions/decision-case-950.2 created · raw/2026-10-31/0128/ledger.md#case-950.2 · generate
+- 2026-10-31 estimates/estimate-orchestration-shows-the-built-case updated: the Criterion replaced whole — the line on ask-guppi at pre-spec takes the exception of the start that estimate-orchestration-starts-ask-guppi-for-a-hook-test reads, and one line leaves that start out of this promise; the method reads the live Render with the replies after the first summary with a line Other Case in a session on the Render that lets the main agent start ask-guppi for a hook test, in one estimate line, with no Retro part · [[decision-case-950.2]] · generate
+- 2026-10-31 decisions/decision-case-952 created · raw/2026-10-31/0128/ledger.md#case-952 · generate
+- 2026-10-31 decisions/decision-case-910 superseded by decision-case-952 · [[decision-case-952]] · generate
+- 2026-10-31 rules/rule-skill-sprint-open defer by decision-case-910 superseded · [[decision-case-952]] · generate
+- 2026-10-31 rules/rule-skill-sprint-open updated: the opening Case asks the goal of the sprint by options taken only from the description of the project and an option in the person's own words, which it recommends, and offers no goal made up from the vault · [[decision-case-952]] · generate
+- 2026-10-31 estimates/estimate-skill-sprint-open-asks-the-goal-as-an-open-question created · [[decision-case-952]] · generate
+- 2026-10-31 estimates/estimate-skill-sprint-open-asks-the-goal-as-an-open-question status: pending → passed · raw/2026-10-31/0128/ledger.md#L14 · generate
+- 2026-10-31 rules/rule-skill-sprint-open estimate estimate-skill-sprint-open-asks-the-goal-as-an-open-question added · [[decision-case-952]] · generate
+- 2026-10-31 decisions/decision-case-953 created · raw/2026-10-31/0128/ledger.md#case-953 · generate
+- 2026-10-31 decisions/decision-case-934 superseded by decision-case-953 · [[decision-case-953]] · generate
+- 2026-10-31 rules/rule-spec-capture defer by decision-case-934 superseded · [[decision-case-953]] · generate
+- 2026-10-31 rules/rule-spec-capture updated: the deferred test of the approval of a long plan taken up and run by hand · [[decision-case-953]] · generate
+- 2026-10-31 decisions/decision-case-954 created · raw/2026-10-31/0128/ledger.md#case-954 · generate
+- 2026-10-31 decisions/decision-case-954.1 created · raw/2026-10-31/0128/ledger.md#case-954.1 · generate
+- 2026-10-31 decisions/decision-case-936 superseded by decision-case-954.1 · [[decision-case-954.1]] · generate
+- 2026-10-31 estimates/estimate-search-leaves-out-decisions-refuses-ask-guppi defer by decision-case-936 superseded · [[decision-case-954.1]] · generate
+- 2026-10-31 estimates/estimate-search-leaves-out-decisions-refuses-ask-guppi updated: the Criterion written back unchanged; the method reads the refusal from a deliberate start of ask-guppi after the render of the hook trial; the defer retired (case 954.1) · [[decision-case-954.1]] · generate
+- 2026-10-31 decisions/decision-case-954.2 created · raw/2026-10-31/0128/ledger.md#case-954.2 · generate
+- 2026-10-31 rules/rule-orchestration updated: the main agent may start ask-guppi in Work Mode for a test by hand of a hook that judges its calls, named by a task or a Work reading (case 954.2) · [[decision-case-954.2]] · generate
+- 2026-10-31 estimates/estimate-orchestration-starts-ask-guppi-for-a-hook-test created · [[decision-case-954.2]] · generate
+- 2026-10-31 rules/rule-orchestration estimate estimate-orchestration-starts-ask-guppi-for-a-hook-test added · [[decision-case-954.2]] · generate
+- 2026-10-31 decisions/decision-case-955 created · raw/2026-10-31/0128/ledger.md#case-955 · generate
+- 2026-10-31 decisions/decision-case-616 superseded by decision-case-955 · [[decision-case-955]] · generate
+- 2026-10-31 entities/entity-guppi defer by decision-case-616 superseded · [[decision-case-955]] · generate
+- 2026-10-31 entities/entity-guppi updated: the question of the future shape of GUPPI is settled by the sprint plugin: GUPPI goes on as a harness and ships as a Claude Code plugin · [[decision-case-955]] · generate
+- 2026-10-31 estimates/estimate-guppi-keeps-no-defer-of-its-shape created · [[decision-case-955]] · generate
+- 2026-10-31 entities/entity-guppi estimate estimate-guppi-keeps-no-defer-of-its-shape added · [[decision-case-955]] · generate
+- 2026-10-31 decisions/decision-case-954.3 created · raw/2026-10-31/0128/ledger.md#case-954.3 · generate
+- 2026-10-31 rules/rule-ask updated: the frame of ask-guppi names one call on vault/wiki/decisions/, the hook trial a ratified Case names, made to be refused, and its answer (case 954.3) · [[decision-case-954.3]] · generate
+- 2026-10-31 rules/rule-search-leaves-out-decisions updated: the frame of ask-guppi names the hook trial as its one reason to try a call on a Decision page (case 954.3) · [[decision-case-954.3]] · generate
+- 2026-10-31 estimates/estimate-ask-tries-a-decision-call-only-for-a-hook-trial created · [[decision-case-954.3]] · generate
+- 2026-10-31 rules/rule-ask estimate estimate-ask-tries-a-decision-call-only-for-a-hook-trial added · [[decision-case-954.3]] · generate
+- 2026-10-31 estimates/estimate-backlog-renders status: passed → passed · raw/2026-10-31/0128/ledger.md#L15 · generate
+- 2026-10-31 lessons/lesson-plugin-cli-withholds-approval-in-every-window created · raw/2026-10-31/0128/ledger.md#L16 · generate
+- 2026-10-31 insights/insight-plugin-cli-withholds-approval-of-a-long-plan created · raw/2026-10-31/0128/ledger.md#L16 · generate
+- 2026-10-31 lessons/lesson-plugin-cli-withholds-approval-of-a-long-plan updated: clustered under insight-plugin-cli-withholds-approval-of-a-long-plan (synthesis) · raw/2026-10-31/0128/ledger.md#L16 · generate
+- 2026-10-31 lessons/lesson-plugin-cli-withholds-approval-in-every-window updated: clustered under insight-plugin-cli-withholds-approval-of-a-long-plan (synthesis) · raw/2026-10-31/0128/ledger.md#L16 · generate
+- 2026-10-31 entities/entity-guppi status: built → draft · cascade · generate
+- 2026-10-31 decisions/decision-case-616 archived · superseded · generate
+- 2026-10-31 decisions/decision-case-910 archived · superseded · generate
+- 2026-10-31 decisions/decision-case-934 archived · superseded · generate
+- 2026-10-31 decisions/decision-case-936 archived · superseded · generate
+- 2026-10-31 decisions/decision-case-616 archived · cleanup
+- 2026-10-31 decisions/decision-case-910 archived · cleanup
+- 2026-10-31 decisions/decision-case-934 archived · cleanup
+- 2026-10-31 decisions/decision-case-936 archived · cleanup

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "910"
-status: current
+status: archived
 defer: ["[[rule-skill-sprint-open]]"]
+superseded_by: ["[[decision-case-952]]"]
 origin: raw/2026-10-29/1930/ledger.md#case-910
 sprint: plugin
 created: 2026-10-29
@@ -26,3 +27,6 @@ The opening of the first sprint of a new project asks what the project builds, b
 ## History
 
 - 2026-10-29 created · raw/2026-10-29/1930/ledger.md#case-910
+- 2026-10-31 superseded by decision-case-952 · [[decision-case-952]]
+- 2026-10-31 archived · superseded
+- 2026-10-31 archived · cleanup

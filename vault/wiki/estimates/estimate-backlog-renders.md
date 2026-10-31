@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-backlog]]"
 purpose: guppi backlog writes backlog.md from the conserved Specs, the pages with deferred_by, the open Insights and the Backlog of each sprint page, live or archived, a line of a closed sprint left out once the live sprint takes it or its pages are finished, each item with its purpose and its count
 method: uv run --project .guppi pytest .guppi/tests/test_backlog.py
-checked: 2026-10-09
+checked: 2026-10-31
 origin: raw/2026-09-27/1255/ledger.md#case-451.4
 sprint: migration
 created: 2026-09-27
@@ -31,7 +31,7 @@ The script writes `vault/wiki/backlog.md`: the heading `# Backlog`, the line `N 
 
 ## Result
 
-2026-10-09, uv run pytest tests/test_backlog.py; 18 passed, among them the archived line taken into a milestone, the built page and the note the live Backlog holds left out, and the line taken by nothing kept
+2026-10-31, Work Mode of session 0128: uv run --project .guppi pytest .guppi/tests/test_backlog.py 18 passed; over a made-up vault a page is listed under ## Deferred only while its deferred_by is not empty, so the retired defers of rule-spec-capture (case 953), estimate-search-leaves-out-decisions-refuses-ask-guppi (case 954.1), rule-skill-sprint-open (case 952) and entity-guppi (case 955) leave the list at the librarian's run
 
 ## History
 
@@ -46,3 +46,4 @@ The script writes `vault/wiki/backlog.md`: the heading `# Backlog`, the line `N 
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-10-31 status: passed → passed · raw/2026-10-31/0128/ledger.md#L15

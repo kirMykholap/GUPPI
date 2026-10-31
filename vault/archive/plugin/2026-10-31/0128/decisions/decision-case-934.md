@@ -1,9 +1,10 @@
 ---
 type: decision
 case: "934"
-status: current
+status: archived
 defer: ["[[rule-spec-capture]]"]
 supersedes: ["[[decision-case-909]]"]
+superseded_by: ["[[decision-case-953]]"]
 origin: raw/2026-10-30/1713/ledger.md#case-934
 sprint: plugin
 created: 2026-10-30
@@ -35,3 +36,6 @@ Bug: approval of a long plan is withheld in the Claude Code CLI, and the cause i
 ## History
 
 - 2026-10-30 created · raw/2026-10-30/1713/ledger.md#case-934
+- 2026-10-31 superseded by decision-case-953 · [[decision-case-953]]
+- 2026-10-31 archived · superseded
+- 2026-10-31 archived · cleanup

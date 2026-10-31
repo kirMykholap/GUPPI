@@ -8,8 +8,7 @@ implementation_ref: [.guppi/guppi/sprint.py, .guppi/tests/test_sprint.py, .claud
 governs: .claude/skills/sprint-open/SKILL.md
 render_mode: full
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-skill-sprint-open-asks-the-opening-questions]]", "[[estimate-skill-sprint-open-starts-at-hi]]", "[[estimate-skill-sprint-open-merges-the-closed-sprint-branch]]", "[[estimate-skill-sprint-open-refuses-a-taken-sprint-id]]"]
-deferred_by: ["[[decision-case-910]]"]
+estimates: ["[[estimate-skill-sprint-open-asks-the-opening-questions]]", "[[estimate-skill-sprint-open-starts-at-hi]]", "[[estimate-skill-sprint-open-merges-the-closed-sprint-branch]]", "[[estimate-skill-sprint-open-refuses-a-taken-sprint-id]]", "[[estimate-skill-sprint-open-asks-the-goal-as-an-open-question]]"]
 origin: raw/2026-10-08/2352/ledger.md#case-743.6
 sprint: migration
 created: 2026-10-08
@@ -33,7 +32,7 @@ No sprint is open: the first heading of `vault/wiki/sprint.md` marks the last sp
 
 1. Assemble no Frontier yet: the opening Case comes first, and no other item of the session is taken up before the person ratifies it (case 769.1).
 2. Ask the person first, in one plain question, for the id of the sprint, which names the page `entity-sprint-<id>`, the branch of the sprint and every Case id of the sprint: it starts with the GitHub name of its author, such as `kir-plugin`, and holds lower-case letters, digits and hyphens and no dot. Then dispatch `case-guppi` at once for the line `open the next sprint` of the brief, as `vault/wiki/orchestration.md` sets it, with the Case id `<id>-1` and the id of the sprint, and write into the prompt of the call that the opening Case asks the person, in its rounds (case 788.3):
-   - its goal in one sentence, the `purpose` and the `## Purpose` of the page;
+   - its goal in one sentence, the `purpose` and the `## Purpose` of the page, asked in every project and at every sprint by a question of the shape that `.claude/skills/grill-me/SKILL.md` sets: its options are goals taken only from the description of the project that `CLAUDE.md` holds between its lines `<!-- project-description -->` and `<!-- /project-description -->`, and one option more, the goal in the person's own words, which its `➡️` line recommends and which stands alone where no description is set; no option is a goal made up from the vault (as set in case 952);
    - its Definition of done, one Estimate per condition, which the page lists in `estimates`;
    - the first milestone and its items, under `## Milestones`;
    - whether to take any item of `vault/wiki/backlog.md` into the sprint: the Case says how many items the file holds, and goes through no item the person does not name.
@@ -68,3 +67,6 @@ No sprint is open: the first heading of `vault/wiki/sprint.md` marks the last sp
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-29 updated: the opening Case writes the merge line of /merge-main and names /pr-review only where the skill stands in the project (case 897.1) · [[decision-case-897.1]]
 - 2026-10-29 deferred · [[decision-case-910]]
+- 2026-10-31 defer by decision-case-910 superseded · [[decision-case-952]]
+- 2026-10-31 updated: the opening Case asks the goal of the sprint by options taken only from the description of the project and an option in the person's own words, which it recommends, and offers no goal made up from the vault · [[decision-case-952]]
+- 2026-10-31 estimate estimate-skill-sprint-open-asks-the-goal-as-an-open-question added · [[decision-case-952]]

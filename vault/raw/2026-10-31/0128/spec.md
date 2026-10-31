@@ -59,7 +59,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-each-list-of-a-new-member`
+- [x] update `estimate-case-build-reads-each-list-of-a-new-member`
 - [ ] read `estimate-case-build-reads-each-list-of-a-new-member`
 ```
 
@@ -116,7 +116,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-shows-the-built-case`
+- [x] update `estimate-orchestration-shows-the-built-case`
 - [ ] read `estimate-orchestration-shows-the-built-case`
 ```
 
@@ -179,10 +179,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] create `estimate-skill-sprint-open-asks-the-goal-as-an-open-question`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] read `estimate-skill-sprint-open-asks-the-goal-as-an-open-question`
+- [x] update `rule-skill-sprint-open`
+- [x] create `estimate-skill-sprint-open-asks-the-goal-as-an-open-question`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] read `estimate-skill-sprint-open-asks-the-goal-as-an-open-question`
 ```
 
 ## Case 953 — The test of the approval of a long plan runs in this session
@@ -236,7 +236,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-capture`
+- [x] update `rule-spec-capture`
 - [x] stop: by hand, the person runs the test of `when` in a standalone PowerShell window and in the terminal of VS Code, and reports for each whether the approval dialog opened and the size of the window.
 - [x] The main agent writes one `knowledge` lesson line with both results and its `source`, under a slug that names what the test found, so that the Case that fixes the bug knows where the fault lies.
 - [x] `uv run --project .guppi pytest .guppi/tests/test_backlog.py`: read against `estimate-backlog-renders`.
@@ -305,7 +305,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-search-leaves-out-decisions-refuses-ask-guppi`
+- [x] update `estimate-search-leaves-out-decisions-refuses-ask-guppi`
 - [x] by hand, in Work Mode: `uv run --project .guppi pytest .guppi/tests/test_grepguard.py` passes.
 - [ ] read `estimate-search-leaves-out-decisions-refuses-ask-guppi`
 ```
@@ -348,9 +348,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-orchestration-starts-ask-guppi-for-a-hook-test`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] create `estimate-orchestration-starts-ask-guppi-for-a-hook-test`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-starts-ask-guppi-for-a-hook-test`
 ```
 
@@ -404,11 +404,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] update `rule-search-leaves-out-decisions`
-- [ ] create `estimate-ask-tries-a-decision-call-only-for-a-hook-trial`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/rules/search-leaves-out-decisions.md`
+- [x] update `rule-ask`
+- [x] update `rule-search-leaves-out-decisions`
+- [x] create `estimate-ask-tries-a-decision-call-only-for-a-hook-trial`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/rules/search-leaves-out-decisions.md`
 - [ ] read `estimate-ask-tries-a-decision-call-only-for-a-hook-trial`
 ```
 
@@ -458,7 +458,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-guppi`
-- [ ] create `estimate-guppi-keeps-no-defer-of-its-shape`
+- [x] update `entity-guppi`
+- [x] create `estimate-guppi-keeps-no-defer-of-its-shape`
 - [ ] read `estimate-guppi-keeps-no-defer-of-its-shape`
 ```

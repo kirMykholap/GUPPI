@@ -2,11 +2,10 @@
 type: entity
 kind: MOC
 purpose: GUPPI — a Claude Code harness governed by ratified decisions, and the vault it keeps; its parts the sprint and the glossary, and in the repository of GUPPI also that repository on GitHub
-status: built
+status: draft
 children: ["[[entity-sprint]]", "[[entity-glossary]]", "[[entity-guppi-repository]]"]
-estimates: ["[[estimate-guppi-tests-green]]"]
+estimates: ["[[estimate-guppi-tests-green]]", "[[estimate-guppi-keeps-no-defer-of-its-shape]]"]
 rules: ["[[rule-harness]]"]
-deferred_by: ["[[decision-case-616]]"]
 code_ref: [.guppi/guppi/, .claude/]
 origin: raw/2026-09-22/0014/ledger.md#case-306.2
 sprint: migration
@@ -32,3 +31,7 @@ GUPPI: a Claude Code harness governed by ratified decisions, and the Obsidian va
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 updated: GUPPI is described as a harness and a vault, true in any project that uses it · [[decision-case-822.7]]
+- 2026-10-31 defer by decision-case-616 superseded · [[decision-case-955]]
+- 2026-10-31 updated: the question of the future shape of GUPPI is settled by the sprint plugin: GUPPI goes on as a harness and ships as a Claude Code plugin · [[decision-case-955]]
+- 2026-10-31 estimate estimate-guppi-keeps-no-defer-of-its-shape added · [[decision-case-955]]
+- 2026-10-31 status: built → draft · cascade

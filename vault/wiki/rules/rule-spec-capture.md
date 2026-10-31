@@ -7,7 +7,6 @@ enforcement: hook
 implementation_ref: [.guppi/guppi/spec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-spec-capture-appends]]", "[[estimate-spec-capture-offers-the-fork]]"]
-deferred_by: ["[[decision-case-934]]"]
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
 created: 2026-09-09
@@ -62,3 +61,5 @@ into the context — `/work`, Work Mode on the Spec, or `/carry` to conserve it 
 - 2026-10-29 deferred · [[decision-case-909]]
 - 2026-10-30 defer by decision-case-909 superseded · [[decision-case-934]]
 - 2026-10-30 deferred · [[decision-case-934]]
+- 2026-10-31 defer by decision-case-934 superseded · [[decision-case-953]]
+- 2026-10-31 updated: the deferred test of the approval of a long plan taken up and run by hand · [[decision-case-953]]

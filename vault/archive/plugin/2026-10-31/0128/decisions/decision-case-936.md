@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "936"
-status: current
+status: archived
 defer: ["[[estimate-search-leaves-out-decisions-refuses-ask-guppi]]"]
+superseded_by: ["[[decision-case-954.1]]"]
 origin: raw/2026-10-30/2005/ledger.md#case-936
 sprint: plugin
 created: 2026-10-30
@@ -26,3 +27,6 @@ Whether the PreToolUse hook grepguard refuses a Read of a Decision page and a Gr
 ## History
 
 - 2026-10-30 created · raw/2026-10-30/2005/ledger.md#case-936
+- 2026-10-31 superseded by decision-case-954.1 · [[decision-case-954.1]]
+- 2026-10-31 archived · superseded
+- 2026-10-31 archived · cleanup

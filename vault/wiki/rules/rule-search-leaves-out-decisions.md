@@ -29,7 +29,7 @@ This file binds the main agent, `ask-guppi` and `case-guppi` (case 640). The lib
 
 - A hook adds `!**/decisions/**` at the end of the `glob` of every Grep whose `path` is `vault/wiki/` or a folder that holds it, the repository root included, in every agent, the librarian too, whom the rest of this file does not bind; a Grep over such a folder prints nothing under `vault/wiki/decisions/`, and an exclusion written first, where it does not work, is put last by the hook (case 664.1).
 - The text of a Decision page under `vault/wiki/decisions/` is read only by a Read of its path, or by a Grep whose `path` is that folder or lies in it, which the hook leaves unchanged but for a call of `ask-guppi`, and only for a reason the frame of the agent names (case 664.1).
-- The frame of `ask-guppi` names no reason to read a Decision page, so the same hook, on `Read` and on `Grep`, refuses a Read of a Decision page and a Grep inside `vault/wiki/decisions/` made by `ask-guppi`, and leaves such a call of another agent unchanged (as set in case 925.1).
+- The frame of `ask-guppi` names no reason to read a Decision page, and one reason to try such a call: a trial of the hook that a ratified Case names, the call made to be refused; so the same hook, on `Read` and on `Grep`, refuses a Read of a Decision page and a Grep inside `vault/wiki/decisions/` made by `ask-guppi`, and leaves such a call of another agent unchanged (as set in cases 925.1 and 954.3).
 - A Glob may print the path of a Decision page: a path is no text of the page.
 <!-- /rule-search-leaves-out-decisions -->
 
@@ -48,3 +48,4 @@ This file binds the main agent, `ask-guppi` and `case-guppi` (case 640). The lib
 - 2026-10-30 updated: the hook refuses a Read of a Decision page and a Grep inside vault/wiki/decisions/ by ask-guppi (case 925.1) · [[decision-case-925.1]]
 - 2026-10-30 estimate estimate-search-leaves-out-decisions-refuses-ask-guppi added · [[decision-case-925.1]]
 - 2026-10-30 status: built → draft · cascade
+- 2026-10-31 updated: the frame of ask-guppi names the hook trial as its one reason to try a call on a Decision page (case 954.3) · [[decision-case-954.3]]

@@ -2,8 +2,9 @@
 type: lesson
 kind: knowledge
 root_cause: The Claude Code CLI shows a plan whole before approval and withholds approval of a plan above the size it can show, while GUPPI writes each ratified Case whole into the plan file, so a Spec of two Cases already passes that size in the CLI.
-status: new
+status: clustered
 source: Claude Code CLI, transcript ~/.claude/projects/C--tmp-guppi-0327-a/bc61060a-010e-461d-8872-4071ea6c0f1e.jsonl
+insight: "[[insight-plugin-cli-withholds-approval-of-a-long-plan]]"
 origin: raw/2026-10-29/0327/ledger.md#L42
 sprint: plugin
 created: 2026-10-29
@@ -21,3 +22,4 @@ The Claude Code CLI shows a plan whole before approval and withholds approval of
 ## History
 
 - 2026-10-29 created · raw/2026-10-29/0327/ledger.md#L42
+- 2026-10-31 updated: clustered under insight-plugin-cli-withholds-approval-of-a-long-plan (synthesis) · raw/2026-10-31/0128/ledger.md#L16

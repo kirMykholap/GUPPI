@@ -4,8 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-search-leaves-out-decisions]]"
 purpose: Whether the PreToolUse hook grepguard refuses a Read of a Decision page and a Grep inside vault/wiki/decisions/ made by ask-guppi, and leaves the same calls of every other agent unchanged
-method: "uv run --project .guppi pytest .guppi/tests/test_grepguard.py; by hand, after the first /pre-spec that runs once the librarian's run has rendered .claude/settings.json: each Read and each Grep of ask-guppi on vault/wiki/decisions/ in its agent transcript refused, recorded in the estimate line"
-deferred_by: ["[[decision-case-936]]"]
+method: "by hand, after the librarian's run that renders vault/wiki/orchestration.md, .claude/agents/ask-guppi.md and .claude/rules/search-leaves-out-decisions.md with the trial of this hook by a deliberate start of ask-guppi: uv run --project .guppi pytest .guppi/tests/test_grepguard.py, and, in the Work Mode of the session whose brief puts this reading under Work, the main agent starts ask-guppi with a prompt that names the trial and asks it to Read one named page under vault/wiki/decisions/ and to Grep inside that folder; each of the two calls in the transcript of ask-guppi read against the Criterion, both parts recorded in one estimate line"
 origin: raw/2026-10-30/0304/ledger.md#case-925.1
 sprint: plugin
 created: 2026-10-30
@@ -28,3 +27,5 @@ The hook refuses the call by `permissionDecision: deny`, with a reason that name
 
 - 2026-10-30 created · [[decision-case-925.1]]
 - 2026-10-30 deferred · [[decision-case-936]]
+- 2026-10-31 defer by decision-case-936 superseded · [[decision-case-954.1]]
+- 2026-10-31 updated: the Criterion written back unchanged; the method reads the refusal from a deliberate start of ask-guppi after the render of the hook trial; the defer retired (case 954.1) · [[decision-case-954.1]]

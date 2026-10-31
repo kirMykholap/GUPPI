@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "616"
-status: current
+status: archived
 defer: ["[[entity-guppi]]"]
+superseded_by: ["[[decision-case-955]]"]
 origin: raw/2026-10-03/1341/ledger.md#case-616
 sprint: migration
 created: 2026-10-03
@@ -26,3 +27,6 @@ Whether GUPPI goes on as it is, shrinks to a core, or gives way to native Claude
 ## History
 
 - 2026-10-03 created · raw/2026-10-03/1341/ledger.md#case-616
+- 2026-10-31 superseded by decision-case-955 · [[decision-case-955]]
+- 2026-10-31 archived · superseded
+- 2026-10-31 archived · cleanup

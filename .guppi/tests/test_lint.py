@@ -1162,6 +1162,32 @@ def test_an_estimate_whose_target_is_not_an_entity_or_rule_is_a_status_finding(t
     assert not any("lesson-l: orphan" in line for line in lines)  # a lesson is never an orphan
 
 
+def status_lines(tmp_path):
+    return [line for line in run(tmp_path)[1] if ": status: " in line]
+
+
+ONCE = "target {target} is not a sprint page; once: true marks a one-time Estimate"
+
+
+def test_a_one_time_estimate_on_a_rule_is_a_status_finding(tmp_path):  # (case 969.2)
+    seed(tmp_path, estimate=estimate_page(once="true"))
+    assert status_lines(tmp_path) == [
+        "estimates/estimate-x-works: status: " + ONCE.format(target="rule-x")
+    ]
+
+
+def test_a_one_time_estimate_on_a_sprint_page_or_one_without_once_has_none(tmp_path):
+    wiki = seed(tmp_path, estimate=estimate_page(once="true", target="entity-sprint-p"))
+    write(
+        wiki / "entities" / "entity-sprint-p.md",
+        "---\ntype: entity\nkind: Leaf\npurpose: the sprint\nstatus: draft\n"
+        "estimates: [estimate-x-works]\norigin: raw/2026-09-09/ledger.md#case-1\n---\n",
+    )
+    assert not [line for line in status_lines(tmp_path) if "once: true" in line]
+    seed(tmp_path)  # the default Estimate carries no `once`
+    assert not [line for line in status_lines(tmp_path) if "once: true" in line]
+
+
 def test_an_insight_nothing_names_is_not_an_orphan_finding(tmp_path):  # (case 156)
     wiki = seed(tmp_path)
     write(

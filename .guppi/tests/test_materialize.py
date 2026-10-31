@@ -2405,6 +2405,97 @@ def test_a_create_of_a_category_whose_schema_rule_the_unit_changes_is_lifted_who
     assert estimate["unknown"] == ["stray"]
 
 
+VALUE_SCHEMA = """properties:
+  required: [type, status, purpose]
+  optional: [kind, core]
+  values:
+    kind: [Leaf, MOC]
+    core: [true]
+"""
+
+
+def value_project(tmp_path):
+    """A vault whose rules schema allows `core` the one value `true` and `kind` two texts."""
+    rules = tmp_path / "vault" / "wiki" / "rules"
+    rules.mkdir(parents=True)
+    (rules / "schema.yaml").write_text(VALUE_SCHEMA, encoding="utf-8")
+    return tmp_path
+
+
+def chat_create(value_lines: str) -> str:
+    return (
+        "- [ ] create `rule-x` — the rule\n  - purpose: `the rule x`\n  - kind: `Leaf`\n"
+        + value_lines
+    )
+
+
+CORE_FORMS = {
+    "code span": "  - core: `true`\n",
+    "fenced": "  - core:\n    ```\n    true\n    ```\n",
+    "outside the list": "  - core: `yes please`\n",
+}
+
+
+def three_readings(project, value_lines):
+    """`core` as the hook's `read_tasks`, the lift and `core_as_left` read it (case 968)."""
+    from guppi import prespec, ratified
+
+    _, block, errors = ratified.read_tasks(
+        chat_create(value_lines), ratified.key_judge(project, set())
+    )
+    raw = {"slug": "rule-x", "purpose": "the rule x", "kind": "Leaf", "core": "true"}
+    if "yes please" in value_lines:
+        raw["core"] = "yes please"
+    entry = {"category": "rules"}
+    materialize._lift_item(
+        entry, raw, "create", None, [], None, materialize.schema_values(project, "rules")
+    )
+    left = prespec.core_as_left(dict(raw), "create", project)
+    hook = block["create"][0].get("core") if not errors else None
+    return hook, errors, entry["fields"]["core"], left
+
+
+@pytest.mark.parametrize("form", ["code span", "fenced"])
+def test_core_written_as_true_reads_as_the_boolean_in_the_hook_the_lift_and_prespec(tmp_path, form):
+    project = value_project(tmp_path)
+    hook, errors, lifted, left = three_readings(project, CORE_FORMS[form])
+    assert errors == []
+    assert hook is True and lifted is True and left is True
+
+
+def test_a_core_value_outside_the_list_is_refused_by_the_hook_and_kept_by_the_others(tmp_path):
+    project = value_project(tmp_path)
+    hook, errors, lifted, left = three_readings(project, CORE_FORMS["outside the list"])
+    assert hook is None and errors == ["`core`: yes please is not one of true"]
+    assert lifted == "yes please" and left is False  # the lift and pre-spec refuse nothing
+
+
+def test_a_field_whose_allowed_values_hold_text_stays_text(tmp_path):
+    project = value_project(tmp_path)
+    from guppi import ratified
+
+    _, block, errors = ratified.read_tasks(chat_create(""), ratified.key_judge(project, set()))
+    assert errors == [] and block["create"][0]["kind"] == "Leaf"
+    assert materialize.typed_value("purpose", "true", {"kind": ["Leaf"]}) == ("true", None)
+    assert materialize.typed_value("kind", "on", {"kind": ["Leaf", "MOC"]}) == ("on", None)
+
+
+def test_the_values_are_read_from_the_schema_on_disk_when_the_schema_rule_changes(tmp_path):
+    project = value_project(tmp_path)
+    from guppi import ratified
+
+    keys_for = ratified.key_judge(project, {"rules"})  # the session changes the rules schema
+    _, block, errors = ratified.read_tasks(chat_create(CORE_FORMS["code span"]), keys_for)
+    assert errors == [] and block["create"][0]["core"] is True
+
+
+def test_lint_and_the_reading_share_one_comparison_of_allowed_values(tmp_path):
+    from guppi import lint
+
+    assert lint.is_allowed is materialize.is_allowed
+    assert materialize.is_allowed(True, [True]) and not materialize.is_allowed(1, [True])
+
+
 def test_a_schema_line_after_the_create_still_lifts_it_whole(tmp_path):
     """The other order (case 516): the schema decision line after the `create` lines of the
     ledger, its Case before the creates in the Spec — the lift is the same."""

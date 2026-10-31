@@ -40,7 +40,10 @@ keys — `old` and `new` in pairs under `replace`, `reword old` and `reword new`
 flow list of section names (case 931), the fields of a
 `create` — each value one code span, with as many backticks as the value needs and padded by
 one space on each side when it holds a backtick, an unpadded one refused (case 402), or a fenced
-block under the sub-point; a sub-point that reads into no key `materialize.item_keys` gives its
+block under the sub-point; a field of a `create` whose allowed values in the schema of its
+category on disk hold no text, such as `core`, loads as YAML by `materialize.typed_value`, the
+reading of the lift and of pre-spec too, and a value that is none of them is refused (case 968);
+a sub-point that reads into no key `materialize.item_keys` gives its
 item is refused, and nothing of the Case is written — `slug` a key of every kind, and
 `item_keys` the one judgment `materialize` lifts by and `generate` applies by; a `create` or a
 `defer` of a category with no schema file, or of one whose schema rule the session's ledger or
@@ -193,9 +196,11 @@ from guppi.materialize import (
     parse_line,
     quoted_sections,
     schema_changed,
+    schema_values,
     split_cases,
     tagged_blocks,
     then_comments,
+    typed_value,  # the one reading of a value that is not text (case 968)
 )
 
 CHAT_SECTIONS = (
@@ -296,10 +301,17 @@ def sub_point_key(key: str) -> str:
 
 
 def put(
-    item: dict, key: str, value: str, accepted: set[str] | None = None, label: str = ""
+    item: dict,
+    key: str,
+    value: str,
+    accepted: set[str] | None = None,
+    label: str = "",
+    values: dict[str, list] | None = None,
 ) -> str | None:
     """One sub-point into its item; the error, or None. `accepted`: the keys `item_keys`
-    gives the item, a sub-point outside them refused; None, nothing judged (case 436.1)."""
+    gives the item, a sub-point outside them refused; None, nothing judged (case 436.1).
+    `values`: the allowed values of the category of a `create`, by which `typed_value` reads
+    a field whose allowed values hold no text, its refusal returned (case 968)."""
     if accepted is not None and sub_point_key(key) not in accepted:
         return f"`{key}`: not a key of {label}"
     if key in ("old", "reword old"):
@@ -329,7 +341,10 @@ def put(
         except yaml.YAMLError:
             return f"`{key}` is not YAML"
         return None
-    item[key] = value
+    typed, refusal = typed_value(key, value, values or {})
+    if refusal:
+        return refusal
+    item[key] = typed
     return None
 
 
@@ -348,6 +363,7 @@ def read_tasks(text: str, keys_for=None) -> tuple[list[str], dict, list[str]]:
     item: dict | None = None
     is_tag = False  # the item is a tag line (case 702)
     accepted: set[str] | None = None
+    values: dict[str, list] | None = None
     label = ""
     index = 0
     while index < len(lines):
@@ -367,6 +383,8 @@ def read_tasks(text: str, keys_for=None) -> tuple[list[str], dict, list[str]]:
                 item = {"slug": head.group(2)}
                 block.setdefault(head.group(1), []).append(item)
                 accepted = keys_for(head.group(1), head.group(2)) if keys_for else None
+                values_for = getattr(keys_for, "values_for", None)  # set by `key_judge`
+                values = values_for(head.group(1), head.group(2)) if values_for else None
                 label = f"{head.group(1)} {head.group(2)}"
             index += 1
             continue
@@ -400,7 +418,7 @@ def read_tasks(text: str, keys_for=None) -> tuple[list[str], dict, list[str]]:
             if item is None:
                 errors.append(f"`{key}`: a sub-point under a line that is no item")
                 continue
-            error = put(item, key, value, accepted, label)
+            error = put(item, key, value, accepted, label, values)
             if error:
                 errors.append(error)
             continue
@@ -591,6 +609,12 @@ def key_judge(project_dir: Path, schema_free: set[str]):
     def keys_for(kind: str, slug: str) -> set[str] | None:
         return item_keys(kind, category_of(slug), project_dir, schema_free)
 
+    def values_for(kind: str, slug: str) -> dict[str, list]:
+        """Beside the keys: the allowed values of the category's schema on disk, by which `put`
+        reads a field of a `create`, for every category (case 968)."""
+        return schema_values(project_dir, category_of(slug)) if kind == "create" else {}
+
+    keys_for.values_for = values_for
     return keys_for
 
 

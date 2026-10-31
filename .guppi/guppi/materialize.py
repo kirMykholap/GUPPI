@@ -887,7 +887,13 @@ def decision_entry(
         incomplete.append("then")
     else:
         _lift_item(
-            entry, item, kind, nested, incomplete, schema_fields(project_dir, entry, schema_free)
+            entry,
+            item,
+            kind,
+            nested,
+            incomplete,
+            schema_fields(project_dir, entry, schema_free),
+            schema_values(project_dir, entry.get("category")),
         )
     if (
         kind == "create"
@@ -964,6 +970,44 @@ def schema_fields(
     }
 
 
+def schema_values(project_dir: Path, category: str | None) -> dict[str, list]:
+    """The `values` of the category's `schema.yaml` on disk: field → its allowed values; empty
+    without a schema file. Read also for a category whose schema rule the unit changes, since
+    a field such as `core` keeps its one allowed value across such a change (case 968)."""
+    path = project_dir / "vault" / "wiki" / str(category) / "schema.yaml"
+    if category not in CATEGORIES or not path.exists():
+        return {}
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    props = data.get("properties") if isinstance(data, dict) else None
+    values = props.get("values") if isinstance(props, dict) else None
+    return {str(k): list(v or []) for k, v in values.items()} if isinstance(values, dict) else {}
+
+
+def is_allowed(value, allowed: list) -> bool:
+    """Whether a value is one of the allowed values of its field: by text, so `1` is not
+    `True`. The one comparison of `check_schema` of lint and of `typed_value` (case 968)."""
+    return str(value) in [str(a) for a in allowed]
+
+
+def typed_value(key: str, value, values: dict[str, list]) -> tuple[object, str | None]:
+    """A field of a `create` as the plan, the page and pre-spec read it, and the refusal. A
+    text value of a field whose allowed values hold no text, such as `core: [true]`, loads as
+    YAML, so `true` is the boolean; one that loads as none of them carries the refusal line.
+    Any other value stays as it is. The one reading of the hook, the lift and `core_as_left`
+    (case 968)."""
+    allowed = values.get(key)
+    if not allowed or any(isinstance(a, str) for a in allowed) or not isinstance(value, str):
+        return value, None
+    try:
+        loaded = yaml.safe_load(value)
+    except yaml.YAMLError:
+        loaded = value
+    if not is_allowed(loaded, allowed):
+        shown = ", ".join(yaml.safe_dump(a).splitlines()[0] for a in allowed)
+        return loaded, f"`{key}`: {value} is not one of {shown}"
+    return loaded, None
+
+
 def fill_type(fields: dict, category: str | None) -> dict:
     """The `type` of a `create` that writes none, from its category by `SINGULAR`; a
     written `type` stands (case 748.1)."""
@@ -1020,9 +1064,12 @@ def _lift_item(
     nested: str | None,
     incomplete: list[str],
     known: set[str] | None = None,
+    values: dict[str, list] | None = None,
 ):
     if kind == "create":
         fields = create_fields(item, known)
+        # a value that is not text, such as `core: true`, by the schema on disk (case 968)
+        fields = {k: typed_value(k, v, values or {})[0] for k, v in fields.items()}
         if known is not None:  # the lift by the schema (case 214.1), by `accepted_keys` (case 436)
             accepted = accepted_keys("create", known)
             unknown = [k for k in item if k not in accepted]

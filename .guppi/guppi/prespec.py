@@ -299,10 +299,12 @@ from guppi.materialize import (
     quoted_sections,
     schema_changed,
     schema_fields,
+    schema_values,
     split_cases,
     tagged_blocks,
     then_blocks,
     touches_criterion,
+    typed_value,  # the one reading of a value that is not text (case 968)
 )
 from guppi.pages import (
     CATEGORIES,
@@ -1615,12 +1617,12 @@ def check_conditions(blocks: dict, project_dir: Path, schema_free: set[str]) -> 
 def core_as_left(item: dict, kind: str, project_dir: Path) -> bool:
     """Whether the page of an item carries `core: true` as the plan leaves it: by the item
     — the field of a `create`, the `set` of an `update` — else on the live page."""
-    if kind == "create" and "core" in item:
-        return item.get("core") is True
-    if isinstance(item.get("set"), dict) and "core" in item["set"]:
-        return item["set"]["core"] is True
     slug = str(item.get("slug") or "")
     category = category_of(slug)
+    if kind == "create" and "core" in item:  # `true` as the hook and the lift read it (case 968)
+        return typed_value("core", item["core"], schema_values(project_dir, category))[0] is True
+    if isinstance(item.get("set"), dict) and "core" in item["set"]:
+        return item["set"]["core"] is True
     path = wiki_root(project_dir) / category / f"{slug}.md" if category else None
     return bool(path and path.exists() and is_core(read_page(path, category)))
 

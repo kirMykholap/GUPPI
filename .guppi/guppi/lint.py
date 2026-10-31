@@ -36,8 +36,9 @@ not judged for these two; where `ship_stands` of `.guppi/guppi/pages.py` finds t
 `is_draft_core` of the same module accepts, with Estimates or without, one finding each,
 since `guppi ship` builds no clean version while one stands — a project that installed GUPPI
 holds no such module and gets none (case 822); an Estimate `passed` or `failed` without
-`## Result`; an Estimate whose `target` is not an entity or a rule, or does not list it)
-(case 53.1), `unread` (every Estimate `failed`, and every one `pending`
+`## Result`; an Estimate whose `target` is not an entity or a rule, or does not list it; an
+Estimate with `once: true`, a one-time check, whose `target` is not a sprint page by
+`is_sprint_page` of `.guppi/guppi/ledger.py` (case 969.2)) (case 53.1), `unread` (every Estimate `failed`, and every one `pending`
 whose `method` waits for no later moment, one finding each — red between a change of a
 promise and its reading, by design) (cases 182, 202, 799), `method` (the `method` field
 alone (case 506.3): for a MOC's Estimate a `make <target>` of the Makefile passes whatever
@@ -90,10 +91,12 @@ import yaml
 
 from guppi.caseid import ID as CASE_ID
 from guppi.event import project_root
+from guppi.ledger import is_sprint_page  # the one judgment of a sprint page (case 772.4)
 from guppi.materialize import (
     PLACEHOLDER_CATEGORIES,  # the folders a placeholder may stand in (case 786)
     category_of,  # the one table of prefixes (case 460.3)
     fence_breaks,  # the one judgment of a fence (case 487.2)
+    is_allowed,  # the one comparison of a value with its allowed values (case 968)
 )
 from guppi.pages import (
     CATEGORIES,
@@ -244,7 +247,7 @@ def check_schema(page: Page, schema: dict) -> list[Finding]:
         if field not in page.props and not (placeholder and field in PLACEHOLDER_FIELDS):
             out.append(Finding(page, "schema", f"missing field {field}"))
     for field, allowed in (props.get("values") or {}).items():
-        if field in page.props and str(page.props[field]) not in [str(a) for a in allowed]:
+        if field in page.props and not is_allowed(page.props[field], allowed):
             out.append(
                 Finding(page, "schema", f"{field} is {page.props[field]!r}, not one of {allowed}")
             )
@@ -566,6 +569,15 @@ def check_status(page: Page, by_slug: dict[str, Page], drafts: bool = False) -> 
         elif target is not None and page.slug not in as_list(target.props.get("estimates")):
             out.append(
                 Finding(page, "status", f"target {target.slug} does not list it in estimates")
+            )
+        target_slug = str(page.props.get("target", ""))
+        if page.props.get("once") is True and not is_sprint_page(target_slug):
+            out.append(
+                Finding(
+                    page,
+                    "status",
+                    f"target {target_slug} is not a sprint page; once: true marks a one-time Estimate",
+                )
             )
         return out
     if page.category not in ("entities", "rules"):

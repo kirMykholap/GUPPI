@@ -132,7 +132,7 @@ update:
 - [x] update `rule-handoff`
 - [x] update `estimate-handoff-dispatches`
 - [x] `uv run --project .guppi guppi render`: `.claude/skills/handoff/SKILL.md`
-- [ ] by hand, once, after `/handoff` of this session shows the librarian's report: when `vault/raw/2026-10-31/0431/report.md` stands, the main agent shows its text to the person unchanged and commits it alone by the Bash tool, `git add vault/raw/2026-10-31/0431/report.md && git commit -m "docs(vault): librarian report, 2026-10-31"`, never `--amend`, since the skill of this session still says to make no commit after the librarian; when no such file stands, it says so in one line.
+- [x] by hand, once, after `/handoff` of this session shows the librarian's report: when `vault/raw/2026-10-31/0431/report.md` stands, the main agent shows its text to the person unchanged and commits it alone by the Bash tool, `git add vault/raw/2026-10-31/0431/report.md && git commit -m "docs(vault): librarian report, 2026-10-31"`, never `--amend`, since the skill of this session still says to make no commit after the librarian; when no such file stands, it says so in one line.
 - [ ] read `estimate-handoff-dispatches`
 ```
 

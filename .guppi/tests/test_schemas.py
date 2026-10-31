@@ -97,6 +97,33 @@ def test_a_shipped_page_in_the_shape_has_no_finding(category):
     assert findings(page, data) == []
 
 
+ONCE_LIVE = "once" in ((schema("estimates").get("properties") or {}).get("values") or {})
+
+
+@pytest.mark.skipif(
+    not ONCE_LIVE, reason="the live schema lists once only after the render (case 969.1)"
+)
+def test_an_estimate_with_once_true_has_no_finding():
+    """A one-time Estimate carries `once: true`, an optional field whose one allowed value is
+    `true` (case 969.1)."""
+    data = schema("estimates")
+    page = page_in_shape("estimates", data)
+    page.props["once"] = True
+    assert findings(page, data) == []
+
+
+@pytest.mark.skipif(
+    not ONCE_LIVE, reason="the live schema lists once only after the render (case 969.1)"
+)
+def test_an_estimate_with_once_false_is_one_finding():
+    data = schema("estimates")
+    page = page_in_shape("estimates", data)
+    page.props["once"] = False
+    assert findings(page, data) == [
+        "estimates/estimate-x: schema: once is False, not one of [True]"
+    ]
+
+
 def test_a_decision_page_without_context_has_no_finding():
     """`## Context` is an optional section of a Decision page — the Case file
     keeps the context — so a page with `## Problem` and `## History` alone earns no

@@ -173,6 +173,7 @@ LEFT_OUT = (
     "guppi.toml",
     ".guppi/guppi/ship.py",
     ".guppi/tests/test_ship.py",
+    ".guppi/links.md",  # the graph of links a session start writes, which git ignores (case 967.3)
 )
 # the tests: in a Python file here only the comments and the docstrings are cleaned and
 # judged, and each other string is a sample (case 822)

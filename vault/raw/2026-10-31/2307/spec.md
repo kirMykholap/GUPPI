@@ -53,12 +53,12 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-hook-reports-a-wait-off-its-form`
+- [x] create `estimate-prespec-hook-reports-a-wait-off-its-form`
 - [x] `.guppi/guppi/lint.py`: a new predicate of a part of a `method` that names its event behind another word — `EVENT_PART` found after a word boundary in the stripped part and `waits_for_an_event` false — with a docstring that names it the one predicate of this judgment, which pre-spec imports and the lint run does not call.
 - [x] `.guppi/guppi/prespec.py`: one function gives the `method` that an `update` keeps — it replaces the Criterion whole by `names_a_part`, writes no `method`, sets no status in `DECIDED`, and its live page holds a `method` — which `kept_method_waits` calls with its own check of the sprint page, and the new notes call for every target; a new function of notes gives the note for a `create` of an Estimate, for an `update` that carries `set: {method: …}` and for that kept `method`, whatever the target; `plan_findings` adds it to its notes; the module docstring, under the notes, and the docstrings of the changed functions name the note and the predicate.
 - [x] `.guppi/tests/test_lint.py`: a test whose name holds `off_form` runs the predicate over `and by hand, after X: read`, `read after X: read`, `by hand, after X: read`, `after X: read` and `after X`, true on the first two only.
 - [x] `.guppi/tests/test_prespec.py`: a test whose name holds `off_form` checks a plan with a `create` and an `update` whose `method` writes `pytest tests/test_x.py; and by hand, after a pull request from a second account: the output read`, one note each and exit 0, and an `update` that replaces the Criterion whole of a live page with that `method`, one note of the method on the page and exit 0; and with the same part opening with `by hand, after`, no note.
-- [ ] read `estimate-prespec-hook-reports-a-wait-off-its-form`
+- [x] read `estimate-prespec-hook-reports-a-wait-off-its-form`
 ```
 
 ## Case 973 — A bare link in the Result of the link graph Estimate
@@ -113,8 +113,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-link-graph-prints-the-neighbours`
-- [ ] create `estimate-sprint-plugin-check-finds-no-bare-slug-link`
+- [x] update `estimate-link-graph-prints-the-neighbours`
+- [x] create `estimate-sprint-plugin-check-finds-no-bare-slug-link`
 - [ ] read `estimate-sprint-plugin-check-finds-no-bare-slug-link`
 ```
 
@@ -190,10 +190,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-reads-the-readers-of-a-new-files-folder`
-- [ ] update `insight-case-build-changes-a-step-without-reading-its-readers`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-reads-the-readers-of-a-new-files-folder`
+- [x] update `insight-case-build-changes-a-step-without-reading-its-readers`
 - [ ] read `estimate-case-build-reads-the-readers-of-a-new-files-folder`
 ```
 
@@ -254,11 +254,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-rules-schema`
-- [ ] update `entity-glossary`
-- [ ] update `estimate-rules-schema-checked`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
-- [ ] `uv run --project .guppi guppi glossary`
+- [x] update `rule-rules-schema`
+- [x] update `entity-glossary`
+- [x] update `estimate-rules-schema-checked`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
+- [x] `uv run --project .guppi guppi glossary`
 - [ ] read `estimate-rules-schema-checked`
 ```
 

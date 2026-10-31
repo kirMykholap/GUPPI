@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian from needing the ledger beyond its one read or the Spec beyond its unticked lines, or from routing a decision by guesswork
-status: draft
+status: built
 enforcement: check
 implementation_ref: [.guppi/guppi/materialize.py, .guppi/tests/test_materialize.py]
 parent: "[[rule-documentation]]"
@@ -147,3 +147,4 @@ ratified and its work not done (case 190.3). A reading — an `estimate` line �
 - 2026-10-30 updated: a drop is a named part, and a drop of the Criterion of an Estimate is incomplete: [criterion] · [[decision-case-935.2]]
 - 2026-10-31 estimate estimate-materialize-lifts-a-create-value-by-the-schema added · [[decision-case-968]]
 - 2026-10-31 status: built → draft · cascade
+- 2026-11-01 status: draft → built · cascade

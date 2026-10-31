@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-estimates-schema]]"
 purpose: An Estimate page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: "by hand, after the librarian's run that renders vault/wiki/estimates/schema.yaml from the Render of rule-estimates-schema that holds the field once: the output of uv run --project .guppi pytest .guppi/tests/test_schemas.py -k estimate over that live file, the tests of once among them, and the output of uv run --project .guppi guppi check, no schema finding on wiki/estimates/, read against the Criterion, both outputs in the estimate line"
-checked: 2026-10-13
+checked: 2026-10-31
 origin: raw/2026-09-22/0014/ledger.md#case-304.4
 sprint: migration
 created: 2026-09-22
@@ -28,7 +28,7 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 
 ## Result
 
-2026-10-13, uv run pytest tests/test_schemas.py -k estimate: 8 passed, 1 skipped, the new shipped-page test among them; the new Render in raw/2026-10-13/1753/spec.md (Case 804.3) adds core to optional and values, the core description and the value guppi to origin and sprint; the live schema.yaml follows at the librarian's render
+2026-10-31, at the /hi of session 2307, by uv run --project .guppi pytest .guppi/tests/test_schemas.py -k estimate and uv run --project .guppi guppi check: 10 passed, 1 skipped (estimates: no conditional on a field), test_an_estimate_with_once_true_has_no_finding and test_an_estimate_with_once_false_is_one_finding among the passed, over the live vault/wiki/estimates/schema.yaml that the librarian of session 1831 rendered with once; guppi check printed 18 lines, exit 1, no render finding and no schema finding on wiki/estimates/
 
 ## History
 
@@ -52,3 +52,4 @@ The file equals the Render. Lint reads from it: required `type, kind, status, ta
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
 - 2026-10-31 updated: the Criterion replaced whole — the optional field once with its one value true; the method waits for the render of the schema · [[decision-case-969.1]]
+- 2026-11-01 status: pending → passed · raw/2026-10-31/2307/ledger.md#L2

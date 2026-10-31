@@ -294,7 +294,7 @@ update:
 - [x] `.guppi/guppi/links.py`: `--write` writes every block into `.guppi/links.md`, prints one line on stderr on an error and exits 0.
 - [x] `.guppi/.gitignore`: a line `links.md` after `.venv/`.
 - [x] `.guppi/tests/test_links.py`: the test of `--write` over a vault in a temporary folder.
-- [ ] read `estimate-link-graph-at-session-start-writes-the-file`
+- [x] read `estimate-link-graph-at-session-start-writes-the-file`
 ```
 
 ## Case 968 — A value of a new page that is not text reaches the page as its value
@@ -372,7 +372,7 @@ update:
 - [x] update `rule-case-protocol`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
 - [x] create `estimate-materialize-lifts-a-create-value-by-the-schema`
-- [ ] read `estimate-materialize-lifts-a-create-value-by-the-schema`
+- [x] read `estimate-materialize-lifts-a-create-value-by-the-schema`
 ```
 
 ## Case 969 — A one-time Estimate is marked and stands on the sprint page
@@ -462,7 +462,7 @@ update:
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
 - [x] update `estimate-estimates-schema-checked`
 - [x] `.guppi/tests/test_schemas.py`: a test that an Estimate page in the shape with `once: true` has no finding, and a test that one with `once: false` has one finding, run only where the live schema lists `once` among its values, so that it passes before the render and after it; a Case of a later session removes that condition.
-- [ ] read `estimate-estimates-schema-checked`
+- [x] read `estimate-estimates-schema-checked`
 ```
 
 ### Case 969.2 — Lint reports a one-time Estimate off the sprint page

@@ -1,10 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-materialize]]"
 purpose: Whether a field of a create whose allowed values in the schema hold no text, such as core, reaches the then block, the page and pre-spec as its value by one function, and whether a value outside the list is refused by the hook
 method: "uv run --project .guppi pytest .guppi/tests/test_materialize.py, which runs the hook's reading, the lift and core_as_left over the same values; by hand, after the first librarian's run that creates a page whose create writes core as true: the core field of that page and the output of uv run --project .guppi guppi lint, read against the Criterion, the result in the estimate line"
+checked: 2026-10-31
 origin: raw/2026-10-31/1831/ledger.md#case-968
 sprint: plugin
 created: 2026-10-31
@@ -26,6 +27,11 @@ A value of a field whose allowed values in `vault/wiki/<category>/schema.yaml` o
 **－** A value of a field whose allowed values hold text, or for which the schema names no allowed values, stays text as before.
 **－** `uv run --project .guppi guppi materialize` and `core_as_left` refuse nothing: a value outside the list that reaches them stays as it loads, and `check_schema` reports it on the page.
 
+## Result
+
+2026-10-31, at the /hi of session 2307, by uv run --project .guppi pytest .guppi/tests/test_materialize.py and uv run --project .guppi guppi lint: 149 passed; entity-link-graph line 14 and rule-link-graph-at-session-start line 15, created by the librarian's run of session 1831 from a create that writes core as true, read core: true; guppi lint printed no schema finding, and on those two pages only rules/rule-link-graph-at-session-start: status: a page with core: true that is draft
+
 ## History
 
 - 2026-10-31 created · [[decision-case-968]]
+- 2026-11-01 status: pending → passed · raw/2026-10-31/2307/ledger.md#L3

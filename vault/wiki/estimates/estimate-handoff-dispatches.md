@@ -6,6 +6,7 @@ target: "[[rule-handoff]]"
 purpose: /handoff stops on a dirty tree, writes handoff.md from memory into the session's folder, dispatches the librarian with its path, shows report.md and commits it alone after the librarian's commit, or, in a session that /box runs, hands back to /box
 method: "by hand, after a /handoff whose .claude/skills/handoff/SKILL.md holds the Render of rule-handoff that commits report.md: the event log vault/raw/<date>/event_log.md, handoff.md and git log, and the dispatch line and the text shown to the person read in the transcript of that session under ~/.claude/projects/, against the Criterion, the transcript named in the estimate line; by hand, after a /handoff in a session that /box runs: the event log, and the step of /box that follows read in the transcript of that session under ~/.claude/projects/, against the Criterion, the transcript named in the estimate line"
 checked: 2026-10-04
+deferred_by: ["[[decision-case-976]]"]
 origin: raw/2026-09-10/ledger.md#case-38.3
 sprint: migration
 created: 2026-09-10
@@ -44,3 +45,4 @@ The skill's context holds `git status --porcelain`. On a dirty tree the skill st
 - 2026-10-04 status: pending → passed · raw/2026-10-04/0004/ledger.md#L1
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-31 updated: the Criterion replaced whole — /handoff shows report.md and commits it alone · [[decision-case-956.3]]
+- 2026-11-01 deferred · [[decision-case-976]]

@@ -216,7 +216,7 @@ update:
 
 ```tasks
 - [x] update `estimate-close-commits`
-- [ ] read `estimate-close-commits`
+- [x] read `estimate-close-commits`
 ```
 
 ## Case 959 — The sprint as a kind gets an Estimate over all sprints

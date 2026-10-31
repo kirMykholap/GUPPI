@@ -28,9 +28,10 @@ It prints the block of that page or file: a line `## <slug or path>`, its purpos
 
 ## Result
 
-2026-10-31, Retro of session 1831: uv run --project .guppi pytest .guppi/tests/test_links.py, 13 passed, each line of the Criterion over a vault in a temporary folder (block form, field, [[slug]], path-field and body-name links outside History, agent, skill and command names of a rendered file to the page that renders or runs them, links in, a file in a named folder, purpose lines of a lesson and an insight, no Decision page, an unknown name exits 1); by hand in Work Mode: uv run --project .guppi guppi links .claude/skills/sprint-open/SKILL.md printed "- out agent case-guppi: rule-case-build — Prevents a Case from being shown before one agent has built it …", and uv run --project .guppi guppi links .claude/agents/case-guppi.md printed "- out skill grill-me: rule-skill-grill-me — Prevents an interview from acting on a plan …"; guppi links decision-case-966 printed "links: decision-case-966 is neither a live page nor a file", exit 1
+2026-10-31, Retro (session 1831): uv run --project .guppi pytest .guppi/tests/test_links.py, 13 passed, each line of the Criterion over a vault in a temporary folder (block form, field, `[[slug]]`, path-field and body-name links outside History, agent, skill and command names of a rendered file to the page that renders or runs them, links in, a file in a named folder, purpose lines of a lesson and an insight, no Decision page, an unknown name exits 1); by hand in Work Mode: uv run --project .guppi guppi links .claude/skills/sprint-open/SKILL.md printed "- out agent case-guppi: rule-case-build — Prevents a Case from being shown before one agent has built it …", and uv run --project .guppi guppi links .claude/agents/case-guppi.md printed "- out skill grill-me: rule-skill-grill-me — Prevents an interview from acting on a plan …"; `guppi links decision-case-966` printed `links: decision-case-966 is neither a live page nor a file`, exit 1
 
 ## History
 
 - 2026-10-31 created · [[decision-case-967.1]]
 - 2026-10-31 status: pending → passed · raw/2026-10-31/1831/ledger.md#L30
+- 2026-11-01 updated: the bare link of the Result put in a code span, so lint reads no link to a page · [[decision-case-973]]

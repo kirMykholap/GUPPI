@@ -12419,3 +12419,37 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-10-31 decisions/decision-case-963 archived · cleanup
 - 2026-10-31 entities/entity-guppi estimate estimate-guppi-keeps-no-defer-of-its-shape archived · cleanup
 - 2026-10-31 rules/rule-backlog estimate estimate-backlog-keeps-the-work-taken-out-of-a-built-page archived · cleanup
+- 2026-11-01 estimates/estimate-close-commits status: pending → passed · raw/2026-10-31/2307/ledger.md#L1 · generate
+- 2026-11-01 estimates/estimate-estimates-schema-checked status: pending → passed · raw/2026-10-31/2307/ledger.md#L2 · generate
+- 2026-11-01 estimates/estimate-materialize-lifts-a-create-value-by-the-schema status: pending → passed · raw/2026-10-31/2307/ledger.md#L3 · generate
+- 2026-11-01 estimates/estimate-link-graph-at-session-start-writes-the-file status: pending → passed · raw/2026-10-31/2307/ledger.md#L4 · generate
+- 2026-11-01 decisions/decision-case-972 created · raw/2026-10-31/2307/ledger.md#case-972 · generate
+- 2026-11-01 estimates/estimate-prespec-hook-reports-a-wait-off-its-form created · [[decision-case-972]] · generate
+- 2026-11-01 estimates/estimate-prespec-hook-reports-a-wait-off-its-form status: pending → passed · raw/2026-10-31/2307/ledger.md#L18 · generate
+- 2026-11-01 rules/rule-prespec-hook estimate estimate-prespec-hook-reports-a-wait-off-its-form added · [[decision-case-972]] · generate
+- 2026-11-01 decisions/decision-case-973 created · raw/2026-10-31/2307/ledger.md#case-973 · generate
+- 2026-11-01 estimates/estimate-link-graph-prints-the-neighbours updated: the bare link of the Result put in a code span, so lint reads no link to a page · [[decision-case-973]] · generate
+- 2026-11-01 estimates/estimate-sprint-plugin-check-finds-no-bare-slug-link created · [[decision-case-973]] · generate
+- 2026-11-01 entities/entity-sprint-plugin estimate estimate-sprint-plugin-check-finds-no-bare-slug-link added · [[decision-case-973]] · generate
+- 2026-11-01 decisions/decision-case-974 created · raw/2026-10-31/2307/ledger.md#case-974 · generate
+- 2026-11-01 rules/rule-case-build updated: case-guppi reads, for a new file that is no page, the readers of each folder that holds it · [[decision-case-974]] · generate
+- 2026-11-01 estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder created · [[decision-case-974]] · generate
+- 2026-11-01 rules/rule-case-build estimate estimate-case-build-reads-the-readers-of-a-new-files-folder added · [[decision-case-974]] · generate
+- 2026-11-01 insights/insight-case-build-changes-a-step-without-reading-its-readers updated: actioned: case-guppi reads the readers of each folder that holds a new file that is no page (case 974) · [[decision-case-974]] · generate
+- 2026-11-01 decisions/decision-case-975 created · raw/2026-10-31/2307/ledger.md#case-975 · generate
+- 2026-11-01 rules/rule-rules-schema updated: a guard refuses a case or prevents it; a hook that writes a file or gives the agent a text is a guard · [[decision-case-975]] · generate
+- 2026-11-01 entities/entity-glossary updated: the row of Rule: a guard refuses a case or prevents it · [[decision-case-975]] · generate
+- 2026-11-01 estimates/estimate-rules-schema-checked updated: the Criterion replaced whole — the opening and the Enforcement paragraph name a guard that prevents a case · [[decision-case-975]] · generate
+- 2026-11-01 decisions/decision-case-976 created · raw/2026-10-31/2307/ledger.md#case-976 · generate
+- 2026-11-01 estimates/estimate-handoff-dispatches deferred · [[decision-case-976]] · generate
+- 2026-11-01 estimates/estimate-case-build-reads-each-list-of-a-new-member deferred · [[decision-case-976]] · generate
+- 2026-11-01 estimates/estimate-orchestration-names-related-cases-in-the-dispatch deferred · [[decision-case-976]] · generate
+- 2026-11-01 estimates/estimate-orchestration-shows-the-built-case deferred · [[decision-case-976]] · generate
+- 2026-11-01 lessons/lesson-ledger-reading-writes-a-bare-wikilink created · raw/2026-10-31/2307/ledger.md#L19 · generate
+- 2026-11-01 lessons/lesson-orchestration-shows-a-round-after-own-text created · raw/2026-10-31/2307/ledger.md#L20 · generate
+- 2026-11-01 rules/rule-estimates-schema status: draft → built · cascade · generate
+- 2026-11-01 rules/rule-link-graph-at-session-start status: draft → built · cascade · generate
+- 2026-11-01 rules/rule-materialize status: draft → built · cascade · generate
+- 2026-11-01 rules/rule-rules-schema status: built → draft · cascade · generate
+- 2026-11-01 lessons/lesson-case-build-names-a-file-without-the-readers-of-its-folder archived · insight actioned · generate
+- 2026-11-01 lessons/lesson-case-build-names-a-file-without-the-readers-of-its-folder archived · cleanup

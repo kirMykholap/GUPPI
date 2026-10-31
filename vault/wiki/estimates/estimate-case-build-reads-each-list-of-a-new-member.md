@@ -6,7 +6,7 @@ target: "[[rule-case-build]]"
 purpose: Whether case-guppi, when its Case adds a member to a list that texts spell out one by one, searches for a member already in the list and enters each text that would miss the new member in the Case, or names it in context
 method: "by hand, at Retro: .claude/agents/case-guppi.md read against the Criterion; the agent transcript of a case-guppi that built a Case that adds a hook to the SubagentStop hooks of rule-hook-registry, read for its search of a hook that stands in the list already; and the findings of ask-guppi at the /pre-spec of that session, read in its agent transcript, for a Case that adds a member to a list and misses a text that lists the members; all under ~/.claude/projects/, recorded in one estimate line with the count and the transcripts (the build of Case 956.1, which adds the hook guppi libreport, and the /pre-spec of session 2026-10-31/0431)"
 checked: 2026-10-31
-deferred_by: ["[[decision-case-971]]"]
+deferred_by: ["[[decision-case-971]]", "[[decision-case-976]]"]
 origin: raw/2026-10-30/2345/ledger.md#case-948.1
 sprint: plugin
 created: 2026-10-30
@@ -35,3 +35,4 @@ It searches the live pages of `vault/wiki/` outside `decisions/`, `.claude/` and
 - 2026-10-31 updated: the method reads the build of Case 956 and the /pre-spec of session 0431 in their transcripts, the Criterion written back unchanged · [[decision-case-961.3]]
 - 2026-10-31 status: pending → failed · raw/2026-10-31/0431/ledger.md#L47
 - 2026-10-31 deferred · [[decision-case-971]]
+- 2026-11-01 deferred · [[decision-case-976]]

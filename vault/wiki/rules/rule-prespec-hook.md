@@ -6,7 +6,7 @@ status: built
 enforcement: hook
 implementation_ref: [.guppi/guppi/prespec.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-prespec-hook-gates]]", "[[estimate-prespec-hook-reports-a-method-that-waits-for-another-session]]", "[[estimate-prespec-hook-reports-a-schema-condition-not-met]]", "[[estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session]]", "[[estimate-prespec-hook-reports-a-create-without-a-required-field]]", "[[estimate-prespec-hook-reports-a-pointer-outside-a-bracket]]"]
+estimates: ["[[estimate-prespec-hook-gates]]", "[[estimate-prespec-hook-reports-a-method-that-waits-for-another-session]]", "[[estimate-prespec-hook-reports-a-schema-condition-not-met]]", "[[estimate-prespec-hook-reports-a-kept-method-that-waits-for-another-session]]", "[[estimate-prespec-hook-reports-a-create-without-a-required-field]]", "[[estimate-prespec-hook-reports-a-pointer-outside-a-bracket]]", "[[estimate-prespec-hook-reports-a-wait-off-its-form]]"]
 origin: raw/2026-09-09/ledger.md#case-24.1
 sprint: migration
 created: 2026-09-09
@@ -54,3 +54,4 @@ with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-sp
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 status: built → draft · cascade
 - 2026-10-15 status: draft → built · cascade
+- 2026-11-01 estimate estimate-prespec-hook-reports-a-wait-off-its-form added · [[decision-case-972]]

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: Case 967.3 put a new generated file under .guppi/ and read its readers by the name of the file only; the readers of the folder, the tree walk of guppi ship and its test of the live code, hold no word of the file
-status: clustered
+status: archived
 insight: "[[insight-case-build-changes-a-step-without-reading-its-readers]]"
 origin: raw/2026-10-31/1831/ledger.md#L32
 sprint: plugin
@@ -22,3 +22,5 @@ Case 967.3 put a new generated file under .guppi/ and read its readers by the na
 
 - 2026-10-31 created · raw/2026-10-31/1831/ledger.md#L32
 - 2026-10-31 updated: clustered under insight-case-build-changes-a-step-without-reading-its-readers (synthesis) · raw/2026-10-31/1831/ledger.md#L32
+- 2026-11-01 archived · insight actioned
+- 2026-11-01 archived · cleanup

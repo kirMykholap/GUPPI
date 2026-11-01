@@ -19,11 +19,13 @@ writes (case 822); nothing of `vault/raw/`, `vault/archive/` or the rest of `.gi
 `.github/workflows/prod.yml` included, is read.
 
 While a rule or an entity that `is_draft_core` of `.guppi/guppi/pages.py` accepts — a page
-with `core: true` that is `draft` — stands, `drafts` gives a line `ship: <page>: a page with
-core: true that is draft` for each, and the build prints them, writes nothing and exits 1,
+with `core: true` that is `draft` and whose `## History` holds no line that set it `built`, or
+one of whose Estimates stands `failed` — stands, `drafts` gives a line `ship: <page>: a page
+with core: true that is draft` for each, and the build prints them, writes nothing and exits 1,
 before it reads a tag; the workflow that writes `prod` never passes `--allow-draft`. With
 `--allow-draft` it prints those lines, which set no exit code, and writes the copy all the
-same, for an install by hand from that folder (case 822).
+same, for an install by hand from that folder (case 822). A page `built` before that only waits
+for the reading of a newer Estimate gets no line and is written as it stands (case 996.1).
 
 In `CLAUDE.md` and in the Render of `rule-claude-md` that the copy holds, `blank_description`
 writes `BLANK_DESCRIPTION` — the heading `# Project`, a blank line and the line `Project
@@ -400,13 +402,15 @@ def blank_description(text: str) -> str:
 
 def drafts(project_dir: Path) -> list[str]:
     """A line `ship: <page>: a page with core: true that is draft` for each page of the vault
-    that `is_draft_core` of `.guppi/guppi/pages.py` accepts, by its path (case 822)."""
+    that `is_draft_core` of `.guppi/guppi/pages.py` accepts, by its path, with the pages by
+    slug beside it (cases 822, 996.1)."""
     vault = read_vault(wiki_root(project_dir))
+    by_slug = {page.slug: page for category in CATEGORIES for page in vault[category]}
     return [
         f"ship: vault/wiki/{page.category}/{page.slug}.md: {DRAFT_CORE}"
         for category in CATEGORIES
         for page in vault[category]
-        if not page.error and is_draft_core(page)
+        if not page.error and is_draft_core(page, by_slug)
     ]
 
 

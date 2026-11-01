@@ -33,9 +33,12 @@ is a record and an Insight names it or not; an Insight owns its children through
 Estimate not `passed`, a `draft` one with every Estimate `passed`, a page without Estimates
 not judged for these two; where `ship_stands` of `.guppi/guppi/pages.py` finds the module
 `guppi.ship`, as in the repository that builds the clean version, each rule or entity that
-`is_draft_core` of the same module accepts, with Estimates or without, one finding each,
-since `guppi ship` builds no clean version while one stands — a project that installed GUPPI
-holds no such module and gets none (case 822); an Estimate `passed` or `failed` without
+`is_draft_core` of the same module accepts — one with `core: true` that is `draft` and whose
+`## History` holds no line that set it `built`, or one of whose Estimates stands `failed` —
+with Estimates or without, one finding each, since `guppi ship` builds no clean version while
+one stands (cases 822, 996.1); a project that installed GUPPI holds no such module and gets
+none of these, and no finding on a `draft` page with every Estimate `passed`, since the clean
+version keeps the status of a page and writes only its `passed` Estimates (case 996.3); an Estimate `passed` or `failed` without
 `## Result`; an Estimate whose `target` is not an entity or a rule, or does not list it; an
 Estimate with `once: true`, a one-time check, whose `target` is not a sprint page by
 `is_sprint_page` of `.guppi/guppi/ledger.py` (case 969.2)) (case 53.1), `unread` (every Estimate `failed`, and every one `pending`
@@ -573,9 +576,13 @@ def check_decision(page: Page, known: set[str]) -> list[Finding]:
 
 def check_status(page: Page, by_slug: dict[str, Page], drafts: bool = False) -> list[Finding]:
     """The `status` findings of a page; with `drafts`, where `ship_stands` answers yes, also
-    one on a page that `is_draft_core` accepts, with Estimates or without (case 822)."""
+    one on a page that `is_draft_core` accepts, with Estimates or without — a draft page with
+    `core: true` that was never `built` or has an Estimate `failed`, and no other (cases 822,
+    996.1). Without `drafts`, in a project that installed GUPPI, a `draft` page with every
+    Estimate `passed` is no finding, since the clean version keeps the status of a page and
+    writes only its `passed` Estimates (case 996.3)."""
     out = []
-    if drafts and is_draft_core(page):
+    if drafts and is_draft_core(page, by_slug):
         out.append(Finding(page, "status", DRAFT_CORE))
     status = str(page.props.get("status", ""))
     if page.category == "estimates":
@@ -614,7 +621,7 @@ def check_status(page: Page, by_slug: dict[str, Page], drafts: bool = False) -> 
     if status == "built" and not all_passed:
         pending = [e.slug for e in estimates if str(e.props.get("status")) != "passed"]
         out.append(Finding(page, "status", f"built while {pending[0]} is not passed"))
-    if status == "draft" and all_passed:
+    if status == "draft" and all_passed and drafts:
         out.append(Finding(page, "status", "draft while every Estimate is passed"))
     return out
 

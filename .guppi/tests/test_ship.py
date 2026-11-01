@@ -975,6 +975,35 @@ def test_check_prints_no_line_on_a_draft_core_page(tmp_path):
     assert (code, stdout.getvalue()) == (0, "")
 
 
+def built_before(estimate_status: str) -> dict[str, str]:
+    """A draft page with `core: true` whose History set it `built` before, and its one
+    Estimate in `estimate_status` (case 996.1)."""
+    rule = draft(page("rule", "rule-a", extra='estimates: ["[[estimate-a]]"]')).replace(
+        "- 2026-09-10 created\n",
+        "- 2026-09-10 created\n- 2026-10-01 status: draft → built · cascade\n",
+    )
+    return {"rule_a": rule, "estimate_a": estimate("estimate-a", "rule-a", status=estimate_status)}
+
+
+def test_a_draft_core_page_built_before_with_a_pending_estimate_is_written_and_exits_0(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, **built_before("pending"))
+    code, lines = run(root, out)
+    assert (code, lines) == (0, [])
+    assert "vault/wiki/rules/rule-a.md" in written(out)
+
+
+def test_a_draft_core_page_built_before_with_a_failed_estimate_exits_1_and_writes_nothing(
+    tmp_path,
+):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, **built_before("failed"))
+    code, lines = run(root, out)
+    assert code == 1
+    assert lines == ["ship: vault/wiki/rules/rule-a.md: a page with core: true that is draft"]
+    assert not out.exists()
+
+
 def test_the_build_judges_a_draft_core_page_by_the_one_judgment_of_pages():
     from guppi import pages
 

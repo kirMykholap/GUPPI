@@ -42,6 +42,9 @@ SHIPPED = "guppi"  # the `origin` and `sprint` of a page in the clean version (c
 # the words of a line of `guppi ship` and of a finding of `guppi lint` on a page that
 # `is_draft_core` accepts (case 822)
 DRAFT_CORE = "a page with core: true that is draft"
+# a line of `## History` that set the status of a page to `built`, as the cascade of
+# `.guppi/guppi/generate.py` writes it (case 996.1)
+SET_BUILT = re.compile(r"^- .*\bstatus: \S+ → built\b", re.MULTILINE)
 
 
 def is_core(page: "Page") -> bool:
@@ -50,17 +53,26 @@ def is_core(page: "Page") -> bool:
     return page.props.get("core") is True
 
 
-def is_draft_core(page: "Page") -> bool:
-    """True when the page is a rule or an entity that `is_core` accepts and whose `status` is
-    `draft`. The one judgment of a draft page with `core: true`, which `guppi ship` of
-    `.guppi/guppi/ship.py` imports, to write no clean version while one stands, and `guppi
-    lint` of `.guppi/guppi/lint.py`, to report each one where `ship_stands` answers yes
-    (case 822)."""
-    return (
+def is_draft_core(page: "Page", by_slug: dict[str, "Page"]) -> bool:
+    """True when the page is a rule or an entity that `is_core` accepts, whose `status` is
+    `draft`, and that blocks the clean build: its `## History` holds no line that set its
+    status to `built`, by `SET_BUILT`, or one of its Estimates, looked up in `by_slug`, stands
+    `failed`. A page `built` before that only waits for the reading of a newer Estimate is
+    not accepted (case 996.1). The one judgment of a draft page with `core: true`, which `guppi
+    ship` of `.guppi/guppi/ship.py` imports, to write no clean version while one stands, and
+    `guppi lint` of `.guppi/guppi/lint.py`, to report each one where `ship_stands` answers yes
+    (cases 822, 996.1)."""
+    if not (
         page.category in ("entities", "rules")
         and is_core(page)
         and str(page.props.get("status")) == "draft"
-    )
+    ):
+        return False
+    if not SET_BUILT.search(page.sections.get(HISTORY, "")):
+        return True
+    value = page.props.get("estimates") or []
+    estimates = [by_slug.get(str(slug)) for slug in (value if isinstance(value, list) else [value])]
+    return any(e is not None and str(e.props.get("status")) == "failed" for e in estimates)
 
 
 def ship_stands() -> bool:

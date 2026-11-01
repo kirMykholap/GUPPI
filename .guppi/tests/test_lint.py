@@ -482,8 +482,9 @@ def test_built_with_a_pending_estimate_is_a_status_finding(tmp_path):
     ]
 
 
-def test_draft_with_every_estimate_passed_is_a_status_finding(tmp_path):
+def test_draft_with_every_estimate_passed_is_a_status_finding(tmp_path, monkeypatch):
     seed(tmp_path, rule=rule_page(status="draft"))
+    ship_module(monkeypatch, stands=True)  # the clean version holds no `guppi.ship` (case 996.3)
     _, lines, _ = run(tmp_path)
     assert lines == ["rules/rule-x: status: draft while every Estimate is passed"]
 
@@ -591,6 +592,66 @@ def test_a_draft_page_without_core_or_a_built_core_page_is_no_draft_core_finding
     assert own_lines(tmp_path) == []
     seed(tmp_path, rule=rule_page(status="built", core="true"))
     assert own_lines(tmp_path) == []
+
+
+# a page set `built` before blocks the build only with a `failed` Estimate (case 996.1)
+BUILT_BEFORE = "- created\n- 2026-10-01 status: draft → built · cascade\n"
+
+
+def built_before(**over) -> str:
+    return rule_page(status="draft", core="true", **over).replace("- created\n", BUILT_BEFORE)
+
+
+def test_a_draft_core_page_built_before_with_a_pending_estimate_is_no_finding(
+    tmp_path, monkeypatch
+):
+    seed(tmp_path, rule=built_before(), estimate=estimate_page(status="pending"))
+    ship_module(monkeypatch, stands=True)
+    assert own_lines(tmp_path) == []
+
+
+def test_a_draft_core_page_built_before_with_a_failed_estimate_is_one_finding(
+    tmp_path, monkeypatch
+):
+    seed(tmp_path, rule=built_before(), estimate=estimate_page(status="failed"))
+    ship_module(monkeypatch, stands=True)
+    assert own_lines(tmp_path) == ["rules/rule-x: status: a page with core: true that is draft"]
+
+
+def test_a_draft_page_with_every_estimate_passed_is_a_finding_only_where_ship_stands_draft_core(
+    tmp_path, monkeypatch
+):
+    # the clean version keeps the status of a page and writes only its passed Estimates
+    # (case 996.3)
+    seed(tmp_path, rule=rule_page(status="draft"))
+    ship_module(monkeypatch, stands=True)
+    assert own_lines(tmp_path) == ["rules/rule-x: status: draft while every Estimate is passed"]
+    ship_module(monkeypatch, stands=False)
+    assert own_lines(tmp_path) == []
+
+
+def test_a_page_the_cascade_set_built_then_draft_again_is_no_draft_core(tmp_path):
+    # the writer of the History line, the cascade of `generate`, and the judgment of
+    # `is_draft_core` run over one page (case 996.1)
+    from datetime import UTC, datetime
+
+    from guppi import generate, pages
+
+    wiki = seed(tmp_path, rule=rule_page(status="draft", core="true"))
+    now = datetime(2026, 11, 1, tzinfo=UTC)
+    vault = generate.Vault(tmp_path, "2026-11-01", "plugin", now, io.StringIO(), io.StringIO())
+    vault.cascade()
+    path = wiki / "rules" / "rule-x.md"
+    text = path.read_text(encoding="utf-8")
+    assert "status: built" in text
+    path.write_text(text.replace("status: built", "status: draft", 1), encoding="utf-8")
+    write(wiki / "estimates" / "estimate-x-works.md", estimate_page(status="pending"))
+    by_slug = {p.slug: p for found in pages.read_vault(wiki).values() for p in found}
+    assert by_slug["rule-x"].props["status"] == "draft"
+    assert not pages.is_draft_core(by_slug["rule-x"], by_slug)
+    write(wiki / "estimates" / "estimate-x-works.md", estimate_page(status="failed"))
+    by_slug = {p.slug: p for found in pages.read_vault(wiki).values() for p in found}
+    assert pages.is_draft_core(by_slug["rule-x"], by_slug)
 
 
 def test_lint_check_and_cli_judge_whether_ship_stands_by_one_function_draft_core():

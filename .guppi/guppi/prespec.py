@@ -214,8 +214,10 @@ answer of `case-guppi` imports `promise_notes`, not this one. And, by `cascade_n
 note per `update` item of a page that the cascade of `guppi generate` archives once the
 items of the plan and the `{supersedes:case N}` marks of the window apply, and would not
 archive before them — a `clustered` lesson of an Insight set `actioned`, an `open` Insight
-left with no live child, the Decision page of a superseded Case — judged by
-`generate.archived_by_cascade`, the function the cascade calls; the note names the Case
+left with no live child, the Decision page of a superseded Case but one a live page still
+names in `deferred_by` or `addressed_by` once the marks clear the names their Cases name —
+judged by `generate.archived_by_cascade` and `generate.kept_decisions`, the functions the
+cascade calls (case 982.2); the note names the Case
 whose item or mark sets off the archive, which may be the Case of the `update` itself or a
 sibling sub-case (case 739.1). The check of the file of a Case in `.guppi/guppi/casecheck.py`
 imports it. And, by `wait_form_notes`, one note per Estimate item whose `method` names its
@@ -237,6 +239,7 @@ it cut into the parts the pairs wrote and the rest. The check of the file of a C
 """
 
 import argparse
+import dataclasses
 import json
 import os
 import re
@@ -258,6 +261,7 @@ from guppi.generate import (  # the ticker, the pairs, the Frontier line (case 3
     archived_by_cascade,
     as_list,
     indent_added_twice,
+    kept_decisions,  # the one keep judgment of the cascade (case 982.2)
     replace_hits,
     replace_once,
     reword_pattern,
@@ -321,6 +325,7 @@ from guppi.pages import (
     is_core,
     read_category,
     read_page,
+    read_vault,
     wiki_root,
 )
 from guppi.pointers import outside  # the one judgment of a pointer, shared with ship (case 820.6)
@@ -1994,6 +1999,28 @@ def defer_notes(cases: dict) -> list[str]:
     return notes
 
 
+def without_cleared(pages: dict[str, list[Page]], records: list[dict]):
+    """Each page of `pages` as `generate` leaves it once the marks of `records` apply: a
+    name `decision-case-N` leaves `deferred_by` of a page that a decision line of the Case
+    carrying `{supersedes:case N}` names, as `Vault.clear_deferred_by` clears it (case
+    467.3); the other pages as they stand. `cascade_notes` judges the kept Decision pages
+    over them (case 982.2)."""
+    cleared: dict[str, set[str]] = {}
+    for record in records:
+        for earlier in record.get("supersedes") or []:
+            if record.get("slug"):
+                cleared.setdefault(str(record["slug"]), set()).add(
+                    f"{DECISION_PREFIX}case-{earlier}"
+                )
+    for category in pages.values():
+        for page in category:
+            gone = cleared.get(page.slug)
+            if gone and not page.error:
+                names = [d for d in as_list(page.props.get("deferred_by")) if d not in gone]
+                page = dataclasses.replace(page, props={**page.props, "deferred_by": names})
+            yield page
+
+
 def cascade_notes(
     blocks: dict[str, dict],
     records: list[dict],
@@ -2006,7 +2033,10 @@ def cascade_notes(
     `generate.archived_by_cascade`, the one function the cascade calls: a lesson standing
     `clustered` among the children of an Insight an item sets `actioned`, an `open` Insight
     whose last live child an item or the cascade archives, and the Decision page of a Case a
-    mark names, or of one of its sub-cases (case 739.1). An item reads `set: {status: …}` and `set:
+    mark names, or of one of its sub-cases (case 739.1), but one that a live page still names
+    in `deferred_by` or `addressed_by` once the marks clear what they clear — the pages
+    `generate.kept_decisions` gives over `without_cleared`, the keep the cascade reads too
+    (case 982.2). An item reads `set: {status: …}` and `set:
     {children: …}` of an `update`, and a `delete` sets `archived`. The note names the Case of
     the `update`, the page and the Case whose item or mark sets off the archive; an `update`
     and that item in one Case, or in two sub-cases of one, give it too. A `create`, a
@@ -2036,7 +2066,8 @@ def cascade_notes(
         path = wiki / "decisions" / f"{slug}.md"
         if path.exists():
             statuses[slug] = str(read_page(path, "decisions").props.get("status"))
-    before = archived_by_cascade(statuses, children)
+    kept = set(kept_decisions(without_cleared(read_vault(wiki), records)))
+    before = archived_by_cascade(statuses, children, kept)
     cause: dict[str, str] = {}
     for case, block in blocks.items():
         for kind in ("update", "delete"):
@@ -2059,7 +2090,7 @@ def cascade_notes(
         if by is not None:
             statuses[slug] = "superseded"
             cause[slug] = by
-    after = archived_by_cascade(statuses, children) - before
+    after = archived_by_cascade(statuses, children, kept) - before
 
     def trigger(slug: str) -> str | None:
         """The Case whose item or mark sets off the archive of `slug`."""
@@ -2237,36 +2268,42 @@ def check(plan: str, project_dir: Path, stamp: str, now, stdout, stderr) -> int:
     return 1 if findings else 0
 
 
-def gate(project_dir: Path, now, stamp: str, stderr) -> int:
-    """The `ExitPlanMode` hook (cases 136, 213.2, 561.3): in a working session — a `hi` of
-    the stamp in its logs — with no `prespec` line after it, exit 2 with the reason; with the
-    line, the plan file of the session by `ledger.plan_path` is judged by `plan_findings`, and
-    while it finds one, exit 2 with the findings on stderr. Notes alone, or no plan file of
-    the session, pass."""
+def gate_refusal(project_dir: Path, now, stamp: str) -> str | None:
+    """The reason the plan of a working session may not leave Plan Mode, or None when it may:
+    the one judgment of the `ExitPlanMode` hook, which `gate` prints, and of the hook on a
+    typed `/approve-spec`, `guppi spec --typed` (case 987.1). In a working session — a `hi`
+    of the stamp in its logs — with no `prespec` line after it, the reason; with the line, the
+    plan file of the session by `ledger.plan_path` is judged by `plan_findings`, and while it
+    finds one, the findings. Notes alone, no plan file of the session, or no `hi`, pass."""
     logs = session_event_logs(project_dir, now, stamp)
     hi, done = window("".join(text for _, text in logs), stamp)
     if not hi:
-        return 0
+        return None
     if not done:
-        print(
+        return (
             f"prespec: Plan Mode is closing without /pre-spec in session {stamp}. "
-            "Run /pre-spec, then exit Plan Mode again.",
-            file=stderr,
+            "Run /pre-spec, then exit Plan Mode again."
         )
-        return 2
     plan_file = plan_path(logs, stamp)
     if plan_file is None or not plan_file.is_file():
-        return 0
+        return None
     judged = plan_findings(plan_file.read_text(encoding="utf-8"), project_dir, stamp, now)
     if judged is None or not judged[0]:
-        return 0
-    print(
+        return None
+    head = (
         f"prespec: the check of the plan {plan_file} finds {len(judged[0])} finding(s); fix "
-        "them, run the check again, then exit Plan Mode:",
-        file=stderr,
+        "them, run the check again, then exit Plan Mode:"
     )
-    for line in judged[0]:
-        print(line, file=stderr)
+    return "\n".join([head, *judged[0]])
+
+
+def gate(project_dir: Path, now, stamp: str, stderr) -> int:
+    """The `ExitPlanMode` hook (cases 136, 213.2, 561.3): exit 2 with the reason
+    `gate_refusal` gives on stderr, else exit 0."""
+    reason = gate_refusal(project_dir, now, stamp)
+    if reason is None:
+        return 0
+    print(reason, file=stderr)
     return 2
 
 

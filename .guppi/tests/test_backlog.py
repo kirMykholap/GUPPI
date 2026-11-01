@@ -437,3 +437,44 @@ def test_check_is_silent_on_the_rendered_file(tmp_path):
     before = rendered(tmp_path)
     assert run(tmp_path, "--check") == (0, "", "")
     assert rendered(tmp_path) == before
+
+
+# --- `--check` passes the put-offs of the running session (case 983) ----------------------
+# `estimate-backlog-checks-the-file`
+
+
+def test_check_is_silent_on_a_file_written_before_the_newest_session_put_an_item_off(tmp_path):
+    seed(tmp_path)
+    frontier(tmp_path, "raw/2026-09-20/1000", "- [-] C1 — `rule-deferred` · backlog · kept")
+    run(tmp_path)  # the librarian of 1000 wrote the file
+    frontier(tmp_path, "raw/2026-09-21/1100", "- [-] C1 — `rule-deferred` · backlog · kept")
+    before = snapshot(tmp_path)
+    assert run(tmp_path, "--check") == (0, "", "")
+    assert "put off in 1 session\n" in rendered(tmp_path)  # nothing written
+    assert snapshot(tmp_path) == before
+    run(tmp_path)  # the writer counts every Frontier
+    assert "- `rule-deferred` — a rule put off · put off in 2 sessions\n" in rendered(tmp_path)
+
+
+def test_check_names_a_file_that_misses_the_put_off_of_an_older_session(tmp_path):
+    seed(tmp_path)
+    run(tmp_path)  # written before either session
+    frontier(tmp_path, "raw/2026-09-20/1000", "- [-] C1 — `rule-deferred` · backlog · kept")
+    frontier(tmp_path, "raw/2026-09-21/1100", "- [-] C1 — `insight-open` · backlog · kept")
+    code, out, _ = run(tmp_path, "--check")
+    assert (code, out) == (1, "backlog: vault/wiki/backlog.md differs from its sources\n")
+
+
+def test_check_reads_each_frontier_once(tmp_path, monkeypatch):
+    from guppi import generate
+
+    seed(tmp_path)
+    frontier(tmp_path, "raw/2026-09-20/1000", "- [-] C1 — `rule-deferred` · backlog · kept")
+    frontier(tmp_path, "raw/2026-09-21/1100", "- [-] C1 — `rule-deferred` · backlog · kept")
+    run(tmp_path)
+    write(target(tmp_path), "# Backlog\n\nby hand\n")
+    calls = []
+    real = generate.frontier_marks
+    monkeypatch.setattr(backlog, "frontier_marks", lambda path: calls.append(path) or real(path))
+    assert run(tmp_path, "--check")[0] == 1  # both renders compared
+    assert sorted(p.parent.name for p in calls) == ["1000", "1100"]

@@ -223,3 +223,140 @@ def test_cli_dispatches_to_spec(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr("sys.stdin", payload())
     assert cli.main(["spec"]) == 2
     assert "/hi" in capsys.readouterr().err
+
+
+# --- the typed approval, `/approve-spec` on `UserPromptSubmit` (case 987.1) -----------------
+# `estimate-skill-approve-spec-takes-the-spec`
+
+PRESPEC = "- 16:20:00 44c1aae1 prespec\n"
+
+
+def prompt(text="/approve-spec", mode="default", session=SESSION):
+    fields = {
+        "session_id": session,
+        "hook_event_name": "UserPromptSubmit",
+        "prompt": text,
+        "permission_mode": mode,
+    }
+    return io.StringIO(json.dumps(fields))
+
+
+def with_plan_file(project_dir, plan=PLAN, log=EVENT_LOG_WITH_HI + PRESPEC):
+    """A plan file named by a `tool Write:` line of the session, so `ledger.plan_path` finds it."""
+    plans = project_dir / ".claude" / "plans"
+    plans.mkdir(parents=True, exist_ok=True)
+    plan_file = plans / "the-plan.md"
+    plan_file.write_text(plan, encoding="utf-8", newline="\n")
+    with_event_log(project_dir, log + f"- 16:10:00 44c1aae1 tool Write: {plan_file}\n")
+    return plan_file
+
+
+def run_typed(stdin, project_dir):
+    out, err = io.StringIO(), io.StringIO()
+    code = spec.run(
+        ["--typed"], stdin=stdin, stdout=out, stderr=err, project_dir=project_dir, now=NOW
+    )
+    return code, out.getvalue(), err.getvalue()
+
+
+def typed_line(out):
+    """The one JSON object on stdout, the shape a `UserPromptSubmit` hook adds context in."""
+    assert out.count("\n") == 1
+    data = json.loads(out)
+    assert data["hookSpecificOutput"]["hookEventName"] == "UserPromptSubmit"
+    return data["hookSpecificOutput"]["additionalContext"]
+
+
+def passing_gate(monkeypatch, reason=None):
+    from guppi import prespec
+
+    monkeypatch.setattr(prespec, "gate_refusal", lambda *args: reason)
+
+
+def test_typed_out_of_plan_mode_after_prespec_appends_the_plan_and_gives_the_fork(
+    tmp_path, monkeypatch
+):
+    passing_gate(monkeypatch)
+    with_plan_file(tmp_path)
+    code, out, err = run_typed(prompt(), tmp_path)
+    assert (code, err) == (0, "")
+    assert spec_text(tmp_path) == STAMP + "\n\n" + PLAN
+    line = typed_line(out)
+    assert "/work" in line and "/carry" in line and "AskUserQuestion" in line
+    run_typed(prompt(), tmp_path)  # once: a second /approve-spec appends nothing
+    assert spec_text(tmp_path).count("The plan text.") == 1
+
+
+def test_typed_a_plan_naming_a_conserved_spec_leads_to_box(tmp_path, monkeypatch):
+    passing_gate(monkeypatch)
+    conserved = tmp_path / "vault" / "raw" / "2026-09-01" / "0900"
+    conserved.mkdir(parents=True)
+    (conserved / "carry.md").write_text("conserved\n", encoding="utf-8")
+    with_plan_file(tmp_path, plan=box_plan())
+    code, out, _ = run_typed(prompt(), tmp_path)
+    assert code == 0 and "call /box with vault/raw/2026-09-01/0900/" in typed_line(out)
+
+
+def test_typed_in_plan_mode_is_blocked_and_names_shift_tab(tmp_path, monkeypatch):
+    passing_gate(monkeypatch)
+    with_plan_file(tmp_path)
+    code, out, err = run_typed(prompt(mode="plan"), tmp_path)
+    assert (code, out) == (2, "")
+    assert "Shift+Tab" in err and "/approve-spec" in err
+    assert spec_files(tmp_path) == []
+
+
+def test_typed_before_prespec_is_blocked_by_the_reason_of_the_exit(tmp_path):
+    with_plan_file(tmp_path, log=EVENT_LOG_WITH_HI)
+    code, out, err = run_typed(prompt(), tmp_path)
+    assert (code, out) == (2, "")
+    assert "Run /pre-spec" in err
+    assert spec_files(tmp_path) == []
+
+
+def test_typed_while_the_check_of_the_plan_finds_a_finding_is_blocked(tmp_path, monkeypatch):
+    passing_gate(monkeypatch, "prespec: the check of the plan finds 1 finding(s)\ncase 1: x")
+    with_plan_file(tmp_path)
+    code, out, err = run_typed(prompt(), tmp_path)
+    assert (code, out) == (2, "")
+    assert "case 1: x" in err
+    assert spec_files(tmp_path) == []
+
+
+def test_typed_and_the_exit_hook_judge_by_one_function(tmp_path, monkeypatch):
+    from guppi import prespec
+
+    passing_gate(monkeypatch, "prespec: one reason")
+    with_plan_file(tmp_path)
+    assert run_typed(prompt(), tmp_path)[0] == 2
+    err = io.StringIO()
+    stdin = io.StringIO(json.dumps({"session_id": SESSION, "tool_name": "ExitPlanMode"}))
+    assert prespec.run([], stdin=stdin, stderr=err, project_dir=tmp_path, now=NOW) == 2
+    assert err.getvalue().strip() == "prespec: one reason"
+
+
+def test_typed_with_no_plan_file_or_no_hi_is_blocked(tmp_path, monkeypatch):
+    passing_gate(monkeypatch)
+    with_event_log(tmp_path, EVENT_LOG_WITH_HI + PRESPEC)
+    code, out, err = run_typed(prompt(), tmp_path)
+    assert (code, out) == (2, "") and "no plan file" in err
+    with_event_log(tmp_path, EVENT_LOG_WITHOUT_HI)
+    code, out, err = run_typed(prompt(), tmp_path)
+    assert (code, out) == (2, "") and "no /hi" in err
+    assert spec_files(tmp_path) == []
+
+
+def test_typed_any_other_prompt_passes_and_writes_nothing(tmp_path, monkeypatch):
+    passing_gate(monkeypatch)
+    with_plan_file(tmp_path)
+    for text in ("approve the spec", "/approve-specs", "/hi", "/approve-spec\tnow"):
+        assert run_typed(prompt(text), tmp_path) == (0, "", "")
+    assert spec_files(tmp_path) == []
+    assert run_typed(prompt("/approve-spec now"), tmp_path)[0] == 0  # with arguments
+
+
+def test_typed_and_hi_read_a_typed_command_by_one_judgment():
+    from guppi import event
+
+    for text in ("/hi", " /hi ", "/hi now", "/hi\tnow", "/hint", "hi"):
+        assert event.is_hi_prompt(text) == event.is_typed(text, "/hi")

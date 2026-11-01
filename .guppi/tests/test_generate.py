@@ -887,6 +887,126 @@ def test_a_supersedes_of_a_page_with_only_a_defer_list_clears_deferred_by(tmp_pa
     assert props(page(tmp_path, "decisions", "decision-case-2"))["status"] == "archived"
 
 
+# --- a superseded Decision a live page names stays (case 982.1) ---------------------------
+
+
+def decision_text(case, status, **extra):
+    lines = [f'case: "{case}"', f"status: {status}"] + [f"{k}: {v}" for k, v in extra.items()]
+    return (
+        "---\ntype: decision\n" + "\n".join(lines) + f"\norigin: raw/{DATE}/ledger.md#case-{case}\n"
+        f"sprint: migration\ncreated: {DATE}\ntags: []\n---\n\n"
+        "## Problem\n\np\n\n## History\n\n- created\n"
+    )
+
+
+def defer_of_two_taken_up_in_part():
+    """One decision defers `rule-root` and `rule-other`; a later one takes up `rule-root`
+    alone."""
+    entries = [
+        ROOT,
+        defer_entry("2", "rule-root", line=2),
+        defer_entry("2", "rule-other", line=3),
+        {
+            "line": 4,
+            "text": "",
+            "case": "3",
+            "kind": "update",
+            "category": "rules",
+            "slug": "rule-root",
+            "origin": f"raw/{DATE}/ledger.md#case-3",
+            "decision": "decision-case-3",
+            "supersedes": "2",
+            "set": {"governs": "x.md"},
+            "change": "taken up",
+        },
+    ]
+    decisions = records_for(entries)
+    decisions[-1]["supersedes"] = ["decision-case-2"]
+    return entries, decisions
+
+
+def test_a_superseded_decision_a_live_page_still_defers_by_stays_superseded(tmp_path):
+    entries, decisions = defer_of_two_taken_up_in_part()
+    seed(tmp_path, entries=entries, decisions=decisions)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert "deferred_by" not in props(page(tmp_path, "rules", "rule-root"))
+    assert props(page(tmp_path, "rules", "rule-other"))["deferred_by"] == ["decision-case-2"]
+    two = page(tmp_path, "decisions", "decision-case-2")
+    assert props(two)["status"] == "superseded"
+    assert "archived · superseded" not in two
+
+
+def test_a_kept_decision_is_archived_at_the_run_after_the_last_name_is_cleared(tmp_path):
+    entries, decisions = defer_of_two_taken_up_in_part()
+    seed(tmp_path, entries=entries, decisions=decisions)
+    assert run(tmp_path)[0] == 0
+    other = tmp_path / "vault" / "wiki" / "rules" / "rule-other.md"
+    text = other.read_text(encoding="utf-8")
+    other.write_text(
+        "".join(line for line in text.splitlines(True) if not line.startswith("deferred_by:")),
+        encoding="utf-8",
+        newline="\n",
+    )
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    two = page(tmp_path, "decisions", "decision-case-2")
+    assert props(two)["status"] == "archived" and f"- {DATE} archived · superseded" in two
+
+
+def test_an_insight_that_names_a_superseded_decision_in_addressed_by_keeps_it(tmp_path):
+    insight = insight_text("insight-done", "actioned", []).replace(
+        "tags: [harness]\n", "addressed_by: decision-case-5\ntags: [harness]\n"
+    )
+    pages = [
+        ("insights", "insight-done", insight),
+        ("decisions", "decision-case-5", decision_text("5", "superseded")),
+        ("decisions", "decision-case-6", decision_text("6", "superseded")),
+        (
+            "rules",
+            "rule-gone",
+            page_text("rules", "rule-gone", "archived", deferred_by="[decision-case-6]"),
+        ),
+    ]
+    seed(tmp_path, entries=[ROOT], pages=pages)
+    code, _, err = run(tmp_path)
+    assert code == 0 and err == ""
+    assert props(page(tmp_path, "decisions", "decision-case-5"))["status"] == "superseded"
+    # a page standing `archived` keeps nothing
+    assert props(page(tmp_path, "decisions", "decision-case-6"))["status"] == "archived"
+
+
+def test_the_cascade_and_the_sprint_close_keep_the_same_decision_pages(tmp_path):
+    from guppi import sprint_close
+    from guppi.pages import read_vault
+
+    insight = insight_text("insight-done", "actioned", []).replace(
+        "tags: [harness]\n", "addressed_by: decision-case-5\ntags: [harness]\n"
+    )
+    pages = [
+        ("insights", "insight-done", insight),
+        ("rules", "rule-x", page_text("rules", "rule-x", deferred_by="[decision-case-4]")),
+        (
+            "rules",
+            "rule-gone",
+            page_text("rules", "rule-gone", "archived", deferred_by="[decision-case-6]"),
+        ),
+    ] + [
+        ("decisions", f"decision-case-{n}", decision_text(str(n), "superseded"))
+        for n in (4, 5, 6, 7)
+    ]
+    seed(tmp_path, entries=[ROOT], pages=pages)
+    vault = read_vault(tmp_path / "vault" / "wiki")
+    close = sprint_close.Close(vault, "migration", (), ())
+    close.judge_decisions(vault)
+    closed_keeps = {p.slug for p, _ in close.keep if p.category == "decisions"}
+    statuses = {f"decision-case-{n}": "superseded" for n in (4, 5, 6, 7)}
+    live_pages = [p for category in vault.values() for p in category]
+    gone = generate.archived_by_cascade(statuses, {}, generate.kept_decisions(live_pages))
+    assert closed_keeps == {"decision-case-4", "decision-case-5"}
+    assert set(statuses) - gone == closed_keeps
+
+
 def test_an_estimate_entry_always_fills_status_and_result(tmp_path):
     entries = [
         CHILD,
@@ -3737,7 +3857,8 @@ def test_a_supersedes_of_a_parent_sets_its_sub_case_pages_superseded_in_the_same
     for case in ("5", "5.1", "5.2", "5.2.1"):
         text = page(tmp_path, "decisions", f"decision-case-{case}")
         assert props(text)["superseded_by"] == ["decision-case-6"]
-        assert props(text)["status"] == "archived"  # the cascade of 104.1 follows
+        # the cascade of 104.1 follows, but for the page a live page still defers by (case 982.1)
+        assert props(text)["status"] == ("superseded" if case == "5.2.1" else "archived")
         assert text.split("## History")[1].count(SUPERSEDED_BY_SIX) == 1
     # a child's `defer` target keeps its mark: only the page the tag names clears its own
     assert props(page(tmp_path, "rules", "rule-later"))["deferred_by"] == ["decision-case-5.2.1"]

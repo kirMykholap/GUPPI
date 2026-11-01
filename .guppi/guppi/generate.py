@@ -159,7 +159,10 @@ The cascade after all entries (case 201.4): an entity or rule whose live Estimat
 `passed` becomes `built`, a `built` one with a live Estimate not passed returns to `draft` —
 an Estimate standing `archived` is not counted, as a slug with no page is not counted, since
 a `delete` of the same run leaves its file in place until `cleanup` (case 328),
-History `· cascade`; a `superseded` Decision page becomes `archived` (case 104.1); the
+History `· cascade`; a `superseded` Decision page becomes `archived` (case 104.1), but one
+that a page staying live, not a Decision page, names in a field of `KEEPERS` — `deferred_by`
+or `addressed_by` — stays `superseded` until no such page names it, by `kept_decisions`, which
+`guppi sprint-close` imports for the Decision pages it keeps (case 982.1); the
 `clustered` children of an `actioned` Insight become `archived` (case 104.2); every
 Insight's `severity` is recounted, a child's status read under `wiki/lessons/` or in the
 archive, a child with no page counted live (case 110); an `open` Insight at 0 becomes
@@ -167,8 +170,8 @@ archive, a child with no page counted live (case 110); an `open` Insight at 0 be
 recounted — the live rules whose `applies_to` names it, in slug order — written when the
 list is not empty or the field already stands, History `rules: [...] · cascade` on a change
 (case 305.3). No section is derived by the cascade. The pages the three archive steps take
-are judged by one function, `archived_by_cascade`, from the status of each page by slug and
-the `children` of each Insight; `cascade` calls it, and the cascade notes of `/pre-spec`
+are judged by one function, `archived_by_cascade`, from the status of each page by slug,
+the `children` of each Insight and the slugs `kept_decisions` gives; `cascade` calls it, and the cascade notes of `/pre-spec`
 and of the check of the file of a Case import it (case 739.1).
 
 No line of the sprint page moves by the script: a milestone item leaves its milestone
@@ -208,7 +211,7 @@ from guppi.materialize import (
     units_with,
     yaml_path,
 )
-from guppi.pages import HISTORY, REF_FIELDS, Page, read_page, slug_of, wiki_root
+from guppi.pages import HISTORY, REF_FIELDS, Page, read_page, read_vault, slug_of, wiki_root
 from guppi.tags import registered_tags
 
 KEY_ORDER = {
@@ -607,12 +610,37 @@ DEFER_NEEDS_A_PAGE = (
 # the status `cascade` gives `archived_by_cascade` for a `clustered` lesson it cannot write —
 # unreadable, or read from the archive: not archived, and live (case 104.2)
 KEPT_CLUSTERED = "clustered, not written"
+# the fields by which a page that stays live keeps a Decision page it names: the cascade
+# archives no such superseded page, and the close of a sprint moves no such page of its
+# sprint (cases 627.1, 982.1)
+KEEPERS = ("deferred_by", "addressed_by")
 
 
-def archived_by_cascade(statuses: dict[str, str], children: dict[str, list[str]]) -> set[str]:
+def kept_decisions(pages) -> dict[str, str]:
+    """The Decision pages that live pages keep, slug → why: each slug that a page, not a
+    Decision page and not standing `archived`, names in a field of `KEEPERS`, the first such
+    name giving the reason. `cascade` passes the slugs to `archived_by_cascade`, `guppi
+    sprint-close` keeps the Decision pages of its sprint by it, and the cascade notes of
+    `/pre-spec` read the same set (case 982.1)."""
+    named: dict[str, str] = {}
+    for page in pages:
+        if page.error or page.category == "decisions":
+            continue
+        if str(page.props.get("status")) == "archived":
+            continue
+        for field in KEEPERS:
+            for slug in as_list(page.props.get(field)):
+                named.setdefault(slug, f"named in {field} of {page.slug}")
+    return named
+
+
+def archived_by_cascade(
+    statuses: dict[str, str], children: dict[str, list[str]], kept=frozenset()
+) -> set[str]:
     """The slugs the archive steps of the cascade archive (cases 104.1–104.3), given the
-    status of each page by slug and the `children` of each Insight by its slug: a Decision
-    page standing `superseded`; a lesson standing `clustered` among the children of an
+    status of each page by slug, the `children` of each Insight by its slug and the Decision
+    pages that live pages keep (`kept_decisions`): a Decision page standing `superseded` that
+    is not kept (case 982.1); a lesson standing `clustered` among the children of an
     Insight standing `actioned`; and an Insight standing `open` whose every child stands
     `archived` once the first two steps apply, one with no children included. A child with
     no status — no page anywhere — is live. `cascade` calls it, and `/pre-spec` and the
@@ -620,7 +648,7 @@ def archived_by_cascade(statuses: dict[str, str], children: dict[str, list[str]]
     gone = {
         slug
         for slug, status in statuses.items()
-        if slug.startswith(DECISION_PREFIX) and status == "superseded"
+        if slug.startswith(DECISION_PREFIX) and status == "superseded" and slug not in kept
     }
     for insight, kids in children.items():
         if statuses.get(insight) == "actioned":
@@ -1438,8 +1466,10 @@ class Vault:
                         status = str(read_page(path, path.parent.name).props.get("status"))
                         statuses[kid] = KEPT_CLUSTERED if status == "clustered" else status
                         break
-        gone = archived_by_cascade(statuses, children)
-        # a superseded decision no longer describes the present (case 104.1)
+        kept = kept_decisions(p for pages in read_vault(self.wiki).values() for p in pages)
+        gone = archived_by_cascade(statuses, children, kept)
+        # a superseded decision no longer describes the present (case 104.1), but one that a
+        # live page still names in `deferred_by` or `addressed_by` stays (case 982.1)
         for slug, page in decisions.items():
             if slug in gone:
                 page.props["status"] = "archived"

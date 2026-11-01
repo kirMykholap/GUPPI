@@ -10,7 +10,13 @@ the way the ledger hook finds it, across the event logs of the window (case 73.2
 folder is created when missing. Without a `hi` recorded for this session the hook exits 2
 with the reason, so the person is told rather than left believing the Spec was copied.
 
-The file has three writers: this hook, once per approval; the `Stop` hook of
+Where the Claude Code CLI withholds the approval of a plan longer than it can show, the
+person leaves Plan Mode and types `/approve-spec`; `guppi spec --typed`, the same module on
+`UserPromptSubmit`, judges that prompt by `typed` and takes the plan file of the session
+in the same way, or blocks the prompt with the reason (case 987.1).
+
+The file has three writers: this hook, once per approval or per typed `/approve-spec`; the
+`Stop` hook of
 `rule-spec-write`, which, once the file stands, writes each Case ratified after the approval
 — its sections replaced, or placed — removes a superseded Case, and writes a defer-only Case
 under `## Deferred` (cases 421.1, 441, 542); and Work Mode, which ticks the boxes of the
@@ -37,10 +43,16 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.box import conserved_spec_named
-from guppi.event import project_root, read_payload, session_stamp
-from guppi.ledger import session_dir
+from guppi.event import PLAN_MODE, is_typed, project_root, read_payload, session_stamp
+from guppi.ledger import plan_path, session_dir, session_event_logs
 
 TOOL = "ExitPlanMode"
+TYPED = "--typed"
+APPROVE = "/approve-spec"
+IN_PLAN_MODE = (
+    "spec: /approve-spec takes the Spec only out of Plan Mode. Leave Plan Mode with "
+    "Shift+Tab and type /approve-spec again."
+)
 
 
 def plan_text(payload: dict) -> str:
@@ -112,17 +124,54 @@ def box_line(path: Path, folder: Path, project_dir: Path) -> str:
     )
 
 
-def fork_output(path: Path, project_dir: Path, plan: str = "") -> str:
+def fork_output(path: Path, project_dir: Path, plan: str = "", event: str = "PostToolUse") -> str:
     """`fork_line`, or `box_line` for a plan that names a conserved Spec by
     `conserved_spec_named` of `.guppi/guppi/box.py`, wrapped as `hookSpecificOutput.additionalContext`,
     the JSON a `PostToolUse` hook prints so that the client adds the line to the context
-    (case 255)."""
+    (case 255); `event` names the hook, `UserPromptSubmit` for the typed path (case 987.1)."""
     folder = conserved_spec_named(plan, project_dir)
     line = fork_line(path, project_dir) if folder is None else box_line(path, folder, project_dir)
     return json.dumps(
-        {"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": line}},
+        {"hookSpecificOutput": {"hookEventName": event, "additionalContext": line}},
         ensure_ascii=False,
     )
+
+
+def typed(payload: dict, project_dir: Path, now, stdout, stderr) -> int:
+    """The hook on `UserPromptSubmit` (case 987.1): a prompt that is not `/approve-spec`, by
+    `is_typed` of `.guppi/guppi/event.py`, passes with nothing written. `/approve-spec` is
+    blocked — exit 2, the reason on stderr, `spec.md` as it stands — while the session is in
+    Plan Mode, with no `/hi` of the session, while `gate_refusal` of `.guppi/guppi/prespec.py`,
+    the judgment of the `ExitPlanMode` hook, gives a reason, and with no plan file of the
+    session by `ledger.plan_path`; otherwise the plan file is appended by `append_plan` and
+    the line of `fork_output` printed for `UserPromptSubmit`."""
+    from guppi.prespec import gate_refusal  # prespec imports more than this hook needs
+
+    if not is_typed(payload.get("prompt"), APPROVE):
+        return 0
+    if payload.get("permission_mode") == PLAN_MODE:
+        print(IN_PLAN_MODE, file=stderr)
+        return 2
+    session = session_stamp(None, payload)
+    path = spec_path(project_dir, now, session)
+    if path is None:
+        print(f"spec: /approve-spec: no /hi recorded for session {session}.", file=stderr)
+        return 2
+    reason = gate_refusal(project_dir, now, session)
+    if reason is not None:
+        print(
+            f"spec: /approve-spec refused, as an exit from Plan Mode would be:\n{reason}",
+            file=stderr,
+        )
+        return 2
+    plan_file = plan_path(session_event_logs(project_dir, now, session), session)
+    if plan_file is None or not plan_file.is_file():
+        print(f"spec: /approve-spec: no plan file of session {session}.", file=stderr)
+        return 2
+    plan = plan_file.read_text(encoding="utf-8")
+    append_plan(path, plan, now, session)
+    print(fork_output(path, project_dir, plan, "UserPromptSubmit"), file=stdout)
+    return 0
 
 
 def run(
@@ -133,6 +182,12 @@ def run(
     stderr = sys.stderr if stderr is None else stderr
     project_dir = project_root() if project_dir is None else Path(project_dir)
     now = datetime.now().astimezone() if now is None else now
+    if TYPED in (argv or []):
+        try:
+            return typed(read_payload(stdin), project_dir, now, stdout, stderr)
+        except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
+            print(f"spec: /approve-spec: spec.md not written: {exc}", file=stderr)
+            return 2
     try:
         payload = read_payload(stdin)
         plan = plan_text(payload)

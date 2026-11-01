@@ -3146,6 +3146,31 @@ def test_cascade_a_superseded_decision_page_gives_the_note(tmp_path):
     ]
 
 
+def with_keeper(project_dir, category, slug, field, decision):
+    folder = project_dir / "vault" / "wiki" / category
+    folder.mkdir(parents=True, exist_ok=True)
+    text = f'---\ntype: {category[:-1]}\nstatus: draft\n{field}: ["[[{decision}]]"]\n---\n\nx\n'
+    (folder / f"{slug}.md").write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_cascade_a_decision_page_a_live_page_still_names_gives_none(tmp_path):
+    with_wiki_page(tmp_path, "decisions", "decision-case-5", "current")
+    with_wiki_page(tmp_path, "decisions", "decision-case-6", "current")
+    with_keeper(tmp_path, "rules", "rule-y", "deferred_by", "decision-case-5")
+    with_keeper(tmp_path, "insights", "insight-z", "addressed_by", "decision-case-6")
+    records = [{"case": "7", "kind": "update", "slug": "rule-x", "supersedes": ["5", "6"]}]
+    blocks = {"1": update("decision-case-5"), "2": update("decision-case-6")}
+    assert prespec.cascade_notes(blocks, records, tmp_path) == []
+
+
+def test_cascade_a_mark_whose_case_names_the_deferring_page_gives_the_note(tmp_path):
+    with_wiki_page(tmp_path, "decisions", "decision-case-5", "current")
+    with_keeper(tmp_path, "rules", "rule-y", "deferred_by", "decision-case-5")
+    records = [{"case": "7", "kind": "update", "slug": "rule-y", "supersedes": ["5"]}]
+    blocks = {"1": update("decision-case-5")}
+    assert prespec.cascade_notes(blocks, records, tmp_path) == [archives(1, "decision-case-5", 7)]
+
+
 def test_cascade_a_create_delete_or_defer_of_such_a_page_gives_none(tmp_path):
     with_cluster(tmp_path)
     actioned = update("insight-i", status="actioned")

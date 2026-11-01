@@ -27,8 +27,11 @@ conserved unit that does not parse — a Case in two files, a `then` block not Y
 one line on stderr, exit 1, the file not written. The script writes no file but
 `vault/wiki/backlog.md`. `--check` renders in memory and compares: one line on stdout —
 `backlog: vault/wiki/backlog.md differs from its sources` — and exit 1 when the file
-differs, silence and exit 0 when it is the same, nothing written either way; `guppi check`
-runs it after `sprint --check` (case 451.5). The librarian runs the script after
+differs both from the render with every Frontier and from the render without the Frontier
+of the newest session, the first that `generate.frontiers` gives, since the put-offs of the
+running session enter the file only at its librarian's run (case 983); silence and exit 0
+when it is the same as either, nothing written either way; the Frontiers are read once, by
+`sessions_of`, for both renders; `guppi check` runs it after `sprint --check` (case 451.5). The librarian runs the script after
 `guppi sprint`, `carry` after it writes `carry.md`, and the governed-files hook refuses a
 hand edit (`governs` on `rule-backlog`). Rule page: `vault/wiki/rules/rule-backlog.md`.
 """
@@ -222,15 +225,18 @@ def deferred(
     return out
 
 
-def render(project_dir: Path, pages: dict[str, list[Page]]) -> tuple[str | None, str]:
-    """`(text, error)`: the whole file, or the error line."""
+def render(
+    project_dir: Path, pages: dict[str, list[Page]], sessions: Sessions | None = None
+) -> tuple[str | None, str]:
+    """`(text, error)`: the whole file, or the error line; the counts from `sessions`, the
+    Frontiers `sessions_of` reads when None."""
     blocks, slugs, error = conserved(project_dir)
     if error:
         return None, error
     lines = deferred(
         pages,
         slugs,
-        sessions_of(project_dir),
+        sessions_of(project_dir) if sessions is None else sessions,
         archived_sprint_pages(project_dir),
         archived_slugs(wiki_root(project_dir)),
     )
@@ -266,7 +272,9 @@ def run(argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None 
     project_dir = project_root() if project_dir is None else Path(project_dir)
     args = parser().parse_args(argv)
     wiki = wiki_root(project_dir)
-    text, error = render(project_dir, read_vault(wiki))
+    pages = read_vault(wiki)
+    sessions = sessions_of(project_dir)
+    text, error = render(project_dir, pages, sessions)
     if text is None:
         print(error, file=stderr)
         return 1
@@ -274,6 +282,10 @@ def run(argv, *, stdin=None, stdout=None, stderr=None, project_dir: Path | None 
     if args.check:  # compare, name, write nothing (case 451.5)
         current = target.read_text(encoding="utf-8") if target.is_file() else None
         if current == text:
+            return 0
+        # the put-offs of the newest session, the running one, enter the file only at its
+        # librarian's run (case 983)
+        if current is not None and current == render(project_dir, pages, sessions[1:])[0]:
             return 0
         print("backlog: vault/wiki/backlog.md differs from its sources", file=stdout)
         return 1

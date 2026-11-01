@@ -134,9 +134,15 @@ HI_REFUSED = (
 )
 
 
-def is_hi_prompt(prompt) -> bool:
+def is_typed(prompt, command: str) -> bool:
+    """Whether the person typed `command` — alone, or with arguments after a space — the one
+    judgment of a typed command, which `/hi` and `/approve-spec` share (case 987.1)."""
     text = str(prompt or "").strip()
-    return text == HI_PROMPT or text.startswith(HI_PROMPT + " ")
+    return text == command or text.startswith(command + " ")
+
+
+def is_hi_prompt(prompt) -> bool:
+    return is_typed(prompt, HI_PROMPT)
 
 
 def hi_refusal(payload: dict) -> str | None:

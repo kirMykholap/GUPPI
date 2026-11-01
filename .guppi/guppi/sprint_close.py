@@ -3,7 +3,8 @@ of a sprint: its finished work leaves the live pages.
 
 The close of `entity-sprint-<id>` moves (cases 612, 627):
 - each Decision page whose `sprint` is `<id>`, but one that a page staying live names in
-  `deferred_by` or `addressed_by` (case 627.1);
+  `deferred_by` or `addressed_by` (case 627.1), judged by `kept_decisions` of
+  `.guppi/guppi/generate.py`, which the cascade runs too (case 982.1);
 - each Insight of the sprint that stands `actioned`, and each lesson of the sprint of `kind:
   error` that stands `new`, but a lesson an `open` Insight lists in `children` (case 627.2);
 - the sprint page and each Estimate its `estimates` lists; every other `passed` Estimate
@@ -55,14 +56,13 @@ from pathlib import Path
 
 from guppi import archive, cleanup
 from guppi.event import project_root
-from guppi.generate import HISTORY, as_list, write_page
+from guppi.generate import HISTORY, as_list, kept_decisions, write_page
 from guppi.ledger import SPRINT_PAGE, hi_stamps, session_dir, session_event_logs
 from guppi.materialize import session_of_run, units_with
 from guppi.pages import Page, read_vault, wiki_root
 from guppi.render import command_line
 
 UNREAD = ("pending", "failed")
-KEEPERS = ("deferred_by", "addressed_by")
 
 
 class Close:
@@ -162,13 +162,8 @@ class Close:
                 self.keep.append((lesson, "a knowledge lesson"))
 
     def judge_decisions(self, pages: dict[str, list[Page]]) -> None:
-        named: dict[str, str] = {}
-        for page in self.by_slug.values():
-            if page.slug in self.move or page.category == "decisions":
-                continue
-            for field in KEEPERS:
-                for slug in as_list(page.props.get(field)):
-                    named.setdefault(slug, f"named in {field} of {page.slug}")
+        # the keep judgment the cascade of `guppi generate` runs too (case 982.1)
+        named = kept_decisions(p for p in self.by_slug.values() if p.slug not in self.move)
         for decision in pages["decisions"]:
             if decision.error or not self.of_sprint(decision):
                 continue

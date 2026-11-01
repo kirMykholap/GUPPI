@@ -273,16 +273,15 @@ from guppi.ledger import (
 )
 from guppi.lint import (
     CODE_SPAN,
-    WIKILINK,
-    archived_slugs,
     holds,
-    hub_files,
+    link_names,  # the one judgment of the names a link may carry (case 977)
     load_schema,
     method_of,
     names_a_form,
     names_a_moc_form,
     names_its_event_inside_a_part,
     tied_to_a_one_off_moment,
+    unknown_links,
     unmet_conditions,
     waits_for_another_session,
 )
@@ -2115,20 +2114,14 @@ def plan_prose(lines: list[str]) -> list[str]:
     ]
 
 
-def known_slugs(project_dir: Path) -> set[str]:
-    """What a `[[…]]` may name: a live page, an archived page, a hub file (case 149.3)."""
-    wiki = wiki_root(project_dir)
-    live = {p.stem for category in CATEGORIES for p in (wiki / category).glob("*.md")}
-    return live | archived_slugs(wiki) | hub_files(wiki)
-
-
 def check_bare_links(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
     """A `[[slug]]` outside a code span in the plan — in the blockquotes and in the
     strings of the `then` blocks — that names neither a live or archived page, nor a slug a
     `create` of the same plan carries, nor a hub file of `wiki/`; one line per slug and
     Case (case 264.2). The text would reach a page as it stands, and lint would read it as a broken
-    link (cases 130.1, 140, 160, 262)."""
-    known = known_slugs(project_dir)
+    link (cases 130.1, 140, 160, 262). The names are `link_names` of `.guppi/guppi/lint.py`,
+    the judgment lint reads a body by, and the links are read by its `unknown_links` (case 977)."""
+    known = link_names(wiki_root(project_dir))
     created = {
         str(item.get("slug"))
         for block in blocks.values()
@@ -2137,13 +2130,7 @@ def check_bare_links(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
     }
     findings: list[str] = []
     for case, lines in cases.items():
-        seen: set[str] = set()
-        prose = CODE_SPAN.sub("", "\n".join(plan_prose(lines)))
-        for slug in WIKILINK.findall(prose):
-            slug = slug.strip()
-            if slug in known or slug in created or slug in seen:
-                continue
-            seen.add(slug)
+        for slug in unknown_links("\n".join(plan_prose(lines)), known | created):
             findings.append(f"case {case}: [[{slug}]] outside a code span names no page")
     return findings
 

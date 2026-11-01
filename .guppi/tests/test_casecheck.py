@@ -2560,6 +2560,54 @@ def test_subagent_summary_names_the_case_no_file_written_is_not_judged(working):
     assert answer(working, "**Built:**", agent_transcript_path=agent) == (0, "")
 
 
+# --- a summary after text of its own (case 981.1) --------------------------------------------
+# `estimate-case-check-sends-back-a-summary-after-text`
+
+ALONE = "answer again with the summary alone"
+
+
+def prose_then_summary(path):
+    """An answer of `case-guppi` with prose before its `**Built:**` line (case 981.1)."""
+    return text(f"I fixed the file.\n\n  **Built:** {path}\n**Case:** 7 — example")
+
+
+def test_subagent_summary_after_text_is_sent_back(working):
+    path, call = written(working, ANSWER)
+    agent = transcript(working, call, [prose_then_summary(path)])
+    code, err = answer(working, "I fixed the file.", agent_transcript_path=agent)
+    assert code == 2
+    assert ALONE in err and "`I fixed the file.`" in err
+    assert err.count("casecheck: ") == 1
+
+
+def test_subagent_summary_after_text_the_same_text_is_not_sent_back_twice(working):
+    path, call = written(working, ANSWER)
+    agent = transcript(working, call, [prose_then_summary(path)], [prose_then_summary(path)])
+    assert answer(working, "I fixed the file.", agent_transcript_path=agent) == (0, "")
+
+
+@pytest.mark.parametrize(
+    "newest",
+    [
+        "**Built:** {path}\n**Case:** 7 — example",
+        round_of("Which test?") + "\n\n**Built:** {path}",
+        "**Fact:**\nThe page says so.\n\n**Built:** {path}",
+        "**Dropped:** {path}\n\n**Built:** {path}",
+        "I built nothing.",
+    ],
+)
+def test_subagent_summary_after_text_a_summary_round_fact_or_dropped_passes(working, newest):
+    path, call = written(working, ANSWER)
+    agent = transcript(working, call, [text(newest.format(path=path))])
+    _, err = answer(working, "", agent_transcript_path=agent)
+    assert ALONE not in err
+
+
+def test_subagent_summary_after_text_no_file_written_passes(working):
+    agent = transcript(working, [prose_then_summary("nowhere")])
+    assert answer(working, "I fixed the file.", agent_transcript_path=agent) == (0, "")
+
+
 # --- the pairs of the session in order (case 711.1) -------------------------------------------
 # `estimate-case-check-applies-the-pairs-of-the-session-in-order`
 

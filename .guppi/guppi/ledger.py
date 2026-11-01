@@ -122,6 +122,19 @@ every `Stop` without a word, and is written at the first `Stop` where each of it
 listed or declared. A line refused for its tags is not held for its mark (case 703.3): it is
 passed to `unmarked_lessons` beside the lines refused for their prefix.
 
+A reading or a lesson names no missing page (case 977). A fresh `estimate[...]` or
+`lesson[...]` line whose text holds a `[[name]]` outside a code span that names no live or
+archived page, no hub file of `vault/wiki/` and no slug that a `create` decision line of the
+session's ledger or of the same `Stop` creates is not written, since its text reaches a page
+as it stands and lint reads the name as a broken link. The names are `link_names` and the
+links `unknown_links` of `.guppi/guppi/lint.py`, the judgment `guppi check` and pre-spec share
+(`refused_links`). The hook exits 2 with one stderr line per refused line only when the line
+stands in the reply just finished, told once a stretch by `untold`: it asks for the name in a
+code span or for the slug of a page. A refused line of an earlier text is judged again at every
+`Stop` without a word, and is written at the first `Stop` where each such name passes. A lesson
+line refused for its link is not held for its mark: it is passed to `unmarked_lessons` beside
+the lines refused for their prefix.
+
 A mark names a decision line before it (case 497.1). A fresh `lesson[...]` line whose
 `{addressed_by:case N}` has no decision line of Case N before it — in the session's ledger,
 or earlier among the lines of the same `Stop` — is not written, since `materialize` links a
@@ -771,6 +784,54 @@ def refused_tags(
     return refused
 
 
+def refused_links(
+    project_dir: Path, fresh: list[str], written: list[str]
+) -> list[tuple[str, str, list[str]]]:
+    """`(line, head, names)` of each fresh `estimate[...]` or `lesson[...]` line whose text
+    holds a `[[name]]` outside a code span that `link_names` of `.guppi/guppi/lint.py` does not
+    hold and no `create` decision line of `written` or `fresh` creates (case 977); `head` is
+    `estimate[<slug>]` or `lesson[<slug>]`, `names` the names that pass nowhere. The links are
+    read by `unknown_links`, the reading lint and pre-spec share; imported here, since `lint`
+    imports this module."""
+    from guppi.lint import body_links, link_names, unknown_links
+    from guppi.materialize import parse_line
+    from guppi.pages import wiki_root
+
+    linked = [
+        (line, record)
+        for line in fresh
+        if (record := parse_line(f"- {body(line)}"))
+        and record["record"] in ("estimate", "lesson")
+        and body_links(body(line))
+    ]
+    if not linked:
+        return []
+    created = {
+        r["slug"]
+        for line in written + fresh
+        if (r := parse_line(f"- {body(line)}"))
+        and r["record"] == "decision"
+        and r["kind"] == "create"
+    }
+    known = link_names(wiki_root(project_dir)) | created
+    refused: list[tuple[str, str, list[str]]] = []
+    for line, record in linked:
+        missing = unknown_links(body(line), known)
+        if missing:
+            refused.append((line, f"{record['record']}[{record['slug']}]", missing))
+    return refused
+
+
+def link_message(head: str, names: list[str]) -> str:
+    """The stderr line of a reading or a lesson refused for a bare link to no page (case 977)."""
+    links = ", ".join(f"[[{name}]]" for name in names)
+    return (
+        f"ledger: {head} not written — {links} outside a code span names no page, and the text "
+        "reaches a page as it stands: write the line again with the name in a code span, or "
+        "with the slug of a page."
+    )
+
+
 def tag_message(slug: str, tags: list[str]) -> str:
     """The stderr line of a lesson line refused for its tags (cases 703.2, 827.1): it asks for
     a tag of `tags.md` or for a `{newtag:...}` block that declares the tag on the line."""
@@ -1034,6 +1095,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         prefixed = {line for line, _ in lessons}
         # the lines with a tag refused (case 703.2)
         tagged = refused_tags(project_dir, now, stamp, fresh, written, prefixed)
+        linked = refused_links(project_dir, fresh, written)  # a bare link (case 977)
         marks = refused_marks(fresh, written, prefixed)  # the marks refused (case 497.1)
         records_deferred = refused_defers(fresh)  # a Lesson or a Decision page (case 865)
         taken = refused_taken_sprint(project_dir, fresh)  # a sprint id taken (case 788.1)
@@ -1054,9 +1116,11 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         finished = {body(line) for line in ledger_lines(reply_text(payload))}
         held: list[tuple[str, str]] = []  # asked once, then written as it stands (case 682.1)
         dropped: set[str] = set()
-        # no hold for a tag (case 703.3)
+        # no hold for a tag (case 703.3) or a link (case 977)
         for line, slug, cases, beside in unmarked_lessons(
-            fresh, written, prefixed | {line for line, _, _ in tagged}
+            fresh,
+            written,
+            prefixed | {line for line, _, _ in tagged} | {line for line, _, _ in linked},
         ):
             message = held_message(slug)
             if beside:
@@ -1067,6 +1131,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             {line for line, _, _ in refused}
             | {line for line, _ in lessons}
             | {line for line, _, _ in tagged}
+            | {line for line, _, _ in linked}
             | {line for line, _, _, _ in marks}
             | set(unopened)
             | taken_lines
@@ -1102,6 +1167,9 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
         # the messages on the tags (case 703.2)
         messages += [
             tag_message(slug, tags) for line, slug, tags in tagged if body(line) in finished
+        ]
+        messages += [  # a bare link to no page (case 977)
+            link_message(head, names) for line, head, names in linked if body(line) in finished
         ]
         for line, slug, case, subs in marks:
             if body(line) in finished:

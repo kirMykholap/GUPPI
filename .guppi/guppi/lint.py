@@ -107,6 +107,7 @@ from guppi.pages import (
     has_no_parent,  # the one judgment of a page with no parent (case 877.1)
     is_core,
     is_draft_core,  # the one judgment of a draft page with `core: true` (case 822)
+    page_paths,  # the one judgment of a page file (case 977)
     read_vault,
     ship_stands,  # the one judgment of whether the command `ship` stands (case 822)
     slug_of,
@@ -335,9 +336,14 @@ def links_of(page: Page) -> list[tuple[str, str]]:
             out.append((field, slug))
     for name, text in page.sections.items():
         field = "criterion" if page.category == "decisions" and name == CRITERION else "body"
-        for slug in WIKILINK.findall(CODE_SPAN.sub("", text)):
-            out.append((field, slug.strip()))
+        for slug in body_links(text):
+            out.append((field, slug))
     return out
+
+
+def body_links(text: str) -> list[str]:
+    """The names of the `[[…]]` of a text outside a code span, in order (case 977)."""
+    return [slug.strip() for slug in WIKILINK.findall(CODE_SPAN.sub("", text))]
 
 
 def hub_files(wiki: Path) -> set[str]:
@@ -350,13 +356,31 @@ def hub_files(wiki: Path) -> set[str]:
     return out
 
 
-def check_refs(page: Page, known: set[str], hubs: set[str] = frozenset()) -> list[Finding]:
+def link_names(wiki: Path) -> set[str]:
+    """The names a `[[…]]` outside a code span may carry (case 977): the stem of each page
+    file by `page_paths` — a `schema.md` is no page —, each archived page by
+    `archived_slugs` and each hub file by `hub_files`. The one judgment that lint reads a body
+    by, and that `check_bare_links` of `.guppi/guppi/prespec.py` and the ledger hook import."""
+    live = {p.stem for category in CATEGORIES for p in page_paths(wiki, category)}
+    return live | archived_slugs(wiki) | hub_files(wiki)
+
+
+def unknown_links(text: str, names: set[str]) -> list[str]:
+    """Each name of a `[[…]]` of the text outside a code span that `names` does not hold,
+    once, in order (case 977)."""
+    return list(dict.fromkeys(slug for slug in body_links(text) if slug not in names))
+
+
+def check_refs(page: Page, known: set[str], names: set[str] | None = None) -> list[Finding]:
+    """A frontmatter link judged by `known`, a body link by `names`, `link_names` in `lint`
+    (case 977); with no `names`, a body link by `known` too."""
+    names = known if names is None else names
     out = []
     seen = set()
     for field, slug in links_of(page):
-        if field == "criterion" or slug in known or slug in seen:
+        if field == "criterion" or slug in seen:
             continue
-        if field == "body" and slug in hubs:  # a hub file under wiki/ (case 149.3)
+        if slug in (names if field == "body" else known):
             continue
         seen.add(slug)
         out.append(
@@ -931,7 +955,7 @@ def lint(project_dir: Path) -> list[str]:
     pages = [p for category in CATEGORIES for p in vault[category]]
     by_slug = {p.slug: p for p in pages}
     known = set(by_slug) | archived_slugs(wiki)
-    hubs = hub_files(wiki)
+    names = link_names(wiki)  # a body link (case 977)
     findings: list[Finding] = []
     for category in CATEGORIES:
         schema = load_schema(wiki, category)
@@ -947,7 +971,7 @@ def lint(project_dir: Path) -> list[str]:
     for page in pages:
         if page.error:
             continue
-        findings.extend(check_refs(page, known, hubs))
+        findings.extend(check_refs(page, known, names))
         findings.extend(check_edges(page, pages, by_slug))
         findings.extend(check_criterion(page, known))
         findings.extend(check_origin(page, project_dir))

@@ -171,6 +171,16 @@ and the heading, which a later store of that Case keeps; a summary whose text an
 output already holds gets no finding again while the heading stands as it was when it was
 sent back, and gets one again once the heading changed.
 
+A summary after text of its own (case 981.1). When the subagent wrote a file of `cases/` and
+its newest output is no summary by `is_summary`, no round by `is_round`, no `**Fact:**`
+answer by `is_fact` and no `**Dropped:**` answer by `is_dropped` — its first line that is not
+blank opening with `DROPPED_LABEL` —, and yet holds a later line that opens with
+`**Built:**`, its indent set aside, `summary_after_text` gives one finding that quotes its
+first line and asks for the summary alone, its first line `**Built:**`; it joins the
+findings of the files and of the `**Case:**` line in one exit 2. An output whose text an
+earlier output of the subagent already holds, trailing spaces aside, is not sent back again,
+so the main agent can tell a repeat apart.
+
 The form of a round (case 601.1). Before the check of a Case, the same `--subagent` run
 judges the newest output of `case-guppi` in `agent_transcript_path` by `round_form`: a text
 that `is_round` — the one test of a round, which the `Stop` run imports too — finds a round
@@ -1485,6 +1495,40 @@ def summary_findings(payload: dict, files: list[Path], store: dict) -> list[str]
     return findings
 
 
+DROPPED_LABEL = "**Dropped:**"  # the first line of the answer to a drop (cases 701.4, 981.1)
+
+
+def is_dropped(text: str) -> bool:
+    """A `**Dropped:**` answer of `case-guppi`, the one test of it (case 981.1): its first
+    line that is not blank opens with `**Dropped:**`, its indent set aside."""
+    first = next((line.strip() for line in text.splitlines() if line.strip()), "")
+    return first.startswith(DROPPED_LABEL)
+
+
+def summary_after_text(payload: dict, files: list[Path]) -> list[str]:
+    """One finding on the newest output of the subagent, when it wrote a file of `cases/`,
+    is no summary, no round, no Fact answer and no Dropped answer, and holds a later line
+    that opens with `**Built:**` (case 981.1): it quotes the first line and asks for the
+    summary alone. An output whose text an earlier output already holds, trailing spaces
+    aside, gets none again."""
+    texts = subagent_outputs(payload)
+    if not texts or not files:
+        return []
+    newest = texts[-1]
+    if is_summary(newest) or is_round(newest) or is_fact(newest) or is_dropped(newest):
+        return []
+    lines = [line.strip() for line in newest.splitlines() if line.strip()]
+    if not any(line.startswith(BUILT_LABEL) for line in lines[1:]):
+        return []
+    if any(spaces_aside(text) == spaces_aside(newest) for text in texts[:-1]):
+        return []  # sent back once for this text (the loop guard)
+    finding = (
+        f"the answer opens with `{lines[0]}`, not with `{BUILT_LABEL}`: answer again with "
+        f"the summary alone, its first line `{BUILT_LABEL}` and the path of the file"
+    )
+    return [finding]
+
+
 EDIT_CALLS = ("Write", "Edit", "MultiEdit")  # the calls that write a file of a Case (case 645.2)
 
 
@@ -1584,6 +1628,7 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
         fresh += new
         repeated = repeated and same
     named = summary_findings(payload, files, store)  # the `**Case:**` line (case 662.3)
+    named += summary_after_text(payload, files)  # text before `**Built:**` (case 981.1)
     write_store(plan, store)
     if (findings and not repeated) or fresh:  # the store guards the loop (cases 434, 472.1)
         return send_back(findings + fresh + named + form, stderr)

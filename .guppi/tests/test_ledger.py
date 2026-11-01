@@ -1830,3 +1830,63 @@ def test_record_the_ledger_hook_and_the_plan_hook_answer_alike(tmp_path, line, s
     assert bool(ledger.refused_defers([timed(line)])) is refused
     assert bool(errors) is refused
     assert target.is_file() is not refused
+
+
+# --- a reading or a lesson names no missing page (case 977) ---------------------------------
+# `estimate-ledger-write-refuses-a-bare-link-to-no-page`
+
+LINKED_READING = "- estimate[estimate-hi-no-read-calls][passed] the page [[slug]] holds it"
+LINKED_LESSON = (
+    "- lesson[error][lesson-b-l] trigger: a bare [[slug]] root_cause: copied as it stands"
+)
+
+
+@pytest.mark.parametrize(
+    "line, head",
+    [
+        (LINKED_READING, "estimate[estimate-hi-no-read-calls]"),
+        (LINKED_LESSON, "lesson[lesson-b-l]"),
+    ],
+)
+def test_bare_link_to_no_page_is_refused_with_one_stderr_line(working, line, head):
+    code, err = run(payload(last_assistant_message=ledger_block(line, DECISION)), working)
+    assert (code, err) == (2, ledger.link_message(head, ["slug"]) + "\n")
+    assert "code span" in err
+    assert ledger_text(working).splitlines() == [timed(DECISION)]
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "the page `[[slug]]` holds it",  # in a code span
+        "the page [[entity-sprint-migration]] holds it",  # a live page
+        "the page [[rule-ledger-write]] holds it",  # a slug a create line of the session creates
+    ],
+)
+def test_bare_link_in_a_code_span_to_a_page_or_to_a_created_slug_is_written(working, text):
+    seed_ledger(working, DECISION)
+    line = f"- estimate[estimate-hi-no-read-calls][passed] {text}"
+    assert run(payload(last_assistant_message=ledger_block(line)), working) == (0, "")
+    assert ledger_text(working).splitlines()[-1] == timed(line)
+
+
+def test_bare_link_to_a_slug_created_in_the_same_stop_is_written(working):
+    line = "- estimate[estimate-hi-no-read-calls][passed] [[rule-ledger-write]] holds it"
+    reply = ledger_block(DECISION, line)
+    assert run(payload(last_assistant_message=reply), working) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(line)]
+
+
+def test_bare_link_in_an_earlier_text_is_silent_and_not_written(working):
+    transcript = write_transcript(working, transcript_line(ledger_block(LINKED_READING)))
+    stdin = payload(last_assistant_message="Nothing.", transcript_path=transcript)
+    assert run(stdin, working) == (0, "")
+    assert not ledger_file(working).exists()
+
+
+def test_bare_link_a_lesson_refused_for_its_link_is_not_held_for_its_mark(working):
+    seed_ledger(working, DECISION)
+    code, err = run(payload(last_assistant_message=ledger_block(LINKED_LESSON)), working)
+    assert (code, err) == (2, ledger.link_message("lesson[lesson-b-l]", ["slug"]) + "\n")
+    assert ledger.held_message("lesson-b-l") not in err
+    assert timed(LINKED_LESSON) not in ledger_text(working)

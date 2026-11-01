@@ -387,6 +387,36 @@ def test_a_page_under_an_archived_raw_folder_is_no_known_slug(tmp_path):
     assert "spec" not in lint.archived_slugs(tmp_path / "vault" / "wiki")
 
 
+@pytest.mark.parametrize(
+    "text, broken",
+    [
+        ("[[rule-root]]", False),  # a live page
+        ("[[rule-old]]", False),  # an archived page
+        ("[[brief]]", False),  # a hub file
+        ("`[[nowhere]]`", False),  # a code span
+        ("[[nowhere]]", True),
+        ("[[schema]]", True),  # a schema.md in a category folder is no page (case 977)
+    ],
+)
+def test_bare_link_lint_prespec_and_the_ledger_hook_answer_alike(tmp_path, text, broken):
+    """One judgment of a body link (case 977): lint on a page body, `check_bare_links` of
+    `prespec` on a plan and the ledger hook on a reading line answer alike."""
+    from guppi import ledger, prespec
+
+    seed(tmp_path, rule=rule_page().replace("## Purpose\n\nx", f"## Purpose\n\nx {text}"))
+    write(tmp_path / "vault" / "wiki" / "brief.md", "# Brief\n")
+    write(tmp_path / "vault" / "wiki" / "rules" / "schema.md", "# Schema\n")
+    write(
+        tmp_path / "vault" / "archive" / "s" / "2026-01-01" / "0900" / "rules" / "rule-old.md", ""
+    )
+    _, lines, _ = run(tmp_path)
+    by_lint = any(line.startswith("rules/rule-x: ref: body names") for line in lines)
+    by_plan = bool(prespec.check_bare_links({"1": [f"> {text}"]}, {"1": {}}, tmp_path))
+    reading = f"- 15:02:11 estimate[estimate-x-works][passed] {text}"
+    by_hook = bool(ledger.refused_links(tmp_path, [reading], []))
+    assert (by_lint, by_plan, by_hook) == (broken, broken, broken)
+
+
 def test_a_path_that_does_not_exist_is_a_path_finding(tmp_path):
     seed(tmp_path, rule=rule_page(implementation_ref="[guppi/x.py, guppi/missing.py]"))
     _, lines, _ = run(tmp_path)

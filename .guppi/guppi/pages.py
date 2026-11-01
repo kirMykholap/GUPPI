@@ -209,12 +209,18 @@ def read_page(path: Path, category: str) -> Page:
     return page
 
 
-def read_category(wiki: Path, category: str) -> list[Page]:
+def page_paths(wiki: Path, category: str) -> list[Path]:
+    """The files of a category folder that are pages: each `*.md` but a `schema.md`. The one
+    judgment of a page file, which `read_category` and `link_names` of `.guppi/guppi/lint.py`
+    share (case 977)."""
     folder = wiki / category
     if not folder.is_dir():
         return []
-    pages = [read_page(p, category) for p in sorted(folder.glob("*.md")) if p.stem != "schema"]
-    return pages
+    return [p for p in sorted(folder.glob("*.md")) if p.stem != "schema"]
+
+
+def read_category(wiki: Path, category: str) -> list[Page]:
+    return [read_page(p, category) for p in page_paths(wiki, category)]
 
 
 def read_vault(wiki: Path) -> dict[str, list[Page]]:

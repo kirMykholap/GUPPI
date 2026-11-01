@@ -1,12 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-orchestration]]"
 purpose: A Case is built by case-guppi and shown by the main agent unchanged
-method: "by hand, at Retro: vault/wiki/orchestration.md read against the Criterion, and the replies of the main agent from a summary of case-guppi in Plan Mode that carries a line Other Case naming a Case of the session to the reply that shows the two Cases, read in the transcript of the session under ~/.claude/projects/ against the Criterion, both recorded in one estimate line with the transcript named (the summary of Case 960 that names Case 956, in session 2026-10-31/0431)"
-checked: 2026-10-31
-deferred_by: ["[[decision-case-971]]", "[[decision-case-976]]"]
+method: "by hand, at Retro: vault/wiki/orchestration.md read against the Criterion, and the replies of the main agent of the session from each answer of case-guppi to the reply that shows its round or its Case, read in the transcript of the session under ~/.claude/projects/ against the Criterion, a part of the Criterion the session did not meet named as not met, both recorded in one estimate line with the transcript named (the showings of session 2026-11-01/0141)"
+checked: 2026-11-01
 origin: raw/2026-09-24/1303/ledger.md#case-391.2
 sprint: migration
 created: 2026-09-24
@@ -48,7 +47,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## Result
 
-2026-10-31, Retro of session 0431, vault/wiki/orchestration.md and main transcript 8727d5ce-2d69-40eb-8203-769b95b5cc28.jsonl lines 779–826: after the summary of Case 960 carried Other Case: Case 956, the main agent asked nothing, sent the change to the case-guppi of 956 by SendMessage, ended the turn with one Waiting line, sent both files by SendUserFile with display render and showed both Cases with headings, lists and ratification blocks as the summaries held them, and both were ratified again in one reply; but the answer of the case-guppi of 956 (line 796) opened with three paragraphs and **Built:** only on its fourth line, and the main agent showed it as a built Case where the Criterion takes an answer with no first line **Built:**, **Fact:** or **Dropped:** for a round
+2026-11-01, Retro of session 0141, vault/wiki/orchestration.md and the replies of the main agent in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453.jsonl: the plan file stood with its title before the first caseid run; 5 dispatches with id, item, source and the person's words; each answer to a round went to its case-guppi by SendMessage verbatim; the rounds of 977, 978, 979, 980 and 981 were shown translated, the batch rounds labelled by Case and Frontier item, the agent's own text after the last question and one rule; each built Case was sent by SendUserFile with display render and shown with a translated heading from the Case line, one list with the Estimate of each Case and sub-case, the ratification as the summary held it and the agent's own text after a rule; no case file was read by the main agent; ask-guppi ran once at pre-spec and was asked again only to confirm its 9 findings; the Cases built again at pre-spec went out and came back together and were shown in one reply; no drop, wait-what or Other Case line occurred, so those parts were not exercised
 
 ## History
 
@@ -104,3 +103,7 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 - 2026-10-31 status: pending → failed · raw/2026-10-31/0431/ledger.md#L45
 - 2026-10-31 deferred · [[decision-case-971]]
 - 2026-11-01 deferred · [[decision-case-976]]
+- 2026-11-01 defer by decision-case-971 superseded · [[decision-case-981.2]]
+- 2026-11-01 defer by decision-case-976 superseded · [[decision-case-981.2]]
+- 2026-11-01 updated: the method reads the showings of session 0141 at its Retro, the Criterion written back unchanged; the defers of cases 971 and 976 retired · [[decision-case-981.2]]
+- 2026-11-01 status: pending → passed · raw/2026-11-01/0141/ledger.md#L15

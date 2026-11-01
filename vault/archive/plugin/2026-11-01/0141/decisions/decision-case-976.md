@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "976"
-status: current
+status: archived
 defer: ["[[estimate-handoff-dispatches]]", "[[estimate-case-build-reads-each-list-of-a-new-member]]", "[[estimate-orchestration-names-related-cases-in-the-dispatch]]", "[[estimate-orchestration-shows-the-built-case]]"]
+superseded_by: ["[[decision-case-979]]", "[[decision-case-980]]", "[[decision-case-981.2]]"]
 origin: raw/2026-10-31/2307/ledger.md#case-976
 sprint: plugin
 created: 2026-10-31
@@ -38,3 +39,8 @@ A built Case was shown from an answer of case-guppi whose first line was not **B
 ## History
 
 - 2026-11-01 created · raw/2026-10-31/2307/ledger.md#case-976
+- 2026-11-01 superseded by decision-case-979 · [[decision-case-979]]
+- 2026-11-01 superseded by decision-case-980 · [[decision-case-980]]
+- 2026-11-01 superseded by decision-case-981.2 · [[decision-case-981.2]]
+- 2026-11-01 archived · superseded
+- 2026-11-01 archived · cleanup

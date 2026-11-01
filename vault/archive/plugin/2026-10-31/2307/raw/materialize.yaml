@@ -441,6 +441,10 @@ entries:
       put off at the close of Plan Mode of session 2307
   exists: true
   applied: 01:08:48
+  superseded_by:
+  - '979'
+  - '980'
+  - '981.2'
 - line: 15
   text: decision[case 976][defer][estimate-case-build-reads-each-list-of-a-new-member]{ref:estimate-case-build-reads-each-list-of-a-new-member}
   case: '976'
@@ -456,6 +460,10 @@ entries:
       put off again at the close of Plan Mode of session 2307
   exists: true
   applied: 01:08:48
+  superseded_by:
+  - '979'
+  - '980'
+  - '981.2'
 - line: 16
   text: decision[case 976][defer][estimate-orchestration-names-related-cases-in-the-dispatch]{ref:estimate-orchestration-names-related-cases-in-the-dispatch}
   case: '976'
@@ -471,6 +479,10 @@ entries:
       changes; put off again at the close of Plan Mode of session 2307
   exists: true
   applied: 01:08:48
+  superseded_by:
+  - '979'
+  - '980'
+  - '981.2'
 - line: 17
   text: decision[case 976][defer][estimate-orchestration-shows-the-built-case]{ref:estimate-orchestration-shows-the-built-case}
   case: '976'
@@ -486,6 +498,10 @@ entries:
       put off again at the close of Plan Mode of session 2307
   exists: true
   applied: 01:08:48
+  superseded_by:
+  - '979'
+  - '980'
+  - '981.2'
 - line: 19
   text: 'lesson[error][lesson-ledger-reading-writes-a-bare-wikilink]{tags:ledger,librarian} trigger: guppi
     check reported "estimates/estimate-link-graph-prints-the-neighbours: ref: body names slug, which no
@@ -1015,5 +1031,9 @@ decisions:
     problem: No Case of this session settles these four readings.
   spec: vault/raw/2026-10-31/2307/spec.md
   applied: 01:08:48
+  superseded_by:
+  - decision-case-979
+  - decision-case-980
+  - decision-case-981.2
 unparsed: []
 session: '2307'

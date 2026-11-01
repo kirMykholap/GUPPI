@@ -3,10 +3,9 @@ type: estimate
 kind: QA
 status: failed
 target: "[[rule-orchestration]]"
-purpose: Whether the main agent's prompt to case-guppi names each Case of the session that changes a page the item names, acts at the same moment, or sets the form of a text a check reads, or how the check reads it, where the Case of the item may write text of that kind, by its id, one sentence on what it sets and the path of its case file, and each other Case of a batch of items the person took up in one answer
-method: "by hand, at Retro: an Agent call that dispatched case-guppi for the Case of an item while a Case of the session sets the form of the method of an Estimate and the Case of the item may write such a method, read in the transcript of the session under ~/.claude/projects/ against the Criterion, a related Case left unnamed counted in the reading line and the transcript named (the dispatch of Case 961, which names Case 960, in session 2026-10-31/0431)"
-checked: 2026-10-31
-deferred_by: ["[[decision-case-971]]", "[[decision-case-976]]"]
+purpose: Whether the main agent's prompt to case-guppi names each Case of the session that changes a page the item names, acts at the same moment, or sets the form of a text a check reads, or how the check reads it, where the Case of the item may write text of that kind, by its id, one sentence on what it sets and which pages it changes, and the path of its case file, and each other Case of a batch of items the person took up in one answer
+method: "by hand, at Retro: each Agent call of the session that dispatched case-guppi for the Case of an item, read in the transcript of the session under ~/.claude/projects/ against the Criterion, only the Cases the Criterion counts as related judged and a Case named beyond them not counted, a related Case left unnamed or named without the pages it changes or the path of its case file counted in the reading line and the transcript named (the dispatches of session 2026-11-01/0141, the dispatch of Case 980 among them)"
+checked: 2026-11-01
 origin: raw/2026-10-01/1441/ledger.md#case-579.1
 sprint: migration
 created: 2026-10-01
@@ -30,7 +29,7 @@ The prompt of the call names each Case of the session, ratified or already shown
 
 ## Result
 
-2026-10-31, Retro of session 0431, main transcript 8727d5ce-2d69-40eb-8203-769b95b5cc28.jsonl line 841, the Agent call that dispatched case-guppi for Case 961: it named the related Case 960 by its id and its file path, 0 related Cases left unnamed, but its sentence on Case 960 named only its new Estimate and not the pages it changes (rule-estimates-schema, rule-case-protocol, estimate-where-to-stop-writes-each-step-whole), so the line "one sentence on what it sets and which pages it changes" is met only in part
+2026-11-01, Retro of session 0141, the Agent calls that dispatched case-guppi in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453.jsonl: 5 dispatches (Cases 977 and 978 as a batch, 979, 980, 981); the batch named each other Case by id, Frontier item and file path; Case 977 sets how check_bare_links reads the prose of the plan, which every Case writes, so it counts as related to each later item; the dispatch of 979 named it with id, sentence, pages and path, but the dispatch of 980 named it with its pages and no path, and the dispatch of 981 with its pages, no sentence on what it sets and no path; 2 of 4 related-Case mentions after the batch fall short; Cases 979 and 980 stood with id, sentence, pages and path where named
 
 ## History
 
@@ -47,3 +46,7 @@ The prompt of the call names each Case of the session, ratified or already shown
 - 2026-10-31 status: pending → failed · raw/2026-10-31/0431/ledger.md#L46
 - 2026-10-31 deferred · [[decision-case-971]]
 - 2026-11-01 deferred · [[decision-case-976]]
+- 2026-11-01 defer by decision-case-971 superseded · [[decision-case-980]]
+- 2026-11-01 defer by decision-case-976 superseded · [[decision-case-980]]
+- 2026-11-01 updated: the method reads the dispatches of session 0141 at its Retro and the purpose names the pages of a related Case, the Criterion written back unchanged; the defers of cases 971 and 976 retired · [[decision-case-980]]
+- 2026-11-01 status: pending → failed · raw/2026-11-01/0141/ledger.md#L14

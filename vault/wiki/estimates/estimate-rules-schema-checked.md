@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-rules-schema]]"
 purpose: A Rule page in the shape of the rendered schema has no schema finding and a page outside it has one per defect
 method: "pytest .guppi/tests/test_schemas.py -k rules on the live vault/wiki/rules/schema.yaml — a page in the shape, then one defect at a time; by hand, after a librarian's run: the live vault/wiki/rules/schema.yaml read against the Criterion, and the live reading uv run --project .guppi guppi check, no schema finding on wiki/rules/ but the placeholders"
-checked: 2026-10-30
+checked: 2026-11-01
 origin: raw/2026-09-22/0014/ledger.md#case-305.1
 sprint: migration
 created: 2026-09-22
@@ -30,7 +30,7 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 
 ## Result
 
-2026-10-30, /hi of session 2345: uv run --project .guppi pytest .guppi/tests/test_schemas.py -k rules 7 passed; the live vault/wiki/rules/schema.yaml read against the Criterion: required, optional, values, conditional, ordered_children and body as the Criterion lists them; fields and sections describe each name, core among them, and origin and sprint name the value guppi; description holds the introduction, Ordering, MOCs and enforcement, Enforcement, the edge Rule → Entity, the guard of the agent's own conduct and the sentence on the Estimates a page with core: true brings along; the description of ## How it works says MOC only and that a Leaf carries none, and no Leaf example carries the section; uv run --project .guppi guppi check 13 lines (exit 1), none a schema finding, its lines on rules/ "status: a page with core: true that is draft"
+2026-11-01, /hi of session 0141: uv run --project .guppi pytest .guppi/tests/test_schemas.py -k rules 7 passed, 38 deselected; the live vault/wiki/rules/schema.yaml read against the Criterion: required, optional, values, conditional, ordered_children and body as the Criterion lists them; fields and sections describe each name, core among them, and origin and sprint name the value guppi; description holds the introduction, Ordering, MOCs and enforcement, Enforcement, the edge Rule → Entity, the guard of the agent's own conduct and the sentence on the Estimates a page with core: true brings along; the opening and the Enforcement paragraph say a guard refuses a case or prevents it, and neither says a guard must refuse a call; the description of ## How it works says MOC only and that a Leaf carries none, and no Leaf example carries the section; uv run --project .guppi guppi check 15 lines (exit 1), none a schema finding, its lines on rules/ "status: a page with core: true that is draft"
 
 ## History
 
@@ -51,3 +51,4 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 - 2026-10-30 updated: the Criterion replaced whole — the description of How it works says a Leaf carries none, and no example of a Leaf carries it · [[decision-case-942.2]]
 - 2026-10-31 status: pending → passed · raw/2026-10-30/2345/ledger.md#L2
 - 2026-11-01 updated: the Criterion replaced whole — the opening and the Enforcement paragraph name a guard that prevents a case · [[decision-case-975]]
+- 2026-11-01 status: pending → passed · raw/2026-11-01/0141/ledger.md#L1

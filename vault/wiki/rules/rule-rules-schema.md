@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Rule page from carrying a field or section outside the shape lint checks, or lacking one it needs
-status: draft
+status: built
 enforcement: render
 governs: vault/wiki/rules/schema.yaml
 render_mode: full
@@ -255,3 +255,4 @@ examples:
 - 2026-10-31 status: draft → built · cascade
 - 2026-11-01 updated: a guard refuses a case or prevents it; a hook that writes a file or gives the agent a text is a guard · [[decision-case-975]]
 - 2026-11-01 status: built → draft · cascade
+- 2026-11-01 status: draft → built · cascade

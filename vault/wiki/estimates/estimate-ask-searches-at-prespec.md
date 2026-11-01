@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi at /pre-spec starts with the Grep of the rules and runs the index Grep of every other category with its pattern as written, then greps and reads as each finding needs, a count over Decision pages not run again
 method: "by hand, after the first /pre-spec whose ask-guppi runs on .claude/agents/ask-guppi.md rendered from the Render of rule-ask that runs every category whatever the question: the Grep, Glob and Read calls of ask-guppi at that /pre-spec, read in its agent transcript under ~/.claude/projects/ against the Criterion, the transcript in the estimate line"
-checked: 2026-10-05
+checked: 2026-11-01
 origin: raw/2026-10-04/2041/ledger.md#case-633.2
 sprint: migration
 created: 2026-10-04
@@ -26,7 +26,7 @@ The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/
 
 ## Result
 
-2026-10-05, Plan Mode of session 1831, case 669: set passed by the person's decision, without a reading; a problem seen later in what this Estimate promises comes back as a lesson. The last reading before it, which left the page failed: 2026-10-05, /hi of 1831, the ask-guppi transcripts of the /pre-spec of 1616 (6360af9f, 17:39) and 1343 (f5706873, 15:25), after the render of ask-guppi.md at 03:09; every run opened with the Grep ^(purpose|deferred_by): over vault/wiki/rules/; in 1616 the run on 664 Read rule pages and Estimates and ran no Grep of lessons, insights or entities, the run on 661 grepped insights alone; in 1343 the runs on 650, 651, 652, 653 and 656 ran Reads of rule and estimate pages before their last category Grep
+2026-11-01, Work Mode of session 0141, the ask-guppi transcript of the pre-spec of session 2307, ~/.claude/projects/c--PROJECTS-GUPPI/8d8876d7-f627-4f65-95f7-cb7b7172cd46/subagents/agent-a5ddd2830f464981b.jsonl, rendered at 6ccb92a0 before the run: L15 Grep ^(purpose|deferred_by): over vault/wiki/rules, L17 the same over entities, L19 ^(root_cause|deferred_by): over lessons, L21 ^(pattern|deferred_by): over insights, each pattern as written and no call before L21; about 70 further Greps and Reads as findings needed, among them the counts of the contexts of Cases 972 and 975 at L155 and L238, run over vault/wiki, where the hook of rule-search-leaves-out-decisions leaves out the decisions folder; no call under vault/wiki/decisions/
 
 ## History
 
@@ -40,3 +40,4 @@ The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/
 - 2026-10-05 status: pending → failed · raw/2026-10-05/1831/ledger.md#L8
 - 2026-10-05 updated: set passed by the person's decision, without a reading; the Criterion kept; a problem seen later comes back as a lesson (case 669) · [[decision-case-669.15]]
 - 2026-10-31 updated: the Criterion replaced whole — at /pre-spec too the agent runs the index Grep of every category with its pattern as written · [[decision-case-970.3]]
+- 2026-11-01 status: pending → passed · raw/2026-11-01/0141/ledger.md#L16

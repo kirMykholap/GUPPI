@@ -259,7 +259,7 @@ update:
 - [x] update `estimate-rules-schema-checked`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/rules/schema.yaml`
 - [x] `uv run --project .guppi guppi glossary`
-- [ ] read `estimate-rules-schema-checked`
+- [x] read `estimate-rules-schema-checked`
 ```
 
 ## Deferred

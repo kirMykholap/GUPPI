@@ -12453,3 +12453,49 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-01 rules/rule-rules-schema status: built → draft · cascade · generate
 - 2026-11-01 lessons/lesson-case-build-names-a-file-without-the-readers-of-its-folder archived · insight actioned · generate
 - 2026-11-01 lessons/lesson-case-build-names-a-file-without-the-readers-of-its-folder archived · cleanup
+- 2026-11-01 estimates/estimate-rules-schema-checked status: pending → passed · raw/2026-11-01/0141/ledger.md#L1 · generate
+- 2026-11-01 decisions/decision-case-977 created · raw/2026-11-01/0141/ledger.md#case-977 · generate
+- 2026-11-01 rules/rule-ledger-write updated: the hook refuses a reading or a lesson line whose text holds a bare link to no page; lint.py and test_lint.py added to implementation_ref · [[decision-case-977]] · generate
+- 2026-11-01 estimates/estimate-ledger-write-refuses-a-bare-link-to-no-page created · [[decision-case-977]] · generate
+- 2026-11-01 estimates/estimate-ledger-write-refuses-a-bare-link-to-no-page status: pending → passed · raw/2026-11-01/0141/ledger.md#L12 · generate
+- 2026-11-01 rules/rule-ledger-write estimate estimate-ledger-write-refuses-a-bare-link-to-no-page added · [[decision-case-977]] · generate
+- 2026-11-01 decisions/decision-case-978 created · raw/2026-11-01/0141/ledger.md#case-978 · generate
+- 2026-11-01 lessons/lesson-ledger-reading-writes-a-bare-wikilink updated: the bare link of the root cause put in a code span, in the section and the field, so lint reads no link to a page · [[decision-case-978]] · generate
+- 2026-11-01 estimates/estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link created · [[decision-case-978]] · generate
+- 2026-11-01 entities/entity-sprint-plugin estimate estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link added · [[decision-case-978]] · generate
+- 2026-11-01 decisions/decision-case-979 created · raw/2026-11-01/0141/ledger.md#case-979 · generate
+- 2026-11-01 decisions/decision-case-971 superseded by decision-case-979 · [[decision-case-979]] · generate
+- 2026-11-01 estimates/estimate-case-build-reads-each-list-of-a-new-member defer by decision-case-971 superseded · [[decision-case-979]] · generate
+- 2026-11-01 decisions/decision-case-976 superseded by decision-case-979 · [[decision-case-979]] · generate
+- 2026-11-01 estimates/estimate-case-build-reads-each-list-of-a-new-member defer by decision-case-976 superseded · [[decision-case-979]] · generate
+- 2026-11-01 rules/rule-case-build updated: the search for a member already in a list names a hook of an event, a command and a list in a comment or docstring of code, and context names that search · [[decision-case-979]] · generate
+- 2026-11-01 estimates/estimate-case-build-reads-each-list-of-a-new-member updated: the Criterion replaced whole — the list names a hook of an event, a command and a list in a comment or docstring of code, and context names the search; the purpose and method set anew, the reading after the first build of a later session that adds a member to a list · [[decision-case-979]] · generate
+- 2026-11-01 decisions/decision-case-980 created · raw/2026-11-01/0141/ledger.md#case-980 · generate
+- 2026-11-01 decisions/decision-case-971 superseded by decision-case-980 · [[decision-case-980]] · generate
+- 2026-11-01 estimates/estimate-orchestration-names-related-cases-in-the-dispatch defer by decision-case-971 superseded · [[decision-case-980]] · generate
+- 2026-11-01 decisions/decision-case-976 superseded by decision-case-980 · [[decision-case-980]] · generate
+- 2026-11-01 estimates/estimate-orchestration-names-related-cases-in-the-dispatch defer by decision-case-976 superseded · [[decision-case-980]] · generate
+- 2026-11-01 estimates/estimate-orchestration-names-related-cases-in-the-dispatch updated: the method reads the dispatches of session 0141 at its Retro and the purpose names the pages of a related Case, the Criterion written back unchanged; the defers of cases 971 and 976 retired · [[decision-case-980]] · generate
+- 2026-11-01 decisions/decision-case-981 created · raw/2026-11-01/0141/ledger.md#case-981 · generate
+- 2026-11-01 decisions/decision-case-981.1 created · raw/2026-11-01/0141/ledger.md#case-981.1 · generate
+- 2026-11-01 rules/rule-case-check updated: the SubagentStop check sends back an answer with text before its Built line · [[decision-case-981.1]] · generate
+- 2026-11-01 estimates/estimate-case-check-sends-back-a-summary-after-text created · [[decision-case-981.1]] · generate
+- 2026-11-01 estimates/estimate-case-check-sends-back-a-summary-after-text status: pending → passed · raw/2026-11-01/0141/ledger.md#L13 · generate
+- 2026-11-01 rules/rule-case-check estimate estimate-case-check-sends-back-a-summary-after-text added · [[decision-case-981.1]] · generate
+- 2026-11-01 decisions/decision-case-981.2 created · raw/2026-11-01/0141/ledger.md#case-981.2 · generate
+- 2026-11-01 decisions/decision-case-971 superseded by decision-case-981.2 · [[decision-case-981.2]] · generate
+- 2026-11-01 estimates/estimate-orchestration-shows-the-built-case defer by decision-case-971 superseded · [[decision-case-981.2]] · generate
+- 2026-11-01 decisions/decision-case-976 superseded by decision-case-981.2 · [[decision-case-981.2]] · generate
+- 2026-11-01 estimates/estimate-orchestration-shows-the-built-case defer by decision-case-976 superseded · [[decision-case-981.2]] · generate
+- 2026-11-01 estimates/estimate-orchestration-shows-the-built-case updated: the method reads the showings of session 0141 at its Retro, the Criterion written back unchanged; the defers of cases 971 and 976 retired · [[decision-case-981.2]] · generate
+- 2026-11-01 estimates/estimate-orchestration-names-related-cases-in-the-dispatch status: pending → failed · raw/2026-11-01/0141/ledger.md#L14 · generate
+- 2026-11-01 estimates/estimate-orchestration-shows-the-built-case status: pending → passed · raw/2026-11-01/0141/ledger.md#L15 · generate
+- 2026-11-01 estimates/estimate-ask-searches-at-prespec status: pending → passed · raw/2026-11-01/0141/ledger.md#L16 · generate
+- 2026-11-01 estimates/estimate-case-build-reads-the-link-graph-of-what-it-changes status: pending → failed · raw/2026-11-01/0141/ledger.md#L17 · generate
+- 2026-11-01 estimates/estimate-case-build-reads-the-readers-of-a-changed-step status: pending → failed · raw/2026-11-01/0141/ledger.md#L18 · generate
+- 2026-11-01 lessons/lesson-orchestration-closes-a-frontier-line-by-its-closer-alone created · raw/2026-11-01/0141/ledger.md#L19 · generate
+- 2026-11-01 rules/rule-rules-schema status: draft → built · cascade · generate
+- 2026-11-01 decisions/decision-case-971 archived · superseded · generate
+- 2026-11-01 decisions/decision-case-976 archived · superseded · generate
+- 2026-11-01 decisions/decision-case-971 archived · cleanup
+- 2026-11-01 decisions/decision-case-976 archived · cleanup

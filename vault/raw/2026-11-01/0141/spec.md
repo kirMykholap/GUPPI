@@ -79,14 +79,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-refuses-a-bare-link-to-no-page`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-refuses-a-bare-link-to-no-page`
 - [x] `.guppi/guppi/lint.py`: one function gives the names a body link may carry — the stem of each page that `read_category` reads, `archived_slugs` and `hub_files` — and one function gives the names of a text's links outside a code span that it does not hold; `lint()` builds the names of a body link by the first in place of its own `known` and `hubs` for the body, and `links_of` and `check_refs` judge a body link by them.
 - [x] `.guppi/guppi/prespec.py`: `known_slugs` gives way to the function of `lint.py`, and `check_bare_links` judges by it, the slugs of the plan's `create` items kept.
 - [x] `.guppi/guppi/ledger.py`: a refusal of a fresh `estimate[...]` or `lesson[...]` line by the function of `lint.py`, the slugs of the `create` decision lines of the session's ledger and of the same `Stop` added to the names that pass; its stderr line told once a stretch by `untold`; a lesson line it refuses passed to `unmarked_lessons` with the lines refused for their prefix; a paragraph of the module docstring.
 - [x] `.guppi/tests/test_ledger.py`: `bare_link` tests — a reading and a lesson with a bare link to no page refused with one stderr line; a link in a code span, to a live page and to a slug a `create` line of the session creates written; a refused line of an earlier text silent; a lesson refused for its link not held for its mark.
 - [x] `.guppi/tests/test_lint.py`: a `bare_link` test that runs lint on a page body, `check_bare_links` on a plan and the hook on a ledger line over the same texts, a `[[schema]]` with a `schema.md` in a category folder among them, and asserts the three answer alike.
-- [ ] read `estimate-ledger-write-refuses-a-bare-link-to-no-page`
+- [x] read `estimate-ledger-write-refuses-a-bare-link-to-no-page`
 ```
 
 ## Case 978 — A bare link in the root cause of the bare-link lesson
@@ -143,8 +143,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `lesson-ledger-reading-writes-a-bare-wikilink`
-- [ ] create `estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link`
+- [x] update `lesson-ledger-reading-writes-a-bare-wikilink`
+- [x] create `estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link`
 - [ ] read `estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link`
 ```
 
@@ -204,9 +204,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-reads-each-list-of-a-new-member`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-reads-each-list-of-a-new-member`
 - [ ] read `estimate-case-build-reads-each-list-of-a-new-member`
 ```
 
@@ -257,8 +257,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-names-related-cases-in-the-dispatch`
-- [ ] read `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] update `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] read `estimate-orchestration-names-related-cases-in-the-dispatch`
 ```
 
 ## Case 981 — A summary of case-guppi reaches the main agent only with Built first
@@ -316,11 +316,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-sends-back-a-summary-after-text`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-sends-back-a-summary-after-text`
 - [x] `.guppi/guppi/casecheck.py`: a function that, for a subagent that wrote a file of `cases/`, judges the newest output by `BUILT_LABEL`, `is_summary`, `is_round`, `is_fact` and a new constant `DROPPED_LABEL`, `**Dropped:**`, the first judgment of a Dropped answer in `.guppi/guppi/`, and gives the finding; `subagent` joins it with the other findings in one exit 2; the module docstring says so beside the paragraph on the name in the summary.
 - [x] `.guppi/tests/test_casecheck.py`: tests named `test_subagent_summary_after_text_*` for an answer with prose before `**Built:**` sent back, the same text not sent back twice, a summary that opens with `**Built:**`, a round, a `**Fact:**` answer and a `**Dropped:**` answer passing, and no file written passing.
-- [ ] read `estimate-case-check-sends-back-a-summary-after-text`
+- [x] read `estimate-case-check-sends-back-a-summary-after-text`
 ```
 
 ### Case 981.2 — The showing of a built Case is read again in this session
@@ -379,6 +379,6 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-shows-the-built-case`
-- [ ] read `estimate-orchestration-shows-the-built-case`
+- [x] update `estimate-orchestration-shows-the-built-case`
+- [x] read `estimate-orchestration-shows-the-built-case`
 ```

@@ -59,7 +59,7 @@ reads them, the brief reports them.
 
 Do the steps in this order.
 
-1. Run `uv run --project .guppi guppi materialize`. If it exits 1, return the report as text and stop (as set in cases 944 and 956).
+1. Run `uv run --project .guppi guppi materialize`. If it exits 1, give the report back once, as your last output: as the message of your handback where you have the tool `SubagentHandback`, and as your last text where you have no such tool; write no text after it, and stop, with no `guppi check` and no commit (as set in cases 944, 956 and 994).
 
 <!-- rule-index-check -->
 
@@ -162,3 +162,4 @@ hook writes its commands to the event log; the hook is part of this Render and i
 - 2026-10-31 updated: a run that stops at step 1 returns its report as text and writes no report.md · [[decision-case-944]]
 - 2026-10-31 updated: step 1 no longer says that a stopped run writes no report.md, since the hook copies every returned report · [[decision-case-956.2]]
 - 2026-10-31 child rule-librarian-report-copy added · [[decision-case-965]]
+- 2026-11-02 updated: a run that stops at step 1 gives its report back once, as its last output, and runs no check and no commit · [[decision-case-994]]

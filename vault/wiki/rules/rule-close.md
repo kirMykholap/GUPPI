@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian's writes from landing in the session's own commit, or from ending without a commit at all
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -24,7 +24,7 @@ changed must be readable as one separate diff, six months on.
 ## Render
 
 <!-- rule-close -->
-Close. Run `uv run --project .guppi guppi check` and keep its output for the report. The report gives the pages created and updated per category, the entries marked incomplete or failed, the pages archived, the flags you raised, the lint total, and each part that another step of this frame sends to the report. Nothing else: no test result and no list of files (as set in case 913). Commit the vault with the files the render wrote, by the Bash tool, since the command is written for a POSIX shell: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then return the report as your last text, and give the same text when you hand your report back; write no text after the handback, since the hook copies your last output, a text after the handback included. The hook of `rule-librarian-report-copy` copies that text into `report.md` in the session's folder, the folder of the `handoff.md` your dispatch names, and `/handoff` or `/box` commits it; write no `report.md` yourself (as set in case 956).
+Close. Run `uv run --project .guppi guppi check` and keep its output for the report. The report gives the pages created and updated per category, the entries marked incomplete or failed, the pages archived, the flags you raised, the lint total, and each part that another step of this frame sends to the report. Nothing else: no test result and no list of files (as set in case 913). Commit the vault with the files the render wrote, by the Bash tool, since the command is written for a POSIX shell: `git add vault $(uv run --project .guppi guppi render --paths) && git commit -m "docs(vault): librarian, <date>"`, never `--amend`, never a path that neither `vault` nor that list names. After the commit, no file the render wrote stands modified or untracked. Then give the report back once, as your last output: as the message of your handback where you have the tool `SubagentHandback`, and as your last text where you have no such tool, since Claude Code gives that tool only in auto mode; write no text after it, since the hook copies your last output, a text after the handback included (as set in case 994). The hook of `rule-librarian-report-copy` copies that report into `report.md` in the session's folder, the folder of the `handoff.md` your dispatch names, and `/handoff` or `/box` commits it; write no `report.md` yourself (as set in case 956).
 <!-- /rule-close -->
 
 ## History
@@ -49,3 +49,5 @@ Close. Run `uv run --project .guppi guppi check` and keep its output for the rep
 - 2026-10-31 updated: the librarian writes its report into report.md of the session folder before its commit and returns that text · [[decision-case-944]]
 - 2026-10-31 updated: the librarian returns its report as text and writes no report.md; a hook copies the text into the file · [[decision-case-956.2]]
 - 2026-11-01 status: draft → built · cascade
+- 2026-11-02 updated: the librarian gives its report back once, as its last output: the handback where it has the tool, else its last text · [[decision-case-994]]
+- 2026-11-02 status: built → draft · cascade

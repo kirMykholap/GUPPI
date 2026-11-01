@@ -27,7 +27,7 @@ The run writes the clean version that `uv run --project .guppi guppi ship` build
 **＋** The `version` of `.claude-plugin/plugin.json` on `prod` is the number of the highest tag `prod-x.y.z` in the history of the commit it was built from, such as `0.2.0` for `prod-0.2.0`, and a tag of another form, such as `prod-2`, gives no version.
 **＋** The `on:` block of `.github/workflows/prod.yml` starts the same run on a push to `main`.
 **－** `uv run --project .guppi guppi ship <folder>` with no tag `prod-x.y.z` in that history exits 1 and writes nothing, and `uv run --project .guppi guppi ship --check` reads no tag.
-**－** A run whose `uv run --project .guppi guppi ship` exits 1 fails and writes nothing to `prod`, as it does while a page with `core: true` stands `draft`, which `estimate-clean-branch-refuses-a-draft-core-page` checks.
+**－** A run whose `uv run --project .guppi guppi ship` exits 1 fails and writes nothing to `prod`, as it does while a page with `core: true` stands that blocks the build, which `estimate-clean-branch-refuses-a-draft-core-page` checks.
 **－** A run whose clean version equals the last commit of `prod` adds no commit.
 
 ## Result
@@ -47,3 +47,4 @@ The run writes the clean version that `uv run --project .guppi guppi ship` build
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-16 updated: the tag prod-0.2.0 placed on plugin, local; its push is a stop: task of case 850; the Criterion stands, and the reading waits for a run that writes prod · [[decision-case-841]]
 - 2026-10-16 updated: the push of the tag prod-0.2.0 runs after the install readings, on the person's word; the Criterion stands, and the reading waits for a run that writes prod · [[decision-case-850]]
+- 2026-11-02 updated: the Criterion replaced whole — a run fails while a page that blocks the build stands · [[decision-case-996.2]]

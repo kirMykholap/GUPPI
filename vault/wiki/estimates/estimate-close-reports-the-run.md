@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-close]]"
-purpose: Whether report.md of the session folder holds the report the librarian returned last at its close, and gives the counts, the marks, the archived pages, the flags, the lint total and each part another step of its frame sends to the report, with no test result and no list of files
-method: "by hand, after the librarian's run of a session that starts with the hook of rule-librarian-report-copy in .claude/settings.json and whose .claude/agents/librarian-guppi.md, when the run starts, holds the Render of rule-close that returns the report as text: the agent reads report.md of the session folder of that run, as the commit of /handoff or /box holds it by git show, beside the last output of the librarian read in its agent transcript under ~/.claude/projects/, against the Criterion, the transcript named in the estimate line"
+purpose: Whether the librarian gives its report back once at its close, as its last output, by its handback where it has the tool or as its last text, and report.md of the session folder holds that report and gives the counts, the marks, the archived pages, the flags, the lint total and each part another step of its frame sends to the report, with no test result and no list of files
+method: "by hand, after the librarian's run of a session whose .claude/agents/librarian-guppi.md, when the run starts, holds the Render of rule-close that gives the report back once as the last output: the agent reads report.md of the session folder of that run, as the commit of /handoff or /box holds it by git show, beside every output of the librarian, its texts and the message of each SubagentHandback call, read in its agent transcript under ~/.claude/projects/, against the Criterion, the transcript named in the estimate line"
 checked: 2026-11-01
 origin: raw/2026-10-29/1930/ledger.md#case-903.2
 sprint: plugin
@@ -19,6 +19,7 @@ The librarian's run that `/handoff` of `.claude/skills/handoff/SKILL.md` dispatc
 
 Then:
 `vault/raw/<date>/<hi HHMM>/report.md`, the folder of the `handoff.md` the dispatch names, holds the report that the librarian returned last.
+**＋** The librarian gives the report once, as its last output: the `message` of its `SubagentHandback` call where it has that tool, else its last text, with no output after it.
 **＋** The file gives the pages created and updated per category, the entries marked incomplete or failed, the pages archived, the flags the run raised and the lint total.
 **＋** The file gives each part that another step of `.claude/agents/librarian-guppi.md` sends to the report.
 **－** The file holds no test result and no list of files.
@@ -43,3 +44,4 @@ Then:
 - 2026-11-01 defer by decision-case-971 superseded · [[decision-case-982.3]]
 - 2026-11-01 updated: the defer of decision-case-971, archived as superseded, retired; the reading waits for its event · [[decision-case-982.3]]
 - 2026-11-01 status: pending → passed · raw/2026-11-01/2038/ledger.md#L15
+- 2026-11-02 updated: the Criterion replaced whole — the librarian gives the report once, as its last output, by its handback or its last text · [[decision-case-994]]

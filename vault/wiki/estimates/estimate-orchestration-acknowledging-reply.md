@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: failed
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: one reading by hand of the first acknowledging reply of a session, and of the first reply that acknowledges Cases ratified together in one answer
-checked: 2026-11-01
+checked: 2026-11-02
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -18,13 +18,12 @@ When:
 The person ratifies a Case, ratifies again a Case shown again after its ratification, or ratifies in one answer Cases shown together, and the agent writes the reply that acknowledges it, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`.
 
 Then:
-The reply has four parts, in this order. First, the `LEDGER` block, before which stands only the `STOP:` line of a reply that waits for the person's word after `/pre-spec`. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist.
+The reply has four parts, in this order. First, the `LEDGER` block, before which stands nothing but the `STOP:` line that `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec` checks. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist.
 **＋** In the checklist the closed lines are folded into one line, and the lines put off stand as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
 **＋** The open `W` lines are folded into one line that lists their ids, and each other open line stands on its own line with a short title.
 **＋** While a line under `## Cases` is open, the question which item is next ends the reply.
 **＋** When none is open before `/pre-spec`, the question whether to go on to `/pre-spec` ends the reply, in the plain form of the question which item is next. The agent calls `/pre-spec` only after the person says to go on. A reply that answers a question of the person instead ends with the same question again.
 **＋** When none is open after `/pre-spec`, the reply ends with the Frontier and asks nothing, and the hook of `rule-prespec-onward` sends the agent on.
-**＋** But a reply after `/pre-spec` that waits for the person's word, such as one that acknowledges some Cases while another Case shown waits for the person, opens with a line that opens with `STOP:`, puts the `LEDGER` block right after that line, and ends with its question to the person, so that the hook lets it end.
 **＋** One reply acknowledges every Case and sub-case ratified in one answer, a Case with its sub-cases or Cases shown together for one ratification: one `LEDGER` block with all their lines, one heading `## Case N — ratified` that names their ids, one paragraph `Changes:`, one Frontier.
 **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision lines of each Case ratified again, as at its first ratification.
 **＋** The headings and labels are in the language of the chat.
@@ -34,7 +33,7 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 
 ## Result
 
-2026-11-01, Retro of session 2038, the acknowledging replies of this session in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a.jsonl, on the Render before Case 992.2: the first, of Case 990, holds the LEDGER block first, the heading, Changes, no Notes, the Frontier with the closed and the W lines folded and the question which item is next; the first of Cases ratified together, 992 and 991 after /pre-spec, holds one LEDGER block with all their lines, the lines of Case 990 again, one heading naming the ids, Changes, Notes, the Frontier and no question, and the hook sent the agent on; not exercised: the STOP: line of a reply after /pre-spec that waits for the person
+2026-11-02, Retro of session 2227, the first acknowledging reply of the session (Case 993) and the first that acknowledges Cases ratified in one answer (Case 995.1–995.3), read against the Criterion of Case 993.1: the LEDGER block first, the heading, Changes, Notes where facts stood, the Frontier with closed and W lines folded, the closing question, one reply for Cases ratified together and no tool call after the block all held; the line that headings and labels are in the language of the chat failed: the headings ## Case N stood in Russian, but the labels **Changes:** and **Notes:** and the heading ## Frontier stood in English in every acknowledging reply of the session
 
 ## History
 
@@ -63,3 +62,5 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 - 2026-10-07 status: pending → passed · raw/2026-10-07/0211/ledger.md#L36
 - 2026-11-01 updated: the Criterion replaced whole — after /pre-spec, a reply that waits for the person opens with STOP:, the LEDGER block right after it · [[decision-case-992.2]]
 - 2026-11-01 status: pending → passed · raw/2026-11-01/2038/ledger.md#L22
+- 2026-11-02 updated: the Criterion replaced whole — the STOP: line after /pre-spec split off into its own Estimate · [[decision-case-993.1]]
+- 2026-11-02 status: pending → failed · raw/2026-11-01/2227/ledger.md#L21

@@ -19,7 +19,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 
 ### The clean branch
 
-- [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint; what remains: the owner pushes `plugin` and a tag of the form `prod-x.y.z` on its last commit, and the CI run it starts is read by its Estimate; while a page with `core: true` stands `draft`, that run writes nothing to `prod`
+- [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint; what remains: the owner pushes `plugin` and a tag of the form `prod-x.y.z` on its last commit, and the CI run it starts is read by its Estimate; while a page with `core: true` that blocks the build stands — a `draft` one never `built`, or one with an Estimate `failed` — that run writes nothing to `prod`
 
 ### The plugin
 
@@ -64,3 +64,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-10-31 updated: the Backlog takes the open work of rule-work-mode and rule-spec-box as notes · [[decision-case-962]]
 - 2026-11-01 estimate estimate-sprint-plugin-check-finds-no-bare-slug-link added · [[decision-case-973]]
 - 2026-11-01 estimate estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link added · [[decision-case-978]]
+- 2026-11-02 updated: the milestone The clean branch names the pages that block the build · [[decision-case-996.2]]

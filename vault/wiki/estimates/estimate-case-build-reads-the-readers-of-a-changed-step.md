@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, when its Case changes what a step writes, copies or shows or adds a path to it, reads each step and skill that reads that output or does the same step, the steps after it and the new path included, and, where a function of .guppi/guppi/ does the step, each place that calls it or makes the same judgment on another input, and names each one in context or enters it in the Case
 method: "by hand, after the /pre-spec of the first session whose case-guppi runs on the Render of rule-case-build that holds the sentence on following a step into the code of .guppi/guppi/: the findings of ask-guppi at that /pre-spec, read in the agent transcript of that ask-guppi under ~/.claude/projects/, for a Case that changes a step and misses a step, a skill or a place of code that reads its output or does the same step, the count and the transcript in the estimate line"
-checked: 2026-11-01
+checked: 2026-11-02
 origin: raw/2026-10-30/0304/ledger.md#case-924
 sprint: plugin
 created: 2026-10-30
@@ -27,7 +27,7 @@ It searches `vault/wiki/rules/` and `.claude/` for the name of that output — a
 
 ## Result
 
-2026-11-01, Work Mode of session 0141, the findings of ask-guppi at the pre-spec of session 2307, ~/.claude/projects/c--PROJECTS-GUPPI/8d8876d7-f627-4f65-95f7-cb7b7172cd46/subagents/agent-a5ddd2830f464981b.jsonl line 331: 1 of 7 findings is a Case that changes a step and misses one that does the same step — finding 2.1, Case 972 changes the wait check of pre-spec for a create and an update with set method and missed the kept method of an update that replaces the Criterion whole, the kept_method_waits path of prespec.py
+2026-11-02, Work Mode of session 2227, the findings of ask-guppi at the pre-spec of session 2038, ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a/subagents/agent-a03b5d7a30c71b7d9.jsonl line 264 (confirmation line 276, no new finding): 4 of 11 findings are a Case that changes a step and misses one that reads its output or does the same step — 1.1 Case 990 changed ONLY_THE_PERSON of rule-prespec-onward and missed ## The acknowledging reply of rule-orchestration; 1.2 Case 991.1 missed the same closer in ## The short form of rule-orchestration; 1.3 Case 991.1 missed the take-back sentence of ## Showing and signing a Case; 3.1 Case 991.1 did not name deferred_pages of prespec.py, by which check_backlog_line judges
 
 ## History
 
@@ -39,3 +39,4 @@ It searches `vault/wiki/rules/` and `.claude/` for the name of that output — a
 - 2026-10-31 updated: pending again after the failed reading of session 0431, the Criterion written back unchanged; the method waits for the /pre-spec of the first session on the Render that follows a step to the one who carries it out · [[decision-case-966]]
 - 2026-11-01 status: pending → failed · raw/2026-11-01/0141/ledger.md#L18
 - 2026-11-01 updated: the Criterion replaced whole — the readers of a changed step include the places of the harness code; pending again after the failed reading of session 0141 · [[decision-case-985]]
+- 2026-11-02 status: pending → failed · raw/2026-11-01/2227/ledger.md#L19

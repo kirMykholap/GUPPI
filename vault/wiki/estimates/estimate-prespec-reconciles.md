@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-prespec]]"
 method: "by hand at Retro of the session that changes it: the new Render of rule-prespec and rule-ask in the Spec, read against the Criterion, recorded in the estimate line"
-checked: 2026-10-12
+checked: 2026-11-02
 origin: raw/2026-09-09/ledger.md#case-24.2
 sprint: migration
 created: 2026-09-09
@@ -20,8 +20,8 @@ Then:
 The agent runs `uv run --project .guppi guppi prespec --check` on the plan file with `--session <id>`, the eight-character id of the `hi:` line, and reads the first line of the output before the exit code — "no hi recorded for session …; nothing checked" means the wrong value; nothing is translated before the run.
 **＋** A finding in a Case — in its prose or in its body, a wrong fact of its `context` included — goes to the `case-guppi` of that Case by `SendMessage`; its new answer is shown and ratified again, and the hook of `rule-spec-write` writes it into the plan; the agent does not edit the text of a Case in the plan file.
 **＋** A finding in `vault/raw/<date>/<hi HHMM>/frontier.md` or in a line of the session's ledger is fixed there, and the command runs again until it prints no finding.
-**＋** At the first run of `/pre-spec` in the session, the agent dispatches one `ask-guppi` over the plan, or over the conserved Spec that the plan's title line names, as `rule-skill-hi` sets that line, with the absolute path of the plan file, the instruction to judge every Case outside `## Deferred` with its sub-cases, and the instruction to read for each such Case its `context`, `when`, `then` and `then` block and, for an `update` of a rule or an entity, the page's `estimates`; of a Case under `## Deferred` it reads only the slugs of its `defer` items.
-**＋** The questions: which decisions contradict a page of the vault, a rule of the vault, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact of a `context` — a page's status, a count, a case number, a claim that no page holds a thing — the vault does not bear out; and whether the `When` or `Then` of a Criterion a Case sets asks someone to read or see what only a later session, the librarian's run or a `/hi` produces, when the `method` of that Estimate, in the plan or else on its live page, cannot take that reading in the Case's own session.
+**＋** At the first run of `/pre-spec` in the session, the agent dispatches one `ask-guppi` over the plan, or over the conserved Spec that the plan's title line names, as `rule-skill-hi` sets that line, with the absolute path of the plan file, the instruction to judge every Case outside `## Deferred` with its sub-cases, and the instruction to read for each such Case its `context`, `when`, `then`, `then` block and `tasks` block and, for an `update` of a rule or an entity, the page's `estimates`; of a Case under `## Deferred` it reads only the slugs of its `defer` items.
+**＋** The questions: which decisions contradict a page of the vault, a rule of the vault, or each other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact of a `context` — a page's status, a count, a case number, a claim that no page holds a thing — the vault does not bear out; whether, for each Case of the plan with a line of its `tasks` block that adds a file that is no page of `vault/wiki/`, its `context` names each search and reading that `.claude/agents/case-guppi.md` sets for the folders that hold that file, and which reader that takes every file of such a folder the Case does not name; and whether the `When` or `Then` of a Criterion a Case sets asks someone to read or see what only a later session, the librarian's run or a `/hi` produces, when the `method` of that Estimate, in the plan or else on its live page, cannot take that reading in the Case's own session.
 **＋** The agent answers the findings with one report before any Case is sent back: the list of what the `ask-guppi` run did not check; each finding numbered, with the fix it proposes or why it is already known, the findings that need the person apart from those that do not, and the decisions it needs from the person; after the Cases built again on the findings are ratified, it does not call `/pre-spec` again, but runs the check, fixes what it prints, and exits Plan Mode when the check prints no finding.
 **＋** `guppi gate` writes the stamped `prespec` line on the Skill call.
 **－** The last question finds nothing where a part of the `method` waits for an event it names that brings that reading, nor in the Criterion of an Estimate whose target is a sprint page `entity-sprint-<id>`, whose `method` may wait for a later session of its sprint.
@@ -32,7 +32,7 @@ The agent runs `uv run --project .guppi guppi prespec --check` on the plan file 
 
 ## Result
 
-2026-10-12, Retro, the new Render of rule-prespec and rule-ask in the Spec of session 2252 read against the Criterion of case 782.1: the replace of rule-prespec names a fourth question — whether the When or Then of a Criterion asks someone to read what only a later session, the librarian's run or a /hi produces, when the method cannot take that reading in the Case's own session — with an event the method names and an Estimate of a sprint page as no such finding; the replace of rule-ask has ask-guppi answer the questions the skill sets in its order; each old text stands once on its page; the other lines of the Criterion stand in the page unchanged
+2026-11-02, Retro of session 2227, the new Render of rule-prespec in the Spec (Case 995.2, the two replace pairs over .claude/skills/pre-spec/SKILL.md) and of rule-ask, read against the Criterion of Case 995.3: the read list of the dispatch holds context, when, then, then block, tasks block and estimates; the questions hold, in order, contradictions, an Estimate not named, a fact of context, the searches and readers of the folders of a new file that is no page, and the later-moment question with its two exceptions; the report, the check run, the one ask-guppi, no list of decisions and the note on a deferred page stand as before; rule-ask allows the one Grep of .guppi/guppi/ and .guppi/tests/ for that question without restating it
 
 ## History
 
@@ -84,3 +84,5 @@ The agent runs `uv run --project .guppi guppi prespec --check` on the plan file 
 - 2026-10-12 updated: the Criterion replaced whole — ask-guppi is also asked whether the When or Then of a Criterion needs a reading only a later session can take · [[decision-case-782.1]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/2252/ledger.md#L12
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
+- 2026-11-02 updated: the Criterion replaced whole — the questions of /pre-spec hold the one on the readers of the folders of a new file · [[decision-case-995.3]]
+- 2026-11-02 status: pending → passed · raw/2026-11-01/2227/ledger.md#L22

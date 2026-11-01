@@ -1,0 +1,2367 @@
+date: '2026-11-01'
+sprint: plugin
+ledger: vault/raw/2026-11-01/2227/ledger.md
+spec:
+- vault/raw/2026-11-01/2227/spec.md
+entries:
+- line: 1
+  text: decision[case 993.1][update][estimate-orchestration-acknowledging-reply]{ref:rule-orchestration}
+  case: '993.1'
+  kind: update
+  slug: estimate-orchestration-acknowledging-reply
+  origin: raw/2026-11-01/2227/ledger.md#case-993.1
+  decision: decision-case-993.1
+  ref: rule-orchestration
+  category: estimates
+  set:
+    status: pending
+  change: 'the Criterion replaced whole — the STOP: line after /pre-spec split off into its own Estimate'
+  sections:
+    Criterion: 'When:
+
+      The person ratifies a Case, ratifies again a Case shown again after its ratification, or ratifies
+      in one answer Cases shown together, and the agent writes the reply that acknowledges it, with `vault/wiki/orchestration.md`
+      rendered from `rule-orchestration`.
+
+
+      Then:
+
+      The reply has four parts, in this order. First, the `LEDGER` block, before which stands nothing
+      but the `STOP:` line that `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`
+      checks. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes,
+      in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left
+      out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md`
+      as a checklist.
+
+      **＋** In the checklist the closed lines are folded into one line, and the lines put off stand as
+      `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
+
+      **＋** The open `W` lines are folded into one line that lists their ids, and each other open line
+      stands on its own line with a short title.
+
+      **＋** While a line under `## Cases` is open, the question which item is next ends the reply.
+
+      **＋** When none is open before `/pre-spec`, the question whether to go on to `/pre-spec` ends the
+      reply, in the plain form of the question which item is next. The agent calls `/pre-spec` only after
+      the person says to go on. A reply that answers a question of the person instead ends with the same
+      question again.
+
+      **＋** When none is open after `/pre-spec`, the reply ends with the Frontier and asks nothing, and
+      the hook of `rule-prespec-onward` sends the agent on.
+
+      **＋** One reply acknowledges every Case and sub-case ratified in one answer, a Case with its sub-cases
+      or Cases shown together for one ratification: one `LEDGER` block with all their lines, one heading
+      `## Case N — ratified` that names their ids, one paragraph `Changes:`, one Frontier.
+
+      **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision
+      lines of each Case ratified again, as at its first ratification.
+
+      **＋** The headings and labels are in the language of the chat.
+
+      **＋** No tool call follows the `LEDGER` block in the same reply.
+
+      **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
+
+      **－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply with
+      exit 2, the agent''s answer to the refusal is a reply of its own and may call tools. The `LEDGER`
+      block stands written, but for a decision line the ledger hook holds, as `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
+      sets it.'
+  applied: 00:29:53
+- line: 2
+  text: decision[case 993.2][create][estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec]{ref:rule-orchestration}{tags:session,workflow,ledger}
+  case: '993.2'
+  kind: create
+  slug: estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec
+  origin: raw/2026-11-01/2227/ledger.md#case-993.2
+  decision: decision-case-993.2
+  ref: rule-orchestration
+  tags:
+  - session
+  - workflow
+  - ledger
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether an acknowledging reply after /pre-spec that waits for the person opens with STOP:,
+      the LEDGER block right after it, and ends with its question
+    method: 'by hand, after an acknowledging reply after /pre-spec that waits for the person''s word:
+      that reply read against the Criterion in the transcript of its session under ~/.claude/projects/'
+    tags:
+    - session
+    - workflow
+    - ledger
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      After `/pre-spec`, the person ratifies a Case, and the agent writes the reply that acknowledges
+      it while that reply waits for the person''s word, because another Case shown waits for the person
+      or because a question the person must answer is open, with `vault/wiki/orchestration.md` rendered
+      from `rule-orchestration`.
+
+
+      Then:
+
+      The reply opens with a line that opens with `STOP:`.
+
+      **＋** The `LEDGER` block stands right after that line.
+
+      **＋** The other parts follow in the order that `estimate-orchestration-acknowledging-reply` checks.
+
+      **＋** The reply ends with its question to the person.'
+  applied: 00:29:53
+- line: 3
+  text: decision[case 994][update][rule-close]{ref:rule-close}
+  case: '994'
+  kind: update
+  slug: rule-close
+  origin: raw/2026-11-01/2227/ledger.md#case-994
+  decision: decision-case-994
+  ref: rule-close
+  category: rules
+  replace:
+  - old: Then return the report as your last text, and give the same text when you hand your report back;
+      write no text after the handback, since the hook copies your last output, a text after the handback
+      included. The hook of `rule-librarian-report-copy` copies that text
+    new: 'Then give the report back once, as your last output: as the message of your handback where you
+      have the tool `SubagentHandback`, and as your last text where you have no such tool, since Claude
+      Code gives that tool only in auto mode; write no text after it, since the hook copies your last
+      output, a text after the handback included (as set in case 994). The hook of `rule-librarian-report-copy`
+      copies that report'
+  change: 'the librarian gives its report back once, as its last output: the handback where it has the
+    tool, else its last text'
+  applied: 00:29:53
+- line: 4
+  text: decision[case 994][update][rule-documentation]{ref:rule-documentation}
+  case: '994'
+  kind: update
+  slug: rule-documentation
+  origin: raw/2026-11-01/2227/ledger.md#case-994
+  decision: decision-case-994
+  ref: rule-documentation
+  category: rules
+  replace:
+  - old: If it exits 1, return the report as text and stop (as set in cases 944 and 956).
+    new: 'If it exits 1, give the report back once, as your last output: as the message of your handback
+      where you have the tool `SubagentHandback`, and as your last text where you have no such tool; write
+      no text after it, and stop, with no `guppi check` and no commit (as set in cases 944, 956 and 994).'
+  change: a run that stops at step 1 gives its report back once, as its last output, and runs no check
+    and no commit
+  applied: 00:29:53
+- line: 5
+  text: decision[case 994][update][estimate-close-reports-the-run]{ref:rule-close}
+  case: '994'
+  kind: update
+  slug: estimate-close-reports-the-run
+  origin: raw/2026-11-01/2227/ledger.md#case-994
+  decision: decision-case-994
+  ref: rule-close
+  category: estimates
+  set:
+    status: pending
+    purpose: Whether the librarian gives its report back once at its close, as its last output, by its
+      handback where it has the tool or as its last text, and report.md of the session folder holds that
+      report and gives the counts, the marks, the archived pages, the flags, the lint total and each part
+      another step of its frame sends to the report, with no test result and no list of files
+    method: 'by hand, after the librarian''s run of a session whose .claude/agents/librarian-guppi.md,
+      when the run starts, holds the Render of rule-close that gives the report back once as the last
+      output: the agent reads report.md of the session folder of that run, as the commit of /handoff or
+      /box holds it by git show, beside every output of the librarian, its texts and the message of each
+      SubagentHandback call, read in its agent transcript under ~/.claude/projects/, against the Criterion,
+      the transcript named in the estimate line'
+  change: the Criterion replaced whole — the librarian gives the report once, as its last output, by its
+    handback or its last text
+  sections:
+    Criterion: 'When:
+
+      The librarian''s run that `/handoff` of `.claude/skills/handoff/SKILL.md` dispatches, or that `/box`
+      of `.claude/skills/box/SKILL.md` dispatches in a session that `/box` runs, reaches the close of
+      `.claude/agents/librarian-guppi.md` and ends, and the hook of `rule-librarian-report-copy` fires.
+
+
+      Then:
+
+      `vault/raw/<date>/<hi HHMM>/report.md`, the folder of the `handoff.md` the dispatch names, holds
+      the report that the librarian returned last.
+
+      **＋** The librarian gives the report once, as its last output: the `message` of its `SubagentHandback`
+      call where it has that tool, else its last text, with no output after it.
+
+      **＋** The file gives the pages created and updated per category, the entries marked incomplete or
+      failed, the pages archived, the flags the run raised and the lint total.
+
+      **＋** The file gives each part that another step of `.claude/agents/librarian-guppi.md` sends to
+      the report.
+
+      **－** The file holds no test result and no list of files.
+
+      **－** No limit of lines binds the file.'
+  applied: 00:29:53
+- line: 6
+  text: decision[case 995.1][update][rule-case-build]{ref:rule-case-build}
+  case: '995.1'
+  kind: update
+  slug: rule-case-build
+  origin: raw/2026-11-01/2227/ledger.md#case-995.1
+  decision: decision-case-995.1
+  ref: rule-case-build
+  category: rules
+  replace:
+  - old: each one the new file makes wrong enters the Case, or `context` names it and says why it stands
+      (as set in case 974).
+    new: each one the new file makes wrong enters the Case, or `context` names it and says why it stands;
+      `context` names each of these searches, with its pattern, its paths and each file it printed or
+      the count it printed, and each `.gitignore` and each reader you read, with whether the new file
+      makes it wrong, since the claim that the new file makes no reader of its folders wrong rests on
+      them (as set in cases 974 and 995.1).
+  change: the context of a Case that adds a file that is no page names each search and reading for the
+    folders that hold it
+  applied: 00:29:53
+- line: 7
+  text: decision[case 995.1][update][estimate-case-build-reads-the-readers-of-a-new-files-folder]{ref:rule-case-build}
+  case: '995.1'
+  kind: update
+  slug: estimate-case-build-reads-the-readers-of-a-new-files-folder
+  origin: raw/2026-11-01/2227/ledger.md#case-995.1
+  decision: decision-case-995.1
+  ref: rule-case-build
+  category: estimates
+  set:
+    status: pending
+    purpose: Whether case-guppi, when a task of its Case adds a file that is no page, searches for the
+      paths of the folders that hold it and for the calls that walk a folder, reads the ignore files of
+      git there and each reader that takes every file of such a folder, enters each one the new file makes
+      wrong in the Case or names it in context, and names in context each of those searches and readings
+    method: 'by hand, after the /pre-spec of the first session whose case-guppi runs on the Render of
+      rule-case-build that names in context each search and reading for the folders of a new file, and
+      in which a Case adds a file that is no page of vault/wiki/: the agent transcript of the case-guppi
+      of that Case under ~/.claude/projects/, read for each search and reading of the Criterion, and its
+      case file under raw/<date>/<hi HHMM>/cases/, read for the list of them in context; the count, the
+      transcript and the case file in the estimate line'
+  change: the Criterion replaced whole — the context names each search and reading for the folders of
+    a new file
+  sections:
+    Criterion: 'When:
+
+      `case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, builds a Case
+      with a task that adds a file that is no page of `vault/wiki/`, and is about to answer with its summary.
+
+
+      Then:
+
+      It searches `.guppi/guppi/`, `.claude/` and the Rule pages of `vault/wiki/` for the path of each
+      folder that holds the new file.
+
+      **＋** It searches `.guppi/guppi/` and `.guppi/tests/` for the calls that walk a folder, such as
+      `os.walk`, `rglob`, `glob` and `iterdir`.
+
+      **＋** It reads each ignore file of git in a folder that holds the new file.
+
+      **＋** It reads each reader that takes every file of a folder that holds the new file.
+
+      **＋** Each reader that the new file makes wrong enters the Case, or the `context` of the Case names
+      it and says why it stands.
+
+      **＋** The `context` of the Case names each of those searches, with its pattern, its paths and each
+      file it printed or the count it printed, and each ignore file of git and each reader it read, with
+      whether the new file makes it wrong.
+
+      **－** A page that a `create` adds under `vault/wiki/` starts no such search.'
+  applied: 00:29:53
+- line: 8
+  text: decision[case 995.2][update][rule-prespec]{ref:rule-prespec}
+  case: '995.2'
+  kind: update
+  slug: rule-prespec
+  origin: raw/2026-11-01/2227/ledger.md#case-995.2
+  decision: decision-case-995.2
+  ref: rule-prespec
+  category: rules
+  replace:
+  - old: and whether the `When` or `Then` of a Criterion a Case sets
+    new: whether, for each Case of the plan with a line of its `tasks` block that adds a file that is
+      no page of `vault/wiki/`, its `context` names each search and reading that `.claude/agents/case-guppi.md`
+      sets for the folders that hold that file, and which reader that takes every file of such a folder
+      the Case does not name; and whether the `When` or `Then` of a Criterion a Case sets
+  - old: — and, for an `update` of a rule or an entity, the page's `estimates`, before judging a page
+    new: —, its `tasks` block and, for an `update` of a rule or an entity, the page's `estimates`, before
+      judging a page
+  change: ask-guppi at pre-spec reads the tasks block of each Case and is asked about the searches and
+    the readers of the folders of a new file that is no page
+  applied: 00:29:53
+- line: 9
+  text: decision[case 995.2][update][rule-ask]{ref:rule-ask}
+  case: '995.2'
+  kind: update
+  slug: rule-ask
+  origin: raw/2026-11-01/2227/ledger.md#case-995.2
+  decision: decision-case-995.2
+  ref: rule-ask
+  category: rules
+  replace:
+  - old: a question with no finding says "none" (case 626.1).
+    new: a question with no finding says "none" (case 626.1). For the question of `.claude/skills/pre-spec/SKILL.md`
+      on a new file that is no page of `vault/wiki/`, run, beside your searches of the vault, one Grep
+      of `.guppi/guppi/` and `.guppi/tests/` for the calls that walk a folder, such as `os.walk`, `rglob`,
+      `glob` and `iterdir`, and read around its line each hit whose folder holds that file; this is the
+      one search of the code you make (as set in case 995.2).
+  change: at pre-spec, ask-guppi greps the code and the tests for the folder walks that read a new file
+    of a Case
+  applied: 00:29:53
+- line: 10
+  text: decision[case 995.2][create][estimate-prespec-finds-a-reader-of-a-new-files-folder]{ref:rule-prespec}{tags:session,workflow,harness}
+  case: '995.2'
+  kind: create
+  slug: estimate-prespec-finds-a-reader-of-a-new-files-folder
+  origin: raw/2026-11-01/2227/ledger.md#case-995.2
+  decision: decision-case-995.2
+  ref: rule-prespec
+  tags:
+  - session
+  - workflow
+  - harness
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether ask-guppi at the first /pre-spec of a session checks, for each Case that adds a file
+      that is no page, that its context names each search and reading for the folders that hold that file,
+      greps the code and the tests for the calls that walk a folder, and names in a finding each reader
+      of such a folder that the Case does not name
+    method: 'by hand, after the first /pre-spec on the Render of rule-prespec and rule-ask that holds
+      the question on the readers of the folders of a new file, whose plan holds a Case that adds a file
+      that is no page of vault/wiki/: the findings of ask-guppi under that question and its Grep of .guppi/guppi/
+      and .guppi/tests/, read in its agent transcript under ~/.claude/projects/ against the Criterion;
+      the count and the transcript in the estimate line'
+    tags:
+    - session
+    - workflow
+    - harness
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      At the first run of `/pre-spec` in a session, the main agent dispatches `ask-guppi` with the plan
+      file and the questions of `.claude/skills/pre-spec/SKILL.md`, rendered from `rule-prespec`; the
+      agent follows `.claude/agents/ask-guppi.md`, rendered from `rule-ask`; and a Case of the plan has
+      a line in its `tasks` block that adds a file that is no page of the vault.
+
+
+      Then:
+
+      `ask-guppi` reads the `tasks` block of each Case of the plan, as the dispatch of `.claude/skills/pre-spec/SKILL.md`
+      tells it, and answers, for a Case with such a line, whether its `context` names each search and
+      reading that `.claude/agents/case-guppi.md` sets for the folders that hold the new file.
+
+      **＋** A search or a reading that the `context` misses is a finding that names the Case and what
+      it misses.
+
+      **＋** Beside its searches of the vault, it runs one Grep of `.guppi/guppi/` and `.guppi/tests/`
+      for the calls that walk a folder, such as `os.walk`, `rglob`, `glob` and `iterdir`, and reads around
+      its line each hit whose folder holds the new file.
+
+      **＋** Each reader that takes every file of such a folder and that the Case does not name is a finding
+      that names the Case and the reader.
+
+      **－** A plan with no such Case starts no Grep of the code, and the question says "none".
+
+      **－** At the confirmation of its findings, the agent runs no such Grep.'
+  applied: 00:29:53
+- line: 11
+  text: decision[case 995.3][update][estimate-prespec-reconciles]{ref:rule-prespec}
+  case: '995.3'
+  kind: update
+  slug: estimate-prespec-reconciles
+  origin: raw/2026-11-01/2227/ledger.md#case-995.3
+  decision: decision-case-995.3
+  ref: rule-prespec
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the questions of /pre-spec hold the one on the readers of the
+    folders of a new file
+  sections:
+    Criterion: 'When:
+
+      The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved, with
+      `.claude/skills/pre-spec/SKILL.md` rendered from `rule-prespec` and `.claude/agents/ask-guppi.md`
+      rendered from `rule-ask`.
+
+
+      Then:
+
+      The agent runs `uv run --project .guppi guppi prespec --check` on the plan file with `--session
+      <id>`, the eight-character id of the `hi:` line, and reads the first line of the output before the
+      exit code — "no hi recorded for session …; nothing checked" means the wrong value; nothing is translated
+      before the run.
+
+      **＋** A finding in a Case — in its prose or in its body, a wrong fact of its `context` included
+      — goes to the `case-guppi` of that Case by `SendMessage`; its new answer is shown and ratified again,
+      and the hook of `rule-spec-write` writes it into the plan; the agent does not edit the text of a
+      Case in the plan file.
+
+      **＋** A finding in `vault/raw/<date>/<hi HHMM>/frontier.md` or in a line of the session''s ledger
+      is fixed there, and the command runs again until it prints no finding.
+
+      **＋** At the first run of `/pre-spec` in the session, the agent dispatches one `ask-guppi` over
+      the plan, or over the conserved Spec that the plan''s title line names, as `rule-skill-hi` sets
+      that line, with the absolute path of the plan file, the instruction to judge every Case outside
+      `## Deferred` with its sub-cases, and the instruction to read for each such Case its `context`,
+      `when`, `then`, `then` block and `tasks` block and, for an `update` of a rule or an entity, the
+      page''s `estimates`; of a Case under `## Deferred` it reads only the slugs of its `defer` items.
+
+      **＋** The questions: which decisions contradict a page of the vault, a rule of the vault, or each
+      other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact
+      of a `context` — a page''s status, a count, a case number, a claim that no page holds a thing —
+      the vault does not bear out; whether, for each Case of the plan with a line of its `tasks` block
+      that adds a file that is no page of `vault/wiki/`, its `context` names each search and reading that
+      `.claude/agents/case-guppi.md` sets for the folders that hold that file, and which reader that takes
+      every file of such a folder the Case does not name; and whether the `When` or `Then` of a Criterion
+      a Case sets asks someone to read or see what only a later session, the librarian''s run or a `/hi`
+      produces, when the `method` of that Estimate, in the plan or else on its live page, cannot take
+      that reading in the Case''s own session.
+
+      **＋** The agent answers the findings with one report before any Case is sent back: the list of what
+      the `ask-guppi` run did not check; each finding numbered, with the fix it proposes or why it is
+      already known, the findings that need the person apart from those that do not, and the decisions
+      it needs from the person; after the Cases built again on the findings are ratified, it does not
+      call `/pre-spec` again, but runs the check, fixes what it prints, and exits Plan Mode when the check
+      prints no finding.
+
+      **＋** `guppi gate` writes the stamped `prespec` line on the Skill call.
+
+      **－** The last question finds nothing where a part of the `method` waits for an event it names that
+      brings that reading, nor in the Criterion of an Estimate whose target is a sprint page `entity-sprint-<id>`,
+      whose `method` may wait for a later session of its sprint.
+
+      **－** No second `ask-guppi` is dispatched at the first run, and a later run of `/pre-spec` in the
+      session dispatches none.
+
+      **－** The report never says that the whole Spec is checked.
+
+      **－** The agent writes no list of the decisions: the plan is the list.
+
+      **－** The body of a deferred decision is not read, and `ask-guppi` is not asked whether a Case changes
+      a page that another Case of the plan defers: `uv run --project .guppi guppi prespec --check` notes
+      such a pair at every run, as `estimate-prespec-notes-a-page-another-case-defers` sets it.'
+  applied: 00:29:53
+- line: 12
+  text: decision[case 996.1][update][rule-clean-branch]{ref:rule-clean-branch}
+  case: '996.1'
+  kind: update
+  slug: rule-clean-branch
+  origin: raw/2026-11-01/2227/ledger.md#case-996.1
+  decision: decision-case-996.1
+  ref: rule-clean-branch
+  category: rules
+  replace:
+  - old: 'While a rule or an entity with `core: true` stands `draft`, `guppi ship <folder>` prints one
+      line for each such page, writes nothing and exits 1, so the workflow writes nothing to `prod`; with
+      the option `--allow-draft` it writes'
+    new: 'A rule or an entity with `core: true` that stands `draft` blocks the build when its `## History`
+      holds no line that set its status to `built`, or when one of its Estimates stands `failed`; one
+      that was `built` before and only waits for the reading of a newer Estimate blocks nothing and is
+      written as it stands (as set in case 996.1). While a page that blocks the build stands, `guppi ship
+      <folder>` prints one line for each such page, writes nothing and exits 1, so the workflow writes
+      nothing to `prod`; with the option `--allow-draft` it writes'
+  - old: '`guppi ship --check` does not judge the status of a page, and `guppi lint` reports each such
+      page where the module of the command `ship` stands; both judge it by `is_draft_core` of `.guppi/guppi/pages.py`.
+      A draft page that a new project can go without loses `core` until it is `built` (case 822).'
+    new: '`guppi ship --check` does not judge the status of a page, and `guppi lint` reports each page
+      that blocks the build where the module of the command `ship` stands, and no other `draft` page with
+      `core: true`; both judge it by `is_draft_core` of `.guppi/guppi/pages.py`, and a test of `.guppi/tests/test_lint.py`
+      runs the cascade of `generate` that sets a page `built` and the judgment over that page (as set
+      in case 996.1). A page that blocks the build and that a new project can go without loses `core`
+      until it is `built` (as set in cases 822 and 996.1). A page that the clean version holds as `draft`
+      keeps that status there, and `guppi lint` of a project that installed GUPPI reports neither it nor
+      its Estimates that the build leaves out (as set in case 996.1).'
+  change: 'the build is blocked only by a draft page with core: true that was never built or has a failed
+    Estimate; a page shipped as draft draws no lint finding in an installed project'
+  applied: 00:29:53
+- line: 13
+  text: decision[case 996.1][update][rule-lint]{ref:rule-lint}
+  case: '996.1'
+  kind: update
+  slug: rule-lint
+  origin: raw/2026-11-01/2227/ledger.md#case-996.1
+  decision: decision-case-996.1
+  ref: rule-lint
+  category: rules
+  replace:
+  - old: '`guppi lint` also reports each rule or entity with `core: true` that is `draft`, since `guppi
+      ship` builds no clean version while one stands; a project that installed GUPPI gets no such line
+      (case 822).'
+    new: '`guppi lint` also reports each rule or entity with `core: true` that is `draft` and whose History
+      holds no line that set it `built`, or one of whose Estimates stands `failed`, since `guppi ship`
+      builds no clean version while one stands; a project that installed GUPPI gets no such line (as set
+      in cases 822 and 996.1). Where the module of the command `ship` is missing, lint also gives no finding
+      on a `draft` rule or entity with every Estimate `passed`, since the clean version keeps the status
+      of a page and writes only its `passed` Estimates (as set in case 996.1).'
+  change: 'lint reports only the draft pages with core: true that block the clean build, and none shipped
+    as draft in an installed project'
+  applied: 00:29:53
+- line: 14
+  text: decision[case 996.1][update][estimate-lint-checks-the-statuses]{ref:rule-lint}
+  case: '996.1'
+  kind: update
+  slug: estimate-lint-checks-the-statuses
+  origin: raw/2026-11-01/2227/ledger.md#case-996.1
+  decision: decision-case-996.1
+  ref: rule-lint
+  category: estimates
+  set:
+    purpose: A status its Estimates do not support, a draft page with core true that blocks the clean
+      build where the command ship stands, a failed Estimate, a pending Estimate whose reading does not
+      wait for a later moment, a one-time Estimate whose target is not a sprint page, and a placeholder
+      are findings of lint, and a draft page with every Estimate passed is none where the command ship
+      is missing
+  change: 'the purpose names the draft pages with core: true that block the clean build, and the draft
+    page that is no finding in an installed project'
+  applied: 00:29:53
+- line: 15
+  text: decision[case 996.1][update][estimate-clean-branch-refuses-a-draft-core-page]{ref:rule-clean-branch}
+  case: '996.1'
+  kind: update
+  slug: estimate-clean-branch-refuses-a-draft-core-page
+  origin: raw/2026-11-01/2227/ledger.md#case-996.1
+  decision: decision-case-996.1
+  ref: rule-clean-branch
+  category: estimates
+  set:
+    status: pending
+    purpose: 'Whether guppi ship writes nothing and exits 1 while a draft page with core: true stands
+      that was never built or has a failed Estimate, writes as it stands one built before that only waits
+      for a reading, writes the copy with --allow-draft, and lint judges by the same is_draft_core'
+    method: uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core
+  change: 'the Criterion replaced whole — only a draft page with core: true that was never built or has
+    a failed Estimate blocks the build'
+  sections:
+    Criterion: 'When:
+
+      `uv run --project .guppi guppi ship <folder>` or `uv run --project .guppi guppi ship --review <folder>`,
+      as `rule-clean-branch` sets it, builds the clean version into an empty folder, with or without the
+      option `--allow-draft`, or `uv run --project .guppi guppi lint` runs where the module of the command
+      `ship` stands.
+
+
+      Then:
+
+      A rule or an entity with `core: true` that stands `draft` blocks the build when its `## History`
+      holds no line that set its status to `built`, or when one of its Estimates stands `failed`.
+
+      **＋** While a page that blocks the build stands, `guppi ship` prints one line for each such page,
+      writes nothing and exits 1.
+
+      **＋** A `draft` page with `core: true` whose History holds such a line and none of whose Estimates
+      stands `failed` gets no line, and the build writes it as it stands.
+
+      **＋** With `--allow-draft`, the build writes the clean version all the same and prints those lines,
+      which set no exit code; `.github/workflows/prod.yml` never passes that option.
+
+      **＋** The build and lint tell a page that blocks the build by `is_draft_core` of `.guppi/guppi/pages.py`,
+      imported by both, and a test runs the cascade of `.guppi/guppi/generate.py` that sets a page `built`
+      and asserts that the page, set `draft` again, then blocks nothing.
+
+      **＋** `rule-skill-merge-main` and `rule-skill-pr-review` carry no `core`, so the clean version holds
+      neither them nor the files they render.
+
+      **－** `uv run --project .guppi guppi ship --check` does not judge the status of a page.'
+  applied: 00:29:53
+- line: 16
+  text: decision[case 996.2][update][entity-sprint-plugin]{ref:entity-sprint-plugin}
+  case: '996.2'
+  kind: update
+  slug: entity-sprint-plugin
+  origin: raw/2026-11-01/2227/ledger.md#case-996.2
+  decision: decision-case-996.2
+  ref: entity-sprint-plugin
+  category: entities
+  replace:
+  - old: 'while a page with `core: true` stands `draft`, that run writes nothing to `prod`'
+    new: 'while a page with `core: true` that blocks the build stands — a `draft` one never `built`, or
+      one with an Estimate `failed` — that run writes nothing to `prod`'
+  change: the milestone The clean branch names the pages that block the build
+  applied: 00:29:53
+- line: 17
+  text: decision[case 996.2][update][estimate-sprint-plugin-ci-writes-a-clean-branch]{ref:entity-sprint-plugin}
+  case: '996.2'
+  kind: update
+  slug: estimate-sprint-plugin-ci-writes-a-clean-branch
+  origin: raw/2026-11-01/2227/ledger.md#case-996.2
+  decision: decision-case-996.2
+  ref: entity-sprint-plugin
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a run fails while a page that blocks the build stands
+  sections:
+    Criterion: 'When:
+
+      In a session of the sprint `plugin` before its close, the owner pushes a tag `prod-x.y.z`, such
+      as `prod-0.2.0`, on a commit of the branch `plugin` to the repository of the project on GitHub,
+      and the workflow `.github/workflows/prod.yml` runs on that commit.
+
+      **＋** `uv run --project .guppi guppi ship <folder>` runs on a commit with no tag `prod-x.y.z` in
+      its history.
+
+
+      Then:
+
+      The run writes the clean version that `uv run --project .guppi guppi ship` builds to the branch
+      `prod`, as one new commit on top of its last commit, or as its first commit when `prod` does not
+      stand yet, whose message names the commit it was built from.
+
+      **＋** The run pushes to `prod` with the deploy key whose private half is the secret `PROD_DEPLOY_KEY`,
+      which the bypass list of the ruleset on `prod` lets through.
+
+      **＋** `prod` holds each page with `core: true` and no other page.
+
+      **＋** No text of the clean version holds a reference to a case or a decision, a link to a page that
+      the clean version leaves out, or a mention of a session of this repository; a sample, as `rule-clean-branch`
+      sets it, such as a string of a test, is no reference.
+
+      **＋** The clean version holds no data of the sessions of this repository, such as its Frontier and
+      its sprint.
+
+      **＋** The `version` of `.claude-plugin/plugin.json` on `prod` is the number of the highest tag `prod-x.y.z`
+      in the history of the commit it was built from, such as `0.2.0` for `prod-0.2.0`, and a tag of another
+      form, such as `prod-2`, gives no version.
+
+      **＋** The `on:` block of `.github/workflows/prod.yml` starts the same run on a push to `main`.
+
+      **－** `uv run --project .guppi guppi ship <folder>` with no tag `prod-x.y.z` in that history exits
+      1 and writes nothing, and `uv run --project .guppi guppi ship --check` reads no tag.
+
+      **－** A run whose `uv run --project .guppi guppi ship` exits 1 fails and writes nothing to `prod`,
+      as it does while a page with `core: true` stands that blocks the build, which `estimate-clean-branch-refuses-a-draft-core-page`
+      checks.
+
+      **－** A run whose clean version equals the last commit of `prod` adds no commit.'
+  applied: 00:29:53
+- line: 18
+  text: decision[case 996.3][update][estimate-lint-checks-the-statuses]{ref:rule-lint}
+  case: '996.3'
+  kind: update
+  slug: estimate-lint-checks-the-statuses
+  origin: raw/2026-11-01/2227/ledger.md#case-996.3
+  decision: decision-case-996.3
+  ref: rule-lint
+  category: estimates
+  set:
+    status: pending
+  change: 'the Criterion replaced whole — lint reports only the draft pages with core: true that block
+    the clean build, and none shipped as draft in an installed project'
+  sections:
+    Criterion: 'When:
+
+      `uv run --project .guppi guppi lint` reads the `status` of the live pages under `vault/wiki/`, and
+      the `method`, the `target` and the `once` of each Estimate.
+
+
+      Then:
+
+      `status`: a `built` entity or rule with an Estimate not `passed`, a `draft` one with every Estimate
+      `passed`; a page without Estimates is not judged for these two.
+
+      **＋** `status`: where `ship_stands` of `.guppi/guppi/pages.py` finds the module of the command `ship`,
+      each entity or rule that `is_draft_core` accepts — one with `core: true` that stands `draft` and
+      whose `## History` holds no line that set it `built`, or one of whose Estimates stands `failed`
+      — with Estimates or without, one finding each, and none on another `draft` page with `core: true`.
+
+      **＋** `status`: an Estimate `passed` or `failed` without `## Result`; an Estimate whose `target`
+      is not an entity or a rule, or does not list it in `estimates`.
+
+      **＋** `status`: an Estimate with `once: true` whose `target` is not a sprint page `entity-sprint-<id>`,
+      as `is_sprint_page` of `.guppi/guppi/ledger.py` judges it, one finding.
+
+      **＋** `unread`: every Estimate `failed`, and every Estimate `pending` whose `method` does not wait
+      for a later moment, one finding each, `unread: <status>`.
+
+      **＋** A `method` waits for a later moment when a part of it between two `;` opens with `after`,
+      or with `by hand, after`, and names its event before a colon, or names a later session, the next
+      session, a session after another, a session of a sprint, the session that closes one, the librarian
+      or `/hi`.
+
+      **＋** `deferred`: a placeholder — a rule or entity with `deferred_by` and none of `kind`, `estimates`,
+      `tags` — earns one finding `deferred: <N> times since case <M>` in place of its `schema` findings
+      on those fields and of `orphan`; a page with `deferred_by` whose fields are in place earns none.
+
+      **－** `guppi lint` in a project that installed GUPPI, where `ship_stands` answers no, reports none
+      of the pages that `is_draft_core` accepts, and no `draft` entity or rule with every Estimate `passed`,
+      since the clean version keeps the `status` of a page and writes only its `passed` Estimates.
+
+      **－** A `pending` Estimate whose `method` waits for a later moment earns no `unread` finding.
+
+      **－** A `failed` Estimate earns its `unread` finding whatever its `method` says.
+
+      **－** An Estimate with `once: true` whose target is a sprint page, and an Estimate without `once`,
+      earn no finding of a one-time Estimate.'
+  applied: 00:29:53
+- line: 19
+  text: 'estimate[estimate-case-build-reads-the-readers-of-a-changed-step][failed] 2026-11-02, Work Mode
+    of session 2227, the findings of ask-guppi at the pre-spec of session 2038, ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a/subagents/agent-a03b5d7a30c71b7d9.jsonl
+    line 264 (confirmation line 276, no new finding): 4 of 11 findings are a Case that changes a step
+    and misses one that reads its output or does the same step — 1.1 Case 990 changed ONLY_THE_PERSON
+    of rule-prespec-onward and missed ## The acknowledging reply of rule-orchestration; 1.2 Case 991.1
+    missed the same closer in ## The short form of rule-orchestration; 1.3 Case 991.1 missed the take-back
+    sentence of ## Showing and signing a Case; 3.1 Case 991.1 did not name deferred_pages of prespec.py,
+    by which check_backlog_line judges'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-build-reads-the-readers-of-a-changed-step
+  status: failed
+  result: '2026-11-02, Work Mode of session 2227, the findings of ask-guppi at the pre-spec of session
+    2038, ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a/subagents/agent-a03b5d7a30c71b7d9.jsonl
+    line 264 (confirmation line 276, no new finding): 4 of 11 findings are a Case that changes a step
+    and misses one that reads its output or does the same step — 1.1 Case 990 changed ONLY_THE_PERSON
+    of rule-prespec-onward and missed ## The acknowledging reply of rule-orchestration; 1.2 Case 991.1
+    missed the same closer in ## The short form of rule-orchestration; 1.3 Case 991.1 missed the take-back
+    sentence of ## Showing and signing a Case; 3.1 Case 991.1 did not name deferred_pages of prespec.py,
+    by which check_backlog_line judges'
+  origin: raw/2026-11-01/2227/ledger.md#L19
+  applied: 00:29:53
+- line: 20
+  text: 'estimate[estimate-case-build-reads-the-link-graph-of-what-it-changes][failed] 2026-11-02, Work
+    Mode of session 2227, the case-guppi transcripts of session 2038 under ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a/subagents/:
+    0 of 2 standing Cases read the whole block of each existing page and file they change; Case 991 (agent-a6bd04c630130c59a.jsonl
+    L163) read the block of rule-orchestration with limit 80, stopping at line 4819 before its end, the
+    other four blocks whole and the three Estimate blocks at the check of the finished Case (L388); Case
+    992 (agent-ac588540e75613222.jsonl L338) cut the same block at the same line and never looked up the
+    block of vault/wiki/orchestration.md, which its render task changes; neither context says anything
+    of a page it creates; Case 990, superseded whole by 992, not judged'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-build-reads-the-link-graph-of-what-it-changes
+  status: failed
+  result: '2026-11-02, Work Mode of session 2227, the case-guppi transcripts of session 2038 under ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a/subagents/:
+    0 of 2 standing Cases read the whole block of each existing page and file they change; Case 991 (agent-a6bd04c630130c59a.jsonl
+    L163) read the block of rule-orchestration with limit 80, stopping at line 4819 before its end, the
+    other four blocks whole and the three Estimate blocks at the check of the finished Case (L388); Case
+    992 (agent-ac588540e75613222.jsonl L338) cut the same block at the same line and never looked up the
+    block of vault/wiki/orchestration.md, which its render task changes; neither context says anything
+    of a page it creates; Case 990, superseded whole by 992, not judged'
+  origin: raw/2026-11-01/2227/ledger.md#L20
+  applied: 00:29:53
+- line: 21
+  text: 'estimate[estimate-orchestration-acknowledging-reply][failed] 2026-11-02, Retro of session 2227,
+    the first acknowledging reply of the session (Case 993) and the first that acknowledges Cases ratified
+    in one answer (Case 995.1–995.3), read against the Criterion of Case 993.1: the LEDGER block first,
+    the heading, Changes, Notes where facts stood, the Frontier with closed and W lines folded, the closing
+    question, one reply for Cases ratified together and no tool call after the block all held; the line
+    that headings and labels are in the language of the chat failed: the headings ## Case N stood in Russian,
+    but the labels **Changes:** and **Notes:** and the heading ## Frontier stood in English in every acknowledging
+    reply of the session'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-acknowledging-reply
+  status: failed
+  result: '2026-11-02, Retro of session 2227, the first acknowledging reply of the session (Case 993)
+    and the first that acknowledges Cases ratified in one answer (Case 995.1–995.3), read against the
+    Criterion of Case 993.1: the LEDGER block first, the heading, Changes, Notes where facts stood, the
+    Frontier with closed and W lines folded, the closing question, one reply for Cases ratified together
+    and no tool call after the block all held; the line that headings and labels are in the language of
+    the chat failed: the headings ## Case N stood in Russian, but the labels **Changes:** and **Notes:**
+    and the heading ## Frontier stood in English in every acknowledging reply of the session'
+  origin: raw/2026-11-01/2227/ledger.md#L21
+  applied: 00:29:53
+- line: 22
+  text: 'estimate[estimate-prespec-reconciles][passed] 2026-11-02, Retro of session 2227, the new Render
+    of rule-prespec in the Spec (Case 995.2, the two replace pairs over .claude/skills/pre-spec/SKILL.md)
+    and of rule-ask, read against the Criterion of Case 995.3: the read list of the dispatch holds context,
+    when, then, then block, tasks block and estimates; the questions hold, in order, contradictions, an
+    Estimate not named, a fact of context, the searches and readers of the folders of a new file that
+    is no page, and the later-moment question with its two exceptions; the report, the check run, the
+    one ask-guppi, no list of decisions and the note on a deferred page stand as before; rule-ask allows
+    the one Grep of .guppi/guppi/ and .guppi/tests/ for that question without restating it'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-reconciles
+  status: passed
+  result: '2026-11-02, Retro of session 2227, the new Render of rule-prespec in the Spec (Case 995.2,
+    the two replace pairs over .claude/skills/pre-spec/SKILL.md) and of rule-ask, read against the Criterion
+    of Case 995.3: the read list of the dispatch holds context, when, then, then block, tasks block and
+    estimates; the questions hold, in order, contradictions, an Estimate not named, a fact of context,
+    the searches and readers of the folders of a new file that is no page, and the later-moment question
+    with its two exceptions; the report, the check run, the one ask-guppi, no list of decisions and the
+    note on a deferred page stand as before; rule-ask allows the one Grep of .guppi/guppi/ and .guppi/tests/
+    for that question without restating it'
+  origin: raw/2026-11-01/2227/ledger.md#L22
+  applied: 00:29:53
+- line: 23
+  text: 'estimate[estimate-clean-branch-refuses-a-draft-core-page][passed] 2026-11-02, Retro of session
+    2227, uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core:
+    16 passed, 164 deselected — a draft core page never built exits 1 with its line, one built before
+    with a pending Estimate is written with exit 0, one with a failed Estimate exits 1, --allow-draft
+    writes, --check prints nothing, the cascade test sets a page built and finds it no draft core when
+    set draft again with a pending Estimate, ship and lint import the one is_draft_core; rule-skill-merge-main
+    and rule-skill-pr-review carry no core and .github/workflows/prod.yml holds no --allow-draft (grep)'
+  kind: estimate
+  category: estimates
+  slug: estimate-clean-branch-refuses-a-draft-core-page
+  status: passed
+  result: '2026-11-02, Retro of session 2227, uv run --project .guppi pytest .guppi/tests/test_ship.py
+    .guppi/tests/test_lint.py -k draft_core: 16 passed, 164 deselected — a draft core page never built
+    exits 1 with its line, one built before with a pending Estimate is written with exit 0, one with a
+    failed Estimate exits 1, --allow-draft writes, --check prints nothing, the cascade test sets a page
+    built and finds it no draft core when set draft again with a pending Estimate, ship and lint import
+    the one is_draft_core; rule-skill-merge-main and rule-skill-pr-review carry no core and .github/workflows/prod.yml
+    holds no --allow-draft (grep)'
+  origin: raw/2026-11-01/2227/ledger.md#L23
+  applied: 00:29:53
+- line: 24
+  text: 'estimate[estimate-lint-checks-the-statuses][passed] 2026-11-02, Retro of session 2227, uv run
+    --project .guppi pytest .guppi/tests/test_lint.py: 124 passed — the draft core finding only on a page
+    never built or with a failed Estimate where ship stands, none where it is missing, a draft page with
+    every Estimate passed a finding only where ship stands, and the other status, unread, once and deferred
+    findings as before; guppi check of the working tree now prints rule-case-build, rule-morph and rule-skill-approve-spec
+    as draft core pages, in place of eight'
+  kind: estimate
+  category: estimates
+  slug: estimate-lint-checks-the-statuses
+  status: passed
+  result: '2026-11-02, Retro of session 2227, uv run --project .guppi pytest .guppi/tests/test_lint.py:
+    124 passed — the draft core finding only on a page never built or with a failed Estimate where ship
+    stands, none where it is missing, a draft page with every Estimate passed a finding only where ship
+    stands, and the other status, unread, once and deferred findings as before; guppi check of the working
+    tree now prints rule-case-build, rule-morph and rule-skill-approve-spec as draft core pages, in place
+    of eight'
+  origin: raw/2026-11-01/2227/ledger.md#L24
+  applied: 00:29:53
+- line: 25
+  text: 'lesson[error][lesson-acknowledging-reply-labels-left-in-english]{tags:orchestration,session}
+    trigger: in session 2227 every reply that acknowledged a ratification wrote the labels **Changes:**
+    and **Notes:** and the heading ## Frontier in English while the chat is Russian; the reading of estimate-orchestration-acknowledging-reply
+    failed on the line that headings and labels are in the language of the chat root_cause: ## The acknowledging
+    reply of orchestration.md names the parts by their English words in code spans — a heading ## Frontier,
+    a paragraph **Changes:** — and says only at the end of its paragraph that headings and labels are
+    in the language of the chat, so the agent copied the literal words and translated only the Case heading'
+  kind: lesson
+  category: lessons
+  slug: lesson-acknowledging-reply-labels-left-in-english
+  origin: raw/2026-11-01/2227/ledger.md#L25
+  fields:
+    type: lesson
+    kind: error
+    root_cause: '## The acknowledging reply of orchestration.md names the parts by their English words
+      in code spans — a heading ## Frontier, a paragraph **Changes:** — and says only at the end of its
+      paragraph that headings and labels are in the language of the chat, so the agent copied the literal
+      words and translated only the Case heading'
+  sections:
+    Trigger: 'in session 2227 every reply that acknowledged a ratification wrote the labels **Changes:**
+      and **Notes:** and the heading ## Frontier in English while the chat is Russian; the reading of
+      estimate-orchestration-acknowledging-reply failed on the line that headings and labels are in the
+      language of the chat'
+    Root cause: '## The acknowledging reply of orchestration.md names the parts by their English words
+      in code spans — a heading ## Frontier, a paragraph **Changes:** — and says only at the end of its
+      paragraph that headings and labels are in the language of the chat, so the agent copied the literal
+      words and translated only the Case heading'
+  tags:
+  - orchestration
+  - session
+  applied: 00:29:53
+decisions:
+- case: '993.1'
+  decision: decision-case-993.1
+  origin: raw/2026-11-01/2227/ledger.md#case-993.1
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-orchestration-acknowledging-reply
+    ref: rule-orchestration
+  tags: []
+  case_text:
+    given: '`estimate-orchestration-acknowledging-reply`: its Criterion is replaced whole.
+
+      **＋** `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`: the Estimate that
+      checks the `STOP:` line.
+
+      **＋** `rule-orchestration`: the rule that sets the acknowledging reply.
+
+      **＋** `vault/wiki/orchestration.md`: the Render of that rule.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`: the Frontier the reply shows.
+
+      **＋** `rule-prespec-onward`: the hook that sends the agent on after `/pre-spec`.
+
+      **＋** `rule-ledger-write`: the ledger hook.
+
+      **＋** `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`: the check of a decision
+      line the ledger hook holds.'
+    when: The person ratifies a Case, ratifies again a Case shown again after its ratification, or ratifies
+      in one answer Cases shown together, and the agent writes the reply that acknowledges it, with `vault/wiki/orchestration.md`
+      rendered from `rule-orchestration`.
+    then: 'The reply has four parts, in this order. First, the `LEDGER` block, before which stands nothing
+      but the `STOP:` line that `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`
+      checks. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes,
+      in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left
+      out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md`
+      as a checklist.
+
+      **＋** In the checklist the closed lines are folded into one line, and the lines put off stand as
+      `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
+
+      **＋** The open `W` lines are folded into one line that lists their ids, and each other open line
+      stands on its own line with a short title.
+
+      **＋** While a line under `## Cases` is open, the question which item is next ends the reply.
+
+      **＋** When none is open before `/pre-spec`, the question whether to go on to `/pre-spec` ends the
+      reply, in the plain form of the question which item is next. The agent calls `/pre-spec` only after
+      the person says to go on. A reply that answers a question of the person instead ends with the same
+      question again.
+
+      **＋** When none is open after `/pre-spec`, the reply ends with the Frontier and asks nothing, and
+      the hook of `rule-prespec-onward` sends the agent on.
+
+      **＋** One reply acknowledges every Case and sub-case ratified in one answer, a Case with its sub-cases
+      or Cases shown together for one ratification: one `LEDGER` block with all their lines, one heading
+      `## Case N — ratified` that names their ids, one paragraph `Changes:`, one Frontier.
+
+      **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision
+      lines of each Case ratified again, as at its first ratification.
+
+      **＋** The headings and labels are in the language of the chat.
+
+      **＋** No tool call follows the `LEDGER` block in the same reply.
+
+      **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
+
+      **－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply with
+      exit 2, the agent''s answer to the refusal is a reply of its own and may call tools. The `LEDGER`
+      block stands written, but for a decision line the ledger hook holds, as `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
+      sets it.'
+    context: '`estimate-orchestration-acknowledging-reply` checks the form of the reply that acknowledges
+      a ratification. Case 992.2 added to its Criterion the line that an acknowledging reply after `/pre-spec`
+      that waits for the person''s word opens with `STOP:`, the `LEDGER` block right after it. The reading
+      of ledger line 22 of session 2038 then set the page `passed`, but it was taken on the replies of
+      that session, on the Render before Case 992.2, and its Result says that the `STOP:` line was not
+      exercised (brief, Flags; handoff of session 2038, Observations). Such a reply comes only in a session
+      where, after `/pre-spec`, an acknowledging reply still waits for the person, so the line needs a
+      reading of its own. `rule-estimates-schema` sets that the `＋` and `－` lines stay in one Criterion
+      while one run checks them, and that a line with a test or a reading of its own is split off, on
+      the axis of the promise. The person chose the split: Case 993.1 replaces the Criterion of the old
+      Estimate whole without that line, which only points to the new Estimate, and the old Estimate goes
+      `pending` and is read at the Retro of this session; Case 993.2 creates `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`,
+      whose `method` waits for that event, as case 781 sets for a part that opens with `by hand, after`.
+      The text of `rule-orchestration` and of `vault/wiki/orchestration.md` does not change, since the
+      behaviour stays as Case 992.2 set it; only the Estimates that check it change. The `purpose` and
+      `method` of the old Estimate state the four parts in order and the replies it reads, not the `STOP:`
+      line, so they stand. The block of the old Estimate in `.guppi/links.md` names as neighbours `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`,
+      `rule-ledger-write`, `rule-orchestration`, `rule-prespec-onward` and `estimate-orchestration-shows-the-frontier-after-a-closed-line`;
+      none of their purpose lines speaks of the `STOP:` line of an acknowledging reply. A Grep of `vault/wiki/`
+      for `estimate-orchestration-acknowledging-reply`, `log.md` and `brief.md` left out, printed `rules/rule-orchestration.md`
+      (its `estimates` list and a History line) and `estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line.md`;
+      the two lines of the second say that the checklist and the own form of the acknowledging reply are
+      as the old Estimate sets them, and both stay true, since the checklist and the four parts do not
+      change. A Grep of `.guppi/tests/` for `acknowledging-reply` printed a count of 0, so no test reads
+      the old page live. A Glob `vault/**/estimate-orchestration-acknowledging-reply-*.md` printed nothing,
+      so the new slug is free. The promise of `estimate-prespec-onward-sends-the-agent-on`, that the hook
+      stays silent on a reply that opens with `STOP:`, is not signed again in Case 993.2. The new Criterion
+      of Case 993.1 drops the `STOP:` line of the old one and rewrites its first line to point to the
+      new Estimate, since that line moves to Case 993.2; the lines of Case 993.2 share words with those
+      of Case 993.1 because both describe parts of the same reply, but each promise stands in one Criterion
+      only. Finding 1.1 of `ask-guppi` at the `/pre-spec` of this session found that the first `when`
+      of Case 993.2 covered only a reply that waits while another Case shown waits for the person, though
+      the old line and `vault/wiki/orchestration.md` speak of any reply after `/pre-spec` that waits for
+      the person''s word, and line 26 of `estimate-prespec-onward-sends-the-agent-on` names a second reason
+      to wait, a question the person must answer; the `when` now names both, so no part of the old line
+      is left with no Criterion. A Grep of the ledger of this session for `lesson\[error\]` and for `\{addresses:`
+      printed nothing, so no lesson is addressed.'
+  parent: decision-case-993
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '993.2'
+  decision: decision-case-993.2
+  origin: raw/2026-11-01/2227/ledger.md#case-993.2
+  targets:
+  - kind: create
+    category: estimates
+    slug: estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec
+    ref: rule-orchestration
+  tags:
+  - session
+  - workflow
+  - ledger
+  case_text:
+    given: '`estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`: the new check
+      of the `STOP:` line.
+
+      **＋** `estimate-orchestration-acknowledging-reply`: the check of the other parts of the reply.
+
+      **＋** `rule-orchestration`: the rule that sets the acknowledging reply.
+
+      **＋** `vault/wiki/orchestration.md`: the Render of that rule.
+
+      **＋** `rule-estimates-schema`: the rule that splits off a line with a reading of its own.
+
+      **＋** `/pre-spec`: the check of the Spec after which the reply stands.'
+    when: After `/pre-spec`, the person ratifies a Case, and the agent writes the reply that acknowledges
+      it while that reply waits for the person's word, because another Case shown waits for the person
+      or because a question the person must answer is open, with `vault/wiki/orchestration.md` rendered
+      from `rule-orchestration`.
+    then: 'The reply opens with a line that opens with `STOP:`.
+
+      **＋** The `LEDGER` block stands right after that line.
+
+      **＋** The other parts follow in the order that `estimate-orchestration-acknowledging-reply` checks.
+
+      **＋** The reply ends with its question to the person.'
+    context: '`estimate-orchestration-acknowledging-reply` checks the form of the reply that acknowledges
+      a ratification. Case 992.2 added to its Criterion the line that an acknowledging reply after `/pre-spec`
+      that waits for the person''s word opens with `STOP:`, the `LEDGER` block right after it. The reading
+      of ledger line 22 of session 2038 then set the page `passed`, but it was taken on the replies of
+      that session, on the Render before Case 992.2, and its Result says that the `STOP:` line was not
+      exercised (brief, Flags; handoff of session 2038, Observations). Such a reply comes only in a session
+      where, after `/pre-spec`, an acknowledging reply still waits for the person, so the line needs a
+      reading of its own. `rule-estimates-schema` sets that the `＋` and `－` lines stay in one Criterion
+      while one run checks them, and that a line with a test or a reading of its own is split off, on
+      the axis of the promise. The person chose the split: Case 993.1 replaces the Criterion of the old
+      Estimate whole without that line, which only points to the new Estimate, and the old Estimate goes
+      `pending` and is read at the Retro of this session; Case 993.2 creates `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`,
+      whose `method` waits for that event, as case 781 sets for a part that opens with `by hand, after`.
+      The text of `rule-orchestration` and of `vault/wiki/orchestration.md` does not change, since the
+      behaviour stays as Case 992.2 set it; only the Estimates that check it change. The `purpose` and
+      `method` of the old Estimate state the four parts in order and the replies it reads, not the `STOP:`
+      line, so they stand. The block of the old Estimate in `.guppi/links.md` names as neighbours `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`,
+      `rule-ledger-write`, `rule-orchestration`, `rule-prespec-onward` and `estimate-orchestration-shows-the-frontier-after-a-closed-line`;
+      none of their purpose lines speaks of the `STOP:` line of an acknowledging reply. A Grep of `vault/wiki/`
+      for `estimate-orchestration-acknowledging-reply`, `log.md` and `brief.md` left out, printed `rules/rule-orchestration.md`
+      (its `estimates` list and a History line) and `estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line.md`;
+      the two lines of the second say that the checklist and the own form of the acknowledging reply are
+      as the old Estimate sets them, and both stay true, since the checklist and the four parts do not
+      change. A Grep of `.guppi/tests/` for `acknowledging-reply` printed a count of 0, so no test reads
+      the old page live. A Glob `vault/**/estimate-orchestration-acknowledging-reply-*.md` printed nothing,
+      so the new slug is free. The promise of `estimate-prespec-onward-sends-the-agent-on`, that the hook
+      stays silent on a reply that opens with `STOP:`, is not signed again in Case 993.2. The new Criterion
+      of Case 993.1 drops the `STOP:` line of the old one and rewrites its first line to point to the
+      new Estimate, since that line moves to Case 993.2; the lines of Case 993.2 share words with those
+      of Case 993.1 because both describe parts of the same reply, but each promise stands in one Criterion
+      only. Finding 1.1 of `ask-guppi` at the `/pre-spec` of this session found that the first `when`
+      of Case 993.2 covered only a reply that waits while another Case shown waits for the person, though
+      the old line and `vault/wiki/orchestration.md` speak of any reply after `/pre-spec` that waits for
+      the person''s word, and line 26 of `estimate-prespec-onward-sends-the-agent-on` names a second reason
+      to wait, a question the person must answer; the `when` now names both, so no part of the old line
+      is left with no Criterion. A Grep of the ledger of this session for `lesson\[error\]` and for `\{addresses:`
+      printed nothing, so no lesson is addressed.'
+  parent: decision-case-993
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '994'
+  decision: decision-case-994
+  origin: raw/2026-11-01/2227/ledger.md#case-994
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-close
+    ref: rule-close
+  - kind: update
+    category: rules
+    slug: rule-documentation
+    ref: rule-documentation
+  - kind: update
+    category: estimates
+    slug: estimate-close-reports-the-run
+    ref: rule-close
+  tags: []
+  case_text:
+    context: 'At its close the librarian gives its report back, and the `SubagentStop` hook `uv run --project
+      .guppi guppi libreport` copies the last output of the agent into `report.md` of the session folder.
+      The Render of `rule-close` asks for the report twice: as the last text, and again as the text of
+      the handback, the `SubagentHandback` tool call by which a subagent delivers its final report. The
+      librarian of session 0141 gave the report only in its handback, and its last plain text was a one-line
+      note before its commit (handoff of session 2038, Observations). The hook copied the handback, so
+      `report.md` was right, but the run and the words of the frame differ. The person chose that the
+      frame asks for the report once, as the last output: the message of the handback where the agent
+      has that tool, else its last text, and nothing after it; the stop at step 1 of `rule-documentation`
+      says the same; and the Criterion of `estimate-close-reports-the-run` gains that promise.
+
+      A handback alone was not chosen. The tools reference of Claude Code (https://code.claude.com/docs/en/tools-reference)
+      says that `SubagentHandback` is "Provided only in auto mode, to subagents that the Agent tool runs
+      locally other than forks", and the subagents page (https://code.claude.com/docs/en/sub-agents) gives
+      the tool "for a subagent that reports through it". A librarian run outside auto mode has no handback,
+      so its report must be its last text.
+
+      The hook needs no change. `copy` and `last_output` of `.guppi/guppi/libreport.py`, `outputs` and
+      `subagent_outputs` of `.guppi/guppi/casecheck.py` and `read_records` of `.guppi/guppi/ledger.py`,
+      read whole, take every text block and the `message` of every `SubagentHandback` call of the assistant
+      records of `agent_transcript_path`, in order, and write the last one that holds text. So the hook
+      copies the report whichever way it goes back, and copies a later text in its place. The Purpose
+      of `rule-librarian-report-copy` and the Criterion of `estimate-librarian-report-copy-writes-the-file`
+      say the same, and stand.
+
+      A Grep of the live pages of `vault/wiki/` but `log.md` and `brief.md` for the pattern `librarian.{0,80}(returns?|gives?|hands?)
+      (its|the) report|report.{0,40}(as text|last text|last output|handback)` printed 5 files: `rule-close.md`,
+      `rule-documentation.md`, `estimate-close-reports-the-run.md`, `rule-librarian-report-copy.md` and
+      `estimate-librarian-report-copy-writes-the-file.md`. The first three change here, and the last two
+      stand for the reason above. A Grep of `.claude/` for `last text|handback|hand .{0,15}back|as text`
+      printed `.claude/agents/librarian-guppi.md`, at step 1 and at the close, which the render writes
+      again, and `.claude/skills/wait-what/SKILL.md`, which speaks of the main agent''s last text and
+      stands. `/handoff` and `/box` read `report.md`, "which a hook writes from that report", and stand.
+
+      The blocks of `.guppi/links.md` of `rule-close`, `rule-documentation`, `estimate-close-reports-the-run`
+      and `.claude/agents/librarian-guppi.md` were read. Their neighbours that speak of the report are
+      `rule-librarian-report-copy` and `estimate-close-reports-the-run`. `estimate-documentation-completes`,
+      the Estimate of `rule-documentation`, speaks of the pages the report names, not of how the report
+      goes back, and stands. `estimate-close-commits` speaks of the commit and stands. No test of `.guppi/tests/`
+      reads `.claude/agents/librarian-guppi.md` by name. `callers()` of `.guppi/tests/test_guppi_package.py`
+      reads every file under `.claude/`, and the new text holds no `uv run guppi` and no `uv run pytest`.
+
+      The reading of the new Criterion waits for the next librarian run, by hand. A run that stops at
+      step 1 is not read by it, since its report is no full report. The step 1 sentence says how the report
+      goes back in the words of the close, and says that the run stops with no `guppi check` and no commit,
+      since finding 1.6 of `/pre-spec` showed that a pointer to the close could be read as running the
+      check and the commit too; the old step 1 asked for neither. The session''s ledger holds no `error`
+      lesson.'
+    problem: The frame of the librarian asks for its report twice, as its last text and in its handback,
+      while the hook copies only the last output and a run outside auto mode has no handback. A run that
+      follows only one of the two steps departs from the frame, and nothing checks that the report is
+      the last output.
+    recommend: "- **How the close tells the librarian to give its report back**\n  - Recommended: (a)\
+      \ the handback where the tool exists, else plain text: the report given once, as the last output,\
+      \ nothing after it.\n  - Answer: agreed, (a).\n- **Whether the stop at the first step says the same**\n\
+      \  - Recommended: (a) the same wording as the close, in step 1 of `rule-documentation`.\n  - Answer:\
+      \ agreed, (a).\n- **How the change is checked**\n  - Recommended: (a) the Criterion of `estimate-close-reports-the-run`\
+      \ replaced with one more line, its purpose and method set anew, and a new reading after the next\
+      \ librarian run.\n  - Answer: agreed, (a)."
+    given: '`rule-close`: its Render, the close of the frame of the librarian.
+
+      **＋** `rule-documentation`: its Render, step 1 of the frame of the librarian.
+
+      **＋** `.claude/agents/librarian-guppi.md`: the frame, rendered from both pages.
+
+      **＋** `estimate-close-reports-the-run`: its Criterion is replaced whole.
+
+      **＋** `rule-librarian-report-copy`: the hook that copies the last output of the librarian into `report.md`.
+
+      **＋** `/handoff`: the skill of `.claude/skills/handoff/SKILL.md`, which dispatches the librarian.
+
+      **＋** `.claude/skills/handoff/SKILL.md`: the file of `/handoff`, which reads `report.md`.
+
+      **＋** `/box`: the skill of `.claude/skills/box/SKILL.md`, which dispatches the librarian in a session
+      it runs.
+
+      **＋** `.claude/skills/box/SKILL.md`: the file of `/box`, which reads `report.md`.
+
+      **＋** `vault/raw/<date>/<hi HHMM>/report.md`: the file the hook writes from the report.'
+    when: The librarian's run that `/handoff` of `.claude/skills/handoff/SKILL.md` dispatches, or that
+      `/box` of `.claude/skills/box/SKILL.md` dispatches in a session that `/box` runs, reaches the close
+      of `.claude/agents/librarian-guppi.md` and ends, and the hook of `rule-librarian-report-copy` fires.
+    then: '`vault/raw/<date>/<hi HHMM>/report.md`, the folder of the `handoff.md` the dispatch names,
+      holds the report that the librarian returned last.
+
+      **＋** The librarian gives the report once, as its last output: the `message` of its `SubagentHandback`
+      call where it has that tool, else its last text, with no output after it.
+
+      **＋** The file gives the pages created and updated per category, the entries marked incomplete or
+      failed, the pages archived, the flags the run raised and the lint total.
+
+      **＋** The file gives each part that another step of `.claude/agents/librarian-guppi.md` sends to
+      the report.
+
+      **－** The file holds no test result and no list of files.
+
+      **－** No limit of lines binds the file.'
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '995.1'
+  decision: decision-case-995.1
+  origin: raw/2026-11-01/2227/ledger.md#case-995.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-build
+    ref: rule-case-build
+  - kind: update
+    category: estimates
+    slug: estimate-case-build-reads-the-readers-of-a-new-files-folder
+    ref: rule-case-build
+  tags: []
+  case_text:
+    given: '`rule-case-build`: the rule whose Render, rendered into `.claude/agents/case-guppi.md`, sets
+      the searches and readings for a new file.
+
+      **＋** `estimate-case-build-reads-the-readers-of-a-new-files-folder`: its Criterion is replaced whole.
+
+      **＋** `.guppi/guppi/`: the code the searches run over.
+
+      **＋** `.guppi/tests/`: the tests the search for folder walks runs over.
+
+      **＋** `vault/wiki/rules/`: the Rule pages the search for a folder path runs over.'
+    when: '`case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, builds a
+      Case with a task that adds a file that is no page of `vault/wiki/`, and is about to answer with
+      its summary.'
+    then: 'It searches `.guppi/guppi/`, `.claude/` and the Rule pages of `vault/wiki/` for the path of
+      each folder that holds the new file.
+
+      **＋** It searches `.guppi/guppi/` and `.guppi/tests/` for the calls that walk a folder, such as
+      `os.walk`, `rglob`, `glob` and `iterdir`.
+
+      **＋** It reads each ignore file of git in a folder that holds the new file.
+
+      **＋** It reads each reader that takes every file of a folder that holds the new file.
+
+      **＋** Each reader that the new file makes wrong enters the Case, or the `context` of the Case names
+      it and says why it stands.
+
+      **＋** The `context` of the Case names each of those searches, with its pattern, its paths and each
+      file it printed or the count it printed, and each ignore file of git and each reader it read, with
+      whether the new file makes it wrong.
+
+      **－** A page that a `create` adds under `vault/wiki/` starts no such search.'
+    context: 'The Render of `rule-case-build` tells `case-guppi` what to do when a task of its Case adds
+      a file that is no page of `vault/wiki/`. It searches `.guppi/guppi/`, `.claude/` and `vault/wiki/rules/`
+      for the path of each folder that holds the file. It searches `.guppi/guppi/` and `.guppi/tests/`
+      for the calls that walk a folder. It reads each `.gitignore` there and each reader that takes every
+      file of such a folder. Nothing the agent leaves shows whether it did these steps. The reading of
+      `estimate-case-build-reads-the-readers-of-a-new-files-folder` in session 2038 (line 17 of `raw/2026-11-01/2038/ledger.md`)
+      checked the new file `.claude/skills/approve-spec/SKILL.md` of Case 987. Of 8 searches and readings,
+      2 were done, 1 in part and 5 missing. One missing reader was `callers()` of `.guppi/tests/test_guppi_package.py`,
+      and `ask-guppi` at `/pre-spec` raised no finding on it. I read `callers()` whole: it takes the `Makefile`
+      and every file under `.claude` and `.github/workflows` but `settings.local.json`. The person made
+      three choices. First, the `context` of such a Case names each of those searches and readings (995.1);
+      the rerun of the searches `context` names, which comes just before the summary, then covers them,
+      as Case 979 did for a list member. Second, `ask-guppi` at the first `/pre-spec` checks that list,
+      through a new question in the Render of `rule-prespec`, and runs its own Grep of the code for folder
+      walks, which a new sentence of the Render of `rule-ask` allows (995.2). Third, `estimate-prespec-reconciles`,
+      whose Criterion lists the questions of `/pre-spec`, gets the new question (995.3). That change stands
+      in a sub-case of its own, since `case-schema.md` sets one promise per sub-case and 995.2 already
+      creates an Estimate. The governing rule is the sentence of `rule-case-build` from case 629.5: `context`
+      names a search only when the Case rests on it. The new sentence states the claim the searches rest
+      on, namely that the new file makes no reader of its folders wrong. So the sentence and the Criterion
+      of `estimate-case-build-checks-the-finished-case`, which carries the same rule, stand. The new texts
+      of `core: true` pages put each pointer to a Case in a bracket at the end of its sentence, and the
+      pair on `rule-prespec` adds no pointer. I read the blocks of `rule-case-build`, `rule-prespec`,
+      `rule-ask`, `estimate-case-build-reads-the-readers-of-a-new-files-folder`, `estimate-prespec-reconciles`,
+      `.claude/agents/case-guppi.md`, `.claude/agents/ask-guppi.md` and `.claude/skills/pre-spec/SKILL.md`
+      in `.guppi/links.md`. The block of `estimate-prespec-reconciles` has an empty purpose line. Four
+      neighbours bear on the change, and each stands. `estimate-ask-searches-at-prespec` already allows
+      further Greps as a finding needs. `estimate-ask-finds` sets one list per question of the skill,
+      so the new question gets its own list. Its line that `.claude/agents/ask-guppi.md` does not list
+      the questions of `/pre-spec` itself also stays true, since the new sentence of `rule-ask` only allows
+      the one Grep of `.guppi/guppi/` and `.guppi/tests/` for the question that `/pre-spec` sets and does
+      not repeat that question (finding 2.1 of `/pre-spec`). After finding 1.5 of `/pre-spec`, a second
+      pair on `rule-prespec` adds the `tasks` block to what the dispatch tells `ask-guppi` to read for
+      every Case, because only the `tasks` block shows which Case adds a file; 995.3 carries the same
+      list in the Criterion of `estimate-prespec-reconciles`, so its dispatch line is not carried as it
+      stood either. `estimate-prespec-confirms-the-findings-once` allows no Grep at the confirmation,
+      and 995.2 keeps it that way. The other Estimates of `rule-prespec` speak of `prespec --check` and
+      of the loop, not of the questions of `ask-guppi`. The sentence of `rule-ask` that it searches the
+      vault at `vault/wiki/` stands, because the new sentence names the one Grep of the code beside it.
+      A Grep `speaks of the thing the Case changes` found the texts that list the questions of `/pre-spec`.
+      Over `vault/wiki/` it printed `rules/rule-prespec.md` and `estimates/estimate-prespec-reconciles.md`,
+      over `.claude/` it printed `skills/pre-spec/SKILL.md`, and over `.guppi/guppi/` it printed nothing;
+      this Case changes all three texts. A Grep `walk a folder` printed `rules/rule-case-build.md` and
+      `estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder.md` over `vault/wiki/`, and
+      `agents/case-guppi.md` over `.claude/`. A Grep `CALLERS|REPO / "\.claude"` over `.guppi/tests/`
+      printed `test_guppi_package.py` alone. Its test over `callers()` looks for `uv run guppi` and `uv
+      run pytest`, and the new texts hold neither. Its test over the live pages runs `Vault.reword_text`
+      with `guppi/` and `tests/`. I read `reword_text`, `reword_pattern` and `is_path_pair` of `.guppi/guppi/generate.py`
+      and `PATH_START` of `.guppi/guppi/lint.py`, which is `(?<![\w./-])`. A path `old` matches only where
+      no `.` or `/` stands before it, so neither matches in `.guppi/guppi/` or `.guppi/tests/`, the only
+      forms the new texts use. I read `check_frame` and `frame_name` of `.guppi/guppi/prespec.py`: each
+      code span of `when` or `then` that is a slug, or that holds a `/`, must stand in the text of `given`,
+      and the lines of `given` are written for that. The check of this file noted that some `then` lines
+      of 995.2 and 995.3 share most of their words with lines of 995.1. They stand: 995.1 sets what `case-guppi`
+      searches and names in `context`, 995.2 sets what `ask-guppi` checks and searches on that `context`
+      at `/pre-spec`, and 995.3 sets the text of the question in the list of `estimate-prespec-reconciles`.
+      These are three agents'' or texts'' acts on one subject, which the person chose, not one promise
+      signed twice. The check also noted that the old line on the questions of `estimate-prespec-reconciles`
+      is not carried. That line is carried with the new question added, which is the change. Its last
+      `－` line, on a deferred decision, was missing from the first build and is now carried word for word.
+      A Glob `vault/**/estimate-prespec-finds-a-reader*` printed nothing, so the new slug is free. It
+      is a `create` with a `ref`, so no vault query runs. The Greps `lesson\[error\]` and `\{addresses:`
+      over the ledger of session 2227 printed nothing.'
+  parent: decision-case-995
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '995.2'
+  decision: decision-case-995.2
+  origin: raw/2026-11-01/2227/ledger.md#case-995.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-prespec
+    ref: rule-prespec
+  - kind: update
+    category: rules
+    slug: rule-ask
+    ref: rule-ask
+  - kind: create
+    category: estimates
+    slug: estimate-prespec-finds-a-reader-of-a-new-files-folder
+    ref: rule-prespec
+  tags:
+  - session
+  - workflow
+  - harness
+  case_text:
+    given: '`.claude/skills/pre-spec/SKILL.md`: the skill rendered from `rule-prespec`, whose questions
+      `ask-guppi` answers; it gains the question.
+
+      **＋** `.claude/agents/ask-guppi.md`: the agent file rendered from `rule-ask`; it gains the Grep
+      of the code.
+
+      **＋** `.claude/agents/case-guppi.md`: sets the searches and readings for a new file that the question
+      checks.
+
+      **＋** `estimate-prespec-finds-a-reader-of-a-new-files-folder`: the new check of the question and
+      the Grep.
+
+      **＋** `.guppi/guppi/`: the code the Grep runs over.
+
+      **＋** `.guppi/tests/`: the tests the Grep runs over.'
+    when: At the first run of `/pre-spec` in a session, the main agent dispatches `ask-guppi` with the
+      plan file and the questions of `.claude/skills/pre-spec/SKILL.md`, rendered from `rule-prespec`;
+      the agent follows `.claude/agents/ask-guppi.md`, rendered from `rule-ask`; and a Case of the plan
+      has a line in its `tasks` block that adds a file that is no page of the vault.
+    then: '`ask-guppi` reads the `tasks` block of each Case of the plan, as the dispatch of `.claude/skills/pre-spec/SKILL.md`
+      tells it, and answers, for a Case with such a line, whether its `context` names each search and
+      reading that `.claude/agents/case-guppi.md` sets for the folders that hold the new file.
+
+      **＋** A search or a reading that the `context` misses is a finding that names the Case and what
+      it misses.
+
+      **＋** Beside its searches of the vault, it runs one Grep of `.guppi/guppi/` and `.guppi/tests/`
+      for the calls that walk a folder, such as `os.walk`, `rglob`, `glob` and `iterdir`, and reads around
+      its line each hit whose folder holds the new file.
+
+      **＋** Each reader that takes every file of such a folder and that the Case does not name is a finding
+      that names the Case and the reader.
+
+      **－** A plan with no such Case starts no Grep of the code, and the question says "none".
+
+      **－** At the confirmation of its findings, the agent runs no such Grep.'
+    context: 'The Render of `rule-case-build` tells `case-guppi` what to do when a task of its Case adds
+      a file that is no page of `vault/wiki/`. It searches `.guppi/guppi/`, `.claude/` and `vault/wiki/rules/`
+      for the path of each folder that holds the file. It searches `.guppi/guppi/` and `.guppi/tests/`
+      for the calls that walk a folder. It reads each `.gitignore` there and each reader that takes every
+      file of such a folder. Nothing the agent leaves shows whether it did these steps. The reading of
+      `estimate-case-build-reads-the-readers-of-a-new-files-folder` in session 2038 (line 17 of `raw/2026-11-01/2038/ledger.md`)
+      checked the new file `.claude/skills/approve-spec/SKILL.md` of Case 987. Of 8 searches and readings,
+      2 were done, 1 in part and 5 missing. One missing reader was `callers()` of `.guppi/tests/test_guppi_package.py`,
+      and `ask-guppi` at `/pre-spec` raised no finding on it. I read `callers()` whole: it takes the `Makefile`
+      and every file under `.claude` and `.github/workflows` but `settings.local.json`. The person made
+      three choices. First, the `context` of such a Case names each of those searches and readings (995.1);
+      the rerun of the searches `context` names, which comes just before the summary, then covers them,
+      as Case 979 did for a list member. Second, `ask-guppi` at the first `/pre-spec` checks that list,
+      through a new question in the Render of `rule-prespec`, and runs its own Grep of the code for folder
+      walks, which a new sentence of the Render of `rule-ask` allows (995.2). Third, `estimate-prespec-reconciles`,
+      whose Criterion lists the questions of `/pre-spec`, gets the new question (995.3). That change stands
+      in a sub-case of its own, since `case-schema.md` sets one promise per sub-case and 995.2 already
+      creates an Estimate. The governing rule is the sentence of `rule-case-build` from case 629.5: `context`
+      names a search only when the Case rests on it. The new sentence states the claim the searches rest
+      on, namely that the new file makes no reader of its folders wrong. So the sentence and the Criterion
+      of `estimate-case-build-checks-the-finished-case`, which carries the same rule, stand. The new texts
+      of `core: true` pages put each pointer to a Case in a bracket at the end of its sentence, and the
+      pair on `rule-prespec` adds no pointer. I read the blocks of `rule-case-build`, `rule-prespec`,
+      `rule-ask`, `estimate-case-build-reads-the-readers-of-a-new-files-folder`, `estimate-prespec-reconciles`,
+      `.claude/agents/case-guppi.md`, `.claude/agents/ask-guppi.md` and `.claude/skills/pre-spec/SKILL.md`
+      in `.guppi/links.md`. The block of `estimate-prespec-reconciles` has an empty purpose line. Four
+      neighbours bear on the change, and each stands. `estimate-ask-searches-at-prespec` already allows
+      further Greps as a finding needs. `estimate-ask-finds` sets one list per question of the skill,
+      so the new question gets its own list. Its line that `.claude/agents/ask-guppi.md` does not list
+      the questions of `/pre-spec` itself also stays true, since the new sentence of `rule-ask` only allows
+      the one Grep of `.guppi/guppi/` and `.guppi/tests/` for the question that `/pre-spec` sets and does
+      not repeat that question (finding 2.1 of `/pre-spec`). After finding 1.5 of `/pre-spec`, a second
+      pair on `rule-prespec` adds the `tasks` block to what the dispatch tells `ask-guppi` to read for
+      every Case, because only the `tasks` block shows which Case adds a file; 995.3 carries the same
+      list in the Criterion of `estimate-prespec-reconciles`, so its dispatch line is not carried as it
+      stood either. `estimate-prespec-confirms-the-findings-once` allows no Grep at the confirmation,
+      and 995.2 keeps it that way. The other Estimates of `rule-prespec` speak of `prespec --check` and
+      of the loop, not of the questions of `ask-guppi`. The sentence of `rule-ask` that it searches the
+      vault at `vault/wiki/` stands, because the new sentence names the one Grep of the code beside it.
+      A Grep `speaks of the thing the Case changes` found the texts that list the questions of `/pre-spec`.
+      Over `vault/wiki/` it printed `rules/rule-prespec.md` and `estimates/estimate-prespec-reconciles.md`,
+      over `.claude/` it printed `skills/pre-spec/SKILL.md`, and over `.guppi/guppi/` it printed nothing;
+      this Case changes all three texts. A Grep `walk a folder` printed `rules/rule-case-build.md` and
+      `estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder.md` over `vault/wiki/`, and
+      `agents/case-guppi.md` over `.claude/`. A Grep `CALLERS|REPO / "\.claude"` over `.guppi/tests/`
+      printed `test_guppi_package.py` alone. Its test over `callers()` looks for `uv run guppi` and `uv
+      run pytest`, and the new texts hold neither. Its test over the live pages runs `Vault.reword_text`
+      with `guppi/` and `tests/`. I read `reword_text`, `reword_pattern` and `is_path_pair` of `.guppi/guppi/generate.py`
+      and `PATH_START` of `.guppi/guppi/lint.py`, which is `(?<![\w./-])`. A path `old` matches only where
+      no `.` or `/` stands before it, so neither matches in `.guppi/guppi/` or `.guppi/tests/`, the only
+      forms the new texts use. I read `check_frame` and `frame_name` of `.guppi/guppi/prespec.py`: each
+      code span of `when` or `then` that is a slug, or that holds a `/`, must stand in the text of `given`,
+      and the lines of `given` are written for that. The check of this file noted that some `then` lines
+      of 995.2 and 995.3 share most of their words with lines of 995.1. They stand: 995.1 sets what `case-guppi`
+      searches and names in `context`, 995.2 sets what `ask-guppi` checks and searches on that `context`
+      at `/pre-spec`, and 995.3 sets the text of the question in the list of `estimate-prespec-reconciles`.
+      These are three agents'' or texts'' acts on one subject, which the person chose, not one promise
+      signed twice. The check also noted that the old line on the questions of `estimate-prespec-reconciles`
+      is not carried. That line is carried with the new question added, which is the change. Its last
+      `－` line, on a deferred decision, was missing from the first build and is now carried word for word.
+      A Glob `vault/**/estimate-prespec-finds-a-reader*` printed nothing, so the new slug is free. It
+      is a `create` with a `ref`, so no vault query runs. The Greps `lesson\[error\]` and `\{addresses:`
+      over the ledger of session 2227 printed nothing.'
+  parent: decision-case-995
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '995.3'
+  decision: decision-case-995.3
+  origin: raw/2026-11-01/2227/ledger.md#case-995.3
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-reconciles
+    ref: rule-prespec
+  tags: []
+  case_text:
+    given: '`estimate-prespec-reconciles`: its Criterion is replaced whole.
+
+      **＋** `.claude/skills/pre-spec/SKILL.md`: the skill rendered from `rule-prespec`, whose questions
+      the Criterion lists.
+
+      **＋** `.claude/agents/ask-guppi.md`: the agent file rendered from `rule-ask`, which checks the searches
+      and readings that `.claude/agents/case-guppi.md` sets for a new file that is no page of `vault/wiki/`.
+
+      **＋** `estimate-prespec-notes-a-page-another-case-defers`: the check of the note on a page that
+      another Case of the plan defers.
+
+      **＋** `vault/raw/<date>/<hi HHMM>/frontier.md`: the Frontier of the session.
+
+      **＋** `rule-spec-write`: its hook writes a Case built again into the plan.
+
+      **＋** `rule-skill-hi`: sets at `/hi` the title line that names a conserved Spec.
+
+      **＋** `entity-sprint-<id>`: a sprint page, whose Estimates the last question leaves out.'
+    when: The person invokes `/pre-spec`, or the agent calls the skill, before the Spec is approved, with
+      `.claude/skills/pre-spec/SKILL.md` rendered from `rule-prespec` and `.claude/agents/ask-guppi.md`
+      rendered from `rule-ask`.
+    then: 'The agent runs `uv run --project .guppi guppi prespec --check` on the plan file with `--session
+      <id>`, the eight-character id of the `hi:` line, and reads the first line of the output before the
+      exit code — "no hi recorded for session …; nothing checked" means the wrong value; nothing is translated
+      before the run.
+
+      **＋** A finding in a Case — in its prose or in its body, a wrong fact of its `context` included
+      — goes to the `case-guppi` of that Case by `SendMessage`; its new answer is shown and ratified again,
+      and the hook of `rule-spec-write` writes it into the plan; the agent does not edit the text of a
+      Case in the plan file.
+
+      **＋** A finding in `vault/raw/<date>/<hi HHMM>/frontier.md` or in a line of the session''s ledger
+      is fixed there, and the command runs again until it prints no finding.
+
+      **＋** At the first run of `/pre-spec` in the session, the agent dispatches one `ask-guppi` over
+      the plan, or over the conserved Spec that the plan''s title line names, as `rule-skill-hi` sets
+      that line, with the absolute path of the plan file, the instruction to judge every Case outside
+      `## Deferred` with its sub-cases, and the instruction to read for each such Case its `context`,
+      `when`, `then`, `then` block and `tasks` block and, for an `update` of a rule or an entity, the
+      page''s `estimates`; of a Case under `## Deferred` it reads only the slugs of its `defer` items.
+
+      **＋** The questions: which decisions contradict a page of the vault, a rule of the vault, or each
+      other; whether an Estimate the Case does not name speaks of the thing the Case changes; which fact
+      of a `context` — a page''s status, a count, a case number, a claim that no page holds a thing —
+      the vault does not bear out; whether, for each Case of the plan with a line of its `tasks` block
+      that adds a file that is no page of `vault/wiki/`, its `context` names each search and reading that
+      `.claude/agents/case-guppi.md` sets for the folders that hold that file, and which reader that takes
+      every file of such a folder the Case does not name; and whether the `When` or `Then` of a Criterion
+      a Case sets asks someone to read or see what only a later session, the librarian''s run or a `/hi`
+      produces, when the `method` of that Estimate, in the plan or else on its live page, cannot take
+      that reading in the Case''s own session.
+
+      **＋** The agent answers the findings with one report before any Case is sent back: the list of what
+      the `ask-guppi` run did not check; each finding numbered, with the fix it proposes or why it is
+      already known, the findings that need the person apart from those that do not, and the decisions
+      it needs from the person; after the Cases built again on the findings are ratified, it does not
+      call `/pre-spec` again, but runs the check, fixes what it prints, and exits Plan Mode when the check
+      prints no finding.
+
+      **＋** `guppi gate` writes the stamped `prespec` line on the Skill call.
+
+      **－** The last question finds nothing where a part of the `method` waits for an event it names that
+      brings that reading, nor in the Criterion of an Estimate whose target is a sprint page `entity-sprint-<id>`,
+      whose `method` may wait for a later session of its sprint.
+
+      **－** No second `ask-guppi` is dispatched at the first run, and a later run of `/pre-spec` in the
+      session dispatches none.
+
+      **－** The report never says that the whole Spec is checked.
+
+      **－** The agent writes no list of the decisions: the plan is the list.
+
+      **－** The body of a deferred decision is not read, and `ask-guppi` is not asked whether a Case changes
+      a page that another Case of the plan defers: `uv run --project .guppi guppi prespec --check` notes
+      such a pair at every run, as `estimate-prespec-notes-a-page-another-case-defers` sets it.'
+    context: 'The Render of `rule-case-build` tells `case-guppi` what to do when a task of its Case adds
+      a file that is no page of `vault/wiki/`. It searches `.guppi/guppi/`, `.claude/` and `vault/wiki/rules/`
+      for the path of each folder that holds the file. It searches `.guppi/guppi/` and `.guppi/tests/`
+      for the calls that walk a folder. It reads each `.gitignore` there and each reader that takes every
+      file of such a folder. Nothing the agent leaves shows whether it did these steps. The reading of
+      `estimate-case-build-reads-the-readers-of-a-new-files-folder` in session 2038 (line 17 of `raw/2026-11-01/2038/ledger.md`)
+      checked the new file `.claude/skills/approve-spec/SKILL.md` of Case 987. Of 8 searches and readings,
+      2 were done, 1 in part and 5 missing. One missing reader was `callers()` of `.guppi/tests/test_guppi_package.py`,
+      and `ask-guppi` at `/pre-spec` raised no finding on it. I read `callers()` whole: it takes the `Makefile`
+      and every file under `.claude` and `.github/workflows` but `settings.local.json`. The person made
+      three choices. First, the `context` of such a Case names each of those searches and readings (995.1);
+      the rerun of the searches `context` names, which comes just before the summary, then covers them,
+      as Case 979 did for a list member. Second, `ask-guppi` at the first `/pre-spec` checks that list,
+      through a new question in the Render of `rule-prespec`, and runs its own Grep of the code for folder
+      walks, which a new sentence of the Render of `rule-ask` allows (995.2). Third, `estimate-prespec-reconciles`,
+      whose Criterion lists the questions of `/pre-spec`, gets the new question (995.3). That change stands
+      in a sub-case of its own, since `case-schema.md` sets one promise per sub-case and 995.2 already
+      creates an Estimate. The governing rule is the sentence of `rule-case-build` from case 629.5: `context`
+      names a search only when the Case rests on it. The new sentence states the claim the searches rest
+      on, namely that the new file makes no reader of its folders wrong. So the sentence and the Criterion
+      of `estimate-case-build-checks-the-finished-case`, which carries the same rule, stand. The new texts
+      of `core: true` pages put each pointer to a Case in a bracket at the end of its sentence, and the
+      pair on `rule-prespec` adds no pointer. I read the blocks of `rule-case-build`, `rule-prespec`,
+      `rule-ask`, `estimate-case-build-reads-the-readers-of-a-new-files-folder`, `estimate-prespec-reconciles`,
+      `.claude/agents/case-guppi.md`, `.claude/agents/ask-guppi.md` and `.claude/skills/pre-spec/SKILL.md`
+      in `.guppi/links.md`. The block of `estimate-prespec-reconciles` has an empty purpose line. Four
+      neighbours bear on the change, and each stands. `estimate-ask-searches-at-prespec` already allows
+      further Greps as a finding needs. `estimate-ask-finds` sets one list per question of the skill,
+      so the new question gets its own list. Its line that `.claude/agents/ask-guppi.md` does not list
+      the questions of `/pre-spec` itself also stays true, since the new sentence of `rule-ask` only allows
+      the one Grep of `.guppi/guppi/` and `.guppi/tests/` for the question that `/pre-spec` sets and does
+      not repeat that question (finding 2.1 of `/pre-spec`). After finding 1.5 of `/pre-spec`, a second
+      pair on `rule-prespec` adds the `tasks` block to what the dispatch tells `ask-guppi` to read for
+      every Case, because only the `tasks` block shows which Case adds a file; 995.3 carries the same
+      list in the Criterion of `estimate-prespec-reconciles`, so its dispatch line is not carried as it
+      stood either. `estimate-prespec-confirms-the-findings-once` allows no Grep at the confirmation,
+      and 995.2 keeps it that way. The other Estimates of `rule-prespec` speak of `prespec --check` and
+      of the loop, not of the questions of `ask-guppi`. The sentence of `rule-ask` that it searches the
+      vault at `vault/wiki/` stands, because the new sentence names the one Grep of the code beside it.
+      A Grep `speaks of the thing the Case changes` found the texts that list the questions of `/pre-spec`.
+      Over `vault/wiki/` it printed `rules/rule-prespec.md` and `estimates/estimate-prespec-reconciles.md`,
+      over `.claude/` it printed `skills/pre-spec/SKILL.md`, and over `.guppi/guppi/` it printed nothing;
+      this Case changes all three texts. A Grep `walk a folder` printed `rules/rule-case-build.md` and
+      `estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder.md` over `vault/wiki/`, and
+      `agents/case-guppi.md` over `.claude/`. A Grep `CALLERS|REPO / "\.claude"` over `.guppi/tests/`
+      printed `test_guppi_package.py` alone. Its test over `callers()` looks for `uv run guppi` and `uv
+      run pytest`, and the new texts hold neither. Its test over the live pages runs `Vault.reword_text`
+      with `guppi/` and `tests/`. I read `reword_text`, `reword_pattern` and `is_path_pair` of `.guppi/guppi/generate.py`
+      and `PATH_START` of `.guppi/guppi/lint.py`, which is `(?<![\w./-])`. A path `old` matches only where
+      no `.` or `/` stands before it, so neither matches in `.guppi/guppi/` or `.guppi/tests/`, the only
+      forms the new texts use. I read `check_frame` and `frame_name` of `.guppi/guppi/prespec.py`: each
+      code span of `when` or `then` that is a slug, or that holds a `/`, must stand in the text of `given`,
+      and the lines of `given` are written for that. The check of this file noted that some `then` lines
+      of 995.2 and 995.3 share most of their words with lines of 995.1. They stand: 995.1 sets what `case-guppi`
+      searches and names in `context`, 995.2 sets what `ask-guppi` checks and searches on that `context`
+      at `/pre-spec`, and 995.3 sets the text of the question in the list of `estimate-prespec-reconciles`.
+      These are three agents'' or texts'' acts on one subject, which the person chose, not one promise
+      signed twice. The check also noted that the old line on the questions of `estimate-prespec-reconciles`
+      is not carried. That line is carried with the new question added, which is the change. Its last
+      `－` line, on a deferred decision, was missing from the first build and is now carried word for word.
+      A Glob `vault/**/estimate-prespec-finds-a-reader*` printed nothing, so the new slug is free. It
+      is a `create` with a `ref`, so no vault query runs. The Greps `lesson\[error\]` and `\{addresses:`
+      over the ledger of session 2227 printed nothing.'
+  parent: decision-case-995
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '996.1'
+  decision: decision-case-996.1
+  origin: raw/2026-11-01/2227/ledger.md#case-996.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-clean-branch
+    ref: rule-clean-branch
+  - kind: update
+    category: rules
+    slug: rule-lint
+    ref: rule-lint
+  - kind: update
+    category: estimates
+    slug: estimate-lint-checks-the-statuses
+    ref: rule-lint
+  - kind: update
+    category: estimates
+    slug: estimate-clean-branch-refuses-a-draft-core-page
+    ref: rule-clean-branch
+  tags: []
+  case_text:
+    given: '`rule-clean-branch`: the rule whose Purpose sets when `guppi ship` refuses to build.
+
+      **＋** `estimate-clean-branch-refuses-a-draft-core-page`: its Criterion is replaced whole.
+
+      **＋** `rule-lint`: the rule whose Purpose says which draft pages lint reports.
+
+      **＋** `estimate-lint-checks-the-statuses`: its `purpose` names the pages lint reports; its Criterion
+      is 996.3.
+
+      **＋** `.guppi/guppi/pages.py`: holds `is_draft_core`, the one judgment.
+
+      **＋** `.guppi/guppi/ship.py`: the build, whose `drafts` imports it.
+
+      **＋** `.guppi/guppi/lint.py`: lint, whose `check_status` imports it.
+
+      **＋** `.guppi/guppi/generate.py`: its cascade writes the History line that sets a page `built`.
+
+      **＋** `.guppi/tests/test_ship.py`: the tests of the build.
+
+      **＋** `.guppi/tests/test_lint.py`: the tests of lint, and the test that runs the cascade and the
+      judgment together.
+
+      **＋** `.github/workflows/prod.yml`: the workflow that writes `prod`.
+
+      **＋** `rule-skill-merge-main`: a rule without `core`.
+
+      **＋** `rule-skill-pr-review`: a rule without `core`.'
+    when: '`uv run --project .guppi guppi ship <folder>` or `uv run --project .guppi guppi ship --review
+      <folder>`, as `rule-clean-branch` sets it, builds the clean version into an empty folder, with or
+      without the option `--allow-draft`, or `uv run --project .guppi guppi lint` runs where the module
+      of the command `ship` stands.'
+    then: 'A rule or an entity with `core: true` that stands `draft` blocks the build when its `## History`
+      holds no line that set its status to `built`, or when one of its Estimates stands `failed`.
+
+      **＋** While a page that blocks the build stands, `guppi ship` prints one line for each such page,
+      writes nothing and exits 1.
+
+      **＋** A `draft` page with `core: true` whose History holds such a line and none of whose Estimates
+      stands `failed` gets no line, and the build writes it as it stands.
+
+      **＋** With `--allow-draft`, the build writes the clean version all the same and prints those lines,
+      which set no exit code; `.github/workflows/prod.yml` never passes that option.
+
+      **＋** The build and lint tell a page that blocks the build by `is_draft_core` of `.guppi/guppi/pages.py`,
+      imported by both, and a test runs the cascade of `.guppi/guppi/generate.py` that sets a page `built`
+      and asserts that the page, set `draft` again, then blocks nothing.
+
+      **＋** `rule-skill-merge-main` and `rule-skill-pr-review` carry no `core`, so the clean version holds
+      neither them nor the files they render.
+
+      **－** `uv run --project .guppi guppi ship --check` does not judge the status of a page.'
+    context: '`guppi ship` builds the clean version of GUPPI, and the workflow `.github/workflows/prod.yml`
+      writes it to the branch `prod` on a push of a tag `prod-x.y.z`. Today the build writes nothing while
+      any rule or entity with `core: true` stands `draft`, by `is_draft_core` of `.guppi/guppi/pages.py`,
+      which `drafts` of `.guppi/guppi/ship.py` and `check_status` of `.guppi/guppi/lint.py` import; I
+      read the three functions whole. The cascade of `.guppi/guppi/generate.py`, read whole as `cascade`,
+      sets a rule `draft` whenever one of its Estimates is not `passed`, and writes the History line `status:
+      <before> → <after> · cascade`. So a page falls back to `draft` each time a Case adds or replaces
+      one of its Estimates. The lint of the last run, as the brief reports it, flags eight such pages:
+      `rule-ask`, `rule-case-build`, `rule-morph`, `rule-orchestration`, `rule-skill-approve-spec`, `rule-skill-hi`,
+      `rule-spec-box` and `rule-synthesis`. Case 994 of this session sets `estimate-close-reports-the-run`,
+      an Estimate of `rule-close`, back to `pending`, and Case 995 adds a waiting Estimate to `rule-prespec`;
+      both pages carry `core: true`. A Grep of the History status lines of the eight pages showed lines
+      `draft → built` on six of them and none on `rule-morph` and `rule-skill-approve-spec`. Most of the
+      waiting Estimates wait for an event of a later session, so `prod` could stay empty through the sprint.
+
+      The person chose that the build is blocked only by a page with `core: true` that stands `draft`
+      and whose History holds no line that set it `built`, or by such a page with an Estimate `failed`;
+      a page built before that only waits for the reading of a newer Estimate ships as it stands. Lint
+      reports the same pages through the same function, `is_draft_core`, whose name the tests of `.guppi/tests/test_lint.py`
+      and `.guppi/tests/test_ship.py` assert both sides import. The Criterion of `estimate-clean-branch-refuses-a-draft-core-page`
+      is replaced whole (996.1). Taking `core: true` off the blocking pages was offered and not chosen:
+      of the ten pages, seven render a harness file in full — `/hi`, `/pre-spec`, `orchestration.md`,
+      the agent files of `case-guppi` and `ask-guppi`, `/box` and `/approve-spec` — and `governed` of
+      `.guppi/guppi/ship.py`, read whole, refuses such a file when its page carries no `core`, so `prod`
+      could not run a session.
+
+      What this session does: Work Mode changes `is_draft_core` and its tests, the librarian applies the
+      page updates, and the Retro reads `estimate-clean-branch-refuses-a-draft-core-page` by its tests.
+      What stays: `prod` still waits for `rule-morph`, whose setup skill the next milestone builds, and
+      for `rule-skill-approve-spec`, whose reading needs a trial in the Claude Code CLI; after both are
+      built, the owner pushes `plugin` and a tag `prod-x.y.z`, and `estimate-sprint-plugin-ci-writes-a-clean-branch`
+      is read on that run before the close of `plugin`, so the sprint item stays open after this Case.
+
+      The search for code that already judges the History of a page: a Grep of `.guppi/guppi/` for `→`
+      outside `generate.py` printed 14 files: `onward.py`, `prespec.py`, `event.py`, `sprint_close.py`,
+      `casecheck.py`, `lint.py`, `pages.py`, `links.py`, `materialize.py`, `ratified.py`, `guard.py`,
+      `archive.py`, `render.py` and `config.py`. I read the hits around their lines: they are arrows in
+      docstrings and comments, print lines, the History writer of `sprint_close.py`, and a pattern of
+      `casecheck.py` for the line numbers of a Read output; none reads a status line of a History. So
+      the new judgment lives in `.guppi/guppi/pages.py` alone, and since the writer, the cascade of `generate`,
+      formats the line in another module, a test runs the cascade and the judgment over one page, as `rule-one-judgment-one-implementation`
+      sets it.
+
+      A Grep of the live pages of `vault/wiki/` but `log.md` and `brief.md` for `core: true[^.\n]{0,60}draft|draft[^.\n]{0,60}core|is_draft_core`
+      printed 17 files: `sprint.md`, `estimates/schema.yaml`, `case-schema.md`, `entity-sprint-plugin`,
+      `estimate-rules-schema-checked`, `rule-estimates-schema`, `estimate-materialize-lifts-a-create-value-by-the-schema`,
+      `estimate-lint-checks-the-statuses`, `rule-case-protocol`, `estimate-clean-branch-pages-hold-pointers-only-in-brackets`,
+      `rule-clean-branch`, `estimate-clean-branch-code-holds-pointers-only-in-brackets`, `rule-lint`,
+      `estimate-clean-branch-ships-neutral-texts`, `estimate-sprint-plugin-ci-writes-a-clean-branch`,
+      `estimate-clean-branch-refuses-a-draft-core-page` and `estimate-entities-schema-checked`. The hits
+      that this change makes false enter the Case: three sentences of `rule-clean-branch`, one of `rule-lint`,
+      the `purpose` and the Criterion of `estimate-lint-checks-the-statuses`, the milestone line of `entity-sprint-plugin`
+      and one `－` line of the Criterion of `estimate-sprint-plugin-ci-writes-a-clean-branch` (996.2).
+      The third sentence of `rule-clean-branch`, that a draft page a new project can go without loses
+      `core` until it is `built`, now speaks only of a page that blocks the build, since a page built
+      before ships as it stands. `ask-guppi` found at `/pre-spec` that a page shipped as `draft` would
+      fail lint in the project that installs it. `ships` of `.guppi/guppi/ship.py` writes only the `passed`
+      Estimates of a page, and `shipped_page` keeps its `status` and cuts its `estimates` to those, so
+      `check_status` of `.guppi/guppi/lint.py` gives `draft while every Estimate is passed` on such a
+      page there, as on `rule-orchestration`, and the lint job of the shipped `.github/workflows/checks.yml`
+      goes red. The person chose that the page stays `draft` and that lint, where `ship_stands` answers
+      no, gives no such finding, as it already gives none from `is_draft_core` there. So the new sub-case
+      996.3 replaces the Criterion of `estimate-lint-checks-the-statuses`, the one that lists the findings
+      lint gives and leaves out in a project that installed GUPPI, since `case-schema.md` sets one promise
+      per sub-case and 996.1 replaces the Criterion of the build. 996.1 keeps its update of that Estimate,
+      which sets only its `purpose`, and the line of lint on the pages that block the build moves from
+      the `then` of 996.1 to the Criterion of 996.3, so no promise is signed twice. In that Criterion
+      the line on `is_draft_core` names the new judgment, and the `－` line on a project that installed
+      GUPPI adds the `draft` page with every Estimate `passed`; the other lines stand word for word. The
+      check of this file noted that some lines of 996.3 share words with lines of 996.1 and 996.2. They
+      stand. 996.1 sets what blocks the build. 996.3 sets which findings lint gives on those pages, and
+      repeats the words of the judgment only to name it. The line of 996.2 on `prod` speaks of the pages
+      a run writes, not of a finding. `estimate-clean-branch-ships-the-passed-estimates` stays true: the
+      build still writes no Estimate that is `pending` or `failed`, and the field `estimates` of each
+      page it writes still lists only the Estimates it writes; only the finding that lint gives over such
+      a page changes. The rest stand. The sentences of `rule-case-protocol`, `case-schema.md`, `rule-estimates-schema`
+      and `estimates/schema.yaml` say that an Estimate with `once: true` keeps no page with `core: true`
+      in `draft`. The `－` lines of `estimate-clean-branch-code-holds-pointers-only-in-brackets` and `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
+      say that a draft page stops no `--check` and no `--allow-draft` run. The other hits are Result lines,
+      History lines, sprint records or the word `core` beside a `draft` value of a schema. `.claude/`
+      printed none. In `.guppi/tests/`, the existing `draft_core` tests build pages whose History holds
+      only a `created` line, so they still block and pass. A Grep of `.guppi/tests/` for `draft while
+      every Estimate` printed `test_lint.py` alone: `test_draft_with_every_estimate_passed_is_a_status_finding`
+      runs with the module of `ship` as it stands, which the clean version does not hold, so a task sets
+      it standing there by `ship_module`. The comment of `test_the_clean_version_holds_no_pyproject_and_no_lock_at_its_root`
+      of `.guppi/tests/test_guppi_package.py` speaks of `ship.ship`, which reads no status, and stands.
+      The glossary rows on `draft` and `built` stand.
+
+      I read the blocks of `.guppi/links.md` for `rule-clean-branch`, `estimate-clean-branch-refuses-a-draft-core-page`,
+      `estimate-sprint-plugin-ci-writes-a-clean-branch`, `entity-sprint-plugin`, `rule-lint`, `estimate-lint-checks-the-statuses`,
+      `.guppi/guppi/pages.py`, `.guppi/guppi/ship.py` and `.guppi/guppi/lint.py`. `estimate-sprint-plugin-installs-as-a-plugin`
+      builds with `--allow-draft`, which prints the lines and writes all the same, so it stands. `rule-morph`
+      stands; its text does not speak of the guard. `rule-github-repository` and `rule-plugin-install`
+      do not speak of the status of a page. The new texts of `rule-lint`, which has `core: true`, and
+      the new docstrings put each pointer to a Case in a bracket at the end of its sentence. I read `entity-sprint-plugin`
+      whole. The pair on it changes the last clause of the item of the milestone The clean branch, and
+      the rest of that sentence stays true: the owner still pushes `plugin` and a tag, and the run is
+      still read by its Estimate. No other Case of this session writes into that page. The check of this
+      file noted the lines of the old Criteria that are not carried. In 996.1 the lines on `ship`, `--allow-draft`,
+      the workflow and `is_draft_core` stand rewritten, since each now names the pages that block the
+      build, and the `When` gains the run of `guppi lint`. In 996.2 one `－` line now names a page that
+      blocks the build in place of any draft page. The check also noted that some `then` lines of 996.2
+      share words with lines of 996.1. They stand: 996.1 sets what the build and lint judge, and 996.2
+      carries the whole Criterion of the CI run, whose lines on `prod` and on a failed run only point
+      to that judgment. Each promise stands in one Criterion only. The Greps `lesson\[error\]` and `\{addresses:`
+      over the ledger of session 2227 printed nothing.'
+  parent: decision-case-996
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '996.2'
+  decision: decision-case-996.2
+  origin: raw/2026-11-01/2227/ledger.md#case-996.2
+  targets:
+  - kind: update
+    category: entities
+    slug: entity-sprint-plugin
+    ref: entity-sprint-plugin
+  - kind: update
+    category: estimates
+    slug: estimate-sprint-plugin-ci-writes-a-clean-branch
+    ref: entity-sprint-plugin
+  tags: []
+  case_text:
+    given: '`entity-sprint-plugin`: the sprint page, whose milestone line names the pages that stop the
+      run.
+
+      **＋** `estimate-sprint-plugin-ci-writes-a-clean-branch`: its Criterion is replaced whole.
+
+      **＋** `estimate-clean-branch-refuses-a-draft-core-page`: the check of the pages that block the build.
+
+      **＋** `rule-clean-branch`: the rule of the clean version.
+
+      **＋** `.github/workflows/prod.yml`: the workflow that writes `prod`.
+
+      **＋** `.claude-plugin/plugin.json`: the manifest whose `version` the build sets.'
+    when: 'In a session of the sprint `plugin` before its close, the owner pushes a tag `prod-x.y.z`,
+      such as `prod-0.2.0`, on a commit of the branch `plugin` to the repository of the project on GitHub,
+      and the workflow `.github/workflows/prod.yml` runs on that commit.
+
+      **＋** `uv run --project .guppi guppi ship <folder>` runs on a commit with no tag `prod-x.y.z` in
+      its history.'
+    then: 'The run writes the clean version that `uv run --project .guppi guppi ship` builds to the branch
+      `prod`, as one new commit on top of its last commit, or as its first commit when `prod` does not
+      stand yet, whose message names the commit it was built from.
+
+      **＋** The run pushes to `prod` with the deploy key whose private half is the secret `PROD_DEPLOY_KEY`,
+      which the bypass list of the ruleset on `prod` lets through.
+
+      **＋** `prod` holds each page with `core: true` and no other page.
+
+      **＋** No text of the clean version holds a reference to a case or a decision, a link to a page that
+      the clean version leaves out, or a mention of a session of this repository; a sample, as `rule-clean-branch`
+      sets it, such as a string of a test, is no reference.
+
+      **＋** The clean version holds no data of the sessions of this repository, such as its Frontier and
+      its sprint.
+
+      **＋** The `version` of `.claude-plugin/plugin.json` on `prod` is the number of the highest tag `prod-x.y.z`
+      in the history of the commit it was built from, such as `0.2.0` for `prod-0.2.0`, and a tag of another
+      form, such as `prod-2`, gives no version.
+
+      **＋** The `on:` block of `.github/workflows/prod.yml` starts the same run on a push to `main`.
+
+      **－** `uv run --project .guppi guppi ship <folder>` with no tag `prod-x.y.z` in that history exits
+      1 and writes nothing, and `uv run --project .guppi guppi ship --check` reads no tag.
+
+      **－** A run whose `uv run --project .guppi guppi ship` exits 1 fails and writes nothing to `prod`,
+      as it does while a page with `core: true` stands that blocks the build, which `estimate-clean-branch-refuses-a-draft-core-page`
+      checks.
+
+      **－** A run whose clean version equals the last commit of `prod` adds no commit.'
+    context: '`guppi ship` builds the clean version of GUPPI, and the workflow `.github/workflows/prod.yml`
+      writes it to the branch `prod` on a push of a tag `prod-x.y.z`. Today the build writes nothing while
+      any rule or entity with `core: true` stands `draft`, by `is_draft_core` of `.guppi/guppi/pages.py`,
+      which `drafts` of `.guppi/guppi/ship.py` and `check_status` of `.guppi/guppi/lint.py` import; I
+      read the three functions whole. The cascade of `.guppi/guppi/generate.py`, read whole as `cascade`,
+      sets a rule `draft` whenever one of its Estimates is not `passed`, and writes the History line `status:
+      <before> → <after> · cascade`. So a page falls back to `draft` each time a Case adds or replaces
+      one of its Estimates. The lint of the last run, as the brief reports it, flags eight such pages:
+      `rule-ask`, `rule-case-build`, `rule-morph`, `rule-orchestration`, `rule-skill-approve-spec`, `rule-skill-hi`,
+      `rule-spec-box` and `rule-synthesis`. Case 994 of this session sets `estimate-close-reports-the-run`,
+      an Estimate of `rule-close`, back to `pending`, and Case 995 adds a waiting Estimate to `rule-prespec`;
+      both pages carry `core: true`. A Grep of the History status lines of the eight pages showed lines
+      `draft → built` on six of them and none on `rule-morph` and `rule-skill-approve-spec`. Most of the
+      waiting Estimates wait for an event of a later session, so `prod` could stay empty through the sprint.
+
+      The person chose that the build is blocked only by a page with `core: true` that stands `draft`
+      and whose History holds no line that set it `built`, or by such a page with an Estimate `failed`;
+      a page built before that only waits for the reading of a newer Estimate ships as it stands. Lint
+      reports the same pages through the same function, `is_draft_core`, whose name the tests of `.guppi/tests/test_lint.py`
+      and `.guppi/tests/test_ship.py` assert both sides import. The Criterion of `estimate-clean-branch-refuses-a-draft-core-page`
+      is replaced whole (996.1). Taking `core: true` off the blocking pages was offered and not chosen:
+      of the ten pages, seven render a harness file in full — `/hi`, `/pre-spec`, `orchestration.md`,
+      the agent files of `case-guppi` and `ask-guppi`, `/box` and `/approve-spec` — and `governed` of
+      `.guppi/guppi/ship.py`, read whole, refuses such a file when its page carries no `core`, so `prod`
+      could not run a session.
+
+      What this session does: Work Mode changes `is_draft_core` and its tests, the librarian applies the
+      page updates, and the Retro reads `estimate-clean-branch-refuses-a-draft-core-page` by its tests.
+      What stays: `prod` still waits for `rule-morph`, whose setup skill the next milestone builds, and
+      for `rule-skill-approve-spec`, whose reading needs a trial in the Claude Code CLI; after both are
+      built, the owner pushes `plugin` and a tag `prod-x.y.z`, and `estimate-sprint-plugin-ci-writes-a-clean-branch`
+      is read on that run before the close of `plugin`, so the sprint item stays open after this Case.
+
+      The search for code that already judges the History of a page: a Grep of `.guppi/guppi/` for `→`
+      outside `generate.py` printed 14 files: `onward.py`, `prespec.py`, `event.py`, `sprint_close.py`,
+      `casecheck.py`, `lint.py`, `pages.py`, `links.py`, `materialize.py`, `ratified.py`, `guard.py`,
+      `archive.py`, `render.py` and `config.py`. I read the hits around their lines: they are arrows in
+      docstrings and comments, print lines, the History writer of `sprint_close.py`, and a pattern of
+      `casecheck.py` for the line numbers of a Read output; none reads a status line of a History. So
+      the new judgment lives in `.guppi/guppi/pages.py` alone, and since the writer, the cascade of `generate`,
+      formats the line in another module, a test runs the cascade and the judgment over one page, as `rule-one-judgment-one-implementation`
+      sets it.
+
+      A Grep of the live pages of `vault/wiki/` but `log.md` and `brief.md` for `core: true[^.\n]{0,60}draft|draft[^.\n]{0,60}core|is_draft_core`
+      printed 17 files: `sprint.md`, `estimates/schema.yaml`, `case-schema.md`, `entity-sprint-plugin`,
+      `estimate-rules-schema-checked`, `rule-estimates-schema`, `estimate-materialize-lifts-a-create-value-by-the-schema`,
+      `estimate-lint-checks-the-statuses`, `rule-case-protocol`, `estimate-clean-branch-pages-hold-pointers-only-in-brackets`,
+      `rule-clean-branch`, `estimate-clean-branch-code-holds-pointers-only-in-brackets`, `rule-lint`,
+      `estimate-clean-branch-ships-neutral-texts`, `estimate-sprint-plugin-ci-writes-a-clean-branch`,
+      `estimate-clean-branch-refuses-a-draft-core-page` and `estimate-entities-schema-checked`. The hits
+      that this change makes false enter the Case: three sentences of `rule-clean-branch`, one of `rule-lint`,
+      the `purpose` and the Criterion of `estimate-lint-checks-the-statuses`, the milestone line of `entity-sprint-plugin`
+      and one `－` line of the Criterion of `estimate-sprint-plugin-ci-writes-a-clean-branch` (996.2).
+      The third sentence of `rule-clean-branch`, that a draft page a new project can go without loses
+      `core` until it is `built`, now speaks only of a page that blocks the build, since a page built
+      before ships as it stands. `ask-guppi` found at `/pre-spec` that a page shipped as `draft` would
+      fail lint in the project that installs it. `ships` of `.guppi/guppi/ship.py` writes only the `passed`
+      Estimates of a page, and `shipped_page` keeps its `status` and cuts its `estimates` to those, so
+      `check_status` of `.guppi/guppi/lint.py` gives `draft while every Estimate is passed` on such a
+      page there, as on `rule-orchestration`, and the lint job of the shipped `.github/workflows/checks.yml`
+      goes red. The person chose that the page stays `draft` and that lint, where `ship_stands` answers
+      no, gives no such finding, as it already gives none from `is_draft_core` there. So the new sub-case
+      996.3 replaces the Criterion of `estimate-lint-checks-the-statuses`, the one that lists the findings
+      lint gives and leaves out in a project that installed GUPPI, since `case-schema.md` sets one promise
+      per sub-case and 996.1 replaces the Criterion of the build. 996.1 keeps its update of that Estimate,
+      which sets only its `purpose`, and the line of lint on the pages that block the build moves from
+      the `then` of 996.1 to the Criterion of 996.3, so no promise is signed twice. In that Criterion
+      the line on `is_draft_core` names the new judgment, and the `－` line on a project that installed
+      GUPPI adds the `draft` page with every Estimate `passed`; the other lines stand word for word. The
+      check of this file noted that some lines of 996.3 share words with lines of 996.1 and 996.2. They
+      stand. 996.1 sets what blocks the build. 996.3 sets which findings lint gives on those pages, and
+      repeats the words of the judgment only to name it. The line of 996.2 on `prod` speaks of the pages
+      a run writes, not of a finding. `estimate-clean-branch-ships-the-passed-estimates` stays true: the
+      build still writes no Estimate that is `pending` or `failed`, and the field `estimates` of each
+      page it writes still lists only the Estimates it writes; only the finding that lint gives over such
+      a page changes. The rest stand. The sentences of `rule-case-protocol`, `case-schema.md`, `rule-estimates-schema`
+      and `estimates/schema.yaml` say that an Estimate with `once: true` keeps no page with `core: true`
+      in `draft`. The `－` lines of `estimate-clean-branch-code-holds-pointers-only-in-brackets` and `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
+      say that a draft page stops no `--check` and no `--allow-draft` run. The other hits are Result lines,
+      History lines, sprint records or the word `core` beside a `draft` value of a schema. `.claude/`
+      printed none. In `.guppi/tests/`, the existing `draft_core` tests build pages whose History holds
+      only a `created` line, so they still block and pass. A Grep of `.guppi/tests/` for `draft while
+      every Estimate` printed `test_lint.py` alone: `test_draft_with_every_estimate_passed_is_a_status_finding`
+      runs with the module of `ship` as it stands, which the clean version does not hold, so a task sets
+      it standing there by `ship_module`. The comment of `test_the_clean_version_holds_no_pyproject_and_no_lock_at_its_root`
+      of `.guppi/tests/test_guppi_package.py` speaks of `ship.ship`, which reads no status, and stands.
+      The glossary rows on `draft` and `built` stand.
+
+      I read the blocks of `.guppi/links.md` for `rule-clean-branch`, `estimate-clean-branch-refuses-a-draft-core-page`,
+      `estimate-sprint-plugin-ci-writes-a-clean-branch`, `entity-sprint-plugin`, `rule-lint`, `estimate-lint-checks-the-statuses`,
+      `.guppi/guppi/pages.py`, `.guppi/guppi/ship.py` and `.guppi/guppi/lint.py`. `estimate-sprint-plugin-installs-as-a-plugin`
+      builds with `--allow-draft`, which prints the lines and writes all the same, so it stands. `rule-morph`
+      stands; its text does not speak of the guard. `rule-github-repository` and `rule-plugin-install`
+      do not speak of the status of a page. The new texts of `rule-lint`, which has `core: true`, and
+      the new docstrings put each pointer to a Case in a bracket at the end of its sentence. I read `entity-sprint-plugin`
+      whole. The pair on it changes the last clause of the item of the milestone The clean branch, and
+      the rest of that sentence stays true: the owner still pushes `plugin` and a tag, and the run is
+      still read by its Estimate. No other Case of this session writes into that page. The check of this
+      file noted the lines of the old Criteria that are not carried. In 996.1 the lines on `ship`, `--allow-draft`,
+      the workflow and `is_draft_core` stand rewritten, since each now names the pages that block the
+      build, and the `When` gains the run of `guppi lint`. In 996.2 one `－` line now names a page that
+      blocks the build in place of any draft page. The check also noted that some `then` lines of 996.2
+      share words with lines of 996.1. They stand: 996.1 sets what the build and lint judge, and 996.2
+      carries the whole Criterion of the CI run, whose lines on `prod` and on a failed run only point
+      to that judgment. Each promise stands in one Criterion only. The Greps `lesson\[error\]` and `\{addresses:`
+      over the ledger of session 2227 printed nothing.'
+  parent: decision-case-996
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '996.3'
+  decision: decision-case-996.3
+  origin: raw/2026-11-01/2227/ledger.md#case-996.3
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-lint-checks-the-statuses
+    ref: rule-lint
+  tags: []
+  case_text:
+    given: '`estimate-lint-checks-the-statuses`: its Criterion is replaced whole.
+
+      **＋** `rule-lint`: the rule of lint.
+
+      **＋** `vault/wiki/`: the live pages lint reads.
+
+      **＋** `.guppi/guppi/lint.py`: lint, whose `check_status` gives the `status` findings.
+
+      **＋** `.guppi/guppi/pages.py`: holds `ship_stands` and `is_draft_core`.
+
+      **＋** `.guppi/guppi/ledger.py`: holds `is_sprint_page`.
+
+      **＋** `entity-sprint-<id>`: a sprint page, the target a one-time Estimate needs.
+
+      **＋** `/hi`: the skill that opens a session, one of the moments a `method` may wait for.
+
+      **＋** `.guppi/tests/test_lint.py`: the tests of lint.'
+    when: '`uv run --project .guppi guppi lint` reads the `status` of the live pages under `vault/wiki/`,
+      and the `method`, the `target` and the `once` of each Estimate.'
+    then: '`status`: a `built` entity or rule with an Estimate not `passed`, a `draft` one with every
+      Estimate `passed`; a page without Estimates is not judged for these two.
+
+      **＋** `status`: where `ship_stands` of `.guppi/guppi/pages.py` finds the module of the command `ship`,
+      each entity or rule that `is_draft_core` accepts — one with `core: true` that stands `draft` and
+      whose `## History` holds no line that set it `built`, or one of whose Estimates stands `failed`
+      — with Estimates or without, one finding each, and none on another `draft` page with `core: true`.
+
+      **＋** `status`: an Estimate `passed` or `failed` without `## Result`; an Estimate whose `target`
+      is not an entity or a rule, or does not list it in `estimates`.
+
+      **＋** `status`: an Estimate with `once: true` whose `target` is not a sprint page `entity-sprint-<id>`,
+      as `is_sprint_page` of `.guppi/guppi/ledger.py` judges it, one finding.
+
+      **＋** `unread`: every Estimate `failed`, and every Estimate `pending` whose `method` does not wait
+      for a later moment, one finding each, `unread: <status>`.
+
+      **＋** A `method` waits for a later moment when a part of it between two `;` opens with `after`,
+      or with `by hand, after`, and names its event before a colon, or names a later session, the next
+      session, a session after another, a session of a sprint, the session that closes one, the librarian
+      or `/hi`.
+
+      **＋** `deferred`: a placeholder — a rule or entity with `deferred_by` and none of `kind`, `estimates`,
+      `tags` — earns one finding `deferred: <N> times since case <M>` in place of its `schema` findings
+      on those fields and of `orphan`; a page with `deferred_by` whose fields are in place earns none.
+
+      **－** `guppi lint` in a project that installed GUPPI, where `ship_stands` answers no, reports none
+      of the pages that `is_draft_core` accepts, and no `draft` entity or rule with every Estimate `passed`,
+      since the clean version keeps the `status` of a page and writes only its `passed` Estimates.
+
+      **－** A `pending` Estimate whose `method` waits for a later moment earns no `unread` finding.
+
+      **－** A `failed` Estimate earns its `unread` finding whatever its `method` says.
+
+      **－** An Estimate with `once: true` whose target is a sprint page, and an Estimate without `once`,
+      earn no finding of a one-time Estimate.'
+    context: '`guppi ship` builds the clean version of GUPPI, and the workflow `.github/workflows/prod.yml`
+      writes it to the branch `prod` on a push of a tag `prod-x.y.z`. Today the build writes nothing while
+      any rule or entity with `core: true` stands `draft`, by `is_draft_core` of `.guppi/guppi/pages.py`,
+      which `drafts` of `.guppi/guppi/ship.py` and `check_status` of `.guppi/guppi/lint.py` import; I
+      read the three functions whole. The cascade of `.guppi/guppi/generate.py`, read whole as `cascade`,
+      sets a rule `draft` whenever one of its Estimates is not `passed`, and writes the History line `status:
+      <before> → <after> · cascade`. So a page falls back to `draft` each time a Case adds or replaces
+      one of its Estimates. The lint of the last run, as the brief reports it, flags eight such pages:
+      `rule-ask`, `rule-case-build`, `rule-morph`, `rule-orchestration`, `rule-skill-approve-spec`, `rule-skill-hi`,
+      `rule-spec-box` and `rule-synthesis`. Case 994 of this session sets `estimate-close-reports-the-run`,
+      an Estimate of `rule-close`, back to `pending`, and Case 995 adds a waiting Estimate to `rule-prespec`;
+      both pages carry `core: true`. A Grep of the History status lines of the eight pages showed lines
+      `draft → built` on six of them and none on `rule-morph` and `rule-skill-approve-spec`. Most of the
+      waiting Estimates wait for an event of a later session, so `prod` could stay empty through the sprint.
+
+      The person chose that the build is blocked only by a page with `core: true` that stands `draft`
+      and whose History holds no line that set it `built`, or by such a page with an Estimate `failed`;
+      a page built before that only waits for the reading of a newer Estimate ships as it stands. Lint
+      reports the same pages through the same function, `is_draft_core`, whose name the tests of `.guppi/tests/test_lint.py`
+      and `.guppi/tests/test_ship.py` assert both sides import. The Criterion of `estimate-clean-branch-refuses-a-draft-core-page`
+      is replaced whole (996.1). Taking `core: true` off the blocking pages was offered and not chosen:
+      of the ten pages, seven render a harness file in full — `/hi`, `/pre-spec`, `orchestration.md`,
+      the agent files of `case-guppi` and `ask-guppi`, `/box` and `/approve-spec` — and `governed` of
+      `.guppi/guppi/ship.py`, read whole, refuses such a file when its page carries no `core`, so `prod`
+      could not run a session.
+
+      What this session does: Work Mode changes `is_draft_core` and its tests, the librarian applies the
+      page updates, and the Retro reads `estimate-clean-branch-refuses-a-draft-core-page` by its tests.
+      What stays: `prod` still waits for `rule-morph`, whose setup skill the next milestone builds, and
+      for `rule-skill-approve-spec`, whose reading needs a trial in the Claude Code CLI; after both are
+      built, the owner pushes `plugin` and a tag `prod-x.y.z`, and `estimate-sprint-plugin-ci-writes-a-clean-branch`
+      is read on that run before the close of `plugin`, so the sprint item stays open after this Case.
+
+      The search for code that already judges the History of a page: a Grep of `.guppi/guppi/` for `→`
+      outside `generate.py` printed 14 files: `onward.py`, `prespec.py`, `event.py`, `sprint_close.py`,
+      `casecheck.py`, `lint.py`, `pages.py`, `links.py`, `materialize.py`, `ratified.py`, `guard.py`,
+      `archive.py`, `render.py` and `config.py`. I read the hits around their lines: they are arrows in
+      docstrings and comments, print lines, the History writer of `sprint_close.py`, and a pattern of
+      `casecheck.py` for the line numbers of a Read output; none reads a status line of a History. So
+      the new judgment lives in `.guppi/guppi/pages.py` alone, and since the writer, the cascade of `generate`,
+      formats the line in another module, a test runs the cascade and the judgment over one page, as `rule-one-judgment-one-implementation`
+      sets it.
+
+      A Grep of the live pages of `vault/wiki/` but `log.md` and `brief.md` for `core: true[^.\n]{0,60}draft|draft[^.\n]{0,60}core|is_draft_core`
+      printed 17 files: `sprint.md`, `estimates/schema.yaml`, `case-schema.md`, `entity-sprint-plugin`,
+      `estimate-rules-schema-checked`, `rule-estimates-schema`, `estimate-materialize-lifts-a-create-value-by-the-schema`,
+      `estimate-lint-checks-the-statuses`, `rule-case-protocol`, `estimate-clean-branch-pages-hold-pointers-only-in-brackets`,
+      `rule-clean-branch`, `estimate-clean-branch-code-holds-pointers-only-in-brackets`, `rule-lint`,
+      `estimate-clean-branch-ships-neutral-texts`, `estimate-sprint-plugin-ci-writes-a-clean-branch`,
+      `estimate-clean-branch-refuses-a-draft-core-page` and `estimate-entities-schema-checked`. The hits
+      that this change makes false enter the Case: three sentences of `rule-clean-branch`, one of `rule-lint`,
+      the `purpose` and the Criterion of `estimate-lint-checks-the-statuses`, the milestone line of `entity-sprint-plugin`
+      and one `－` line of the Criterion of `estimate-sprint-plugin-ci-writes-a-clean-branch` (996.2).
+      The third sentence of `rule-clean-branch`, that a draft page a new project can go without loses
+      `core` until it is `built`, now speaks only of a page that blocks the build, since a page built
+      before ships as it stands. `ask-guppi` found at `/pre-spec` that a page shipped as `draft` would
+      fail lint in the project that installs it. `ships` of `.guppi/guppi/ship.py` writes only the `passed`
+      Estimates of a page, and `shipped_page` keeps its `status` and cuts its `estimates` to those, so
+      `check_status` of `.guppi/guppi/lint.py` gives `draft while every Estimate is passed` on such a
+      page there, as on `rule-orchestration`, and the lint job of the shipped `.github/workflows/checks.yml`
+      goes red. The person chose that the page stays `draft` and that lint, where `ship_stands` answers
+      no, gives no such finding, as it already gives none from `is_draft_core` there. So the new sub-case
+      996.3 replaces the Criterion of `estimate-lint-checks-the-statuses`, the one that lists the findings
+      lint gives and leaves out in a project that installed GUPPI, since `case-schema.md` sets one promise
+      per sub-case and 996.1 replaces the Criterion of the build. 996.1 keeps its update of that Estimate,
+      which sets only its `purpose`, and the line of lint on the pages that block the build moves from
+      the `then` of 996.1 to the Criterion of 996.3, so no promise is signed twice. In that Criterion
+      the line on `is_draft_core` names the new judgment, and the `－` line on a project that installed
+      GUPPI adds the `draft` page with every Estimate `passed`; the other lines stand word for word. The
+      check of this file noted that some lines of 996.3 share words with lines of 996.1 and 996.2. They
+      stand. 996.1 sets what blocks the build. 996.3 sets which findings lint gives on those pages, and
+      repeats the words of the judgment only to name it. The line of 996.2 on `prod` speaks of the pages
+      a run writes, not of a finding. `estimate-clean-branch-ships-the-passed-estimates` stays true: the
+      build still writes no Estimate that is `pending` or `failed`, and the field `estimates` of each
+      page it writes still lists only the Estimates it writes; only the finding that lint gives over such
+      a page changes. The rest stand. The sentences of `rule-case-protocol`, `case-schema.md`, `rule-estimates-schema`
+      and `estimates/schema.yaml` say that an Estimate with `once: true` keeps no page with `core: true`
+      in `draft`. The `－` lines of `estimate-clean-branch-code-holds-pointers-only-in-brackets` and `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
+      say that a draft page stops no `--check` and no `--allow-draft` run. The other hits are Result lines,
+      History lines, sprint records or the word `core` beside a `draft` value of a schema. `.claude/`
+      printed none. In `.guppi/tests/`, the existing `draft_core` tests build pages whose History holds
+      only a `created` line, so they still block and pass. A Grep of `.guppi/tests/` for `draft while
+      every Estimate` printed `test_lint.py` alone: `test_draft_with_every_estimate_passed_is_a_status_finding`
+      runs with the module of `ship` as it stands, which the clean version does not hold, so a task sets
+      it standing there by `ship_module`. The comment of `test_the_clean_version_holds_no_pyproject_and_no_lock_at_its_root`
+      of `.guppi/tests/test_guppi_package.py` speaks of `ship.ship`, which reads no status, and stands.
+      The glossary rows on `draft` and `built` stand.
+
+      I read the blocks of `.guppi/links.md` for `rule-clean-branch`, `estimate-clean-branch-refuses-a-draft-core-page`,
+      `estimate-sprint-plugin-ci-writes-a-clean-branch`, `entity-sprint-plugin`, `rule-lint`, `estimate-lint-checks-the-statuses`,
+      `.guppi/guppi/pages.py`, `.guppi/guppi/ship.py` and `.guppi/guppi/lint.py`. `estimate-sprint-plugin-installs-as-a-plugin`
+      builds with `--allow-draft`, which prints the lines and writes all the same, so it stands. `rule-morph`
+      stands; its text does not speak of the guard. `rule-github-repository` and `rule-plugin-install`
+      do not speak of the status of a page. The new texts of `rule-lint`, which has `core: true`, and
+      the new docstrings put each pointer to a Case in a bracket at the end of its sentence. I read `entity-sprint-plugin`
+      whole. The pair on it changes the last clause of the item of the milestone The clean branch, and
+      the rest of that sentence stays true: the owner still pushes `plugin` and a tag, and the run is
+      still read by its Estimate. No other Case of this session writes into that page. The check of this
+      file noted the lines of the old Criteria that are not carried. In 996.1 the lines on `ship`, `--allow-draft`,
+      the workflow and `is_draft_core` stand rewritten, since each now names the pages that block the
+      build, and the `When` gains the run of `guppi lint`. In 996.2 one `－` line now names a page that
+      blocks the build in place of any draft page. The check also noted that some `then` lines of 996.2
+      share words with lines of 996.1. They stand: 996.1 sets what the build and lint judge, and 996.2
+      carries the whole Criterion of the CI run, whose lines on `prod` and on a failed run only point
+      to that judgment. Each promise stands in one Criterion only. The Greps `lesson\[error\]` and `\{addresses:`
+      over the ledger of session 2227 printed nothing.'
+  parent: decision-case-996
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '993'
+  decision: decision-case-993
+  origin: raw/2026-11-01/2227/ledger.md#case-993
+  children:
+  - decision-case-993.1
+  - decision-case-993.2
+  tags:
+  - session
+  - workflow
+  - ledger
+  case_text:
+    context: '`estimate-orchestration-acknowledging-reply` checks the form of the reply that acknowledges
+      a ratification. Case 992.2 added to its Criterion the line that an acknowledging reply after `/pre-spec`
+      that waits for the person''s word opens with `STOP:`, the `LEDGER` block right after it. The reading
+      of ledger line 22 of session 2038 then set the page `passed`, but it was taken on the replies of
+      that session, on the Render before Case 992.2, and its Result says that the `STOP:` line was not
+      exercised (brief, Flags; handoff of session 2038, Observations). Such a reply comes only in a session
+      where, after `/pre-spec`, an acknowledging reply still waits for the person, so the line needs a
+      reading of its own. `rule-estimates-schema` sets that the `＋` and `－` lines stay in one Criterion
+      while one run checks them, and that a line with a test or a reading of its own is split off, on
+      the axis of the promise. The person chose the split: Case 993.1 replaces the Criterion of the old
+      Estimate whole without that line, which only points to the new Estimate, and the old Estimate goes
+      `pending` and is read at the Retro of this session; Case 993.2 creates `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`,
+      whose `method` waits for that event, as case 781 sets for a part that opens with `by hand, after`.
+      The text of `rule-orchestration` and of `vault/wiki/orchestration.md` does not change, since the
+      behaviour stays as Case 992.2 set it; only the Estimates that check it change. The `purpose` and
+      `method` of the old Estimate state the four parts in order and the replies it reads, not the `STOP:`
+      line, so they stand. The block of the old Estimate in `.guppi/links.md` names as neighbours `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`,
+      `rule-ledger-write`, `rule-orchestration`, `rule-prespec-onward` and `estimate-orchestration-shows-the-frontier-after-a-closed-line`;
+      none of their purpose lines speaks of the `STOP:` line of an acknowledging reply. A Grep of `vault/wiki/`
+      for `estimate-orchestration-acknowledging-reply`, `log.md` and `brief.md` left out, printed `rules/rule-orchestration.md`
+      (its `estimates` list and a History line) and `estimates/estimate-orchestration-shows-the-frontier-after-a-closed-line.md`;
+      the two lines of the second say that the checklist and the own form of the acknowledging reply are
+      as the old Estimate sets them, and both stay true, since the checklist and the four parts do not
+      change. A Grep of `.guppi/tests/` for `acknowledging-reply` printed a count of 0, so no test reads
+      the old page live. A Glob `vault/**/estimate-orchestration-acknowledging-reply-*.md` printed nothing,
+      so the new slug is free. The promise of `estimate-prespec-onward-sends-the-agent-on`, that the hook
+      stays silent on a reply that opens with `STOP:`, is not signed again in Case 993.2. The new Criterion
+      of Case 993.1 drops the `STOP:` line of the old one and rewrites its first line to point to the
+      new Estimate, since that line moves to Case 993.2; the lines of Case 993.2 share words with those
+      of Case 993.1 because both describe parts of the same reply, but each promise stands in one Criterion
+      only. Finding 1.1 of `ask-guppi` at the `/pre-spec` of this session found that the first `when`
+      of Case 993.2 covered only a reply that waits while another Case shown waits for the person, though
+      the old line and `vault/wiki/orchestration.md` speak of any reply after `/pre-spec` that waits for
+      the person''s word, and line 26 of `estimate-prespec-onward-sends-the-agent-on` names a second reason
+      to wait, a question the person must answer; the `when` now names both, so no part of the old line
+      is left with no Criterion. A Grep of the ledger of this session for `lesson\[error\]` and for `\{addresses:`
+      printed nothing, so no lesson is addressed.'
+    problem: '`estimate-orchestration-acknowledging-reply` stands `passed` while the `STOP:` line of its
+      Criterion has had no reading, and that line can be read only in a session that has the event it
+      needs.'
+    recommend: "- **How the unread STOP: line gets a reading**\n  - Recommended: (a) split the `STOP:`\
+      \ line into its own Estimate, whose `method` waits for an acknowledging reply after `/pre-spec`\
+      \ that waits for the person's word; the old Criterion is replaced whole without it, points to the\
+      \ new Estimate, goes `pending` and is read at the Retro of this session.\n  - Answer: agreed, (a)."
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '995'
+  decision: decision-case-995
+  origin: raw/2026-11-01/2227/ledger.md#case-995
+  children:
+  - decision-case-995.1
+  - decision-case-995.2
+  - decision-case-995.3
+  tags:
+  - session
+  - workflow
+  - harness
+  case_text:
+    context: 'The Render of `rule-case-build` tells `case-guppi` what to do when a task of its Case adds
+      a file that is no page of `vault/wiki/`. It searches `.guppi/guppi/`, `.claude/` and `vault/wiki/rules/`
+      for the path of each folder that holds the file. It searches `.guppi/guppi/` and `.guppi/tests/`
+      for the calls that walk a folder. It reads each `.gitignore` there and each reader that takes every
+      file of such a folder. Nothing the agent leaves shows whether it did these steps. The reading of
+      `estimate-case-build-reads-the-readers-of-a-new-files-folder` in session 2038 (line 17 of `raw/2026-11-01/2038/ledger.md`)
+      checked the new file `.claude/skills/approve-spec/SKILL.md` of Case 987. Of 8 searches and readings,
+      2 were done, 1 in part and 5 missing. One missing reader was `callers()` of `.guppi/tests/test_guppi_package.py`,
+      and `ask-guppi` at `/pre-spec` raised no finding on it. I read `callers()` whole: it takes the `Makefile`
+      and every file under `.claude` and `.github/workflows` but `settings.local.json`. The person made
+      three choices. First, the `context` of such a Case names each of those searches and readings (995.1);
+      the rerun of the searches `context` names, which comes just before the summary, then covers them,
+      as Case 979 did for a list member. Second, `ask-guppi` at the first `/pre-spec` checks that list,
+      through a new question in the Render of `rule-prespec`, and runs its own Grep of the code for folder
+      walks, which a new sentence of the Render of `rule-ask` allows (995.2). Third, `estimate-prespec-reconciles`,
+      whose Criterion lists the questions of `/pre-spec`, gets the new question (995.3). That change stands
+      in a sub-case of its own, since `case-schema.md` sets one promise per sub-case and 995.2 already
+      creates an Estimate. The governing rule is the sentence of `rule-case-build` from case 629.5: `context`
+      names a search only when the Case rests on it. The new sentence states the claim the searches rest
+      on, namely that the new file makes no reader of its folders wrong. So the sentence and the Criterion
+      of `estimate-case-build-checks-the-finished-case`, which carries the same rule, stand. The new texts
+      of `core: true` pages put each pointer to a Case in a bracket at the end of its sentence, and the
+      pair on `rule-prespec` adds no pointer. I read the blocks of `rule-case-build`, `rule-prespec`,
+      `rule-ask`, `estimate-case-build-reads-the-readers-of-a-new-files-folder`, `estimate-prespec-reconciles`,
+      `.claude/agents/case-guppi.md`, `.claude/agents/ask-guppi.md` and `.claude/skills/pre-spec/SKILL.md`
+      in `.guppi/links.md`. The block of `estimate-prespec-reconciles` has an empty purpose line. Four
+      neighbours bear on the change, and each stands. `estimate-ask-searches-at-prespec` already allows
+      further Greps as a finding needs. `estimate-ask-finds` sets one list per question of the skill,
+      so the new question gets its own list. Its line that `.claude/agents/ask-guppi.md` does not list
+      the questions of `/pre-spec` itself also stays true, since the new sentence of `rule-ask` only allows
+      the one Grep of `.guppi/guppi/` and `.guppi/tests/` for the question that `/pre-spec` sets and does
+      not repeat that question (finding 2.1 of `/pre-spec`). After finding 1.5 of `/pre-spec`, a second
+      pair on `rule-prespec` adds the `tasks` block to what the dispatch tells `ask-guppi` to read for
+      every Case, because only the `tasks` block shows which Case adds a file; 995.3 carries the same
+      list in the Criterion of `estimate-prespec-reconciles`, so its dispatch line is not carried as it
+      stood either. `estimate-prespec-confirms-the-findings-once` allows no Grep at the confirmation,
+      and 995.2 keeps it that way. The other Estimates of `rule-prespec` speak of `prespec --check` and
+      of the loop, not of the questions of `ask-guppi`. The sentence of `rule-ask` that it searches the
+      vault at `vault/wiki/` stands, because the new sentence names the one Grep of the code beside it.
+      A Grep `speaks of the thing the Case changes` found the texts that list the questions of `/pre-spec`.
+      Over `vault/wiki/` it printed `rules/rule-prespec.md` and `estimates/estimate-prespec-reconciles.md`,
+      over `.claude/` it printed `skills/pre-spec/SKILL.md`, and over `.guppi/guppi/` it printed nothing;
+      this Case changes all three texts. A Grep `walk a folder` printed `rules/rule-case-build.md` and
+      `estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder.md` over `vault/wiki/`, and
+      `agents/case-guppi.md` over `.claude/`. A Grep `CALLERS|REPO / "\.claude"` over `.guppi/tests/`
+      printed `test_guppi_package.py` alone. Its test over `callers()` looks for `uv run guppi` and `uv
+      run pytest`, and the new texts hold neither. Its test over the live pages runs `Vault.reword_text`
+      with `guppi/` and `tests/`. I read `reword_text`, `reword_pattern` and `is_path_pair` of `.guppi/guppi/generate.py`
+      and `PATH_START` of `.guppi/guppi/lint.py`, which is `(?<![\w./-])`. A path `old` matches only where
+      no `.` or `/` stands before it, so neither matches in `.guppi/guppi/` or `.guppi/tests/`, the only
+      forms the new texts use. I read `check_frame` and `frame_name` of `.guppi/guppi/prespec.py`: each
+      code span of `when` or `then` that is a slug, or that holds a `/`, must stand in the text of `given`,
+      and the lines of `given` are written for that. The check of this file noted that some `then` lines
+      of 995.2 and 995.3 share most of their words with lines of 995.1. They stand: 995.1 sets what `case-guppi`
+      searches and names in `context`, 995.2 sets what `ask-guppi` checks and searches on that `context`
+      at `/pre-spec`, and 995.3 sets the text of the question in the list of `estimate-prespec-reconciles`.
+      These are three agents'' or texts'' acts on one subject, which the person chose, not one promise
+      signed twice. The check also noted that the old line on the questions of `estimate-prespec-reconciles`
+      is not carried. That line is carried with the new question added, which is the change. Its last
+      `－` line, on a deferred decision, was missing from the first build and is now carried word for word.
+      A Glob `vault/**/estimate-prespec-finds-a-reader*` printed nothing, so the new slug is free. It
+      is a `create` with a `ref`, so no vault query runs. The Greps `lesson\[error\]` and `\{addresses:`
+      over the ledger of session 2227 printed nothing.'
+    problem: '`case-guppi` did few of the searches and readings that its rule sets for a new file outside
+      the vault pages, and missed a test that reads every file of that file''s folder. Nothing in the
+      Case shows which of them it made, and `ask-guppi` at `/pre-spec` did not look for the reader it
+      missed.'
+    recommend: "- **What changes after the failed reading**\n  - Recommended: (a) the Case lists each\
+      \ search and reading it made for the new file.\n  - Answer: (a).\n- **Whether the second agent's\
+      \ check is part of this Case**\n  - Recommended: (a) no, this Case covers only the agent that builds\
+      \ Cases.\n  - Answer: (b) yes, a second part of this Case changes the plan checker too.\n- **Where\
+      \ the plan checker's new step goes**\n  - Recommended: (a) a new question in the `/pre-spec` list.\n\
+      \  - Answer: agreed, (a).\n- **How far the plan checker looks on its own**\n  - Recommended: (b)\
+      \ it checks the list and also runs its own search for folder walks.\n  - Answer: agreed, (b).\n\
+      - **How the builder's part is checked**\n  - Recommended: (a) replace the Criterion of `estimate-case-build-reads-the-readers-of-a-new-files-folder`\
+      \ and set it back to waiting.\n  - Answer: agreed, (a).\n- **How the plan checker's part is checked**\n\
+      \  - Recommended: (a) a new check on `rule-prespec`, and `estimate-prespec-reconciles` gets the\
+      \ new question in its list.\n  - Answer: agreed, (a)."
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+- case: '996'
+  decision: decision-case-996
+  origin: raw/2026-11-01/2227/ledger.md#case-996
+  children:
+  - decision-case-996.1
+  - decision-case-996.2
+  - decision-case-996.3
+  tags: []
+  case_text:
+    context: '`guppi ship` builds the clean version of GUPPI, and the workflow `.github/workflows/prod.yml`
+      writes it to the branch `prod` on a push of a tag `prod-x.y.z`. Today the build writes nothing while
+      any rule or entity with `core: true` stands `draft`, by `is_draft_core` of `.guppi/guppi/pages.py`,
+      which `drafts` of `.guppi/guppi/ship.py` and `check_status` of `.guppi/guppi/lint.py` import; I
+      read the three functions whole. The cascade of `.guppi/guppi/generate.py`, read whole as `cascade`,
+      sets a rule `draft` whenever one of its Estimates is not `passed`, and writes the History line `status:
+      <before> → <after> · cascade`. So a page falls back to `draft` each time a Case adds or replaces
+      one of its Estimates. The lint of the last run, as the brief reports it, flags eight such pages:
+      `rule-ask`, `rule-case-build`, `rule-morph`, `rule-orchestration`, `rule-skill-approve-spec`, `rule-skill-hi`,
+      `rule-spec-box` and `rule-synthesis`. Case 994 of this session sets `estimate-close-reports-the-run`,
+      an Estimate of `rule-close`, back to `pending`, and Case 995 adds a waiting Estimate to `rule-prespec`;
+      both pages carry `core: true`. A Grep of the History status lines of the eight pages showed lines
+      `draft → built` on six of them and none on `rule-morph` and `rule-skill-approve-spec`. Most of the
+      waiting Estimates wait for an event of a later session, so `prod` could stay empty through the sprint.
+
+      The person chose that the build is blocked only by a page with `core: true` that stands `draft`
+      and whose History holds no line that set it `built`, or by such a page with an Estimate `failed`;
+      a page built before that only waits for the reading of a newer Estimate ships as it stands. Lint
+      reports the same pages through the same function, `is_draft_core`, whose name the tests of `.guppi/tests/test_lint.py`
+      and `.guppi/tests/test_ship.py` assert both sides import. The Criterion of `estimate-clean-branch-refuses-a-draft-core-page`
+      is replaced whole (996.1). Taking `core: true` off the blocking pages was offered and not chosen:
+      of the ten pages, seven render a harness file in full — `/hi`, `/pre-spec`, `orchestration.md`,
+      the agent files of `case-guppi` and `ask-guppi`, `/box` and `/approve-spec` — and `governed` of
+      `.guppi/guppi/ship.py`, read whole, refuses such a file when its page carries no `core`, so `prod`
+      could not run a session.
+
+      What this session does: Work Mode changes `is_draft_core` and its tests, the librarian applies the
+      page updates, and the Retro reads `estimate-clean-branch-refuses-a-draft-core-page` by its tests.
+      What stays: `prod` still waits for `rule-morph`, whose setup skill the next milestone builds, and
+      for `rule-skill-approve-spec`, whose reading needs a trial in the Claude Code CLI; after both are
+      built, the owner pushes `plugin` and a tag `prod-x.y.z`, and `estimate-sprint-plugin-ci-writes-a-clean-branch`
+      is read on that run before the close of `plugin`, so the sprint item stays open after this Case.
+
+      The search for code that already judges the History of a page: a Grep of `.guppi/guppi/` for `→`
+      outside `generate.py` printed 14 files: `onward.py`, `prespec.py`, `event.py`, `sprint_close.py`,
+      `casecheck.py`, `lint.py`, `pages.py`, `links.py`, `materialize.py`, `ratified.py`, `guard.py`,
+      `archive.py`, `render.py` and `config.py`. I read the hits around their lines: they are arrows in
+      docstrings and comments, print lines, the History writer of `sprint_close.py`, and a pattern of
+      `casecheck.py` for the line numbers of a Read output; none reads a status line of a History. So
+      the new judgment lives in `.guppi/guppi/pages.py` alone, and since the writer, the cascade of `generate`,
+      formats the line in another module, a test runs the cascade and the judgment over one page, as `rule-one-judgment-one-implementation`
+      sets it.
+
+      A Grep of the live pages of `vault/wiki/` but `log.md` and `brief.md` for `core: true[^.\n]{0,60}draft|draft[^.\n]{0,60}core|is_draft_core`
+      printed 17 files: `sprint.md`, `estimates/schema.yaml`, `case-schema.md`, `entity-sprint-plugin`,
+      `estimate-rules-schema-checked`, `rule-estimates-schema`, `estimate-materialize-lifts-a-create-value-by-the-schema`,
+      `estimate-lint-checks-the-statuses`, `rule-case-protocol`, `estimate-clean-branch-pages-hold-pointers-only-in-brackets`,
+      `rule-clean-branch`, `estimate-clean-branch-code-holds-pointers-only-in-brackets`, `rule-lint`,
+      `estimate-clean-branch-ships-neutral-texts`, `estimate-sprint-plugin-ci-writes-a-clean-branch`,
+      `estimate-clean-branch-refuses-a-draft-core-page` and `estimate-entities-schema-checked`. The hits
+      that this change makes false enter the Case: three sentences of `rule-clean-branch`, one of `rule-lint`,
+      the `purpose` and the Criterion of `estimate-lint-checks-the-statuses`, the milestone line of `entity-sprint-plugin`
+      and one `－` line of the Criterion of `estimate-sprint-plugin-ci-writes-a-clean-branch` (996.2).
+      The third sentence of `rule-clean-branch`, that a draft page a new project can go without loses
+      `core` until it is `built`, now speaks only of a page that blocks the build, since a page built
+      before ships as it stands. `ask-guppi` found at `/pre-spec` that a page shipped as `draft` would
+      fail lint in the project that installs it. `ships` of `.guppi/guppi/ship.py` writes only the `passed`
+      Estimates of a page, and `shipped_page` keeps its `status` and cuts its `estimates` to those, so
+      `check_status` of `.guppi/guppi/lint.py` gives `draft while every Estimate is passed` on such a
+      page there, as on `rule-orchestration`, and the lint job of the shipped `.github/workflows/checks.yml`
+      goes red. The person chose that the page stays `draft` and that lint, where `ship_stands` answers
+      no, gives no such finding, as it already gives none from `is_draft_core` there. So the new sub-case
+      996.3 replaces the Criterion of `estimate-lint-checks-the-statuses`, the one that lists the findings
+      lint gives and leaves out in a project that installed GUPPI, since `case-schema.md` sets one promise
+      per sub-case and 996.1 replaces the Criterion of the build. 996.1 keeps its update of that Estimate,
+      which sets only its `purpose`, and the line of lint on the pages that block the build moves from
+      the `then` of 996.1 to the Criterion of 996.3, so no promise is signed twice. In that Criterion
+      the line on `is_draft_core` names the new judgment, and the `－` line on a project that installed
+      GUPPI adds the `draft` page with every Estimate `passed`; the other lines stand word for word. The
+      check of this file noted that some lines of 996.3 share words with lines of 996.1 and 996.2. They
+      stand. 996.1 sets what blocks the build. 996.3 sets which findings lint gives on those pages, and
+      repeats the words of the judgment only to name it. The line of 996.2 on `prod` speaks of the pages
+      a run writes, not of a finding. `estimate-clean-branch-ships-the-passed-estimates` stays true: the
+      build still writes no Estimate that is `pending` or `failed`, and the field `estimates` of each
+      page it writes still lists only the Estimates it writes; only the finding that lint gives over such
+      a page changes. The rest stand. The sentences of `rule-case-protocol`, `case-schema.md`, `rule-estimates-schema`
+      and `estimates/schema.yaml` say that an Estimate with `once: true` keeps no page with `core: true`
+      in `draft`. The `－` lines of `estimate-clean-branch-code-holds-pointers-only-in-brackets` and `estimate-clean-branch-pages-hold-pointers-only-in-brackets`
+      say that a draft page stops no `--check` and no `--allow-draft` run. The other hits are Result lines,
+      History lines, sprint records or the word `core` beside a `draft` value of a schema. `.claude/`
+      printed none. In `.guppi/tests/`, the existing `draft_core` tests build pages whose History holds
+      only a `created` line, so they still block and pass. A Grep of `.guppi/tests/` for `draft while
+      every Estimate` printed `test_lint.py` alone: `test_draft_with_every_estimate_passed_is_a_status_finding`
+      runs with the module of `ship` as it stands, which the clean version does not hold, so a task sets
+      it standing there by `ship_module`. The comment of `test_the_clean_version_holds_no_pyproject_and_no_lock_at_its_root`
+      of `.guppi/tests/test_guppi_package.py` speaks of `ship.ship`, which reads no status, and stands.
+      The glossary rows on `draft` and `built` stand.
+
+      I read the blocks of `.guppi/links.md` for `rule-clean-branch`, `estimate-clean-branch-refuses-a-draft-core-page`,
+      `estimate-sprint-plugin-ci-writes-a-clean-branch`, `entity-sprint-plugin`, `rule-lint`, `estimate-lint-checks-the-statuses`,
+      `.guppi/guppi/pages.py`, `.guppi/guppi/ship.py` and `.guppi/guppi/lint.py`. `estimate-sprint-plugin-installs-as-a-plugin`
+      builds with `--allow-draft`, which prints the lines and writes all the same, so it stands. `rule-morph`
+      stands; its text does not speak of the guard. `rule-github-repository` and `rule-plugin-install`
+      do not speak of the status of a page. The new texts of `rule-lint`, which has `core: true`, and
+      the new docstrings put each pointer to a Case in a bracket at the end of its sentence. I read `entity-sprint-plugin`
+      whole. The pair on it changes the last clause of the item of the milestone The clean branch, and
+      the rest of that sentence stays true: the owner still pushes `plugin` and a tag, and the run is
+      still read by its Estimate. No other Case of this session writes into that page. The check of this
+      file noted the lines of the old Criteria that are not carried. In 996.1 the lines on `ship`, `--allow-draft`,
+      the workflow and `is_draft_core` stand rewritten, since each now names the pages that block the
+      build, and the `When` gains the run of `guppi lint`. In 996.2 one `－` line now names a page that
+      blocks the build in place of any draft page. The check also noted that some `then` lines of 996.2
+      share words with lines of 996.1. They stand: 996.1 sets what the build and lint judge, and 996.2
+      carries the whole Criterion of the CI run, whose lines on `prod` and on a failed run only point
+      to that judgment. Each promise stands in one Criterion only. The Greps `lesson\[error\]` and `\{addresses:`
+      over the ledger of session 2227 printed nothing.'
+    problem: A shipped page falls back to `draft` each time a Case adds a check to it, and the build writes
+      nothing while any such page stands, so the tagged run may never write `prod` in this sprint.
+    recommend: "- **What lets the tagged run write `prod` while harness pages stand draft**\n  - Recommended:\
+      \ (c) block only on pages that were never finished.\n  - Answer: the person asked instead to take\
+      \ `core: true` off the blocking pages and leave a backlog entry to fix them and give it back.\n\
+      - **Which pages lose `core: true` so the tagged run can write `prod`**\n  - Recommended: (c) no\
+      \ page loses the mark; block only on pages that were never finished.\n  - Answer: (c); `prod` is\
+      \ not stripped.\n- **How the build tells a page that was never finished**\n  - Recommended: (a)\
+      \ by the History of the page.\n  - Answer: agreed, (a).\n- **Whether a failed check still blocks\
+      \ a page that was finished before**\n  - Recommended: (a) a failed check blocks.\n  - Answer: agreed,\
+      \ (a).\n- **What lint keeps reporting**\n  - Recommended: (a) lint reports only what blocks the\
+      \ build, by the one shared function.\n  - Answer: agreed, (a).\n- **How the change is checked**\n\
+      \  - Recommended: (a) replace the promise of `estimate-clean-branch-refuses-a-draft-core-page`.\n\
+      \  - Answer: agreed, (a).\n- **Change**\n  - Asked: at `/pre-spec`, how the clean version shows\
+      \ a page that ships as `draft`, since lint there would report it `draft while every Estimate is\
+      \ passed`; the person took the recommended answer, that the page stays `draft` and lint where the\
+      \ command `ship` is missing gives no such finding. The findings of `/pre-spec` also asked to fix\
+      \ the sentence of `rule-clean-branch` on a draft page that loses `core`, to give the cascade test\
+      \ a `draft_core` name, and to correct what Case 994 does to `rule-close`.\n  - Taken: the new sub-case\
+      \ 996.3 replaces the Criterion of `estimate-lint-checks-the-statuses` and carries the task on `.guppi/guppi/lint.py`\
+      \ for that exemption; 996.1 adds it to the sentence of `rule-lint` and the `purpose` of that Estimate,\
+      \ rewords the sentence of `rule-clean-branch` to a page that blocks the build, names the cascade\
+      \ test, and `context` is corrected."
+  spec: vault/raw/2026-11-01/2227/spec.md
+  applied: 00:29:53
+unparsed: []
+session: '2227'

@@ -332,7 +332,7 @@ update:
 - [x] update `rule-case-build`
 - [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [x] update `estimate-case-build-reads-the-readers-of-a-changed-step`
-- [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] read `estimate-case-build-reads-the-readers-of-a-changed-step`
 ```
 
 ## Case 986 — The builder reads the whole block of each page it changes, again at the final check
@@ -407,7 +407,7 @@ update:
 - [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [x] update `rule-link-graph-at-session-start`
 - [x] update `estimate-case-build-reads-the-link-graph-of-what-it-changes`
-- [ ] read `estimate-case-build-reads-the-link-graph-of-what-it-changes`
+- [x] read `estimate-case-build-reads-the-link-graph-of-what-it-changes`
 ```
 
 ## Case 987 — The person approves a long Spec in the CLI by typing /approve-spec

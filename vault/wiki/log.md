@@ -12610,3 +12610,44 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-01 lessons/lesson-frontier-closed-a-backlog-item-deferred-again-as-a-case archived · cleanup
 - 2026-11-01 lessons/lesson-frontier-sprint-line-closed-by-a-case-that-updates-no-sprint-page archived · cleanup
 - 2026-11-01 decisions/decision-case-990 archived · cleanup
+- 2026-11-02 decisions/decision-case-993 created · raw/2026-11-01/2227/ledger.md#case-993 · generate
+- 2026-11-02 decisions/decision-case-993.1 created · raw/2026-11-01/2227/ledger.md#case-993.1 · generate
+- 2026-11-02 estimates/estimate-orchestration-acknowledging-reply updated: the Criterion replaced whole — the STOP: line after /pre-spec split off into its own Estimate · [[decision-case-993.1]] · generate
+- 2026-11-02 decisions/decision-case-993.2 created · raw/2026-11-01/2227/ledger.md#case-993.2 · generate
+- 2026-11-02 estimates/estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec created · [[decision-case-993.2]] · generate
+- 2026-11-02 rules/rule-orchestration estimate estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec added · [[decision-case-993.2]] · generate
+- 2026-11-02 decisions/decision-case-994 created · raw/2026-11-01/2227/ledger.md#case-994 · generate
+- 2026-11-02 rules/rule-close updated: the librarian gives its report back once, as its last output: the handback where it has the tool, else its last text · [[decision-case-994]] · generate
+- 2026-11-02 rules/rule-documentation updated: a run that stops at step 1 gives its report back once, as its last output, and runs no check and no commit · [[decision-case-994]] · generate
+- 2026-11-02 estimates/estimate-close-reports-the-run updated: the Criterion replaced whole — the librarian gives the report once, as its last output, by its handback or its last text · [[decision-case-994]] · generate
+- 2026-11-02 decisions/decision-case-995 created · raw/2026-11-01/2227/ledger.md#case-995 · generate
+- 2026-11-02 decisions/decision-case-995.1 created · raw/2026-11-01/2227/ledger.md#case-995.1 · generate
+- 2026-11-02 rules/rule-case-build updated: the context of a Case that adds a file that is no page names each search and reading for the folders that hold it · [[decision-case-995.1]] · generate
+- 2026-11-02 estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder updated: the Criterion replaced whole — the context names each search and reading for the folders of a new file · [[decision-case-995.1]] · generate
+- 2026-11-02 decisions/decision-case-995.2 created · raw/2026-11-01/2227/ledger.md#case-995.2 · generate
+- 2026-11-02 rules/rule-prespec updated: ask-guppi at pre-spec reads the tasks block of each Case and is asked about the searches and the readers of the folders of a new file that is no page · [[decision-case-995.2]] · generate
+- 2026-11-02 rules/rule-ask updated: at pre-spec, ask-guppi greps the code and the tests for the folder walks that read a new file of a Case · [[decision-case-995.2]] · generate
+- 2026-11-02 estimates/estimate-prespec-finds-a-reader-of-a-new-files-folder created · [[decision-case-995.2]] · generate
+- 2026-11-02 rules/rule-prespec estimate estimate-prespec-finds-a-reader-of-a-new-files-folder added · [[decision-case-995.2]] · generate
+- 2026-11-02 decisions/decision-case-995.3 created · raw/2026-11-01/2227/ledger.md#case-995.3 · generate
+- 2026-11-02 estimates/estimate-prespec-reconciles updated: the Criterion replaced whole — the questions of /pre-spec hold the one on the readers of the folders of a new file · [[decision-case-995.3]] · generate
+- 2026-11-02 decisions/decision-case-996 created · raw/2026-11-01/2227/ledger.md#case-996 · generate
+- 2026-11-02 decisions/decision-case-996.1 created · raw/2026-11-01/2227/ledger.md#case-996.1 · generate
+- 2026-11-02 rules/rule-clean-branch updated: the build is blocked only by a draft page with core: true that was never built or has a failed Estimate; a page shipped as draft draws no lint finding in an installed project · [[decision-case-996.1]] · generate
+- 2026-11-02 rules/rule-lint updated: lint reports only the draft pages with core: true that block the clean build, and none shipped as draft in an installed project · [[decision-case-996.1]] · generate
+- 2026-11-02 estimates/estimate-lint-checks-the-statuses updated: the purpose names the draft pages with core: true that block the clean build, and the draft page that is no finding in an installed project · [[decision-case-996.1]] · generate
+- 2026-11-02 estimates/estimate-clean-branch-refuses-a-draft-core-page updated: the Criterion replaced whole — only a draft page with core: true that was never built or has a failed Estimate blocks the build · [[decision-case-996.1]] · generate
+- 2026-11-02 decisions/decision-case-996.2 created · raw/2026-11-01/2227/ledger.md#case-996.2 · generate
+- 2026-11-02 entities/entity-sprint-plugin updated: the milestone The clean branch names the pages that block the build · [[decision-case-996.2]] · generate
+- 2026-11-02 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch updated: the Criterion replaced whole — a run fails while a page that blocks the build stands · [[decision-case-996.2]] · generate
+- 2026-11-02 decisions/decision-case-996.3 created · raw/2026-11-01/2227/ledger.md#case-996.3 · generate
+- 2026-11-02 estimates/estimate-lint-checks-the-statuses updated: the Criterion replaced whole — lint reports only the draft pages with core: true that block the clean build, and none shipped as draft in an installed project · [[decision-case-996.3]] · generate
+- 2026-11-02 estimates/estimate-case-build-reads-the-readers-of-a-changed-step status: pending → failed · raw/2026-11-01/2227/ledger.md#L19 · generate
+- 2026-11-02 estimates/estimate-case-build-reads-the-link-graph-of-what-it-changes status: pending → failed · raw/2026-11-01/2227/ledger.md#L20 · generate
+- 2026-11-02 estimates/estimate-orchestration-acknowledging-reply status: pending → failed · raw/2026-11-01/2227/ledger.md#L21 · generate
+- 2026-11-02 estimates/estimate-prespec-reconciles status: pending → passed · raw/2026-11-01/2227/ledger.md#L22 · generate
+- 2026-11-02 estimates/estimate-clean-branch-refuses-a-draft-core-page status: pending → passed · raw/2026-11-01/2227/ledger.md#L23 · generate
+- 2026-11-02 estimates/estimate-lint-checks-the-statuses status: pending → passed · raw/2026-11-01/2227/ledger.md#L24 · generate
+- 2026-11-02 lessons/lesson-acknowledging-reply-labels-left-in-english created · raw/2026-11-01/2227/ledger.md#L25 · generate
+- 2026-11-02 rules/rule-close status: built → draft · cascade · generate
+- 2026-11-02 rules/rule-prespec status: built → draft · cascade · generate

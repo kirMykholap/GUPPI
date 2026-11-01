@@ -53,8 +53,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-acknowledging-reply`
-- [ ] read `estimate-orchestration-acknowledging-reply`
+- [x] update `estimate-orchestration-acknowledging-reply`
+- [x] read `estimate-orchestration-acknowledging-reply`
 ```
 
 ### Case 993.2 — An acknowledging reply that waits for the person after /pre-spec opens with STOP:
@@ -90,7 +90,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`
+- [x] create `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`
 - [ ] read `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec`
 ```
 
@@ -162,10 +162,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-close`
-- [ ] update `rule-documentation`
-- [ ] update `estimate-close-reports-the-run`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-close`
+- [x] update `rule-documentation`
+- [x] update `estimate-close-reports-the-run`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
 - [ ] read `estimate-close-reports-the-run`
 ```
 
@@ -234,9 +234,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-reads-the-readers-of-a-new-files-folder`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-reads-the-readers-of-a-new-files-folder`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-reads-the-readers-of-a-new-files-folder`
 ```
 
@@ -288,11 +288,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] update `rule-ask`
-- [ ] create `estimate-prespec-finds-a-reader-of-a-new-files-folder`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-prespec`
+- [x] update `rule-ask`
+- [x] create `estimate-prespec-finds-a-reader-of-a-new-files-folder`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-prespec-finds-a-reader-of-a-new-files-folder`
 ```
 
@@ -334,8 +334,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-reconciles`
-- [ ] read `estimate-prespec-reconciles`
+- [x] update `estimate-prespec-reconciles`
+- [x] read `estimate-prespec-reconciles`
 ```
 
 ## Case 996 — The clean build is blocked only by a shipped page that was never built or has a failed check
@@ -430,16 +430,16 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-clean-branch`
-- [ ] update `rule-lint`
-- [ ] update `estimate-lint-checks-the-statuses`
-- [ ] update `estimate-clean-branch-refuses-a-draft-core-page`
+- [x] update `rule-clean-branch`
+- [x] update `rule-lint`
+- [x] update `estimate-lint-checks-the-statuses`
+- [x] update `estimate-clean-branch-refuses-a-draft-core-page`
 - [x] `.guppi/guppi/pages.py`: `is_draft_core` takes the pages by slug beside the page and accepts a rule or an entity with `core: true` that stands `draft` only when its `## History` holds no line that set its status to `built` or one of its Estimates stands `failed`; its docstring says so, each pointer in a bracket at the end of its sentence.
 - [x] `.guppi/guppi/ship.py`: `drafts` passes the pages by slug to `is_draft_core`; the module docstring names the new judgment.
 - [x] `.guppi/guppi/lint.py`: `check_status` passes `by_slug` to `is_draft_core`; the module docstring and that of `check_status` name the new judgment.
 - [x] `.guppi/tests/test_ship.py`: tests whose names hold `draft_core` — a draft page with `core: true` whose History holds a line that set it `built` and whose Estimate is `pending` gets no line and is written, exit 0; the same page with a `failed` Estimate gets its line, writes nothing, exit 1.
 - [x] `.guppi/tests/test_lint.py`: a test whose name holds `draft_core` that runs the cascade of `.guppi/guppi/generate.py` over a draft page with `core: true` whose Estimates all passed, sets the page `draft` again with a `pending` Estimate, and asserts that `is_draft_core` does not accept it.
-- [ ] read `estimate-clean-branch-refuses-a-draft-core-page`
+- [x] read `estimate-clean-branch-refuses-a-draft-core-page`
 ```
 
 ### Case 996.2 — The sprint item and its check name the pages that block the build
@@ -482,9 +482,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run --project .guppi guppi sprint`
-- [ ] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run --project .guppi guppi sprint`
+- [x] update `estimate-sprint-plugin-ci-writes-a-clean-branch`
 - [ ] read `estimate-sprint-plugin-ci-writes-a-clean-branch`
 ```
 
@@ -526,8 +526,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-lint-checks-the-statuses`
+- [x] update `estimate-lint-checks-the-statuses`
 - [x] `.guppi/guppi/lint.py`: `check_status` gives the finding `draft while every Estimate is passed` only where `ship_stands` answers yes; the module docstring and that of `check_status` name the exemption, each pointer in a bracket at the end of its sentence.
 - [x] `.guppi/tests/test_lint.py`: tests whose names hold `draft_core` — a draft page with `core: true` whose History holds a line that set it `built` and whose Estimate is `pending`, no finding; the same page with a `failed` Estimate, one finding; a `draft` rule with every Estimate `passed`, one finding where the module of `ship` stands and none where it is missing; and `test_draft_with_every_estimate_passed_is_a_status_finding` sets the module of `ship` as standing by `ship_module`, so it passes in the clean version, where that module is missing.
-- [ ] read `estimate-lint-checks-the-statuses`
+- [x] read `estimate-lint-checks-the-statuses`
 ```

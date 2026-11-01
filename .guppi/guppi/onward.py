@@ -70,9 +70,12 @@ goes back, to run the check and exit. After a reply the ledger hook sent back �
 refused or held (case 688.7) — `spent`
 lets it fire again at the next reply. Each reason adds that, when only the person can go
 on — a question the person must answer, or a Case that waits only for the person's word —
-the agent opens its reply with `STOP:` and asks the person, and that while a `case-guppi`
-has not answered the agent ends the turn as `vault/wiki/orchestration.md` sets it for a
-Case out (case 889.1). The time of a line of
+the agent opens with `STOP:` a reply that carries a `LEDGER` block, or that answers a reply
+the ledger hook sent back, and asks the person; that a reply that shows a Case or a round of
+`case-guppi` carries no `LEDGER` block and opens with no `STOP:` line, in the layout
+`vault/wiki/orchestration.md` sets, since the check of `rule-case-check` notes a line before
+a showing (case 992.1); and that while a `case-guppi` has not answered the agent ends the
+turn as `vault/wiki/orchestration.md` sets it for a Case out (case 889.1). The time of a line of
 `ledger.md` is read on the `hi` date and rolls to the next date when it runs backwards, so a
 session across midnight keeps its order; a decision line of the reply counts as written now.
 It counts nothing, calls no model and writes nothing. An error of its own after it has read
@@ -118,7 +121,10 @@ REASON = (
 )
 ONLY_THE_PERSON = (
     " If only the person can go on — a question the person must answer, or a Case that waits "
-    "only for the person's word — open your reply with STOP: and ask the person instead."
+    "only for the person's word — open with STOP: a reply that carries a LEDGER block, or "
+    "that answers a reply the ledger hook sent back, and ask the person instead. A reply that "
+    "shows a Case or a round of case-guppi carries no LEDGER block and opens with no STOP: "
+    "line, in the layout vault/wiki/orchestration.md sets."
     " While a case-guppi has not answered, end the turn as vault/wiki/orchestration.md sets "
     "it for a Case out, and go on in the turn its answer opens."
 )

@@ -383,6 +383,38 @@ def test_out_only_the_person_names_orchestration_for_a_case_guppi_not_answered()
     assert "STOP:" in text and "waits only for the person's word" in text
 
 
+def test_out_only_the_person_asks_stop_only_on_a_reply_with_a_ledger_block():
+    """`STOP:` opens only a reply the hook would send back; a showing opens with none (case
+    992.1)."""
+    text = onward.ONLY_THE_PERSON
+    assert "open with STOP: a reply that carries a LEDGER block" in text
+    assert "answers a reply the ledger hook sent back" in text
+    assert "shows a Case or a round of case-guppi carries no LEDGER block" in text
+    assert "opens with no STOP: line" in text
+    assert onward.TO_EXIT.endswith(text) and onward.TO_LOOP.endswith(text)
+    assert onward.to_out(["8"]).endswith(text)
+
+
+SHOWING = (
+    "---\n\n## Case 8 — One\n\n- 8 — One. Done when `estimate-x` passes.\n\n"
+    "> **ratification:**\n> ```\n> - decision[case 8][update][rule-x]{ref:rule-x}\n> ```\n\n"
+    "---\n\nDo you ratify Case 8?"
+)
+
+
+def test_out_a_showing_with_nothing_before_its_heading_passes_both_hooks(tmp_path):
+    """A Case still out, shown with no `LEDGER` block and no `STOP:` line: the hook gives no
+    reason and the check of `rule-case-check` finds no text outside the list (case 992.1)."""
+    from guppi import casecheck
+
+    folder = plan_session(tmp_path, log=START + HI + PRESPEC)
+    with_case_file(folder, "8", BUILT)
+    stdin = payload(SHOWING)
+    assert onward.plan_onward(json.load(stdin), tmp_path, NOW) is None
+    assert run_plan(payload(SHOWING), tmp_path) == (0, "")
+    assert casecheck.outside_the_list(SHOWING) is None
+
+
 def test_out_the_ids_come_from_the_function_case_out_uses():
     import inspect
 

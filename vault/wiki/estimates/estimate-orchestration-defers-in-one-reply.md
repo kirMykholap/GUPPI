@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-orchestration]]"
 purpose: A decision the person asks to put off in Plan Mode, from a source other than the sprint or the backlog, is shown as a short-form Case and written in the reply that shows it, with no round of ratification; when the item has a Case built and not ratified, that reply comes in the turn that the answer Dropped of its case-guppi opens
 method: "by hand at Retro of the session that changes it: the new Render of rule-orchestration in the Spec, read against the Criterion, recorded in the estimate line"
-checked: 2026-10-08
+checked: 2026-11-01
 origin: raw/2026-09-24/1916/ledger.md#case-405
 sprint: migration
 created: 2026-09-24
@@ -29,12 +29,11 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 **＋** When the item has a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi HHMM>/ledger.md`, the drop goes to that `case-guppi` first and the turn of the person's words ends with one `**Waiting:**` line; the short Case, its `LEDGER` block and the Frontier come in the turn that the answer `**Dropped:**` opens.
 **－** No text follows the question, or the Frontier when no question stands.
 **－** Retro writes no short defer: what it would put off is a line of `## For the next session` of `raw/<date>/<hi HHMM>/handoff.md`.
-**－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-] … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`, are not this moment: they take no short Case and no ledger line but for the short Case of a take-back of a ratified Case, which is the moment of `estimate-orchestration-takes-back-a-ratified-case`, and a reply that closes only such lines with no take-back is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.
+**－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-] … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`, are not this moment: they take no short Case and no ledger line of their own but for the short Case of a take-back of a ratified Case, which is the moment of `estimate-orchestration-takes-back-a-ratified-case`, and the decision lines of a Case built on such an item and ratified stand. A reply that closes only such lines with no take-back and no ratification is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.
 
 ## Result
 
-2026-10-08, the person's decision, case 728: the Render of rule-orchestration as it stands read against the Criterion; each line of the Criterion is stated in it
-2026-10-07, Retro, not read: its method needs a decision of a source other than the sprint or the backlog put off with its line closed [-] … · defer case N; in session 2114 only the sprint items C1 and C2 were put off, closed · sprint · defer, which the method excludes
+2026-11-01, Retro of session 2038, the new Render of rule-orchestration in vault/raw/2026-11-01/2038/spec.md, Case 991.1 and 991.4, against the Criterion of 991.4: the short form says an item of backlog.md left as it stands is no decision of its own, no short Case and no ledger line of its own but for the short Case of a take-back, and the Plan Mode section says the decision lines of a Case built on an item put off stand; the rest of the short form stands as the Criterion carries it
 
 ## History
 
@@ -62,3 +61,5 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 - 2026-10-07 updated: the Criterion replaced whole — a sprint or backlog item takes no short Case but for the short Case of a take-back (case 723.2) · [[decision-case-723.2]]
 - 2026-10-07 status: pending → failed · raw/2026-10-07/2114/ledger.md#L22
 - 2026-10-08 updated: the method reads the new Render of rule-orchestration in the Spec at Retro; passed by the person's decision, the Criterion written back unchanged (case 728) · [[decision-case-728]]
+- 2026-11-01 updated: the Criterion replaced whole — an item put off or kept takes no short Case and no ledger line of its own, and the decision lines of a Case built on it stand · [[decision-case-991.4]]
+- 2026-11-01 status: pending → passed · raw/2026-11-01/2038/ledger.md#L20

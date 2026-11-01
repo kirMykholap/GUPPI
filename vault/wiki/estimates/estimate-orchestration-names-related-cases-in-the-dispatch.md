@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether the main agent's prompt to case-guppi names each Case of the session that changes a page the item names, acts at the same moment, or sets the form of a text a check reads, or how the check reads it, where the Case of the item may write text of that kind and the change may alter what the check answers on it, by its id, one sentence on what it sets and which pages it changes, and the path of its case file, and each other Case of a batch of items the person took up in one answer
 method: "by hand, after the librarian's render of this Criterion's rule text into vault/wiki/orchestration.md: at the Retro of the first session that runs on that render, each Agent call of that session that dispatched case-guppi for the Case of an item, read in the transcript of the session under ~/.claude/projects/ against the Criterion, only the Cases the Criterion counts as related judged and a Case named beyond them not counted, a related Case left unnamed or named without its sentence, the pages it changes or the path of its case file counted in the reading line and the transcript named (the first session after 2026-11-01/1721)"
@@ -30,7 +30,7 @@ The prompt of the call names each Case of the session, ratified or already shown
 
 ## Result
 
-2026-11-01, Retro of session 0141, the Agent calls that dispatched case-guppi in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453.jsonl: 5 dispatches (Cases 977 and 978 as a batch, 979, 980, 981); the batch named each other Case by id, Frontier item and file path; Case 977 sets how check_bare_links reads the prose of the plan, which every Case writes, so it counts as related to each later item; the dispatch of 979 named it with id, sentence, pages and path, but the dispatch of 980 named it with its pages and no path, and the dispatch of 981 with its pages, no sentence on what it sets and no path; 2 of 4 related-Case mentions after the batch fall short; Cases 979 and 980 stood with id, sentence, pages and path where named
+2026-11-01, Retro of session 2038, the Agent calls that dispatched case-guppi in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a.jsonl, lines 113 and 237: 2 dispatches; the dispatch of Case 990 named no Case, none of the session standing before it; the dispatch of Case 991 named Case 990 with its id, one sentence on what it sets, its pages and the path of its case file; no related Case left unnamed; Case 992 was built by SendMessage to the case-guppi of Case 990, not by an Agent call
 
 ## History
 
@@ -52,3 +52,4 @@ The prompt of the call names each Case of the session, ratified or already shown
 - 2026-11-01 updated: the method reads the dispatches of session 0141 at its Retro and the purpose names the pages of a related Case, the Criterion written back unchanged; the defers of cases 971 and 976 retired · [[decision-case-980]]
 - 2026-11-01 status: pending → failed · raw/2026-11-01/0141/ledger.md#L14
 - 2026-11-01 updated: the Criterion replaced whole — a change to a check that keeps its answer on each text the Case of the item may write makes no related Case; purpose and method set anew, the reading after the render · [[decision-case-984]]
+- 2026-11-01 status: pending → passed · raw/2026-11-01/2038/ledger.md#L14

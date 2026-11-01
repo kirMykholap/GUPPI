@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent closed a backlog line by the Case built on its item, though the person chose in that Case that the defer of the page stays, and a Case closes a backlog line only when one of its decision lines names the page and retires its defer
-status: clustered
+status: archived
 insight: "[[insight-frontier-line-closed-by-the-case-built-on-its-item]]"
 origin: raw/2026-11-01/1721/ledger.md#L34
 sprint: plugin
@@ -22,3 +22,5 @@ the agent closed a backlog line by the Case built on its item, though the person
 
 - 2026-11-01 created · raw/2026-11-01/1721/ledger.md#L34
 - 2026-11-01 updated: clustered under insight-frontier-line-closed-by-the-case-built-on-its-item (synthesis) · raw/2026-11-01/1721/ledger.md#L34
+- 2026-11-01 archived · insight actioned
+- 2026-11-01 archived · cleanup

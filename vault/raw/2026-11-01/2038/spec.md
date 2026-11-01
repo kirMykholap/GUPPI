@@ -110,13 +110,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `rule-skill-hi`
-- [ ] create `estimate-orchestration-closes-a-line-by-what-its-case-does`
-- [ ] update `insight-frontier-line-closed-by-the-case-built-on-its-item`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-orchestration-closes-a-line-by-what-its-case-does`
+- [x] update `rule-orchestration`
+- [x] update `rule-skill-hi`
+- [x] create `estimate-orchestration-closes-a-line-by-what-its-case-does`
+- [x] update `insight-frontier-line-closed-by-the-case-built-on-its-item`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] read `estimate-orchestration-closes-a-line-by-what-its-case-does`
 ```
 
 ### Case 991.2 — The Frontier of /hi keeps the lines of a Case on an item put off
@@ -158,7 +158,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-hi-writes-frontier`
+- [x] update `estimate-hi-writes-frontier`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -199,8 +199,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-takes-back-a-ratified-case`
-- [ ] read `estimate-orchestration-takes-back-a-ratified-case`
+- [x] update `estimate-orchestration-takes-back-a-ratified-case`
+- [x] read `estimate-orchestration-takes-back-a-ratified-case`
 ```
 
 ### Case 991.4 — A short defer leaves the lines of a Case on an item put off standing
@@ -243,8 +243,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-defers-in-one-reply`
-- [ ] read `estimate-orchestration-defers-in-one-reply`
+- [x] update `estimate-orchestration-defers-in-one-reply`
+- [x] read `estimate-orchestration-defers-in-one-reply`
 ```
 
 ## Case 992 — After /pre-spec, a STOP: line opens only a reply with a LEDGER block
@@ -321,11 +321,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec-onward`
-- [ ] update `estimate-prespec-onward-sends-the-agent-on`
+- [x] update `rule-prespec-onward`
+- [x] update `estimate-prespec-onward-sends-the-agent-on`
 - [x] `.guppi/guppi/onward.py`: `ONLY_THE_PERSON` asks for `STOP:` on a reply that carries a `LEDGER` block, or that answers a reply the ledger hook sent back, and says that a reply that shows a Case or a round of `case-guppi` carries no `LEDGER` block and opens with no `STOP:` line, in the layout `vault/wiki/orchestration.md` sets; the module docstring says the same where it describes what each reason adds.
 - [x] `.guppi/tests/test_onward.py`: a test asserts that `ONLY_THE_PERSON` names the `LEDGER` block, the reply that shows a Case or a round and its missing `STOP:` line, and that `TO_EXIT`, `TO_LOOP` and the reason of `to_out` each end with it; a test runs, after a `prespec` line with a Case still out, a reply that shows a Case with nothing before its heading and no `LEDGER` block through `plan_onward`, which returns no reason, and through `outside_the_list` of `.guppi/guppi/casecheck.py`, which returns None.
-- [ ] read `estimate-prespec-onward-sends-the-agent-on`
+- [x] read `estimate-prespec-onward-sends-the-agent-on`
 ```
 
 ### Case 992.2 — An acknowledging reply that waits for the person opens with STOP:
@@ -373,8 +373,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-acknowledging-reply`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-acknowledging-reply`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-acknowledging-reply`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] read `estimate-orchestration-acknowledging-reply`
 ```

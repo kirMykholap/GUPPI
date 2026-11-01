@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-close]]"
 purpose: Whether report.md of the session folder holds the report the librarian returned last at its close, and gives the counts, the marks, the archived pages, the flags, the lint total and each part another step of its frame sends to the report, with no test result and no list of files
 method: "by hand, after the librarian's run of a session that starts with the hook of rule-librarian-report-copy in .claude/settings.json and whose .claude/agents/librarian-guppi.md, when the run starts, holds the Render of rule-close that returns the report as text: the agent reads report.md of the session folder of that run, as the commit of /handoff or /box holds it by git show, beside the last output of the librarian read in its agent transcript under ~/.claude/projects/, against the Criterion, the transcript named in the estimate line"
-checked: 2026-10-31
+checked: 2026-11-01
 origin: raw/2026-10-29/1930/ledger.md#case-903.2
 sprint: plugin
 created: 2026-10-29
@@ -26,7 +26,7 @@ Then:
 
 ## Result
 
-2026-10-31, /hi of session 0431, git show e71f98bc:.claude/agents/librarian-guppi.md, ls vault/raw/2026-10-31/0128/, git show --stat c7e796eb and git ls-files: the frame at the start of the librarian's run of session 0128 holds the Close step that writes report.md (line 129), and the run reached its commit c7e796eb; no report.md stands in vault/raw/2026-10-31/0128/, c7e796eb takes none, and git ls-files lists no report.md in the repository
+2026-11-01, Work reading of session 2038, git show 994ade11:vault/raw/2026-11-01/0141/report.md beside the handback of the librarian in ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453/subagents/agent-a4bd75adff6d794e7.jsonl, record 205: report.md equals the returned report byte for byte but its last newline, 62 lines; it gives pages created and updated per category, entries incomplete or failed (none), pages archived, flags, the lint total and each part the frame at ce0231ab sends to the report; no test result, no list of files; the frame held the libreport hook in settings.json and the Render of rule-close; the librarian's last plain text was one line before its commit, the report stood only in its handback
 
 ## History
 
@@ -42,3 +42,4 @@ Then:
 - 2026-10-31 deferred · [[decision-case-971]]
 - 2026-11-01 defer by decision-case-971 superseded · [[decision-case-982.3]]
 - 2026-11-01 updated: the defer of decision-case-971, archived as superseded, retired; the reading waits for its event · [[decision-case-982.3]]
+- 2026-11-01 status: pending → passed · raw/2026-11-01/2038/ledger.md#L15

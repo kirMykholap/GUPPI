@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-prespec-onward]]"
 purpose: Whether guppi onward --plan, after /pre-spec, refuses the end of a reply that leaves no Case open in the Frontier and sends the agent on with the Cases still out, to the check and the exit or on with the loop after its findings, once a stretch and once more after each reply the ledger hook sent back, an answer with no LEDGER block included, judged by the refusals in the transcript whatever stop_hook_active says; silent before /pre-spec, on a reply that opens with STOP:, and otherwise
 method: uv run --project .guppi pytest .guppi/tests/test_onward.py .guppi/tests/test_ledger.py, which cover a refusal of the ledger hook
-checked: 2026-10-26
+checked: 2026-11-01
 origin: raw/2026-09-30/2356/ledger.md#case-561.5
 sprint: migration
 created: 2026-09-30
@@ -23,18 +23,18 @@ It exits 2 when all of these hold: the event log of the session's window holds a
 **＋** Its own refusal is spent when its last refusal stands in the stretch and no refusal of the ledger hook follows the same reply of the agent or a later one, judged by `refusals` of `.guppi/guppi/ledger.py`. So after a reply that the ledger hook sent back — a line it refused or held, or its reminder of a lesson with no mark — it sends the agent on again at the end of the next reply: the one that writes a line again, or an answer with no `LEDGER` block, such as the answer that no Case fixed the cause of the lesson.
 **＋** A refusal of another `Stop` hook in the stretch neither silences it nor sends it on again, and neither does `stop_hook_active`.
 **＋** Its reason on stderr sends the agent on with the Cases still out, to the check and the exit, or on with the loop after the findings of `/pre-spec`, as `estimate-prespec-onward-tells-the-loop-from-its-end` sets it.
-**＋** Each reason adds that, when only the person can go on — a question the person must answer, or a Case that waits only for the person's word — the agent opens its reply with `STOP:` and asks the person instead, and that while a `case-guppi` has not answered the agent ends the turn as `vault/wiki/orchestration.md` sets it for a Case out and goes on in the turn that the answer opens.
+**＋** Each reason adds that, when only the person can go on — a question the person must answer, or a Case that waits only for the person's word — the agent opens with `STOP:` a reply that carries a `LEDGER` block, or that answers a reply the ledger hook sent back, and asks the person instead; that a reply that shows a Case or a round of `case-guppi` carries no `LEDGER` block and opens with no `STOP:` line, in the layout `vault/wiki/orchestration.md` sets; and that while a `case-guppi` has not answered the agent ends the turn as `vault/wiki/orchestration.md` sets it for a Case out and goes on in the turn that the answer opens.
 **＋** In every other case with no error of its own, it exits 0 and prints nothing. This holds once its own refusal is spent, on a reply that opens with `STOP:`, and with `stop_hook_active` set when it cannot read the transcript. `.claude/settings.json` registers it on `Stop`, after `uv run --project .guppi guppi onward`.
 **－** A Case still out, as `rule-prespec-onward` judges it, does not keep it silent: it changes only its reason.
 **－** With no `prespec` line of this session after its `hi` in the event log, it exits 0 and prints nothing, and its reason never tells the agent to call `/pre-spec`.
-**－** A reply with no `LEDGER` block after a reply that the ledger hook did not send back gets no reason.
+**－** A reply with no `LEDGER` block after a reply that the ledger hook did not send back gets no reason, a reply that shows a Case with no line before its first Case heading among them.
 **－** An error of its own after it has read the payload, when a `prespec` line of this session stands after its `hi`, exits 2 with `onward: not checked: <error>` on stderr and the advice, when no Case is left out, to go on with the loop after the findings of `/pre-spec` or to run the check and exit Plan Mode; the advice does not name a call of `/pre-spec`. It does so at most once a stretch, judged by its own refusal in the stretch alone. Before `/pre-spec`, or when it cannot read the `prespec` line, an error of its own exits 0 and does not send the reply back. An empty payload exits 0.
 **－** It counts nothing, calls no model and writes no file and no mark. Its judgment is the marks, the files and their times, the refusals in the transcript and the first word of the reply.
 **－** `uv run --project .guppi guppi onward` without `--plan` keeps its own judgment.
 
 ## Result
 
-2026-10-26, Retro of 0118, uv run --project .guppi pytest .guppi/tests/test_onward.py .guppi/tests/test_ledger.py: 234 passed; a reply that ratifies one Case of two built again exits 2, the answer with no LEDGER block to a reminder while a Case is out exits 2, ONLY_THE_PERSON keeps STOP: for a question or a Case that waits only for the person's word and names orchestration.md for a case-guppi that has not answered, and the tests of a Case not out assert the reason of the exit, not the exit code alone
+2026-11-01, Retro of session 2038, uv run --project .guppi pytest .guppi/tests/test_onward.py .guppi/tests/test_ledger.py: 239 passed; ONLY_THE_PERSON asks for STOP: on a reply that carries a LEDGER block or answers a reply the ledger hook sent back and says a reply that shows a Case or a round carries no LEDGER block and opens with no STOP: line; TO_EXIT, TO_LOOP and to_out each end with it; a showing of a Case out with nothing before its heading gets no reason and passes outside_the_list
 
 ## History
 
@@ -54,3 +54,5 @@ It exits 2 when all of these hold: the event log of the session's window holds a
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-26 updated: the Criterion replaced whole — a Case still out no longer keeps the hook silent; it changes only its reason · [[decision-case-889.1]]
 - 2026-10-26 status: pending → passed · raw/2026-10-26/0118/ledger.md#L18
+- 2026-11-01 updated: the Criterion replaced whole — STOP: only on a reply with a LEDGER block, a shown Case or round with no STOP: line · [[decision-case-992.1]]
+- 2026-11-01 status: pending → passed · raw/2026-11-01/2038/ledger.md#L21

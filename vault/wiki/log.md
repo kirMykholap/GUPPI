@@ -12567,3 +12567,46 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-01 lessons/lesson-plugin-cli-withholds-approval-in-every-window archived · cleanup
 - 2026-11-01 lessons/lesson-plugin-cli-withholds-approval-of-a-long-plan archived · cleanup
 - 2026-11-01 decisions/decision-case-957 archived · cleanup
+- 2026-11-01 decisions/decision-case-990 created · raw/2026-11-01/2038/ledger.md#case-990 · generate
+- 2026-11-01 decisions/decision-case-990 superseded by decision-case-992.1 · [[decision-case-992.1]] · generate
+- 2026-11-01 decisions/decision-case-990 superseded by decision-case-992.2 · [[decision-case-992.2]] · generate
+- 2026-11-01 decisions/decision-case-991 created · raw/2026-11-01/2038/ledger.md#case-991 · generate
+- 2026-11-01 decisions/decision-case-991.1 created · raw/2026-11-01/2038/ledger.md#case-991.1 · generate
+- 2026-11-01 rules/rule-orchestration updated: a line closes · case N only when a decision line of Case N ends its item; otherwise it closes as the item put off, the Case's lines standing; a take-back changes the line from the closer it stands with · [[decision-case-991.1]] · generate
+- 2026-11-01 rules/rule-skill-hi updated: a line closes · case N only when a decision line of Case N ends its item; otherwise it closes as the item put off · [[decision-case-991.1]] · generate
+- 2026-11-01 estimates/estimate-orchestration-closes-a-line-by-what-its-case-does created · [[decision-case-991.1]] · generate
+- 2026-11-01 estimates/estimate-orchestration-closes-a-line-by-what-its-case-does status: pending → passed · raw/2026-11-01/2038/ledger.md#L18 · generate
+- 2026-11-01 rules/rule-orchestration estimate estimate-orchestration-closes-a-line-by-what-its-case-does added · [[decision-case-991.1]] · generate
+- 2026-11-01 insights/insight-frontier-line-closed-by-the-case-built-on-its-item updated: actioned: orchestration.md and the skill /hi state that a Case ends its item only by its decision lines · [[decision-case-991.1]] · generate
+- 2026-11-01 decisions/decision-case-991.2 created · raw/2026-11-01/2038/ledger.md#case-991.2 · generate
+- 2026-11-01 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — an item closed defer or kept gets no short Case and no ledger line of its own; a Case built on it keeps its decision lines; · case N only when Case N ends the item; the method names its event before the colon · [[decision-case-991.2]] · generate
+- 2026-11-01 decisions/decision-case-992 created · raw/2026-11-01/2038/ledger.md#case-992 · generate
+- 2026-11-01 decisions/decision-case-992.1 created · raw/2026-11-01/2038/ledger.md#case-992.1 · generate
+- 2026-11-01 rules/rule-prespec-onward updated: each reason asks for STOP: only on a reply with a LEDGER block; a shown Case or round opens with no STOP: line · [[decision-case-992.1]] · generate
+- 2026-11-01 estimates/estimate-prespec-onward-sends-the-agent-on updated: the Criterion replaced whole — STOP: only on a reply with a LEDGER block, a shown Case or round with no STOP: line · [[decision-case-992.1]] · generate
+- 2026-11-01 decisions/decision-case-992.2 created · raw/2026-11-01/2038/ledger.md#case-992.2 · generate
+- 2026-11-01 rules/rule-orchestration updated: an acknowledging reply after /pre-spec that waits for the person opens with STOP:, the LEDGER block right after it · [[decision-case-992.2]] · generate
+- 2026-11-01 estimates/estimate-orchestration-acknowledging-reply updated: the Criterion replaced whole — after /pre-spec, a reply that waits for the person opens with STOP:, the LEDGER block right after it · [[decision-case-992.2]] · generate
+- 2026-11-01 decisions/decision-case-991.3 created · raw/2026-11-01/2038/ledger.md#case-991.3 · generate
+- 2026-11-01 estimates/estimate-orchestration-takes-back-a-ratified-case updated: the Criterion replaced whole — a take-back changes the line from the closer it stands with, and a line already put off by that closer stays · [[decision-case-991.3]] · generate
+- 2026-11-01 decisions/decision-case-991.4 created · raw/2026-11-01/2038/ledger.md#case-991.4 · generate
+- 2026-11-01 estimates/estimate-orchestration-defers-in-one-reply updated: the Criterion replaced whole — an item put off or kept takes no short Case and no ledger line of its own, and the decision lines of a Case built on it stand · [[decision-case-991.4]] · generate
+- 2026-11-01 estimates/estimate-orchestration-names-related-cases-in-the-dispatch status: pending → passed · raw/2026-11-01/2038/ledger.md#L14 · generate
+- 2026-11-01 estimates/estimate-close-reports-the-run status: pending → passed · raw/2026-11-01/2038/ledger.md#L15 · generate
+- 2026-11-01 estimates/estimate-handoff-dispatches status: pending → passed · raw/2026-11-01/2038/ledger.md#L16 · generate
+- 2026-11-01 estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder status: pending → failed · raw/2026-11-01/2038/ledger.md#L17 · generate
+- 2026-11-01 estimates/estimate-orchestration-takes-back-a-ratified-case status: pending → passed · raw/2026-11-01/2038/ledger.md#L19 · generate
+- 2026-11-01 estimates/estimate-orchestration-defers-in-one-reply status: pending → passed · raw/2026-11-01/2038/ledger.md#L20 · generate
+- 2026-11-01 estimates/estimate-prespec-onward-sends-the-agent-on status: pending → passed · raw/2026-11-01/2038/ledger.md#L21 · generate
+- 2026-11-01 estimates/estimate-orchestration-acknowledging-reply status: pending → passed · raw/2026-11-01/2038/ledger.md#L22 · generate
+- 2026-11-01 lessons/lesson-showing-sent-only-the-files-of-the-case-headings created · raw/2026-11-01/2038/ledger.md#L23 · generate
+- 2026-11-01 rules/rule-close status: draft → built · cascade · generate
+- 2026-11-01 rules/rule-handoff status: draft → built · cascade · generate
+- 2026-11-01 decisions/decision-case-990 archived · superseded · generate
+- 2026-11-01 lessons/lesson-frontier-sprint-line-closed-by-a-case-that-updates-no-sprint-page archived · insight actioned · generate
+- 2026-11-01 lessons/lesson-frontier-closed-a-backlog-item-deferred-again-as-a-case archived · insight actioned · generate
+- 2026-11-01 lessons/lesson-frontier-backlog-line-closed-by-a-case-that-keeps-its-defer archived · insight actioned · generate
+- 2026-11-01 lessons/lesson-frontier-backlog-line-closed-by-a-case-that-keeps-its-defer archived · cleanup
+- 2026-11-01 lessons/lesson-frontier-closed-a-backlog-item-deferred-again-as-a-case archived · cleanup
+- 2026-11-01 lessons/lesson-frontier-sprint-line-closed-by-a-case-that-updates-no-sprint-page archived · cleanup
+- 2026-11-01 decisions/decision-case-990 archived · cleanup

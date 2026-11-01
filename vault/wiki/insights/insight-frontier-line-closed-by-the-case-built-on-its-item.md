@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: the main agent closes a Frontier line `· case N` because a Case was built on its item and ratified, not because a decision line of that Case takes the item off its list — an update of the sprint page for a sprint item, a decision line that names the page and retires its defer for a backlog item — so guppi prespec --check finds the closer false and the line is closed again
-status: open
+status: actioned
 children: ["[[lesson-frontier-sprint-line-closed-by-a-case-that-updates-no-sprint-page]]", "[[lesson-frontier-closed-a-backlog-item-deferred-again-as-a-case]]", "[[lesson-frontier-backlog-line-closed-by-a-case-that-keeps-its-defer]]"]
-severity: 3
+severity: 0
+addressed_by: "[[decision-case-991.1]]"
 origin: raw/2026-11-01/1721/ledger.md#L34
 sprint: plugin
 created: 2026-11-01
@@ -21,3 +22,4 @@ A suggestion: orchestration.md could state once, for every kind of Frontier line
 ## History
 
 - 2026-11-01 created · raw/2026-11-01/1721/ledger.md#L34
+- 2026-11-01 updated: actioned: orchestration.md and the skill /hi state that a Case ends its item only by its decision lines · [[decision-case-991.1]]

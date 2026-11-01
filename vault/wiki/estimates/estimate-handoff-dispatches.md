@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-handoff]]"
 purpose: /handoff stops on a dirty tree, writes handoff.md from memory into the session's folder, dispatches the librarian with its path, shows report.md and commits it alone after the librarian's commit, or, in a session that /box runs, hands back to /box
 method: "by hand, after a /handoff whose .claude/skills/handoff/SKILL.md holds the Render of rule-handoff that commits report.md: the event log vault/raw/<date>/event_log.md, handoff.md and git log, and the dispatch line and the text shown to the person read in the transcript of that session under ~/.claude/projects/, against the Criterion, the transcript named in the estimate line; by hand, after a /handoff in a session that /box runs: the event log, and the step of /box that follows read in the transcript of that session under ~/.claude/projects/, against the Criterion, the transcript named in the estimate line"
-checked: 2026-10-04
+checked: 2026-11-01
 origin: raw/2026-09-10/ledger.md#case-38.3
 sprint: migration
 created: 2026-09-10
@@ -29,7 +29,7 @@ The skill's context holds `git status --porcelain`. On a dirty tree the skill st
 
 ## Result
 
-2026-10-04, at the /hi of session 0004, by hand: session 0317 (transcript 5b311f89): after the reply that ends Retro and the commit 37c47bd1, /handoff called by Skill at 05:06:09 on an empty Tree line, the event log holding `05:06:09 5b311f89 handoff`; one Bash call counted the ledger lines and no Read call came before handoff.md was written at 05:06:38 into raw/2026-10-03/0317/, one document with no `---` and the seven sections of the skill; librarian-guppi dispatched at 05:06:39 with "Materialize 2026-10-03 from vault/raw/2026-10-03/0317/handoff.md.", its report shown at 05:13:39 in a blockquote, 30 of 30 lines equal; session 1416 (transcript 682b0e2f), work.md holding `## Conserved Spec`: /handoff at 14:40:53 on an empty Tree line, the mark `14:40:53 682b0e2f handoff`, handoff.md written at 14:41:19 with no Read call before it, no `---` and the seven sections; /handoff dispatched nothing, the next call at 14:41:26 being the switch and merge of /box, whose dispatch at 14:41:51 carries "Materialize 2026-10-03 from vault/raw/2026-10-03/1416/handoff.md."; the only commits after either handoff are the librarian's, fdd15ff3 and da671ebe, and no reply between a call and its report carries a LEDGER block; not exercised: a dirty tree
+2026-11-01, Work reading of session 2038, the /handoff of session 0141 in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453.jsonl lines 1554-1601, the event log and git log: the skill at ce0231ab holds the Render of rule-handoff; Tree empty; mark 03:48:01 b91d8531 handoff; handoff.md written at 03:48:26 into raw/2026-11-01/0141/, no --- line, the seven sections, no Read call before it; librarian-guppi dispatched with "Materialize 2026-11-01 from vault/raw/2026-11-01/0141/handoff.md.", in the same message as the Write; report.md shown unchanged, 62 of 62 lines, and committed alone as 994ade11 after the librarian's d0f9b153, no --amend, the commit before the showing; no other commit and no LEDGER block after the call; not exercised: a dirty tree, a missing report.md, a session of /box
 
 ## History
 
@@ -47,3 +47,4 @@ The skill's context holds `git status --porcelain`. On a dirty tree the skill st
 - 2026-11-01 deferred · [[decision-case-976]]
 - 2026-11-01 defer by decision-case-976 superseded · [[decision-case-982.3]]
 - 2026-11-01 updated: the defer of decision-case-976, archived as superseded, retired; the reading waits for its event · [[decision-case-982.3]]
+- 2026-11-01 status: pending → passed · raw/2026-11-01/2038/ledger.md#L16

@@ -278,7 +278,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [x] update `estimate-orchestration-names-related-cases-in-the-dispatch`
-- [ ] read `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] read `estimate-orchestration-names-related-cases-in-the-dispatch`
 ```
 
 ## Case 985 — The builder follows a changed step into the harness code

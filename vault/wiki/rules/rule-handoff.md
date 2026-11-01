@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the session's memory from being lost between the commit and the librarian
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/handoff/SKILL.md
 render_mode: full
@@ -74,3 +74,4 @@ Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box`
 - 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]
 - 2026-10-31 updated: /handoff shows report.md and commits it alone after the librarian's commit · [[decision-case-956.3]]
 - 2026-10-31 status: built → draft · cascade
+- 2026-11-01 status: draft → built · cascade

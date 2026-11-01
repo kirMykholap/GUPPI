@@ -1,0 +1,2002 @@
+date: '2026-11-01'
+sprint: plugin
+ledger: vault/raw/2026-11-01/2038/ledger.md
+spec:
+- vault/raw/2026-11-01/2038/spec.md
+entries:
+- line: 1
+  text: decision[case 990][update][rule-prespec-onward]{ref:rule-prespec-onward}
+  case: '990'
+  kind: update
+  slug: rule-prespec-onward
+  origin: raw/2026-11-01/2038/ledger.md#case-990
+  decision: decision-case-990
+  ref: rule-prespec-onward
+  category: rules
+  superseded_by:
+  - '992.1'
+  - '992.2'
+- line: 2
+  text: decision[case 990][update][estimate-prespec-onward-sends-the-agent-on]{ref:rule-prespec-onward}
+  case: '990'
+  kind: update
+  slug: estimate-prespec-onward-sends-the-agent-on
+  origin: raw/2026-11-01/2038/ledger.md#case-990
+  decision: decision-case-990
+  ref: rule-prespec-onward
+  category: estimates
+  superseded_by:
+  - '992.1'
+  - '992.2'
+- line: 3
+  text: decision[case 991.1][update][rule-orchestration]{ref:rule-orchestration}
+  case: '991.1'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-11-01/2038/ledger.md#case-991.1
+  decision: decision-case-991.1
+  ref: rule-orchestration
+  category: rules
+  replace:
+  - old: '`[x]` for an item ended: `· case N` when ratified,'
+    new: '`[x]` for an item ended: `· case N` when a decision line of Case N ends the item,'
+  - old: for an item of the sprint left for later — no Case but
+    new: for an item of the sprint left for later — no short Case of its own but
+  - old: and `/pre-spec` reports the line otherwise (as set in case 937.2).
+    new: 'and `/pre-spec` reports the line otherwise (as set in case 937.2). A Case built on an item ends
+      it only by what its decision lines do: an item of the sprint by an `update` of the sprint page `entity-sprint-<id>`
+      under the Case or a sub-case; an item of `backlog.md` whose page carries `deferred_by` by a line
+      other than a `defer` that names the page, a Case among the Case and its sub-cases that names the
+      page carrying `{supersedes:case M}` for each Case M of that `deferred_by`; an open Insight of `backlog.md`
+      by an `update` of its page; and any other item by its ratification. Where no decision line ends
+      the item, its line closes as the item put off — `[-] … · sprint · defer`, `[-] … · backlog · defer
+      case N` or `[-] … · backlog · kept` — and the decision lines of the Case stand, since `/pre-spec`
+      reports a sprint line, or a backlog line whose page carries `deferred_by`, closed `· case N` otherwise
+      (as set in case 991.1).'
+  - old: the line of its item in `frontier.md` changes in the same reply from `[x] … · case N` to the
+      closer of its source put off
+    new: the line of its item in `frontier.md` changes in the same reply, unless it already stands so,
+      from the closer it stands with to the closer of its source put off
+  - old: 'An item of `backlog.md` left as it stands is no decision: no short Case, no ledger line, but
+      for the short Case of a take-back,'
+    new: 'An item of `backlog.md` left as it stands is no decision of its own: no short Case and no ledger
+      line of its own, but for the short Case of a take-back,'
+  change: a line closes · case N only when a decision line of Case N ends its item; otherwise it closes
+    as the item put off, the Case's lines standing; a take-back changes the line from the closer it stands
+    with
+  applied: '21:39:04'
+- line: 4
+  text: decision[case 991.1][update][rule-skill-hi]{ref:rule-skill-hi}
+  case: '991.1'
+  kind: update
+  slug: rule-skill-hi
+  origin: raw/2026-11-01/2038/ledger.md#case-991.1
+  decision: decision-case-991.1
+  ref: rule-skill-hi
+  category: rules
+  replace:
+  - old: '`[x]` is an item ended: `[x] … · case N` when ratified,'
+    new: '`[x]` is an item ended: `[x] … · case N` when a decision line of Case N ends the item, as `orchestration.md`
+      sets it,'
+  - old: left for a later session — no Case, no ledger line, no `deferred_by`, but
+    new: left for a later session — no short Case and no ledger line of its own, no `deferred_by`, but
+  - old: is left as it stands — no Case, no ledger line, but for
+    new: is left as it stands — no short Case and no ledger line of its own, but for
+  - old: a `C` that needs none closes `· work`.
+    new: 'a `C` that needs none closes `· work`. A Case built on an item ends it only by its decision
+      lines, as `orchestration.md` sets it: where none of them ends the item, its line closes as the item
+      put off, and the decision lines of the Case stand (as set in case 991.1).'
+  change: a line closes · case N only when a decision line of Case N ends its item; otherwise it closes
+    as the item put off
+  applied: '21:39:04'
+- line: 5
+  text: decision[case 991.1][create][estimate-orchestration-closes-a-line-by-what-its-case-does]{ref:rule-orchestration}{tags:session,workflow}
+  case: '991.1'
+  kind: create
+  slug: estimate-orchestration-closes-a-line-by-what-its-case-does
+  origin: raw/2026-11-01/2038/ledger.md#case-991.1
+  decision: decision-case-991.1
+  ref: rule-orchestration
+  tags:
+  - session
+  - workflow
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether the agent closes a Frontier line of a sprint or backlog item · case N only when a
+      decision line of Case N ends the item, and otherwise closes it as the item put off with the decision
+      lines of the Case standing
+    method: 'by hand at Retro of the session that changes it: the new Render of rule-orchestration and
+      of rule-skill-hi in the Spec, read against the Criterion, recorded in the estimate line'
+    tags:
+    - session
+    - workflow
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      In Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration` and `.claude/skills/hi/SKILL.md`
+      from `rule-skill-hi`, the person ratifies a Case built on the item of a line of `raw/<date>/<hi
+      HHMM>/frontier.md` with the source `sprint` or `backlog`.
+
+
+      Then:
+
+      The agent closes the line `[x] … · case N` only when a decision line of Case N ends the item.
+
+      **＋** A sprint item ends by Case N only when Case N or a sub-case updates the sprint page `entity-sprint-<id>`.
+
+      **＋** An item of `vault/wiki/backlog.md` whose page carries `deferred_by` ends by Case N only when
+      a decision line of Case N other than a `defer` names the page, and a Case among Case N and its sub-cases
+      that names the page carries `{supersedes:case M}` for each Case M of the page''s `deferred_by`.
+
+      **＋** An open Insight of `vault/wiki/backlog.md` ends by Case N only when Case N or a sub-case updates
+      the page of the Insight.
+
+      **＋** A sprint line whose Case updates no sprint page closes `[-] … · sprint · defer`, and the decision
+      lines of that Case stand.
+
+      **＋** A backlog line whose Case defers its page again closes `[-] … · backlog · defer case N`. A
+      backlog line whose Case neither ends the item nor defers it again closes `[-] … · backlog · kept`,
+      and the decision lines of that Case stand.
+
+      **＋** The agent closes the line in the reply that carries the decision lines of Case N, so the frontier
+      check of `uv run --project .guppi guppi prespec --check` of `rule-prespec` finds nothing on it.
+
+      **－** Any other backlog item ends by the ratification of Case N, and the check of `rule-prespec`
+      judges the closers as before.'
+  status: passed
+  result: '2026-11-01, Retro of session 2038, the new Render of rule-orchestration and of rule-skill-hi
+    in vault/raw/2026-11-01/2038/spec.md, Case 991.1, against its Criterion: the text closes a line ·
+    case N only when a decision line of Case N ends the item, names the sprint page update, the backlog
+    page with deferred_by and its supersedes marks, the open Insight by an update of its page, any other
+    item by its ratification, the closers of an item put off with the decision lines of the Case standing,
+    and that /pre-spec reports a sprint line or a backlog line with deferred_by closed otherwise; the
+    skill /hi points to orchestration.md for the rule'
+  folded:
+  - 18
+  applied: '21:39:04'
+- line: 6
+  text: decision[case 991.1][update][insight-frontier-line-closed-by-the-case-built-on-its-item]{ref:insight-frontier-line-closed-by-the-case-built-on-its-item}
+  case: '991.1'
+  kind: update
+  slug: insight-frontier-line-closed-by-the-case-built-on-its-item
+  origin: raw/2026-11-01/2038/ledger.md#case-991.1
+  decision: decision-case-991.1
+  ref: insight-frontier-line-closed-by-the-case-built-on-its-item
+  category: insights
+  set:
+    status: actioned
+    addressed_by: decision-case-991.1
+  change: 'actioned: orchestration.md and the skill /hi state that a Case ends its item only by its decision
+    lines'
+  applied: '21:39:04'
+- line: 7
+  text: decision[case 991.2][update][estimate-hi-writes-frontier]{ref:rule-skill-hi}
+  case: '991.2'
+  kind: update
+  slug: estimate-hi-writes-frontier
+  origin: raw/2026-11-01/2038/ledger.md#case-991.2
+  decision: decision-case-991.2
+  ref: rule-skill-hi
+  category: estimates
+  set:
+    status: pending
+    method: 'by hand, after the reply that acknowledges the opening Case of /sprint-open in the session
+      after the close of a sprint: the person''s answer on whether the Frontier came out as the Criterion
+      says, written into the estimate line; unit: the frontier findings of guppi prespec --check in .guppi/tests/test_prespec.py'
+  change: the Criterion replaced whole — an item closed defer or kept gets no short Case and no ledger
+    line of its own; a Case built on it keeps its decision lines; · case N only when Case N ends the item;
+    the method names its event before the colon
+  sections:
+    Criterion: 'When:
+
+      The person invokes `/hi` of `rule-skill-hi`. The agent assembles the Frontier from `vault/wiki/sprint.md`,
+      `vault/wiki/brief.md`, `vault/wiki/backlog.md`, the output of the skill''s commands and, in the
+      session that opens a sprint, the case file `raw/<date>/<hi HHMM>/cases/case-<N>.md` of the opening
+      Case, and closes its lines in Plan Mode.
+
+
+      Then:
+
+      The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## Cases`, with lines
+      `- [ ] C<n> — <title> · <source>`, `## Work`, with lines `- [ ] W<n> — <title> · <source>`, and
+      `## Ask`, with lines `` - [ ] A<n> — `<slug>` — <question> · brief ``. The title of a line of the
+      current milestone or of the backlog opens with the slug of each of its pages in a code span.
+
+      **＋** The kind comes from the source. Cases: first, when the first line of the `Cases` of the brief''s
+      Next session opens with `open the next sprint`, that line, closed `[x] … · case N` by the opening
+      Case of `/sprint-open`; then, on a plan branch, the unfinished plan and each conserved Spec of `vault/wiki/backlog.md`,
+      with the source `backlog`; then the items of the current milestone of `vault/wiki/sprint.md`, or,
+      while that opening line stands, the items of the first milestone that the `create` of `entity-sprint-<id>`
+      writes under `## Milestones` in the case file of the opening Case, with the source `sprint`; the
+      `Cases` list of the brief''s Next session; a hand edit shown by `Render:`; a `failed` reading or
+      a lesson of the ledger''s Tail; an item the person adds. Work: the `Work` list of the brief''s Next
+      session; a dirty tree by `git status`. Ask: the `Ask the person` list of the brief''s Next session.
+
+      **＋** A line of the `Cases` of the brief''s Next session that names the same item as a line of the
+      current milestone makes no line of its own. The milestone line stands as the sprint page, or the
+      opening Case, gives it, with the source `sprint` alone. The agent judges the sameness by meaning,
+      with no page opened.
+
+      **＋** The other items of the backlog are not lines. `## Cases` ends with the line `Backlog: N items`,
+      where N is the count in `vault/wiki/backlog.md`. Under a Cases line, an indented line `- near` names
+      by slug each backlog item whose `purpose` is near that line in meaning. The agent judges this from
+      the loaded file, with no `ask-guppi`. An item the person brings onto the Frontier becomes a Cases
+      line with the source `backlog`.
+
+      **＋** A line closes by appending the closer and keeping the source. An item ended closes `[x] …
+      · case N` when a decision line of Case N ends it, as `vault/wiki/orchestration.md` sets it, or `[x]
+      … · work` when done with no decision. A line of the sprint page left for a later session closes
+      `[-] … · sprint · defer`. An item of the backlog left as it stands closes `[-] … · backlog · kept`.
+      A decision of any other source put off closes `[-] … · defer case N`. An item closed `defer` or
+      `kept` gets no short Case and no ledger line of its own, but for the short Case of a take-back of
+      a ratified Case, as `vault/wiki/orchestration.md` sets it. A Case built on that item and ratified
+      keeps its decision lines, and a sprint item never closes `· defer case N`.
+
+      **＋** Only the current milestone gives items. A later milestone and Closed give none, and the sprint
+      page''s Backlog reaches the Frontier only through the backlog. A decision line of the Tail is not
+      an item.
+
+      **＋** When the first reply of `/hi` shows the Frontier, the Cases are shown as a checklist. Each
+      line stands as `raw/<date>/<hi HHMM>/frontier.md` holds it, with its detail on an indented line
+      under it and the `- near` line under that, and the line `Backlog: N items` comes last. The Work
+      is shown as one block. Only Cases are cut into sub-cases. A `W` that turns out to need a decision
+      closes `· case N`, and a `C` that needs none closes `· work`.
+
+      **－** While the first line of the `Cases` of the brief''s Next session opens with `open the next
+      sprint`, no conserved Spec and no item of `vault/wiki/sprint.md` is a Cases line, and each conserved
+      Spec stays in `vault/wiki/backlog.md`.
+
+      **－** At `/hi` no Case stands in the chat as a bold line, and no Case has its detail as a paragraph.
+
+      **－** `/pre-spec` finds an open line under `## Cases`. A `W` or an `A` line stands open until its
+      work is done and closes `· work` where that work is done: at `/hi`, in Work Mode or at Retro. Claude
+      Code''s plan mode does not stop the agent from writing `raw/<date>/<hi HHMM>/frontier.md`.'
+  applied: '21:39:04'
+- line: 8
+  text: decision[case 992.1][update][rule-prespec-onward]{ref:rule-prespec-onward}{supersedes:case 990}
+  case: '992.1'
+  kind: update
+  slug: rule-prespec-onward
+  origin: raw/2026-11-01/2038/ledger.md#case-992.1
+  decision: decision-case-992.1
+  ref: rule-prespec-onward
+  supersedes:
+  - '990'
+  category: rules
+  replace:
+  - old: and to open the reply with `STOP:` and ask the person when each waits only for the person's word
+      (as set in case 889.2).
+    new: 'and to open the reply with `STOP:` and ask the person when each waits only for the person''s
+      word (as set in case 889.2). Each of its reasons — the one that names the Cases still out, the one
+      that sends the agent to the check and the exit, and the one that sends it on with the loop after
+      the findings — adds the same text: when only the person can go on, by a question the person must
+      answer or a Case that waits only for the person''s word, open with `STOP:` a reply that carries
+      a `LEDGER` block, or that answers a reply the ledger hook sent back, and ask the person; a reply
+      that shows a Case or a round of `case-guppi` carries no `LEDGER` block and opens with no `STOP:`
+      line, in the layout that `orchestration.md` sets, since the check of `rule-case-check` notes a line
+      before a showing; and while a `case-guppi` has not answered, end the turn as `orchestration.md`
+      sets it for a Case out (as set in case 992.1).'
+  change: 'each reason asks for STOP: only on a reply with a LEDGER block; a shown Case or round opens
+    with no STOP: line'
+  applied: '21:39:04'
+- line: 9
+  text: decision[case 992.1][update][estimate-prespec-onward-sends-the-agent-on]{ref:rule-prespec-onward}{supersedes:case
+    990}
+  case: '992.1'
+  kind: update
+  slug: estimate-prespec-onward-sends-the-agent-on
+  origin: raw/2026-11-01/2038/ledger.md#case-992.1
+  decision: decision-case-992.1
+  ref: rule-prespec-onward
+  supersedes:
+  - '990'
+  category: estimates
+  set:
+    status: pending
+  change: 'the Criterion replaced whole — STOP: only on a reply with a LEDGER block, a shown Case or round
+    with no STOP: line'
+  sections:
+    Criterion: 'When:
+
+      The `Stop` hook `uv run --project .guppi guppi onward --plan` receives the payload of the end of
+      a reply of the main agent.
+
+
+      Then:
+
+      It exits 2 when all of these hold: the event log of the session''s window holds a `hi` of this session
+      and, after it, a `prespec` line of this session; `raw/<date>/<hi HHMM>/spec.md` does not stand;
+      `raw/<date>/<hi HHMM>/frontier.md` holds no open line under `## Cases`; the reply carries a `LEDGER`
+      block, or a refusal of the ledger hook in the stretch follows the reply of the main agent that ended
+      just before it; its own refusal is not spent; and the reply does not open with `STOP:`.
+
+      **＋** The stretch is the records of the transcript at `transcript_path` after the last `user` record
+      whose `origin.kind` is `human`. A refusal of a `Stop` hook is a `user` record marked `isMeta` whose
+      text opens with `Stop hook feedback:` and holds a line that opens with `[<command>]: `. Its own
+      command is `uv run --project .guppi guppi onward --plan`, and the command of the ledger hook is
+      `uv run --project .guppi guppi ledger`.
+
+      **＋** Its own refusal is spent when its last refusal stands in the stretch and no refusal of the
+      ledger hook follows the same reply of the agent or a later one, judged by `refusals` of `.guppi/guppi/ledger.py`.
+      So after a reply that the ledger hook sent back — a line it refused or held, or its reminder of
+      a lesson with no mark — it sends the agent on again at the end of the next reply: the one that writes
+      a line again, or an answer with no `LEDGER` block, such as the answer that no Case fixed the cause
+      of the lesson.
+
+      **＋** A refusal of another `Stop` hook in the stretch neither silences it nor sends it on again,
+      and neither does `stop_hook_active`.
+
+      **＋** Its reason on stderr sends the agent on with the Cases still out, to the check and the exit,
+      or on with the loop after the findings of `/pre-spec`, as `estimate-prespec-onward-tells-the-loop-from-its-end`
+      sets it.
+
+      **＋** Each reason adds that, when only the person can go on — a question the person must answer,
+      or a Case that waits only for the person''s word — the agent opens with `STOP:` a reply that carries
+      a `LEDGER` block, or that answers a reply the ledger hook sent back, and asks the person instead;
+      that a reply that shows a Case or a round of `case-guppi` carries no `LEDGER` block and opens with
+      no `STOP:` line, in the layout `vault/wiki/orchestration.md` sets; and that while a `case-guppi`
+      has not answered the agent ends the turn as `vault/wiki/orchestration.md` sets it for a Case out
+      and goes on in the turn that the answer opens.
+
+      **＋** In every other case with no error of its own, it exits 0 and prints nothing. This holds once
+      its own refusal is spent, on a reply that opens with `STOP:`, and with `stop_hook_active` set when
+      it cannot read the transcript. `.claude/settings.json` registers it on `Stop`, after `uv run --project
+      .guppi guppi onward`.
+
+      **－** A Case still out, as `rule-prespec-onward` judges it, does not keep it silent: it changes
+      only its reason.
+
+      **－** With no `prespec` line of this session after its `hi` in the event log, it exits 0 and prints
+      nothing, and its reason never tells the agent to call `/pre-spec`.
+
+      **－** A reply with no `LEDGER` block after a reply that the ledger hook did not send back gets no
+      reason, a reply that shows a Case with no line before its first Case heading among them.
+
+      **－** An error of its own after it has read the payload, when a `prespec` line of this session stands
+      after its `hi`, exits 2 with `onward: not checked: <error>` on stderr and the advice, when no Case
+      is left out, to go on with the loop after the findings of `/pre-spec` or to run the check and exit
+      Plan Mode; the advice does not name a call of `/pre-spec`. It does so at most once a stretch, judged
+      by its own refusal in the stretch alone. Before `/pre-spec`, or when it cannot read the `prespec`
+      line, an error of its own exits 0 and does not send the reply back. An empty payload exits 0.
+
+      **－** It counts nothing, calls no model and writes no file and no mark. Its judgment is the marks,
+      the files and their times, the refusals in the transcript and the first word of the reply.
+
+      **－** `uv run --project .guppi guppi onward` without `--plan` keeps its own judgment.'
+  applied: '21:39:04'
+- line: 10
+  text: decision[case 992.2][update][rule-orchestration]{ref:rule-orchestration}{supersedes:case 990}
+  case: '992.2'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-11-01/2038/ledger.md#case-992.2
+  decision: decision-case-992.2
+  ref: rule-orchestration
+  supersedes:
+  - '990'
+  category: rules
+  replace:
+  - old: 'The reply that acknowledges a ratification has four parts, in this order: the `LEDGER` block
+      first;'
+    new: 'The reply that acknowledges a ratification has four parts, in this order: the `LEDGER` block
+      first, before which stands only the `STOP:` line of a reply that waits for the person''s word after
+      `/pre-spec`, as set below;'
+  - old: 'after `/pre-spec`, no question: the reply ends with the Frontier, and the hook of `rule-prespec-onward`
+      sends the agent on (case 561.8);'
+    new: 'after `/pre-spec`, no question: the reply ends with the Frontier, and the hook of `rule-prespec-onward`
+      sends the agent on (case 561.8); but a reply after `/pre-spec` that waits for the person''s word,
+      such as one that acknowledges some Cases while another Case shown waits for the person, opens with
+      a line that opens with `STOP:`, puts the `LEDGER` block right after that line and ends with its
+      question to the person, so that the hook lets it end (as set in case 992.2);'
+  change: an acknowledging reply after /pre-spec that waits for the person opens with STOP:, the LEDGER
+    block right after it
+  applied: '21:39:04'
+- line: 11
+  text: decision[case 992.2][update][estimate-orchestration-acknowledging-reply]{ref:rule-orchestration}{supersedes:case
+    990}
+  case: '992.2'
+  kind: update
+  slug: estimate-orchestration-acknowledging-reply
+  origin: raw/2026-11-01/2038/ledger.md#case-992.2
+  decision: decision-case-992.2
+  ref: rule-orchestration
+  supersedes:
+  - '990'
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — after /pre-spec, a reply that waits for the person opens with
+    STOP:, the LEDGER block right after it
+  sections:
+    Criterion: 'When:
+
+      The person ratifies a Case, ratifies again a Case shown again after its ratification, or ratifies
+      in one answer Cases shown together, and the agent writes the reply that acknowledges it, with `vault/wiki/orchestration.md`
+      rendered from `rule-orchestration`.
+
+
+      Then:
+
+      The reply has four parts, in this order. First, the `LEDGER` block, before which stands only the
+      `STOP:` line of a reply that waits for the person''s word after `/pre-spec`. Second, the heading
+      `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences.
+      Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none.
+      Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist.
+
+      **＋** In the checklist the closed lines are folded into one line, and the lines put off stand as
+      `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
+
+      **＋** The open `W` lines are folded into one line that lists their ids, and each other open line
+      stands on its own line with a short title.
+
+      **＋** While a line under `## Cases` is open, the question which item is next ends the reply.
+
+      **＋** When none is open before `/pre-spec`, the question whether to go on to `/pre-spec` ends the
+      reply, in the plain form of the question which item is next. The agent calls `/pre-spec` only after
+      the person says to go on. A reply that answers a question of the person instead ends with the same
+      question again.
+
+      **＋** When none is open after `/pre-spec`, the reply ends with the Frontier and asks nothing, and
+      the hook of `rule-prespec-onward` sends the agent on.
+
+      **＋** But a reply after `/pre-spec` that waits for the person''s word, such as one that acknowledges
+      some Cases while another Case shown waits for the person, opens with a line that opens with `STOP:`,
+      puts the `LEDGER` block right after that line, and ends with its question to the person, so that
+      the hook lets it end.
+
+      **＋** One reply acknowledges every Case and sub-case ratified in one answer, a Case with its sub-cases
+      or Cases shown together for one ratification: one `LEDGER` block with all their lines, one heading
+      `## Case N — ratified` that names their ids, one paragraph `Changes:`, one Frontier.
+
+      **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision
+      lines of each Case ratified again, as at its first ratification.
+
+      **＋** The headings and labels are in the language of the chat.
+
+      **＋** No tool call follows the `LEDGER` block in the same reply.
+
+      **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
+
+      **－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply with
+      exit 2, the agent''s answer to the refusal is a reply of its own and may call tools. The `LEDGER`
+      block stands written, but for a decision line the ledger hook holds, as `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
+      sets it.'
+  applied: '21:39:04'
+- line: 12
+  text: decision[case 991.3][update][estimate-orchestration-takes-back-a-ratified-case]{ref:rule-orchestration}
+  case: '991.3'
+  kind: update
+  slug: estimate-orchestration-takes-back-a-ratified-case
+  origin: raw/2026-11-01/2038/ledger.md#case-991.3
+  decision: decision-case-991.3
+  ref: rule-orchestration
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — a take-back changes the line from the closer it stands with,
+    and a line already put off by that closer stays
+  sections:
+    Criterion: 'When:
+
+      In Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`, the person
+      asks in the chat to take back a Case of the session that has a decision line in `raw/<date>/<hi
+      HHMM>/ledger.md`, whole or one of its sub-cases.
+
+
+      Then:
+
+      In the same reply the main agent shows a short Case of its own in the form of a deferred decision,
+      with no dispatch of `case-guppi`, and carries its `LEDGER` block, with no tool call after it.
+
+      **＋** The block holds one `defer` line for each rule, entity and insight page the Case taken back
+      names, one for each Estimate it updates, and one for the page that each Estimate it updates checks
+      or each Estimate it creates would check, once per page; each line carries `{supersedes:case N}`
+      for the Case or sub-case taken back.
+
+      **＋** At the librarian''s run, `.guppi/guppi/generate.py` adds the short Case to the `deferred_by`
+      of each rule, entity and insight page a `defer` line names, and each such page stands in `vault/wiki/backlog.md`,
+      also when the Case taken back changed only existing Estimates.
+
+      **＋** The `context` of the short Case names the Case taken back and each Estimate that Case creates;
+      the person''s words asking for the take-back are its ratification, and no question asks for it.
+
+      **＋** The `Stop` hook of `rule-spec-write` writes the short Case under `## Deferred` and removes
+      the Case taken back from the plan file.
+
+      **＋** When no part of the Case stays in the plan, the line of its item in `raw/<date>/<hi HHMM>/frontier.md`
+      changes in the same reply from the closer it stands with to `[-] … · sprint · defer` for an item
+      of the sprint, `[-] … · backlog · kept` for an item of the backlog, or `[-] … · defer case M` of
+      the short Case for any other source, and a line that already stands with that closer stays as it
+      is.
+
+      **＋** The reply ends as the reply that carries a defer: the Frontier with the line closed by that
+      closer, then the question which open item is next, or before `/pre-spec` the question whether to
+      go on to `/pre-spec`, or after `/pre-spec` no question.
+
+      **－** The file of the Case taken back under `raw/<date>/<hi HHMM>/cases/` is not emptied, and no
+      `case-guppi` undoes it.
+
+      **－** In Work Mode no Case is taken back: the main agent tells the person that the ratified Case
+      stands, and that a Case of a later session may replace it.'
+  applied: '21:39:04'
+- line: 13
+  text: decision[case 991.4][update][estimate-orchestration-defers-in-one-reply]{ref:rule-orchestration}
+  case: '991.4'
+  kind: update
+  slug: estimate-orchestration-defers-in-one-reply
+  origin: raw/2026-11-01/2038/ledger.md#case-991.4
+  decision: decision-case-991.4
+  ref: rule-orchestration
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — an item put off or kept takes no short Case and no ledger line
+    of its own, and the decision lines of a Case built on it stand
+  sections:
+    Criterion: 'When:
+
+      In Plan Mode, the person asks in the chat to put off a decision: an item of `raw/<date>/<hi HHMM>/frontier.md`
+      whose source is neither the sprint nor the backlog, with `vault/wiki/orchestration.md` rendered
+      from `rule-orchestration`.
+
+
+      Then:
+
+      In the same reply the agent shows the Case in the short form — `context`, `problem` and a fence
+      tagged `then` with one `defer` item per target, no other section — and carries its `LEDGER` block,
+      one `defer` line per target, with no tool call after it.
+
+      **＋** The agent writes nothing of the Case into the plan file: the `Stop` hook of `rule-spec-write`
+      writes it.
+
+      **＋** The person''s words asking for the defer are its ratification: no question asks for it.
+
+      **＋** The reply shows the Frontier of `raw/<date>/<hi HHMM>/frontier.md` after the Case, with the
+      line of the item closed `[-] … · defer case N`.
+
+      **＋** While a line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` is open, a question follows
+      the Frontier and ends the reply: which open item is next.
+
+      **＋** When no line under `## Cases` is open before `/pre-spec`, the question whether to go on to
+      `/pre-spec` follows the Frontier and ends the reply. The agent calls `/pre-spec` only after the
+      person says to go on.
+
+      **＋** When no line under `## Cases` is open after `/pre-spec`, no question follows: the reply ends
+      with the Frontier, and the hook of `rule-prespec-onward` sends the agent on with the loop after
+      the findings.
+
+      **＋** A wording the person corrects is a new short Case with `{supersedes:case N}` on its line,
+      shown the same way.
+
+      **＋** When the item has a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi
+      HHMM>/ledger.md`, the drop goes to that `case-guppi` first and the turn of the person''s words ends
+      with one `**Waiting:**` line; the short Case, its `LEDGER` block and the Frontier come in the turn
+      that the answer `**Dropped:**` opens.
+
+      **－** No text follows the question, or the Frontier when no question stands.
+
+      **－** Retro writes no short defer: what it would put off is a line of `## For the next session`
+      of `raw/<date>/<hi HHMM>/handoff.md`.
+
+      **－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-]
+      … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`,
+      are not this moment: they take no short Case and no ledger line of their own but for the short Case
+      of a take-back of a ratified Case, which is the moment of `estimate-orchestration-takes-back-a-ratified-case`,
+      and the decision lines of a Case built on such an item and ratified stand. A reply that closes only
+      such lines with no take-back and no ratification is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.'
+  applied: '21:39:04'
+- line: 14
+  text: 'estimate[estimate-orchestration-names-related-cases-in-the-dispatch][passed] 2026-11-01, Retro
+    of session 2038, the Agent calls that dispatched case-guppi in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a.jsonl,
+    lines 113 and 237: 2 dispatches; the dispatch of Case 990 named no Case, none of the session standing
+    before it; the dispatch of Case 991 named Case 990 with its id, one sentence on what it sets, its
+    pages and the path of its case file; no related Case left unnamed; Case 992 was built by SendMessage
+    to the case-guppi of Case 990, not by an Agent call'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-names-related-cases-in-the-dispatch
+  status: passed
+  result: '2026-11-01, Retro of session 2038, the Agent calls that dispatched case-guppi in the transcript
+    ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a.jsonl, lines 113 and 237:
+    2 dispatches; the dispatch of Case 990 named no Case, none of the session standing before it; the
+    dispatch of Case 991 named Case 990 with its id, one sentence on what it sets, its pages and the path
+    of its case file; no related Case left unnamed; Case 992 was built by SendMessage to the case-guppi
+    of Case 990, not by an Agent call'
+  origin: raw/2026-11-01/2038/ledger.md#L14
+  applied: '21:39:04'
+- line: 15
+  text: 'estimate[estimate-close-reports-the-run][passed] 2026-11-01, Work reading of session 2038, git
+    show 994ade11:vault/raw/2026-11-01/0141/report.md beside the handback of the librarian in ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453/subagents/agent-a4bd75adff6d794e7.jsonl,
+    record 205: report.md equals the returned report byte for byte but its last newline, 62 lines; it
+    gives pages created and updated per category, entries incomplete or failed (none), pages archived,
+    flags, the lint total and each part the frame at ce0231ab sends to the report; no test result, no
+    list of files; the frame held the libreport hook in settings.json and the Render of rule-close; the
+    librarian''s last plain text was one line before its commit, the report stood only in its handback'
+  kind: estimate
+  category: estimates
+  slug: estimate-close-reports-the-run
+  status: passed
+  result: '2026-11-01, Work reading of session 2038, git show 994ade11:vault/raw/2026-11-01/0141/report.md
+    beside the handback of the librarian in ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453/subagents/agent-a4bd75adff6d794e7.jsonl,
+    record 205: report.md equals the returned report byte for byte but its last newline, 62 lines; it
+    gives pages created and updated per category, entries incomplete or failed (none), pages archived,
+    flags, the lint total and each part the frame at ce0231ab sends to the report; no test result, no
+    list of files; the frame held the libreport hook in settings.json and the Render of rule-close; the
+    librarian''s last plain text was one line before its commit, the report stood only in its handback'
+  origin: raw/2026-11-01/2038/ledger.md#L15
+  applied: '21:39:04'
+- line: 16
+  text: 'estimate[estimate-handoff-dispatches][passed] 2026-11-01, Work reading of session 2038, the /handoff
+    of session 0141 in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453.jsonl
+    lines 1554-1601, the event log and git log: the skill at ce0231ab holds the Render of rule-handoff;
+    Tree empty; mark 03:48:01 b91d8531 handoff; handoff.md written at 03:48:26 into raw/2026-11-01/0141/,
+    no --- line, the seven sections, no Read call before it; librarian-guppi dispatched with "Materialize
+    2026-11-01 from vault/raw/2026-11-01/0141/handoff.md.", in the same message as the Write; report.md
+    shown unchanged, 62 of 62 lines, and committed alone as 994ade11 after the librarian''s d0f9b153,
+    no --amend, the commit before the showing; no other commit and no LEDGER block after the call; not
+    exercised: a dirty tree, a missing report.md, a session of /box'
+  kind: estimate
+  category: estimates
+  slug: estimate-handoff-dispatches
+  status: passed
+  result: '2026-11-01, Work reading of session 2038, the /handoff of session 0141 in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453.jsonl
+    lines 1554-1601, the event log and git log: the skill at ce0231ab holds the Render of rule-handoff;
+    Tree empty; mark 03:48:01 b91d8531 handoff; handoff.md written at 03:48:26 into raw/2026-11-01/0141/,
+    no --- line, the seven sections, no Read call before it; librarian-guppi dispatched with "Materialize
+    2026-11-01 from vault/raw/2026-11-01/0141/handoff.md.", in the same message as the Write; report.md
+    shown unchanged, 62 of 62 lines, and committed alone as 994ade11 after the librarian''s d0f9b153,
+    no --amend, the commit before the showing; no other commit and no LEDGER block after the call; not
+    exercised: a dirty tree, a missing report.md, a session of /box'
+  origin: raw/2026-11-01/2038/ledger.md#L16
+  applied: '21:39:04'
+- line: 17
+  text: 'estimate[estimate-case-build-reads-the-readers-of-a-new-files-folder][failed] 2026-11-01, Work
+    reading of session 2038, the case-guppi of Case 987 in ~/.claude/projects/c--PROJECTS-GUPPI/cb575daf-7b4e-455c-a22c-1fcffcbdc234/subagents/agent-a5bbc3a9ce87b6a82.jsonl,
+    four passes, and the ask-guppi of /pre-spec in agent-ab3847b0434506da9.jsonl: of 8 searches and readings
+    for the new file .claude/skills/approve-spec/SKILL.md, 2 done (the folder-path Grep and the walk Grep
+    over .guppi/guppi/), 1 in part (ship.py tree_files seen by its grep line, its body not read), 5 missing
+    (the folder-path Grep over .claude/ and over vault/wiki/rules/, the walk Grep over .guppi/tests/,
+    the root .gitignore, callers() of .guppi/tests/test_guppi_package.py, which rglobs .claude); the context
+    names ship.py, links.py, recall.py and two tests with a reason but not callers() or the root .gitignore;
+    ask-guppi raised no finding on a reader of the folder'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-build-reads-the-readers-of-a-new-files-folder
+  status: failed
+  result: '2026-11-01, Work reading of session 2038, the case-guppi of Case 987 in ~/.claude/projects/c--PROJECTS-GUPPI/cb575daf-7b4e-455c-a22c-1fcffcbdc234/subagents/agent-a5bbc3a9ce87b6a82.jsonl,
+    four passes, and the ask-guppi of /pre-spec in agent-ab3847b0434506da9.jsonl: of 8 searches and readings
+    for the new file .claude/skills/approve-spec/SKILL.md, 2 done (the folder-path Grep and the walk Grep
+    over .guppi/guppi/), 1 in part (ship.py tree_files seen by its grep line, its body not read), 5 missing
+    (the folder-path Grep over .claude/ and over vault/wiki/rules/, the walk Grep over .guppi/tests/,
+    the root .gitignore, callers() of .guppi/tests/test_guppi_package.py, which rglobs .claude); the context
+    names ship.py, links.py, recall.py and two tests with a reason but not callers() or the root .gitignore;
+    ask-guppi raised no finding on a reader of the folder'
+  origin: raw/2026-11-01/2038/ledger.md#L17
+  applied: '21:39:04'
+- line: 19
+  text: 'estimate[estimate-orchestration-takes-back-a-ratified-case][passed] 2026-11-01, Retro of session
+    2038, the new Render of rule-orchestration in vault/raw/2026-11-01/2038/spec.md, Case 991.1 and 991.3,
+    against the Criterion of 991.3: the take-back sentence changes the line in the same reply, unless
+    it already stands so, from the closer it stands with to the closer of its source put off; the other
+    sentences of the take-back stand as the Criterion carries them'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-takes-back-a-ratified-case
+  status: passed
+  result: '2026-11-01, Retro of session 2038, the new Render of rule-orchestration in vault/raw/2026-11-01/2038/spec.md,
+    Case 991.1 and 991.3, against the Criterion of 991.3: the take-back sentence changes the line in the
+    same reply, unless it already stands so, from the closer it stands with to the closer of its source
+    put off; the other sentences of the take-back stand as the Criterion carries them'
+  origin: raw/2026-11-01/2038/ledger.md#L19
+  applied: '21:39:04'
+- line: 20
+  text: 'estimate[estimate-orchestration-defers-in-one-reply][passed] 2026-11-01, Retro of session 2038,
+    the new Render of rule-orchestration in vault/raw/2026-11-01/2038/spec.md, Case 991.1 and 991.4, against
+    the Criterion of 991.4: the short form says an item of backlog.md left as it stands is no decision
+    of its own, no short Case and no ledger line of its own but for the short Case of a take-back, and
+    the Plan Mode section says the decision lines of a Case built on an item put off stand; the rest of
+    the short form stands as the Criterion carries it'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-defers-in-one-reply
+  status: passed
+  result: '2026-11-01, Retro of session 2038, the new Render of rule-orchestration in vault/raw/2026-11-01/2038/spec.md,
+    Case 991.1 and 991.4, against the Criterion of 991.4: the short form says an item of backlog.md left
+    as it stands is no decision of its own, no short Case and no ledger line of its own but for the short
+    Case of a take-back, and the Plan Mode section says the decision lines of a Case built on an item
+    put off stand; the rest of the short form stands as the Criterion carries it'
+  origin: raw/2026-11-01/2038/ledger.md#L20
+  applied: '21:39:04'
+- line: 21
+  text: 'estimate[estimate-prespec-onward-sends-the-agent-on][passed] 2026-11-01, Retro of session 2038,
+    uv run --project .guppi pytest .guppi/tests/test_onward.py .guppi/tests/test_ledger.py: 239 passed;
+    ONLY_THE_PERSON asks for STOP: on a reply that carries a LEDGER block or answers a reply the ledger
+    hook sent back and says a reply that shows a Case or a round carries no LEDGER block and opens with
+    no STOP: line; TO_EXIT, TO_LOOP and to_out each end with it; a showing of a Case out with nothing
+    before its heading gets no reason and passes outside_the_list'
+  kind: estimate
+  category: estimates
+  slug: estimate-prespec-onward-sends-the-agent-on
+  status: passed
+  result: '2026-11-01, Retro of session 2038, uv run --project .guppi pytest .guppi/tests/test_onward.py
+    .guppi/tests/test_ledger.py: 239 passed; ONLY_THE_PERSON asks for STOP: on a reply that carries a
+    LEDGER block or answers a reply the ledger hook sent back and says a reply that shows a Case or a
+    round carries no LEDGER block and opens with no STOP: line; TO_EXIT, TO_LOOP and to_out each end with
+    it; a showing of a Case out with nothing before its heading gets no reason and passes outside_the_list'
+  origin: raw/2026-11-01/2038/ledger.md#L21
+  applied: '21:39:04'
+- line: 22
+  text: 'estimate[estimate-orchestration-acknowledging-reply][passed] 2026-11-01, Retro of session 2038,
+    the acknowledging replies of this session in the transcript ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a.jsonl,
+    on the Render before Case 992.2: the first, of Case 990, holds the LEDGER block first, the heading,
+    Changes, no Notes, the Frontier with the closed and the W lines folded and the question which item
+    is next; the first of Cases ratified together, 992 and 991 after /pre-spec, holds one LEDGER block
+    with all their lines, the lines of Case 990 again, one heading naming the ids, Changes, Notes, the
+    Frontier and no question, and the hook sent the agent on; not exercised: the STOP: line of a reply
+    after /pre-spec that waits for the person'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-acknowledging-reply
+  status: passed
+  result: '2026-11-01, Retro of session 2038, the acknowledging replies of this session in the transcript
+    ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a.jsonl, on the Render before
+    Case 992.2: the first, of Case 990, holds the LEDGER block first, the heading, Changes, no Notes,
+    the Frontier with the closed and the W lines folded and the question which item is next; the first
+    of Cases ratified together, 992 and 991 after /pre-spec, holds one LEDGER block with all their lines,
+    the lines of Case 990 again, one heading naming the ids, Changes, Notes, the Frontier and no question,
+    and the hook sent the agent on; not exercised: the STOP: line of a reply after /pre-spec that waits
+    for the person'
+  origin: raw/2026-11-01/2038/ledger.md#L22
+  applied: '21:39:04'
+- line: 23
+  text: 'lesson[error][lesson-showing-sent-only-the-files-of-the-case-headings]{tags:session,workflow}
+    trigger: at the showing of Cases 992 and 991 after /pre-spec, the casecheck Stop hook refused the
+    reply: case 990 had no SendUserFile call on vault/raw/2026-11-01/2038/cases/case-990.md; the summary
+    of case-guppi had marked both case-992.md and case-990.md Built root_cause: the main agent sent the
+    file of each top-level Case it named in a heading, 992 and 991, and not each path the summary marks
+    Built, while the check asks a SendUserFile call for every case file the summary names as built'
+  kind: lesson
+  category: lessons
+  slug: lesson-showing-sent-only-the-files-of-the-case-headings
+  origin: raw/2026-11-01/2038/ledger.md#L23
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the main agent sent the file of each top-level Case it named in a heading, 992 and 991,
+      and not each path the summary marks Built, while the check asks a SendUserFile call for every case
+      file the summary names as built
+  sections:
+    Trigger: 'at the showing of Cases 992 and 991 after /pre-spec, the casecheck Stop hook refused the
+      reply: case 990 had no SendUserFile call on vault/raw/2026-11-01/2038/cases/case-990.md; the summary
+      of case-guppi had marked both case-992.md and case-990.md Built'
+    Root cause: the main agent sent the file of each top-level Case it named in a heading, 992 and 991,
+      and not each path the summary marks Built, while the check asks a SendUserFile call for every case
+      file the summary names as built
+  tags:
+  - session
+  - workflow
+  applied: '21:39:04'
+decisions:
+- case: '990'
+  decision: decision-case-990
+  origin: raw/2026-11-01/2038/ledger.md#case-990
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-prespec-onward
+    ref: rule-prespec-onward
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-onward-sends-the-agent-on
+    ref: rule-prespec-onward
+  tags: []
+  superseded_by:
+  - decision-case-992.1
+  - decision-case-992.2
+  applied: '21:39:04'
+- case: '991.1'
+  decision: decision-case-991.1
+  origin: raw/2026-11-01/2038/ledger.md#case-991.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  - kind: update
+    category: rules
+    slug: rule-skill-hi
+    ref: rule-skill-hi
+  - kind: create
+    category: estimates
+    slug: estimate-orchestration-closes-a-line-by-what-its-case-does
+    ref: rule-orchestration
+  - kind: update
+    category: insights
+    slug: insight-frontier-line-closed-by-the-case-built-on-its-item
+    ref: insight-frontier-line-closed-by-the-case-built-on-its-item
+  tags:
+  - session
+  - workflow
+  case_text:
+    given: '`rule-orchestration`: renders `vault/wiki/orchestration.md`, which sets the closers of a Frontier
+      line.
+
+      **＋** `rule-skill-hi`: renders `.claude/skills/hi/SKILL.md`, which repeats the closers.
+
+      **＋** `estimate-orchestration-closes-a-line-by-what-its-case-does`: the new check of the closer
+      of a line by a Case.
+
+      **＋** `insight-frontier-line-closed-by-the-case-built-on-its-item`: the Insight this Case fixes.
+
+      **＋** `rule-prespec`: its check judges the closers and does not change.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`: the Frontier whose lines close.
+
+      **＋** `entity-sprint-<id>`: the sprint page that a Case on a sprint item updates.
+
+      **＋** `vault/wiki/backlog.md`: the list of the backlog items.
+
+      **＋** `raw/2026-11-01/2038/cases/case-992.md`: Case 992.2 changes `## The acknowledging reply` of
+      `rule-orchestration`, the reply in which a line closes.'
+    when: In Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration` and `.claude/skills/hi/SKILL.md`
+      from `rule-skill-hi`, the person ratifies a Case built on the item of a line of `raw/<date>/<hi
+      HHMM>/frontier.md` with the source `sprint` or `backlog`.
+    then: 'The agent closes the line `[x] … · case N` only when a decision line of Case N ends the item.
+
+      **＋** A sprint item ends by Case N only when Case N or a sub-case updates the sprint page `entity-sprint-<id>`.
+
+      **＋** An item of `vault/wiki/backlog.md` whose page carries `deferred_by` ends by Case N only when
+      a decision line of Case N other than a `defer` names the page, and a Case among Case N and its sub-cases
+      that names the page carries `{supersedes:case M}` for each Case M of the page''s `deferred_by`.
+
+      **＋** An open Insight of `vault/wiki/backlog.md` ends by Case N only when Case N or a sub-case updates
+      the page of the Insight.
+
+      **＋** A sprint line whose Case updates no sprint page closes `[-] … · sprint · defer`, and the decision
+      lines of that Case stand.
+
+      **＋** A backlog line whose Case defers its page again closes `[-] … · backlog · defer case N`. A
+      backlog line whose Case neither ends the item nor defers it again closes `[-] … · backlog · kept`,
+      and the decision lines of that Case stand.
+
+      **＋** The agent closes the line in the reply that carries the decision lines of Case N, so the frontier
+      check of `uv run --project .guppi guppi prespec --check` of `rule-prespec` finds nothing on it.
+
+      **－** Any other backlog item ends by the ratification of Case N, and the check of `rule-prespec`
+      judges the closers as before.'
+    context: 'The main agent closes a line of the session''s Frontier, `raw/<date>/<hi HHMM>/frontier.md`,
+      in the reply that ends its item. `vault/wiki/orchestration.md` and `.claude/skills/hi/SKILL.md`
+      say that a line closes `[x] … · case N` when Case N is ratified. The check of `/pre-spec` asks for
+      more. `check_frontier`, `updates_the_sprint`, `check_backlog_line`, `deferred_pages` and `decided_on_its_page`
+      of `.guppi/guppi/prespec.py`, read whole, refuse a sprint line closed `· case N` when no `update`
+      of the sprint page stands under Case N or a sub-case. For a backlog line closed `· case N`, they
+      judge only each page of its title that carries `deferred_by`. `deferred_pages` leaves out a page
+      without that field, such as an open Insight. Such a line is refused when no decision line of Case
+      N other than a `defer` names the page, or when no Case among Case N and its sub-cases that names
+      the page carries `{supersedes:case M}` for each Case M of the page''s `deferred_by`. The agent followed
+      the shorter text in three sessions, and each time the check refused the line: session 2026-10-10/1913
+      closed a milestone line by Case 769, which updated no sprint page; session 2026-10-30/1713 closed
+      a backlog line by Case 934, which only deferred its page again; and session 2026-11-01/1721 closed
+      the backlog line of `rule-ratification` by Case 988, in which the person kept the defer. The librarian
+      clustered these three lessons in `insight-frontier-line-closed-by-the-case-built-on-its-item`.
+
+
+      The person chose to fix the text the agent reads, with no new hook. Both texts now state that a
+      Case ends its item only by its decision lines, and that a line whose Case ends nothing closes as
+      the item put off. A sprint line whose Case updates no sprint page closes `[-] … · sprint · defer`,
+      and the decision lines of that Case stand. The text names what the check judges: the sprint page,
+      and a backlog page that carries `deferred_by`. An open Insight of the backlog ends by an `update`
+      of its page, as `rule-insights-schema` sets it, and as Case 991.1 itself does. Any other item ends
+      by its ratification, which no check judges. The texts no longer say that a closer of an item put
+      off comes with no Case at all; they say the item gets no short Case and no ledger line of its own.
+      This holds in `## Plan Mode and the Frontier` and `## The short form — deferred decisions` of `rule-orchestration`,
+      and in `rule-skill-hi`. The take-back sentence of `## Showing and signing a Case` now changes the
+      line from the closer it stands with, since after this Case a line can already stand as put off when
+      its Case is taken back. Case 991.1 also creates `estimate-orchestration-closes-a-line-by-what-its-case-does`
+      and marks the Insight `actioned`. The Insight has no `deferred_by`, so no `{supersedes}` mark applies.
+
+
+      Three Estimates had one line each that the change makes false, so three sub-cases replace their
+      Criteria whole, with each other line kept word for word. Case 991.2 does this for `estimate-hi-writes-frontier`.
+      Its `method` waits for the person''s answer after the close of a sprint, but it opened `by hand:`,
+      a form that `case-schema.md` does not take as a wait for an event, since only a part that opens
+      with `after`, or `by hand, after`, and names its event before a colon is such a wait (case 781).
+      So 991.2 also sets that `method` anew in the form `by hand, after <event>: …`, with the same meaning,
+      and its `read` line stays: the Retro of this session leaves the Estimate `pending` until that event.
+      Case 991.3 does it for `estimate-orchestration-takes-back-a-ratified-case`, and Case 991.4 for `estimate-orchestration-defers-in-one-reply`.
+      The `purpose` and `method` of those two do not state the old line, so they stand, and `estimate-hi-writes-frontier`
+      has no `purpose`. These were findings of `/pre-spec` on the Case as first ratified.
+
+
+      These stand. `estimate-orchestration-closes-a-backlog-item-deferred-again` says an item left as
+      it stands with no Case closes `kept`, but not that only such an item does, so it stays true. `estimate-orchestration-acknowledging-reply`
+      only lists the closers. `estimate-orchestration-shows-the-frontier-after-a-closed-line` and the
+      matching sentence of `orchestration.md` speak of a reply that closes a line with no ratification.
+      A line closed as put off in the reply that ratifies its Case is closed in the acknowledging reply,
+      which already shows the Frontier. `estimate-prespec-checks-the-frontier` and `estimate-prespec-requires-a-backlog-item-decided-on-its-page`
+      check what the new text names for a sprint item and for a backlog page that carries `deferred_by`,
+      and the check does not change. `estimate-prespec-binds-a-sprint-line` says that an item closed `·
+      sprint · defer` stays in its milestone until `generate` moves it after three such sessions in a
+      row. A Grep of `in a row|three sessions` over `.guppi/guppi/` printed `.guppi/guppi/check.py` and
+      `.guppi/guppi/powershellguard.py`, neither of them about such a move, so no code makes it. The closer
+      `· sprint · defer` for a sprint line whose Case updates no sprint page is also what the check accepted
+      and what the lesson of session 2026-10-10/1913 found before this Case. So that line is no more false
+      than it was, and it stands for a Case of its own.
+
+
+      The blocks in `.guppi/links.md` of `rule-orchestration`, `rule-skill-hi`, `vault/wiki/orchestration.md`,
+      `.claude/skills/hi/SKILL.md`, the Insight and the three Estimates name `rule-prespec`, `rule-backlog`,
+      `rule-sprint`, `rule-spec-write`, `rule-prespec-onward` and `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      among their neighbours. None of them sets the closer by a Case in other words. Case 992 of this
+      session replaces Case 990 whole, and its finished file was read. Case 992.2 changes `rule-orchestration`
+      only in `## The acknowledging reply` and replaces the Criterion of `estimate-orchestration-acknowledging-reply`.
+      This Case keeps its pairs to the closer passages of three other sections, so no `old` of either
+      Case falls in the text of the other. The new texts agree. In Case 992.2, the acknowledging reply
+      shows lines put off as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case
+      N`, and these are the closers that Case 991.1 gives a line whose Case ends nothing, in the reply
+      that carries the decision lines of that Case. The `STOP:` line that Case 992.2 sets before the `LEDGER`
+      block of a reply that waits for the person after `/pre-spec` changes no closer. The defer reply
+      and the reply that closes a line with no ratification, which Cases 991.3 and 991.4 keep, wait for
+      nobody, as Case 992 also finds. A Grep of `when ratified|no Case but|no Case, no ledger line|needs
+      none closes|937\.2` over `.guppi/tests/` printed nothing, so no test reads the changed sentences.
+      No code changes, so no judgment gets a second copy. The ledger of this session holds no `error`
+      lesson. The three lessons belong to earlier sessions, so this Case gives them no mark.'
+  parent: decision-case-991
+  spec: vault/raw/2026-11-01/2038/spec.md
+  applied: '21:39:04'
+- case: '991.2'
+  decision: decision-case-991.2
+  origin: raw/2026-11-01/2038/ledger.md#case-991.2
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-hi-writes-frontier
+    ref: rule-skill-hi
+  tags: []
+  case_text:
+    given: '`rule-skill-hi`: renders `.claude/skills/hi/SKILL.md`, which assembles and closes the Frontier.
+
+      **＋** `estimate-hi-writes-frontier`: its Criterion is replaced whole.
+
+      **＋** `vault/wiki/sprint.md`: the current milestone, a source of the Frontier.
+
+      **＋** `vault/wiki/brief.md`: the Next session of the brief, a source of the Frontier.
+
+      **＋** `vault/wiki/backlog.md`: the backlog, a source of the Frontier.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`: the Frontier the skill writes.
+
+      **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md`: the case file of the opening Case of `/sprint-open`.
+
+      **＋** `entity-sprint-<id>`: the sprint page whose `create` the opening Case writes.
+
+      **＋** `/pre-spec`: finds an open line under `## Cases`.
+
+      **＋** `vault/wiki/orchestration.md`: sets when a line closes `· case N` and the short Case of a
+      take-back.'
+    when: The person invokes `/hi` of `rule-skill-hi`. The agent assembles the Frontier from `vault/wiki/sprint.md`,
+      `vault/wiki/brief.md`, `vault/wiki/backlog.md`, the output of the skill's commands and, in the session
+      that opens a sprint, the case file `raw/<date>/<hi HHMM>/cases/case-<N>.md` of the opening Case,
+      and closes its lines in Plan Mode.
+    then: 'The Frontier is written to `raw/<date>/<hi HHMM>/frontier.md` in the lists `## Cases`, with
+      lines `- [ ] C<n> — <title> · <source>`, `## Work`, with lines `- [ ] W<n> — <title> · <source>`,
+      and `## Ask`, with lines `` - [ ] A<n> — `<slug>` — <question> · brief ``. The title of a line of
+      the current milestone or of the backlog opens with the slug of each of its pages in a code span.
+
+      **＋** The kind comes from the source. Cases: first, when the first line of the `Cases` of the brief''s
+      Next session opens with `open the next sprint`, that line, closed `[x] … · case N` by the opening
+      Case of `/sprint-open`; then, on a plan branch, the unfinished plan and each conserved Spec of `vault/wiki/backlog.md`,
+      with the source `backlog`; then the items of the current milestone of `vault/wiki/sprint.md`, or,
+      while that opening line stands, the items of the first milestone that the `create` of `entity-sprint-<id>`
+      writes under `## Milestones` in the case file of the opening Case, with the source `sprint`; the
+      `Cases` list of the brief''s Next session; a hand edit shown by `Render:`; a `failed` reading or
+      a lesson of the ledger''s Tail; an item the person adds. Work: the `Work` list of the brief''s Next
+      session; a dirty tree by `git status`. Ask: the `Ask the person` list of the brief''s Next session.
+
+      **＋** A line of the `Cases` of the brief''s Next session that names the same item as a line of the
+      current milestone makes no line of its own. The milestone line stands as the sprint page, or the
+      opening Case, gives it, with the source `sprint` alone. The agent judges the sameness by meaning,
+      with no page opened.
+
+      **＋** The other items of the backlog are not lines. `## Cases` ends with the line `Backlog: N items`,
+      where N is the count in `vault/wiki/backlog.md`. Under a Cases line, an indented line `- near` names
+      by slug each backlog item whose `purpose` is near that line in meaning. The agent judges this from
+      the loaded file, with no `ask-guppi`. An item the person brings onto the Frontier becomes a Cases
+      line with the source `backlog`.
+
+      **＋** A line closes by appending the closer and keeping the source. An item ended closes `[x] …
+      · case N` when a decision line of Case N ends it, as `vault/wiki/orchestration.md` sets it, or `[x]
+      … · work` when done with no decision. A line of the sprint page left for a later session closes
+      `[-] … · sprint · defer`. An item of the backlog left as it stands closes `[-] … · backlog · kept`.
+      A decision of any other source put off closes `[-] … · defer case N`. An item closed `defer` or
+      `kept` gets no short Case and no ledger line of its own, but for the short Case of a take-back of
+      a ratified Case, as `vault/wiki/orchestration.md` sets it. A Case built on that item and ratified
+      keeps its decision lines, and a sprint item never closes `· defer case N`.
+
+      **＋** Only the current milestone gives items. A later milestone and Closed give none, and the sprint
+      page''s Backlog reaches the Frontier only through the backlog. A decision line of the Tail is not
+      an item.
+
+      **＋** When the first reply of `/hi` shows the Frontier, the Cases are shown as a checklist. Each
+      line stands as `raw/<date>/<hi HHMM>/frontier.md` holds it, with its detail on an indented line
+      under it and the `- near` line under that, and the line `Backlog: N items` comes last. The Work
+      is shown as one block. Only Cases are cut into sub-cases. A `W` that turns out to need a decision
+      closes `· case N`, and a `C` that needs none closes `· work`.
+
+      **－** While the first line of the `Cases` of the brief''s Next session opens with `open the next
+      sprint`, no conserved Spec and no item of `vault/wiki/sprint.md` is a Cases line, and each conserved
+      Spec stays in `vault/wiki/backlog.md`.
+
+      **－** At `/hi` no Case stands in the chat as a bold line, and no Case has its detail as a paragraph.
+
+      **－** `/pre-spec` finds an open line under `## Cases`. A `W` or an `A` line stands open until its
+      work is done and closes `· work` where that work is done: at `/hi`, in Work Mode or at Retro. Claude
+      Code''s plan mode does not stop the agent from writing `raw/<date>/<hi HHMM>/frontier.md`.'
+    context: 'The main agent closes a line of the session''s Frontier, `raw/<date>/<hi HHMM>/frontier.md`,
+      in the reply that ends its item. `vault/wiki/orchestration.md` and `.claude/skills/hi/SKILL.md`
+      say that a line closes `[x] … · case N` when Case N is ratified. The check of `/pre-spec` asks for
+      more. `check_frontier`, `updates_the_sprint`, `check_backlog_line`, `deferred_pages` and `decided_on_its_page`
+      of `.guppi/guppi/prespec.py`, read whole, refuse a sprint line closed `· case N` when no `update`
+      of the sprint page stands under Case N or a sub-case. For a backlog line closed `· case N`, they
+      judge only each page of its title that carries `deferred_by`. `deferred_pages` leaves out a page
+      without that field, such as an open Insight. Such a line is refused when no decision line of Case
+      N other than a `defer` names the page, or when no Case among Case N and its sub-cases that names
+      the page carries `{supersedes:case M}` for each Case M of the page''s `deferred_by`. The agent followed
+      the shorter text in three sessions, and each time the check refused the line: session 2026-10-10/1913
+      closed a milestone line by Case 769, which updated no sprint page; session 2026-10-30/1713 closed
+      a backlog line by Case 934, which only deferred its page again; and session 2026-11-01/1721 closed
+      the backlog line of `rule-ratification` by Case 988, in which the person kept the defer. The librarian
+      clustered these three lessons in `insight-frontier-line-closed-by-the-case-built-on-its-item`.
+
+
+      The person chose to fix the text the agent reads, with no new hook. Both texts now state that a
+      Case ends its item only by its decision lines, and that a line whose Case ends nothing closes as
+      the item put off. A sprint line whose Case updates no sprint page closes `[-] … · sprint · defer`,
+      and the decision lines of that Case stand. The text names what the check judges: the sprint page,
+      and a backlog page that carries `deferred_by`. An open Insight of the backlog ends by an `update`
+      of its page, as `rule-insights-schema` sets it, and as Case 991.1 itself does. Any other item ends
+      by its ratification, which no check judges. The texts no longer say that a closer of an item put
+      off comes with no Case at all; they say the item gets no short Case and no ledger line of its own.
+      This holds in `## Plan Mode and the Frontier` and `## The short form — deferred decisions` of `rule-orchestration`,
+      and in `rule-skill-hi`. The take-back sentence of `## Showing and signing a Case` now changes the
+      line from the closer it stands with, since after this Case a line can already stand as put off when
+      its Case is taken back. Case 991.1 also creates `estimate-orchestration-closes-a-line-by-what-its-case-does`
+      and marks the Insight `actioned`. The Insight has no `deferred_by`, so no `{supersedes}` mark applies.
+
+
+      Three Estimates had one line each that the change makes false, so three sub-cases replace their
+      Criteria whole, with each other line kept word for word. Case 991.2 does this for `estimate-hi-writes-frontier`.
+      Its `method` waits for the person''s answer after the close of a sprint, but it opened `by hand:`,
+      a form that `case-schema.md` does not take as a wait for an event, since only a part that opens
+      with `after`, or `by hand, after`, and names its event before a colon is such a wait (case 781).
+      So 991.2 also sets that `method` anew in the form `by hand, after <event>: …`, with the same meaning,
+      and its `read` line stays: the Retro of this session leaves the Estimate `pending` until that event.
+      Case 991.3 does it for `estimate-orchestration-takes-back-a-ratified-case`, and Case 991.4 for `estimate-orchestration-defers-in-one-reply`.
+      The `purpose` and `method` of those two do not state the old line, so they stand, and `estimate-hi-writes-frontier`
+      has no `purpose`. These were findings of `/pre-spec` on the Case as first ratified.
+
+
+      These stand. `estimate-orchestration-closes-a-backlog-item-deferred-again` says an item left as
+      it stands with no Case closes `kept`, but not that only such an item does, so it stays true. `estimate-orchestration-acknowledging-reply`
+      only lists the closers. `estimate-orchestration-shows-the-frontier-after-a-closed-line` and the
+      matching sentence of `orchestration.md` speak of a reply that closes a line with no ratification.
+      A line closed as put off in the reply that ratifies its Case is closed in the acknowledging reply,
+      which already shows the Frontier. `estimate-prespec-checks-the-frontier` and `estimate-prespec-requires-a-backlog-item-decided-on-its-page`
+      check what the new text names for a sprint item and for a backlog page that carries `deferred_by`,
+      and the check does not change. `estimate-prespec-binds-a-sprint-line` says that an item closed `·
+      sprint · defer` stays in its milestone until `generate` moves it after three such sessions in a
+      row. A Grep of `in a row|three sessions` over `.guppi/guppi/` printed `.guppi/guppi/check.py` and
+      `.guppi/guppi/powershellguard.py`, neither of them about such a move, so no code makes it. The closer
+      `· sprint · defer` for a sprint line whose Case updates no sprint page is also what the check accepted
+      and what the lesson of session 2026-10-10/1913 found before this Case. So that line is no more false
+      than it was, and it stands for a Case of its own.
+
+
+      The blocks in `.guppi/links.md` of `rule-orchestration`, `rule-skill-hi`, `vault/wiki/orchestration.md`,
+      `.claude/skills/hi/SKILL.md`, the Insight and the three Estimates name `rule-prespec`, `rule-backlog`,
+      `rule-sprint`, `rule-spec-write`, `rule-prespec-onward` and `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      among their neighbours. None of them sets the closer by a Case in other words. Case 992 of this
+      session replaces Case 990 whole, and its finished file was read. Case 992.2 changes `rule-orchestration`
+      only in `## The acknowledging reply` and replaces the Criterion of `estimate-orchestration-acknowledging-reply`.
+      This Case keeps its pairs to the closer passages of three other sections, so no `old` of either
+      Case falls in the text of the other. The new texts agree. In Case 992.2, the acknowledging reply
+      shows lines put off as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case
+      N`, and these are the closers that Case 991.1 gives a line whose Case ends nothing, in the reply
+      that carries the decision lines of that Case. The `STOP:` line that Case 992.2 sets before the `LEDGER`
+      block of a reply that waits for the person after `/pre-spec` changes no closer. The defer reply
+      and the reply that closes a line with no ratification, which Cases 991.3 and 991.4 keep, wait for
+      nobody, as Case 992 also finds. A Grep of `when ratified|no Case but|no Case, no ledger line|needs
+      none closes|937\.2` over `.guppi/tests/` printed nothing, so no test reads the changed sentences.
+      No code changes, so no judgment gets a second copy. The ledger of this session holds no `error`
+      lesson. The three lessons belong to earlier sessions, so this Case gives them no mark.'
+  parent: decision-case-991
+  spec: vault/raw/2026-11-01/2038/spec.md
+  applied: '21:39:04'
+- case: '992.1'
+  decision: decision-case-992.1
+  origin: raw/2026-11-01/2038/ledger.md#case-992.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-prespec-onward
+    ref: rule-prespec-onward
+  - kind: update
+    category: estimates
+    slug: estimate-prespec-onward-sends-the-agent-on
+    ref: rule-prespec-onward
+  tags: []
+  case_text:
+    given: '`rule-prespec-onward`: the hook that sends the agent on after `/pre-spec`; its Purpose states
+      the text each of its reasons adds.
+
+      **＋** `estimate-prespec-onward-sends-the-agent-on`: its Criterion is replaced whole.
+
+      **＋** `estimate-prespec-onward-tells-the-loop-from-its-end`: sets the reasons the hook gives; it
+      stands.
+
+      **＋** `.guppi/guppi/onward.py`: `ONLY_THE_PERSON`, the text each reason of `--plan` adds, and the
+      docstring.
+
+      **＋** `.guppi/tests/test_onward.py`: the tests of the reasons.
+
+      **＋** `.guppi/guppi/ledger.py`: `refusals`, by which the hook reads the refusals of the stretch.
+
+      **＋** `.claude/settings.json`: registers the hook on `Stop`.
+
+      **＋** `vault/wiki/orchestration.md`: the layout of a showing and of a round, which the reason points
+      to.
+
+      **＋** `rule-case-check`: the check that notes a text of the agent''s own before a showing or a round.
+
+      **＋** `raw/<date>/<hi HHMM>/spec.md`: the Spec of the session, whose presence silences the hook.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`: the Frontier, whose open lines under `## Cases` silence
+      the hook.'
+    when: The `Stop` hook `uv run --project .guppi guppi onward --plan` receives the payload of the end
+      of a reply of the main agent.
+    then: 'It exits 2 when all of these hold: the event log of the session''s window holds a `hi` of this
+      session and, after it, a `prespec` line of this session; `raw/<date>/<hi HHMM>/spec.md` does not
+      stand; `raw/<date>/<hi HHMM>/frontier.md` holds no open line under `## Cases`; the reply carries
+      a `LEDGER` block, or a refusal of the ledger hook in the stretch follows the reply of the main agent
+      that ended just before it; its own refusal is not spent; and the reply does not open with `STOP:`.
+
+      **＋** The stretch is the records of the transcript at `transcript_path` after the last `user` record
+      whose `origin.kind` is `human`. A refusal of a `Stop` hook is a `user` record marked `isMeta` whose
+      text opens with `Stop hook feedback:` and holds a line that opens with `[<command>]: `. Its own
+      command is `uv run --project .guppi guppi onward --plan`, and the command of the ledger hook is
+      `uv run --project .guppi guppi ledger`.
+
+      **＋** Its own refusal is spent when its last refusal stands in the stretch and no refusal of the
+      ledger hook follows the same reply of the agent or a later one, judged by `refusals` of `.guppi/guppi/ledger.py`.
+      So after a reply that the ledger hook sent back — a line it refused or held, or its reminder of
+      a lesson with no mark — it sends the agent on again at the end of the next reply: the one that writes
+      a line again, or an answer with no `LEDGER` block, such as the answer that no Case fixed the cause
+      of the lesson.
+
+      **＋** A refusal of another `Stop` hook in the stretch neither silences it nor sends it on again,
+      and neither does `stop_hook_active`.
+
+      **＋** Its reason on stderr sends the agent on with the Cases still out, to the check and the exit,
+      or on with the loop after the findings of `/pre-spec`, as `estimate-prespec-onward-tells-the-loop-from-its-end`
+      sets it.
+
+      **＋** Each reason adds that, when only the person can go on — a question the person must answer,
+      or a Case that waits only for the person''s word — the agent opens with `STOP:` a reply that carries
+      a `LEDGER` block, or that answers a reply the ledger hook sent back, and asks the person instead;
+      that a reply that shows a Case or a round of `case-guppi` carries no `LEDGER` block and opens with
+      no `STOP:` line, in the layout `vault/wiki/orchestration.md` sets; and that while a `case-guppi`
+      has not answered the agent ends the turn as `vault/wiki/orchestration.md` sets it for a Case out
+      and goes on in the turn that the answer opens.
+
+      **＋** In every other case with no error of its own, it exits 0 and prints nothing. This holds once
+      its own refusal is spent, on a reply that opens with `STOP:`, and with `stop_hook_active` set when
+      it cannot read the transcript. `.claude/settings.json` registers it on `Stop`, after `uv run --project
+      .guppi guppi onward`.
+
+      **－** A Case still out, as `rule-prespec-onward` judges it, does not keep it silent: it changes
+      only its reason.
+
+      **－** With no `prespec` line of this session after its `hi` in the event log, it exits 0 and prints
+      nothing, and its reason never tells the agent to call `/pre-spec`.
+
+      **－** A reply with no `LEDGER` block after a reply that the ledger hook did not send back gets no
+      reason, a reply that shows a Case with no line before its first Case heading among them.
+
+      **－** An error of its own after it has read the payload, when a `prespec` line of this session stands
+      after its `hi`, exits 2 with `onward: not checked: <error>` on stderr and the advice, when no Case
+      is left out, to go on with the loop after the findings of `/pre-spec` or to run the check and exit
+      Plan Mode; the advice does not name a call of `/pre-spec`. It does so at most once a stretch, judged
+      by its own refusal in the stretch alone. Before `/pre-spec`, or when it cannot read the `prespec`
+      line, an error of its own exits 0 and does not send the reply back. An empty payload exits 0.
+
+      **－** It counts nothing, calls no model and writes no file and no mark. Its judgment is the marks,
+      the files and their times, the refusals in the transcript and the first word of the reply.
+
+      **－** `uv run --project .guppi guppi onward` without `--plan` keeps its own judgment.'
+    context: 'This Case replaces Case 990 whole after the check of `/pre-spec`. After `/pre-spec`, the
+      `Stop` hook of `rule-prespec-onward`, `uv run --project .guppi guppi onward --plan`, sends the agent
+      on at the end of a reply. Each of its three reasons — `to_out`, `TO_EXIT` and `TO_LOOP` of `.guppi/guppi/onward.py`
+      — ends with the same text, `ONLY_THE_PERSON`: when a Case waits only for the person''s word, open
+      the reply with `STOP:`. The check of `rule-case-check` wants nothing before a shown Case but a horizontal
+      rule, and a round must open with its first question or its Context label. In session 2026-11-01/1721
+      the hook sent this text after a ratification (transcript `cb575daf-7b4e-455c-a22c-1fcffcbdc234.jsonl`,
+      line 1148). Case 987 was then built again on a finding of the check of the plan and shown with a
+      first line that opened with `STOP:` and said, in Russian, that Case 987 waited for ratification
+      (line 1173). `uv run --project .guppi guppi casecheck --prompt` noted that text before the Case
+      at the person''s next message (line 1182). No refusal of the hook stands after that showing in the
+      transcript. `plan_onward` of `.guppi/guppi/onward.py`, read whole, returns no reason for a reply
+      that opens with `STOP:`, and none for a reply when `ledger_lines` of `.guppi/guppi/ledger.py` finds
+      no `LEDGER` block in it and `sent_back_last` finds no refusal of the ledger hook on the reply that
+      ended just before it. `outside_the_list` and `round_opening` of `.guppi/guppi/casecheck.py`, read
+      whole, take any line before the first Case heading, and any first line of a shown round that opens
+      neither with the question mark nor with a bold label, as a fault. A showing or a round carries no
+      `LEDGER` block, so only the text of the reasons asked for the `STOP:` line there.
+
+
+      Case 990 narrowed that text, as the person chose. The check of `/pre-spec` then found two faults.
+      First, after `/pre-spec` the reply that acknowledges a ratification carries a `LEDGER` block, and
+      when it waits for the person it must open with `STOP:`, while `## The acknowledging reply` of `rule-orchestration`
+      puts the `LEDGER` block first, and Case 990 named neither that page nor `estimate-orchestration-acknowledging-reply`.
+      The person chose that such a reply opens with the `STOP:` line and puts the `LEDGER` block right
+      after it, with the hook unchanged. Second, the new text of the Purpose of `rule-prespec-onward`
+      followed the sentence on a Case still out alone, while `ONLY_THE_PERSON` ends each of the three
+      reasons. The new Purpose text now names each reason. The person chose one Case with two parts in
+      place of Case 990, so each decision line carries `{supersedes:case 990}`, and the file of Case 990
+      stands.
+
+
+      Case 992.1 changes the text the hook adds and replaces the Criterion of `estimate-prespec-onward-sends-the-agent-on`.
+      Two lines of the old Criterion are not carried word for word on purpose: the line on what each reason
+      adds, and the line on a reply with no `LEDGER` block, which now names a shown Case among such replies.
+      Its `purpose` and `method` do not state the old text, so they stand. The Criterion of `estimate-prespec-onward-tells-the-loop-from-its-end`
+      points to that Estimate for the added text, so it stands. A Grep of `waits only for the person|open
+      (your|the|its) reply with ``?STOP` over `vault/wiki/`, `.claude/` and `.guppi/guppi/` printed 7
+      files: `.guppi/guppi/onward.py`, `rule-prespec-onward.md` and `estimate-prespec-onward-sends-the-agent-on.md`,
+      which tasks change; the lesson of L35, a record that stands; and `.claude/skills/retro/SKILL.md`,
+      `rule-retro.md` and `estimate-retro-onward-sends-the-agent-to-the-handoff.md`, which set `STOP:`
+      for the reply that ends Retro, where no Case is shown, so they stand, as does `REASON` of `.guppi/guppi/onward.py`
+      for `rule-retro-onward`. A Grep of `ONLY_THE_PERSON|STOP` over `.guppi/tests/` printed one file,
+      `.guppi/tests/test_onward.py`; its tests assert that `ONLY_THE_PERSON` holds `STOP:`, `orchestration.md`,
+      `case-guppi has not answered` and `waits only for the person''s word`, and the new text keeps each
+      of them.
+
+
+      Case 992.2 changes `## The acknowledging reply` of `rule-orchestration` and replaces the Criterion
+      of `estimate-orchestration-acknowledging-reply`. The first line of the old Criterion is not carried
+      word for word on purpose, since it put the `LEDGER` block first with nothing before it. Its `purpose`,
+      four parts in order, still holds, and its `method`, a reading of an acknowledging reply, reads the
+      new line too, so both stand. `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
+      keeps the four parts for the reply of `/sprint-open`, which comes before `/pre-spec`, so it stands.
+      A Grep of `four parts|block first|asks nothing|ends with the Frontier` over `vault/wiki/` printed
+      11 files: `orchestration.md` and `rule-orchestration.md`, whose section this Case changes and whose
+      defer reply and reply that closes a Frontier line after `/pre-spec` ask nothing and wait for nobody,
+      so they stand; the two Estimates above; `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      and `estimate-orchestration-defers-in-one-reply`, on replies that wait for nobody, which stand;
+      `log.md` and History lines of `rule-case-protocol.md`, not read; and `rule-case-build.md`, `rule-ledger-write.md`
+      and `estimate-guppi-package-is-ready-after-the-install.md`, whose hits speak of a lesson or an install,
+      not of this reply. Case 991.1 of this session, built at the same time, changes `rule-orchestration`
+      in the closers of Frontier lines in `## Plan Mode and the Frontier`, `## The short form — deferred
+      decisions` and the take-back sentence of `## Showing and signing a Case`; its finished file was
+      read. This Case touches only `## The acknowledging reply`, whose old text matches once on the page,
+      and no `old` of either Case falls in the text of the other. The new texts agree: the closers of
+      lines put off that the acknowledging reply lists are those Case 991.1 gives a line whose Case ends
+      nothing, and the defer reply and the take-back reply that Cases 991.3 and 991.4 keep ask nothing
+      after `/pre-spec` and wait for nobody, so they need no `STOP:` line. No test reads `rule-prespec-onward`,
+      the two Estimates or that section live: `.guppi/tests/test_orchestration.py` reads only the blocks
+      tagged `showing` and `defer` of `orchestration.md`, which this Case leaves alone. The line of Case
+      992.2 that no tool call follows the `LEDGER` block shares words with the line of Case 992.1 on a
+      spent refusal, but the two state different behaviours of different texts, the order of a reply and
+      the judgment of a hook, so both stand.
+
+
+      In `.guppi/links.md`, the blocks of `rule-prespec-onward`, `rule-orchestration`, both Estimates,
+      `.guppi/guppi/onward.py` and `.guppi/tests/test_onward.py` name `rule-ledger-write`, `rule-spec-write`,
+      `rule-case-check`, `rule-prespec`, `rule-retro-onward` and the other Estimates of `rule-orchestration`
+      among their neighbours; none sets a `STOP:` line before a showing or a `LEDGER` block, so none is
+      made false. The last `uv run --project .guppi guppi test` printed 1896 passed, 6 skipped, 1 deselected
+      (`brief.md`, `## Readings at the close`). The lesson L35 belongs to session 2026-11-01/1721, so
+      this Case gives it no mark; the ledger of this session holds no `error` lesson.'
+  parent: decision-case-992
+  spec: vault/raw/2026-11-01/2038/spec.md
+  supersedes:
+  - decision-case-990
+  applied: '21:39:04'
+- case: '992.2'
+  decision: decision-case-992.2
+  origin: raw/2026-11-01/2038/ledger.md#case-992.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  - kind: update
+    category: estimates
+    slug: estimate-orchestration-acknowledging-reply
+    ref: rule-orchestration
+  tags: []
+  case_text:
+    given: '`rule-orchestration`: its `## The acknowledging reply` sets the parts of that reply and their
+      order.
+
+      **＋** `estimate-orchestration-acknowledging-reply`: its Criterion is replaced whole.
+
+      **＋** `vault/wiki/orchestration.md`: the Render of `rule-orchestration`, which the main agent reads.
+
+      **＋** `rule-prespec-onward`: the hook that lets a reply after `/pre-spec` end when it opens with
+      `STOP:`.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`: the Frontier the reply shows.
+
+      **＋** `rule-ledger-write`: the ledger hook that writes the `LEDGER` block.
+
+      **＋** `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`: sets the decision line
+      the ledger hook holds.'
+    when: The person ratifies a Case, ratifies again a Case shown again after its ratification, or ratifies
+      in one answer Cases shown together, and the agent writes the reply that acknowledges it, with `vault/wiki/orchestration.md`
+      rendered from `rule-orchestration`.
+    then: 'The reply has four parts, in this order. First, the `LEDGER` block, before which stands only
+      the `STOP:` line of a reply that waits for the person''s word after `/pre-spec`. Second, the heading
+      `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences.
+      Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none.
+      Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist.
+
+      **＋** In the checklist the closed lines are folded into one line, and the lines put off stand as
+      `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
+
+      **＋** The open `W` lines are folded into one line that lists their ids, and each other open line
+      stands on its own line with a short title.
+
+      **＋** While a line under `## Cases` is open, the question which item is next ends the reply.
+
+      **＋** When none is open before `/pre-spec`, the question whether to go on to `/pre-spec` ends the
+      reply, in the plain form of the question which item is next. The agent calls `/pre-spec` only after
+      the person says to go on. A reply that answers a question of the person instead ends with the same
+      question again.
+
+      **＋** When none is open after `/pre-spec`, the reply ends with the Frontier and asks nothing, and
+      the hook of `rule-prespec-onward` sends the agent on.
+
+      **＋** But a reply after `/pre-spec` that waits for the person''s word, such as one that acknowledges
+      some Cases while another Case shown waits for the person, opens with a line that opens with `STOP:`,
+      puts the `LEDGER` block right after that line, and ends with its question to the person, so that
+      the hook lets it end.
+
+      **＋** One reply acknowledges every Case and sub-case ratified in one answer, a Case with its sub-cases
+      or Cases shown together for one ratification: one `LEDGER` block with all their lines, one heading
+      `## Case N — ratified` that names their ids, one paragraph `Changes:`, one Frontier.
+
+      **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision
+      lines of each Case ratified again, as at its first ratification.
+
+      **＋** The headings and labels are in the language of the chat.
+
+      **＋** No tool call follows the `LEDGER` block in the same reply.
+
+      **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
+
+      **－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply with
+      exit 2, the agent''s answer to the refusal is a reply of its own and may call tools. The `LEDGER`
+      block stands written, but for a decision line the ledger hook holds, as `estimate-ledger-write-holds-a-decision-line-off-the-stored-case`
+      sets it.'
+    context: 'This Case replaces Case 990 whole after the check of `/pre-spec`. After `/pre-spec`, the
+      `Stop` hook of `rule-prespec-onward`, `uv run --project .guppi guppi onward --plan`, sends the agent
+      on at the end of a reply. Each of its three reasons — `to_out`, `TO_EXIT` and `TO_LOOP` of `.guppi/guppi/onward.py`
+      — ends with the same text, `ONLY_THE_PERSON`: when a Case waits only for the person''s word, open
+      the reply with `STOP:`. The check of `rule-case-check` wants nothing before a shown Case but a horizontal
+      rule, and a round must open with its first question or its Context label. In session 2026-11-01/1721
+      the hook sent this text after a ratification (transcript `cb575daf-7b4e-455c-a22c-1fcffcbdc234.jsonl`,
+      line 1148). Case 987 was then built again on a finding of the check of the plan and shown with a
+      first line that opened with `STOP:` and said, in Russian, that Case 987 waited for ratification
+      (line 1173). `uv run --project .guppi guppi casecheck --prompt` noted that text before the Case
+      at the person''s next message (line 1182). No refusal of the hook stands after that showing in the
+      transcript. `plan_onward` of `.guppi/guppi/onward.py`, read whole, returns no reason for a reply
+      that opens with `STOP:`, and none for a reply when `ledger_lines` of `.guppi/guppi/ledger.py` finds
+      no `LEDGER` block in it and `sent_back_last` finds no refusal of the ledger hook on the reply that
+      ended just before it. `outside_the_list` and `round_opening` of `.guppi/guppi/casecheck.py`, read
+      whole, take any line before the first Case heading, and any first line of a shown round that opens
+      neither with the question mark nor with a bold label, as a fault. A showing or a round carries no
+      `LEDGER` block, so only the text of the reasons asked for the `STOP:` line there.
+
+
+      Case 990 narrowed that text, as the person chose. The check of `/pre-spec` then found two faults.
+      First, after `/pre-spec` the reply that acknowledges a ratification carries a `LEDGER` block, and
+      when it waits for the person it must open with `STOP:`, while `## The acknowledging reply` of `rule-orchestration`
+      puts the `LEDGER` block first, and Case 990 named neither that page nor `estimate-orchestration-acknowledging-reply`.
+      The person chose that such a reply opens with the `STOP:` line and puts the `LEDGER` block right
+      after it, with the hook unchanged. Second, the new text of the Purpose of `rule-prespec-onward`
+      followed the sentence on a Case still out alone, while `ONLY_THE_PERSON` ends each of the three
+      reasons. The new Purpose text now names each reason. The person chose one Case with two parts in
+      place of Case 990, so each decision line carries `{supersedes:case 990}`, and the file of Case 990
+      stands.
+
+
+      Case 992.1 changes the text the hook adds and replaces the Criterion of `estimate-prespec-onward-sends-the-agent-on`.
+      Two lines of the old Criterion are not carried word for word on purpose: the line on what each reason
+      adds, and the line on a reply with no `LEDGER` block, which now names a shown Case among such replies.
+      Its `purpose` and `method` do not state the old text, so they stand. The Criterion of `estimate-prespec-onward-tells-the-loop-from-its-end`
+      points to that Estimate for the added text, so it stands. A Grep of `waits only for the person|open
+      (your|the|its) reply with ``?STOP` over `vault/wiki/`, `.claude/` and `.guppi/guppi/` printed 7
+      files: `.guppi/guppi/onward.py`, `rule-prespec-onward.md` and `estimate-prespec-onward-sends-the-agent-on.md`,
+      which tasks change; the lesson of L35, a record that stands; and `.claude/skills/retro/SKILL.md`,
+      `rule-retro.md` and `estimate-retro-onward-sends-the-agent-to-the-handoff.md`, which set `STOP:`
+      for the reply that ends Retro, where no Case is shown, so they stand, as does `REASON` of `.guppi/guppi/onward.py`
+      for `rule-retro-onward`. A Grep of `ONLY_THE_PERSON|STOP` over `.guppi/tests/` printed one file,
+      `.guppi/tests/test_onward.py`; its tests assert that `ONLY_THE_PERSON` holds `STOP:`, `orchestration.md`,
+      `case-guppi has not answered` and `waits only for the person''s word`, and the new text keeps each
+      of them.
+
+
+      Case 992.2 changes `## The acknowledging reply` of `rule-orchestration` and replaces the Criterion
+      of `estimate-orchestration-acknowledging-reply`. The first line of the old Criterion is not carried
+      word for word on purpose, since it put the `LEDGER` block first with nothing before it. Its `purpose`,
+      four parts in order, still holds, and its `method`, a reading of an acknowledging reply, reads the
+      new line too, so both stand. `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
+      keeps the four parts for the reply of `/sprint-open`, which comes before `/pre-spec`, so it stands.
+      A Grep of `four parts|block first|asks nothing|ends with the Frontier` over `vault/wiki/` printed
+      11 files: `orchestration.md` and `rule-orchestration.md`, whose section this Case changes and whose
+      defer reply and reply that closes a Frontier line after `/pre-spec` ask nothing and wait for nobody,
+      so they stand; the two Estimates above; `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      and `estimate-orchestration-defers-in-one-reply`, on replies that wait for nobody, which stand;
+      `log.md` and History lines of `rule-case-protocol.md`, not read; and `rule-case-build.md`, `rule-ledger-write.md`
+      and `estimate-guppi-package-is-ready-after-the-install.md`, whose hits speak of a lesson or an install,
+      not of this reply. Case 991.1 of this session, built at the same time, changes `rule-orchestration`
+      in the closers of Frontier lines in `## Plan Mode and the Frontier`, `## The short form — deferred
+      decisions` and the take-back sentence of `## Showing and signing a Case`; its finished file was
+      read. This Case touches only `## The acknowledging reply`, whose old text matches once on the page,
+      and no `old` of either Case falls in the text of the other. The new texts agree: the closers of
+      lines put off that the acknowledging reply lists are those Case 991.1 gives a line whose Case ends
+      nothing, and the defer reply and the take-back reply that Cases 991.3 and 991.4 keep ask nothing
+      after `/pre-spec` and wait for nobody, so they need no `STOP:` line. No test reads `rule-prespec-onward`,
+      the two Estimates or that section live: `.guppi/tests/test_orchestration.py` reads only the blocks
+      tagged `showing` and `defer` of `orchestration.md`, which this Case leaves alone. The line of Case
+      992.2 that no tool call follows the `LEDGER` block shares words with the line of Case 992.1 on a
+      spent refusal, but the two state different behaviours of different texts, the order of a reply and
+      the judgment of a hook, so both stand.
+
+
+      In `.guppi/links.md`, the blocks of `rule-prespec-onward`, `rule-orchestration`, both Estimates,
+      `.guppi/guppi/onward.py` and `.guppi/tests/test_onward.py` name `rule-ledger-write`, `rule-spec-write`,
+      `rule-case-check`, `rule-prespec`, `rule-retro-onward` and the other Estimates of `rule-orchestration`
+      among their neighbours; none sets a `STOP:` line before a showing or a `LEDGER` block, so none is
+      made false. The last `uv run --project .guppi guppi test` printed 1896 passed, 6 skipped, 1 deselected
+      (`brief.md`, `## Readings at the close`). The lesson L35 belongs to session 2026-11-01/1721, so
+      this Case gives it no mark; the ledger of this session holds no `error` lesson.'
+  parent: decision-case-992
+  spec: vault/raw/2026-11-01/2038/spec.md
+  supersedes:
+  - decision-case-990
+  applied: '21:39:04'
+- case: '991.3'
+  decision: decision-case-991.3
+  origin: raw/2026-11-01/2038/ledger.md#case-991.3
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-orchestration-takes-back-a-ratified-case
+    ref: rule-orchestration
+  tags: []
+  case_text:
+    given: '`rule-orchestration`: renders `vault/wiki/orchestration.md`, which sets the take-back of a
+      ratified Case.
+
+      **＋** `estimate-orchestration-takes-back-a-ratified-case`: its Criterion is replaced whole.
+
+      **＋** `raw/<date>/<hi HHMM>/ledger.md`: the ledger that holds the decision lines of the Case taken
+      back.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`: the Frontier whose line changes.
+
+      **＋** `raw/<date>/<hi HHMM>/cases/`: the folder of the case files.
+
+      **＋** `.guppi/guppi/generate.py`: adds the short Case to the `deferred_by` of each page.
+
+      **＋** `vault/wiki/backlog.md`: lists each page put off.
+
+      **＋** `rule-spec-write`: its `Stop` hook writes the short Case and removes the Case taken back.
+
+      **＋** `case-guppi`: the agent that is not dispatched for the short Case.
+
+      **＋** `/pre-spec`: the step before and after which the reply ends differently.'
+    when: In Plan Mode, with `vault/wiki/orchestration.md` rendered from `rule-orchestration`, the person
+      asks in the chat to take back a Case of the session that has a decision line in `raw/<date>/<hi
+      HHMM>/ledger.md`, whole or one of its sub-cases.
+    then: 'In the same reply the main agent shows a short Case of its own in the form of a deferred decision,
+      with no dispatch of `case-guppi`, and carries its `LEDGER` block, with no tool call after it.
+
+      **＋** The block holds one `defer` line for each rule, entity and insight page the Case taken back
+      names, one for each Estimate it updates, and one for the page that each Estimate it updates checks
+      or each Estimate it creates would check, once per page; each line carries `{supersedes:case N}`
+      for the Case or sub-case taken back.
+
+      **＋** At the librarian''s run, `.guppi/guppi/generate.py` adds the short Case to the `deferred_by`
+      of each rule, entity and insight page a `defer` line names, and each such page stands in `vault/wiki/backlog.md`,
+      also when the Case taken back changed only existing Estimates.
+
+      **＋** The `context` of the short Case names the Case taken back and each Estimate that Case creates;
+      the person''s words asking for the take-back are its ratification, and no question asks for it.
+
+      **＋** The `Stop` hook of `rule-spec-write` writes the short Case under `## Deferred` and removes
+      the Case taken back from the plan file.
+
+      **＋** When no part of the Case stays in the plan, the line of its item in `raw/<date>/<hi HHMM>/frontier.md`
+      changes in the same reply from the closer it stands with to `[-] … · sprint · defer` for an item
+      of the sprint, `[-] … · backlog · kept` for an item of the backlog, or `[-] … · defer case M` of
+      the short Case for any other source, and a line that already stands with that closer stays as it
+      is.
+
+      **＋** The reply ends as the reply that carries a defer: the Frontier with the line closed by that
+      closer, then the question which open item is next, or before `/pre-spec` the question whether to
+      go on to `/pre-spec`, or after `/pre-spec` no question.
+
+      **－** The file of the Case taken back under `raw/<date>/<hi HHMM>/cases/` is not emptied, and no
+      `case-guppi` undoes it.
+
+      **－** In Work Mode no Case is taken back: the main agent tells the person that the ratified Case
+      stands, and that a Case of a later session may replace it.'
+    context: 'The main agent closes a line of the session''s Frontier, `raw/<date>/<hi HHMM>/frontier.md`,
+      in the reply that ends its item. `vault/wiki/orchestration.md` and `.claude/skills/hi/SKILL.md`
+      say that a line closes `[x] … · case N` when Case N is ratified. The check of `/pre-spec` asks for
+      more. `check_frontier`, `updates_the_sprint`, `check_backlog_line`, `deferred_pages` and `decided_on_its_page`
+      of `.guppi/guppi/prespec.py`, read whole, refuse a sprint line closed `· case N` when no `update`
+      of the sprint page stands under Case N or a sub-case. For a backlog line closed `· case N`, they
+      judge only each page of its title that carries `deferred_by`. `deferred_pages` leaves out a page
+      without that field, such as an open Insight. Such a line is refused when no decision line of Case
+      N other than a `defer` names the page, or when no Case among Case N and its sub-cases that names
+      the page carries `{supersedes:case M}` for each Case M of the page''s `deferred_by`. The agent followed
+      the shorter text in three sessions, and each time the check refused the line: session 2026-10-10/1913
+      closed a milestone line by Case 769, which updated no sprint page; session 2026-10-30/1713 closed
+      a backlog line by Case 934, which only deferred its page again; and session 2026-11-01/1721 closed
+      the backlog line of `rule-ratification` by Case 988, in which the person kept the defer. The librarian
+      clustered these three lessons in `insight-frontier-line-closed-by-the-case-built-on-its-item`.
+
+
+      The person chose to fix the text the agent reads, with no new hook. Both texts now state that a
+      Case ends its item only by its decision lines, and that a line whose Case ends nothing closes as
+      the item put off. A sprint line whose Case updates no sprint page closes `[-] … · sprint · defer`,
+      and the decision lines of that Case stand. The text names what the check judges: the sprint page,
+      and a backlog page that carries `deferred_by`. An open Insight of the backlog ends by an `update`
+      of its page, as `rule-insights-schema` sets it, and as Case 991.1 itself does. Any other item ends
+      by its ratification, which no check judges. The texts no longer say that a closer of an item put
+      off comes with no Case at all; they say the item gets no short Case and no ledger line of its own.
+      This holds in `## Plan Mode and the Frontier` and `## The short form — deferred decisions` of `rule-orchestration`,
+      and in `rule-skill-hi`. The take-back sentence of `## Showing and signing a Case` now changes the
+      line from the closer it stands with, since after this Case a line can already stand as put off when
+      its Case is taken back. Case 991.1 also creates `estimate-orchestration-closes-a-line-by-what-its-case-does`
+      and marks the Insight `actioned`. The Insight has no `deferred_by`, so no `{supersedes}` mark applies.
+
+
+      Three Estimates had one line each that the change makes false, so three sub-cases replace their
+      Criteria whole, with each other line kept word for word. Case 991.2 does this for `estimate-hi-writes-frontier`.
+      Its `method` waits for the person''s answer after the close of a sprint, but it opened `by hand:`,
+      a form that `case-schema.md` does not take as a wait for an event, since only a part that opens
+      with `after`, or `by hand, after`, and names its event before a colon is such a wait (case 781).
+      So 991.2 also sets that `method` anew in the form `by hand, after <event>: …`, with the same meaning,
+      and its `read` line stays: the Retro of this session leaves the Estimate `pending` until that event.
+      Case 991.3 does it for `estimate-orchestration-takes-back-a-ratified-case`, and Case 991.4 for `estimate-orchestration-defers-in-one-reply`.
+      The `purpose` and `method` of those two do not state the old line, so they stand, and `estimate-hi-writes-frontier`
+      has no `purpose`. These were findings of `/pre-spec` on the Case as first ratified.
+
+
+      These stand. `estimate-orchestration-closes-a-backlog-item-deferred-again` says an item left as
+      it stands with no Case closes `kept`, but not that only such an item does, so it stays true. `estimate-orchestration-acknowledging-reply`
+      only lists the closers. `estimate-orchestration-shows-the-frontier-after-a-closed-line` and the
+      matching sentence of `orchestration.md` speak of a reply that closes a line with no ratification.
+      A line closed as put off in the reply that ratifies its Case is closed in the acknowledging reply,
+      which already shows the Frontier. `estimate-prespec-checks-the-frontier` and `estimate-prespec-requires-a-backlog-item-decided-on-its-page`
+      check what the new text names for a sprint item and for a backlog page that carries `deferred_by`,
+      and the check does not change. `estimate-prespec-binds-a-sprint-line` says that an item closed `·
+      sprint · defer` stays in its milestone until `generate` moves it after three such sessions in a
+      row. A Grep of `in a row|three sessions` over `.guppi/guppi/` printed `.guppi/guppi/check.py` and
+      `.guppi/guppi/powershellguard.py`, neither of them about such a move, so no code makes it. The closer
+      `· sprint · defer` for a sprint line whose Case updates no sprint page is also what the check accepted
+      and what the lesson of session 2026-10-10/1913 found before this Case. So that line is no more false
+      than it was, and it stands for a Case of its own.
+
+
+      The blocks in `.guppi/links.md` of `rule-orchestration`, `rule-skill-hi`, `vault/wiki/orchestration.md`,
+      `.claude/skills/hi/SKILL.md`, the Insight and the three Estimates name `rule-prespec`, `rule-backlog`,
+      `rule-sprint`, `rule-spec-write`, `rule-prespec-onward` and `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      among their neighbours. None of them sets the closer by a Case in other words. Case 992 of this
+      session replaces Case 990 whole, and its finished file was read. Case 992.2 changes `rule-orchestration`
+      only in `## The acknowledging reply` and replaces the Criterion of `estimate-orchestration-acknowledging-reply`.
+      This Case keeps its pairs to the closer passages of three other sections, so no `old` of either
+      Case falls in the text of the other. The new texts agree. In Case 992.2, the acknowledging reply
+      shows lines put off as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case
+      N`, and these are the closers that Case 991.1 gives a line whose Case ends nothing, in the reply
+      that carries the decision lines of that Case. The `STOP:` line that Case 992.2 sets before the `LEDGER`
+      block of a reply that waits for the person after `/pre-spec` changes no closer. The defer reply
+      and the reply that closes a line with no ratification, which Cases 991.3 and 991.4 keep, wait for
+      nobody, as Case 992 also finds. A Grep of `when ratified|no Case but|no Case, no ledger line|needs
+      none closes|937\.2` over `.guppi/tests/` printed nothing, so no test reads the changed sentences.
+      No code changes, so no judgment gets a second copy. The ledger of this session holds no `error`
+      lesson. The three lessons belong to earlier sessions, so this Case gives them no mark.'
+  parent: decision-case-991
+  spec: vault/raw/2026-11-01/2038/spec.md
+  applied: '21:39:04'
+- case: '991.4'
+  decision: decision-case-991.4
+  origin: raw/2026-11-01/2038/ledger.md#case-991.4
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-orchestration-defers-in-one-reply
+    ref: rule-orchestration
+  tags: []
+  case_text:
+    given: '`rule-orchestration`: renders `vault/wiki/orchestration.md`, which sets the short form of
+      a deferred decision.
+
+      **＋** `estimate-orchestration-defers-in-one-reply`: its Criterion is replaced whole.
+
+      **＋** `raw/<date>/<hi HHMM>/frontier.md`: the Frontier whose line closes.
+
+      **＋** `raw/<date>/<hi HHMM>/ledger.md`: the ledger of the session.
+
+      **＋** `raw/<date>/<hi HHMM>/handoff.md`: where Retro puts what it would put off.
+
+      **＋** `rule-spec-write`: its `Stop` hook writes the short Case.
+
+      **＋** `rule-prespec-onward`: its hook sends the agent on after `/pre-spec`.
+
+      **＋** `case-guppi`: the agent whose Case is dropped before the defer.
+
+      **＋** `estimate-orchestration-takes-back-a-ratified-case`: the moment of a take-back.
+
+      **＋** `estimate-orchestration-shows-the-frontier-after-a-closed-line`: the moment of a line closed
+      with no ratification and no defer.'
+    when: 'In Plan Mode, the person asks in the chat to put off a decision: an item of `raw/<date>/<hi
+      HHMM>/frontier.md` whose source is neither the sprint nor the backlog, with `vault/wiki/orchestration.md`
+      rendered from `rule-orchestration`.'
+    then: 'In the same reply the agent shows the Case in the short form — `context`, `problem` and a fence
+      tagged `then` with one `defer` item per target, no other section — and carries its `LEDGER` block,
+      one `defer` line per target, with no tool call after it.
+
+      **＋** The agent writes nothing of the Case into the plan file: the `Stop` hook of `rule-spec-write`
+      writes it.
+
+      **＋** The person''s words asking for the defer are its ratification: no question asks for it.
+
+      **＋** The reply shows the Frontier of `raw/<date>/<hi HHMM>/frontier.md` after the Case, with the
+      line of the item closed `[-] … · defer case N`.
+
+      **＋** While a line under `## Cases` of `raw/<date>/<hi HHMM>/frontier.md` is open, a question follows
+      the Frontier and ends the reply: which open item is next.
+
+      **＋** When no line under `## Cases` is open before `/pre-spec`, the question whether to go on to
+      `/pre-spec` follows the Frontier and ends the reply. The agent calls `/pre-spec` only after the
+      person says to go on.
+
+      **＋** When no line under `## Cases` is open after `/pre-spec`, no question follows: the reply ends
+      with the Frontier, and the hook of `rule-prespec-onward` sends the agent on with the loop after
+      the findings.
+
+      **＋** A wording the person corrects is a new short Case with `{supersedes:case N}` on its line,
+      shown the same way.
+
+      **＋** When the item has a Case that `case-guppi` built and that has no decision line in `raw/<date>/<hi
+      HHMM>/ledger.md`, the drop goes to that `case-guppi` first and the turn of the person''s words ends
+      with one `**Waiting:**` line; the short Case, its `LEDGER` block and the Frontier come in the turn
+      that the answer `**Dropped:**` opens.
+
+      **－** No text follows the question, or the Frontier when no question stands.
+
+      **－** Retro writes no short defer: what it would put off is a line of `## For the next session`
+      of `raw/<date>/<hi HHMM>/handoff.md`.
+
+      **－** An item of the sprint put off, its line of `raw/<date>/<hi HHMM>/frontier.md` closed `[-]
+      … · sprint · defer`, and an item of the backlog left as it stands, closed `[-] … · backlog · kept`,
+      are not this moment: they take no short Case and no ledger line of their own but for the short Case
+      of a take-back of a ratified Case, which is the moment of `estimate-orchestration-takes-back-a-ratified-case`,
+      and the decision lines of a Case built on such an item and ratified stand. A reply that closes only
+      such lines with no take-back and no ratification is the moment of `estimate-orchestration-shows-the-frontier-after-a-closed-line`.'
+    context: 'The main agent closes a line of the session''s Frontier, `raw/<date>/<hi HHMM>/frontier.md`,
+      in the reply that ends its item. `vault/wiki/orchestration.md` and `.claude/skills/hi/SKILL.md`
+      say that a line closes `[x] … · case N` when Case N is ratified. The check of `/pre-spec` asks for
+      more. `check_frontier`, `updates_the_sprint`, `check_backlog_line`, `deferred_pages` and `decided_on_its_page`
+      of `.guppi/guppi/prespec.py`, read whole, refuse a sprint line closed `· case N` when no `update`
+      of the sprint page stands under Case N or a sub-case. For a backlog line closed `· case N`, they
+      judge only each page of its title that carries `deferred_by`. `deferred_pages` leaves out a page
+      without that field, such as an open Insight. Such a line is refused when no decision line of Case
+      N other than a `defer` names the page, or when no Case among Case N and its sub-cases that names
+      the page carries `{supersedes:case M}` for each Case M of the page''s `deferred_by`. The agent followed
+      the shorter text in three sessions, and each time the check refused the line: session 2026-10-10/1913
+      closed a milestone line by Case 769, which updated no sprint page; session 2026-10-30/1713 closed
+      a backlog line by Case 934, which only deferred its page again; and session 2026-11-01/1721 closed
+      the backlog line of `rule-ratification` by Case 988, in which the person kept the defer. The librarian
+      clustered these three lessons in `insight-frontier-line-closed-by-the-case-built-on-its-item`.
+
+
+      The person chose to fix the text the agent reads, with no new hook. Both texts now state that a
+      Case ends its item only by its decision lines, and that a line whose Case ends nothing closes as
+      the item put off. A sprint line whose Case updates no sprint page closes `[-] … · sprint · defer`,
+      and the decision lines of that Case stand. The text names what the check judges: the sprint page,
+      and a backlog page that carries `deferred_by`. An open Insight of the backlog ends by an `update`
+      of its page, as `rule-insights-schema` sets it, and as Case 991.1 itself does. Any other item ends
+      by its ratification, which no check judges. The texts no longer say that a closer of an item put
+      off comes with no Case at all; they say the item gets no short Case and no ledger line of its own.
+      This holds in `## Plan Mode and the Frontier` and `## The short form — deferred decisions` of `rule-orchestration`,
+      and in `rule-skill-hi`. The take-back sentence of `## Showing and signing a Case` now changes the
+      line from the closer it stands with, since after this Case a line can already stand as put off when
+      its Case is taken back. Case 991.1 also creates `estimate-orchestration-closes-a-line-by-what-its-case-does`
+      and marks the Insight `actioned`. The Insight has no `deferred_by`, so no `{supersedes}` mark applies.
+
+
+      Three Estimates had one line each that the change makes false, so three sub-cases replace their
+      Criteria whole, with each other line kept word for word. Case 991.2 does this for `estimate-hi-writes-frontier`.
+      Its `method` waits for the person''s answer after the close of a sprint, but it opened `by hand:`,
+      a form that `case-schema.md` does not take as a wait for an event, since only a part that opens
+      with `after`, or `by hand, after`, and names its event before a colon is such a wait (case 781).
+      So 991.2 also sets that `method` anew in the form `by hand, after <event>: …`, with the same meaning,
+      and its `read` line stays: the Retro of this session leaves the Estimate `pending` until that event.
+      Case 991.3 does it for `estimate-orchestration-takes-back-a-ratified-case`, and Case 991.4 for `estimate-orchestration-defers-in-one-reply`.
+      The `purpose` and `method` of those two do not state the old line, so they stand, and `estimate-hi-writes-frontier`
+      has no `purpose`. These were findings of `/pre-spec` on the Case as first ratified.
+
+
+      These stand. `estimate-orchestration-closes-a-backlog-item-deferred-again` says an item left as
+      it stands with no Case closes `kept`, but not that only such an item does, so it stays true. `estimate-orchestration-acknowledging-reply`
+      only lists the closers. `estimate-orchestration-shows-the-frontier-after-a-closed-line` and the
+      matching sentence of `orchestration.md` speak of a reply that closes a line with no ratification.
+      A line closed as put off in the reply that ratifies its Case is closed in the acknowledging reply,
+      which already shows the Frontier. `estimate-prespec-checks-the-frontier` and `estimate-prespec-requires-a-backlog-item-decided-on-its-page`
+      check what the new text names for a sprint item and for a backlog page that carries `deferred_by`,
+      and the check does not change. `estimate-prespec-binds-a-sprint-line` says that an item closed `·
+      sprint · defer` stays in its milestone until `generate` moves it after three such sessions in a
+      row. A Grep of `in a row|three sessions` over `.guppi/guppi/` printed `.guppi/guppi/check.py` and
+      `.guppi/guppi/powershellguard.py`, neither of them about such a move, so no code makes it. The closer
+      `· sprint · defer` for a sprint line whose Case updates no sprint page is also what the check accepted
+      and what the lesson of session 2026-10-10/1913 found before this Case. So that line is no more false
+      than it was, and it stands for a Case of its own.
+
+
+      The blocks in `.guppi/links.md` of `rule-orchestration`, `rule-skill-hi`, `vault/wiki/orchestration.md`,
+      `.claude/skills/hi/SKILL.md`, the Insight and the three Estimates name `rule-prespec`, `rule-backlog`,
+      `rule-sprint`, `rule-spec-write`, `rule-prespec-onward` and `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      among their neighbours. None of them sets the closer by a Case in other words. Case 992 of this
+      session replaces Case 990 whole, and its finished file was read. Case 992.2 changes `rule-orchestration`
+      only in `## The acknowledging reply` and replaces the Criterion of `estimate-orchestration-acknowledging-reply`.
+      This Case keeps its pairs to the closer passages of three other sections, so no `old` of either
+      Case falls in the text of the other. The new texts agree. In Case 992.2, the acknowledging reply
+      shows lines put off as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case
+      N`, and these are the closers that Case 991.1 gives a line whose Case ends nothing, in the reply
+      that carries the decision lines of that Case. The `STOP:` line that Case 992.2 sets before the `LEDGER`
+      block of a reply that waits for the person after `/pre-spec` changes no closer. The defer reply
+      and the reply that closes a line with no ratification, which Cases 991.3 and 991.4 keep, wait for
+      nobody, as Case 992 also finds. A Grep of `when ratified|no Case but|no Case, no ledger line|needs
+      none closes|937\.2` over `.guppi/tests/` printed nothing, so no test reads the changed sentences.
+      No code changes, so no judgment gets a second copy. The ledger of this session holds no `error`
+      lesson. The three lessons belong to earlier sessions, so this Case gives them no mark.'
+  parent: decision-case-991
+  spec: vault/raw/2026-11-01/2038/spec.md
+  applied: '21:39:04'
+- case: '991'
+  decision: decision-case-991
+  origin: raw/2026-11-01/2038/ledger.md#case-991
+  children:
+  - decision-case-991.1
+  - decision-case-991.2
+  - decision-case-991.3
+  - decision-case-991.4
+  tags:
+  - session
+  - workflow
+  case_text:
+    context: 'The main agent closes a line of the session''s Frontier, `raw/<date>/<hi HHMM>/frontier.md`,
+      in the reply that ends its item. `vault/wiki/orchestration.md` and `.claude/skills/hi/SKILL.md`
+      say that a line closes `[x] … · case N` when Case N is ratified. The check of `/pre-spec` asks for
+      more. `check_frontier`, `updates_the_sprint`, `check_backlog_line`, `deferred_pages` and `decided_on_its_page`
+      of `.guppi/guppi/prespec.py`, read whole, refuse a sprint line closed `· case N` when no `update`
+      of the sprint page stands under Case N or a sub-case. For a backlog line closed `· case N`, they
+      judge only each page of its title that carries `deferred_by`. `deferred_pages` leaves out a page
+      without that field, such as an open Insight. Such a line is refused when no decision line of Case
+      N other than a `defer` names the page, or when no Case among Case N and its sub-cases that names
+      the page carries `{supersedes:case M}` for each Case M of the page''s `deferred_by`. The agent followed
+      the shorter text in three sessions, and each time the check refused the line: session 2026-10-10/1913
+      closed a milestone line by Case 769, which updated no sprint page; session 2026-10-30/1713 closed
+      a backlog line by Case 934, which only deferred its page again; and session 2026-11-01/1721 closed
+      the backlog line of `rule-ratification` by Case 988, in which the person kept the defer. The librarian
+      clustered these three lessons in `insight-frontier-line-closed-by-the-case-built-on-its-item`.
+
+
+      The person chose to fix the text the agent reads, with no new hook. Both texts now state that a
+      Case ends its item only by its decision lines, and that a line whose Case ends nothing closes as
+      the item put off. A sprint line whose Case updates no sprint page closes `[-] … · sprint · defer`,
+      and the decision lines of that Case stand. The text names what the check judges: the sprint page,
+      and a backlog page that carries `deferred_by`. An open Insight of the backlog ends by an `update`
+      of its page, as `rule-insights-schema` sets it, and as Case 991.1 itself does. Any other item ends
+      by its ratification, which no check judges. The texts no longer say that a closer of an item put
+      off comes with no Case at all; they say the item gets no short Case and no ledger line of its own.
+      This holds in `## Plan Mode and the Frontier` and `## The short form — deferred decisions` of `rule-orchestration`,
+      and in `rule-skill-hi`. The take-back sentence of `## Showing and signing a Case` now changes the
+      line from the closer it stands with, since after this Case a line can already stand as put off when
+      its Case is taken back. Case 991.1 also creates `estimate-orchestration-closes-a-line-by-what-its-case-does`
+      and marks the Insight `actioned`. The Insight has no `deferred_by`, so no `{supersedes}` mark applies.
+
+
+      Three Estimates had one line each that the change makes false, so three sub-cases replace their
+      Criteria whole, with each other line kept word for word. Case 991.2 does this for `estimate-hi-writes-frontier`.
+      Its `method` waits for the person''s answer after the close of a sprint, but it opened `by hand:`,
+      a form that `case-schema.md` does not take as a wait for an event, since only a part that opens
+      with `after`, or `by hand, after`, and names its event before a colon is such a wait (case 781).
+      So 991.2 also sets that `method` anew in the form `by hand, after <event>: …`, with the same meaning,
+      and its `read` line stays: the Retro of this session leaves the Estimate `pending` until that event.
+      Case 991.3 does it for `estimate-orchestration-takes-back-a-ratified-case`, and Case 991.4 for `estimate-orchestration-defers-in-one-reply`.
+      The `purpose` and `method` of those two do not state the old line, so they stand, and `estimate-hi-writes-frontier`
+      has no `purpose`. These were findings of `/pre-spec` on the Case as first ratified.
+
+
+      These stand. `estimate-orchestration-closes-a-backlog-item-deferred-again` says an item left as
+      it stands with no Case closes `kept`, but not that only such an item does, so it stays true. `estimate-orchestration-acknowledging-reply`
+      only lists the closers. `estimate-orchestration-shows-the-frontier-after-a-closed-line` and the
+      matching sentence of `orchestration.md` speak of a reply that closes a line with no ratification.
+      A line closed as put off in the reply that ratifies its Case is closed in the acknowledging reply,
+      which already shows the Frontier. `estimate-prespec-checks-the-frontier` and `estimate-prespec-requires-a-backlog-item-decided-on-its-page`
+      check what the new text names for a sprint item and for a backlog page that carries `deferred_by`,
+      and the check does not change. `estimate-prespec-binds-a-sprint-line` says that an item closed `·
+      sprint · defer` stays in its milestone until `generate` moves it after three such sessions in a
+      row. A Grep of `in a row|three sessions` over `.guppi/guppi/` printed `.guppi/guppi/check.py` and
+      `.guppi/guppi/powershellguard.py`, neither of them about such a move, so no code makes it. The closer
+      `· sprint · defer` for a sprint line whose Case updates no sprint page is also what the check accepted
+      and what the lesson of session 2026-10-10/1913 found before this Case. So that line is no more false
+      than it was, and it stands for a Case of its own.
+
+
+      The blocks in `.guppi/links.md` of `rule-orchestration`, `rule-skill-hi`, `vault/wiki/orchestration.md`,
+      `.claude/skills/hi/SKILL.md`, the Insight and the three Estimates name `rule-prespec`, `rule-backlog`,
+      `rule-sprint`, `rule-spec-write`, `rule-prespec-onward` and `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      among their neighbours. None of them sets the closer by a Case in other words. Case 992 of this
+      session replaces Case 990 whole, and its finished file was read. Case 992.2 changes `rule-orchestration`
+      only in `## The acknowledging reply` and replaces the Criterion of `estimate-orchestration-acknowledging-reply`.
+      This Case keeps its pairs to the closer passages of three other sections, so no `old` of either
+      Case falls in the text of the other. The new texts agree. In Case 992.2, the acknowledging reply
+      shows lines put off as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case
+      N`, and these are the closers that Case 991.1 gives a line whose Case ends nothing, in the reply
+      that carries the decision lines of that Case. The `STOP:` line that Case 992.2 sets before the `LEDGER`
+      block of a reply that waits for the person after `/pre-spec` changes no closer. The defer reply
+      and the reply that closes a line with no ratification, which Cases 991.3 and 991.4 keep, wait for
+      nobody, as Case 992 also finds. A Grep of `when ratified|no Case but|no Case, no ledger line|needs
+      none closes|937\.2` over `.guppi/tests/` printed nothing, so no test reads the changed sentences.
+      No code changes, so no judgment gets a second copy. The ledger of this session holds no `error`
+      lesson. The three lessons belong to earlier sessions, so this Case gives them no mark.'
+    problem: The texts the main agent reads say that a Frontier line closes `· case N` when its Case is
+      ratified, while the check of `/pre-spec` asks that a decision line of that Case end the item. So
+      the agent closes a line that the check then refuses, and the line is closed again.
+    recommend: "- **How the agent learns that a line does not close by its Case**\n  - Recommended: (a)\
+      \ say it in the text the agent reads; no code changes.\n  - Answer: (a).\n- **Which texts carry\
+      \ the rule of the closer**\n  - Recommended: (a) change both `orchestration.md` and the skill `/hi`\
+      \ the same way.\n  - Answer: (a).\n- **How a sprint line closes when its Case updates no sprint\
+      \ page**\n  - Recommended: (a) it closes `[-] … · sprint · defer`, and the decision lines of the\
+      \ Case stand.\n  - Answer: (a).\n- **Which Estimate checks the new text**\n  - Recommended: (a)\
+      \ a new Estimate, `estimate-orchestration-closes-a-line-by-what-its-case-does`, read by hand at\
+      \ the Retro of this session.\n  - Answer: (a).\n- **What happens to the closing line of `estimate-hi-writes-frontier`**\n\
+      \  - Recommended: (a) a sub-case replaces its Criterion whole, with the one false line changed and\
+      \ pointing to `orchestration.md`.\n  - Answer: (a).\n- **Change**\n  - Asked: the findings of `/pre-spec`\
+      \ on the Case as first ratified: the short form and the take-back sentence of `rule-orchestration`,\
+      \ the Criteria of `estimate-orchestration-takes-back-a-ratified-case` and `estimate-orchestration-defers-in-one-reply`,\
+      \ the backlog items the check does not judge, the reading of `estimate-hi-writes-frontier`, and\
+      \ `estimate-prespec-binds-a-sprint-line`.\n  - Taken: 991.1 gains the pairs on the short form and\
+      \ the take-back, and its text and `then` name what the check judges and how an open Insight ends.\
+      \ Cases 991.3 and 991.4 replace the two Criteria. 991.2 keeps its `read` line, which the check of\
+      \ the case file asks for, and the Retro of this session leaves the Estimate `pending`, since its\
+      \ `method` waits for the close of a sprint. The `context` says why `estimate-prespec-binds-a-sprint-line`\
+      \ stands.\n- **Change**\n  - Asked: the person agreed, at the confirmation of the findings of `/pre-spec`,\
+      \ that 991.2 also rewrites the `method` of `estimate-hi-writes-frontier` into the form `by hand,\
+      \ after the reply that acknowledges the opening Case of /sprint-open in the session after the close\
+      \ of a sprint: …`, with the same meaning and the event named before the colon, the Criterion and\
+      \ the task line unchanged.\n  - Taken: the `update` of 991.2 sets that `method` beside `status:\
+      \ pending`, and its `read` line stays."
+  spec: vault/raw/2026-11-01/2038/spec.md
+  applied: '21:39:04'
+- case: '992'
+  decision: decision-case-992
+  origin: raw/2026-11-01/2038/ledger.md#case-992
+  children:
+  - decision-case-992.1
+  - decision-case-992.2
+  tags: []
+  case_text:
+    context: 'This Case replaces Case 990 whole after the check of `/pre-spec`. After `/pre-spec`, the
+      `Stop` hook of `rule-prespec-onward`, `uv run --project .guppi guppi onward --plan`, sends the agent
+      on at the end of a reply. Each of its three reasons — `to_out`, `TO_EXIT` and `TO_LOOP` of `.guppi/guppi/onward.py`
+      — ends with the same text, `ONLY_THE_PERSON`: when a Case waits only for the person''s word, open
+      the reply with `STOP:`. The check of `rule-case-check` wants nothing before a shown Case but a horizontal
+      rule, and a round must open with its first question or its Context label. In session 2026-11-01/1721
+      the hook sent this text after a ratification (transcript `cb575daf-7b4e-455c-a22c-1fcffcbdc234.jsonl`,
+      line 1148). Case 987 was then built again on a finding of the check of the plan and shown with a
+      first line that opened with `STOP:` and said, in Russian, that Case 987 waited for ratification
+      (line 1173). `uv run --project .guppi guppi casecheck --prompt` noted that text before the Case
+      at the person''s next message (line 1182). No refusal of the hook stands after that showing in the
+      transcript. `plan_onward` of `.guppi/guppi/onward.py`, read whole, returns no reason for a reply
+      that opens with `STOP:`, and none for a reply when `ledger_lines` of `.guppi/guppi/ledger.py` finds
+      no `LEDGER` block in it and `sent_back_last` finds no refusal of the ledger hook on the reply that
+      ended just before it. `outside_the_list` and `round_opening` of `.guppi/guppi/casecheck.py`, read
+      whole, take any line before the first Case heading, and any first line of a shown round that opens
+      neither with the question mark nor with a bold label, as a fault. A showing or a round carries no
+      `LEDGER` block, so only the text of the reasons asked for the `STOP:` line there.
+
+
+      Case 990 narrowed that text, as the person chose. The check of `/pre-spec` then found two faults.
+      First, after `/pre-spec` the reply that acknowledges a ratification carries a `LEDGER` block, and
+      when it waits for the person it must open with `STOP:`, while `## The acknowledging reply` of `rule-orchestration`
+      puts the `LEDGER` block first, and Case 990 named neither that page nor `estimate-orchestration-acknowledging-reply`.
+      The person chose that such a reply opens with the `STOP:` line and puts the `LEDGER` block right
+      after it, with the hook unchanged. Second, the new text of the Purpose of `rule-prespec-onward`
+      followed the sentence on a Case still out alone, while `ONLY_THE_PERSON` ends each of the three
+      reasons. The new Purpose text now names each reason. The person chose one Case with two parts in
+      place of Case 990, so each decision line carries `{supersedes:case 990}`, and the file of Case 990
+      stands.
+
+
+      Case 992.1 changes the text the hook adds and replaces the Criterion of `estimate-prespec-onward-sends-the-agent-on`.
+      Two lines of the old Criterion are not carried word for word on purpose: the line on what each reason
+      adds, and the line on a reply with no `LEDGER` block, which now names a shown Case among such replies.
+      Its `purpose` and `method` do not state the old text, so they stand. The Criterion of `estimate-prespec-onward-tells-the-loop-from-its-end`
+      points to that Estimate for the added text, so it stands. A Grep of `waits only for the person|open
+      (your|the|its) reply with ``?STOP` over `vault/wiki/`, `.claude/` and `.guppi/guppi/` printed 7
+      files: `.guppi/guppi/onward.py`, `rule-prespec-onward.md` and `estimate-prespec-onward-sends-the-agent-on.md`,
+      which tasks change; the lesson of L35, a record that stands; and `.claude/skills/retro/SKILL.md`,
+      `rule-retro.md` and `estimate-retro-onward-sends-the-agent-to-the-handoff.md`, which set `STOP:`
+      for the reply that ends Retro, where no Case is shown, so they stand, as does `REASON` of `.guppi/guppi/onward.py`
+      for `rule-retro-onward`. A Grep of `ONLY_THE_PERSON|STOP` over `.guppi/tests/` printed one file,
+      `.guppi/tests/test_onward.py`; its tests assert that `ONLY_THE_PERSON` holds `STOP:`, `orchestration.md`,
+      `case-guppi has not answered` and `waits only for the person''s word`, and the new text keeps each
+      of them.
+
+
+      Case 992.2 changes `## The acknowledging reply` of `rule-orchestration` and replaces the Criterion
+      of `estimate-orchestration-acknowledging-reply`. The first line of the old Criterion is not carried
+      word for word on purpose, since it put the `LEDGER` block first with nothing before it. Its `purpose`,
+      four parts in order, still holds, and its `method`, a reading of an acknowledging reply, reads the
+      new line too, so both stand. `estimate-orchestration-acknowledges-the-opening-with-the-frontier`
+      keeps the four parts for the reply of `/sprint-open`, which comes before `/pre-spec`, so it stands.
+      A Grep of `four parts|block first|asks nothing|ends with the Frontier` over `vault/wiki/` printed
+      11 files: `orchestration.md` and `rule-orchestration.md`, whose section this Case changes and whose
+      defer reply and reply that closes a Frontier line after `/pre-spec` ask nothing and wait for nobody,
+      so they stand; the two Estimates above; `estimate-orchestration-shows-the-frontier-after-a-closed-line`
+      and `estimate-orchestration-defers-in-one-reply`, on replies that wait for nobody, which stand;
+      `log.md` and History lines of `rule-case-protocol.md`, not read; and `rule-case-build.md`, `rule-ledger-write.md`
+      and `estimate-guppi-package-is-ready-after-the-install.md`, whose hits speak of a lesson or an install,
+      not of this reply. Case 991.1 of this session, built at the same time, changes `rule-orchestration`
+      in the closers of Frontier lines in `## Plan Mode and the Frontier`, `## The short form — deferred
+      decisions` and the take-back sentence of `## Showing and signing a Case`; its finished file was
+      read. This Case touches only `## The acknowledging reply`, whose old text matches once on the page,
+      and no `old` of either Case falls in the text of the other. The new texts agree: the closers of
+      lines put off that the acknowledging reply lists are those Case 991.1 gives a line whose Case ends
+      nothing, and the defer reply and the take-back reply that Cases 991.3 and 991.4 keep ask nothing
+      after `/pre-spec` and wait for nobody, so they need no `STOP:` line. No test reads `rule-prespec-onward`,
+      the two Estimates or that section live: `.guppi/tests/test_orchestration.py` reads only the blocks
+      tagged `showing` and `defer` of `orchestration.md`, which this Case leaves alone. The line of Case
+      992.2 that no tool call follows the `LEDGER` block shares words with the line of Case 992.1 on a
+      spent refusal, but the two state different behaviours of different texts, the order of a reply and
+      the judgment of a hook, so both stand.
+
+
+      In `.guppi/links.md`, the blocks of `rule-prespec-onward`, `rule-orchestration`, both Estimates,
+      `.guppi/guppi/onward.py` and `.guppi/tests/test_onward.py` name `rule-ledger-write`, `rule-spec-write`,
+      `rule-case-check`, `rule-prespec`, `rule-retro-onward` and the other Estimates of `rule-orchestration`
+      among their neighbours; none sets a `STOP:` line before a showing or a `LEDGER` block, so none is
+      made false. The last `uv run --project .guppi guppi test` printed 1896 passed, 6 skipped, 1 deselected
+      (`brief.md`, `## Readings at the close`). The lesson L35 belongs to session 2026-11-01/1721, so
+      this Case gives it no mark; the ledger of this session holds no `error` lesson.'
+    problem: After `/pre-spec`, the hook of `rule-prespec-onward` tells the agent to open with `STOP:`
+      any reply in which a Case waits for the person's word, while the check of `rule-case-check` notes
+      any line before a shown Case, and `rule-orchestration` puts the `LEDGER` block first in the acknowledging
+      reply. No text says which one holds, so the agent broke the layout of a showing.
+    recommend: "- **Which side gives way when a reply shows a Case and waits for the person**\n  - Recommended:\
+      \ (a) narrow the hook's message: `STOP:` opens only a reply the hook would send back, one with a\
+      \ `LEDGER` block; a reply that shows a Case or a round keeps the layout of `orchestration.md` with\
+      \ no `STOP:` line; the hook's judgment is unchanged.\n  - Answer: (a).\n- **Change**\n  - Asked:\
+      \ at the check of `/pre-spec`, the person agreed that an acknowledging reply after `/pre-spec` that\
+      \ waits for the person opens with the `STOP:` line and puts the `LEDGER` block right after it, with\
+      \ an update of `rule-orchestration` and the Criterion of `estimate-orchestration-acknowledging-reply`\
+      \ replaced whole, the hook unchanged; and the Purpose of `rule-prespec-onward` was to cover each\
+      \ reason of the hook.\n  - Taken: Case 992.2 sets the order of that reply; the new Purpose text\
+      \ of Case 992.1 names each of the three reasons.\n- **Where the change to the acknowledging reply\
+      \ goes**\n  - Recommended: (a) Case 990 built again under a new number, with two parts, `{supersedes:case\
+      \ 990}` on its decision lines.\n  - Answer: agreed, (a)."
+  spec: vault/raw/2026-11-01/2038/spec.md
+  applied: '21:39:04'
+unparsed: []
+session: '2038'

@@ -1,0 +1,35 @@
+- 17:47:53 decision[case 982.1][update][rule-page-generation]{ref:rule-page-generation}
+- 17:47:53 decision[case 982.1][update][rule-decisions-schema]{ref:rule-decisions-schema}
+- 17:47:53 decision[case 982.1][update][entity-glossary]{ref:entity-glossary}
+- 17:47:53 decision[case 982.1][update][estimate-generate-cascades]{ref:rule-page-generation}
+- 17:47:53 decision[case 982.2][update][estimate-prespec-notes-a-page-the-cascade-archives]{ref:rule-prespec}
+- 17:47:53 decision[case 982.3][update][estimate-close-reports-the-run]{ref:rule-close}{supersedes:case 971}{supersedes:case 976}
+- 17:47:53 decision[case 982.3][update][estimate-handoff-dispatches]{ref:rule-handoff}{supersedes:case 971}{supersedes:case 976}
+- 17:57:56 decision[case 983][update][rule-backlog]{ref:rule-backlog}
+- 17:57:56 decision[case 983][update][estimate-backlog-checks-the-file]{ref:rule-backlog}
+- 18:10:29 decision[case 984][update][rule-orchestration]{ref:rule-orchestration}
+- 18:10:29 decision[case 984][update][estimate-orchestration-names-related-cases-in-the-dispatch]{ref:rule-orchestration}
+- 18:21:36 decision[case 985][update][rule-case-build]{ref:rule-case-build}
+- 18:21:36 decision[case 985][update][estimate-case-build-reads-the-readers-of-a-changed-step]{ref:rule-case-build}
+- 18:36:26 decision[case 986][update][rule-case-build]{ref:rule-case-build}
+- 18:36:26 decision[case 986][update][rule-link-graph-at-session-start]{ref:rule-link-graph-at-session-start}
+- 18:36:26 decision[case 986][update][estimate-case-build-reads-the-link-graph-of-what-it-changes]{ref:rule-case-build}
+- 19:06:14 decision[case 987.1][create][rule-skill-approve-spec]{ref:rule-plan-mode}{tags:session,workflow,harness,plugin,render}
+- 19:06:14 decision[case 987.1][update][rule-spec-capture]{ref:rule-spec-capture}
+- 19:06:14 decision[case 987.1][update][rule-hook-registry]{ref:rule-hook-registry}
+- 19:06:14 decision[case 987.1][update][rule-work-mode]{ref:rule-work-mode}
+- 19:06:14 decision[case 987.1][update][rule-carry-over]{ref:rule-carry-over}
+- 19:06:14 decision[case 987.1][update][rule-spec-box]{ref:rule-spec-box}
+- 19:06:14 decision[case 987.1][update][insight-plugin-cli-withholds-approval-of-a-long-plan]{ref:insight-plugin-cli-withholds-approval-of-a-long-plan}{supersedes:case 957}
+- 19:06:14 decision[case 987.1][create][estimate-skill-approve-spec-takes-the-spec]{ref:rule-skill-approve-spec}{tags:session,workflow,harness,plugin}
+- 19:06:14 decision[case 987.2][update][rule-orchestration]{ref:rule-orchestration}
+- 19:06:14 decision[case 987.2][create][estimate-orchestration-names-the-typed-approval]{ref:rule-orchestration}{tags:session,workflow,harness,plugin}
+- 19:19:26 decision[case 988][update][estimate-ratification-ledger-line-form]{ref:rule-ratification}
+- 19:26:14 decision[case 989][update][rule-spec-box]{ref:rule-spec-box}
+- 19:26:14 decision[case 989][update][estimate-spec-box-runs-a-conserved-spec]{ref:rule-spec-box}
+- 20:12:25 estimate[estimate-generate-cascades][passed] 2026-11-01, Retro of session 1721: uv run --project .guppi pytest .guppi/tests/test_generate.py 154 passed, among them a superseded Decision page that a live page defers by stays superseded, is archived at the run after the last name is cleared, an Insight's addressed_by keeps one, a page standing archived keeps none, and the cascade and the judgment of sprint_close keep the same Decision pages by kept_decisions of generate.py
+- 20:12:25 estimate[estimate-prespec-notes-a-page-the-cascade-archives][passed] 2026-11-01, Retro of session 1721: uv run --project .guppi pytest .guppi/tests/test_prespec.py -k cascade 10 passed, among them a mark on a Decision page that a live page names in deferred_by or addressed_by gives no note, and the same mark gives the note when the Case of the mark names the deferring page; cascade_notes passes kept_decisions over without_cleared to archived_by_cascade
+- 20:12:25 estimate[estimate-backlog-checks-the-file][passed] 2026-11-01, Retro of session 1721: uv run --project .guppi pytest .guppi/tests/test_backlog.py 21 passed, among them --check silent on a file written before the newest session put an item off, red when the put-off of an older session is missing, each Frontier read once by frontier_marks; the live uv run --project .guppi guppi backlog --check exit 0 in Work Mode with C1 and C8 put off in this session's Frontier
+- 20:12:25 estimate[estimate-ratification-ledger-line-form][passed] 2026-11-01, Retro of session 1721: the marked lines of the five archived plugin ledgers the method names — 0232 L15 lesson {addressed_by:case 812.1} after the decision lines of 812.1 (L7-9), the sub-case; 1536 L5 decision {addresses:lesson-ship-example-file-exempt-whole-left-case-pointers} after its lesson (L4); 2104 L51 lesson {addressed_by:case 872.1} after the lines of 872.1 (L25-27); 2307 L35 and L41 decision lines of 884 with one {addresses:...} per lesson after each lesson line (L26, L40), {supersedes:case 876} one block; 2341 L40 lesson {addressed_by:case 914}, a Case with no sub-cases, after L9 — and 1439 L36 of case 629.2 with {supersedes:case 566}{supersedes:case 570} side by side; each mark stands in the LEDGER block of its session's transcript (cfcb07e8, f5b00c55, 563a8403, 392fc00e, 958b7a22, 8b8ce20f) and each decision mark also in the ratification preview there
+- 20:12:34 lesson[error][lesson-frontier-backlog-line-closed-by-a-case-that-keeps-its-defer]{tags:orchestration,session} trigger: in session 1721 the main agent closed the Frontier line C8 of the backlog item rule-ratification as [x] … · backlog · case 988, and the first run of guppi prespec --check printed two frontier findings: no decision line of Case 988 names rule-ratification and none carries {supersedes:case 907}; the agent closed the line [-] … · backlog · kept root_cause: the agent closed a backlog line by the Case built on its item, though the person chose in that Case that the defer of the page stays, and a Case closes a backlog line only when one of its decision lines names the page and retires its defer
+- 20:12:34 lesson[error][lesson-onward-stop-line-before-a-showing-breaks-its-form]{tags:orchestration,hooks,prespec} trigger: in session 1721, after the check of the ratified plan found two pointers in Case 987, its case-guppi built it again, and the hook of rule-prespec-onward said a reply that waits only for the person's word opens with STOP:; the agent opened the showing of Case 987 with a STOP: line, and the check of rule-case-check noted at the person's next message a text of the agent's own before the Case root_cause: the hook of rule-prespec-onward asks every reply that waits for the person's word to open with STOP:, and the check of rule-case-check takes any line before a showing as text outside its list, and no text says which holds for the showing of a Case built again after the check of /pre-spec

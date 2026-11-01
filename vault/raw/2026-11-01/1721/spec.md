@@ -86,13 +86,13 @@ update:
 - [x] `.guppi/guppi/generate.py`: `KEEPERS`, the fields `deferred_by` and `addressed_by`, and one function that gives the slugs of the Decision pages that a page, not a Decision page and not standing `archived`, names in a field of `KEEPERS`; `archived_by_cascade` takes that set and leaves a superseded Decision page in it out of what it archives; `cascade` passes the set read from the pages after all entries; the docstring of the cascade says so.
 - [x] `.guppi/guppi/sprint_close.py`: `judge_decisions` imports `KEEPERS` and the function from `.guppi/guppi/generate.py` over the pages the close does not move, and its own copy of the list leaves.
 - [x] `.guppi/tests/test_generate.py`: a superseded Decision page that a live page names in `deferred_by`, or that an Insight names in `addressed_by`, stays `superseded` under `wiki/decisions/`; it becomes `archived` at the run after the last name is cleared; one test runs the cascade and the judgment of `.guppi/guppi/sprint_close.py` over the same pages and asserts that they keep the same Decision pages.
-- [ ] update `rule-page-generation`
-- [ ] update `rule-decisions-schema`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/decisions/schema.yaml`
-- [ ] update `entity-glossary`
-- [ ] `uv run --project .guppi guppi glossary`
-- [ ] update `estimate-generate-cascades`
-- [ ] read `estimate-generate-cascades`
+- [x] update `rule-page-generation`
+- [x] update `rule-decisions-schema`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/decisions/schema.yaml`
+- [x] update `entity-glossary`
+- [x] `uv run --project .guppi guppi glossary`
+- [x] update `estimate-generate-cascades`
+- [x] read `estimate-generate-cascades`
 ```
 
 ### Case 982.2 — The cascade note of pre-spec reads the same keep
@@ -130,8 +130,8 @@ update:
 ```tasks
 - [x] `.guppi/guppi/prespec.py`: `cascade_notes` reads the kept Decision pages by the function of `.guppi/guppi/generate.py` over the live pages, drops each name in `deferred_by` of a page that a decision line of the Case carrying the mark names, and passes the set to `archived_by_cascade`; the docstring of `cascade_notes` and the paragraph of the module on it say so.
 - [x] `.guppi/tests/test_prespec.py`: a mark on a Decision page that a live page names in `deferred_by` or `addressed_by` gives no note for an `update` of that page; the same mark gives the note when the Case of the mark names the page that carries the `deferred_by`.
-- [ ] update `estimate-prespec-notes-a-page-the-cascade-archives`
-- [ ] read `estimate-prespec-notes-a-page-the-cascade-archives`
+- [x] update `estimate-prespec-notes-a-page-the-cascade-archives`
+- [x] read `estimate-prespec-notes-a-page-the-cascade-archives`
 ```
 
 ### Case 982.3 — The two Estimates leave their archived defers
@@ -160,8 +160,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-close-reports-the-run`
-- [ ] update `estimate-handoff-dispatches`
+- [x] update `estimate-close-reports-the-run`
+- [x] update `estimate-handoff-dispatches`
 ```
 
 ## Case 983 — The backlog check passes the put-offs of the running session
@@ -215,11 +215,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-backlog`
-- [ ] update `estimate-backlog-checks-the-file`
+- [x] update `rule-backlog`
+- [x] update `estimate-backlog-checks-the-file`
 - [x] `.guppi/guppi/backlog.py`: `render` takes the list of sessions as an argument; the branch `--check` of `run` reads `sessions_of` once and passes when the file equals the render of that list or of that list without its first entry; the docstring says so.
 - [x] `.guppi/tests/test_backlog.py`: `--check` is silent on a file written before the newest session put an item off, red when the put-off of an older session is missing from the file, and reads each Frontier once by `frontier_marks`.
-- [ ] read `estimate-backlog-checks-the-file`
+- [x] read `estimate-backlog-checks-the-file`
 ```
 
 ## Case 984 — A change that keeps a check's answer makes no related Case
@@ -275,9 +275,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `estimate-orchestration-names-related-cases-in-the-dispatch`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `estimate-orchestration-names-related-cases-in-the-dispatch`
 - [ ] read `estimate-orchestration-names-related-cases-in-the-dispatch`
 ```
 
@@ -329,9 +329,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-reads-the-readers-of-a-changed-step`
 - [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
 ```
 
@@ -403,10 +403,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `rule-link-graph-at-session-start`
-- [ ] update `estimate-case-build-reads-the-link-graph-of-what-it-changes`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-link-graph-at-session-start`
+- [x] update `estimate-case-build-reads-the-link-graph-of-what-it-changes`
 - [ ] read `estimate-case-build-reads-the-link-graph-of-what-it-changes`
 ```
 
@@ -566,23 +566,23 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-skill-approve-spec`
-- [ ] update `rule-spec-capture`
-- [ ] update `rule-hook-registry`
-- [ ] update `rule-work-mode`
-- [ ] update `rule-carry-over`
-- [ ] update `rule-spec-box`
-- [ ] update `insight-plugin-cli-withholds-approval-of-a-long-plan`
-- [ ] create `estimate-skill-approve-spec-takes-the-spec`
+- [x] create `rule-skill-approve-spec`
+- [x] update `rule-spec-capture`
+- [x] update `rule-hook-registry`
+- [x] update `rule-work-mode`
+- [x] update `rule-carry-over`
+- [x] update `rule-spec-box`
+- [x] update `insight-plugin-cli-withholds-approval-of-a-long-plan`
+- [x] create `estimate-skill-approve-spec-takes-the-spec`
 - [x] `.guppi/guppi/event.py`: the body of `is_hi_prompt` moves into one function that judges a typed prompt for a named command, which `is_hi_prompt` calls with `/hi`.
 - [x] `.guppi/guppi/prespec.py`: the judgment of `gate` moves into one function that returns the reason of a refusal or nothing; `gate` prints that reason as before.
 - [x] `.guppi/guppi/spec.py`: `--typed` on `UserPromptSubmit` reads `/approve-spec` by the function of `event.py` and Plan Mode by `PLAN_MODE`, runs the function of `prespec.py`, finds the plan file by `plan_path` of `ledger.py`, appends it by `append_plan` and prints the line of `fork_output` as `hookSpecificOutput` of `UserPromptSubmit`, or exits 2 with the reason; the docstring names the typed path.
 - [x] `.guppi/tests/test_spec.py`: tests named with `typed` for each line of the `then` above.
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/approve-spec/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/carry/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/box/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/approve-spec/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/carry/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/box/SKILL.md`
 - [ ] read `estimate-skill-approve-spec-takes-the-spec`
 ```
 
@@ -623,9 +623,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-orchestration-names-the-typed-approval`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] create `estimate-orchestration-names-the-typed-approval`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-names-the-typed-approval`
 ```
 
@@ -673,8 +673,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ratification-ledger-line-form`
-- [ ] read `estimate-ratification-ledger-line-form`
+- [x] update `estimate-ratification-ledger-line-form`
+- [x] read `estimate-ratification-ledger-line-form`
 ```
 
 ## Case 989 — A trial run on a copy reads the check of /box
@@ -733,7 +733,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-box`
-- [ ] update `estimate-spec-box-runs-a-conserved-spec`
+- [x] update `rule-spec-box`
+- [x] update `estimate-spec-box-runs-a-conserved-spec`
 - [ ] read `estimate-spec-box-runs-a-conserved-spec`
 ```

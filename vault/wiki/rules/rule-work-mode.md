@@ -17,14 +17,14 @@ core: true
 
 ## Purpose
 
-Prevents implementation starting before the plan, branch and baseline exist. Work Mode runs the approved Spec of the session, or the conserved Spec whose folder `/box` gives it (case 591). Its skill `/work` starts after `ExitPlanMode`: the agent calls it when the person picks `/work` at the fork, and the person types it to resume a session that stopped in the middle. It stops on `main`. Before the first change it writes the baseline, the result of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check`, into `raw/<date>/<hi HHMM>/work.md`, so that Retro charges to the session only a red the baseline does not hold. A substitution of the skill can come back empty when the model call that checks it fails, so the agent then runs the command itself. It runs the tasks in the order of the Spec and ticks each box. After the last task it runs `uv run --project .guppi guppi test` in full against the baseline, and a new failing test whose fix needs a choice that no ratified Case makes stops the run for the person (case 736.2). A task that changes a check that reads a page or a governed file the same Spec updates writes a mark of an expected red into the same file, naming the check and the page or file, and Retro reads it. Subagents in Work Mode, the test of each Estimate written first and the rest of the model are not decided yet (case 479.2).
+Prevents implementation starting before the plan, branch and baseline exist. Work Mode runs the approved Spec of the session, or the conserved Spec whose folder `/box` gives it (case 591). Its skill `/work` starts after the approval of the Spec, by `ExitPlanMode` or by `/approve-spec`: the agent calls it when the person picks `/work` at the fork, and the person types it to resume a session that stopped in the middle. It stops on `main`. Before the first change it writes the baseline, the result of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check`, into `raw/<date>/<hi HHMM>/work.md`, so that Retro charges to the session only a red the baseline does not hold. A substitution of the skill can come back empty when the model call that checks it fails, so the agent then runs the command itself. It runs the tasks in the order of the Spec and ticks each box. After the last task it runs `uv run --project .guppi guppi test` in full against the baseline, and a new failing test whose fix needs a choice that no ratified Case makes stops the run for the person (case 736.2). A task that changes a check that reads a page or a governed file the same Spec updates writes a mark of an expected red into the same file, naming the check and the page or file, and Retro reads it. Subagents in Work Mode, the test of each Estimate written first and the rest of the model are not decided yet (case 479.2).
 
 ## Render
 
 <!-- rule-work-mode -->
 ---
 name: work
-description: Work Mode on the approved Spec — check the branch, write the baseline, run the tasks in order and tick each box. The agent calls it when the person picks /work at the fork ExitPlanMode prints; the person types it to resume; /box calls it with the folder of a conserved Spec.
+description: Work Mode on the approved Spec — check the branch, write the baseline, run the tasks in order and tick each box. The agent calls it when the person picks /work at the fork printed after the approval of the Spec, by ExitPlanMode or by /approve-spec; the person types it to resume; /box calls it with the folder of a conserved Spec.
 ---
 
 
@@ -141,3 +141,4 @@ When the last task is done, run `uv run --project .guppi guppi test` in full and
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
 - 2026-10-31 status: draft → built · cascade
+- 2026-11-01 updated: /work follows the approval by ExitPlanMode or by /approve-spec · [[decision-case-987.1]]

@@ -28,13 +28,13 @@ such a session that would make the vault claim behaviour no code implements.
 <!-- rule-carry-over -->
 ---
 name: carry
-description: Conserve a ratified Spec whose work is not done — rewrite the brief, mark the session folder, run `guppi backlog`, commit, make the branch of the Spec; run nothing else. Called by the agent after the person chose to conserve at the fork ExitPlanMode prints.
+description: Conserve a ratified Spec whose work is not done — rewrite the brief, mark the session folder, run `guppi backlog`, commit, make the branch of the Spec; run nothing else. Called by the agent after the person chose to conserve at the fork printed after the approval of the Spec, by ExitPlanMode or by /approve-spec.
 ---
 
 
 Tree: !`git status --porcelain`
 
-Called after `ExitPlanMode`, when the person answered the fork with "conserve". If Tree
+Called after the approval of the Spec, by `ExitPlanMode` or by `/approve-spec`, when the person answered the fork with "conserve". If Tree
 above holds a path outside `vault/raw/<hi date>/<hi HHMM>/` and `vault/wiki/brief.md`,
 stop and say: work was done, the ordinary exit applies — Work Mode, `/retro`, `/handoff`.
 
@@ -77,3 +77,4 @@ materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki
 - 2026-10-14 updated: the slug of rule-spec-box stands outside the bracket of its pointer · [[decision-case-809]]
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]
+- 2026-11-01 updated: /carry follows the approval by ExitPlanMode or by /approve-spec · [[decision-case-987.1]]

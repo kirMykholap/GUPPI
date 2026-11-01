@@ -1,6 +1,6 @@
 ---
 name: box
-description: Run a conserved Spec on its own branch — check it, switch to the branch and bring it up to date, run /work on it, merge the branch back and hand the session to the librarian. The agent calls it on the line that the hook of rule-spec-capture prints after ExitPlanMode.
+description: Run a conserved Spec on its own branch — check it, switch to the branch and bring it up to date, run /work on it, merge the branch back and hand the session to the librarian. The agent calls it on the line that the hook of rule-spec-capture prints after the approval of the Spec, by ExitPlanMode or by /approve-spec.
 ---
 
 
@@ -8,7 +8,7 @@ description: Run a conserved Spec on its own branch — check it, switch to the 
 
 Branch: !`git branch --show-current`
 
-The argument is the folder of a conserved Spec, `vault/raw/<date>/<HHMM>/`, which the line printed after `ExitPlanMode` names. The branch above is the shared branch: the session leaves it here and comes back to it at the end. The branch of the Spec is `spec/<date>-<HHMM>`, the date and time of that folder, made by `/carry`. Nothing under `vault/wiki/` is written on the branch of the Spec: the librarian writes the pages once, on the shared branch.
+The argument is the folder of a conserved Spec, `vault/raw/<date>/<HHMM>/`, which the line printed after the approval of the Spec, by `ExitPlanMode` or by `/approve-spec`, names. The branch above is the shared branch: the session leaves it here and comes back to it at the end. The branch of the Spec is `spec/<date>-<HHMM>`, the date and time of that folder, made by `/carry`. Nothing under `vault/wiki/` is written on the branch of the Spec: the librarian writes the pages once, on the shared branch.
 
 1. Run `uv run --project .guppi guppi box --check <folder> --session <id>`, the id being the eight characters of the `hi:` line of this session. Each line it prints is a reason the Spec cannot run now. When it prints one, change nothing: show the lines and ask the person.
 2. Commit the tree: `chore(session): session <hi HHMM> takes the conserved Spec of <folder>`.

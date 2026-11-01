@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: the agent took the ratification of a Case built on a sprint item as the end of that item, while a sprint item ends by a Case only when the Case updates the sprint page; a Case that settles part of a milestone line leaves the line to close `· sprint · defer`
-status: new
+status: clustered
+insight: "[[insight-frontier-line-closed-by-the-case-built-on-its-item]]"
 origin: raw/2026-10-10/1913/ledger.md#L44
 sprint: plugin
 created: 2026-10-10
@@ -20,3 +21,4 @@ the agent took the ratification of a Case built on a sprint item as the end of t
 ## History
 
 - 2026-10-10 created · raw/2026-10-10/1913/ledger.md#L44
+- 2026-11-01 updated: clustered under insight-frontier-line-closed-by-the-case-built-on-its-item (synthesis) · raw/2026-11-01/1721/ledger.md#L34

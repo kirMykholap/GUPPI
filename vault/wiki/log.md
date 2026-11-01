@@ -12499,3 +12499,71 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-01 decisions/decision-case-976 archived · superseded · generate
 - 2026-11-01 decisions/decision-case-971 archived · cleanup
 - 2026-11-01 decisions/decision-case-976 archived · cleanup
+- 2026-11-01 decisions/decision-case-982 created · raw/2026-11-01/1721/ledger.md#case-982 · generate
+- 2026-11-01 decisions/decision-case-982.1 created · raw/2026-11-01/1721/ledger.md#case-982.1 · generate
+- 2026-11-01 rules/rule-page-generation updated: a superseded decision that a live page names in deferred_by or addressed_by is not archived by the cascade · [[decision-case-982.1]] · generate
+- 2026-11-01 rules/rule-decisions-schema updated: the cascade keeps a superseded Decision page that a live page names in deferred_by or addressed_by · [[decision-case-982.1]] · generate
+- 2026-11-01 entities/entity-glossary updated: the cascade archives a superseded Decision that no live page names · [[decision-case-982.1]] · generate
+- 2026-11-01 estimates/estimate-generate-cascades updated: the Criterion replaced whole — a superseded Decision page that a live page names in deferred_by or addressed_by is kept, by the judgment the sprint close imports · [[decision-case-982.1]] · generate
+- 2026-11-01 decisions/decision-case-982.2 created · raw/2026-11-01/1721/ledger.md#case-982.2 · generate
+- 2026-11-01 estimates/estimate-prespec-notes-a-page-the-cascade-archives updated: the Criterion replaced whole — a superseded Decision page that a live page still names is not archived, by the keep judgment of generate · [[decision-case-982.2]] · generate
+- 2026-11-01 decisions/decision-case-982.3 created · raw/2026-11-01/1721/ledger.md#case-982.3 · generate
+- 2026-11-01 decisions/decision-case-971 superseded by decision-case-982.3 · [[decision-case-982.3]] · generate
+- 2026-11-01 estimates/estimate-close-reports-the-run defer by decision-case-971 superseded · [[decision-case-982.3]] · generate
+- 2026-11-01 decisions/decision-case-976 superseded by decision-case-982.3 · [[decision-case-982.3]] · generate
+- 2026-11-01 estimates/estimate-handoff-dispatches defer by decision-case-976 superseded · [[decision-case-982.3]] · generate
+- 2026-11-01 estimates/estimate-close-reports-the-run updated: the defer of decision-case-971, archived as superseded, retired; the reading waits for its event · [[decision-case-982.3]] · generate
+- 2026-11-01 estimates/estimate-handoff-dispatches updated: the defer of decision-case-976, archived as superseded, retired; the reading waits for its event · [[decision-case-982.3]] · generate
+- 2026-11-01 decisions/decision-case-983 created · raw/2026-11-01/1721/ledger.md#case-983 · generate
+- 2026-11-01 rules/rule-backlog updated: the check accepts the file without the put-offs of the newest session · [[decision-case-983]] · generate
+- 2026-11-01 estimates/estimate-backlog-checks-the-file updated: the Criterion replaced whole — the check accepts the file without the put-offs of the newest session · [[decision-case-983]] · generate
+- 2026-11-01 decisions/decision-case-984 created · raw/2026-11-01/1721/ledger.md#case-984 · generate
+- 2026-11-01 rules/rule-orchestration updated: a Case whose change to a check keeps the answer of that check on each text the Case of the item may write is not related by that change · [[decision-case-984]] · generate
+- 2026-11-01 estimates/estimate-orchestration-names-related-cases-in-the-dispatch updated: the Criterion replaced whole — a change to a check that keeps its answer on each text the Case of the item may write makes no related Case; purpose and method set anew, the reading after the render · [[decision-case-984]] · generate
+- 2026-11-01 decisions/decision-case-985 created · raw/2026-11-01/1721/ledger.md#case-985 · generate
+- 2026-11-01 rules/rule-case-build updated: the readers of a changed step include the places of the harness code that call the function of the step or make its judgment on another input · [[decision-case-985]] · generate
+- 2026-11-01 estimates/estimate-case-build-reads-the-readers-of-a-changed-step updated: the Criterion replaced whole — the readers of a changed step include the places of the harness code; pending again after the failed reading of session 0141 · [[decision-case-985]] · generate
+- 2026-11-01 decisions/decision-case-986 created · raw/2026-11-01/1721/ledger.md#case-986 · generate
+- 2026-11-01 rules/rule-case-build updated: the builder reads the whole block of each existing page and file it changes, again at the check of the finished Case, and says nothing of a page it creates · [[decision-case-986]] · generate
+- 2026-11-01 rules/rule-link-graph-at-session-start updated: the builder finds a block by a Grep and reads it whole · [[decision-case-986]] · generate
+- 2026-11-01 estimates/estimate-case-build-reads-the-link-graph-of-what-it-changes updated: the Criterion replaced whole — the block read whole, again at the final check, and no word on a created page; pending again after the failed reading of session 0141 · [[decision-case-986]] · generate
+- 2026-11-01 decisions/decision-case-987 created · raw/2026-11-01/1721/ledger.md#case-987 · generate
+- 2026-11-01 decisions/decision-case-987.1 created · raw/2026-11-01/1721/ledger.md#case-987.1 · generate
+- 2026-11-01 decisions/decision-case-957 superseded by decision-case-987.1 · [[decision-case-987.1]] · generate
+- 2026-11-01 insights/insight-plugin-cli-withholds-approval-of-a-long-plan defer by decision-case-957 superseded · [[decision-case-987.1]] · generate
+- 2026-11-01 rules/rule-skill-approve-spec created · [[decision-case-987.1]] · generate
+- 2026-11-01 rules/rule-plan-mode child rule-skill-approve-spec added · [[decision-case-987.1]] · generate
+- 2026-11-01 rules/rule-spec-capture updated: the Spec capture takes the plan file when the person types /approve-spec · [[decision-case-987.1]] · generate
+- 2026-11-01 rules/rule-hook-registry updated: UserPromptSubmit → guppi spec --typed · [[decision-case-987.1]] · generate
+- 2026-11-01 rules/rule-work-mode updated: /work follows the approval by ExitPlanMode or by /approve-spec · [[decision-case-987.1]] · generate
+- 2026-11-01 rules/rule-carry-over updated: /carry follows the approval by ExitPlanMode or by /approve-spec · [[decision-case-987.1]] · generate
+- 2026-11-01 rules/rule-spec-box updated: /box follows the approval by ExitPlanMode or by /approve-spec · [[decision-case-987.1]] · generate
+- 2026-11-01 insights/insight-plugin-cli-withholds-approval-of-a-long-plan updated: actioned: the person approves a long Spec in the CLI by typing /approve-spec · [[decision-case-987.1]] · generate
+- 2026-11-01 estimates/estimate-skill-approve-spec-takes-the-spec created · [[decision-case-987.1]] · generate
+- 2026-11-01 rules/rule-skill-approve-spec estimate estimate-skill-approve-spec-takes-the-spec added · [[decision-case-987.1]] · generate
+- 2026-11-01 decisions/decision-case-987.2 created · raw/2026-11-01/1721/ledger.md#case-987.2 · generate
+- 2026-11-01 rules/rule-orchestration updated: the reply that calls ExitPlanMode names /approve-spec, worded as a condition, before the call · [[decision-case-987.2]] · generate
+- 2026-11-01 estimates/estimate-orchestration-names-the-typed-approval created · [[decision-case-987.2]] · generate
+- 2026-11-01 rules/rule-orchestration estimate estimate-orchestration-names-the-typed-approval added · [[decision-case-987.2]] · generate
+- 2026-11-01 decisions/decision-case-988 created · raw/2026-11-01/1721/ledger.md#case-988 · generate
+- 2026-11-01 estimates/estimate-ratification-ledger-line-form updated: the Criterion replaced whole — the new-tag block of a lesson line is left to the check of the ledger hook; the method reads the archived ledgers and waits for no new tag · [[decision-case-988]] · generate
+- 2026-11-01 decisions/decision-case-989 created · raw/2026-11-01/1721/ledger.md#case-989 · generate
+- 2026-11-01 rules/rule-spec-box updated: the second part of /box is pointed to on the live sprint page · [[decision-case-989]] · generate
+- 2026-11-01 estimates/estimate-spec-box-runs-a-conserved-spec updated: method: a trial run of /box on a copy of the repository, after the librarian's run that renders the skill · [[decision-case-989]] · generate
+- 2026-11-01 estimates/estimate-generate-cascades status: pending → passed · raw/2026-11-01/1721/ledger.md#L30 · generate
+- 2026-11-01 estimates/estimate-prespec-notes-a-page-the-cascade-archives status: pending → passed · raw/2026-11-01/1721/ledger.md#L31 · generate
+- 2026-11-01 estimates/estimate-backlog-checks-the-file status: pending → passed · raw/2026-11-01/1721/ledger.md#L32 · generate
+- 2026-11-01 estimates/estimate-ratification-ledger-line-form status: pending → passed · raw/2026-11-01/1721/ledger.md#L33 · generate
+- 2026-11-01 lessons/lesson-frontier-backlog-line-closed-by-a-case-that-keeps-its-defer created · raw/2026-11-01/1721/ledger.md#L34 · generate
+- 2026-11-01 lessons/lesson-onward-stop-line-before-a-showing-breaks-its-form created · raw/2026-11-01/1721/ledger.md#L35 · generate
+- 2026-11-01 insights/insight-frontier-line-closed-by-the-case-built-on-its-item created · raw/2026-11-01/1721/ledger.md#L34 · generate
+- 2026-11-01 lessons/lesson-frontier-sprint-line-closed-by-a-case-that-updates-no-sprint-page updated: clustered under insight-frontier-line-closed-by-the-case-built-on-its-item (synthesis) · raw/2026-11-01/1721/ledger.md#L34 · generate
+- 2026-11-01 lessons/lesson-frontier-closed-a-backlog-item-deferred-again-as-a-case updated: clustered under insight-frontier-line-closed-by-the-case-built-on-its-item (synthesis) · raw/2026-11-01/1721/ledger.md#L34 · generate
+- 2026-11-01 lessons/lesson-frontier-backlog-line-closed-by-a-case-that-keeps-its-defer updated: clustered under insight-frontier-line-closed-by-the-case-built-on-its-item (synthesis) · raw/2026-11-01/1721/ledger.md#L34 · generate
+- 2026-11-01 rules/rule-ratification status: draft → built · cascade · generate
+- 2026-11-01 decisions/decision-case-957 archived · superseded · generate
+- 2026-11-01 lessons/lesson-plugin-cli-withholds-approval-of-a-long-plan archived · insight actioned · generate
+- 2026-11-01 lessons/lesson-plugin-cli-withholds-approval-in-every-window archived · insight actioned · generate
+- 2026-11-01 lessons/lesson-plugin-cli-withholds-approval-in-every-window archived · cleanup
+- 2026-11-01 lessons/lesson-plugin-cli-withholds-approval-of-a-long-plan archived · cleanup
+- 2026-11-01 decisions/decision-case-957 archived · cleanup

@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-orchestration]]"
-purpose: Whether the main agent's prompt to case-guppi names each Case of the session that changes a page the item names, acts at the same moment, or sets the form of a text a check reads, or how the check reads it, where the Case of the item may write text of that kind, by its id, one sentence on what it sets and which pages it changes, and the path of its case file, and each other Case of a batch of items the person took up in one answer
-method: "by hand, at Retro: each Agent call of the session that dispatched case-guppi for the Case of an item, read in the transcript of the session under ~/.claude/projects/ against the Criterion, only the Cases the Criterion counts as related judged and a Case named beyond them not counted, a related Case left unnamed or named without the pages it changes or the path of its case file counted in the reading line and the transcript named (the dispatches of session 2026-11-01/0141, the dispatch of Case 980 among them)"
+purpose: Whether the main agent's prompt to case-guppi names each Case of the session that changes a page the item names, acts at the same moment, or sets the form of a text a check reads, or how the check reads it, where the Case of the item may write text of that kind and the change may alter what the check answers on it, by its id, one sentence on what it sets and which pages it changes, and the path of its case file, and each other Case of a batch of items the person took up in one answer
+method: "by hand, after the librarian's render of this Criterion's rule text into vault/wiki/orchestration.md: at the Retro of the first session that runs on that render, each Agent call of that session that dispatched case-guppi for the Case of an item, read in the transcript of the session under ~/.claude/projects/ against the Criterion, only the Cases the Criterion counts as related judged and a Case named beyond them not counted, a related Case left unnamed or named without its sentence, the pages it changes or the path of its case file counted in the reading line and the transcript named (the first session after 2026-11-01/1721)"
 checked: 2026-11-01
 origin: raw/2026-10-01/1441/ledger.md#case-579.1
 sprint: migration
@@ -25,6 +25,7 @@ The prompt of the call names each Case of the session, ratified or already shown
 **＋** The main agent judges which Cases of the session are related, and the prompt does not send `case-guppi` to search the Cases of the session.
 **－** A Case of the session that changes no page the item names, acts at another moment, sets no form of a text of a kind the Case of the item may write and is no Case of the same batch need not stand in the prompt.
 **－** A Case that only writes a text a check reads, and sets no form of it, is not related by that text alone.
+**－** A Case whose change to a check leaves the answer of that check the same on each text the Case of the item may write is not related by that change.
 **－** When no Case of the session is related and the item is taken up alone, the prompt names none and holds the Case id, the Frontier item with its source and the person's words.
 
 ## Result
@@ -50,3 +51,4 @@ The prompt of the call names each Case of the session, ratified or already shown
 - 2026-11-01 defer by decision-case-976 superseded · [[decision-case-980]]
 - 2026-11-01 updated: the method reads the dispatches of session 0141 at its Retro and the purpose names the pages of a related Case, the Criterion written back unchanged; the defers of cases 971 and 976 retired · [[decision-case-980]]
 - 2026-11-01 status: pending → failed · raw/2026-11-01/0141/ledger.md#L14
+- 2026-11-01 updated: the Criterion replaced whole — a change to a check that keeps its answer on each text the Case of the item may write makes no related Case; purpose and method set anew, the reading after the render · [[decision-case-984]]

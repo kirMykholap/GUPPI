@@ -4,7 +4,7 @@ kind: QA
 status: pending
 target: "[[rule-spec-box]]"
 purpose: Whether /box checks a conserved Spec, runs it on its own branch brought up to the shared branch by a fast-forward, merges the branch back by a fast-forward after the handoff, has the librarian write the pages on the shared branch, and shows report.md and commits it alone after the librarian's commit, stopping when the check or a merge refuses
-method: "uv run --project .guppi guppi render --check; by hand, after a session that runs a conserved Spec by /box on the Render of rule-spec-box that commits report.md: git log, the branches, the folders of the session and of the conserved Spec, the librarian's commit and the commit of report.md, and the dispatch line and the text shown to the person read in the transcript of that session under ~/.claude/projects/, recorded in the estimate line with that transcript named"
+method: "uv run --project .guppi guppi render --check; by hand, after the librarian's run that applies the update of rule-spec-box pointing to the Backlog of entity-sprint-plugin and renders .claude/skills/box/SKILL.md: on a copy of the repository, one session saves a small Spec by /carry and a second session takes it at its Frontier and runs it by /box; git log, the branches, the folders of that session and of the conserved Spec, the librarian's commit and the commit of report.md read in the copy, and the dispatch line and the text shown to the person read in the transcript of the second session under ~/.claude/projects/, recorded in the estimate line with that transcript named"
 checked: 2026-10-04
 origin: raw/2026-10-02/1202/ledger.md#case-593.2
 sprint: migration
@@ -40,3 +40,4 @@ Then:
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
 - 2026-10-31 updated: the Criterion replaced whole — /box shows report.md and commits it alone · [[decision-case-956.4]]
+- 2026-11-01 updated: method: a trial run of /box on a copy of the repository, after the librarian's run that renders the skill · [[decision-case-989]]

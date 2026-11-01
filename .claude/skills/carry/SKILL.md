@@ -1,12 +1,12 @@
 ---
 name: carry
-description: Conserve a ratified Spec whose work is not done — rewrite the brief, mark the session folder, run `guppi backlog`, commit, make the branch of the Spec; run nothing else. Called by the agent after the person chose to conserve at the fork ExitPlanMode prints.
+description: Conserve a ratified Spec whose work is not done — rewrite the brief, mark the session folder, run `guppi backlog`, commit, make the branch of the Spec; run nothing else. Called by the agent after the person chose to conserve at the fork printed after the approval of the Spec, by ExitPlanMode or by /approve-spec.
 ---
 
 
 Tree: !`git status --porcelain`
 
-Called after `ExitPlanMode`, when the person answered the fork with "conserve". If Tree
+Called after the approval of the Spec, by `ExitPlanMode` or by `/approve-spec`, when the person answered the fork with "conserve". If Tree
 above holds a path outside `vault/raw/<hi date>/<hi HHMM>/` and `vault/wiki/brief.md`,
 stop and say: work was done, the ordinary exit applies — Work Mode, `/retro`, `/handoff`.
 

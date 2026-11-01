@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "957"
-status: current
+status: archived
 defer: ["[[insight-plugin-cli-withholds-approval-of-a-long-plan]]"]
+superseded_by: ["[[decision-case-987.1]]"]
 origin: raw/2026-10-31/0431/ledger.md#case-957
 sprint: plugin
 created: 2026-10-31
@@ -26,3 +27,6 @@ Wait for Claude Code to fix the approval of a long plan in the CLI, a bug report
 ## History
 
 - 2026-10-31 created · raw/2026-10-31/0431/ledger.md#case-957
+- 2026-11-01 superseded by decision-case-987.1 · [[decision-case-987.1]]
+- 2026-11-01 archived · superseded
+- 2026-11-01 archived · cleanup

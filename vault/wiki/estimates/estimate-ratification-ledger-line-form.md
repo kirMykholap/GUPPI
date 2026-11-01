@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-ratification]]"
 purpose: The written shape of a ledger line and of its marks, as the agent writes them
-method: "by hand, after a lesson line that declares a new tag by a newtag block: that line read in the ledger of its session and its LEDGER block in the transcript of that session under ~/.claude/projects/; with it, the decision and lesson lines that carry an addresses or addressed_by mark in vault/archive/plugin/2026-10-14/0232/raw/ledger.md, vault/archive/plugin/2026-10-14/1536/raw/ledger.md, vault/archive/plugin/2026-10-16/2104/raw/ledger.md, vault/archive/plugin/2026-10-17/2307/raw/ledger.md and vault/archive/plugin/2026-10-29/2341/raw/ledger.md, and the line in vault/archive/migration/2026-10-04/1439/raw/ledger.md that takes up a page with two Cases in its deferred_by, each with its preview in the transcript of its session, read against the Criterion, all recorded in one estimate line (the take-up line is that of case 629.2)"
-checked: 2026-10-04
+method: "by hand, at Retro: the decision and lesson lines that carry an addresses or addressed_by mark in vault/archive/plugin/2026-10-14/0232/raw/ledger.md, vault/archive/plugin/2026-10-14/1536/raw/ledger.md, vault/archive/plugin/2026-10-16/2104/raw/ledger.md, vault/archive/plugin/2026-10-17/2307/raw/ledger.md and vault/archive/plugin/2026-10-29/2341/raw/ledger.md, and the line in vault/archive/migration/2026-10-04/1439/raw/ledger.md that takes up a page with two Cases in its deferred_by, each with its preview in the transcript of its session under ~/.claude/projects/, read against the Criterion, all recorded in one estimate line (the take-up line is that of case 629.2)"
+checked: 2026-11-01
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -24,12 +24,11 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 **＋** When a Case of this session closes the root cause of a lesson of this session, the line written second carries the mark: `{addresses:<lesson slug>}` on the decision line when the lesson line stands first, `{addressed_by:case N}` on the lesson line when the decision lines stand first; one mark per lesson.
 **＋** For a Case with sub-cases, the `N` of `{addressed_by:case N}` is the sub-case whose decision line closes the cause, never the parent, which has no decision line.
 **＋** The mark stands in the preview of the ledger lines the person ratifies, or in the `LEDGER` block of the lesson line.
-**＋** A lesson line whose tag `vault/wiki/tags.md` does not hold carries one `{newtag:<tag>|<meaning>|<aliases>}` block per such tag before `trigger:`, the tag also in its `{tags:...}`, the meaning one line and the aliases the words of the chat language for it.
 **－** A lesson whose fix is ratified in another session gets no mark.
 
 ## Result
 
-2026-10-04, at the /hi of session 1934, by hand: archive/migration/2026-10-03/0317/raw/ledger.md: the decision lines of 613.2 (L13-L14) stand first and carry no {addresses}, and the lesson line L54, lesson-estimates-reading-tied-to-a-one-off-moment, written in the LEDGER block of Retro, carries {addressed_by:case 613.2}, the sub-case, one mark for the pair; raw/2026-10-04/1439/ledger.md L36: `decision[case 629.2][delete][rule-case-rebuild-cost]{ref:rule-case-rebuild-cost}{supersedes:case 566}{supersedes:case 570}`, one block per Case of the page's deferred_by ["decision-case-566", "decision-case-570"], side by side, and the same line in the ratification fence of the showing at 18:58:11 (transcript 8b8ce20f); create lines carry {tags} (L17, L18, L21, L33, L37); not exercised: {addresses} on a decision line after its lesson, a lesson whose fix is ratified in another session
+2026-11-01, Retro of session 1721: the marked lines of the five archived plugin ledgers the method names — 0232 L15 lesson {addressed_by:case 812.1} after the decision lines of 812.1 (L7-9), the sub-case; 1536 L5 decision {addresses:lesson-ship-example-file-exempt-whole-left-case-pointers} after its lesson (L4); 2104 L51 lesson {addressed_by:case 872.1} after the lines of 872.1 (L25-27); 2307 L35 and L41 decision lines of 884 with one {addresses:...} per lesson after each lesson line (L26, L40), {supersedes:case 876} one block; 2341 L40 lesson {addressed_by:case 914}, a Case with no sub-cases, after L9 — and 1439 L36 of case 629.2 with {supersedes:case 566}{supersedes:case 570} side by side; each mark stands in the LEDGER block of its session's transcript (cfcb07e8, f5b00c55, 563a8403, 392fc00e, 958b7a22, 8b8ce20f) and each decision mark also in the ratification preview there
 
 ## History
 
@@ -52,3 +51,5 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 - 2026-10-04 status: pending → passed · raw/2026-10-04/1934/ledger.md#L3
 - 2026-10-15 updated: the Criterion replaced whole — a lesson line declares a new tag by a newtag block (case 827.3) · [[decision-case-827.3]]
 - 2026-10-31 updated: the method reads the marks and the take-up line in archived ledgers and waits only for a lesson line that declares a new tag, the Criterion written back unchanged · [[decision-case-961.5]]
+- 2026-11-01 updated: the Criterion replaced whole — the new-tag block of a lesson line is left to the check of the ledger hook; the method reads the archived ledgers and waits for no new tag · [[decision-case-988]]
+- 2026-11-01 status: pending → passed · raw/2026-11-01/1721/ledger.md#L33

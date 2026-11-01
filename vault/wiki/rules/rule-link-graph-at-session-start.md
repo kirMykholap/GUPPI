@@ -17,10 +17,11 @@ core: true
 
 ## Purpose
 
-Prevents a Case builder from reading a graph of links that is missing or older than the start of its session. The builder has no tool that runs a command, so `uv run --project .guppi guppi links --write` runs on `SessionStart` and writes the whole graph into `.guppi/links.md`, which git ignores; the builder reads the block of each page and file its Case changes by a Grep. Pages and rendered files change at the librarian's run, so the file written at the start stays current through the session. The hook takes the text of each rendered file as `guppi render` writes it, and an error prints one line and stops no session (as set in case 967.3).
+Prevents a Case builder from reading a graph of links that is missing or older than the start of its session. The builder has no tool that runs a command, so `uv run --project .guppi guppi links --write` runs on `SessionStart` and writes the whole graph into `.guppi/links.md`, which git ignores; the builder finds the block of each page and file its Case changes by a Grep and reads it whole. Pages and rendered files change at the librarian's run, so the file written at the start stays current through the session. The hook takes the text of each rendered file as `guppi render` writes it, and an error prints one line and stops no session (as set in case 967.3).
 
 ## History
 
 - 2026-10-31 created · [[decision-case-967.3]]
 - 2026-10-31 estimate estimate-link-graph-at-session-start-writes-the-file added · [[decision-case-967.3]]
 - 2026-11-01 status: draft → built · cascade
+- 2026-11-01 updated: the builder finds a block by a Grep and reads it whole · [[decision-case-986]]

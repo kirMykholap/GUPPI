@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: The Claude Code CLI withholds the approval of a plan above the size it can show, whatever the terminal window and with no hook of GUPPI before the dialog, while the VS Code extension approves the same size; GUPPI writes each ratified Case whole into the plan file, so a Spec of a few Cases cannot be approved in the CLI.
-status: open
+status: actioned
 children: ["[[lesson-plugin-cli-withholds-approval-of-a-long-plan]]", "[[lesson-plugin-cli-withholds-approval-in-every-window]]"]
-severity: 2
-deferred_by: ["[[decision-case-957]]"]
+severity: 0
+addressed_by: "[[decision-case-987.1]]"
 origin: raw/2026-10-31/0128/ledger.md#L16
 sprint: plugin
 created: 2026-10-31
@@ -23,3 +23,5 @@ A suggestion for a Case, not a decision. Options named in the handoff of session
 
 - 2026-10-31 created · raw/2026-10-31/0128/ledger.md#L16
 - 2026-10-31 deferred · [[decision-case-957]]
+- 2026-11-01 defer by decision-case-957 superseded · [[decision-case-987.1]]
+- 2026-11-01 updated: actioned: the person approves a long Spec in the CLI by typing /approve-spec · [[decision-case-987.1]]

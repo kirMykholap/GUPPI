@@ -2,7 +2,7 @@
 type: lesson
 kind: knowledge
 root_cause: The Claude Code CLI withholds the approval of a plan above the size it can show whatever the terminal window, its width or its height, and with no hook of GUPPI before the dialog; the fault lies in the CLI, not in the window, and the VS Code extension approves the same size.
-status: clustered
+status: archived
 source: "by-hand test of session 2026-10-31/0128 (Case 953): the Claude Code CLI started by claude --permission-mode plan in the empty folder C:\\tmp\\plan-approval-test, with the text of C:\\Users\\kir\\.claude\\plans\\resilient-munching-peacock.md, 15347 bytes"
 insight: "[[insight-plugin-cli-withholds-approval-of-a-long-plan]]"
 origin: raw/2026-10-31/0128/ledger.md#L16
@@ -23,3 +23,5 @@ The Claude Code CLI withholds the approval of a plan above the size it can show 
 
 - 2026-10-31 created · raw/2026-10-31/0128/ledger.md#L16
 - 2026-10-31 updated: clustered under insight-plugin-cli-withholds-approval-of-a-long-plan (synthesis) · raw/2026-10-31/0128/ledger.md#L16
+- 2026-11-01 archived · insight actioned
+- 2026-11-01 archived · cleanup

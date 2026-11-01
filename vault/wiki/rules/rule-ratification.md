@@ -2,7 +2,7 @@
 type: rule
 kind: MOC
 purpose: "Prevents an agent of a working session from acting without the one rule and the form of the ledger lines: the one rule, the form of the ledger lines, atomicity and the harness stand in ratification.md, which /hi loads and case-guppi reads"
-status: draft
+status: built
 enforcement: render
 implementation_ref: [.guppi/guppi/caseid.py, .guppi/tests/test_caseid.py]
 governs: vault/wiki/ratification.md
@@ -82,3 +82,4 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file, 
 - 2026-10-16 updated: the sentence on plain Case ids names the list PLAIN_SPRINTS, and the sprints migration and plugin stand in the bracket of its pointer · [[decision-case-856.1]]
 - 2026-10-26 updated: a Case id with no sprint part said as the form of the sprints PLAIN_SPRINTS lists · [[decision-case-881.7]]
 - 2026-10-29 deferred · [[decision-case-907]]
+- 2026-11-01 status: draft → built · cascade

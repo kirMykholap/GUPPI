@@ -1,6 +1,6 @@
 ---
 name: work
-description: Work Mode on the approved Spec — check the branch, write the baseline, run the tasks in order and tick each box. The agent calls it when the person picks /work at the fork ExitPlanMode prints; the person types it to resume; /box calls it with the folder of a conserved Spec.
+description: Work Mode on the approved Spec — check the branch, write the baseline, run the tasks in order and tick each box. The agent calls it when the person picks /work at the fork printed after the approval of the Spec, by ExitPlanMode or by /approve-spec; the person types it to resume; /box calls it with the folder of a conserved Spec.
 ---
 
 

@@ -37,7 +37,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
         "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi recall", "timeout": 30 } ] }
 ],
 "UserPromptSubmit": [
-  { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi context --prompt", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi casecheck --prompt", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi sprint --hi", "timeout": 30 },
+  { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi event prompt", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi context --prompt", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi casecheck --prompt", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi sprint --hi", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi spec --typed", "timeout": 30 },
                { "type": "command", "command": "uv run --project .guppi guppi gate", "timeout": 30 } ] }
 ],
 "PreToolUse": [
@@ -114,3 +114,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-30 updated: the hook grepguard registered on PreToolUse of Read beside pageread (case 925.1) · [[decision-case-925.1]]
 - 2026-10-31 updated: the SubagentStop hook guppi libreport registered · [[decision-case-965]]
 - 2026-10-31 updated: the SessionStart hook guppi links --write registered · [[decision-case-967.3]]
+- 2026-11-01 updated: UserPromptSubmit → guppi spec --typed · [[decision-case-987.1]]

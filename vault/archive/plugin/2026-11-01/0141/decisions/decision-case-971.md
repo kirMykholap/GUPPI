@@ -3,7 +3,7 @@ type: decision
 case: "971"
 status: archived
 defer: ["[[estimate-orchestration-shows-the-built-case]]", "[[estimate-orchestration-names-related-cases-in-the-dispatch]]", "[[estimate-case-build-reads-each-list-of-a-new-member]]", "[[estimate-close-reports-the-run]]"]
-superseded_by: ["[[decision-case-979]]", "[[decision-case-980]]", "[[decision-case-981.2]]"]
+superseded_by: ["[[decision-case-979]]", "[[decision-case-980]]", "[[decision-case-981.2]]", "[[decision-case-982.3]]"]
 origin: raw/2026-10-31/1831/ledger.md#case-971
 sprint: plugin
 created: 2026-10-31
@@ -44,3 +44,4 @@ No report.md of session 0128 stood after the librarian's run; the page stands pe
 - 2026-11-01 superseded by decision-case-981.2 · [[decision-case-981.2]]
 - 2026-11-01 archived · superseded
 - 2026-11-01 archived · cleanup
+- 2026-11-01 superseded by decision-case-982.3 · [[decision-case-982.3]]

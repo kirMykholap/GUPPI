@@ -18,14 +18,14 @@ core: true
 
 ## Purpose
 
-Prevents a conserved Spec from being built on a branch that lacks the current vault, and its pages from being written anywhere but on the shared branch. `/carry` conserves a Spec whose work is not done and makes its branch `spec/<date>-<HHMM>` at the commit that conserves it. A later session takes the Spec at the Frontier, and `/box` runs it: it checks the Spec, switches to its branch, brings that branch up to the shared branch by a fast-forward, runs `/work` on the Spec, and after `/handoff` brings the shared branch up to the Spec's branch by a fast-forward and hands the session to the librarian there. One session runs at a time, in one folder of the repository, so both merges are fast-forwards and the vault has one writer; the shared branch is never `main`. The check refuses a Spec whose pages changed after it was conserved, and a session that ratified a Case of its own: in this first part a Case of the Spec is not checked again or built again, and the readings, lessons and handoff of the session go into the session's own folder, which the librarian applies. Both wait for a second part (a line of the Backlog of `entity-sprint-migration`, case 591).
+Prevents a conserved Spec from being built on a branch that lacks the current vault, and its pages from being written anywhere but on the shared branch. `/carry` conserves a Spec whose work is not done and makes its branch `spec/<date>-<HHMM>` at the commit that conserves it. A later session takes the Spec at the Frontier, and `/box` runs it: it checks the Spec, switches to its branch, brings that branch up to the shared branch by a fast-forward, runs `/work` on the Spec, and after `/handoff` brings the shared branch up to the Spec's branch by a fast-forward and hands the session to the librarian there. One session runs at a time, in one folder of the repository, so both merges are fast-forwards and the vault has one writer; the shared branch is never `main`. The check refuses a Spec whose pages changed after it was conserved, and a session that ratified a Case of its own: in this first part a Case of the Spec is not checked again or built again, and the readings, lessons and handoff of the session go into the session's own folder, which the librarian applies. Both wait for a second part (a note of the Backlog of `entity-sprint-plugin`, as set in case 962).
 
 ## Render
 
 <!-- rule-spec-box -->
 ---
 name: box
-description: Run a conserved Spec on its own branch — check it, switch to the branch and bring it up to date, run /work on it, merge the branch back and hand the session to the librarian. The agent calls it on the line that the hook of rule-spec-capture prints after ExitPlanMode.
+description: Run a conserved Spec on its own branch — check it, switch to the branch and bring it up to date, run /work on it, merge the branch back and hand the session to the librarian. The agent calls it on the line that the hook of rule-spec-capture prints after the approval of the Spec, by ExitPlanMode or by /approve-spec.
 ---
 
 
@@ -33,7 +33,7 @@ description: Run a conserved Spec on its own branch — check it, switch to the 
 
 Branch: !`git branch --show-current`
 
-The argument is the folder of a conserved Spec, `vault/raw/<date>/<HHMM>/`, which the line printed after `ExitPlanMode` names. The branch above is the shared branch: the session leaves it here and comes back to it at the end. The branch of the Spec is `spec/<date>-<HHMM>`, the date and time of that folder, made by `/carry`. Nothing under `vault/wiki/` is written on the branch of the Spec: the librarian writes the pages once, on the shared branch.
+The argument is the folder of a conserved Spec, `vault/raw/<date>/<HHMM>/`, which the line printed after the approval of the Spec, by `ExitPlanMode` or by `/approve-spec`, names. The branch above is the shared branch: the session leaves it here and comes back to it at the end. The branch of the Spec is `spec/<date>-<HHMM>`, the date and time of that folder, made by `/carry`. Nothing under `vault/wiki/` is written on the branch of the Spec: the librarian writes the pages once, on the shared branch.
 
 1. Run `uv run --project .guppi guppi box --check <folder> --session <id>`, the id being the eight characters of the `hi:` line of this session. Each line it prints is a reason the Spec cannot run now. When it prints one, change nothing: show the lines and ask the person.
 2. Commit the tree: `chore(session): session <hi HHMM> takes the conserved Spec of <folder>`.
@@ -69,3 +69,5 @@ The stops of steps 1, 3 and 5 are condition 6 of `vault/wiki/where-to-stop.md`.
 - 2026-10-17 updated: the sprint line of the Purpose moves into the bracket of its pointer · [[decision-case-875]]
 - 2026-10-31 updated: /box shows report.md and commits it alone after the librarian's commit · [[decision-case-956.4]]
 - 2026-10-31 status: built → draft · cascade
+- 2026-11-01 updated: /box follows the approval by ExitPlanMode or by /approve-spec · [[decision-case-987.1]]
+- 2026-11-01 updated: the second part of /box is pointed to on the live sprint page · [[decision-case-989]]

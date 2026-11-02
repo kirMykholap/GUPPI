@@ -1,6 +1,7 @@
 """`guppi check`, `estimate-lint-runs-every-step` (cases 587, 820.1): the six vault checks
 run in order, each one even after a red one, each with its own output and no stdin; the run
-is red when any step is, green only when every one is; nothing of the tree is written; and
+is red when any step is, green only when every one is; with `--exit-zero` it prints the exit
+code on a last line and exits 0, by the function of `guppi test` (case 1003.2); nothing of the tree is written; and
 where the module `guppi.ship` is missing, `guppi ship --check` is skipped with one line that
 sets no exit code. A fake step, a Python script in place of the entry point of `guppi`,
 records each call and what it read from stdin, so no step of the real vault runs."""
@@ -13,7 +14,7 @@ from pathlib import Path
 
 import pytest
 
-from guppi import check
+from guppi import check, commands
 from guppi.pages import ship_stands
 
 PACKAGE = Path(check.__file__).resolve().parent
@@ -53,7 +54,7 @@ def snapshot(root: Path) -> dict[str, bytes]:
     return {p.relative_to(root).as_posix(): p.read_bytes() for p in root.rglob("*") if p.is_file()}
 
 
-def run_check(tmp_path, monkeypatch, capfd, fail=""):
+def run_check(tmp_path, monkeypatch, capfd, fail="", argv=()):
     """`guppi check` over a project, its steps the fake; the exit code, the calls the fake
     recorded, the lines printed, and the tree before and after."""
     root, fake, log = project(tmp_path)
@@ -61,7 +62,7 @@ def run_check(tmp_path, monkeypatch, capfd, fail=""):
     monkeypatch.setenv("FAKE_LOG", str(log))
     monkeypatch.setenv("FAKE_FAIL", fail)
     before = snapshot(root)
-    code = check.run([], project_dir=root)
+    code = check.run(list(argv), project_dir=root)
     out = capfd.readouterr().out.splitlines()
     calls = log.read_text(encoding="utf-8").splitlines() if log.exists() else []
     return code, calls, out, before, snapshot(root)
@@ -92,6 +93,27 @@ def test_a_red_last_step_makes_the_run_red(tmp_path, monkeypatch, capfd):
     code, calls, _, _, _ = run_check(tmp_path, monkeypatch, capfd, "ship --check")
     assert code != 0
     assert len(calls) == len(STEPS)
+
+
+@NEEDS_SHIP
+def test_with_exit_zero_every_step_runs_and_the_exit_code_stands_last(tmp_path, monkeypatch, capfd):
+    """A red step, every step run, the last line `exit code: 1`, exit 0 (case 1003.2)."""
+    code, calls, out, before, after = run_check(
+        tmp_path, monkeypatch, capfd, "backlog --check", ["--exit-zero"]
+    )
+    assert code == 0
+    assert calls == [f"{step} stdin:empty" for step in STEPS]
+    assert out == [f"fake guppi: {step}" for step in STEPS] + ["exit code: 1"]
+    assert after == before
+
+
+def test_check_takes_the_flag_from_the_module_of_guppi_test():
+    """One judgment, one implementation: `guppi check` uses the flag and the last line of
+    `.guppi/guppi/commands.py` and holds no copy of either."""
+    assert check.add_exit_zero is commands.add_exit_zero
+    assert check.exit_zero is commands.exit_zero
+    source = Path(check.__file__).read_text(encoding="utf-8")
+    assert '"--exit-zero"' not in source and "exit code: " not in source.split('"""', 2)[2]
 
 
 @NEEDS_SHIP

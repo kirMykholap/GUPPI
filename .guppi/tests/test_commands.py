@@ -2,7 +2,8 @@
 (case 820.2): each runs the commands of its key of `guppi.toml` in order, in the folder of
 the project, with no shell and no stdin, each one even after a red one; the run is red when
 any command is, green only when every one is; a missing `guppi.toml` or key is one line that
-names the file and the key, with exit 1 and nothing run. A fake command, a Python script,
+names the file and the key, with exit 1 and nothing run; with `--exit-zero` each prints the
+exit code of the run on a last line and exits 0 (case 1003.1). A fake command, a Python script,
 records each call: its words, its folder and what it read from stdin."""
 
 import io
@@ -122,6 +123,45 @@ def test_a_missing_key_is_one_line_and_exit_1(tmp_path, monkeypatch):
     code, err = run(run_style, root)
     assert code == 1
     assert err == ["style: guppi.toml: no key style"]
+    assert calls(log) == []
+
+
+def run_exit_zero(command, root, capfd):
+    """`command --exit-zero` over the project; the exit code, the lines of stdout and the
+    lines of stderr."""
+    stderr = io.StringIO()
+    code = command(["--exit-zero"], stderr=stderr, project_dir=root)
+    return code, capfd.readouterr().out.splitlines(), stderr.getvalue().splitlines()
+
+
+def test_with_exit_zero_a_red_run_prints_its_exit_code_last_and_exits_0(
+    tmp_path, monkeypatch, capfd
+):
+    """The lines of the run as before, then `exit code: 1` (case 1003.1)."""
+    root, start, log = project(tmp_path, monkeypatch, None)
+    commands = [f"{start} one", f"{start} red"]
+    (root / "guppi.toml").write_text(LANGUAGES + f"test = {toml_list(commands)}\n", "utf-8")
+    code, out, err = run_exit_zero(run_test, root, capfd)
+    assert code == 0
+    assert out == ["fake: one", "fake: red", "exit code: 1"]
+    assert err == []
+    assert [line.split(" | ")[0] for line in calls(log)] == ["one", "red"]
+
+
+def test_with_exit_zero_a_green_run_prints_exit_code_0(tmp_path, monkeypatch, capfd):
+    root, start, _ = project(tmp_path, monkeypatch, None)
+    (root / "guppi.toml").write_text(LANGUAGES + f"style = ['{start} one']\n", "utf-8")
+    code, out, _ = run_exit_zero(run_style, root, capfd)
+    assert code == 0
+    assert out == ["fake: one", "exit code: 0"]
+
+
+def test_with_exit_zero_a_missing_key_prints_exit_code_1_and_exits_0(tmp_path, monkeypatch, capfd):
+    root, _, log = project(tmp_path, monkeypatch, None)
+    code, out, err = run_exit_zero(run_test, root, capfd)
+    assert code == 0
+    assert out == ["exit code: 1"]
+    assert len(err) == 1 and "key test" in err[0]
     assert calls(log) == []
 
 

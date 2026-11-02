@@ -6,7 +6,11 @@ a process of its own, by the Python that runs this command, in the folder of the
 with no stdin, so no step reads the stdin of its caller; it prints its own lines as it does
 when it runs alone. Every step runs even after a red one, so a red step hides no finding of
 a later step, and the run exits 1 when any step exits non-zero, 0 only when every step exits
-0 (case 587). Where the module `guppi.ship` is missing, by `ship_stands` of
+0 (case 587). With `--exit-zero` it prints one last line `exit code: <n>`, the exit code of
+the run without the flag, and exits 0, so `/work` loads while the check finds something; the
+flag and that line come from `add_exit_zero` and `exit_zero` of `.guppi/guppi/commands.py`,
+which `guppi test` and `guppi style` use, and the librarian's run and the job `lint` of CI,
+which run it with no flag, stay red (case 1003.2). Where the module `guppi.ship` is missing, by `ship_stands` of
 `.guppi/guppi/pages.py` — a project that installed GUPPI holds no command `ship` — it runs
 the other five and prints one line that it skips `guppi ship --check`, which sets no exit
 code (case 820.5). Every step only reports, so nothing here writes to the tree (cases 147.7,
@@ -21,6 +25,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from guppi.commands import add_exit_zero, exit_zero
 from guppi.event import project_root
 from guppi.pages import ship_stands
 
@@ -40,13 +45,15 @@ SKIPPED = "check: guppi ship --check skipped: no command ship in this project"
 
 
 def parser() -> argparse.ArgumentParser:
-    return argparse.ArgumentParser(prog="guppi check", description="run the vault checks")
+    return add_exit_zero(
+        argparse.ArgumentParser(prog="guppi check", description="run the vault checks")
+    )
 
 
 def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
     stdout = sys.stdout if stdout is None else stdout
     project_dir = project_root() if project_dir is None else Path(project_dir)
-    parser().parse_args(argv)
+    args = parser().parse_args(argv)
     env = dict(os.environ, CLAUDE_PROJECT_DIR=str(project_dir))
     status = 0
     for step in STEPS:
@@ -59,4 +66,4 @@ def run(argv, *, stdout=None, stderr=None, project_dir: Path | None = None, now=
         )
         if done.returncode != 0:
             status = 1
-    return status
+    return exit_zero(status, args.exit_zero, stdout)

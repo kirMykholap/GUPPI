@@ -166,7 +166,7 @@ update:
 - [x] update `rule-documentation`
 - [x] update `estimate-close-reports-the-run`
 - [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] read `estimate-close-reports-the-run`
+- [x] read `estimate-close-reports-the-run`
 ```
 
 ## Case 995 — The searches for a new file's folder stand in the Case, and pre-spec checks them

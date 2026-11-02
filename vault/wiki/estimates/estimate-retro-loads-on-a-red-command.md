@@ -5,6 +5,7 @@ status: pending
 target: "[[rule-retro]]"
 purpose: Whether /retro loads while guppi test or guppi style finds something, its lines Tests and Style running both commands with --exit-zero and ending with the line that names the exit code
 method: "by hand, after the librarian's render that writes .claude/skills/retro/SKILL.md from the Render of rule-retro with --exit-zero on its lines Tests and Style: the text of .claude/skills/retro/SKILL.md read against the Criterion, and the first load of /retro after that render read in the transcript of its session under ~/.claude/projects/, the skill loaded and its lines Tests and Style each ending with the line that names the exit code; recorded in the estimate line with the transcript named"
+deferred_by: ["[[decision-case-1007]]"]
 origin: raw/2026-11-02/1337/ledger.md#case-1003.4
 sprint: plugin
 created: 2026-11-02
@@ -24,3 +25,4 @@ The skill loads whatever `uv run --project .guppi guppi test` and `uv run --proj
 ## History
 
 - 2026-11-02 created · [[decision-case-1003.4]]
+- 2026-11-02 deferred · [[decision-case-1007]]

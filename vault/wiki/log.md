@@ -12761,3 +12761,26 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-02 lessons/lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated archived · insight actioned · generate
 - 2026-11-02 lessons/lesson-acknowledging-reply-labels-left-in-english archived · cleanup
 - 2026-11-02 lessons/lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated archived · cleanup
+- 2026-11-02 decisions/decision-case-1007 created · raw/2026-11-02/2035/ledger.md#case-1007 · generate
+- 2026-11-02 estimates/estimate-retro-loads-on-a-red-command deferred · [[decision-case-1007]] · generate
+- 2026-11-02 decisions/decision-case-1008 created · raw/2026-11-02/2035/ledger.md#case-1008 · generate
+- 2026-11-02 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline deferred · [[decision-case-1008]] · generate
+- 2026-11-02 decisions/decision-case-1009 created · raw/2026-11-02/2035/ledger.md#case-1009 · generate
+- 2026-11-02 estimates/estimate-synthesis-keeps-actioned-by-the-mark deferred · [[decision-case-1009]] · generate
+- 2026-11-02 decisions/decision-case-1010 created · raw/2026-11-02/2035/ledger.md#case-1010 · generate
+- 2026-11-02 decisions/decision-case-1010.1 created · raw/2026-11-02/2035/ledger.md#case-1010.1 · generate
+- 2026-11-02 rules/rule-case-check updated: the note of names takes only the first code span of a task line as a changed file · [[decision-case-1010.1]] · generate
+- 2026-11-02 estimates/estimate-case-check-notes-the-files-that-name-what-a-case-changes updated: the Criterion replaced whole — only the first code span of a task line names a changed file · [[decision-case-1010.1]] · generate
+- 2026-11-02 decisions/decision-case-1010.2 created · raw/2026-11-02/2035/ledger.md#case-1010.2 · generate
+- 2026-11-02 rules/rule-case-check updated: a name that more than 20 of the searched files hold gives one note with its count · [[decision-case-1010.2]] · generate
+- 2026-11-02 estimates/estimate-case-check-sends-one-note-for-a-broad-name created · [[decision-case-1010.2]] · generate
+- 2026-11-02 estimates/estimate-case-check-sends-one-note-for-a-broad-name status: pending → passed · raw/2026-11-02/2035/ledger.md#L11 · generate
+- 2026-11-02 rules/rule-case-check estimate estimate-case-check-sends-one-note-for-a-broad-name added · [[decision-case-1010.2]] · generate
+- 2026-11-02 decisions/decision-case-1010.3 created · raw/2026-11-02/2035/ledger.md#case-1010.3 · generate
+- 2026-11-02 rules/rule-case-build updated: case-guppi answers the note of a broad name by a search and writes each changed file in the first code span of a task line of its own · [[decision-case-1010.3]] · generate
+- 2026-11-02 estimates/estimate-case-build-searches-the-names-of-what-it-changes updated: the Criterion replaced whole — the note of a name, and one changed file per task line · [[decision-case-1010.3]] · generate
+- 2026-11-02 estimates/estimate-case-check-notes-the-files-that-name-what-a-case-changes status: pending → passed · raw/2026-11-02/2035/ledger.md#L10 · generate
+- 2026-11-02 lessons/lesson-orchestration-defer-reply-frontier-heading-in-english created · raw/2026-11-02/2035/ledger.md#L12 · generate
+- 2026-11-02 lessons/lesson-ship-test-comment-writes-a-bare-case-reference created · raw/2026-11-02/2035/ledger.md#L13 · generate
+- 2026-11-02 insights/insight-orchestration-acknowledging-reply-keeps-headings-in-english updated: child lesson-orchestration-defer-reply-frontier-heading-in-english added, reopened from actioned (synthesis) · raw/2026-11-02/2035/ledger.md#L12 · generate
+- 2026-11-02 lessons/lesson-orchestration-defer-reply-frontier-heading-in-english updated: clustered under insight-orchestration-acknowledging-reply-keeps-headings-in-english (synthesis) · raw/2026-11-02/2035/ledger.md#L12 · generate

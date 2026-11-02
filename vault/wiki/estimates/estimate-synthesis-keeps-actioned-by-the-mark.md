@@ -6,6 +6,7 @@ target: "[[rule-synthesis]]"
 purpose: An Insight stays or is born actioned by the mark — an existing actioned Insight keeps its status and takes the later of the two addressed_by; a new Insight from a marked lesson is set actioned right after its create
 method: "by hand, after a librarian's run that puts a lesson with `addressed_by` under an Insight that stands `actioned`: the yaml and the brief read against the Criterion"
 checked: 2026-09-27
+deferred_by: ["[[decision-case-1009]]"]
 origin: raw/2026-09-20/2106/ledger.md#case-284.4
 sprint: migration
 created: 2026-09-20
@@ -37,3 +38,4 @@ When case N is later than case M — compared number by number, `378.5` after `3
 - 2026-09-24 updated: the Criterion replaced whole — addressed_by takes the later case (case 385) · [[decision-case-385]]
 - 2026-09-27 status: pending → passed · raw/2026-09-27/2050/ledger.md#L26
 - 2026-10-30 updated: the Criterion replaced whole — the case number stands in a pointer bracket; the method names its event · [[decision-case-920.3]]
+- 2026-11-02 deferred · [[decision-case-1009]]

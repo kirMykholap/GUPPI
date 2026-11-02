@@ -6,6 +6,7 @@ target: "[[rule-work-mode]]"
 purpose: Whether /work loads while guppi check or guppi test finds something, stops on main, writes the baseline of uv run --project .guppi guppi test and uv run --project .guppi guppi check into work.md before the first change — the exit code of each as the last line of its preamble line names it — and keeps it on a resume, runs the tasks of the Spec of the session or of the folder /box gives it in order with their ticks but leaves a guppi sprint-close line to the librarian, names that folder under Conserved Spec and deletes its carry.md, marks an expected red under Expected red, runs the check of the plan before the first task of a Case ratified in Work Mode, stops on its finding and ticks a task of that Case whose work already stands, and after the last task runs uv run --project .guppi guppi test in full and holds each failing test against the baseline, fixing a new one within ratified work
 method: "by hand, after the librarian's render that writes .claude/skills/work/SKILL.md from the Render of rule-work-mode with --exit-zero on its lines Tests and Lint: uv run --project .guppi guppi render --check; .claude/skills/work/SKILL.md read against each line of the Criterion; the first /work that loads after that render while uv run --project .guppi guppi check exits 1, its preamble lines, its work.md and its run of the tasks read in the transcript of its session under ~/.claude/projects/ and in its spec.md and work.md against the Criterion; the lines on a Case ratified in Work Mode read in that transcript where that session ratifies one, otherwise against the text of the skill; recorded in the estimate line with the transcript named"
 checked: 2026-10-31
+deferred_by: ["[[decision-case-1008]]"]
 origin: raw/2026-09-28/1318/ledger.md#case-479.2
 sprint: migration
 created: 2026-09-28
@@ -60,3 +61,4 @@ Then:
 - 2026-10-31 updated: the method reads Case 964, ratified in the Work Mode of session 0431 and staged on purpose, the Criterion written back unchanged · [[decision-case-964]]
 - 2026-10-31 status: pending → passed · raw/2026-10-31/0431/ledger.md#L48
 - 2026-11-02 updated: the Criterion replaced whole — /work loads while guppi check is red, its preamble running guppi test and guppi check with --exit-zero; purpose and method name it · [[decision-case-1003.3]]
+- 2026-11-02 deferred · [[decision-case-1008]]

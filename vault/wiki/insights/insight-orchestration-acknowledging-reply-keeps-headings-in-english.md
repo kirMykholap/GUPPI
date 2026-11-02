@@ -1,9 +1,9 @@
 ---
 type: insight
 pattern: "the main agent takes the English name of a heading or label of the acknowledging reply, such as ## Frontier in a code span of orchestration.md, for a literal to copy and writes it in English in a chat in another language, before and after case 997 rewrote the text to say each one is translated"
-status: actioned
-children: ["[[lesson-acknowledging-reply-labels-left-in-english]]", "[[lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated]]"]
-severity: 0
+status: open
+children: ["[[lesson-acknowledging-reply-labels-left-in-english]]", "[[lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated]]", "[[lesson-orchestration-defer-reply-frontier-heading-in-english]]"]
+severity: 1
 addressed_by: "[[decision-case-1002]]"
 origin: raw/2026-11-02/0254/ledger.md#L5
 sprint: plugin
@@ -23,3 +23,4 @@ A Case might weigh whether the text of orchestration.md shows the translated for
 
 - 2026-11-02 created · raw/2026-11-02/0254/ledger.md#L5
 - 2026-11-02 updated: actioned: orchestration.md names each heading and label of the acknowledging reply by what it says, and the first reply after its render wrote them all in the language of the chat (case 1002) · [[decision-case-1006]]
+- 2026-11-02 updated: child lesson-orchestration-defer-reply-frontier-heading-in-english added, reopened from actioned (synthesis) · raw/2026-11-02/2035/ledger.md#L12

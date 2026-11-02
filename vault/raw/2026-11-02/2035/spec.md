@@ -72,12 +72,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
 - [x] `.guppi/guppi/casecheck.py`: `changed_targets` takes the task lines by `read_tasks` of the module `ratified`, imported, and of each line only its first code span by `CODE_SPAN`, kept where it is the path of a file outside `vault/wiki/`; the module docstring and the docstrings of `changed_targets` and `check_answer` say so.
 - [x] `.guppi/tests/test_casecheck.py`: a test that a path in a later code span of a task line, and one in a code span of a sub-point, gives no note, while the path in the first code span still does.
 - [x] `uv run --project .guppi guppi test`: passes.
-- [ ] read `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
+- [x] read `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
 ```
 
 ### Case 1010.2 — A name that many files hold gives one note
@@ -121,12 +121,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-sends-one-note-for-a-broad-name`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-sends-one-note-for-a-broad-name`
 - [x] `.guppi/guppi/casecheck.py`: `names_notes` counts for each name of a Case the searched files that hold it, the file of the page or the file itself left out; a name held by more than `BROAD_NAME`, 20, files gives one note `note: case <N>: <count> files name <name>: …` and no note of a file by that name; the module docstring and the docstrings of `names_notes` and `check_answer` say so.
 - [x] `.guppi/tests/test_casecheck.py`: a test that 21 unread files that name `rule-x` give one note with the count and no note of a file, that 20 give a note for each file, and that a file which also holds a narrow name keeps its own note.
 - [x] `uv run --project .guppi guppi test`: passes.
-- [ ] read `estimate-case-check-sends-one-note-for-a-broad-name`
+- [x] read `estimate-case-check-sends-one-note-for-a-broad-name`
 ```
 
 ### Case 1010.3 — case-guppi answers the note of a name and writes one changed file per task line
@@ -169,9 +169,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-searches-the-names-of-what-it-changes`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-searches-the-names-of-what-it-changes`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-searches-the-names-of-what-it-changes`
 ```
 

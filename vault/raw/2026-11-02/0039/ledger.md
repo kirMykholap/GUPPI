@@ -1,0 +1,15 @@
+- 01:05:09 decision[case 997][update][rule-orchestration]{ref:rule-orchestration}
+- 01:05:09 decision[case 997][update][estimate-orchestration-acknowledging-reply]{ref:rule-orchestration}
+- 01:36:29 decision[case 998][update][estimate-case-build-reads-the-readers-of-a-changed-step]{ref:rule-case-build}
+- 02:11:00 decision[case 999.1][delete][entity-link-graph]
+- 02:11:00 decision[case 999.1][delete][rule-link-graph-at-session-start]
+- 02:11:00 decision[case 999.1][delete][estimate-link-graph-prints-the-neighbours]
+- 02:11:00 decision[case 999.1][delete][estimate-link-graph-at-session-start-writes-the-file]
+- 02:11:00 decision[case 999.1][update][rule-hook-registry]{ref:rule-hook-registry}
+- 02:11:00 decision[case 999.1][update][entity-guppi]{ref:entity-guppi}
+- 02:11:00 decision[case 999.1][create][estimate-sprint-plugin-link-graph-is-gone]{ref:entity-sprint-plugin}{tags:sprint,harness}
+- 02:11:00 decision[case 999.2][update][rule-case-build]{ref:rule-case-build}
+- 02:11:00 decision[case 999.2][update][estimate-case-build-reads-the-link-graph-of-what-it-changes]{ref:rule-case-build}
+- 02:33:51 decision[case 999.1][update][rule-harness]{ref:rule-harness}
+- 02:41:33 estimate[estimate-sprint-plugin-check-finds-no-bare-slug-link][passed] 2026-11-02, Retro of session 0039: uv run --project .guppi guppi check in Work Mode after the code tasks printed 9 lines, exit 1, none of them a ref line for estimate-link-graph-prints-the-neighbours; git log -p -1 -- vault/wiki/estimates/estimate-link-graph-prints-the-neighbours.md, commit 5d534880 (librarian, 2026-10-31), changes the ## Result alone — `[[slug]]` and the output of guppi links decision-case-966 put in code spans, "Retro of session 1831" written "Retro (session 1831)", the date, the commands, the counts and the outputs as they stood — and adds one History line of decision-case-973; status, Criterion and method unchanged
+- 02:41:33 lesson[knowledge][lesson-grep-glob-brace-list-of-paths-matches-nothing]{tags:harness,case-build}{source:probe of case-guppi in the build of Case 999, session 0039, vault/raw/2026-11-02/0039/cases/case-999.md context} trigger: in the /pre-spec of session 0039 ask-guppi ran two Greps over vault/wiki/ whose glob was a brace list of file paths and got no match where the word stands; case-guppi then tried the forms for the new Render of rule-case-build root_cause: a Grep over vault/wiki/ with the glob {rules/rule-harness.md,entities/entity-guppi.md}, a brace list of paths with their folders, printed nothing, while **/{rule-harness,entity-guppi}.md and {rule-harness,entity-guppi}.md printed the purpose lines of both pages and the appended !**/decisions/** took nothing from them, so a glob that names pages in a brace list names them by bare file name, with no folder

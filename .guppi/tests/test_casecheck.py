@@ -91,8 +91,10 @@ defer:
 
 @pytest.fixture
 def working(tmp_path):
-    """A working session: `hi` at 15:01, a plan file the agent wrote under `.claude/plans/`."""
-    plan = tmp_path / ".claude" / "plans" / "plan.md"
+    """A working session: `hi` at 15:01, a plan file the agent wrote under `.claude/plans/` of
+    the home folder, outside the project, as Claude Code writes it, so the note of names does
+    not search it (case 1005.1)."""
+    plan = tmp_path / "home" / ".claude" / "plans" / "plan.md"
     plan.parent.mkdir(parents=True)
     plan.write_text("# Spec — 2026-09-09, session 1501\n", encoding="utf-8")
     (tmp_path / "guppi.toml").write_text(
@@ -113,7 +115,7 @@ def working(tmp_path):
 
 
 def store(project):
-    path = casecheck.store_of(project / ".claude" / "plans" / "plan.md")
+    path = casecheck.store_of(project / "home" / ".claude" / "plans" / "plan.md")
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
 
 
@@ -445,7 +447,7 @@ def test_subagent_a_schema_the_session_changes_is_not_judged(working):
 
 
 def test_subagent_no_plan_file_sends_nothing_back(working):
-    (working / ".claude" / "plans" / "plan.md").unlink()
+    (working / "home" / ".claude" / "plans" / "plan.md").unlink()
     no_read = ANSWER.replace("> - [ ] read `estimate-x-works`\n", "")
     assert answer(working, no_read) == (0, "")
 
@@ -666,7 +668,7 @@ def test_subagent_round_form_an_unreadable_transcript_is_not_judged(working):
 
 
 def test_subagent_round_form_no_plan_file_still_sends_the_round_back(working):
-    (working / ".claude" / "plans" / "plan.md").unlink()
+    (working / "home" / ".claude" / "plans" / "plan.md").unlink()
     faulty = round_of("Which page?").replace("**Which page?**:", "**Which page?**")
     code, err = round_answer(working, faulty)
     assert code == 2 and "the title line" in err
@@ -803,7 +805,7 @@ def test_subagent_shape_new_number_and_the_command_give_the_same_id(working):
     sprint = working / "vault" / "wiki" / "sprint.md"
     sprint.write_text("# Sprint\n\n## plugin\n", encoding="utf-8")
     ledger(working, "decision[case 9][update][rule-x]{ref:rule-x}")
-    plan = working / ".claude" / "plans" / "plan.md"
+    plan = working / "home" / ".claude" / "plans" / "plan.md"
     casecheck.write_store(plan, {"12": {"agent_id": "a"}})
     folder = working.joinpath(*FOLDER)
     records = casecheck.ledger_records(casecheck.ledger_of(folder))
@@ -1004,7 +1006,7 @@ def test_subagent_clash_an_id_of_a_sprint_another_agent_holds_is_sent_back(worki
 
 def test_subagent_clash_an_id_the_command_holds_gives_no_finding(working):
     # `guppi caseid --next` holds an id with no agent_id, which no answer clashes with (case 788.7)
-    plan = working / ".claude" / "plans" / "plan.md"
+    plan = working / "home" / ".claude" / "plans" / "plan.md"
     casecheck.write_store(plan, {"kir-plugin-12": {"stored": NOW.isoformat()}})
     assert answer_file(working, KIR_12, agent_id="b2") == (0, "")
 
@@ -2046,7 +2048,7 @@ def setting(case, status):
 
 
 def plan_with(project, text):
-    path = project / ".claude" / "plans" / "plan.md"
+    path = project / "home" / ".claude" / "plans" / "plan.md"
     path.write_text("# Spec — 2026-09-09, session 1501\n\n" + text, encoding="utf-8")
 
 
@@ -2076,7 +2078,7 @@ def test_subagent_session_clash_none_with_a_stored_case_with_findings(working):
 
 def test_subagent_session_clash_none_with_an_entry_joined_with_an_agent_id(working):
     assert answer(working, setting(6, "built")) == (0, "")
-    path = casecheck.store_of(working / ".claude" / "plans" / "plan.md")
+    path = casecheck.store_of(working / "home" / ".claude" / "plans" / "plan.md")
     held = store(working)
     path.write_text(json.dumps({"6@b2": held["6"]}), encoding="utf-8")
     assert answer(working, setting(7, "draft")) == (0, "")
@@ -2103,7 +2105,7 @@ def stored_part(project, file_text):
     entry["text"] = (
         entry["text"].replace("## Case 6 —", "## Case 6.1 —").replace("[case 6]", "[case 6.1]")
     )
-    path = casecheck.store_of(project / ".claude" / "plans" / "plan.md")
+    path = casecheck.store_of(project / "home" / ".claude" / "plans" / "plan.md")
     path.write_text(json.dumps({"6.1": entry}), encoding="utf-8")
     case_path(project, "6").write_text(file_text, encoding="utf-8")
     return entry["text"]
@@ -2867,7 +2869,7 @@ def test_built_again_sibling_an_old_text_only_the_plan_wrote_is_a_finding(workin
 
 def test_built_again_sibling_an_entry_with_findings_leaves_the_plan_text(working):
     built_again_sibling(working)
-    path = casecheck.store_of(working / ".claude" / "plans" / "plan.md")
+    path = casecheck.store_of(working / "home" / ".claude" / "plans" / "plan.md")
     held = store(working)
     held["5"]["findings"] = ["case 5: a finding"]
     path.write_text(json.dumps(held), encoding="utf-8")
@@ -3001,3 +3003,115 @@ def test_cascade_a_create_delete_or_defer_gives_none(working, kind):
     a_cluster(working)
     plan_with(working, planned_items(5, kind, "lesson-a"))
     assert answer(working, cascading(7, ("insight-i", "actioned"))) == (0, "")
+
+
+# --- the note of names (case 1005.1) ------------------------------------------------------
+
+
+def a_named_rule_x(project):
+    """`rule-x` with a `code_ref` and an `implementation_ref`, and three files that name it:
+    a page by its slug, a test by the file name of its `code_ref`, and a skill by the
+    command of its `implementation_ref`."""
+    rule = project / "vault" / "wiki" / "rules" / "rule-x.md"
+    rule.write_text(
+        RULE_X.replace(
+            "status: draft\n",
+            "status: draft\ncode_ref: .guppi/guppi/xmod.py\n"
+            "implementation_ref: .guppi/guppi/casecheck.py\n",
+        ),
+        encoding="utf-8",
+    )
+    named = {
+        "vault/wiki/rules/rule-y.md": "---\ntype: rule\npurpose: Prevents y\n---\n\nSee [[rule-x]].\n",
+        ".guppi/tests/test_y.py": "# the tests of xmod.py\n",
+        ".claude/skills/s/SKILL.md": "Run `guppi casecheck` first.\n",
+    }
+    for rel, content in named.items():
+        path = project / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8")
+    return named
+
+
+def names_note(case, rel, name, about=""):
+    return f"note: case {case}: {rel} names {name}{about}: read it"
+
+
+def test_names_note_each_unread_file_that_names_an_updated_page(working):
+    a_named_rule_x(working)
+    code, err = answer(working, ANSWER)
+    assert code == 2
+    assert names_note(7, "vault/wiki/rules/rule-y.md", "rule-x", " — purpose: Prevents y") in err
+    assert names_note(7, ".guppi/tests/test_y.py", "xmod.py") in err
+    assert names_note(7, ".claude/skills/s/SKILL.md", "guppi casecheck") in err
+    assert "rules/rule-x.md names" not in err  # the file of the page itself
+    held = store(working)["7"]["notes"]
+    assert any(names_note(7, ".guppi/tests/test_y.py", "xmod.py") in note for note in held)
+    assert answer(working, ANSWER) == (0, "")  # a note held for the id is not sent again
+
+
+def test_names_note_a_file_read_by_read_or_by_a_grep_on_it_gives_none(working):
+    a_named_rule_x(working)
+    grep = {
+        "type": "tool_use",
+        "id": "toolu_grep",
+        "name": "Grep",
+        "input": {"pattern": "xmod", "path": ".guppi/tests/test_y.py"},
+    }
+    reads = rule_x_read(working) + read_lines(
+        working / "vault" / "wiki" / "rules" / "rule-y.md", call_id="toolu_read_y"
+    )
+    path = transcript(working, [grep], [text(ANSWER)], reads=reads)
+    code, err = answer(working, ANSWER, agent_transcript_path=path)
+    assert code == 2 and names_note(7, ".claude/skills/s/SKILL.md", "guppi casecheck") in err
+    assert "rule-y.md names" not in err and "test_y.py names" not in err
+
+
+def test_names_note_a_grep_over_a_folder_reads_none_of_its_files(working):
+    a_named_rule_x(working)
+    grep = {"type": "tool_use", "id": "toolu_grep", "name": "Grep", "input": {"path": ".guppi"}}
+    path = transcript(working, [grep], [text(ANSWER)])
+    code, err = answer(working, ANSWER, agent_transcript_path=path)
+    assert code == 2 and names_note(7, ".guppi/tests/test_y.py", "xmod.py") in err
+
+
+def test_names_note_leaves_out_decision_pages_the_log_and_the_brief(working):
+    wiki = working / "vault" / "wiki"
+    for rel in ("decisions/decision-case-1.md", "log.md", "brief.md"):
+        (wiki / rel).parent.mkdir(parents=True, exist_ok=True)
+        (wiki / rel).write_text("Names rule-x.\n", encoding="utf-8")
+    assert answer(working, ANSWER) == (0, "")
+
+
+def test_names_note_takes_a_whole_word_alone(working):
+    page = working / "vault" / "wiki" / "rules" / "rule-x-more.md"
+    page.write_text("---\ntype: rule\n---\n\nSee rule-x-more and my_rule-x.\n", encoding="utf-8")
+    assert answer(working, ANSWER) == (0, "")
+
+
+def test_names_note_a_file_whose_path_a_task_line_writes(working):
+    (working / ".guppi" / "tests").mkdir(parents=True)
+    (working / ".guppi" / "tests" / "test_x.py").write_text("# test_x.py\n", encoding="utf-8")
+    (working / ".claude").mkdir(exist_ok=True)
+    (working / ".claude" / "notes.md").write_text("Run test_x.py.\n", encoding="utf-8")
+    with_path = ANSWER.replace(
+        "> - [ ] read `estimate-x-works`\n",
+        "> - [ ] `.guppi/tests/test_x.py`: a test\n> - [ ] read `estimate-x-works`\n",
+    )
+    code, err = answer(working, with_path)
+    assert code == 2 and names_note(7, ".claude/notes.md", "test_x.py") in err
+    assert ".guppi/tests/test_x.py names" not in err  # the file itself
+
+
+def test_names_note_none_with_no_transcript(working):
+    a_named_rule_x(working)
+    _, notes = casecheck.check_answer(ANSWER, working)
+    assert not any(" names " in note for note in notes["7"])
+    _, notes = casecheck.check_answer(ANSWER, working, looked=set())
+    assert any(names_note(7, ".guppi/tests/test_y.py", "xmod.py") in n for n in notes["7"])
+
+
+def test_names_note_carried_names():
+    assert casecheck.carried_names(".claude/agents/case-guppi.md") == ["case-guppi"]
+    assert casecheck.carried_names(".claude/skills/pre-spec/SKILL.md") == ["/pre-spec"]
+    assert casecheck.carried_names(".guppi/guppi/commands.py") == ["guppi style", "guppi test"]

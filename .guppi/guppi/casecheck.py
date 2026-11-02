@@ -135,6 +135,22 @@ Case wrote from a read of that Case's file; a part the answer wrote is not judge
 of a `Grep` is no read, and a transcript the hook cannot read judges no read (case 711.3).
 This check of the read is the hook's own, not one of `/pre-spec`.
 
+The note of names (case 1005.1). For each page the `then` block of a Case updates or deletes,
+by `prespec.items_of`, and each file of the repository outside `vault/wiki/` whose path a task
+line of the Case writes in a code span, by `lint.CODE_SPAN`, `changed_targets` takes its
+names: for a page its slug, the file name of each path of its `governs`, `implementation_ref`
+and `code_ref` (`generate.REWORD_PATH_FIELDS`), and the names those paths carry; for a file its
+file name and the names it carries — the agent of `.claude/agents/<name>.md`, the skill of
+`.claude/skills/<name>/SKILL.md` with its slash, and `guppi <command>` for each command that
+`COMMANDS` of `.guppi/guppi/cli.py` maps to its module. `names_notes` searches the files under
+`vault/wiki/`, `.claude/`, `.guppi/guppi/` and `.guppi/tests/`, the Decision pages, `log.md`,
+`brief.md` and the file of the page or the file itself left out, each name as a whole word,
+and gives one note per Case and file that holds a name and that the subagent did not read:
+its path, the name it holds and, for a page, its `purpose`, `root_cause` or `pattern` line. A
+read here, by `looked_files`, is a `Read` call of the file or a `Grep` call whose `path` is
+the file; the check of the pairs keeps its own read above. A transcript the hook cannot read
+gives no such note. The notes are sent once, as every note of `check_answer`.
+
 The file (case 645.2). `case-guppi` writes its Case into
 `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case, named by
 `case_file`, and fixes it by `Edit`. The hook takes each file under the `cases/` folder of a
@@ -335,7 +351,7 @@ from pathlib import Path
 
 from guppi import caseid
 from guppi.event import project_root, read_payload, session_stamp
-from guppi.generate import DAY, FRONTIER_LINE, FRONTIER_SEPARATOR, SESSION
+from guppi.generate import DAY, FRONTIER_LINE, FRONTIER_SEPARATOR, REWORD_PATH_FIELDS, SESSION
 from guppi.ledger import (
     ANSWER,
     PERSON,
@@ -353,8 +369,10 @@ from guppi.ledger import (
     transcript_records,
     user_kind,
 )
+from guppi.lint import CODE_SPAN, as_list
 from guppi.materialize import (
     CASE_HEADING,
+    category_of,
     closes_fence,
     fence_opening,
     in_family,
@@ -365,6 +383,7 @@ from guppi.materialize import (
     tagged_blocks,
     then_blocks,
 )
+from guppi.pages import read_page, wiki_root
 from guppi.prespec import (
     BACKLOG_SOURCE,
     FINDING_CASE,
@@ -375,6 +394,7 @@ from guppi.prespec import (
     check_untranslated,
     decided_on_its_page,
     deferred_pages,
+    items_of,
     judge,
     line_has_item,
     preview,
@@ -1154,6 +1174,162 @@ def unread_sentences(
     return list(dict.fromkeys(found))
 
 
+GREP = "Grep"  # with `READ`, a call whose file counts as read for the note of names (case 1005.1)
+NAMED_IN = ("vault/wiki", ".claude", ".guppi/guppi", ".guppi/tests")  # the folders it searches
+NOT_NAMED_IN = ("vault/wiki/decisions/",)  # the Decision pages, left out
+NOT_NAMED_FILES = ("vault/wiki/log.md", "vault/wiki/brief.md")
+WIKI = "vault/wiki/"
+AGENT_FILE = re.compile(r"^\.claude/agents/([^/]+)\.md$")
+SKILL_FILE = re.compile(r"^\.claude/skills/([^/]+)/SKILL\.md$")
+PURPOSE_FIELDS = ("purpose", "root_cause", "pattern")  # the purpose line of a page
+
+
+def rel_path(path) -> str:
+    """A path of the repository as the note of names compares it: slashes forward, no `./`."""
+    return str(path).replace("\\", "/").removeprefix("./")
+
+
+def looked_files(payload: dict, project_dir: Path) -> set[str] | None:
+    """The files the subagent in `agent_transcript_path` read, by `path_key`: the
+    `file_path` of each `Read` call and the `path` of each `Grep` call, a relative path taken
+    from `project_dir` (case 1005.1). A `Grep` over a folder reads none of its files. None
+    when the transcript cannot be read: no note of names is given then."""
+    records = read_records(payload.get("agent_transcript_path"))
+    if records is None:
+        return None
+    looked: set[str] = set()
+    for record in records:
+        message = record.get("message") if isinstance(record, dict) else None
+        content = message.get("content") if isinstance(message, dict) else None
+        for block in content if isinstance(content, list) else []:
+            if not isinstance(block, dict) or block.get("type") != "tool_use":
+                continue
+            data = block.get("input") if isinstance(block.get("input"), dict) else {}
+            path = {READ: data.get("file_path"), GREP: data.get("path")}.get(block.get("name"))
+            if path:
+                path = Path(str(path))
+                looked.add(path_key(path if path.is_absolute() else project_dir / path))
+    return looked
+
+
+def carried_names(path: str) -> list[str]:
+    """The names a file of the repository carries: the agent of `.claude/agents/<name>.md`,
+    the skill of `.claude/skills/<name>/SKILL.md` with its slash, and `guppi <command>` for
+    each command that `COMMANDS` of `.guppi/guppi/cli.py` maps to the module at `path`."""
+    from guppi.cli import COMMANDS  # imported here: `cli` imports this module
+
+    names: list[str] = []
+    if match := AGENT_FILE.match(path):
+        names.append(match.group(1))
+    if match := SKILL_FILE.match(path):
+        names.append("/" + match.group(1))
+    for command, function in COMMANDS.items():
+        module = str(getattr(function, "__module__", ""))
+        if module.startswith("guppi.") and path == f".guppi/{module.replace('.', '/')}.py":
+            names.append(f"guppi {command}")
+    return names
+
+
+def changed_targets(lines: list[str], block: dict, project_dir: Path) -> dict[str, list[str]]:
+    """The path of each page the `then` block of the Case updates or deletes, by
+    `prespec.items_of`, and of each file of the repository outside `vault/wiki/` whose path a
+    task line of the Case writes in a code span, by `lint.CODE_SPAN`, each with its names
+    (case 1005.1). The names of a page are its slug, the file name of each path of its
+    `REWORD_PATH_FIELDS` and the names that path carries; those of a file, its file name and
+    the names it carries. A page with no file on disk gives none."""
+    targets: dict[str, list[str]] = {}
+    wiki = wiki_root(project_dir)
+    for item in items_of(block):
+        slug = str(item["slug"] or "")
+        category = category_of(slug)
+        path = wiki / str(category) / f"{slug}.md"
+        if item["kind"] not in ("update", "delete") or not category or not path.is_file():
+            continue
+        page = read_page(path, category)
+        names = [slug]
+        for field in REWORD_PATH_FIELDS:
+            for value in as_list(page.props.get(field)):
+                names += [Path(rel_path(value)).name, *carried_names(rel_path(value))]
+        targets[f"{WIKI}{category}/{slug}.md"] = list(dict.fromkeys(names))
+    tasks = quoted_sections(lines, ("tasks",)).get("tasks", "")
+    for span in CODE_SPAN.findall(tasks):
+        path = rel_path(span.strip("`").strip())
+        if path and not path.startswith(WIKI) and (project_dir / path).is_file():
+            targets[path] = [Path(path).name, *carried_names(path)]
+    return targets
+
+
+def purpose_line(page) -> str:
+    """The `purpose`, `root_cause` or `pattern` line of a page, as `field: value`."""
+    for field in PURPOSE_FIELDS:
+        if page.props.get(field):
+            return f"{field}: {preview(str(page.props[field]))}"
+    return ""
+
+
+def named_files(project_dir: Path) -> dict[str, str]:
+    """The text of each file the note of names searches, by its path from the root: each
+    file under `NAMED_IN` but the Decision pages, `log.md` and `brief.md`; a file that is no
+    UTF-8 text is left out."""
+    texts: dict[str, str] = {}
+    for folder in NAMED_IN:
+        for path in sorted((project_dir / folder).rglob("*")):
+            rel = rel_path(path.relative_to(project_dir).as_posix())
+            if (
+                rel.startswith(NOT_NAMED_IN)
+                or rel in NOT_NAMED_FILES
+                or rel.endswith(STORE_SUFFIX)  # the hook's own store of checked answers
+                or not path.is_file()
+            ):
+                continue
+            try:
+                texts[rel] = path.read_text(encoding="utf-8")
+            except (OSError, UnicodeDecodeError):
+                continue
+    return texts
+
+
+def name_pattern(name: str) -> str:
+    """A name as a whole word: no letter, digit, `_` or `-` on either side of it, a name that
+    opens with `/` taking any character before it."""
+    before = r"(?<![\w-])" if re.match(r"\w", name) else ""
+    return before + re.escape(name) + r"(?![\w-])"
+
+
+def names_notes(
+    cases: dict[str, list[str]], answer: dict[str, dict], project_dir: Path, looked: set[str]
+) -> list[str]:
+    """One note per Case and file that names a page or a file the Case changes,
+    `changed_targets`, and that the subagent did not read, `looked_files`: the path, the name
+    the file holds and the purpose line of a page, asking `case-guppi` to read the file or
+    to name it in `context` with the reason it stands (case 1005.1). The file of the page or
+    the file itself is left out. A note, not a finding."""
+    notes: list[str] = []
+    texts: dict[str, str] | None = None
+    for case, block in answer.items():
+        named: dict[str, str] = {}  # the file → the first name it holds, for this Case
+        for own, names in changed_targets(cases.get(case, []), block, project_dir).items():
+            if texts is None:
+                texts = named_files(project_dir)
+            patterns = [(name, re.compile(name_pattern(name))) for name in names if name]
+            for rel, text in texts.items():
+                if rel == own or rel in named or path_key(project_dir / rel) in looked:
+                    continue
+                hit = next((name for name, pattern in patterns if pattern.search(text)), None)
+                if hit:
+                    named[rel] = hit
+        for rel, name in named.items():
+            line = ""
+            if rel.startswith(WIKI) and rel.count("/") == 3:  # a page, `vault/wiki/<cat>/<slug>.md`
+                line = purpose_line(read_page(project_dir / rel, rel.split("/")[2]))
+            about = f" — {line}" if line else ""
+            notes.append(
+                f"note: case {case}: {rel} names {name}{about}: read it by Read, or by a Grep "
+                "whose path is the file, or name it in context with the reason it stands"
+            )
+    return notes
+
+
 def session_clashes(answer: dict[str, dict], others: dict[str, dict]) -> list[str]:
     """The clashes of the answer's Cases with the other Cases of the session, by
     `prespec.check_same_target`, imported — the one judgment `/pre-spec` and the check after
@@ -1183,6 +1359,7 @@ def check_answer(
     plan: str = "",
     folder: Path | None = None,
     reads: dict[str, str] | None = None,
+    looked: set[str] | None = None,
 ) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     """Case id → its findings, and case id → its notes, for every Case of an answer of
     `case-guppi`. The categories whose schema rule the lines of the `ratification` fences or
@@ -1200,7 +1377,9 @@ def check_answer(
     by siblings (cases 472.1, 472.2). `plan`, the text of the plan file, with `store`, adds the
     check of the answer's Cases against the other Cases of the session, `session_clashes`
     (case 629.1); `folder`, the session folder, leaves a dropped Case out of them (case
-    701.7)."""
+    701.7). `looked`, the files the subagent read by `looked_files`, adds the notes of
+    `names_notes`, one per file that names what a Case changes and that it did not read; with
+    no transcript, None, no such note (case 1005.1)."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)
@@ -1280,8 +1459,9 @@ def check_answer(
     cascade = cascade_notes(
         {**others, **answer}, ledger_records(list(window)) + records, project_dir, set(answer)
     )
+    names = names_notes(cases, answer, project_dir, looked) if looked is not None else []
     notes: dict[str, list[str]] = {case: [] for case in cases}
-    for note in promise_notes(spec_text, project_dir) + pair_notes + cascade:
+    for note in promise_notes(spec_text, project_dir) + pair_notes + cascade + names:
         match = NOTE_CASE.match(note)
         case = match.group(1) if match else ""
         if case not in notes and (by := CASCADE_BY.search(note)) and by.group(1) in notes:
@@ -1668,6 +1848,7 @@ def judge_and_store(
         plan_text,
         folder,
         read_outputs(payload),  # None, no transcript, no read judged (case 711.3)
+        looked_files(payload, project_dir),  # None, no transcript, no note of names (case 1005.1)
     )
     agent_id = str(payload.get("agent_id") or "")
     apart = clashes(cases, store, agent_id)  # a number another agent holds (case 610.2)

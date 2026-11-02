@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: "by hand, after the librarian's render that writes into vault/wiki/orchestration.md the paragraph of rule-orchestration that names each heading and label of the acknowledging reply by what it says, with no English word for it in a code span or in bold: an acknowledging reply and a reply that acknowledges Cases ratified together in one answer, each written after that render, each read against the Criterion in the transcript of its session under ~/.claude/projects/"
@@ -34,7 +34,7 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 
 ## Result
 
-2026-11-02, session 0254 (hi 68effdf4), the reply that acknowledges Case 1001, read against the Criterion in this session's transcript: the LEDGER block first, the heading of the Case and the labels Changes and Notes in Russian, closed lines and W lines folded, the closing question whether to go on to /pre-spec, no tool call after the block all held; the heading ## Frontier stood in English, not translated into the language of the chat; no reply that acknowledges Cases ratified together came in this session
+2026-11-02, session 1548 (hi e96fc117), two replies written after the render of session 1337, read against the Criterion in this session's transcript: the reply that acknowledges Case 1005 with 1005.1–1005.3 ratified in one answer, and the reply that acknowledges Case 1006 alone; in each the LEDGER block first, the heading of the Case, the label of the changes and the heading of the Frontier in Russian, the changes in one or two sentences (in 1005 followed by the sentence on the librarian's render), closed lines and W lines folded, the open C1 on its own line, the closing question which item is next, no tool call after the block; the heading of 1005 named the Case by its id alone
 
 ## History
 
@@ -68,3 +68,5 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 - 2026-11-02 updated: the Criterion replaced whole — each heading and label of the reply stands translated into the language of the chat; the reading waits for the render · [[decision-case-997]]
 - 2026-11-02 status: pending → failed · raw/2026-11-02/0254/ledger.md#L4
 - 2026-11-02 updated: the reading waits for the render of the text that names each heading and label by what it says · [[decision-case-1002]]
+- 2026-11-02 status: failed → passed · raw/2026-11-02/1548/ledger.md#L7
+- 2026-11-02 status: passed → passed · raw/2026-11-02/1548/ledger.md#L9

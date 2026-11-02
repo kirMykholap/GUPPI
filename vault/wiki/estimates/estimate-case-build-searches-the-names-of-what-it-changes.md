@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-case-build]]"
-purpose: Whether case-guppi searches in one Grep that prints only file paths for all the names of each page and file its Case changes that exists before the Case, again at the check of the finished Case for each one it has not searched, prints the purpose lines of the pages on that list, and opens each file that bears on the change
-method: "by hand, after the /pre-spec of a session whose case-guppi runs on the Render of rule-case-build that searches the names of each page and file a Case changes: the agent transcript of each case-guppi of that session under ~/.claude/projects/, for each Case, whether one Grep that prints file paths covers all the names of each existing page and file the tasks of the Case change, whether a Grep printed the purpose lines of the pages on its list, and whether each file that bears on the change is opened or named in context; the count and the transcripts in the estimate line"
+purpose: Whether case-guppi, on each note of the hook of rule-case-check on a file that names a page or a file its Case changes, reads that file by Read or by a Grep whose path is it, or names it in context with the reason it stands, enters each file the change makes false in the Case, and writes in a code span of its task line the path of each file outside vault/wiki/ that a task changes
+method: "by hand, after the /pre-spec of the first session in which the hook of rule-case-check sends case-guppi a note on a file that names what its Case changes, on the Render of rule-case-build that answers that note: the agent transcript of each case-guppi of that session under ~/.claude/projects/, for each note, whether the agent read the file by Read or by a Grep whose path is it, or named it in context, and its case file, whether each task line writes in a code span the path of each file outside vault/wiki/ that it changes; the count and the transcripts in the estimate line"
 checked: 2026-11-02
 origin: raw/2026-10-31/1831/ledger.md#case-967.2
 sprint: plugin
@@ -15,16 +15,12 @@ tags: [session, workflow, harness, case-build]
 ## Criterion
 
 When:
-`case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, builds a Case and answers with its summary.
+`case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, gets from the `SubagentStop` hook of `rule-case-check` a note on a file that names a page or a file its Case changes, and answers again.
 
 Then:
-For each page and file the Case changes that exists before the Case, it searches in one Grep that prints only the paths of the files, over `vault/wiki/`, `.claude/`, `.guppi/guppi/` and `.guppi/tests/`, for all its names.
-**＋** The names of a page are its slug, the file name of each path of its `governs`, `implementation_ref` and `code_ref`, the name of the agent or of the skill with its slash whose file its `governs` names, and `guppi <command>` for each command that `COMMANDS` of `.guppi/guppi/cli.py` maps to a module of those paths; the names of a file are its file name and the agent, skill or command it carries.
-**＋** It prints the purpose line of each page on that list by one more Grep over those pages.
-**＋** It opens each file of the list whose purpose line, or whose path where it has none, bears on the change.
-**＋** At the check of the finished Case, it searches the names of each page and file the tasks of the Case change that it has not searched in that build.
+It reads that file by a `Read` call of it, or by a `Grep` call whose `path` is it, whole or in parts as `rule-case-build` sets for its kind of text, or the `context` of the Case names the file and says why it stands.
 **＋** Each file that the change makes false enters the Case, or the `context` of the Case names it and says why it stands.
-**－** A hit in `log.md` or `brief.md` is not opened.
+**＋** A task line that changes a file of the repository outside `vault/wiki/` writes its path in a code span.
 
 ## Result
 
@@ -39,3 +35,4 @@ For each page and file the Case changes that exists before the Case, it searches
 - 2026-11-02 renamed from `estimate-case-build-reads-the-link-graph-of-what-it-changes` · [[decision-case-999.2]]
 - 2026-11-02 updated: renamed and the Criterion replaced whole — case-guppi searches the names of what it changes, since the graph of links is dropped; pending again after the failed reading of session 2227 · [[decision-case-999.2]]
 - 2026-11-02 status: pending → failed · raw/2026-11-02/1337/ledger.md#L17
+- 2026-11-02 updated: the Criterion replaced whole — case-guppi answers the note of the hook on each file that names what its Case changes; purpose and method set anew · [[decision-case-1005.2]]

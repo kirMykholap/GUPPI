@@ -12736,3 +12736,28 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-02 lessons/lesson-hi-fails-outside-a-git-repository archived · insight actioned · generate
 - 2026-11-02 lessons/lesson-hi-fails-outside-a-git-repository archived · cleanup
 - 2026-11-02 lessons/lesson-work-skill-fails-to-load-on-a-red-check archived · cleanup
+- 2026-11-02 decisions/decision-case-1005 created · raw/2026-11-02/1548/ledger.md#case-1005 · generate
+- 2026-11-02 decisions/decision-case-1005.1 created · raw/2026-11-02/1548/ledger.md#case-1005.1 · generate
+- 2026-11-02 rules/rule-case-check updated: the check of the file of a Case sends a note once for each unread file that names a page or a file the Case changes · [[decision-case-1005.1]] · generate
+- 2026-11-02 estimates/estimate-case-check-notes-the-files-that-name-what-a-case-changes created · [[decision-case-1005.1]] · generate
+- 2026-11-02 estimates/estimate-case-check-notes-the-files-that-name-what-a-case-changes status: pending → passed · raw/2026-11-02/1548/ledger.md#L10 · generate
+- 2026-11-02 rules/rule-case-check estimate estimate-case-check-notes-the-files-that-name-what-a-case-changes added · [[decision-case-1005.1]] · generate
+- 2026-11-02 decisions/decision-case-1005.2 created · raw/2026-11-02/1548/ledger.md#case-1005.2 · generate
+- 2026-11-02 rules/rule-case-build updated: case-guppi answers the note of the hook on each file that names what its Case changes, in place of its own search for the names · [[decision-case-1005.2]] · generate
+- 2026-11-02 estimates/estimate-case-build-searches-the-names-of-what-it-changes updated: the Criterion replaced whole — case-guppi answers the note of the hook on each file that names what its Case changes; purpose and method set anew · [[decision-case-1005.2]] · generate
+- 2026-11-02 decisions/decision-case-1005.3 created · raw/2026-11-02/1548/ledger.md#case-1005.3 · generate
+- 2026-11-02 rules/rule-case-build updated: case-guppi searches for a member already in a list by one Grep from the root over a fixed glob · [[decision-case-1005.3]] · generate
+- 2026-11-02 estimates/estimate-case-build-reads-each-list-of-a-new-member updated: the Criterion replaced whole — the search for a member already in the list is one Grep from the root over the glob {vault/wiki,.claude,.guppi/guppi}/** · [[decision-case-1005.3]] · generate
+- 2026-11-02 estimates/estimate-orchestration-acknowledging-reply status: failed → passed · raw/2026-11-02/1548/ledger.md#L7 · generate
+- 2026-11-02 decisions/decision-case-1006 created · raw/2026-11-02/1548/ledger.md#case-1006 · generate
+- 2026-11-02 insights/insight-orchestration-acknowledging-reply-keeps-headings-in-english updated: actioned: orchestration.md names each heading and label of the acknowledging reply by what it says, and the first reply after its render wrote them all in the language of the chat (case 1002) · [[decision-case-1006]] · generate
+- 2026-11-02 estimates/estimate-orchestration-acknowledging-reply status: passed → passed · raw/2026-11-02/1548/ledger.md#L9 · generate
+- 2026-11-02 lessons/lesson-case-check-names-note-lists-hundreds-of-files created · raw/2026-11-02/1548/ledger.md#L11 · generate
+- 2026-11-02 lessons/lesson-frontier-closer-appended-without-ticking-the-box created · raw/2026-11-02/1548/ledger.md#L12 · generate
+- 2026-11-02 insights/insight-orchestration-frontier-closer-leaves-the-box-open created · raw/2026-11-02/1548/ledger.md#L12 · generate
+- 2026-11-02 lessons/lesson-orchestration-closes-a-frontier-line-by-its-closer-alone updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-02/1548/ledger.md#L12 · generate
+- 2026-11-02 lessons/lesson-frontier-closer-appended-without-ticking-the-box updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-02/1548/ledger.md#L12 · generate
+- 2026-11-02 lessons/lesson-acknowledging-reply-labels-left-in-english archived · insight actioned · generate
+- 2026-11-02 lessons/lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated archived · insight actioned · generate
+- 2026-11-02 lessons/lesson-acknowledging-reply-labels-left-in-english archived · cleanup
+- 2026-11-02 lessons/lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated archived · cleanup

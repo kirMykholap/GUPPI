@@ -74,12 +74,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] create `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
+- [x] update `rule-case-check`
+- [x] create `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
 - [x] `.guppi/guppi/casecheck.py`: the note of the files that name each page the Case updates or deletes and each existing file outside `vault/wiki/` whose path a task line writes in a code span, joined to the notes of `check_answer` only when the transcript can be read; the pages taken by `items_of` of `.guppi/guppi/prespec.py` with the kinds `update` and `delete`, the code spans by `CODE_SPAN` of `.guppi/guppi/lint.py`, the path fields by `REWORD_PATH_FIELDS` of `.guppi/guppi/generate.py`, all imported, and the commands read from `COMMANDS` of `.guppi/guppi/cli.py`; a read of a file is a `Read` call of it or a `Grep` call whose `path` is it, while the read check of the pairs keeps `read_outputs` as it stands; the module docstring and the docstring of `check_answer` name the note.
 - [x] `.guppi/tests/test_casecheck.py`: a test for an unread file that names an updated page by its slug, by a file name of its `code_ref` and by `guppi <command>`; a file read by `Read`, and one read by a `Grep` whose `path` is the file, left out; the Decision pages, `log.md` and `brief.md` left out; a path of a task line; the purpose line in the note; a held note not sent again; an unreadable transcript with no note; and each earlier test whose made-up project now gives the note set to it.
 - [x] `uv run --project .guppi guppi test`: passes, `.guppi/tests/test_case_schema.py` among the tests.
-- [ ] read `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
+- [x] read `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
 ```
 
 ### Case 1005.2 — The agent answers the note of the files
@@ -116,9 +116,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-searches-the-names-of-what-it-changes`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-searches-the-names-of-what-it-changes`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-searches-the-names-of-what-it-changes`
 ```
 
@@ -157,9 +157,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-reads-each-list-of-a-new-member`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-reads-each-list-of-a-new-member`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-reads-each-list-of-a-new-member`
 ```
 
@@ -208,5 +208,5 @@ update:
 ```
 
 ```tasks
-- [ ] update `insight-orchestration-acknowledging-reply-keeps-headings-in-english`
+- [x] update `insight-orchestration-acknowledging-reply-keeps-headings-in-english`
 ```

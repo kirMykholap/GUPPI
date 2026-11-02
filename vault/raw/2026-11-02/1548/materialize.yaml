@@ -1,0 +1,927 @@
+date: '2026-11-02'
+sprint: plugin
+ledger: vault/raw/2026-11-02/1548/ledger.md
+spec:
+- vault/raw/2026-11-02/1548/spec.md
+entries:
+- line: 1
+  text: decision[case 1005.1][update][rule-case-check]{ref:rule-case-check}
+  case: '1005.1'
+  kind: update
+  slug: rule-case-check
+  origin: raw/2026-11-02/1548/ledger.md#case-1005.1
+  decision: decision-case-1005.1
+  ref: rule-case-check
+  category: rules
+  replace:
+  - old: the check of the read of its pairs set out below and the check of a tag
+    new: the check of the read of its pairs set out below, the note of the files that name what a Case
+      changes and the check of a tag
+  - old: so that the Case drops the update or its `context` says why it stands (case 739.2).
+    new: 'so that the Case drops the update or its `context` says why it stands (case 739.2). It sends
+      `case-guppi` a note once, too, for each file under `vault/wiki/`, `.claude/`, `.guppi/guppi/` and
+      `.guppi/tests/` that holds a name of a page the file of a Case updates or deletes, or of a file
+      of the repository outside `vault/wiki/` whose path a task line of the Case writes in a code span,
+      and that the subagent read by no `Read` call of the file and no `Grep` call whose `path` is the
+      file: the names of a page are its slug, the file name of each path of its `governs`, `implementation_ref`
+      and `code_ref`, the name of the agent, or of the skill with its slash, whose file those paths name,
+      and `guppi <command>` for each command that `COMMANDS` of `.guppi/guppi/cli.py` maps to a module
+      of those paths, and the names of a file are its file name and the name of the agent, the skill or
+      the command it carries; the note gives the path, the name it holds and, for a page, its `purpose`,
+      `root_cause` or `pattern` line, leaves out the file of the page or the file itself, the Decision
+      pages, `log.md` and `brief.md`, and asks `case-guppi` to read the file or to name it in `context`
+      with the reason it stands, and a transcript the hook cannot read gives no such note (as set in case
+      1005.1).'
+  change: the check of the file of a Case sends a note once for each unread file that names a page or
+    a file the Case changes
+  applied: '20:27:14'
+- line: 2
+  text: decision[case 1005.1][create][estimate-case-check-notes-the-files-that-name-what-a-case-changes]{ref:rule-case-check}{tags:hooks,harness,workflow,case-build}
+  case: '1005.1'
+  kind: create
+  slug: estimate-case-check-notes-the-files-that-name-what-a-case-changes
+  origin: raw/2026-11-02/1548/ledger.md#case-1005.1
+  decision: decision-case-1005.1
+  ref: rule-case-check
+  tags:
+  - hooks
+  - harness
+  - workflow
+  - case-build
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether the check of the file of a Case sends case-guppi a note once for each file that names
+      a page or a file the Case changes and that the agent did not read, with its path, the name it holds
+      and the purpose line of a page
+    method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py, passed and not skipped
+    tags:
+    - hooks
+    - harness
+    - workflow
+    - case-build
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      The `SubagentStop` hook `uv run --project .guppi guppi casecheck --subagent` of `.guppi/guppi/casecheck.py`
+      checks a file `raw/<date>/<hi HHMM>/cases/case-<N>.md` that `case-guppi` wrote, whose Case updates
+      or deletes a page, or writes in a code span of a task line the path of a file of the repository
+      outside `vault/wiki/`.
+
+      **＋** Or `.guppi/tests/test_casecheck.py` runs it over a made-up file, transcript, plan file and
+      store.
+
+
+      Then:
+
+      The hook searches the files under `vault/wiki/`, `.claude/`, `.guppi/guppi/` and `.guppi/tests/`
+      for every name of each such page and file.
+
+      **＋** The names of a page are its slug, the file name of each path of its `governs`, `implementation_ref`
+      and `code_ref`, the name of the agent, or of the skill with its slash, whose file those paths name,
+      and `guppi <command>` for each command that `COMMANDS` of `.guppi/guppi/cli.py` maps to a module
+      of those paths.
+
+      **＋** The names of a file are its file name and the name of the agent, the skill or the command
+      it carries.
+
+      **＋** For each file that holds a name and that the subagent, in `agent_transcript_path`, read by
+      no `Read` call of the file and no `Grep` call whose `path` is the file, it sends a note that names
+      the Case, the path, the name the file holds and, for a page, its `purpose`, `root_cause` or `pattern`
+      line, and asks the agent to read the file or to name it in `context` with the reason it stands.
+
+      **＋** Each note is sent once by exit 2 beside any findings, stored under `notes` in `<plan>.checked.json`,
+      and not sent again for the same Case id.
+
+      **－** The note leaves out the file of the page or the file itself, the pages under `vault/wiki/decisions/`,
+      `log.md` and `brief.md`.
+
+      **－** A note is no finding: the `Stop` check of `guppi casecheck` refuses no showing for it, and
+      a transcript the hook cannot read gives no such note.'
+  status: passed
+  result: '2026-11-02, Retro of session 1548, uv run --project .guppi pytest .guppi/tests/test_casecheck.py:
+    250 passed, none skipped; read against the when and then of Case 1005.1: the new tests give a note
+    for an unread page named by its slug with its purpose line, a test file named by the file name of
+    a code_ref, a skill named by guppi casecheck of an implementation_ref, and a file named by the path
+    of a task line; a file read by Read and one read by a Grep whose path is it give none, a Grep over
+    a folder reads none of its files; the Decision pages, log.md, brief.md, the file of the page and the
+    file itself give none; a name is matched as a whole word; a held note is not sent again; check_answer
+    with no transcript gives no such note; carried_names gives the agent, the skill with its slash and
+    guppi style and guppi test for commands.py; beyond the Criterion the hook leaves out its own store
+    *.checked.json, and the fixture plan of test_casecheck.py moved under a home folder outside the made-up
+    project, as Claude Code writes plans'
+  folded:
+  - 10
+  applied: '20:27:14'
+- line: 3
+  text: decision[case 1005.2][update][rule-case-build]{ref:rule-case-build}
+  case: '1005.2'
+  kind: update
+  slug: rule-case-build
+  origin: raw/2026-11-02/1548/ledger.md#case-1005.2
+  decision: decision-case-1005.2
+  ref: rule-case-build
+  category: rules
+  replace:
+  - old: 'Find too, for each page and file the Case changes that exists before the Case, each file that
+      names it, since a text may point to it by another name than its slug: take its names — for a page
+      its slug, the file name of each path of its `governs`, `implementation_ref` and `code_ref`, such
+      as `prespec.py` for `.guppi/guppi/prespec.py`, the name of the agent, such as `case-guppi`, or of
+      the skill with its slash, such as `/pre-spec`, whose file its `governs` names, and `guppi <command>`
+      for each command that `COMMANDS` of `.guppi/guppi/cli.py` maps to a module of those paths; for a
+      file its file name and the name of the agent, the skill or the command it carries — and search for
+      all the names of the Case at once by one Grep in the mode that prints only the paths of the files,
+      its path the root of the repository and its glob `{vault/wiki,.claude,.guppi/guppi,.guppi/tests}/**`;
+      then print the purpose line of each page on that list by one Grep of `^(purpose|root_cause|pattern):`
+      in the mode that prints the lines, its path `vault/wiki/` and its glob `**/{<slug>,<slug>}.md` with
+      the bare slug of each page on the list and no folder before it, since a brace list of paths with
+      their folders matches nothing, and open each file of the list whose purpose line, or whose path
+      where it has none, bears on the change, whole or in parts as the paragraph that opens with the reading
+      of `vault/wiki/case-schema.md` sets for its kind of text, leaving out `log.md` and `brief.md`; each
+      one the change makes false enters the Case, or `context` names it and says why it stands (as set
+      in case 999.2).'
+    new: Each file that names a page or a file your Case changes, by its slug or by another name, the
+      hook of `rule-case-check` finds when you stop, from each page your Case updates or deletes and each
+      file outside `vault/wiki/` whose path a task line writes in a code span, and it sends you a note
+      once for each such file you have read by no `Read` call of it and no `Grep` call whose `path` is
+      it, with its path, the name it holds and the purpose line of a page; so write in a code span of
+      its task line the path of each file outside `vault/wiki/` that a task changes, and on each note
+      read that file by `Read`, or by a `Grep` with lines of context whose `path` is that file, whole
+      or in parts as the paragraph that opens with the reading of `vault/wiki/case-schema.md` sets for
+      its kind of text, or name it in `context` and say why it stands; each one the change makes false
+      enters the Case, or `context` names it and says why it stands (as set in case 1005.2).
+  - old: List each page and file that the tasks of the Case change, and search the names of each one that
+      exists before the Case and whose names you have not searched in this build, as the paragraph on
+      the frame of the Case sets it (as set in cases 986 and 999.2). When the Case changes what a step
+    new: When the Case changes what a step
+  change: case-guppi answers the note of the hook on each file that names what its Case changes, in place
+    of its own search for the names
+  applied: '20:27:14'
+- line: 4
+  text: decision[case 1005.2][update][estimate-case-build-searches-the-names-of-what-it-changes]{ref:rule-case-build}
+  case: '1005.2'
+  kind: update
+  slug: estimate-case-build-searches-the-names-of-what-it-changes
+  origin: raw/2026-11-02/1548/ledger.md#case-1005.2
+  decision: decision-case-1005.2
+  ref: rule-case-build
+  category: estimates
+  set:
+    status: pending
+    purpose: Whether case-guppi, on each note of the hook of rule-case-check on a file that names a page
+      or a file its Case changes, reads that file by Read or by a Grep whose path is it, or names it in
+      context with the reason it stands, enters each file the change makes false in the Case, and writes
+      in a code span of its task line the path of each file outside vault/wiki/ that a task changes
+    method: 'by hand, after the /pre-spec of the first session in which the hook of rule-case-check sends
+      case-guppi a note on a file that names what its Case changes, on the Render of rule-case-build that
+      answers that note: the agent transcript of each case-guppi of that session under ~/.claude/projects/,
+      for each note, whether the agent read the file by Read or by a Grep whose path is it, or named it
+      in context, and its case file, whether each task line writes in a code span the path of each file
+      outside vault/wiki/ that it changes; the count and the transcripts in the estimate line'
+  change: the Criterion replaced whole — case-guppi answers the note of the hook on each file that names
+    what its Case changes; purpose and method set anew
+  sections:
+    Criterion: 'When:
+
+      `case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, gets from the
+      `SubagentStop` hook of `rule-case-check` a note on a file that names a page or a file its Case changes,
+      and answers again.
+
+
+      Then:
+
+      It reads that file by a `Read` call of it, or by a `Grep` call whose `path` is it, whole or in parts
+      as `rule-case-build` sets for its kind of text, or the `context` of the Case names the file and
+      says why it stands.
+
+      **＋** Each file that the change makes false enters the Case, or the `context` of the Case names
+      it and says why it stands.
+
+      **＋** A task line that changes a file of the repository outside `vault/wiki/` writes its path in
+      a code span.'
+  applied: '20:27:14'
+- line: 5
+  text: decision[case 1005.3][update][rule-case-build]{ref:rule-case-build}
+  case: '1005.3'
+  kind: update
+  slug: rule-case-build
+  origin: raw/2026-11-02/1548/ledger.md#case-1005.3
+  decision: decision-case-1005.3
+  ref: rule-case-build
+  category: rules
+  replace:
+  - old: Grep the live pages of `vault/wiki/` outside `decisions/`, `.claude/` and `.guppi/guppi/` for
+      a member that stands in the list already, since the new member stands in no text yet,
+    new: search for a member that stands in the list already by one Grep in the mode that prints only
+      the paths of the files, its path the root of the repository and its glob `{vault/wiki,.claude,.guppi/guppi}/**`,
+      since the new member stands in no text yet and the hook of `rule-search-leaves-out-decisions` leaves
+      the Decision pages out of it,
+  - old: since the claim that the Case misses no text that lists the members rests on it (as set in cases
+      948.1 and 979).
+    new: since the claim that the Case misses no text that lists the members rests on it (as set in cases
+      948.1, 979 and 1005.3).
+  change: case-guppi searches for a member already in a list by one Grep from the root over a fixed glob
+  applied: '20:27:14'
+- line: 6
+  text: decision[case 1005.3][update][estimate-case-build-reads-each-list-of-a-new-member]{ref:rule-case-build}
+  case: '1005.3'
+  kind: update
+  slug: estimate-case-build-reads-each-list-of-a-new-member
+  origin: raw/2026-11-02/1548/ledger.md#case-1005.3
+  decision: decision-case-1005.3
+  ref: rule-case-build
+  category: estimates
+  set:
+    status: pending
+  change: the Criterion replaced whole — the search for a member already in the list is one Grep from
+    the root over the glob {vault/wiki,.claude,.guppi/guppi}/**
+  sections:
+    Criterion: 'When:
+
+      `case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, builds a Case
+      that adds a member to a list that texts spell out one by one, such as a key of an item, a kind,
+      a status, a field, a hook of an event, a command or an item of a list in a comment or a docstring
+      of code, and is about to answer with its summary.
+
+
+      Then:
+
+      It searches for a member that stands in the list already by one Grep that prints only the paths
+      of the files, its path the root of the repository and its glob `{vault/wiki,.claude,.guppi/guppi}/**`.
+
+      **＋** It reads each hit that lists the members of the list.
+
+      **＋** A hit in a comment or a docstring of code under `.guppi/guppi/` that lists the members is
+      read like a hit in a page.
+
+      **＋** Each text that lists the members and would miss the new member enters the Case, or the `context`
+      of the Case names it and says why it stands.
+
+      **＋** The `context` of the Case names that search: the member it searched for, its pattern, its
+      paths, and each file it printed or the count it printed.
+
+      **－** A hit in a History line, in `log.md` or in `brief.md` is not read.'
+  applied: '20:27:14'
+- line: 7
+  text: 'estimate[estimate-orchestration-acknowledging-reply][passed] 2026-11-02, session 1548 (hi e96fc117),
+    the reply that acknowledges Case 1005 with 1005.1–1005.3 ratified in one answer, read against the
+    Criterion in this session''s transcript: the LEDGER block first; the heading of the Case, the labels
+    of the changes and of the notes and the heading of the Frontier all in Russian; the changes in two
+    sentences, then the sentence on the librarian''s render that orchestration.md asks for; closed lines
+    and W lines folded, the open C1 on its own line; the closing question which item is next; no tool
+    call after the block; the heading named the Case by its id 1005 alone, not by the ids of its sub-cases'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-acknowledging-reply
+  status: passed
+  result: '2026-11-02, session 1548 (hi e96fc117), the reply that acknowledges Case 1005 with 1005.1–1005.3
+    ratified in one answer, read against the Criterion in this session''s transcript: the LEDGER block
+    first; the heading of the Case, the labels of the changes and of the notes and the heading of the
+    Frontier all in Russian; the changes in two sentences, then the sentence on the librarian''s render
+    that orchestration.md asks for; closed lines and W lines folded, the open C1 on its own line; the
+    closing question which item is next; no tool call after the block; the heading named the Case by its
+    id 1005 alone, not by the ids of its sub-cases'
+  origin: raw/2026-11-02/1548/ledger.md#L7
+  applied: '20:27:14'
+- line: 8
+  text: decision[case 1006][update][insight-orchestration-acknowledging-reply-keeps-headings-in-english]{ref:insight-orchestration-acknowledging-reply-keeps-headings-in-english}
+  case: '1006'
+  kind: update
+  slug: insight-orchestration-acknowledging-reply-keeps-headings-in-english
+  origin: raw/2026-11-02/1548/ledger.md#case-1006
+  decision: decision-case-1006
+  ref: insight-orchestration-acknowledging-reply-keeps-headings-in-english
+  category: insights
+  set:
+    status: actioned
+    addressed_by: '[[decision-case-1002]]'
+  change: 'actioned: orchestration.md names each heading and label of the acknowledging reply by what
+    it says, and the first reply after its render wrote them all in the language of the chat (case 1002)'
+  applied: '20:27:14'
+- line: 9
+  text: 'estimate[estimate-orchestration-acknowledging-reply][passed] 2026-11-02, session 1548 (hi e96fc117),
+    two replies written after the render of session 1337, read against the Criterion in this session''s
+    transcript: the reply that acknowledges Case 1005 with 1005.1–1005.3 ratified in one answer, and the
+    reply that acknowledges Case 1006 alone; in each the LEDGER block first, the heading of the Case,
+    the label of the changes and the heading of the Frontier in Russian, the changes in one or two sentences
+    (in 1005 followed by the sentence on the librarian''s render), closed lines and W lines folded, the
+    open C1 on its own line, the closing question which item is next, no tool call after the block; the
+    heading of 1005 named the Case by its id alone'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-acknowledging-reply
+  status: passed
+  result: '2026-11-02, session 1548 (hi e96fc117), two replies written after the render of session 1337,
+    read against the Criterion in this session''s transcript: the reply that acknowledges Case 1005 with
+    1005.1–1005.3 ratified in one answer, and the reply that acknowledges Case 1006 alone; in each the
+    LEDGER block first, the heading of the Case, the label of the changes and the heading of the Frontier
+    in Russian, the changes in one or two sentences (in 1005 followed by the sentence on the librarian''s
+    render), closed lines and W lines folded, the open C1 on its own line, the closing question which
+    item is next, no tool call after the block; the heading of 1005 named the Case by its id alone'
+  origin: raw/2026-11-02/1548/ledger.md#L9
+  applied: '20:27:14'
+- line: 11
+  text: 'lesson[knowledge][lesson-case-check-names-note-lists-hundreds-of-files]{tags:hooks,case-build}{source:probe
+    of names_files and name_pattern of .guppi/guppi/casecheck.py over the repository at commit 57e7e3ae,
+    session 1548} trigger: after the note of names of case 1005.1 was built, a probe counted the files
+    it lists over 637 files searched: 195 for an update of rule-case-build (rule-case-build, case-guppi.md,
+    case-guppi), 103 for rule-case-check, 89 for prespec.py, 64 for lint.py, 55 for generate.py, 3 for
+    an Insight slug; the live file of Case 1005, whose task line names the modules it imports in code
+    spans, gave 657 notes with nothing read root_cause: a page of the harness or a module that many texts
+    name gives one note per file, and a task line that writes in code spans the paths of files it only
+    imports or reads takes them for files it changes, so the hook may send case-guppi hundreds of notes,
+    each to be read or named in context'
+  kind: lesson
+  category: lessons
+  slug: lesson-case-check-names-note-lists-hundreds-of-files
+  origin: raw/2026-11-02/1548/ledger.md#L11
+  fields:
+    type: lesson
+    kind: knowledge
+    root_cause: a page of the harness or a module that many texts name gives one note per file, and a
+      task line that writes in code spans the paths of files it only imports or reads takes them for files
+      it changes, so the hook may send case-guppi hundreds of notes, each to be read or named in context
+    source: probe of names_files and name_pattern of .guppi/guppi/casecheck.py over the repository at
+      commit 57e7e3ae, session 1548
+  sections:
+    Trigger: 'after the note of names of case 1005.1 was built, a probe counted the files it lists over
+      637 files searched: 195 for an update of rule-case-build (rule-case-build, case-guppi.md, case-guppi),
+      103 for rule-case-check, 89 for prespec.py, 64 for lint.py, 55 for generate.py, 3 for an Insight
+      slug; the live file of Case 1005, whose task line names the modules it imports in code spans, gave
+      657 notes with nothing read'
+    Root cause: a page of the harness or a module that many texts name gives one note per file, and a
+      task line that writes in code spans the paths of files it only imports or reads takes them for files
+      it changes, so the hook may send case-guppi hundreds of notes, each to be read or named in context
+  tags:
+  - hooks
+  - case-build
+  applied: '20:27:14'
+- line: 12
+  text: 'lesson[error][lesson-frontier-closer-appended-without-ticking-the-box]{tags:session,workflow}
+    trigger: in session 1548 the main agent closed C2, C3 and C5 of frontier.md by appending `· case 1005`,
+    `· work` and `· case 1006` to each line and left its box `[ ]`, and the first run of guppi prespec
+    --check printed `frontier: C2 is open`, `C3 is open` and `C5 is open` root_cause: the agent edited
+    only the end of the line with an Edit whose old_string held the tail of the title, so the box at the
+    start of the line, which marks the line closed, stayed as it was; a closer is the box and the tail
+    together'
+  kind: lesson
+  category: lessons
+  slug: lesson-frontier-closer-appended-without-ticking-the-box
+  origin: raw/2026-11-02/1548/ledger.md#L12
+  fields:
+    type: lesson
+    kind: error
+    root_cause: the agent edited only the end of the line with an Edit whose old_string held the tail
+      of the title, so the box at the start of the line, which marks the line closed, stayed as it was;
+      a closer is the box and the tail together
+  sections:
+    Trigger: 'in session 1548 the main agent closed C2, C3 and C5 of frontier.md by appending `· case
+      1005`, `· work` and `· case 1006` to each line and left its box `[ ]`, and the first run of guppi
+      prespec --check printed `frontier: C2 is open`, `C3 is open` and `C5 is open`'
+    Root cause: the agent edited only the end of the line with an Edit whose old_string held the tail
+      of the title, so the box at the start of the line, which marks the line closed, stayed as it was;
+      a closer is the box and the tail together
+  tags:
+  - session
+  - workflow
+  near: lesson-orchestration-closes-a-frontier-line-by-its-closer-alone
+  applied: '20:27:14'
+- kind: create
+  category: insights
+  slug: insight-orchestration-frontier-closer-leaves-the-box-open
+  origin: raw/2026-11-02/1548/ledger.md#L12
+  fields:
+    type: insight
+    pattern: the main agent closes a Frontier line by an Edit whose old_string holds only the end of the
+      line and appends the closer there, so the box at the start of the line, which marks it closed, stays
+      open and guppi prespec --check prints the line as open
+    children:
+    - lesson-orchestration-closes-a-frontier-line-by-its-closer-alone
+    - lesson-frontier-closer-appended-without-ticking-the-box
+  tags:
+  - orchestration
+  - session
+  - workflow
+  sections:
+    Pattern: 'Twice the main agent closed a Frontier line of frontier.md by an Edit that matched only
+      the tail of the line and appended the closer, and left the box `[ ]` at its start: C7 at the ratification
+      of Cases 977 and 978 (raw/2026-11-01/0141/ledger.md#L19), and C2, C3 and C5 in session 1548 (raw/2026-11-02/1548/ledger.md#L12).
+      Each time the first run of guppi prespec --check printed the lines as open.'
+    Proposal: 'A suggestion, not a decision: the text of orchestration.md that sets the closers could
+      say that a closer is the box and the tail together, written by one Edit whose old_string holds the
+      whole line; or a command could close a Frontier line by its id, writing the box and the closer at
+      once.'
+  librarian: synthesis
+  applied: '20:27:14'
+- kind: update
+  category: lessons
+  slug: lesson-orchestration-closes-a-frontier-line-by-its-closer-alone
+  origin: raw/2026-11-02/1548/ledger.md#L12
+  set:
+    status: clustered
+    insight: insight-orchestration-frontier-closer-leaves-the-box-open
+  change: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis)
+  librarian: synthesis
+  applied: '20:27:14'
+- kind: update
+  category: lessons
+  slug: lesson-frontier-closer-appended-without-ticking-the-box
+  origin: raw/2026-11-02/1548/ledger.md#L12
+  set:
+    status: clustered
+    insight: insight-orchestration-frontier-closer-leaves-the-box-open
+  change: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis)
+  librarian: synthesis
+  applied: '20:27:14'
+decisions:
+- case: '1005.1'
+  decision: decision-case-1005.1
+  origin: raw/2026-11-02/1548/ledger.md#case-1005.1
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-check
+    ref: rule-case-check
+  - kind: create
+    category: estimates
+    slug: estimate-case-check-notes-the-files-that-name-what-a-case-changes
+    ref: rule-case-check
+  tags:
+  - hooks
+  - harness
+  - workflow
+  - case-build
+  case_text:
+    given: '`rule-case-check`: the rule of the `SubagentStop` hook that checks the file of a Case.
+
+      **＋** `.guppi/guppi/casecheck.py`: the hook, its notes and `read_outputs`.
+
+      **＋** `.guppi/tests/test_casecheck.py`: the tests of the hook.
+
+      **＋** `.guppi/guppi/cli.py`: `COMMANDS`, which maps each command to its module.
+
+      **＋** `.guppi/guppi/generate.py`: `REWORD_PATH_FIELDS`, the path fields of a page.
+
+      **＋** `.guppi/guppi/prespec.py` and `.guppi/guppi/lint.py`: `items_of`, the items of a `then` block,
+      and `CODE_SPAN`, the pattern of a code span.
+
+      **＋** `rule-one-judgment-one-implementation`: one judgment lives in one module.
+
+      **＋** `raw/<date>/<hi HHMM>/cases/case-<N>.md` and `<plan>.checked.json`: the file of a Case the
+      hook checks, and the store of its notes.
+
+      **＋** `vault/wiki/`, `.claude/`, `.guppi/guppi/`, `.guppi/tests/` and `vault/wiki/decisions/`: the
+      folders the hook searches, and the Decision pages it leaves out.
+
+      **＋** `estimate-case-check-notes-the-files-that-name-what-a-case-changes`: the new check of the
+      note.'
+    when: 'The `SubagentStop` hook `uv run --project .guppi guppi casecheck --subagent` of `.guppi/guppi/casecheck.py`
+      checks a file `raw/<date>/<hi HHMM>/cases/case-<N>.md` that `case-guppi` wrote, whose Case updates
+      or deletes a page, or writes in a code span of a task line the path of a file of the repository
+      outside `vault/wiki/`.
+
+      **＋** Or `.guppi/tests/test_casecheck.py` runs it over a made-up file, transcript, plan file and
+      store.'
+    then: 'The hook searches the files under `vault/wiki/`, `.claude/`, `.guppi/guppi/` and `.guppi/tests/`
+      for every name of each such page and file.
+
+      **＋** The names of a page are its slug, the file name of each path of its `governs`, `implementation_ref`
+      and `code_ref`, the name of the agent, or of the skill with its slash, whose file those paths name,
+      and `guppi <command>` for each command that `COMMANDS` of `.guppi/guppi/cli.py` maps to a module
+      of those paths.
+
+      **＋** The names of a file are its file name and the name of the agent, the skill or the command
+      it carries.
+
+      **＋** For each file that holds a name and that the subagent, in `agent_transcript_path`, read by
+      no `Read` call of the file and no `Grep` call whose `path` is the file, it sends a note that names
+      the Case, the path, the name the file holds and, for a page, its `purpose`, `root_cause` or `pattern`
+      line, and asks the agent to read the file or to name it in `context` with the reason it stands.
+
+      **＋** Each note is sent once by exit 2 beside any findings, stored under `notes` in `<plan>.checked.json`,
+      and not sent again for the same Case id.
+
+      **－** The note leaves out the file of the page or the file itself, the pages under `vault/wiki/decisions/`,
+      `log.md` and `brief.md`.
+
+      **－** A note is no finding: the `Stop` check of `guppi casecheck` refuses no showing for it, and
+      a transcript the hook cannot read gives no such note.'
+    context: '`case-guppi` must find each file that names a page or a file its Case changes, by every
+      name of it, and a member already in a list when its Case adds a new member. Both steps stand in
+      the Render of `rule-case-build`, and both failed their reading on the build of Case 1001 in session
+      0254 (readings L17 and L18 of session 1337). For the names, the agent ran one Grep per slug and
+      no Grep of the purpose lines, and it searched two pages over `.guppi/tests` only. For the list,
+      its one search ran over `.guppi/{guppi,tests}`, none over `vault/wiki/` or `.claude/`, though the
+      Case itself missed no text. The person chose to move the names search into the `SubagentStop` hook
+      of `rule-case-check`. The hook already reads the `Read` calls of the agent through `read_outputs`
+      of `.guppi/guppi/casecheck.py`, and already sends notes once through `check_answer` and `judge_and_store`,
+      which store each note under its Case id and do not send it again. So Case 1005.1 adds one note per
+      file that names what the Case changes and that the agent did not read. Case 1005.2 makes the agent
+      answer each note in place of its own search. Case 1005.3 writes the list-member search as one fixed
+      Grep. The rule of one judgment (`rule-one-judgment-one-implementation`) bounds 1005.1. A Grep of
+      `"agents"|agents/|SKILL\.md|__module__` over `.guppi/guppi/` printed `render.py` and `recall.py`,
+      and neither derives a name from a path. A Grep of `code_ref|implementation_ref` over `.guppi/guppi/`
+      printed `generate.py` and `lint.py`. `REWORD_PATH_FIELDS` of `generate.py` lists the three path
+      fields, and the task imports it. `PATH_FIELDS` of `lint.py` lists two fields for another judgment,
+      whether a path exists. `cli.py` was read whole for `COMMANDS`. For the pages a Case updates or deletes,
+      `items_of` of `prespec.py`, read whole, gives each item of a `then` block with its kind and its
+      slug, and the task imports it. For the code spans of a task line, a Grep of `CODE_SPAN\b.*=|import.*CODE_SPAN|CODE_SPAN,`
+      over `.guppi/guppi/` printed `lint.py`, `prespec.py`, `generate.py`, `pointers.py` and `config.py`.
+      `CODE_SPAN` is set in `lint.py`, the other four import it, and the task imports it too. The fixes
+      of `/pre-spec` changed two points of behaviour. First, the path a task line must write in a code
+      span is only that of a file outside `vault/wiki/`. A page task names its page by slug, as `case-schema.md`
+      sets it, and the hook takes pages from the `then` block. Second, the hook counts as a read a `Read`
+      call of the file and a `Grep` call whose `path` is that file, since the Render of `rule-case-build`
+      lets the agent read a text in parts by a Grep with lines of context. The read check of the pairs
+      keeps its own rule, under which the output of a Grep is no read. The names search of this build,
+      over the root with the glob `{vault/wiki,.claude,.guppi/guppi,.guppi/tests}/**`, for the names of
+      `rule-case-build`, `rule-case-check`, both Estimates, `case-guppi`, `casecheck.py`, `tags.py`, `test_casecheck.py`,
+      `settings.json` and `guppi casecheck`, printed 273 files. Of those, the files that bear on the change
+      were read. `estimate-case-build-checks-the-finished-case` stands: its slug search of a page whose
+      text turns false is another step, which stays in the Render. `estimate-case-example-passes-the-check`
+      stands: `.guppi/tests/test_case_schema.py` runs `check_answer` with no transcript, so it gets no
+      names note and still finds no note. `lesson-grep-glob-brace-list-of-paths-matches-nothing` stands
+      as the record of a fact. A Grep of `a note once` over `{vault/wiki,.claude,.guppi/guppi}/**` printed
+      `rule-case-check.md`, `estimate-case-check-notes-a-page-the-cascade-archives.md` and `estimate-case-check-notes-a-sentence-two-cases-change.md`.
+      The two Estimates check their own notes, and the new note leaves them true. The `purpose` field
+      of `rule-case-check` names no note and stands. `/pre-spec` gets no such note: the agent''s record
+      of calls is the hook''s input alone. The `purpose` and `method` of `estimate-case-build-reads-each-list-of-a-new-member`
+      still hold with the fixed search and stand. A Grep of `parents\[2\]|REPO|ROOT =|project_root|Path\(__file__\)`
+      over `.guppi/tests/` printed 12 files. A Grep of `check_answer|judge_and_store|casecheck\.subagent|casecheck\.run`
+      over `.guppi/tests/` printed `test_prespec.py`, `test_casecheck.py` and `test_case_schema.py`. Of
+      those three, only `test_case_schema.py` is among the 12, and it runs `check_answer` over the live
+      `case-example.md`. The session ledger holds no `error` lesson. The check of this file noted the
+      old Criterion lines that the two replaced Criteria do not carry, and they are dropped on purpose.
+      The old lines of `estimate-case-build-searches-the-names-of-what-it-changes` promise the agent''s
+      own search, its names, its purpose-line Grep and its search again at the check of the finished Case.
+      That search now belongs to the hook, and the Criterion of 1005.1 holds the names. The new trigger
+      is the note, and the exclusion of `log.md` and `brief.md` is now a line of 1005.1. The old first
+      line of `estimate-case-build-reads-each-list-of-a-new-member` gave three folders and no form, and
+      the fixed Grep replaces it. The note also found that a `then` line of 1005.3 shares most of its
+      words with one of 1005.2. Both lines stand, since they speak of different texts: in 1005.3 a text
+      that lists the members of a list, and in 1005.2 a file that a note of the hook names.'
+  parent: decision-case-1005
+  spec: vault/raw/2026-11-02/1548/spec.md
+  applied: '20:27:14'
+- case: '1005.2'
+  decision: decision-case-1005.2
+  origin: raw/2026-11-02/1548/ledger.md#case-1005.2
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-build
+    ref: rule-case-build
+  - kind: update
+    category: estimates
+    slug: estimate-case-build-searches-the-names-of-what-it-changes
+    ref: rule-case-build
+  tags: []
+  case_text:
+    given: '`rule-case-build`: the Render of `.claude/agents/case-guppi.md`.
+
+      **＋** `estimate-case-build-searches-the-names-of-what-it-changes`: its Criterion is replaced whole.
+
+      **＋** `rule-case-check`: the hook that sends the note.
+
+      **＋** `vault/wiki/`: the folder of the pages, which a task names by slug, not by path.'
+    when: '`case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, gets from
+      the `SubagentStop` hook of `rule-case-check` a note on a file that names a page or a file its Case
+      changes, and answers again.'
+    then: 'It reads that file by a `Read` call of it, or by a `Grep` call whose `path` is it, whole or
+      in parts as `rule-case-build` sets for its kind of text, or the `context` of the Case names the
+      file and says why it stands.
+
+      **＋** Each file that the change makes false enters the Case, or the `context` of the Case names
+      it and says why it stands.
+
+      **＋** A task line that changes a file of the repository outside `vault/wiki/` writes its path in
+      a code span.'
+    context: '`case-guppi` must find each file that names a page or a file its Case changes, by every
+      name of it, and a member already in a list when its Case adds a new member. Both steps stand in
+      the Render of `rule-case-build`, and both failed their reading on the build of Case 1001 in session
+      0254 (readings L17 and L18 of session 1337). For the names, the agent ran one Grep per slug and
+      no Grep of the purpose lines, and it searched two pages over `.guppi/tests` only. For the list,
+      its one search ran over `.guppi/{guppi,tests}`, none over `vault/wiki/` or `.claude/`, though the
+      Case itself missed no text. The person chose to move the names search into the `SubagentStop` hook
+      of `rule-case-check`. The hook already reads the `Read` calls of the agent through `read_outputs`
+      of `.guppi/guppi/casecheck.py`, and already sends notes once through `check_answer` and `judge_and_store`,
+      which store each note under its Case id and do not send it again. So Case 1005.1 adds one note per
+      file that names what the Case changes and that the agent did not read. Case 1005.2 makes the agent
+      answer each note in place of its own search. Case 1005.3 writes the list-member search as one fixed
+      Grep. The rule of one judgment (`rule-one-judgment-one-implementation`) bounds 1005.1. A Grep of
+      `"agents"|agents/|SKILL\.md|__module__` over `.guppi/guppi/` printed `render.py` and `recall.py`,
+      and neither derives a name from a path. A Grep of `code_ref|implementation_ref` over `.guppi/guppi/`
+      printed `generate.py` and `lint.py`. `REWORD_PATH_FIELDS` of `generate.py` lists the three path
+      fields, and the task imports it. `PATH_FIELDS` of `lint.py` lists two fields for another judgment,
+      whether a path exists. `cli.py` was read whole for `COMMANDS`. For the pages a Case updates or deletes,
+      `items_of` of `prespec.py`, read whole, gives each item of a `then` block with its kind and its
+      slug, and the task imports it. For the code spans of a task line, a Grep of `CODE_SPAN\b.*=|import.*CODE_SPAN|CODE_SPAN,`
+      over `.guppi/guppi/` printed `lint.py`, `prespec.py`, `generate.py`, `pointers.py` and `config.py`.
+      `CODE_SPAN` is set in `lint.py`, the other four import it, and the task imports it too. The fixes
+      of `/pre-spec` changed two points of behaviour. First, the path a task line must write in a code
+      span is only that of a file outside `vault/wiki/`. A page task names its page by slug, as `case-schema.md`
+      sets it, and the hook takes pages from the `then` block. Second, the hook counts as a read a `Read`
+      call of the file and a `Grep` call whose `path` is that file, since the Render of `rule-case-build`
+      lets the agent read a text in parts by a Grep with lines of context. The read check of the pairs
+      keeps its own rule, under which the output of a Grep is no read. The names search of this build,
+      over the root with the glob `{vault/wiki,.claude,.guppi/guppi,.guppi/tests}/**`, for the names of
+      `rule-case-build`, `rule-case-check`, both Estimates, `case-guppi`, `casecheck.py`, `tags.py`, `test_casecheck.py`,
+      `settings.json` and `guppi casecheck`, printed 273 files. Of those, the files that bear on the change
+      were read. `estimate-case-build-checks-the-finished-case` stands: its slug search of a page whose
+      text turns false is another step, which stays in the Render. `estimate-case-example-passes-the-check`
+      stands: `.guppi/tests/test_case_schema.py` runs `check_answer` with no transcript, so it gets no
+      names note and still finds no note. `lesson-grep-glob-brace-list-of-paths-matches-nothing` stands
+      as the record of a fact. A Grep of `a note once` over `{vault/wiki,.claude,.guppi/guppi}/**` printed
+      `rule-case-check.md`, `estimate-case-check-notes-a-page-the-cascade-archives.md` and `estimate-case-check-notes-a-sentence-two-cases-change.md`.
+      The two Estimates check their own notes, and the new note leaves them true. The `purpose` field
+      of `rule-case-check` names no note and stands. `/pre-spec` gets no such note: the agent''s record
+      of calls is the hook''s input alone. The `purpose` and `method` of `estimate-case-build-reads-each-list-of-a-new-member`
+      still hold with the fixed search and stand. A Grep of `parents\[2\]|REPO|ROOT =|project_root|Path\(__file__\)`
+      over `.guppi/tests/` printed 12 files. A Grep of `check_answer|judge_and_store|casecheck\.subagent|casecheck\.run`
+      over `.guppi/tests/` printed `test_prespec.py`, `test_casecheck.py` and `test_case_schema.py`. Of
+      those three, only `test_case_schema.py` is among the 12, and it runs `check_answer` over the live
+      `case-example.md`. The session ledger holds no `error` lesson. The check of this file noted the
+      old Criterion lines that the two replaced Criteria do not carry, and they are dropped on purpose.
+      The old lines of `estimate-case-build-searches-the-names-of-what-it-changes` promise the agent''s
+      own search, its names, its purpose-line Grep and its search again at the check of the finished Case.
+      That search now belongs to the hook, and the Criterion of 1005.1 holds the names. The new trigger
+      is the note, and the exclusion of `log.md` and `brief.md` is now a line of 1005.1. The old first
+      line of `estimate-case-build-reads-each-list-of-a-new-member` gave three folders and no form, and
+      the fixed Grep replaces it. The note also found that a `then` line of 1005.3 shares most of its
+      words with one of 1005.2. Both lines stand, since they speak of different texts: in 1005.3 a text
+      that lists the members of a list, and in 1005.2 a file that a note of the hook names.'
+  parent: decision-case-1005
+  spec: vault/raw/2026-11-02/1548/spec.md
+  applied: '20:27:14'
+- case: '1005.3'
+  decision: decision-case-1005.3
+  origin: raw/2026-11-02/1548/ledger.md#case-1005.3
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-case-build
+    ref: rule-case-build
+  - kind: update
+    category: estimates
+    slug: estimate-case-build-reads-each-list-of-a-new-member
+    ref: rule-case-build
+  tags: []
+  case_text:
+    given: '`rule-case-build`: the Render of `.claude/agents/case-guppi.md`.
+
+      **＋** `estimate-case-build-reads-each-list-of-a-new-member`: its Criterion is replaced whole.
+
+      **＋** `rule-search-leaves-out-decisions`: its hook leaves the Decision pages out of a Grep from
+      the root.
+
+      **＋** `{vault/wiki,.claude,.guppi/guppi}/**`: the glob of the search, over the pages, the harness
+      and `.guppi/guppi/`.'
+    when: '`case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, builds a
+      Case that adds a member to a list that texts spell out one by one, such as a key of an item, a kind,
+      a status, a field, a hook of an event, a command or an item of a list in a comment or a docstring
+      of code, and is about to answer with its summary.'
+    then: 'It searches for a member that stands in the list already by one Grep that prints only the paths
+      of the files, its path the root of the repository and its glob `{vault/wiki,.claude,.guppi/guppi}/**`.
+
+      **＋** It reads each hit that lists the members of the list.
+
+      **＋** A hit in a comment or a docstring of code under `.guppi/guppi/` that lists the members is
+      read like a hit in a page.
+
+      **＋** Each text that lists the members and would miss the new member enters the Case, or the `context`
+      of the Case names it and says why it stands.
+
+      **＋** The `context` of the Case names that search: the member it searched for, its pattern, its
+      paths, and each file it printed or the count it printed.
+
+      **－** A hit in a History line, in `log.md` or in `brief.md` is not read.'
+    context: '`case-guppi` must find each file that names a page or a file its Case changes, by every
+      name of it, and a member already in a list when its Case adds a new member. Both steps stand in
+      the Render of `rule-case-build`, and both failed their reading on the build of Case 1001 in session
+      0254 (readings L17 and L18 of session 1337). For the names, the agent ran one Grep per slug and
+      no Grep of the purpose lines, and it searched two pages over `.guppi/tests` only. For the list,
+      its one search ran over `.guppi/{guppi,tests}`, none over `vault/wiki/` or `.claude/`, though the
+      Case itself missed no text. The person chose to move the names search into the `SubagentStop` hook
+      of `rule-case-check`. The hook already reads the `Read` calls of the agent through `read_outputs`
+      of `.guppi/guppi/casecheck.py`, and already sends notes once through `check_answer` and `judge_and_store`,
+      which store each note under its Case id and do not send it again. So Case 1005.1 adds one note per
+      file that names what the Case changes and that the agent did not read. Case 1005.2 makes the agent
+      answer each note in place of its own search. Case 1005.3 writes the list-member search as one fixed
+      Grep. The rule of one judgment (`rule-one-judgment-one-implementation`) bounds 1005.1. A Grep of
+      `"agents"|agents/|SKILL\.md|__module__` over `.guppi/guppi/` printed `render.py` and `recall.py`,
+      and neither derives a name from a path. A Grep of `code_ref|implementation_ref` over `.guppi/guppi/`
+      printed `generate.py` and `lint.py`. `REWORD_PATH_FIELDS` of `generate.py` lists the three path
+      fields, and the task imports it. `PATH_FIELDS` of `lint.py` lists two fields for another judgment,
+      whether a path exists. `cli.py` was read whole for `COMMANDS`. For the pages a Case updates or deletes,
+      `items_of` of `prespec.py`, read whole, gives each item of a `then` block with its kind and its
+      slug, and the task imports it. For the code spans of a task line, a Grep of `CODE_SPAN\b.*=|import.*CODE_SPAN|CODE_SPAN,`
+      over `.guppi/guppi/` printed `lint.py`, `prespec.py`, `generate.py`, `pointers.py` and `config.py`.
+      `CODE_SPAN` is set in `lint.py`, the other four import it, and the task imports it too. The fixes
+      of `/pre-spec` changed two points of behaviour. First, the path a task line must write in a code
+      span is only that of a file outside `vault/wiki/`. A page task names its page by slug, as `case-schema.md`
+      sets it, and the hook takes pages from the `then` block. Second, the hook counts as a read a `Read`
+      call of the file and a `Grep` call whose `path` is that file, since the Render of `rule-case-build`
+      lets the agent read a text in parts by a Grep with lines of context. The read check of the pairs
+      keeps its own rule, under which the output of a Grep is no read. The names search of this build,
+      over the root with the glob `{vault/wiki,.claude,.guppi/guppi,.guppi/tests}/**`, for the names of
+      `rule-case-build`, `rule-case-check`, both Estimates, `case-guppi`, `casecheck.py`, `tags.py`, `test_casecheck.py`,
+      `settings.json` and `guppi casecheck`, printed 273 files. Of those, the files that bear on the change
+      were read. `estimate-case-build-checks-the-finished-case` stands: its slug search of a page whose
+      text turns false is another step, which stays in the Render. `estimate-case-example-passes-the-check`
+      stands: `.guppi/tests/test_case_schema.py` runs `check_answer` with no transcript, so it gets no
+      names note and still finds no note. `lesson-grep-glob-brace-list-of-paths-matches-nothing` stands
+      as the record of a fact. A Grep of `a note once` over `{vault/wiki,.claude,.guppi/guppi}/**` printed
+      `rule-case-check.md`, `estimate-case-check-notes-a-page-the-cascade-archives.md` and `estimate-case-check-notes-a-sentence-two-cases-change.md`.
+      The two Estimates check their own notes, and the new note leaves them true. The `purpose` field
+      of `rule-case-check` names no note and stands. `/pre-spec` gets no such note: the agent''s record
+      of calls is the hook''s input alone. The `purpose` and `method` of `estimate-case-build-reads-each-list-of-a-new-member`
+      still hold with the fixed search and stand. A Grep of `parents\[2\]|REPO|ROOT =|project_root|Path\(__file__\)`
+      over `.guppi/tests/` printed 12 files. A Grep of `check_answer|judge_and_store|casecheck\.subagent|casecheck\.run`
+      over `.guppi/tests/` printed `test_prespec.py`, `test_casecheck.py` and `test_case_schema.py`. Of
+      those three, only `test_case_schema.py` is among the 12, and it runs `check_answer` over the live
+      `case-example.md`. The session ledger holds no `error` lesson. The check of this file noted the
+      old Criterion lines that the two replaced Criteria do not carry, and they are dropped on purpose.
+      The old lines of `estimate-case-build-searches-the-names-of-what-it-changes` promise the agent''s
+      own search, its names, its purpose-line Grep and its search again at the check of the finished Case.
+      That search now belongs to the hook, and the Criterion of 1005.1 holds the names. The new trigger
+      is the note, and the exclusion of `log.md` and `brief.md` is now a line of 1005.1. The old first
+      line of `estimate-case-build-reads-each-list-of-a-new-member` gave three folders and no form, and
+      the fixed Grep replaces it. The note also found that a `then` line of 1005.3 shares most of its
+      words with one of 1005.2. Both lines stand, since they speak of different texts: in 1005.3 a text
+      that lists the members of a list, and in 1005.2 a file that a note of the hook names.'
+  parent: decision-case-1005
+  spec: vault/raw/2026-11-02/1548/spec.md
+  applied: '20:27:14'
+- case: '1006'
+  decision: decision-case-1006
+  origin: raw/2026-11-02/1548/ledger.md#case-1006
+  targets:
+  - kind: update
+    category: insights
+    slug: insight-orchestration-acknowledging-reply-keeps-headings-in-english
+    ref: insight-orchestration-acknowledging-reply-keeps-headings-in-english
+  tags: []
+  case_text:
+    context: 'After the person ratifies a Case, the main agent writes a reply that acknowledges it, in
+      the form that `vault/wiki/orchestration.md` sets. That text used to name each heading and label
+      of the reply by its English words in a code span. Twice the agent copied those words into a Russian
+      chat: the labels and the heading of the Frontier in session 2227, and the heading of the Frontier
+      alone in session 0254, after Case 997 had moved the instruction to translate to the front. The librarian
+      clustered the two lessons, `lesson-acknowledging-reply-labels-left-in-english` and `lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated`,
+      into `insight-orchestration-acknowledging-reply-keeps-headings-in-english`, which stands `open`
+      in the backlog. Case 1002 of session 1337 rewrote the paragraph so that it names each heading and
+      label by what it says and gives no English word to copy, and a Grep of `orchestration.md` showed
+      that the render after that session wrote the new text there. Case 1002 left the insight `open` until
+      a reading showed that the fix holds.
+
+
+      That reading came in this session, from two replies that the `method` of `estimate-orchestration-acknowledging-reply`
+      names: an acknowledging reply, and a reply that acknowledges Cases ratified together in one answer.
+      In the transcript of this session, `e96fc117-189d-45c1-ac5c-b9ece4544309.jsonl`, the reply that
+      acknowledges Case 1005 with its sub-cases, ratified in one answer, opens with the `LEDGER` block,
+      and its heading of the Case, its labels of the changes and of the notes and its heading of the Frontier
+      all stand in Russian. Line 7 of the session''s ledger, `estimate[estimate-orchestration-acknowledging-reply][passed]`,
+      records that reply alone. In the same transcript the reply that acknowledges Case 1006 alone opens
+      with the `LEDGER` block that holds line 8 of the ledger, writes its heading of the Case, its label
+      of the changes and its heading of the Frontier in Russian, folds the closed lines, ends with the
+      question which item is next and calls no tool after the block. The main agent writes a second reading
+      line of that Estimate, `passed`, that names both replies, in the reply that acknowledges Cases 1005
+      and 1006 ratified again; this Case rests on both replies.
+
+
+      `addressed_by` names `decision-case-1002`, not `decision-case-997`: Case 1002 removed the English
+      words that the agent copied, which is the pattern of the insight, and `rule-insights-schema` keeps
+      one decision in the field, the latest. Both Decision pages exist, so the field takes the quoted
+      wikilink. In `.guppi/guppi/generate.py` I read `cascade`, `kept_decisions`, `archived_by_cascade`
+      and the end of `apply`, where `cascade` runs after every entry of the run: `archived_by_cascade`
+      puts each `clustered` child of an `actioned` Insight among the pages to archive, `cascade` sets
+      those lessons `archived` and sets the Insight''s `severity` to the count of its live children, and
+      an `actioned` Insight is never archived there. If the agent writes an English heading again, a new
+      lesson reopens the insight, as `rule-insights-schema` sets it.
+
+
+      This Case changes the status of a page and no behaviour, so no new Estimate is created. The fix
+      that the insight records is checked by `estimate-orchestration-acknowledging-reply`, read on the
+      two replies above; its Criterion already says that each heading and label of the reply stands in
+      the language of the chat, so it stands. The `then` of this Case comes only at the librarian''s run.
+      The cascade parts of it are checked by `estimate-generate-cascades`, whose Criterion says that every
+      `clustered` child of an Insight with `status: actioned` becomes `archived` and that an `actioned`
+      Insight at a severity of 0 stays; it speaks of the cascade for every Insight, so it stands. The
+      state of the insight page after that run, `actioned` with its `addressed_by`, is left to the `uv
+      run --project .guppi guppi check` of the librarian''s run, which the brief reports, as `case-schema.md`
+      allows for a check whose moment comes after Work Mode. A Grep of `insight-orchestration-acknowledging-reply-keeps-headings-in-english`
+      over `{vault/wiki,.claude,.guppi/guppi,.guppi/tests}/**`, files only, printed `vault/wiki/backlog.md`,
+      `vault/wiki/log.md` and the two lessons. The lessons name the insight in their `insight` field and
+      go to the archive by the cascade. The backlog and the log are written by the scripts, so neither
+      changes here. The session''s ledger holds no `error` lesson, so no line carries a mark.'
+    problem: The insight stands `open` in the backlog, though the rewrite of Case 1002 removed its cause
+      and the first reply after the render shows that the fix holds.
+    recommend: "- **What happens to the pattern page**\n  - Recommended: (a) mark it fixed now, by the\
+      \ rewrite of `orchestration.md`, its `addressed_by` naming `decision-case-1002`.\n  - Answer: agreed,\
+      \ (a)."
+    given: '`insight-orchestration-acknowledging-reply-keeps-headings-in-english`: the insight this Case
+      actions.
+
+      **＋** `lesson-acknowledging-reply-labels-left-in-english`: a child of the insight.
+
+      **＋** `lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated`: a child
+      of the insight.
+
+      **＋** `decision-case-1002`: the decision whose rewrite of `orchestration.md` closed the cause.
+
+      **＋** `.guppi/guppi/generate.py`: the cascade that archives the children of an actioned insight.
+
+      **＋** `rule-insights-schema`: the rule that sets `status` and `addressed_by` of an insight.'
+    when: The librarian's run applies this session's update of `insight-orchestration-acknowledging-reply-keeps-headings-in-english`,
+      and the cascade of `.guppi/guppi/generate.py` runs after it.
+    then: '`insight-orchestration-acknowledging-reply-keeps-headings-in-english` stands `actioned`, and
+      its `addressed_by` names `decision-case-1002`.
+
+      **＋** `lesson-acknowledging-reply-labels-left-in-english` and `lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated`
+      stand `archived`.
+
+      **－** The cascade of `.guppi/guppi/generate.py` does not archive the actioned insight.'
+  spec: vault/raw/2026-11-02/1548/spec.md
+  applied: '20:27:14'
+- case: '1005'
+  decision: decision-case-1005
+  origin: raw/2026-11-02/1548/ledger.md#case-1005
+  children:
+  - decision-case-1005.1
+  - decision-case-1005.2
+  - decision-case-1005.3
+  tags:
+  - hooks
+  - harness
+  - workflow
+  - case-build
+  case_text:
+    context: '`case-guppi` must find each file that names a page or a file its Case changes, by every
+      name of it, and a member already in a list when its Case adds a new member. Both steps stand in
+      the Render of `rule-case-build`, and both failed their reading on the build of Case 1001 in session
+      0254 (readings L17 and L18 of session 1337). For the names, the agent ran one Grep per slug and
+      no Grep of the purpose lines, and it searched two pages over `.guppi/tests` only. For the list,
+      its one search ran over `.guppi/{guppi,tests}`, none over `vault/wiki/` or `.claude/`, though the
+      Case itself missed no text. The person chose to move the names search into the `SubagentStop` hook
+      of `rule-case-check`. The hook already reads the `Read` calls of the agent through `read_outputs`
+      of `.guppi/guppi/casecheck.py`, and already sends notes once through `check_answer` and `judge_and_store`,
+      which store each note under its Case id and do not send it again. So Case 1005.1 adds one note per
+      file that names what the Case changes and that the agent did not read. Case 1005.2 makes the agent
+      answer each note in place of its own search. Case 1005.3 writes the list-member search as one fixed
+      Grep. The rule of one judgment (`rule-one-judgment-one-implementation`) bounds 1005.1. A Grep of
+      `"agents"|agents/|SKILL\.md|__module__` over `.guppi/guppi/` printed `render.py` and `recall.py`,
+      and neither derives a name from a path. A Grep of `code_ref|implementation_ref` over `.guppi/guppi/`
+      printed `generate.py` and `lint.py`. `REWORD_PATH_FIELDS` of `generate.py` lists the three path
+      fields, and the task imports it. `PATH_FIELDS` of `lint.py` lists two fields for another judgment,
+      whether a path exists. `cli.py` was read whole for `COMMANDS`. For the pages a Case updates or deletes,
+      `items_of` of `prespec.py`, read whole, gives each item of a `then` block with its kind and its
+      slug, and the task imports it. For the code spans of a task line, a Grep of `CODE_SPAN\b.*=|import.*CODE_SPAN|CODE_SPAN,`
+      over `.guppi/guppi/` printed `lint.py`, `prespec.py`, `generate.py`, `pointers.py` and `config.py`.
+      `CODE_SPAN` is set in `lint.py`, the other four import it, and the task imports it too. The fixes
+      of `/pre-spec` changed two points of behaviour. First, the path a task line must write in a code
+      span is only that of a file outside `vault/wiki/`. A page task names its page by slug, as `case-schema.md`
+      sets it, and the hook takes pages from the `then` block. Second, the hook counts as a read a `Read`
+      call of the file and a `Grep` call whose `path` is that file, since the Render of `rule-case-build`
+      lets the agent read a text in parts by a Grep with lines of context. The read check of the pairs
+      keeps its own rule, under which the output of a Grep is no read. The names search of this build,
+      over the root with the glob `{vault/wiki,.claude,.guppi/guppi,.guppi/tests}/**`, for the names of
+      `rule-case-build`, `rule-case-check`, both Estimates, `case-guppi`, `casecheck.py`, `tags.py`, `test_casecheck.py`,
+      `settings.json` and `guppi casecheck`, printed 273 files. Of those, the files that bear on the change
+      were read. `estimate-case-build-checks-the-finished-case` stands: its slug search of a page whose
+      text turns false is another step, which stays in the Render. `estimate-case-example-passes-the-check`
+      stands: `.guppi/tests/test_case_schema.py` runs `check_answer` with no transcript, so it gets no
+      names note and still finds no note. `lesson-grep-glob-brace-list-of-paths-matches-nothing` stands
+      as the record of a fact. A Grep of `a note once` over `{vault/wiki,.claude,.guppi/guppi}/**` printed
+      `rule-case-check.md`, `estimate-case-check-notes-a-page-the-cascade-archives.md` and `estimate-case-check-notes-a-sentence-two-cases-change.md`.
+      The two Estimates check their own notes, and the new note leaves them true. The `purpose` field
+      of `rule-case-check` names no note and stands. `/pre-spec` gets no such note: the agent''s record
+      of calls is the hook''s input alone. The `purpose` and `method` of `estimate-case-build-reads-each-list-of-a-new-member`
+      still hold with the fixed search and stand. A Grep of `parents\[2\]|REPO|ROOT =|project_root|Path\(__file__\)`
+      over `.guppi/tests/` printed 12 files. A Grep of `check_answer|judge_and_store|casecheck\.subagent|casecheck\.run`
+      over `.guppi/tests/` printed `test_prespec.py`, `test_casecheck.py` and `test_case_schema.py`. Of
+      those three, only `test_case_schema.py` is among the 12, and it runs `check_answer` over the live
+      `case-example.md`. The session ledger holds no `error` lesson. The check of this file noted the
+      old Criterion lines that the two replaced Criteria do not carry, and they are dropped on purpose.
+      The old lines of `estimate-case-build-searches-the-names-of-what-it-changes` promise the agent''s
+      own search, its names, its purpose-line Grep and its search again at the check of the finished Case.
+      That search now belongs to the hook, and the Criterion of 1005.1 holds the names. The new trigger
+      is the note, and the exclusion of `log.md` and `brief.md` is now a line of 1005.1. The old first
+      line of `estimate-case-build-reads-each-list-of-a-new-member` gave three folders and no form, and
+      the fixed Grep replaces it. The note also found that a `then` line of 1005.3 shares most of its
+      words with one of 1005.2. Both lines stand, since they speak of different texts: in 1005.3 a text
+      that lists the members of a list, and in 1005.2 a file that a note of the hook names.'
+    problem: Two steps of `case-guppi` failed though its Render held them word for word. A new reading
+      of the same text gives little reason to pass, so each step needs a change that leaves the agent
+      no choice of how to search.
+    recommend: "- **How the failed names search is answered**\n  - Recommended: (c) the hook runs the\
+      \ names search and sends the agent the list.\n  - Answer: (c).\n- **How the failed list-member search\
+      \ is answered**\n  - Recommended: (b) one fixed search in the instructions, then a new reading.\n\
+      \  - Answer: (b).\n- **What the hook takes as the things a Case changes**\n  - Recommended: (b)\
+      \ the pages the Case updates or deletes, and each existing path in a code span of a task line.\n\
+      \  - Answer: (b).\n- **What the note shows for each file it lists**\n  - Recommended: (a) the path\
+      \ and the purpose line.\n  - Answer: (a)."
+  spec: vault/raw/2026-11-02/1548/spec.md
+  applied: '20:27:14'
+unparsed: []
+session: '1548'

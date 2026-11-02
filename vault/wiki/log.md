@@ -12651,3 +12651,32 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-02 lessons/lesson-acknowledging-reply-labels-left-in-english created · raw/2026-11-01/2227/ledger.md#L25 · generate
 - 2026-11-02 rules/rule-close status: built → draft · cascade · generate
 - 2026-11-02 rules/rule-prespec status: built → draft · cascade · generate
+- 2026-11-02 decisions/decision-case-997 created · raw/2026-11-02/0039/ledger.md#case-997 · generate
+- 2026-11-02 rules/rule-orchestration updated: the acknowledging reply and each reply that shows the Frontier write their headings and labels translated into the language of the chat, the English words named as the names of the parts · [[decision-case-997]] · generate
+- 2026-11-02 estimates/estimate-orchestration-acknowledging-reply updated: the Criterion replaced whole — each heading and label of the reply stands translated into the language of the chat; the reading waits for the render · [[decision-case-997]] · generate
+- 2026-11-02 decisions/decision-case-998 created · raw/2026-11-02/0039/ledger.md#case-998 · generate
+- 2026-11-02 estimates/estimate-case-build-reads-the-readers-of-a-changed-step updated: the Criterion replaced whole — a missed reader of a changed step counts only when it gets past the approved Spec and comes to light in that session or the session after it; pending again after the failed reading of session 2227 · [[decision-case-998]] · generate
+- 2026-11-02 decisions/decision-case-999 created · raw/2026-11-02/0039/ledger.md#case-999 · generate
+- 2026-11-02 decisions/decision-case-999.1 created · raw/2026-11-02/0039/ledger.md#case-999.1 · generate
+- 2026-11-02 entities/entity-link-graph deleted · [[decision-case-999.1]] · generate
+- 2026-11-02 rules/rule-link-graph-at-session-start deleted · [[decision-case-999.1]] · generate
+- 2026-11-02 estimates/estimate-link-graph-prints-the-neighbours deleted · [[decision-case-999.1]] · generate
+- 2026-11-02 estimates/estimate-link-graph-at-session-start-writes-the-file deleted · [[decision-case-999.1]] · generate
+- 2026-11-02 rules/rule-hook-registry updated: the SessionStart hook guppi links --write removed with the graph of links · [[decision-case-999.1]] · generate
+- 2026-11-02 entities/entity-guppi updated: the graph of links is no longer a part of GUPPI · [[decision-case-999.1]] · generate
+- 2026-11-02 estimates/estimate-sprint-plugin-link-graph-is-gone created · [[decision-case-999.1]] · generate
+- 2026-11-02 entities/entity-sprint-plugin estimate estimate-sprint-plugin-link-graph-is-gone added · [[decision-case-999.1]] · generate
+- 2026-11-02 decisions/decision-case-999.2 created · raw/2026-11-02/0039/ledger.md#case-999.2 · generate
+- 2026-11-02 rules/rule-case-build updated: case-guppi finds what points to a page or file it changes by one Grep for all its names and the purpose lines of the pages it lists, instead of the block of .guppi/links.md · [[decision-case-999.2]] · generate
+- 2026-11-02 estimates/estimate-case-build-searches-the-names-of-what-it-changes renamed from `estimate-case-build-reads-the-link-graph-of-what-it-changes` · [[decision-case-999.2]] · generate
+- 2026-11-02 rules/rule-case-build ref `estimate-case-build-reads-the-link-graph-of-what-it-changes` → `estimate-case-build-searches-the-names-of-what-it-changes` · [[decision-case-999.2]] · generate
+- 2026-11-02 estimates/estimate-case-build-searches-the-names-of-what-it-changes updated: renamed and the Criterion replaced whole — case-guppi searches the names of what it changes, since the graph of links is dropped; pending again after the failed reading of session 2227 · [[decision-case-999.2]] · generate
+- 2026-11-02 rules/rule-harness updated: the hook that writes the graph of links at the start of a session is no longer a part of the harness · [[decision-case-999.1]] · generate
+- 2026-11-02 estimates/estimate-sprint-plugin-check-finds-no-bare-slug-link status: pending → passed · raw/2026-11-02/0039/ledger.md#L14 · generate
+- 2026-11-02 lessons/lesson-grep-glob-brace-list-of-paths-matches-nothing created · raw/2026-11-02/0039/ledger.md#L15 · generate
+- 2026-11-02 entities/entity-link-graph archived · cleanup
+- 2026-11-02 rules/rule-link-graph-at-session-start archived · cleanup
+- 2026-11-02 estimates/estimate-link-graph-at-session-start-writes-the-file archived · cleanup
+- 2026-11-02 estimates/estimate-link-graph-prints-the-neighbours archived · cleanup
+- 2026-11-02 entities/entity-guppi child entity-link-graph archived · cleanup
+- 2026-11-02 rules/rule-harness child rule-link-graph-at-session-start archived · cleanup

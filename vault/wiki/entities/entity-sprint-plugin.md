@@ -4,7 +4,7 @@ kind: Leaf
 purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the close of a sprint works with no fix by hand"
 status: draft
 parent: "[[entity-sprint]]"
-estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]"]
+estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]", "[[estimate-sprint-plugin-link-graph-is-gone]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-756.1
 sprint: plugin
 created: 2026-10-10
@@ -65,3 +65,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-11-01 estimate estimate-sprint-plugin-check-finds-no-bare-slug-link added · [[decision-case-973]]
 - 2026-11-01 estimate estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link added · [[decision-case-978]]
 - 2026-11-02 updated: the milestone The clean branch names the pages that block the build · [[decision-case-996.2]]
+- 2026-11-02 estimate estimate-sprint-plugin-link-graph-is-gone added · [[decision-case-999.1]]

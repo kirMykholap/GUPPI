@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
-method: one reading by hand of the first acknowledging reply of a session, and of the first reply that acknowledges Cases ratified together in one answer
+method: "by hand, after the librarian's render that writes into vault/wiki/orchestration.md the paragraph of rule-orchestration that names the headings and labels of the acknowledging reply as translated: an acknowledging reply and a reply that acknowledges Cases ratified together in one answer, each written after that render, each read against the Criterion in the transcript of its session under ~/.claude/projects/"
 checked: 2026-11-02
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
@@ -19,6 +19,7 @@ The person ratifies a Case, ratifies again a Case shown again after its ratifica
 
 Then:
 The reply has four parts, in this order. First, the `LEDGER` block, before which stands nothing but the `STOP:` line that `estimate-orchestration-acknowledging-reply-opens-with-stop-after-prespec` checks. Second, the heading `## Case N — ratified` and a paragraph `Changes:` that says what changes, in one or two sentences. Third, a paragraph `Notes:` with facts that did not enter the Case, left out when there are none. Last, the heading `## Frontier` and the lines of `raw/<date>/<hi HHMM>/frontier.md` as a checklist.
+**＋** Each heading and label of the reply stands translated into the language of the chat that `CLAUDE.md` sets: the heading `## Case N — ratified`, the labels `Changes:` and `Notes:` and the heading `## Frontier` stand in that language, not in the English words by which this Criterion names them.
 **＋** In the checklist the closed lines are folded into one line, and the lines put off stand as `[-] … · sprint · defer`, `[-] … · backlog · kept` or `[-] … · defer case N`.
 **＋** The open `W` lines are folded into one line that lists their ids, and each other open line stands on its own line with a short title.
 **＋** While a line under `## Cases` is open, the question which item is next ends the reply.
@@ -26,8 +27,8 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 **＋** When none is open after `/pre-spec`, the reply ends with the Frontier and asks nothing, and the hook of `rule-prespec-onward` sends the agent on.
 **＋** One reply acknowledges every Case and sub-case ratified in one answer, a Case with its sub-cases or Cases shown together for one ratification: one `LEDGER` block with all their lines, one heading `## Case N — ratified` that names their ids, one paragraph `Changes:`, one Frontier.
 **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision lines of each Case ratified again, as at its first ratification.
-**＋** The headings and labels are in the language of the chat.
 **＋** No tool call follows the `LEDGER` block in the same reply.
+**－** Slugs, paths, the tag of the `LEDGER` block, the ledger lines and the word `STOP:` that opens a reply keep their own words in any language of the chat; the rest of the `STOP:` line stands in the language of the chat.
 **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
 **－** When a `Stop` hook other than the ledger hook of `rule-ledger-write` refuses the reply with exit 2, the agent's answer to the refusal is a reply of its own and may call tools. The `LEDGER` block stands written, but for a decision line the ledger hook holds, as `estimate-ledger-write-holds-a-decision-line-off-the-stored-case` sets it.
 
@@ -64,3 +65,4 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 - 2026-11-01 status: pending → passed · raw/2026-11-01/2038/ledger.md#L22
 - 2026-11-02 updated: the Criterion replaced whole — the STOP: line after /pre-spec split off into its own Estimate · [[decision-case-993.1]]
 - 2026-11-02 status: pending → failed · raw/2026-11-01/2227/ledger.md#L21
+- 2026-11-02 updated: the Criterion replaced whole — each heading and label of the reply stands translated into the language of the chat; the reading waits for the render · [[decision-case-997]]

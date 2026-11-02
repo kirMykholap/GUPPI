@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[entity-link-graph]]"
 purpose: Whether guppi links prints, for a page or a file, each neighbour out and in with the kind of link and the purpose line, from the fields, the body, the path fields and the names in the rendered files, and no Decision page
 method: "uv run --project .guppi pytest .guppi/tests/test_links.py, which runs the command over a vault in a temporary folder for each kind of link in both directions; and by hand, in Work Mode of this session: the output of uv run --project .guppi guppi links .claude/skills/sprint-open/SKILL.md, which names case-guppi, and of uv run --project .guppi guppi links .claude/agents/case-guppi.md, which names grill-me, read against the Criterion, the output in the estimate line"
@@ -35,3 +35,5 @@ It prints the block of that page or file: a line `## <slug or path>`, its purpos
 - 2026-10-31 created · [[decision-case-967.1]]
 - 2026-10-31 status: pending → passed · raw/2026-10-31/1831/ledger.md#L30
 - 2026-11-01 updated: the bare link of the Result put in a code span, so lint reads no link to a page · [[decision-case-973]]
+- 2026-11-02 deleted · [[decision-case-999.1]]
+- 2026-11-02 archived · cleanup

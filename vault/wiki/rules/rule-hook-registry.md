@@ -32,7 +32,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
 <!-- rule-hook-registry -->
     "SessionStart": [
       { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi event session-start", "timeout": 30 },
-                   { "type": "command", "command": "uv run --project .guppi guppi render --sync", "timeout": 60 }, { "type": "command", "command": "uv run --project .guppi guppi links --write", "timeout": 60 } ] },
+                   { "type": "command", "command": "uv run --project .guppi guppi render --sync", "timeout": 60 } ] },
       { "matcher": "compact",
         "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi recall", "timeout": 30 } ] }
 ],
@@ -115,3 +115,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-31 updated: the SubagentStop hook guppi libreport registered · [[decision-case-965]]
 - 2026-10-31 updated: the SessionStart hook guppi links --write registered · [[decision-case-967.3]]
 - 2026-11-01 updated: UserPromptSubmit → guppi spec --typed · [[decision-case-987.1]]
+- 2026-11-02 updated: the SessionStart hook guppi links --write removed with the graph of links · [[decision-case-999.1]]

@@ -2,7 +2,7 @@
 type: entity
 kind: Leaf
 purpose: The links between the vault pages and the harness files, each written once, and a command that prints the neighbours of a page or a file with their purpose lines
-status: built
+status: archived
 parent: "[[entity-guppi]]"
 estimates: ["[[estimate-link-graph-prints-the-neighbours]]"]
 rules: ["[[rule-link-graph-at-session-start]]"]
@@ -24,3 +24,5 @@ A builder that searches only for words misses a text that is linked to the chang
 - 2026-10-31 estimate estimate-link-graph-prints-the-neighbours added · [[decision-case-967.1]]
 - 2026-10-31 status: draft → built · cascade
 - 2026-10-31 rules: [rule-link-graph-at-session-start] · cascade
+- 2026-11-02 deleted · [[decision-case-999.1]]
+- 2026-11-02 archived · cleanup

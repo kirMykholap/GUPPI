@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-case-build]]"
-purpose: Whether case-guppi, when its Case changes what a step writes, copies or shows or adds a path to it, reads each step and skill that reads that output or does the same step, the steps after it and the new path included, and, where a function of .guppi/guppi/ does the step, each place that calls it or makes the same judgment on another input, and names each one in context or enters it in the Case
-method: "by hand, after the /pre-spec of the first session whose case-guppi runs on the Render of rule-case-build that holds the sentence on following a step into the code of .guppi/guppi/: the findings of ask-guppi at that /pre-spec, read in the agent transcript of that ask-guppi under ~/.claude/projects/, for a Case that changes a step and misses a step, a skill or a place of code that reads its output or does the same step, the count and the transcript in the estimate line"
+purpose: Whether no step, skill or place of code that reads the output of a step a Case changes, or does the same step, and that the change makes false, gets past the approved Spec unnamed by both case-guppi and /pre-spec and comes to light in the Work Mode or Retro of that session or of the session after it
+method: "by hand, after the Retro of the session that follows a session whose approved Spec holds a Case of case-guppi that changes what a step writes, copies or shows or adds a path on which a step does so: the Work Mode and Retro of both sessions, read in their ledgers and in the transcripts of their main agents under ~/.claude/projects/, for a step, a skill or a place of code that reads the output of the changed step or does the same step, that the change makes false and that no Case and no context of the approved Spec named, such as a Case built again in Work Mode, a task added by hand, a red test or check or an error lesson for it, the count and the transcripts in the estimate line"
 checked: 2026-11-02
 origin: raw/2026-10-30/0304/ledger.md#case-924
 sprint: plugin
@@ -15,15 +15,13 @@ tags: [session, workflow, harness, case-build]
 ## Criterion
 
 When:
-`case-guppi`, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, builds a Case that changes what a step of a skill, an agent, a hook or a function of `.guppi/guppi/` writes, copies or shows, or adds a path on which a step does so, and is about to answer with its summary.
+The person approves the Spec of a session whose Cases `case-guppi` built, with `.claude/agents/case-guppi.md` rendered from `rule-case-build`, and checked by `/pre-spec`, and a Case of that Spec changes what a step of a skill, an agent, a hook or a function of `.guppi/guppi/` writes, copies or shows, or adds a path on which a step does so.
 
 Then:
-It searches `vault/wiki/rules/` and `.claude/` for the name of that output — a line such as `Branch:`, a file or a list — and for the name of the step.
-**＋** Where a function of `.guppi/guppi/` does the step, it also searches `.guppi/guppi/` for the name of that function and of the function it judges by.
-**＋** It reads each step and skill that reads that output or does the same step, the steps after it in the same text and the new path its own Case adds included.
-**＋** Where a function of `.guppi/guppi/` does the step, it reads each place that calls that function or the function it judges by, and each other place that makes the same judgment on another input, such as the value a plan writes and the value a live page keeps.
-**＋** Each step, skill or place of code that the change makes false enters the Case, or the `context` of the Case names it and says why it stands.
-**－** A hit in a History line, in `log.md` or in `brief.md` is not read.
+Each step, skill or place of code that reads that output or does the same step, and that the change makes false, stands in a Case of the approved Spec, or the `context` of a Case names it and says why it stands.
+**＋** A reader that a finding of `/pre-spec` named and that a Case built again took in counts as found.
+**＋** No such reader comes to light in the Work Mode or the Retro of that session or of the session after it, by a Case built again, a task added by hand, a red test or check, or an `error` lesson.
+**－** A text in a History line, in `log.md` or in `brief.md` is not such a reader.
 
 ## Result
 
@@ -40,3 +38,4 @@ It searches `vault/wiki/rules/` and `.claude/` for the name of that output — a
 - 2026-11-01 status: pending → failed · raw/2026-11-01/0141/ledger.md#L18
 - 2026-11-01 updated: the Criterion replaced whole — the readers of a changed step include the places of the harness code; pending again after the failed reading of session 0141 · [[decision-case-985]]
 - 2026-11-02 status: pending → failed · raw/2026-11-01/2227/ledger.md#L19
+- 2026-11-02 updated: the Criterion replaced whole — a missed reader of a changed step counts only when it gets past the approved Spec and comes to light in that session or the session after it; pending again after the failed reading of session 2227 · [[decision-case-998]]

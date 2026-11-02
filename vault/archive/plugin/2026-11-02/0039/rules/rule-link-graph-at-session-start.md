@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Case builder from reading a graph of links that is missing or older than the start of its session
-status: built
+status: archived
 enforcement: hook
 implementation_ref: [.guppi/guppi/links.py, .guppi/tests/test_links.py, .claude/settings.json]
 parent: "[[rule-harness]]"
@@ -25,3 +25,5 @@ Prevents a Case builder from reading a graph of links that is missing or older t
 - 2026-10-31 estimate estimate-link-graph-at-session-start-writes-the-file added · [[decision-case-967.3]]
 - 2026-11-01 status: draft → built · cascade
 - 2026-11-01 updated: the builder finds a block by a Grep and reads it whole · [[decision-case-986]]
+- 2026-11-02 deleted · [[decision-case-999.1]]
+- 2026-11-02 archived · cleanup

@@ -79,9 +79,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `estimate-orchestration-acknowledging-reply`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `estimate-orchestration-acknowledging-reply`
 - [ ] read `estimate-orchestration-acknowledging-reply`
 ```
 
@@ -136,7 +136,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] update `estimate-case-build-reads-the-readers-of-a-changed-step`
 - [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
 ```
 
@@ -233,23 +233,23 @@ delete:
 ```
 
 ```tasks
-- [ ] delete `entity-link-graph`
-- [ ] delete `rule-link-graph-at-session-start`
-- [ ] delete `estimate-link-graph-prints-the-neighbours`
-- [ ] delete `estimate-link-graph-at-session-start-writes-the-file`
-- [ ] update `rule-hook-registry`
-- [ ] update `entity-guppi`
-- [ ] update `rule-harness`
-- [ ] create `estimate-sprint-plugin-link-graph-is-gone`
+- [x] delete `entity-link-graph`
+- [x] delete `rule-link-graph-at-session-start`
+- [x] delete `estimate-link-graph-prints-the-neighbours`
+- [x] delete `estimate-link-graph-at-session-start-writes-the-file`
+- [x] update `rule-hook-registry`
+- [x] update `entity-guppi`
+- [x] update `rule-harness`
+- [x] create `estimate-sprint-plugin-link-graph-is-gone`
 - [x] `.guppi/guppi/links.py` and `.guppi/tests/test_links.py`: deleted.
 - [x] `.guppi/guppi/cli.py`: the import of `links`, the entry `"links"` of `COMMANDS` and the words on `links --write` in the module docstring removed.
 - [x] `.guppi/guppi/pages.py`: `links` removed from the list of readers in the module docstring.
 - [x] `.guppi/guppi/ship.py`: the entry `.guppi/links.md` of `LEFT_OUT` and its comment removed.
 - [x] `.guppi/.gitignore`: the line `links.md` removed.
 - [x] by hand, in Work Mode after the code tasks above: the local file `.guppi/links.md` deleted.
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
-- [ ] `uv run --project .guppi guppi sprint`
-- [ ] read `estimate-sprint-plugin-check-finds-no-bare-slug-link`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] `uv run --project .guppi guppi sprint`
+- [x] read `estimate-sprint-plugin-check-finds-no-bare-slug-link`
 - [ ] read `estimate-sprint-plugin-link-graph-is-gone`
 ```
 
@@ -296,8 +296,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-reads-the-link-graph-of-what-it-changes`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-reads-the-link-graph-of-what-it-changes`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-searches-the-names-of-what-it-changes`
 ```

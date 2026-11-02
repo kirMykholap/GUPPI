@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[rule-link-graph-at-session-start]]"
 purpose: Whether the SessionStart hook writes .guppi/links.md whole at the start of a session, from the text guppi render writes, kept out of git, and stops no session on an error
 method: "uv run --project .guppi pytest .guppi/tests/test_links.py, which runs guppi links --write over a vault in a temporary folder, a rendered file left unwritten and an error included; and by hand, after the first session start whose .claude/settings.json holds the hook: the time of .guppi/links.md against the session-start line of vault/raw/<date>/event_log.md, its block of .claude/skills/sprint-open/SKILL.md and the output of git status, read against the Criterion, the result in the estimate line"
@@ -31,3 +31,5 @@ It writes `.guppi/links.md` whole: one block per live page and per file that a p
 
 - 2026-10-31 created · [[decision-case-967.3]]
 - 2026-11-01 status: pending → passed · raw/2026-10-31/2307/ledger.md#L4
+- 2026-11-02 deleted · [[decision-case-999.1]]
+- 2026-11-02 archived · cleanup

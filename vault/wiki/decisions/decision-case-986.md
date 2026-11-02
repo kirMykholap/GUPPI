@@ -2,7 +2,7 @@
 type: decision
 case: "986"
 status: current
-update: ["[[rule-case-build]]", "[[rule-link-graph-at-session-start]]", "[[estimate-case-build-reads-the-link-graph-of-what-it-changes]]"]
+update: ["[[rule-case-build]]", "[[rule-link-graph-at-session-start]]", "[[estimate-case-build-searches-the-names-of-what-it-changes]]"]
 origin: raw/2026-11-01/1721/ledger.md#case-986
 sprint: plugin
 created: 2026-11-01

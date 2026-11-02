@@ -24,7 +24,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 ### The plugin
 
 - the clean version made into a Claude Code plugin
-- [[rule-morph]] — the setup Case that the first `/hi` after `/guppi:install` puts before the opening of the first sprint; what remains: the setup skill, its step in `/hi` and in `/sprint-open`, the key of `guppi.toml` that marks the setup as done, the pass of the ledger hook for the setup Case while no sprint is open, and the clean version that ships that key unset
+- [[rule-morph]] — the setup Case that the first `/hi` after `/guppi:install` puts before the opening of the first sprint; what remains: the setup skill, its step in `/hi` and in `/sprint-open`, the key of `guppi.toml` that marks the setup as done, the pass of the ledger hook for the setup Case while no sprint is open, and the clean version that ships that key unset; until it is `built`, `rule-morph` carries no `core`, and the Case that builds it gives `core: true` back
 - the README on what the project is and what it is for and on its main parts and its use
 - the close of `plugin` — `/sprint-close`, a session of its own
 
@@ -66,3 +66,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-11-01 estimate estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link added · [[decision-case-978]]
 - 2026-11-02 updated: the milestone The clean branch names the pages that block the build · [[decision-case-996.2]]
 - 2026-11-02 estimate estimate-sprint-plugin-link-graph-is-gone added · [[decision-case-999.1]]
+- 2026-11-02 updated: the milestone item of rule-morph says that it carries no core until it is built · [[decision-case-1001]]

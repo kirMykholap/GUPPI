@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-close]]"
 purpose: Whether the librarian gives its report back once at its close, as its last output, by its handback where it has the tool or as its last text, and report.md of the session folder holds that report and gives the counts, the marks, the archived pages, the flags, the lint total and each part another step of its frame sends to the report, with no test result and no list of files
 method: "by hand, after the librarian's run of a session whose .claude/agents/librarian-guppi.md, when the run starts, holds the Render of rule-close that gives the report back once as the last output: the agent reads report.md of the session folder of that run, as the commit of /handoff or /box holds it by git show, beside every output of the librarian, its texts and the message of each SubagentHandback call, read in its agent transcript under ~/.claude/projects/, against the Criterion, the transcript named in the estimate line"
-checked: 2026-11-01
+checked: 2026-11-02
 origin: raw/2026-10-29/1930/ledger.md#case-903.2
 sprint: plugin
 created: 2026-10-29
@@ -27,7 +27,7 @@ Then:
 
 ## Result
 
-2026-11-01, Work reading of session 2038, git show 994ade11:vault/raw/2026-11-01/0141/report.md beside the handback of the librarian in ~/.claude/projects/c--PROJECTS-GUPPI/b91d8531-1bea-46ba-a54a-0282b108e453/subagents/agent-a4bd75adff6d794e7.jsonl, record 205: report.md equals the returned report byte for byte but its last newline, 62 lines; it gives pages created and updated per category, entries incomplete or failed (none), pages archived, flags, the lint total and each part the frame at ce0231ab sends to the report; no test result, no list of files; the frame held the libreport hook in settings.json and the Render of rule-close; the librarian's last plain text was one line before its commit, the report stood only in its handback
+2026-11-02, Work reading of session 0254, git show 23179585:vault/raw/2026-11-02/0039/report.md beside the outputs of the librarian of session 0039 in ~/.claude/projects/c--PROJECTS-GUPPI/f240d478-1d49-4e5f-8649-18392f3caac6/subagents/agent-ace2a04bee6efed42.jsonl (210 records): the librarian gave the report once, as the message of its SubagentHandback at record 208, its last assistant record, with no output after it; its one other text, record 80, is a one-line step note, not the report; report.md equals that message but for its last newline (diff --strip-trailing-cr), 59 lines; it gives the pages created and updated per category, the entries incomplete or failed (none), the pages archived, the flags, the lint total, and the parts the frame sends to it (the handoff's checks, the index check, the synthesis, the reads to name, the next session); it holds no test result and no list of files
 
 ## History
 
@@ -45,3 +45,4 @@ Then:
 - 2026-11-01 updated: the defer of decision-case-971, archived as superseded, retired; the reading waits for its event · [[decision-case-982.3]]
 - 2026-11-01 status: pending → passed · raw/2026-11-01/2038/ledger.md#L15
 - 2026-11-02 updated: the Criterion replaced whole — the librarian gives the report once, as its last output, by its handback or its last text · [[decision-case-994]]
+- 2026-11-02 status: pending → passed · raw/2026-11-02/0254/ledger.md#L8

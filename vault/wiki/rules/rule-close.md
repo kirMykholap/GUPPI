@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the librarian's writes from landing in the session's own commit, or from ending without a commit at all
-status: draft
+status: built
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
@@ -51,3 +51,4 @@ Close. Run `uv run --project .guppi guppi check` and keep its output for the rep
 - 2026-11-01 status: draft → built · cascade
 - 2026-11-02 updated: the librarian gives its report back once, as its last output: the handback where it has the tool, else its last text · [[decision-case-994]]
 - 2026-11-02 status: built → draft · cascade
+- 2026-11-02 status: draft → built · cascade

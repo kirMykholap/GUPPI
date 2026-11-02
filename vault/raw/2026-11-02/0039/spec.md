@@ -82,7 +82,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [x] update `estimate-orchestration-acknowledging-reply`
-- [ ] read `estimate-orchestration-acknowledging-reply`
+- [x] read `estimate-orchestration-acknowledging-reply`
 ```
 
 ## Case 998 — A missed reader of a changed step counts only when it gets past the approved Spec

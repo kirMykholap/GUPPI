@@ -77,11 +77,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-morph`
-- [ ] update `entity-sprint-plugin`
-- [ ] update `rule-permissions`
-- [ ] update `rule-guppi-config`
-- [ ] update `estimate-clean-branch-refuses-a-draft-core-page`
-- [ ] `uv run --project .guppi guppi sprint`
+- [x] update `rule-morph`
+- [x] update `entity-sprint-plugin`
+- [x] update `rule-permissions`
+- [x] update `rule-guppi-config`
+- [x] update `estimate-clean-branch-refuses-a-draft-core-page`
+- [x] `uv run --project .guppi guppi sprint`
 - [ ] read `estimate-clean-branch-refuses-a-draft-core-page`
 ```

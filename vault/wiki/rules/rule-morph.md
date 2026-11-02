@@ -8,7 +8,6 @@ origin: raw/2026-09-18/1252/ledger.md#case-239
 sprint: migration
 created: 2026-09-18
 tags: [session, harness, plugin]
-core: true
 ---
 
 ## Purpose
@@ -52,3 +51,4 @@ The setup step does not set the category set: every project takes the developmen
 - 2026-10-26 updated: the Purpose names no rule page that stays in the repository of GUPPI · [[decision-case-881.3]]
 - 2026-10-30 updated: the setup Case shows what the files that /guppi:install set aside hold; the person keeps or drops each part, a kept part goes into the page that writes its file or, where none does, into the file by a task, and guppi-set-aside/ is deleted · [[decision-case-932.2]]
 - 2026-10-30 estimate estimate-morph-takes-in-the-set-aside-files added · [[decision-case-932.2]]
+- 2026-11-02 updated: core taken off while the page is draft and never built; the Case that builds it gives it back · [[decision-case-1001]]

@@ -12680,3 +12680,18 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-02 estimates/estimate-link-graph-prints-the-neighbours archived · cleanup
 - 2026-11-02 entities/entity-guppi child entity-link-graph archived · cleanup
 - 2026-11-02 rules/rule-harness child rule-link-graph-at-session-start archived · cleanup
+- 2026-11-02 decisions/decision-case-1001 created · raw/2026-11-02/0254/ledger.md#case-1001 · generate
+- 2026-11-02 rules/rule-morph updated: core taken off while the page is draft and never built; the Case that builds it gives it back · [[decision-case-1001]] · generate
+- 2026-11-02 entities/entity-sprint-plugin updated: the milestone item of rule-morph says that it carries no core until it is built · [[decision-case-1001]] · generate
+- 2026-11-02 estimates/estimate-clean-branch-refuses-a-draft-core-page updated: the Criterion replaced whole — rule-morph carries no core until it is built · [[decision-case-1001]] · generate
+- 2026-11-02 estimates/estimate-orchestration-acknowledging-reply status: pending → failed · raw/2026-11-02/0254/ledger.md#L4 · generate
+- 2026-11-02 lessons/lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated created · raw/2026-11-02/0254/ledger.md#L5 · generate
+- 2026-11-02 rules/rule-permissions updated: the Purpose names the setup Case of a project, not rule-morph, which ships only once it is built · [[decision-case-1001]] · generate
+- 2026-11-02 rules/rule-guppi-config updated: the Purpose names the setup Case of a project, not rule-morph, which ships only once it is built · [[decision-case-1001]] · generate
+- 2026-11-02 estimates/estimate-close-reports-the-run status: pending → passed · raw/2026-11-02/0254/ledger.md#L8 · generate
+- 2026-11-02 lessons/lesson-hook-block-reason-is-not-shown-in-the-phone-app created · raw/2026-11-02/0254/ledger.md#L9 · generate
+- 2026-11-02 insights/insight-orchestration-acknowledging-reply-keeps-headings-in-english created · raw/2026-11-02/0254/ledger.md#L5 · generate
+- 2026-11-02 lessons/lesson-acknowledging-reply-labels-left-in-english updated: clustered under insight-orchestration-acknowledging-reply-keeps-headings-in-english (synthesis) · raw/2026-11-02/0254/ledger.md#L5 · generate
+- 2026-11-02 lessons/lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated updated: clustered under insight-orchestration-acknowledging-reply-keeps-headings-in-english (synthesis) · raw/2026-11-02/0254/ledger.md#L5 · generate
+- 2026-11-02 rules/rule-clean-branch status: built → draft · cascade · generate
+- 2026-11-02 rules/rule-close status: draft → built · cascade · generate

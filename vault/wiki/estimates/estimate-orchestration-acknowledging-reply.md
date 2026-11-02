@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: "by hand, after the librarian's render that writes into vault/wiki/orchestration.md the paragraph of rule-orchestration that names the headings and labels of the acknowledging reply as translated: an acknowledging reply and a reply that acknowledges Cases ratified together in one answer, each written after that render, each read against the Criterion in the transcript of its session under ~/.claude/projects/"
@@ -34,7 +34,7 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 
 ## Result
 
-2026-11-02, Retro of session 2227, the first acknowledging reply of the session (Case 993) and the first that acknowledges Cases ratified in one answer (Case 995.1–995.3), read against the Criterion of Case 993.1: the LEDGER block first, the heading, Changes, Notes where facts stood, the Frontier with closed and W lines folded, the closing question, one reply for Cases ratified together and no tool call after the block all held; the line that headings and labels are in the language of the chat failed: the headings ## Case N stood in Russian, but the labels **Changes:** and **Notes:** and the heading ## Frontier stood in English in every acknowledging reply of the session
+2026-11-02, session 0254 (hi 68effdf4), the reply that acknowledges Case 1001, read against the Criterion in this session's transcript: the LEDGER block first, the heading of the Case and the labels Changes and Notes in Russian, closed lines and W lines folded, the closing question whether to go on to /pre-spec, no tool call after the block all held; the heading ## Frontier stood in English, not translated into the language of the chat; no reply that acknowledges Cases ratified together came in this session
 
 ## History
 
@@ -66,3 +66,4 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 - 2026-11-02 updated: the Criterion replaced whole — the STOP: line after /pre-spec split off into its own Estimate · [[decision-case-993.1]]
 - 2026-11-02 status: pending → failed · raw/2026-11-01/2227/ledger.md#L21
 - 2026-11-02 updated: the Criterion replaced whole — each heading and label of the reply stands translated into the language of the chat; the reading waits for the render · [[decision-case-997]]
+- 2026-11-02 status: pending → failed · raw/2026-11-02/0254/ledger.md#L4

@@ -12695,3 +12695,44 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-02 lessons/lesson-orchestration-acknowledging-reply-leaves-the-frontier-heading-untranslated updated: clustered under insight-orchestration-acknowledging-reply-keeps-headings-in-english (synthesis) · raw/2026-11-02/0254/ledger.md#L5 · generate
 - 2026-11-02 rules/rule-clean-branch status: built → draft · cascade · generate
 - 2026-11-02 rules/rule-close status: draft → built · cascade · generate
+- 2026-11-02 estimates/estimate-clean-branch-refuses-a-draft-core-page status: pending → passed · raw/2026-11-02/1337/ledger.md#L1 · generate
+- 2026-11-02 decisions/decision-case-1002 created · raw/2026-11-02/1337/ledger.md#case-1002 · generate
+- 2026-11-02 rules/rule-orchestration updated: the acknowledging reply and each reply that shows the Frontier name their headings and labels by what they say, with no English word to copy · [[decision-case-1002]] · generate
+- 2026-11-02 estimates/estimate-orchestration-acknowledging-reply updated: the reading waits for the render of the text that names each heading and label by what it says · [[decision-case-1002]] · generate
+- 2026-11-02 estimates/estimate-skill-approve-spec-takes-the-spec status: pending → passed · raw/2026-11-02/1337/ledger.md#L4 · generate
+- 2026-11-02 estimates/estimate-orchestration-names-the-typed-approval status: pending → passed · raw/2026-11-02/1337/ledger.md#L5 · generate
+- 2026-11-02 estimates/estimate-spec-box-runs-a-conserved-spec status: pending → passed · raw/2026-11-02/1337/ledger.md#L6 · generate
+- 2026-11-02 lessons/lesson-work-skill-fails-to-load-on-a-red-check created · raw/2026-11-02/1337/ledger.md#L7 · generate
+- 2026-11-02 decisions/decision-case-1003 created · raw/2026-11-02/1337/ledger.md#case-1003 · generate
+- 2026-11-02 decisions/decision-case-1003.1 created · raw/2026-11-02/1337/ledger.md#case-1003.1 · generate
+- 2026-11-02 rules/rule-guppi-config updated: guppi test and guppi style take --exit-zero, which prints the exit code on a last line and exits 0 · [[decision-case-1003.1]] · generate
+- 2026-11-02 estimates/estimate-guppi-config-runs-the-test-and-style-commands updated: the Criterion replaced whole — guppi test and guppi style take --exit-zero; purpose and method name it · [[decision-case-1003.1]] · generate
+- 2026-11-02 decisions/decision-case-1003.2 created · raw/2026-11-02/1337/ledger.md#case-1003.2 · generate
+- 2026-11-02 rules/rule-lint updated: guppi check takes --exit-zero, which prints the exit code on a last line and exits 0 · [[decision-case-1003.2]] · generate
+- 2026-11-02 estimates/estimate-lint-runs-every-step updated: the Criterion replaced whole — guppi check takes --exit-zero; purpose and method name it · [[decision-case-1003.2]] · generate
+- 2026-11-02 decisions/decision-case-1003.3 created · raw/2026-11-02/1337/ledger.md#case-1003.3 · generate
+- 2026-11-02 rules/rule-work-mode updated: the preamble of /work runs guppi test and guppi check with --exit-zero, so the skill loads while a check is red · [[decision-case-1003.3]] · generate
+- 2026-11-02 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: the Criterion replaced whole — /work loads while guppi check is red, its preamble running guppi test and guppi check with --exit-zero; purpose and method name it · [[decision-case-1003.3]] · generate
+- 2026-11-02 decisions/decision-case-1003.4 created · raw/2026-11-02/1337/ledger.md#case-1003.4 · generate
+- 2026-11-02 rules/rule-retro updated: the preamble of /retro runs guppi test and guppi style with --exit-zero, so the skill loads while a test is red · [[decision-case-1003.4]] · generate
+- 2026-11-02 estimates/estimate-retro-loads-on-a-red-command created · [[decision-case-1003.4]] · generate
+- 2026-11-02 rules/rule-retro estimate estimate-retro-loads-on-a-red-command added · [[decision-case-1003.4]] · generate
+- 2026-11-02 estimates/estimate-case-build-reads-the-readers-of-a-changed-step status: pending → passed · raw/2026-11-02/1337/ledger.md#L16 · generate
+- 2026-11-02 estimates/estimate-case-build-searches-the-names-of-what-it-changes status: pending → failed · raw/2026-11-02/1337/ledger.md#L17 · generate
+- 2026-11-02 estimates/estimate-case-build-reads-each-list-of-a-new-member status: pending → failed · raw/2026-11-02/1337/ledger.md#L18 · generate
+- 2026-11-02 estimates/estimate-guppi-config-runs-the-test-and-style-commands status: pending → passed · raw/2026-11-02/1337/ledger.md#L19 · generate
+- 2026-11-02 estimates/estimate-lint-runs-every-step status: pending → passed · raw/2026-11-02/1337/ledger.md#L20 · generate
+- 2026-11-02 lessons/lesson-vs-code-extension-hands-the-skill-preamble-to-the-agent created · raw/2026-11-02/1337/ledger.md#L21 · generate
+- 2026-11-02 insights/insight-harness-skill-refused-when-a-preamble-command-exits-non-zero created · raw/2026-11-02/1337/ledger.md#L7 · generate
+- 2026-11-02 insights/insight-harness-skill-refused-when-a-preamble-command-exits-non-zero updated: born actioned, its cause closed by case 1003.3 (synthesis) · raw/2026-11-02/1337/ledger.md#L7 · generate
+- 2026-11-02 lessons/lesson-work-skill-fails-to-load-on-a-red-check updated: clustered under insight-harness-skill-refused-when-a-preamble-command-exits-non-zero (synthesis) · raw/2026-11-02/1337/ledger.md#L7 · generate
+- 2026-11-02 lessons/lesson-hi-fails-outside-a-git-repository updated: clustered under insight-harness-skill-refused-when-a-preamble-command-exits-non-zero (synthesis) · raw/2026-11-02/1337/ledger.md#L7 · generate
+- 2026-11-02 rules/rule-clean-branch status: draft → built · cascade · generate
+- 2026-11-02 rules/rule-retro status: built → draft · cascade · generate
+- 2026-11-02 rules/rule-skill-approve-spec status: draft → built · cascade · generate
+- 2026-11-02 rules/rule-spec-box status: draft → built · cascade · generate
+- 2026-11-02 rules/rule-work-mode status: built → draft · cascade · generate
+- 2026-11-02 lessons/lesson-work-skill-fails-to-load-on-a-red-check archived · insight actioned · generate
+- 2026-11-02 lessons/lesson-hi-fails-outside-a-git-repository archived · insight actioned · generate
+- 2026-11-02 lessons/lesson-hi-fails-outside-a-git-repository archived · cleanup
+- 2026-11-02 lessons/lesson-work-skill-fails-to-load-on-a-red-check archived · cleanup

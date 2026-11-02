@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-clean-branch]]"
 purpose: "Whether guppi ship writes nothing and exits 1 while a draft page with core: true stands that was never built or has a failed Estimate, writes as it stands one built before that only waits for a reading, writes the copy with --allow-draft, and lint judges by the same is_draft_core"
 method: "uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core; by hand, after the librarian's run that applies the update of rule-morph: a Grep for ^core: in rule-skill-merge-main, rule-skill-pr-review and rule-morph, and for --allow-draft in .github/workflows/prod.yml, read against the Criterion"
@@ -28,7 +28,7 @@ A rule or an entity with `core: true` that stands `draft` blocks the build when 
 
 ## Result
 
-2026-11-02, Retro of session 2227, uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core: 16 passed, 164 deselected — a draft core page never built exits 1 with its line, one built before with a pending Estimate is written with exit 0, one with a failed Estimate exits 1, --allow-draft writes, --check prints nothing, the cascade test sets a page built and finds it no draft core when set draft again with a pending Estimate, ship and lint import the one is_draft_core; rule-skill-merge-main and rule-skill-pr-review carry no core and .github/workflows/prod.yml holds no --allow-draft (grep)
+2026-11-02, /hi of session 1337, uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core: 16 passed, 164 deselected; a Grep for ^core: in rule-skill-merge-main, rule-skill-pr-review and rule-morph printed nothing (exit 1); a Grep for --allow-draft in .github/workflows/prod.yml printed nothing (exit 1)
 
 ## History
 
@@ -37,3 +37,4 @@ A rule or an entity with `core: true` that stands `draft` blocks the build when 
 - 2026-11-02 updated: the Criterion replaced whole — only a draft page with core: true that was never built or has a failed Estimate blocks the build · [[decision-case-996.1]]
 - 2026-11-02 status: pending → passed · raw/2026-11-01/2227/ledger.md#L23
 - 2026-11-02 updated: the Criterion replaced whole — rule-morph carries no core until it is built · [[decision-case-1001]]
+- 2026-11-02 status: pending → passed · raw/2026-11-02/1337/ledger.md#L1

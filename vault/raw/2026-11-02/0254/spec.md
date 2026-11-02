@@ -83,5 +83,5 @@ update:
 - [x] update `rule-guppi-config`
 - [x] update `estimate-clean-branch-refuses-a-draft-core-page`
 - [x] `uv run --project .guppi guppi sprint`
-- [ ] read `estimate-clean-branch-refuses-a-draft-core-page`
+- [x] read `estimate-clean-branch-refuses-a-draft-core-page`
 ```

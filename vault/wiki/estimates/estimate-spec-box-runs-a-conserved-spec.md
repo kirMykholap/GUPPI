@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-spec-box]]"
 purpose: Whether /box checks a conserved Spec, runs it on its own branch brought up to the shared branch by a fast-forward, merges the branch back by a fast-forward after the handoff, has the librarian write the pages on the shared branch, and shows report.md and commits it alone after the librarian's commit, stopping when the check or a merge refuses
 method: "uv run --project .guppi guppi render --check; by hand, after the librarian's run that applies the update of rule-spec-box pointing to the Backlog of entity-sprint-plugin and renders .claude/skills/box/SKILL.md: on a copy of the repository, one session saves a small Spec by /carry and a second session takes it at its Frontier and runs it by /box; git log, the branches, the folders of that session and of the conserved Spec, the librarian's commit and the commit of report.md read in the copy, and the dispatch line and the text shown to the person read in the transcript of the second session under ~/.claude/projects/, recorded in the estimate line with that transcript named"
-checked: 2026-10-04
+checked: 2026-11-02
 origin: raw/2026-10-02/1202/ledger.md#case-593.2
 sprint: migration
 created: 2026-10-02
@@ -30,7 +30,7 @@ Then:
 
 ## Result
 
-2026-10-04, at the /hi of session 0004: `uv run guppi render --check` exit 0; by hand, session 1416 (transcript 682b0e2f), which took the conserved Spec of raw/2026-10-03/1341/ at the Frontier: /box called at 14:37:13 with that folder on the line printed after ExitPlanMode; `uv run guppi box --check` printed nothing, exit 0; the agent committed the session folder as 3243a81d on `migration`, switched to `spec/2026-10-03-1341` and brought it up by `git merge --ff-only migration`, 9e0296ca..3243a81d; /work called with the folder at 14:37:26, and the Work readings, /retro and /handoff ran with no word of the person, the one Stop before the report, at 14:40:45, sending the agent on; after handoff.md at 14:41:19 it switched back, merged by `git merge --ff-only` 3243a81d..a67b0339, ran `git branch -d spec/2026-10-03-1341` and make test, exit 0, 1129 passed, 6 skipped; librarian-guppi dispatched once, at 14:41:51, with the path of raw/2026-10-03/1416/handoff.md, its report shown unchanged, 16 of 16 lines, with the exit code of make test; the commits of the Spec branch, bda8f3f4 and a67b0339, touch only vault/raw/, and the only commit after the handoff is the librarian's da671ebe on `migration`; not exercised: a line printed by the check, a merge that refuses
+2026-11-02, guppi render --check at the /hi of session 1337: exit 0; the person's trial, session 1429 of the clone C:\PROJECTS\GUPPI-trial (transcript 21f5559f) took the conserved Spec of 1412, a Spec of two short-form defers, Cases 1002–1003, with no task, and ran it by /box; git log of the clone: the session commits, the handoff, then docs(vault): librarian and docs(vault): librarian report as the last commit alone; git branch shows plugin alone, the spec branch deleted; the person found the report right; /work did not load as a skill, see lesson-work-skill-fails-to-load-on-a-red-check, and the agent ran Work Mode by the text of its SKILL.md in the same turn
 
 ## History
 
@@ -41,3 +41,4 @@ Then:
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
 - 2026-10-31 updated: the Criterion replaced whole — /box shows report.md and commits it alone · [[decision-case-956.4]]
 - 2026-11-01 updated: method: a trial run of /box on a copy of the repository, after the librarian's run that renders the skill · [[decision-case-989]]
+- 2026-11-02 status: pending → passed · raw/2026-11-02/1337/ledger.md#L6

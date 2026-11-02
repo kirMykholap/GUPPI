@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec from staying unapproved where the Claude Code CLI withholds the approval of a plan longer than it can show
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/approve-spec/SKILL.md
 render_mode: full
@@ -37,3 +37,4 @@ Follow the line of that hook in your context, as after `ExitPlanMode`: ask the p
 
 - 2026-11-01 created · [[decision-case-987.1]]
 - 2026-11-01 estimate estimate-skill-approve-spec-takes-the-spec added · [[decision-case-987.1]]
+- 2026-11-02 status: draft → built · cascade

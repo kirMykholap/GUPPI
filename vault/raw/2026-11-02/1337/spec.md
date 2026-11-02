@@ -65,9 +65,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-acknowledging-reply`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-acknowledging-reply`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 ```
 
 ## Case 1003 — /work and /retro load while a check is red
@@ -145,11 +145,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-guppi-config`
-- [ ] update `estimate-guppi-config-runs-the-test-and-style-commands`
+- [x] update `rule-guppi-config`
+- [x] update `estimate-guppi-config-runs-the-test-and-style-commands`
 - [x] `.guppi/guppi/commands.py`: `guppi test` and `guppi style` take `--exit-zero`; one function of this module adds the flag to a parser and, with the flag, prints the last line `exit code: <n>` and returns 0; the docstring names the flag.
 - [x] `.guppi/tests/test_commands.py`: with `--exit-zero`, a red command, a green run and a missing key each print the last line with the exit code of the run without the flag and exit 0.
-- [ ] read `estimate-guppi-config-runs-the-test-and-style-commands`
+- [x] read `estimate-guppi-config-runs-the-test-and-style-commands`
 ```
 
 ### Case 1003.2 — guppi check exits 0 with --exit-zero
@@ -195,11 +195,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-lint`
-- [ ] update `estimate-lint-runs-every-step`
+- [x] update `rule-lint`
+- [x] update `estimate-lint-runs-every-step`
 - [x] `.guppi/guppi/check.py`: `guppi check` takes `--exit-zero` by the function of `.guppi/guppi/commands.py` that adds the flag and prints the last line; the docstring names the flag.
 - [x] `.guppi/tests/test_check.py`: with `--exit-zero` and a failing step, every step runs, the last line is `exit code: 1` and the run exits 0; one test asserts that `check.py` uses the function of `commands.py` and holds no copy of it.
-- [ ] read `estimate-lint-runs-every-step`
+- [x] read `estimate-lint-runs-every-step`
 ```
 
 ### Case 1003.3 — /work loads while guppi check is red
@@ -264,9 +264,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `rule-work-mode`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
 - [ ] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 ```
 
@@ -311,8 +311,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-retro`
-- [ ] create `estimate-retro-loads-on-a-red-command`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/retro/SKILL.md`
+- [x] update `rule-retro`
+- [x] create `estimate-retro-loads-on-a-red-command`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/retro/SKILL.md`
 - [ ] read `estimate-retro-loads-on-a-red-command`
 ```

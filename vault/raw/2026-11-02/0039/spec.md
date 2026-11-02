@@ -137,7 +137,7 @@ update:
 
 ```tasks
 - [x] update `estimate-case-build-reads-the-readers-of-a-changed-step`
-- [ ] read `estimate-case-build-reads-the-readers-of-a-changed-step`
+- [x] read `estimate-case-build-reads-the-readers-of-a-changed-step`
 ```
 
 ## Case 999 — The graph of links is dropped, and case-guppi searches the names of what it changes
@@ -299,5 +299,5 @@ update:
 - [x] update `rule-case-build`
 - [x] update `estimate-case-build-reads-the-link-graph-of-what-it-changes`
 - [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-searches-the-names-of-what-it-changes`
+- [x] read `estimate-case-build-searches-the-names-of-what-it-changes`
 ```

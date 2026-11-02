@@ -2,12 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from reaching the librarian on work nobody reviewed
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
-estimates: ["[[estimate-retro-loads]]", "[[estimate-retro-runs-on-to-the-handoff]]", "[[estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]]", "[[estimate-retro-red-in-the-baseline-is-not-charged]]", "[[estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case]]"]
+estimates: ["[[estimate-retro-loads]]", "[[estimate-retro-runs-on-to-the-handoff]]", "[[estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]]", "[[estimate-retro-red-in-the-baseline-is-not-charged]]", "[[estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case]]", "[[estimate-retro-loads-on-a-red-command]]"]
 origin: raw/2026-09-10/ledger.md#case-38.1
 sprint: migration
 created: 2026-09-10
@@ -17,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents a session from reaching the librarian on work nobody reviewed, or on a change that traces to no decision. Retro is an analysis of this session only, written by the agent for the librarian and the next session: it runs in the turn of `/work`, with no stop for the person, and its report is `handoff.md` (case 531.1). The tests and the style check load before the first turn of the skill. The scope rule is mechanical: an edit is allowed when it finishes work a line of this session's ledger ratified, and is new scope otherwise; in a session that `/box` runs, the lines of the conserved Spec's ledger count as this session's (case 591). Retro opens by two paths, both behind `guppi gate`: the agent's call on `PreToolUse Skill` at the end of `/work`, and the person's typed `/retro` on `UserPromptSubmit`; each checks the Spec against the ledger and leaves the mark `retro`, and a refused typed prompt is not expanded (case 169.3, supersedes 150).
+Prevents a session from reaching the librarian on work nobody reviewed, or on a change that traces to no decision. Retro is an analysis of this session only, written by the agent for the librarian and the next session: it runs in the turn of `/work`, with no stop for the person, and its report is `handoff.md` (case 531.1). The tests and the style check load before the first turn of the skill, run with `--exit-zero`, which prints the exit code of the run on a last line and exits 0, so a red test does not stop the skill from loading (as set in case 1003.4). The scope rule is mechanical: an edit is allowed when it finishes work a line of this session's ledger ratified, and is new scope otherwise; in a session that `/box` runs, the lines of the conserved Spec's ledger count as this session's (case 591). Retro opens by two paths, both behind `guppi gate`: the agent's call on `PreToolUse Skill` at the end of `/work`, and the person's typed `/retro` on `UserPromptSubmit`; each checks the Spec against the ledger and leaves the mark `retro`, and a refused typed prompt is not expanded (case 169.3, supersedes 150).
 
 ## Render
 
@@ -28,9 +28,9 @@ description: Review this session's work — tests, style, readings, lessons — 
 ---
 
 
-Tests: !`uv run --project .guppi guppi test`
+Tests: !`uv run --project .guppi guppi test --exit-zero`
 
-Style: !`uv run --project .guppi guppi style`
+Style: !`uv run --project .guppi guppi style --exit-zero`
 
 Ledger: !`uv run --project .guppi guppi tail`
 
@@ -131,3 +131,6 @@ When the review is done, commit the work: `uv run --project .guppi guppi style` 
 - 2026-10-15 reworded: `make test` → `uv run --project .guppi guppi test` · [[decision-case-820.7]]
 - 2026-10-15 reworded: `make style` → `uv run --project .guppi guppi style` · [[decision-case-820.7]]
 - 2026-10-17 updated: the Render no longer says that gh is not available · [[decision-case-875]]
+- 2026-11-02 updated: the preamble of /retro runs guppi test and guppi style with --exit-zero, so the skill loads while a test is red · [[decision-case-1003.4]]
+- 2026-11-02 estimate estimate-retro-loads-on-a-red-command added · [[decision-case-1003.4]]
+- 2026-11-02 status: built → draft · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a reference to a case, a mention of a session of this repository or a page that stays in this repository from reaching the clean version of GUPPI that other people install
-status: draft
+status: built
 enforcement: check
 implementation_ref: [.guppi/guppi/ship.py, .guppi/tests/test_ship.py, .github/workflows/prod.yml, plugin/plugin.json, plugin/marketplace.json]
 estimates: ["[[estimate-clean-branch-writes-a-clean-copy]]", "[[estimate-clean-branch-code-holds-pointers-only-in-brackets]]", "[[estimate-clean-branch-pages-hold-pointers-only-in-brackets]]", "[[estimate-clean-branch-installs-as-a-plugin]]", "[[estimate-clean-branch-ships-no-ship-command]]", "[[estimate-clean-branch-ships-the-passed-estimates]]", "[[estimate-clean-branch-ships-the-tests]]", "[[estimate-clean-branch-writes-the-session-files]]", "[[estimate-clean-branch-ships-a-blank-project-description]]", "[[estimate-clean-branch-ships-the-checks-workflow]]", "[[estimate-clean-branch-ships-neutral-texts]]", "[[estimate-clean-branch-refuses-a-draft-core-page]]", "[[estimate-clean-branch-ships-estimates-with-pointers-only-in-brackets]]", "[[estimate-clean-branch-tests-judge-the-live-code]]"]
@@ -78,3 +78,4 @@ The workflow `.github/workflows/prod.yml` runs it on each push to `main`, and on
 - 2026-10-30 updated: --allow-draft also serves the reading of the pages by --review · [[decision-case-939]]
 - 2026-11-02 updated: the build is blocked only by a draft page with core: true that was never built or has a failed Estimate; a page shipped as draft draws no lint finding in an installed project · [[decision-case-996.1]]
 - 2026-11-02 status: built → draft · cascade
+- 2026-11-02 status: draft → built · cascade

@@ -4,7 +4,7 @@ kind: QA
 status: failed
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
-method: "by hand, after the librarian's render that writes into vault/wiki/orchestration.md the paragraph of rule-orchestration that names the headings and labels of the acknowledging reply as translated: an acknowledging reply and a reply that acknowledges Cases ratified together in one answer, each written after that render, each read against the Criterion in the transcript of its session under ~/.claude/projects/"
+method: "by hand, after the librarian's render that writes into vault/wiki/orchestration.md the paragraph of rule-orchestration that names each heading and label of the acknowledging reply by what it says, with no English word for it in a code span or in bold: an acknowledging reply and a reply that acknowledges Cases ratified together in one answer, each written after that render, each read against the Criterion in the transcript of its session under ~/.claude/projects/"
 checked: 2026-11-02
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
@@ -67,3 +67,4 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 - 2026-11-02 status: pending → failed · raw/2026-11-01/2227/ledger.md#L21
 - 2026-11-02 updated: the Criterion replaced whole — each heading and label of the reply stands translated into the language of the chat; the reading waits for the render · [[decision-case-997]]
 - 2026-11-02 status: pending → failed · raw/2026-11-02/0254/ledger.md#L4
+- 2026-11-02 updated: the reading waits for the render of the text that names each heading and label by what it says · [[decision-case-1002]]

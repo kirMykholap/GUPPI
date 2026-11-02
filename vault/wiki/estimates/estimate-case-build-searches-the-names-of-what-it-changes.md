@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi searches in one Grep that prints only file paths for all the names of each page and file its Case changes that exists before the Case, again at the check of the finished Case for each one it has not searched, prints the purpose lines of the pages on that list, and opens each file that bears on the change
 method: "by hand, after the /pre-spec of a session whose case-guppi runs on the Render of rule-case-build that searches the names of each page and file a Case changes: the agent transcript of each case-guppi of that session under ~/.claude/projects/, for each Case, whether one Grep that prints file paths covers all the names of each existing page and file the tasks of the Case change, whether a Grep printed the purpose lines of the pages on its list, and whether each file that bears on the change is opened or named in context; the count and the transcripts in the estimate line"
@@ -28,7 +28,7 @@ For each page and file the Case changes that exists before the Case, it searches
 
 ## Result
 
-2026-11-02, Work Mode of session 2227, the case-guppi transcripts of session 2038 under ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a/subagents/: 0 of 2 standing Cases read the whole block of each existing page and file they change; Case 991 (agent-a6bd04c630130c59a.jsonl L163) read the block of rule-orchestration with limit 80, stopping at line 4819 before its end, the other four blocks whole and the three Estimate blocks at the check of the finished Case (L388); Case 992 (agent-ac588540e75613222.jsonl L338) cut the same block at the same line and never looked up the block of vault/wiki/orchestration.md, which its render task changes; neither context says anything of a page it creates; Case 990, superseded whole by 992, not judged
+2026-11-02, Work Mode of session 1337, the case-guppi transcript of Case 1001 of session 0254, ~/.claude/projects/c--PROJECTS-GUPPI/68effdf4-70dd-447d-bafe-0ca629e82241/subagents/agent-a025e5a81b4e802ee.jsonl, on the Render of commit 5d709203 that names the search; Case 1000 never answered with a summary and is not judged: 0 of 1 Case met the Criterion; one Grep per slug, not one Grep of all the names (rule-morph L94, the Estimate L221); entity-sprint-plugin never searched over vault/wiki/ (L204, L216); rule-permissions and rule-guppi-config searched only over .guppi/tests (L297, L396), and their other names (settings.json, guppi.toml, config.py, commands.py, test_config.py, test_commands.py, guppi test, guppi style) never searched; no Grep of the purpose lines; of the 15 hits of rule-morph 5 read whole, 3 read to line 40, the rest seen through content Greps, all 15 named in context
 
 ## History
 
@@ -38,3 +38,4 @@ For each page and file the Case changes that exists before the Case, it searches
 - 2026-11-02 status: pending → failed · raw/2026-11-01/2227/ledger.md#L20
 - 2026-11-02 renamed from `estimate-case-build-reads-the-link-graph-of-what-it-changes` · [[decision-case-999.2]]
 - 2026-11-02 updated: renamed and the Criterion replaced whole — case-guppi searches the names of what it changes, since the graph of links is dropped; pending again after the failed reading of session 2227 · [[decision-case-999.2]]
+- 2026-11-02 status: pending → failed · raw/2026-11-02/1337/ledger.md#L17

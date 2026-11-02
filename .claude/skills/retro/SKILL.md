@@ -4,9 +4,9 @@ description: Review this session's work — tests, style, readings, lessons — 
 ---
 
 
-Tests: !`uv run --project .guppi guppi test`
+Tests: !`uv run --project .guppi guppi test --exit-zero`
 
-Style: !`uv run --project .guppi guppi style`
+Style: !`uv run --project .guppi guppi style --exit-zero`
 
 Ledger: !`uv run --project .guppi guppi tail`
 

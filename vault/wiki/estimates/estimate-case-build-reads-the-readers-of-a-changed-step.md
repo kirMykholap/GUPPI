@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether no step, skill or place of code that reads the output of a step a Case changes, or does the same step, and that the change makes false, gets past the approved Spec unnamed by both case-guppi and /pre-spec and comes to light in the Work Mode or Retro of that session or of the session after it
 method: "by hand, after the Retro of the session that follows a session whose approved Spec holds a Case of case-guppi that changes what a step writes, copies or shows or adds a path on which a step does so: the Work Mode and Retro of both sessions, read in their ledgers and in the transcripts of their main agents under ~/.claude/projects/, for a step, a skill or a place of code that reads the output of the changed step or does the same step, that the change makes false and that no Case and no context of the approved Spec named, such as a Case built again in Work Mode, a task added by hand, a red test or check or an error lesson for it, the count and the transcripts in the estimate line"
@@ -25,7 +25,7 @@ Each step, skill or place of code that reads that output or does the same step, 
 
 ## Result
 
-2026-11-02, Work Mode of session 2227, the findings of ask-guppi at the pre-spec of session 2038, ~/.claude/projects/c--PROJECTS-GUPPI/dbf67938-c4f7-44d4-8502-a6d55d47c17a/subagents/agent-a03b5d7a30c71b7d9.jsonl line 264 (confirmation line 276, no new finding): 4 of 11 findings are a Case that changes a step and misses one that reads its output or does the same step — 1.1 Case 990 changed ONLY_THE_PERSON of rule-prespec-onward and missed ## The acknowledging reply of rule-orchestration; 1.2 Case 991.1 missed the same closer in ## The short form of rule-orchestration; 1.3 Case 991.1 missed the take-back sentence of ## Showing and signing a Case; 3.1 Case 991.1 did not name deferred_pages of prespec.py, by which check_backlog_line judges
+2026-11-02, Work Mode of session 1337, the Work Mode and Retro of sessions 0039 and 0254 in their ledgers, spec.md, work.md and handoff.md and in the main transcripts f240d478 (ExitPlanMode at record 794, /work 816, /retro 977) and 68effdf4 (ExitPlanMode 630, /work 651, /retro 716) under ~/.claude/projects/c--PROJECTS-GUPPI/: 0 readers of a changed step that no Case and no context of the approved Spec of 0039 named came to light; no case-guppi called after approval in either session, no task added by hand, no red test (1891 passed in both), the only tool errors bashguard refusals of heredocs; the two path lines of guppi check on rule-link-graph-at-session-start in 0039 stand in Case 999.1, which deletes that page, as an expected red
 
 ## History
 
@@ -39,3 +39,4 @@ Each step, skill or place of code that reads that output or does the same step, 
 - 2026-11-01 updated: the Criterion replaced whole — the readers of a changed step include the places of the harness code; pending again after the failed reading of session 0141 · [[decision-case-985]]
 - 2026-11-02 status: pending → failed · raw/2026-11-01/2227/ledger.md#L19
 - 2026-11-02 updated: the Criterion replaced whole — a missed reader of a changed step counts only when it gets past the approved Spec and comes to light in that session or the session after it; pending again after the failed reading of session 2227 · [[decision-case-998]]
+- 2026-11-02 status: pending → passed · raw/2026-11-02/1337/ledger.md#L16

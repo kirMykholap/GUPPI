@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, when its Case adds a member to a list that texts spell out one by one, a hook of an event, a command or a list in a comment or docstring of code among them, searches for a member already in the list, enters each text that would miss the new member in the Case or names it in context, and names that search in context
 method: "by hand, after the first build of case-guppi in a later session whose Case adds a member to a list that texts spell out one by one: the agent transcript of that build under ~/.claude/projects/ read for its search of a member that stands in the list already and the hits it read, and its case file read for each text that lists the members and for the search named in context, both against the Criterion, recorded in one estimate line with the transcript and the case file"
-checked: 2026-10-31
+checked: 2026-11-02
 origin: raw/2026-10-30/2345/ledger.md#case-948.1
 sprint: plugin
 created: 2026-10-30
@@ -27,7 +27,7 @@ It searches the live pages of `vault/wiki/` outside `decisions/`, `.claude/` and
 
 ## Result
 
-2026-10-31, Retro of session 0431, .claude/agents/case-guppi.md line 25, the build of Case 956.1 (subagents/agent-ad69e15a458d77050.jsonl of session 8727d5ce) and the findings of ask-guppi at its /pre-spec (agent-a3a2b4d5034e84cde.jsonl line 597): the Case adds guppi libreport to the SubagentStop hooks, and its case-guppi ran no search of vault/wiki/, .claude/ and .guppi/guppi/ for a hook that stands in the list already; it read settings.json, rule-hook-registry.md and casecheck.py whole, but not the docstring of .guppi/guppi/cli.py, which lists every hook command, and the Case names that list nowhere (Work Mode added libreport to it); ask-guppi: 0 of 12 findings are a Case that adds a member and misses a text that lists the members
+2026-11-02, Work Mode of session 1337, the case-guppi transcript of Case 1001 of session 0254 (subagents/agent-a025e5a81b4e802ee.jsonl of 68effdf4) and vault/raw/2026-11-02/0254/cases/case-1001.md: the Case adds rule-morph to the pages without core that a line of the Criterion of estimate-clean-branch-refuses-a-draft-core-page spells out; its one search of a member already in the list, L193 rule-morph|refuses-a-draft-core-page|rule-skill-pr-review, ran over .guppi/{guppi,tests} only, 0 hits, none over vault/wiki/ or .claude/; the context names no search for a member of the list; a Grep of rule-skill-merge-main|rule-skill-pr-review over {vault/wiki,.claude,.guppi/guppi} today prints 8 files and no text that lists those pages would miss rule-morph, so the failure is in the search, not in the Case
 
 ## History
 
@@ -40,3 +40,4 @@ It searches the live pages of `vault/wiki/` outside `decisions/`, `.claude/` and
 - 2026-11-01 defer by decision-case-971 superseded · [[decision-case-979]]
 - 2026-11-01 defer by decision-case-976 superseded · [[decision-case-979]]
 - 2026-11-01 updated: the Criterion replaced whole — the list names a hook of an event, a command and a list in a comment or docstring of code, and context names the search; the purpose and method set anew, the reading after the first build of a later session that adds a member to a list · [[decision-case-979]]
+- 2026-11-02 status: pending → failed · raw/2026-11-02/1337/ledger.md#L18

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a conserved Spec from being built on a branch that lacks the current vault, or its pages from being written anywhere but on the shared branch
-status: draft
+status: built
 enforcement: render
 implementation_ref: [.guppi/guppi/box.py, .guppi/tests/test_box.py]
 governs: .claude/skills/box/SKILL.md
@@ -71,3 +71,4 @@ The stops of steps 1, 3 and 5 are condition 6 of `vault/wiki/where-to-stop.md`.
 - 2026-10-31 status: built → draft · cascade
 - 2026-11-01 updated: /box follows the approval by ExitPlanMode or by /approve-spec · [[decision-case-987.1]]
 - 2026-11-01 updated: the second part of /box is pointed to on the live sprint page · [[decision-case-989]]
+- 2026-11-02 status: draft → built · cascade

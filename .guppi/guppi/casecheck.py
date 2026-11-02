@@ -136,9 +136,9 @@ of a `Grep` is no read, and a transcript the hook cannot read judges no read (ca
 This check of the read is the hook's own, not one of `/pre-spec`.
 
 The note of names (case 1005.1). For each page the `then` block of a Case updates or deletes,
-by `prespec.items_of`, and each file of the repository outside `vault/wiki/` whose path a task
-line of the Case writes in a code span, by `lint.CODE_SPAN`, `changed_targets` takes its
-names: for a page its slug, the file name of each path of its `governs`, `implementation_ref`
+by `prespec.items_of`, and each file of the repository outside `vault/wiki/` whose path the
+first code span of a task line of the Case writes, the task lines by `ratified.read_tasks` and
+the span by `lint.CODE_SPAN` (case 1010.1), `changed_targets` takes its names: for a page its slug, the file name of each path of its `governs`, `implementation_ref`
 and `code_ref` (`generate.REWORD_PATH_FIELDS`), and the names those paths carry; for a file its
 file name and the names it carries — the agent of `.claude/agents/<name>.md`, the skill of
 `.claude/skills/<name>/SKILL.md` with its slash, and `guppi <command>` for each command that
@@ -147,6 +147,9 @@ file name and the names it carries — the agent of `.claude/agents/<name>.md`, 
 `brief.md` and the file of the page or the file itself left out, each name as a whole word,
 and gives one note per Case and file that holds a name and that the subagent did not read:
 its path, the name it holds and, for a page, its `purpose`, `root_cause` or `pattern` line. A
+name that more than `BROAD_NAME`, 20, of the searched files hold gives instead one note per
+Case with the name and the count of those files, and no note of a file by that name; a file
+that also holds a narrower name keeps its own note for it (case 1010.2). A
 read here, by `looked_files`, is a `Read` call of the file or a `Grep` call whose `path` is
 the file; the check of the pairs keeps its own read above. A transcript the hook cannot read
 gives no such note. The notes are sent once, as every note of `check_answer`.
@@ -406,6 +409,7 @@ from guppi.ratified import (
     case_section,
     headings,
     key_judge,
+    read_tasks,
 )
 from guppi.tags import declared_tags, ratified_tags, registered_tags, tags_file
 
@@ -1182,6 +1186,7 @@ WIKI = "vault/wiki/"
 AGENT_FILE = re.compile(r"^\.claude/agents/([^/]+)\.md$")
 SKILL_FILE = re.compile(r"^\.claude/skills/([^/]+)/SKILL\.md$")
 PURPOSE_FIELDS = ("purpose", "root_cause", "pattern")  # the purpose line of a page
+BROAD_NAME = 20  # more files than this hold a broad name, which gives one note (case 1010.2)
 
 
 def rel_path(path) -> str:
@@ -1232,9 +1237,10 @@ def carried_names(path: str) -> list[str]:
 
 def changed_targets(lines: list[str], block: dict, project_dir: Path) -> dict[str, list[str]]:
     """The path of each page the `then` block of the Case updates or deletes, by
-    `prespec.items_of`, and of each file of the repository outside `vault/wiki/` whose path a
-    task line of the Case writes in a code span, by `lint.CODE_SPAN`, each with its names
-    (case 1005.1). The names of a page are its slug, the file name of each path of its
+    `prespec.items_of`, and of each file of the repository outside `vault/wiki/` whose path
+    the first code span of a task line of the Case writes, the task lines by
+    `ratified.read_tasks` and the span by `lint.CODE_SPAN`, each with its names (cases 1005.1,
+    1010.1); a later span of the line and a span of a sub-point name no changed file. The names of a page are its slug, the file name of each path of its
     `REWORD_PATH_FIELDS` and the names that path carries; those of a file, its file name and
     the names it carries. A page with no file on disk gives none."""
     targets: dict[str, list[str]] = {}
@@ -1251,9 +1257,10 @@ def changed_targets(lines: list[str], block: dict, project_dir: Path) -> dict[st
             for value in as_list(page.props.get(field)):
                 names += [Path(rel_path(value)).name, *carried_names(rel_path(value))]
         targets[f"{WIKI}{category}/{slug}.md"] = list(dict.fromkeys(names))
-    tasks = quoted_sections(lines, ("tasks",)).get("tasks", "")
-    for span in CODE_SPAN.findall(tasks):
-        path = rel_path(span.strip("`").strip())
+    tasks, _, _ = read_tasks(quoted_sections(lines, ("tasks",)).get("tasks", ""))
+    for task in tasks:
+        span = CODE_SPAN.search(task)  # the first code span alone names a changed file
+        path = rel_path(span.group(0).strip("`").strip()) if span else ""
         if path and not path.startswith(WIKI) and (project_dir / path).is_file():
             targets[path] = [Path(path).name, *carried_names(path)]
     return targets
@@ -1302,22 +1309,37 @@ def names_notes(
     """One note per Case and file that names a page or a file the Case changes,
     `changed_targets`, and that the subagent did not read, `looked_files`: the path, the name
     the file holds and the purpose line of a page, asking `case-guppi` to read the file or
-    to name it in `context` with the reason it stands (case 1005.1). The file of the page or
-    the file itself is left out. A note, not a finding."""
+    to name it in `context` with the reason it stands (case 1005.1). A name that more than
+    `BROAD_NAME` of the searched files hold gives one note with the name and the count, read or
+    not, and names no file (case 1010.2). The file of the page or the file itself is left out,
+    of the notes and of the count. A note, not a finding."""
     notes: list[str] = []
     texts: dict[str, str] | None = None
     for case, block in answer.items():
-        named: dict[str, str] = {}  # the file → the first name it holds, for this Case
+        holders: dict[str, set[str]] = {}  # each name → the searched files that hold it
         for own, names in changed_targets(cases.get(case, []), block, project_dir).items():
             if texts is None:
                 texts = named_files(project_dir)
-            patterns = [(name, re.compile(name_pattern(name))) for name in names if name]
-            for rel, text in texts.items():
-                if rel == own or rel in named or path_key(project_dir / rel) in looked:
+            for name in names:
+                if not name:
                     continue
-                hit = next((name for name, pattern in patterns if pattern.search(text)), None)
-                if hit:
-                    named[rel] = hit
+                pattern = re.compile(name_pattern(name))
+                held = holders.setdefault(name, set())
+                held |= {rel for rel, text in texts.items() if rel != own and pattern.search(text)}
+        broad = [name for name, held in holders.items() if len(held) > BROAD_NAME]
+        named: dict[str, str] = {}  # the file → the first narrow name it holds, for this Case
+        for name, held in holders.items():
+            if name in broad:
+                continue
+            for rel in sorted(held):
+                if rel not in named and path_key(project_dir / rel) not in looked:
+                    named[rel] = name
+        for name in broad:
+            notes.append(
+                f"note: case {case}: {len(holders[name])} files name {name}: search for the "
+                "name by a Grep, and name in context that search and why each file you do not "
+                "enter stands"
+            )
         for rel, name in named.items():
             line = ""
             if rel.startswith(WIKI) and rel.count("/") == 3:  # a page, `vault/wiki/<cat>/<slug>.md`
@@ -1378,8 +1400,9 @@ def check_answer(
     check of the answer's Cases against the other Cases of the session, `session_clashes`
     (case 629.1); `folder`, the session folder, leaves a dropped Case out of them (case
     701.7). `looked`, the files the subagent read by `looked_files`, adds the notes of
-    `names_notes`, one per file that names what a Case changes and that it did not read; with
-    no transcript, None, no such note (case 1005.1)."""
+    `names_notes`, one per file that names what a Case changes, by the first code span of a
+    task line for a file, and that it did not read, or one per broad name with its count;
+    with no transcript, None, no such note (cases 1005.1, 1010.1, 1010.2)."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)

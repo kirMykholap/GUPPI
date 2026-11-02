@@ -3103,6 +3103,65 @@ def test_names_note_a_file_whose_path_a_task_line_writes(working):
     assert ".guppi/tests/test_x.py names" not in err  # the file itself
 
 
+def test_names_note_takes_only_the_first_code_span_of_a_task_line(working):
+    tests = working / ".guppi" / "tests"
+    tests.mkdir(parents=True)
+    for name in ("test_x.py", "test_z.py", "test_w.py"):
+        (tests / name).write_text(f"# {name}\n", encoding="utf-8")
+    (working / ".claude").mkdir(exist_ok=True)
+    (working / ".claude" / "notes.md").write_text(
+        "Run test_x.py, test_z.py and test_w.py.\n", encoding="utf-8"
+    )
+    with_paths = ANSWER.replace(
+        "> - [ ] read `estimate-x-works`\n",
+        "> - [ ] `.guppi/tests/test_x.py`: a test, with `.guppi/tests/test_z.py` imported\n"
+        ">   - `.guppi/tests/test_w.py`\n"
+        "> - [ ] read `estimate-x-works`\n",
+    )
+    code, err = answer(working, with_paths)
+    assert code == 2 and names_note(7, ".claude/notes.md", "test_x.py") in err
+    assert "names test_z.py" not in err and "names test_w.py" not in err  # (case 1010.1)
+
+
+# --- the note of a broad name (case 1010.2) -----------------------------------------------
+
+
+def pages_naming_rule_x(project, count):
+    """`count` pages under `vault/wiki/rules/` that name `rule-x`."""
+    for index in range(count):
+        page = project / "vault" / "wiki" / "rules" / f"rule-n{index}.md"
+        page.write_text(
+            f"---\ntype: rule\npurpose: Prevents n{index}\n---\n\nSee [[rule-x]].\n",
+            encoding="utf-8",
+        )
+
+
+def test_broad_name_more_than_twenty_files_give_one_note_with_the_count(working):
+    pages_naming_rule_x(working, 21)
+    code, err = answer(working, ANSWER)
+    assert code == 2 and "note: case 7: 21 files name rule-x: search for the name" in err
+    assert " names rule-x" not in err  # no note of a file by the broad name
+
+
+def test_broad_name_twenty_files_give_a_note_for_each(working):
+    pages_naming_rule_x(working, 20)
+    code, err = answer(working, ANSWER)
+    assert code == 2 and "files name rule-x" not in err
+    assert all(f"rules/rule-n{index}.md names rule-x" in err for index in range(20))
+
+
+def test_broad_name_a_file_with_a_narrow_name_keeps_its_note(working):
+    a_named_rule_x(working)
+    (working / ".guppi" / "tests" / "test_y.py").write_text(
+        "# rule-x, the tests of xmod.py\n", encoding="utf-8"
+    )
+    pages_naming_rule_x(working, 20)  # with rule-y and test_y.py, 22 files name rule-x
+    code, err = answer(working, ANSWER)
+    assert code == 2 and "note: case 7: 22 files name rule-x" in err
+    assert names_note(7, ".guppi/tests/test_y.py", "xmod.py") in err
+    assert "rule-y.md names" not in err
+
+
 def test_names_note_none_with_no_transcript(working):
     a_named_rule_x(working)
     _, notes = casecheck.check_answer(ANSWER, working)

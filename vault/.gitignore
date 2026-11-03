@@ -1,0 +1,3 @@
+# The daily event logs that the hooks write: debugging material, kept out of git.
+raw/*/event_log.md
+archive/*/*/event_log.md

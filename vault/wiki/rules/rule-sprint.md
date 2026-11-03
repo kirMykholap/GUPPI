@@ -4,14 +4,14 @@ kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
 status: built
 enforcement: check
-implementation_ref: [guppi/sprint.py, tests/test_sprint.py, guppi/generate.py, tests/test_generate.py]
+implementation_ref: [.guppi/guppi/sprint.py, .guppi/tests/test_sprint.py, .guppi/guppi/generate.py, .guppi/tests/test_generate.py]
 governs: vault/wiki/sprint.md
 parent: "[[rule-documentation]]"
-estimates: []
+estimates: ["[[estimate-sprint-renders-the-backlog]]", "[[estimate-sprint-checks-the-file]]", "[[estimate-sprint-ticks-the-spec]]", "[[estimate-sprint-items-move-only-by-a-case]]", "[[estimate-sprint-marks-a-closed-sprint]]"]
 applies_to: ["[[entity-sprint]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [session, workflow, harness, librarian, sprint]
 core: true
 ---
@@ -24,8 +24,8 @@ is not a document: `guppi sprint` writes it from that page, one tick per item by
 `render`, before the brief, so the file shows the pages of that same run; `/hi`
 reads the file as before. `governs` names the file, so the governed-files hook
 refuses a hand edit; the milestones and the backlog change only by an `update` of the sprint page, a Case: `generate` moves no line of the page, however many sessions put an item off.
-The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` and `archive` read, unchanged. With no live sprint page, after the close of a sprint, the script writes the file as `# Sprint`, the heading `## <id> — closed` and one line that no sprint is open since the close of `<id>`, the id the file named before, and exits 0; `sprint_id` reads `<id>` from it, and the hook of `rule-skill-sprint-open` reads the mark. `guppi sprint --check` renders in memory and names the file when it differs, exit 1, writing nothing; `make lint` runs it after `render --check`. Once the plain `guppi sprint` wrote the file and exits 0, it ticks every unticked task line that opens with a code span holding `guppi sprint` — never a `read` line that names the command later, nor a line whose code span holds `guppi sprint-close`, which that command ticks — in the `spec.md` of every unit under `raw/` whose yaml is applied whole; `--check` and an exit 1 tick nothing.
+The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` and `archive` read, unchanged. With no live sprint page, after the close of a sprint, the script writes the file as `# Sprint`, the heading `## <id> — closed` and one line that no sprint is open since the close of `<id>`, the id the file named before, and exits 0; `sprint_id` reads `<id>` from it, and the hook of `rule-skill-sprint-open` reads the mark. `guppi sprint --check` renders in memory and names the file when it differs, exit 1, writing nothing; `uv run --project .guppi guppi check` runs it after `render --check`. Once the plain `guppi sprint` wrote the file and exits 0, it ticks every unticked task line that opens with a code span holding `guppi sprint` — never a `read` line that names the command later, nor a line whose code span holds `guppi sprint-close`, which that command ticks — in the `spec.md` of every unit under `raw/` whose yaml is applied whole; `--check` and an exit 1 tick nothing.
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

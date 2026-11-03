@@ -1,0 +1,38 @@
+---
+type: estimate
+kind: QA
+status: passed
+target: "[[rule-ledger-write]]"
+purpose: Whether the ledger hook refuses a reading of an Estimate that a decision line of the same session creates or updates until the Retro of that session opens, writes it after, and says why only for the reply just finished
+method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads and a session ledger in a temp vault
+checked: 2026-10-05
+origin: guppi
+sprint: guppi
+created: 2026-11-03
+tags: [session, hooks, harness, ledger]
+core: true
+---
+
+## Criterion
+
+When:
+The `Stop` hook `uv run --project .guppi guppi ledger` of `.guppi/guppi/ledger.py` finds a fresh `estimate[<slug>]` line in a `LEDGER` block of the session, and a decision line `create` or `update` of `<slug>` stands in the session's ledger or among the lines the hook writes on the same `Stop`.
+
+Then:
+While the event log of the session's window holds no mark `retro` of this session after its `hi`, the line is not written: the reading waits for Retro.
+**＋** Once that mark stands, the line is written as any other reading of the `Stop`.
+**＋** The mark is judged by `retro_marked` of `.guppi/guppi/onward.py`, imported, the one judgment of the mark.
+**＋** A line of a reply written before the mark stays refused, and the hook skips it at every later `Stop` without a word.
+**＋** A reading of the old slug of a page that an `update` of this session renames falls under the same rule: the decision line names the old slug.
+**＋** When a refused line stands in the reply just finished, the hook exits 2 with one stderr line per refused line, which names the Case and says that the reading is taken at the Retro of this session.
+**＋** The other lines of the `Stop` are written as before.
+**－** A reading of a slug that no decision line `create` or `update` of this session names is written as before; a `defer` line of the slug does not refuse it.
+**－** Without a `hi` the hook judges no line. With `stop_hook_active` set it judges the line the same, and its stderr line is told once a stretch, as `estimate-ledger-write-lifts` sets it.
+
+## Result
+
+2026-10-05, passed in the repository of GUPPI.
+
+## History
+
+- 2026-11-03 shipped with GUPPI

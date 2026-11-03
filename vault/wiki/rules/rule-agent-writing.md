@@ -7,10 +7,10 @@ enforcement: render
 governs: CLAUDE.md
 render_mode: partial
 parent: "[[rule-claude-md]]"
-estimates: []
+estimates: ["[[estimate-agent-writing-followed]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, render, workflow]
 core: true
 ---
@@ -18,7 +18,7 @@ core: true
 ## Purpose
 
 Keeps the agent's text — replies, pages, commit messages, documents — to facts with a
-source, short active sentences, the answer first and the not-done named. It is about the agent's prose; the style of the code is `make style`.
+source, short active sentences, the answer first and the not-done named. It is about the agent's prose; the style of the code is `uv run --project .guppi guppi style`.
 
 ## Render
 
@@ -32,4 +32,4 @@ and what is not done; never leave the not-done implied.
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

@@ -8,10 +8,10 @@ governs: CLAUDE.md
 render_mode: full
 parent: "[[rule-harness]]"
 children: ["[[rule-language]]", "[[rule-agent-writing]]", "[[rule-one-judgment-one-implementation]]"]
-estimates: []
+estimates: ["[[estimate-claude-md-rendered]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, render]
 core: true
 ---
@@ -19,15 +19,18 @@ core: true
 ## Purpose
 
 Prevents the system prompt from holding a line nobody ratified. `CLAUDE.md` is the
-one file every session reads first; until this page it was hand-written around one
-rendered section, and a ratified sentence went into the file instead of the page. Now the file is the Render of this page, whole, with `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` spliced into their markers; a change to it is an `update` of one of the four. The Render holds the description of the project and the three children; the glossary, `orchestration.md` and `ratification.md` arrive with `/hi`, the one rule opens `ratification.md`, and the Case schema reaches `case-guppi` alone.
+one file every session reads first. The file is the Render of this page, whole, with `rule-language`, `rule-agent-writing` and `rule-one-judgment-one-implementation` spliced into their markers; a change to it is an `update` of one of the four. The Render holds the description of the project and the three children; the glossary, `orchestration.md` and `ratification.md` arrive with `/hi`, the one rule opens `ratification.md`, and the Case schema reaches `case-guppi` alone. The heading and the description of the project stand between the lines `<!-- project-description -->` and `<!-- /project-description -->`: in the clean version of GUPPI a heading and a line that says the description is not set yet stand there, until the setup Case of a project writes its own description.
 
 ## Render
 
 <!-- rule-claude-md -->
-# GUPPI
+<!-- project-description -->
+# Project
 
-A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into. The vault is `vault/`; its terms are `vault/wiki/glossary.md`. A working session opens with `/hi`.
+Project description: not set yet.
+<!-- /project-description -->
+
+The vault is `vault/`; its terms are `vault/wiki/glossary.md`. A working session opens with `/hi`.
 
 <!-- rule-language -->
 
@@ -42,4 +45,4 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

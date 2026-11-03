@@ -7,10 +7,10 @@ enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
 parent: "[[rule-documentation]]"
-estimates: []
+estimates: ["[[estimate-index-check-merges]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, workflow, librarian]
 core: true
 ---
@@ -35,4 +35,4 @@ When the index line does not settle same or near, open the page and name it in t
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

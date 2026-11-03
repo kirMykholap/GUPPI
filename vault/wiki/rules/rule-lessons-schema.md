@@ -7,17 +7,17 @@ enforcement: render
 governs: vault/wiki/lessons/schema.yaml
 render_mode: full
 parent: "[[rule-page-schemas]]"
-estimates: []
+estimates: ["[[estimate-lessons-schema-checked]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, render, schema]
 core: true
 ---
 
 ## Purpose
 
-Prevents a Lesson page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/lessons/schema.yaml`, the file `guppi lint` reads for every page of `wiki/lessons/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the former `schema.md` as data — lint refuses a listed name without a description and a description without a name.
+Prevents a Lesson page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/lessons/schema.yaml`, the file `guppi lint` reads for every page of `wiki/lessons/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the schema as data — lint refuses a listed name without a description and a description without a name.
 
 ## Render
 
@@ -62,7 +62,7 @@ fields:
   insight: |
     required on `clustered`; quoted wikilink `"[[slug]]"`. The Insight this belongs to, once clustered. Written by the script. The scripts read the slug through the brackets; a slug without a category prefix stays bare. The field is the link; no body section repeats it.
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#L<n>` — the date form, `raw/YYYY-MM-DD/ledger.md#L<n>`, on pages born before 2026-09-13. The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one.
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#L<n>`, and lint also accepts the date form `raw/YYYY-MM-DD/ledger.md#L<n>`. The ledger line. Unlike Entity and Rule, this points at a `lesson[...]` line rather than a `decision[...]` one.
   sprint: |
     required; the sprint id.
   created: |
@@ -132,4 +132,4 @@ examples:
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

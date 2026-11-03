@@ -7,10 +7,10 @@ enforcement: render
 governs: .claude/skills/wait-what/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
-estimates: []
+estimates: ["[[estimate-skill-wait-what-re-pitches]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, workflow]
 core: true
 ---
@@ -42,4 +42,4 @@ Change no option and no recommendation. End with the open question, asked again.
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

@@ -7,17 +7,17 @@ enforcement: render
 governs: vault/wiki/entities/schema.yaml
 render_mode: full
 parent: "[[rule-page-schemas]]"
-estimates: []
+estimates: ["[[estimate-entities-schema-checked]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, render, schema]
 core: true
 ---
 
 ## Purpose
 
-Prevents an Entity page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/entities/schema.yaml`, the file `guppi lint` reads for every page of `wiki/entities/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the former `schema.md` as data — lint refuses a listed name without a description and a description without a name. `rules` is the backlink of the edge Rule → Entity, computed by the cascade of `generate` from the `applies_to` of the live rules; `## Terms` is the section of the glossary page, `entity-glossary`.
+Prevents an Entity page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/entities/schema.yaml`, the file `guppi lint` reads for every page of `wiki/entities/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the schema as data — lint refuses a listed name without a description and a description without a name. `rules` is the backlink of the edge Rule → Entity, computed by the cascade of `generate` from the `applies_to` of the live rules; `## Terms` is the section of the glossary page, `entity-glossary`.
 
 ## Render
 
@@ -81,11 +81,11 @@ fields:
   code_ref: |
     optional; list of paths. Code, commits or PRs. Allowed on both kinds: a Leaf points at files, a MOC may point at the directory or module it corresponds to. The field is the link; no body section repeats it.
   origin: |
-    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N` — the date form, `raw/YYYY-MM-DD/ledger.md#case-N`, on pages born before 2026-09-13. The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there.
+    required; `raw/YYYY-MM-DD/HHMM/ledger.md#case-N`, and lint also accepts the date form `raw/YYYY-MM-DD/ledger.md#case-N`. The ratified decision that created it. On a page with `core: true` in the clean version that `guppi ship` writes, it is `guppi`, and lint accepts it there.
   sprint: |
     required; the sprint id; `guppi` on a page with `core: true` in the clean version that `guppi ship` writes.
   core: |
-    optional; `true`. The page ships in the clean version of GUPPI that `guppi ship` writes for the branch `prod`; a page without it stays in this repository only. Set by a Case, never by hand.
+    optional; `true`. The page is part of GUPPI: in the repository of GUPPI, `guppi ship` writes it into the clean version that a project installs; a page without it is a page of the project that holds it. Set by a Case, never by hand.
   created: |
     required; date.
   tags: |
@@ -163,4 +163,4 @@ examples:
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

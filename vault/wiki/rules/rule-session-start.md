@@ -8,7 +8,7 @@ children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]", "
 estimates: []
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [session, workflow, hooks]
 core: true
 ---
@@ -59,4 +59,4 @@ items outright.
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

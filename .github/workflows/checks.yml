@@ -1,0 +1,38 @@
+# The checks of a pull request and of a push. The event is `pull_request`, never
+# `pull_request_target`, so the code of a pull request reaches no secret of the repository. The
+# runner is Windows, where the suite is known to run. Each job runs a command of GUPPI, which
+# needs no tool but `uv`: the job `style` runs `guppi style`, the job `test` runs `guppi test`
+# — each the commands that `guppi.toml` sets — and the job `lint` runs `guppi check`, the vault
+# checks.
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches-ignore:
+      - prod
+
+permissions:
+  contents: read
+
+jobs:
+  style:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv run --project .guppi guppi style
+
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv run --project .guppi guppi test
+
+  lint:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv run --project .guppi guppi check

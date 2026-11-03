@@ -4,12 +4,12 @@ kind: Leaf
 purpose: Prevents a session from running on while the person cannot see how full the context window is
 status: built
 enforcement: hook
-implementation_ref: [guppi/context.py, tests/test_context.py, .claude/settings.json]
+implementation_ref: [.guppi/guppi/context.py, .guppi/tests/test_context.py, .claude/settings.json]
 parent: "[[rule-harness]]"
-estimates: []
+estimates: ["[[estimate-context-size-shown-after-each-reply]]", "[[estimate-context-size-warns-past-the-limit]]", "[[estimate-context-size-shows-its-error]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [hooks, harness, session]
 core: true
 ---
@@ -20,4 +20,4 @@ Prevents a session from running on while the person cannot see how full the cont
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

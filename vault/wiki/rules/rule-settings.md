@@ -11,7 +11,7 @@ children: ["[[rule-default-mode]]", "[[rule-permissions]]", "[[rule-hook-registr
 estimates: []
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, render]
 core: true
 ---
@@ -43,4 +43,4 @@ them all. This page is the file: its body is the whole of `settings.json`, and e
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

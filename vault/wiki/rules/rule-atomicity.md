@@ -7,10 +7,10 @@ enforcement: render
 governs: vault/wiki/ratification.md
 render_mode: partial
 parent: "[[rule-ratification]]"
-estimates: []
+estimates: ["[[estimate-atomicity-rendered]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, workflow]
 core: true
 ---
@@ -33,4 +33,4 @@ It holds for a Case, an Entity, a Rule and an Estimate alike. Not for a Lesson: 
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

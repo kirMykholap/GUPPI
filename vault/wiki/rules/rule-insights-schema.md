@@ -7,17 +7,17 @@ enforcement: render
 governs: vault/wiki/insights/schema.yaml
 render_mode: full
 parent: "[[rule-page-schemas]]"
-estimates: []
+estimates: ["[[estimate-insights-schema-checked]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, render, schema]
 core: true
 ---
 
 ## Purpose
 
-Prevents an Insight page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/insights/schema.yaml`, the file `guppi lint` reads for every page of `wiki/insights/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the former `schema.md` as data — lint refuses a listed name without a description and a description without a name.
+Prevents an Insight page from carrying a field or section outside the shape lint checks, or lacking one it needs. The Render is `vault/wiki/insights/schema.yaml`, the file `guppi lint` reads for every page of `wiki/insights/`. The lists are what lint reads; `description`, `fields`, `sections` and `examples` are the prose of the schema as data — lint refuses a listed name without a description and a description without a name.
 
 ## Render
 
@@ -112,4 +112,4 @@ examples:
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

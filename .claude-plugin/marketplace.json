@@ -1,0 +1,13 @@
+{
+  "name": "guppi-marketplace",
+  "owner": {
+    "name": "kirMykholap"
+  },
+  "plugins": [
+    {
+      "name": "guppi",
+      "source": "./",
+      "description": "A Claude Code harness governed by ratified decisions, and the Obsidian vault it compiles into"
+    }
+  ]
+}

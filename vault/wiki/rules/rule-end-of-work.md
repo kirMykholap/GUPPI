@@ -8,7 +8,7 @@ children: ["[[rule-retro]]", "[[rule-retro-commit]]", "[[rule-handoff]]", "[[rul
 estimates: []
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [session, workflow]
 core: true
 ---
@@ -26,4 +26,4 @@ picks the Spec up and the librarian does not apply it blind. On leaving Plan Mod
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

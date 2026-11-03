@@ -81,7 +81,7 @@ The Case below is written in the chat form that `case-guppi` writes into its fil
 >   - ref: `entity-cart`
 >   - kind: `QA`
 >   - purpose: `Whether the cart shows its items within 200 ms`
->   - method: `make test-cart, which runs uv run pytest tests/test_cart_view.py -k render_time`
+>   - method: `make test-cart, which runs pytest cart/tests/test_view.py -k render_time`
 >   - tags: `[cart, performance]`
 > - [ ] `src/cart/view.py`: the cart reads its items in one query.
 > - [ ] read `estimate-cart-renders-in-time`
@@ -111,7 +111,7 @@ create:
     ref: entity-cart
     kind: QA
     purpose: Whether the cart shows its items within 200 ms
-    method: make test-cart, which runs uv run pytest tests/test_cart_view.py -k render_time
+    method: make test-cart, which runs pytest cart/tests/test_view.py -k render_time
     tags: [cart, performance]
 update:
   - slug: entity-checkout

@@ -1,0 +1,238 @@
+"""Reading vault pages: frontmatter, `## ` sections, and the folders they live in.
+
+Shared by `render`, `lint`, `generate`, `cleanup`, `prespec`, `archive`, `pageread`, `ship`,
+`check` and `cli`. A page is a
+Markdown file under `vault/wiki/<category>/`, its properties in a YAML block between `---`
+lines, its body in H2 sections. A ref field — `REF_FIELDS` — holds its slugs as quoted
+wikilinks, `"[[slug]]"`, so Obsidian's graph, backlinks and Bases see them; `read_page`
+strips the brackets, so every reader sees the bare slug, and a page written without them
+reads the same. Nothing here writes.
+"""
+
+import importlib.util
+import re
+from dataclasses import dataclass, field
+from pathlib import Path
+
+import yaml
+
+CATEGORIES = ("entities", "rules", "estimates", "lessons", "insights", "decisions")
+SECTION = "## "
+HISTORY = "## History"  # the record of a page's changes, its last section
+MARKER = re.compile(r"^<!-- (/?)([^\s]+) -->$")
+REF_FIELDS = (  # the fields whose values are slugs of pages
+    "parent",
+    "children",
+    "estimates",
+    "target",
+    "insight",
+    "addressed_by",
+    "deferred_by",
+    "create",
+    "update",
+    "delete",
+    "defer",
+    "supersedes",
+    "superseded_by",
+    "applies_to",  # the edge Rule → Entity
+    "rules",  # its backlink, computed by generate
+)
+WIKILINK_VALUE = re.compile(r"^\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]$")
+SHIPPED = "guppi"  # the `origin` and `sprint` of a page in the clean version
+# the words of a line of `guppi ship` and of a finding of `guppi lint` on a page that
+# `is_draft_core` accepts
+DRAFT_CORE = "a page with core: true that is draft"
+# a line of `## History` that set the status of a page to `built`, as the cascade of
+# `.guppi/guppi/generate.py` writes it
+SET_BUILT = re.compile(r"^- .*\bstatus: \S+ → built\b", re.MULTILINE)
+
+
+def is_core(page: "Page") -> bool:
+    """True when the page carries `core: true`: it ships in the clean version that `guppi
+    ship` writes. The one judgment of the field, which `lint` and `ship` import."""
+    return page.props.get("core") is True
+
+
+def is_draft_core(page: "Page", by_slug: dict[str, "Page"]) -> bool:
+    """True when the page is a rule or an entity that `is_core` accepts, whose `status` is
+    `draft`, and that blocks the clean build: its `## History` holds no line that set its
+    status to `built`, by `SET_BUILT`, or one of its Estimates, looked up in `by_slug`, stands
+    `failed`. A page `built` before that only waits for the reading of a newer Estimate is
+    not accepted. The one judgment of a draft page with `core: true`, which `guppi
+    ship` of `.guppi/guppi/ship.py` imports, to write no clean version while one stands, and
+    `guppi lint` of `.guppi/guppi/lint.py`, to report each one where `ship_stands` answers yes."""
+    if not (
+        page.category in ("entities", "rules")
+        and is_core(page)
+        and str(page.props.get("status")) == "draft"
+    ):
+        return False
+    if not SET_BUILT.search(page.sections.get(HISTORY, "")):
+        return True
+    value = page.props.get("estimates") or []
+    estimates = [by_slug.get(str(slug)) for slug in (value if isinstance(value, list) else [value])]
+    return any(e is not None and str(e.props.get("status")) == "failed" for e in estimates)
+
+
+def ship_stands() -> bool:
+    """True when the module `guppi.ship` can be found, by `importlib.util.find_spec`: the
+    repository of GUPPI holds it, and the clean version that `guppi ship` writes, which a
+    project installs, does not. The one judgment of whether the command `ship` stands, which
+    `guppi check` of `.guppi/guppi/check.py`, the list of commands of `.guppi/guppi/cli.py`
+    and the report of a draft page with `core: true` of `guppi lint` of
+    `.guppi/guppi/lint.py` import."""
+    return importlib.util.find_spec("guppi.ship") is not None
+
+
+def has_no_parent(props: dict) -> bool:
+    """True when the `parent` field of the props is empty or absent: a root MOC, or a
+    placeholder not yet placed. The one judgment of a page with no parent, which `group_of`
+    of `.guppi/guppi/glossary.py`, `check_method` of `.guppi/guppi/lint.py` and
+    `form_finding` of `.guppi/guppi/prespec.py` import."""
+    return not props.get("parent")
+
+
+def slug_of(value):
+    """The slug inside a `[[slug]]` value; any other value as it is."""
+    if isinstance(value, str):
+        match = WIKILINK_VALUE.match(value.strip())
+        if match:
+            return match.group(1).strip()
+    return value
+
+
+def strip_refs(props: dict) -> dict:
+    """The props with every ref field read through its brackets, in place."""
+    for key in REF_FIELDS:
+        value = props.get(key)
+        if isinstance(value, list):
+            props[key] = [slug_of(v) for v in value]
+        elif isinstance(value, str):
+            props[key] = slug_of(value)
+    return props
+
+
+@dataclass
+class Page:
+    category: str
+    slug: str
+    path: Path
+    props: dict = field(default_factory=dict)
+    sections: dict[str, str] = field(default_factory=dict)
+    error: str | None = None
+
+    def section(self, name: str) -> str | None:
+        return self.sections.get(name)
+
+
+def wiki_root(project_dir: Path) -> Path:
+    return project_dir / "vault" / "wiki"
+
+
+def split_frontmatter(text: str) -> tuple[str | None, str]:
+    """`(yaml block, body)`; the block is None when the file does not open with `---`."""
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return None, text
+    for index in range(1, len(lines)):
+        if lines[index].strip() == "---":
+            return "\n".join(lines[1:index]), "\n".join(lines[index + 1 :])
+    return None, text
+
+
+def section_starts(lines: list[str]) -> set[int]:
+    """The indexes of the lines that open an H2 section of the page. A heading inside a
+    `<!-- slug -->` … `<!-- /slug -->` block belongs to the block: a render section may carry
+    the headings of the file it produces. The one walk of `split_sections` and
+    `history_line`."""
+    starts: set[int] = set()
+    closed = {m.group(2) for m in map(MARKER.match, lines) if m and m.group(1)}
+    open_markers: list[str] = []
+    for index, line in enumerate(lines):
+        match = MARKER.match(line)
+        if match:
+            closing, name = match.groups()
+            if closing:
+                if open_markers and open_markers[-1] == name:
+                    open_markers.pop()
+            elif name in closed:  # a lone child marker in a frame opens nothing
+                open_markers.append(name)
+        if line.startswith(SECTION) and not open_markers:
+            starts.add(index)
+    return starts
+
+
+def split_sections(body: str) -> dict[str, str]:
+    """H2 heading → the text under it, leading and trailing blank lines removed; the
+    headings by `section_starts`."""
+    sections: dict[str, str] = {}
+    current: str | None = None
+    buffer: list[str] = []
+
+    def close():
+        if current is not None:
+            sections[current] = "\n".join(buffer).strip("\n")
+
+    lines = body.splitlines()
+    starts = section_starts(lines)
+    for index, line in enumerate(lines):
+        if index in starts:
+            close()
+            current = line.strip()
+            buffer = []
+        elif current is not None:
+            buffer.append(line)
+    close()
+    return sections
+
+
+def history_line(text: str) -> int | None:
+    """The 1-based line of the page's own `## History` heading in the whole file, frontmatter
+    included, by the walk of `split_sections`; None when the page has none."""
+    lines = text.splitlines()
+    for index in sorted(section_starts(lines)):
+        if lines[index].strip() == HISTORY:
+            return index + 1
+    return None
+
+
+def read_page(path: Path, category: str) -> Page:
+    page = Page(category=category, slug=path.stem, path=path)
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError as exc:
+        page.error = f"unreadable: {exc}"
+        return page
+    block, body = split_frontmatter(text)
+    if block is None:
+        page.error = "no frontmatter"
+    else:
+        try:
+            props = yaml.safe_load(block) or {}
+        except yaml.YAMLError as exc:
+            page.error = f"frontmatter is not YAML: {exc}"
+            props = {}
+        if not isinstance(props, dict):
+            page.error = "frontmatter is not a mapping"
+            props = {}
+        page.props = strip_refs(props)
+    page.sections = split_sections(body)
+    return page
+
+
+def page_paths(wiki: Path, category: str) -> list[Path]:
+    """The files of a category folder that are pages: each `*.md` but a `schema.md`. The one
+    judgment of a page file, which `read_category` and `link_names` of `.guppi/guppi/lint.py`
+    share."""
+    folder = wiki / category
+    if not folder.is_dir():
+        return []
+    return [p for p in sorted(folder.glob("*.md")) if p.stem != "schema"]
+
+
+def read_category(wiki: Path, category: str) -> list[Page]:
+    return [read_page(p, category) for p in page_paths(wiki, category)]
+
+
+def read_vault(wiki: Path) -> dict[str, list[Page]]:
+    return {category: read_category(wiki, category) for category in CATEGORIES}

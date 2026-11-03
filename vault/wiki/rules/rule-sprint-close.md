@@ -4,12 +4,12 @@ kind: Leaf
 purpose: Prevents a closed sprint from leaving its finished work among the live pages, so that the vault does not only grow
 status: built
 enforcement: check
-implementation_ref: [guppi/sprint_close.py, tests/test_sprint_close.py]
-estimates: []
+implementation_ref: [.guppi/guppi/sprint_close.py, .guppi/tests/test_sprint_close.py]
+estimates: ["[[estimate-sprint-close-archives-the-decisions]]", "[[estimate-sprint-close-archives-done-insights-and-lone-lessons]]", "[[estimate-sprint-close-archives-the-sprint-page-and-keeps-the-rest]]", "[[estimate-sprint-close-settles-unread-estimates]]", "[[estimate-sprint-close-runs-in-the-librarian-run]]", "[[estimate-sprint-close-takes-the-readings-in-groups]]", "[[estimate-sprint-close-next-session-opens-the-sprint]]", "[[estimate-sprint-close-sweeps-raw]]", "[[estimate-sprint-close-moves-old-event-logs]]"]
 applies_to: ["[[entity-sprint]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [sprint, workflow]
 core: true
 ---
@@ -20,4 +20,4 @@ Prevents a closed sprint from leaving its finished work among the live pages, so
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

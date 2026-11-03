@@ -1,0 +1,35 @@
+---
+type: estimate
+kind: QA
+status: passed
+target: "[[rule-orchestration]]"
+purpose: Whether the main agent names the Cases it sends to case-guppi at the same time as built at the same time, and, once all have answered, sends back each Case whose summary carries a Sibling line, one at a time and once, before the Cases are shown together
+method: "by hand, after a send of two or more Cases to case-guppi at the same time: the prompts and messages of the main agent from that send to the showing of its Cases read against the Criterion, recorded in the estimate line"
+checked: 2026-10-28
+origin: guppi
+sprint: guppi
+created: 2026-11-03
+tags: [session, workflow]
+core: true
+---
+
+## Criterion
+
+When:
+The main agent sends two or more Cases of the session to their `case-guppi` at the same time — the dispatch of a batch, the answers of a batch sent back, or the loop after the findings of `/pre-spec` — with `vault/wiki/orchestration.md` rendered from `rule-orchestration` and `.claude/skills/pre-spec/SKILL.md` rendered from `rule-prespec`.
+
+Then:
+The prompt or message to each `case-guppi` names each other Case of that send as built at the same time.
+**＋** Once every `case-guppi` of the send has answered with its Case, the main agent sends back each Case whose item in the summary carries a line `**Sibling:**`, one at a time, each after the one before has answered, with a message that the build of each Case that line names has ended.
+**＋** The second pass runs once, and the Cases of the send are shown after it, together, for one ratification.
+**＋** In the loop after the findings of `/pre-spec`, the second pass comes before the `ask-guppi` runs confirm their findings.
+**－** A Case whose summary carries no line `**Sibling:**` does not go back in the second pass.
+**－** The main agent reads no case file to find the Cases of the second pass.
+
+## Result
+
+2026-10-28, passed in the repository of GUPPI.
+
+## History
+
+- 2026-11-03 shipped with GUPPI

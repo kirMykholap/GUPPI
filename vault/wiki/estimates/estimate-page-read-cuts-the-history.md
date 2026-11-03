@@ -1,0 +1,36 @@
+---
+type: estimate
+kind: QA
+status: passed
+target: "[[rule-page-read]]"
+purpose: A Read of a vault page returns its frontmatter and body, and its History only when asked for
+method: uv run --project .guppi pytest .guppi/tests/test_pageread.py, then by hand in Work Mode a Read of a vault page in the main agent and in a subagent, recorded in the estimate line
+checked: 2026-10-30
+origin: guppi
+sprint: guppi
+created: 2026-11-03
+tags: [hooks, harness]
+core: true
+---
+
+## Criterion
+
+When:
+An agent — the main agent or a subagent — calls `Read` on a file under `vault/wiki/`.
+
+Then:
+When the call carries neither `offset` nor `limit` and the file holds its own `## History` heading, `uv run --project .guppi guppi pageread` on `PreToolUse` sets `limit` to the line before that heading by `updatedInput`, and the agent gets the frontmatter and the body alone.
+**＋** After such a call, `uv run --project .guppi guppi pageread --after` on `PostToolUse` adds one line of `additionalContext`: the History is cut, its first and last line, and a `Read` with `offset` at its first line shows how the page changed.
+**＋** The heading is found by the walk of `split_sections` in `.guppi/guppi/pages.py`, so a `## History` inside a render block of the page does not count.
+**＋** An `Edit` of the page after the cut read works as after a whole read.
+**－** A call with its own `offset` or `limit`, a file with no `## History`, and a file outside `vault/wiki/` are not changed, and no line is added.
+**－** The page on disk is not changed: in Obsidian it shows whole.
+**－** A `Read` that another hook on `PreToolUse` of `Read` refuses does not run, and the agent gets no text of the page: `estimate-search-leaves-out-decisions-refuses-ask-guppi` reads that refusal.
+
+## Result
+
+2026-10-30, passed in the repository of GUPPI.
+
+## History
+
+- 2026-11-03 shipped with GUPPI

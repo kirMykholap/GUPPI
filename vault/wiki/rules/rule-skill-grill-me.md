@@ -7,17 +7,17 @@ enforcement: render
 governs: .claude/skills/grill-me/SKILL.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
-estimates: []
+estimates: ["[[estimate-skill-grill-me-asks-in-rounds]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, workflow]
 core: true
 ---
 
 ## Purpose
 
-Prevents an interview from acting on a plan before each of its decisions is put to the person and settled, and the skill that runs it from being a file no rule page governs. `/grill-me` asks in rounds: the frontier of a design tree, the questions whose prerequisites are settled, each with a recommended answer. It served the person's own interviews without a page. The same text serves `case-guppi`, which loads it through the `skills` field of its frontmatter ([[rule-case-build]]), so two of its sentences name no one agent: a fact is found by the agent itself, or by a sub-agent when the agent can dispatch one; the shared understanding is confirmed by the user's word unless the instructions that started the grill name another confirmation. The question template is an indented code block.
+Prevents an interview from acting on a plan before each of its decisions is put to the person and settled, and the skill that runs it from being a file no rule page governs. `/grill-me` asks in rounds: the frontier of a design tree, the questions whose prerequisites are settled, each with a recommended answer. The same text serves `case-guppi`, which loads it through the `skills` field of its frontmatter ([[rule-case-build]]), so two of its sentences name no one agent: a fact is found by the agent itself, or by a sub-agent when the agent can dispatch one; the shared understanding is confirmed by the user's word unless the instructions that started the grill name another confirmation. The question template is an indented code block.
 
 ## Render
 
@@ -65,4 +65,4 @@ The session is done when the frontier is empty: every branch of the design tree 
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

@@ -4,13 +4,14 @@ kind: Leaf
 purpose: Prevents a Case from being written in a form the check of its file refuses because the agent that writes it saw no example of the form
 status: built
 enforcement: render
+implementation_ref: [.guppi/tests/test_case_schema.py]
 governs: vault/wiki/case-example.md
 render_mode: full
 parent: "[[rule-plan-mode]]"
-estimates: []
+estimates: ["[[estimate-case-example-passes-the-check]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [session, workflow, harness]
 core: true
 ---
@@ -105,7 +106,7 @@ The Case below is written in the chat form that `case-guppi` writes into its fil
 >   - ref: `entity-cart`
 >   - kind: `QA`
 >   - purpose: `Whether the cart shows its items within 200 ms`
->   - method: `make test-cart, which runs uv run pytest tests/test_cart_view.py -k render_time`
+>   - method: `make test-cart, which runs pytest cart/tests/test_view.py -k render_time`
 >   - tags: `[cart, performance]`
 > - [ ] `src/cart/view.py`: the cart reads its items in one query.
 > - [ ] read `estimate-cart-renders-in-time`
@@ -135,7 +136,7 @@ create:
     ref: entity-cart
     kind: QA
     purpose: Whether the cart shows its items within 200 ms
-    method: make test-cart, which runs uv run pytest tests/test_cart_view.py -k render_time
+    method: make test-cart, which runs pytest cart/tests/test_view.py -k render_time
     tags: [cart, performance]
 update:
   - slug: entity-checkout
@@ -149,4 +150,4 @@ update:
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

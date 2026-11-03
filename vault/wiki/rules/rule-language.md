@@ -7,19 +7,18 @@ enforcement: render
 governs: CLAUDE.md
 render_mode: partial
 parent: "[[rule-claude-md]]"
-estimates: []
+estimates: ["[[estimate-language-followed]]", "[[estimate-language-spec-prose-in-english]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, render, workflow]
 core: true
 ---
 
 ## Purpose
 
-Keeps the repository in the documentation language and the chat with the owner in the chat language, `documentation_lang` and `chat_lang` set in `rule-guppi-config` and rendered into `guppi.toml` — English and Russian in this project. A Case is discussed in Russian and read in English, whole, in the file the agent sends the person; the
-manner of the English that lands in the vault — ASD-STE100 Simplified Technical English —
-is the `## Language` section of `case-schema.md`, which this rule does not repeat.
+Keeps the repository in the documentation language and the chat with the owner in the chat language, `documentation_lang` and `chat_lang` set in `rule-guppi-config` and rendered into `guppi.toml` as codes, such as `en` and `ru`. A Case is discussed in the chat language and read in the documentation language, whole, in the file the agent sends the person; the
+manner of the text that lands in the vault — ASD-STE100 Simplified Technical English when the documentation language is English — is the `## Language` section of `case-schema.md`, which this rule does not repeat.
 
 ## Render
 
@@ -31,4 +30,4 @@ is the `## Language` section of `case-schema.md`, which this rule does not repea
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

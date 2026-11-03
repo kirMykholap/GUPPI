@@ -2,15 +2,15 @@
 type: rule
 kind: Leaf
 purpose: Prevents a pattern of failures from staying a list of unrelated incidents
-status: built
+status: draft
 enforcement: render
 governs: .claude/agents/librarian-guppi.md
 render_mode: partial
 parent: "[[rule-documentation]]"
-estimates: []
+estimates: ["[[estimate-synthesis-clusters]]", "[[estimate-synthesis-reads-the-status-its-yaml-sets]]"]
 origin: guppi
 sprint: guppi
-created: 2026-10-14
+created: 2026-11-03
 tags: [harness, workflow, librarian]
 core: true
 ---
@@ -75,4 +75,4 @@ outcome, clustered or not. The archive is not needed: an actioned Insight stays 
 
 ## History
 
-- 2026-10-14 shipped with GUPPI
+- 2026-11-03 shipped with GUPPI

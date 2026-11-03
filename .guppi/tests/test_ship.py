@@ -25,7 +25,10 @@ the build nor `--check` and named by the field `icon` of the manifest, by the te
 names hold `icon`, `estimate-clean-branch-ships-the-plugin-icon` (case 1016). The Render of
 `rule-guppi-config` in the copy with `setup_done = false`, whether the working tree holds the
 key or not, by the tests whose names hold `setup`,
-`estimate-clean-branch-ships-the-setup-not-done` (case 1017.1)."""
+`estimate-clean-branch-ships-the-setup-not-done` (case 1017.1). The two source pictures of the
+icon under `plugin/assets/`, which the copy holds at no path and `--check` judges not, and which
+this repository keeps there with no folder `guppi-assets/`, by the tests whose names hold
+`source_pictures`, `estimate-clean-branch-leaves-out-the-source-pictures` (case 1020)."""
 
 import io
 import json
@@ -573,6 +576,38 @@ def test_the_live_icon_is_a_png_of_512_by_512_named_by_the_manifest():
     head = (REPO / field).read_bytes()[:24]
     assert head[:8] == b"\x89PNG\r\n\x1a\n" and head[12:16] == b"IHDR"
     assert (int.from_bytes(head[16:20], "big"), int.from_bytes(head[20:24], "big")) == (512, 512)
+
+
+SOURCE_PICTURES = ("icon_guppi.png", "logo_guppi.png")
+
+
+def test_the_copy_holds_none_of_the_source_pictures_at_any_path(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    for name in SOURCE_PICTURES:
+        (root / "plugin" / "assets").mkdir(parents=True, exist_ok=True)
+        (root / "plugin" / "assets" / name).write_bytes(ICON)
+    commit(root)
+    assert run(root, out) == (0, [])
+    files = written(out)
+    assert not [f for f in files if f.split("/")[-1] in SOURCE_PICTURES or "assets/" in f]
+
+
+def test_check_prints_no_line_on_the_source_pictures(tmp_path):
+    root = tmp_path / "p"
+    tree(root, rule_a=page("rule", "rule-a"))
+    for name in SOURCE_PICTURES:
+        (root / "plugin" / "assets").mkdir(parents=True, exist_ok=True)
+        (root / "plugin" / "assets" / name).write_bytes(ICON)
+    stdout = io.StringIO()
+    code = ship.run(["--check"], stdout=stdout, stderr=io.StringIO(), project_dir=root, now=NOW)
+    assert (code, stdout.getvalue()) == (0, "")
+
+
+def test_the_repository_keeps_the_source_pictures_in_plugin_assets():
+    for name in SOURCE_PICTURES:
+        assert (REPO / "plugin" / "assets" / name).read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"
+    assert not (REPO / "guppi-assets").exists()
 
 
 def test_the_version_is_the_highest_tag_prod_x_y_z_in_the_history(tmp_path):

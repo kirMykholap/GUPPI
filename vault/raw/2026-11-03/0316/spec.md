@@ -615,7 +615,7 @@ update:
 - [x] update `rule-skill-sprint-open`
 - [x] update `estimate-skill-sprint-open-asks-the-opening-questions`
 - [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] read `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] read `estimate-skill-sprint-open-asks-the-opening-questions`
 ```
 
 ### Case 1017.7 — The reply that acknowledges the setup Case asks what the first sprint is to build
@@ -717,7 +717,7 @@ update:
 
 ```tasks
 - [x] update `estimate-clean-branch-refuses-a-draft-core-page`
-- [ ] read `estimate-clean-branch-refuses-a-draft-core-page`
+- [x] read `estimate-clean-branch-refuses-a-draft-core-page`
 ```
 
 ### Case 1017.9 — The /hi after git init starts /setup first in a new project

@@ -12890,3 +12890,29 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-03 rules/rule-git-context status: built → draft · cascade · generate
 - 2026-11-03 rules/rule-skill-setup status: draft → built · cascade · generate
 - 2026-11-03 rules/rule-skill-sprint-open status: built → draft · cascade · generate
+- 2026-11-03 estimates/estimate-skill-sprint-open-asks-the-opening-questions status: pending → passed · raw/2026-11-03/1825/ledger.md#L1 · generate
+- 2026-11-03 estimates/estimate-clean-branch-refuses-a-draft-core-page status: pending → passed · raw/2026-11-03/1825/ledger.md#L2 · generate
+- 2026-11-03 decisions/decision-case-1019 created · raw/2026-11-03/1825/ledger.md#case-1019 · generate
+- 2026-11-03 decisions/decision-case-1019.1 created · raw/2026-11-03/1825/ledger.md#case-1019.1 · generate
+- 2026-11-03 rules/rule-skill-hi updated: /hi reads the transcript that the method of an open Work line names, found by the stamp in the first line of that session's spec.md, live or archived, and read in parts, once its event came in an earlier session; an Ask line still opens no saved chat · [[decision-case-1019.1]] · generate
+- 2026-11-03 estimates/estimate-hi-takes-its-readings updated: the Criterion replaced whole — /hi reads the transcript that a method names, found by the stamp of its session and read in parts; the purpose set anew · [[decision-case-1019.1]] · generate
+- 2026-11-03 decisions/decision-case-1019.2 created · raw/2026-11-03/1825/ledger.md#case-1019.2 · generate
+- 2026-11-03 estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder updated: the method reads the Render of rule-case-build and no transcript; the Criterion written again as it stood; the build of session 2155 is read once by an Estimate of entity-sprint-plugin · [[decision-case-1019.2]] · generate
+- 2026-11-03 decisions/decision-case-1019.3 created · raw/2026-11-03/1825/ledger.md#case-1019.3 · generate
+- 2026-11-03 estimates/estimate-sprint-plugin-frontierguard-build-read-its-folders-readers created · [[decision-case-1019.3]] · generate
+- 2026-11-03 estimates/estimate-sprint-plugin-frontierguard-build-read-its-folders-readers status: pending → passed · raw/2026-11-03/1825/ledger.md#L14 · generate
+- 2026-11-03 entities/entity-sprint-plugin estimate estimate-sprint-plugin-frontierguard-build-read-its-folders-readers added · [[decision-case-1019.3]] · generate
+- 2026-11-03 decisions/decision-case-1019.4 created · raw/2026-11-03/1825/ledger.md#case-1019.4 · generate
+- 2026-11-03 entities/entity-sprint-plugin updated: the Backlog asks whether every Estimate that reads a transcript is split into a one-off Estimate and a lasting one · [[decision-case-1019.4]] · generate
+- 2026-11-03 decisions/decision-case-1020 created · raw/2026-11-03/1825/ledger.md#case-1020 · generate
+- 2026-11-03 rules/rule-clean-branch updated: the source pictures of the icon live in plugin/assets/, which the clean version does not take · [[decision-case-1020]] · generate
+- 2026-11-03 estimates/estimate-clean-branch-leaves-out-the-source-pictures created · [[decision-case-1020]] · generate
+- 2026-11-03 estimates/estimate-clean-branch-leaves-out-the-source-pictures status: pending → passed · raw/2026-11-03/1825/ledger.md#L15 · generate
+- 2026-11-03 rules/rule-clean-branch estimate estimate-clean-branch-leaves-out-the-source-pictures added · [[decision-case-1020]] · generate
+- 2026-11-03 decisions/decision-case-1021 created · raw/2026-11-03/1825/ledger.md#case-1021 · generate
+- 2026-11-03 entities/entity-sprint-plugin deferred · [[decision-case-1021]] · generate
+- 2026-11-03 rules/rule-raw-archive updated: nothing changes an archived session, and /hi may read the first line of its spec.md · [[decision-case-1019.1]] · generate
+- 2026-11-03 estimates/estimate-hi-takes-its-readings status: pending → passed · raw/2026-11-03/1825/ledger.md#L12 · generate
+- 2026-11-03 estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder status: pending → passed · raw/2026-11-03/1825/ledger.md#L13 · generate
+- 2026-11-03 rules/rule-clean-branch status: draft → built · cascade · generate
+- 2026-11-03 rules/rule-skill-sprint-open status: draft → built · cascade · generate

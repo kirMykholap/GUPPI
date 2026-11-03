@@ -18,8 +18,7 @@ core: true
 
 Keeps `raw/` to the sessions that are not yet fully turned into pages. A session
 whose `materialize.yaml` is applied to the last entry and whose `ledger.md` has no
-line outside the yaml is done; nothing reads it again, so it moves whole into the
-archive of its date. A session with an entry still to apply stays, and is named
+line outside the yaml is done; nothing changes it again, so it moves whole into the archive of its date, where `/hi` may still read the first line of its `spec.md` (as set in case 1019.1). A session with an entry still to apply stays, and is named
 with the reason, so the debt is in view at every run until the entry is fixed in
 Plan Mode.
 
@@ -41,3 +40,4 @@ Plan Mode.
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-26 updated: the close of a sprint keeps the event logs from the start date of the open session · [[decision-case-886]]
 - 2026-10-30 updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/archive.py · [[decision-case-942.1]]
+- 2026-11-03 updated: nothing changes an archived session, and /hi may read the first line of its spec.md · [[decision-case-1019.1]]

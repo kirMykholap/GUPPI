@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-skill-sprint-open]]"
 purpose: Whether /sprint-open has the person answer the open question on what the sprint is to build before anything else, taken from the reply that acknowledges the setup Case where one stands, then has the main agent propose the sprint id, dispatch the opening Case as Case <id>-1 with that answer before any Frontier, have it build the goal, the Definition of done and the milestone from the answer and ask whether to take an item of the backlog, and write the close line
 method: "by hand, after the librarian's run of the session that replaces this Criterion: the Render of rule-skill-sprint-open in .claude/skills/sprint-open/SKILL.md, the Render of rule-skill-setup in .claude/skills/setup/SKILL.md and the sentence of rule-orchestration on the reply that acknowledges the setup Case in vault/wiki/orchestration.md read against the Criterion"
-checked: 2026-10-13
+checked: 2026-11-03
 origin: raw/2026-10-08/2352/ledger.md#case-743.6
 sprint: migration
 created: 2026-10-08
@@ -31,7 +31,7 @@ Before any Frontier is assembled and before the skill dispatches anything, the p
 
 ## Result
 
-2026-10-13, Retro by hand: the Render of rule-skill-sprint-open in spec.md (case 788.3) has the main agent ask the sprint id first, dispatch the opening Case as <id>-1 and case-guppi ask the goal, the Definition of done, the first milestone and the backlog
+2026-11-03, /hi of session 1825, .claude/skills/sprint-open/SKILL.md, .claude/skills/setup/SKILL.md and vault/wiki/orchestration.md (## The acknowledging reply) read against the Criterion: step 1 assembles no Frontier before the opening Case; step 2 asks the open question first and takes the answer from the reply that acknowledges the setup Case where it stands, then proposes the id in one plain question (GitHub login first, lower-case, digits, hyphens, no dot) and dispatches case-guppi as <id>-1 with the answer, the goal, the Definition of done, the first milestone and the backlog count with its question; step 3 writes the close line last; the opening paragraph makes the opening Case the first ratified but for the setup Case; step 5 has the skill decide no answer; setup/SKILL.md step 3 and the orchestration.md sentence of case 1017.7 end the acknowledging reply with the open question and no Frontier
 
 ## History
 
@@ -45,3 +45,4 @@ Before any Frontier is assembled and before the skill dispatches anything, the p
 - 2026-10-13 status: pending → passed · raw/2026-10-12/2349/ledger.md#L49
 - 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]
 - 2026-11-03 updated: the Criterion replaced whole — the open question on what the sprint is to build comes first, in the reply that acknowledges the setup Case where one stands, and the main agent proposes the id after it · [[decision-case-1017.6]]
+- 2026-11-03 status: pending → passed · raw/2026-11-03/1825/ledger.md#L1

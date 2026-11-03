@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the next sprint from opening without a goal, a Definition of done, a first milestone, its close line and a look at the backlog, while the text that asks for them stays out of the sessions that open no sprint
-status: draft
+status: built
 enforcement: render
 implementation_ref: [.guppi/guppi/sprint.py, .guppi/tests/test_sprint.py, .claude/settings.json]
 governs: .claude/skills/sprint-open/SKILL.md
@@ -73,3 +73,4 @@ No sprint is open: the first heading of `vault/wiki/sprint.md` marks the last sp
 - 2026-11-03 updated: the setup Case comes before the opening Case, and its acknowledging reply asks what the sprint is to build · [[decision-case-1017.6]]
 - 2026-11-03 updated: the opening asks the person first what to build in the sprint, the main agent proposes the id from the answer, and the opening Case is built from it · [[decision-case-1018.1]]
 - 2026-11-03 status: built → draft · cascade
+- 2026-11-03 status: draft → built · cascade

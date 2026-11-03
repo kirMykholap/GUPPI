@@ -108,11 +108,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-raw-archive`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `estimate-hi-takes-its-readings`
-- [ ] read `estimate-hi-takes-its-readings`
+- [x] update `rule-skill-hi`
+- [x] update `rule-raw-archive`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `estimate-hi-takes-its-readings`
+- [x] read `estimate-hi-takes-its-readings`
 ```
 
 ### Case 1019.2 — The lasting check of the folders of a new file reads the Render
@@ -148,8 +148,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-reads-the-readers-of-a-new-files-folder`
-- [ ] read `estimate-case-build-reads-the-readers-of-a-new-files-folder`
+- [x] update `estimate-case-build-reads-the-readers-of-a-new-files-folder`
+- [x] read `estimate-case-build-reads-the-readers-of-a-new-files-folder`
 ```
 
 ### Case 1019.3 — The past build of the folders of a new file is read once
@@ -189,9 +189,9 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers`
+- [x] create `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers`
 - [x] by hand, in Work Mode: the transcript and the case file that the `method` of `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers` names read against its Criterion, the count kept for its reading
-- [ ] read `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers`
+- [x] read `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers`
 ```
 
 ### Case 1019.4 — The backlog asks whether a check that reads a transcript is always split
@@ -223,7 +223,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-plugin`
+- [x] update `entity-sprint-plugin`
 ```
 
 ## Case 1020 — The source pictures of the icon live in plugin/assets/
@@ -294,13 +294,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-clean-branch`
-- [ ] create `estimate-clean-branch-leaves-out-the-source-pictures`
+- [x] update `rule-clean-branch`
+- [x] create `estimate-clean-branch-leaves-out-the-source-pictures`
 - [x] `plugin/assets/icon_guppi.png`: moved from `guppi-assets/icon_guppi.png` by `git mv`, byte for byte.
 - [x] `plugin/assets/logo_guppi.png`: moved from `guppi-assets/logo_guppi.png` by `git mv`, byte for byte.
 - [x] `guppi-assets/`: removed once it is empty.
 - [x] `.guppi/tests/test_ship.py`: tests whose names hold `source_pictures`: a sample tree with a PNG under `plugin/assets/`, whose copy holds no file of that name at any path and on which `--check` prints no line; and the working tree of the repository holds both pictures under `plugin/assets/` and no `guppi-assets/`; the module docstring names these tests and the new Estimate.
-- [ ] read `estimate-clean-branch-leaves-out-the-source-pictures`
+- [x] read `estimate-clean-branch-leaves-out-the-source-pictures`
 ```
 
 ## Deferred

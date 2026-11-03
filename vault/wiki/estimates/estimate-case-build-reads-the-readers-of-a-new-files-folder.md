@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, when a task of its Case adds a file that is no page, searches for the paths of the folders that hold it and for the calls that walk a folder, reads the ignore files of git there and each reader that takes every file of such a folder, enters each one the new file makes wrong in the Case or names it in context, and names in context each of those searches and readings
-method: "by hand, after the /pre-spec of the first session whose case-guppi runs on the Render of rule-case-build that names in context each search and reading for the folders of a new file, and in which a Case adds a file that is no page of vault/wiki/: the agent transcript of the case-guppi of that Case under ~/.claude/projects/, read for each search and reading of the Criterion, and its case file under raw/<date>/<hi HHMM>/cases/, read for the list of them in context; the count, the transcript and the case file in the estimate line"
-checked: 2026-11-01
+method: "by hand: the Render of rule-case-build in .claude/agents/case-guppi.md read against the Criterion, recorded in the estimate line"
+checked: 2026-11-03
 origin: raw/2026-10-31/2307/ledger.md#case-974
 sprint: plugin
 created: 2026-10-31
@@ -28,10 +28,12 @@ It searches `.guppi/guppi/`, `.claude/` and the Rule pages of `vault/wiki/` for 
 
 ## Result
 
-2026-11-01, Work reading of session 2038, the case-guppi of Case 987 in ~/.claude/projects/c--PROJECTS-GUPPI/cb575daf-7b4e-455c-a22c-1fcffcbdc234/subagents/agent-a5bbc3a9ce87b6a82.jsonl, four passes, and the ask-guppi of /pre-spec in agent-ab3847b0434506da9.jsonl: of 8 searches and readings for the new file .claude/skills/approve-spec/SKILL.md, 2 done (the folder-path Grep and the walk Grep over .guppi/guppi/), 1 in part (ship.py tree_files seen by its grep line, its body not read), 5 missing (the folder-path Grep over .claude/ and over vault/wiki/rules/, the walk Grep over .guppi/tests/, the root .gitignore, callers() of .guppi/tests/test_guppi_package.py, which rglobs .claude); the context names ship.py, links.py, recall.py and two tests with a reason but not callers() or the root .gitignore; ask-guppi raised no finding on a reader of the folder
+2026-11-03, Retro of session 1825, .claude/agents/case-guppi.md line 25 read against the Criterion: for a task that adds a file that is no page of vault/wiki/ it sets a Grep of .guppi/guppi/, .claude/ and vault/wiki/rules/ for the path of each folder that holds it and its bare name, a Grep of .guppi/guppi/ and .guppi/tests/ for os.walk, rglob, glob and iterdir, a read of each .gitignore in a folder that holds it and of each reader that takes every file of such a folder, each reader made wrong entering the Case or named in context with why it stands, and context naming each search with its pattern, paths and files or count, each .gitignore and each reader read
 
 ## History
 
 - 2026-11-01 created · [[decision-case-974]]
 - 2026-11-01 status: pending → failed · raw/2026-11-01/2038/ledger.md#L17
 - 2026-11-02 updated: the Criterion replaced whole — the context names each search and reading for the folders of a new file · [[decision-case-995.1]]
+- 2026-11-03 updated: the method reads the Render of rule-case-build and no transcript; the Criterion written again as it stood; the build of session 2155 is read once by an Estimate of entity-sprint-plugin · [[decision-case-1019.2]]
+- 2026-11-03 status: pending → passed · raw/2026-11-03/1825/ledger.md#L13

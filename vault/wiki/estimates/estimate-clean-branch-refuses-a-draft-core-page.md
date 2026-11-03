@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-clean-branch]]"
 purpose: "Whether guppi ship writes nothing and exits 1 while a draft page with core: true stands that was never built or has a failed Estimate, writes as it stands one built before that only waits for a reading, writes the copy with --allow-draft, and lint judges by the same is_draft_core"
 method: "uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core; by hand, after the librarian's run that applies the updates of rule-morph and the create of rule-skill-setup: a Grep for ^core: in rule-skill-merge-main, rule-skill-pr-review, rule-morph and rule-skill-setup, and for --allow-draft in .github/workflows/prod.yml, read against the Criterion"
-checked: 2026-11-02
+checked: 2026-11-03
 origin: raw/2026-10-15/0553/ledger.md#case-822.8
 sprint: plugin
 created: 2026-10-15
@@ -29,7 +29,7 @@ A rule or an entity with `core: true` that stands `draft` blocks the build when 
 
 ## Result
 
-2026-11-02, /hi of session 1337, uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core: 16 passed, 164 deselected; a Grep for ^core: in rule-skill-merge-main, rule-skill-pr-review and rule-morph printed nothing (exit 1); a Grep for --allow-draft in .github/workflows/prod.yml printed nothing (exit 1)
+2026-11-03, /hi of session 1825, uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core: 16 passed, 170 deselected; a Grep for ^core: in rule-skill-merge-main, rule-skill-pr-review, rule-morph and rule-skill-setup printed core: true for rule-morph and rule-skill-setup alone; a Grep for --allow-draft in .github/workflows/prod.yml printed nothing (exit 1)
 
 ## History
 
@@ -40,3 +40,4 @@ A rule or an entity with `core: true` that stands `draft` blocks the build when 
 - 2026-11-02 updated: the Criterion replaced whole — rule-morph carries no core until it is built · [[decision-case-1001]]
 - 2026-11-02 status: pending → passed · raw/2026-11-02/1337/ledger.md#L1
 - 2026-11-03 updated: the Criterion replaced whole — rule-morph and rule-skill-setup carry core: true and block the build while they are draft · [[decision-case-1017.8]]
+- 2026-11-03 status: pending → passed · raw/2026-11-03/1825/ledger.md#L2

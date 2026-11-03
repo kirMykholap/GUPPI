@@ -1,0 +1,33 @@
+- 03:19:34 decision[case 1014][defer][estimate-orchestration-acknowledging-reply]{ref:estimate-orchestration-acknowledging-reply}
+- 03:31:20 decision[case 1015.1][update][rule-ask]{ref:rule-ask}
+- 03:31:20 decision[case 1015.1][update][estimate-ask-searches-at-prespec]{ref:rule-ask}
+- 03:31:20 decision[case 1015.2][update][estimate-prespec-finds-a-reader-of-a-new-files-folder]{ref:rule-prespec}
+- 03:59:41 decision[case 1016][update][rule-clean-branch]{ref:rule-clean-branch}
+- 03:59:41 decision[case 1016][create][estimate-clean-branch-ships-the-plugin-icon]{ref:rule-clean-branch}{tags:ci,plugin}
+- 04:42:57 decision[case 1017.1][update][rule-guppi-config]{ref:rule-guppi-config}
+- 04:42:57 decision[case 1017.1][update][rule-clean-branch]{ref:rule-clean-branch}
+- 04:42:57 decision[case 1017.1][create][estimate-clean-branch-ships-the-setup-not-done]{ref:rule-clean-branch}{tags:ci,plugin}
+- 04:42:57 decision[case 1017.2][update][rule-ledger-write]{ref:rule-ledger-write}
+- 04:42:57 decision[case 1017.2][create][estimate-ledger-write-passes-every-line-before-the-setup]{ref:rule-ledger-write}{tags:ledger,plugin}
+- 04:42:57 decision[case 1017.3][create][rule-skill-setup]{ref:rule-session-start}{tags:session,harness,plugin}
+- 04:42:57 decision[case 1017.3][update][rule-skill-hi]{ref:rule-skill-hi}
+- 04:42:57 decision[case 1017.3][create][estimate-skill-setup-starts-at-hi]{ref:rule-skill-setup}{tags:hooks,harness,plugin}
+- 04:42:57 decision[case 1017.4][update][rule-morph]{ref:rule-morph}
+- 04:42:57 decision[case 1017.4][update][entity-sprint-plugin]{ref:entity-sprint-plugin}
+- 04:42:57 decision[case 1017.4][update][estimate-morph-sets-up-the-project-at-the-first-hi]{ref:rule-morph}
+- 04:42:57 decision[case 1017.5][update][estimate-morph-takes-in-the-set-aside-files]{ref:rule-morph}
+- 04:42:57 decision[case 1017.6][update][rule-skill-sprint-open]{ref:rule-skill-sprint-open}
+- 04:42:57 decision[case 1017.6][update][estimate-skill-sprint-open-asks-the-opening-questions]{ref:rule-skill-sprint-open}
+- 04:42:57 decision[case 1017.7][update][rule-orchestration]{ref:rule-orchestration}
+- 04:42:57 decision[case 1017.7][update][estimate-orchestration-acknowledging-reply]{ref:rule-orchestration}
+- 04:42:57 decision[case 1017.8][update][estimate-clean-branch-refuses-a-draft-core-page]{ref:rule-clean-branch}
+- 05:04:33 decision[case 1018.1][update][rule-skill-sprint-open]{ref:rule-skill-sprint-open}
+- 05:04:33 decision[case 1018.2][update][estimate-skill-sprint-open-asks-the-goal-as-an-open-question]{ref:rule-skill-sprint-open}
+- 05:32:05 decision[case 1017.9][update][estimate-git-context-offers-git-init]{ref:rule-git-context}
+- 05:56:57 estimate[estimate-clean-branch-ships-the-plugin-icon][passed] 2026-11-03, uv run --project .guppi pytest .guppi/tests/test_ship.py -k icon at Retro of session 0316; 3 passed: the copy holds .guppi/icon.png byte for byte with no line, --check prints no line on it, and the live .guppi/icon.png is a PNG of 512 by 512 named by the field icon of plugin/plugin.json
+- 05:56:57 estimate[estimate-clean-branch-ships-the-setup-not-done][passed] 2026-11-03, uv run --project .guppi pytest .guppi/tests/test_config.py .guppi/tests/test_ship.py -k setup at Retro of session 0316; 10 passed: setup_pending is True only on setup_done = false, and the copy of rule-guppi-config holds setup_done = false whether the working tree holds setup_done = true or no line of the key
+- 05:56:57 estimate[estimate-ledger-write-passes-every-line-before-the-setup][passed] 2026-11-03, uv run --project .guppi pytest .guppi/tests/test_ledger.py -k setup at Retro of session 0316; 4 passed: with no live sprint page a decision line is written on setup_done = false, refused on setup_done = true or no key, and a taken sprint id is refused on setup_done = false; the run -k sprint collects none of them
+- 05:56:57 estimate[estimate-skill-setup-starts-at-hi][passed] 2026-11-03, uv run --project .guppi pytest .guppi/tests/test_sprint.py -k setup at Retro of session 0316; 5 passed: /hi with a closed heading and setup_done = false prints the setup line before the sprint line; setup_done = true, no key, no guppi.toml, an open heading and another prompt print no setup line; each exits 0
+- 05:56:57 estimate[estimate-skill-sprint-open-asks-the-goal-as-an-open-question][passed] 2026-11-03, by hand at Retro of session 0316: the new step 2 of the Render of rule-skill-sprint-open in vault/raw/2026-11-03/0316/spec.md (Case 1018.1) has the prompt ask that the opening Case word the goal in one sentence from the person's answer alone, put it to the person in no question of its rounds, and take no word of it from the vault or from the description of CLAUDE.md
+- 05:57:13 lesson[error][lesson-case-build-crop-spec-ignores-the-alpha-channel]{tags:case-build,plugin} trigger: Case 1016 set the icon as the guppy picture padded with white to a square, Work Mode wrote it so, and at the stop the person asked for a transparent background, which the source .guppi/icon_guppi.png already had (RGBA, alpha 0 around the fish) root_cause: case-guppi worded the options of the crop and the task of Case 1016 from the size of the picture alone and did not read its mode, so the white padding of the task threw away the transparency the source held
+- 05:57:13 lesson[error][lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers]{tags:orchestration,case-build} trigger: in the batch of Cases 1017 and 1018 both case-guppi asked who proposes the sprint id, 1017.Q12 recommending the main agent and 1018.Q4 the opening Case, and the person's "agree with the rest" took both opposite recommendations, so the fork was asked a third time root_cause: Cases built at the same time read no file of each other until the second pass, so a fork that both Cases touch is asked by each with its own recommendation, and the main agent showed the two questions side by side without merging them into one

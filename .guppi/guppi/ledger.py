@@ -183,7 +183,10 @@ written until the session's ledger or the lines of the same `Stop` hold a `creat
 line of an `entity-sprint-` slug, so the session after a close opens the next sprint first.
 Readings and lessons pass. The hook exits 2 with one stderr line per refused line only when
 it stands in the reply just finished, and the line is written at the first `Stop` after the
-`create` stands. Judged by `refused_without_sprint`, over lines read by `parse_line`.
+`create` stands. Judged by `refused_without_sprint`, over lines read by `parse_line`. While
+`guppi.toml` holds `setup_done = false`, by `setup_pending` of `.guppi/guppi/config.py`, no
+such line is refused, so that the setup Case of `rule-morph` is written before the opening
+Case of the first sprint (case 1017.2); a taken sprint id is refused all the same.
 
 No defer of a record (case 865). A fresh `defer` decision line whose slug names a Lesson or a
 Decision page, by `defers_a_record` of `.guppi/guppi/materialize.py`, whether its page stands
@@ -1008,10 +1011,15 @@ def refused_without_sprint(
     session's ledger or the lines of the same `Stop` hold a `create` decision line of an
     `entity-sprint-` slug: the session after the close of a sprint opens the next sprint
     first (case 628.3). A line of `taken`, refused by `refused_taken_sprint`, opens no sprint
-    (case 788.1). Readings and lessons pass. The lines are read by `parse_line` of
+    (case 788.1). Readings and lessons pass. While `setup_pending` of `.guppi/guppi/config.py`
+    answers True, no line is refused, so that the setup Case of `rule-morph` is written before
+    the opening Case (case 1017.2). The lines are read by `parse_line` of
     `.guppi/guppi/materialize.py`, the one parse of a ledger line."""
+    from guppi.config import setup_pending
     from guppi.materialize import parse_line
 
+    if setup_pending(project_dir):
+        return []
     entities = project_dir / "vault" / "wiki" / "entities"
     if entities.is_dir() and any(entities.glob(f"{SPRINT_PAGE}*.md")):
         return []

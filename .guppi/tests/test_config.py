@@ -61,3 +61,28 @@ def test_outside_finds_a_letter_of_another_script():
     assert not config.outside("Русский текст про `rule-prespec` и `guppi/config.py`.", "ru")
     assert config.outside("An English line with `слово` in a code span.", "en")
     assert config.outside("Русский текст с `α` в коде.", "ru")
+
+
+@pytest.mark.parametrize(
+    ("line", "pending"),
+    [
+        ("setup_done = false", True),
+        ("setup_done = true", False),
+        ('setup_done = "false"', False),
+        ("setup_done = 0", False),
+        ("", False),
+    ],
+)
+def test_setup_pending_only_on_setup_done_false(tmp_path, line, pending):
+    (tmp_path / "guppi.toml").write_text(SETTINGS + line + "\n", encoding="utf-8", newline="\n")
+    assert config.setup_pending(tmp_path) is pending
+
+
+def test_setup_pending_on_a_missing_file_is_false(tmp_path):
+    assert config.setup_pending(tmp_path) is False
+
+
+def test_setup_pending_on_a_text_that_is_not_toml_is_false(tmp_path):
+    text = "setup_done = false\ndocumentation_lang = en\n"
+    (tmp_path / "guppi.toml").write_text(text, encoding="utf-8", newline="\n")
+    assert config.setup_pending(tmp_path) is False

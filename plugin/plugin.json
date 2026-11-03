@@ -4,5 +4,6 @@
   "author": {
     "name": "kirMykholap"
   },
-  "repository": "https://github.com/kirMykholap/GUPPI"
+  "repository": "https://github.com/kirMykholap/GUPPI",
+  "icon": "./.guppi/icon.png"
 }

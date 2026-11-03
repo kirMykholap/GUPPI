@@ -20,7 +20,12 @@ the checks, cleaned, and no other file of `.github/`, by the tests whose names h
 `checks_workflow`; no build while a page with `core: true` is draft but with `--allow-draft`,
 by the tests whose names hold `draft_core`; and a blank description of the project in
 `CLAUDE.md` and in the Render of `rule-claude-md`, by the tests whose names hold `description`
-(case 822)."""
+(case 822). The icon of the plugin, `.guppi/icon.png`, copied as it stands, judged by neither
+the build nor `--check` and named by the field `icon` of the manifest, by the tests whose
+names hold `icon`, `estimate-clean-branch-ships-the-plugin-icon` (case 1016). The Render of
+`rule-guppi-config` in the copy with `setup_done = false`, whether the working tree holds the
+key or not, by the tests whose names hold `setup`,
+`estimate-clean-branch-ships-the-setup-not-done` (case 1017.1)."""
 
 import io
 import json
@@ -527,6 +532,7 @@ def test_it_writes_the_manifest_and_the_catalogue_of_the_plugin(tmp_path):
         "description": DESCRIPTION,
         "author": {"name": "kirMykholap"},
         "repository": "https://github.com/kirMykholap/GUPPI",
+        "icon": "./.guppi/icon.png",
     }
     catalogue = (out / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8")
     assert json.loads(catalogue) == {
@@ -535,6 +541,38 @@ def test_it_writes_the_manifest_and_the_catalogue_of_the_plugin(tmp_path):
         "plugins": [{"name": "guppi", "source": "./", "description": DESCRIPTION}],
     }
     assert "version" not in json.loads((REPO / "plugin" / "plugin.json").read_text("utf-8"))
+
+
+# a picture that is no UTF-8 text: the signature of a PNG, a NUL byte and a pointer outside a
+# bracket, which a judgment of the file would print
+ICON = b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR since case 5 it draws\xff\xfe"
+
+
+def test_the_icon_is_copied_byte_for_byte_with_no_line(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    (root / ".guppi" / "icon.png").write_bytes(ICON)
+    commit(root)
+    assert run(root, out) == (0, [])
+    assert (out / ".guppi" / "icon.png").read_bytes() == ICON
+    assert manifest_of(out)["icon"] == "./.guppi/icon.png"
+
+
+def test_check_prints_no_line_on_the_icon(tmp_path):
+    root = tmp_path / "p"
+    tree(root, rule_a=page("rule", "rule-a"))
+    (root / ".guppi" / "icon.png").write_bytes(ICON)
+    stdout = io.StringIO()
+    code = ship.run(["--check"], stdout=stdout, stderr=io.StringIO(), project_dir=root, now=NOW)
+    assert (code, stdout.getvalue()) == (0, "")
+
+
+def test_the_live_icon_is_a_png_of_512_by_512_named_by_the_manifest():
+    field = json.loads((REPO / "plugin" / "plugin.json").read_text("utf-8"))["icon"]
+    assert field == "./.guppi/icon.png"
+    head = (REPO / field).read_bytes()[:24]
+    assert head[:8] == b"\x89PNG\r\n\x1a\n" and head[12:16] == b"IHDR"
+    assert (int.from_bytes(head[16:20], "big"), int.from_bytes(head[20:24], "big")) == (512, 512)
 
 
 def test_the_version_is_the_highest_tag_prod_x_y_z_in_the_history(tmp_path):
@@ -1055,6 +1093,37 @@ def test_the_render_check_passes_over_the_copy_with_a_blank_description(tmp_path
     stdout = io.StringIO()
     code = render.run(["--check"], stdout=stdout, stderr=io.StringIO(), project_dir=out)
     assert (code, stdout.getvalue()) == (0, "")
+
+
+SETTINGS_RENDER = (
+    '# guppi settings\ndocumentation_lang = "en"\nchat_lang = "ru"\n'
+    'test = ["uv run --project .guppi pytest -q .guppi/tests"]'
+)
+
+
+@pytest.mark.parametrize("key_line", ["\nsetup_done = true", ""])
+def test_the_copy_ships_setup_not_done_in_the_render_of_the_settings(tmp_path, key_line):
+    from guppi import config
+
+    root, out = tmp_path / "p", tmp_path / "out"
+    render = "enforcement: render\nrender_mode: full\ngoverns: guppi.toml"
+    held = SETTINGS_RENDER + key_line
+    tree(root, rule_guppi_config=page("rule", "rule-guppi-config", extra=render, render=held))
+    code, lines = run(root, out)
+    assert (code, lines) == (0, [])
+    shipped = read_page(out / "vault" / "wiki" / "rules" / "rule-guppi-config.md", "rules")
+    assert shipped.sections["## Render"] == (
+        f"<!-- rule-guppi-config -->\n{SETTINGS_RENDER}\nsetup_done = false\n"
+        "<!-- /rule-guppi-config -->"
+    )
+    settings = out / "guppi.toml"
+    body = shipped.sections["## Render"].split("\n")[1:-1]
+    settings.write_text("\n".join(body) + "\n", encoding="utf-8", newline="\n")
+    assert config.setup_pending(out) is True
+
+
+def test_a_render_without_the_closing_line_keeps_no_setup_line():
+    assert ship.setup_not_done("x = 1\n") == "x = 1\n"
 
 
 def test_a_text_without_both_marker_lines_keeps_its_description():

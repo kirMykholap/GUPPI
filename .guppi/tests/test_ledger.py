@@ -1408,6 +1408,42 @@ def test_sprint_create_in_the_ledger_lets_a_later_line_through(tmp_path):
     assert ledger_text(tmp_path).endswith(f"{timed(DECISION)}\n")
 
 
+# --- the setup of a project before its first sprint (case 1017.2) --------------------------
+# `estimate-ledger-write-passes-every-line-before-the-setup`; the names hold `setup` and not
+# the word of the run `-k` of `estimate-sprint-close-next-session-opens-the-sprint`
+
+
+def settings(root, line: str) -> None:
+    text = 'documentation_lang = "en"\nchat_lang = "ru"\n' + line
+    (root / "guppi.toml").write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_setup_pending_writes_a_decision_line_with_none_open(tmp_path):
+    without_sprint(tmp_path)
+    settings(tmp_path, "setup_done = false\n")
+    code, err = run(payload(last_assistant_message=ledger_block(DECISION)), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path) == f"{timed(DECISION)}\n"
+
+
+@pytest.mark.parametrize("line", ["setup_done = true\n", ""])
+def test_setup_done_or_no_key_refuses_a_decision_line_with_none_open(tmp_path, line):
+    without_sprint(tmp_path)
+    settings(tmp_path, line)
+    code, err = run(payload(last_assistant_message=ledger_block(DECISION)), tmp_path)
+    assert code == 2 and err.count("no sprint is open") == 1
+    assert not ledger_file(tmp_path).exists() or ledger_text(tmp_path) == ""
+
+
+def test_setup_pending_still_refuses_a_taken_id(tmp_path):
+    without_sprint(tmp_path)
+    settings(tmp_path, "setup_done = false\n")
+    sprint_page(tmp_path, "entity-sprint-next")
+    code, err = run(payload(last_assistant_message=ledger_block(OPENING)), tmp_path)
+    assert code == 2 and err.count(TAKEN) == 1
+    assert not ledger_file(tmp_path).exists() or ledger_text(tmp_path) == ""
+
+
 # --- a sprint id is never taken twice (case 788.1) -----------------------------------------
 # `estimate-skill-sprint-open-refuses-a-taken-sprint-id`
 

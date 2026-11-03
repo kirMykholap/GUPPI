@@ -13,6 +13,14 @@ The file also sets how the project tests its code and checks its style: the keys
 `.guppi/guppi/commands.py` run. `commands_of` reads the list of one key; a missing file or key
 is a `ConfigError` that names the file and the key (case 820.2).
 
+The key `setup_done`, `SETUP_KEY`, marks whether the setup Case of `rule-morph` has set these
+values: `guppi ship` writes `setup_done = false` into the copy a new project installs, and the
+setup Case sets it to `true`. `setup_pending` is the one judgment of it, which the ledger hook,
+the hook of `/hi` and the tests of `guppi ship` import: the setup is not done only where
+`guppi.toml` parses and holds `setup_done = false`; a missing file, a text that does not parse,
+a missing key and any other value count as done. `parse` does not read the key, so it never
+stops the render (case 1017.1).
+
 The render reads the codes from the Render of `rule-guppi-config` by `parse`, never from
 `guppi.toml`, which is its own output; the checks read `guppi.toml` by `read_settings`.
 `outside` is the one judgment of a letter's script: the pre-spec finding of a name,
@@ -35,6 +43,7 @@ from guppi.lint import CODE_SPAN
 SETTINGS_FILE = "guppi.toml"
 SETTINGS_PAGE = "rule-guppi-config"
 KEYS = ("documentation_lang", "chat_lang")
+SETUP_KEY = "setup_done"
 
 
 @dataclass(frozen=True)
@@ -110,6 +119,19 @@ def commands_of(project_dir: Path, key: str) -> list[str]:
     if not isinstance(commands, list) or not all(isinstance(c, str) for c in commands):
         raise ConfigError(f"{SETTINGS_FILE}: {key} is not a list of commands")
     return commands
+
+
+def setup_pending(project_dir: Path) -> bool:
+    """True only where `guppi.toml` at the root parses and holds `setup_done = false`: the
+    setup Case of `rule-morph` has not run (case 1017.1)."""
+    path = Path(project_dir) / SETTINGS_FILE
+    if not path.is_file():
+        return False
+    try:
+        data = tomllib.loads(path.read_text(encoding="utf-8"))
+    except tomllib.TOMLDecodeError:
+        return False
+    return data.get(SETUP_KEY) is False
 
 
 def name_of(code: str) -> str:

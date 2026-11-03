@@ -1,8 +1,9 @@
 """`guppi ship <folder>` — the clean version of GUPPI that other people install.
 
 Builds the clean version from the working tree into an empty folder (case 804.6): `.guppi/`,
-the package `guppi` with its `pyproject.toml`, `uv.lock` and `.gitignore`, and its tests
-`.guppi/tests/` (case 822); `.claude/`; the root files of `ROOT_FILES`, `CLAUDE.md`
+the package `guppi` with its `pyproject.toml`, `uv.lock` and `.gitignore`, its tests
+`.guppi/tests/` (case 822) and `.guppi/icon.png`, the icon of the plugin that the field `icon`
+of the manifest names (case 1016); `.claude/`; the root files of `ROOT_FILES`, `CLAUDE.md`
 and `.gitattributes`; `VAULT_IGNORE`, `vault/.gitignore`, whose lines keep the daily event
 logs under `vault/raw/` and `vault/archive/` out of git (case 893.1); the `schema.yaml` of each category, `vault/wiki/tags.md`, each page
 but an Estimate that `is_core` of `.guppi/guppi/pages.py` accepts and each file that the
@@ -13,6 +14,8 @@ version, gets no command `ship` (case 820.5). The `pyproject.toml` and
 `uv.lock` at the root of the repository of GUPPI, a development project, are not written
 (case 819.3). A folder or a file of `SKIPPED_NAMES` — the Python environment `.guppi/.venv/`, a cache folder of Python, pytest or ruff — is neither
 written nor judged. A file that a page without `core: true` renders in full is not written.
+A file that is no UTF-8 text, such as `.guppi/icon.png`, is copied as it stands, and neither
+the build nor `--check` judges it (case 1016).
 Of `.github/` it writes only `CI`, `.github/workflows/checks.yml`, the CI that runs the tests,
 the vault checks and the style check of a project, judged and cleaned like each other file it
 writes (case 822); nothing of `vault/raw/`, `vault/archive/` or the rest of `.github/`,
@@ -32,7 +35,11 @@ writes `BLANK_DESCRIPTION` — the heading `# Project`, a blank line and the lin
 description: not set yet.` — between the marker lines of `DESCRIPTION_MARKERS`,
 `<!-- project-description -->` and `<!-- /project-description -->`, in place of the heading
 and the description of this project; every other line stays, so `guppi render --check` over
-the copy names no file that differs (case 822).
+the copy names no file that differs (case 822). In the Render of `rule-guppi-config` that the
+copy holds, `setup_not_done` writes `setup_done = false`, the key `SETUP_KEY` of
+`.guppi/guppi/config.py`, in place of each line of that key, or adds it before the closing
+marker line where none stands, so that the first `/hi` of a project that installs GUPPI
+starts its setup (case 1017.1).
 
 An Estimate is written when `ships` accepts it (case 822): its `status` is `passed`, its
 `target`, read by `slug_of` of `.guppi/guppi/pages.py`, is a page with `core: true` that the
@@ -122,6 +129,7 @@ from pathlib import Path
 
 from guppi import backlog, glossary
 from guppi.caseid import ID
+from guppi.config import SETTINGS_PAGE, SETUP_KEY
 from guppi.event import project_root
 from guppi.generate import READING_DATE, RESULT, write_page
 from guppi.lint import LINK_FIELDS, MAKE_TARGET, RENDER, WIKILINK
@@ -399,6 +407,22 @@ def blank_description(text: str) -> str:
     return "\n".join(lines[: start + 1] + list(BLANK_DESCRIPTION) + lines[end:])
 
 
+def setup_not_done(text: str) -> str:
+    """The Render of `rule-guppi-config` with `setup_done = false` in place of each line that
+    opens with `SETUP_KEY` of `.guppi/guppi/config.py`, or, where none stands, as a line added
+    before the closing marker line, so that a copy built before the live page gains the key
+    still ships it; a text without the closing marker line as it is (case 1017.1)."""
+    lines = text.split("\n")
+    line = f"{SETUP_KEY} = false"
+    if any(item.startswith(SETUP_KEY) for item in lines):
+        return "\n".join(line if item.startswith(SETUP_KEY) else item for item in lines)
+    closing = f"<!-- /{SETTINGS_PAGE} -->"
+    if closing not in lines:
+        return text
+    end = lines.index(closing)
+    return "\n".join(lines[:end] + [line] + lines[end:])
+
+
 def drafts(project_dir: Path) -> list[str]:
     """A line `ship: <page>: a page with core: true that is draft` for each page of the vault
     that `is_draft_core` of `.guppi/guppi/pages.py` accepts, by its path, with the pages by
@@ -431,6 +455,8 @@ def shipped_page(page: Page, slugs: set[str], day: date) -> tuple[dict, dict]:
     sections = dict(page.sections)
     if page.slug == DESCRIBED_PAGE and RENDER in sections:
         sections[RENDER] = blank_description(sections[RENDER])
+    if page.slug == SETTINGS_PAGE and RENDER in sections:
+        sections[RENDER] = setup_not_done(sections[RENDER])
     if page.category == "estimates":
         props["core"] = True
         sections[RESULT] = result_line(page)

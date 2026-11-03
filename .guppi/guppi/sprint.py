@@ -38,9 +38,12 @@ sprint page and no file: one line on stderr, exit 1, nothing written.
 payload on stdin, and when the prompt is `/hi` by `is_hi_prompt` of `.guppi/guppi/event.py` and
 `closed_id` finds the mark on the first heading of `vault/wiki/sprint.md`, it prints into the
 agent's context one line that names the closed sprint and tells the agent to start the
-skill `/sprint-open` before the Frontier. Any other prompt, an open heading and a missing
-file print nothing; the hook writes no file, exits 0 in every case, and an error of its own
-is one line on stderr.
+skill `/sprint-open` before the Frontier. Before that line, while `guppi.toml` holds
+`setup_done = false` by `setup_pending` of `.guppi/guppi/config.py`, it prints one line that
+tells the agent to start the skill `/setup` of `rule-skill-setup` before `/sprint-open` and
+before the Frontier (case 1017.3). Any other prompt, an open heading and a missing file print
+nothing; the hook writes no file, exits 0 in every case, and an error of its own is one line
+on stderr.
 
 `--check` renders in memory and compares: one line on stdout — `sprint:
 vault/wiki/sprint.md differs from entity-sprint-<id>`, or `… differs from the closed form of
@@ -62,6 +65,7 @@ import re
 import sys
 from pathlib import Path
 
+from guppi.config import setup_pending
 from guppi.event import is_hi_prompt, project_root, read_payload
 from guppi.ledger import SPRINT_PAGE, is_sprint_page
 from guppi.lint import archived_slugs, as_list
@@ -275,12 +279,21 @@ def parser() -> argparse.ArgumentParser:
 
 def hi_hook(project_dir: Path, stdin, stdout, stderr) -> int:
     """At `/hi`, a first heading that carries the closed mark prints one line that tells
-    the agent to start `/sprint-open`; anything else prints nothing (case 743.7). Exit 0."""
+    the agent to start `/sprint-open`; anything else prints nothing (case 743.7). While the
+    setup of the project is not done, by `setup_pending`, a line that tells the agent to start
+    `/setup` comes before it (case 1017.3). Exit 0."""
     try:
         if not is_hi_prompt(read_payload(stdin).get("prompt")):
             return 0
         target = wiki_root(project_dir) / "sprint.md"
         closed = closed_id(target.read_text(encoding="utf-8")) if target.is_file() else None
+        if closed and setup_pending(project_dir):
+            print(
+                "setup: the setup of this project is not done, guppi.toml holds setup_done = "
+                "false: start the skill /setup before /sprint-open and before the Frontier "
+                "(rule-skill-setup, case 1017.3)",
+                file=stdout,
+            )
         if closed:
             print(
                 f"sprint: no sprint is open since the close of {closed}: start the skill "

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent copied the heading of the Frontier from the English example of a short-form defer instead of writing it in Russian as the acknowledging reply sets it
-status: clustered
+status: archived
 insight: "[[insight-orchestration-acknowledging-reply-keeps-headings-in-english]]"
 origin: raw/2026-11-02/2035/ledger.md#L12
 sprint: plugin
@@ -22,3 +22,5 @@ the agent copied the heading of the Frontier from the English example of a short
 
 - 2026-11-02 created · raw/2026-11-02/2035/ledger.md#L12
 - 2026-11-02 updated: clustered under insight-orchestration-acknowledging-reply-keeps-headings-in-english (synthesis) · raw/2026-11-02/2035/ledger.md#L12
+- 2026-11-03 archived · insight actioned
+- 2026-11-03 archived · cleanup

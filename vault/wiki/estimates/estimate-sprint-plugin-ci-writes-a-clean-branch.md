@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[entity-sprint-plugin]]"
 purpose: Whether CI writes a clean version of the project to a branch of its own, with no case reference and no session data and with the version of its tag prod-x.y.z, and fails when one remains or when no such tag stands in its history
 method: "uv run --project .guppi pytest .guppi/tests/test_ship.py for the version of the highest tag, a tag of another form and a commit with no such tag; by hand, after a run of .github/workflows/prod.yml on a tag prod-x.y.z of a commit of plugin that writes prod, before the close of the sprint plugin: its push with the deploy key of the secret PROD_DEPLOY_KEY, the branch prod it wrote, the version in .claude-plugin/plugin.json of prod and the on: block of .github/workflows/prod.yml read against the Criterion; the person's answer at the close of plugin when no such run comes before it"
-checked: 2026-10-14
+checked: 2026-11-03
 origin: raw/2026-10-10/1713/ledger.md#case-756.5
 sprint: plugin
 created: 2026-10-10
@@ -32,7 +32,7 @@ The run writes the clean version that `uv run --project .guppi guppi ship` build
 
 ## Result
 
-2026-10-14, Retro of session 1536, gh run view 38585781386 (tag prod-2, commit c95e7579) and git grep over origin/prod: the run succeeded and pushed through the ruleset bypass with the deploy key of PROD_DEPLOY_KEY ("Bypassed rule violations for refs/heads/prod", 34ae3bee..c363e8a9 HEAD -> prod); c363e8a9 is one new commit on top of 34ae3bee, "The clean version of GUPPI, built from c95e75791a69…"; prod holds 85 pages, the same set as the 85 pages with core: true at c95e7579; no frontier.md, sprint.md, brief.md, backlog.md, log.md, guppi.toml, .github/, raw/ or archive/; every case id left stands in a code span, a fenced block or the form [case N], and the schema.yaml origins raw/2026-09-08/… are the example pages of its examples block; the on: block runs on a push to main and to a tag prod-*; the two − lines were read from the workflow text, not from a run
+2026-11-03, gh run view 41552724295 (tag prod-0.3.0, commit c05c9cab), git show and git ls-tree over origin/prod, uv run --project .guppi pytest .guppi/tests/test_ship.py: the run succeeded; claude plugin validate passed with one ICON_MISSING note; the push went through the ruleset bypass ("Bypassed rule violations for refs/heads/prod", c363e8a9..39c7384a HEAD -> prod); 39c7384a is one new commit on top of c363e8a9, "The clean version of GUPPI, built from c05c9cabf69f…"; version in .claude-plugin/plugin.json on prod is 0.3.0; prod holds 82 rules and 3 entities, the same set as the pages with core: true at c05c9cab, besides schema.yaml files; brief.md, backlog.md, sprint.md and log.md on prod are the install templates ("GUPPI installed", "0 items", "No sprint is open since the close of guppi"), no frontier.md, raw/ or archive/; a git grep for case ids printed only the placeholder decision-case-N in agent texts; the on: block runs on a push to main and to a tag prod-*; test_ship.py 55 passed, 1 deselected, which covers the − lines on a commit with no tag prod-x.y.z
 
 ## History
 
@@ -48,3 +48,4 @@ The run writes the clean version that `uv run --project .guppi guppi ship` build
 - 2026-10-16 updated: the tag prod-0.2.0 placed on plugin, local; its push is a stop: task of case 850; the Criterion stands, and the reading waits for a run that writes prod · [[decision-case-841]]
 - 2026-10-16 updated: the push of the tag prod-0.2.0 runs after the install readings, on the person's word; the Criterion stands, and the reading waits for a run that writes prod · [[decision-case-850]]
 - 2026-11-02 updated: the Criterion replaced whole — a run fails while a page that blocks the build stands · [[decision-case-996.2]]
+- 2026-11-03 status: pending → passed · raw/2026-11-02/2155/ledger.md#L15

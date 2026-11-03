@@ -47,7 +47,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
       { "matcher": "Skill",
         "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi gate", "timeout": 30 } ] },
       { "matcher": "Edit|Write|MultiEdit",
-  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi guard", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi ratified --guard", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi guard", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi ratified --guard", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi frontierguard", "timeout": 30 } ] },
 { "matcher": "Bash",
   "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi bashguard", "timeout": 30 } ] },
 { "matcher": "PowerShell",
@@ -116,3 +116,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-10-31 updated: the SessionStart hook guppi links --write registered · [[decision-case-967.3]]
 - 2026-11-01 updated: UserPromptSubmit → guppi spec --typed · [[decision-case-987.1]]
 - 2026-11-02 updated: the SessionStart hook guppi links --write removed with the graph of links · [[decision-case-999.1]]
+- 2026-11-03 updated: the PreToolUse hook guppi frontierguard registered on Edit, Write and MultiEdit · [[decision-case-1012]]

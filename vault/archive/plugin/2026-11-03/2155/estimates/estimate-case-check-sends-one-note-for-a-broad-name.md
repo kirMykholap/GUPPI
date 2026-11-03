@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: archived
 target: "[[rule-case-check]]"
 purpose: Whether the check of the file of a Case sends case-guppi one note with the name and the count for a name of what the Case changes that more than 20 of the searched files hold, in place of a note for each of those files
 method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py, passed and not skipped
@@ -31,3 +31,5 @@ The hook sends one note for that name, which names the Case, the name and the co
 
 - 2026-11-02 created · [[decision-case-1010.2]]
 - 2026-11-02 status: pending → passed · raw/2026-11-02/2035/ledger.md#L11
+- 2026-11-03 deleted · [[decision-case-1011.1]]
+- 2026-11-03 archived · cleanup

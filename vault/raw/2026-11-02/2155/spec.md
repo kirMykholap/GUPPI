@@ -78,13 +78,13 @@ delete:
 ```
 
 ```tasks
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
-- [ ] delete `estimate-case-check-sends-one-note-for-a-broad-name`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
+- [x] delete `estimate-case-check-sends-one-note-for-a-broad-name`
 - [x] `.guppi/guppi/casecheck.py`: `names_notes` gives one note per Case, a first line `note: case <N>: these files name what the Case changes and you did not read them: read each one whose purpose line or path speaks of what the Case changes, or name it in context with the reason it stands`, then a line per file under the first name it holds, with its path and, for a page, its purpose line; `BROAD_NAME` and the count go; a file that a note stored for the Case id already lists is not listed again, and no note is sent when none is left; the module docstring and the docstrings of `names_notes` and `check_answer` say so, each pointer in a bracket.
 - [x] `.guppi/tests/test_casecheck.py`: the tests of the note of names read the list; the three tests of a broad name go; a test that 21 unread files that name `rule-x` stand in one note, each on its own line; a test that a later check of the same Case id lists only a file no earlier note listed, and sends no note when none is left.
 - [x] `uv run --project .guppi guppi test`: passes.
-- [ ] read `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
+- [x] read `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
 ```
 
 ### Case 1011.2 — case-guppi answers the list by the purpose line or the path of each file
@@ -124,9 +124,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-searches-the-names-of-what-it-changes`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-searches-the-names-of-what-it-changes`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-searches-the-names-of-what-it-changes`
 ```
 
@@ -179,11 +179,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `rule-case-protocol`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
-- [ ] update `estimate-case-build-reads-by-need-and-in-parts`
-- [ ] read `estimate-case-build-reads-by-need-and-in-parts`
+- [x] update `rule-case-build`
+- [x] update `rule-case-protocol`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] update `estimate-case-build-reads-by-need-and-in-parts`
+- [x] read `estimate-case-build-reads-by-need-and-in-parts`
 ```
 
 ### Case 1011.4 — case-guppi reads the Estimates of the pages its given names by their purpose first, at every dispatch
@@ -254,8 +254,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-writes-the-case`
-- [ ] read `estimate-case-build-writes-the-case`
+- [x] update `estimate-case-build-writes-the-case`
+- [x] read `estimate-case-build-writes-the-case`
 ```
 
 ## Case 1012 — A hook refuses an edit of the Frontier that leaves an open box beside a closer
@@ -356,18 +356,18 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-frontier-hook`
-- [ ] create `estimate-frontier-hook-refuses-an-open-box-with-a-closer`
-- [ ] update `rule-hook-registry`
-- [ ] update `insight-orchestration-frontier-closer-leaves-the-box-open`
+- [x] create `rule-frontier-hook`
+- [x] create `estimate-frontier-hook-refuses-an-open-box-with-a-closer`
+- [x] update `rule-hook-registry`
+- [x] update `insight-orchestration-frontier-closer-leaves-the-box-open`
 - [x] `.guppi/guppi/prespec.py`: a function beside `CLOSERS` gives each item of a box line of a Frontier text, under any heading, whose box is `[ ]` and whose last segment after `FRONTIER_SEPARATOR` matches `CLOSERS`, with that closer; the docstring names it as the one judgment the hook imports, each pointer in a bracket at the end of its sentence.
 - [x] `.guppi/guppi/ratified.py`: the computation of the text after a `Write`, an `Edit` or a `MultiEdit` moves out of `builder_write` into one function that gives the text or the reason it cannot be made; `builder_write` calls it and writes as before, and `.guppi/tests/test_ratified.py` passes unchanged.
 - [x] `.guppi/guppi/frontierguard.py`: the hook as `then` sets it, the path judged by `generate.DAY` and `generate.SESSION` as `casecheck.is_case_file` judges a session folder, the text by the function of `ratified.py`, the lines by the function of `prespec.py`, the log line by `format_line` and `append` of `event.py`; a module docstring with the mechanism and `Rule page: vault/wiki/rules/rule-frontier-hook.md`, each pointer in a bracket at the end of its sentence.
 - [x] `.guppi/guppi/cli.py`: the command `frontierguard` runs `frontierguard.run`, and the module docstring lists `frontierguard` among the hook commands.
 - [x] `.guppi/tests/test_frontierguard.py`: one test per line of `then` over a session folder under a temporary folder and a pinned clock: an `Edit` that appends `· case 7` to an open line is refused, with the item and the closer in the reason; the same `Edit` with the box `[x]` passes; a `Write` and a `MultiEdit` that leave such a line anywhere in the file are refused; an open line with no closer, a `frontier.md` outside a session folder, another file and another tool pass; a missing old string, a missing file and an unreadable payload pass; and the refusal writes one line to the event log.
 - [x] `uv run --project .guppi guppi test`: passes.
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
-- [ ] read `estimate-frontier-hook-refuses-an-open-box-with-a-closer`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] read `estimate-frontier-hook-refuses-an-open-box-with-a-closer`
 ```
 
 ## Case 1013 — A heading of the acknowledging reply may keep a term of the harness in English
@@ -445,9 +445,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `estimate-orchestration-acknowledging-reply`
-- [ ] update `insight-orchestration-acknowledging-reply-keeps-headings-in-english`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `estimate-orchestration-acknowledging-reply`
+- [x] update `insight-orchestration-acknowledging-reply-keeps-headings-in-english`
 - [ ] read `estimate-orchestration-acknowledging-reply`
 ```

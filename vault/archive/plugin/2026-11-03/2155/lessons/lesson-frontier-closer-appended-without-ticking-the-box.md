@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent edited only the end of the line with an Edit whose old_string held the tail of the title, so the box at the start of the line, which marks the line closed, stayed as it was; a closer is the box and the tail together
-status: clustered
+status: archived
 insight: "[[insight-orchestration-frontier-closer-leaves-the-box-open]]"
 origin: raw/2026-11-02/1548/ledger.md#L12
 sprint: plugin
@@ -22,3 +22,5 @@ the agent edited only the end of the line with an Edit whose old_string held the
 
 - 2026-11-02 created · raw/2026-11-02/1548/ledger.md#L12
 - 2026-11-02 updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-02/1548/ledger.md#L12
+- 2026-11-03 archived · insight actioned
+- 2026-11-03 archived · cleanup

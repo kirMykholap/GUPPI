@@ -4,7 +4,7 @@ kind: MOC
 purpose: Prevents work being planned against stale or contradictory vault state
 status: built
 parent: "[[rule-session]]"
-children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]", "[[rule-spec-write]]", "[[rule-spec-reconcile]]", "[[rule-case-build]]", "[[rule-case-check]]", "[[rule-skill-grill-me]]", "[[rule-skill-wait-what]]", "[[rule-prespec-onward]]", "[[rule-orchestration]]", "[[rule-ratification]]", "[[rule-case-example]]", "[[rule-skill-sprint-close]]", "[[rule-skill-pr-review]]", "[[rule-skill-merge-main]]", "[[rule-skill-approve-spec]]"]
+children: ["[[rule-ask]]", "[[rule-prespec-hook]]", "[[rule-prespec]]", "[[rule-spec-capture]]", "[[rule-case-protocol]]", "[[rule-spec-write]]", "[[rule-spec-reconcile]]", "[[rule-case-build]]", "[[rule-case-check]]", "[[rule-skill-grill-me]]", "[[rule-skill-wait-what]]", "[[rule-prespec-onward]]", "[[rule-orchestration]]", "[[rule-ratification]]", "[[rule-case-example]]", "[[rule-skill-sprint-close]]", "[[rule-skill-pr-review]]", "[[rule-skill-merge-main]]", "[[rule-skill-approve-spec]]", "[[rule-frontier-hook]]"]
 estimates: ["[[estimate-plan-mode-verified]]", "[[estimate-plan-mode-names-its-estimates]]"]
 origin: raw/2026-09-09/ledger.md#case-19
 sprint: migration
@@ -63,3 +63,4 @@ touches no Estimate; an `update` of a `Render` touches no Estimate of the live r
 - 2026-10-13 child rule-skill-merge-main added · [[decision-case-790]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
 - 2026-11-01 child rule-skill-approve-spec added · [[decision-case-987.1]]
+- 2026-11-03 child rule-frontier-hook added · [[decision-case-1012]]

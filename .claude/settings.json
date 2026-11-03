@@ -35,7 +35,7 @@
       { "matcher": "Skill",
         "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi gate", "timeout": 30 } ] },
       { "matcher": "Edit|Write|MultiEdit",
-  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi guard", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi ratified --guard", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi guard", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi ratified --guard", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi frontierguard", "timeout": 30 } ] },
 { "matcher": "Bash",
   "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi bashguard", "timeout": 30 } ] },
 { "matcher": "PowerShell",

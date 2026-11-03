@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: the main agent closes a Frontier line by an Edit whose old_string holds only the end of the line and appends the closer there, so the box at the start of the line, which marks it closed, stays open and guppi prespec --check prints the line as open
-status: open
+status: actioned
 children: ["[[lesson-orchestration-closes-a-frontier-line-by-its-closer-alone]]", "[[lesson-frontier-closer-appended-without-ticking-the-box]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-1012]]"
 origin: raw/2026-11-02/1548/ledger.md#L12
 sprint: plugin
 created: 2026-11-02
@@ -21,3 +22,4 @@ A suggestion, not a decision: the text of orchestration.md that sets the closers
 ## History
 
 - 2026-11-02 created · raw/2026-11-02/1548/ledger.md#L12
+- 2026-11-03 updated: actioned: a PreToolUse hook refuses an edit of the Frontier that leaves an open box beside a closer (case 1012) · [[decision-case-1012]]

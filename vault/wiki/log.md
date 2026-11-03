@@ -12784,3 +12784,47 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-02 lessons/lesson-ship-test-comment-writes-a-bare-case-reference created · raw/2026-11-02/2035/ledger.md#L13 · generate
 - 2026-11-02 insights/insight-orchestration-acknowledging-reply-keeps-headings-in-english updated: child lesson-orchestration-defer-reply-frontier-heading-in-english added, reopened from actioned (synthesis) · raw/2026-11-02/2035/ledger.md#L12 · generate
 - 2026-11-02 lessons/lesson-orchestration-defer-reply-frontier-heading-in-english updated: clustered under insight-orchestration-acknowledging-reply-keeps-headings-in-english (synthesis) · raw/2026-11-02/2035/ledger.md#L12 · generate
+- 2026-11-03 decisions/decision-case-1011 created · raw/2026-11-02/2155/ledger.md#case-1011 · generate
+- 2026-11-03 decisions/decision-case-1011.1 created · raw/2026-11-02/2155/ledger.md#case-1011.1 · generate
+- 2026-11-03 rules/rule-case-check updated: the note of names lists every unread file in one note per Case, with no limit of files · [[decision-case-1011.1]] · generate
+- 2026-11-03 estimates/estimate-case-check-notes-the-files-that-name-what-a-case-changes updated: the Criterion replaced whole — one note lists every unread file, with no limit of files · [[decision-case-1011.1]] · generate
+- 2026-11-03 estimates/estimate-case-check-sends-one-note-for-a-broad-name deleted · [[decision-case-1011.1]] · generate
+- 2026-11-03 decisions/decision-case-1011.2 created · raw/2026-11-02/2155/ledger.md#case-1011.2 · generate
+- 2026-11-03 rules/rule-case-build updated: case-guppi answers the note of names by the purpose line or the path of each listed file · [[decision-case-1011.2]] · generate
+- 2026-11-03 estimates/estimate-case-build-searches-the-names-of-what-it-changes updated: the Criterion replaced whole — case-guppi answers the list by the purpose line or the path of each file · [[decision-case-1011.2]] · generate
+- 2026-11-03 decisions/decision-case-1011.3 created · raw/2026-11-02/2155/ledger.md#case-1011.3 · generate
+- 2026-11-03 rules/rule-case-build updated: case-guppi reads the purpose of each Estimate of a changed page first, and its Criterion only where the purpose speaks of the change · [[decision-case-1011.3]] · generate
+- 2026-11-03 estimates/estimate-case-build-reads-by-need-and-in-parts updated: the Criterion replaced whole — the Estimates of a changed page are read by their purpose first · [[decision-case-1011.3]] · generate
+- 2026-11-03 decisions/decision-case-1012 created · raw/2026-11-02/2155/ledger.md#case-1012 · generate
+- 2026-11-03 rules/rule-frontier-hook created · [[decision-case-1012]] · generate
+- 2026-11-03 rules/rule-plan-mode child rule-frontier-hook added · [[decision-case-1012]] · generate
+- 2026-11-03 estimates/estimate-frontier-hook-refuses-an-open-box-with-a-closer created · [[decision-case-1012]] · generate
+- 2026-11-03 estimates/estimate-frontier-hook-refuses-an-open-box-with-a-closer status: pending → passed · raw/2026-11-02/2155/ledger.md#L19 · generate
+- 2026-11-03 rules/rule-frontier-hook estimate estimate-frontier-hook-refuses-an-open-box-with-a-closer added · [[decision-case-1012]] · generate
+- 2026-11-03 rules/rule-hook-registry updated: the PreToolUse hook guppi frontierguard registered on Edit, Write and MultiEdit · [[decision-case-1012]] · generate
+- 2026-11-03 insights/insight-orchestration-frontier-closer-leaves-the-box-open updated: actioned: a PreToolUse hook refuses an edit of the Frontier that leaves an open box beside a closer (case 1012) · [[decision-case-1012]] · generate
+- 2026-11-03 decisions/decision-case-1013 created · raw/2026-11-02/2155/ledger.md#case-1013 · generate
+- 2026-11-03 rules/rule-orchestration updated: a heading or a label of the acknowledging reply may keep a term of the harness in the documentation language · [[decision-case-1013]] · generate
+- 2026-11-03 estimates/estimate-orchestration-acknowledging-reply updated: the Criterion replaced whole — a heading or a label may keep a term of the harness in English, the heading of the Frontier that term alone included · [[decision-case-1013]] · generate
+- 2026-11-03 insights/insight-orchestration-acknowledging-reply-keeps-headings-in-english updated: actioned: the person rejected the pattern as a failure; a heading may keep a term of the harness in English (case 1013) · [[decision-case-1013]] · generate
+- 2026-11-03 estimates/estimate-sprint-plugin-ci-writes-a-clean-branch status: pending → passed · raw/2026-11-02/2155/ledger.md#L15 · generate
+- 2026-11-03 rules/rule-case-protocol updated: a Case finds the Estimates it updates by their purpose first, with /pre-spec behind it · [[decision-case-1011.3]] · generate
+- 2026-11-03 decisions/decision-case-1011.4 created · raw/2026-11-02/2155/ledger.md#case-1011.4 · generate
+- 2026-11-03 estimates/estimate-case-build-writes-the-case updated: the Criterion written whole — case-guppi reads the purpose of each Estimate of a page the given names, and its Criterion only where that purpose speaks of the change · [[decision-case-1011.4]] · generate
+- 2026-11-03 estimates/estimate-case-check-notes-the-files-that-name-what-a-case-changes status: pending → passed · raw/2026-11-02/2155/ledger.md#L18 · generate
+- 2026-11-03 estimates/estimate-case-build-reads-by-need-and-in-parts status: pending → passed · raw/2026-11-02/2155/ledger.md#L20 · generate
+- 2026-11-03 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-11-02/2155/ledger.md#L21 · generate
+- 2026-11-03 lessons/lesson-ship-docstring-sample-writes-a-real-case-number created · raw/2026-11-02/2155/ledger.md#L22 · generate
+- 2026-11-03 lessons/lesson-caseid-session-option-takes-the-hhmm created · raw/2026-11-02/2155/ledger.md#L23 · generate
+- 2026-11-03 insights/insight-ship-live-code-writes-a-case-number-outside-a-bracket created · raw/2026-11-02/2155/ledger.md#L22 · generate
+- 2026-11-03 lessons/lesson-ship-test-comment-writes-a-bare-case-reference updated: clustered under insight-ship-live-code-writes-a-case-number-outside-a-bracket (synthesis) · raw/2026-11-02/2155/ledger.md#L22 · generate
+- 2026-11-03 lessons/lesson-ship-docstring-sample-writes-a-real-case-number updated: clustered under insight-ship-live-code-writes-a-case-number-outside-a-bracket (synthesis) · raw/2026-11-02/2155/ledger.md#L22 · generate
+- 2026-11-03 rules/rule-frontier-hook status: draft → built · cascade · generate
+- 2026-11-03 lessons/lesson-orchestration-defer-reply-frontier-heading-in-english archived · insight actioned · generate
+- 2026-11-03 lessons/lesson-orchestration-closes-a-frontier-line-by-its-closer-alone archived · insight actioned · generate
+- 2026-11-03 lessons/lesson-frontier-closer-appended-without-ticking-the-box archived · insight actioned · generate
+- 2026-11-03 estimates/estimate-case-check-sends-one-note-for-a-broad-name archived · cleanup
+- 2026-11-03 lessons/lesson-frontier-closer-appended-without-ticking-the-box archived · cleanup
+- 2026-11-03 lessons/lesson-orchestration-closes-a-frontier-line-by-its-closer-alone archived · cleanup
+- 2026-11-03 lessons/lesson-orchestration-defer-reply-frontier-heading-in-english archived · cleanup
+- 2026-11-03 rules/rule-case-check estimate estimate-case-check-sends-one-note-for-a-broad-name archived · cleanup

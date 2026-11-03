@@ -2,7 +2,8 @@
 type: lesson
 kind: error
 root_cause: the agent wrote a case reference in a code comment without the bracket that the check of test_ship.py asks of every pointer in the live code
-status: new
+status: clustered
+insight: "[[insight-ship-live-code-writes-a-case-number-outside-a-bracket]]"
 origin: raw/2026-11-02/2035/ledger.md#L13
 sprint: plugin
 created: 2026-11-02
@@ -20,3 +21,4 @@ the agent wrote a case reference in a code comment without the bracket that the 
 ## History
 
 - 2026-11-02 created · raw/2026-11-02/2035/ledger.md#L13
+- 2026-11-03 updated: clustered under insight-ship-live-code-writes-a-case-number-outside-a-bracket (synthesis) · raw/2026-11-02/2155/ledger.md#L22

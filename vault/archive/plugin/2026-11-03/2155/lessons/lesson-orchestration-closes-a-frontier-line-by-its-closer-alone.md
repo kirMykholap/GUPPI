@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the Edit that closes a Frontier line matched only the end of the line, so the box at its start was not part of the replaced text
-status: clustered
+status: archived
 insight: "[[insight-orchestration-frontier-closer-leaves-the-box-open]]"
 origin: raw/2026-11-01/0141/ledger.md#L19
 sprint: plugin
@@ -22,3 +22,5 @@ the Edit that closes a Frontier line matched only the end of the line, so the bo
 
 - 2026-11-01 created · raw/2026-11-01/0141/ledger.md#L19
 - 2026-11-02 updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-02/1548/ledger.md#L12
+- 2026-11-03 archived · insight actioned
+- 2026-11-03 archived · cleanup

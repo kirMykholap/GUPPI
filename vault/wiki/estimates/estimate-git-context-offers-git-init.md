@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-git-context]]"
 purpose: Whether /hi in a folder that is no git repository asks to run git init -b main, runs it on the person's yes and ends, ends on a no, and opens no sprint and writes no Frontier either way
 method: "by hand, after the librarian's run, in a repository that holds the module of the command ship: in an empty folder that is no git repository, GUPPI installed by /guppi:install from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, Claude Code opened there, /hi typed and answered no, /hi typed again and answered yes, then /hi typed a third time, and the replies, the context of each /hi, the session folders and git branch --show-current read against the Criterion"
@@ -20,7 +20,7 @@ The person types `/hi` of `.claude/skills/hi/SKILL.md` in a project folder, and 
 Then:
 Before `/sprint-open` and before the Frontier, the agent says that GUPPI works only in a git repository and asks the person whether it runs `git init -b main`.
 **＋** On the person's yes, the agent runs `git init -b main`, which Claude Code asks the person to allow, says that the repository is made, and tells the person to type `/hi` again.
-**＋** The next `/hi` prints `main` under `Branch:` and goes on as `rule-skill-hi` sets it, `/sprint-open` first when the hook of `rule-skill-sprint-open` asks for it.
+**＋** The next `/hi` prints `main` under `Branch:` and goes on as `rule-skill-hi` sets it: `/setup` first when the hook on `/hi` says that the setup of the project is not done, and `/sprint-open` when the hook of `rule-skill-sprint-open` asks for it.
 **＋** On the person's no, the agent tells the person to type `/hi` again after `git init -b main`.
 **－** After either answer, that `/hi` starts no `/sprint-open` and writes no `raw/<date>/<hi HHMM>/frontier.md`.
 **－** `git init -b main` is the one write before a ratified Case that `rule-default-mode` allows, and `allowed-tools` of `.claude/skills/hi/SKILL.md` does not name it.
@@ -36,3 +36,4 @@ Before `/sprint-open` and before the Frontier, the agent says that GUPPI works o
 - 2026-10-29 defer by decision-case-862 superseded · [[decision-case-900.1]]
 - 2026-10-29 updated: the defer retired, the reading taken at the install stop of Work Mode; the method states that it runs where the command ship stands · [[decision-case-900.1]]
 - 2026-10-29 status: pending → passed · raw/2026-10-29/0327/ledger.md#L32
+- 2026-11-03 updated: the Criterion replaced whole — the /hi after git init -b main starts /setup first in a project whose setup is not done · [[decision-case-1017.9]]

@@ -3,8 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-skill-sprint-open]]"
-purpose: Whether /sprint-open has the opening Case ask the goal of the sprint in every project and at every sprint by a question of the grill-me shape whose options are goals taken only from the description of the project in CLAUDE.md and one option in the person's own words, which it recommends, and offer no goal made up from the vault
-method: "by hand: the Render of rule-skill-sprint-open in .claude/skills/sprint-open/SKILL.md read against the Criterion"
+purpose: Whether /sprint-open has the opening Case word the goal of the sprint from the person's answer to the open question alone, with no question on the goal and nothing taken from the vault or from the description of the project in CLAUDE.md
+method: "by hand at Retro: the new Render of rule-skill-sprint-open in the Spec, raw/<date>/<hi HHMM>/spec.md, read against the Criterion, recorded in the estimate line"
+checked: 2026-11-03
 origin: raw/2026-10-31/0128/ledger.md#case-952
 sprint: plugin
 created: 2026-10-31
@@ -14,20 +15,20 @@ tags: [sprint, workflow, harness]
 ## Criterion
 
 When:
-The main agent starts `/sprint-open` of `.claude/skills/sprint-open/SKILL.md`, rendered from `rule-skill-sprint-open`, on `PreToolUse Skill`, or the person types `/sprint-open` on `UserPromptSubmit`, and the main agent dispatches `case-guppi` for the opening Case.
+The main agent starts `/sprint-open` of `.claude/skills/sprint-open/SKILL.md`, rendered from `rule-skill-sprint-open`, on `PreToolUse Skill`, or the person types `/sprint-open` on `UserPromptSubmit`, and the main agent dispatches `case-guppi` for the opening Case with the person's answer on what to build in the sprint.
 
 Then:
-The prompt of the call asks that the opening Case ask the goal of the sprint, in every project and at every sprint, by a question of the shape that `.claude/skills/grill-me/SKILL.md` sets.
-**＋** Each option of that question but one is a goal taken from the description of the project that `CLAUDE.md` holds between its project-description markers, as `rule-claude-md` sets them.
-**＋** One option is the goal in the person's own words, and the recommended answer of the question is that option.
-**＋** Where `CLAUDE.md` holds no description of the project, the option in the person's own words is the only option.
-**－** No option of that question is a goal made up from the vault.
+The prompt of the call asks that the opening Case word the goal of the sprint in one sentence, the `purpose` and the `## Purpose` of the new sprint page, from the person's answer alone.
+**＋** The opening Case puts no question on the goal to the person, who corrects it at the showing of the Case.
+**－** No word of the goal comes from the vault or from the description of the project that `CLAUDE.md` holds.
 
 ## Result
 
-2026-10-31, Retro of session 0128: the new Render text of rule-skill-sprint-open in vault/raw/2026-10-31/0128/spec.md (Case 952, the replace of the item "its goal in one sentence" of step 2, which stands once in the page and once in .claude/skills/sprint-open/SKILL.md line 10, in the list that the prompt of the call to case-guppi carries) read against the Criterion: the goal asked in every project and at every sprint by a question of the shape .claude/skills/grill-me/SKILL.md sets; its options goals taken only from the description between <!-- project-description --> and <!-- /project-description --> of CLAUDE.md (both markers stand, lines 1 and 5); one option the goal in the person's own words, recommended on its ➡️ line, alone where no description is set; no option a goal made up from the vault — each line of the Criterion matched
+2026-11-03, by hand at Retro of session 0316: the new step 2 of the Render of rule-skill-sprint-open in vault/raw/2026-11-03/0316/spec.md (Case 1018.1) has the prompt ask that the opening Case word the goal in one sentence from the person's answer alone, put it to the person in no question of its rounds, and take no word of it from the vault or from the description of CLAUDE.md
 
 ## History
 
 - 2026-10-31 created · [[decision-case-952]]
 - 2026-10-31 status: pending → passed · raw/2026-10-31/0128/ledger.md#L14
+- 2026-11-03 updated: the Criterion replaced whole — the goal is worded from the person's answer, with no goal question and nothing from the description; the reading takes the new Render in the Spec at Retro · [[decision-case-1018.2]]
+- 2026-11-03 status: pending → passed · raw/2026-11-03/0316/ledger.md#L31

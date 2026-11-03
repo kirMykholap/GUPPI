@@ -4,8 +4,9 @@ kind: QA
 status: pending
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
-method: "by hand, after the librarian's render that writes into vault/wiki/orchestration.md the sentence of rule-orchestration that lets a heading or a label of the acknowledging reply keep a term of the harness in English: an acknowledging reply and a reply that acknowledges Cases ratified together in one answer, each written after that render, each read against the Criterion in the transcript of its session under ~/.claude/projects/"
+method: "by hand, after the librarian's render that writes into vault/wiki/orchestration.md the sentence of rule-orchestration that lets a heading or a label of the acknowledging reply keep a term of the harness in English: an acknowledging reply and a reply that acknowledges Cases ratified together in one answer, each written after that render, each read against the Criterion in the transcript of its session under ~/.claude/projects/; by hand, after the librarian's run of the session that replaces this Criterion and a setup Case ratified in a new project installed in a repository that holds the module of the command ship, from a copy that uv run --project .guppi guppi ship --allow-draft wrote: the reply that acknowledges that setup Case read against the Criterion in the transcript of its session under ~/.claude/projects/"
 checked: 2026-11-02
+deferred_by: ["[[decision-case-1014]]"]
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -28,6 +29,7 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 **＋** One reply acknowledges every Case and sub-case ratified in one answer, a Case with its sub-cases or Cases shown together for one ratification: one `LEDGER` block with all their lines, one heading `## Case N — ratified` that names their ids, one paragraph `Changes:`, one Frontier.
 **＋** The reply that acknowledges a re-ratification carries the `LEDGER` block with the decision lines of each Case ratified again, as at its first ratification.
 **＋** No tool call follows the `LEDGER` block in the same reply.
+**－** The reply that acknowledges the setup Case of `rule-morph`, built by `/setup` of `rule-skill-setup`, holds no Frontier and ends with the open question on what the first sprint is to build, and no tool call follows its `LEDGER` block.
 **－** A term of the harness that a heading or a label holds, such as Case or Frontier, may stay in English, untransliterated as `CLAUDE.md` sets it, and the heading of the Frontier may be that term alone, such as `## Frontier`.
 **－** Slugs, paths, the tag of the `LEDGER` block, the ledger lines and the word `STOP:` that opens a reply keep their own words in any language of the chat; the rest of the `STOP:` line stands in the language of the chat.
 **－** The ledger hook of `rule-ledger-write` does not append a repeated decision line a second time.
@@ -72,3 +74,5 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 - 2026-11-02 status: failed → passed · raw/2026-11-02/1548/ledger.md#L7
 - 2026-11-02 status: passed → passed · raw/2026-11-02/1548/ledger.md#L9
 - 2026-11-03 updated: the Criterion replaced whole — a heading or a label may keep a term of the harness in English, the heading of the Frontier that term alone included · [[decision-case-1013]]
+- 2026-11-03 deferred · [[decision-case-1014]]
+- 2026-11-03 updated: the Criterion replaced whole — the reply that acknowledges the setup Case of rule-morph shows no Frontier and asks what the first sprint is to build · [[decision-case-1017.7]]

@@ -12828,3 +12828,65 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-03 lessons/lesson-orchestration-closes-a-frontier-line-by-its-closer-alone archived · cleanup
 - 2026-11-03 lessons/lesson-orchestration-defer-reply-frontier-heading-in-english archived · cleanup
 - 2026-11-03 rules/rule-case-check estimate estimate-case-check-sends-one-note-for-a-broad-name archived · cleanup
+- 2026-11-03 decisions/decision-case-1014 created · raw/2026-11-03/0316/ledger.md#case-1014 · generate
+- 2026-11-03 estimates/estimate-orchestration-acknowledging-reply deferred · [[decision-case-1014]] · generate
+- 2026-11-03 decisions/decision-case-1015 created · raw/2026-11-03/0316/ledger.md#case-1015 · generate
+- 2026-11-03 decisions/decision-case-1015.1 created · raw/2026-11-03/0316/ledger.md#case-1015.1 · generate
+- 2026-11-03 rules/rule-ask updated: at pre-spec, ask-guppi greps and reads the code, the tests and the harness files as a finding needs, never reaching vault/archive/; the folder-walk Grep is no longer its one search of the code · [[decision-case-1015.1]] · generate
+- 2026-11-03 estimates/estimate-ask-searches-at-prespec updated: the Criterion replaced whole — the searches a finding needs may cover the code, the tests and the harness files, and none is reported as a broken rule · [[decision-case-1015.1]] · generate
+- 2026-11-03 decisions/decision-case-1015.2 created · raw/2026-11-03/0316/ledger.md#case-1015.2 · generate
+- 2026-11-03 estimates/estimate-prespec-finds-a-reader-of-a-new-files-folder updated: the Criterion replaced whole — a plan with no Case that adds a new file starts no folder-walk Grep, and the other searches of the code stand outside this promise · [[decision-case-1015.2]] · generate
+- 2026-11-03 decisions/decision-case-1016 created · raw/2026-11-03/0316/ledger.md#case-1016 · generate
+- 2026-11-03 rules/rule-clean-branch updated: the clean version carries the icon of the plugin in .guppi/, named by the manifest · [[decision-case-1016]] · generate
+- 2026-11-03 estimates/estimate-clean-branch-ships-the-plugin-icon created · [[decision-case-1016]] · generate
+- 2026-11-03 estimates/estimate-clean-branch-ships-the-plugin-icon status: pending → passed · raw/2026-11-03/0316/ledger.md#L27 · generate
+- 2026-11-03 rules/rule-clean-branch estimate estimate-clean-branch-ships-the-plugin-icon added · [[decision-case-1016]] · generate
+- 2026-11-03 decisions/decision-case-1017 created · raw/2026-11-03/0316/ledger.md#case-1017 · generate
+- 2026-11-03 decisions/decision-case-1017.1 created · raw/2026-11-03/0316/ledger.md#case-1017.1 · generate
+- 2026-11-03 rules/rule-guppi-config updated: guppi.toml gains the key setup_done, which marks the setup Case of rule-morph as done · [[decision-case-1017.1]] · generate
+- 2026-11-03 rules/rule-clean-branch updated: the clean version ships setup_done = false in the Render of rule-guppi-config · [[decision-case-1017.1]] · generate
+- 2026-11-03 estimates/estimate-clean-branch-ships-the-setup-not-done created · [[decision-case-1017.1]] · generate
+- 2026-11-03 estimates/estimate-clean-branch-ships-the-setup-not-done status: pending → passed · raw/2026-11-03/0316/ledger.md#L28 · generate
+- 2026-11-03 rules/rule-clean-branch estimate estimate-clean-branch-ships-the-setup-not-done added · [[decision-case-1017.1]] · generate
+- 2026-11-03 decisions/decision-case-1017.2 created · raw/2026-11-03/0316/ledger.md#case-1017.2 · generate
+- 2026-11-03 rules/rule-ledger-write updated: the ledger hook writes every decision line while guppi.toml holds setup_done = false · [[decision-case-1017.2]] · generate
+- 2026-11-03 estimates/estimate-ledger-write-passes-every-line-before-the-setup created · [[decision-case-1017.2]] · generate
+- 2026-11-03 estimates/estimate-ledger-write-passes-every-line-before-the-setup status: pending → passed · raw/2026-11-03/0316/ledger.md#L29 · generate
+- 2026-11-03 rules/rule-ledger-write estimate estimate-ledger-write-passes-every-line-before-the-setup added · [[decision-case-1017.2]] · generate
+- 2026-11-03 decisions/decision-case-1017.3 created · raw/2026-11-03/0316/ledger.md#case-1017.3 · generate
+- 2026-11-03 rules/rule-skill-setup created · [[decision-case-1017.3]] · generate
+- 2026-11-03 rules/rule-session-start child rule-skill-setup added · [[decision-case-1017.3]] · generate
+- 2026-11-03 rules/rule-skill-hi updated: /hi starts /setup before /sprint-open while guppi.toml holds setup_done = false · [[decision-case-1017.3]] · generate
+- 2026-11-03 estimates/estimate-skill-setup-starts-at-hi created · [[decision-case-1017.3]] · generate
+- 2026-11-03 estimates/estimate-skill-setup-starts-at-hi status: pending → passed · raw/2026-11-03/0316/ledger.md#L30 · generate
+- 2026-11-03 rules/rule-skill-setup estimate estimate-skill-setup-starts-at-hi added · [[decision-case-1017.3]] · generate
+- 2026-11-03 decisions/decision-case-1017.4 created · raw/2026-11-03/0316/ledger.md#case-1017.4 · generate
+- 2026-11-03 rules/rule-morph updated: built: the key setup_done, the skill /setup, its step in /hi and in /sprint-open and the pass of the ledger hook; core: true given back; no name of the main branch and no git remote · [[decision-case-1017.4]] · generate
+- 2026-11-03 entities/entity-sprint-plugin updated: the item of rule-morph built but for its readings; the name of the main branch joins the backlog · [[decision-case-1017.4]] · generate
+- 2026-11-03 estimates/estimate-morph-sets-up-the-project-at-the-first-hi updated: the Criterion replaced whole — /setup builds the setup Case, the reply that acknowledges it asks what the first sprint is to build, the settings land at the librarian's run, and no main branch or git remote is taken · [[decision-case-1017.4]] · generate
+- 2026-11-03 decisions/decision-case-1017.5 created · raw/2026-11-03/0316/ledger.md#case-1017.5 · generate
+- 2026-11-03 estimates/estimate-morph-takes-in-the-set-aside-files updated: the Criterion replaced whole — the setup Case is built by /setup, and a kept part reaches its file at the render of the librarian's run · [[decision-case-1017.5]] · generate
+- 2026-11-03 decisions/decision-case-1017.6 created · raw/2026-11-03/0316/ledger.md#case-1017.6 · generate
+- 2026-11-03 rules/rule-skill-sprint-open updated: the setup Case comes before the opening Case, and its acknowledging reply asks what the sprint is to build · [[decision-case-1017.6]] · generate
+- 2026-11-03 estimates/estimate-skill-sprint-open-asks-the-opening-questions updated: the Criterion replaced whole — the open question on what the sprint is to build comes first, in the reply that acknowledges the setup Case where one stands, and the main agent proposes the id after it · [[decision-case-1017.6]] · generate
+- 2026-11-03 decisions/decision-case-1017.7 created · raw/2026-11-03/0316/ledger.md#case-1017.7 · generate
+- 2026-11-03 rules/rule-orchestration updated: the reply that acknowledges the setup Case shows no Frontier and asks what the first sprint is to build · [[decision-case-1017.7]] · generate
+- 2026-11-03 estimates/estimate-orchestration-acknowledging-reply updated: the Criterion replaced whole — the reply that acknowledges the setup Case of rule-morph shows no Frontier and asks what the first sprint is to build · [[decision-case-1017.7]] · generate
+- 2026-11-03 decisions/decision-case-1017.8 created · raw/2026-11-03/0316/ledger.md#case-1017.8 · generate
+- 2026-11-03 estimates/estimate-clean-branch-refuses-a-draft-core-page updated: the Criterion replaced whole — rule-morph and rule-skill-setup carry core: true and block the build while they are draft · [[decision-case-1017.8]] · generate
+- 2026-11-03 decisions/decision-case-1018 created · raw/2026-11-03/0316/ledger.md#case-1018 · generate
+- 2026-11-03 decisions/decision-case-1018.1 created · raw/2026-11-03/0316/ledger.md#case-1018.1 · generate
+- 2026-11-03 rules/rule-skill-sprint-open updated: the opening asks the person first what to build in the sprint, the main agent proposes the id from the answer, and the opening Case is built from it · [[decision-case-1018.1]] · generate
+- 2026-11-03 decisions/decision-case-1018.2 created · raw/2026-11-03/0316/ledger.md#case-1018.2 · generate
+- 2026-11-03 estimates/estimate-skill-sprint-open-asks-the-goal-as-an-open-question updated: the Criterion replaced whole — the goal is worded from the person's answer, with no goal question and nothing from the description; the reading takes the new Render in the Spec at Retro · [[decision-case-1018.2]] · generate
+- 2026-11-03 decisions/decision-case-1017.9 created · raw/2026-11-03/0316/ledger.md#case-1017.9 · generate
+- 2026-11-03 estimates/estimate-git-context-offers-git-init updated: the Criterion replaced whole — the /hi after git init -b main starts /setup first in a project whose setup is not done · [[decision-case-1017.9]] · generate
+- 2026-11-03 estimates/estimate-skill-sprint-open-asks-the-goal-as-an-open-question status: pending → passed · raw/2026-11-03/0316/ledger.md#L31 · generate
+- 2026-11-03 lessons/lesson-case-build-crop-spec-ignores-the-alpha-channel created · raw/2026-11-03/0316/ledger.md#L32 · generate
+- 2026-11-03 lessons/lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers created · raw/2026-11-03/0316/ledger.md#L33 · generate
+- 2026-11-03 insights/insight-case-build-sibling-texts-unchecked-before-the-showing updated: child lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers added, reopened from actioned (synthesis) · raw/2026-11-03/0316/ledger.md#L33 · generate
+- 2026-11-03 lessons/lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers updated: clustered under insight-case-build-sibling-texts-unchecked-before-the-showing (synthesis) · raw/2026-11-03/0316/ledger.md#L33 · generate
+- 2026-11-03 rules/rule-clean-branch status: built → draft · cascade · generate
+- 2026-11-03 rules/rule-git-context status: built → draft · cascade · generate
+- 2026-11-03 rules/rule-skill-setup status: draft → built · cascade · generate
+- 2026-11-03 rules/rule-skill-sprint-open status: built → draft · cascade · generate

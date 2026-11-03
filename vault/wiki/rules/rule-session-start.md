@@ -4,7 +4,7 @@ kind: MOC
 purpose: Prevents a working session from starting against unknown state
 status: built
 parent: "[[rule-session]]"
-children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]", "[[rule-compact-recall]]", "[[rule-skill-sprint-open]]"]
+children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]", "[[rule-compact-recall]]", "[[rule-skill-sprint-open]]", "[[rule-skill-setup]]"]
 estimates: ["[[estimate-session-start-context]]"]
 origin: raw/2026-09-09/ledger.md#case-12
 sprint: migration
@@ -73,3 +73,4 @@ items outright.
 - 2026-10-09 updated: child rule-skill-sprint-open added (case 746.1) · [[decision-case-746.1]]
 - 2026-10-10 updated: in the session that opens a sprint the Frontier takes the first milestone from the opening Case and the reply that acknowledges that Case presents it (case 769.2) · [[decision-case-769.2]]
 - 2026-10-13 updated: ships in the clean version (case 804) · [[decision-case-804.5]]
+- 2026-11-03 child rule-skill-setup added · [[decision-case-1017.3]]

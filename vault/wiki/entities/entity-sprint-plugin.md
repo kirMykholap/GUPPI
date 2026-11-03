@@ -24,7 +24,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 ### The plugin
 
 - the clean version made into a Claude Code plugin
-- [[rule-morph]] — the setup Case that the first `/hi` after `/guppi:install` puts before the opening of the first sprint; what remains: the setup skill, its step in `/hi` and in `/sprint-open`, the key of `guppi.toml` that marks the setup as done, the pass of the ledger hook for the setup Case while no sprint is open, and the clean version that ships that key unset; until it is `built`, `rule-morph` carries no `core`, and the Case that builds it gives `core: true` back
+- [[rule-morph]] — the setup Case that the first `/hi` after `/guppi:install` puts before the opening of the first sprint; the setup skill `/setup` of `rule-skill-setup`, its step in `/hi` and in `/sprint-open`, the key `setup_done` of `guppi.toml`, the pass of the ledger hook for the setup Case while no sprint is open and the clean version that ships `setup_done = false` are built by case 1017; what remains: the readings by hand of its two Estimates in a new project installed from a copy that `guppi ship --allow-draft` writes, until which `rule-morph` and `rule-skill-setup` stay `draft` and the workflow writes nothing to `prod`
 - the README on what the project is and what it is for and on its main parts and its use
 - the close of `plugin` — `/sprint-close`, a session of its own
 
@@ -33,6 +33,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - The category set as data: the person sets the categories of a project, the development set entity, rule, estimate by default, and the harness holds them as data, so a changed set rewrites no rule; taken out of rule-morph (case 802); the categories discussion of session 1119, vault/archive/migration/2026-09-17/1119/raw/categories-discussion.md
 - The rest of Work Mode past the skill /work: the test of each Estimate written first and turned green, and the full model the person plans; taken out of rule-work-mode (case 962)
 - The Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session; taken out of rule-spec-box (case 962)
+- The name of the main branch: a project whose main branch is not main sets its name at the setup, and the code and the skills read it; taken out of rule-morph (case 1017.4)
 
 ## Closed
 
@@ -67,3 +68,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-11-02 updated: the milestone The clean branch names the pages that block the build · [[decision-case-996.2]]
 - 2026-11-02 estimate estimate-sprint-plugin-link-graph-is-gone added · [[decision-case-999.1]]
 - 2026-11-02 updated: the milestone item of rule-morph says that it carries no core until it is built · [[decision-case-1001]]
+- 2026-11-03 updated: the item of rule-morph built but for its readings; the name of the main branch joins the backlog · [[decision-case-1017.4]]

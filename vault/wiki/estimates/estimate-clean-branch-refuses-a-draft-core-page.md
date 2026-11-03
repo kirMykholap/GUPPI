@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-clean-branch]]"
 purpose: "Whether guppi ship writes nothing and exits 1 while a draft page with core: true stands that was never built or has a failed Estimate, writes as it stands one built before that only waits for a reading, writes the copy with --allow-draft, and lint judges by the same is_draft_core"
-method: "uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core; by hand, after the librarian's run that applies the update of rule-morph: a Grep for ^core: in rule-skill-merge-main, rule-skill-pr-review and rule-morph, and for --allow-draft in .github/workflows/prod.yml, read against the Criterion"
+method: "uv run --project .guppi pytest .guppi/tests/test_ship.py .guppi/tests/test_lint.py -k draft_core; by hand, after the librarian's run that applies the updates of rule-morph and the create of rule-skill-setup: a Grep for ^core: in rule-skill-merge-main, rule-skill-pr-review, rule-morph and rule-skill-setup, and for --allow-draft in .github/workflows/prod.yml, read against the Criterion"
 checked: 2026-11-02
 origin: raw/2026-10-15/0553/ledger.md#case-822.8
 sprint: plugin
@@ -23,7 +23,8 @@ A rule or an entity with `core: true` that stands `draft` blocks the build when 
 **＋** A `draft` page with `core: true` whose History holds such a line and none of whose Estimates stands `failed` gets no line, and the build writes it as it stands.
 **＋** With `--allow-draft`, the build writes the clean version all the same and prints those lines, which set no exit code; `.github/workflows/prod.yml` never passes that option.
 **＋** The build and lint tell a page that blocks the build by `is_draft_core` of `.guppi/guppi/pages.py`, imported by both, and a test runs the cascade of `.guppi/guppi/generate.py` that sets a page `built` and asserts that the page, set `draft` again, then blocks nothing.
-**＋** `rule-skill-merge-main`, `rule-skill-pr-review` and `rule-morph` carry no `core`, so the clean version holds none of them nor a file one of them renders.
+**＋** `rule-skill-merge-main` and `rule-skill-pr-review` carry no `core`, so the clean version holds neither of them nor a file one of them renders.
+**＋** `rule-morph` and `rule-skill-setup` carry `core: true`, so while they stand `draft` and were never set `built`, the build writes nothing to `prod`, and the copy that `--allow-draft` writes holds them.
 **－** `uv run --project .guppi guppi ship --check` does not judge the status of a page.
 
 ## Result
@@ -38,3 +39,4 @@ A rule or an entity with `core: true` that stands `draft` blocks the build when 
 - 2026-11-02 status: pending → passed · raw/2026-11-01/2227/ledger.md#L23
 - 2026-11-02 updated: the Criterion replaced whole — rule-morph carries no core until it is built · [[decision-case-1001]]
 - 2026-11-02 status: pending → passed · raw/2026-11-02/1337/ledger.md#L1
+- 2026-11-03 updated: the Criterion replaced whole — rule-morph and rule-skill-setup carry core: true and block the build while they are draft · [[decision-case-1017.8]]

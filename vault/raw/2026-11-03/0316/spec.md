@@ -80,9 +80,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ask`
-- [ ] update `estimate-ask-searches-at-prespec`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
+- [x] update `rule-ask`
+- [x] update `estimate-ask-searches-at-prespec`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
 - [ ] read `estimate-ask-searches-at-prespec`
 ```
 
@@ -120,7 +120,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-prespec-finds-a-reader-of-a-new-files-folder`
+- [x] update `estimate-prespec-finds-a-reader-of-a-new-files-folder`
 - [ ] read `estimate-prespec-finds-a-reader-of-a-new-files-folder`
 ```
 
@@ -201,9 +201,9 @@ update:
 - [x] `plugin/plugin.json`: gains the field `"icon": "./.guppi/icon.png"` after `repository`.
 - [x] `.guppi/guppi/ship.py`: the module docstring names `.guppi/icon.png`, the icon of the plugin that the manifest names, among the files of `.guppi/` it writes, and says that a file that is no UTF-8 text is copied as it stands and judged by neither the build nor `--check`; no code changes.
 - [x] `.guppi/tests/test_ship.py`: `test_it_writes_the_manifest_and_the_catalogue_of_the_plugin` expects `icon` `./.guppi/icon.png` in the manifest; new tests whose names hold `icon` check that a sample tree with a binary `.guppi/icon.png` builds a copy that holds it byte for byte with no line printed, that `--check` prints no line on it, and that the live `.guppi/icon.png` is a PNG of 512 by 512 pixels by its header, named by the field `icon` of the live `plugin/plugin.json`.
-- [ ] update `rule-clean-branch`
-- [ ] create `estimate-clean-branch-ships-the-plugin-icon`
-- [ ] read `estimate-clean-branch-ships-the-plugin-icon`
+- [x] update `rule-clean-branch`
+- [x] create `estimate-clean-branch-ships-the-plugin-icon`
+- [x] read `estimate-clean-branch-ships-the-plugin-icon`
 ```
 
 ## Case 1017 — The setup Case opens a new project before its first sprint
@@ -306,15 +306,15 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-guppi-config`
-- [ ] update `rule-clean-branch`
-- [ ] create `estimate-clean-branch-ships-the-setup-not-done`
+- [x] update `rule-guppi-config`
+- [x] update `rule-clean-branch`
+- [x] create `estimate-clean-branch-ships-the-setup-not-done`
 - [x] `.guppi/guppi/config.py`: a constant `SETUP_KEY`, `setup_done`, and a function `setup_pending(project_dir)` that answers True only where `guppi.toml` parses and holds `setup_done = false`; the module docstring names the key and that `parse` does not read it.
 - [x] `.guppi/guppi/ship.py`: `shipped_page` writes `setup_done = false` in the Render of `rule-guppi-config`: in place of each line that opens with the key, such as `setup_done = true`, or, where no line of the key stands, as a line added before the closing marker line `<!-- /rule-guppi-config -->`, so that a clean version built before the librarian's run gives the live page the line still ships the key; a Render without that marker line it leaves as it is; by a function beside `blank_description` that takes the key from `SETUP_KEY` of `.guppi/guppi/config.py`; the module docstring names it.
 - [x] `.guppi/tests/test_config.py`: tests whose names hold `setup` check `setup_pending` on `setup_done = false`, `true`, another value, a missing key, a missing file and a text that does not parse.
 - [x] `.guppi/tests/test_ship.py`: tests whose names hold `setup` build a sample tree whose `rule-guppi-config` holds `setup_done = true`, and one whose Render holds no line of the key, check that each copy holds `setup_done = false` and every other line, and run `setup_pending` over a `guppi.toml` written from the Render of the copy.
-- [ ] `uv run --project .guppi guppi render`: `guppi.toml`
-- [ ] read `estimate-clean-branch-ships-the-setup-not-done`
+- [x] `uv run --project .guppi guppi render`: `guppi.toml`
+- [x] read `estimate-clean-branch-ships-the-setup-not-done`
 ```
 
 ### Case 1017.2 — The ledger hook writes every decision line before the setup is done
@@ -367,11 +367,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-ledger-write`
-- [ ] create `estimate-ledger-write-passes-every-line-before-the-setup`
+- [x] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-passes-every-line-before-the-setup`
 - [x] `.guppi/guppi/ledger.py`: `refused_without_sprint` returns no line while `setup_pending` of `.guppi/guppi/config.py` answers True; its docstring and the paragraph of the module docstring on a session with no sprint name the exception.
 - [x] `.guppi/tests/test_ledger.py`: tests whose names hold `setup` and not `sprint`, so that the run `-k sprint` of `estimate-sprint-close-next-session-opens-the-sprint` does not take them, with no live sprint page: a decision line is written where `guppi.toml` holds `setup_done = false`, refused where it holds `setup_done = true` or no key, and a taken sprint id is refused with `setup_done = false`.
-- [ ] read `estimate-ledger-write-passes-every-line-before-the-setup`
+- [x] read `estimate-ledger-write-passes-every-line-before-the-setup`
 ```
 
 ### Case 1017.3 — /hi starts /setup before the opening of the first sprint
@@ -452,14 +452,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `rule-skill-setup`
-- [ ] update `rule-skill-hi`
-- [ ] create `estimate-skill-setup-starts-at-hi`
+- [x] create `rule-skill-setup`
+- [x] update `rule-skill-hi`
+- [x] create `estimate-skill-setup-starts-at-hi`
 - [x] `.guppi/guppi/sprint.py`: `hi_hook` prints, before its line on the closed sprint, one line that tells the agent to start the skill `/setup` before `/sprint-open` and before the Frontier, when `setup_pending` of `.guppi/guppi/config.py` answers True; the module docstring names it.
 - [x] `.guppi/tests/test_sprint.py`: tests whose names hold `setup`: `/hi` with a closed heading and `setup_done = false` prints the setup line first and the sprint line after it; `setup_done = true`, no key, no `guppi.toml`, an open heading and another prompt print no setup line; each exits 0.
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/setup/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] read `estimate-skill-setup-starts-at-hi`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/setup/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] read `estimate-skill-setup-starts-at-hi`
 ```
 
 ### Case 1017.4 — /setup builds the setup Case of the first /hi
@@ -530,9 +530,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-morph`
-- [ ] update `entity-sprint-plugin`
-- [ ] update `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] update `rule-morph`
+- [x] update `entity-sprint-plugin`
+- [x] update `estimate-morph-sets-up-the-project-at-the-first-hi`
 - [ ] read `estimate-morph-sets-up-the-project-at-the-first-hi`
 ```
 
@@ -567,7 +567,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-morph-takes-in-the-set-aside-files`
+- [x] update `estimate-morph-takes-in-the-set-aside-files`
 - [ ] read `estimate-morph-takes-in-the-set-aside-files`
 ```
 
@@ -612,9 +612,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] update `estimate-skill-sprint-open-asks-the-opening-questions`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] update `rule-skill-sprint-open`
+- [x] update `estimate-skill-sprint-open-asks-the-opening-questions`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
 - [ ] read `estimate-skill-sprint-open-asks-the-opening-questions`
 ```
 
@@ -671,9 +671,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-acknowledging-reply`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-acknowledging-reply`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-acknowledging-reply`
 ```
 
@@ -716,7 +716,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-refuses-a-draft-core-page`
+- [x] update `estimate-clean-branch-refuses-a-draft-core-page`
 - [ ] read `estimate-clean-branch-refuses-a-draft-core-page`
 ```
 
@@ -759,7 +759,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-git-context-offers-git-init`
+- [x] update `estimate-git-context-offers-git-init`
 - [ ] read `estimate-git-context-offers-git-init`
 ```
 
@@ -825,8 +825,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] update `rule-skill-sprint-open`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
 ```
 
 ### Case 1018.2 — The opening Case words the goal from the person's answer
@@ -856,8 +856,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-skill-sprint-open-asks-the-goal-as-an-open-question`
-- [ ] read `estimate-skill-sprint-open-asks-the-goal-as-an-open-question`
+- [x] update `estimate-skill-sprint-open-asks-the-goal-as-an-open-question`
+- [x] read `estimate-skill-sprint-open-asks-the-goal-as-an-open-question`
 ```
 
 ## Deferred

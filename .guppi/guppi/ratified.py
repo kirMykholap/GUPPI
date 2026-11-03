@@ -1037,33 +1037,45 @@ def builder_file(payload: dict) -> Path | None:
     return Path(str(raw))
 
 
-def builder_write(payload: dict, path: Path) -> str | None:
-    """Make the write of `case-guppi` on `path` as the tool would (case 894.1): the content of
-    a `Write`, or each `old_string` of an `Edit` or of the `edits` of a `MultiEdit` replaced by
-    its `new_string` in order, once or at each match with `replace_all`, the text read and
-    written as UTF-8 with its line ends as they stand. None once written; the reason, with the
-    file left as it stands, when an old string is missing, is found more than once without
-    `replace_all`, or the file to edit does not exist. An error of the write raises."""
+def text_after(payload: dict, path: Path) -> tuple[str | None, str | None]:
+    """The text a `Write`, an `Edit` or a `MultiEdit` of `path` would leave, and None; or None
+    and the reason it cannot be made (cases 894.1, 1012): the content of a `Write`, or each
+    `old_string` of an `Edit` or of the `edits` of a `MultiEdit` replaced by its `new_string`
+    in order, once or at each match with `replace_all`, the text read as UTF-8 with its line
+    ends as they stand. The reason when an old string is missing, is found more than once
+    without `replace_all`, or the file to edit does not exist. The one computation that
+    `builder_write` and the hook `guppi frontierguard` share."""
     tool = payload.get("tool_name")
     tool_input = payload["tool_input"]
     if tool == "Write":
-        text = str(tool_input.get("content") or "")
-    else:
-        if not path.is_file():
-            return f"{path} does not exist; write it whole by Write (rule-spec-reconcile)"
-        text = path.read_bytes().decode("utf-8")
-        edits = tool_input.get("edits") if tool == "MultiEdit" else [tool_input]
-        for edit in edits or []:
-            old, new = str(edit.get("old_string") or ""), str(edit.get("new_string") or "")
-            found = text.count(old) if old else 0
-            if not found:
-                return f"{path}: the old string is not in the file; nothing written (rule-spec-reconcile)"
-            if found > 1 and not edit.get("replace_all"):
-                return (
-                    f"{path}: the old string is found {found} times and replace_all is not "
-                    "set; nothing written (rule-spec-reconcile)"
-                )
-            text = text.replace(old, new) if edit.get("replace_all") else text.replace(old, new, 1)
+        return str(tool_input.get("content") or ""), None
+    if not path.is_file():
+        return None, f"{path} does not exist; write it whole by Write (rule-spec-reconcile)"
+    text = path.read_bytes().decode("utf-8")
+    edits = tool_input.get("edits") if tool == "MultiEdit" else [tool_input]
+    for edit in edits or []:
+        old, new = str(edit.get("old_string") or ""), str(edit.get("new_string") or "")
+        found = text.count(old) if old else 0
+        if not found:
+            return None, (
+                f"{path}: the old string is not in the file; nothing written (rule-spec-reconcile)"
+            )
+        if found > 1 and not edit.get("replace_all"):
+            return None, (
+                f"{path}: the old string is found {found} times and replace_all is not "
+                "set; nothing written (rule-spec-reconcile)"
+            )
+        text = text.replace(old, new) if edit.get("replace_all") else text.replace(old, new, 1)
+    return text, None
+
+
+def builder_write(payload: dict, path: Path) -> str | None:
+    """Make the write of `case-guppi` on `path` as the tool would, the text by `text_after`,
+    written as UTF-8 (case 894.1). None once written; the reason of `text_after`, with the
+    file left as it stands, when the text cannot be made. An error of the write raises."""
+    text, reason = text_after(payload, path)
+    if text is None:
+        return reason
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(text.encode("utf-8"))
     return None

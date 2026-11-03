@@ -3033,14 +3033,19 @@ def a_named_rule_x(project):
     return named
 
 
+def names_head(case):
+    return f"note: case {case}: {casecheck.NAMES_ASK}"
+
+
 def names_note(case, rel, name, about=""):
-    return f"note: case {case}: {rel} names {name}{about}: read it"
+    """The line of a file in the note of names (case 1011.1)."""
+    return f"- {rel} names {name}{about}"
 
 
 def test_names_note_each_unread_file_that_names_an_updated_page(working):
     a_named_rule_x(working)
     code, err = answer(working, ANSWER)
-    assert code == 2
+    assert code == 2 and err.count(names_head(7)) == 1  # one note for the Case
     assert names_note(7, "vault/wiki/rules/rule-y.md", "rule-x", " — purpose: Prevents y") in err
     assert names_note(7, ".guppi/tests/test_y.py", "xmod.py") in err
     assert names_note(7, ".claude/skills/s/SKILL.md", "guppi casecheck") in err
@@ -3123,7 +3128,7 @@ def test_names_note_takes_only_the_first_code_span_of_a_task_line(working):
     assert "names test_z.py" not in err and "names test_w.py" not in err  # (case 1010.1)
 
 
-# --- the note of a broad name (case 1010.2) -----------------------------------------------
+# --- the note of names lists every file, with no limit (case 1011.1) -----------------------
 
 
 def pages_naming_rule_x(project, count):
@@ -3136,30 +3141,40 @@ def pages_naming_rule_x(project, count):
         )
 
 
-def test_broad_name_more_than_twenty_files_give_one_note_with_the_count(working):
+def test_names_note_twenty_one_files_stand_in_one_note_each_on_its_line(working):
     pages_naming_rule_x(working, 21)
     code, err = answer(working, ANSWER)
-    assert code == 2 and "note: case 7: 21 files name rule-x: search for the name" in err
-    assert " names rule-x" not in err  # no note of a file by the broad name
+    assert code == 2 and err.count(names_head(7)) == 1
+    lines = err.splitlines()
+    for index in range(21):
+        line = names_note(7, f"vault/wiki/rules/rule-n{index}.md", "rule-x")
+        assert f"{line} — purpose: Prevents n{index}" in lines
+    assert "files name rule-x" not in err  # no count
 
 
-def test_broad_name_twenty_files_give_a_note_for_each(working):
-    pages_naming_rule_x(working, 20)
-    code, err = answer(working, ANSWER)
-    assert code == 2 and "files name rule-x" not in err
-    assert all(f"rules/rule-n{index}.md names rule-x" in err for index in range(20))
-
-
-def test_broad_name_a_file_with_a_narrow_name_keeps_its_note(working):
+def test_names_note_a_file_is_listed_once_under_the_first_name_it_holds(working):
     a_named_rule_x(working)
     (working / ".guppi" / "tests" / "test_y.py").write_text(
         "# rule-x, the tests of xmod.py\n", encoding="utf-8"
     )
-    pages_naming_rule_x(working, 20)  # with rule-y and test_y.py, 22 files name rule-x
     code, err = answer(working, ANSWER)
-    assert code == 2 and "note: case 7: 22 files name rule-x" in err
-    assert names_note(7, ".guppi/tests/test_y.py", "xmod.py") in err
-    assert "rule-y.md names" not in err
+    assert code == 2 and err.count(".guppi/tests/test_y.py names") == 1
+    assert names_note(7, ".guppi/tests/test_y.py", "rule-x") in err
+
+
+def test_names_note_a_later_check_lists_only_a_file_no_earlier_note_listed(working):
+    a_named_rule_x(working)
+    assert answer(working, ANSWER)[0] == 2  # rule-y, test_y.py and the skill listed
+    pages_naming_rule_x(working, 1)
+    changed = ANSWER.replace("> **problem:**\n", "> **problem:**\n> Again.\n", 1)
+    assert changed != ANSWER
+    code, err = answer(working, changed)
+    assert code == 2 and err.count(names_head(7)) == 1
+    assert names_note(7, "vault/wiki/rules/rule-n0.md", "rule-x", " — purpose: Prevents n0") in err
+    assert "rule-y.md names" not in err and "test_y.py names" not in err
+    assert "SKILL.md names" not in err
+    again = changed.replace("> Again.\n", "> Again, twice.\n")
+    assert answer(working, again) == (0, "")  # none left: no note
 
 
 def test_names_note_none_with_no_transcript(working):

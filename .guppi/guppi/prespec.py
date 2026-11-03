@@ -714,6 +714,22 @@ def open_case_items(frontier: str) -> list[str]:
     return items
 
 
+def open_box_closers(frontier: str) -> list[tuple[str, str]]:
+    """The item and the closer of each box line of a Frontier, under any heading, whose box is
+    `[ ]` while its last segment after `FRONTIER_SEPARATOR` is a closer by `CLOSERS`: a line
+    the agent closed at its end and left open at its box. The one judgment that the hook
+    `guppi frontierguard` of `.guppi/guppi/frontierguard.py` imports (case 1012)."""
+    found: list[tuple[str, str]] = []
+    for line in frontier.splitlines():
+        match = FRONTIER_LINE.match(line)
+        if not match or match.group(1) != " ":
+            continue
+        last = match.group(3).split(FRONTIER_SEPARATOR)[-1].strip()
+        if FRONTIER_SEPARATOR in match.group(3) and CLOSERS.match(last):
+            found.append((match.group(2), last))
+    return found
+
+
 def conserved_blocks(plan: str, project_dir: Path | None) -> dict[str, dict]:
     """Case id → the merged `then` block of each Case of the conserved Spec whose `spec.md`
     the title line of the plan names, the folder found by `conserved_spec_named` of

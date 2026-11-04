@@ -899,12 +899,11 @@ def live_code_lines(root: Path) -> list[str]:
     by `ship.judged` with no slug known or loose, so that no page is read."""
     lines = []
     for name in ship.tree_files(root, ".guppi"):
-        if name in ship.LEFT_OUT or name in ship.NOT_CLEANED:
-            continue
         text = ship.read_text(root / name)
         if text is None:
             continue
-        lines += ship.judged(name, text, set(), set())[1]
+        # the one judgment of the live code, which the hook `guppi codewrite` runs too
+        lines += ship.live_code(name, text)
     return lines
 
 
@@ -1173,3 +1172,184 @@ def test_live_build_of_this_repository_prints_no_line_on_a_shipped_page_of_the_c
     # no tag is read; a line on a page with `core: true` is the business of its own check
     lines, _ = ship.ship(REPO, tmp_path, date(2001, 1, 1), "0.0.0")
     assert [line for line in lines if "vault/wiki/estimates/" in line] == []
+
+
+# --- the hook guppi codewrite names a pointer at the write; each test name holds
+# code_write_names, `estimate-clean-branch-names-a-pointer-at-the-write` (case 1028.1) ------
+
+POINTER_CODE = 'S = "since case 8 it reads"\n'
+POINTER_LINE = "ship: .guppi/guppi/z.py:1: a reference to a case: case 8"
+
+
+def code_write(root: Path, payload) -> tuple[int, str, str]:
+    """`guppi codewrite` over `payload` in the project `root`: its exit code, stdout, stderr."""
+    from guppi import codewrite
+
+    text = payload if isinstance(payload, str) else json.dumps(payload)
+    stdout, stderr = io.StringIO(), io.StringIO()
+    code = codewrite.run(
+        [], stdin=io.StringIO(text), stdout=stdout, stderr=stderr, project_dir=root
+    )
+    return code, stdout.getvalue(), stderr.getvalue()
+
+
+def written_by(tool: str, path: Path) -> dict:
+    return {"tool_name": tool, "tool_input": {"file_path": str(path)}}
+
+
+def test_code_write_names_a_pointer_outside_a_bracket_with_the_fix(tmp_path):
+    from guppi import codewrite
+
+    path = tmp_path / ".guppi" / "guppi" / "z.py"
+    write(path, POINTER_CODE)
+    for tool in ("Edit", "Write", "MultiEdit"):
+        code, out, err = code_write(tmp_path, written_by(tool, path))
+        assert (code, err) == (0, "")
+        context = json.loads(out)["hookSpecificOutput"]
+        assert context["hookEventName"] == "PostToolUse"
+        assert context["additionalContext"].splitlines() == [POINTER_LINE, codewrite.FIX]
+
+
+def test_code_write_names_by_the_judgment_of_the_live_code(tmp_path):
+    from guppi import codewrite
+
+    path = tmp_path / ".guppi" / "tests" / "test_z.py"
+    write(path, 'def test_z():\n    """Case 5: it reads."""\n')
+    code, out, _ = code_write(tmp_path, written_by("Write", ".guppi/tests/test_z.py"))
+    found = ship.live_code(".guppi/tests/test_z.py", path.read_text(encoding="utf-8"))
+    assert found == ["ship: .guppi/tests/test_z.py:2: a reference to a case: Case 5"]
+    assert code == 0
+    assert json.loads(out)["hookSpecificOutput"]["additionalContext"].splitlines() == [
+        *found,
+        codewrite.FIX,
+    ]
+
+
+def test_code_write_names_nothing_on_a_clean_file_outside_guppi_or_on_another_tool(tmp_path):
+    clean = tmp_path / ".guppi" / "guppi" / "y.py"
+    write(clean, "# reads a page (as set in case 12)\nY = 1\n")
+    outside = tmp_path / "docs" / "z.py"
+    write(outside, POINTER_CODE)
+    pointer = tmp_path / ".guppi" / "guppi" / "z.py"
+    write(pointer, POINTER_CODE)
+    for payload in (
+        written_by("Write", clean),
+        written_by("Write", outside),
+        written_by("Read", pointer),
+        written_by("Bash", pointer),
+    ):
+        assert code_write(tmp_path, payload) == (0, "", "")
+
+
+def test_code_write_names_nothing_on_a_file_the_copy_leaves_out(tmp_path):
+    path = tmp_path / ".guppi" / "guppi" / "ship.py"
+    write(path, POINTER_CODE)
+    assert code_write(tmp_path, written_by("Write", path)) == (0, "", "")
+
+
+def test_code_write_names_one_line_on_stderr_for_a_payload_or_a_file_it_cannot_read(tmp_path):
+    code, out, err = code_write(tmp_path, "not json")
+    assert (code, out) == (0, "")
+    assert err == "codewrite: payload not readable, nothing checked\n"
+    path = tmp_path / ".guppi" / "guppi" / "z.py"
+    path.parent.mkdir(parents=True)
+    path.write_bytes(b"\xff\xfe# not utf-8\n")
+    code, out, err = code_write(tmp_path, written_by("Write", path))
+    assert (code, out) == (0, "")
+    assert err.startswith("codewrite: .guppi/guppi/z.py not checked: ")
+    assert len(err.splitlines()) == 1
+
+
+def test_code_write_names_its_command_in_this_repository():
+    from guppi import cli, codewrite
+
+    assert cli.COMMANDS["codewrite"] is codewrite.run
+    assert "codewrite" in commands_listed(guppi_of(PACKAGE.parent))
+
+
+# --- the clean copy holds no hook guppi codewrite; each test name holds no_code_write_hook,
+# `estimate-clean-branch-ships-no-code-write-hook` (case 1028.2) ------------------------------
+
+SHELL_WRITE_ENTRY = (
+    '{ "matcher": "Bash|PowerShell", "hooks": [ { "type": "command", "command": '
+    '"uv run --project .guppi guppi shellwrite", "timeout": 30 } ] }'
+)
+SETTINGS_WITHOUT = '{ "hooks": { "PostToolUse": [ ' + SHELL_WRITE_ENTRY + " ] } }"
+SETTINGS_WITH = (
+    '{ "hooks": { "PostToolUse": [ ' + SHELL_WRITE_ENTRY + ship.CODE_WRITE_ENTRY + " ] } }"
+)
+
+
+def hooked_tree(root: Path, settings: str) -> None:
+    """A tree whose `rule-hook-registry`, with `core: true`, renders `.claude/settings.json`
+    in full, both with `settings`."""
+    render = "enforcement: render\nrender_mode: full\ngoverns: .claude/settings.json"
+    write(root / ".guppi" / "guppi" / "codewrite.py", '"""The hook."""\n')
+    tree(root, rule_hook_registry=page("rule", "rule-hook-registry", extra=render, render=settings))
+    write(root / ".claude" / "settings.json", settings + "\n")
+    commit(root)
+
+
+def test_the_copy_holds_no_code_write_hook_and_no_registration(tmp_path):
+    from guppi import render
+
+    root, out = tmp_path / "p", tmp_path / "out"
+    hooked_tree(root, SETTINGS_WITH)
+    code, lines = run(root, out)
+    assert (code, lines) == (0, [])
+    assert not (out / ".guppi" / "guppi" / "codewrite.py").exists()
+    assert (out / ".claude" / "settings.json").read_text(encoding="utf-8") == (
+        SETTINGS_WITHOUT + "\n"
+    )
+    json.loads((out / ".claude" / "settings.json").read_text(encoding="utf-8"))
+    shipped = read_page(out / "vault" / "wiki" / "rules" / "rule-hook-registry.md", "rules")
+    assert shipped.sections["## Render"] == (
+        f"<!-- rule-hook-registry -->\n{SETTINGS_WITHOUT}\n<!-- /rule-hook-registry -->"
+    )
+    assert (root / ".claude" / "settings.json").read_text(encoding="utf-8") == (
+        SETTINGS_WITH + "\n"
+    )
+    stdout = io.StringIO()
+    checked = render.run(["--check"], stdout=stdout, stderr=io.StringIO(), project_dir=out)
+    assert (checked, stdout.getvalue()) == (0, "")
+
+
+def test_no_code_write_hook_named_in_another_form_exits_1(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    other = SETTINGS_WITH.replace('"timeout": 30 } ] } ]', '"timeout": 60 } ] } ]')
+    assert ship.CODE_WRITE_ENTRY not in other
+    hooked_tree(root, other)
+    code, lines = run(root, out)
+    assert code == 1
+    assert lines == [
+        f"ship: .claude/settings.json: {ship.CODE_WRITE_LEFT}",
+        f"ship: vault/wiki/rules/rule-hook-registry.md: {ship.CODE_WRITE_LEFT}",
+    ]
+
+
+def test_no_code_write_hook_a_text_that_never_names_it_builds_as_before(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    hooked_tree(root, SETTINGS_WITHOUT)
+    assert run(root, out) == (0, [])
+    assert (out / ".claude" / "settings.json").read_text(encoding="utf-8") == (
+        SETTINGS_WITHOUT + "\n"
+    )
+    assert ship.without_code_write(SETTINGS_WITHOUT) == (SETTINGS_WITHOUT, False)
+
+
+def test_the_clean_version_has_no_code_write_hook_command(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    shutil.copytree(
+        PACKAGE,
+        root / ".guppi" / "guppi",
+        ignore=shutil.ignore_patterns("__pycache__"),
+        dirs_exist_ok=True,
+    )
+    run(root, out)
+    assert not (out / ".guppi" / "guppi" / "codewrite.py").exists()
+    listed = guppi_of(out / ".guppi")
+    assert "codewrite" not in commands_listed(listed)
+    unknown = guppi_of(out / ".guppi", "codewrite")
+    assert unknown.returncode == 2
+    assert unknown.stderr.splitlines() == ["guppi: unknown command 'codewrite'"]

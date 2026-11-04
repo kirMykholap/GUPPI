@@ -10,7 +10,12 @@ but an Estimate that `is_core` of `.guppi/guppi/pages.py` accepts and each file 
 Render of such a page governs — but `LEFT_OUT`, the files of this project: the session files
 of `SKELETONS` and `guppi.toml`, and this module, `.guppi/guppi/ship.py`, with its tests
 `.guppi/tests/test_ship.py`, so that a project that installs GUPPI, which builds no clean
-version, gets no command `ship` (case 820.5). The `pyproject.toml` and
+version, gets no command `ship` (case 820.5), and the hook `.guppi/guppi/codewrite.py`, which
+serves only the build of the clean version. `without_code_write` removes the exact
+registration of that hook, `CODE_WRITE_ENTRY`, from the copy of `.claude/settings.json` and
+from the Render of `rule-hook-registry` that the copy holds, so that a project that installs
+GUPPI runs no such hook; a text of the two that still names `guppi codewrite` after that
+removal gives a `ship:` line and exits 1 (as set in case 1028.2). The `pyproject.toml` and
 `uv.lock` at the root of the repository of GUPPI, a development project, are not written
 (case 819.3). A folder or a file of `SKIPPED_NAMES` — the Python environment `.guppi/.venv/`, a cache folder of Python, pytest or ruff — is neither
 written nor judged. A file that a page without `core: true` renders in full is not written.
@@ -182,8 +187,18 @@ LEFT_OUT = (
     *SKELETONS,
     "guppi.toml",
     ".guppi/guppi/ship.py",
+    ".guppi/guppi/codewrite.py",
     ".guppi/tests/test_ship.py",
 )
+# the registration of the hook `guppi codewrite` as the Render of `rule-hook-registry` writes
+# it, with its leading comma; the copy removes it from both texts (as set in case 1028.2)
+SETTINGS_FILE, HOOK_PAGE = ".claude/settings.json", "rule-hook-registry"
+CODE_WRITE = "guppi codewrite"
+CODE_WRITE_ENTRY = (
+    ', { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": '
+    f'"uv run --project .guppi {CODE_WRITE}", "timeout": 30 }} ] }}'
+)
+CODE_WRITE_LEFT = f"names {CODE_WRITE} after the removal of its registration"
 # the tests: in a Python file here only the comments and the docstrings are cleaned and
 # judged, and each other string is a sample (case 822)
 TESTS = ".guppi/tests/"
@@ -457,6 +472,8 @@ def shipped_page(page: Page, slugs: set[str], day: date) -> tuple[dict, dict]:
         sections[RENDER] = blank_description(sections[RENDER])
     if page.slug == SETTINGS_PAGE and RENDER in sections:
         sections[RENDER] = setup_not_done(sections[RENDER])
+    if page.slug == HOOK_PAGE and RENDER in sections:
+        sections[RENDER] = without_code_write(sections[RENDER])[0]
     if page.category == "estimates":
         props["core"] = True
         sections[RESULT] = result_line(page)
@@ -537,6 +554,23 @@ def judged(name: str, text: str, known: set[str], loose: set[str]) -> tuple[str,
     return cleaned, lines, reviewed
 
 
+def live_code(name: str, text: str) -> list[str]:
+    """The `ship:` lines of a file of the working tree by its path `name` relative to the
+    project, judged by `judged` with no slug known or loose, so that no page is read: none for
+    a file outside `.guppi/` or of `LEFT_OUT` or `NOT_CLEANED`. The test of the live code and
+    the hook `guppi codewrite` both take their lines from it (as set in case 1028.1)."""
+    if not name.startswith(".guppi/") or name in LEFT_OUT or name in NOT_CLEANED:
+        return []
+    return judged(name, text, set(), set())[1]
+
+
+def without_code_write(text: str) -> tuple[str, bool]:
+    """`text` with each `CODE_WRITE_ENTRY` removed, and whether `guppi codewrite` still
+    stands in it (as set in case 1028.2)."""
+    left = text.replace(CODE_WRITE_ENTRY, "")
+    return left, CODE_WRITE in left
+
+
 def read_text(path: Path) -> str | None:
     try:
         return path.read_text(encoding="utf-8")
@@ -572,14 +606,26 @@ def ship(project_dir: Path, folder: Path, day: date, number: str) -> tuple[list[
         path = folder / MANIFEST
         text = manifest(path.read_text(encoding="utf-8"), number)
         path.write_text(text, encoding="utf-8", newline="\n")
+    left: list[str] = []
+    if SETTINGS_FILE in files:
+        path = folder / SETTINGS_FILE
+        text = path.read_text(encoding="utf-8")
+        cleaned, still = without_code_write(text)
+        if cleaned != text:
+            path.write_text(cleaned, encoding="utf-8", newline="\n")
+        if still:
+            left.append(f"ship: {SETTINGS_FILE}: {CODE_WRITE_LEFT}")
     names = list(files)
     for page in core:
         props, sections = shipped_page(page, slugs, day)
         name = f"vault/wiki/{page.category}/{page.slug}.md"
         write_page(folder / name, props, sections, page.category)
         names.append(name)
+        if page.slug == HOOK_PAGE and CODE_WRITE in sections.get(RENDER, ""):
+            left.append(f"ship: {name}: {CODE_WRITE_LEFT}")
 
     out, review = settled(folder, names, known, loose)
+    out = left + out
     # the skeletons read the pages as the copy holds them, so they come after the cleaning
     texts, errors = skeletons(folder)
     for name, text in texts.items():

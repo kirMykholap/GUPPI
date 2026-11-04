@@ -1,11 +1,12 @@
 """`uv run --project .guppi guppi <command> ...` — the one entry point for the harness's scripts.
 
-Each command is a module with a `run(argv, ...) -> int`. Hook commands (`event`, `ledger`, `spec`, `prespec`, `gate`, `guard`, `frontierguard`, `bashguard`, `ratified`, `ratified --guard`, `casecheck`, `casecheck --subagent`, `libreport`, `pageread`, `pageread --after`, `grepguard`, `powershellguard`, `context`, `onward`, `onward --plan`, `recall`, `render --sync`, `shellwrite`) read their payload from stdin and are registered in `.claude/settings.json`.
+Each command is a module with a `run(argv, ...) -> int`. Hook commands (`event`, `ledger`, `spec`, `prespec`, `gate`, `guard`, `frontierguard`, `bashguard`, `ratified`, `ratified --guard`, `casecheck`, `casecheck --subagent`, `libreport`, `pageread`, `pageread --after`, `grepguard`, `powershellguard`, `context`, `onward`, `onward --plan`, `recall`, `render --sync`, `shellwrite`, `codewrite`) read their payload from stdin and are registered in `.claude/settings.json`.
 
 `check` runs the vault checks, and `test` and `style` the commands of `guppi.toml` (case 820).
-`COMMANDS` holds `ship` only where `ship_stands` of `.guppi/guppi/pages.py` answers that the
-module `guppi.ship` stands: the clean version of GUPPI, which a project installs, does not hold
-it, so there `guppi ship` is an unknown command and exits 2 (case 820.5).
+`COMMANDS` holds `ship` and the hook `codewrite` only where `ship_stands` of
+`.guppi/guppi/pages.py` answers that the module `guppi.ship` stands: the clean version of GUPPI,
+which a project installs, holds neither module, so there `guppi ship` and `guppi codewrite`
+are unknown commands and exit 2 (as set in cases 820.5 and 1028.1).
 """
 
 import importlib
@@ -88,6 +89,7 @@ COMMANDS = {
 }
 if ship_stands():  # the repository of GUPPI; the clean version holds no `ship` (case 820.5)
     COMMANDS["ship"] = importlib.import_module("guppi.ship").run
+    COMMANDS["codewrite"] = importlib.import_module("guppi.codewrite").run
 
 
 def main(argv=None) -> int:

@@ -83,7 +83,7 @@ update:
 - [x] update `rule-ask`
 - [x] update `estimate-ask-searches-at-prespec`
 - [x] `uv run --project .guppi guppi render`: `.claude/agents/ask-guppi.md`
-- [ ] read `estimate-ask-searches-at-prespec`
+- [x] read `estimate-ask-searches-at-prespec`
 ```
 
 ### Case 1015.2 — The check of the folder-walk Grep allows other searches of the code
@@ -121,7 +121,7 @@ update:
 
 ```tasks
 - [x] update `estimate-prespec-finds-a-reader-of-a-new-files-folder`
-- [ ] read `estimate-prespec-finds-a-reader-of-a-new-files-folder`
+- [x] read `estimate-prespec-finds-a-reader-of-a-new-files-folder`
 ```
 
 ## Case 1016 — The plugin carries an icon in .guppi/
@@ -533,7 +533,7 @@ update:
 - [x] update `rule-morph`
 - [x] update `entity-sprint-plugin`
 - [x] update `estimate-morph-sets-up-the-project-at-the-first-hi`
-- [ ] read `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] read `estimate-morph-sets-up-the-project-at-the-first-hi`
 ```
 
 ### Case 1017.5 — The setup Case takes in the set-aside files
@@ -568,7 +568,7 @@ update:
 
 ```tasks
 - [x] update `estimate-morph-takes-in-the-set-aside-files`
-- [ ] read `estimate-morph-takes-in-the-set-aside-files`
+- [x] read `estimate-morph-takes-in-the-set-aside-files`
 ```
 
 ### Case 1017.6 — /sprint-open comes after the setup Case
@@ -674,7 +674,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] update `estimate-orchestration-acknowledging-reply`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] read `estimate-orchestration-acknowledging-reply`
+- [x] read `estimate-orchestration-acknowledging-reply`
 ```
 
 ### Case 1017.8 — The draft setup pages hold the clean version back from prod
@@ -760,7 +760,7 @@ update:
 
 ```tasks
 - [x] update `estimate-git-context-offers-git-init`
-- [ ] read `estimate-git-context-offers-git-init`
+- [x] read `estimate-git-context-offers-git-init`
 ```
 
 ## Case 1018 — Every sprint opens with the person's account of what to build

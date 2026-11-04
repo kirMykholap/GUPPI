@@ -1,9 +1,10 @@
 ---
 type: insight
 pattern: the agent writes a case number into the live code — a comment of a test, a sample in a module docstring — outside a bracket at the end of its sentence, and the check of test_ship.py reads every case number in the docstrings and comments of the code as a pointer, so the full guppi test of Work Mode fails and the text is fixed to a bracket or to the placeholder `case N`
-status: open
+status: actioned
 children: ["[[lesson-ship-test-comment-writes-a-bare-case-reference]]", "[[lesson-ship-docstring-sample-writes-a-real-case-number]]"]
-severity: 2
+severity: 0
+addressed_by: "[[decision-case-1028.1]]"
 origin: raw/2026-11-02/2155/ledger.md#L22
 sprint: plugin
 created: 2026-11-02
@@ -21,3 +22,4 @@ A suggestion, not a decision — the agent could run uv run --project .guppi pyt
 ## History
 
 - 2026-11-03 created · raw/2026-11-02/2155/ledger.md#L22
+- 2026-11-04 updated: actioned: the hook guppi codewrite names a bare case number at the write · [[decision-case-1028.1]]

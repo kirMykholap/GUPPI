@@ -67,7 +67,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers`
+- [x] update `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers`
 ```
 
 ### Case 1025.2 — The rule names each folder up to the root
@@ -113,10 +113,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-reads-the-readers-of-a-new-files-folder`
-- [ ] read `estimate-case-build-reads-the-readers-of-a-new-files-folder`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-reads-the-readers-of-a-new-files-folder`
+- [x] read `estimate-case-build-reads-the-readers-of-a-new-files-folder`
 ```
 
 ## Case 1026 — The install readings of the setup are taken in this session
@@ -183,11 +183,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] update `estimate-morph-sets-up-the-project-at-the-first-hi`
 - [x] by hand: `uv run --project .guppi guppi ship --allow-draft <folder>` into an empty temporary folder outside the repository, the catalogue of the installs, in which no command runs.
 - [x] by hand: three new folders outside the repository: the first an empty folder with `git init -b main` run in it; the second a folder with `git init -b main` run in it that holds a `CLAUDE.md`, a `.claude/settings.json` with a hook and a `.gitattributes` of its own; the third an empty folder with no git.
 - [x] stop: the person adds the catalogue by `/plugin marketplace add <folder>` and installs the plugin by `/plugin install guppi@guppi-marketplace`, then in each of the three folders types `/guppi:install`, reopens Claude Code and types `/hi`: in the first folder the person takes that session through the setup Case, the opening of its first sprint, Work Mode and the librarian's run; in the second the person keeps one part and drops one part of each set-aside file in the setup Case and takes that session to its librarian's run; in the third the person answers no, types `/hi` again and answers yes, then types `/hi` a third time; the person reports, and the agent reads the transcripts under `~/.claude/projects`, the ledgers and the files of each folder, for the readings of Case 1026.
-- [ ] read `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] read `estimate-morph-sets-up-the-project-at-the-first-hi`
 ```
 
 ### Case 1026.2 — The set-aside files are read at the install stop
@@ -219,8 +219,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-morph-takes-in-the-set-aside-files`
-- [ ] read `estimate-morph-takes-in-the-set-aside-files`
+- [x] update `estimate-morph-takes-in-the-set-aside-files`
+- [x] read `estimate-morph-takes-in-the-set-aside-files`
 ```
 
 ### Case 1026.3 — The git init offer is read at the install stop
@@ -253,8 +253,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-git-context-offers-git-init`
-- [ ] read `estimate-git-context-offers-git-init`
+- [x] update `estimate-git-context-offers-git-init`
+- [x] read `estimate-git-context-offers-git-init`
 ```
 
 ### Case 1026.4 — The install of the plugin is read at the install stop
@@ -286,8 +286,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-plugin-installs-as-a-plugin`
-- [ ] read `estimate-sprint-plugin-installs-as-a-plugin`
+- [x] update `estimate-sprint-plugin-installs-as-a-plugin`
+- [x] read `estimate-sprint-plugin-installs-as-a-plugin`
 ```
 
 ### Case 1026.5 — The acknowledging reply is read in this session and at the install stop
@@ -331,8 +331,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-acknowledging-reply`
-- [ ] read `estimate-orchestration-acknowledging-reply`
+- [x] update `estimate-orchestration-acknowledging-reply`
+- [x] read `estimate-orchestration-acknowledging-reply`
 ```
 
 ## Case 1028 — A bare case number in the code is named at the write, and the hook stays out of the clean copy
@@ -465,16 +465,16 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-clean-branch-names-a-pointer-at-the-write`
-- [ ] update `rule-clean-branch`
-- [ ] update `rule-hook-registry`
-- [ ] update `insight-ship-live-code-writes-a-case-number-outside-a-bracket`
+- [x] create `estimate-clean-branch-names-a-pointer-at-the-write`
+- [x] update `rule-clean-branch`
+- [x] update `rule-hook-registry`
+- [x] update `insight-ship-live-code-writes-a-case-number-outside-a-bracket`
 - [x] `.guppi/guppi/ship.py`: add `live_code(name, text) -> list[str]`, which returns no line for a file outside `.guppi/` or of `LEFT_OUT` or `NOT_CLEANED`, and otherwise the `ship:` lines of `judged(name, text, set(), set())`.
 - [x] `.guppi/guppi/codewrite.py`: the new `PostToolUse` hook; it reads `tool_name` and `tool_input.file_path` of the payload, takes the path relative to the project, imports `live_code` from `guppi.ship`, prints its lines and the line on the fix as one `hookSpecificOutput.additionalContext`, and exits 0; its docstring names `rule-clean-branch`.
 - [x] `.guppi/guppi/cli.py`: add `"codewrite"` to `COMMANDS` by `importlib.import_module("guppi.codewrite").run` under the `if ship_stands():` that adds `ship`, and add `codewrite` to the hook commands and to the sentence on `ship` of the docstring.
 - [x] `.guppi/tests/test_ship.py`: `live_code_lines` takes the lines of each file from `ship.live_code`; new tests whose names hold `code_write_names` run the hook over a temporary project: a Write of a file under `.guppi/` with a bare case number gets its line and the line on the fix, and a clean file, a file outside `.guppi/` and a call of another tool get no output; `cli.COMMANDS["codewrite"]` is `codewrite.run`.
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
-- [ ] read `estimate-clean-branch-names-a-pointer-at-the-write`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] read `estimate-clean-branch-names-a-pointer-at-the-write`
 ```
 
 ### Case 1028.2 — The hook stays out of the clean copy
@@ -523,11 +523,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-clean-branch-ships-no-code-write-hook`
-- [ ] update `rule-clean-branch`
+- [x] create `estimate-clean-branch-ships-no-code-write-hook`
+- [x] update `rule-clean-branch`
 - [x] `.guppi/guppi/ship.py`: add `.guppi/guppi/codewrite.py` to `LEFT_OUT`; add the exact registration text of `guppi codewrite`, as the Render of `rule-hook-registry` writes it with its leading comma, and one function that removes it from a text and tells whether `guppi codewrite` still stands there; `ship` applies it to the copy of `.claude/settings.json` and `shipped_page` to the Render of `rule-hook-registry`, and each text that still names the hook gives a `ship:` line; the module docstring names the hook among the files the copy leaves out.
 - [x] `.guppi/tests/test_ship.py`: new tests whose names hold `no_code_write_hook`: a temporary project whose `.claude/settings.json` and Render of `rule-hook-registry` hold the entry builds a copy with no `.guppi/guppi/codewrite.py`, no entry in either text and a `guppi render --check` that names no file; a project whose text names `guppi codewrite` in another form gets a `ship:` line and exit 1; a project that never names the hook builds as before; the code of the copy lists no command `codewrite`.
-- [ ] read `estimate-clean-branch-ships-no-code-write-hook`
+- [x] read `estimate-clean-branch-ships-no-code-write-hook`
 ```
 
 ## Deferred

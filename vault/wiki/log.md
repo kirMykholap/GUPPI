@@ -12916,3 +12916,71 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-03 estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder status: pending → passed · raw/2026-11-03/1825/ledger.md#L13 · generate
 - 2026-11-03 rules/rule-clean-branch status: draft → built · cascade · generate
 - 2026-11-03 rules/rule-skill-sprint-open status: draft → built · cascade · generate
+- 2026-11-04 estimates/estimate-ask-searches-at-prespec status: pending → failed · raw/2026-11-04/0358/ledger.md#L1 · generate
+- 2026-11-04 estimates/estimate-prespec-finds-a-reader-of-a-new-files-folder status: pending → passed · raw/2026-11-04/0358/ledger.md#L2 · generate
+- 2026-11-04 estimates/estimate-case-build-searches-the-names-of-what-it-changes status: pending → failed · raw/2026-11-04/0358/ledger.md#L3 · generate
+- 2026-11-04 decisions/decision-case-1022 created · raw/2026-11-04/0358/ledger.md#case-1022 · generate
+- 2026-11-04 decisions/decision-case-1022 superseded by decision-case-1026.1 · [[decision-case-1026.1]] · generate
+- 2026-11-04 decisions/decision-case-1023 created · raw/2026-11-04/0358/ledger.md#case-1023 · generate
+- 2026-11-04 decisions/decision-case-1023 superseded by decision-case-1026.2 · [[decision-case-1026.2]] · generate
+- 2026-11-04 decisions/decision-case-1024 created · raw/2026-11-04/0358/ledger.md#case-1024 · generate
+- 2026-11-04 decisions/decision-case-1024 superseded by decision-case-1026.3 · [[decision-case-1026.3]] · generate
+- 2026-11-04 decisions/decision-case-1025 created · raw/2026-11-04/0358/ledger.md#case-1025 · generate
+- 2026-11-04 decisions/decision-case-1025.1 created · raw/2026-11-04/0358/ledger.md#case-1025.1 · generate
+- 2026-11-04 estimates/estimate-sprint-plugin-frontierguard-build-read-its-folders-readers updated: failed by the person's decision: the root .gitignore is an ignore file of a folder that holds the new files, and the build did not read it · [[decision-case-1025.1]] · generate
+- 2026-11-04 decisions/decision-case-1025.2 created · raw/2026-11-04/0358/ledger.md#case-1025.2 · generate
+- 2026-11-04 rules/rule-case-build updated: case-guppi searches and reads for each folder from the folder of a new file up to the root of the repository, the root left out of the path search · [[decision-case-1025.2]] · generate
+- 2026-11-04 estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder updated: the Criterion replaced whole — the searches and readings for the folders of a new file go up to the root of the repository, the root left out of the path search · [[decision-case-1025.2]] · generate
+- 2026-11-04 decisions/decision-case-1026 created · raw/2026-11-04/0358/ledger.md#case-1026 · generate
+- 2026-11-04 decisions/decision-case-1026.1 created · raw/2026-11-04/0358/ledger.md#case-1026.1 · generate
+- 2026-11-04 estimates/estimate-morph-sets-up-the-project-at-the-first-hi updated: the put-off retired before it was applied; the reading taken at the install stop of Work Mode · [[decision-case-1026.1]] · generate
+- 2026-11-04 decisions/decision-case-1026.2 created · raw/2026-11-04/0358/ledger.md#case-1026.2 · generate
+- 2026-11-04 estimates/estimate-morph-takes-in-the-set-aside-files updated: the put-off retired before it was applied; the reading taken at the install stop of Work Mode · [[decision-case-1026.2]] · generate
+- 2026-11-04 decisions/decision-case-1026.3 created · raw/2026-11-04/0358/ledger.md#case-1026.3 · generate
+- 2026-11-04 estimates/estimate-git-context-offers-git-init updated: the put-off retired before it was applied; the reading taken at the install stop of Work Mode · [[decision-case-1026.3]] · generate
+- 2026-11-04 decisions/decision-case-1026.4 created · raw/2026-11-04/0358/ledger.md#case-1026.4 · generate
+- 2026-11-04 estimates/estimate-sprint-plugin-installs-as-a-plugin updated: the reading taken at the install stop of Work Mode, in the empty git project · [[decision-case-1026.4]] · generate
+- 2026-11-04 decisions/decision-case-1026.5 created · raw/2026-11-04/0358/ledger.md#case-1026.5 · generate
+- 2026-11-04 decisions/decision-case-1014 superseded by decision-case-1026.5 · [[decision-case-1026.5]] · generate
+- 2026-11-04 estimates/estimate-orchestration-acknowledging-reply defer by decision-case-1014 superseded · [[decision-case-1026.5]] · generate
+- 2026-11-04 estimates/estimate-orchestration-acknowledging-reply updated: the put-off retired; the reading taken from the acknowledging replies of this session and the reply that acknowledges the setup Case in the empty git project of the install stop · [[decision-case-1026.5]] · generate
+- 2026-11-04 decisions/decision-case-1027 created · raw/2026-11-04/0358/ledger.md#case-1027 · generate
+- 2026-11-04 decisions/decision-case-1027 superseded by decision-case-1028.1 · [[decision-case-1028.1]] · generate
+- 2026-11-04 decisions/decision-case-1028 created · raw/2026-11-04/0358/ledger.md#case-1028 · generate
+- 2026-11-04 decisions/decision-case-1028.1 created · raw/2026-11-04/0358/ledger.md#case-1028.1 · generate
+- 2026-11-04 estimates/estimate-clean-branch-names-a-pointer-at-the-write created · [[decision-case-1028.1]] · generate
+- 2026-11-04 estimates/estimate-clean-branch-names-a-pointer-at-the-write status: pending → passed · raw/2026-11-04/0358/ledger.md#L31 · generate
+- 2026-11-04 rules/rule-clean-branch estimate estimate-clean-branch-names-a-pointer-at-the-write added · [[decision-case-1028.1]] · generate
+- 2026-11-04 rules/rule-clean-branch updated: the hook guppi codewrite names a pointer outside its bracket under .guppi/ at the write · [[decision-case-1028.1]] · generate
+- 2026-11-04 rules/rule-hook-registry updated: guppi codewrite registered on PostToolUse of Edit, Write and MultiEdit · [[decision-case-1028.1]] · generate
+- 2026-11-04 insights/insight-ship-live-code-writes-a-case-number-outside-a-bracket updated: actioned: the hook guppi codewrite names a bare case number at the write · [[decision-case-1028.1]] · generate
+- 2026-11-04 decisions/decision-case-1028.2 created · raw/2026-11-04/0358/ledger.md#case-1028.2 · generate
+- 2026-11-04 estimates/estimate-clean-branch-ships-no-code-write-hook created · [[decision-case-1028.2]] · generate
+- 2026-11-04 estimates/estimate-clean-branch-ships-no-code-write-hook status: pending → passed · raw/2026-11-04/0358/ledger.md#L32 · generate
+- 2026-11-04 rules/rule-clean-branch estimate estimate-clean-branch-ships-no-code-write-hook added · [[decision-case-1028.2]] · generate
+- 2026-11-04 rules/rule-clean-branch updated: the clean version leaves out the hook guppi codewrite and its registration · [[decision-case-1028.2]] · generate
+- 2026-11-04 estimates/estimate-morph-sets-up-the-project-at-the-first-hi status: pending → failed · raw/2026-11-04/0358/ledger.md#L25 · generate
+- 2026-11-04 estimates/estimate-morph-takes-in-the-set-aside-files status: pending → passed · raw/2026-11-04/0358/ledger.md#L26 · generate
+- 2026-11-04 estimates/estimate-git-context-offers-git-init status: pending → failed · raw/2026-11-04/0358/ledger.md#L27 · generate
+- 2026-11-04 estimates/estimate-sprint-plugin-installs-as-a-plugin status: pending → passed · raw/2026-11-04/0358/ledger.md#L28 · generate
+- 2026-11-04 estimates/estimate-orchestration-acknowledging-reply status: pending → passed · raw/2026-11-04/0358/ledger.md#L29 · generate
+- 2026-11-04 estimates/estimate-case-build-reads-the-readers-of-a-new-files-folder status: pending → passed · raw/2026-11-04/0358/ledger.md#L30 · generate
+- 2026-11-04 lessons/lesson-hooks-relative-project-path-fails-after-a-cd created · raw/2026-11-04/0358/ledger.md#L33 · generate
+- 2026-11-04 lessons/lesson-ship-leaves-an-empty-comment-after-a-removed-pointer created · raw/2026-11-04/0358/ledger.md#L34 · generate
+- 2026-11-04 lessons/lesson-plugin-install-leaves-pycache-untracked created · raw/2026-11-04/0358/ledger.md#L35 · generate
+- 2026-11-04 lessons/lesson-git-context-plan-mode-blocks-git-init created · raw/2026-11-04/0358/ledger.md#L36 · generate
+- 2026-11-04 rules/rule-prespec status: draft → built · cascade · generate
+- 2026-11-04 decisions/decision-case-1014 archived · superseded · generate
+- 2026-11-04 decisions/decision-case-1022 archived · superseded · generate
+- 2026-11-04 decisions/decision-case-1023 archived · superseded · generate
+- 2026-11-04 decisions/decision-case-1024 archived · superseded · generate
+- 2026-11-04 decisions/decision-case-1027 archived · superseded · generate
+- 2026-11-04 lessons/lesson-ship-test-comment-writes-a-bare-case-reference archived · insight actioned · generate
+- 2026-11-04 lessons/lesson-ship-docstring-sample-writes-a-real-case-number archived · insight actioned · generate
+- 2026-11-04 lessons/lesson-ship-docstring-sample-writes-a-real-case-number archived · cleanup
+- 2026-11-04 lessons/lesson-ship-test-comment-writes-a-bare-case-reference archived · cleanup
+- 2026-11-04 decisions/decision-case-1014 archived · cleanup
+- 2026-11-04 decisions/decision-case-1022 archived · cleanup
+- 2026-11-04 decisions/decision-case-1023 archived · cleanup
+- 2026-11-04 decisions/decision-case-1024 archived · cleanup
+- 2026-11-04 decisions/decision-case-1027 archived · cleanup

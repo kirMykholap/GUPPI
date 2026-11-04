@@ -20,6 +20,8 @@ entries:
       read in their transcript; put off at /hi of session 0316
   exists: true
   applied: 05:59:22
+  superseded_by:
+  - '1026.5'
 - line: 2
   text: decision[case 1015.1][update][rule-ask]{ref:rule-ask}
   case: '1015.1'
@@ -1220,6 +1222,8 @@ decisions:
       1013 are read against the Criterion.
   spec: vault/raw/2026-11-03/0316/spec.md
   applied: 05:59:22
+  superseded_by:
+  - decision-case-1026.5
 - case: '1015.1'
   decision: decision-case-1015.1
   origin: raw/2026-11-03/0316/ledger.md#case-1015.1

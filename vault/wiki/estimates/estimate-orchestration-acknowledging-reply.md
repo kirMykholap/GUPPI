@@ -1,12 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: The reply that acknowledges a ratification has four parts in order
 method: "by hand, after the librarian's render that writes into vault/wiki/orchestration.md the sentence of rule-orchestration that lets a heading or a label of the acknowledging reply keep a term of the harness in English: an acknowledging reply and a reply that acknowledges Cases ratified together in one answer, each written after that render, each read against the Criterion in the transcript of its session under ~/.claude/projects/; by hand, after the librarian's run of the session that replaces this Criterion and a setup Case ratified in a new project installed in a repository that holds the module of the command ship, from a copy that uv run --project .guppi guppi ship --allow-draft wrote: the reply that acknowledges that setup Case read against the Criterion in the transcript of its session under ~/.claude/projects/"
-checked: 2026-11-02
-deferred_by: ["[[decision-case-1014]]"]
+checked: 2026-11-04
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -37,7 +36,7 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 
 ## Result
 
-2026-11-02, session 1548 (hi e96fc117), two replies written after the render of session 1337, read against the Criterion in this session's transcript: the reply that acknowledges Case 1005 with 1005.1–1005.3 ratified in one answer, and the reply that acknowledges Case 1006 alone; in each the LEDGER block first, the heading of the Case, the label of the changes and the heading of the Frontier in Russian, the changes in one or two sentences (in 1005 followed by the sentence on the librarian's render), closed lines and W lines folded, the open C1 on its own line, the closing question which item is next, no tool call after the block; the heading of 1005 named the Case by its id alone
+2026-11-04, Work Mode of session 0358, the transcript ~/.claude/projects/c--PROJECTS-GUPPI/76379bf1-2c92-4f48-9167-3191a6e77843.jsonl, on vault/wiki/orchestration.md whose line 82 holds the sentence on a term of the harness: the replies at L393 (Case 1022), L584 (1025 with its sub-cases), L674 (1026), L796 (1027) and L1092 (1025, 1026 and 1028 ratified in one answer after /pre-spec) open with the LEDGER block, hold one Russian heading that keeps Case, the labels Изменения and Заметки, the Frontier as a checklist with closed and put-off lines folded, end with the question which item is next or, at L1092, with the Frontier and no question, and no tool call follows the block in the same reply; the replies that acknowledge the setup Case, empty-git L246, own-files L168 and no-git L251, hold the LEDGER block, the heading and the changes, no Frontier, end with the question on what the first sprint is to build, and no tool call follows
 
 ## History
 
@@ -76,3 +75,6 @@ The reply has four parts, in this order. First, the `LEDGER` block, before which
 - 2026-11-03 updated: the Criterion replaced whole — a heading or a label may keep a term of the harness in English, the heading of the Frontier that term alone included · [[decision-case-1013]]
 - 2026-11-03 deferred · [[decision-case-1014]]
 - 2026-11-03 updated: the Criterion replaced whole — the reply that acknowledges the setup Case of rule-morph shows no Frontier and asks what the first sprint is to build · [[decision-case-1017.7]]
+- 2026-11-04 defer by decision-case-1014 superseded · [[decision-case-1026.5]]
+- 2026-11-04 updated: the put-off retired; the reading taken from the acknowledging replies of this session and the reply that acknowledges the setup Case in the empty git project of the install stop · [[decision-case-1026.5]]
+- 2026-11-04 status: pending → passed · raw/2026-11-04/0358/ledger.md#L29

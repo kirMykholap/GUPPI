@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a set of ratified decisions from reaching the Spec with a contradiction between them or with the vault
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/pre-spec/SKILL.md
 render_mode: full
@@ -210,3 +210,4 @@ Inside this loop the rule of `vault/wiki/orchestration.md` that no Case is taken
 - 2026-11-02 updated: ask-guppi at pre-spec reads the tasks block of each Case and is asked about the searches and the readers of the folders of a new file that is no page · [[decision-case-995.2]]
 - 2026-11-02 estimate estimate-prespec-finds-a-reader-of-a-new-files-folder added · [[decision-case-995.2]]
 - 2026-11-02 status: built → draft · cascade
+- 2026-11-04 status: draft → built · cascade

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent wrote a real case number as the example closer of a Frontier line inside a code span of a module docstring, and guppi ship reads every case number in the docstrings and comments of the code as a pointer, which stands only in a bracket at the end of its sentence; a sample in code takes the placeholder `case N`
-status: clustered
+status: archived
 insight: "[[insight-ship-live-code-writes-a-case-number-outside-a-bracket]]"
 origin: raw/2026-11-02/2155/ledger.md#L22
 sprint: plugin
@@ -22,3 +22,5 @@ the agent wrote a real case number as the example closer of a Frontier line insi
 
 - 2026-11-03 created · raw/2026-11-02/2155/ledger.md#L22
 - 2026-11-03 updated: clustered under insight-ship-live-code-writes-a-case-number-outside-a-bracket (synthesis) · raw/2026-11-02/2155/ledger.md#L22
+- 2026-11-04 archived · insight actioned
+- 2026-11-04 archived · cleanup

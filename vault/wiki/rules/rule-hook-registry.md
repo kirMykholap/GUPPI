@@ -21,7 +21,7 @@ Prevents a hook from being registered by hand, outside a ratified decision. A ho
 Rule names `.claude/settings.json` in `implementation_ref`, but nothing ties the
 file to the pages: a registration added or dropped by hand changes what fires with
 no ledger line behind it. This page is the `"hooks"` key of that file; adding a
-hook is an `update` of this page in the same Case that creates the hook's Rule.
+hook is an `update` of this page in the same Case that creates the hook's Rule, or that adds the hook to the Rule whose check it runs.
 
 `parent: rule-settings`: the file is one text of several rules, and the registry is
 one of them (case 85.3). A hook in an agent's own frontmatter is part of that
@@ -61,7 +61,7 @@ agent's Render and is ratified with it; this page holds the registrations only.
     "PostToolUse": [
       { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi event tool", "timeout": 30 } ] },
       { "matcher": "ExitPlanMode",
-        "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi spec", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi pageread --after", "timeout": 30 } ] }, { "matcher": "Bash|PowerShell", "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi shellwrite", "timeout": 30 } ] }
+        "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi spec", "timeout": 30 } ] }, { "matcher": "Read", "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi pageread --after", "timeout": 30 } ] }, { "matcher": "Bash|PowerShell", "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi shellwrite", "timeout": 30 } ] }, { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi codewrite", "timeout": 30 } ] }
     ],
     "Stop": [
       { "hooks": [ { "type": "command", "command": "uv run --project .guppi guppi ledger", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi ratified", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi casecheck", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi context", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi onward", "timeout": 30 }, { "type": "command", "command": "uv run --project .guppi guppi onward --plan", "timeout": 30 } ] }
@@ -117,3 +117,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-11-01 updated: UserPromptSubmit → guppi spec --typed · [[decision-case-987.1]]
 - 2026-11-02 updated: the SessionStart hook guppi links --write removed with the graph of links · [[decision-case-999.1]]
 - 2026-11-03 updated: the PreToolUse hook guppi frontierguard registered on Edit, Write and MultiEdit · [[decision-case-1012]]
+- 2026-11-04 updated: guppi codewrite registered on PostToolUse of Edit, Write and MultiEdit · [[decision-case-1028.1]]

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: failed
 target: "[[rule-ask]]"
 purpose: Whether ask-guppi at /pre-spec starts with the Grep of the rules and runs the index Grep of every other category with its pattern as written, then greps and reads as each finding needs, the code, the tests and the harness files among them, none reaching vault/archive/ and none reported as a broken rule, a count over Decision pages not run again
 method: "by hand, after the first /pre-spec whose ask-guppi runs on .claude/agents/ask-guppi.md rendered from the Render of rule-ask that lets the searches a finding needs cover the code: the Grep, Glob and Read calls of ask-guppi at that /pre-spec and its list of what it did not check, read in its agent transcript under ~/.claude/projects/ against the Criterion, the transcript in the estimate line"
-checked: 2026-11-01
+checked: 2026-11-04
 origin: raw/2026-10-04/2041/ledger.md#case-633.2
 sprint: migration
 created: 2026-10-04
@@ -30,7 +30,7 @@ The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/
 
 ## Result
 
-2026-11-01, Work Mode of session 0141, the ask-guppi transcript of the pre-spec of session 2307, ~/.claude/projects/c--PROJECTS-GUPPI/8d8876d7-f627-4f65-95f7-cb7b7172cd46/subagents/agent-a5ddd2830f464981b.jsonl, rendered at 6ccb92a0 before the run: L15 Grep ^(purpose|deferred_by): over vault/wiki/rules, L17 the same over entities, L19 ^(root_cause|deferred_by): over lessons, L21 ^(pattern|deferred_by): over insights, each pattern as written and no call before L21; about 70 further Greps and Reads as findings needed, among them the counts of the contexts of Cases 972 and 975 at L155 and L238, run over vault/wiki, where the hook of rule-search-leaves-out-decisions leaves out the decisions folder; no call under vault/wiki/decisions/
+2026-11-04, /hi of session 0358, the ask-guppi transcript of the pre-spec of session 1825, ~/.claude/projects/c--PROJECTS-GUPPI/badff418-03e2-400a-9965-132a837bd45e/subagents/agent-a514162d0e931e8f2.jsonl, on .claude/agents/ask-guppi.md as rendered at 8e0a10f4: L15 Grep ^(purpose|deferred_by): over vault/wiki/rules first, L17 the same over entities, L19 ^(root_cause|deferred_by): over lessons, L21 ^(pattern|deferred_by): over insights, each pattern as written; further Greps and Reads as findings needed, over the code, the tests and the harness files among them (ship.py, backlog.py, casecheck.py, lint.py, test_ship.py, .gitattributes, .gitignore); no call under vault/wiki/decisions/; but the Grep guppi-assets|icon_guppi|logo_guppi at L245, over the repository root with only vault/raw/** left out, reached vault/archive/, and the Glob vault/archive/plugin/2026-11-02/2155/**/* at L87 and the Grep ^<!-- of the archived spec.md at L111 searched the archive by a session path, not by slug; the agent's list of what it did not check names these three as broken rules
 
 ## History
 
@@ -46,3 +46,4 @@ The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/
 - 2026-10-31 updated: the Criterion replaced whole — at /pre-spec too the agent runs the index Grep of every category with its pattern as written · [[decision-case-970.3]]
 - 2026-11-01 status: pending → passed · raw/2026-11-01/0141/ledger.md#L16
 - 2026-11-03 updated: the Criterion replaced whole — the searches a finding needs may cover the code, the tests and the harness files, and none is reported as a broken rule · [[decision-case-1015.1]]
+- 2026-11-04 status: pending → failed · raw/2026-11-04/0358/ledger.md#L1

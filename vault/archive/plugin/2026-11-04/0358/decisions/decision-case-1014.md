@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1014"
-status: current
+status: archived
 defer: ["[[estimate-orchestration-acknowledging-reply]]"]
+superseded_by: ["[[decision-case-1026.5]]"]
 origin: raw/2026-11-03/0316/ledger.md#case-1014
 sprint: plugin
 created: 2026-11-03
@@ -26,3 +27,6 @@ The reply that acknowledges a ratification has four parts in order; waits for an
 ## History
 
 - 2026-11-03 created · raw/2026-11-03/0316/ledger.md#case-1014
+- 2026-11-04 superseded by decision-case-1026.5 · [[decision-case-1026.5]]
+- 2026-11-04 archived · superseded
+- 2026-11-04 archived · cleanup

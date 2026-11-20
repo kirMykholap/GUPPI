@@ -1,0 +1,60 @@
+- 06:18:05 decision[case 1029.1][create][estimate-orchestration-dispatches-case-guppi-at-a-level]{ref:rule-orchestration}{tags:session,workflow,harness}
+- 06:18:05 decision[case 1029.1][update][rule-orchestration]{ref:rule-orchestration}
+- 06:18:05 decision[case 1029.2][update][estimate-case-build-writes-the-case]{ref:rule-case-build}
+- 06:18:05 decision[case 1029.3][update][rule-context-size]{ref:rule-context-size}
+- 06:18:05 decision[case 1029.3][create][estimate-context-size-agents-counts-each-agent]{ref:rule-context-size}{tags:hooks,harness,session}
+- 06:18:05 decision[case 1029.4][create][estimate-sprint-plugin-case-guppi-level-trial-decided]{ref:entity-sprint-plugin}{tags:sprint,workflow}
+- 07:36:35 decision[case 1030.1][create][estimate-clean-branch-copy-passes-its-style-and-tests]{ref:rule-clean-branch}{tags:plugin,ci,tests}
+- 07:36:35 decision[case 1030.1][update][rule-clean-branch]{ref:rule-clean-branch}
+- 07:36:35 decision[case 1030.2][update][estimate-clean-branch-ships-the-tests]{ref:rule-clean-branch}
+- 09:05:23 decision[case 1031.1][create][estimate-case-build-settles-form-by-itself]{ref:rule-case-build}{tags:session,workflow,harness}
+- 09:05:23 decision[case 1031.1][update][rule-case-build]{ref:rule-case-build}
+- 09:05:23 decision[case 1031.2][update][estimate-case-build-offers-a-page-for-code-no-page-covers]{ref:rule-case-build}
+- 09:05:23 decision[case 1031.2][update][rule-case-build]{ref:rule-case-build}
+- 09:05:23 decision[case 1031.3][update][rule-morph]{ref:rule-morph}
+- 09:05:23 decision[case 1031.3][update][rule-skill-setup]{ref:rule-skill-setup}
+- 09:05:23 decision[case 1031.3][update][rule-guppi-config]{ref:rule-guppi-config}
+- 09:05:23 decision[case 1031.3][update][estimate-morph-sets-up-the-project-at-the-first-hi]{ref:rule-morph}
+- 09:20:43 decision[case 1032.1][update][rule-guppi-package]{ref:rule-guppi-package}
+- 09:20:43 decision[case 1032.1][update][rule-hook-registry]{ref:rule-hook-registry}
+- 09:20:43 decision[case 1032.1][update][rule-documentation]{ref:rule-documentation}
+- 09:20:43 decision[case 1032.1][update][estimate-guppi-package-runs-from-its-own-folder]{ref:rule-guppi-package}
+- 09:20:43 decision[case 1032.2][update][estimate-ledger-write-lifts]{ref:rule-ledger-write}
+- 09:20:43 decision[case 1032.3][update][estimate-case-check-judges-a-showing-after-a-refusal]{ref:rule-case-check}
+- 09:29:38 decision[case 1033][create][estimate-guppi-package-keeps-python-caches-out-of-git]{ref:rule-guppi-package}{tags:git,plugin}
+- 09:29:38 decision[case 1033][update][rule-guppi-package]{ref:rule-guppi-package}
+- 09:44:20 decision[case 1034.1][update][rule-skill-sprint-open]{ref:rule-skill-sprint-open}
+- 09:44:20 decision[case 1034.1][update][estimate-skill-sprint-open-merges-the-closed-sprint-branch]{ref:rule-skill-sprint-open}
+- 09:44:20 decision[case 1034.2][update][rule-work-mode]{ref:rule-work-mode}
+- 09:44:20 decision[case 1034.2][update][estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline]{ref:rule-work-mode}{supersedes:case 1008}
+- 09:44:20 decision[case 1034.3][update][rule-where-to-stop]{ref:rule-where-to-stop}
+- 09:44:20 decision[case 1034.3][update][estimate-where-to-stop-stops-only-on-its-conditions]{ref:rule-where-to-stop}
+- 10:02:37 decision[case 1035.1][create][estimate-ledger-write-finds-a-refusal-by-the-name-of-its-hook]{ref:rule-ledger-write}{tags:session,hooks,harness,ledger}
+- 10:02:37 decision[case 1035.1][update][rule-ledger-write]{ref:rule-ledger-write}
+- 10:02:37 decision[case 1035.2][update][estimate-retro-onward-sends-the-agent-to-the-handoff]{ref:rule-retro-onward}
+- 10:02:37 decision[case 1035.3][update][rule-prespec-onward]{ref:rule-prespec-onward}
+- 10:02:37 decision[case 1035.3][update][estimate-prespec-onward-sends-the-agent-on]{ref:rule-prespec-onward}
+- 10:11:49 decision[case 1036][update][rule-git-context]{ref:rule-git-context}
+- 10:11:49 decision[case 1036][update][rule-skill-hi]{ref:rule-skill-hi}
+- 10:11:49 decision[case 1036][update][rule-default-mode]{ref:rule-default-mode}
+- 10:11:49 decision[case 1036][update][estimate-git-context-offers-git-init]{ref:rule-git-context}
+- 10:12:27 decision[case 1037][defer][estimate-ask-searches-at-prespec]{ref:estimate-ask-searches-at-prespec}
+- 10:12:27 decision[case 1038][defer][estimate-case-build-searches-the-names-of-what-it-changes]{ref:estimate-case-build-searches-the-names-of-what-it-changes}
+- 13:10:13 decision[case 1032.4][update][estimate-case-check-refuses-text-before-a-round]{ref:rule-case-check}
+- 13:10:13 decision[case 1036][update][estimate-clean-branch-writes-the-session-files]{ref:rule-clean-branch}
+- 13:41:06 estimate[estimate-context-size-agents-counts-each-agent][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_agents.py; 5 passed: one line for the main agent and one per agent with effort, model, calls, tokens, last, tools, runs and seconds, a message in several records one call, a repeated notice counted once, an agent with no meta file `unknown`, an unreadable transcript one stderr line and exit 1, no file written
+- 13:41:06 estimate[estimate-clean-branch-copy-passes-its-style-and-tests][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_ship.py -k own_style: 4 passed (no empty comment and no line of spaces left, no .ruff_cache/ in the copy, a format that exits 2 gives its ship: line and exit 1, ruff check . and ruff format --check . exit 0 over the copy of this repository); uv run --project .guppi pytest .guppi/tests/test_ship.py -m live -k own_tests: 1 passed, the key test over the copy exits 0
+- 13:41:06 estimate[estimate-clean-branch-ships-the-tests][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_ship.py -k tests; 79 passed, 2 deselected
+- 13:41:06 estimate[estimate-guppi-package-keeps-python-caches-out-of-git][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_guppi_package.py -k caches; 1 passed: with the live .guppi/.gitignore, caches under .guppi/guppi/__pycache__/ and .guppi/tests/__pycache__/, dirty of gate.py lists only `A  .guppi/.gitignore`
+- 13:41:06 estimate[estimate-ledger-write-lifts][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_ledger.py .guppi/tests/test_gate.py; 200 passed, its own refusal found by `ledger:` after the bracket under `[command hook 1]` and under the command; the by-hand part, a ledger of a Retro after a refusal, not taken in this reading
+- 13:41:06 estimate[estimate-case-check-judges-a-showing-after-a-refusal][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_casecheck.py; 255 passed, three refusals of one reason under `[command hook 3]` let the showing through unchecked
+- 13:41:06 estimate[estimate-case-check-refuses-text-before-a-round][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k round: 51 passed; the Render of rule-hook-registry in vault/raw/2026-11-04/0807/spec.md (case 1032.1) registers `uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi casecheck --prompt`, which .claude/settings.json takes at the librarian's render
+- 13:41:06 estimate[estimate-retro-onward-sends-the-agent-to-the-handoff][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_onward.py .guppi/tests/test_ledger.py; 249 passed, the Retro run spent by its `onward:` refusal under `[command hook 5]` and not by an `onward --plan:` one; the by-hand part at the end of this Retro comes after this reply and is not taken here
+- 13:41:06 estimate[estimate-prespec-onward-sends-the-agent-on][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_onward.py .guppi/tests/test_ledger.py; 249 passed, TO_OUT, TO_EXIT, TO_LOOP, its error line and its unreadable-payload line open with `onward --plan:`, and a refusal of the Retro run is none of its own and the reverse
+- 13:41:06 estimate[estimate-ledger-write-finds-a-refusal-by-the-name-of-its-hook][passed] 2026-11-20, uv run --project .guppi pytest .guppi/tests/test_ledger.py .guppi/tests/test_onward.py .guppi/tests/test_casecheck.py .guppi/tests/test_ratified.py: 653 passed; the main transcript of session 0807 (f7321efe) holds two Stop hook feedback records, both `[command hook 6]: onward: …` of the --plan run before the change, and none after the commit 2a058181 at this reading
+- 13:41:06 estimate[estimate-skill-sprint-open-merges-the-closed-sprint-branch][passed] 2026-11-20, the new Render of rule-skill-sprint-open in vault/raw/2026-11-04/0807/spec.md (case 1034.1) read against the Criterion: on main the first task line runs `git switch -c <id>` with no `stop:`, no merge or deletion task, Work Mode runs it first and the rest on `<id>`, a refusal a stop on the sixth condition; the lines for a branch other than main stand as the Render held them at the reading of 2026-10-29
+- 13:41:06 estimate[estimate-where-to-stop-stops-only-on-its-conditions][passed] 2026-11-20, the new Render of rule-where-to-stop in vault/raw/2026-11-04/0807/spec.md (case 1034.3) read against each line of the Criterion: the fifth condition lets the branch line of the opening Case through on main, the sixth names its merge or branch tasks; the other lines stand as the Render held them, conditions 1 to 8 and the STOP: sentence
+- 13:41:06 estimate[estimate-case-build-offers-a-page-for-code-no-page-covers][failed] 2026-11-20, the new Render of rule-case-build in vault/raw/2026-11-04/0807/spec.md (case 1031.2) read against the Criterion: it settles the page, offers a round only where the two differ, keeps the page a task of the same Case and gives no page to code the Case does not change or a page names; the line "Its `context` gives the slug of the chosen page and why it was chosen" is not set: the Render says "`context` names the page" and sets no reason
+- 13:41:06 lesson[knowledge][lesson-session-background-agent-stopped-at-process-end]{tags:session}{source:the task-notification records of session 0807, f7321efe, Claude Code 2.1.317} trigger: twice the Claude Code process ended while a background agent ran (the case-guppi of Case 1031 and the ask-guppi of /pre-spec), and the notice said "didn't finish before the previous session ended" root_cause: a background agent does not outlive the process; its transcript and its files stand, and a SendMessage to it resumes it from its transcript, so the main agent checks its case file and note and resumes it with what is left
+- 13:41:14 lesson[error][lesson-harness-empty-grep-taken-as-absence]{tags:harness} trigger: at the discussion of C15 the main agent told the person that `.claude/agents/*.md` held no `effort` or `model`, from a Grep of `effort|^model:` with the glob `{agents/*.md,settings*.json}` under the path `.claude` that printed nothing; case-guppi then read `model: opus` and `effort: medium` in case-guppi.md root_cause: a claim of absence rested on one empty search, with no second search or a Read to confirm that the glob reached the files
+- 13:41:14 lesson[error][lesson-case-build-a-later-case-leaves-a-ratified-text-stale]{tags:case-build,prespec} trigger: the ask-guppi audit at /pre-spec gave 15 findings, among them Criterion lines of Case 1035 that named the old hook registration Case 1032.1 replaces, and change lines and names of 1032.2 and 1032.3 that spoke of the command after Case 1035 moved the judgment to the name of the hook root_cause: the pass of Other Case lines changes only what one Case names in another, and no step searches the texts of the Cases already ratified for each line that rests on the mechanism a later Case changes, before the showing

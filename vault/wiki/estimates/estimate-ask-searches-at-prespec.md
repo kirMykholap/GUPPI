@@ -6,6 +6,7 @@ target: "[[rule-ask]]"
 purpose: Whether ask-guppi at /pre-spec starts with the Grep of the rules and runs the index Grep of every other category with its pattern as written, then greps and reads as each finding needs, the code, the tests and the harness files among them, none reaching vault/archive/ and none reported as a broken rule, a count over Decision pages not run again
 method: "by hand, after the first /pre-spec whose ask-guppi runs on .claude/agents/ask-guppi.md rendered from the Render of rule-ask that lets the searches a finding needs cover the code: the Grep, Glob and Read calls of ask-guppi at that /pre-spec and its list of what it did not check, read in its agent transcript under ~/.claude/projects/ against the Criterion, the transcript in the estimate line"
 checked: 2026-11-04
+deferred_by: ["[[decision-case-1037]]"]
 origin: raw/2026-10-04/2041/ledger.md#case-633.2
 sprint: migration
 created: 2026-10-04
@@ -47,3 +48,4 @@ The agent starts with the Grep `^(purpose|deferred_by):` over `vault/wiki/rules/
 - 2026-11-01 status: pending → passed · raw/2026-11-01/0141/ledger.md#L16
 - 2026-11-03 updated: the Criterion replaced whole — the searches a finding needs may cover the code, the tests and the harness files, and none is reported as a broken rule · [[decision-case-1015.1]]
 - 2026-11-04 status: pending → failed · raw/2026-11-04/0358/ledger.md#L1
+- 2026-11-20 deferred · [[decision-case-1037]]

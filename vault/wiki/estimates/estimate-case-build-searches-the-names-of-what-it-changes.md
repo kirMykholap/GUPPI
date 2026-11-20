@@ -6,6 +6,7 @@ target: "[[rule-case-build]]"
 purpose: Whether case-guppi, on the note of the hook of rule-case-check that lists the files that name what its Case changes, reads each listed file whose purpose line or path speaks of that change by Read or by a Grep whose path is it, or names it in context, enters each file the change makes false in the Case, and gives each file outside vault/wiki/ that a task changes a task line of its own with its path in the first code span, a line that opens with a command such as a render line kept in its own form
 method: "by hand, after the /pre-spec of the first session in which the hook of rule-case-check sends case-guppi the note that lists the files that name what its Case changes, on the Render of rule-case-build that sets the answer to that note: the agent transcript of each case-guppi of that session under ~/.claude/projects/, for each listed file whose purpose line or path speaks of what its Case changes whether the agent read it by Read or by a Grep whose path is it, or named it in context; and its case file, whether each task line that changes a file outside vault/wiki/ holds its path in its first code span and changes no other such file, a line that opens with a code span holding a command, such as a render line, left out; the count and the transcripts in the estimate line"
 checked: 2026-11-04
+deferred_by: ["[[decision-case-1038]]"]
 origin: raw/2026-10-31/1831/ledger.md#case-967.2
 sprint: plugin
 created: 2026-10-31
@@ -41,3 +42,4 @@ For each listed file whose purpose line or path speaks of what its Case changes,
 - 2026-11-02 updated: the Criterion replaced whole — the note of a name, and one changed file per task line · [[decision-case-1010.3]]
 - 2026-11-03 updated: the Criterion replaced whole — case-guppi answers the list by the purpose line or the path of each file · [[decision-case-1011.2]]
 - 2026-11-04 status: pending → failed · raw/2026-11-04/0358/ledger.md#L3
+- 2026-11-20 deferred · [[decision-case-1038]]

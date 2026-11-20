@@ -2,8 +2,8 @@
 type: insight
 pattern: new texts built for sibling Cases or sub-cases on the same subject are each written against their own page, and no step checks them against each other before the showing, so /pre-spec finds them contradicting and the Cases are built again
 status: open
-children: ["[[lesson-case-build-sub-cases-contradicted-each-other]]", "[[lesson-case-build-parallel-cases-clash-on-one-page]]", "[[lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers]]"]
-severity: 1
+children: ["[[lesson-case-build-sub-cases-contradicted-each-other]]", "[[lesson-case-build-parallel-cases-clash-on-one-page]]", "[[lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers]]", "[[lesson-case-build-a-later-case-leaves-a-ratified-text-stale]]"]
+severity: 2
 addressed_by: "[[decision-case-872.1]]"
 origin: raw/2026-10-16/2104/ledger.md#L51
 sprint: plugin
@@ -24,3 +24,4 @@ A step before the showing that reads the finished new texts of every sibling Cas
 - 2026-10-17 created · raw/2026-10-16/2104/ledger.md#L51
 - 2026-10-17 updated: born actioned, its cause closed by case 872.1 (synthesis) · raw/2026-10-16/2104/ledger.md#L51
 - 2026-11-03 updated: child lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers added, reopened from actioned (synthesis) · raw/2026-11-03/0316/ledger.md#L33
+- 2026-11-20 updated: child lesson-case-build-a-later-case-leaves-a-ratified-text-stale added (synthesis) · raw/2026-11-04/0807/ledger.md#L60

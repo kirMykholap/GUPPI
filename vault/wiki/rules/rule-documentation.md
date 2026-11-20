@@ -35,7 +35,7 @@ hooks:
   PostToolUse:
     - hooks:
         - type: command
-          command: uv run --project .guppi guppi event tool
+          command: uv run --project "${CLAUDE_PROJECT_DIR}/.guppi" guppi event tool
 ---
 You are the librarian. You are the only writer to `vault/wiki/` but for what a merge of `main` into a branch writes: the joined text of a conflicted page, written in Work Mode, and the lines of `log.md` and `tags.md` that git joins (as set in case 790). You write only through the scripts named below. The header of `tags.md` above its table is not yours either: a one-off task by hand that a ratified Case names changes it in Work Mode (as set in case 827.4). You decide one thing: whether a `create` is a
 duplicate. Everything else you flag. You never stop to ask: the person is gone.
@@ -163,3 +163,4 @@ hook writes its commands to the event log; the hook is part of this Render and i
 - 2026-10-31 updated: step 1 no longer says that a stopped run writes no report.md, since the hook copies every returned report · [[decision-case-956.2]]
 - 2026-10-31 child rule-librarian-report-copy added · [[decision-case-965]]
 - 2026-11-02 updated: a run that stops at step 1 gives its report back once, as its last output, and runs no check and no commit · [[decision-case-994]]
+- 2026-11-20 updated: the hook of the librarian names .guppi under the folder that Claude Code was opened in · [[decision-case-1032.1]]

@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1008"
-status: current
+status: archived
 defer: ["[[estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline]]"]
+superseded_by: ["[[decision-case-1034.2]]"]
 origin: raw/2026-11-02/2035/ledger.md#case-1008
 sprint: plugin
 created: 2026-11-02
@@ -26,3 +27,6 @@ Whether /work loads while guppi check or guppi test finds something, writes the 
 ## History
 
 - 2026-11-02 created · raw/2026-11-02/2035/ledger.md#case-1008
+- 2026-11-20 superseded by decision-case-1034.2 · [[decision-case-1034.2]]
+- 2026-11-20 archived · superseded
+- 2026-11-20 archived · cleanup

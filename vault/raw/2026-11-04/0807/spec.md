@@ -86,9 +86,9 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-orchestration-dispatches-case-guppi-at-a-level`
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] create `estimate-orchestration-dispatches-case-guppi-at-a-level`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-dispatches-case-guppi-at-a-level`
 ```
 
@@ -160,7 +160,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-writes-the-case`
+- [x] update `estimate-case-build-writes-the-case`
 - [ ] read `estimate-case-build-writes-the-case`
 ```
 
@@ -219,10 +219,10 @@ update:
 - [x] `.guppi/guppi/agents.py`: the module with `run(argv, ...)`, importing `call_size` of `.guppi/guppi/context.py` and `read_records` and `is_main` of `.guppi/guppi/ledger.py`, each pointer in a bracket at the end of its sentence.
 - [x] `.guppi/guppi/cli.py`: `agents` in the imports and in `COMMANDS`.
 - [x] `.guppi/tests/test_agents.py`: a test over a transcript, a `subagents/` folder and a meta file under a temporary folder, with timestamps fixed in the data, for each line of the `then`, a repeated notification included.
-- [ ] update `rule-context-size`
-- [ ] create `estimate-context-size-agents-counts-each-agent`
+- [x] update `rule-context-size`
+- [x] create `estimate-context-size-agents-counts-each-agent`
 - [x] by hand, at Retro: the command of `.guppi/guppi/agents.py` run over the transcript of this session and over each main transcript under `~/.claude/projects/C--PROJECTS-guppi-trial-0358-*/`, its output in the handoff of the session as the numbers the trial starts from.
-- [ ] read `estimate-context-size-agents-counts-each-agent`
+- [x] read `estimate-context-size-agents-counts-each-agent`
 ```
 
 ### Case 1029.4 — The person decides at the close of the sprint whether the levels stay
@@ -259,7 +259,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-case-guppi-level-trial-decided`
+- [x] create `estimate-sprint-plugin-case-guppi-level-trial-decided`
 - [ ] read `estimate-sprint-plugin-case-guppi-level-trial-decided`
 ```
 
@@ -346,8 +346,8 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-clean-branch-copy-passes-its-style-and-tests`
-- [ ] update `rule-clean-branch`
+- [x] create `estimate-clean-branch-copy-passes-its-style-and-tests`
+- [x] update `rule-clean-branch`
 - [x] `.guppi/guppi/pointers.py`: `BRACKET` also takes the line break before a bracket that stands alone on its line, and its comment says so.
 - [x] `.guppi/guppi/ship.py`: a function reads the comments of a Python text by `tokenize` and removes each one that holds nothing after its `#`, with the spaces before it, and its line where it stood alone; a text that does not tokenize stays as it is; `judged` runs it over a Python file after `clean`.
 - [x] `.guppi/guppi/ship.py`: `ship` ends by running a constant `FORMAT`, `ruff format .guppi` by `sys.executable -m ruff`, in the folder after the skeletons, with `--cache-dir` a folder of `tempfile.TemporaryDirectory` outside the copy, removed after the run, and gives one `ship:` line where it does not start or does not exit 0; the module docstring says so, each pointer in a bracket at the end of its sentence.
@@ -356,7 +356,7 @@ update:
 - [x] `.guppi/tests/test_ship.py`: tests whose names hold `own_style` over a sample tree: a comment left empty after code and on a line of its own, a docstring line left blank, and a `FORMAT` that exits 2, which gives its `ship:` line and exit 1; `test_it_writes_the_code_the_harness_and_the_core_pages_only` keeps its exact set of written files, so it goes red on a `.ruff_cache/` in the copy.
 - [x] `.guppi/tests/test_ship.py`: `test_own_style_passes_over_the_copy`, unmarked, builds this repository by `ship` into a temporary folder and runs each command of the key `style` of `guppi.toml` there, its `uv run --project .guppi` replaced by `sys.executable -m`, each exit 0.
 - [x] `.guppi/tests/test_ship.py`: `test_own_tests_pass_over_the_copy`, marked `live`, does the same for the key `test`, by `sys.executable -P -m` with `PYTHONPATH` the `.guppi` of the folder and no `CLAUDE_PROJECT_DIR` or `PYTEST_ADDOPTS` in its environment; the module docstring names both tests and the new Estimate.
-- [ ] read `estimate-clean-branch-copy-passes-its-style-and-tests`
+- [x] read `estimate-clean-branch-copy-passes-its-style-and-tests`
 ```
 
 ### Case 1030.2 — The check of the shipped tests leaves the promise that they pass
@@ -390,8 +390,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-ships-the-tests`
-- [ ] read `estimate-clean-branch-ships-the-tests`
+- [x] update `estimate-clean-branch-ships-the-tests`
+- [x] read `estimate-clean-branch-ships-the-tests`
 ```
 
 ## Case 1031 — case-guppi settles questions of form itself, and the setup Case asks only what it cannot find
@@ -466,9 +466,9 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-case-build-settles-form-by-itself`
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-settles-form-by-itself`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-settles-form-by-itself`
 ```
 
@@ -509,10 +509,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-offers-a-page-for-code-no-page-covers`
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] read `estimate-case-build-offers-a-page-for-code-no-page-covers`
+- [x] update `estimate-case-build-offers-a-page-for-code-no-page-covers`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] read `estimate-case-build-offers-a-page-for-code-no-page-covers`
 ```
 
 ### Case 1031.3 — The setup Case asks on tests only where the project holds code of its own
@@ -590,11 +590,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-morph`
-- [ ] update `rule-skill-setup`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/setup/SKILL.md`
-- [ ] update `rule-guppi-config`
-- [ ] update `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] update `rule-morph`
+- [x] update `rule-skill-setup`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/setup/SKILL.md`
+- [x] update `rule-guppi-config`
+- [x] update `estimate-morph-sets-up-the-project-at-the-first-hi`
 - [ ] read `estimate-morph-sets-up-the-project-at-the-first-hi`
 ```
 
@@ -733,17 +733,17 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-guppi-package`
-- [ ] update `rule-hook-registry`
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
-- [ ] update `rule-documentation`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `rule-guppi-package`
+- [x] update `rule-hook-registry`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] update `rule-documentation`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
 - [x] `.guppi/guppi/ledger.py`: `PROJECT_RUN` becomes `uv run --project "${CLAUDE_PROJECT_DIR}/.guppi" `, a new constant holds the form of today, `uv run --project .guppi `, and `command_forms` gives for a command of `PROJECT_RUN` the command and the same with `--project .guppi`, the forms of the registration that `.guppi/guppi/ship.py` removes, until a Case of a later session removes the old form; no reader of refusals calls it, as Case 1035.1 sets; the module docstring and the docstring of `command_forms` say so.
 - [x] `.guppi/guppi/ship.py`: `CODE_WRITE_ENTRY` becomes the entries of the registration of `guppi codewrite` in each form of `command_forms` of `.guppi/guppi/ledger.py`, each command written as JSON writes it, and `without_code_write` removes each; the module docstring says so.
 - [x] `.guppi/tests/test_guppi_package.py`: `test_each_hook_command_stands_in_the_settings_in_the_new_form` reads the commands of `.claude/settings.json` as JSON and passes where the `COMMAND` of each hook stands there in its new form or in the form with `--project .guppi`, so it passes before the render and after it until a Case of a later session drops the old form; a new test asserts the same of every hook command of `.claude/settings.json` and of the frontmatter of `.claude/agents/librarian-guppi.md`; the module docstring says so.
 - [x] `.guppi/tests/test_ledger.py`: a test asserts that `command_forms` gives for the `COMMAND` of each hook the command and the same with `--project .guppi`, and `test_a_command_without_the_project_has_one_form` gives one form for a command of no `PROJECT_RUN`; the tests of a refusal found under each form are those Case 1035.1 changes.
 - [x] `.guppi/tests/test_ship.py`: a test whose name holds `no_code_write_hook` builds a tree whose registration of `guppi codewrite` stands in the new form and finds it removed from both texts.
-- [ ] update `estimate-guppi-package-runs-from-its-own-folder`
+- [x] update `estimate-guppi-package-runs-from-its-own-folder`
 - [ ] read `estimate-guppi-package-runs-from-its-own-folder`
 ```
 
@@ -784,8 +784,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ledger-write-lifts`
-- [ ] read `estimate-ledger-write-lifts`
+- [x] update `estimate-ledger-write-lifts`
+- [x] read `estimate-ledger-write-lifts`
 ```
 
 ### Case 1032.3 — The Case check finds its refusals by its name, whatever its command
@@ -821,8 +821,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-judges-a-showing-after-a-refusal`
-- [ ] read `estimate-case-check-judges-a-showing-after-a-refusal`
+- [x] update `estimate-case-check-judges-a-showing-after-a-refusal`
+- [x] read `estimate-case-check-judges-a-showing-after-a-refusal`
 ```
 
 ### Case 1032.4 — The note on a round names the run of the Case check, not its old command
@@ -862,8 +862,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-check-refuses-text-before-a-round`
-- [ ] read `estimate-case-check-refuses-text-before-a-round`
+- [x] update `estimate-case-check-refuses-text-before-a-round`
+- [x] read `estimate-case-check-refuses-text-before-a-round`
 ```
 
 ## Case 1033 — The code folder of GUPPI keeps the Python caches out of git
@@ -929,11 +929,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-guppi-package-keeps-python-caches-out-of-git`
-- [ ] update `rule-guppi-package`
+- [x] create `estimate-guppi-package-keeps-python-caches-out-of-git`
+- [x] update `rule-guppi-package`
 - [x] `.guppi/.gitignore`: a line `__pycache__/` after the line `.venv/`.
 - [x] `.guppi/tests/test_guppi_package.py`: a test whose name holds `caches` runs `git init` in a temporary folder, copies the live `.guppi/.gitignore` to `.guppi/.gitignore` there, writes a file under `.guppi/guppi/__pycache__/` and one under `.guppi/tests/__pycache__/`, stages `.guppi/.gitignore` alone, and asserts that `dirty` of `.guppi/guppi/gate.py` lists that file and no other path; the module docstring says that the file holds `__pycache__/` too.
-- [ ] read `estimate-guppi-package-keeps-python-caches-out-of-git`
+- [x] read `estimate-guppi-package-keeps-python-caches-out-of-git`
 ```
 
 ## Case 1034 — The opening Case of a sprint on main makes the sprint branch, and Work Mode runs that task first
@@ -1006,10 +1006,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-open`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
-- [ ] read `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] update `rule-skill-sprint-open`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] read `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
 ```
 
 ### Case 1034.2 — Work Mode on main runs the branch task of the opening Case first
@@ -1073,9 +1073,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] update `rule-work-mode`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 - [ ] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 ```
 
@@ -1133,10 +1133,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-where-to-stop`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/where-to-stop.md`
-- [ ] update `estimate-where-to-stop-stops-only-on-its-conditions`
-- [ ] read `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] update `rule-where-to-stop`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/where-to-stop.md`
+- [x] update `estimate-where-to-stop-stops-only-on-its-conditions`
+- [x] read `estimate-where-to-stop-stops-only-on-its-conditions`
 ```
 
 ## Case 1035 — Each Stop hook finds its own refusal by its name, whatever bracket Claude Code writes
@@ -1213,14 +1213,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-ledger-write-finds-a-refusal-by-the-name-of-its-hook`
-- [ ] update `rule-ledger-write`
+- [x] create `estimate-ledger-write-finds-a-refusal-by-the-name-of-its-hook`
+- [x] update `rule-ledger-write`
 - [x] `.guppi/guppi/ledger.py`: `refusals_in` and `sent_back_last` take a refusal as a hook's own when a line of the record opens with a bracket and `]: ` and the text after it opens with the name of the hook and a colon, the name being the words of its command after ` guppi `, by one function both call; `command_forms` is no longer called by them; the module docstring and the docstrings of `refusals`, `refusals_in`, `sent_back_last` and `command_forms` say so.
 - [x] `.guppi/guppi/casecheck.py`: the comment of `COMMAND` says that its refusal is found by its name, `casecheck:`.
 - [x] `.guppi/tests/test_ledger.py`: each refusal of a hook in the tests opens with the name of the hook after its bracket; new tests find a refusal under `[command hook 1]` and under the command, find none for a text of another hook, keep `onward:` and `onward --plan:` apart, and hold a lesson once under `[command hook 1]` and write it on the repeat.
 - [x] `.guppi/tests/test_casecheck.py`: each refusal of a hook in the tests opens with the name of the hook after its bracket, and a test counts three refusals of one reason under `[command hook 3]`.
 - [x] `.guppi/tests/test_ratified.py`: each refusal of the hook in the tests opens with `ratified:` after its bracket, and a test tells a reason once under `[command hook 2]`.
-- [ ] read `estimate-ledger-write-finds-a-refusal-by-the-name-of-its-hook`
+- [x] read `estimate-ledger-write-finds-a-refusal-by-the-name-of-its-hook`
 ```
 
 ### Case 1035.2 — The Retro run of onward finds its refusals by its name
@@ -1270,8 +1270,8 @@ update:
 ```tasks
 - [x] `.guppi/guppi/onward.py`: the module docstring says that its own refusal and that of the ledger hook are found by their names, `onward:` and `ledger:`, by the reader of `.guppi/guppi/ledger.py`.
 - [x] `.guppi/tests/test_onward.py`: each refusal of a hook in the tests opens with the name of the hook after its bracket, and a test finds the Retro run spent under `[command hook 5]`.
-- [ ] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
-- [ ] read `estimate-retro-onward-sends-the-agent-to-the-handoff`
+- [x] update `estimate-retro-onward-sends-the-agent-to-the-handoff`
+- [x] read `estimate-retro-onward-sends-the-agent-to-the-handoff`
 ```
 
 ### Case 1035.3 — The plan run of onward speaks and is found under its own name
@@ -1326,9 +1326,9 @@ update:
 ```tasks
 - [x] `.guppi/guppi/onward.py`: `TO_OUT`, `TO_EXIT`, `TO_LOOP`, the error line of the `--plan` run and the line that `run` prints when it cannot read the payload with `--plan` among its arguments open with `onward --plan:`; the module docstring says so and says that its own refusal is found by that name.
 - [x] `.guppi/tests/test_onward.py`: the tests of the `--plan` run expect its lines to open with `onward --plan:`, each of its refusals in the tests opens with that name after its bracket, and a test finds a refusal of the Retro run no refusal of the `--plan` run, and the reverse.
-- [ ] update `rule-prespec-onward`
-- [ ] update `estimate-prespec-onward-sends-the-agent-on`
-- [ ] read `estimate-prespec-onward-sends-the-agent-on`
+- [x] update `rule-prespec-onward`
+- [x] update `estimate-prespec-onward-sends-the-agent-on`
+- [x] read `estimate-prespec-onward-sends-the-agent-on`
 ```
 
 ## Case 1036 — The person types git init in a new folder, since /hi stands in Plan Mode
@@ -1403,13 +1403,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-git-context`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `rule-skill-hi`
-- [ ] update `rule-default-mode`
-- [ ] update `estimate-git-context-offers-git-init`
+- [x] update `rule-git-context`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `rule-skill-hi`
+- [x] update `rule-default-mode`
+- [x] update `estimate-git-context-offers-git-init`
 - [ ] read `estimate-git-context-offers-git-init`
-- [ ] update `estimate-clean-branch-writes-the-session-files`
+- [x] update `estimate-clean-branch-writes-the-session-files`
 ```
 
 ## Deferred

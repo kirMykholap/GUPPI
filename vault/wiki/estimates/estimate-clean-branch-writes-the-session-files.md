@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-clean-branch]]"
 purpose: Whether guppi ship writes sprint.md in the closed form of the sprint guppi, backlog.md and glossary.md by their writers, a brief.md that opens the next sprint and a log.md with its heading alone, so that the checks of those files pass and the first /hi of a new project in a git repository starts /sprint-open
-method: "uv run --project .guppi pytest .guppi/tests/test_ship.py -k skeleton; by hand, after the librarian's run of the session that set this method, with a tag prod-x.y.z in the history of HEAD: in an empty folder that is no git repository, guppi installed from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, the copy and the folder being those of the reading of estimate-git-context-offers-git-init where that reading runs at the same commit, /guppi:install typed, Claude Code reopened, /hi typed until its git step has run git init -b main, the next /hi typed, and guppi sprint --check, guppi backlog --check and guppi glossary --check run over the copy, read against the Criterion"
+method: "uv run --project .guppi pytest .guppi/tests/test_ship.py -k skeleton; by hand, after the librarian's run of the session that set this method, with a tag prod-x.y.z in the history of HEAD: in an empty folder that is no git repository, guppi installed from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, the copy and the folder being those of the reading of estimate-git-context-offers-git-init where that reading runs at the same commit, /guppi:install typed, Claude Code reopened, /hi typed and ! git init -b main typed as its git step tells, the next /hi typed, and guppi sprint --check, guppi backlog --check and guppi glossary --check run over the copy, read against the Criterion"
 checked: 2026-10-29
 origin: raw/2026-10-15/0553/ledger.md#case-822.3
 sprint: plugin
@@ -43,3 +43,4 @@ It writes `vault/wiki/sprint.md` as `closed_form` of `.guppi/guppi/sprint.py` wr
 - 2026-10-29 defer by decision-case-885 superseded · [[decision-case-900.2]]
 - 2026-10-29 updated: the defer retired, the reading taken at the install stop of Work Mode · [[decision-case-900.2]]
 - 2026-10-29 status: pending → passed · raw/2026-10-29/0327/ledger.md#L33
+- 2026-11-20 updated: the method follows the git step of /hi, where the person types git init -b main · [[decision-case-1036]]

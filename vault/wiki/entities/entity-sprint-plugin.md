@@ -4,7 +4,7 @@ kind: Leaf
 purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the close of a sprint works with no fix by hand"
 status: draft
 parent: "[[entity-sprint]]"
-estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]", "[[estimate-sprint-plugin-link-graph-is-gone]]", "[[estimate-sprint-plugin-frontierguard-build-read-its-folders-readers]]"]
+estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]", "[[estimate-sprint-plugin-link-graph-is-gone]]", "[[estimate-sprint-plugin-frontierguard-build-read-its-folders-readers]]", "[[estimate-sprint-plugin-case-guppi-level-trial-decided]]"]
 deferred_by: ["[[decision-case-1021]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-756.1
 sprint: plugin
@@ -74,3 +74,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-11-03 estimate estimate-sprint-plugin-frontierguard-build-read-its-folders-readers added · [[decision-case-1019.3]]
 - 2026-11-03 updated: the Backlog asks whether every Estimate that reads a transcript is split into a one-off Estimate and a lasting one · [[decision-case-1019.4]]
 - 2026-11-03 deferred · [[decision-case-1021]]
+- 2026-11-20 estimate estimate-sprint-plugin-case-guppi-level-trial-decided added · [[decision-case-1029.4]]

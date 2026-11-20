@@ -18,7 +18,7 @@ allowed-tools: Bash(uv run --project .guppi guppi render --sync), Bash(uv run --
 Render: !`uv run --project .guppi guppi render --sync`
 Branch: !`uv run --project .guppi guppi gitstate`
 
-When the line `Branch:` above reads `none: this folder is no git repository`, take this step first, before `/sprint-open` and before the Frontier (as set in case 851.1). Say that GUPPI works only in a git repository, and ask the person whether you run `git init -b main`, which names the first branch `main`. On the person's yes, run `git init -b main` with the Bash tool, say that the repository is made, and tell the person to type `/hi` again. On a no, tell the person to type `/hi` again after `git init -b main`. After either answer, start no `/sprint-open`, write no Frontier, and end the reply.
+When the line `Branch:` above reads `none: this folder is no git repository`, take this step first, before `/sprint-open` and before the Frontier (as set in case 851.1). Say that GUPPI works only in a git repository, and tell the person to type `! git init -b main`, which names the first branch `main` and which Claude Code runs at once as the person's own shell command, in Plan Mode too, and then to type `/hi` again. Ask no question and run no `git init` yourself, since the session stands in Plan Mode and nothing is written before a ratified Case (as set in case 1036). Start no `/sprint-open`, write no Frontier, and end the reply.
 <!-- /rule-git-context -->
 
 <!-- rule-ledger-tail -->

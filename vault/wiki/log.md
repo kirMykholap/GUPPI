@@ -12984,3 +12984,106 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-04 decisions/decision-case-1023 archived · cleanup
 - 2026-11-04 decisions/decision-case-1024 archived · cleanup
 - 2026-11-04 decisions/decision-case-1027 archived · cleanup
+- 2026-11-20 decisions/decision-case-1029 created · raw/2026-11-04/0807/ledger.md#case-1029 · generate
+- 2026-11-20 decisions/decision-case-1029.1 created · raw/2026-11-04/0807/ledger.md#case-1029.1 · generate
+- 2026-11-20 estimates/estimate-orchestration-dispatches-case-guppi-at-a-level created · [[decision-case-1029.1]] · generate
+- 2026-11-20 rules/rule-orchestration estimate estimate-orchestration-dispatches-case-guppi-at-a-level added · [[decision-case-1029.1]] · generate
+- 2026-11-20 rules/rule-orchestration updated: the dispatch of case-guppi passes an effort by the kind of the Case · [[decision-case-1029.1]] · generate
+- 2026-11-20 decisions/decision-case-1029.2 created · raw/2026-11-04/0807/ledger.md#case-1029.2 · generate
+- 2026-11-20 estimates/estimate-case-build-writes-the-case updated: the Criterion replaced whole — the frontmatter is the level of a call that passes none · [[decision-case-1029.2]] · generate
+- 2026-11-20 decisions/decision-case-1029.3 created · raw/2026-11-04/0807/ledger.md#case-1029.3 · generate
+- 2026-11-20 rules/rule-context-size updated: guppi agents counts the cost of each agent of a session · [[decision-case-1029.3]] · generate
+- 2026-11-20 estimates/estimate-context-size-agents-counts-each-agent created · [[decision-case-1029.3]] · generate
+- 2026-11-20 estimates/estimate-context-size-agents-counts-each-agent status: pending → passed · raw/2026-11-04/0807/ledger.md#L45 · generate
+- 2026-11-20 rules/rule-context-size estimate estimate-context-size-agents-counts-each-agent added · [[decision-case-1029.3]] · generate
+- 2026-11-20 decisions/decision-case-1029.4 created · raw/2026-11-04/0807/ledger.md#case-1029.4 · generate
+- 2026-11-20 estimates/estimate-sprint-plugin-case-guppi-level-trial-decided created · [[decision-case-1029.4]] · generate
+- 2026-11-20 entities/entity-sprint-plugin estimate estimate-sprint-plugin-case-guppi-level-trial-decided added · [[decision-case-1029.4]] · generate
+- 2026-11-20 decisions/decision-case-1030 created · raw/2026-11-04/0807/ledger.md#case-1030 · generate
+- 2026-11-20 decisions/decision-case-1030.1 created · raw/2026-11-04/0807/ledger.md#case-1030.1 · generate
+- 2026-11-20 estimates/estimate-clean-branch-copy-passes-its-style-and-tests created · [[decision-case-1030.1]] · generate
+- 2026-11-20 estimates/estimate-clean-branch-copy-passes-its-style-and-tests status: pending → passed · raw/2026-11-04/0807/ledger.md#L46 · generate
+- 2026-11-20 rules/rule-clean-branch estimate estimate-clean-branch-copy-passes-its-style-and-tests added · [[decision-case-1030.1]] · generate
+- 2026-11-20 rules/rule-clean-branch updated: the clean version passes its own style and tests, and a test runs them over it · [[decision-case-1030.1]] · generate
+- 2026-11-20 decisions/decision-case-1030.2 created · raw/2026-11-04/0807/ledger.md#case-1030.2 · generate
+- 2026-11-20 estimates/estimate-clean-branch-ships-the-tests updated: the promise that the tests pass in the clean version moves to estimate-clean-branch-copy-passes-its-style-and-tests · [[decision-case-1030.2]] · generate
+- 2026-11-20 decisions/decision-case-1031 created · raw/2026-11-04/0807/ledger.md#case-1031 · generate
+- 2026-11-20 decisions/decision-case-1031.1 created · raw/2026-11-04/0807/ledger.md#case-1031.1 · generate
+- 2026-11-20 estimates/estimate-case-build-settles-form-by-itself created · [[decision-case-1031.1]] · generate
+- 2026-11-20 rules/rule-case-build estimate estimate-case-build-settles-form-by-itself added · [[decision-case-1031.1]] · generate
+- 2026-11-20 rules/rule-case-build updated: case-guppi settles a choice of form itself and asks only where its options differ in behaviour, in cost or in what they block · [[decision-case-1031.1]] · generate
+- 2026-11-20 decisions/decision-case-1031.2 created · raw/2026-11-04/0807/ledger.md#case-1031.2 · generate
+- 2026-11-20 estimates/estimate-case-build-offers-a-page-for-code-no-page-covers updated: the Criterion replaced whole — the agent settles the page, and a round comes only where the options differ · [[decision-case-1031.2]] · generate
+- 2026-11-20 rules/rule-case-build updated: case-guppi settles the page of code that no page covers · [[decision-case-1031.2]] · generate
+- 2026-11-20 decisions/decision-case-1031.3 created · raw/2026-11-04/0807/ledger.md#case-1031.3 · generate
+- 2026-11-20 rules/rule-morph updated: the setup asks on tests and style only where the project holds code of its own · [[decision-case-1031.3]] · generate
+- 2026-11-20 rules/rule-skill-setup updated: the prompt of the setup Case asks on tests and style only where the project holds code of its own · [[decision-case-1031.3]] · generate
+- 2026-11-20 rules/rule-guppi-config updated: a project keeps the commands of GUPPI and adds its own after them · [[decision-case-1031.3]] · generate
+- 2026-11-20 estimates/estimate-morph-sets-up-the-project-at-the-first-hi updated: the Criterion replaced whole — the setup asks on tests and style only where the project holds code of its own · [[decision-case-1031.3]] · generate
+- 2026-11-20 decisions/decision-case-1032 created · raw/2026-11-04/0807/ledger.md#case-1032 · generate
+- 2026-11-20 decisions/decision-case-1032.1 created · raw/2026-11-04/0807/ledger.md#case-1032.1 · generate
+- 2026-11-20 rules/rule-guppi-package updated: each hook runs the code from the folder that Claude Code was opened in, so a cd cannot break it · [[decision-case-1032.1]] · generate
+- 2026-11-20 rules/rule-hook-registry updated: each hook command names .guppi under the folder that Claude Code was opened in · [[decision-case-1032.1]] · generate
+- 2026-11-20 rules/rule-documentation updated: the hook of the librarian names .guppi under the folder that Claude Code was opened in · [[decision-case-1032.1]] · generate
+- 2026-11-20 estimates/estimate-guppi-package-runs-from-its-own-folder updated: the Criterion replaced whole — each hook runs the code from the folder that Claude Code was opened in · [[decision-case-1032.1]] · generate
+- 2026-11-20 decisions/decision-case-1032.2 created · raw/2026-11-04/0807/ledger.md#case-1032.2 · generate
+- 2026-11-20 estimates/estimate-ledger-write-lifts updated: the Criterion replaced whole — its own refusal is a line whose text after its bracket opens with ledger:, and the hook is named apart from the start of its command · [[decision-case-1032.2]] · generate
+- 2026-11-20 decisions/decision-case-1032.3 created · raw/2026-11-04/0807/ledger.md#case-1032.3 · generate
+- 2026-11-20 estimates/estimate-case-check-judges-a-showing-after-a-refusal updated: the Criterion replaced whole — its own refusal is a line whose text after its bracket opens with casecheck:, and the hook is named apart from the start of its command · [[decision-case-1032.3]] · generate
+- 2026-11-20 decisions/decision-case-1033 created · raw/2026-11-04/0807/ledger.md#case-1033 · generate
+- 2026-11-20 estimates/estimate-guppi-package-keeps-python-caches-out-of-git created · [[decision-case-1033]] · generate
+- 2026-11-20 estimates/estimate-guppi-package-keeps-python-caches-out-of-git status: pending → passed · raw/2026-11-04/0807/ledger.md#L48 · generate
+- 2026-11-20 rules/rule-guppi-package estimate estimate-guppi-package-keeps-python-caches-out-of-git added · [[decision-case-1033]] · generate
+- 2026-11-20 rules/rule-guppi-package updated: .guppi/.gitignore keeps the Python caches out of git · [[decision-case-1033]] · generate
+- 2026-11-20 decisions/decision-case-1034 created · raw/2026-11-04/0807/ledger.md#case-1034 · generate
+- 2026-11-20 decisions/decision-case-1034.1 created · raw/2026-11-04/0807/ledger.md#case-1034.1 · generate
+- 2026-11-20 rules/rule-skill-sprint-open updated: on main the opening Case makes the branch of the sprint by its first task, with no stop · [[decision-case-1034.1]] · generate
+- 2026-11-20 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch updated: the Criterion replaced whole — on main the opening Case makes the branch of the sprint by its first task, with no stop · [[decision-case-1034.1]] · generate
+- 2026-11-20 decisions/decision-case-1034.2 created · raw/2026-11-04/0807/ledger.md#case-1034.2 · generate
+- 2026-11-20 decisions/decision-case-1008 superseded by decision-case-1034.2 · [[decision-case-1034.2]] · generate
+- 2026-11-20 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline defer by decision-case-1008 superseded · [[decision-case-1034.2]] · generate
+- 2026-11-20 rules/rule-work-mode updated: on main Work Mode runs the branch task of the opening Case of a sprint first, and stops on main for any other Spec · [[decision-case-1034.2]] · generate
+- 2026-11-20 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: the Criterion replaced whole — on main Work Mode runs the branch task of the opening Case of a sprint first; the method names the first /work after the render of that text; the defer of case 1008 retired · [[decision-case-1034.2]] · generate
+- 2026-11-20 decisions/decision-case-1034.3 created · raw/2026-11-04/0807/ledger.md#case-1034.3 · generate
+- 2026-11-20 rules/rule-where-to-stop updated: the branch task of the opening Case is no stop on main, and its refusal is a stop on the sixth condition · [[decision-case-1034.3]] · generate
+- 2026-11-20 estimates/estimate-where-to-stop-stops-only-on-its-conditions updated: the Criterion replaced whole — the branch task of the opening Case is no stop on main, and its refusal is a stop · [[decision-case-1034.3]] · generate
+- 2026-11-20 decisions/decision-case-1035 created · raw/2026-11-04/0807/ledger.md#case-1035 · generate
+- 2026-11-20 decisions/decision-case-1035.1 created · raw/2026-11-04/0807/ledger.md#case-1035.1 · generate
+- 2026-11-20 estimates/estimate-ledger-write-finds-a-refusal-by-the-name-of-its-hook created · [[decision-case-1035.1]] · generate
+- 2026-11-20 estimates/estimate-ledger-write-finds-a-refusal-by-the-name-of-its-hook status: pending → passed · raw/2026-11-04/0807/ledger.md#L54 · generate
+- 2026-11-20 rules/rule-ledger-write estimate estimate-ledger-write-finds-a-refusal-by-the-name-of-its-hook added · [[decision-case-1035.1]] · generate
+- 2026-11-20 rules/rule-ledger-write updated: each Stop hook finds its own refusal by its name, whatever bracket Claude Code writes · [[decision-case-1035.1]] · generate
+- 2026-11-20 decisions/decision-case-1035.2 created · raw/2026-11-04/0807/ledger.md#case-1035.2 · generate
+- 2026-11-20 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff updated: the Criterion replaced whole — its own refusal is found by its name, whatever the bracket holds · [[decision-case-1035.2]] · generate
+- 2026-11-20 decisions/decision-case-1035.3 created · raw/2026-11-04/0807/ledger.md#case-1035.3 · generate
+- 2026-11-20 rules/rule-prespec-onward updated: the plan run of onward opens its lines with onward --plan:, so its refusals are found under its own name · [[decision-case-1035.3]] · generate
+- 2026-11-20 estimates/estimate-prespec-onward-sends-the-agent-on updated: the Criterion replaced whole — its lines open with onward --plan:, and its own refusal is found by that name · [[decision-case-1035.3]] · generate
+- 2026-11-20 decisions/decision-case-1036 created · raw/2026-11-04/0807/ledger.md#case-1036 · generate
+- 2026-11-20 rules/rule-git-context updated: the person types git init -b main in a new folder, since /hi stands in Plan Mode · [[decision-case-1036]] · generate
+- 2026-11-20 rules/rule-skill-hi updated: the person, not the agent, runs git init -b main in a new folder · [[decision-case-1036]] · generate
+- 2026-11-20 rules/rule-default-mode updated: no write of the agent comes before a Case; the person makes the repository · [[decision-case-1036]] · generate
+- 2026-11-20 estimates/estimate-git-context-offers-git-init updated: the Criterion replaced whole — the person types git init -b main, and the agent asks nothing and runs nothing · [[decision-case-1036]] · generate
+- 2026-11-20 decisions/decision-case-1037 created · raw/2026-11-04/0807/ledger.md#case-1037 · generate
+- 2026-11-20 estimates/estimate-ask-searches-at-prespec deferred · [[decision-case-1037]] · generate
+- 2026-11-20 decisions/decision-case-1038 created · raw/2026-11-04/0807/ledger.md#case-1038 · generate
+- 2026-11-20 estimates/estimate-case-build-searches-the-names-of-what-it-changes deferred · [[decision-case-1038]] · generate
+- 2026-11-20 decisions/decision-case-1032.4 created · raw/2026-11-04/0807/ledger.md#case-1032.4 · generate
+- 2026-11-20 estimates/estimate-case-check-refuses-text-before-a-round updated: the Criterion replaced whole — the registration of guppi casecheck --prompt names .guppi under the folder that Claude Code was opened in · [[decision-case-1032.4]] · generate
+- 2026-11-20 estimates/estimate-clean-branch-writes-the-session-files updated: the method follows the git step of /hi, where the person types git init -b main · [[decision-case-1036]] · generate
+- 2026-11-20 estimates/estimate-clean-branch-ships-the-tests status: pending → passed · raw/2026-11-04/0807/ledger.md#L47 · generate
+- 2026-11-20 estimates/estimate-ledger-write-lifts status: pending → passed · raw/2026-11-04/0807/ledger.md#L49 · generate
+- 2026-11-20 estimates/estimate-case-check-judges-a-showing-after-a-refusal status: pending → passed · raw/2026-11-04/0807/ledger.md#L50 · generate
+- 2026-11-20 estimates/estimate-case-check-refuses-text-before-a-round status: pending → passed · raw/2026-11-04/0807/ledger.md#L51 · generate
+- 2026-11-20 estimates/estimate-retro-onward-sends-the-agent-to-the-handoff status: pending → passed · raw/2026-11-04/0807/ledger.md#L52 · generate
+- 2026-11-20 estimates/estimate-prespec-onward-sends-the-agent-on status: pending → passed · raw/2026-11-04/0807/ledger.md#L53 · generate
+- 2026-11-20 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch status: pending → passed · raw/2026-11-04/0807/ledger.md#L55 · generate
+- 2026-11-20 estimates/estimate-where-to-stop-stops-only-on-its-conditions status: pending → passed · raw/2026-11-04/0807/ledger.md#L56 · generate
+- 2026-11-20 estimates/estimate-case-build-offers-a-page-for-code-no-page-covers status: pending → failed · raw/2026-11-04/0807/ledger.md#L57 · generate
+- 2026-11-20 lessons/lesson-session-background-agent-stopped-at-process-end created · raw/2026-11-04/0807/ledger.md#L58 · generate
+- 2026-11-20 lessons/lesson-harness-empty-grep-taken-as-absence created · raw/2026-11-04/0807/ledger.md#L59 · generate
+- 2026-11-20 lessons/lesson-case-build-a-later-case-leaves-a-ratified-text-stale created · raw/2026-11-04/0807/ledger.md#L60 · generate
+- 2026-11-20 insights/insight-case-build-sibling-texts-unchecked-before-the-showing updated: child lesson-case-build-a-later-case-leaves-a-ratified-text-stale added (synthesis) · raw/2026-11-04/0807/ledger.md#L60 · generate
+- 2026-11-20 lessons/lesson-case-build-a-later-case-leaves-a-ratified-text-stale updated: clustered under insight-case-build-sibling-texts-unchecked-before-the-showing (synthesis) · raw/2026-11-04/0807/ledger.md#L60 · generate
+- 2026-11-20 rules/rule-guppi-package status: built → draft · cascade · generate
+- 2026-11-20 decisions/decision-case-1008 archived · superseded · generate
+- 2026-11-20 decisions/decision-case-1008 archived · cleanup

@@ -15,6 +15,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - [ ] Whether guppi check prints no ref line for lesson-ledger-reading-writes-a-bare-wikilink once the bare link of its root cause stands in a code span, in the section and the field, the rest of that page as it stood but the line its History gains · pending
 - [ ] Whether, after the librarian's run that deletes the graph of links, no .guppi/links.md, no command guppi links and no SessionStart hook for it stand, its pages and Estimates are archived, no live text names them and the tests pass · pending
 - [ ] Whether the case-guppi that built the Case adding .guppi/guppi/frontierguard.py and its test, in session 2155, made and named in context each search and reading for the folders of a new file that rule-case-build sets; read once · failed
+- [ ] What the levels of the dispatch of case-guppi saved in time and tokens per Case, whether the builds got worse, and whether the person keeps them · pending
 
 ## Milestones
 

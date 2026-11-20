@@ -1246,7 +1246,7 @@ def kind_records():
     def user(content, **fields):
         return {"type": "user", "message": {"role": "user", "content": content}, **fields}
 
-    refusal = "Stop hook feedback:\n[" + ledger.COMMAND + "]: "
+    refusal = "Stop hook feedback:\n[command hook 1]: ledger: "
     tool = [{"type": "tool_result", "tool_use_id": "t", "content": "ok"}]
     return [
         user("go on", origin={"kind": "human"}),  # 0 the person's message
@@ -1274,13 +1274,13 @@ def test_kind_of_a_user_record_sets_the_turn_and_the_stretch(tmp_path):
     path = tmp_path / "transcript.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
     payload = {"transcript_path": str(path)}
-    assert ledger.own_refusals(payload, ledger.COMMAND) == ["first", "second"]
+    assert ledger.own_refusals(payload, ledger.COMMAND) == ["ledger: first", "ledger: second"]
     assert context.sizes(records) == (15_000, 5_000)  # from the call before the answer
     # a transcript with neither kind is read whole as the turn and as the stretch
     neither = [r for i, r in enumerate(records) if i not in (0, 3)]
     assert casecheck.turn_of_reply(neither) == neither
     path.write_text("\n".join(json.dumps(r) for r in neither) + "\n", encoding="utf-8")
-    assert ledger.own_refusals(payload, ledger.COMMAND) == ["first", "second"]
+    assert ledger.own_refusals(payload, ledger.COMMAND) == ["ledger: first", "ledger: second"]
     assert context.sizes(neither) == (15_000, 15_000)
 
 
@@ -1292,31 +1292,31 @@ def test_refusals_of_two_hooks_after_two_replies_carry_the_reply_they_follow(tmp
         content = f"Stop hook feedback:\n[{command}]: {text}"
         return {"type": "user", "isMeta": True, "message": {"content": content}}
 
-    onward = "uv run --project .guppi guppi onward"
+    onward = ledger.PROJECT_RUN + "guppi onward"
     records = [
         reply("before the person"),
-        refused(ledger.COMMAND, "earlier stretch"),
+        refused(ledger.COMMAND, "ledger: earlier stretch"),
         {"type": "user", "origin": {"kind": "human"}, "message": {"content": "go on"}},
         reply("first"),  # 0 of the stretch
-        refused(ledger.COMMAND, "a lesson"),
-        refused(onward, "to the handoff"),
+        refused(ledger.COMMAND, "ledger: a lesson"),
+        refused(onward, "onward: to the handoff"),
         reply("second"),  # 3 of the stretch
-        refused(ledger.COMMAND, "a reading"),
-        refused("uv run --project .guppi guppi onward --plan", "not this hook"),
+        refused(ledger.COMMAND, "ledger: a reading"),
+        refused(onward + " --plan", "onward --plan: not this hook"),
     ]
     path = tmp_path / "transcript.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
     payload = {"transcript_path": str(path)}
     found = ledger.refusals(payload, onward, ledger.COMMAND)
     assert found == {
-        onward: [(0, "to the handoff")],
-        ledger.COMMAND: [(0, "a lesson"), (3, "a reading")],
+        onward: [(0, "onward: to the handoff")],
+        ledger.COMMAND: [(0, "ledger: a lesson"), (3, "ledger: a reading")],
     }
-    assert ledger.own_refusals(payload, ledger.COMMAND) == ["a lesson", "a reading"]
+    assert ledger.own_refusals(payload, ledger.COMMAND) == ["ledger: a lesson", "ledger: a reading"]
     assert ledger.refusals({"transcript_path": str(tmp_path / "none.jsonl")}, onward) is None
 
 
-# --- the command with `--project .guppi` and without it (case 819.1) -------------------------
+# --- a refusal found by the name of its hook, whatever the bracket (case 1035.1) -----------
 
 
 def stop_records(*records):
@@ -1341,29 +1341,66 @@ def stop_payload(tmp_path, *records):
 
 
 @pytest.mark.parametrize("name", ["ledger", "onward", "ratified", "casecheck"])
-def test_each_hook_finds_its_refusals_under_the_command_with_and_without_the_project(
-    tmp_path, name
-):
+def test_each_hook_finds_its_refusals_by_its_name_under_either_bracket(tmp_path, name):
     command = importlib.import_module(f"guppi.{name}").COMMAND
-    old = f"uv run guppi {name}"
-    assert command == f"uv run --project .guppi guppi {name}"
-    assert ledger.command_forms(command) == (command, old)
-    payload = stop_payload(tmp_path, "first", (old, "before"), "second", (command, "after"))
-    assert ledger.refusals(payload, command) == {command: [(0, "before"), (2, "after")]}
-    assert ledger.own_refusals(payload, command) == ["before", "after"]
-    for form in (old, command):
-        payload = stop_payload(tmp_path, "first", (form, "sent back"), "second")
+    assert command == f'uv run --project "${{CLAUDE_PROJECT_DIR}}/.guppi" guppi {name}'
+    assert ledger.hook_name(command) == name
+    before, after = f"{name}: before", f"{name}: after"
+    payload = stop_payload(
+        tmp_path, "first", ("command hook 1", before), "second", (command, after)
+    )
+    assert ledger.refusals(payload, command) == {command: [(0, before), (2, after)]}
+    assert ledger.own_refusals(payload, command) == [before, after]
+    for bracket in ("command hook 4", command):
+        payload = stop_payload(tmp_path, "first", (bracket, f"{name}: sent back"), "second")
         assert ledger.sent_back_last(payload, command) is True
 
 
-def test_a_plan_refusal_of_onward_is_its_own_in_either_form_and_not_that_of_onward(tmp_path):
+def test_a_text_of_another_hook_is_no_refusal_of_this_one(tmp_path):
+    payload = stop_payload(tmp_path, "first", ("command hook 1", "ratified: refused"))
+    assert ledger.own_refusals(payload, ledger.COMMAND) == []
+    assert ledger.sent_back_last(payload, ledger.COMMAND) is False
+    # the name stands at the head of the text after the bracket, not anywhere in it
+    payload = stop_payload(tmp_path, "first", ("command hook 1", "refused: ledger: x"))
+    assert ledger.own_refusals(payload, ledger.COMMAND) == []
+
+
+def test_the_two_runs_of_onward_are_kept_apart_by_their_names(tmp_path):
     from guppi import onward
 
-    old = "uv run guppi onward --plan"
-    assert ledger.command_forms(onward.PLAN_COMMAND) == (onward.PLAN_COMMAND, old)
-    payload = stop_payload(tmp_path, "first", (old, "go on"))
-    assert ledger.own_refusals(payload, onward.PLAN_COMMAND) == ["go on"]
-    assert ledger.own_refusals(payload, onward.COMMAND) == []
+    assert ledger.hook_name(onward.PLAN_COMMAND) == "onward --plan"
+    payload = stop_payload(
+        tmp_path,
+        "first",
+        ("command hook 5", "onward: to the handoff"),
+        ("command hook 6", "onward --plan: go on"),
+    )
+    assert ledger.own_refusals(payload, onward.COMMAND) == ["onward: to the handoff"]
+    assert ledger.own_refusals(payload, onward.PLAN_COMMAND) == ["onward --plan: go on"]
+
+
+def test_a_held_lesson_is_asked_once_under_a_numbered_bracket(working):
+    # Claude Code 2.1.317 writes `[command hook 1]` where the command stood (case 1035.1)
+    reply = ledger_block(DECISION, LESSON)
+    path = write_transcript(working, person())
+    code, err = run(payload(last_assistant_message=reply, transcript_path=path), working)
+    assert (code, err) == (2, ledger.held_message("lesson-x") + "\n")
+    held = meta_refusal("command hook 1", err.strip())
+    again = ledger_block(LESSON)
+    path = write_transcript(working, person(), transcript_line(reply), held)
+    code, err = run(payload(last_assistant_message=again, transcript_path=path), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON)]
+
+
+def test_command_forms_give_the_command_and_its_form_with_the_project_folder():
+    # the forms of the registration that `.guppi/guppi/ship.py` removes (case 1032.1)
+    for name in ("ledger", "onward", "ratified", "casecheck", "onward --plan", "codewrite"):
+        command = f"{ledger.PROJECT_RUN}guppi {name}"
+        assert ledger.command_forms(command) == (
+            command,
+            f"uv run --project .guppi guppi {name}",
+        )
 
 
 def test_a_command_without_the_project_has_one_form():

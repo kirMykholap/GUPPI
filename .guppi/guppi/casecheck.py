@@ -2326,7 +2326,7 @@ def round_opening(
     )
 
 
-COMMAND = f"{PROJECT_RUN}guppi casecheck"  # the command of the `Stop` run, as its refusal names it
+COMMAND = f"{PROJECT_RUN}guppi casecheck"  # the `Stop` run; its refusal is found by its name, `casecheck:` (case 1035.1)
 LIMIT = 3  # the refusals of one Case, or of one other reason, a stretch (case 688.1)
 REASON_CASE = re.compile(r"^(case [^:]+):")
 

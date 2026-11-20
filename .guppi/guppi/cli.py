@@ -13,6 +13,7 @@ import importlib
 import sys
 
 from guppi import (
+    agents,
     archive,
     backlog,
     bashguard,
@@ -51,6 +52,7 @@ from guppi import (
 from guppi.pages import ship_stands
 
 COMMANDS = {
+    "agents": agents.run,
     "archive": archive.run,
     "backlog": backlog.run,
     "bashguard": bashguard.run,

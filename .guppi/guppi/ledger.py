@@ -35,10 +35,15 @@ message, so each faulty line is told once and a repeat of it stays silent; no `h
 error of its own exit 2 only when no refusal of the hook stands in the stretch. With the flag
 set and a transcript it cannot read, it writes the lines of the reply and exits 0. A refusal
 of a hook is a `user` record marked `isMeta` whose text opens with `Stop hook feedback:` and
-holds a line opening with `[<command>]: `. The command is found in either form, by
-`command_forms`: as the hooks run it, `uv run --project .guppi guppi …`, and without
-`--project .guppi`, the form a session that read its hooks before the move into `.guppi/`
-still runs, until a Case of a later session removes that form (case 819.1).
+holds a line that opens with a bracket and `]: `, the text after it opening with the name of
+the hook and a colon, such as `ledger:`: the name is the words of its command after ` guppi `,
+and every line a hook prints on stderr at a `Stop` opens with it. What the bracket holds is
+not read, since Claude Code 2.1.317 writes `[command hook <number>]` there where an earlier
+version wrote the command (case 1035.1). `command_forms` gives the forms of a hook's
+registration, as the hooks run it, `uv run --project "${CLAUDE_PROJECT_DIR}/.guppi" guppi …`,
+and with `--project .guppi`, the form of the hooks rendered before (case 1032.1); no reader of
+refusals calls it, and `.guppi/guppi/ship.py` removes the registration of `guppi codewrite` in
+each form, until a Case of a later session removes the old form.
 
 The person's message is judged once, by `user_kind` (case 592): a `user` record whose
 `origin.kind` is `human` is the person's message, one whose `origin.kind` is
@@ -212,20 +217,46 @@ BRACKET = re.compile(r"\[([^\]]*)\]")
 LEDGER_TAG = "ledger"
 PLAN_TOOLS = ("Write", "Edit", "MultiEdit")
 REFUSAL_HEAD = "Stop hook feedback:"
-PROJECT_RUN = "uv run --project .guppi "  # how each hook runs the code of `.guppi/` (case 819.1)
-OLD_RUN = "uv run "  # the same before the move, still run by a session that read it then
+PROJECT_RUN = (
+    'uv run --project "${CLAUDE_PROJECT_DIR}/.guppi" '  # each hook, from the project (case 1032.1)
+)
+OLD_RUN = (
+    "uv run --project .guppi "  # the form rendered before, still run by a session that read it then
+)
 COMMAND = f"{PROJECT_RUN}guppi ledger"
+REFUSAL_LINE = re.compile(r"\n\[[^\]\n]*\]: ")  # the head of one hook's line in a refusal
 
 
 def command_forms(command: str) -> tuple[str, ...]:
-    """`command` and the same command without `--project .guppi`: the form of the hooks
-    rendered before the move of the code into `.guppi/`, which a session that read them then
-    still runs, until a Case of a later session removes it (case 819.1). The one judgment of
-    the forms of a hook's command, by which `refusals_in` and `sent_back_last` find a
-    refusal."""
+    """`command` and the same command with `--project .guppi`: the form of the hooks rendered
+    before their commands named the project folder, which a session that read them then still
+    runs, until a Case of a later session removes it (case 1032.1). The one judgment of the
+    forms of a hook's registration, by which `.guppi/guppi/ship.py` removes the registration of
+    `guppi codewrite`; no reader of refusals calls it, since a refusal is found by the name of
+    its hook (case 1035.1)."""
     if command.startswith(PROJECT_RUN):
         return command, OLD_RUN + command[len(PROJECT_RUN) :]
     return (command,)
+
+
+def hook_name(command: str) -> str:
+    """The name of the hook `command`: the words of the command after ` guppi `, such as
+    `ledger` or `onward --plan` (case 1035.1)."""
+    at = command.find(" guppi ")
+    return command[at + len(" guppi ") :] if at >= 0 else command
+
+
+def own_text(text: str, command: str) -> str | None:
+    """The text of the hook `command` in the refusal `text`: what follows the first line that
+    opens with a bracket and `]: ` and whose text after it opens with the name of the hook and
+    a colon, whatever the bracket holds; None when no such line stands. The one judgment of a
+    hook's own refusal, which `refusals_in` and `sent_back_last` call (case 1035.1)."""
+    head = hook_name(command) + ":"
+    for match in REFUSAL_LINE.finditer(text):
+        rest = text[match.end() :]
+        if rest.startswith(head):
+            return rest
+    return None
 
 
 def reply_text(payload: dict) -> str:
@@ -332,9 +363,11 @@ def refusals(payload: dict, *commands: str) -> dict[str, list[tuple[int, str]]] 
     reply of the agent it follows: the index in the stretch of the last `assistant` record
     before it, -1 when none — the refusals of one end of a reply share it, and a refusal of a
     later reply has a greater one (case 596.1). A refusal is a `user` record marked `isMeta`
-    whose text opens with `Stop hook feedback:` and holds a line that opens with
-    `[<command>]: `; its text is what follows that prefix (measured on session 1237 and 1441,
-    Claude Code 2.1.282). None when the transcript cannot be read. The one judgment of the
+    whose text opens with `Stop hook feedback:` and holds a line that opens with a bracket and
+    `]: ` and whose text after it opens with the name of the hook and a colon, by `own_text`;
+    its text is what follows that bracket (measured on session 1237 and 1441, Claude Code
+    2.1.282; the bracket holds `command hook <number>` under 2.1.317, case 1035.1). None when
+    the transcript cannot be read. The one judgment of the
     refusals, which `guppi onward` uses for its own and for those of the ledger hook, and
     `guppi ratified`, through `own_refusals`, for its own (case 644.8)."""
     records = stretch(payload)
@@ -343,16 +376,14 @@ def refusals(payload: dict, *commands: str) -> dict[str, list[tuple[int, str]]] 
 
 def refusals_in(records: list[dict], *commands: str) -> dict[str, list[tuple[int, str]]]:
     """The refusals of each `Stop` hook `command` among the stretch `records`, as `refusals`
-    reads them from a transcript, for a caller that holds the stretch."""
+    reads them from a transcript, for a caller that holds the stretch; a refusal is the hook's
+    own by `own_text`, by the name of the hook (case 1035.1)."""
     found: dict[str, list[tuple[int, str]]] = {command: [] for command in commands}
     for reply, text in refusal_records(records):
         for command in commands:
-            for form in command_forms(command):
-                prefix = f"[{form}]: "
-                at = text.find("\n" + prefix)
-                if at >= 0:
-                    found[command].append((reply, text[at + 1 + len(prefix) :]))
-                    break
+            own = own_text(text, command)
+            if own is not None:
+                found[command].append((reply, own))
     return found
 
 
@@ -380,7 +411,8 @@ def sent_back_last(payload: dict, command: str) -> bool | None:
     ended replies of the turn are those its refusals follow, and the last of them is the one
     `command` must have refused; no turn opens after that refusal. None when the transcript
     cannot be read. `guppi onward --plan` sends on an answer with no `LEDGER` block to a reply
-    the ledger hook sent back by it (case 696.2)."""
+    the ledger hook sent back by it (case 696.2). The refusal is the hook's own by `own_text`,
+    by the name of the hook (case 1035.1)."""
     records = stretch(payload)
     if records is None:
         return None
@@ -388,10 +420,7 @@ def sent_back_last(payload: dict, command: str) -> bool | None:
     if not found:
         return False
     last = max(reply for reply, _ in found)
-    prefixes = [f"\n[{form}]: " for form in command_forms(command)]
-    if not any(
-        reply == last and any(prefix in text for prefix in prefixes) for reply, text in found
-    ):
+    if not any(reply == last and own_text(text, command) is not None for reply, text in found):
         return False
     return not any(opens_turn(record) for record in records[last + 1 :])
 

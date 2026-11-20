@@ -1209,6 +1209,15 @@ def test_answers_a_refusal_a_repeat_on_a_flagged_reply_writes_the_case(working):
         assert "## Case 7 — пример" in path.read_text(encoding="utf-8"), path
 
 
+def test_answers_a_refusal_under_a_numbered_bracket_tells_it_once(working):
+    # the refusal is found by `ratified:` after the bracket, whatever it holds (case 1035.1)
+    approved_spec(working, f"{STAMP}\n\n# Spec\n\n## Case 5 — first\n")
+    code, err = stop(working, ACK, SHOWING, ACK, sent=set())
+    assert code == 2 and err.startswith("ratified:")
+    told = [refusal_record(err.strip(), command="command hook 2")]
+    assert stop(working, ACK, SHOWING, ACK, extra=told, stop_hook_active=True) == (0, "")
+
+
 def test_answers_a_refusal_a_flagged_reply_removes_a_superseded_case(working):
     spec = seed_old(working)
     assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES, stop_hook_active=True) == (0, "")

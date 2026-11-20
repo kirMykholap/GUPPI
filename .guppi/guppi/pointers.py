@@ -49,8 +49,9 @@ POINTERS = (
 )
 # a bracket with no bracket inside it, on one line or across lines, and the space before it;
 # a bracket that opens a line and a mark of punctuation follows takes the line break before
-# it, so the mark joins the line above and does not stand alone
-BRACKET = re.compile(r"(\n[ \t]*(?=\([^()]*\)[.,;:])|[ \t]?)\(([^()]*)\)")
+# it, so the mark joins the line above and does not stand alone; a bracket that stands alone
+# on its line takes the line break before it too, so no line of spaces is left (case 1030.1)
+BRACKET = re.compile(r"(\n[ \t]*(?=\([^()]*\)(?:[.,;:]|[ \t]*(?:\n|$)))|[ \t]?)\(([^()]*)\)")
 SEPARATORS = re.compile(r"[\s,;]+|\band\b")
 FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
 MASK = "\x00{}\x00"

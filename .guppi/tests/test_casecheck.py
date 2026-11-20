@@ -1244,7 +1244,7 @@ def refusal():
         "isMeta": True,
         "message": {
             "role": "user",
-            "content": "Stop hook feedback:\n[uv run --project .guppi guppi x]: refused",
+            "content": "Stop hook feedback:\n[command hook 1]: x: refused",
         },
     }
 
@@ -1324,9 +1324,12 @@ def test_stop_the_re_fire_is_compared_again(working):
 # `estimate-case-check-judges-a-showing-after-a-refusal`
 
 
-def own_refusal(text):
-    """A refusal of the `Stop` run, as Claude Code records it (sessions 1237, 1441)."""
-    content = f"Stop hook feedback:\n[{casecheck.COMMAND}]: {text.rstrip()}"
+def own_refusal(text, bracket=None):
+    """A refusal of the `Stop` run, as Claude Code records it (sessions 1237, 1441): its text
+    opens with `casecheck:`, and the bracket holds the command, or `bracket`, such as
+    `command hook 3`, as Claude Code 2.1.317 writes it (case 1035.1)."""
+    head = casecheck.COMMAND if bracket is None else bracket
+    content = f"Stop hook feedback:\n[{head}]: {text.rstrip()}"
     return {"type": "user", "isMeta": True, "message": {"content": content}}
 
 
@@ -1360,6 +1363,14 @@ def test_guard_the_same_wrong_showing_is_refused_three_times_then_let_through(wo
         "ratification\n"
     )
     assert (code, err) == (0, unchecked)
+
+
+def test_guard_three_refusals_under_a_numbered_bracket_let_it_through(working):
+    # the refusal is found by `casecheck:` after the bracket, whatever it holds (case 1035.1)
+    _, first = show(working, ANSWER)
+    refused = [own_refusal(first, bracket="command hook 3")] * 3
+    code, err = after_refusals(working, ANSWER, *refused, stop_hook_active=True)
+    assert code == 0 and "shown unchecked after three refusals" in err
 
 
 def test_guard_two_cases_are_counted_apart(working):

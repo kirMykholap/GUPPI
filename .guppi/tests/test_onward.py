@@ -1,5 +1,8 @@
 """`guppi onward`: the `Stop` hook that sends the agent from the end of Retro to `/handoff`
-(case 531.9). Rule page: `vault/wiki/rules/rule-retro-onward.md`."""
+(case 531.9). Rule page: `vault/wiki/rules/rule-retro-onward.md`. Each refusal of a hook in
+these tests opens with the name of the hook after its bracket, as each line a hook prints
+does, and the two runs are kept apart by `onward:` and `onward --plan:` (cases 1035.2,
+1035.3)."""
 
 import io
 import json
@@ -9,6 +12,7 @@ from datetime import UTC, datetime
 import pytest
 
 from guppi import onward
+from guppi.ledger import hook_name
 
 NOW = datetime(2026, 9, 30, 12, 0, 0, tzinfo=UTC)
 SESSION = "19037d1c-5d15"
@@ -60,11 +64,16 @@ def human(text="go on"):
     return {"type": "user", "origin": {"kind": "human"}, "message": {"content": text}}
 
 
-def refusal(command, text="refused"):
+def refusal(command, text=None, bracket=None):
+    """A refusal of the `Stop` hook `command`: its text opens with the name of the hook, as
+    each line a hook prints does, and the bracket holds the command, or `bracket`, such as
+    `command hook 5`, as Claude Code 2.1.317 writes it (case 1035.1)."""
+    text = f"{hook_name(command)}: refused" if text is None else text
+    head = command if bracket is None else bracket
     return {
         "type": "user",
         "isMeta": True,
-        "message": {"content": f"Stop hook feedback:\n[{command}]: {text}"},
+        "message": {"content": f"Stop hook feedback:\n[{head}]: {text}"},
     }
 
 
@@ -102,6 +111,17 @@ def test_after_a_later_message_of_the_person_it_refuses_again(tmp_path):
     )
     code, err = run(payload(transcript_path=path), tmp_path)
     assert (code, err) == (2, onward.REASON + "\n")
+
+
+def test_its_own_refusal_under_a_numbered_bracket_spends_it(tmp_path):
+    # Claude Code 2.1.317 writes `[command hook 5]` where the command stood (case 1035.2)
+    with_event_log(tmp_path, START + HI + RETRO)
+    own = refusal(onward.COMMAND, onward.REASON, bracket="command hook 5")
+    path = transcript(tmp_path, human(), own)
+    assert run(payload(transcript_path=path), tmp_path) == (0, "")
+    plan = refusal(onward.PLAN_COMMAND, onward.TO_EXIT, bracket="command hook 6")
+    path = transcript(tmp_path, human(), plan)
+    assert run(payload(transcript_path=path), tmp_path) == (2, onward.REASON + "\n")
 
 
 def test_a_task_notification_does_not_open_a_new_stretch(tmp_path):
@@ -637,10 +657,39 @@ def test_plan_its_own_refusal_with_no_later_ledger_refusal_is_silent(tmp_path):
     )
 
 
+def test_plan_its_lines_open_with_its_name(tmp_path, monkeypatch):
+    # every line of the `--plan` run opens with `onward --plan:` (case 1035.3)
+    for line in (onward.TO_OUT, onward.TO_EXIT, onward.TO_LOOP):
+        assert line.startswith("onward --plan: ")
+
+    def fail(stdin):
+        raise ValueError("not JSON")
+
+    monkeypatch.setattr(onward, "read_payload", fail)
+    for argv, name in ((["--plan"], "onward --plan"), ([], "onward")):
+        err = io.StringIO()
+        code = onward.run(argv, stdin=io.StringIO("{"), stderr=err, project_dir=tmp_path)
+        assert (code, err.getvalue()) == (0, f"{name}: not checked: not JSON\n")
+
+
+def test_plan_a_refusal_of_the_retro_run_is_none_of_its_own_and_the_reverse(tmp_path):
+    plan_session(tmp_path)
+    retro = refusal(onward.COMMAND, onward.REASON, bracket="command hook 5")
+    path = transcript(tmp_path, human(), reply(), retro, reply())
+    code, err = run_plan(payload(RATIFIED, transcript_path=path), tmp_path)
+    assert (code, err) == (2, onward.TO_LOOP + "\n")
+    with_event_log(tmp_path, START + HI + RETRO)
+    plan = refusal(onward.PLAN_COMMAND, onward.TO_LOOP, bracket="command hook 6")
+    path = transcript(tmp_path, human(), plan)
+    assert run(payload(transcript_path=path), tmp_path) == (2, onward.REASON + "\n")
+
+
 def test_plan_an_error_with_its_own_refusal_in_the_stretch_exits_0(tmp_path, monkeypatch):
     plan_session(tmp_path)
     monkeypatch.setattr(onward, "plan_onward", boom)
-    path = transcript(tmp_path, human(), reply(), refusal(PLAN, "onward: not checked"), reply())
+    path = transcript(
+        tmp_path, human(), reply(), refusal(PLAN, "onward --plan: not checked"), reply()
+    )
     assert run_plan(payload(RATIFIED, transcript_path=path), tmp_path) == (0, "")
 
 
@@ -730,7 +779,7 @@ def test_plan_an_error_of_its_own_exits_2_with_the_advice(tmp_path, monkeypatch)
     monkeypatch.setattr(onward, "plan_onward", boom)
     code, err = run_plan(payload(RATIFIED), tmp_path)
     assert code == 2
-    assert err.startswith("onward: not checked: boom") and "/pre-spec" not in err
+    assert err.startswith("onward --plan: not checked: boom") and "/pre-spec" not in err
     assert "loop after the findings" in err and "exit Plan Mode" in err
 
 

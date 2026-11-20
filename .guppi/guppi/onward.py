@@ -7,7 +7,10 @@ the event log of the session's window holds the mark `retro` of this session aft
 `hi` — the mark `guppi gate` leaves at a call of `/retro` it lets through —,
 `raw/<hi date>/<hi HHMM>/handoff.md` does not stand, its own refusal is not spent — `spent`:
 its last refusal stands in the stretch, the transcript after the person's last message, and
-no refusal of the ledger hook follows the same reply or a later one, by `ledger.refusals` —,
+no refusal of the ledger hook follows the same reply or a later one, by `ledger.refusals` —
+its own refusal and that of the ledger hook found by their names, `onward:` and `ledger:`, at
+the head of the text after the bracket, by the reader of `.guppi/guppi/ledger.py` (case
+1035.2) —,
 and the reply that ended does not open with `STOP:`. Its reason on stderr tells the agent to commit
 the session folder and call `/handoff`, or, when a condition of
 `vault/wiki/where-to-stop.md` holds, to open its reply with `STOP:` and ask the person.
@@ -42,8 +45,9 @@ does not stand; `frontier.md` holds no open line under `## Cases`, by
 `prespec.open_case_items`, the one judgment the check of `/pre-spec` reports; the reply
 carries a `LEDGER` block, by `ledger.ledger_lines`, or the ledger hook refused the reply that
 ended just before it, by `ledger.sent_back_last`, so the answer with no block to a line it
-refused or held is sent on too (case 696.2); its own refusal, `uv run --project .guppi guppi onward --plan`,
-is not spent, as above (case 597.1), the flag counting only when the transcript cannot be
+refused or held is sent on too (case 696.2); its own refusal, found by its name
+`onward --plan:` and never taken for one of the Retro run, is not spent, as above (case
+597.1), the flag counting only when the transcript cannot be
 read; and the reply does not open with `STOP:`. A Case still out changes only the reason
 (case 889.1): when a file under `cases/` was written after the last decision line of its
 Case, or of a sub-case, in `ledger.md`, in any reply of the main agent in the transcript at
@@ -78,8 +82,10 @@ a showing (case 992.1); and that while a `case-guppi` has not answered the agent
 turn as `vault/wiki/orchestration.md` sets it for a Case out (case 889.1). The time of a line of
 `ledger.md` is read on the `hi` date and rolls to the next date when it runs backwards, so a
 session across midnight keeps its order; a decision line of the reply counts as written now.
+Each line it prints on stderr opens with `onward --plan:`, the line for a payload it cannot
+read included, so that its refusal is found by that name (case 1035.3).
 It counts nothing, calls no model and writes nothing. An error of its own after it has read
-the payload exits 2 with `onward: not checked: <error>` and the advice to go on with the
+the payload exits 2 with `onward --plan: not checked: <error>` and the advice to go on with the
 loop after the findings or to run the check and exit, never to call `/pre-spec`, at most
 once a stretch, judged by its own refusal alone (case 597.1) — and only after `/pre-spec`:
 before it, or when the `prespec` line cannot be read, it exits 0 (case 696.2). Rule page:
@@ -129,16 +135,16 @@ ONLY_THE_PERSON = (
     "it for a Case out, and go on in the turn its answer opens."
 )
 TO_OUT = (
-    "onward: the Cases {ids} were built again and are not ratified yet. Send each one that "
+    "onward --plan: the Cases {ids} were built again and are not ratified yet. Send each one that "
     "must change to its case-guppi, as the loop after the findings of /pre-spec sets it."
 )
 TO_EXIT = (
-    "onward: the Cases built again on the findings of /pre-spec are ratified. Run uv run "
+    "onward --plan: the Cases built again on the findings of /pre-spec are ratified. Run uv run "
     "--project .guppi guppi prespec --check on the plan file with --session <id>, fix what "
     "it prints, and call ExitPlanMode when it prints no finding." + ONLY_THE_PERSON
 )
 TO_LOOP = (
-    "onward: no Case has been built again on the findings of /pre-spec yet. Go on with the "
+    "onward --plan: no Case has been built again on the findings of /pre-spec yet. Go on with the "
     "loop after its findings: send each finding in a Case to its case-guppi; when no Case "
     "goes back, run uv run --project .guppi guppi prespec --check on the plan file with "
     "--session <id>, fix what it prints, and call ExitPlanMode when it prints no finding."
@@ -400,7 +406,8 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
     try:
         payload = read_payload(stdin)
     except Exception as exc:  # noqa: BLE001 — no payload, no way to tell its own refusal (cases 555.3, 577.2)
-        print(f"onward: not checked: {exc}", file=stderr)
+        name = "onward --plan" if PLAN_FLAG in (argv or []) else "onward"
+        print(f"{name}: not checked: {exc}", file=stderr)
         return 0
     if not payload:
         return 0
@@ -413,7 +420,7 @@ def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=N
             if not after_prespec(payload, project_dir, now) or told(payload, PLAN_COMMAND):
                 return 0
             print(
-                f"onward: not checked: {exc}. If no Case is left out, go on with the loop "
+                f"onward --plan: not checked: {exc}. If no Case is left out, go on with the loop "
                 "after the findings, or run the check and exit Plan Mode.",
                 file=stderr,
             )

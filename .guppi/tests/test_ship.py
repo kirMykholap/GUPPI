@@ -28,7 +28,15 @@ key or not, by the tests whose names hold `setup`,
 `estimate-clean-branch-ships-the-setup-not-done` (case 1017.1). The two source pictures of the
 icon under `plugin/assets/`, which the copy holds at no path and `--check` judges not, and which
 this repository keeps there with no folder `guppi-assets/`, by the tests whose names hold
-`source_pictures`, `estimate-clean-branch-leaves-out-the-source-pictures` (case 1020)."""
+`source_pictures`, `estimate-clean-branch-leaves-out-the-source-pictures` (case 1020). No
+empty comment and no line of spaces where a bracket went, a copy formatted with no
+`.ruff_cache/` in it, and the commands of the key `style` of `guppi.toml` passing over the
+copy of this repository, by the tests whose names hold `own_style`, among them
+`test_own_style_passes_over_the_copy`, which `guppi test` runs; the commands of the key `test`
+passing over it, by `test_own_tests_pass_over_the_copy`, marked `live`;
+`estimate-clean-branch-copy-passes-its-style-and-tests` (case 1030.1). The registration of
+`guppi codewrite` removed in each form of its command, by the tests whose names hold
+`no_code_write_hook` (case 1032.1)."""
 
 import io
 import json
@@ -36,6 +44,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tomllib
 from datetime import UTC, date, datetime
 from pathlib import Path
 
@@ -1276,7 +1285,7 @@ SHELL_WRITE_ENTRY = (
 )
 SETTINGS_WITHOUT = '{ "hooks": { "PostToolUse": [ ' + SHELL_WRITE_ENTRY + " ] } }"
 SETTINGS_WITH = (
-    '{ "hooks": { "PostToolUse": [ ' + SHELL_WRITE_ENTRY + ship.CODE_WRITE_ENTRY + " ] } }"
+    '{ "hooks": { "PostToolUse": [ ' + SHELL_WRITE_ENTRY + ship.CODE_WRITE_ENTRY[1] + " ] } }"
 )
 
 
@@ -1317,7 +1326,7 @@ def test_the_copy_holds_no_code_write_hook_and_no_registration(tmp_path):
 def test_no_code_write_hook_named_in_another_form_exits_1(tmp_path):
     root, out = tmp_path / "p", tmp_path / "out"
     other = SETTINGS_WITH.replace('"timeout": 30 } ] } ]', '"timeout": 60 } ] } ]')
-    assert ship.CODE_WRITE_ENTRY not in other
+    assert all(entry not in other for entry in ship.CODE_WRITE_ENTRY)
     hooked_tree(root, other)
     code, lines = run(root, out)
     assert code == 1
@@ -1337,6 +1346,21 @@ def test_no_code_write_hook_a_text_that_never_names_it_builds_as_before(tmp_path
     assert ship.without_code_write(SETTINGS_WITHOUT) == (SETTINGS_WITHOUT, False)
 
 
+def test_no_code_write_hook_in_the_new_form_of_the_command(tmp_path):
+    # the registration with `--project "${CLAUDE_PROJECT_DIR}/.guppi"`, as JSON writes it, is
+    # removed from both texts too (case 1032.1)
+    new = ship.CODE_WRITE_ENTRY[0]
+    assert '\\"${CLAUDE_PROJECT_DIR}/.guppi\\" guppi codewrite' in new
+    root, out = tmp_path / "p", tmp_path / "out"
+    hooked_tree(root, '{ "hooks": { "PostToolUse": [ ' + SHELL_WRITE_ENTRY + new + " ] } }")
+    assert run(root, out) == (0, [])
+    assert (out / ".claude" / "settings.json").read_text(encoding="utf-8") == (
+        SETTINGS_WITHOUT + "\n"
+    )
+    shipped = read_page(out / "vault" / "wiki" / "rules" / "rule-hook-registry.md", "rules")
+    assert "codewrite" not in shipped.sections["## Render"]
+
+
 def test_the_clean_version_has_no_code_write_hook_command(tmp_path):
     root, out = tmp_path / "p", tmp_path / "out"
     tree(root, rule_a=page("rule", "rule-a"))
@@ -1353,3 +1377,76 @@ def test_the_clean_version_has_no_code_write_hook_command(tmp_path):
     unknown = guppi_of(out / ".guppi", "codewrite")
     assert unknown.returncode == 2
     assert unknown.stderr.splitlines() == ["guppi: unknown command 'codewrite'"]
+
+
+# --- the clean copy passes its own style and tests; each test name holds own_style or
+# own_tests, `estimate-clean-branch-copy-passes-its-style-and-tests` (case 1030.1) -----------
+
+EMPTY_LEFT = (
+    '"""A module.\n\nIt reads a page.\n    (case 12)\n"""\n'
+    "X = 1  # (case 13)\n"
+    "    # (case 14)\n"
+    "Y = 2  # keeps a count (case 15)\n"
+)
+EMPTY_GONE = '"""A module.\n\nIt reads a page.\n"""\n\nX = 1\nY = 2  # keeps a count\n'
+
+
+def test_own_style_no_empty_comment_and_no_line_of_spaces_is_left(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root)
+    write(root / ".guppi" / "guppi" / "x.py", EMPTY_LEFT)
+    commit(root)
+    assert run(root, out) == (0, [])
+    assert (out / ".guppi" / "guppi" / "x.py").read_text(encoding="utf-8") == EMPTY_GONE
+    assert not (out / ".ruff_cache").exists() and not (out / ".guppi" / ".ruff_cache").exists()
+
+
+def test_own_style_a_comment_that_was_empty_before_stays_out_of_code(tmp_path):
+    # the removal reads the comments by `tokenize`, so a `#` inside a string is no comment
+    text = 'S = "# (case 3)"  #\n# \nZ = 1\n'
+    assert ship.without_empty_comments(text) == 'S = "# (case 3)"\nZ = 1\n'
+    assert ship.without_empty_comments("def (:\n") == "def (:\n"
+
+
+def test_own_style_a_format_that_does_not_exit_0_gives_a_ship_line(tmp_path, monkeypatch):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root)
+    fail = (sys.executable, "-c", "import sys; print('broken'); sys.exit(2)")
+    monkeypatch.setattr(ship, "FORMAT", fail)
+    code, lines = run(root, out)
+    assert code == 1
+    assert lines == [f"ship: {ship.FORMAT_NAME} exited 2: broken"]
+
+
+def copy_commands(key: str, *flags: str) -> list[list[str]]:
+    """The commands of the key `key` of `guppi.toml`, each with its `uv run --project .guppi`
+    replaced by this interpreter, so they run over a folder with no environment of its own."""
+    settings = tomllib.loads((REPO / "guppi.toml").read_text(encoding="utf-8"))
+    head = "uv run --project .guppi "
+    commands = []
+    for command in settings[key]:
+        assert command.startswith(head), command
+        commands.append([sys.executable, *flags, "-m", *command[len(head) :].split()])
+    return commands
+
+
+def test_own_style_passes_over_the_copy(tmp_path):
+    out = tmp_path / "out"
+    lines, _ = ship.ship(REPO, out, date(2001, 1, 1), "0.0.0")
+    assert [line for line in lines if "ruff" in line] == []
+    for command in copy_commands("style"):
+        result = subprocess.run(command, cwd=out, capture_output=True, text=True, check=False)
+        assert result.returncode == 0, result.stdout + result.stderr
+
+
+@pytest.mark.live
+def test_own_tests_pass_over_the_copy(tmp_path):
+    out = tmp_path / "out"
+    ship.ship(REPO, out, date(2001, 1, 1), "0.0.0")
+    env = {k: v for k, v in os.environ.items() if k not in ("CLAUDE_PROJECT_DIR", "PYTEST_ADDOPTS")}
+    env["PYTHONPATH"] = str(out / ".guppi")
+    for command in copy_commands("test", "-P"):
+        result = subprocess.run(
+            command, cwd=out, env=env, capture_output=True, text=True, check=False
+        )
+        assert result.returncode == 0, result.stdout[-4000:] + result.stderr[-2000:]

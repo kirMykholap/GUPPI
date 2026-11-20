@@ -12,7 +12,8 @@ of `SKELETONS` and `guppi.toml`, and this module, `.guppi/guppi/ship.py`, with i
 `.guppi/tests/test_ship.py`, so that a project that installs GUPPI, which builds no clean
 version, gets no command `ship` (case 820.5), and the hook `.guppi/guppi/codewrite.py`, which
 serves only the build of the clean version. `without_code_write` removes the exact
-registration of that hook, `CODE_WRITE_ENTRY`, from the copy of `.claude/settings.json` and
+registration of that hook, `CODE_WRITE_ENTRY`, in each form of `command_forms` of
+`.guppi/guppi/ledger.py` (case 1032.1), from the copy of `.claude/settings.json` and
 from the Render of `rule-hook-registry` that the copy holds, so that a project that installs
 GUPPI runs no such hook; a text of the two that still names `guppi codewrite` after that
 removal gives a `ship:` line and exits 1 (as set in case 1028.2). The `pyproject.toml` and
@@ -21,6 +22,17 @@ removal gives a `ship:` line and exits 1 (as set in case 1028.2). The `pyproject
 written nor judged. A file that a page without `core: true` renders in full is not written.
 A file that is no UTF-8 text, such as `.guppi/icon.png`, is copied as it stands, and neither
 the build nor `--check` judges it (case 1016).
+
+A bracket that holds a pointer and stands alone on its line goes with that line, by `BRACKET`
+of `.guppi/guppi/pointers.py`, and in a Python file `without_empty_comments` removes each
+comment that the removal left empty, with the spaces before it, and with its line where it
+stood alone. As its last step the build runs `FORMAT`, `ruff format .guppi` by
+`sys.executable -m ruff`, in the folder, by the settings of `.guppi/pyproject.toml` there,
+since a line that loses a pointer can take another layout; its cache stands in a temporary
+folder outside the copy, removed after the run, so the copy holds no `.ruff_cache/`, and a
+run that does not start or does not exit 0 gives one `ship:` line. `--check` runs no format.
+So the copy passes the commands of the key `style` of `guppi.toml` (case 1030.1).
+
 Of `.github/` it writes only `CI`, `.github/workflows/checks.yml`, the CI that runs the tests,
 the vault checks and the style check of a project, judged and cleaned like each other file it
 writes (case 822); nothing of `vault/raw/`, `vault/archive/` or the rest of `.github/`,
@@ -127,6 +139,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import tokenize
 from datetime import date, datetime
 from io import StringIO
@@ -137,6 +150,7 @@ from guppi.caseid import ID
 from guppi.config import SETTINGS_PAGE, SETUP_KEY
 from guppi.event import project_root
 from guppi.generate import READING_DATE, RESULT, write_page
+from guppi.ledger import PROJECT_RUN, command_forms
 from guppi.lint import LINK_FIELDS, MAKE_TARGET, RENDER, WIKILINK
 from guppi.pages import (
     CATEGORIES,
@@ -191,12 +205,14 @@ LEFT_OUT = (
     ".guppi/tests/test_ship.py",
 )
 # the registration of the hook `guppi codewrite` as the Render of `rule-hook-registry` writes
-# it, with its leading comma; the copy removes it from both texts (as set in case 1028.2)
+# it, with its leading comma, in each form of `command_forms`, each command as JSON writes it;
+# the copy removes each from both texts (as set in cases 1028.2 and 1032.1)
 SETTINGS_FILE, HOOK_PAGE = ".claude/settings.json", "rule-hook-registry"
 CODE_WRITE = "guppi codewrite"
-CODE_WRITE_ENTRY = (
+CODE_WRITE_ENTRY = tuple(
     ', { "matcher": "Edit|Write|MultiEdit", "hooks": [ { "type": "command", "command": '
-    f'"uv run --project .guppi {CODE_WRITE}", "timeout": 30 }} ] }}'
+    f"{json.dumps(form)}, " + '"timeout": 30 } ] }'
+    for form in command_forms(PROJECT_RUN + CODE_WRITE)
 )
 CODE_WRITE_LEFT = f"names {CODE_WRITE} after the removal of its registration"
 # the tests: in a Python file here only the comments and the docstrings are cleaned and
@@ -206,6 +222,10 @@ TESTS = ".guppi/tests/"
 # cache folders of Python, pytest and ruff, and the settings of one person
 SKIPPED_NAMES = ("__pycache__", ".pytest_cache", ".ruff_cache", ".venv", "settings.local.json")
 NOT_CLEANED = (".guppi/uv.lock",)  # a lock file is data of the package manager, not text of ours
+# the last step of the build: the Python files of the copy formatted by its own settings, since
+# a line that loses a pointer can take another layout (case 1030.1)
+FORMAT = (sys.executable, "-m", "ruff", "format", ".guppi")
+FORMAT_NAME = "ruff format .guppi"
 TAGS = "vault/wiki/tags.md"
 HISTORY_LINE = "- {day} shipped with GUPPI"
 # the `## Result` of a shipped Estimate, with and without the date of its last reading
@@ -548,10 +568,35 @@ def judged(name: str, text: str, known: set[str], loose: set[str]) -> tuple[str,
     sample, strings = is_sample_file(name), is_test_file(name)
     cleaned, review = clean(text, sample, known if name.endswith(".md") else None, strings)
     python = name.endswith(".py")
+    if python:
+        cleaned = without_empty_comments(cleaned)
     found = leftovers(text, sample, loose, python, strings)
     lines = [f"ship: {name}:{n}: {what}" for n, what in found]
     reviewed = [f"ship: {name}:{n}: a bracket with words: {' '.join(b.split())}" for n, b in review]
     return cleaned, lines, reviewed
+
+
+def without_empty_comments(text: str) -> str:
+    """The Python source `text` with each comment that holds nothing after its `#` removed,
+    read by `tokenize` as `bare_numbers` reads the comments: with the spaces before it after
+    code, and with its whole line where it stood alone, so that the removal of a bracket leaves
+    no empty comment (case 1030.1). A text that does not tokenize stays as it is."""
+    try:
+        tokens = list(tokenize.generate_tokens(StringIO(text).readline))
+    except (tokenize.TokenError, SyntaxError):
+        return text
+    lines = text.splitlines(keepends=True)
+    empty = [t for t in tokens if t.type == tokenize.COMMENT and not t.string[1:].strip()]
+    for token in reversed(empty):
+        row, col = token.start
+        line = lines[row - 1]
+        before = line[:col]
+        if not before.strip():
+            lines[row - 1] = ""
+            continue
+        end = line[col + len(token.string) :]
+        lines[row - 1] = before.rstrip(" \t") + end
+    return "".join(lines)
 
 
 def live_code(name: str, text: str) -> list[str]:
@@ -565,9 +610,11 @@ def live_code(name: str, text: str) -> list[str]:
 
 
 def without_code_write(text: str) -> tuple[str, bool]:
-    """`text` with each `CODE_WRITE_ENTRY` removed, and whether `guppi codewrite` still
-    stands in it (as set in case 1028.2)."""
-    left = text.replace(CODE_WRITE_ENTRY, "")
+    """`text` with each entry of `CODE_WRITE_ENTRY` removed, in each form of the command, and
+    whether `guppi codewrite` still stands in it (as set in cases 1028.2 and 1032.1)."""
+    left = text
+    for entry in CODE_WRITE_ENTRY:
+        left = left.replace(entry, "")
     return left, CODE_WRITE in left
 
 
@@ -631,7 +678,31 @@ def ship(project_dir: Path, folder: Path, day: date, number: str) -> tuple[list[
     for name, text in texts.items():
         (folder / name).write_text(text, encoding="utf-8", newline="\n")
     lines, reviewed = settled(folder, list(texts), known, loose)
-    return out + errors + lines, review + reviewed
+    return out + errors + lines + formatted(folder), review + reviewed
+
+
+def formatted(folder: Path) -> list[str]:
+    """Runs `FORMAT` over `.guppi/` of the copy in `folder`, its cache in a temporary folder
+    outside the copy that is removed after the run, so the copy holds no `.ruff_cache/`; one
+    `ship:` line where it does not start or does not exit 0, none where `folder` holds no
+    `.guppi/` (case 1030.1)."""
+    if not (folder / ".guppi").is_dir():
+        return []
+    with tempfile.TemporaryDirectory() as cache:
+        try:
+            result = subprocess.run(
+                [*FORMAT, "--cache-dir", cache],
+                cwd=folder,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+        except OSError as exc:
+            return [f"ship: {FORMAT_NAME} did not start: {exc}"]
+    if result.returncode != 0:
+        said = " ".join((result.stderr or result.stdout).split())
+        return [f"ship: {FORMAT_NAME} exited {result.returncode}: {said}"]
+    return []
 
 
 def settled(

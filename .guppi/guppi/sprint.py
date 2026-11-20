@@ -290,8 +290,8 @@ def hi_hook(project_dir: Path, stdin, stdout, stderr) -> int:
         if closed and setup_pending(project_dir):
             print(
                 "setup: the setup of this project is not done, guppi.toml holds setup_done = "
-                "false: start the skill /setup before /sprint-open and before the Frontier "
-                "(rule-skill-setup, case 1017.3)",
+                "false: start the skill /setup before /sprint-open and before "
+                "the Frontier (rule-skill-setup, case 1017.3)",
                 file=stdout,
             )
         if closed:

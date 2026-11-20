@@ -1087,6 +1087,9 @@ def test_cli_dispatches_to_lint(tmp_path, monkeypatch, capsys):
 
     seed(tmp_path, rule=rule_page(status="draft"))
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
+    # the status finding stands only where `ship_stands`, so the test passes in the clean
+    # version too, which holds no `guppi.ship` (case 1030.1)
+    monkeypatch.setattr(lint, "ship_stands", lambda: True)
     assert cli.main(["lint"]) == 1
     assert "rules/rule-x: status" in capsys.readouterr().out
 

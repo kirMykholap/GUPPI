@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents implementation starting before the plan, branch and baseline exist
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/work/SKILL.md
 render_mode: full
@@ -145,3 +145,4 @@ When the last task is done, run `uv run --project .guppi guppi test` in full and
 - 2026-11-02 updated: the preamble of /work runs guppi test and guppi check with --exit-zero, so the skill loads while a check is red · [[decision-case-1003.3]]
 - 2026-11-02 status: built → draft · cascade
 - 2026-11-20 updated: on main Work Mode runs the branch task of the opening Case of a sprint first, and stops on main for any other Spec · [[decision-case-1034.2]]
+- 2026-11-23 status: draft → built · cascade

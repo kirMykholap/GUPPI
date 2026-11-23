@@ -80,10 +80,10 @@ update:
 ```tasks
 - [x] `.guppi/guppi/casecheck.py`: `names_notes` takes the session folder from `check_answer` and searches, beside the files of `named_files`, each file under its `cases/` folder that `case_number` names, but the file `case_file` names for the top-level Case of each Case of the answer; the module docstring of the note of names names the new files.
 - [x] `.guppi/tests/test_casecheck.py`: a test with a second file `case-<M>.md` in the session folder of `working` that names `rule-x`, listed in the note with no purpose line, while the Case's own file and a `note-<M>.md` that name `rule-x` are not listed, and the same file read by `Read` is not listed; each test whose output the new note changes set to the new output.
-- [ ] update `rule-case-check`
-- [ ] update `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
-- [ ] update `insight-case-build-sibling-texts-unchecked-before-the-showing`
-- [ ] read `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
+- [x] update `rule-case-check`
+- [x] update `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
+- [x] update `insight-case-build-sibling-texts-unchecked-before-the-showing`
+- [x] read `estimate-case-check-notes-the-files-that-name-what-a-case-changes`
 ```
 
 ### Case 1039.2 — case-guppi sends a stale line to its Case
@@ -137,11 +137,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `rule-orchestration`
-- [ ] create `estimate-case-build-names-a-stale-line-of-another-case`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-case-build`
+- [x] update `rule-orchestration`
+- [x] create `estimate-case-build-names-a-stale-line-of-another-case`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-case-build-names-a-stale-line-of-another-case`
 ```
 
@@ -218,9 +218,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-plugin-install`
-- [ ] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
-- [ ] create `estimate-plugin-install-asks-one-approval-in-plan-mode`
+- [x] update `rule-plugin-install`
+- [x] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
+- [x] create `estimate-plugin-install-asks-one-approval-in-plan-mode`
 - [ ] read `estimate-plugin-install-asks-one-approval-in-plan-mode`
 ```
 
@@ -269,9 +269,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] update `estimate-case-build-offers-a-page-for-code-no-page-covers`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `estimate-case-build-offers-a-page-for-code-no-page-covers`
 - [ ] read `estimate-case-build-offers-a-page-for-code-no-page-covers`
 ```
 
@@ -335,8 +335,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-clean-branch`
-- [ ] create `estimate-clean-branch-prod-commits-only-a-tested-copy`
+- [x] update `rule-clean-branch`
+- [x] create `estimate-clean-branch-prod-commits-only-a-tested-copy`
 - [x] `.github/workflows/prod.yml`: a step after the step that runs `claude plugin validate` and before the step that commits to `prod` runs `uv run --project .guppi pytest .guppi/tests/test_ship.py -k own_style` and then `uv run --project .guppi pytest .guppi/tests/test_ship.py -m live -k own_tests`; the comment at its head says that the run commits only when both pass.
 - [ ] read `estimate-clean-branch-prod-commits-only-a-tested-copy`
 ```
@@ -374,8 +374,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-clean-branch-copy-passes-its-style-and-tests`
-- [ ] read `estimate-clean-branch-copy-passes-its-style-and-tests`
+- [x] update `estimate-clean-branch-copy-passes-its-style-and-tests`
+- [x] read `estimate-clean-branch-copy-passes-its-style-and-tests`
 ```
 
 ## Case 1043 — The README says what GUPPI is, and the repository carries the MIT license
@@ -451,9 +451,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-guppi-repository`
+- [x] update `entity-guppi-repository`
 - [x] `README.md`: written anew in English, about 150 to 250 lines, in the plain tone set above: a header with `plugin/assets/logo_guppi.png` and one sentence; Why; Is it for you; how a session goes; the main parts; install, by `/plugin marketplace add kirMykholap/GUPPI#prod`, `/plugin install guppi@guppi-marketplace` and `/guppi:install`, the note that no release has reached `prod` yet and the local path by `uv run --project .guppi guppi ship --allow-draft <folder>`; use, a table of the commands; status and limits; contributing; license, MIT. Each install step is checked against `plugin/skills/install/SKILL.md` as it stands when the README is written.
-- [ ] update `estimate-sprint-plugin-readme-describes-the-project`
+- [x] update `estimate-sprint-plugin-readme-describes-the-project`
 - [ ] read `estimate-sprint-plugin-readme-describes-the-project`
 ```
 
@@ -493,9 +493,9 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-guppi-repository-carries-the-mit-license`
+- [x] create `estimate-guppi-repository-carries-the-mit-license`
 - [x] `LICENSE`: the text of the MIT license, its copyright line `Copyright (c) 2026 kirMykholap`.
-- [ ] read `estimate-guppi-repository-carries-the-mit-license`
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run --project .guppi guppi sprint`
+- [x] read `estimate-guppi-repository-carries-the-mit-license`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run --project .guppi guppi sprint`
 ```

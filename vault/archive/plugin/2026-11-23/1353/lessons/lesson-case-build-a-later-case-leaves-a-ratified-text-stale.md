@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the pass of Other Case lines changes only what one Case names in another, and no step searches the texts of the Cases already ratified for each line that rests on the mechanism a later Case changes, before the showing
-status: clustered
+status: archived
 insight: "[[insight-case-build-sibling-texts-unchecked-before-the-showing]]"
 origin: raw/2026-11-04/0807/ledger.md#L60
 sprint: plugin
@@ -22,3 +22,5 @@ the pass of Other Case lines changes only what one Case names in another, and no
 
 - 2026-11-20 created · raw/2026-11-04/0807/ledger.md#L60
 - 2026-11-20 updated: clustered under insight-case-build-sibling-texts-unchecked-before-the-showing (synthesis) · raw/2026-11-04/0807/ledger.md#L60
+- 2026-11-23 archived · insight actioned
+- 2026-11-23 archived · cleanup

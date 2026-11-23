@@ -13087,3 +13087,48 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-20 rules/rule-guppi-package status: built → draft · cascade · generate
 - 2026-11-20 decisions/decision-case-1008 archived · superseded · generate
 - 2026-11-20 decisions/decision-case-1008 archived · cleanup
+- 2026-11-23 decisions/decision-case-1039 created · raw/2026-11-20/1353/ledger.md#case-1039 · generate
+- 2026-11-23 decisions/decision-case-1039.1 created · raw/2026-11-20/1353/ledger.md#case-1039.1 · generate
+- 2026-11-23 rules/rule-case-check updated: the note of names lists the Case files of the session too · [[decision-case-1039.1]] · generate
+- 2026-11-23 estimates/estimate-case-check-notes-the-files-that-name-what-a-case-changes updated: the Criterion replaced whole — the note searches the Case files of the session too · [[decision-case-1039.1]] · generate
+- 2026-11-23 insights/insight-case-build-sibling-texts-unchecked-before-the-showing updated: actioned: the note of names lists the Case files of the session, and case-guppi sends a stale line to its Case · [[decision-case-1039.1]] · generate
+- 2026-11-23 decisions/decision-case-1039.2 created · raw/2026-11-20/1353/ledger.md#case-1039.2 · generate
+- 2026-11-23 rules/rule-case-build updated: case-guppi sends a line of a listed Case file that its change makes false to that Case by a line Other Case · [[decision-case-1039.2]] · generate
+- 2026-11-23 rules/rule-orchestration updated: a line Other Case for a stale line of another Case is sent back as after a clash · [[decision-case-1039.2]] · generate
+- 2026-11-23 estimates/estimate-case-build-names-a-stale-line-of-another-case created · [[decision-case-1039.2]] · generate
+- 2026-11-23 rules/rule-case-build estimate estimate-case-build-names-a-stale-line-of-another-case added · [[decision-case-1039.2]] · generate
+- 2026-11-23 decisions/decision-case-1040 created · raw/2026-11-20/1353/ledger.md#case-1040 · generate
+- 2026-11-23 rules/rule-plugin-install updated: in Plan Mode the install shows one plan of the files it copies and sets aside, and asks the approval once · [[decision-case-1040]] · generate
+- 2026-11-23 estimates/estimate-plugin-install-asks-one-approval-in-plan-mode created · [[decision-case-1040]] · generate
+- 2026-11-23 rules/rule-plugin-install estimate estimate-plugin-install-asks-one-approval-in-plan-mode added · [[decision-case-1040]] · generate
+- 2026-11-23 decisions/decision-case-1041 created · raw/2026-11-20/1353/ledger.md#case-1041 · generate
+- 2026-11-23 rules/rule-case-build updated: context gives why the page of code that no page covers was chosen · [[decision-case-1041]] · generate
+- 2026-11-23 estimates/estimate-case-build-offers-a-page-for-code-no-page-covers updated: pending again — the Render now asks for the reason, the Criterion as it stood · [[decision-case-1041]] · generate
+- 2026-11-23 decisions/decision-case-1042 created · raw/2026-11-20/1353/ledger.md#case-1042 · generate
+- 2026-11-23 decisions/decision-case-1042.1 created · raw/2026-11-20/1353/ledger.md#case-1042.1 · generate
+- 2026-11-23 rules/rule-clean-branch updated: the workflow of prod runs the style and the tests over a copy before it commits · [[decision-case-1042.1]] · generate
+- 2026-11-23 estimates/estimate-clean-branch-prod-commits-only-a-tested-copy created · [[decision-case-1042.1]] · generate
+- 2026-11-23 rules/rule-clean-branch estimate estimate-clean-branch-prod-commits-only-a-tested-copy added · [[decision-case-1042.1]] · generate
+- 2026-11-23 decisions/decision-case-1042.2 created · raw/2026-11-20/1353/ledger.md#case-1042.2 · generate
+- 2026-11-23 estimates/estimate-clean-branch-copy-passes-its-style-and-tests updated: the Criterion replaced whole — the line that prod.yml runs neither command is gone, since the workflow now runs both · [[decision-case-1042.2]] · generate
+- 2026-11-23 decisions/decision-case-1043 created · raw/2026-11-20/1353/ledger.md#case-1043 · generate
+- 2026-11-23 decisions/decision-case-1043.1 created · raw/2026-11-20/1353/ledger.md#case-1043.1 · generate
+- 2026-11-23 entities/entity-guppi-repository updated: code_ref names README.md and LICENSE, the files of the repository on GitHub · [[decision-case-1043.1]] · generate
+- 2026-11-23 decisions/decision-case-1043.2 created · raw/2026-11-20/1353/ledger.md#case-1043.2 · generate
+- 2026-11-23 estimates/estimate-guppi-repository-carries-the-mit-license created · [[decision-case-1043.2]] · generate
+- 2026-11-23 estimates/estimate-guppi-repository-carries-the-mit-license status: pending → passed · raw/2026-11-20/1353/ledger.md#L22 · generate
+- 2026-11-23 entities/entity-guppi-repository estimate estimate-guppi-repository-carries-the-mit-license added · [[decision-case-1043.2]] · generate
+- 2026-11-23 estimates/estimate-sprint-plugin-readme-describes-the-project updated: the Criterion replaced whole — it reads README.md at the root of the branch of the session that wrote it and names each section the person chose · [[decision-case-1043.1]] · generate
+- 2026-11-23 entities/entity-sprint-plugin updated: the Backlog keeps the MIT license text of the clean copy · [[decision-case-1043.2]] · generate
+- 2026-11-23 estimates/estimate-guppi-package-runs-from-its-own-folder status: pending → passed · raw/2026-11-20/1353/ledger.md#L18 · generate
+- 2026-11-23 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline status: pending → passed · raw/2026-11-20/1353/ledger.md#L19 · generate
+- 2026-11-23 estimates/estimate-case-check-notes-the-files-that-name-what-a-case-changes status: pending → passed · raw/2026-11-20/1353/ledger.md#L20 · generate
+- 2026-11-23 estimates/estimate-clean-branch-copy-passes-its-style-and-tests status: pending → passed · raw/2026-11-20/1353/ledger.md#L21 · generate
+- 2026-11-23 lessons/lesson-case-build-context-claims-a-run-it-did-not-make created · raw/2026-11-20/1353/ledger.md#L23 · generate
+- 2026-11-23 rules/rule-clean-branch status: built → draft · cascade · generate
+- 2026-11-23 rules/rule-guppi-package status: draft → built · cascade · generate
+- 2026-11-23 rules/rule-work-mode status: draft → built · cascade · generate
+- 2026-11-23 lessons/lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers archived · insight actioned · generate
+- 2026-11-23 lessons/lesson-case-build-a-later-case-leaves-a-ratified-text-stale archived · insight actioned · generate
+- 2026-11-23 lessons/lesson-case-build-a-later-case-leaves-a-ratified-text-stale archived · cleanup
+- 2026-11-23 lessons/lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers archived · cleanup

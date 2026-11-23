@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-work-mode]]"
 purpose: Whether /work loads while guppi check or guppi test finds something, stops on main but for the branch task of the opening Case of a sprint, which it runs first, writes the baseline of uv run --project .guppi guppi test and uv run --project .guppi guppi check into work.md before the first change — the exit code of each as the last line of its preamble line names it — and keeps it on a resume, runs the tasks of the Spec of the session or of the folder /box gives it in order with their ticks but leaves a guppi sprint-close line to the librarian, names that folder under Conserved Spec and deletes its carry.md, marks an expected red under Expected red, runs the check of the plan before the first task of a Case ratified in Work Mode, stops on its finding and ticks a task of that Case whose work already stands, and after the last task runs uv run --project .guppi guppi test in full and holds each failing test against the baseline, fixing a new one within ratified work
 method: "by hand, after the librarian's render that writes .claude/skills/work/SKILL.md from the Render of rule-work-mode that runs the branch task of the opening Case of a sprint on main: uv run --project .guppi guppi render --check; .claude/skills/work/SKILL.md read against each line of the Criterion; the first /work that loads after that render while uv run --project .guppi guppi check exits 1, its preamble lines, its work.md and its run of the tasks read in the transcript of its session under ~/.claude/projects/ and in its spec.md and work.md against the Criterion; the lines on a Case ratified in Work Mode and on the branch main read in that transcript where that session has them, otherwise against the text of the skill; recorded in the estimate line with the transcript named"
-checked: 2026-10-31
+checked: 2026-11-23
 origin: raw/2026-09-28/1318/ledger.md#case-479.2
 sprint: migration
 created: 2026-09-28
@@ -42,7 +42,7 @@ Then:
 
 ## Result
 
-2026-10-31, Retro of session 0431, uv run --project .guppi guppi render --check (exit 0), .claude/skills/work/SKILL.md against each line of the Criterion, main transcript 8727d5ce-2d69-40eb-8203-769b95b5cc28.jsonl lines 1434–1810, vault/raw/2026-10-31/0431/spec.md and work.md: on branch plugin the baseline was written once before the first change; Case 964, ratified in Work Mode, replaced 961.6; the reply that acknowledged it ended the turn, and at the person's next message guppi prespec --check ran on the plan before any task of the new Case, printing no finding; a finding of the Stop check of rule-case-check on the showing of Case 965 went to its case-guppi and the fixed Case was shown again; the stop: task and the three code tasks whose work stood were ticked with no new run; the full guppi test after the tasks had no new failure
+2026-11-23, Work Mode of session 1353, uv run --project .guppi guppi render --check (exit 0), .claude/skills/work/SKILL.md against each line of the Criterion, main transcript 68550048-efc7-4790-9bd8-17ed548134c2.jsonl, vault/raw/2026-11-20/1353/spec.md and work.md: /work loaded while guppi check exited 1, its Tests and Lint lines came back with their output and a last line naming the exit code (0 and 1); on branch plugin work.md was written before the first change with the exit codes, the 7 lint finding lines and an empty Expected red; the code tasks ran in the order of the Spec (lines 81, 82, 340, 455, 497) and each was ticked; the full guppi test after the last task gave 1978 passed and no failing test against the Baseline; no Case was ratified in this Work Mode and the branch was not main, so those lines and the lines on /box and guppi sprint-close were read against the text of the skill, which holds them
 
 ## History
 
@@ -64,3 +64,4 @@ Then:
 - 2026-11-02 deferred · [[decision-case-1008]]
 - 2026-11-20 defer by decision-case-1008 superseded · [[decision-case-1034.2]]
 - 2026-11-20 updated: the Criterion replaced whole — on main Work Mode runs the branch task of the opening Case of a sprint first; the method names the first /work after the render of that text; the defer of case 1008 retired · [[decision-case-1034.2]]
+- 2026-11-23 status: pending → passed · raw/2026-11-20/1353/ledger.md#L19

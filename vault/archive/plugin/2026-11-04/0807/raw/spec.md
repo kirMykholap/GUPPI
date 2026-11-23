@@ -744,7 +744,7 @@ update:
 - [x] `.guppi/tests/test_ledger.py`: a test asserts that `command_forms` gives for the `COMMAND` of each hook the command and the same with `--project .guppi`, and `test_a_command_without_the_project_has_one_form` gives one form for a command of no `PROJECT_RUN`; the tests of a refusal found under each form are those Case 1035.1 changes.
 - [x] `.guppi/tests/test_ship.py`: a test whose name holds `no_code_write_hook` builds a tree whose registration of `guppi codewrite` stands in the new form and finds it removed from both texts.
 - [x] update `estimate-guppi-package-runs-from-its-own-folder`
-- [ ] read `estimate-guppi-package-runs-from-its-own-folder`
+- [x] read `estimate-guppi-package-runs-from-its-own-folder`
 ```
 
 ### Case 1032.2 — The ledger hook finds its refusals by its name, whatever its command
@@ -1076,7 +1076,7 @@ update:
 - [x] update `rule-work-mode`
 - [x] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
 - [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
-- [ ] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] read `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 ```
 
 ### Case 1034.3 — The branch task of the opening Case is no stop on main

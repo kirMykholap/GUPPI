@@ -36,6 +36,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - The Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session; taken out of rule-spec-box (case 962)
 - The name of the main branch: a project whose main branch is not main sets its name at the setup, and the code and the skills read it; taken out of rule-morph (case 1017.4)
 - Whether every Estimate whose `method` reads the transcript of a session should be a one-off Estimate of the sprint page with `once: true`, with a lasting Estimate beside it whose `method` reads a file that ships, as `rule-estimates-schema` would then set it; the split made once for `estimate-case-build-reads-the-readers-of-a-new-files-folder` (case 1019.4)
+- The MIT license text carried into the clean copy without breaking the install: `guppi ship` writes `LICENSE` into the copy, and `/guppi:install` leaves it out of the files it copies into a project; taken out of the README and the license (case 1043.2)
 
 ## Closed
 
@@ -75,3 +76,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-11-03 updated: the Backlog asks whether every Estimate that reads a transcript is split into a one-off Estimate and a lasting one · [[decision-case-1019.4]]
 - 2026-11-03 deferred · [[decision-case-1021]]
 - 2026-11-20 estimate estimate-sprint-plugin-case-guppi-level-trial-decided added · [[decision-case-1029.4]]
+- 2026-11-23 updated: the Backlog keeps the MIT license text of the clean copy · [[decision-case-1043.2]]

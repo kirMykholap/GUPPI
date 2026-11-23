@@ -15,14 +15,19 @@ tags: [sprint, readme]
 
 When:
 In a session of the sprint `plugin` before its close, the person reads `README.md`.
+**＋** The person reads it at the root of the branch of the session whose Work Mode wrote it.
 
 Then:
 `README.md` says what GUPPI is and what it is for.
 **＋** It names the main parts of the project and what each one does.
 **＋** It says how to install GUPPI and how to use it.
+**＋** It holds a first-person Why on control against cost, an Is it for you section, and how a session goes, from its opening through planning, the Spec, the work and the retro to the handoff and the librarian's run.
+**＋** The parts it names are the vault, the harness rendered from the rules, the package with the command `guppi`, and the plugin with the branch `prod`.
+**＋** Its install gives the path from GitHub by `#prod`, says that no release has reached `prod` yet, gives the path from a local copy by `guppi ship --allow-draft` and a table of the commands, and its status reads early, opinionated and expensive in tokens, with no figure of cost, beside the MIT license.
 **＋** The person says that it describes the project as it stands.
 
 ## History
 
 - 2026-10-10 created · [[decision-case-756.3]]
 - 2026-10-10 updated: the method names the moment of the reading: the /hi of the session after the one that writes the README · [[decision-case-765]]
+- 2026-11-23 updated: the Criterion replaced whole — it reads README.md at the root of the branch of the session that wrote it and names each section the person chose · [[decision-case-1043.1]]

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a project with GUPPI from depending on files at its root that it does not own, or on a command that runs only in the repository of GUPPI
-status: draft
+status: built
 enforcement: check
 implementation_ref: [.guppi/pyproject.toml, .guppi/.gitignore, .guppi/tests/test_guppi_package.py]
 parent: "[[rule-harness]]"
@@ -39,3 +39,4 @@ Prevents a project with GUPPI from depending on files at its root that it does n
 - 2026-11-20 estimate estimate-guppi-package-keeps-python-caches-out-of-git added · [[decision-case-1033]]
 - 2026-11-20 updated: .guppi/.gitignore keeps the Python caches out of git · [[decision-case-1033]]
 - 2026-11-20 status: built → draft · cascade
+- 2026-11-23 status: draft → built · cascade

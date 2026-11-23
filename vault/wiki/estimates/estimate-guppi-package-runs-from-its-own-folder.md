@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-guppi-package]]"
 purpose: Whether the code, the settings, the lock and the tests of GUPPI stand under .guppi/, every hook runs them through .guppi under the folder that Claude Code was opened in, so that a cd in a Bash call cannot break it, every skill, agent, workflow and page runs them through uv run --project .guppi, and the modules and the guards take those forms
 method: "by hand, after the render of the harness by the librarian's run of the session that ratifies this Criterion: uv run --project .guppi pytest .guppi/tests/test_guppi_package.py, then a session opened in the project, /hi typed there, a Bash call that runs cd vault/wiki, and a later tool call and reply; the output of its hooks in the transcript of that session under ~/.claude/projects/ read against the Criterion, recorded in the estimate line"
-checked: 2026-10-17
+checked: 2026-11-23
 origin: raw/2026-10-15/0553/ledger.md#case-819.1
 sprint: plugin
 created: 2026-10-15
@@ -31,7 +31,7 @@ The package `guppi`, its `pyproject.toml`, its lock file `uv.lock`, its tests an
 
 ## Result
 
-2026-10-17, Retro of session 1805: uv run --project .guppi pytest .guppi/tests/test_guppi_package.py 12 passed; .guppi/ holds guppi, pyproject.toml, uv.lock, tests and a .gitignore of .venv/, and .guppi/pyproject.toml declares pytest and ruff; this session opened after the render --sync of its /hi, and its hooks printed no error
+2026-11-23, Work Mode of session 1353: uv run --project .guppi pytest .guppi/tests/test_guppi_package.py 14 passed; this session opened in the project after the librarian's render of 0807, /hi typed, a Bash call ran cd vault/wiki (transcript 68550048-efc7-4790-9bd8-17ed548134c2.jsonl L81, the primary directory moved to vault/wiki), then a Write call (L87) and the reply; the Stop record of that reply holds hookErrors [] and hook_success (L98–L100), and no hook printed an error or refused for want of .guppi/; all 16 command lines of .claude/settings.json name ${CLAUDE_PROJECT_DIR}/.guppi
 
 ## History
 
@@ -45,3 +45,4 @@ The package `guppi`, its `pyproject.toml`, its lock file `uv.lock`, its tests an
 - 2026-10-17 updated: the Criterion replaced whole — the Makefile, prod.yml, the root pyproject.toml, the clean version and the records of the repository of GUPPI moved to estimate-guppi-repository-keeps-the-development-project · [[decision-case-880.8]]
 - 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L65
 - 2026-11-20 updated: the Criterion replaced whole — each hook runs the code from the folder that Claude Code was opened in · [[decision-case-1032.1]]
+- 2026-11-23 status: pending → passed · raw/2026-11-20/1353/ledger.md#L18

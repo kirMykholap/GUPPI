@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: Cases built at the same time read no file of each other until the second pass, so a fork that both Cases touch is asked by each with its own recommendation, and the main agent showed the two questions side by side without merging them into one
-status: clustered
+status: archived
 insight: "[[insight-case-build-sibling-texts-unchecked-before-the-showing]]"
 origin: raw/2026-11-03/0316/ledger.md#L33
 sprint: plugin
@@ -22,3 +22,5 @@ Cases built at the same time read no file of each other until the second pass, s
 
 - 2026-11-03 created · raw/2026-11-03/0316/ledger.md#L33
 - 2026-11-03 updated: clustered under insight-case-build-sibling-texts-unchecked-before-the-showing (synthesis) · raw/2026-11-03/0316/ledger.md#L33
+- 2026-11-23 archived · insight actioned
+- 2026-11-23 archived · cleanup

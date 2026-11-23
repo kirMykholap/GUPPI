@@ -5,6 +5,7 @@ status: passed
 target: "[[rule-clean-branch]]"
 purpose: Whether guppi ship leaves no empty comment and no line of spaces where it removed a bracket, formats the Python files of the clean version, and whether the style commands and the tests of the project pass over it
 method: uv run --project .guppi pytest .guppi/tests/test_ship.py -k own_style; uv run --project .guppi pytest .guppi/tests/test_ship.py -m live -k own_tests
+checked: 2026-11-23
 origin: raw/2026-11-04/0807/ledger.md#case-1030.1
 sprint: plugin
 created: 2026-11-04
@@ -26,13 +27,14 @@ In a Python file it writes, it removes each comment that the removal of a bracke
 **－** Where `ruff format` does not start or does not exit 0, it prints one `ship:` line and exits 1.
 **－** That run keeps its cache in a temporary folder outside the folder, so the clean version holds no `.ruff_cache/`.
 **－** `--check` runs no `ruff format`.
-**－** `.github/workflows/prod.yml` does not change, and runs neither command over the folder.
 
 ## Result
 
-2026-11-20, uv run --project .guppi pytest .guppi/tests/test_ship.py -k own_style: 4 passed (no empty comment and no line of spaces left, no .ruff_cache/ in the copy, a format that exits 2 gives its ship: line and exit 1, ruff check . and ruff format --check . exit 0 over the copy of this repository); uv run --project .guppi pytest .guppi/tests/test_ship.py -m live -k own_tests: 1 passed, the key test over the copy exits 0
+2026-11-23, Retro of session 1353, on the Criterion of Case 1042.2: uv run --project .guppi pytest .guppi/tests/test_ship.py -k own_style 4 passed; uv run --project .guppi pytest .guppi/tests/test_ship.py -m live -k own_tests 1 passed (66.8 s), on Windows
 
 ## History
 
 - 2026-11-20 created · [[decision-case-1030.1]]
 - 2026-11-20 status: pending → passed · raw/2026-11-04/0807/ledger.md#L46
+- 2026-11-23 updated: the Criterion replaced whole — the line that prod.yml runs neither command is gone, since the workflow now runs both · [[decision-case-1042.2]]
+- 2026-11-23 status: pending → passed · raw/2026-11-20/1353/ledger.md#L21

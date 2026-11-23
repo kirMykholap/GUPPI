@@ -19,14 +19,11 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 
 ## Milestones
 
-### [x] The clean branch
+### [ ] The clean branch
 
-### [ ] The plugin
+- [ ] [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint; what remains: the owner pushes `plugin` and a tag of the form `prod-x.y.z` on its last commit, and the CI run it starts is read by its Estimate; while a page with `core: true` that blocks the build stands — a `draft` one never `built`, or one with an Estimate `failed` — that run writes nothing to `prod` · draft, passed
 
-- [ ] the clean version made into a Claude Code plugin
-- [ ] [[rule-morph]] — the setup Case that the first `/hi` after `/guppi:install` puts before the opening of the first sprint; the setup skill `/setup` of `rule-skill-setup`, its step in `/hi` and in `/sprint-open`, the key `setup_done` of `guppi.toml`, the pass of the ledger hook for the setup Case while no sprint is open and the clean version that ships `setup_done = false` are built by case 1017; what remains: the readings by hand of its two Estimates in a new project installed from a copy that `guppi ship --allow-draft` writes, until which `rule-morph` and `rule-skill-setup` stay `draft` and the workflow writes nothing to `prod` · draft
-- [ ] the README on what the project is and what it is for and on its main parts and its use
-- [ ] the close of `plugin` — `/sprint-close`, a session of its own
+### [ ] The plugin — 4 items: the clean version made into a Claude Code plugin, [[rule-morph]], the README on what the project is and what it is for and on its main parts and its use, the close of `plugin` — `/sprint-close`, a session of its own
 
 ## Closed
 

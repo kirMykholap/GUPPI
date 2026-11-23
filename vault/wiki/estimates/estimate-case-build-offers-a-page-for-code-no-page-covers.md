@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, on an item that points to code no page covers, reads that code and settles a page only for the thing the Case changes, or the path added to a page that describes it, asks in a round only where the two differ in behaviour, in cost or in what they block, and puts that page into the same Case
-method: by hand, at the Retro of the session that replaces this Criterion, the new Render of rule-case-build in the Spec read against the Criterion, recorded in the estimate line
+method: "by hand, at the Retro of the session whose Render of rule-case-build asks context for why the page was chosen: that Render in the Spec read against the Criterion, recorded in the estimate line; by hand, after a session whose case-guppi.md holds this text in which case-guppi settles a page for code that no page covers: the agent transcript of that case-guppi under ~/.claude/projects/ and its case file read against the Criterion, the transcript in the estimate line"
 checked: 2026-11-20
 origin: raw/2026-10-13/1753/ledger.md#case-803
 sprint: plugin
@@ -37,3 +37,4 @@ It reads that code in parts, the functions the Case changes and the places that 
 - 2026-10-17 updated: the method reads the Render where it lives, with no past moment · [[decision-case-875]]
 - 2026-11-20 updated: the Criterion replaced whole — the agent settles the page, and a round comes only where the options differ · [[decision-case-1031.2]]
 - 2026-11-20 status: pending → failed · raw/2026-11-04/0807/ledger.md#L57
+- 2026-11-23 updated: pending again — the Render now asks for the reason, the Criterion as it stood · [[decision-case-1041]]

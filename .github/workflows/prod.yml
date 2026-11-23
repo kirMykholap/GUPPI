@@ -1,10 +1,12 @@
 # The clean version of GUPPI written to the branch `prod`, as `rule-clean-branch` sets it.
 # A push to `main`, or a push of a tag `prod-*` on a commit of another branch, runs
 # `guppi ship`; when it exits 0, a step installs Claude Code and runs `claude plugin validate`
-# on the clean folder, and when that passes the run commits its folder to `prod` on top of the
-# last commit, with a message that names the commit it was built from, and adds none when
-# nothing changed. When `guppi ship` exits 1 or `claude plugin validate` fails, the run fails
-# and pushes nothing. The run pushes with the deploy key whose private half is the secret
+# on the clean folder, and a step runs the tests of `.guppi/tests/test_ship.py` that build a
+# clean version of the commit and run over it the commands of the keys `style` and `test` of
+# `guppi.toml` (case 1042.1). The run commits only when both pass: then it commits its folder
+# to `prod` on top of the last commit, with a message that names the commit it was built from,
+# and adds none when nothing changed. When `guppi ship` exits 1, `claude plugin validate`
+# fails or one of those tests fails, the run fails and pushes nothing. The run pushes with the deploy key whose private half is the secret
 # `PROD_DEPLOY_KEY`; deploy keys stand on the bypass list of the ruleset on `prod` that
 # `rule-github-repository` sets.
 name: prod
@@ -38,6 +40,10 @@ jobs:
         run: |
           npm install -g @anthropic-ai/claude-code
           claude plugin validate "$RUNNER_TEMP/clean"
+      - name: Run the style and the tests over a clean version
+        run: |
+          uv run --project .guppi pytest .guppi/tests/test_ship.py -k own_style
+          uv run --project .guppi pytest .guppi/tests/test_ship.py -m live -k own_tests
       - name: Commit it to prod
         run: |
           source="$(git rev-parse HEAD)"

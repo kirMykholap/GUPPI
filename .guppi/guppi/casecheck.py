@@ -143,8 +143,11 @@ and `code_ref` (`generate.REWORD_PATH_FIELDS`), and the names those paths carry;
 file name and the names it carries — the agent of `.claude/agents/<name>.md`, the skill of
 `.claude/skills/<name>/SKILL.md` with its slash, and `guppi <command>` for each command that
 `COMMANDS` of `.guppi/guppi/cli.py` maps to its module. `names_notes` searches the files under
-`vault/wiki/`, `.claude/`, `.guppi/guppi/` and `.guppi/tests/`, the Decision pages, `log.md`,
-`brief.md` and the file of the page or the file itself left out, each name as a whole word,
+`vault/wiki/`, `.claude/`, `.guppi/guppi/` and `.guppi/tests/`, and each file under the `cases/`
+folder of the session folder that `case_number` names, `session_case_files`, but the file that
+`case_file` names for the top-level Case of each Case of the answer, so no working note
+`note-<N>.md` (case 1039.1); the Decision pages, `log.md`, `brief.md` and the file of the page
+or the file itself left out, each name as a whole word,
 and gives one note per Case: a first line that asks `case-guppi` to read each listed file
 whose purpose line or path speaks of what the Case changes, or to name it in `context` with
 the reason it stands, then a line per file that holds a name and that the subagent did not
@@ -1304,6 +1307,32 @@ def named_files(project_dir: Path) -> dict[str, str]:
     return texts
 
 
+def session_case_files(
+    folder: Path | None, project_dir: Path, answer: dict[str, dict]
+) -> dict[str, str]:
+    """The text of each file under the `cases/` folder of the session folder `folder` that
+    `case_number` names, by its path from `project_dir`, but the file that `case_file` names
+    for the top-level Case of each Case of `answer`: the other Case files of the session that
+    the note of names searches (case 1039.1). A working note `note-<N>.md` has no such name;
+    no folder, none."""
+    if folder is None or not (folder / CASES).is_dir():
+        return {}
+    own = {path_key(case_file(folder, case)) for case in answer}
+    texts: dict[str, str] = {}
+    for path in sorted((folder / CASES).iterdir()):
+        if not path.is_file() or case_number(path) is None or path_key(path) in own:
+            continue
+        try:
+            rel = path.resolve().relative_to(project_dir.resolve()).as_posix()
+        except ValueError:
+            rel = path.as_posix()
+        try:
+            texts[rel_path(rel)] = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+    return texts
+
+
 def name_pattern(name: str) -> str:
     """A name as a whole word: no letter, digit, `_` or `-` on either side of it, a name that
     opens with `/` taking any character before it."""
@@ -1332,15 +1361,18 @@ def names_notes(
     project_dir: Path,
     looked: set[str],
     store: dict | None = None,
+    folder: Path | None = None,
 ) -> list[str]:
     """One note per Case that lists each file that names a page or a file the Case changes,
     `changed_targets`, and that the subagent did not read, `looked_files`, once, under the
     first name it holds: its path, that name and the purpose line of a page, however many
     files hold a name, asking `case-guppi` to read each listed file whose purpose line or path
     speaks of what the Case changes, or to name it in `context` with the reason it stands
-    (cases 1005.1, 1011.1). The file of the page or the file itself is left out, and so is a
-    file that a note stored for the Case id in `store` lists, `listed_files`; no note when
-    none is left. A note, not a finding."""
+    (cases 1005.1, 1011.1). The files searched are those of `named_files` and, with the
+    session folder `folder`, the other Case files of the session, `session_case_files` (case
+    1039.1). The file of the page or the file itself is left out, and so is a file that a note
+    stored for the Case id in `store` lists, `listed_files`; no note when none is left. A
+    note, not a finding."""
     notes: list[str] = []
     texts: dict[str, str] | None = None
     for case, block in answer.items():
@@ -1348,7 +1380,10 @@ def names_notes(
         named: dict[str, str] = {}  # the file → the first name it holds, for this Case
         for own, names in changed_targets(cases.get(case, []), block, project_dir).items():
             if texts is None:
-                texts = named_files(project_dir)
+                texts = {
+                    **named_files(project_dir),
+                    **session_case_files(folder, project_dir, answer),
+                }
             for name in names:
                 if not name:
                     continue
@@ -1425,8 +1460,9 @@ def check_answer(
     701.7). `looked`, the files the subagent read by `looked_files`, adds the note of
     `names_notes`, one per Case that lists each file that names what the Case changes, by the
     first code span of a task line for a file, and that it did not read, but a file a note
-    stored in `store` for the Case id lists; with no transcript, None, no such note (cases
-    1005.1, 1010.1, 1011.1)."""
+    stored in `store` for the Case id lists, and, with `folder`, the other Case files of the
+    session among the files searched; with no transcript, None, no such note (cases 1005.1,
+    1010.1, 1011.1, 1039.1)."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)
@@ -1506,7 +1542,9 @@ def check_answer(
     cascade = cascade_notes(
         {**others, **answer}, ledger_records(list(window)) + records, project_dir, set(answer)
     )
-    names = names_notes(cases, answer, project_dir, looked, store) if looked is not None else []
+    names = (
+        names_notes(cases, answer, project_dir, looked, store, folder) if looked is not None else []
+    )
     notes: dict[str, list[str]] = {case: [] for case in cases}
     for note in promise_notes(spec_text, project_dir) + pair_notes + cascade + names:
         match = NOTE_CASE.match(note)

@@ -1472,7 +1472,8 @@ def test_layout_a_list_showing_and_text_after_the_rule_pass(working):
 def test_layout_a_batch_of_list_showings_passes(working):
     built_family(working)
     no_pair = ANSWER.replace(">   - old: `` the `old` text ``\n>   - new: `the new text`\n", "")
-    assert answer(working, no_pair) == (0, "")  # 9.1 rewrote the old text (case 711.1)
+    # 9.1 rewrote the old text (case 711.1); the file of 9 names rule-x (case 1039.1)
+    assert answer(working, no_pair) == case_files_noted(7, 9)
     batch = SHORT_SHOWING.split("\n---\n")[0] + "\n" + list_showing(*LINES_9_1, *LINES_9_2)
     assert show(working, batch) == (0, "")
 
@@ -1522,7 +1523,7 @@ def ruled_batch(between=""):
 def built_batch(working):
     built_family(working)
     no_pair = ANSWER.replace(">   - old: `` the `old` text ``\n>   - new: `the new text`\n", "")
-    assert answer(working, no_pair) == (0, "")
+    assert answer(working, no_pair) == case_files_noted(7, 9)  # (case 1039.1)
 
 
 def test_layout_rules_before_and_between_the_cases_of_a_batch_give_no_note(working):
@@ -2084,7 +2085,7 @@ def test_subagent_session_clash_none_with_a_stored_case_with_findings(working):
     faulty = setting(6, "built").replace("> - [ ] read `estimate-x-works-6`\n", "")
     assert answer(working, faulty)[0] == 2
     assert store(working)["6"]["findings"]
-    assert answer(working, setting(7, "draft")) == (0, "")
+    assert answer(working, setting(7, "draft")) == case_files_noted(7, 6)  # (case 1039.1)
 
 
 def test_subagent_session_clash_none_with_an_entry_joined_with_an_agent_id(working):
@@ -2092,13 +2093,13 @@ def test_subagent_session_clash_none_with_an_entry_joined_with_an_agent_id(worki
     path = casecheck.store_of(working / "home" / ".claude" / "plans" / "plan.md")
     held = store(working)
     path.write_text(json.dumps({"6@b2": held["6"]}), encoding="utf-8")
-    assert answer(working, setting(7, "draft")) == (0, "")
+    assert answer(working, setting(7, "draft")) == case_files_noted(7, 6)  # (case 1039.1)
 
 
 def test_subagent_session_clash_none_with_a_case_a_supersedes_mark_names(working):
     assert answer(working, setting(6, "built")) == (0, "")
     ledger(working, "decision[case 8][update][rule-y]{ref:rule-y}{supersedes:case 6}")
-    assert answer(working, setting(7, "draft")) == (0, "")
+    assert answer(working, setting(7, "draft")) == case_files_noted(7, 6)  # (case 1039.1)
 
 
 def test_subagent_session_clash_none_with_a_stored_case_whose_file_is_empty(working):
@@ -2152,7 +2153,8 @@ def test_subagent_session_clash_none_with_the_answers_own_earlier_version(workin
 def test_subagent_session_clash_none_between_two_other_cases(working):
     plan_with(working, PLANNED_5)
     assert answer(working, setting(6, "draft"))[0] == 2  # 6 clashes with the plan's 5
-    assert answer(working, ANSWER) == (0, "")  # 7 sets nothing; 5 and 6 are not its finding
+    # 7 sets nothing; 5 and 6 are not its finding, and the file of 6 names rule-x (case 1039.1)
+    assert answer(working, ANSWER) == case_files_noted(7, 6)
 
 
 # --- a Case the file of the answer supersedes (case 725.2) ------------------------------------
@@ -2322,7 +2324,7 @@ def test_unlisted_tag_declared_by_a_ratified_case_of_the_session_passes(working)
     uses = ANSWER.replace("{tags:harness}", "{tags:orchestration}").replace(
         "`[harness]`", "`[orchestration]`"
     )
-    assert answer_file(working, uses) == (0, "")
+    assert answer_file(working, uses) == case_files_noted(7, 6)  # (case 1039.1)
 
 
 def test_unlisted_tag_declared_by_a_case_with_no_decision_line_is_a_finding(working):
@@ -2695,7 +2697,9 @@ def test_session_pairs_a_dropped_case_and_a_retired_case_are_not_applied(working
     ledger(working, "decision[case 8][update][rule-y]{ref:rule-y}{supersedes:case 6}")
     case_path(working, "6").write_text(rewrites, encoding="utf-8")
     later = datetime(2026, 9, 9, 15, 45, 0, tzinfo=UTC)
-    assert answer(working, ANSWER.replace("Context.", "Context again."), now=later) == (0, "")
+    again = ANSWER.replace("Context.", "Context again.")
+    # the file of 6 names rule-x again, a file of the session (case 1039.1)
+    assert answer(working, again, now=later) == case_files_noted(7, 6)
 
 
 def test_session_pairs_with_no_other_case_judges_the_page_on_disk(working):
@@ -3053,6 +3057,19 @@ def names_note(case, rel, name, about=""):
     return f"- {rel} names {name}{about}"
 
 
+def session_case_rel(case):
+    """The path from the project of the file of `case` in the session folder of `working`."""
+    return "/".join((*FOLDER, casecheck.CASES, f"case-{case}.md"))
+
+
+def case_files_noted(case, *others):
+    """The output of a check of `case` whose one note is the note of names over the other
+    Case files `others` of the session of `working`, each of which names `rule-x` (case
+    1039.1)."""
+    lines = [names_note(case, session_case_rel(other), "rule-x") for other in others]
+    return 2, "\n".join([f"casecheck: {names_head(case)}", *lines]) + "\n"
+
+
 def test_names_note_each_unread_file_that_names_an_updated_page(working):
     a_named_rule_x(working)
     code, err = answer(working, ANSWER)
@@ -3194,6 +3211,28 @@ def test_names_note_none_with_no_transcript(working):
     assert not any(" names " in note for note in notes["7"])
     _, notes = casecheck.check_answer(ANSWER, working, looked=set())
     assert any(names_note(7, ".guppi/tests/test_y.py", "xmod.py") in n for n in notes["7"])
+
+
+def test_names_note_lists_another_case_file_of_the_session(working):
+    """The note searches the other Case files of the session too, with no purpose line, but
+    the Case's own file and a working note (case 1039.1)."""
+    cases = working.joinpath(*FOLDER, casecheck.CASES)
+    cases.mkdir(parents=True, exist_ok=True)
+    (cases / "case-5.md").write_text("## Case 5 — other\n\nSets rule-x.\n", encoding="utf-8")
+    (cases / "note-5.md").write_text("rule-x, a working note.\n", encoding="utf-8")
+    code, err = answer(working, ANSWER)
+    assert (code, err) == case_files_noted(7, 5)
+    assert err.count(session_case_rel(5)) == 1 and " — " not in err  # once, no purpose line
+    assert "note-5.md" not in err and session_case_rel(7) not in err  # the note, its own file
+
+
+def test_names_note_a_case_file_of_the_session_read_by_read_gives_none(working):
+    cases = working.joinpath(*FOLDER, casecheck.CASES)
+    cases.mkdir(parents=True, exist_ok=True)
+    (cases / "case-5.md").write_text("## Case 5 — other\n\nSets rule-x.\n", encoding="utf-8")
+    reads = rule_x_read(working) + read_lines(cases / "case-5.md", call_id="toolu_read_5")
+    path = transcript(working, [], [text(ANSWER)], reads=reads)
+    assert answer(working, ANSWER, agent_transcript_path=path) == (0, "")
 
 
 def test_names_note_carried_names():

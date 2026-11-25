@@ -294,16 +294,30 @@ def test_settle_carry_of_a_sprint_page_estimate_refused(tmp_path):
     assert snapshot(tmp_path) == before
 
 
-def test_settle_failed_sprint_page_estimate_goes_with_the_page_its_status_kept(tmp_path):
+def test_settle_failed_sprint_page_estimate_only_by_archive_unread(tmp_path):
     settle_vault(tmp_path, own_status="failed")
-    code, out, err = run(
+    before = snapshot(tmp_path)
+    code, _, err = run(
         tmp_path, "--apply", "--carry", "estimate-rule-z-a", "--carry", "estimate-rule-z-b"
     )
-    assert code == 0, err
+    assert code == 1 and snapshot(tmp_path) == before
     assert (
-        "estimate-sprint-alpha-open failed · entity-sprint-alpha · goes with the sprint page, its status kept"
-        in out
+        "estimate-sprint-alpha-open: failed, an Estimate of the sprint page: read it now or "
+        "name it by --archive-unread" in err
     )
+    assert "refused, nothing moved" in err
+    code, out, err = run(
+        tmp_path,
+        "--apply",
+        "--carry",
+        "estimate-rule-z-a",
+        "--carry",
+        "estimate-rule-z-b",
+        "--archive-unread",
+        "estimate-sprint-alpha-open",
+    )
+    assert code == 0, err
+    assert "estimate-sprint-alpha-open failed · entity-sprint-alpha · archived unread" in out
     path = (
         tmp_path
         / "vault"

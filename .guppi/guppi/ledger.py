@@ -1015,8 +1015,8 @@ def is_sprint_page(slug) -> bool:
 
 def is_one_off(page) -> bool:
     """Whether an Estimate page is a one-off Estimate, one whose `once` field is `true`. The
-    one judgment of a one-off Estimate, which `.guppi/guppi/lint.py` and
-    `.guppi/guppi/sprint.py` import (case 1051)."""
+    one judgment of a one-off Estimate, which `.guppi/guppi/lint.py` imports (cases 1051,
+    1057.2)."""
     return page.props.get("once") is True
 
 

@@ -160,6 +160,12 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - a `tasks` line that opens with the bare word `render` or `sprint`, or with the command
   outside a code span — the tickers of `render` and `sprint` match the command in the
   first code span (case 235), a line of another form stays debt (case 279.2);
+- a Case whose `tasks` block holds a line that opens with `stop:` after its box and a render
+  line, matched by `render.command_line`, the one matcher of the tickers, of a file that its
+  `when` or `then` names in a code span: one finding per such file, since the file changes
+  only at the librarian's run and a reading at a stop of Work Mode tests its old text; the
+  two lines under two Case headings are no such finding (`check_stop_before_render`) (case
+  1053.2);
 - a `replace` pair of an Estimate `update` whose `old` stands inside the page's
   `## Criterion`, by `materialize.touches_criterion`, the one predicate — a Criterion
   changes only whole (case 378.4);
@@ -925,6 +931,47 @@ def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
         for line in tasks.splitlines():
             if OFF_FORM_LINE.match(line):
                 findings.append(f"case {case}: render line off form: {line}")
+    return findings
+
+
+STOP_LINE = re.compile(r"^- \[[ xX]\] stop:")  # a task that stops Work Mode (where-to-stop.md)
+
+
+def code_spans(text: str) -> list[str]:
+    """The text inside each code span of `text`, by `lint.CODE_SPAN`, the one span pattern."""
+    return [span.strip("`") for span in CODE_SPAN.findall(text) if span.strip("`")]
+
+
+def check_stop_before_render(cases: dict) -> list[str]:
+    """A Case whose `tasks` block holds a `stop:` line and a render line of a file that its
+    `when` or `then` names in a code span: one finding per such file — the file changes only
+    at the librarian's run, so a reading at a stop of Work Mode tests its old text (case
+    1053.2). A render line is matched by `render.command_line`, the one matcher of the
+    tickers; its files are the code spans after the command's span. Each Case heading is
+    judged alone, so the two lines under two headings give no finding."""
+    from guppi.render import command_line  # the one matcher of a render line (case 279.2)
+
+    render_line = command_line("guppi render")
+    findings: list[str] = []
+    for case, lines in cases.items():
+        tasks = "\n".join(tagged_blocks(lines, "tasks")).splitlines()
+        if not any(STOP_LINE.match(line) for line in tasks):
+            continue
+        rendered: list[str] = []
+        for line in tasks:
+            matched = render_line.match(line)
+            if matched:
+                rendered += code_spans(line[matched.end() :])
+        if not rendered:
+            continue
+        sections = quoted_sections(lines, ("when", "then"))
+        named = set(code_spans("\n".join(sections.values())))
+        findings += [
+            f"case {case}: stop before the render of {path} — the file changes only at the "
+            "librarian's run, so a reading at a stop of Work Mode tests its old text"
+            for path in dict.fromkeys(rendered)
+            if path in named
+        ]
     return findings
 
 
@@ -2230,6 +2277,7 @@ def judge(
             frontier[0], frontier[1], cases, blocks, records, project_dir, plan
         )
     findings += check_tasks(cases, blocks, records)
+    findings += check_stop_before_render(cases)
     findings += check_governed(blocks, governed_paths(project_dir))
     findings += check_keys(blocks, project_dir, schema_free)
     findings += check_conditions(blocks, project_dir, schema_free)

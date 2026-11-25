@@ -3636,3 +3636,67 @@ def test_an_update_that_names_a_part_has_no_new_criterion_judged_for_pointers(tm
     with_core_estimate(tmp_path)
     item = {"slug": "estimate-x-holds", "set": {"method": "pytest"}, "change": "since case 3"}
     assert estimate_pointers(tmp_path, item) == []
+
+
+# --- a stop before the render of a file the Criterion names (case 1053.2) ---------------
+# `estimate-prespec-hook-reports-a-stop-before-the-render-it-tests`
+
+SKILL = "plugin/skills/install/SKILL.md"
+RENDER_LINE = f"- [ ] `uv run --project .guppi guppi render`: `{SKILL}`\n"
+STOP_TASK = "- [ ] stop: the person installs the clean copy.\n"
+STOP_RENDER_PLAN = f"""# Plan
+
+## Case 1 — one
+
+> **when:**
+> The person types `/guppi:install` of `{SKILL}` in a project.
+
+> **then:**
+> It copies the files.
+
+```tasks
+- [ ] update `rule-x`
+{RENDER_LINE}{STOP_TASK}- [ ] read `estimate-x`
+```
+"""
+STOP_RENDER_FINDING = (
+    f"case 1: stop before the render of {SKILL} — the file changes only at the librarian's "
+    "run, so a reading at a stop of Work Mode tests its old text"
+)
+
+
+def stop_render_findings(plan):
+    from guppi.materialize import split_cases
+
+    return prespec.check_stop_before_render(split_cases(plan))
+
+
+def test_stop_before_render_a_stop_and_a_render_of_a_named_file_is_a_finding():
+    assert stop_render_findings(STOP_RENDER_PLAN) == [STOP_RENDER_FINDING]
+
+
+def test_stop_before_render_judge_gives_the_finding(tmp_path):
+    assert STOP_RENDER_FINDING in prespec.judge(STOP_RENDER_PLAN, tmp_path, [])
+
+
+def test_stop_before_render_no_stop_line_gives_none():
+    assert stop_render_findings(STOP_RENDER_PLAN.replace(STOP_TASK, "")) == []
+
+
+def test_stop_before_render_a_when_and_then_naming_no_rendered_file_give_none():
+    plan = STOP_RENDER_PLAN.replace(f"`/guppi:install` of `{SKILL}`", "`/guppi:install`")
+    assert stop_render_findings(plan) == []
+
+
+def test_stop_before_render_a_stop_with_no_render_line_gives_none():
+    assert stop_render_findings(STOP_RENDER_PLAN.replace(RENDER_LINE, "")) == []
+
+
+def test_stop_before_render_the_two_lines_under_two_sub_cases_give_none():
+    when = f"> **when:**\n> The person types `/guppi:install` of `{SKILL}`.\n"
+    plan = (
+        "# Plan\n\n## Case 1 — one\n\n### Case 1.1 — the render\n\n"
+        f"{when}\n```tasks\n{RENDER_LINE}```\n\n"
+        f"### Case 1.2 — the stop\n\n{when}\n```tasks\n{STOP_TASK}```\n"
+    )
+    assert stop_render_findings(plan) == []

@@ -149,7 +149,7 @@ def test_the_file_is_written_from_the_page_with_one_tick_per_item(tmp_path):
     assert rendered(tmp_path) == EXPECTED
 
 
-def test_a_read_one_off_estimate_is_ticked_and_keeps_its_status(tmp_path):
+def test_a_failed_one_off_estimate_stays_unticked_and_keeps_its_status(tmp_path):
     four = (
         'estimates: ["[[estimate-sprint-migration-lint-clean]]", '
         '"[[estimate-sprint-migration-merges]]", "[[estimate-sprint-migration-once]]", '
@@ -172,7 +172,7 @@ def test_a_read_one_off_estimate_is_ticked_and_keeps_its_status(tmp_path):
     assert done_when == [
         "- [ ] make lint exits 0 · pending",
         "- [x] the branch merged · passed",
-        "- [x] read once · failed",
+        "- [ ] read once · failed",
         "- [ ] a lasting check · failed",
     ]
 

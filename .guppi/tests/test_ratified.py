@@ -1645,6 +1645,56 @@ def test_number_held_a_file_with_no_number_is_not_judged():
     assert casecheck.case_number(folder + "case-kir-plugin-12.1.md") is None
 
 
+# --- a number the session's ledger holds (case 1053.1) -------------------------------------
+# `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+
+
+def ledger_holds(project, *lines):
+    path = project / "vault" / "raw" / TODAY.isoformat() / "1501" / "ledger.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    # each line with the time of writing, as the ledger hook writes it
+    text = "".join(f"- 15:20:00 {line.removeprefix('- ')}\n" for line in lines)
+    path.write_text(text, encoding="utf-8")
+
+
+def test_number_held_on_the_ledger_a_defer_line_refuses_a_new_file(working):
+    ledger_holds(working, "- decision[case 7][defer][rule-x]")
+    code, err = builder(working, "Write")
+    assert code == 2 and "build this Case as case 8" in err and "case-8.md" in err
+    assert "ledger" in err
+    assert store_data(working) is None
+    assert not case_path(working, "7").exists()
+
+
+def test_number_held_on_the_ledger_a_line_of_a_sub_case_refuses_a_new_file(working):
+    ledger_holds(working, "- decision[case 7.1][update][rule-x]{ref:rule-x}")
+    code, err = builder(working, "Write")
+    assert code == 2 and "build this Case as case 8" in err
+    assert store_data(working) is None
+
+
+def test_number_held_on_the_ledger_an_empty_file_is_refused(working):
+    ledger_holds(working, "- decision[case 7][defer][rule-x]")
+    made(working, "")
+    code, err = builder(working, "Write")
+    assert code == 2 and "case 8" in err
+    assert case_path(working, "7").read_text(encoding="utf-8") == ""
+
+
+def test_number_held_on_the_ledger_a_file_with_text_passes(working):
+    ledger_holds(working, "- decision[case 7][update][rule-x]{ref:rule-x}")
+    made(working, "## Case 7 — x\n")
+    assert passed(builder(working, "Edit"))
+
+
+def test_number_held_on_the_ledger_a_line_of_another_number_passes(working):
+    ledger_holds(
+        working, "- decision[case 70][defer][rule-x]", "- decision[case 6.1][defer][rule-x]"
+    )
+    assert passed(builder(working, "Write"))
+    assert store_data(working) == {"7": {"agent_id": "agent-a", "stored": NOW.isoformat()}}
+
+
 # --- a file named by an id of a sprint (case 788.6) ----------------------------------------
 # `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
 

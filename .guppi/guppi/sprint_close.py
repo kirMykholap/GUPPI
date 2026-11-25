@@ -12,10 +12,11 @@ The close of `entity-sprint-<id>` moves (cases 612, 627):
 - each Estimate named by `--archive-unread` (case 627.4).
 
 Each live Estimate that stands `pending` or `failed` is listed. It is settled when it is named
-by `--carry` (it stays live with its status) or by `--archive-unread` (it goes), or when the
-sprint page lists it and it stands `failed` — a reading read now that came out `failed` goes
-with the sprint page with no choice by name. An Estimate of the sprint page is never carried:
-`--carry` on it is refused. A slug named that is no listed Estimate is refused (case 627.4).
+by `--carry` (it stays live with its status) or by `--archive-unread` (it goes). An Estimate
+that the sprint page lists, one that stands `failed` too, is settled only when
+`--archive-unread` names it, since a failed reading is not done (case 1057.3; from case 1046 a
+failed one went with the sprint page with no choice by name). An Estimate of the sprint page
+is never carried: `--carry` on it is refused. A slug named that is no listed Estimate is refused (case 627.4).
 
 Without `--apply` the command prints the preview — each page it would move, each page of the
 sprint it keeps and why, each listed Estimate and how it stands — and changes nothing. With
@@ -133,9 +134,8 @@ class Close:
     def settled(self, estimate: Page, own: list[str]) -> bool:
         if estimate.slug in self.unread:
             return True
-        if estimate.slug in own:
-            return str(estimate.props.get("status")) == "failed"
-        return estimate.slug in self.carry
+        # an Estimate of the sprint page is settled by --archive-unread alone (case 1057.3)
+        return estimate.slug in self.carry and estimate.slug not in own
 
     def judge_insights_and_lessons(self, pages: dict[str, list[Page]]) -> None:
         held: set[str] = set()
@@ -184,8 +184,6 @@ class Close:
                 way = "archived unread"
             elif estimate.slug in self.carry and estimate.slug not in own:
                 way = "carried into the next sprint"
-            elif estimate.slug in own and status == "failed":
-                way = "goes with the sprint page, its status kept"
             else:
                 way = "not settled"
             lines.append(f"unread: estimates/{estimate.slug} {status} · {target} · {way}")

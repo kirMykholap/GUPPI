@@ -122,7 +122,10 @@ number of the file (case 650.1): on a call of `case-guppi` on `case-<N>.md`, N b
 `casecheck.case_number`, the guard reads the store of the session's plan file, and when
 `casecheck.clashes` finds Case N or a sub-case of it under its number alone from another
 `agent_id`, it refuses the call with a free number by `casecheck.new_number` — the judgments
-the check of `rule-case-check` runs; a call that passes while the store holds no entry under N
+the check of `rule-case-check` runs; it refuses the same way, with a free number, a call on a
+file that does not stand or holds no text while a decision line of the session's ledger, a
+`defer` included, names Case N or a sub-case of it, by `materialize.in_family`, since a
+short-form Case has a line and no file (case 1053.1); a call that passes while the store holds no entry under N
 writes there an entry with its `agent_id` and the time and no text, so the number is held
 before the agent stops. A call with no `agent_id`, a file with no number and a session with no
 plan file are not judged and write nothing; an error while the guard finds the plan or reads
@@ -973,7 +976,11 @@ def held_number(
     """`((path, reason), True)` when a call of `case-guppi` on `case-<N>.md` under `cases/`
     meets Case N, or a sub-case of it, held in the store under its number alone by another
     `agent_id` — by `casecheck.clashes`, the reason naming a free number by
-    `casecheck.new_number` (case 650.1). A call that passes while the store holds no entry under N writes
+    `casecheck.new_number` (case 650.1); and the same, with a free number, when the file does
+    not stand or holds no text, by `has_text`, while a decision line of the session's ledger of
+    any kind, a `defer` included, names Case N or a sub-case of it, by `materialize.in_family`
+    (case 1053.1), since a short-form Case has a line and no file; a refused call holds no
+    number. A call that passes while the store holds no entry under N writes
     there an entry with its `agent_id` and the time and no text. A call with no `agent_id`, a
     file with no number and a session with no plan file are not judged and write nothing; an
     error while finding the plan or reading or writing the store prints one line on stderr and
@@ -1006,14 +1013,27 @@ def held_number(
         if plan is None or not plan.is_file():
             return None, True
         store = held_store(plan)
+        folder = session_dir(project_dir, now, stamp)
         if clashes({number: []}, store, agent_id):
-            folder = session_dir(project_dir, now, stamp)
             free = new_number(ledger_records(ledger_of(folder)), store, number, project_dir, folder)
             reason = (
                 f"{raw}: another case-guppi holds case {number} in the store — build this "
                 f"Case as case {free}, in cases/case-{free}.md (rule-spec-reconcile)"
             )
             return (str(raw), reason), True
+        if not has_text(Path(str(raw))):
+            records = ledger_records(ledger_of(folder))
+            if any(
+                record.get("record") == "decision" and in_family(str(record["case"]), number)
+                for record in records
+            ):
+                free = new_number(records, store, number, project_dir, folder)
+                reason = (
+                    f"{raw}: a decision line of the session's ledger names case {number}, and "
+                    f"its file holds no text — build this Case as case {free}, in "
+                    f"cases/case-{free}.md (rule-spec-reconcile)"
+                )
+                return (str(raw), reason), True
         if number not in store:
             store[number] = {"agent_id": agent_id, "stored": now.isoformat()}
             write_store(plan, store)
@@ -1021,6 +1041,12 @@ def held_number(
         print(f"ratified: number not held: {exc}", file=stderr)
         return None, False
     return None, True
+
+
+def has_text(path: Path) -> bool:
+    """Whether the file stands and holds more than white space: a Case file with text is a
+    Case built before, which a call may write again under its own number (case 1053.1)."""
+    return path.is_file() and bool(path.read_bytes().decode("utf-8").strip())
 
 
 def builder_file(payload: dict) -> Path | None:
@@ -1084,7 +1110,8 @@ def builder_write(payload: dict, path: Path) -> str | None:
 def guard(payload: dict, project_dir: Path, now, stderr) -> int:
     """`PreToolUse`: refuse the agent's edit of the plan file, of its store (case 445.1) and
     of a file of a built Case under `cases/` (case 453), by `guard_refusal`, and a call of
-    `case-guppi` on the file of a Case another agent holds, by `held_number` (case 650.1).
+    `case-guppi` on the file of a Case another agent holds (case 650.1), or on a file with no
+    text of a Case the session's ledger names (case 1053.1), by `held_number`.
     A call of `case-guppi` on its file that both let through the guard writes itself, by
     `builder_write`, and stops with exit 2 and one line that says so, since Claude Code keeps a
     subagent in plan mode in Plan Mode and would ask the person (case 894.1); an error of

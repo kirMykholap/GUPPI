@@ -7,9 +7,9 @@ or a plain line — shown by `guppi backlog` in `vault/wiki/backlog.md`, never r
 (case 451.6). This script writes `vault/wiki/sprint.md` from it (cases 209.1, 229.2):
 `# Sprint`; `## <id>`, the slug without `entity-sprint-`, so `sprint_id` and the archive
 path read what they read before; the `## Purpose` text as it is; `**Done when**`, one line
-per Estimate of the page — `- [x]` when `passed`, or when `failed` and `is_one_off` of
-`.guppi/guppi/ledger.py` holds, since a one-off Estimate is done once it is read
-(case 1051), `- [ ]` otherwise, the Estimate's `purpose` and its status; then `## Milestones` — the current milestone, the first `### `
+per Estimate of the page — `- [x]` only when `passed`, a one-off Estimate too, since a
+failed reading is not done (case 1057.2; a failed one-off Estimate was ticked from case
+1051), `- [ ]` otherwise, the Estimate's `purpose` and its status; then `## Milestones` — the current milestone, the first `### `
 with an item not done or with no item, whole: its heading `### [ ] <name>` and each item
 `- [[slug]] — <text>` as `- [x]` when every page it names before the first ` — ` is
 `built`, `passed` or `archived`, `- [ ]` otherwise, their statuses in the order of the
@@ -68,7 +68,7 @@ from pathlib import Path
 
 from guppi.config import setup_pending
 from guppi.event import is_hi_prompt, project_root, read_payload
-from guppi.ledger import SPRINT_PAGE, is_one_off, is_sprint_page
+from guppi.ledger import SPRINT_PAGE, is_sprint_page
 from guppi.lint import archived_slugs, as_list
 from guppi.materialize import sprint_id
 from guppi.pages import Page, read_vault, wiki_root
@@ -254,7 +254,7 @@ def render(page: Page, by_slug: dict[str, Page], archived: set[str]) -> tuple[st
         if estimate is None:
             return None, f"sprint: {slug}: no live or archived page"
         status = str(estimate.props.get("status") or "")
-        done = status == "passed" or (status == "failed" and is_one_off(estimate))
+        done = status == "passed"
         parts.append(f"- {tick(done)} {estimate.props.get('purpose', '')} · {status}")
     parts.append("")
     milestones = (page.section("## Milestones") or "").strip()

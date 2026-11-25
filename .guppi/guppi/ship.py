@@ -3,8 +3,9 @@
 Builds the clean version from the working tree into an empty folder (case 804.6): `.guppi/`,
 the package `guppi` with its `pyproject.toml`, `uv.lock` and `.gitignore`, its tests
 `.guppi/tests/` (case 822) and `.guppi/icon.png`, the icon of the plugin that the field `icon`
-of the manifest names (case 1016); `.claude/`; the root files of `ROOT_FILES`, `CLAUDE.md`
-and `.gitattributes`; `VAULT_IGNORE`, `vault/.gitignore`, whose lines keep the daily event
+of the manifest names (case 1016); `.claude/`; the root files of `ROOT_FILES`, `CLAUDE.md`,
+`.gitattributes` and `LICENSE`, the text of the MIT license, which `LICENSE_FILES` writes
+again at `.guppi/LICENSE`, each only where the root `LICENSE` stands (case 1049.1); `VAULT_IGNORE`, `vault/.gitignore`, whose lines keep the daily event
 logs under `vault/raw/` and `vault/archive/` out of git (case 893.1); the `schema.yaml` of each category, `vault/wiki/tags.md`, each page
 but an Estimate that `is_core` of `.guppi/guppi/pages.py` accepts and each file that the
 Render of such a page governs — but `LEFT_OUT`, the files of this project: the session files
@@ -176,7 +177,10 @@ from guppi.pointers import (  # the one judgment of a pointer, shared with pre-s
 )
 from guppi.sprint import closed_form
 
-ROOT_FILES = ("CLAUDE.md", ".gitattributes")
+ROOT_FILES = ("CLAUDE.md", ".gitattributes", "LICENSE")
+# the license text goes with the code too, at `.guppi/LICENSE`, which `/guppi:install` copies
+# into a project where it leaves the root file out (case 1049.1)
+LICENSE_FILES = {".guppi/LICENSE": "LICENSE"}
 TREES = (".guppi", ".claude")
 # the CI of the checks, the one file of `.github/` the copy takes; the workflow that writes
 # `prod` stays here (case 822)
@@ -547,6 +551,7 @@ def plan(project_dir: Path) -> tuple[dict[str, str], list[Page], set[str], set[s
     names += sorted(written_governed)
     taken = {name: name for name in names}
     taken.update(PLUGIN_FILES)
+    taken.update(LICENSE_FILES)
     skills, target = PLUGIN_SKILLS
     taken.update((target + name[len(skills) :], name) for name in tree_files(project_dir, skills))
     files = {

@@ -1013,6 +1013,13 @@ def is_sprint_page(slug) -> bool:
     return text.startswith(SPRINT_PAGE) and len(text) > len(SPRINT_PAGE)
 
 
+def is_one_off(page) -> bool:
+    """Whether an Estimate page is a one-off Estimate, one whose `once` field is `true`. The
+    one judgment of a one-off Estimate, which `.guppi/guppi/lint.py` and
+    `.guppi/guppi/sprint.py` import (case 1051)."""
+    return page.props.get("once") is True
+
+
 def refused_taken_sprint(project_dir: Path, fresh: list[str]) -> list[tuple[str, str]]:
     """`(line, id)` of each fresh `create` decision line of a sprint page `entity-sprint-<id>`
     whose page `has_page` of `.guppi/guppi/materialize.py` finds under `entities`, live or archived:

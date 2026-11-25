@@ -63,6 +63,32 @@ def test_bash_detail_is_one_line_and_at_most_eighty_characters(tmp_path):
     assert detail.startswith("echo one echo ")
 
 
+def test_a_long_file_path_stays_whole_and_plan_path_finds_it(tmp_path):
+    from guppi.ledger import plan_path
+
+    plan = (
+        "C:\\Users\\kir\\.claude\\plans\\"
+        "frolicking-crafting-backus-of-16ad52b9-2613-43c4-8115-f092d2d530c2.md"
+    )
+    assert len(plan) > 80
+    stdin = payload(session_id="abc12345", tool_name="Write", tool_input={"file_path": plan})
+    run(["tool"], stdin, tmp_path)
+    (line,) = log_lines(tmp_path)
+    assert line == f"- 15:02:11 abc12345 tool Write: {plan}"
+    log = (tmp_path / "vault" / "raw" / TODAY.isoformat() / "event_log.md").read_text(
+        encoding="utf-8"
+    )
+    found = plan_path([(TODAY.isoformat(), log)], "abc12345")
+    assert found is not None and str(found) == str(type(found)(plan))
+
+
+def test_a_long_pattern_is_still_cut_at_eighty_characters(tmp_path):
+    stdin = payload(session_id="abc12345", tool_name="Grep", tool_input={"pattern": "p" * 200})
+    run(["tool"], stdin, tmp_path)
+    (line,) = log_lines(tmp_path)
+    assert len(line.split("tool Grep: ", 1)[1]) == 80
+
+
 @pytest.mark.parametrize(
     ("tool_input", "expected"),
     [

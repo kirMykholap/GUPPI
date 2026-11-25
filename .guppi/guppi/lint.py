@@ -94,7 +94,9 @@ import yaml
 
 from guppi.caseid import ID as CASE_ID
 from guppi.event import project_root
-from guppi.ledger import is_sprint_page  # the one judgment of a sprint page (case 772.4)
+
+# the one judgment of a sprint page (case 772.4) and of a one-off Estimate (case 1051)
+from guppi.ledger import is_one_off, is_sprint_page
 from guppi.materialize import (
     PLACEHOLDER_CATEGORIES,  # the folders a placeholder may stand in (case 786)
     category_of,  # the one table of prefixes (case 460.3)
@@ -602,7 +604,7 @@ def check_status(page: Page, by_slug: dict[str, Page], drafts: bool = False) -> 
                 Finding(page, "status", f"target {target.slug} does not list it in estimates")
             )
         target_slug = str(page.props.get("target", ""))
-        if page.props.get("once") is True and not is_sprint_page(target_slug):
+        if is_one_off(page) and not is_sprint_page(target_slug):
             out.append(
                 Finding(
                     page,

@@ -16,7 +16,9 @@ The hook runs as `uv run --project .guppi guppi event <name>` and creates the da
 and the file when they do not stand. When a hook is the caller, the payload comes from
 stdin: `session_id`, `tool_name` and the most telling field of `tool_input` — `command`,
 `subagent_type`, `skill`, `file_path`, `pattern` or `description`, the first that stands —
-the detail cut to 80 characters on one line. It is registered on `SessionStart`
+the detail on one line, cut to 80 characters but for a `file_path`, which stands whole so
+that the plan file of a session is found by its path at any length (case 1045). It is
+registered on `SessionStart`
 (`session-start`) and on `PostToolUse` with no matcher (`tool`): every tool, because this is
 a debugging record and a filter is one more decision to maintain.
 
@@ -87,12 +89,17 @@ def session_stamp(session: str | None, payload: dict) -> str:
     return value[:8].ljust(8, "-") if value else UNKNOWN_SESSION
 
 
-def one_line(text: str, limit: int = DETAIL_LIMIT) -> str:
+WHOLE_KEYS = ("file_path",)  # a path cut short names no file, so it stays whole (case 1045)
+
+
+def one_line(text: str, limit: int | None = DETAIL_LIMIT) -> str:
     return " ".join(str(text).split())[:limit]
 
 
 def tool_detail(payload: dict) -> str:
-    """`<tool>: <the most telling field of its input>`, or just the tool name."""
+    """`<tool>: <the most telling field of its input>`, or just the tool name. A
+    `file_path` stands whole, so that `plan_path` finds a plan file of any length; every
+    other field is cut at `DETAIL_LIMIT` (case 1045)."""
     tool = payload.get("tool_name")
     if not tool:
         return ""
@@ -102,7 +109,8 @@ def tool_detail(payload: dict) -> str:
     for key in ("command", "subagent_type", "skill", "file_path", "pattern", "description"):
         value = tool_input.get(key)
         if value:
-            return f"{tool}: {one_line(value)}"
+            limit = None if key in WHOLE_KEYS else DETAIL_LIMIT
+            return f"{tool}: {one_line(value, limit)}"
     return str(tool)
 
 

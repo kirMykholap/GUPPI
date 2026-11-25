@@ -149,6 +149,34 @@ def test_the_file_is_written_from_the_page_with_one_tick_per_item(tmp_path):
     assert rendered(tmp_path) == EXPECTED
 
 
+def test_a_read_one_off_estimate_is_ticked_and_keeps_its_status(tmp_path):
+    four = (
+        'estimates: ["[[estimate-sprint-migration-lint-clean]]", '
+        '"[[estimate-sprint-migration-merges]]", "[[estimate-sprint-migration-once]]", '
+        '"[[estimate-sprint-migration-lasting]]"]'
+    )
+    estimates_line = next(
+        line for line in SPRINT_PAGE.splitlines() if line.startswith("estimates:")
+    )
+    seed(tmp_path, SPRINT_PAGE.replace(estimates_line, four))
+    folder = tmp_path / "vault" / "wiki" / "estimates"
+    once = {"type": "estimate", "status": "failed", "once": "true", "purpose": "read once"}
+    lasting = {"type": "estimate", "status": "failed", "purpose": "a lasting check"}
+    for slug, props in (("once", once), ("lasting", lasting)):
+        (folder / f"estimate-sprint-migration-{slug}.md").write_text(
+            page(props), encoding="utf-8", newline="\n"
+        )
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    done_when = text.split("**Done when**\n\n", 1)[1].split("\n\n", 1)[0].splitlines()
+    assert done_when == [
+        "- [ ] make lint exits 0 · pending",
+        "- [x] the branch merged · passed",
+        "- [x] read once · failed",
+        "- [ ] a lasting check · failed",
+    ]
+
+
 def test_the_first_heading_keeps_the_sprint_id(tmp_path):
     from guppi.materialize import sprint_id
 

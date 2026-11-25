@@ -36,7 +36,9 @@ copy of this repository, by the tests whose names hold `own_style`, among them
 passing over it, by `test_own_tests_pass_over_the_copy`, marked `live`;
 `estimate-clean-branch-copy-passes-its-style-and-tests` (case 1030.1). The registration of
 `guppi codewrite` removed in each form of its command, by the tests whose names hold
-`no_code_write_hook` (case 1032.1)."""
+`no_code_write_hook` (case 1032.1). The text of the root `LICENSE` at `LICENSE` and at
+`.guppi/LICENSE` of the copy, and neither file where the tree holds no `LICENSE`, by the tests
+whose names hold `license`, `estimate-clean-branch-ships-the-license` (case 1049.1)."""
 
 import io
 import json
@@ -195,6 +197,28 @@ def test_it_writes_the_code_the_harness_and_the_core_pages_only(tmp_path):
         "vault/wiki/entities/entity-x.md",
         "vault/wiki/entities/entity-glossary.md",
     }
+
+
+def test_the_copy_carries_the_license_at_its_root_and_in_guppi(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    text = (REPO / "LICENSE").read_text(encoding="utf-8")
+    write(root / "LICENSE", text)
+    commit(root)
+    assert run(root, out) == (0, [])
+    assert (out / "LICENSE").read_text(encoding="utf-8") == text
+    assert (out / ".guppi" / "LICENSE").read_text(encoding="utf-8") == text
+    stdout = io.StringIO()
+    code = ship.run(["--check"], stdout=stdout, stderr=io.StringIO(), project_dir=root, now=NOW)
+    assert (code, stdout.getvalue()) == (0, "")
+
+
+def test_a_tree_with_no_license_gives_a_copy_with_no_license(tmp_path):
+    root, out = tmp_path / "p", tmp_path / "out"
+    tree(root, rule_a=page("rule", "rule-a"))
+    assert run(root, out) == (0, [])
+    assert "LICENSE" not in written(out)
+    assert ".guppi/LICENSE" not in written(out)
 
 
 def test_it_writes_the_lines_that_keep_the_event_logs_out_of_git(tmp_path):

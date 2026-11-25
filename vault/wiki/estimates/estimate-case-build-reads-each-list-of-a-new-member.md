@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, when its Case adds a member to a list that texts spell out one by one, a hook of an event, a command or a list in a comment or docstring of code among them, searches for a member already in the list, enters each text that would miss the new member in the Case or names it in context, and names that search in context
 method: "by hand, after the first build of case-guppi in a later session whose Case adds a member to a list that texts spell out one by one: the agent transcript of that build under ~/.claude/projects/ read for its search of a member that stands in the list already and the hits it read, and its case file read for each text that lists the members and for the search named in context, both against the Criterion, recorded in one estimate line with the transcript and the case file"
-checked: 2026-11-02
+checked: 2026-11-25
 origin: raw/2026-10-30/2345/ledger.md#case-948.1
 sprint: plugin
 created: 2026-10-30
@@ -27,7 +27,7 @@ It searches for a member that stands in the list already by one Grep that prints
 
 ## Result
 
-2026-11-02, Work Mode of session 1337, the case-guppi transcript of Case 1001 of session 0254 (subagents/agent-a025e5a81b4e802ee.jsonl of 68effdf4) and vault/raw/2026-11-02/0254/cases/case-1001.md: the Case adds rule-morph to the pages without core that a line of the Criterion of estimate-clean-branch-refuses-a-draft-core-page spells out; its one search of a member already in the list, L193 rule-morph|refuses-a-draft-core-page|rule-skill-pr-review, ran over .guppi/{guppi,tests} only, 0 hits, none over vault/wiki/ or .claude/; the context names no search for a member of the list; a Grep of rule-skill-merge-main|rule-skill-pr-review over {vault/wiki,.claude,.guppi/guppi} today prints 8 files and no text that lists those pages would miss rule-morph, so the failure is in the search, not in the Case
+2026-11-25, /hi of session 0816, the case-guppi transcript of Case 1049 of session 0605 (subagents/agent-ac87edb9fd0dbc08c.jsonl of 16ad52b9) and vault/raw/2026-11-25/0605/cases/case-1049.md: Case 1049.1 adds LICENSE to ROOT_FILES of ship.py, the root files of the copy that rule-clean-branch spells out; at L262 one Grep of \.gitattributes, a member already in the list, path the repository root, glob {vault/wiki,.claude,.guppi/guppi}/**, files_with_matches, printed 22 files; the hits that list the root files of the copy or the set-aside files were read (ship.py L39, rule-clean-branch L62, rule-plugin-install L63, estimate-clean-branch-writes-a-clean-copy L95, estimate-plugin-install-sets-aside-the-files-of-the-project L97, estimate-clean-branch-code-holds-pointers-only-in-brackets L114), the other 13 page and skill hits by one Grep with context at L271, log.md and backlog.md not read; the one other code hit, the docstring of shellwrite.py, names .gitattributes for its line ends and lists no member (read at this /hi), and the build did not open it; rule-clean-branch enters the Case, and the context names the search, its member, pattern, paths and count 22, and why each other hit stands
 
 ## History
 
@@ -42,3 +42,4 @@ It searches for a member that stands in the list already by one Grep that prints
 - 2026-11-01 updated: the Criterion replaced whole — the list names a hook of an event, a command and a list in a comment or docstring of code, and context names the search; the purpose and method set anew, the reading after the first build of a later session that adds a member to a list · [[decision-case-979]]
 - 2026-11-02 status: pending → failed · raw/2026-11-02/1337/ledger.md#L18
 - 2026-11-02 updated: the Criterion replaced whole — the search for a member already in the list is one Grep from the root over the glob {vault/wiki,.claude,.guppi/guppi}/** · [[decision-case-1005.3]]
+- 2026-11-25 status: pending → passed · raw/2026-11-25/0816/ledger.md#L1

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: case-guppi wrote the method of the Estimate in the form of an earlier install reading, a stop of Work Mode, without checking that the file the reading tests is a Render that changes only after the session
-status: clustered
+status: archived
 insight: "[[insight-workflow-code-live-before-the-page-it-reads]]"
 origin: raw/2026-11-25/0605/ledger.md#L27
 sprint: plugin
@@ -22,3 +22,5 @@ case-guppi wrote the method of the Estimate in the form of an earlier install re
 
 - 2026-11-25 created · raw/2026-11-25/0605/ledger.md#L27
 - 2026-11-25 updated: clustered under insight-workflow-code-live-before-the-page-it-reads (synthesis) · raw/2026-11-25/0605/ledger.md#L27
+- 2026-11-25 archived · insight actioned
+- 2026-11-25 archived · cleanup

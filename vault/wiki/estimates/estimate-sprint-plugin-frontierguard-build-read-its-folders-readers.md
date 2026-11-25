@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[entity-sprint-plugin]]"
-purpose: Whether the case-guppi that built the Case adding .guppi/guppi/frontierguard.py and its test, in session 2155, made and named in context each search and reading for the folders of a new file that rule-case-build sets; read once
-method: "by hand, in the Work Mode of the session that creates this Estimate: the agent transcript ~/.claude/projects/c--PROJECTS-GUPPI/c818d971-be31-4157-ab5d-802bd511827f/subagents/agent-aaf1016f261a07c9b.jsonl searched by a Grep with lines of context for each search and reading of the Criterion, and the case file vault/archive/plugin/2026-11-02/2155/raw/cases/case-1012.md read for the list of them in its context; the count, the transcript and the case file in the estimate line"
+purpose: Whether a case-guppi build of the sprint plugin that adds a file outside vault/wiki/ makes and names in context each search and reading for the folders of the new file that rule-case-build sets, the root .gitignore included; passes once
+method: "by hand, after a case-guppi build of the sprint plugin whose Case adds a file outside vault/wiki/: its agent transcript under ~/.claude/projects/ searched by a Grep with lines of context for each search and reading of the Criterion, and its case file read for the list of them in its context; the transcript, the case file and the result in the estimate line"
 checked: 2026-11-04
 origin: raw/2026-11-03/1825/ledger.md#case-1019.3
 sprint: plugin
@@ -16,15 +16,16 @@ once: true
 ## Criterion
 
 When:
-The agent transcript `~/.claude/projects/c--PROJECTS-GUPPI/c818d971-be31-4157-ab5d-802bd511827f/subagents/agent-aaf1016f261a07c9b.jsonl` of the `case-guppi` that built the Case adding `.guppi/guppi/frontierguard.py` and `.guppi/tests/test_frontierguard.py`, and its case file `vault/archive/plugin/2026-11-02/2155/raw/cases/case-1012.md`, are read once against this Criterion.
+The agent transcript under `~/.claude/projects/` of a `case-guppi` build of the sprint `plugin` whose Case adds a file outside `vault/wiki/`, and its case file, are read against this Criterion.
 
 Then:
-That build searched `.guppi/guppi/`, `.claude/` and `vault/wiki/rules/` for the path of each folder that holds `.guppi/guppi/frontierguard.py` or `.guppi/tests/test_frontierguard.py`.
+That build searched `.guppi/guppi/`, `.claude/` and `vault/wiki/rules/` for the path of each folder that holds the new file, the root left out.
 **＋** It searched `.guppi/guppi/` and `.guppi/tests/` for the calls that walk a folder, such as `os.walk`, `rglob`, `glob` and `iterdir`.
-**＋** It read each ignore file of git in a folder that holds those files.
+**＋** It read each ignore file of git in each folder from the folder of the new file up to the root of the repository, the root `.gitignore` included.
 **＋** It read each reader that takes every file of such a folder.
-**＋** Each reader that those files make wrong entered the Case of `vault/archive/plugin/2026-11-02/2155/raw/cases/case-1012.md`, or its `context` names it and says why it stands.
-**＋** That `context` names each of those searches, with its pattern, its paths and each file it printed or the count it printed, and each ignore file of git and each reader it read, with whether those files make it wrong.
+**＋** Each reader that the new file makes wrong entered the Case, or its `context` names it and says why it stands.
+**＋** That `context` names each of those searches, with its pattern, its paths and each file or count it printed, and each ignore file and reader it read, with whether the new file makes it wrong.
+**－** Once one such reading passes, this Estimate is not read again.
 
 ## Result
 
@@ -37,3 +38,4 @@ That build searched `.guppi/guppi/`, `.claude/` and `vault/wiki/rules/` for the 
 - 2026-11-03 created · [[decision-case-1019.3]]
 - 2026-11-03 status: pending → passed · raw/2026-11-03/1825/ledger.md#L14
 - 2026-11-04 updated: failed by the person's decision: the root .gitignore is an ignore file of a folder that holds the new files, and the build did not read it · [[decision-case-1025.1]]
+- 2026-11-25 updated: the Criterion replaced whole — a fresh build read, since the build of Case 1012 cannot pass · [[decision-case-1057.4]]

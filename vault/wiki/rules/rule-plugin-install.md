@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a project that installs the plugin guppi from getting a part of GUPPI, or from losing a file of its own to it
-status: draft
+status: built
 enforcement: render
 governs: plugin/skills/install/SKILL.md
 render_mode: full
@@ -70,3 +70,4 @@ Install GUPPI into the project of this session, the folder that Claude Code was 
 - 2026-11-23 updated: in Plan Mode the install shows one plan of the files it copies and sets aside, and asks the approval once · [[decision-case-1040]]
 - 2026-11-23 estimate estimate-plugin-install-asks-one-approval-in-plan-mode added · [[decision-case-1040]]
 - 2026-11-25 updated: the install leaves the LICENSE at the root of the plugin out, and the project gets the license text as .guppi/LICENSE · [[decision-case-1052]]
+- 2026-11-25 status: draft → built · cascade

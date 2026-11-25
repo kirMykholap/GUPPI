@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: pending
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi settles a choice of form itself and names it in context, asks in a round only where its options differ in behaviour, in cost or in what they block, builds a change under the number of the Case it is asked on, and builds a new Case beside a ratified one under a new number with no supersedes mark, the ratified file left as it is
-method: "by hand, at the Retro of the session that creates this Estimate, the new Render of rule-case-build in the Spec read against the Criterion; by hand, after a session whose case-guppi.md holds this text: each round of case-guppi in the transcript of that session under ~/.claude/projects/ read against the Criterion, the transcript in the estimate line"
+method: "by hand, at the Retro of the session that sets this Criterion, the new Render of rule-case-build in the Spec read against the Criterion; by hand, after a session whose case-guppi.md holds that Render: each round of case-guppi in the transcript of that session under ~/.claude/projects/ read against the Criterion, the transcript in the estimate line"
 checked: 2026-11-25
 origin: raw/2026-11-04/0807/ledger.md#case-1031.1
 sprint: plugin
@@ -22,6 +22,7 @@ A choice of form is how the work splits into Cases and sub-cases, whether a prom
 **＋** It settles a choice of form itself, with no question in a round.
 **＋** The `context` of the Case names the choice, and the person sees it at the showing of the Case.
 **＋** A choice of form whose options differ in behaviour, in cost or in what they block is a fork, and it asks that choice in a round.
+**＋** It asks in a round how a Case is checked only where the Case can give no Estimate, or where the options of that question differ in behaviour, in cost or in what they block.
 **＋** Asked by a message or by a finding of `/pre-spec` to change a Case, it builds the change under the number of that Case.
 **＋** A new Case it builds beside a ratified Case takes the number one above the highest number of the case files and of the decision lines of the session's ledger, or the free number that the guard of its case file names, and carries no `{supersedes:case N}` mark.
 **＋** The file of that ratified Case stays as it is, and a pair of the new Case whose sentence the ratified Case changed takes that sentence as the ratified Case leaves it.
@@ -36,3 +37,4 @@ A choice of form is how the work splits into Cases and sub-cases, whether a prom
 
 - 2026-11-20 created · [[decision-case-1031.1]]
 - 2026-11-25 status: pending → failed · raw/2026-11-25/0605/ledger.md#L3
+- 2026-11-25 updated: the Criterion replaced whole — a round asks how a Case is checked only where the Case can give no Estimate or the options differ in behaviour, in cost or in what they block · [[decision-case-1054.2]]

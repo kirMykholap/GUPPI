@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-sprint-close]]"
-purpose: Whether the session that closes a sprint sorts the pending and failed Estimates into groups by the kind of moment their method names, sets up each moment it can in its Work Mode, and carries or archives unread only those still unread and those read failed that the sprint page does not list
+purpose: Whether the session that closes a sprint sorts the pending and failed Estimates into groups by the kind of moment their method names, sets up each moment it can in its Work Mode, and names in the close line each one still unread, each one read failed, and each failed Estimate of the sprint page by --archive-unread
 method: "by hand, after the Work Mode of a session that closed a sprint: the closing Case in the spec.md and the ledger.md of that session read against the Criterion"
 checked: 2026-10-10
 origin: raw/2026-10-04/1439/ledger.md#case-628.2
@@ -22,7 +22,8 @@ The `context` of the closing Case sorts each Estimate under `vault/wiki/estimate
 **＋** The `tasks` of the closing Case hold one `by hand` task per moment that Work Mode sets up, and one `read` line per Estimate of each group.
 **＋** Work Mode sets up each such moment, and the ledger holds a reading of each Estimate whose moment came.
 **＋** The close line names by `--carry` or `--archive-unread` each Estimate read `failed` in Work Mode that `entity-sprint-<id>` does not list.
-**－** The close line names by `--carry` or `--archive-unread` only an Estimate still unread after Work Mode, or one read `failed` in Work Mode that `entity-sprint-<id>` does not list.
+**＋** The close line names by `--archive-unread` each Estimate that `entity-sprint-<id>` lists and that stands `failed`.
+**－** The close line names no Estimate that stands `passed`.
 
 ## Result
 
@@ -35,3 +36,4 @@ The `context` of the closing Case sorts each Estimate under `vault/wiki/estimate
 - 2026-10-10 updated: the Criterion replaced whole — the close line also names an Estimate read failed in Work Mode that the sprint page does not list; the purpose and the method set anew · [[decision-case-763.2]]
 - 2026-10-10 status: pending → passed · raw/2026-10-10/1713/ledger.md#L22
 - 2026-10-17 updated: the method names no dated session folder · [[decision-case-875]]
+- 2026-11-25 updated: the Criterion replaced whole — the close line names each failed Estimate of the sprint page · [[decision-case-1057.5]]

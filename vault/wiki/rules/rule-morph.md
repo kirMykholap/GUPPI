@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: "Prevents a new install of GUPPI from running on the settings of another machine or project: at the first /hi after /guppi:install, while guppi.toml does not mark the setup as done, one setup Case that the person ratifies sets them, before the first sprint opens"
-status: draft
+status: built
 estimates: ["[[estimate-morph-sets-up-the-project-at-the-first-hi]]", "[[estimate-morph-takes-in-the-set-aside-files]]"]
 origin: raw/2026-09-18/1252/ledger.md#case-239
 sprint: migration
@@ -55,3 +55,4 @@ The setup step does not set the category set: every project takes the developmen
 - 2026-11-02 updated: core taken off while the page is draft and never built; the Case that builds it gives it back · [[decision-case-1001]]
 - 2026-11-03 updated: built: the key setup_done, the skill /setup, its step in /hi and in /sprint-open and the pass of the ledger hook; core: true given back; no name of the main branch and no git remote · [[decision-case-1017.4]]
 - 2026-11-20 updated: the setup asks on tests and style only where the project holds code of its own · [[decision-case-1031.3]]
+- 2026-11-25 status: draft → built · cascade

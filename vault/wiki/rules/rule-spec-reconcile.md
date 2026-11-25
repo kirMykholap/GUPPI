@@ -16,7 +16,7 @@ core: true
 
 ## Purpose
 
-Prevents a ratified Case from changing in what the scripts apply without the person seeing it whole and ratifying it again. The hooks alone write the Cases into the plan (since case 441): the `Stop` hook of `rule-spec-write` writes the text of the file of `case-guppi` that `rule-case-check` stored, and a Case changes only through its `case-guppi` and a new ratification. The agent writes only the title line that creates the plan, and a hook refuses any other edit of it, and any edit of the file of a built Case that the person is sent, before it lands, unless `case-guppi` makes it and no other agent holds the number of that Case (cases 453, 645.3, 650.1; a comparison with a ratified copy stood here from case 387.3 to case 445.1).
+Prevents a ratified Case from changing in what the scripts apply without the person seeing it whole and ratifying it again. The hooks alone write the Cases into the plan (since case 441): the `Stop` hook of `rule-spec-write` writes the text of the file of `case-guppi` that `rule-case-check` stored, and a Case changes only through its `case-guppi` and a new ratification. The agent writes only the title line that creates the plan, and a hook refuses any other edit of it, and any edit of the file of a built Case that the person is sent, before it lands, unless `case-guppi` makes it, no other agent holds the number of that Case and, while its file holds no text, no decision line of the session's ledger names that Case or a sub-case of it (cases 453, 645.3, 650.1, 1053.1; a comparison with a ratified copy stood here from case 387.3 to case 445.1).
 
 ## History
 
@@ -50,3 +50,4 @@ Prevents a ratified Case from changing in what the scripts apply without the per
 - 2026-10-28 updated: the guard writes the file of case-guppi itself and stops the call, so no permission prompt comes in Plan Mode (case 894.1) · [[decision-case-894.1]]
 - 2026-10-29 updated: the hook writes any file of case-guppi under cases/, its working note included (case 896.2) · [[decision-case-896.2]]
 - 2026-10-29 updated: How it works removed by hand, a one-off, its facts in the docstring of .guppi/guppi/ratified.py; the clause on the old path of rule-case-check dropped · [[decision-case-904.1]]
+- 2026-11-25 updated: the guard refuses the first write of case-guppi on the file of a Case whose number has a decision line in the session's ledger, a defer included, with a free number (case 1053.1) · [[decision-case-1053.1]]

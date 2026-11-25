@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-plugin-install]]"
 purpose: Whether guppi ship puts the skill install into the clean version, and whether /guppi:install copies every file of the plugin but its own and the LICENSE at its root into a project that holds none of them, the LICENSE of the project left as it stands
-method: "uv run --project .guppi pytest .guppi/tests/test_ship.py -k plugin_skill; by hand, after the librarian's run of the session that sets this Criterion: in a later session, with a tag prod-x.y.z in the history of HEAD, the clean version written by the agent in Work Mode into a local folder by uv run --project .guppi guppi ship --allow-draft; at a stop of that Work Mode, in a project that holds only a LICENSE of its own, the person adds that folder as a catalogue by /plugin marketplace add, installs guppi by /plugin install guppi@guppi-marketplace and types /guppi:install; the files of the project, its LICENSE among them, read against those of the plugin and against the Criterion, and the calls of the install read in the transcript of that session under ~/.claude/projects/"
-checked: 2026-10-30
+method: "uv run --project .guppi pytest .guppi/tests/test_ship.py -k plugin_skill; by hand, after the install stop of the Work Mode that sets this method: with a tag prod-x.y.z in the history of HEAD, the clean version written by the agent into a local folder by uv run --project .guppi guppi ship --allow-draft, and in a git project that holds only a LICENSE of its own, the person adds that folder as a catalogue by /plugin marketplace add, installs guppi by /plugin install guppi@guppi-marketplace and types /guppi:install; the files of the project, its LICENSE among them, read against those of the plugin and against the Criterion, and the calls of the install read in the transcript of that session under ~/.claude/projects/"
+checked: 2026-11-25
 origin: raw/2026-10-15/0553/ledger.md#case-818.1
 sprint: plugin
 created: 2026-10-15
@@ -31,7 +31,7 @@ Then:
 
 ## Result
 
-2026-10-30, Retro of session 2005, tag prod-0.2.0: test_ship.py -k plugin_skill 2 passed; the copy C:/tmp/guppi-2005/copy written by guppi ship --allow-draft holds skills/install/SKILL.md and no plugin/; guppi ship --check exit 0, no line; in the empty project p1-empty /guppi:install (transcript 589efbd9) copied 467 files and then .claude/settings.json, checked each, and its last message said to reopen Claude Code and type /hi; the 468 files of the copy outside .claude-plugin/, skills/ and .git/ all stand in p1-empty, none differing; the other files there are guppi.toml, the event log and __pycache__ written by the hooks of the first /hi; .claude/skills/ holds the bare names (hi, work and the rest); its calls were uv --version, Get-ChildItem, Copy-Item and uv sync, no guppi and no git command; every file of the copy dated 22:01, the time of the build
+2026-11-25, Retro of session 0816, `uv run --project .guppi pytest .guppi/tests/test_ship.py -k plugin_skill`: 2 passed; `uv run --project .guppi guppi ship --check`: exit 0; the copy holds skills/install/SKILL.md and no plugin/ folder; ~/.claude/projects/C--tmp-guppi-1055-p2-license/cc7479dc-7549-453b-8311-3c6e6f5129d5.jsonl: /guppi:install copied 519 files, all but .claude-plugin/, skills/, .git/ and the root LICENSE, .guppi/LICENSE equal to the plugin's, checked missing=0, and its last message told the person to reopen Claude Code and type /hi; the project's LICENSE still reads "Copyright (c) 2026 Test Owner"; its calls were uv --version, find, cmp, uv sync and cp, no guppi and no git command; no file of the copy is newer than its write at 17:52; the skills stand under bare names such as .claude/skills/hi/
 
 ## History
 
@@ -46,3 +46,5 @@ Then:
 - 2026-10-30 updated: the Criterion replaced whole — the agent writes the clean copy; the reading at Retro of the session that sets it · [[decision-case-943.2]]
 - 2026-10-30 status: pending → passed · raw/2026-10-30/2005/ledger.md#L49
 - 2026-11-25 updated: the Criterion replaced whole — the install leaves the LICENSE at the root of the plugin out and keeps the LICENSE of the project; its reading by hand waits for the librarian's run of the session · [[decision-case-1052]]
+- 2026-11-25 updated: the method set anew — the reading taken at the install stop of Work Mode, in the project that also serves the setup with no code · [[decision-case-1055.4]]
+- 2026-11-25 status: pending → passed · raw/2026-11-25/0816/ledger.md#L28

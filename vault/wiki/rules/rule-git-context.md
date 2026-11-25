@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from starting on a branch it does not know
-status: draft
+status: built
 enforcement: render
 implementation_ref: [.guppi/guppi/gitstate.py, .guppi/tests/test_gitstate.py]
 governs: .claude/skills/hi/SKILL.md
@@ -64,3 +64,4 @@ When the line `Branch:` above reads `none: this folder is no git repository`, ta
 - 2026-10-30 updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/gitstate.py · [[decision-case-942.1]]
 - 2026-11-03 status: built → draft · cascade
 - 2026-11-20 updated: the person types git init -b main in a new folder, since /hi stands in Plan Mode · [[decision-case-1036]]
+- 2026-11-25 status: draft → built · cascade

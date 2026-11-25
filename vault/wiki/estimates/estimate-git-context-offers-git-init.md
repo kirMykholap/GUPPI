@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-git-context]]"
 purpose: Whether /hi in a folder that is no git repository tells the person to type ! git init -b main and then /hi again, asks no question, runs no write of its own, opens no sprint and writes no Frontier, and whether the next /hi goes on in the repository the person made
-method: "by hand, after the librarian's run of the session that ratifies this Criterion, in a repository that holds the module of the command ship: in an empty folder that is no git repository, GUPPI installed by /guppi:install from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, Claude Code opened there, /hi typed, ! git init -b main typed as the reply tells, then /hi typed again, and the replies, the context of each /hi and the session folders in the transcripts of those sessions under ~/.claude/projects/, and git branch --show-current, read against the Criterion, recorded in the estimate line"
-checked: 2026-11-04
+method: "by hand, after the install stop of the Work Mode that sets this method, in a repository that holds the module of the command ship: in a folder that is no git repository and holds a CLAUDE.md and a code file of its own, GUPPI installed by /guppi:install from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, Claude Code reopened there, /hi typed, ! git init -b main typed as the reply tells, then /hi typed again, and the replies, the context of each /hi and the session folders in the transcripts of those sessions under ~/.claude/projects/, and git branch --show-current, read against the Criterion, recorded in the estimate line"
+checked: 2026-11-25
 origin: raw/2026-10-16/0342/ledger.md#case-851.1
 sprint: plugin
 created: 2026-10-16
@@ -26,7 +26,7 @@ Before `/sprint-open` and before the Frontier, the agent says that GUPPI works o
 
 ## Result
 
-2026-11-04, Work Mode of session 0358, ~/.claude/projects/C--PROJECTS-guppi-trial-0358-no-git/07cfacdd-aa2f-4da2-a0ad-3831ae6115b8.jsonl and 2b6bed0c-675a-46ff-8b0d-82e6d19838a8.jsonl: the first /hi read none under Branch:, asked whether to run git init -b main before /sprint-open and the Frontier, and on no told the person to type /hi after git init -b main, with no Frontier written; the second /hi asked again, and on yes the agent did not run git init -b main: the session stood in Plan Mode, set by "defaultMode": "plan" of .claude/settings.json, and the agent told the person to type `! git init -b main` (L64), which the person ran (L70); the third /hi printed main and started /setup
+2026-11-25, Retro of session 0816, the install stop of its Work Mode, ~/.claude/projects/C--tmp-guppi-1055-p1-code/e3d24d1f-917e-441b-b0ff-4f7de6f018ec.jsonl: the first /hi printed `Branch: none: this folder is no git repository`, said GUPPI works only in a git repository, told the person to type ! git init -b main and then /hi, asked nothing, started no /sprint-open and wrote no frontier.md (it was written at 16:17:55 UTC, after the setup Case); the person's ! git init -b main made the repository; the next /hi printed `Branch: main` and went on to /setup; the agent ran no git init, and allowed-tools of .claude/skills/hi/SKILL.md names only render --sync, gitstate and tail; git branch --show-current printed main in Work Mode before its git switch -c
 
 ## History
 
@@ -39,3 +39,5 @@ Before `/sprint-open` and before the Frontier, the agent says that GUPPI works o
 - 2026-11-04 updated: the put-off retired before it was applied; the reading taken at the install stop of Work Mode · [[decision-case-1026.3]]
 - 2026-11-04 status: pending → failed · raw/2026-11-04/0358/ledger.md#L27
 - 2026-11-20 updated: the Criterion replaced whole — the person types git init -b main, and the agent asks nothing and runs nothing · [[decision-case-1036]]
+- 2026-11-25 updated: the method set anew — the folder with no git is the one of the install in Plan Mode, at the install stop of Work Mode · [[decision-case-1055.3]]
+- 2026-11-25 status: pending → passed · raw/2026-11-25/0816/ledger.md#L27

@@ -75,11 +75,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-reconcile`
-- [ ] update `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+- [x] update `rule-spec-reconcile`
+- [x] update `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
 - [x] `.guppi/guppi/ratified.py`: `held_number` refuses a call of `case-guppi` on `case-<N>.md` whose file does not stand or holds no text while a decision line of the session's ledger names Case N or a sub-case of it, by `in_family` of `.guppi/guppi/materialize.py`, imported, the reason naming a free id by `casecheck.new_number`; it holds no number for a refused call and keeps the pair it gives `guard`, so the live guard is not broken between two edits; the docstring of `held_number`, of `guard` and the guard paragraph of the module docstring name it.
 - [x] `.guppi/tests/test_ratified.py`: tests `number_held` on the ledger: a `Write` of a missing `case-7.md` with a ledger line `decision[case 7][defer][…]` is refused, names case 8 and `case-8.md`, and writes nothing into the store; a line of `7.1` refuses it too; an `Edit` of a `case-7.md` that holds text passes; a line of another number passes.
-- [ ] read `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+- [x] read `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
 ```
 
 ### Case 1053.2 — A stop before the render of a file the Criterion names is a finding
@@ -122,11 +122,11 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-hook-reports-a-stop-before-the-render-it-tests`
-- [ ] update `insight-workflow-code-live-before-the-page-it-reads`
+- [x] create `estimate-prespec-hook-reports-a-stop-before-the-render-it-tests`
+- [x] update `insight-workflow-code-live-before-the-page-it-reads`
 - [x] `.guppi/guppi/prespec.py`: a new function, called by `judge` after `check_tasks`, gives the finding for a Case whose `tasks` block holds a `stop:` line and a render line, matched by `render.command_line`, imported, of a file that its `when` or `then` names in a code span; `check_tasks` stays as it stands; the list of findings in the module docstring names it.
 - [x] `.guppi/tests/test_prespec.py`: tests `stop_before_render`: a Case with a render line of `plugin/skills/install/SKILL.md`, a `stop:` line and a `when` that names that file gives the finding; the same Case with no `stop:` line, or with a `when` and `then` that name no rendered file, gives none; a render line and a `stop:` line under two sub-cases give none.
-- [ ] read `estimate-prespec-hook-reports-a-stop-before-the-render-it-tests`
+- [x] read `estimate-prespec-hook-reports-a-stop-before-the-render-it-tests`
 ```
 
 ## Case 1054 — The level of a dispatch is judged from its item, and a round asks no choice of form
@@ -194,9 +194,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `estimate-orchestration-dispatches-case-guppi-at-a-level`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `estimate-orchestration-dispatches-case-guppi-at-a-level`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [ ] read `estimate-orchestration-dispatches-case-guppi-at-a-level`
 ```
 
@@ -238,9 +238,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] update `estimate-case-build-settles-form-by-itself`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] update `rule-case-build`
+- [x] update `estimate-case-build-settles-form-by-itself`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
 - [ ] read `estimate-case-build-settles-form-by-itself`
 ```
 
@@ -315,11 +315,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plugin-install-asks-one-approval-in-plan-mode`
+- [x] update `estimate-plugin-install-asks-one-approval-in-plan-mode`
 - [x] by hand: `uv run --project .guppi guppi ship --allow-draft C:/tmp/guppi-1055/copy` into an empty folder outside the repository, the catalogue of the installs; its output shows whether a tag `prod-x.y.z` stands in the history of HEAD.
 - [x] by hand: five new folders under `C:/tmp/guppi-1055/`: `p1-code`, no git, with a `CLAUDE.md` and a code file of its own; `p2-license`, `git init -b main` run in it, with only a `LICENSE` of its own; `p3-set-aside`, with a `CLAUDE.md`, a `.claude/settings.json` with a hook and a `.gitattributes` of its own; `p4-offline`, the same files as `p3-set-aside`; `p5-clash`, with a `vault/wiki/glossary.md` of its own, a path the install writes; and an empty folder `C:/tmp/guppi-1055/empty-cache`.
 - [x] stop: the person adds the catalogue by `/plugin marketplace add C:/tmp/guppi-1055/copy` and installs the plugin by `/plugin install guppi@guppi-marketplace`, then works through each folder with the commands written out whole in the reply: in `p1-code`, Claude Code started by `claude --permission-mode plan` from a terminal whose PATH holds no folder of uv, `/guppi:install`, yes to uv, the plan not approved, `/guppi:install` again and the plan approved, Claude Code reopened, `/hi`, `! git init -b main`, `/hi` again, and that session taken through the setup Case, its first sprint, Work Mode and its librarian's run; in `p2-license`, `/guppi:install`, Claude Code reopened, `/hi`, and that session taken through the setup Case to its librarian's run; in `p3-set-aside` and `p5-clash`, `/guppi:install`; in `p4-offline`, Claude Code started from a terminal with `UV_OFFLINE=1` and `UV_CACHE_DIR` set to `C:/tmp/guppi-1055/empty-cache`, and `/guppi:install`; the person reports, and the agent reads the transcripts under `~/.claude/projects/`, the ledgers and the files of each folder for the readings of Case 1055.
-- [ ] read `estimate-plugin-install-asks-one-approval-in-plan-mode`
+- [x] read `estimate-plugin-install-asks-one-approval-in-plan-mode`
 ```
 
 ### Case 1055.2 — The setup at the first /hi is read at the install stop
@@ -365,8 +365,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-morph-sets-up-the-project-at-the-first-hi`
-- [ ] read `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] update `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] read `estimate-morph-sets-up-the-project-at-the-first-hi`
 ```
 
 ### Case 1055.3 — The git init offer is read at the install stop
@@ -399,8 +399,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-git-context-offers-git-init`
-- [ ] read `estimate-git-context-offers-git-init`
+- [x] update `estimate-git-context-offers-git-init`
+- [x] read `estimate-git-context-offers-git-init`
 ```
 
 ### Case 1055.4 — The copy into a project with its own LICENSE is read at the install stop
@@ -447,8 +447,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
-- [ ] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
 ```
 
 ### Case 1055.5 — The set-aside files are read at the install stop
@@ -485,8 +485,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-plugin-install-sets-aside-the-files-of-the-project`
-- [ ] read `estimate-plugin-install-sets-aside-the-files-of-the-project`
+- [x] update `estimate-plugin-install-sets-aside-the-files-of-the-project`
+- [x] read `estimate-plugin-install-sets-aside-the-files-of-the-project`
 - [x] stop: at the end of Work Mode, the person types `! git push origin plugin`, and `git status` then shows the branch up to date with `origin/plugin`.
 ```
 
@@ -546,8 +546,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-plugin`
-- [ ] update `estimate-sprint-plugin-done-counts-a-one-off-reading`
+- [x] update `entity-sprint-plugin`
+- [x] update `estimate-sprint-plugin-done-counts-a-one-off-reading`
 - [ ] read `estimate-sprint-plugin-done-counts-a-one-off-reading`
 ```
 
@@ -584,12 +584,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-sprint`
+- [x] update `rule-sprint`
 - [x] `.guppi/guppi/sprint.py`: `render` ticks a line of Done when only for a `passed` Estimate, and the module docstring says so.
 - [x] `.guppi/tests/test_sprint.py`: `test_a_read_one_off_estimate_is_ticked_and_keeps_its_status` expects `- [ ] read once · failed`, under a name that says a failed one-off Estimate stays unticked.
 - [x] `.guppi/guppi/ledger.py`: the docstring of `is_one_off` names `.guppi/guppi/lint.py` alone as its caller.
-- [ ] update `estimate-sprint-ticks-a-read-one-off-estimate`
-- [ ] read `estimate-sprint-ticks-a-read-one-off-estimate`
+- [x] update `estimate-sprint-ticks-a-read-one-off-estimate`
+- [x] read `estimate-sprint-ticks-a-read-one-off-estimate`
 ```
 
 ### Case 1057.3 — The close refuses a failed Estimate of the sprint page not named
@@ -628,8 +628,8 @@ update:
 ```tasks
 - [x] `.guppi/guppi/sprint_close.py`: `settled` counts an Estimate of the sprint page as settled only when `--archive-unread` names it, `estimate_lines` drops the way `goes with the sprint page, its status kept`, and the module docstring says that a failed Estimate of the sprint page is settled only by name.
 - [x] `.guppi/tests/test_sprint_close.py`: `test_settle_failed_sprint_page_estimate_goes_with_the_page_its_status_kept` asserts that the run refuses an unnamed failed Estimate of the sprint page and moves nothing, and that with `--archive-unread` it stands archived with `status: failed → archived` in its History.
-- [ ] update `estimate-sprint-close-settles-unread-estimates`
-- [ ] read `estimate-sprint-close-settles-unread-estimates`
+- [x] update `estimate-sprint-close-settles-unread-estimates`
+- [x] read `estimate-sprint-close-settles-unread-estimates`
 ```
 
 ### Case 1057.4 — The frontierguard Estimate reads a fresh build
@@ -667,7 +667,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers`
+- [x] update `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers`
 - [ ] read `estimate-sprint-plugin-frontierguard-build-read-its-folders-readers`
 ```
 
@@ -708,8 +708,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-sprint-close`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/sprint-close/SKILL.md`
-- [ ] update `estimate-sprint-close-takes-the-readings-in-groups`
+- [x] update `rule-skill-sprint-close`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-close/SKILL.md`
+- [x] update `estimate-sprint-close-takes-the-readings-in-groups`
 - [ ] read `estimate-sprint-close-takes-the-readings-in-groups`
 ```

@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-morph]]"
 purpose: Whether the first /hi after /guppi:install, in a project whose guppi.toml does not mark the setup as done, puts one setup Case first, before the opening of the first sprint, with the values it finds and the values the person gives, and whether the settings change only by the copy and the setting aside of /guppi:install, the render of /hi and the render after that Case is ratified
-method: "by hand, after the librarian's run of the session that ratifies this Criterion: in an empty git project and in a git project that holds a file of a programming language of its own, the plugin guppi installed from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, /guppi:install typed, Claude Code reopened and /hi typed; the transcript of each of those sessions under ~/.claude/projects, its ledger and the files written in it read against the Criterion, recorded in the estimate line"
-checked: 2026-11-04
+method: "by hand, after the install stop of the Work Mode that sets this method: the plugin guppi installed from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, in a git project made by git init -b main after the install that holds a CLAUDE.md and a code file of its own, and in a git project that holds only a LICENSE of its own, /guppi:install typed, Claude Code reopened, /hi typed and that session taken to its librarian's run, the transcript of each of those sessions under ~/.claude/projects, its ledger and the files written in it read against the Criterion, recorded in the estimate line"
+checked: 2026-11-25
 origin: raw/2026-10-13/1753/ledger.md#case-802
 sprint: plugin
 created: 2026-10-13
@@ -35,7 +35,7 @@ Then:
 
 ## Result
 
-2026-11-04, Work Mode of session 0358, the transcripts ~/.claude/projects/C--PROJECTS-guppi-trial-0358-empty-git/93058e9a-a55c-4dc8-95fc-ac1c650219ea.jsonl, C--PROJECTS-guppi-trial-0358-own-files/36b6e39b-7323-4638-8d29-7608d3856ae2.jsonl and C--PROJECTS-guppi-trial-0358-no-git/2b6bed0c-675a-46ff-8b0d-82e6d19838a8.jsonl, the ledgers and files of each folder, installed from a copy of guppi ship --allow-draft at 28c69232: /hi started /setup first in all three (L49 of empty-git), before the opening Case and the Frontier; the transcripts folder was taken from the path and shown; the decision lines of the setup Case were written with no sprint open (empty-git ledger 06:24:01, the sprint created at 06:30:01); the acknowledging reply held no Frontier and ended with the question on the first sprint, and /sprint-open followed in the same session; the librarian's run rendered guppi.toml with setup_done = true, the description into CLAUDE.md and the read rules of the folder of each project, and the commit before that run held setup_done = false in each folder; but the setup Case asked more than the values it cannot find: in all three folders a question on how the Case is split or how the setup is checked (empty-git Q7 and Q8, own-files Q10, no-git Q7 and Q8), and in empty-git Q9 on estimate-guppi-tests-green, which the Criterion's "only" does not allow
+2026-11-25, Retro of session 0816, the install stop of its Work Mode, ~/.claude/projects/C--tmp-guppi-1055-p1-code/e3d24d1f-917e-441b-b0ff-4f7de6f018ec.jsonl (code app.py, git init -b main after the install) and C--tmp-guppi-1055-p2-license/4b3495da-b569-431c-860c-6b95cdee18f0.jsonl (only a LICENSE): /hi started /setup first in both, before the opening Case and the Frontier; the setup Case asked the languages and the description, and showed the transcripts folder taken from the path for correction as the setup skill sets it (p1 Q5 C--tmp-guppi-1055-p1-code; p2 Q4 c--tmp-guppi-1055-p2-license, made C-- by a Glob before the Case was written); p1 asked one plain question on tests and style naming no key of guppi.toml, answered none, so test and style stayed GUPPI's; p2 asked nothing on tests; no subagent and no main call read app.py; the decision lines stood in each ledger before the sprint page (p1 18:12:13, p2 18:25:34); each acknowledging reply showed no Frontier and ended with the question on the first sprint, and /sprint-open followed with that answer; the commits before the librarian's run (p1 9d8618a, p2 1af3d22) held setup_done = false and a CLAUDE.md and .claude/settings.json equal to the copy, and after the run (p1 5d5ec49, p2 5dba49c) guppi.toml held setup_done = true, CLAUDE.md the description and settings.json the read rules of the folder
 
 ## History
 
@@ -47,3 +47,5 @@ Then:
 - 2026-11-04 updated: the put-off retired before it was applied; the reading taken at the install stop of Work Mode · [[decision-case-1026.1]]
 - 2026-11-04 status: pending → failed · raw/2026-11-04/0358/ledger.md#L25
 - 2026-11-20 updated: the Criterion replaced whole — the setup asks on tests and style only where the project holds code of its own · [[decision-case-1031.3]]
+- 2026-11-25 updated: the method set anew — the project with code is the one of the git init offer, the project with no code the one that holds only a LICENSE, at the install stop of Work Mode · [[decision-case-1055.2]]
+- 2026-11-25 status: pending → passed · raw/2026-11-25/0816/ledger.md#L26

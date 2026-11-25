@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "949"
-status: current
+status: archived
 defer: ["[[estimate-plugin-install-sets-aside-the-files-of-the-project]]"]
+superseded_by: ["[[decision-case-1055.5]]"]
 origin: raw/2026-10-30/2345/ledger.md#case-949
 sprint: plugin
 created: 2026-10-30
@@ -26,3 +27,6 @@ Whether the install sets aside the files of the project and puts them back after
 ## History
 
 - 2026-10-31 created · raw/2026-10-30/2345/ledger.md#case-949
+- 2026-11-25 superseded by decision-case-1055.5 · [[decision-case-1055.5]]
+- 2026-11-25 archived · superseded
+- 2026-11-25 archived · cleanup

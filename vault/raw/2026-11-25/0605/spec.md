@@ -433,7 +433,7 @@ update:
 - [x] update `rule-plugin-install`
 - [x] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
 - [x] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
-- [ ] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
 - [x] update `entity-sprint-plugin`
 - [x] `uv run --project .guppi guppi sprint`
 ```

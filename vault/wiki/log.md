@@ -13192,3 +13192,65 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-25 decisions/decision-case-1038 archived · cleanup
 - 2026-11-25 decisions/decision-case-1049.2 archived · cleanup
 - 2026-11-25 decisions/decision-case-1049 child decision-case-1049.2 archived · cleanup
+- 2026-11-25 estimates/estimate-case-build-reads-each-list-of-a-new-member status: pending → passed · raw/2026-11-25/0816/ledger.md#L1 · generate
+- 2026-11-25 decisions/decision-case-1053 created · raw/2026-11-25/0816/ledger.md#case-1053 · generate
+- 2026-11-25 decisions/decision-case-1053.1 created · raw/2026-11-25/0816/ledger.md#case-1053.1 · generate
+- 2026-11-25 rules/rule-spec-reconcile updated: the guard refuses the first write of case-guppi on the file of a Case whose number has a decision line in the session's ledger, a defer included, with a free number (case 1053.1) · [[decision-case-1053.1]] · generate
+- 2026-11-25 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds updated: the Criterion replaced whole — the guard also refuses the first write of case-guppi on the file of a Case whose number has a decision line in the session's ledger, a defer included, with a free id · [[decision-case-1053.1]] · generate
+- 2026-11-25 decisions/decision-case-1053.2 created · raw/2026-11-25/0816/ledger.md#case-1053.2 · generate
+- 2026-11-25 estimates/estimate-prespec-hook-reports-a-stop-before-the-render-it-tests created · [[decision-case-1053.2]] · generate
+- 2026-11-25 estimates/estimate-prespec-hook-reports-a-stop-before-the-render-it-tests status: pending → passed · raw/2026-11-25/0816/ledger.md#L24 · generate
+- 2026-11-25 rules/rule-prespec-hook estimate estimate-prespec-hook-reports-a-stop-before-the-render-it-tests added · [[decision-case-1053.2]] · generate
+- 2026-11-25 insights/insight-workflow-code-live-before-the-page-it-reads updated: actioned: a stop task before the render of a file that the Criterion of its Case names is a finding of guppi prespec --check (case 1053.2) · [[decision-case-1053.2]] · generate
+- 2026-11-25 decisions/decision-case-1054 created · raw/2026-11-25/0816/ledger.md#case-1054 · generate
+- 2026-11-25 decisions/decision-case-1054.1 created · raw/2026-11-25/0816/ledger.md#case-1054.1 · generate
+- 2026-11-25 rules/rule-orchestration updated: the level of a dispatch of case-guppi is judged once at the dispatch from the item and the person's words, and stands where the built Case changes more (case 1054.1) · [[decision-case-1054.1]] · generate
+- 2026-11-25 estimates/estimate-orchestration-dispatches-case-guppi-at-a-level updated: the Criterion replaced whole — the level is judged once at the dispatch from the item and the person's words, and stands where the built Case changes more · [[decision-case-1054.1]] · generate
+- 2026-11-25 decisions/decision-case-1054.2 created · raw/2026-11-25/0816/ledger.md#case-1054.2 · generate
+- 2026-11-25 rules/rule-case-build updated: case-guppi asks how a Case is checked only where the Case can give no Estimate or the options differ in behaviour, in cost or in what they block (case 1054.2) · [[decision-case-1054.2]] · generate
+- 2026-11-25 estimates/estimate-case-build-settles-form-by-itself updated: the Criterion replaced whole — a round asks how a Case is checked only where the Case can give no Estimate or the options differ in behaviour, in cost or in what they block · [[decision-case-1054.2]] · generate
+- 2026-11-25 decisions/decision-case-1055 created · raw/2026-11-25/0816/ledger.md#case-1055 · generate
+- 2026-11-25 decisions/decision-case-1055.1 created · raw/2026-11-25/0816/ledger.md#case-1055.1 · generate
+- 2026-11-25 estimates/estimate-plugin-install-asks-one-approval-in-plan-mode updated: the method set anew — one project with no uv on its PATH takes the refused plan and then the approved one, at the install stop of Work Mode · [[decision-case-1055.1]] · generate
+- 2026-11-25 decisions/decision-case-1055.2 created · raw/2026-11-25/0816/ledger.md#case-1055.2 · generate
+- 2026-11-25 estimates/estimate-morph-sets-up-the-project-at-the-first-hi updated: the method set anew — the project with code is the one of the git init offer, the project with no code the one that holds only a LICENSE, at the install stop of Work Mode · [[decision-case-1055.2]] · generate
+- 2026-11-25 decisions/decision-case-1055.3 created · raw/2026-11-25/0816/ledger.md#case-1055.3 · generate
+- 2026-11-25 estimates/estimate-git-context-offers-git-init updated: the method set anew — the folder with no git is the one of the install in Plan Mode, at the install stop of Work Mode · [[decision-case-1055.3]] · generate
+- 2026-11-25 decisions/decision-case-1055.4 created · raw/2026-11-25/0816/ledger.md#case-1055.4 · generate
+- 2026-11-25 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project updated: the method set anew — the reading taken at the install stop of Work Mode, in the project that also serves the setup with no code · [[decision-case-1055.4]] · generate
+- 2026-11-25 decisions/decision-case-1055.5 created · raw/2026-11-25/0816/ledger.md#case-1055.5 · generate
+- 2026-11-25 decisions/decision-case-949 superseded by decision-case-1055.5 · [[decision-case-1055.5]] · generate
+- 2026-11-25 estimates/estimate-plugin-install-sets-aside-the-files-of-the-project defer by decision-case-949 superseded · [[decision-case-1055.5]] · generate
+- 2026-11-25 estimates/estimate-plugin-install-sets-aside-the-files-of-the-project updated: the put-off retired before it was applied; the reading taken at the install stop of Work Mode · [[decision-case-1055.5]] · generate
+- 2026-11-25 decisions/decision-case-1057 created · raw/2026-11-25/0816/ledger.md#case-1057 · generate
+- 2026-11-25 decisions/decision-case-1057.1 created · raw/2026-11-25/0816/ledger.md#case-1057.1 · generate
+- 2026-11-25 entities/entity-sprint-plugin updated: a one-off Estimate is done when one reading passes, a failed reading not done; the Backlog asks whether a passed one-off Estimate is never read again · [[decision-case-1057.1]] · generate
+- 2026-11-25 estimates/estimate-sprint-plugin-done-counts-a-one-off-reading updated: the Criterion replaced whole — a one-off Estimate is done when one reading passes · [[decision-case-1057.1]] · generate
+- 2026-11-25 decisions/decision-case-1057.2 created · raw/2026-11-25/0816/ledger.md#case-1057.2 · generate
+- 2026-11-25 rules/rule-sprint updated: Done when ticks only a passed Estimate, a failed one-off one left unticked · [[decision-case-1057.2]] · generate
+- 2026-11-25 estimates/estimate-sprint-ticks-a-read-one-off-estimate updated: the Criterion replaced whole — a failed one-off Estimate stays unticked · [[decision-case-1057.2]] · generate
+- 2026-11-25 decisions/decision-case-1057.3 created · raw/2026-11-25/0816/ledger.md#case-1057.3 · generate
+- 2026-11-25 estimates/estimate-sprint-close-settles-unread-estimates updated: the Criterion replaced whole — a failed Estimate of the sprint page is settled only by --archive-unread · [[decision-case-1057.3]] · generate
+- 2026-11-25 decisions/decision-case-1057.4 created · raw/2026-11-25/0816/ledger.md#case-1057.4 · generate
+- 2026-11-25 estimates/estimate-sprint-plugin-frontierguard-build-read-its-folders-readers updated: the Criterion replaced whole — a fresh build read, since the build of Case 1012 cannot pass · [[decision-case-1057.4]] · generate
+- 2026-11-25 decisions/decision-case-1057.5 created · raw/2026-11-25/0816/ledger.md#case-1057.5 · generate
+- 2026-11-25 rules/rule-skill-sprint-close updated: step 4 names each failed Estimate of the sprint page by --archive-unread · [[decision-case-1057.5]] · generate
+- 2026-11-25 estimates/estimate-sprint-close-takes-the-readings-in-groups updated: the Criterion replaced whole — the close line names each failed Estimate of the sprint page · [[decision-case-1057.5]] · generate
+- 2026-11-25 estimates/estimate-spec-reconcile-refuses-a-case-file-another-agent-holds status: pending → passed · raw/2026-11-25/0816/ledger.md#L23 · generate
+- 2026-11-25 estimates/estimate-plugin-install-asks-one-approval-in-plan-mode status: pending → passed · raw/2026-11-25/0816/ledger.md#L25 · generate
+- 2026-11-25 estimates/estimate-morph-sets-up-the-project-at-the-first-hi status: pending → passed · raw/2026-11-25/0816/ledger.md#L26 · generate
+- 2026-11-25 estimates/estimate-git-context-offers-git-init status: pending → passed · raw/2026-11-25/0816/ledger.md#L27 · generate
+- 2026-11-25 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project status: pending → passed · raw/2026-11-25/0816/ledger.md#L28 · generate
+- 2026-11-25 estimates/estimate-plugin-install-sets-aside-the-files-of-the-project status: pending → passed · raw/2026-11-25/0816/ledger.md#L29 · generate
+- 2026-11-25 estimates/estimate-sprint-ticks-a-read-one-off-estimate status: pending → passed · raw/2026-11-25/0816/ledger.md#L30 · generate
+- 2026-11-25 estimates/estimate-sprint-close-settles-unread-estimates status: pending → passed · raw/2026-11-25/0816/ledger.md#L31 · generate
+- 2026-11-25 lessons/lesson-plugin-install-writes-a-project-settings-file created · raw/2026-11-25/0816/ledger.md#L32 · generate
+- 2026-11-25 lessons/lesson-plugin-copy-shipped-before-the-style-check created · raw/2026-11-25/0816/ledger.md#L33 · generate
+- 2026-11-25 rules/rule-git-context status: draft → built · cascade · generate
+- 2026-11-25 rules/rule-morph status: draft → built · cascade · generate
+- 2026-11-25 rules/rule-plugin-install status: draft → built · cascade · generate
+- 2026-11-25 rules/rule-sprint-close status: built → draft · cascade · generate
+- 2026-11-25 decisions/decision-case-949 archived · superseded · generate
+- 2026-11-25 lessons/lesson-case-build-puts-a-reading-before-the-render-it-tests archived · insight actioned · generate
+- 2026-11-25 lessons/lesson-case-build-puts-a-reading-before-the-render-it-tests archived · cleanup
+- 2026-11-25 decisions/decision-case-949 archived · cleanup

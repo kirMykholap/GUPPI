@@ -6,7 +6,7 @@ status: built
 enforcement: hook
 implementation_ref: [.guppi/guppi/event.py, .guppi/guppi/gate.py, .guppi/guppi/cli.py, .guppi/tests/test_gate.py, .guppi/tests/test_event.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-event-log-records]]"]
+estimates: ["[[estimate-event-log-records]]", "[[estimate-event-log-keeps-the-whole-path]]"]
 origin: raw/2026-09-09/ledger.md#case-9
 sprint: migration
 created: 2026-09-09
@@ -42,3 +42,4 @@ crashes. It is gitignored: debugging material, not traceability. Its governance 
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-26 updated: the label of the stamp paragraph says what holds, not what was lifted · [[decision-case-881.18]]
 - 2026-10-30 updated: ## How it works left the Leaf, its mechanism in the docstrings of .guppi/guppi/event.py and .guppi/guppi/gate.py · [[decision-case-942.1]]
+- 2026-11-25 estimate estimate-event-log-keeps-the-whole-path added · [[decision-case-1045]]

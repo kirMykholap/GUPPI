@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-case-build]]"
 purpose: case-guppi asks about the forks of an item in rounds by the skill grill-me, then builds the Case against the vault and its frame, writes it into its file and answers with a short summary, keeps a working note it reads again after a compaction, empties the file of a Case it drops, and undoes a change the person dropped on a ratified Case
 method: "by hand, the text of .claude/agents/case-guppi.md as rendered, or, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec, read against the Criterion; the tokens and seconds of each dispatch of case-guppi in that session, when there was one, in the estimate line; by hand, after a session whose orchestration.md sets the effort of each dispatch of case-guppi: the effort that each Agent call of case-guppi passed or did not pass, in the transcript of that session under ~/.claude/projects/, read against the lines of the Criterion on the effort, the transcript in the estimate line"
-checked: 2026-11-03
+checked: 2026-11-25
 origin: raw/2026-09-24/1303/ledger.md#case-391.1
 sprint: migration
 created: 2026-09-24
@@ -57,7 +57,7 @@ Then:
 
 ## Result
 
-2026-11-03, Retro of session 2155, the new Render of rule-case-build in vault/raw/2026-11-02/2155/spec.md (Cases 1011.3, 1011.4) with .claude/agents/case-guppi.md as rendered, against the Criterion Case 1011.4 writes: the frame reads each page and file the given names, of each Estimate such a page lists the purpose line and the Criterion only where that purpose speaks of the change, and the other lines of the Criterion stand in the frame as rendered — skills [grill-me], model opus, effort medium, the tools, permissionMode auto, autoCompactWindow 400000, the note-<N>.md, the summary with **Built:** and **Case:**; tokens and seconds of each dispatch of case-guppi this session as in the reading of estimate-case-build-reads-by-need-and-in-parts
+2026-11-25, /hi of session 0605: .claude/agents/case-guppi.md as rendered read against the Criterion — the frontmatter holds model opus, effort medium, the tools Read, Grep, Glob, Write, Edit, WebFetch, permissionMode auto, autoCompactWindow 400000 and skills [grill-me]; the body holds the reads of case-schema.md and ratification.md, the vault query of ask-guppi, the frame, the Context paragraph, the summary with Built, Case, Other Case and Sibling, note-<N>.md, Dropped, Fact, {supersedes:case N.M}, the Change item and the guard of Plan Mode with the Read before the next Edit, each found by grep and line 27 read; transcript 68550048-efc7-4790-9bd8-17ed548134c2.jsonl of session 1353: each of the five Agent calls of case-guppi passed effort and its subagent ran at it by its .meta.json; tokens per dispatch, input with cache and output: 1039 13026853 and 58332, 1040 4216551 and 34921, 1041 1429561 and 9298, 1042 4115934 and 31732, 1043 5166610 and 32118; seconds not read, since four of the five spans run across the pause of 2026-11-20 to 2026-11-23
 
 ## History
 
@@ -101,3 +101,4 @@ Then:
 - 2026-11-03 updated: the Criterion written whole — case-guppi reads the purpose of each Estimate of a page the given names, and its Criterion only where that purpose speaks of the change · [[decision-case-1011.4]]
 - 2026-11-03 status: pending → passed · raw/2026-11-02/2155/ledger.md#L21
 - 2026-11-20 updated: the Criterion replaced whole — the frontmatter is the level of a call that passes none · [[decision-case-1029.2]]
+- 2026-11-25 status: pending → passed · raw/2026-11-25/0605/ledger.md#L2

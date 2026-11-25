@@ -13132,3 +13132,63 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-23 lessons/lesson-case-build-a-later-case-leaves-a-ratified-text-stale archived · insight actioned · generate
 - 2026-11-23 lessons/lesson-case-build-a-later-case-leaves-a-ratified-text-stale archived · cleanup
 - 2026-11-23 lessons/lesson-orchestration-batch-asks-one-fork-twice-with-opposite-answers archived · cleanup
+- 2026-11-25 estimates/estimate-orchestration-dispatches-case-guppi-at-a-level status: pending → failed · raw/2026-11-25/0605/ledger.md#L1 · generate
+- 2026-11-25 estimates/estimate-case-build-writes-the-case status: pending → passed · raw/2026-11-25/0605/ledger.md#L2 · generate
+- 2026-11-25 estimates/estimate-case-build-settles-form-by-itself status: pending → failed · raw/2026-11-25/0605/ledger.md#L3 · generate
+- 2026-11-25 lessons/lesson-event-log-cuts-the-path-of-the-plan-file created · raw/2026-11-25/0605/ledger.md#L4 · generate
+- 2026-11-25 decisions/decision-case-1045 created · raw/2026-11-25/0605/ledger.md#case-1045 · generate
+- 2026-11-25 estimates/estimate-event-log-keeps-the-whole-path created · [[decision-case-1045]] · generate
+- 2026-11-25 estimates/estimate-event-log-keeps-the-whole-path status: pending → passed · raw/2026-11-25/0605/ledger.md#L21 · generate
+- 2026-11-25 rules/rule-event-log estimate estimate-event-log-keeps-the-whole-path added · [[decision-case-1045]] · generate
+- 2026-11-25 decisions/decision-case-1046 created · raw/2026-11-25/0605/ledger.md#case-1046 · generate
+- 2026-11-25 entities/entity-sprint-plugin updated: a one-off Estimate is done once it is read · [[decision-case-1046]] · generate
+- 2026-11-25 estimates/estimate-sprint-plugin-done-counts-a-one-off-reading created · [[decision-case-1046]] · generate
+- 2026-11-25 entities/entity-sprint-plugin estimate estimate-sprint-plugin-done-counts-a-one-off-reading added · [[decision-case-1046]] · generate
+- 2026-11-25 decisions/decision-case-1047 created · raw/2026-11-25/0605/ledger.md#case-1047 · generate
+- 2026-11-25 decisions/decision-case-1038 superseded by decision-case-1047 · [[decision-case-1047]] · generate
+- 2026-11-25 estimates/estimate-case-build-searches-the-names-of-what-it-changes defer by decision-case-1038 superseded · [[decision-case-1047]] · generate
+- 2026-11-25 estimates/estimate-case-build-searches-the-names-of-what-it-changes updated: pending again after the failed reading, the Criterion unchanged; read on the builds of a later session · [[decision-case-1047]] · generate
+- 2026-11-25 decisions/decision-case-1048 created · raw/2026-11-25/0605/ledger.md#case-1048 · generate
+- 2026-11-25 decisions/decision-case-1037 superseded by decision-case-1048 · [[decision-case-1048]] · generate
+- 2026-11-25 estimates/estimate-ask-searches-at-prespec defer by decision-case-1037 superseded · [[decision-case-1048]] · generate
+- 2026-11-25 estimates/estimate-ask-searches-at-prespec updated: pending again after the failed reading of session 0358, the Criterion unchanged; read at the /pre-spec of session 0605 · [[decision-case-1048]] · generate
+- 2026-11-25 decisions/decision-case-1049 created · raw/2026-11-25/0605/ledger.md#case-1049 · generate
+- 2026-11-25 decisions/decision-case-1049.1 created · raw/2026-11-25/0605/ledger.md#case-1049.1 · generate
+- 2026-11-25 rules/rule-clean-branch updated: the clean version holds LICENSE at its root and at .guppi/LICENSE · [[decision-case-1049.1]] · generate
+- 2026-11-25 estimates/estimate-clean-branch-ships-the-license created · [[decision-case-1049.1]] · generate
+- 2026-11-25 estimates/estimate-clean-branch-ships-the-license status: pending → passed · raw/2026-11-25/0605/ledger.md#L22 · generate
+- 2026-11-25 rules/rule-clean-branch estimate estimate-clean-branch-ships-the-license added · [[decision-case-1049.1]] · generate
+- 2026-11-25 decisions/decision-case-1049.2 created · raw/2026-11-25/0605/ledger.md#case-1049.2 · generate
+- 2026-11-25 decisions/decision-case-1049.2 superseded by decision-case-1052 · [[decision-case-1052]] · generate
+- 2026-11-25 decisions/decision-case-1050 created · raw/2026-11-25/0605/ledger.md#case-1050 · generate
+- 2026-11-25 entities/entity-sprint-plugin deferred · [[decision-case-1050]] · generate
+- 2026-11-25 decisions/decision-case-1051 created · raw/2026-11-25/0605/ledger.md#case-1051 · generate
+- 2026-11-25 rules/rule-sprint updated: a read one-off Estimate is ticked under Done when · [[decision-case-1051]] · generate
+- 2026-11-25 estimates/estimate-sprint-ticks-a-read-one-off-estimate created · [[decision-case-1051]] · generate
+- 2026-11-25 estimates/estimate-sprint-ticks-a-read-one-off-estimate status: pending → passed · raw/2026-11-25/0605/ledger.md#L23 · generate
+- 2026-11-25 rules/rule-sprint estimate estimate-sprint-ticks-a-read-one-off-estimate added · [[decision-case-1051]] · generate
+- 2026-11-25 decisions/decision-case-1052 created · raw/2026-11-25/0605/ledger.md#case-1052 · generate
+- 2026-11-25 rules/rule-plugin-install updated: the install leaves the LICENSE at the root of the plugin out, and the project gets the license text as .guppi/LICENSE · [[decision-case-1052]] · generate
+- 2026-11-25 estimates/estimate-plugin-install-writes-guppi-into-an-empty-project updated: the Criterion replaced whole — the install leaves the LICENSE at the root of the plugin out and keeps the LICENSE of the project; its reading by hand waits for the librarian's run of the session · [[decision-case-1052]] · generate
+- 2026-11-25 entities/entity-sprint-plugin updated: the Backlog line of the MIT license text of the clean copy leaves, decided by case 1049 and case 1052 · [[decision-case-1052]] · generate
+- 2026-11-25 estimates/estimate-ask-searches-at-prespec status: pending → passed · raw/2026-11-25/0605/ledger.md#L24 · generate
+- 2026-11-25 estimates/estimate-case-build-searches-the-names-of-what-it-changes status: pending → passed · raw/2026-11-25/0605/ledger.md#L25 · generate
+- 2026-11-25 lessons/lesson-case-build-numbers-a-new-case-from-the-case-files-alone created · raw/2026-11-25/0605/ledger.md#L26 · generate
+- 2026-11-25 lessons/lesson-case-build-puts-a-reading-before-the-render-it-tests created · raw/2026-11-25/0605/ledger.md#L27 · generate
+- 2026-11-25 insights/insight-event-log-cuts-the-plan-path created · raw/2026-11-25/0605/ledger.md#L4 · generate
+- 2026-11-25 insights/insight-event-log-cuts-the-plan-path updated: born actioned, its cause closed by case 1045 (synthesis) · raw/2026-11-25/0605/ledger.md#L4 · generate
+- 2026-11-25 lessons/lesson-gate-plan-path-cut-by-the-event-log-detail-limit updated: clustered under insight-event-log-cuts-the-plan-path (synthesis) · raw/2026-11-25/0605/ledger.md#L4 · generate
+- 2026-11-25 lessons/lesson-event-log-cuts-the-path-of-the-plan-file updated: clustered under insight-event-log-cuts-the-plan-path (synthesis) · raw/2026-11-25/0605/ledger.md#L4 · generate
+- 2026-11-25 insights/insight-workflow-code-live-before-the-page-it-reads updated: child lesson-case-build-puts-a-reading-before-the-render-it-tests added, reopened from actioned (synthesis) · raw/2026-11-25/0605/ledger.md#L27 · generate
+- 2026-11-25 lessons/lesson-case-build-puts-a-reading-before-the-render-it-tests updated: clustered under insight-workflow-code-live-before-the-page-it-reads (synthesis) · raw/2026-11-25/0605/ledger.md#L27 · generate
+- 2026-11-25 decisions/decision-case-1037 archived · superseded · generate
+- 2026-11-25 decisions/decision-case-1038 archived · superseded · generate
+- 2026-11-25 decisions/decision-case-1049.2 archived · superseded · generate
+- 2026-11-25 lessons/lesson-gate-plan-path-cut-by-the-event-log-detail-limit archived · insight actioned · generate
+- 2026-11-25 lessons/lesson-event-log-cuts-the-path-of-the-plan-file archived · insight actioned · generate
+- 2026-11-25 lessons/lesson-event-log-cuts-the-path-of-the-plan-file archived · cleanup
+- 2026-11-25 lessons/lesson-gate-plan-path-cut-by-the-event-log-detail-limit archived · cleanup
+- 2026-11-25 decisions/decision-case-1037 archived · cleanup
+- 2026-11-25 decisions/decision-case-1038 archived · cleanup
+- 2026-11-25 decisions/decision-case-1049.2 archived · cleanup
+- 2026-11-25 decisions/decision-case-1049 child decision-case-1049.2 archived · cleanup

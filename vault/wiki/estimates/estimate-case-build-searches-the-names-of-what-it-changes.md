@@ -1,12 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: failed
+status: passed
 target: "[[rule-case-build]]"
 purpose: Whether case-guppi, on the note of the hook of rule-case-check that lists the files that name what its Case changes, reads each listed file whose purpose line or path speaks of that change by Read or by a Grep whose path is it, or names it in context, enters each file the change makes false in the Case, and gives each file outside vault/wiki/ that a task changes a task line of its own with its path in the first code span, a line that opens with a command such as a render line kept in its own form
-method: "by hand, after the /pre-spec of the first session in which the hook of rule-case-check sends case-guppi the note that lists the files that name what its Case changes, on the Render of rule-case-build that sets the answer to that note: the agent transcript of each case-guppi of that session under ~/.claude/projects/, for each listed file whose purpose line or path speaks of what its Case changes whether the agent read it by Read or by a Grep whose path is it, or named it in context; and its case file, whether each task line that changes a file outside vault/wiki/ holds its path in its first code span and changes no other such file, a line that opens with a code span holding a command, such as a render line, left out; the count and the transcripts in the estimate line"
-checked: 2026-11-04
-deferred_by: ["[[decision-case-1038]]"]
+method: "by hand, after the /pre-spec of the session that sets this method: the agent transcript of each case-guppi of that session under ~/.claude/projects/ that got the note of the hook of rule-case-check, for each listed file whose purpose line or path speaks of what its Case changes whether the agent read it by Read or by a Grep whose path is it, or named it in context; and its case file, whether each task line that changes a file outside vault/wiki/ holds its path in its first code span and changes no other such file, a line that opens with a code span holding a command, such as a render line, left out; the count and the transcripts in the estimate line"
+checked: 2026-11-25
 origin: raw/2026-10-31/1831/ledger.md#case-967.2
 sprint: plugin
 created: 2026-10-31
@@ -27,7 +26,7 @@ For each listed file whose purpose line or path speaks of what its Case changes,
 
 ## Result
 
-2026-11-04, /hi of session 0358, the case-guppi transcripts of session 0316, the first session on the Render of 14a82de8 in which the hook sent the note, ~/.claude/projects/c--PROJECTS-GUPPI/5c8c941f-70e2-416c-8f86-83ce2f6f7765/subagents/: Case 1015 (agent-a42461338786a960b.jsonl, note at L304, 47 files) did not meet the Criterion: after the note it read estimate-prespec-reconciles.md (Grep L307) and orchestration.md (Grep L309), and its context names those two and estimate-prespec-confirms-the-findings-once with a reason, but vault/wiki/rules/rule-search-leaves-out-decisions.md, .claude/rules/search-leaves-out-decisions.md and .guppi/guppi/grepguard.py, whose paths speak of the searches the Case widens, were neither read by a Read or a Grep whose path is each nor named in context, which gives one reason for the other listed files; Cases 1016 (54 files), 1017 (862 and 2 files) and 1018 (207 files) not judged file by file; in the four case files each task line that changes a file outside vault/wiki/ opens with its path in the first code span and changes no other such file
+2026-11-25, Retro of session 0605, the agent transcripts under ~/.claude/projects/c--PROJECTS-GUPPI/16ad52b9-2613-43c4-8115-f092d2d530c2/subagents/ and the case files of vault/raw/2026-11-25/0605/cases/: the note of rule-case-check came to the builds of Cases 1045 (11 files, agent-a2707248a424a313e.jsonl L223), 1046 (20, then 1, agent-ad8d1780561c59324.jsonl L124, L266, L319), 1047 (2, agent-a00b5d9702448d958.jsonl L106), 1048 (3, agent-aa62b4efab1bbbd90.jsonl L162), 1049 (138 for 1049.1, 125 for 1049.2, agent-ac87edb9fd0dbc08c.jsonl L407) and 1051 (204, L319 of the 1046 agent); a script over those transcripts and case files found each listed file of 1047 and 1048 named in context; of 1045, 5 read or named and 6 neither, a Purpose or root cause about /hi, hooks or the librarian and not about the cut of a path; of 1049.1 17 read or named and of 1051 9 named by path, the rest judged in context by group, by their purpose lines and paths, with a reason; the files of 1049.1 and 1051 whose slugs speak of what the Case changes — the estimate-clean-branch-* and estimate-sprint-* pages — were checked by hand and stand named by kind in context, such as "the other four speak of --check, the Spec ticks, the moves of items and a closed sprint"; each other file was judged by its purpose line in the note and not read; each task line of 1045, 1049.1 and 1051 that changes a file outside vault/wiki/ holds its path in its first code span and changes no other such file
 
 ## History
 
@@ -43,3 +42,6 @@ For each listed file whose purpose line or path speaks of what its Case changes,
 - 2026-11-03 updated: the Criterion replaced whole — case-guppi answers the list by the purpose line or the path of each file · [[decision-case-1011.2]]
 - 2026-11-04 status: pending → failed · raw/2026-11-04/0358/ledger.md#L3
 - 2026-11-20 deferred · [[decision-case-1038]]
+- 2026-11-25 defer by decision-case-1038 superseded · [[decision-case-1047]]
+- 2026-11-25 updated: pending again after the failed reading, the Criterion unchanged; read on the builds of a later session · [[decision-case-1047]]
+- 2026-11-25 status: pending → passed · raw/2026-11-25/0605/ledger.md#L25

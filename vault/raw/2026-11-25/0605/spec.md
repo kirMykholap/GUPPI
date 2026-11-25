@@ -54,10 +54,10 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-event-log-keeps-the-whole-path`
+- [x] create `estimate-event-log-keeps-the-whole-path`
 - [x] `.guppi/guppi/event.py`: `tool_detail` writes the `file_path` of a tool input whole on one line, and every other detail is cut at `DETAIL_LIMIT` as before; the sentence of the module docstring on the cut says that a file path stays whole.
 - [x] `.guppi/tests/test_event.py`: a test runs `guppi event tool` on a `Write` payload whose `file_path` under `.claude/plans/` is longer than 80 characters, asserts that the line holds the whole path, and asserts that `ledger.plan_path` over that log names it; the test of a Bash detail cut to 80 characters stands.
-- [ ] read `estimate-event-log-keeps-the-whole-path`
+- [x] read `estimate-event-log-keeps-the-whole-path`
 ```
 
 ## Case 1046 — A one-off check of the sprint page is done once it is read
@@ -118,9 +118,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-plugin`
-- [ ] create `estimate-sprint-plugin-done-counts-a-one-off-reading`
-- [ ] `uv run --project .guppi guppi sprint`
+- [x] update `entity-sprint-plugin`
+- [x] create `estimate-sprint-plugin-done-counts-a-one-off-reading`
+- [x] `uv run --project .guppi guppi sprint`
 - [ ] read `estimate-sprint-plugin-done-counts-a-one-off-reading`
 ```
 
@@ -166,8 +166,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-searches-the-names-of-what-it-changes`
-- [ ] read `estimate-case-build-searches-the-names-of-what-it-changes`
+- [x] update `estimate-case-build-searches-the-names-of-what-it-changes`
+- [x] read `estimate-case-build-searches-the-names-of-what-it-changes`
 ```
 
 ## Case 1048 — The searches of ask-guppi at pre-spec are read again
@@ -217,8 +217,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-ask-searches-at-prespec`
-- [ ] read `estimate-ask-searches-at-prespec`
+- [x] update `estimate-ask-searches-at-prespec`
+- [x] read `estimate-ask-searches-at-prespec`
 ```
 
 ## Case 1049 — The clean copy carries the MIT license, and the install keeps a project's own license
@@ -291,9 +291,9 @@ update:
 ```tasks
 - [x] `.guppi/guppi/ship.py`: `LICENSE` joins `ROOT_FILES`, and a map in the manner of `PLUGIN_FILES` writes the root `LICENSE` to `.guppi/LICENSE` of the copy too, taken only where the root file stands; the module docstring names both paths.
 - [x] `.guppi/tests/test_ship.py`: tests whose names hold `license`: a tree with the text of the live `LICENSE` at its root gives a copy with that text at `LICENSE` and at `.guppi/LICENSE`, and `--check` prints no line on it; a tree with no `LICENSE` gives a copy with neither file.
-- [ ] update `rule-clean-branch`
-- [ ] create `estimate-clean-branch-ships-the-license`
-- [ ] read `estimate-clean-branch-ships-the-license`
+- [x] update `rule-clean-branch`
+- [x] create `estimate-clean-branch-ships-the-license`
+- [x] read `estimate-clean-branch-ships-the-license`
 ```
 
 ## Case 1051 — The sprint view ticks a one-off Estimate once it is read
@@ -358,10 +358,10 @@ update:
 - [x] `.guppi/guppi/lint.py`: `check_status` imports `is_one_off` and judges by it in place of its inline test of `once`.
 - [x] `.guppi/guppi/sprint.py`: `render` ticks the line of an Estimate when it is `passed`, or when it is `failed` and `is_one_off` holds; the module docstring says so.
 - [x] `.guppi/tests/test_sprint.py`: a test whose name holds `one_off` renders a sprint page with the four Estimates of the Criterion and asserts their ticks and statuses.
-- [ ] update `rule-sprint`
-- [ ] create `estimate-sprint-ticks-a-read-one-off-estimate`
-- [ ] `uv run --project .guppi guppi sprint`
-- [ ] read `estimate-sprint-ticks-a-read-one-off-estimate`
+- [x] update `rule-sprint`
+- [x] create `estimate-sprint-ticks-a-read-one-off-estimate`
+- [x] `uv run --project .guppi guppi sprint`
+- [x] read `estimate-sprint-ticks-a-read-one-off-estimate`
 ```
 
 ## Case 1052 — The install leaves the root license out and keeps a project's own, read after the librarian's run
@@ -430,12 +430,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-plugin-install`
-- [ ] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
-- [ ] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
+- [x] update `rule-plugin-install`
+- [x] `uv run --project .guppi guppi render`: `plugin/skills/install/SKILL.md`
+- [x] update `estimate-plugin-install-writes-guppi-into-an-empty-project`
 - [ ] read `estimate-plugin-install-writes-guppi-into-an-empty-project`
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run --project .guppi guppi sprint`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run --project .guppi guppi sprint`
 ```
 
 ## Deferred

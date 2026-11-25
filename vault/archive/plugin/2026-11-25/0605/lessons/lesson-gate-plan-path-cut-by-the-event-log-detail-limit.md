@@ -2,8 +2,9 @@
 type: lesson
 kind: knowledge
 root_cause: the event log is a debugging record cut to one line, and the gate reads it as a source of truth for the plan path; recorded as knowledge on the owner's choice, a Case when a path of 80 or more characters is met
-status: new
+status: archived
 source: guppi/event.py, DETAIL_LIMIT = 80, read by guppi/gate.py
+insight: "[[insight-event-log-cuts-the-plan-path]]"
 origin: raw/2026-09-14/1229/ledger.md#L20
 sprint: migration
 created: 2026-09-14
@@ -22,3 +23,6 @@ the event log is a debugging record cut to one line, and the gate reads it as a 
 
 - 2026-09-14 created · raw/2026-09-14/1229/ledger.md#L20
 - 2026-09-14 updated: source added (case 144.2) · [[decision-case-144.2]]
+- 2026-11-25 updated: clustered under insight-event-log-cuts-the-plan-path (synthesis) · raw/2026-11-25/0605/ledger.md#L4
+- 2026-11-25 archived · insight actioned
+- 2026-11-25 archived · cleanup

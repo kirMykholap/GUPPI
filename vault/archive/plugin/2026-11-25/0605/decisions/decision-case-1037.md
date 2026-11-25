@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1037"
-status: current
+status: archived
 defer: ["[[estimate-ask-searches-at-prespec]]"]
+superseded_by: ["[[decision-case-1048]]"]
 origin: raw/2026-11-04/0807/ledger.md#case-1037
 sprint: plugin
 created: 2026-11-04
@@ -26,3 +27,6 @@ Whether ask-guppi at pre-spec keeps its searches out of vault/archive/ and answe
 ## History
 
 - 2026-11-20 created · raw/2026-11-04/0807/ledger.md#case-1037
+- 2026-11-25 superseded by decision-case-1048 · [[decision-case-1048]]
+- 2026-11-25 archived · superseded
+- 2026-11-25 archived · cleanup

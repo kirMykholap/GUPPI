@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1038"
-status: current
+status: archived
 defer: ["[[estimate-case-build-searches-the-names-of-what-it-changes]]"]
+superseded_by: ["[[decision-case-1047]]"]
 origin: raw/2026-11-04/0807/ledger.md#case-1038
 sprint: plugin
 created: 2026-11-04
@@ -26,3 +27,6 @@ Whether case-guppi reads or names in context each file that names what its Case 
 ## History
 
 - 2026-11-20 created · raw/2026-11-04/0807/ledger.md#case-1038
+- 2026-11-25 superseded by decision-case-1047 · [[decision-case-1047]]
+- 2026-11-25 archived · superseded
+- 2026-11-25 archived · cleanup

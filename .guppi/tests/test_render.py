@@ -463,6 +463,72 @@ def test_placeholder_without_the_config_page_writes_nothing(tmp_path):
     assert not (tmp_path / "out" / "LANG.md").exists()
 
 
+# --- the main branch placeholder (case 1070.1): `estimate-guppi-config-fills-the-main-branch` ---
+
+BRANCH_CONFIG = CONFIG.replace('chat_lang = "ru"\n', 'chat_lang = "ru"\nmain_branch = "trunk"\n')
+
+BRANCH = """<!-- rule-language -->
+Merge into {{main_branch}}; run git merge --ff-only origin/{{main_branch}}.
+<!-- /rule-language -->"""
+
+
+def test_main_branch_filled_with_the_value_the_config_render_sets(tmp_path):
+    placeholder_vault(tmp_path, BRANCH_CONFIG, BRANCH)
+    code, _out, err = run([], tmp_path)
+    assert (code, err) == (0, "")
+    target = tmp_path / "out" / "LANG.md"
+    expected = "Merge into trunk; run git merge --ff-only origin/trunk.\n"
+    assert target.read_text(encoding="utf-8") == expected
+    page_text = (tmp_path / "vault" / "wiki" / "rules" / "rule-language.md").read_text(
+        encoding="utf-8"
+    )
+    assert "origin/{{main_branch}}" in page_text
+    assert 'main_branch = "trunk"' in (tmp_path / "guppi.toml").read_text(encoding="utf-8")
+    assert run(["--check"], tmp_path)[0] == 0
+
+
+def test_main_branch_a_changed_value_reaches_the_file_at_the_next_render(tmp_path):
+    placeholder_vault(tmp_path, BRANCH_CONFIG, BRANCH)
+    run([], tmp_path)
+    placeholder_vault(tmp_path, BRANCH_CONFIG.replace('"trunk"', '"master"'), BRANCH)
+    assert run(["--check"], tmp_path)[0] == 1
+    assert run([], tmp_path)[0] == 0
+    target = tmp_path / "out" / "LANG.md"
+    assert "origin/master" in target.read_text(encoding="utf-8")
+
+
+def test_main_branch_comes_from_the_page_not_from_guppi_toml(tmp_path):
+    placeholder_vault(tmp_path, BRANCH_CONFIG, BRANCH)
+    (tmp_path / "guppi.toml").write_text(
+        'documentation_lang = "en"\nchat_lang = "ru"\nmain_branch = "other"\n',
+        encoding="utf-8",
+        newline="\n",
+    )
+    assert run([], tmp_path)[0] == 0
+    target = tmp_path / "out" / "LANG.md"
+    assert "origin/trunk" in target.read_text(encoding="utf-8")
+
+
+@pytest.mark.parametrize(
+    ("config_text", "named"),
+    [
+        (CONFIG, "needs the key main_branch"),
+        (BRANCH_CONFIG.replace('"trunk"', '"my branch"'), "main_branch = 'my branch'"),
+    ],
+    ids=["missing key", "a space in the value"],
+)
+def test_main_branch_that_cannot_be_resolved_writes_nothing(tmp_path, config_text, named):
+    placeholder_vault(tmp_path, config_text, BRANCH)
+    code, out, err = run([], tmp_path)
+    assert (code, out) == (1, "")
+    assert named in err and "rule-language" in err and "main_branch" in err
+    assert not (tmp_path / "out" / "LANG.md").exists()
+    assert not (tmp_path / "guppi.toml").exists()
+    code, out, err = run(["--sync"], tmp_path)
+    assert (code, out) == (0, "")
+    assert named in err
+
+
 def test_sync_and_check_together_are_a_bad_invocation(tmp_path):
     frame_vault(tmp_path)
     code, _out, _err = run(["--sync", "--check"], tmp_path)

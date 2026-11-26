@@ -47,7 +47,8 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md` (case 73.4): missing, an open `[ ]`
   line under `## Cases` — an open line under `## Work` waits for Work Mode and one under
   `## Ask` for the person, and neither is a finding (cases 356.1, 531.12); a closer — the last segment after ` · ` — none of `case N`, `work`,
-  `defer`, `kept` and `defer case N`; a box that disagrees with its closer — `[x]` takes
+  `defer`, `kept` and `defer case N`, judged by `line_closer`, the judgment that
+  `closed_boxes_without_closer` shares and the hook `guppi frontierguard` imports (case 1069.2); a box that disagrees with its closer — `[x]` takes
   only `case N` or `work`, `[-]` only `defer`, `kept` or `defer case N` (case 451.2);
   `defer` after a source segment — the one standing immediately before the closer — other
   than `sprint`, `kept` after one other than `backlog`; `defer case N` after the source
@@ -115,7 +116,15 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   sprint page `entity-sprint-<id>` — the `ref` of a `create`, the target of an `update` by
   `estimate_target`, the `target` of the live page — gives neither line: the Definition of
   done of a sprint may wait for a later session of it, up to the one that closes it, judged
-  by `ledger.is_sprint_page` (cases 772.4, 772.5);
+  by `ledger.is_sprint_page` (cases 772.4, 772.5); and a `create` of an Estimate, or an
+  `update` carrying `set: {method: …}`, whose `method` reads the transcript of a session in a
+  part by hand, by `lint.reads_a_transcript`, the one predicate, which lint does not run over
+  the live pages, and whose target is no sprint page, by `ledger.is_sprint_page`; and an
+  `update` that keeps such a `method` on a live page whose `target` is no sprint page, by
+  `kept_method`, while its new Criterion, by `new_criterion`, differs from the live one line
+  by line, by `criterion_line`, empty lines aside, so that a Criterion written back word for
+  word gives none, by `kept_transcript_readings`, which `judge` runs since it holds the Cases
+  (case 1071.2);
 - a condition of a schema not met (case 714): a `create` whose page, as `generate` writes
   it, or an `update` whose `set` gives the value a condition starts on, leaves the page
   without a field or a section the condition requires, by `lint.unmet_conditions`, the one
@@ -290,6 +299,7 @@ from guppi.lint import (
     names_a_form,
     names_a_moc_form,
     names_its_event_inside_a_part,
+    reads_a_transcript,
     tied_to_a_one_off_moment,
     unknown_links,
     unmet_conditions,
@@ -736,6 +746,29 @@ def open_box_closers(frontier: str) -> list[tuple[str, str]]:
     return found
 
 
+def line_closer(rest: str) -> re.Match | None:
+    """The closer of a Frontier box line, judged on what follows its item: its last segment
+    after `FRONTIER_SEPARATOR` matched by `CLOSERS`, the whole rest for a line with no
+    separator; None when that segment is no closer. The one judgment by which
+    `check_frontier` reports a closed line with no closer and `closed_boxes_without_closer`
+    names it."""
+    return CLOSERS.match(rest.split(FRONTIER_SEPARATOR)[-1].strip())
+
+
+def closed_boxes_without_closer(frontier: str) -> list[str]:
+    """The item of each box line of a Frontier, under any heading, whose box is `[x]` or `[-]`
+    while `line_closer` finds no closer, a line with no separator included: a line the agent
+    closed at its box and not at its end. The one judgment that the hook
+    `guppi frontierguard` of `.guppi/guppi/frontierguard.py` imports beside
+    `open_box_closers` (case 1069.2)."""
+    items: list[str] = []
+    for line in frontier.splitlines():
+        match = FRONTIER_LINE.match(line)
+        if match and match.group(1) != " " and line_closer(match.group(3)) is None:
+            items.append(match.group(2))
+    return items
+
+
 def conserved_blocks(plan: str, project_dir: Path | None) -> dict[str, dict]:
     """Case id → the merged `then` block of each Case of the conserved Spec whose `spec.md`
     the title line of the plan names, the folder found by `conserved_spec_named` of
@@ -792,7 +825,8 @@ def check_frontier(
     is read: `Backlog: N items` and an indented `- near` line are not (case 451.2).
 
     The closer, the last segment after ` · `, is one of `case N`, `work`, `defer`, `kept`
-    and `defer case N`, and the box agrees with it both ways — `[x]`, an item ended, takes
+    and `defer case N`, judged by `line_closer`, which `closed_boxes_without_closer` shares
+    and the hook `guppi frontierguard` imports through it (case 1069.2), and the box agrees with it both ways — `[x]`, an item ended, takes
     only `case N` or `work`; `[-]`, an item put off, only `defer`, `kept` or
     `defer case N` (case 451.2). The source is the segment standing immediately before the
     closer; the word inside the slug of a title is not the source (case 335). `defer` alone
@@ -825,7 +859,7 @@ def check_frontier(
         if box == " ":
             continue
         segments = [s.strip() for s in rest.split(FRONTIER_SEPARATOR)]
-        closer = CLOSERS.match(segments[-1])
+        closer = line_closer(rest)
         if closer is None:
             findings.append(
                 f"frontier: {item} is closed without case N, work, defer, kept or defer case N"
@@ -1050,6 +1084,15 @@ MOMENT = (
 WAITS = "method waits for another session — a method holds only what runs in its own session"
 KEPT_WAITS = (
     "the method on the page waits for another session — set a method that runs in this session"
+)
+# a transcript reading off a sprint page (case 1071.2)
+TRANSCRIPT = (
+    "method reads the transcript of a session off a sprint page — a lasting method reads a "
+    "text that ships, and a one-off Estimate of the sprint page reads the transcript"
+)
+KEPT_TRANSCRIPT = (
+    "the method on the page reads the transcript of a session — set a method that reads a "
+    "text that ships, and read the transcript by a one-off Estimate of the sprint page"
 )
 # a defer of an Estimate with no page (case 783)
 NO_DEFERRED_ESTIMATE = "no such Estimate page — defer the page it would check"
@@ -1387,7 +1430,10 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     Estimate whose target is a sprint page, by `ledger.is_sprint_page` (case 772.4); a part
     that opens with `after`, or with `by hand, after`, and names its event before a colon
     waits for that event and is no such finding, judged by `lint.waits_for_an_event` through
-    `lint.waits_for_another_session` (case 781). When the
+    `lint.waits_for_another_session` (case 781). Such a `method` that reads the transcript of a
+    session in a part by hand, by `lint.reads_a_transcript`, on an Estimate whose target is no
+    sprint page, is a finding too; a kept `method` that does so is judged by
+    `kept_transcript_readings`, which `judge` runs (case 1071.2). When the
     target of the Estimate is a MOC as the plan leaves it — by `plan_kind` — a `method` that
     names neither a `make <target>`, nor the word `pytest` with a test path, nor "by hand",
     nor, on a MOC with no `parent` as the plan leaves it — by `plan_parent` and
@@ -1437,6 +1483,8 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 ref
             ):  # a method that waits, off a sprint page (cases 670.4, 772.4)
                 findings.append(f"case {case}: create {slug}: {WAITS}")
+            if reads_a_transcript(str(item.get("method") or "")) and not is_sprint_page(ref):
+                findings.append(f"case {case}: create {slug}: {TRANSCRIPT}")  # (case 1071.2)
         for item in block.get("update") or []:
             slug = item.get("slug") if isinstance(item, dict) else None
             if not slug or category_of(slug) != "estimates":
@@ -1460,6 +1508,12 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 and not is_sprint_page(estimate_target(item, project_dir))
             ):  # a method that waits, off a sprint page (cases 670.4, 772.4)
                 findings.append(f"case {case}: update {slug}: {WAITS}")
+            if (
+                method is not None
+                and reads_a_transcript(str(method))
+                and not is_sprint_page(estimate_target(item, project_dir))
+            ):  # a transcript reading off a sprint page (case 1071.2)
+                findings.append(f"case {case}: update {slug}: {TRANSCRIPT}")
             if method is None and kept_method_waits(item, project_dir):  # a kept wait (case 715)
                 findings.append(f"case {case}: update {slug}: {KEPT_WAITS}")
         for item in block.get("defer") or []:  # a defer that writes no page (cases 783, 786)
@@ -1551,6 +1605,32 @@ def kept_method_waits(item: dict, project_dir: Path) -> bool:
     if kept is None or is_sprint_page(kept[1]):
         return False
     return waits_for_another_session(kept[0])
+
+
+def kept_transcript_readings(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
+    """Each `update` of an Estimate that keeps, by `kept_method`, a `method` that reads the
+    transcript of a session in a part by hand, by `lint.reads_a_transcript`, on a live page
+    whose `target` is no sprint page, by `ledger.is_sprint_page`, while its new Criterion, by
+    `new_criterion`, differs from the live `## Criterion` line by line, each line read by
+    `criterion_line` and empty lines aside: a Criterion written back word for word, as to set
+    the Estimate `pending` again, is no new Criterion (case 1071.2)."""
+    findings: list[str] = []
+    for case, block in blocks.items():
+        for item in block.get("update") or []:
+            slug = str(item.get("slug") or "") if isinstance(item, dict) else ""
+            if category_of(slug) != "estimates":
+                continue
+            kept = kept_method(item, project_dir)
+            if kept is None or is_sprint_page(kept[1]) or not reads_a_transcript(kept[0]):
+                continue
+            written = new_criterion(item, "update", case, cases)
+            new = [line for line in map(criterion_line, written.splitlines()) if line]
+            path = wiki_root(project_dir) / "estimates" / f"{slug}.md"
+            live = read_page(path, "estimates").section("## Criterion") or ""
+            old = [line for line in map(criterion_line, live.splitlines()) if line]
+            if new != old:
+                findings.append(f"case {case}: update {slug}: {KEPT_TRANSCRIPT}")
+    return findings
 
 
 def kept_method(item: dict, project_dir: Path) -> tuple[str, str] | None:
@@ -2283,6 +2363,7 @@ def judge(
     findings += check_conditions(blocks, project_dir, schema_free)
     findings += check_required(blocks, records, project_dir, schema_free)
     findings += check_form(blocks, project_dir)
+    findings += kept_transcript_readings(cases, blocks, project_dir)
     findings += check_markers(blocks, project_dir)
     findings += check_pairs(cases, blocks, project_dir)
     findings += check_bare_links(cases, blocks, project_dir)

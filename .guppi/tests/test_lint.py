@@ -974,6 +974,27 @@ def test_waits_the_lint_run_gives_no_finding_on_a_live_page(tmp_path):
     assert run(tmp_path) == (0, [], "")
 
 
+def test_transcript_a_reading_by_hand_that_names_a_transcript_is_accepted():
+    # the predicate pre-spec imports; a `;` splits the parts of a method (case 1071.2)
+    for method in (
+        "by hand, at Retro: the reply read in the transcript of the session",
+        "pytest tests/test_x.py; by hand: the session file under ~/.claude/projects/ read",
+    ):
+        assert lint.reads_a_transcript(method), method
+    for method in (
+        "pytest .guppi/tests/test_x.py over a temp agent transcript",
+        "pytest tests/test_x.py; by hand at the Retro of this session: the Spec read",
+        "uv run --project .guppi guppi render --check; .claude/skills/hi/SKILL.md read",
+    ):
+        assert not lint.reads_a_transcript(method), method
+
+
+def test_transcript_the_lint_run_gives_no_finding_on_a_live_page(tmp_path):
+    method = "pytest tests/test_x.py; by hand, at Retro: the reply read in the transcript"
+    seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method=method))
+    assert run(tmp_path) == (0, [], "")
+
+
 def test_a_moc_method_needs_a_make_target_that_exists(tmp_path):
     wiki = seed(tmp_path, rule=rule_page(status="built"))
     write(

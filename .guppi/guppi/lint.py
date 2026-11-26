@@ -765,6 +765,19 @@ def waits_for_another_session(method: str) -> bool:
     )
 
 
+TRANSCRIPT = re.compile(r"\btranscripts?\b|~/\.claude/projects\b", re.IGNORECASE)
+
+
+def reads_a_transcript(method: str) -> bool:
+    """Whether a `method` reads the transcript of a session: a part between two `;` that
+    holds `by hand`, by `is_reading`, and names the word `transcript` or the folder
+    `~/.claude/projects/`, by `TRANSCRIPT`. A part with no `by hand`, such as a test run over
+    a made-up transcript, reads none. The one predicate of this judgment, which `pre-spec`
+    imports to report such a reading off a sprint page; the lint run does not call it, so the
+    live pages give no finding by it (case 1071.2)."""
+    return any(is_reading(part) and TRANSCRIPT.search(part) for part in method.split(CLAUSE))
+
+
 def check_moment(page: Page) -> list[Finding]:
     """An Estimate whose `method` ties its reading by hand to the first moment after the
     render or the change, by `tied_to_a_one_off_moment`, is one finding of the class `moment`;

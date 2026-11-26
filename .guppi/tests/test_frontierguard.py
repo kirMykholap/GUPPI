@@ -1,5 +1,7 @@
 """`guppi frontierguard`: the `PreToolUse` hook that refuses an `Edit`, a `Write` or a
-`MultiEdit` of a session's `frontier.md` which leaves an open box beside a closer (case 1012).
+`MultiEdit` of a session's `frontier.md` which leaves an open box beside a closer (case 1012)
+or a closed box with no closer (case 1069.2), and a `Bash` or `PowerShell` command that names
+`frontier.md` (case 1069.1).
 Rule page: `vault/wiki/rules/rule-frontier-hook.md`.
 
 Every test feeds the payload through a stream, the shape a hook is really handed; the session
@@ -10,7 +12,7 @@ import io
 import json
 from datetime import UTC, datetime
 
-from guppi import frontierguard
+from guppi import frontierguard, prespec
 
 NOW = datetime(2026, 11, 3, 1, 2, 3, tzinfo=UTC)
 OPEN = "- [ ] C2 — The threshold of the note · brief"
@@ -147,3 +149,81 @@ def test_a_refusal_writes_one_line_to_the_event_log(tmp_path):
     assert len(lines) == 1 and "frontierguard refused Edit" in lines[0]
     assert run(edit(path, "Backlog", "Backlog"), tmp_path) == (0, "")
     assert len(log(tmp_path)) == 1  # a call that passes writes no line
+
+
+def shell(tool, command):
+    fields = {
+        "session_id": "c818d971-be31-4157-ab5d-802bd511827f",
+        "hook_event_name": "PreToolUse",
+        "tool_name": tool,
+        "tool_input": {"command": command},
+    }
+    return io.StringIO(json.dumps(fields))
+
+
+def assert_shell_refused(stdin, project):
+    code, err = run(stdin, project)
+    assert code == 2
+    assert "changes only by an Edit of the whole line or by a Write" in err
+    assert "read by Read or Grep" in err
+    assert "a commit message names the Frontier in words" in err
+
+
+def test_a_bash_sed_on_the_frontier_is_refused_and_logged(tmp_path):
+    path = frontier(tmp_path)
+    assert_shell_refused(shell("Bash", f"sed -i 's/[ ] C2/[x] C2/' {path.as_posix()}"), tmp_path)
+    lines = log(tmp_path)
+    assert len(lines) == 1 and "frontierguard refused Bash" in lines[0]
+
+
+def test_a_powershell_set_content_on_the_frontier_is_refused(tmp_path):
+    path = frontier(tmp_path)
+    assert_shell_refused(shell("PowerShell", f"Set-Content -Path '{path}' -Value x"), tmp_path)
+    assert "frontierguard refused PowerShell" in log(tmp_path)[0]
+
+
+def test_a_cat_of_the_frontier_is_refused(tmp_path):
+    assert_shell_refused(shell("Bash", "cat vault/raw/2026-11-02/2155/frontier.md"), tmp_path)
+
+
+def test_a_commit_whose_message_names_the_frontier_is_refused(tmp_path):
+    assert_shell_refused(shell("Bash", 'git commit -m "close a line of frontier.md"'), tmp_path)
+
+
+def test_the_name_is_matched_in_any_letter_case(tmp_path):
+    assert_shell_refused(shell("Bash", "type vault/raw/2026-11-02/2155/FRONTIER.MD"), tmp_path)
+
+
+def test_shell_commands_that_name_no_frontier_pass(tmp_path):
+    command = "git status && cat vault/raw/2026-11-02/2155/spec.md"
+    assert run(shell("Bash", command), tmp_path) == (0, "")
+    assert run(shell("PowerShell", "Get-ChildItem vault/raw"), tmp_path) == (0, "")
+    assert log(tmp_path) == []
+
+
+def test_an_edit_that_ticks_the_box_of_an_open_line_alone_is_refused(tmp_path):
+    path = frontier(tmp_path)
+    code, err = run(edit(path, "- [ ] C2", "- [x] C2"), tmp_path)
+    assert code == 2
+    assert "C2 has a closed box with no closer" in err and "[x] for an item ended" in err
+
+
+def test_a_write_that_leaves_a_put_off_box_with_no_closer_is_refused(tmp_path):
+    path = frontier(tmp_path)
+    text = FRONTIER.replace(OPEN, OPEN.replace("[ ]", "[-]"))
+    code, err = run(payload("Write", path, content=text), tmp_path)
+    assert code == 2 and "C2 has a closed box with no closer" in err
+
+
+def test_a_line_closed_with_no_separator_is_refused(tmp_path):
+    path = frontier(tmp_path)
+    code, err = run(edit(path, OPEN, "- [x] C2 — The threshold of the note"), tmp_path)
+    assert code == 2 and "C2 has a closed box with no closer" in err
+
+
+def test_the_guard_and_the_check_of_pre_spec_judge_a_closed_box_alike(tmp_path):
+    text = FRONTIER.replace(OPEN, OPEN.replace("[ ]", "[x]")) + "- [-] C9 — no separator\n"
+    path = frontier(tmp_path, text)
+    findings = prespec.check_frontier(path, "frontier.md", {}, {})
+    reported = [f.split()[1] for f in findings if "is closed without" in f]
+    assert reported == prespec.closed_boxes_without_closer(text) == ["C2", "C9"]

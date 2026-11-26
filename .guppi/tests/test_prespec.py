@@ -1566,6 +1566,108 @@ def test_kept_method_a_new_method_a_decision_a_part_or_a_method_of_this_session_
         assert KEPT_WAITS not in out, method
 
 
+# --- a transcript reading off a sprint page (case 1071.2) ---------------------------------
+# `estimate-prespec-hook-reports-a-method-that-reads-a-transcript`
+
+TRANSCRIPT = (
+    "method reads the transcript of a session off a sprint page — a lasting method reads a "
+    "text that ships, and a one-off Estimate of the sprint page reads the transcript"
+)
+KEPT_TRANSCRIPT = (
+    "the method on the page reads the transcript of a session — set a method that reads a "
+    "text that ships, and read the transcript by a one-off Estimate of the sprint page"
+)
+TRANSCRIPT_METHOD = "pytest tests/test_x.py; by hand, at Retro: the reply read in the transcript"
+
+
+def findings_of(out):
+    return [line for line in out.splitlines() if not line.startswith("note:")]
+
+
+def test_transcript_a_create_and_an_update_that_read_one_are_findings(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_estimate(tmp_path)
+    item = NO_FORM_CREATE.replace("Run it and look", f'"{TRANSCRIPT_METHOD}"')
+    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+    assert (code, out.splitlines()) == (1, [f"case 1: create estimate-x-again: {TRANSCRIPT}"])
+    update = (
+        f'update:\n  - slug: estimate-x\n    set: {{method: "{TRANSCRIPT_METHOD}"}}\n'
+        "    change: recut\n"
+    )
+    code, out, _ = check(tmp_path, plan=create_plan(update), ledger=UPDATE_LINE)
+    assert (code, out.splitlines()) == (1, [f"case 1: update estimate-x: {TRANSCRIPT}"])
+
+
+def test_transcript_a_reading_of_an_estimate_of_a_sprint_page_is_clean(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_page(tmp_path, "entities", "entity-sprint-plugin")
+    item = NO_FORM_CREATE.replace("Run it and look", f'"{TRANSCRIPT_METHOD}"')
+    sprint_item = item.replace("ref: rule-x", "ref: entity-sprint-plugin")
+    sprint_line = CREATE_LINE.replace("{ref:rule-x}", "{ref:entity-sprint-plugin}")
+    assert check(tmp_path, plan=create_plan(sprint_item), ledger=sprint_line) == (0, "", "")
+    with_estimate(tmp_path)
+    retarget(tmp_path)
+    update = (
+        f'update:\n  - slug: estimate-x\n    set: {{method: "{TRANSCRIPT_METHOD}"}}\n'
+        "    change: recut\n"
+    )
+    assert check(tmp_path, plan=create_plan(update), ledger=UPDATE_LINE) == (0, "", "")
+
+
+def test_transcript_a_kept_reading_under_a_new_criterion_is_a_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_method(tmp_path, f"'{TRANSCRIPT_METHOD}'")
+    code, out, _ = check(
+        tmp_path, plan=create_plan("update:\n" + ESTIMATE_UPDATE), ledger=UPDATE_LINE
+    )
+    assert (code, findings_of(out)) == (1, [f"case 1: update estimate-x: {KEPT_TRANSCRIPT}"])
+    written = create_plan("update:\n  - slug: estimate-x\n" + WRITTEN + "    change: recut\n")
+    _, out, _ = check(tmp_path, plan=written, ledger=UPDATE_LINE)
+    assert f"case 1: update estimate-x: {KEPT_TRANSCRIPT}" in out.splitlines()
+
+
+def test_transcript_a_criterion_written_back_word_for_word_is_clean(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_method(tmp_path, f"'{TRANSCRIPT_METHOD}'")
+    back = "    set: {status: pending}\n    sections:\n      Criterion: |\n        c\n"
+    plan = create_plan("update:\n  - slug: estimate-x\n" + back + "    change: pending again\n")
+    _, out, _ = check(tmp_path, plan=plan, ledger=UPDATE_LINE)
+    assert KEPT_TRANSCRIPT not in out
+    _, out, _ = check(tmp_path, plan=plan.replace("        c\n", "        d\n"), ledger=UPDATE_LINE)
+    assert f"case 1: update estimate-x: {KEPT_TRANSCRIPT}" in out.splitlines()
+
+
+def test_transcript_a_decision_by_the_person_is_clean(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_method(tmp_path, f"'{TRANSCRIPT_METHOD}'")
+    item = (
+        "  - slug: estimate-x\n    set: {status: passed}\n    sections: {Result: r}\n"
+        "    change: decided\n"
+    )
+    _, out, _ = check(tmp_path, plan=create_plan("update:\n" + item), ledger=UPDATE_LINE)
+    assert KEPT_TRANSCRIPT not in out and TRANSCRIPT not in out
+
+
+def test_transcript_a_reading_that_waits_for_another_session_gives_both_lines(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    method = "by hand in a later session: the transcript read"
+    item = NO_FORM_CREATE.replace("Run it and look", f'"{method}"')
+    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+    assert (code, out.splitlines()) == (
+        1,
+        [
+            f"case 1: create estimate-x-again: {WAITS}",
+            f"case 1: create estimate-x-again: {TRANSCRIPT}",
+        ],
+    )
+
+
+def test_transcript_prespec_imports_the_predicate_of_lint():
+    from guppi import lint
+
+    assert prespec.reads_a_transcript is lint.reads_a_transcript
+
+
 def test_the_keys_of_the_old_shape_are_a_finding_on_every_kind(tmp_path):
     # `contract` on an `update` and `estimate_slug` on a rule's `create` are keys of
     # no item, judged by `item_keys` like any other (case 440)

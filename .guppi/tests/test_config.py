@@ -86,3 +86,43 @@ def test_setup_pending_on_a_text_that_is_not_toml_is_false(tmp_path):
     text = "setup_done = false\ndocumentation_lang = en\n"
     (tmp_path / "guppi.toml").write_text(text, encoding="utf-8", newline="\n")
     assert config.setup_pending(tmp_path) is False
+
+
+# --- the main branch (case 1070.1): `estimate-guppi-config-fills-the-main-branch` ---
+
+
+def write_settings(folder, text):
+    (folder / "guppi.toml").write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_main_branch_is_the_value_of_a_written_guppi_toml(tmp_path):
+    write_settings(tmp_path, SETTINGS + 'main_branch = "master"\n')
+    assert config.main_branch(tmp_path) == "master"
+
+
+def test_main_branch_is_main_for_a_missing_file(tmp_path):
+    assert config.main_branch(tmp_path) == "main"
+
+
+def test_main_branch_is_main_for_a_text_that_does_not_parse(tmp_path):
+    write_settings(tmp_path, "main_branch = master\n")
+    assert config.main_branch(tmp_path) == "main"
+
+
+def test_main_branch_is_main_for_a_missing_key(tmp_path):
+    write_settings(tmp_path, SETTINGS)
+    assert config.main_branch(tmp_path) == "main"
+
+
+@pytest.mark.parametrize("value", ["7", '""', '"my branch"'], ids=["number", "empty", "space"])
+def test_main_branch_refuses_a_value_naming_the_source_and_the_key(tmp_path, value):
+    write_settings(tmp_path, SETTINGS + f"main_branch = {value}\n")
+    with pytest.raises(config.ConfigError, match="guppi.toml: main_branch = "):
+        config.main_branch(tmp_path)
+
+
+def test_main_branch_the_render_and_the_code_share_one_judgment():
+    assert config.branch_in('main_branch = "trunk"\n', "rule-guppi-config") == "trunk"
+    assert config.branch_in(SETTINGS, "rule-guppi-config") is None
+    with pytest.raises(config.ConfigError, match="rule-guppi-config: main_branch"):
+        config.branch_in('main_branch = "a b"\n', "rule-guppi-config")

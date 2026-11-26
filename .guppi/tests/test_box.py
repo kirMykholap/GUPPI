@@ -139,6 +139,26 @@ def test_a_run_from_main_is_a_reason(repo):
     assert reasons(repo) == ["box: the current branch is main — the shared branch never is"]
 
 
+def settings(repo, value):
+    text = f'documentation_lang = "en"\nchat_lang = "ru"\nmain_branch = {value}\n'
+    (repo / "guppi.toml").write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_a_run_from_the_main_branch_guppi_toml_names_is_a_reason(repo):
+    settings(repo, '"trunk"')
+    git(repo, "switch", "-q", "-c", "trunk")
+    assert reasons(repo) == ["box: the current branch is trunk — the shared branch never is"]
+    git(repo, "switch", "-q", "main")
+    assert not [r for r in reasons(repo) if "the shared branch never is" in r]
+
+
+def test_a_main_branch_value_with_a_space_is_one_reason_naming_the_key(repo):
+    settings(repo, '"my branch"')
+    found = reasons(repo)
+    assert len(found) == 1
+    assert found[0].startswith("box: guppi.toml: main_branch = ")
+
+
 def test_a_decision_line_of_the_session_is_a_reason_and_a_defer_is_not(repo):
     ledger(repo, "decision[case 7][defer][rule-later]")
     assert reasons(repo) == []

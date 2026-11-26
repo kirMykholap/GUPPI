@@ -1,0 +1,22 @@
+- 20:16:25 decision[case 1058][update][lesson-plugin-install-writes-a-project-settings-file]{ref:lesson-plugin-install-writes-a-project-settings-file}
+- 20:25:29 decision[case 1059][create][estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine]{ref:entity-sprint-plugin}{tags:sprint,plugin}
+- 12:38:26 decision[case 1060][update][rule-case-protocol]{ref:rule-case-protocol}
+- 12:38:26 decision[case 1060][update][rule-case-build]{ref:rule-case-build}
+- 12:38:26 decision[case 1060][update][rule-prespec]{ref:rule-prespec}
+- 12:38:26 decision[case 1060][update][rule-estimates-schema]{ref:rule-estimates-schema}
+- 12:38:26 decision[case 1060][update][entity-sprint-plugin]{ref:entity-sprint-plugin}
+- 12:38:26 decision[case 1060][create][estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again]{ref:entity-sprint-plugin}{tags:sprint,workflow}
+- 12:44:37 decision[case 1061][update][rule-work-mode]{ref:rule-work-mode}
+- 12:44:37 decision[case 1061][create][estimate-work-mode-runs-the-style-check-before-a-stop]{ref:rule-work-mode}{tags:session,workflow,harness}
+- 13:05:36 decision[case 1063.1][update][rule-case-protocol]{ref:rule-case-protocol}{supersedes:case 1060}
+- 13:05:36 decision[case 1063.1][update][rule-case-build]{ref:rule-case-build}{supersedes:case 1060}
+- 13:05:36 decision[case 1063.1][update][rule-prespec]{ref:rule-prespec}{supersedes:case 1060}
+- 13:05:36 decision[case 1063.1][update][rule-estimates-schema]{ref:rule-estimates-schema}{supersedes:case 1060}
+- 13:05:36 decision[case 1063.1][update][entity-sprint-plugin]{ref:entity-sprint-plugin}{supersedes:case 1060}
+- 13:05:36 decision[case 1063.1][create][estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again]{ref:entity-sprint-plugin}{tags:sprint,workflow}{supersedes:case 1060}
+- 13:05:36 decision[case 1063.2][update][estimate-case-protocol-case-form]{ref:rule-case-protocol}
+- 13:05:36 decision[case 1063.3][update][rule-skill-merge-main]{ref:rule-skill-merge-main}
+- 13:05:36 decision[case 1063.3][update][estimate-skill-merge-main-joins-a-conflicted-page]{ref:rule-skill-merge-main}
+- 13:14:14 estimate[estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine][passed] 2026-11-25, Retro of session 2003, `.guppi/` copied without `.venv/` into the scratchpad folder `uvbuild/`, `uv --version` and `uv sync --project <copy>/.guppi`: uv 0.13.10; `uv sync` created the venv, built and installed `guppi==0.1.0` with 9 packages, exit 0, and printed no warning on `build-system.requires`; `.guppi/pyproject.toml` reads `requires = ["uv_build>=0.11,<0.14"]`, the upper bound kept
+- 13:14:14 estimate[estimate-case-protocol-case-form][passed] 2026-11-25, Retro of session 2003, the Case files of session 2003 read against the Criterion of Case 1063.2: `case-1058.md`, `case-1059.md`, `case-1061.md` and `case-1063.md` (with `### Case 1063.1`–`1063.3`) each open with `## Case N — name` and hold `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` in that order as blockquotes with a `**name:**` first line; each `replace` pair is explained in its `context`; after `/pre-spec` each Case gives an `update` to each Estimate whose Criterion speaks of its change (the `ask-guppi` confirmation closed all nine findings) and none names a passed one-off Estimate; no `tasks` box by hand after Work Mode; the person raised no complaint on length or clarity; `case-1060.md` is superseded by 1063 and `case-1062.md` is empty
+- 13:14:31 lesson[error][lesson-orchestration-case-built-again-in-another-shape-under-its-old-number]{tags:workflow,session} trigger: at /pre-spec of session 2003 the case-guppi of Case 1060, ratified whole, rebuilt it with three sub-cases as a new Case 1062; the main agent sent it back to be built under the number 1060, the case-file check refused that write ("comes back in another shape under its old number — build it again as case 1063"), and a held number 1063 had to be taken root_cause: orchestration.md, which the main agent loads, says a ratified Case changes in Plan Mode through its case-guppi under its own number and names no exception, while the rule that a Case coming back in another shape takes a new number with {supersedes:case N} stands only in the Splitting section of case-schema.md, which the main agent does not load; so the main agent judged the case-guppi wrong on a rule it does not hold

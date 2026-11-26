@@ -53,6 +53,69 @@ It does not fit when:
 Work goes in sprints. `/sprint-open` sets a sprint's goal and its checks of done, and
 `/sprint-close` closes it in a session of its own.
 
+## Key terms
+
+| Term | Meaning |
+|---|---|
+| Case | One decision put to you: its context, the problem, the choices and what "done" means. The agent `case-guppi` builds it; it changes pages of the vault and, through them, the code. |
+| Frontier | The list of open items that `/hi` assembles at the start of a session: what needs a decision, what needs none, and what only you can answer. |
+| Ratify | Your sign-off on a Case in the chat. Nothing in the code or its docs changes without it. |
+| Spec | The Cases ratified in one session, as one plan that you approve and that `/work` runs. |
+| Estimate | A check of done: one promise, one way to check it, and its last result, `pending`, `passed` or `failed`. |
+| Vault page | One file under `vault/wiki/`, named by its slug: a rule, an entity, an Estimate, a decision, a lesson or an insight. |
+| Librarian | The agent `librarian-guppi`, which runs after each session in a clean context and is the only writer of the vault pages. |
+
+## The path of one decision
+
+One answer of yours leaves a trace at each step:
+
+1. **A line in the ledger.** The reply that acknowledges your sign-off carries one line per page
+   the Case changes, and a hook writes them into the ledger of the session.
+2. **A part of the Spec.** The Case enters the plan that you approve, with its tasks.
+3. **The work on a branch.** `/work` runs the tasks on a branch other than `main`, and `/retro`
+   commits them.
+4. **A vault page.** The librarian turns each ledger line into a new or changed page of
+   `vault/wiki/`.
+5. **A harness file.** For a rule page, `guppi render` writes the hook, skill or agent file that
+   the page governs, and from the next session on the harness enforces the rule.
+
+```mermaid
+flowchart LR
+    A[Your answer] --> B[Case built by case-guppi]
+    B --> C[Your sign-off]
+    C --> D[Ledger line]
+    C --> E[Part of the Spec]
+    E --> F["/work on a branch"]
+    D --> G[Librarian's run]
+    F --> G
+    G --> H[Vault page]
+    H --> I["guppi render"]
+    I --> J[Harness file]
+    J --> K[Hooks enforce the rule in the next session]
+```
+
+## What a question looks like
+
+When a Case has a fork, `case-guppi` asks before it builds the Case. A question of a round looks
+like this, shortened:
+
+> ❓ **Q1** - **When the reminder goes out**:
+>
+> **Now:** A booking sends no reminder.
+>
+> **Options:**
+>
+> 🔹 **(a) A day before the booking**
+>   **After:** Each member gets one reminder 24 hours before the slot.
+>
+> 🔹 **(b) An hour before the booking**
+>   **After:** Each member gets one reminder an hour before the slot.
+>
+> ➡️ (a). A day leaves the member time to cancel and frees the slot for someone else.
+
+You answer in plain words, for example "a" or "agreed", or with a choice of your own. The agent
+then builds the Case and shows it with its ledger lines for your sign-off.
+
 ## Main parts
 
 | Part | What it does |

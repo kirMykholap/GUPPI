@@ -1,7 +1,7 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-orchestration]]"
 purpose: Whether each call that dispatches case-guppi passes the effort set by the widest change that its Frontier item, a fix the item offers, an answer to its question or the person's words could make, judged once at the dispatch, or the person's word up to high, holds it to the end of the Case, and passes no model
 method: "by hand, at the Retro of the session that sets this Criterion, the new Render of rule-orchestration in the Spec read against the Criterion; by hand, after a session whose orchestration.md holds that Render: each Agent call of case-guppi in the transcript of that session under ~/.claude/projects/ read against the Criterion, with the Frontier item and the person's words its prompt holds, the transcript in the estimate line"
@@ -30,7 +30,7 @@ The call passes the parameter `effort`, judged once at the dispatch by the wides
 
 ## Result
 
-2026-11-26, /hi of session 1336, transcript ~/.claude/projects/c--PROJECTS-GUPPI/64d3e510-98a4-4064-b510-3e5e3bf57c6a.jsonl of session 2003 and the .meta.json of its subagents: four Agent calls of case-guppi, each passed effort — 1058 low (L132), 1059 medium (L263), 1060 medium (L424), 1061 low (L609) — and each subagent ran at that level; the answers, the findings of /pre-spec and the rebuild of 1060 as 1063 went by SendMessage, no Case was dispatched twice; no call passed model, xhigh or max; the dispatch of ask-guppi (L773) passed no effort; not met: 1060 was dispatched medium on the item C4, which asked only how case-schema.md sets a passed one-off Estimate, text of pages and no code, where the Criterion sets low; 1061 was dispatched low on the item C2, whose first option was that the copy is written only after guppi style is clean, a change to the code of guppi ship, where the Criterion sets medium
+2026-11-26, /hi of session 2333, transcript ~/.claude/projects/c--PROJECTS-GUPPI/86f6e9ab-3ce6-47ac-b6b5-c5e6f1340992.jsonl of session 1515 and the .meta.json of its subagents: three Agent calls of case-guppi, each passed effort high and each subagent ran at high — 1069 on C2, frontierguard judging a shell command (L96), 1070 on C3, config.py judging the value of main_branch and the render refusing it (L301), 1071 on C4, prespec reporting a method that reads a transcript (L302) — each item a change to a hook or a check that judges a text; the answers of the rounds, the second passes, the findings of /pre-spec and the rebuild of 1070 after prespec --check went by SendMessage, no Case was dispatched twice; no call passed model, xhigh or max; the dispatch of ask-guppi (L815) passed no effort
 
 ## History
 
@@ -39,3 +39,4 @@ The call passes the parameter `effort`, judged once at the dispatch by the wides
 - 2026-11-25 updated: the Criterion replaced whole — the level is judged once at the dispatch from the item and the person's words, and stands where the built Case changes more · [[decision-case-1054.1]]
 - 2026-11-26 status: pending → failed · raw/2026-11-26/1336/ledger.md#L1
 - 2026-11-26 updated: the Criterion replaced whole — the level follows the widest change the item, a fix it offers or an answer to its question could make · [[decision-case-1064]]
+- 2026-11-27 status: pending → passed · raw/2026-11-26/2333/ledger.md#L2

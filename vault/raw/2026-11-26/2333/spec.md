@@ -49,8 +49,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-retro-loads-on-a-red-command`
-- [ ] read `estimate-retro-loads-on-a-red-command`
+- [x] update `estimate-retro-loads-on-a-red-command`
+- [x] read `estimate-retro-loads-on-a-red-command`
 ```
 
 ### Case 1072.2 — /retro loads in the Claude Code CLI
@@ -84,7 +84,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-retro-loads-in-the-cli`
+- [x] create `estimate-sprint-plugin-retro-loads-in-the-cli`
 - [ ] read `estimate-sprint-plugin-retro-loads-in-the-cli`
 ```
 
@@ -148,7 +148,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-synthesis-keeps-actioned-by-the-mark`
+- [x] update `estimate-synthesis-keeps-actioned-by-the-mark`
 ```
 
 ## Case 1074 — The README explains its terms and shows the path of a decision
@@ -207,8 +207,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-guppi-repository`
-- [ ] create `estimate-guppi-repository-readme-shows-the-path-of-a-decision`
+- [x] update `entity-guppi-repository`
+- [x] create `estimate-guppi-repository-readme-shows-the-path-of-a-decision`
 - [x] `README.md`: adds a section of key terms, a section on the path of one decision with its diagram in a block tagged `mermaid`, and a section with one shortened question of a round, and keeps each section it holds today.
 - [ ] read `estimate-guppi-repository-readme-shows-the-path-of-a-decision`
 ```
@@ -286,8 +286,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `entity-sprint-plugin`
-- [ ] create `estimate-sprint-plugin-plugin-milestone-holds-the-merge-and-the-close`
-- [ ] `uv run --project .guppi guppi sprint`
-- [ ] read `estimate-sprint-plugin-plugin-milestone-holds-the-merge-and-the-close`
+- [x] update `entity-sprint-plugin`
+- [x] create `estimate-sprint-plugin-plugin-milestone-holds-the-merge-and-the-close`
+- [x] `uv run --project .guppi guppi sprint`
+- [x] read `estimate-sprint-plugin-plugin-milestone-holds-the-merge-and-the-close`
 ```

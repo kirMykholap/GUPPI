@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1068"
-status: current
+status: archived
 defer: ["[[entity-guppi-repository]]"]
+superseded_by: ["[[decision-case-1074]]"]
 origin: raw/2026-11-26/1336/ledger.md#case-1068
 sprint: plugin
 created: 2026-11-26
@@ -26,3 +27,6 @@ README.md gains more information, a diagram among it, as the person asked at the
 ## History
 
 - 2026-11-26 created · raw/2026-11-26/1336/ledger.md#case-1068
+- 2026-11-27 superseded by decision-case-1074 · [[decision-case-1074]]
+- 2026-11-27 archived · superseded
+- 2026-11-27 archived · cleanup

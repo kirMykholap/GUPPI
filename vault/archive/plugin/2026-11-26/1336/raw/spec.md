@@ -53,7 +53,7 @@ update:
 - [x] update `rule-orchestration`
 - [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 - [x] update `estimate-orchestration-dispatches-case-guppi-at-a-level`
-- [ ] read `estimate-orchestration-dispatches-case-guppi-at-a-level`
+- [x] read `estimate-orchestration-dispatches-case-guppi-at-a-level`
 ```
 
 ## Case 1065 — The number of a changed Case is checked once, with its exception

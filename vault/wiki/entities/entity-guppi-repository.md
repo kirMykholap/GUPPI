@@ -2,11 +2,10 @@
 type: entity
 kind: Leaf
 purpose: The repository of GUPPI on GitHub, with rules of its own that a repository of another person who uses GUPPI need not share
-status: built
+status: draft
 parent: "[[entity-guppi]]"
-estimates: ["[[estimate-guppi-repository-remote-on-github]]", "[[estimate-guppi-repository-keeps-the-development-project]]", "[[estimate-guppi-repository-stops-in-the-merge-tasks]]", "[[estimate-guppi-repository-carries-the-mit-license]]"]
+estimates: ["[[estimate-guppi-repository-remote-on-github]]", "[[estimate-guppi-repository-keeps-the-development-project]]", "[[estimate-guppi-repository-stops-in-the-merge-tasks]]", "[[estimate-guppi-repository-carries-the-mit-license]]", "[[estimate-guppi-repository-readme-shows-the-path-of-a-decision]]"]
 rules: ["[[rule-clean-branch]]", "[[rule-github-repository]]"]
-deferred_by: ["[[decision-case-1068]]"]
 code_ref: [README.md, LICENSE]
 origin: raw/2026-10-13/1426/ledger.md#case-795.1
 sprint: plugin
@@ -31,3 +30,7 @@ The repository of GUPPI on GitHub, as a thing of its own. Its rules are `rule-gi
 - 2026-11-23 updated: code_ref names README.md and LICENSE, the files of the repository on GitHub · [[decision-case-1043.1]]
 - 2026-11-23 estimate estimate-guppi-repository-carries-the-mit-license added · [[decision-case-1043.2]]
 - 2026-11-26 deferred · [[decision-case-1068]]
+- 2026-11-27 defer by decision-case-1068 superseded · [[decision-case-1074]]
+- 2026-11-27 updated: README.md gains a section of key terms, the path of one decision with a Mermaid diagram of it, and one short example question of a round · [[decision-case-1074]]
+- 2026-11-27 estimate estimate-guppi-repository-readme-shows-the-path-of-a-decision added · [[decision-case-1074]]
+- 2026-11-27 status: built → draft · cascade

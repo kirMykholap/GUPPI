@@ -380,6 +380,8 @@ entries:
       1336; put off at the close of Plan Mode
   exists: true
   applied: '15:03:37'
+  superseded_by:
+  - '1074'
 - line: 12
   text: 'estimate[estimate-backlog-renders][passed] 2026-11-26, Retro of session 1336, uv run --project
     .guppi python -m pytest .guppi/tests/test_backlog.py: 27 passed, the new tests among them — a line
@@ -958,5 +960,7 @@ decisions:
     problem: No Case of this session decides what information and which diagram `README.md` gains.
   spec: vault/raw/2026-11-26/1336/spec.md
   applied: '15:03:37'
+  superseded_by:
+  - decision-case-1074
 unparsed: []
 session: '1336'

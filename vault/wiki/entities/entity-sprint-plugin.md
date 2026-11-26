@@ -4,8 +4,7 @@ kind: Leaf
 purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the close of a sprint works with no fix by hand"
 status: draft
 parent: "[[entity-sprint]]"
-estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]", "[[estimate-sprint-plugin-link-graph-is-gone]]", "[[estimate-sprint-plugin-frontierguard-build-read-its-folders-readers]]", "[[estimate-sprint-plugin-case-guppi-level-trial-decided]]", "[[estimate-sprint-plugin-done-counts-a-one-off-reading]]", "[[estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine]]", "[[estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again]]", "[[estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting]]", "[[estimate-sprint-plugin-vault-writer-texts-name-the-main-branch]]", "[[estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main]]"]
-deferred_by: ["[[decision-case-1021]]", "[[decision-case-1050]]"]
+estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]", "[[estimate-sprint-plugin-link-graph-is-gone]]", "[[estimate-sprint-plugin-frontierguard-build-read-its-folders-readers]]", "[[estimate-sprint-plugin-case-guppi-level-trial-decided]]", "[[estimate-sprint-plugin-done-counts-a-one-off-reading]]", "[[estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine]]", "[[estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again]]", "[[estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting]]", "[[estimate-sprint-plugin-vault-writer-texts-name-the-main-branch]]", "[[estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main]]", "[[estimate-sprint-plugin-retro-loads-in-the-cli]]", "[[estimate-sprint-plugin-plugin-milestone-holds-the-merge-and-the-close]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-756.1
 sprint: plugin
 created: 2026-10-10
@@ -24,9 +23,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 
 ### The plugin
 
-- the clean version made into a Claude Code plugin
-- [[rule-morph]] — the setup Case that the first `/hi` after `/guppi:install` puts before the opening of the first sprint; the setup skill `/setup` of `rule-skill-setup`, its step in `/hi` and in `/sprint-open`, the key `setup_done` of `guppi.toml`, the pass of the ledger hook for the setup Case while no sprint is open and the clean version that ships `setup_done = false` are built by case 1017; what remains: the readings by hand of its two Estimates in a new project installed from a copy that `guppi ship --allow-draft` writes, until which `rule-morph` and `rule-skill-setup` stay `draft` and the workflow writes nothing to `prod`
-- the README on what the project is and what it is for and on its main parts and its use
+- the merge of `main` into `plugin` — `/merge-main`, a session of its own
 - the close of `plugin` — `/sprint-close`, a session of its own
 
 ## Backlog
@@ -39,6 +36,9 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 
 - The sprint turn and GitHub: the repository on GitHub set up so that a pull request from another person is easy to review (case 794)
 - The name of the main branch: a project whose main branch is not main sets its name at the setup, and the code and the skills read it (case 1070)
+- The clean version made into a Claude Code plugin: written into a local folder by `guppi ship --allow-draft`, it installs into an empty project, `/guppi:install` copies GUPPI there and `/hi` runs there (case 1075)
+- The setup of a new project: `rule-morph` and `rule-skill-setup` built, the setup Case at the first `/hi` after `/guppi:install` before the first sprint (case 1075)
+- The README on what the project is and what it is for and on its main parts and its use, as the person confirmed it (case 1075)
 
 ## History
 
@@ -88,3 +88,8 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-11-26 estimate estimate-sprint-plugin-vault-writer-texts-name-the-main-branch added · [[decision-case-1070.5]]
 - 2026-11-26 estimate estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main added · [[decision-case-1070.7]]
 - 2026-11-26 updated: the Backlog question whether every Estimate that reads a transcript is split is decided: it is, for each Estimate a Case creates, gives a new method or gives a new Criterion · [[decision-case-1071.1]]
+- 2026-11-27 estimate estimate-sprint-plugin-retro-loads-in-the-cli added · [[decision-case-1072.2]]
+- 2026-11-27 defer by decision-case-1021 superseded · [[decision-case-1075]]
+- 2026-11-27 defer by decision-case-1050 superseded · [[decision-case-1075]]
+- 2026-11-27 updated: taken up: the finished items of the milestone The plugin leave for Closed, the merge line stands before the close line; the defers of decision-case-1021 and decision-case-1050 retired · [[decision-case-1075]]
+- 2026-11-27 estimate estimate-sprint-plugin-plugin-milestone-holds-the-merge-and-the-close added · [[decision-case-1075]]

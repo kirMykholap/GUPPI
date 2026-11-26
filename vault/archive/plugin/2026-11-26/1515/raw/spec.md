@@ -235,7 +235,7 @@ update:
 - [x] `.guppi/tests/test_config.py`: tests whose names hold `main_branch`: the value of a written `guppi.toml`; `main` for a missing file, a text that does not parse and a missing key; an error for a value that is a number, empty or holds a space.
 - [x] `.guppi/tests/test_render.py`: tests whose names hold `main_branch`: a Render with `{{main_branch}}` takes `trunk` from the Render of `rule-guppi-config`, the page keeps the placeholder, a changed value reaches the file at the next render, `guppi.toml` does not set it, and a missing key or a value with a space writes nothing and names the key.
 - [x] `uv run --project .guppi guppi render`: `guppi.toml`
-- [ ] read `estimate-guppi-config-fills-the-main-branch`
+- [x] read `estimate-guppi-config-fills-the-main-branch`
 ```
 
 ### Case 1070.2 — The box check refuses the main branch that guppi.toml names

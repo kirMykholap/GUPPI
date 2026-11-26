@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1050"
-status: current
+status: archived
 defer: ["[[entity-sprint-plugin]]"]
+superseded_by: ["[[decision-case-1075]]"]
 origin: raw/2026-11-25/0605/ledger.md#case-1050
 sprint: plugin
 created: 2026-11-25
@@ -26,3 +27,6 @@ The clean version made into a Claude Code plugin, rule-morph and the close of pl
 ## History
 
 - 2026-11-25 created · raw/2026-11-25/0605/ledger.md#case-1050
+- 2026-11-27 superseded by decision-case-1075 · [[decision-case-1075]]
+- 2026-11-27 archived · superseded
+- 2026-11-27 archived · cleanup

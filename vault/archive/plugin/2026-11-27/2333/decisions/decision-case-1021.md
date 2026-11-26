@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1021"
-status: current
+status: archived
 defer: ["[[entity-sprint-plugin]]"]
+superseded_by: ["[[decision-case-1075]]"]
 origin: raw/2026-11-03/1825/ledger.md#case-1021
 sprint: plugin
 created: 2026-11-03
@@ -26,3 +27,6 @@ The milestone The plugin: the clean version installed by hand, the README and th
 ## History
 
 - 2026-11-03 created · raw/2026-11-03/1825/ledger.md#case-1021
+- 2026-11-27 superseded by decision-case-1075 · [[decision-case-1075]]
+- 2026-11-27 archived · superseded
+- 2026-11-27 archived · cleanup

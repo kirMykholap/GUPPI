@@ -13371,3 +13371,47 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-26 rules/rule-guppi-config status: built → draft · cascade · generate
 - 2026-11-26 lessons/lesson-frontier-line-closed-in-two-changes-through-bash archived · insight actioned · generate
 - 2026-11-26 lessons/lesson-frontier-line-closed-in-two-changes-through-bash archived · cleanup
+- 2026-11-27 estimates/estimate-guppi-config-fills-the-main-branch status: pending → passed · raw/2026-11-26/2333/ledger.md#L1 · generate
+- 2026-11-27 estimates/estimate-orchestration-dispatches-case-guppi-at-a-level status: pending → passed · raw/2026-11-26/2333/ledger.md#L2 · generate
+- 2026-11-27 decisions/decision-case-1072 created · raw/2026-11-26/2333/ledger.md#case-1072 · generate
+- 2026-11-27 decisions/decision-case-1072.1 created · raw/2026-11-26/2333/ledger.md#case-1072.1 · generate
+- 2026-11-27 decisions/decision-case-1007 superseded by decision-case-1072.1 · [[decision-case-1072.1]] · generate
+- 2026-11-27 estimates/estimate-retro-loads-on-a-red-command defer by decision-case-1007 superseded · [[decision-case-1072.1]] · generate
+- 2026-11-27 estimates/estimate-retro-loads-on-a-red-command updated: taken up: the Criterion replaced whole, its reading moved to the text of the skill and the --exit-zero tests; the load in the CLI is read by a one-off Estimate of the sprint page; the defer of case 1007 retired · [[decision-case-1072.1]] · generate
+- 2026-11-27 decisions/decision-case-1072.2 created · raw/2026-11-26/2333/ledger.md#case-1072.2 · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-retro-loads-in-the-cli created · [[decision-case-1072.2]] · generate
+- 2026-11-27 entities/entity-sprint-plugin estimate estimate-sprint-plugin-retro-loads-in-the-cli added · [[decision-case-1072.2]] · generate
+- 2026-11-27 decisions/decision-case-1073 created · raw/2026-11-26/2333/ledger.md#case-1073 · generate
+- 2026-11-27 decisions/decision-case-1009 superseded by decision-case-1073 · [[decision-case-1073]] · generate
+- 2026-11-27 estimates/estimate-synthesis-keeps-actioned-by-the-mark defer by decision-case-1009 superseded · [[decision-case-1073]] · generate
+- 2026-11-27 estimates/estimate-synthesis-keeps-actioned-by-the-mark updated: set passed by the person's decision, its Criterion unchanged; the defer of decision-case-1009 taken up · [[decision-case-1073]] · generate
+- 2026-11-27 decisions/decision-case-1074 created · raw/2026-11-26/2333/ledger.md#case-1074 · generate
+- 2026-11-27 decisions/decision-case-1068 superseded by decision-case-1074 · [[decision-case-1074]] · generate
+- 2026-11-27 entities/entity-guppi-repository defer by decision-case-1068 superseded · [[decision-case-1074]] · generate
+- 2026-11-27 entities/entity-guppi-repository updated: README.md gains a section of key terms, the path of one decision with a Mermaid diagram of it, and one short example question of a round · [[decision-case-1074]] · generate
+- 2026-11-27 estimates/estimate-guppi-repository-readme-shows-the-path-of-a-decision created · [[decision-case-1074]] · generate
+- 2026-11-27 entities/entity-guppi-repository estimate estimate-guppi-repository-readme-shows-the-path-of-a-decision added · [[decision-case-1074]] · generate
+- 2026-11-27 decisions/decision-case-1075 created · raw/2026-11-26/2333/ledger.md#case-1075 · generate
+- 2026-11-27 decisions/decision-case-1021 superseded by decision-case-1075 · [[decision-case-1075]] · generate
+- 2026-11-27 entities/entity-sprint-plugin defer by decision-case-1021 superseded · [[decision-case-1075]] · generate
+- 2026-11-27 decisions/decision-case-1050 superseded by decision-case-1075 · [[decision-case-1075]] · generate
+- 2026-11-27 entities/entity-sprint-plugin defer by decision-case-1050 superseded · [[decision-case-1075]] · generate
+- 2026-11-27 entities/entity-sprint-plugin updated: taken up: the finished items of the milestone The plugin leave for Closed, the merge line stands before the close line; the defers of decision-case-1021 and decision-case-1050 retired · [[decision-case-1075]] · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-plugin-milestone-holds-the-merge-and-the-close created · [[decision-case-1075]] · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-plugin-milestone-holds-the-merge-and-the-close status: pending → passed · raw/2026-11-26/2333/ledger.md#L11 · generate
+- 2026-11-27 entities/entity-sprint-plugin estimate estimate-sprint-plugin-plugin-milestone-holds-the-merge-and-the-close added · [[decision-case-1075]] · generate
+- 2026-11-27 estimates/estimate-retro-loads-on-a-red-command status: pending → passed · raw/2026-11-26/2333/ledger.md#L10 · generate
+- 2026-11-27 entities/entity-guppi-repository status: built → draft · cascade · generate
+- 2026-11-27 rules/rule-guppi-config status: draft → built · cascade · generate
+- 2026-11-27 rules/rule-retro status: draft → built · cascade · generate
+- 2026-11-27 rules/rule-synthesis status: draft → built · cascade · generate
+- 2026-11-27 decisions/decision-case-1007 archived · superseded · generate
+- 2026-11-27 decisions/decision-case-1009 archived · superseded · generate
+- 2026-11-27 decisions/decision-case-1021 archived · superseded · generate
+- 2026-11-27 decisions/decision-case-1050 archived · superseded · generate
+- 2026-11-27 decisions/decision-case-1068 archived · superseded · generate
+- 2026-11-27 decisions/decision-case-1007 archived · cleanup
+- 2026-11-27 decisions/decision-case-1009 archived · cleanup
+- 2026-11-27 decisions/decision-case-1021 archived · cleanup
+- 2026-11-27 decisions/decision-case-1050 archived · cleanup
+- 2026-11-27 decisions/decision-case-1068 archived · cleanup

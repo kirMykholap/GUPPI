@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1007"
-status: current
+status: archived
 defer: ["[[estimate-retro-loads-on-a-red-command]]"]
+superseded_by: ["[[decision-case-1072.1]]"]
 origin: raw/2026-11-02/2035/ledger.md#case-1007
 sprint: plugin
 created: 2026-11-02
@@ -26,3 +27,6 @@ Whether /retro loads while guppi test or guppi style finds something, its lines 
 ## History
 
 - 2026-11-02 created · raw/2026-11-02/2035/ledger.md#case-1007
+- 2026-11-27 superseded by decision-case-1072.1 · [[decision-case-1072.1]]
+- 2026-11-27 archived · superseded
+- 2026-11-27 archived · cleanup

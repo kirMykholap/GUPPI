@@ -22,6 +22,8 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - [ ] Whether the Renders of the skills that ship name the main branch by {{main_branch}}, or, in the session of a ratified setup Case, by the name that Case sets, which /sprint-open writes into the prompt of the opening Case, their files by the name that rule-guppi-config sets, and the Purposes of rule-git-context and rule-work-mode by words · pending
 - [ ] Whether the librarian's agent file names the main branch by {{main_branch}}, and the Purposes of rule-page-generation and rule-vault-layout and the rows Librarian and Work Mode of the glossary by words · pending
 - [ ] Whether a new install in a git project made by git init -b master has its setup Case show master as the main branch for correction, its opening Case and Work Mode take master as the main branch in the same session, and its librarian's run write main_branch = "master" into guppi.toml and master into the rendered skills that name the main branch · pending
+- [ ] Whether /retro, called by the agent at the end of /work in the Claude Code CLI, loads whatever guppi test and guppi style find, its lines Tests and Style each ending with the line that names the exit code · pending
+- [x] Whether the milestone The plugin of the sprint page holds the merge line and then the close line alone, and Closed holds the plugin that installs, the setup and the README; read once · passed
 
 ## Milestones
 
@@ -29,9 +31,12 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 
 - [ ] [[rule-clean-branch]], [[estimate-sprint-plugin-ci-writes-a-clean-branch]] — CI that writes a clean version of the project to a branch of its own with no case references in its texts and no session data such as the Frontier or the sprint; what remains: the owner pushes `plugin` and a tag of the form `prod-x.y.z` on its last commit, and the CI run it starts is read by its Estimate; while a page with `core: true` that blocks the build stands — a `draft` one never `built`, or one with an Estimate `failed` — that run writes nothing to `prod` · draft, passed
 
-### [ ] The plugin — 4 items: the clean version made into a Claude Code plugin, [[rule-morph]], the README on what the project is and what it is for and on its main parts and its use, the close of `plugin` — `/sprint-close`, a session of its own
+### [ ] The plugin — 2 items: the merge of `main` into `plugin` — `/merge-main`, a session of its own, the close of `plugin` — `/sprint-close`, a session of its own
 
 ## Closed
 
 - The sprint turn and GitHub: the repository on GitHub set up so that a pull request from another person is easy to review (case 794)
 - The name of the main branch: a project whose main branch is not main sets its name at the setup, and the code and the skills read it (case 1070)
+- The clean version made into a Claude Code plugin: written into a local folder by `guppi ship --allow-draft`, it installs into an empty project, `/guppi:install` copies GUPPI there and `/hi` runs there (case 1075)
+- The setup of a new project: `rule-morph` and `rule-skill-setup` built, the setup Case at the first `/hi` after `/guppi:install` before the first sprint (case 1075)
+- The README on what the project is and what it is for and on its main parts and its use, as the person confirmed it (case 1075)

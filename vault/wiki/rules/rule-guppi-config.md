@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a setting of guppi from being written by hand into the texts that use it, or changed outside a ratified decision
-status: draft
+status: built
 enforcement: render
 implementation_ref: [.guppi/guppi/config.py, .guppi/guppi/commands.py, .guppi/tests/test_config.py, .guppi/tests/test_commands.py]
 governs: guppi.toml
@@ -60,3 +60,4 @@ setup_done = true
 - 2026-11-26 updated: the key main_branch names the main branch; the render fills {{main_branch}} and the code reads it, main where guppi.toml holds no key · [[decision-case-1070.1]]
 - 2026-11-26 estimate estimate-guppi-config-fills-the-main-branch added · [[decision-case-1070.1]]
 - 2026-11-26 status: built → draft · cascade
+- 2026-11-27 status: draft → built · cascade

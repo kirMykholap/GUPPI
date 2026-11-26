@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from reaching the librarian on work nobody reviewed
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
@@ -134,3 +134,4 @@ When the review is done, commit the work: `uv run --project .guppi guppi style` 
 - 2026-11-02 updated: the preamble of /retro runs guppi test and guppi style with --exit-zero, so the skill loads while a test is red · [[decision-case-1003.4]]
 - 2026-11-02 estimate estimate-retro-loads-on-a-red-command added · [[decision-case-1003.4]]
 - 2026-11-02 status: built → draft · cascade
+- 2026-11-27 status: draft → built · cascade

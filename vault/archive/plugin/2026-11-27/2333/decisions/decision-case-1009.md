@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1009"
-status: current
+status: archived
 defer: ["[[estimate-synthesis-keeps-actioned-by-the-mark]]"]
+superseded_by: ["[[decision-case-1073]]"]
 origin: raw/2026-11-02/2035/ledger.md#case-1009
 sprint: plugin
 created: 2026-11-02
@@ -26,3 +27,6 @@ An Insight stays or is born actioned by the mark of a lesson with addressed_by; 
 ## History
 
 - 2026-11-02 created · raw/2026-11-02/2035/ledger.md#case-1009
+- 2026-11-27 superseded by decision-case-1073 · [[decision-case-1073]]
+- 2026-11-27 archived · superseded
+- 2026-11-27 archived · cleanup

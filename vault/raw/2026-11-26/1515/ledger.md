@@ -1,0 +1,40 @@
+- 15:33:30 decision[case 1069.1][update][rule-frontier-hook]{ref:rule-frontier-hook}
+- 15:33:30 decision[case 1069.1][update][rule-hook-registry]{ref:rule-hook-registry}
+- 15:33:30 decision[case 1069.1][create][estimate-frontier-hook-refuses-a-shell-command-on-the-frontier]{ref:rule-frontier-hook}{tags:hooks,harness,session}
+- 15:33:30 decision[case 1069.1][update][insight-orchestration-frontier-closer-leaves-the-box-open]{ref:insight-orchestration-frontier-closer-leaves-the-box-open}
+- 15:33:30 decision[case 1069.2][update][rule-frontier-hook]{ref:rule-frontier-hook}
+- 15:33:30 decision[case 1069.2][update][estimate-frontier-hook-refuses-an-open-box-with-a-closer]{ref:rule-frontier-hook}
+- 16:24:26 decision[case 1070.1][update][rule-guppi-config]{ref:rule-guppi-config}
+- 16:24:26 decision[case 1070.1][create][estimate-guppi-config-fills-the-main-branch]{ref:rule-guppi-config}{tags:harness,render,git}
+- 16:24:26 decision[case 1070.2][update][rule-spec-box]{ref:rule-spec-box}
+- 16:24:26 decision[case 1070.2][update][estimate-spec-box-refuses-a-stale-spec]{ref:rule-spec-box}
+- 16:24:26 decision[case 1070.3][update][rule-morph]{ref:rule-morph}
+- 16:24:26 decision[case 1070.3][update][rule-skill-setup]{ref:rule-skill-setup}
+- 16:24:26 decision[case 1070.3][update][estimate-morph-sets-up-the-project-at-the-first-hi]{ref:rule-morph}
+- 16:24:26 decision[case 1070.3][update][entity-sprint-plugin]{ref:entity-sprint-plugin}
+- 16:24:26 decision[case 1070.4][update][rule-git-context]{ref:rule-git-context}
+- 16:24:26 decision[case 1070.4][update][rule-skill-sprint-open]{ref:rule-skill-sprint-open}
+- 16:24:26 decision[case 1070.4][update][rule-skill-sprint-close]{ref:rule-skill-sprint-close}
+- 16:24:26 decision[case 1070.4][update][rule-work-mode]{ref:rule-work-mode}
+- 16:24:26 decision[case 1070.4][update][rule-where-to-stop]{ref:rule-where-to-stop}
+- 16:24:26 decision[case 1070.4][create][estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting]{ref:entity-sprint-plugin}{tags:sprint,git,harness}
+- 16:24:26 decision[case 1070.5][update][rule-documentation]{ref:rule-documentation}
+- 16:24:26 decision[case 1070.5][update][rule-page-generation]{ref:rule-page-generation}
+- 16:24:26 decision[case 1070.5][update][rule-vault-layout]{ref:rule-vault-layout}
+- 16:24:26 decision[case 1070.5][update][entity-glossary]{ref:entity-glossary}
+- 16:24:26 decision[case 1070.5][create][estimate-sprint-plugin-vault-writer-texts-name-the-main-branch]{ref:entity-sprint-plugin}{tags:sprint,git,harness}
+- 16:24:26 decision[case 1070.6][update][estimate-skill-sprint-close-leads-the-closing-session]{ref:rule-skill-sprint-close}
+- 16:24:26 decision[case 1070.6][update][estimate-skill-sprint-open-merges-the-closed-sprint-branch]{ref:rule-skill-sprint-open}
+- 16:24:26 decision[case 1070.6][update][estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline]{ref:rule-work-mode}
+- 16:24:26 decision[case 1070.7][create][estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main]{ref:entity-sprint-plugin}{tags:sprint,git,plugin}
+- 16:24:26 decision[case 1071.1][update][rule-case-protocol]{ref:rule-case-protocol}
+- 16:24:26 decision[case 1071.1][update][rule-estimates-schema]{ref:rule-estimates-schema}
+- 16:24:26 decision[case 1071.1][update][entity-sprint-plugin]{ref:entity-sprint-plugin}
+- 16:24:26 decision[case 1071.1][create][estimate-case-protocol-splits-a-transcript-reading]{ref:rule-case-protocol}{tags:harness,workflow}
+- 16:24:26 decision[case 1071.2][create][estimate-prespec-hook-reports-a-method-that-reads-a-transcript]{ref:rule-prespec-hook}{tags:harness,workflow}
+- 17:23:38 estimate[estimate-frontier-hook-refuses-a-shell-command-on-the-frontier][passed] 2026-11-26, Retro, uv run --project .guppi pytest .guppi/tests/test_frontierguard.py: 23 passed; a Bash sed -i, a PowerShell Set-Content, a cat, a git commit -m naming frontier.md and FRONTIER.MD are refused by exit 2 with the reason on how the file is changed and read and on a commit message, one event log line each; commands that name no frontier.md exit 0 with no log line; the full guppi test 2034 passed
+- 17:23:38 estimate[estimate-frontier-hook-refuses-an-open-box-with-a-closer][passed] 2026-11-26, Retro, uv run --project .guppi pytest .guppi/tests/test_frontierguard.py: 23 passed; an Edit that ticks a box alone, a Write that leaves [-] with no closer and a line closed with no separator are refused naming each item, the box beside a closer is refused naming its closer, and a test asserts that check_frontier of prespec.py and closed_boxes_without_closer report the same items; test_prespec.py passed unchanged
+- 17:23:38 estimate[estimate-spec-box-refuses-a-stale-spec][passed] 2026-11-26, Retro, uv run --project .guppi pytest .guppi/tests/test_box.py: 16 passed; a run from the main branch that guppi.toml names (trunk) is a reason and a branch main then is not, a value with a space is one reason naming guppi.toml and main_branch, and the run from main with no key keeps its reason word for word
+- 17:23:38 estimate[estimate-morph-sets-up-the-project-at-the-first-hi][passed] 2026-11-26, Retro, vault/raw/2026-11-26/1515/spec.md Case 1070.3: the new Render of rule-skill-setup (its pairs over the live Render) and the new Purpose of rule-morph read against each line of the Criterion: step 2 writes the branch of Branch: into the prompt, the setup Case takes the transcripts folder from the path and the main branch from that branch, main where none, shows each for correction with no question, its update of rule-guppi-config holds main_branch, it holds a render line for each file whose Render names the main branch by the placeholder and step 4 renders them, it asks for no category set and no git remote; the other lines stand in the live texts
+- 17:23:38 estimate[estimate-case-protocol-splits-a-transcript-reading][passed] 2026-11-26, Retro, vault/raw/2026-11-26/1515/spec.md Case 1071.1: the new sentences of rule-case-protocol and rule-estimates-schema say that an Estimate off a sprint page reads no transcript, that such a promise takes a lasting Estimate reading a test, a command or the text of a page in the Spec or its rendered file and a one-off Estimate of the live sprint page with once: true, that this binds each Estimate a Case creates or gives a new method or Criterion, that a Criterion written back word for word is none, and that guppi prespec --check reports a break; the field once names what an agent did in a transcript; the pair of entity-sprint-plugin removes the Backlog question
+- 17:23:38 estimate[estimate-prespec-hook-reports-a-method-that-reads-a-transcript][passed] 2026-11-26, Retro, uv run --project .guppi pytest .guppi/tests/test_prespec.py .guppi/tests/test_lint.py -k transcript: 9 passed; a create and an update with set method that read a transcript give the line, on entity-sprint-plugin none, a kept reading under a new Criterion gives the kept line and one written back word for word none, a decision by the person none, a reading that waits for another session gives both lines, prespec imports lint.reads_a_transcript, a part with no by hand is not accepted, and the lint run over such a live page gives no finding

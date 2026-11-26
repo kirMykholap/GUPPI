@@ -79,7 +79,7 @@ fields:
   core: |
     optional; `true`. It stands only in the clean version of GUPPI that `guppi ship` writes: `guppi ship` writes it into the copy of each `passed` Estimate whose target page carries `core: true` and whose `method` names no `make` target, and lint reads it there; no Estimate of the repository that builds that version carries it (cases 804, 822).
   once: |
-    optional; `true`. It marks a one-time Estimate: one that checks one state of the data once, such as the lines of a file after a run, rather than a behaviour that lasts. Its `target` is the live sprint page `entity-sprint-<id>`, so it leaves with that page at the close of the sprint, keeps no page with `core: true` in `draft` and is never written into the clean version; lint reports an Estimate with `once: true` whose `target` is not a sprint page (as set in case 969.1).
+    optional; `true`. It marks a one-time Estimate: one that checks one state of the data once, such as the lines of a file after a run, rather than a behaviour that lasts. Its `target` is the live sprint page `entity-sprint-<id>`, so it leaves with that page at the close of the sprint, keeps no page with `core: true` in `draft` and is never written into the clean version; lint reports an Estimate with `once: true` whose `target` is not a sprint page (as set in case 969.1). Once it has passed it is not read again: a later Case that changes what it checked gives it no `update` and does not set it `pending`, and a Case that needs that state checked again creates a new one-off Estimate (as set in case 1063.1).
   created: |
     required; date.
   tags: |
@@ -197,3 +197,4 @@ examples:
 - 2026-10-31 updated: the field once marks a one-time Estimate, which targets the live sprint page; the defer of case 963 retired · [[decision-case-969.1]]
 - 2026-10-31 status: built → draft · cascade
 - 2026-11-01 status: draft → built · cascade
+- 2026-11-26 updated: the field once: a passed one-off Estimate is not read again · [[decision-case-1063.1]]

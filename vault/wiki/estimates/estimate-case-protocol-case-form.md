@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-case-protocol]]"
 purpose: A built Case carries the whole contract in given, when and then, in the file the person is sent
 method: one reading by hand of the Cases of a session, at its close
-checked: 2026-10-29
+checked: 2026-11-25
 origin: raw/2026-09-16/1034/ledger.md#case-188
 sprint: migration
 created: 2026-09-16
@@ -24,14 +24,14 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 **＋** In `given`, `when` and `then` each line after the first opens with `**＋**` or `**－**`, a `**－**` line names something of `given` or `when`, `then` holds behaviour only, and none of them holds a count of items — pages, lines, Estimates, Cases, tests; a number that states a condition or a limit stands.
 **＋** `tasks` names by slug each Estimate the Case creates or replaces, and under a line whose item writes content that content stands as sub-points; no `contract` line and no "block N" line.
 **＋** `tasks` holds no `by hand` box whose moment comes after Work Mode of the Case's own session — the librarian's run of that session or a later session; such a check stands as the reading of an Estimate or is left to the `uv run --project .guppi guppi check` of the librarian's run.
-**＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate of that page whose Criterion speaks of the change.
+**＋** A pair under `replace` or `reword` stands only when the Case says what the sentence around each match names; a Case that changes the behaviour of a page gives an `update` to each Estimate of that page whose Criterion speaks of the change, but for a one-off Estimate, one with `once: true`, that has passed, which it gives none.
 **＋** `ratification` holds only the preview of the ledger lines in an untagged fence; in the chat the Case stands as the short text and that `ratification`, as `vault/wiki/orchestration.md` sets the showing, and the reply ends with a plain question.
 **＋** A Case with sub-cases stands in one file and is sent in one reply: the parent's `context`, `problem` and `recommend`, then each sub-case whole, with its own `recommend` when it has one.
 **－** A case number, a count, a line number or a quotation in `context`, `problem` or `recommend` is no fault of the form.
 
 ## Result
 
-2026-10-29, Retro of session 0327: the Case files 898, 899, 900, 901 of raw/2026-10-29/0327/cases: each opens with ## Case N — name and its sub-cases with ### Case N.M; the parent holds context, problem, recommend and each sub-case given, when, then, tasks, ratification, each a blockquote opening **name:** (counts per file: 898 3 sub-cases, 899 10, 900 5, 901 5); the SubagentStop check of rule-case-check passed each file; the by hand boxes of 900.2 ran in Work Mode of this session; the person raised no complaint on the length or clarity of a Case; not every sentence of the four files was read against each line of the Criterion
+2026-11-25, Retro of session 2003, the Case files of session 2003 read against the Criterion of Case 1063.2: `case-1058.md`, `case-1059.md`, `case-1061.md` and `case-1063.md` (with `### Case 1063.1`–`1063.3`) each open with `## Case N — name` and hold `context`, `problem`, `recommend`, `given`, `when`, `then`, `tasks`, `ratification` in that order as blockquotes with a `**name:**` first line; each `replace` pair is explained in its `context`; after `/pre-spec` each Case gives an `update` to each Estimate whose Criterion speaks of its change (the `ask-guppi` confirmation closed all nine findings) and none names a passed one-off Estimate; no `tasks` box by hand after Work Mode; the person raised no complaint on length or clarity; `case-1060.md` is superseded by 1063 and `case-1062.md` is empty
 
 ## History
 
@@ -71,3 +71,5 @@ The file opens with the heading `## Case N — name`, a sub-case with `### Case 
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
 - 2026-10-29 updated: the Criterion replaced whole — it names no Estimate that the clean version does not hold · [[decision-case-901.3]]
 - 2026-10-29 status: pending → passed · raw/2026-10-29/0327/ledger.md#L39
+- 2026-11-26 updated: the Criterion replaced whole — a built Case gives a passed one-off Estimate no update · [[decision-case-1063.2]]
+- 2026-11-26 status: pending → passed · raw/2026-11-25/2003/ledger.md#L21

@@ -4,7 +4,7 @@ kind: Leaf
 purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the close of a sprint works with no fix by hand"
 status: draft
 parent: "[[entity-sprint]]"
-estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]", "[[estimate-sprint-plugin-link-graph-is-gone]]", "[[estimate-sprint-plugin-frontierguard-build-read-its-folders-readers]]", "[[estimate-sprint-plugin-case-guppi-level-trial-decided]]", "[[estimate-sprint-plugin-done-counts-a-one-off-reading]]"]
+estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]", "[[estimate-sprint-plugin-link-graph-is-gone]]", "[[estimate-sprint-plugin-frontierguard-build-read-its-folders-readers]]", "[[estimate-sprint-plugin-case-guppi-level-trial-decided]]", "[[estimate-sprint-plugin-done-counts-a-one-off-reading]]", "[[estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine]]", "[[estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again]]"]
 deferred_by: ["[[decision-case-1021]]", "[[decision-case-1050]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-756.1
 sprint: plugin
@@ -36,7 +36,6 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - The Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session; taken out of rule-spec-box (case 962)
 - The name of the main branch: a project whose main branch is not main sets its name at the setup, and the code and the skills read it; taken out of rule-morph (case 1017.4)
 - Whether every Estimate whose `method` reads the transcript of a session should be a one-off Estimate of the sprint page with `once: true`, with a lasting Estimate beside it whose `method` reads a file that ships, as `rule-estimates-schema` would then set it; the split made once for `estimate-case-build-reads-the-readers-of-a-new-files-folder` (case 1019.4)
-- Whether a one-off Estimate that has passed once is never read again, so that a Case that changes its pages gives it no update and sets it `pending` no more, as `case-schema.md` would then set it; the person's view in session 0816 (case 1057)
 
 ## Closed
 
@@ -82,3 +81,6 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-11-25 deferred · [[decision-case-1050]]
 - 2026-11-25 updated: the Backlog line of the MIT license text of the clean copy leaves, decided by case 1049 and case 1052 · [[decision-case-1052]]
 - 2026-11-25 updated: a one-off Estimate is done when one reading passes, a failed reading not done; the Backlog asks whether a passed one-off Estimate is never read again · [[decision-case-1057.1]]
+- 2026-11-26 estimate estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine added · [[decision-case-1059]]
+- 2026-11-26 updated: the Backlog question whether a passed one-off Estimate is read again is decided: it is not · [[decision-case-1063.1]]
+- 2026-11-26 estimate estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again added · [[decision-case-1063.1]]

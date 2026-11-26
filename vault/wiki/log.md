@@ -13254,3 +13254,34 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-25 lessons/lesson-case-build-puts-a-reading-before-the-render-it-tests archived · insight actioned · generate
 - 2026-11-25 lessons/lesson-case-build-puts-a-reading-before-the-render-it-tests archived · cleanup
 - 2026-11-25 decisions/decision-case-949 archived · cleanup
+- 2026-11-26 decisions/decision-case-1058 created · raw/2026-11-25/2003/ledger.md#case-1058 · generate
+- 2026-11-26 lessons/lesson-plugin-install-writes-a-project-settings-file updated: source set, which its knowledge kind requires · [[decision-case-1058]] · generate
+- 2026-11-26 decisions/decision-case-1059 created · raw/2026-11-25/2003/ledger.md#case-1059 · generate
+- 2026-11-26 estimates/estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine created · [[decision-case-1059]] · generate
+- 2026-11-26 estimates/estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine status: pending → passed · raw/2026-11-25/2003/ledger.md#L20 · generate
+- 2026-11-26 entities/entity-sprint-plugin estimate estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine added · [[decision-case-1059]] · generate
+- 2026-11-26 decisions/decision-case-1060 created · raw/2026-11-25/2003/ledger.md#case-1060 · generate
+- 2026-11-26 decisions/decision-case-1060 superseded by decision-case-1063.1 · [[decision-case-1063.1]] · generate
+- 2026-11-26 decisions/decision-case-1061 created · raw/2026-11-25/2003/ledger.md#case-1061 · generate
+- 2026-11-26 rules/rule-work-mode updated: Work Mode runs guppi style before a stop task, fixes the findings in the files the session changed and puts the others into handoff.md · [[decision-case-1061]] · generate
+- 2026-11-26 estimates/estimate-work-mode-runs-the-style-check-before-a-stop created · [[decision-case-1061]] · generate
+- 2026-11-26 rules/rule-work-mode estimate estimate-work-mode-runs-the-style-check-before-a-stop added · [[decision-case-1061]] · generate
+- 2026-11-26 decisions/decision-case-1063 created · raw/2026-11-25/2003/ledger.md#case-1063 · generate
+- 2026-11-26 decisions/decision-case-1063.1 created · raw/2026-11-25/2003/ledger.md#case-1063.1 · generate
+- 2026-11-26 rules/rule-case-protocol updated: a passed one-off Estimate gets no update from a later Case and is not read again · [[decision-case-1063.1]] · generate
+- 2026-11-26 rules/rule-case-build updated: a passed one-off Estimate that the Case does not name is no contradiction · [[decision-case-1063.1]] · generate
+- 2026-11-26 rules/rule-prespec updated: a passed one-off Estimate that a Case does not name is no finding · [[decision-case-1063.1]] · generate
+- 2026-11-26 rules/rule-estimates-schema updated: the field once: a passed one-off Estimate is not read again · [[decision-case-1063.1]] · generate
+- 2026-11-26 entities/entity-sprint-plugin updated: the Backlog question whether a passed one-off Estimate is read again is decided: it is not · [[decision-case-1063.1]] · generate
+- 2026-11-26 estimates/estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again created · [[decision-case-1063.1]] · generate
+- 2026-11-26 entities/entity-sprint-plugin estimate estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again added · [[decision-case-1063.1]] · generate
+- 2026-11-26 decisions/decision-case-1063.2 created · raw/2026-11-25/2003/ledger.md#case-1063.2 · generate
+- 2026-11-26 estimates/estimate-case-protocol-case-form updated: the Criterion replaced whole — a built Case gives a passed one-off Estimate no update · [[decision-case-1063.2]] · generate
+- 2026-11-26 decisions/decision-case-1063.3 created · raw/2026-11-25/2003/ledger.md#case-1063.3 · generate
+- 2026-11-26 rules/rule-skill-merge-main updated: a merge Case sets no passed one-off Estimate pending · [[decision-case-1063.3]] · generate
+- 2026-11-26 estimates/estimate-skill-merge-main-joins-a-conflicted-page updated: the Criterion replaced whole — a merge Case sets no passed one-off Estimate pending · [[decision-case-1063.3]] · generate
+- 2026-11-26 estimates/estimate-case-protocol-case-form status: pending → passed · raw/2026-11-25/2003/ledger.md#L21 · generate
+- 2026-11-26 lessons/lesson-orchestration-case-built-again-in-another-shape-under-its-old-number created · raw/2026-11-25/2003/ledger.md#L22 · generate
+- 2026-11-26 rules/rule-work-mode status: built → draft · cascade · generate
+- 2026-11-26 decisions/decision-case-1060 archived · superseded · generate
+- 2026-11-26 decisions/decision-case-1060 archived · cleanup

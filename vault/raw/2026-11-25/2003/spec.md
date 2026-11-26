@@ -39,7 +39,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `lesson-plugin-install-writes-a-project-settings-file`
+- [x] update `lesson-plugin-install-writes-a-project-settings-file`
 ```
 
 ## Case 1059 — The build line of the package holds the uv of today
@@ -88,8 +88,8 @@ create:
 
 ```tasks
 - [x] `.guppi/pyproject.toml`: the build line reads `requires = ["uv_build>=0.11,<0.14"]`, and the comment above it says that uv builds with the copy of the build tool it carries when its version is inside the range, downloads one inside the range otherwise, and that the upper bound keeps out a later build tool with breaking changes.
-- [ ] create `estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine`
-- [ ] read `estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine`
+- [x] create `estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine`
+- [x] read `estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine`
 ```
 
 ## Case 1061 — Work Mode runs the style check before a stop task
@@ -152,9 +152,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] create `estimate-work-mode-runs-the-style-check-before-a-stop`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `rule-work-mode`
+- [x] create `estimate-work-mode-runs-the-style-check-before-a-stop`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
 - [ ] read `estimate-work-mode-runs-the-style-check-before-a-stop`
 ```
 
@@ -247,16 +247,16 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `rule-case-build`
-- [ ] update `rule-prespec`
-- [ ] update `rule-estimates-schema`
-- [ ] update `entity-sprint-plugin`
-- [ ] create `estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] update `rule-case-protocol`
+- [x] update `rule-case-build`
+- [x] update `rule-prespec`
+- [x] update `rule-estimates-schema`
+- [x] update `entity-sprint-plugin`
+- [x] create `estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
 - [ ] read `estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again`
 ```
 
@@ -298,8 +298,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-protocol-case-form`
-- [ ] read `estimate-case-protocol-case-form`
+- [x] update `estimate-case-protocol-case-form`
+- [x] read `estimate-case-protocol-case-form`
 ```
 
 ### Case 1063.3 — A merge Case sets no passed one-off Estimate pending
@@ -345,8 +345,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-merge-main`
-- [ ] update `estimate-skill-merge-main-joins-a-conflicted-page`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/merge-main/SKILL.md`
+- [x] update `rule-skill-merge-main`
+- [x] update `estimate-skill-merge-main-joins-a-conflicted-page`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/merge-main/SKILL.md`
 - [ ] read `estimate-skill-merge-main-joins-a-conflicted-page`
 ```

@@ -42,10 +42,10 @@ from guppi.caseid import ID as CASE_ID
 from guppi.caseid import parse, top
 from guppi.event import project_root, session_stamp
 from guppi.materialize import category_of, is_carried_over, split_cases, then_blocks
+from guppi.pages import HISTORY_DATE  # the date of a History line, held once (as set in case 1067)
 
 SPEC_PATH = re.compile(r"vault/raw/(\d{4}-\d\d-\d\d)/(\d{4})/spec\.md")
 DECISION_LINK = re.compile(rf"\[\[decision-case-({CASE_ID})")  # either form (case 788.5)
-HISTORY_DATE = re.compile(r"^- (\d{4}-\d\d-\d\d)\b")
 NAMED_KINDS = ("update", "delete", "defer")
 SHARED_NEVER = "main"
 

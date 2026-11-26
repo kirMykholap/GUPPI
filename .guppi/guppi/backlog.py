@@ -11,9 +11,15 @@ one line per item: each live page whose `deferred_by` is not empty, each Insight
 the list (case 628.12) — read by the item reader of `.guppi/guppi/sprint.py`. A slug of a line of
 the Backlog of an archived sprint page does not stand when the live sprint page names it in
 its `## Milestones` or its `## Backlog`, or when its page stands `built`, `passed` or
-`archived` by `item_statuses` and `is_done` of `.guppi/guppi/sprint.py`, imported; a line of an
-archived Backlog that names no page does not stand when the live sprint page holds a line of
-the same text (case 743.4). A line holds the slug in a code span, the
+`archived` by `item_statuses` and `is_done` of `.guppi/guppi/sprint.py`, imported (case 743.4),
+or when its page stood so on or after the day of the close of that sprint — the date of the
+last line of the `## History` of the archived sprint page that set it `archived` — by the
+status lines of its `## History` that `status_lines` of `.guppi/guppi/pages.py` reads: the
+last dated one before that day, or any dated one on that day or after it, so that a new
+Estimate that sets the page `draft` again does not bring the line back; an archived sprint
+page with no such line gives no day, and a status line with no date is not counted (as set in
+case 1067); a line of an archived Backlog that names no page does not stand when the live
+sprint page holds a line of the same text (case 743.4). A line holds the slug in a code span, the
 page's `purpose` — for an Insight its `pattern` and `severity` — and the count; a line of
 the Backlog that names no page stands by its text, and a slug there without a live page
 by the text after its ` — `. The count of an item is the number of sessions whose
@@ -52,7 +58,7 @@ from guppi.materialize import (
     then_blocks,
     units_with,
 )
-from guppi.pages import Page, read_page, read_vault, wiki_root
+from guppi.pages import Page, read_page, read_vault, status_lines, wiki_root
 from guppi.sprint import DASH, is_done, item_slugs, item_statuses, sprint_page
 
 TARGET = "backlog.md"
@@ -169,11 +175,35 @@ def taken_by(current: Page | None) -> tuple[set[str], set[str]]:
     return slugs, notes
 
 
-def finished(slug: str, by_slug: dict[str, Page], gone: set[str]) -> bool:
+def closed_on(sprint: Page) -> str:
+    """The day of the close of an archived sprint page: the date of the last line of its
+    `## History` that set it `archived`, by `status_lines`; empty when none (as set in case
+    1067)."""
+    days = [date for date, status in status_lines(sprint) if status == "archived" and date]
+    return days[-1] if days else ""
+
+
+def stood_finished(page: Page, day: str) -> bool:
+    """Whether the page stood `built`, `passed` or `archived` on or after `day`: the last
+    dated status line of its `## History` before that day set one of them, or a dated status
+    line on that day or after it set one, by `status_lines` and `is_done`; a line with no date
+    is not counted (as set in case 1067)."""
+    dated = [(date, status) for date, status in status_lines(page) if date]
+    before = [status for date, status in dated if date < day]
+    if before and is_done([before[-1]]):
+        return True
+    return any(date >= day and is_done([status]) for date, status in dated)
+
+
+def finished(slug: str, by_slug: dict[str, Page], gone: set[str], day: str = "") -> bool:
     """A slug whose page stands `built`, `passed` or `archived`, by the one judgment of
-    `.guppi/guppi/sprint.py` (case 743.4)."""
+    `.guppi/guppi/sprint.py` (case 743.4), or whose live page stood so on or after `day`, the
+    day of the close of its sprint, when one is given (as set in case 1067)."""
     statuses, missing = item_statuses([slug], by_slug, gone)
-    return missing is None and is_done(statuses)
+    if missing is None and is_done(statuses):
+        return True
+    page = by_slug.get(slug)
+    return bool(day) and page is not None and stood_finished(page, day)
 
 
 def deferred(
@@ -186,7 +216,8 @@ def deferred(
     """The lines of `## Deferred`: each live page with `deferred_by`, each open Insight,
     each line of the `## Backlog` of each sprint page, live or under `vault/archive/` (case
     628.12), but a line of a closed sprint the live sprint takes or whose page is finished
-    (case 743.4); `gone` holds the slugs of the archive; a slug in `shown` — under a
+    (case 743.4), now or on or after the day of the close of that sprint (as set in case
+    1067); `gone` holds the slugs of the archive; a slug in `shown` — under a
     conserved Spec or of an earlier source — is passed by."""
     live = [p for category in pages.values() for p in category if not p.error]
     by_slug = {p.slug: p for p in live}
@@ -199,6 +230,7 @@ def deferred(
     taken_slugs, taken_texts = taken_by(current)
     for sprint in sprint_pages(pages, archived):
         closed = sprint is not current
+        day = closed_on(sprint) if closed else ""
         for body in item_bodies(sprint.section("## Backlog")):
             slugs = item_slugs(body)
             if not slugs:
@@ -207,8 +239,10 @@ def deferred(
                 continue
             text = body.split(DASH, 1)[1].strip() if DASH in body else ""
             for slug in slugs:
-                if closed and (slug in taken_slugs or finished(slug, by_slug, gone)):
-                    continue  # taken by the live sprint, or its page finished (case 743.4)
+                if closed and (slug in taken_slugs or finished(slug, by_slug, gone, day)):
+                    # taken by the live sprint, or its page finished (case 743.4), now or
+                    # since the close (as set in case 1067)
+                    continue
                 items.append((slug, describe(by_slug.get(slug), text)))
     out: list[str] = []
     seen = set(shown)

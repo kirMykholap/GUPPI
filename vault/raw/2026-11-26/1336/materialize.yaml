@@ -1,0 +1,962 @@
+date: '2026-11-26'
+sprint: plugin
+ledger: vault/raw/2026-11-26/1336/ledger.md
+spec:
+- vault/raw/2026-11-26/1336/spec.md
+entries:
+- line: 1
+  text: 'estimate[estimate-orchestration-dispatches-case-guppi-at-a-level][failed] 2026-11-26, /hi of
+    session 1336, transcript ~/.claude/projects/c--PROJECTS-GUPPI/64d3e510-98a4-4064-b510-3e5e3bf57c6a.jsonl
+    of session 2003 and the .meta.json of its subagents: four Agent calls of case-guppi, each passed effort
+    — 1058 low (L132), 1059 medium (L263), 1060 medium (L424), 1061 low (L609) — and each subagent ran
+    at that level; the answers, the findings of /pre-spec and the rebuild of 1060 as 1063 went by SendMessage,
+    no Case was dispatched twice; no call passed model, xhigh or max; the dispatch of ask-guppi (L773)
+    passed no effort; not met: 1060 was dispatched medium on the item C4, which asked only how case-schema.md
+    sets a passed one-off Estimate, text of pages and no code, where the Criterion sets low; 1061 was
+    dispatched low on the item C2, whose first option was that the copy is written only after guppi style
+    is clean, a change to the code of guppi ship, where the Criterion sets medium'
+  kind: estimate
+  category: estimates
+  slug: estimate-orchestration-dispatches-case-guppi-at-a-level
+  status: failed
+  result: '2026-11-26, /hi of session 1336, transcript ~/.claude/projects/c--PROJECTS-GUPPI/64d3e510-98a4-4064-b510-3e5e3bf57c6a.jsonl
+    of session 2003 and the .meta.json of its subagents: four Agent calls of case-guppi, each passed effort
+    — 1058 low (L132), 1059 medium (L263), 1060 medium (L424), 1061 low (L609) — and each subagent ran
+    at that level; the answers, the findings of /pre-spec and the rebuild of 1060 as 1063 went by SendMessage,
+    no Case was dispatched twice; no call passed model, xhigh or max; the dispatch of ask-guppi (L773)
+    passed no effort; not met: 1060 was dispatched medium on the item C4, which asked only how case-schema.md
+    sets a passed one-off Estimate, text of pages and no code, where the Criterion sets low; 1061 was
+    dispatched low on the item C2, whose first option was that the copy is written only after guppi style
+    is clean, a change to the code of guppi ship, where the Criterion sets medium'
+  origin: raw/2026-11-26/1336/ledger.md#L1
+  applied: '15:03:37'
+- line: 2
+  text: 'estimate[estimate-case-build-settles-form-by-itself][failed] 2026-11-26, /hi of session 1336,
+    the rounds of case-guppi in ~/.claude/projects/c--PROJECTS-GUPPI/64d3e510-98a4-4064-b510-3e5e3bf57c6a/subagents/
+    of session 2003: 7 questions in 6 rounds — 1058 Q1, Q2 (agent-a18f8f113efeaeb61.jsonl L83), 1059 Q1
+    (agent-ad44b54460154459f.jsonl L100), Q2 (L108), 1060 Q1 (agent-a282ffe194ed92d85.jsonl L119), Q2
+    (L175), 1061 Q1 (agent-a480e69e740a0462b.jsonl L106); each asks a fork whose options differ in behaviour,
+    in cost or in what they block, and the two on how a Case is checked (1059 Q2, 1060 Q2) differ in cost
+    and in what they block; 1061, sent the findings of /pre-spec, built the change under 1061; not met:
+    1060, sent the findings of /pre-spec, built the change as a new Case 1062 (L378), then as 1063 with
+    a supersedes mark on case 1060 (L450) after the casecheck hook refused it under 1060 (L430), where
+    the Criterion sets that a change asked by a finding of /pre-spec is built under the number of that
+    Case; case-schema.md (Splitting) and the hook set a new number for a ratified Case that comes back
+    in another shape, an exception the Criterion does not hold'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-build-settles-form-by-itself
+  status: failed
+  result: '2026-11-26, /hi of session 1336, the rounds of case-guppi in ~/.claude/projects/c--PROJECTS-GUPPI/64d3e510-98a4-4064-b510-3e5e3bf57c6a/subagents/
+    of session 2003: 7 questions in 6 rounds — 1058 Q1, Q2 (agent-a18f8f113efeaeb61.jsonl L83), 1059 Q1
+    (agent-ad44b54460154459f.jsonl L100), Q2 (L108), 1060 Q1 (agent-a282ffe194ed92d85.jsonl L119), Q2
+    (L175), 1061 Q1 (agent-a480e69e740a0462b.jsonl L106); each asks a fork whose options differ in behaviour,
+    in cost or in what they block, and the two on how a Case is checked (1059 Q2, 1060 Q2) differ in cost
+    and in what they block; 1061, sent the findings of /pre-spec, built the change under 1061; not met:
+    1060, sent the findings of /pre-spec, built the change as a new Case 1062 (L378), then as 1063 with
+    a supersedes mark on case 1060 (L450) after the casecheck hook refused it under 1060 (L430), where
+    the Criterion sets that a change asked by a finding of /pre-spec is built under the number of that
+    Case; case-schema.md (Splitting) and the hook set a new number for a ratified Case that comes back
+    in another shape, an exception the Criterion does not hold'
+  origin: raw/2026-11-26/1336/ledger.md#L2
+  applied: '15:03:37'
+- line: 3
+  text: 'estimate[estimate-sprint-plugin-readme-describes-the-project][passed] 2026-11-26, /hi of session
+    1336, README.md at the root of the branch plugin, its sections Why, Is it for you?, How a session
+    goes, Main parts, Install, Use, Status, Contributing and License; the person''s answer: the README
+    is fine as it stands, and the person wants to add more information to it, a diagram among it, in a
+    separate Case later'
+  kind: estimate
+  category: estimates
+  slug: estimate-sprint-plugin-readme-describes-the-project
+  status: passed
+  result: '2026-11-26, /hi of session 1336, README.md at the root of the branch plugin, its sections Why,
+    Is it for you?, How a session goes, Main parts, Install, Use, Status, Contributing and License; the
+    person''s answer: the README is fine as it stands, and the person wants to add more information to
+    it, a diagram among it, in a separate Case later'
+  origin: raw/2026-11-26/1336/ledger.md#L3
+  applied: '15:03:37'
+- line: 4
+  text: decision[case 1064][update][rule-orchestration]{ref:rule-orchestration}
+  case: '1064'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-11-26/1336/ledger.md#case-1064
+  decision: decision-case-1064
+  ref: rule-orchestration
+  category: rules
+  replace:
+  - old: 'judged once at the dispatch by what the Frontier item and the person''s words ask the Case to
+      change: `low` for an item that asks to change only the text of pages and no code, and for the setup
+      Case and the opening Case of a sprint; `high` for an item that asks to change a hook, a check or
+      other code that judges a text; `medium` for every other item (as set in cases 1029.1 and 1054.1)'
+    new: 'judged once at the dispatch by the widest change that the Frontier item, each fix its words
+      offer, each answer its question could lead to and the person''s words would make: `low` when each
+      such change touches only the text of pages and no code, and for the setup Case and the opening Case
+      of a sprint; `high` when one such change touches a hook, a check or other code that judges a text;
+      `medium` for every other item, an item where one such change touches other code included (as set
+      in cases 1029.1, 1054.1 and 1064)'
+  change: the level of case-guppi follows the widest change that the item, a fix it offers or an answer
+    to its question could make
+  applied: '15:03:37'
+- line: 5
+  text: decision[case 1064][update][estimate-orchestration-dispatches-case-guppi-at-a-level]{ref:rule-orchestration}
+  case: '1064'
+  kind: update
+  slug: estimate-orchestration-dispatches-case-guppi-at-a-level
+  origin: raw/2026-11-26/1336/ledger.md#case-1064
+  decision: decision-case-1064
+  ref: rule-orchestration
+  category: estimates
+  set:
+    status: pending
+    purpose: Whether each call that dispatches case-guppi passes the effort set by the widest change that
+      its Frontier item, a fix the item offers, an answer to its question or the person's words could
+      make, judged once at the dispatch, or the person's word up to high, holds it to the end of the Case,
+      and passes no model
+  change: the Criterion replaced whole — the level follows the widest change the item, a fix it offers
+    or an answer to its question could make
+  sections:
+    Criterion: 'When:
+
+      The main agent, with `vault/wiki/orchestration.md` loaded, dispatches `case-guppi` by the Agent
+      tool for a Case of Plan Mode or Work Mode.
+
+
+      Then:
+
+      The call passes the parameter `effort`, judged once at the dispatch by the widest change that the
+      Frontier item, each fix its words offer, each answer its question could lead to and the person''s
+      words would make.
+
+      **＋** The level is `low` when each such change touches only the text of pages and no code, and for
+      the setup Case and the opening Case of a sprint.
+
+      **＋** The level is `high` when one such change touches a hook, a check or other code that judges
+      a text.
+
+      **＋** The level is `medium` for every other item, an item where one such change touches other code
+      included.
+
+      **＋** The person''s word on a Case sets another level up to `high`, and the call passes that level.
+
+      **＋** The level holds to the end of the Case, through each `SendMessage`, also where the built Case
+      changes more than its item asked.
+
+      **－** No new dispatch raises the level of a Case.
+
+      **－** No call passes `xhigh` or `max`, and no call passes the parameter `model`.
+
+      **－** The dispatch of `.claude/agents/ask-guppi.md` does not change.'
+  applied: '15:03:37'
+- line: 6
+  text: decision[case 1065][update][estimate-case-build-settles-form-by-itself]{ref:rule-case-build}
+  case: '1065'
+  kind: update
+  slug: estimate-case-build-settles-form-by-itself
+  origin: raw/2026-11-26/1336/ledger.md#case-1065
+  decision: decision-case-1065
+  ref: rule-case-build
+  category: estimates
+  set:
+    status: pending
+    purpose: Whether case-guppi settles a choice of form itself and names it in context, asks in a round
+      only where its options differ in behaviour, in cost or in what they block, and builds a new Case
+      beside a ratified one under a new number with no supersedes mark, the ratified file left as it is
+    method: 'by hand, at the Retro of the session that sets this Criterion, the text of .claude/agents/case-guppi.md
+      read against the Criterion; by hand, after a session whose case-guppi.md holds the Render of rule-case-build:
+      each round of case-guppi in the transcript of that session under ~/.claude/projects/ read against
+      the Criterion, the transcript in the estimate line'
+  change: the Criterion replaced whole — the line on the number of a changed Case dropped, since estimate-case-build-writes-the-case
+    checks it with its exception
+  sections:
+    Criterion: 'When:
+
+      `case-guppi`, following `.claude/agents/case-guppi.md` as rendered from `rule-case-build`, meets
+      on an item a choice that the person''s words do not give.
+
+
+      Then:
+
+      A choice of form is how the work splits into Cases and sub-cases, whether a promise takes a new
+      Estimate, a replaced Criterion or an Estimate that already checks the change, which page holds a
+      thing, and where a fix goes that adds a second behaviour to a ratified Case.
+
+      **＋** It settles a choice of form itself, with no question in a round.
+
+      **＋** The `context` of the Case names the choice, and the person sees it at the showing of the Case.
+
+      **＋** A choice of form whose options differ in behaviour, in cost or in what they block is a fork,
+      and it asks that choice in a round.
+
+      **＋** It asks in a round how a Case is checked only where the Case can give no Estimate, or where
+      the options of that question differ in behaviour, in cost or in what they block.
+
+      **＋** A new Case it builds beside a ratified Case takes the number one above the highest number
+      of the case files and of the decision lines of the session''s ledger, or the free number that the
+      guard of its case file names, and carries no `{supersedes:case N}` mark.
+
+      **＋** The file of that ratified Case stays as it is, and a pair of the new Case whose sentence the
+      ratified Case changed takes that sentence as the ratified Case leaves it.
+
+      **－** A choice of the bound, of a second reasonable `recommend`, of the exceptions or of what is
+      left not done stays a fork.
+
+      **－** A Case that can give no Estimate still asks in a round what its Estimate will check.'
+  applied: '15:03:37'
+- line: 7
+  text: decision[case 1066][update][rule-orchestration]{ref:rule-orchestration}
+  case: '1066'
+  kind: update
+  slug: rule-orchestration
+  origin: raw/2026-11-26/1336/ledger.md#case-1066
+  decision: decision-case-1066
+  ref: rule-orchestration
+  category: rules
+  replace:
+  - old: until then nothing of the change is acted on (cases 438, 441).
+    new: until then nothing of the change is acted on (cases 438, 441). The main agent asks for no number
+      when it sends a ratified Case back, and shows the Case under the number of the `**Case:**` line
+      of the summary of its `case-guppi`, a new number whose decision lines carry `{supersedes:case N}`
+      included, since the Splitting section of `case-schema.md` and the check of the case file of `rule-case-check`
+      set a new number for a Case that comes back in another shape (as set in case 1066).
+  - old: changes through its `case-guppi` under its own number, as in Plan Mode.
+    new: changes through its `case-guppi` as in Plan Mode, under the number that `case-schema.md` sets
+      for it (as set in case 1066).
+  change: the main agent leaves the number of a ratified Case sent back to case-guppi and its check
+  applied: '15:03:37'
+- line: 8
+  text: decision[case 1066][create][estimate-orchestration-leaves-the-number-to-case-guppi]{ref:rule-orchestration}{tags:session,workflow}
+  case: '1066'
+  kind: create
+  slug: estimate-orchestration-leaves-the-number-to-case-guppi
+  origin: raw/2026-11-26/1336/ledger.md#case-1066
+  decision: decision-case-1066
+  ref: rule-orchestration
+  tags:
+  - session
+  - workflow
+  category: estimates
+  fields:
+    kind: QA
+    purpose: Whether the main agent asks for no number when it sends a ratified Case back in Plan Mode
+      and shows it under the number the summary of its case-guppi gives, a new number with supersedes
+      marks included
+    method: 'by hand, at the Retro of this session: the new Render of rule-orchestration in the Spec read
+      against the Criterion; by hand, after a session in which a ratified Case comes back in another shape:
+      the messages of the main agent to its case-guppi and the showing, read in the transcript of that
+      session under ~/.claude/projects/ against the Criterion, the transcript in the estimate line'
+    tags:
+    - session
+    - workflow
+    type: estimate
+  sections:
+    Criterion: 'When:
+
+      In Plan Mode, with `vault/wiki/orchestration.md` loaded, the main agent sends a ratified Case back
+      to its `case-guppi` and that `case-guppi` answers with the summary of the Case.
+
+
+      Then:
+
+      The main agent asks for no number in its message to `case-guppi`.
+
+      **＋** The main agent shows the Case under the number of the `**Case:**` line of the summary.
+
+      **＋** A new number whose decision lines carry `{supersedes:case N}` is shown as it stands, since
+      the Splitting of `vault/wiki/case-schema.md` sets it.
+
+      **－** The main agent does not send the Case back to be built under its old number.'
+  applied: '15:03:37'
+- line: 9
+  text: decision[case 1067][update][rule-backlog]{ref:rule-backlog}
+  case: '1067'
+  kind: update
+  slug: rule-backlog
+  origin: raw/2026-11-26/1336/ledger.md#case-1067
+  decision: decision-case-1067
+  ref: rule-backlog
+  category: rules
+  replace:
+  - old: a line whose pages are all `built`, `passed` or `archived` (case 743.4)
+    new: a line whose pages are all `built`, `passed` or `archived` (case 743.4), or each stood so on
+      or after the day its sprint closed, by the `## History` of each page (as set in case 1067)
+  - old: a line of a closed sprint is taken by the live sprint or its pages are finished,
+    new: a line of a closed sprint is taken by the live sprint or its pages stand finished now or stood
+      so on or after the day its sprint closed, so that a new Estimate that sets a page draft again does
+      not bring the line back,
+  change: a line of the Backlog of a closed sprint leaves backlog.md for good once its pages stood finished
+    on or after the day of the close
+  applied: '15:03:37'
+- line: 10
+  text: decision[case 1067][update][estimate-backlog-renders]{ref:rule-backlog}
+  case: '1067'
+  kind: update
+  slug: estimate-backlog-renders
+  origin: raw/2026-11-26/1336/ledger.md#case-1067
+  decision: decision-case-1067
+  ref: rule-backlog
+  category: estimates
+  set:
+    status: pending
+    purpose: guppi backlog writes backlog.md from the conserved Specs, the pages with deferred_by, the
+      open Insights and the Backlog of each sprint page, live or archived, a line of a closed sprint left
+      out once the live sprint takes it or its pages stand finished now or stood so, by their History,
+      on or after the day that sprint closed, each item with its purpose and its count
+  change: the Criterion replaced whole — a line of a closed sprint leaves for good once its pages stood
+    finished on or after the day of the close
+  sections:
+    Criterion: 'When:
+
+      `uv run --project .guppi guppi backlog` runs over `vault/wiki/`, `vault/raw/` and `vault/archive/`.
+      The librarian runs it after `guppi sprint`, and the skill `carry` runs it after it writes `carry.md`.
+
+      **＋** Or `.guppi/tests/test_backlog.py` runs `.guppi/guppi/backlog.py` over a made-up vault.
+
+
+      Then:
+
+      The script writes `vault/wiki/backlog.md`: the heading `# Backlog`, the line `N items`, then `##
+      Conserved Specs` and `## Deferred`.
+
+      **＋** `## Conserved Specs` holds each session folder under `vault/raw/` that holds `carry.md`. Each
+      has one line that names its `spec.md` and its Cases. Under that line stands one line per item of
+      its `then` blocks, with the kind and the slug, read by the Spec reader of `.guppi/guppi/materialize.py`.
+
+      **＋** `## Deferred` holds one line per item. The items are each live page with a `deferred_by` that
+      is not empty, each Insight whose `status` is `open`, and each line of the `## Backlog` of each `entity-sprint-<id>`,
+      live under `vault/wiki/entities/` or archived under `vault/archive/`. A line holds the slug, the
+      page''s `purpose` (for an Insight, its `pattern` and `severity`) and the count. A Backlog line that
+      names no page stands by its text.
+
+      **＋** The count of an item is the number of sessions whose `frontier.md`, under `vault/raw/` or
+      `vault/archive/`, holds a `[-]` line that names its slug in a code span of its title. It is read
+      by `generate.frontier_marks`, and `.guppi/guppi/backlog.py` holds no copy of that reader.
+
+      **＋** `N` counts the conserved Specs and the lines of `## Deferred`. A slug that stands under a
+      conserved Spec does not stand again under `## Deferred`, and a slug of two sources stands once.
+
+      **＋** A folder whose `carry.md` is gone shows nothing. Its defers enter `## Deferred` through `deferred_by`
+      once `materialize` and `generate` have applied them.
+
+      **＋** One reader of `.guppi/guppi/pages.py` reads each line of `## History` that sets a status,
+      with the status it sets and the date the line opens with. `is_draft_core` of the same module and
+      `.guppi/guppi/backlog.py` judge by it, and it reads the lines that the cascade of `.guppi/guppi/generate.py`
+      and the close of `.guppi/guppi/sprint_close.py` write.
+
+      **－** A slug of a line of the `## Backlog` of an archived sprint page does not stand when the live
+      sprint page names it in its `## Milestones` or its `## Backlog`, or when its page stands `built`,
+      `passed` or `archived`, the statuses that tick an item in `.guppi/guppi/sprint.py`.
+
+      **－** Such a slug does not stand either when its page stood `built`, `passed` or `archived` on or
+      after the day of the close of its sprint. The day of the close is the date of the last line of the
+      `## History` of the archived sprint page that set it `archived`. The page stood so when the last
+      dated status line of its `## History` before that day set one of those statuses, or when a dated
+      status line on that day or after it set one. A new Estimate that sets the page `draft` after that
+      day does not bring the line back.
+
+      **－** An archived sprint page whose `## History` holds no line that set it `archived` gives no day
+      of the close, and a slug of its `## Backlog` is judged by the status of its page alone. A status
+      line with no date is not counted for the day of the close.
+
+      **－** A line of the `## Backlog` of an archived sprint page that names no page does not stand when
+      the live sprint page holds a line of the same text.
+
+      **－** The script writes no page of `vault/wiki/` and no file but `vault/wiki/backlog.md`. The governed-files
+      hook refuses a hand edit of that file.'
+  applied: '15:03:37'
+- line: 11
+  text: decision[case 1068][defer][entity-guppi-repository]{ref:entity-guppi-repository}
+  case: '1068'
+  kind: defer
+  slug: entity-guppi-repository
+  origin: raw/2026-11-26/1336/ledger.md#case-1068
+  decision: decision-case-1068
+  ref: entity-guppi-repository
+  category: entities
+  fields:
+    type: entity
+    purpose: README.md gains more information, a diagram among it, as the person asked at the /hi of session
+      1336; put off at the close of Plan Mode
+  exists: true
+  applied: '15:03:37'
+- line: 12
+  text: 'estimate[estimate-backlog-renders][passed] 2026-11-26, Retro of session 1336, uv run --project
+    .guppi python -m pytest .guppi/tests/test_backlog.py: 27 passed, the new tests among them — a line
+    of a closed sprint leaves for good once its page stood finished since the close (a page set built
+    after the close, and one set built before it and still built on its day, leave; one set built and
+    draft again before the close, and one never set built, stand), the day of the close the last History
+    line that set the sprint page archived, an archived sprint page with no such line judged by the status
+    alone, a status line with no date not counted, the reader status_lines of pages.py reading what the
+    cascade of generate and mark of sprint_close write, and HISTORY_DATE held once in pages.py; uv run
+    --project .guppi guppi test: 2000 passed, 6 skipped, 2 deselected'
+  kind: estimate
+  category: estimates
+  slug: estimate-backlog-renders
+  status: passed
+  result: '2026-11-26, Retro of session 1336, uv run --project .guppi python -m pytest .guppi/tests/test_backlog.py:
+    27 passed, the new tests among them — a line of a closed sprint leaves for good once its page stood
+    finished since the close (a page set built after the close, and one set built before it and still
+    built on its day, leave; one set built and draft again before the close, and one never set built,
+    stand), the day of the close the last History line that set the sprint page archived, an archived
+    sprint page with no such line judged by the status alone, a status line with no date not counted,
+    the reader status_lines of pages.py reading what the cascade of generate and mark of sprint_close
+    write, and HISTORY_DATE held once in pages.py; uv run --project .guppi guppi test: 2000 passed, 6
+    skipped, 2 deselected'
+  origin: raw/2026-11-26/1336/ledger.md#L12
+  applied: '15:03:37'
+- line: 13
+  text: 'estimate[estimate-case-build-settles-form-by-itself][passed] 2026-11-26, Retro of session 1336,
+    .claude/agents/case-guppi.md read against the Criterion of Case 1065: its paragraph on the forks settles
+    a choice of form with no question and names it in context, asks a choice of form whose options differ
+    in behaviour, in cost or in what they block, and asks how a Case is checked only where it can give
+    no Estimate or the options differ so; its paragraph on a ratified Case builds a new Case beside it
+    in its own file with no supersedes mark under the number one above the highest, or the free number
+    the guard names, the ratified file left as it is; and the rounds of case-guppi in ~/.claude/projects/c--PROJECTS-GUPPI/ef3cd6d9-9494-4566-8718-bc93756c850e/subagents/
+    of session 1336: 3 questions in 3 rounds — 1064 Q1 (agent-a1b706ecd3dd0d560.jsonl L61), 1066 Q1 (agent-abaec5a02557caee8.jsonl
+    L62, sent again at L67), 1067 Q1 (agent-ab2c349d37838fdab.jsonl L205) — each a fork whose options
+    differ in behaviour or in cost; Case 1065 asked nothing and named its choice of form in context, and
+    1065, 1066 and 1067, sent the findings of /pre-spec, were built under their own numbers; no new Case
+    beside a ratified one was built in the session'
+  kind: estimate
+  category: estimates
+  slug: estimate-case-build-settles-form-by-itself
+  status: passed
+  result: '2026-11-26, Retro of session 1336, .claude/agents/case-guppi.md read against the Criterion
+    of Case 1065: its paragraph on the forks settles a choice of form with no question and names it in
+    context, asks a choice of form whose options differ in behaviour, in cost or in what they block, and
+    asks how a Case is checked only where it can give no Estimate or the options differ so; its paragraph
+    on a ratified Case builds a new Case beside it in its own file with no supersedes mark under the number
+    one above the highest, or the free number the guard names, the ratified file left as it is; and the
+    rounds of case-guppi in ~/.claude/projects/c--PROJECTS-GUPPI/ef3cd6d9-9494-4566-8718-bc93756c850e/subagents/
+    of session 1336: 3 questions in 3 rounds — 1064 Q1 (agent-a1b706ecd3dd0d560.jsonl L61), 1066 Q1 (agent-abaec5a02557caee8.jsonl
+    L62, sent again at L67), 1067 Q1 (agent-ab2c349d37838fdab.jsonl L205) — each a fork whose options
+    differ in behaviour or in cost; Case 1065 asked nothing and named its choice of form in context, and
+    1065, 1066 and 1067, sent the findings of /pre-spec, were built under their own numbers; no new Case
+    beside a ratified one was built in the session'
+  origin: raw/2026-11-26/1336/ledger.md#L13
+  applied: '15:03:37'
+- line: 14
+  text: 'lesson[error][lesson-frontier-line-closed-in-two-changes-through-bash]{tags:hooks,harness} trigger:
+    at the ratification of Case 1064 in session 1336 the agent''s Edit of vault/raw/2026-11-26/1336/frontier.md
+    added the closer `· case 1064` to the line C4 and kept its box `[ ]`; frontierguard refused the Edit,
+    and the agent then ticked the box alone by `sed -i` through Bash, which frontierguard did not read,
+    so the line stood `[x]` with no closer until a later Edit added it root_cause: frontierguard judges
+    an Edit or a Write of frontier.md and not a Bash command that changes the file, and the agent split
+    the box and the closer of one line into two changes where the guard asks for one edit of the whole
+    line'
+  kind: lesson
+  category: lessons
+  slug: lesson-frontier-line-closed-in-two-changes-through-bash
+  origin: raw/2026-11-26/1336/ledger.md#L14
+  fields:
+    type: lesson
+    kind: error
+    root_cause: frontierguard judges an Edit or a Write of frontier.md and not a Bash command that changes
+      the file, and the agent split the box and the closer of one line into two changes where the guard
+      asks for one edit of the whole line
+  sections:
+    Trigger: at the ratification of Case 1064 in session 1336 the agent's Edit of vault/raw/2026-11-26/1336/frontier.md
+      added the closer `· case 1064` to the line C4 and kept its box `[ ]`; frontierguard refused the
+      Edit, and the agent then ticked the box alone by `sed -i` through Bash, which frontierguard did
+      not read, so the line stood `[x]` with no closer until a later Edit added it
+    Root cause: frontierguard judges an Edit or a Write of frontier.md and not a Bash command that changes
+      the file, and the agent split the box and the closer of one line into two changes where the guard
+      asks for one edit of the whole line
+  tags:
+  - hooks
+  - harness
+  applied: '15:03:37'
+- kind: update
+  category: insights
+  slug: insight-orchestration-frontier-closer-leaves-the-box-open
+  origin: raw/2026-11-26/1336/ledger.md#L14
+  set:
+    children:
+    - lesson-orchestration-closes-a-frontier-line-by-its-closer-alone
+    - lesson-frontier-closer-appended-without-ticking-the-box
+    - lesson-frontier-line-closed-in-two-changes-through-bash
+    status: open
+  change: child lesson-frontier-line-closed-in-two-changes-through-bash added, reopened since the box
+    and the closer were again written in two changes after case 1012 (synthesis)
+  librarian: synthesis
+  applied: '15:03:37'
+- kind: update
+  category: lessons
+  slug: lesson-frontier-line-closed-in-two-changes-through-bash
+  origin: raw/2026-11-26/1336/ledger.md#L14
+  set:
+    status: clustered
+    insight: insight-orchestration-frontier-closer-leaves-the-box-open
+  change: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis)
+  librarian: synthesis
+  applied: '15:03:37'
+decisions:
+- case: '1064'
+  decision: decision-case-1064
+  origin: raw/2026-11-26/1336/ledger.md#case-1064
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  - kind: update
+    category: estimates
+    slug: estimate-orchestration-dispatches-case-guppi-at-a-level
+    ref: rule-orchestration
+  tags: []
+  case_text:
+    context: 'When the main agent dispatches `case-guppi`, it passes the parameter `effort`: `low` for
+      an item that asks to change only the text of pages, `high` for one that asks to change a hook or
+      a check, `medium` for every other item. The reading at the `/hi` of session 1336 set `estimate-orchestration-dispatches-case-guppi-at-a-level`
+      `failed` on two misses of opposite direction: Case 1060 went out at `medium` on an item that asked
+      a question whose answer could only change page text, and Case 1061 went out at `low` on an item
+      whose first offered fix changed the code of `guppi ship`. The root cause is the wording: a question
+      asks no change, so it fell under every other item, and the text names no rule for an item that offers
+      several fixes. The person chose to judge the level by the widest change that the item, any fix its
+      words offer, or any answer its question could lead to would make. The pair changes the one sentence
+      of the Render of `rule-orchestration` that sets the levels (line 39 of the page, in the paragraph
+      on the dispatch); the sentences that follow on the person''s word, on the level holding to the end
+      of the Case and on `xhigh`, `max` and `model` stand. The Criterion of the Estimate is replaced whole,
+      and its `purpose` is set anew since it named what the item asks for; its `method`, a reading of
+      the next session''s transcript, stands. A Grep for `effort|dispatches-case-guppi-at-a-level` over
+      `{vault/wiki,.claude}/**` printed `brief.md`, `orchestration.md`, `.claude/agents/case-guppi.md`,
+      `log.md`, `rule-case-build.md`, `estimate-orchestration-dispatches-case-guppi-at-a-level.md`, `rule-orchestration.md`,
+      `estimate-case-build-writes-the-case.md`, `lesson-harness-empty-grep-taken-as-absence.md`, `estimate-context-size-agents-counts-each-agent.md`
+      and `rule-permissions.md`; outside the two pages this Case changes, the hits name the `effort: medium`
+      field of the agent or the level the call passes, and none states the rule of the levels, so they
+      stand. A Grep for `orchestration\.md|rule-orchestration` over `.guppi/tests/` printed `test_onward.py`
+      and `test_orchestration.py`; a Grep of both for `effort|low|every other item` printed one line of
+      `test_onward.py` on a ratification, not on this sentence, so no test reads the changed text. The
+      ledger of the session holds no `error` lesson, so no mark is added. The sentence around the pair,
+      line 39 of `rule-orchestration`, was read whole: the pair changes only how the level is judged,
+      and the sentences before and after it stand. The check of this file listed the pages, skills and
+      code that name `rule-orchestration` or `orchestration.md`; by their purpose lines and paths they
+      speak of other steps of the main agent, but for `estimate-sprint-plugin-case-guppi-level-trial-decided`,
+      read whole: it measures what the levels saved at the close of the sprint, names no rule of how a
+      level is judged, and stands; `glossary.md` holds no row on `effort` or a level. The lines of the
+      old Criterion that the check notes as not carried are replaced on purpose, since the Criterion is
+      replaced whole.'
+    problem: The rule of the levels does not say how to judge an item that is a question or that offers
+      several fixes, so the main agent judged two such items at levels the Criterion does not set.
+    recommend: "- **How should the level be judged for an item that asks a question or offers several\
+      \ fixes?**\n  - Recommended: (a) judge by the widest change any option of the item could make.\n\
+      \  - Answer: agreed, (a)."
+    given: '`rule-orchestration`: its Render sets the level of the dispatch of `case-guppi`.
+
+      **＋** `vault/wiki/orchestration.md`: the file rendered from that rule.
+
+      **＋** `estimate-orchestration-dispatches-case-guppi-at-a-level`: its Criterion is replaced whole.
+
+      **＋** `.claude/agents/ask-guppi.md`: the agent whose dispatch stays as it is.'
+    when: The main agent, with `vault/wiki/orchestration.md` loaded, dispatches `case-guppi` by the Agent
+      tool for a Case of Plan Mode or Work Mode.
+    then: 'The call passes the parameter `effort`, judged once at the dispatch by the widest change that
+      the Frontier item, each fix its words offer, each answer its question could lead to and the person''s
+      words would make.
+
+      **＋** The level is `low` when each such change touches only the text of pages and no code, and for
+      the setup Case and the opening Case of a sprint.
+
+      **＋** The level is `high` when one such change touches a hook, a check or other code that judges
+      a text.
+
+      **＋** The level is `medium` for every other item, an item where one such change touches other code
+      included.
+
+      **＋** The person''s word on a Case sets another level up to `high`, and the call passes that level.
+
+      **＋** The level holds to the end of the Case, through each `SendMessage`, also where the built Case
+      changes more than its item asked.
+
+      **－** No new dispatch raises the level of a Case.
+
+      **－** No call passes `xhigh` or `max`, and no call passes the parameter `model`.
+
+      **－** The dispatch of `.claude/agents/ask-guppi.md` does not change.'
+  spec: vault/raw/2026-11-26/1336/spec.md
+  applied: '15:03:37'
+- case: '1065'
+  decision: decision-case-1065
+  origin: raw/2026-11-26/1336/ledger.md#case-1065
+  targets:
+  - kind: update
+    category: estimates
+    slug: estimate-case-build-settles-form-by-itself
+    ref: rule-case-build
+  tags: []
+  case_text:
+    context: '`estimate-case-build-settles-form-by-itself` checks how `case-guppi` settles a choice of
+      form. One line of its Criterion also says that `case-guppi`, asked by a message or by a finding
+      of `/pre-spec` to change a Case, builds the change under the number of that Case. That line has
+      no exception. But the Splitting section of `vault/wiki/case-schema.md`, and the check of the case
+      file, set a new number for a Case that has a decision line in the session''s ledger and comes back
+      in another shape, with `{supersedes:case N}` marks. The Render of `rule-case-build` holds that exception:
+      a Case keeps its number outside Work Mode unless `case-schema.md` sets a new one for it (case 870).
+      The reading at the `/hi` of this session, line 2 of the session''s ledger, set the Estimate `failed`
+      on that line alone. In session 2003, Case 1060 was sent the findings of `/pre-spec` and came back
+      with sub-cases. Its `case-guppi` first built it as Case 1062 with a supersedes mark on case 1060
+      (transcript `agent-a282ffe194ed92d85.jsonl` L378). The main agent then sent it back under 1060,
+      and the agent rebuilt it under 1060 with no marks (L425). The check refused that build and named
+      1063 in its output (L426), and the agent quoted that refusal in its `**Fact:**` reply (L430), the
+      line that line 2 of the session''s ledger cites. The main agent then wrote that its message was
+      wrong (L431). The agent built 1063 with `{supersedes:case 1060}` (L450), and the ledger of session
+      2003 holds those lines. So the agent followed `case-schema.md`, and the Criterion is wrong. The
+      rule of the number is already in the Criterion of `estimate-case-build-writes-the-case`, with the
+      exception: it says that a Case keeps its number outside Work Mode unless `case-schema.md` sets a
+      new one for it. That Estimate is `passed`. So this Case drops the line from `estimate-case-build-settles-form-by-itself`
+      and does not write the exception there a second time, since `case-schema.md` sets that nothing is
+      signed twice or in two wordings. That is a choice of form, and the line of `estimate-case-build-writes-the-case`
+      that points to this Estimate for how a change is built still holds: this Estimate still checks where
+      a fix goes that adds a second behaviour, and the new Case beside a ratified one. The `purpose` loses
+      the same clause. The first part of the `method` reads a new Render in the Spec, and this Case writes
+      no new Render, so the `method` reads the live `.claude/agents/case-guppi.md` at Retro instead. The
+      Render of `rule-case-build` already states the exception, so it does not change. The main agent
+      sent the Case back under its old number, and that is the Frontier item C2 (`orchestration.md`),
+      which is not built yet; this Case does not change `orchestration.md`. A Grep for `estimate-case-build-settles-form-by-itself`
+      over `{vault/wiki,.claude,.guppi}/**` printed four files: `brief.md`, `log.md`, `rule-case-build.md`
+      (its `estimates` list) and `estimate-case-build-writes-the-case.md`. No test of `.guppi/tests/`
+      names the page. The session''s ledger holds no `error` lesson, so no `{addresses:...}` mark is set.'
+    problem: The Criterion of `estimate-case-build-settles-form-by-itself` says that a change is always
+      built under the number of its Case. `case-schema.md` sets a new number for a ratified Case that
+      comes back in another shape. So a correct build reads as `failed`.
+    recommend: '- Recommended: drop the line on the number from the Criterion of `estimate-case-build-settles-form-by-itself`,
+      because `estimate-case-build-writes-the-case` already checks that rule with its exception; set its
+      `purpose` and `method` anew.
+
+      - Answer: ratified as built'
+    given: '`estimate-case-build-settles-form-by-itself`: its Criterion is replaced whole, and its `purpose`
+      and `method` are set anew.
+
+      **＋** `estimate-case-build-writes-the-case`: the Estimate that checks the number of a changed Case,
+      with its exception.
+
+      **＋** `rule-case-build`: its Render is `.claude/agents/case-guppi.md`, the text the agent follows.
+
+      **＋** `vault/wiki/case-schema.md`: its Splitting sets the new number of a ratified Case that comes
+      back in another shape.'
+    when: '`case-guppi`, following `.claude/agents/case-guppi.md` as rendered from `rule-case-build`,
+      meets on an item a choice that the person''s words do not give.'
+    then: 'A choice of form is how the work splits into Cases and sub-cases, whether a promise takes a
+      new Estimate, a replaced Criterion or an Estimate that already checks the change, which page holds
+      a thing, and where a fix goes that adds a second behaviour to a ratified Case.
+
+      **＋** It settles a choice of form itself, with no question in a round.
+
+      **＋** The `context` of the Case names the choice, and the person sees it at the showing of the Case.
+
+      **＋** A choice of form whose options differ in behaviour, in cost or in what they block is a fork,
+      and it asks that choice in a round.
+
+      **＋** It asks in a round how a Case is checked only where the Case can give no Estimate, or where
+      the options of that question differ in behaviour, in cost or in what they block.
+
+      **＋** A new Case it builds beside a ratified Case takes the number one above the highest number
+      of the case files and of the decision lines of the session''s ledger, or the free number that the
+      guard of its case file names, and carries no `{supersedes:case N}` mark.
+
+      **＋** The file of that ratified Case stays as it is, and a pair of the new Case whose sentence the
+      ratified Case changed takes that sentence as the ratified Case leaves it.
+
+      **－** A choice of the bound, of a second reasonable `recommend`, of the exceptions or of what is
+      left not done stays a fork.
+
+      **－** A Case that can give no Estimate still asks in a round what its Estimate will check.'
+  spec: vault/raw/2026-11-26/1336/spec.md
+  applied: '15:03:37'
+- case: '1066'
+  decision: decision-case-1066
+  origin: raw/2026-11-26/1336/ledger.md#case-1066
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-orchestration
+    ref: rule-orchestration
+  - kind: create
+    category: estimates
+    slug: estimate-orchestration-leaves-the-number-to-case-guppi
+    ref: rule-orchestration
+  tags:
+  - session
+  - workflow
+  case_text:
+    context: 'When a ratified Case changes in Plan Mode, the main agent sends it back to its `case-guppi`,
+      and the new file is shown and ratified again. The Render of `rule-orchestration` says so, in the
+      paragraph on showing and signing a Case. On the number, that paragraph says only that a Case ratified
+      in Work Mode, none of whose tasks has run, changes under its own number, as in Plan Mode, and so
+      it sets the old number in Plan Mode with no exception, as the root cause of the lesson below says.
+      The rule that a ratified Case that comes back in another shape takes a new number, its decision
+      lines carrying `{supersedes:case N}`, stands in the Splitting section of `vault/wiki/case-schema.md`,
+      which the main agent does not load. In session 2003 the main agent sent the `case-guppi` of Case
+      1060 back to build under 1060; the check of the case file refused that build, and the Case was built
+      as 1063 superseding 1060, as `lesson-orchestration-case-built-again-in-another-shape-under-its-old-number`
+      records. The person chose to leave the number to `case-guppi` and its check, with a pointer to the
+      rule, and not to copy the rule into `orchestration.md`, so that it stands in one wording. The first
+      pair adds one sentence after the sentence that ends with "(cases 438, 441)" in that paragraph. The
+      second pair rewords the sentence on a Case ratified in Work Mode so that it changes as in Plan Mode,
+      under the number that `case-schema.md` sets for it, and no longer sets the old number with no exception;
+      the other sentences on Work Mode stand, since there a new number is already set. These findings
+      came from `/pre-spec`. Cases 1065 and 1067 are built at the same time as this one, so their files
+      were not read in this build. No Estimate of `rule-orchestration` checks the number: their `purpose`
+      lines were read, and `estimate-orchestration-shows-the-built-case` is the one whose Criterion speaks
+      of a ratified Case that changes. Its lines say the Case changes through its `case-guppi` and is
+      ratified again, and that in Work Mode it is not built again under its own number; the new sentence
+      makes none of them false, so it stands. Making that Estimate check the number too would mean replacing
+      its long Criterion whole, so this Case creates a new Estimate instead. That is a choice of form.
+      A Grep for `under its own number|in its prose as in its body` over `{vault/wiki,.claude,.guppi/guppi,.guppi/tests}/**`
+      printed `.claude/agents/case-guppi.md`, `.claude/skills/work/SKILL.md`, `.guppi/guppi/ratified.py`,
+      `estimate-case-build-writes-the-case.md`, `estimate-orchestration-shows-the-built-case.md`, `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds.md`,
+      the lesson, `log.md`, `orchestration.md`, `rule-case-build.md`, `rule-orchestration.md` and `rule-work-mode.md`.
+      The hits outside the page this Case changes speak of Work Mode, of the side of `case-guppi`, which
+      Case 1065 checks, or of the guard of the case file, and none says the main agent picks the number,
+      so they stand. Case 1064 changes another sentence of the same Render, on the level of the dispatch,
+      and the two pairs do not overlap. A Grep for `orchestration\.md|rule-orchestration` over `.guppi/tests/`
+      printed `test_onward.py` and `test_orchestration.py`; the second tests the two examples only, and
+      the line of the first is the one Case 1064 found on a ratification, so no test reads the changed
+      sentence. The check of this file listed the pages, skills and code that name `rule-orchestration`
+      or `orchestration.md`; by their purpose lines and paths they speak of other steps of the main agent
+      or of other rules, and `estimate-orchestration-signs-a-batch-together`, whose purpose speaks of
+      a ratified Case sent back, checks only that it is shown in a batch, not its number, so all of them
+      stand. The lesson was written in session 2003, and the ledger of this session holds no `error` lesson,
+      so no `{addresses:...}` mark is set.'
+    problem: '`orchestration.md` gives the main agent no rule for the number of a ratified Case that comes
+      back in another shape, so the main agent sent back a correct build under a new number.'
+    recommend: "- **What should the orchestration file say about the number of a ratified Case that comes\
+      \ back changed?**\n  - Recommended: (a) leave the number to case-guppi and point to the rule.\n\
+      \  - Answer: agreed, (a)."
+    given: '`rule-orchestration`: its Render sets how a ratified Case changes through its `case-guppi`.
+
+      **＋** `vault/wiki/orchestration.md`: the file rendered from that rule.
+
+      **＋** `estimate-orchestration-leaves-the-number-to-case-guppi`: the new check of the number of a
+      changed Case.
+
+      **＋** `vault/wiki/case-schema.md`: its Splitting sets the new number of a Case that comes back in
+      another shape.'
+    when: In Plan Mode, with `vault/wiki/orchestration.md` loaded, the main agent sends a ratified Case
+      back to its `case-guppi` and that `case-guppi` answers with the summary of the Case.
+    then: 'The main agent asks for no number in its message to `case-guppi`.
+
+      **＋** The main agent shows the Case under the number of the `**Case:**` line of the summary.
+
+      **＋** A new number whose decision lines carry `{supersedes:case N}` is shown as it stands, since
+      the Splitting of `vault/wiki/case-schema.md` sets it.
+
+      **－** The main agent does not send the Case back to be built under its old number.'
+  spec: vault/raw/2026-11-26/1336/spec.md
+  applied: '15:03:37'
+- case: '1067'
+  decision: decision-case-1067
+  origin: raw/2026-11-26/1336/ledger.md#case-1067
+  targets:
+  - kind: update
+    category: rules
+    slug: rule-backlog
+    ref: rule-backlog
+  - kind: update
+    category: estimates
+    slug: estimate-backlog-renders
+    ref: rule-backlog
+  tags: []
+  case_text:
+    context: '`guppi backlog` writes `vault/wiki/backlog.md`, the list of deferred work. One of its sources
+      is the `## Backlog` of each closed sprint page under `vault/archive/`. A line there that names a
+      page leaves the list only while that page stands `built`, `passed` or `archived` at the moment of
+      the run (`deferred` and `finished` of `.guppi/guppi/backlog.py`, read whole, with `item_slugs`,
+      `item_statuses` and `is_done` of `.guppi/guppi/sprint.py`, read whole; case 743.4). A page goes
+      from `built` back to `draft` each time a Case gives it a new Estimate that has not been read. So
+      the line comes back, though nobody put the work off. The brief reports this for `rule-work-mode`:
+      the `## Backlog` of the archived `vault/archive/migration/2026-10-10/1555/entities/entity-sprint-migration.md`
+      names it, and the cascade set it `draft` when Case 1061 added `estimate-work-mode-runs-the-style-check-before-a-stop`.
+      Its line in `backlog.md` says `put off in 31 sessions`. A Grep of ``^- \[-\].*`rule-work-mode` ``
+      over the `frontier.md` files of `vault/` printed 31 files, all under `vault/archive/migration/`,
+      so every put-off it counts comes from before the close of that sprint. The work that line stood
+      for already stands as a note on the live sprint page `entity-sprint-plugin`, which Case 962 put
+      there; that Case accepted that the archived line may leave once the page stands `built`. The History
+      of `rule-work-mode` sets it `built` on 2026-10-08 and `draft` on 2026-10-14, so it stood `built`
+      on the day of the close, and sets it `built` again on 2026-10-31 and on 2026-11-23. That day is
+      the date of the line of the archived sprint page `2026-10-10 status: draft → archived · the close
+      of sprint migration (sprint-close)`, which `mark` of `.guppi/guppi/sprint_close.py` (read whole)
+      writes. The person chose that such a line leaves for good once its page has stood finished on or
+      after the day its sprint closed. So at the librarian''s run of this session the `rule-work-mode`
+      line leaves `backlog.md`, and the `rule-spec-box` line, which stood `built` on 2026-11-02, does
+      not come back when that page gets a new Estimate. A line whose page has not been finished since
+      the close still stands. The rule `rule-one-judgment-one-implementation` governs the new reader of
+      History lines. `pages.py` already reads a History line that set a page `built`: `SET_BUILT` and
+      `is_draft_core`, read whole (case 996.1). `box.py` reads the date of a History line by `HISTORY_DATE`
+      in `history_cases`, read whole. A Grep of `SET_BUILT|HISTORY_DATE|is_draft_core` over `.guppi/`
+      printed `box.py`, `lint.py`, `pages.py`, `ship.py`, `test_lint.py` and `test_ship.py`. The status
+      lines are written by `Vault.history` of `.guppi/guppi/generate.py` (read whole), which writes `-
+      <date> <what> · <pointer>`. A Grep of `status: \{` over `.guppi/guppi/` printed `generate.py`, at
+      two calls of `history` that pass `status: <before> → <after>`, and `sprint_close.py`, at `mark`;
+      a third call of `history` in `generate.py`, seen in an earlier Grep, passes `status: pending → <status>`
+      for a reading. So the Case puts one reader of a status line and of the date of a History line in
+      `pages.py`. `is_draft_core` and `backlog.py` judge by it, and `box.py` imports the date pattern
+      instead of its own copy. A test runs the writers and the reader over one page and asserts they agree.
+      The test `test_a_page_the_cascade_set_built_then_draft_again_is_no_draft_core` of `.guppi/tests/test_lint.py`
+      already does this for `is_draft_core`. The two sides could part on a status line with no date: `SET_BUILT`
+      accepts one, and the new reader accepts it too, with no date. So `is_draft_core` answers as before,
+      and `backlog.py` takes no day from such a line. A Grep of `^- ([^0-9]|[0-9]{1,3}[^0-9]).*\bstatus:
+      \S+ → ` over `vault/wiki/` printed nothing, so no live page holds such a line. `is_draft_core` accepts
+      the same pages as before. So the Criterion lines that name it stand, read by a Grep with lines of
+      context in `estimate-lint-checks-the-statuses`, `estimate-clean-branch-refuses-a-draft-core-page`,
+      `rule-clean-branch` and `.guppi/guppi/ship.py`. The other files that name `pages.py`, `box.py` or
+      `guppi backlog` were judged by their purpose line or their path and speak of something else. `rule-page-read`
+      and its Estimates speak of the cut of a History in a Read. `check.py` and `cli.py` were judged by
+      their path, and the Case changes no function of `pages.py` that they import by name in the test
+      `test_lint_check_and_cli_judge_whether_ship_stands_by_one_function_draft_core`, read whole. Of the
+      files that name `box.py` or `guppi box`, none imports `HISTORY_DATE`, by the Grep above. The rest
+      name `guppi backlog` as a step they run or a file they load, and the row of `backlog.md` in `glossary.md`,
+      read by a Grep, says nothing of when a line of a closed sprint leaves. The files that name `rule-backlog`
+      or `backlog.md` were judged by their purpose line or path too. `rule-harness` and `estimate-harness-pipeline`
+      list the rules of the harness. The pages of `/hi`, of the loaded context, of the Frontier and of
+      the opening of a sprint load the list, count its items or close a line of it. The schemas name the
+      field that puts an Estimate or an Insight into the list. `rule-brief` keeps the deferred items out
+      of the brief. `test_ship.py`, read by a Grep with lines of context, checks the skeleton of the file
+      that `guppi ship` writes with no archive. `archive.py`, read the same way, keeps a conserved Spec
+      in `raw/` for the list. None of them says when a line of a closed sprint leaves the list. The Grep
+      of `743\.4|pages are (all )?finished|page is finished|its pages are|closed sprint` named below printed
+      none of them but `estimate-clean-branch-writes-the-session-files.md`, `rule-skill-sprint-open.md`
+      and `sprint-open/SKILL.md`, whose hits speak of the mark or the branch of a closed sprint. The Criterion
+      of `estimate-backlog-renders` speaks of a line of a closed sprint that leaves the list, so this
+      Case replaces it whole and sets its `purpose` anew; its `method`, a run of `.guppi/tests/test_backlog.py`,
+      stands. It is a choice of form: no new Estimate, since that test checks the change. `estimate-backlog-checks-the-file`
+      speaks of `--check` only and stands. A Grep of `743\.4|pages are (all )?finished|page is finished|its
+      pages are|closed sprint` over `{vault/wiki,.claude,.guppi/guppi}/**` printed `librarian-guppi.md`,
+      `merge-main/SKILL.md`, `sprint-open/SKILL.md`, `backlog.py`, `sprint.py`, `brief.md`, `estimate-backlog-renders.md`,
+      `estimate-case-build-searches-the-names-of-what-it-changes.md`, `estimate-clean-branch-writes-the-session-files.md`,
+      `estimate-skill-setup-starts-at-hi.md`, `estimate-skill-sprint-close-leads-the-closing-session.md`,
+      `estimate-skill-sprint-open-merges-the-closed-sprint-branch.md`, `estimate-skill-sprint-open-starts-at-hi.md`,
+      `estimate-sprint-marks-a-closed-sprint.md`, `log.md`, `rule-backlog.md`, `rule-documentation.md`,
+      `rule-skill-hi.md`, `rule-skill-merge-main.md`, `rule-skill-pr-review.md`, `rule-skill-sprint-open.md`,
+      `rule-sprint-close.md` and `rule-sprint.md`. Only the two sentences of the Purpose of `rule-backlog`,
+      the Criterion and `purpose` of `estimate-backlog-renders` and the docstrings of `backlog.py` state
+      when such a line leaves. The other hits speak of the branch, the pull request or the mark of a closed
+      sprint, or of an earlier build of a Case, or say only that `guppi backlog` reads the `## Backlog`
+      of each sprint page, live or archived, which stays true. A Grep of `parents\[2\]` over `.guppi/tests/`
+      printed `test_case_schema.py`, `test_generate.py`, `test_guppi_package.py`, `test_lint.py`, `test_materialize.py`,
+      `test_orchestration.py`, `test_schemas.py` and `test_ship.py`. Of these, `test_guppi_package.py`
+      reads every live page for an old command or path, and the new texts hold none. `test_ship.py` builds
+      the live repository: `rule-backlog` goes `draft` with a `pending` Estimate, but its History holds
+      a line that set it `built`, so it blocks no build. Its live code check asks that each pointer in
+      the new code stand in a bracket. Once `backlog.py` changes in Work Mode, the `guppi backlog --check`
+      step of `uv run --project .guppi guppi check` names `vault/wiki/backlog.md` until the librarian''s
+      run writes it, so the task writes that mark of an expected red. `rule-backlog` has `core: true`.
+      Its first pair keeps `(case 743.4)` on what that Case set. The new behaviour carries a pointer of
+      its own, `(as set in case 1067)`, in a bracket of its own at the end of its clause, which `guppi
+      ship` removes whole, as `case-schema.md` sets it. On the findings of `/pre-spec`, the `then`, both
+      pairs, the `purpose` and the tasks say one thing: the page stood finished on or after the day of
+      the close, that is, the status in force on that day counts, or a status set after it. The day of
+      the close is the date of the last line of the History of the archived sprint page that set it `archived`,
+      in the `then` and in the task alike. The session''s ledger holds no `error` lesson, so no line carries
+      `{addresses:...}`. The prompt says that Case 1064 of this session changes no page or file this Case
+      changes. The finished files of Cases 1065 and 1066, read whole once their builds ended, change the
+      Criterion of `estimate-case-build-settles-form-by-itself` and the Render of `rule-orchestration`
+      on the number of a changed Case. They change no page or file of this Case and set nothing about
+      `guppi backlog`, so this Case stands as it is.'
+    problem: A line of a closed sprint's Backlog that names a page comes back into `backlog.md` each time
+      its page gets a new Estimate and goes back to `draft`. It then shows work that nobody put off, with
+      a count of put-offs from before the close.
+    recommend: "- **What happens to a page line of a closed sprint's Backlog when its page goes back to\
+      \ draft?**\n  - Recommended: (c) a page line leaves for good once its page has been finished since\
+      \ the close: `guppi backlog` reads the History of the page, and a line whose page stood `built`,\
+      \ `passed` or `archived` on or after the day its sprint closed does not come back.\n  - Answer:\
+      \ agreed, (c)."
+    given: '`estimate-backlog-renders`: the check of what `guppi backlog` writes; its Criterion is replaced
+      whole.
+
+      **＋** `rule-backlog`: the rule that keeps a deferred item in sight; its Purpose names when a line
+      of a closed sprint leaves.
+
+      **＋** `.guppi/guppi/backlog.py` and `vault/wiki/backlog.md`: the script and the list it writes.
+
+      **＋** `.guppi/guppi/pages.py`: the page reader, which takes the one reader of a status line of `##
+      History` and its date.
+
+      **＋** `.guppi/guppi/box.py`: imports the date of a History line from `pages.py`.
+
+      **＋** `.guppi/guppi/sprint.py`: the statuses that tick an item, imported by `backlog.py`.
+
+      **＋** `.guppi/guppi/generate.py`, `.guppi/guppi/sprint_close.py` and `.guppi/guppi/materialize.py`:
+      the writers of the status lines and the readers of the Frontiers and the Specs.
+
+      **＋** `.guppi/tests/test_backlog.py`: the tests of the script over a made-up vault.
+
+      **＋** `entity-sprint-<id>`: the sprint pages, live under `vault/wiki/entities/` or closed under
+      `vault/archive/`, whose `## Backlog` the script reads.
+
+      **＋** `vault/raw/`: the session folders, whose `carry.md`, `spec.md` and `frontier.md` the script
+      reads.'
+    when: '`uv run --project .guppi guppi backlog` runs over `vault/wiki/`, `vault/raw/` and `vault/archive/`.
+      The librarian runs it after `guppi sprint`, and the skill `carry` runs it after it writes `carry.md`.
+
+      **＋** Or `.guppi/tests/test_backlog.py` runs `.guppi/guppi/backlog.py` over a made-up vault.'
+    then: 'The script writes `vault/wiki/backlog.md`: the heading `# Backlog`, the line `N items`, then
+      `## Conserved Specs` and `## Deferred`.
+
+      **＋** `## Conserved Specs` holds each session folder under `vault/raw/` that holds `carry.md`. Each
+      has one line that names its `spec.md` and its Cases. Under that line stands one line per item of
+      its `then` blocks, with the kind and the slug, read by the Spec reader of `.guppi/guppi/materialize.py`.
+
+      **＋** `## Deferred` holds one line per item. The items are each live page with a `deferred_by` that
+      is not empty, each Insight whose `status` is `open`, and each line of the `## Backlog` of each `entity-sprint-<id>`,
+      live under `vault/wiki/entities/` or archived under `vault/archive/`. A line holds the slug, the
+      page''s `purpose` (for an Insight, its `pattern` and `severity`) and the count. A Backlog line that
+      names no page stands by its text.
+
+      **＋** The count of an item is the number of sessions whose `frontier.md`, under `vault/raw/` or
+      `vault/archive/`, holds a `[-]` line that names its slug in a code span of its title. It is read
+      by `generate.frontier_marks`, and `.guppi/guppi/backlog.py` holds no copy of that reader.
+
+      **＋** `N` counts the conserved Specs and the lines of `## Deferred`. A slug that stands under a
+      conserved Spec does not stand again under `## Deferred`, and a slug of two sources stands once.
+
+      **＋** A folder whose `carry.md` is gone shows nothing. Its defers enter `## Deferred` through `deferred_by`
+      once `materialize` and `generate` have applied them.
+
+      **＋** One reader of `.guppi/guppi/pages.py` reads each line of `## History` that sets a status,
+      with the status it sets and the date the line opens with. `is_draft_core` of the same module and
+      `.guppi/guppi/backlog.py` judge by it, and it reads the lines that the cascade of `.guppi/guppi/generate.py`
+      and the close of `.guppi/guppi/sprint_close.py` write.
+
+      **－** A slug of a line of the `## Backlog` of an archived sprint page does not stand when the live
+      sprint page names it in its `## Milestones` or its `## Backlog`, or when its page stands `built`,
+      `passed` or `archived`, the statuses that tick an item in `.guppi/guppi/sprint.py`.
+
+      **－** Such a slug does not stand either when its page stood `built`, `passed` or `archived` on or
+      after the day of the close of its sprint. The day of the close is the date of the last line of the
+      `## History` of the archived sprint page that set it `archived`. The page stood so when the last
+      dated status line of its `## History` before that day set one of those statuses, or when a dated
+      status line on that day or after it set one. A new Estimate that sets the page `draft` after that
+      day does not bring the line back.
+
+      **－** An archived sprint page whose `## History` holds no line that set it `archived` gives no day
+      of the close, and a slug of its `## Backlog` is judged by the status of its page alone. A status
+      line with no date is not counted for the day of the close.
+
+      **－** A line of the `## Backlog` of an archived sprint page that names no page does not stand when
+      the live sprint page holds a line of the same text.
+
+      **－** The script writes no page of `vault/wiki/` and no file but `vault/wiki/backlog.md`. The governed-files
+      hook refuses a hand edit of that file.'
+  spec: vault/raw/2026-11-26/1336/spec.md
+  applied: '15:03:37'
+- case: '1068'
+  decision: decision-case-1068
+  origin: raw/2026-11-26/1336/ledger.md#case-1068
+  targets:
+  - kind: defer
+    category: entities
+    slug: entity-guppi-repository
+    ref: entity-guppi-repository
+  tags: []
+  case_text:
+    context: At the `/hi` of session 1336 the person confirmed that `README.md` describes GUPPI as it
+      stands (`estimate-sprint-plugin-readme-describes-the-project`, passed) and asked to add more information
+      to it, a diagram among it, in a Case of its own later. At the close of Plan Mode the person put
+      the item off. `README.md` is a `code_ref` of `entity-guppi-repository`.
+    problem: No Case of this session decides what information and which diagram `README.md` gains.
+  spec: vault/raw/2026-11-26/1336/spec.md
+  applied: '15:03:37'
+unparsed: []
+session: '1336'

@@ -7,7 +7,7 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 **Done when**
 
 - [ ] Whether the session that closes sprint plugin runs /sprint-close from the close line up to the end of Work Mode with no step done or fixed by hand · pending
-- [ ] Whether README.md says what GUPPI is and what it is for, its main parts and how to install and use it, as the person confirms · pending
+- [x] Whether README.md says what GUPPI is and what it is for, its main parts and how to install and use it, as the person confirms · passed
 - [ ] Whether a pull request from another account, a second account of the owner included, runs the checks of CI on GitHub and can be reviewed and merged into the branch main by the owner alone · pending
 - [x] Whether CI writes a clean version of the project to a branch of its own, with no case reference and no session data and with the version of its tag prod-x.y.z, and fails when one remains or when no such tag stands in its history · passed
 - [x] Whether the clean version, written into a local folder by guppi ship --allow-draft, installs as a Claude Code plugin into an empty project, /guppi:install copies GUPPI there, and /hi runs there · passed

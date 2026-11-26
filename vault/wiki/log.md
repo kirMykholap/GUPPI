@@ -13285,3 +13285,25 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-26 rules/rule-work-mode status: built → draft · cascade · generate
 - 2026-11-26 decisions/decision-case-1060 archived · superseded · generate
 - 2026-11-26 decisions/decision-case-1060 archived · cleanup
+- 2026-11-26 estimates/estimate-orchestration-dispatches-case-guppi-at-a-level status: pending → failed · raw/2026-11-26/1336/ledger.md#L1 · generate
+- 2026-11-26 estimates/estimate-case-build-settles-form-by-itself status: pending → failed · raw/2026-11-26/1336/ledger.md#L2 · generate
+- 2026-11-26 estimates/estimate-sprint-plugin-readme-describes-the-project status: pending → passed · raw/2026-11-26/1336/ledger.md#L3 · generate
+- 2026-11-26 decisions/decision-case-1064 created · raw/2026-11-26/1336/ledger.md#case-1064 · generate
+- 2026-11-26 rules/rule-orchestration updated: the level of case-guppi follows the widest change that the item, a fix it offers or an answer to its question could make · [[decision-case-1064]] · generate
+- 2026-11-26 estimates/estimate-orchestration-dispatches-case-guppi-at-a-level updated: the Criterion replaced whole — the level follows the widest change the item, a fix it offers or an answer to its question could make · [[decision-case-1064]] · generate
+- 2026-11-26 decisions/decision-case-1065 created · raw/2026-11-26/1336/ledger.md#case-1065 · generate
+- 2026-11-26 estimates/estimate-case-build-settles-form-by-itself updated: the Criterion replaced whole — the line on the number of a changed Case dropped, since estimate-case-build-writes-the-case checks it with its exception · [[decision-case-1065]] · generate
+- 2026-11-26 decisions/decision-case-1066 created · raw/2026-11-26/1336/ledger.md#case-1066 · generate
+- 2026-11-26 rules/rule-orchestration updated: the main agent leaves the number of a ratified Case sent back to case-guppi and its check · [[decision-case-1066]] · generate
+- 2026-11-26 estimates/estimate-orchestration-leaves-the-number-to-case-guppi created · [[decision-case-1066]] · generate
+- 2026-11-26 rules/rule-orchestration estimate estimate-orchestration-leaves-the-number-to-case-guppi added · [[decision-case-1066]] · generate
+- 2026-11-26 decisions/decision-case-1067 created · raw/2026-11-26/1336/ledger.md#case-1067 · generate
+- 2026-11-26 rules/rule-backlog updated: a line of the Backlog of a closed sprint leaves backlog.md for good once its pages stood finished on or after the day of the close · [[decision-case-1067]] · generate
+- 2026-11-26 estimates/estimate-backlog-renders updated: the Criterion replaced whole — a line of a closed sprint leaves for good once its pages stood finished on or after the day of the close · [[decision-case-1067]] · generate
+- 2026-11-26 decisions/decision-case-1068 created · raw/2026-11-26/1336/ledger.md#case-1068 · generate
+- 2026-11-26 entities/entity-guppi-repository deferred · [[decision-case-1068]] · generate
+- 2026-11-26 estimates/estimate-backlog-renders status: pending → passed · raw/2026-11-26/1336/ledger.md#L12 · generate
+- 2026-11-26 estimates/estimate-case-build-settles-form-by-itself status: pending → passed · raw/2026-11-26/1336/ledger.md#L13 · generate
+- 2026-11-26 lessons/lesson-frontier-line-closed-in-two-changes-through-bash created · raw/2026-11-26/1336/ledger.md#L14 · generate
+- 2026-11-26 insights/insight-orchestration-frontier-closer-leaves-the-box-open updated: child lesson-frontier-line-closed-in-two-changes-through-bash added, reopened since the box and the closer were again written in two changes after case 1012 (synthesis) · raw/2026-11-26/1336/ledger.md#L14 · generate
+- 2026-11-26 lessons/lesson-frontier-line-closed-in-two-changes-through-bash updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-26/1336/ledger.md#L14 · generate

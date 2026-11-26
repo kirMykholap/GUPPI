@@ -50,9 +50,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] update `estimate-orchestration-dispatches-case-guppi-at-a-level`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `estimate-orchestration-dispatches-case-guppi-at-a-level`
 - [ ] read `estimate-orchestration-dispatches-case-guppi-at-a-level`
 ```
 
@@ -99,8 +99,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-case-build-settles-form-by-itself`
-- [ ] read `estimate-case-build-settles-form-by-itself`
+- [x] update `estimate-case-build-settles-form-by-itself`
+- [x] read `estimate-case-build-settles-form-by-itself`
 ```
 
 ## Case 1066 — The main agent leaves the number of a changed Case to case-guppi
@@ -152,9 +152,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] create `estimate-orchestration-leaves-the-number-to-case-guppi`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] create `estimate-orchestration-leaves-the-number-to-case-guppi`
 - [ ] read `estimate-orchestration-leaves-the-number-to-case-guppi`
 ```
 
@@ -218,13 +218,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-backlog`
-- [ ] update `estimate-backlog-renders`
+- [x] update `rule-backlog`
+- [x] update `estimate-backlog-renders`
 - [x] `.guppi/guppi/pages.py`: one reader of each `## History` line that sets a status — the status it sets and the date the line opens with, none when it opens with no date — and the date pattern of a History line, moved here from `box.py`; `is_draft_core` judges by that reader where it judged by `SET_BUILT`, and accepts the same lines, a line with no date included; each pointer in a bracket of its own.
 - [x] `.guppi/guppi/box.py`: `history_cases` reads the date of a History line by the pattern it imports from `pages.py`, and holds no copy of it.
 - [x] `.guppi/guppi/backlog.py`: the day of the close of an archived sprint page is the date of the last line of its `## History` that set it `archived`; a slug of its `## Backlog` does not stand when its live page stands finished now, or when the last dated status line of its `## History` before that day set `built`, `passed` or `archived`, or when a dated status line on that day or after it set one of them, by the reader of `pages.py` and `is_done` of `sprint.py`; the module docstring and the docstrings of `finished` and `deferred` say so; write one line under `## Expected red` of `work.md`: `guppi backlog --check`, waiting for `vault/wiki/backlog.md` at the librarian's run.
 - [x] `.guppi/tests/test_backlog.py`: a test over a made-up vault where an archived sprint page holds a History line that set it `archived`, and its `## Backlog` names a `draft` page set `built` after that day, a `draft` page set `built` before that day and still `built` on it, a `draft` page set `built` and then `draft` again, both before that day, and a `draft` page never set `built`: the first two lines leave, the other two stand; an archived sprint page with no such line keeps the line of a `draft` page set `built`; and a test that runs the cascade of `generate` and `mark` of `sprint_close` over made-up pages and asserts that the reader of `pages.py` reads the status and the date each one wrote.
-- [ ] read `estimate-backlog-renders`
+- [x] read `estimate-backlog-renders`
 ```
 
 ## Deferred

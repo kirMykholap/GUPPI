@@ -1,18 +1,19 @@
 # Backlog
 
-10 items
+11 items
 
 ## Conserved Specs
 
 ## Deferred
 
+- `entity-guppi-repository` — The repository of GUPPI on GitHub, with rules of its own that a repository of another person who uses GUPPI need not share · put off in 0 sessions
 - `entity-sprint-plugin` — GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the close of a sprint works with no fix by hand · put off in 1 session
 - `rule-ratification` — Prevents an agent of a working session from acting without the one rule and the form of the ledger lines: the one rule, the form of the ledger lines, atomicity and the harness stand in ratification.md, which /hi loads and case-guppi reads · put off in 3 sessions
 - `estimate-retro-loads-on-a-red-command` — Whether /retro loads while guppi test or guppi style finds something, its lines Tests and Style running both commands with --exit-zero and ending with the line that names the exit code · put off in 1 session
 - `estimate-synthesis-keeps-actioned-by-the-mark` — An Insight stays or is born actioned by the mark — an existing actioned Insight keeps its status and takes the later of the two addressed_by; a new Insight from a marked lesson is set actioned right after its create · put off in 1 session
+- `insight-orchestration-frontier-closer-leaves-the-box-open` — the main agent closes a Frontier line by an Edit whose old_string holds only the end of the line and appends the closer there, so the box at the start of the line, which marks it closed, stays open and guppi prespec --check prints the line as open · severity 1 · put off in 0 sessions
 - The category set as data: the person sets the categories of a project, the development set entity, rule, estimate by default, and the harness holds them as data, so a changed set rewrites no rule; taken out of rule-morph (case 802); the categories discussion of session 1119, vault/archive/migration/2026-09-17/1119/raw/categories-discussion.md · put off in 0 sessions
 - The rest of Work Mode past the skill /work: the test of each Estimate written first and turned green, and the full model the person plans; taken out of rule-work-mode (case 962) · put off in 0 sessions
 - The Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session; taken out of rule-spec-box (case 962) · put off in 0 sessions
 - The name of the main branch: a project whose main branch is not main sets its name at the setup, and the code and the skills read it; taken out of rule-morph (case 1017.4) · put off in 0 sessions
 - Whether every Estimate whose `method` reads the transcript of a session should be a one-off Estimate of the sprint page with `once: true`, with a lasting Estimate beside it whose `method` reads a file that ships, as `rule-estimates-schema` would then set it; the split made once for `estimate-case-build-reads-the-readers-of-a-new-files-folder` (case 1019.4) · put off in 0 sessions
-- `rule-work-mode` — Prevents implementation starting before the plan, branch and baseline exist · put off in 31 sessions

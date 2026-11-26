@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-skill-sprint-open]]"
-purpose: Whether /sprint-open has the opening Case write the close line last, with the /merge-main line just before it only where the project holds that skill, push the closed sprint's branch and open its pull request into main after the person's word, merge it with a merge commit after its checks pass when the person is the owner, and move the work to a branch named by the new sprint, as the first tasks of Work Mode, with a stop on a refusal, and on main make that branch by one first task with no stop
+purpose: Whether /sprint-open has the opening Case write the close line last, with the /merge-main line just before it only where the project holds that skill, push the closed sprint's branch and open its pull request into the main branch after the person's word, merge it with a merge commit after its checks pass when the person is the owner, and move the work to a branch named by the new sprint, as the first tasks of Work Mode, with a stop on a refusal, and on the main branch make that branch by one first task with no stop
 method: "by hand: the Render of rule-skill-sprint-open, in .claude/skills/sprint-open/SKILL.md or, before the render writes that file, in the Spec that changes it, read against the Criterion"
 checked: 2026-11-20
 origin: raw/2026-10-10/2350/ledger.md#case-775.1
@@ -48,3 +48,4 @@ The prompt of the call names the branch that `/hi` printed under `Branch:` from 
 - 2026-10-29 status: pending → passed · raw/2026-10-28/2312/ledger.md#L27
 - 2026-11-20 updated: the Criterion replaced whole — on main the opening Case makes the branch of the sprint by its first task, with no stop · [[decision-case-1034.1]]
 - 2026-11-20 status: pending → passed · raw/2026-11-04/0807/ledger.md#L55
+- 2026-11-26 updated: the purpose names the main branch in words · [[decision-case-1070.6]]

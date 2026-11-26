@@ -49,9 +49,9 @@ agent's Render and is ratified with it; this page holds the registrations only.
       { "matcher": "Edit|Write|MultiEdit",
   "hooks": [ { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi guard", "timeout": 30 }, { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi ratified --guard", "timeout": 30 }, { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi frontierguard", "timeout": 30 } ] },
 { "matcher": "Bash",
-  "hooks": [ { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi bashguard", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi bashguard", "timeout": 30 }, { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi frontierguard", "timeout": 30 } ] },
 { "matcher": "PowerShell",
-  "hooks": [ { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi powershellguard", "timeout": 30 } ] },
+  "hooks": [ { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi powershellguard", "timeout": 30 }, { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi frontierguard", "timeout": 30 } ] },
 { "matcher": "Read",
   "hooks": [ { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi pageread", "timeout": 30 }, { "type": "command", "command": "uv run --project \"${CLAUDE_PROJECT_DIR}/.guppi\" guppi grepguard", "timeout": 30 } ] },
 { "matcher": "Grep",
@@ -119,3 +119,4 @@ agent's Render and is ratified with it; this page holds the registrations only.
 - 2026-11-03 updated: the PreToolUse hook guppi frontierguard registered on Edit, Write and MultiEdit · [[decision-case-1012]]
 - 2026-11-04 updated: guppi codewrite registered on PostToolUse of Edit, Write and MultiEdit · [[decision-case-1028.1]]
 - 2026-11-20 updated: each hook command names .guppi under the folder that Claude Code was opened in · [[decision-case-1032.1]]
+- 2026-11-26 updated: guppi frontierguard registered on PreToolUse of Bash and of PowerShell · [[decision-case-1069.1]]

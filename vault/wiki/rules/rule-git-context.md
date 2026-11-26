@@ -20,7 +20,7 @@ core: true
 
 Prevents a session from starting on a branch it does not know.
 
-**Branch tells us what kind of start this is.** On `main` or a working branch, no plan is
+**Branch tells us what kind of start this is.** On the main branch or a working branch, no plan is
 open. On a plan branch, unfinished work exists and becomes the first Frontier item. This is
 never restated in `brief.md` — git already knows, and a second source of truth eventually
 disagrees with the first.
@@ -31,7 +31,7 @@ disagrees with the first.
 Render: !`uv run --project .guppi guppi render --sync`
 Branch: !`uv run --project .guppi guppi gitstate`
 
-When the line `Branch:` above reads `none: this folder is no git repository`, take this step first, before `/sprint-open` and before the Frontier (as set in case 851.1). Say that GUPPI works only in a git repository, and tell the person to type `! git init -b main`, which names the first branch `main` and which Claude Code runs at once as the person's own shell command, in Plan Mode too, and then to type `/hi` again. Ask no question and run no `git init` yourself, since the session stands in Plan Mode and nothing is written before a ratified Case (as set in case 1036). Start no `/sprint-open`, write no Frontier, and end the reply.
+When the line `Branch:` above reads `none: this folder is no git repository`, take this step first, before `/sprint-open` and before the Frontier (as set in case 851.1). Say that GUPPI works only in a git repository, and tell the person to type `! git init -b {{main_branch}}`, which names the first branch `{{main_branch}}` and which Claude Code runs at once as the person's own shell command, in Plan Mode too, and then to type `/hi` again. Ask no question and run no `git init` yourself, since the session stands in Plan Mode and nothing is written before a ratified Case (as set in case 1036). Start no `/sprint-open`, write no Frontier, and end the reply.
 <!-- /rule-git-context -->
 
 ## History
@@ -65,3 +65,4 @@ When the line `Branch:` above reads `none: this folder is no git repository`, ta
 - 2026-11-03 status: built → draft · cascade
 - 2026-11-20 updated: the person types git init -b main in a new folder, since /hi stands in Plan Mode · [[decision-case-1036]]
 - 2026-11-25 status: draft → built · cascade
+- 2026-11-26 updated: the step in a folder with no git repository names the main branch by {{main_branch}} · [[decision-case-1070.4]]

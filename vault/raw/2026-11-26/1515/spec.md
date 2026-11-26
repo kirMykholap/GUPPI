@@ -82,14 +82,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-frontier-hook`
-- [ ] update `rule-hook-registry`
-- [ ] create `estimate-frontier-hook-refuses-a-shell-command-on-the-frontier`
-- [ ] update `insight-orchestration-frontier-closer-leaves-the-box-open`
+- [x] update `rule-frontier-hook`
+- [x] update `rule-hook-registry`
+- [x] create `estimate-frontier-hook-refuses-a-shell-command-on-the-frontier`
+- [x] update `insight-orchestration-frontier-closer-leaves-the-box-open`
 - [x] `.guppi/guppi/frontierguard.py`: on `Bash` and `PowerShell` the hook reads `tool_input.command` and refuses a command that names `frontier.md` in any letter case, by exit 2 with the reason of the `then` on stderr and one line in the day's event log first; its docstring says so, and its sentence that a box written by a shell call still shows at `/pre-spec` says instead that a script run by its path is not seen and that `/pre-spec` still reports what it leaves; a pointer to a case stands only in a bracket at the end of its sentence.
 - [x] `.guppi/tests/test_frontierguard.py`: a Bash `sed -i` on a session `frontier.md`, a PowerShell `Set-Content` on it, a `cat` of it, a `git commit -m` whose message names `frontier.md` and a command that names `FRONTIER.MD` are refused with the reason, its words on a commit message included, and one line in the event log; a Bash and a PowerShell command that name no `frontier.md` pass.
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
-- [ ] read `estimate-frontier-hook-refuses-a-shell-command-on-the-frontier`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] read `estimate-frontier-hook-refuses-a-shell-command-on-the-frontier`
 ```
 
 ### Case 1069.2 — An edit that leaves a closed box with no closer is refused
@@ -135,12 +135,12 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-frontier-hook`
-- [ ] update `estimate-frontier-hook-refuses-an-open-box-with-a-closer`
+- [x] update `rule-frontier-hook`
+- [x] update `estimate-frontier-hook-refuses-an-open-box-with-a-closer`
 - [x] `.guppi/guppi/prespec.py`: one function names the item of each box line of a Frontier, under any heading, whose box is `[x]` or `[-]` and whose last segment after ` · ` is no closer by `CLOSERS`, a line with no ` · ` included; `check_frontier` reports its finding `is closed without case N, work, defer, kept or defer case N` by that same judgment, its findings and their order unchanged; the docstrings say that the hook imports it, a pointer to a case only in a bracket at the end of its sentence.
 - [x] `.guppi/guppi/frontierguard.py`: the hook refuses a text that leaves such a line, by that function of `prespec.py`, with the reason of the `then`; its docstring says so, a pointer to a case only in a bracket at the end of its sentence.
 - [x] `.guppi/tests/test_frontierguard.py`: an Edit that ticks the box of an open line alone, a Write that leaves `[-]` with no closer and a line closed with no ` · ` are refused, each item named in the reason; the tests that stand pass as they are.
-- [ ] read `estimate-frontier-hook-refuses-an-open-box-with-a-closer`
+- [x] read `estimate-frontier-hook-refuses-an-open-box-with-a-closer`
 ```
 
 ## Case 1070 — A project sets the name of its main branch at the setup, and the code and the skills read it
@@ -228,13 +228,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-guppi-config`
-- [ ] create `estimate-guppi-config-fills-the-main-branch`
+- [x] update `rule-guppi-config`
+- [x] create `estimate-guppi-config-fills-the-main-branch`
 - [x] `.guppi/guppi/config.py`: `BRANCH_KEY = "main_branch"` and `DEFAULT_BRANCH = "main"`; one function that judges the value of the key in a parsed text — the value, none where the key is missing, a `ConfigError` that names the source and the key for a value that is not a string, is empty or holds a space; `main_branch(project_dir)`, which gives `DEFAULT_BRANCH` for a missing file, a text that does not parse or a missing key; the docstring names the key, its judgment and its reader, a pointer to a case only in a bracket at the end of its sentence.
 - [x] `.guppi/guppi/render.py`: `fill_placeholders` takes `main_branch` beside the language keys and puts in the value that the judgment of `config.py` gives over the Render of `rule-guppi-config`, a missing key or a refused value a `RenderError` that names the page and the key; the docstring names the placeholder, a pointer to a case only in a bracket at the end of its sentence.
 - [x] `.guppi/tests/test_config.py`: tests whose names hold `main_branch`: the value of a written `guppi.toml`; `main` for a missing file, a text that does not parse and a missing key; an error for a value that is a number, empty or holds a space.
 - [x] `.guppi/tests/test_render.py`: tests whose names hold `main_branch`: a Render with `{{main_branch}}` takes `trunk` from the Render of `rule-guppi-config`, the page keeps the placeholder, a changed value reaches the file at the next render, `guppi.toml` does not set it, and a missing key or a value with a space writes nothing and names the key.
-- [ ] `uv run --project .guppi guppi render`: `guppi.toml`
+- [x] `uv run --project .guppi guppi render`: `guppi.toml`
 - [ ] read `estimate-guppi-config-fills-the-main-branch`
 ```
 
@@ -278,11 +278,11 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-box`
-- [ ] update `estimate-spec-box-refuses-a-stale-spec`
+- [x] update `rule-spec-box`
+- [x] update `estimate-spec-box-refuses-a-stale-spec`
 - [x] `.guppi/guppi/box.py`: `SHARED_NEVER` gives way to `main_branch` of `.guppi/guppi/config.py`, read once per check; the reason keeps its words with that name in place of `main`, `box: the current branch is <name> — the shared branch never is`, so the test of a run from `main` passes as it stands; a `ConfigError` of it is one reason line; the docstring names the main branch that `guppi.toml` names, a pointer to a case only in a bracket at the end of its sentence.
 - [x] `.guppi/tests/test_box.py`: a test whose `guppi.toml` holds `main_branch = "trunk"`: on the branch `trunk` the check prints the reason, on a branch `main` it prints none of that kind; a test whose value holds a space prints one reason that names the key.
-- [ ] read `estimate-spec-box-refuses-a-stale-spec`
+- [x] read `estimate-spec-box-refuses-a-stale-spec`
 ```
 
 ### Case 1070.3 — The setup Case proposes the name of the main branch from the branch /hi printed
@@ -355,13 +355,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-morph`
-- [ ] update `rule-skill-setup`
-- [ ] update `estimate-morph-sets-up-the-project-at-the-first-hi`
-- [ ] update `entity-sprint-plugin`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/setup/SKILL.md`
-- [ ] `uv run --project .guppi guppi sprint`
-- [ ] read `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] update `rule-morph`
+- [x] update `rule-skill-setup`
+- [x] update `estimate-morph-sets-up-the-project-at-the-first-hi`
+- [x] update `entity-sprint-plugin`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/setup/SKILL.md`
+- [x] `uv run --project .guppi guppi sprint`
+- [x] read `estimate-morph-sets-up-the-project-at-the-first-hi`
 ```
 
 ### Case 1070.4 — The skills that ship name the main branch by its setting
@@ -454,19 +454,19 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-git-context`
-- [ ] update `rule-skill-sprint-open`
-- [ ] update `rule-skill-sprint-close`
-- [ ] update `rule-work-mode`
-- [ ] update `rule-where-to-stop`
-- [ ] create `estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting`
+- [x] update `rule-git-context`
+- [x] update `rule-skill-sprint-open`
+- [x] update `rule-skill-sprint-close`
+- [x] update `rule-work-mode`
+- [x] update `rule-where-to-stop`
+- [x] create `estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting`
 - [x] `.guppi/guppi/gitstate.py`: the docstring says that the local main branch follows its branch on `origin` in the opening Case of a sprint, by `git fetch origin` and `git merge --ff-only`, the name being the one `guppi.toml` sets; the sentence on `/merge-main` says that, where the project holds that skill, a sprint branch takes the main branch by its merge Case; the second paragraph, which `parser` takes as the description of the command, stays as it is, and a pointer to a case stands only in a bracket at the end of its sentence.
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/sprint-close/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/where-to-stop.md`
-- [ ] `uv run --project .guppi guppi sprint`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-open/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/sprint-close/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/where-to-stop.md`
+- [x] `uv run --project .guppi guppi sprint`
 - [ ] read `estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting`
 ```
 
@@ -527,14 +527,14 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-documentation`
-- [ ] update `rule-page-generation`
-- [ ] update `rule-vault-layout`
-- [ ] update `entity-glossary`
-- [ ] create `estimate-sprint-plugin-vault-writer-texts-name-the-main-branch`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] `uv run --project .guppi guppi glossary`
-- [ ] `uv run --project .guppi guppi sprint`
+- [x] update `rule-documentation`
+- [x] update `rule-page-generation`
+- [x] update `rule-vault-layout`
+- [x] update `entity-glossary`
+- [x] create `estimate-sprint-plugin-vault-writer-texts-name-the-main-branch`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] `uv run --project .guppi guppi glossary`
+- [x] `uv run --project .guppi guppi sprint`
 - [ ] read `estimate-sprint-plugin-vault-writer-texts-name-the-main-branch`
 ```
 
@@ -573,9 +573,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-skill-sprint-close-leads-the-closing-session`
-- [ ] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
-- [ ] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
+- [x] update `estimate-skill-sprint-close-leads-the-closing-session`
+- [x] update `estimate-skill-sprint-open-merges-the-closed-sprint-branch`
+- [x] update `estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline`
 ```
 
 ### Case 1070.7 — A new install whose main branch is master takes that name at its setup
@@ -613,8 +613,8 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main`
-- [ ] `uv run --project .guppi guppi sprint`
+- [x] create `estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main`
+- [x] `uv run --project .guppi guppi sprint`
 - [ ] read `estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main`
 ```
 
@@ -709,13 +709,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-protocol`
-- [ ] update `rule-estimates-schema`
-- [ ] update `entity-sprint-plugin`
-- [ ] create `estimate-case-protocol-splits-a-transcript-reading`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
-- [ ] read `estimate-case-protocol-splits-a-transcript-reading`
+- [x] update `rule-case-protocol`
+- [x] update `rule-estimates-schema`
+- [x] update `entity-sprint-plugin`
+- [x] create `estimate-case-protocol-splits-a-transcript-reading`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/estimates/schema.yaml`
+- [x] read `estimate-case-protocol-splits-a-transcript-reading`
 ```
 
 ### Case 1071.2 — The check of the plan reports a transcript reading off a sprint page
@@ -762,10 +762,10 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-prespec-hook-reports-a-method-that-reads-a-transcript`
+- [x] create `estimate-prespec-hook-reports-a-method-that-reads-a-transcript`
 - [x] `.guppi/guppi/lint.py`: one function judges whether a `method` holds a part between two `;` that holds `by hand`, by `is_reading`, and names the word `transcript` or the folder `~/.claude/projects/`; its docstring says that `pre-spec` imports it and that the lint run does not call it, and a pointer to a case stands only in a bracket at the end of its sentence.
 - [x] `.guppi/guppi/prespec.py`: a `create` of an Estimate whose `ref` is no sprint page, and an `update` with `set: {method: …}` whose target by `estimate_target` is no sprint page, give the line of the `then` when that function accepts the `method`; an `update` that `kept_method` reads, whose live `target` is no sprint page and whose new Criterion by `new_criterion` differs from the live `## Criterion` line by line by `criterion_line`, empty lines aside, gives the kept line when the function accepts the kept `method`; that check runs from `judge`, which holds the Cases; the module docstring and the docstring of `check_form` list the new findings, a pointer to a case only in a bracket at the end of its sentence.
 - [x] `.guppi/tests/test_lint.py`: tests whose names hold `transcript`: a part `by hand, at Retro: the reply read in the transcript of the session` and a part that names `~/.claude/projects/` are accepted; a part `pytest .guppi/tests/test_x.py over a temp agent transcript` and a `method` with no transcript are not; the lint run over a made-up Estimate page with such a `method` gives no finding by the function.
 - [x] `.guppi/tests/test_prespec.py`: tests whose names hold `transcript`: a `create` on a rule and an `update` with `set: {method: …}` that read a transcript give the line; the same on `entity-sprint-plugin` gives none; an `update` that replaces the Criterion with new text while its live page keeps a transcript reading gives the kept line, and one whose Case writes back the live Criterion word for word gives none; an `update` that sets `passed` by the person's decision gives none; a `method` that reads a transcript and waits for another session gives both lines; `prespec` imports the function of `lint` itself.
-- [ ] read `estimate-prespec-hook-reports-a-method-that-reads-a-transcript`
+- [x] read `estimate-prespec-hook-reports-a-method-that-reads-a-transcript`
 ```

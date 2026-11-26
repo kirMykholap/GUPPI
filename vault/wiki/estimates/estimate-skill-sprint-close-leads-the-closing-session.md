@@ -3,7 +3,7 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-skill-sprint-close]]"
-purpose: Whether /sprint-close refuses on a branch that does not hold origin/main and in a session that ratified another Case, puts off the other Cases lines, sorts the readings and has the closing Case built with the close line, while orchestration.md no longer holds the steps of the closing session
+purpose: Whether /sprint-close refuses on a branch that does not hold the main branch of origin and in a session that ratified another Case, puts off the other Cases lines, sorts the readings and has the closing Case built with the close line, while orchestration.md no longer holds the steps of the closing session
 method: "by hand: the Render of rule-skill-sprint-close in .claude/skills/sprint-close/SKILL.md and vault/wiki/orchestration.md read against the Criterion"
 checked: 2026-10-17
 origin: raw/2026-10-08/2352/ledger.md#case-743.8
@@ -46,3 +46,4 @@ Writing nothing into `.git`, the main agent first runs `gh api repos/{owner}/{re
 - 2026-10-17 updated: the method reads the Render where it lives and the closed sprint page, with no past moment · [[decision-case-875]]
 - 2026-10-17 updated: the Criterion replaced whole — the step before the close said without the skill merge-main, and no line on the close line of a closed sprint of the repository of GUPPI; the method reads no archived sprint page · [[decision-case-880.16]]
 - 2026-10-17 status: pending → passed · raw/2026-10-17/1805/ledger.md#L73
+- 2026-11-26 updated: the purpose names the main branch in words · [[decision-case-1070.6]]

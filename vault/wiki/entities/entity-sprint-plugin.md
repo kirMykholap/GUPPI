@@ -4,7 +4,7 @@ kind: Leaf
 purpose: "GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of its own, on GitHub with a README and ready for pull requests from others, and the close of a sprint works with no fix by hand"
 status: draft
 parent: "[[entity-sprint]]"
-estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]", "[[estimate-sprint-plugin-link-graph-is-gone]]", "[[estimate-sprint-plugin-frontierguard-build-read-its-folders-readers]]", "[[estimate-sprint-plugin-case-guppi-level-trial-decided]]", "[[estimate-sprint-plugin-done-counts-a-one-off-reading]]", "[[estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine]]", "[[estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again]]"]
+estimates: ["[[estimate-sprint-plugin-close-steps-run-from-the-line]]", "[[estimate-sprint-plugin-readme-describes-the-project]]", "[[estimate-sprint-plugin-pull-requests-reviewed-on-github]]", "[[estimate-sprint-plugin-ci-writes-a-clean-branch]]", "[[estimate-sprint-plugin-installs-as-a-plugin]]", "[[estimate-sprint-plugin-check-finds-no-bare-slug-link]]", "[[estimate-sprint-plugin-lesson-root-cause-holds-no-bare-link]]", "[[estimate-sprint-plugin-link-graph-is-gone]]", "[[estimate-sprint-plugin-frontierguard-build-read-its-folders-readers]]", "[[estimate-sprint-plugin-case-guppi-level-trial-decided]]", "[[estimate-sprint-plugin-done-counts-a-one-off-reading]]", "[[estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine]]", "[[estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again]]", "[[estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting]]", "[[estimate-sprint-plugin-vault-writer-texts-name-the-main-branch]]", "[[estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main]]"]
 deferred_by: ["[[decision-case-1021]]", "[[decision-case-1050]]"]
 origin: raw/2026-10-10/1713/ledger.md#case-756.1
 sprint: plugin
@@ -34,12 +34,11 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - The category set as data: the person sets the categories of a project, the development set entity, rule, estimate by default, and the harness holds them as data, so a changed set rewrites no rule; taken out of rule-morph (case 802); the categories discussion of session 1119, vault/archive/migration/2026-09-17/1119/raw/categories-discussion.md
 - The rest of Work Mode past the skill /work: the test of each Estimate written first and turned green, and the full model the person plans; taken out of rule-work-mode (case 962)
 - The Spec box, its second part: a conserved Spec checked against the pages changed after it was conserved, a Case on such a page built again, ratified again and written into the folder of the conserved Spec, and a conserved Spec taken after other Cases of its session; taken out of rule-spec-box (case 962)
-- The name of the main branch: a project whose main branch is not main sets its name at the setup, and the code and the skills read it; taken out of rule-morph (case 1017.4)
-- Whether every Estimate whose `method` reads the transcript of a session should be a one-off Estimate of the sprint page with `once: true`, with a lasting Estimate beside it whose `method` reads a file that ships, as `rule-estimates-schema` would then set it; the split made once for `estimate-case-build-reads-the-readers-of-a-new-files-folder` (case 1019.4)
 
 ## Closed
 
 - The sprint turn and GitHub: the repository on GitHub set up so that a pull request from another person is easy to review (case 794)
+- The name of the main branch: a project whose main branch is not main sets its name at the setup, and the code and the skills read it (case 1070)
 
 ## History
 
@@ -84,3 +83,8 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - 2026-11-26 estimate estimate-sprint-plugin-uv-build-range-holds-the-uv-of-the-machine added · [[decision-case-1059]]
 - 2026-11-26 updated: the Backlog question whether a passed one-off Estimate is read again is decided: it is not · [[decision-case-1063.1]]
 - 2026-11-26 estimate estimate-sprint-plugin-passed-one-off-estimate-is-not-read-again added · [[decision-case-1063.1]]
+- 2026-11-26 updated: the item of the name of the main branch leaves the Backlog for Closed · [[decision-case-1070.3]]
+- 2026-11-26 estimate estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting added · [[decision-case-1070.4]]
+- 2026-11-26 estimate estimate-sprint-plugin-vault-writer-texts-name-the-main-branch added · [[decision-case-1070.5]]
+- 2026-11-26 estimate estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main added · [[decision-case-1070.7]]
+- 2026-11-26 updated: the Backlog question whether every Estimate that reads a transcript is split is decided: it is, for each Estimate a Case creates, gives a new method or gives a new Criterion · [[decision-case-1071.1]]

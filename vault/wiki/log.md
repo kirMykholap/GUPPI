@@ -13307,3 +13307,67 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-26 lessons/lesson-frontier-line-closed-in-two-changes-through-bash created · raw/2026-11-26/1336/ledger.md#L14 · generate
 - 2026-11-26 insights/insight-orchestration-frontier-closer-leaves-the-box-open updated: child lesson-frontier-line-closed-in-two-changes-through-bash added, reopened since the box and the closer were again written in two changes after case 1012 (synthesis) · raw/2026-11-26/1336/ledger.md#L14 · generate
 - 2026-11-26 lessons/lesson-frontier-line-closed-in-two-changes-through-bash updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-26/1336/ledger.md#L14 · generate
+- 2026-11-26 decisions/decision-case-1069 created · raw/2026-11-26/1515/ledger.md#case-1069 · generate
+- 2026-11-26 decisions/decision-case-1069.1 created · raw/2026-11-26/1515/ledger.md#case-1069.1 · generate
+- 2026-11-26 rules/rule-frontier-hook updated: the hook refuses a Bash or PowerShell command that names frontier.md · [[decision-case-1069.1]] · generate
+- 2026-11-26 rules/rule-hook-registry updated: guppi frontierguard registered on PreToolUse of Bash and of PowerShell · [[decision-case-1069.1]] · generate
+- 2026-11-26 estimates/estimate-frontier-hook-refuses-a-shell-command-on-the-frontier created · [[decision-case-1069.1]] · generate
+- 2026-11-26 estimates/estimate-frontier-hook-refuses-a-shell-command-on-the-frontier status: pending → passed · raw/2026-11-26/1515/ledger.md#L35 · generate
+- 2026-11-26 rules/rule-frontier-hook estimate estimate-frontier-hook-refuses-a-shell-command-on-the-frontier added · [[decision-case-1069.1]] · generate
+- 2026-11-26 insights/insight-orchestration-frontier-closer-leaves-the-box-open updated: actioned: the hook refuses a shell command that names frontier.md, and an edit that leaves a closed box with no closer (case 1069) · [[decision-case-1069.1]] · generate
+- 2026-11-26 decisions/decision-case-1069.2 created · raw/2026-11-26/1515/ledger.md#case-1069.2 · generate
+- 2026-11-26 rules/rule-frontier-hook updated: the hook refuses a closed box with no closer too · [[decision-case-1069.2]] · generate
+- 2026-11-26 estimates/estimate-frontier-hook-refuses-an-open-box-with-a-closer updated: the Criterion replaced whole — a closed box with no closer is refused too · [[decision-case-1069.2]] · generate
+- 2026-11-26 decisions/decision-case-1070 created · raw/2026-11-26/1515/ledger.md#case-1070 · generate
+- 2026-11-26 decisions/decision-case-1070.1 created · raw/2026-11-26/1515/ledger.md#case-1070.1 · generate
+- 2026-11-26 rules/rule-guppi-config updated: the key main_branch names the main branch; the render fills {{main_branch}} and the code reads it, main where guppi.toml holds no key · [[decision-case-1070.1]] · generate
+- 2026-11-26 estimates/estimate-guppi-config-fills-the-main-branch created · [[decision-case-1070.1]] · generate
+- 2026-11-26 rules/rule-guppi-config estimate estimate-guppi-config-fills-the-main-branch added · [[decision-case-1070.1]] · generate
+- 2026-11-26 decisions/decision-case-1070.2 created · raw/2026-11-26/1515/ledger.md#case-1070.2 · generate
+- 2026-11-26 rules/rule-spec-box updated: the shared branch is never the main branch that guppi.toml names · [[decision-case-1070.2]] · generate
+- 2026-11-26 estimates/estimate-spec-box-refuses-a-stale-spec updated: the Criterion replaced whole — the check refuses the main branch that guppi.toml names, main where it names none · [[decision-case-1070.2]] · generate
+- 2026-11-26 decisions/decision-case-1070.3 created · raw/2026-11-26/1515/ledger.md#case-1070.3 · generate
+- 2026-11-26 rules/rule-morph updated: the setup Case proposes the name of the main branch from the branch /hi printed and sets it in guppi.toml · [[decision-case-1070.3]] · generate
+- 2026-11-26 rules/rule-skill-setup updated: the branch /hi printed goes into the prompt of the setup Case, which takes the name of the main branch from it, shows it for correction, writes it into the key main_branch and renders each file that names the main branch by its placeholder · [[decision-case-1070.3]] · generate
+- 2026-11-26 estimates/estimate-morph-sets-up-the-project-at-the-first-hi updated: the Criterion replaced whole — the texts of the setup say that the setup Case proposes the name of the main branch from the branch /hi printed and writes it into guppi.toml; purpose and method read those texts in the Spec at Retro, and the install moves to a one-off Estimate of the sprint page · [[decision-case-1070.3]] · generate
+- 2026-11-26 entities/entity-sprint-plugin updated: the item of the name of the main branch leaves the Backlog for Closed · [[decision-case-1070.3]] · generate
+- 2026-11-26 decisions/decision-case-1070.4 created · raw/2026-11-26/1515/ledger.md#case-1070.4 · generate
+- 2026-11-26 rules/rule-git-context updated: the step in a folder with no git repository names the main branch by {{main_branch}} · [[decision-case-1070.4]] · generate
+- 2026-11-26 rules/rule-skill-sprint-open updated: the merge and branch tasks of the opening Case name the main branch by {{main_branch}}, or, in the session of the setup Case, by the name that Case sets, which goes into the prompt of the opening Case · [[decision-case-1070.4]] · generate
+- 2026-11-26 rules/rule-skill-sprint-close updated: the check of the branch before the close names the main branch by {{main_branch}} · [[decision-case-1070.4]] · generate
+- 2026-11-26 rules/rule-work-mode updated: Work Mode stops on the main branch that guppi.toml names, by {{main_branch}}, or on the name that the setup Case of the Spec sets · [[decision-case-1070.4]] · generate
+- 2026-11-26 rules/rule-where-to-stop updated: the stop on the main branch names it by {{main_branch}}, or by the name that the setup Case of the Spec sets · [[decision-case-1070.4]] · generate
+- 2026-11-26 estimates/estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting created · [[decision-case-1070.4]] · generate
+- 2026-11-26 entities/entity-sprint-plugin estimate estimate-sprint-plugin-skills-name-the-main-branch-by-its-setting added · [[decision-case-1070.4]] · generate
+- 2026-11-26 decisions/decision-case-1070.5 created · raw/2026-11-26/1515/ledger.md#case-1070.5 · generate
+- 2026-11-26 rules/rule-documentation updated: the librarian's exception names the main branch by {{main_branch}} · [[decision-case-1070.5]] · generate
+- 2026-11-26 rules/rule-page-generation updated: the exception of a merge names the main branch in words · [[decision-case-1070.5]] · generate
+- 2026-11-26 rules/rule-vault-layout updated: the exception of a merge names the main branch in words · [[decision-case-1070.5]] · generate
+- 2026-11-26 entities/entity-glossary updated: the rows Librarian and Work Mode name the main branch in words · [[decision-case-1070.5]] · generate
+- 2026-11-26 estimates/estimate-sprint-plugin-vault-writer-texts-name-the-main-branch created · [[decision-case-1070.5]] · generate
+- 2026-11-26 entities/entity-sprint-plugin estimate estimate-sprint-plugin-vault-writer-texts-name-the-main-branch added · [[decision-case-1070.5]] · generate
+- 2026-11-26 decisions/decision-case-1070.6 created · raw/2026-11-26/1515/ledger.md#case-1070.6 · generate
+- 2026-11-26 estimates/estimate-skill-sprint-close-leads-the-closing-session updated: the purpose names the main branch in words · [[decision-case-1070.6]] · generate
+- 2026-11-26 estimates/estimate-skill-sprint-open-merges-the-closed-sprint-branch updated: the purpose names the main branch in words · [[decision-case-1070.6]] · generate
+- 2026-11-26 estimates/estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline updated: the purpose names the main branch in words, and the method names no branch and reads the render check and the rendered skill, no transcript of a session · [[decision-case-1070.6]] · generate
+- 2026-11-26 decisions/decision-case-1070.7 created · raw/2026-11-26/1515/ledger.md#case-1070.7 · generate
+- 2026-11-26 estimates/estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main created · [[decision-case-1070.7]] · generate
+- 2026-11-26 entities/entity-sprint-plugin estimate estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main added · [[decision-case-1070.7]] · generate
+- 2026-11-26 decisions/decision-case-1071 created · raw/2026-11-26/1515/ledger.md#case-1071 · generate
+- 2026-11-26 decisions/decision-case-1071.1 created · raw/2026-11-26/1515/ledger.md#case-1071.1 · generate
+- 2026-11-26 rules/rule-case-protocol updated: an Estimate off a sprint page reads no transcript: a promise checked in a transcript takes a lasting Estimate that reads a text that ships and a one-off Estimate of the sprint page · [[decision-case-1071.1]] · generate
+- 2026-11-26 rules/rule-estimates-schema updated: the field method: an Estimate off a sprint page reads no transcript, a promise checked in a transcript takes a lasting Estimate and a one-off Estimate; the field once names a transcript among the states it checks · [[decision-case-1071.1]] · generate
+- 2026-11-26 entities/entity-sprint-plugin updated: the Backlog question whether every Estimate that reads a transcript is split is decided: it is, for each Estimate a Case creates, gives a new method or gives a new Criterion · [[decision-case-1071.1]] · generate
+- 2026-11-26 estimates/estimate-case-protocol-splits-a-transcript-reading created · [[decision-case-1071.1]] · generate
+- 2026-11-26 estimates/estimate-case-protocol-splits-a-transcript-reading status: pending → passed · raw/2026-11-26/1515/ledger.md#L39 · generate
+- 2026-11-26 rules/rule-case-protocol estimate estimate-case-protocol-splits-a-transcript-reading added · [[decision-case-1071.1]] · generate
+- 2026-11-26 decisions/decision-case-1071.2 created · raw/2026-11-26/1515/ledger.md#case-1071.2 · generate
+- 2026-11-26 estimates/estimate-prespec-hook-reports-a-method-that-reads-a-transcript created · [[decision-case-1071.2]] · generate
+- 2026-11-26 estimates/estimate-prespec-hook-reports-a-method-that-reads-a-transcript status: pending → passed · raw/2026-11-26/1515/ledger.md#L40 · generate
+- 2026-11-26 rules/rule-prespec-hook estimate estimate-prespec-hook-reports-a-method-that-reads-a-transcript added · [[decision-case-1071.2]] · generate
+- 2026-11-26 estimates/estimate-frontier-hook-refuses-an-open-box-with-a-closer status: pending → passed · raw/2026-11-26/1515/ledger.md#L36 · generate
+- 2026-11-26 estimates/estimate-spec-box-refuses-a-stale-spec status: pending → passed · raw/2026-11-26/1515/ledger.md#L37 · generate
+- 2026-11-26 estimates/estimate-morph-sets-up-the-project-at-the-first-hi status: pending → passed · raw/2026-11-26/1515/ledger.md#L38 · generate
+- 2026-11-26 rules/rule-guppi-config status: built → draft · cascade · generate
+- 2026-11-26 lessons/lesson-frontier-line-closed-in-two-changes-through-bash archived · insight actioned · generate
+- 2026-11-26 lessons/lesson-frontier-line-closed-in-two-changes-through-bash archived · cleanup

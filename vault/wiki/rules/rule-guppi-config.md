@@ -2,13 +2,13 @@
 type: rule
 kind: Leaf
 purpose: Prevents a setting of guppi from being written by hand into the texts that use it, or changed outside a ratified decision
-status: built
+status: draft
 enforcement: render
 implementation_ref: [.guppi/guppi/config.py, .guppi/guppi/commands.py, .guppi/tests/test_config.py, .guppi/tests/test_commands.py]
 governs: guppi.toml
 render_mode: full
 parent: "[[rule-harness]]"
-estimates: ["[[estimate-guppi-config-fills-the-languages]]", "[[estimate-guppi-config-runs-the-test-and-style-commands]]"]
+estimates: ["[[estimate-guppi-config-fills-the-languages]]", "[[estimate-guppi-config-runs-the-test-and-style-commands]]", "[[estimate-guppi-config-fills-the-main-branch]]"]
 origin: raw/2026-09-28/1318/ledger.md#case-476.1
 sprint: migration
 created: 2026-09-28
@@ -20,7 +20,7 @@ core: true
 
 Prevents a setting of guppi from being written by hand into the texts that use it, or changed outside a ratified decision. This page's Render is `guppi.toml`, guppi's one settings file: a change is an `update` of the Render, and the governed-files hook refuses a hand edit of the file. It sets the language of the repository, `documentation_lang`, and the language of the chat with the owner, `chat_lang`, as codes; `.guppi/guppi/config.py` holds the table of each code's name and script. The render reads the codes from this Render and puts the name where another Render writes `{{documentation_lang}}` or `{{chat_lang}}`; the checks, such as the pre-spec finding, read `guppi.toml`.
 
-It also sets how the project tests its code and checks its style: the key `test` and the key `style`, each a list of commands. `uv run --project .guppi guppi test` runs the commands of `test`, and `uv run --project .guppi guppi style` the commands of `style`, which `.guppi/guppi/commands.py` reads from `guppi.toml` through `.guppi/guppi/config.py`. Each runs its commands in order, in the folder of the project and with no shell between, runs each one even after a red one, lets each print its own lines, and exits non-zero when any of them does. When `guppi.toml` or the key is missing, it prints one line that names the file and the key, runs nothing and exits 1. With `--exit-zero`, in each case, a missing file or key included, it prints one last line `exit code: <n>`, the exit code of the run without the flag, and exits 0, so a skill that runs it as a `!` command loads whatever the run finds (as set in case 1003.1). The Render holds the commands of the repository of GUPPI, and a project that installs GUPPI takes them as they stand, so its `guppi test` runs the tests of GUPPI, and the setup Case of a project with code of its own adds the commands of that project after them (as set in case 1031.3). Work Mode, Retro and the CI of the project run these two commands, so a project needs no tool but `uv` (case 820). The key `setup_done` marks whether the setup Case of `rule-morph` has set these values: `guppi ship` writes `setup_done = false` into the copy of this page that a new project installs, and the setup Case of a project sets it to `true`; `setup_pending` of `.guppi/guppi/config.py` takes the setup as not done only where `guppi.toml` holds `setup_done = false`, and a missing file or key as done (as set in case 1017.1). The questions asked at setup, these two commands among them, belong to the setup Case of a project (the category set as data waits as a line of the `## Backlog` of `entity-sprint-plugin`, cases 476.1, 802).
+It also sets how the project tests its code and checks its style: the key `test` and the key `style`, each a list of commands. `uv run --project .guppi guppi test` runs the commands of `test`, and `uv run --project .guppi guppi style` the commands of `style`, which `.guppi/guppi/commands.py` reads from `guppi.toml` through `.guppi/guppi/config.py`. Each runs its commands in order, in the folder of the project and with no shell between, runs each one even after a red one, lets each print its own lines, and exits non-zero when any of them does. When `guppi.toml` or the key is missing, it prints one line that names the file and the key, runs nothing and exits 1. With `--exit-zero`, in each case, a missing file or key included, it prints one last line `exit code: <n>`, the exit code of the run without the flag, and exits 0, so a skill that runs it as a `!` command loads whatever the run finds (as set in case 1003.1). The Render holds the commands of the repository of GUPPI, and a project that installs GUPPI takes them as they stand, so its `guppi test` runs the tests of GUPPI, and the setup Case of a project with code of its own adds the commands of that project after them (as set in case 1031.3). Work Mode, Retro and the CI of the project run these two commands, so a project needs no tool but `uv` (case 820). The key `setup_done` marks whether the setup Case of `rule-morph` has set these values: `guppi ship` writes `setup_done = false` into the copy of this page that a new project installs, and the setup Case of a project sets it to `true`; `setup_pending` of `.guppi/guppi/config.py` takes the setup as not done only where `guppi.toml` holds `setup_done = false`, and a missing file or key as done (as set in case 1017.1). The key `main_branch` names the main branch of the project: the render puts its value where another Render writes `{{main_branch}}`, and a Render with that placeholder stops the run while this Render holds no such key, as for a language; the code reads it from `guppi.toml` by `main_branch` of `.guppi/guppi/config.py`, which gives `main` where the file or the key is missing; one function of that module judges the value for both; this Render holds `main`, the clean version ships it, and the setup Case of a project writes the name of its own main branch (as set in case 1070.1). The questions asked at setup, these two commands among them, belong to the setup Case of a project (the category set as data waits as a line of the `## Backlog` of `entity-sprint-plugin`, cases 476.1, 802).
 
 ## Render
 
@@ -30,6 +30,7 @@ documentation_lang = "en"
 chat_lang = "ru"
 test = ["uv run --project .guppi pytest -q .guppi/tests"]
 style = ["uv run --project .guppi ruff check .", "uv run --project .guppi ruff format --check ."]
+main_branch = "main"
 setup_done = true
 <!-- /rule-guppi-config -->
 
@@ -56,3 +57,6 @@ setup_done = true
 - 2026-11-02 updated: guppi test and guppi style take --exit-zero, which prints the exit code on a last line and exits 0 · [[decision-case-1003.1]]
 - 2026-11-03 updated: guppi.toml gains the key setup_done, which marks the setup Case of rule-morph as done · [[decision-case-1017.1]]
 - 2026-11-20 updated: a project keeps the commands of GUPPI and adds its own after them · [[decision-case-1031.3]]
+- 2026-11-26 updated: the key main_branch names the main branch; the render fills {{main_branch}} and the code reads it, main where guppi.toml holds no key · [[decision-case-1070.1]]
+- 2026-11-26 estimate estimate-guppi-config-fills-the-main-branch added · [[decision-case-1070.1]]
+- 2026-11-26 status: built → draft · cascade

@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: frontierguard judges an Edit or a Write of frontier.md and not a Bash command that changes the file, and the agent split the box and the closer of one line into two changes where the guard asks for one edit of the whole line
-status: clustered
+status: archived
 insight: "[[insight-orchestration-frontier-closer-leaves-the-box-open]]"
 origin: raw/2026-11-26/1336/ledger.md#L14
 sprint: plugin
@@ -22,3 +22,5 @@ frontierguard judges an Edit or a Write of frontier.md and not a Bash command th
 
 - 2026-11-26 created · raw/2026-11-26/1336/ledger.md#L14
 - 2026-11-26 updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-26/1336/ledger.md#L14
+- 2026-11-26 archived · insight actioned
+- 2026-11-26 archived · cleanup

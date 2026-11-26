@@ -19,6 +19,9 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - [ ] Whether the sprint page says that an Estimate, a one-off one too, is done when it passes, and that a failed one-off reading is not done; read once · pending
 - [x] Whether uv sync builds the package guppi from a fresh copy of .guppi/ with no warning that the build line of .guppi/pyproject.toml does not hold the version of uv, on a uv from 0.11 to before 0.14 · passed
 - [ ] Whether the form of a Case, case-guppi, pre-spec and the schema of an Estimate say that a passed one-off Estimate gets no update from a later Case and is no missed Estimate, while a pending or failed one is updated as before; read once · pending
+- [ ] Whether the Renders of the skills that ship name the main branch by {{main_branch}}, or, in the session of a ratified setup Case, by the name that Case sets, which /sprint-open writes into the prompt of the opening Case, their files by the name that rule-guppi-config sets, and the Purposes of rule-git-context and rule-work-mode by words · pending
+- [ ] Whether the librarian's agent file names the main branch by {{main_branch}}, and the Purposes of rule-page-generation and rule-vault-layout and the rows Librarian and Work Mode of the glossary by words · pending
+- [ ] Whether a new install in a git project made by git init -b master has its setup Case show master as the main branch for correction, its opening Case and Work Mode take master as the main branch in the same session, and its librarian's run write main_branch = "master" into guppi.toml and master into the rendered skills that name the main branch · pending
 
 ## Milestones
 
@@ -31,3 +34,4 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 ## Closed
 
 - The sprint turn and GitHub: the repository on GitHub set up so that a pull request from another person is easy to review (case 794)
+- The name of the main branch: a project whose main branch is not main sets its name at the setup, and the code and the skills read it (case 1070)

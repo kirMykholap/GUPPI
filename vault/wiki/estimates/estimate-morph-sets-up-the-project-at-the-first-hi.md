@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-morph]]"
-purpose: Whether the first /hi after /guppi:install, in a project whose guppi.toml does not mark the setup as done, puts one setup Case first, before the opening of the first sprint, with the values it finds and the values the person gives, and whether the settings change only by the copy and the setting aside of /guppi:install, the render of /hi and the render after that Case is ratified
-method: "by hand, after the install stop of the Work Mode that sets this method: the plugin guppi installed from a copy that uv run --project .guppi guppi ship --allow-draft wrote into a local folder, in a git project made by git init -b main after the install that holds a CLAUDE.md and a code file of its own, and in a git project that holds only a LICENSE of its own, /guppi:install typed, Claude Code reopened, /hi typed and that session taken to its librarian's run, the transcript of each of those sessions under ~/.claude/projects, its ledger and the files written in it read against the Criterion, recorded in the estimate line"
-checked: 2026-11-25
+purpose: Whether the Render of rule-skill-setup and the Purpose of rule-morph say that the first /hi after /guppi:install, in a project whose guppi.toml holds setup_done = false, puts one setup Case first, with the values it finds — the folder of saved transcripts and the main branch from the branch /hi printed, which goes into its prompt — and the values the person gives, and that the librarian's run of that session renders the settings and each file that names the main branch by the key main_branch
+method: "by hand, at the Retro of the session that sets this Criterion: the new Render of rule-skill-setup and the new Purpose of rule-morph in the Spec read against the Criterion, and after it the Render of rule-skill-setup in .claude/skills/setup/SKILL.md, rendered from it, recorded in the estimate line"
+checked: 2026-11-26
 origin: raw/2026-10-13/1753/ledger.md#case-802
 sprint: plugin
 created: 2026-10-13
@@ -15,27 +15,24 @@ tags: [session, harness, plugin]
 ## Criterion
 
 When:
-In a project where the person installed the plugin `guppi` and typed `/guppi:install`, as `rule-plugin-install` sets it, and whose `guppi.toml` holds `setup_done = false`, the person reopens Claude Code and types `/hi`.
+Someone reads the `## Render` of `rule-skill-setup` and the `## Purpose` of `rule-morph`, in the Spec at the Retro of the session that ratified this Criterion, or after it the Render of `rule-skill-setup` in `.claude/skills/setup/SKILL.md`, rendered from it, and the `## Purpose` of `rule-morph` in the Spec of the last session that changed it.
 
 Then:
-`/hi` opens the session and starts `/setup` of `rule-skill-setup`, which puts the setup Case of `rule-morph` first, before the opening Case of the first sprint and before the Frontier.
-**＋** The setup Case takes the name of the project's folder of saved transcripts from the path of the project.
-**＋** It asks the person only for the values it cannot find: the language of the repository, the language of the chat and the description of the project.
-**＋** Where the file paths of the project show a file of a programming language outside `.guppi/`, `vault/`, `.claude/` and `guppi-set-aside/`, one plain question says that GUPPI's own tests and style check keep running in the project, says why it asks, and asks how the project's own tests and style check run beside them, and the commands the person gives stand after GUPPI's commands in the keys `test` and `style` of `guppi.toml`.
-**＋** Every value stands in that one setup Case, which the person ratifies or corrects, and the ledger hook of `rule-ledger-write` writes its decision lines though no sprint is open.
-**＋** The reply that acknowledges the setup Case shows no Frontier and ends with the open question on what the first sprint is to build, and on the person's answer `/sprint-open` starts in the same session with that answer.
-**＋** The librarian's run of that session writes the settings by the render of the rule pages that hold them, `guppi.toml`, the description of the project in `CLAUDE.md` and the read rules of the saved transcripts, and `guppi.toml` then holds `setup_done = true`.
-**－** `/guppi:install` is no Case, and the person ratifies nothing at it.
-**－** Between `/guppi:install` and that librarian's run, no settings file changes but by the copy and the setting aside of `/guppi:install` and the render that `/hi` runs.
-**－** The setup step asks for no category set, no name of the main branch and no git remote, reads no code of the project and creates no page for it.
-**－** Where the file paths show no such file, it asks nothing on tests or style, and the keys `test` and `style` stay as they are.
-**－** The question names no key of `guppi.toml`, GUPPI's commands leave no key, and no key becomes an empty list.
-**－** It asks no question on how the setup Case splits or how it is checked.
-**－** A project whose `guppi.toml` does not hold `setup_done = false` gets no setup Case at `/hi`.
+The two texts say that, after `/guppi:install` of `rule-plugin-install`, the first `/hi` in a project whose `guppi.toml` holds `setup_done = false` starts `/setup`, which puts the setup Case of `rule-morph` first, before the opening Case of the first sprint and before the Frontier.
+**＋** They say that step 2 of `/setup` writes the branch that `/hi` printed under `Branch:` into the prompt of the setup Case.
+**＋** They say that the setup Case takes the name of the project's folder of saved transcripts from the path of the project, and the name of its main branch from that branch, `main` where that line names no branch, and shows each for the person to correct.
+**＋** They say that it asks the person for the language of the repository, the language of the chat and the description of the project, and that, where the file paths of the project show a file of a programming language outside `.guppi/`, `vault/`, `.claude/` and `guppi-set-aside/`, one plain question asks how the project's own tests and style check run beside GUPPI's, whose commands stay first in the keys `test` and `style`.
+**＋** They say that the `update` of `rule-guppi-config` of the setup Case holds `main_branch` with the name of the main branch, and that the ledger hook of `rule-ledger-write` writes its decision lines though no sprint is open.
+**＋** They say that the setup Case holds a render line for each file its updates write and for each file whose `## Render` names the main branch by the placeholder of the key `main_branch`, and that the librarian's run of that session renders them.
+**＋** They say that the reply that acknowledges the setup Case shows no Frontier and ends with the open question on what the first sprint is to build, and that `/sprint-open` starts in the same session with the person's answer.
+**－** They say that `/guppi:install` is no Case and that the person ratifies nothing at it.
+**－** They say that the setup Case asks for no category set and no git remote, asks no question on the main branch, reads no code of the project and creates no page.
+**－** They say that, where the file paths show no such file, it asks nothing on tests or style, and that its question names no key of `guppi.toml`.
+**－** The reading does not run the setup: a new install is read by the one-off Estimate `estimate-sprint-plugin-setup-takes-a-main-branch-other-than-main`.
 
 ## Result
 
-2026-11-25, Retro of session 0816, the install stop of its Work Mode, ~/.claude/projects/C--tmp-guppi-1055-p1-code/e3d24d1f-917e-441b-b0ff-4f7de6f018ec.jsonl (code app.py, git init -b main after the install) and C--tmp-guppi-1055-p2-license/4b3495da-b569-431c-860c-6b95cdee18f0.jsonl (only a LICENSE): /hi started /setup first in both, before the opening Case and the Frontier; the setup Case asked the languages and the description, and showed the transcripts folder taken from the path for correction as the setup skill sets it (p1 Q5 C--tmp-guppi-1055-p1-code; p2 Q4 c--tmp-guppi-1055-p2-license, made C-- by a Glob before the Case was written); p1 asked one plain question on tests and style naming no key of guppi.toml, answered none, so test and style stayed GUPPI's; p2 asked nothing on tests; no subagent and no main call read app.py; the decision lines stood in each ledger before the sprint page (p1 18:12:13, p2 18:25:34); each acknowledging reply showed no Frontier and ended with the question on the first sprint, and /sprint-open followed with that answer; the commits before the librarian's run (p1 9d8618a, p2 1af3d22) held setup_done = false and a CLAUDE.md and .claude/settings.json equal to the copy, and after the run (p1 5d5ec49, p2 5dba49c) guppi.toml held setup_done = true, CLAUDE.md the description and settings.json the read rules of the folder
+2026-11-26, Retro, vault/raw/2026-11-26/1515/spec.md Case 1070.3: the new Render of rule-skill-setup (its pairs over the live Render) and the new Purpose of rule-morph read against each line of the Criterion: step 2 writes the branch of Branch: into the prompt, the setup Case takes the transcripts folder from the path and the main branch from that branch, main where none, shows each for correction with no question, its update of rule-guppi-config holds main_branch, it holds a render line for each file whose Render names the main branch by the placeholder and step 4 renders them, it asks for no category set and no git remote; the other lines stand in the live texts
 
 ## History
 
@@ -49,3 +46,5 @@ Then:
 - 2026-11-20 updated: the Criterion replaced whole — the setup asks on tests and style only where the project holds code of its own · [[decision-case-1031.3]]
 - 2026-11-25 updated: the method set anew — the project with code is the one of the git init offer, the project with no code the one that holds only a LICENSE, at the install stop of Work Mode · [[decision-case-1055.2]]
 - 2026-11-25 status: pending → passed · raw/2026-11-25/0816/ledger.md#L26
+- 2026-11-26 updated: the Criterion replaced whole — the texts of the setup say that the setup Case proposes the name of the main branch from the branch /hi printed and writes it into guppi.toml; purpose and method read those texts in the Spec at Retro, and the install moves to a one-off Estimate of the sprint page · [[decision-case-1070.3]]
+- 2026-11-26 status: pending → passed · raw/2026-11-26/1515/ledger.md#L38

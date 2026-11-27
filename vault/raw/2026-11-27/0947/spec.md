@@ -70,7 +70,7 @@ update:
 - [x] update `entity-guppi-repository`
 - [x] update `rule-clean-branch`
 - [x] create `estimate-guppi-repository-readme-shows-the-first-sketch`
-- [ ] read `estimate-guppi-repository-readme-shows-the-first-sketch`
+- [x] read `estimate-guppi-repository-readme-shows-the-first-sketch`
 ```
 
 ## Case 1077 — A stop task that waits for the person stands on the Frontier

@@ -13480,3 +13480,53 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-27 lessons/lesson-frontier-line-closed-in-two-edits updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-27/0947/ledger.md#L35 · generate
 - 2026-11-27 rules/rule-carry-over status: built → draft · cascade · generate
 - 2026-11-27 rules/rule-spec-write status: built → draft · cascade · generate
+- 2026-11-27 estimates/estimate-work-mode-runs-the-style-check-before-a-stop status: pending → failed · raw/2026-11-27/1402/ledger.md#L1 · generate
+- 2026-11-27 estimates/estimate-guppi-repository-readme-shows-the-first-sketch status: pending → passed · raw/2026-11-27/1402/ledger.md#L2 · generate
+- 2026-11-27 decisions/decision-case-1082 created · raw/2026-11-27/1402/ledger.md#case-1082 · generate
+- 2026-11-27 decisions/decision-case-1082 superseded by decision-case-1086 · [[decision-case-1086]] · generate
+- 2026-11-27 lessons/lesson-code-mode-not-taken-up created · raw/2026-11-27/1402/ledger.md#L4 · generate
+- 2026-11-27 decisions/decision-case-1084 created · raw/2026-11-27/1402/ledger.md#case-1084 · generate
+- 2026-11-27 rules/rule-work-mode updated: the style check runs before each stop: task, also after a clean run with no file changed · [[decision-case-1084]] · generate
+- 2026-11-27 estimates/estimate-work-mode-runs-the-style-check-before-a-stop updated: the Criterion written back word for word, to be read again after the skill says the check runs before each stop · [[decision-case-1084]] · generate
+- 2026-11-27 decisions/decision-case-1085 created · raw/2026-11-27/1402/ledger.md#case-1085 · generate
+- 2026-11-27 decisions/decision-case-1085.1 created · raw/2026-11-27/1402/ledger.md#case-1085.1 · generate
+- 2026-11-27 rules/rule-spec-write updated: the map has a box on each task line, taken from spec.md, and the maps of spec.md follow its boxes · [[decision-case-1085.1]] · generate
+- 2026-11-27 estimates/estimate-spec-write-writes-the-map updated: the Criterion replaced whole — each task line of the map stands after a box taken from spec.md · [[decision-case-1085.1]] · generate
+- 2026-11-27 decisions/decision-case-1085.2 created · raw/2026-11-27/1402/ledger.md#case-1085.2 · generate
+- 2026-11-27 rules/rule-hook-registry updated: guppi ratified --boxes registered on PostToolUse of Edit, Write and MultiEdit · [[decision-case-1085.2]] · generate
+- 2026-11-27 estimates/estimate-spec-write-rebuilds-the-maps-of-the-spec created · [[decision-case-1085.2]] · generate
+- 2026-11-27 estimates/estimate-spec-write-rebuilds-the-maps-of-the-spec status: pending → passed · raw/2026-11-27/1402/ledger.md#L21 · generate
+- 2026-11-27 rules/rule-spec-write estimate estimate-spec-write-rebuilds-the-maps-of-the-spec added · [[decision-case-1085.2]] · generate
+- 2026-11-27 decisions/decision-case-1085.3 created · raw/2026-11-27/1402/ledger.md#case-1085.3 · generate
+- 2026-11-27 estimates/estimate-spec-write-map-follows-the-ticks-of-the-scripts created · [[decision-case-1085.3]] · generate
+- 2026-11-27 estimates/estimate-spec-write-map-follows-the-ticks-of-the-scripts status: pending → passed · raw/2026-11-27/1402/ledger.md#L22 · generate
+- 2026-11-27 rules/rule-spec-write estimate estimate-spec-write-map-follows-the-ticks-of-the-scripts added · [[decision-case-1085.3]] · generate
+- 2026-11-27 decisions/decision-case-1085.4 created · raw/2026-11-27/1402/ledger.md#case-1085.4 · generate
+- 2026-11-27 estimates/estimate-spec-write-shows-the-boxes-in-the-plan-file created · [[decision-case-1085.4]] · generate
+- 2026-11-27 rules/rule-spec-write estimate estimate-spec-write-shows-the-boxes-in-the-plan-file added · [[decision-case-1085.4]] · generate
+- 2026-11-27 decisions/decision-case-1085.5 created · raw/2026-11-27/1402/ledger.md#case-1085.5 · generate
+- 2026-11-27 estimates/estimate-generate-ticks-the-spec updated: the Criterion replaced whole — nothing else in the file changes but the map of an approved document · [[decision-case-1085.5]] · generate
+- 2026-11-27 decisions/decision-case-1085.6 created · raw/2026-11-27/1402/ledger.md#case-1085.6 · generate
+- 2026-11-27 estimates/estimate-render-harness-ticks-the-spec updated: the Criterion replaced whole — nothing else in the file changes but the map of an approved document · [[decision-case-1085.6]] · generate
+- 2026-11-27 decisions/decision-case-1085.7 created · raw/2026-11-27/1402/ledger.md#case-1085.7 · generate
+- 2026-11-27 estimates/estimate-sprint-ticks-the-spec updated: the Criterion replaced whole — nothing else in the file changes but the map of an approved document; the method names the librarian's run as the event it waits for · [[decision-case-1085.7]] · generate
+- 2026-11-27 decisions/decision-case-1085.8 created · raw/2026-11-27/1402/ledger.md#case-1085.8 · generate
+- 2026-11-27 estimates/estimate-glossary-ticks-the-spec updated: the Criterion replaced whole — nothing else in the file changes but the map of an approved document · [[decision-case-1085.8]] · generate
+- 2026-11-27 rules/rule-spec-capture updated: the maps of spec.md are rebuilt by the hooks of rule-spec-write and the scripts that tick it · [[decision-case-1085.1]] · generate
+- 2026-11-27 decisions/decision-case-1085.9 created · raw/2026-11-27/1402/ledger.md#case-1085.9 · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-edit-takes-a-file-a-hook-changed created · [[decision-case-1085.9]] · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-edit-takes-a-file-a-hook-changed status: pending → passed · raw/2026-11-27/1402/ledger.md#L24 · generate
+- 2026-11-27 entities/entity-sprint-plugin estimate estimate-sprint-plugin-edit-takes-a-file-a-hook-changed added · [[decision-case-1085.9]] · generate
+- 2026-11-27 decisions/decision-case-1086 created · raw/2026-11-27/1402/ledger.md#case-1086 · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-first-sketch-picture-is-small created · [[decision-case-1086]] · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-first-sketch-picture-is-small status: pending → passed · raw/2026-11-27/1402/ledger.md#L25 · generate
+- 2026-11-27 entities/entity-sprint-plugin estimate estimate-sprint-plugin-first-sketch-picture-is-small added · [[decision-case-1086]] · generate
+- 2026-11-27 estimates/estimate-spec-write-writes-the-map status: pending → passed · raw/2026-11-27/1402/ledger.md#L20 · generate
+- 2026-11-27 estimates/estimate-generate-ticks-the-spec status: pending → passed · raw/2026-11-27/1402/ledger.md#L23 · generate
+- 2026-11-27 lessons/lesson-work-mode-style-check-skipped-at-a-repeated-stop created · raw/2026-11-27/1402/ledger.md#L26 · generate
+- 2026-11-27 entities/entity-guppi-repository status: draft → built · cascade · generate
+- 2026-11-27 rules/rule-glossary status: built → draft · cascade · generate
+- 2026-11-27 rules/rule-render-harness status: built → draft · cascade · generate
+- 2026-11-27 rules/rule-sprint status: built → draft · cascade · generate
+- 2026-11-27 decisions/decision-case-1082 archived · superseded · generate
+- 2026-11-27 decisions/decision-case-1082 archived · cleanup

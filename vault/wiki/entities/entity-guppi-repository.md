@@ -2,7 +2,7 @@
 type: entity
 kind: Leaf
 purpose: The repository of GUPPI on GitHub, with rules of its own that a repository of another person who uses GUPPI need not share
-status: draft
+status: built
 parent: "[[entity-guppi]]"
 estimates: ["[[estimate-guppi-repository-remote-on-github]]", "[[estimate-guppi-repository-keeps-the-development-project]]", "[[estimate-guppi-repository-stops-in-the-merge-tasks]]", "[[estimate-guppi-repository-carries-the-mit-license]]", "[[estimate-guppi-repository-readme-shows-the-path-of-a-decision]]", "[[estimate-guppi-repository-readme-shows-the-first-sketch]]"]
 rules: ["[[rule-clean-branch]]", "[[rule-github-repository]]"]
@@ -36,3 +36,4 @@ The repository of GUPPI on GitHub, as a thing of its own. Its rules are `rule-gi
 - 2026-11-27 status: built → draft · cascade
 - 2026-11-27 updated: README.md shows the first sketch of GUPPI from plugin/assets/ · [[decision-case-1076]]
 - 2026-11-27 estimate estimate-guppi-repository-readme-shows-the-first-sketch added · [[decision-case-1076]]
+- 2026-11-27 status: draft → built · cascade

@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents glossary.md from drifting from the terms of entity-glossary, and a term from pointing at no page
-status: built
+status: draft
 enforcement: check
 implementation_ref: [.guppi/guppi/glossary.py, .guppi/tests/test_glossary.py]
 governs: vault/wiki/glossary.md
@@ -31,3 +31,4 @@ Prevents `vault/wiki/glossary.md` from drifting from the terms of `entity-glossa
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `make lint` → `uv run --project .guppi guppi check` · [[decision-case-820.7]]
+- 2026-11-27 status: built → draft · cascade

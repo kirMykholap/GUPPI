@@ -4,17 +4,16 @@
 
 <!-- map: written by guppi ratified from the Cases below -->
 
-**Map of the Cases** — cut from the Cases below, which follow whole.
+**Map of the Cases** — cut from the Cases below, which follow whole; each box copies the box of its task line below and is no task of its own.
 
 | Case | Name | ⛔ open stops | 🔍 open checks |
 |---|---|---|---|
-| 1082 | The first sketch in README.md is a small picture | 1 | 1 |
 | 1084 | The style check runs before each stop of Work Mode | 0 | 1 |
-| 1085 | The map of the plan has real boxes that follow the ticks of spec.md | 0 | 9 |
+| 1085 | The map of the plan has real boxes that follow the ticks of spec.md | 0 | 4 |
+| 1086 | The first sketch in README.md is a picture under 1 MB | 0 | 0 |
 
 ```mermaid
 flowchart TD
-    c1082["⛔ 🧩 1082 — The first sketch in README.md is a small picture"]
     c1084["🧩 1084 — The style check runs before each stop of Work Mode"]
     c1085["🧩 1085 — The map of the plan has real boxes that follow the ticks of spec.md"]
     c1085_1["🧩 1085.1 — The map of the plan file has a box on each task line"]
@@ -26,8 +25,9 @@ flowchart TD
     c1085_7["🧩 1085.7 — sprint ticks the Spec, and the map follows"]
     c1085_8["🧩 1085.8 — glossary ticks the Spec, and the map follows"]
     c1085_9["🧩 1085.9 — An edit runs on a file that a command changed after the last edit"]
-    c1082 --> c1084
+    c1086["🧩 1086 — The first sketch in README.md is a picture under 1 MB"]
     c1084 --> c1085
+    c1085 --> c1086
     c1085 --> c1085_1
     c1085 --> c1085_2
     c1085 --> c1085_3
@@ -39,59 +39,58 @@ flowchart TD
     c1085 --> c1085_9
 ```
 
-- 🧩 **1082 — The first sketch in README.md is a small picture** · `vault/raw/2026-11-27/1402/cases/case-1082.md`
-  - ⛔ stop: `plugin/assets/GUPPI.png`: the person puts their new export of the Excalidraw board here, about 1000 pixels wide and under 500 KB, in place of the full picture.
-  - create `estimate-sprint-plugin-first-sketch-picture-is-small` — Whether plugin/assets/GUPPI.png, the first sketch that README.md shows, is a PNG from 800 to 1200 pixels wide and under 500 000 bytes
-  - 🔍 read `estimate-sprint-plugin-first-sketch-picture-is-small` — Whether plugin/assets/GUPPI.png, the first sketch that README.md shows, is a PNG from 800 to 1200 pixels wide and under 500 000 bytes
 - 🧩 **1084 — The style check runs before each stop of Work Mode** · `vault/raw/2026-11-27/1402/cases/case-1084.md`
-  - update `rule-work-mode` — the style check runs before each stop: task, also after a clean run with no file changed
-  - update `estimate-work-mode-runs-the-style-check-before-a-stop` — the Criterion written back word for word, to be read again after the skill says the check runs before each stop
-  - `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
-  - 🔍 read `estimate-work-mode-runs-the-style-check-before-a-stop`
+  - [x] update `rule-work-mode` — the style check runs before each stop: task, also after a clean run with no file changed
+  - [x] update `estimate-work-mode-runs-the-style-check-before-a-stop` — the Criterion written back word for word, to be read again after the skill says the check runs before each stop
+  - [x] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
+  - [ ] 🔍 read `estimate-work-mode-runs-the-style-check-before-a-stop`
 - 🧩 **1085 — The map of the plan has real boxes that follow the ticks of spec.md** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
 - 🧩 **1085.1 — The map of the plan file has a box on each task line** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
-  - `.guppi/guppi/ratified.py`: each line of an entry of the map stands indented under its Case after its box, `[x]` for a ticked line, `[ ] ⛔` for an open `stop:` line, `[ ] 🔍` for an open `read` line and `[ ]` for any other open line, with no ✅; the map of the plan file takes the box of each task line from the sections of the same Case in the session's `spec.md` once it stands, by `keep_boxes`, never by a second judgment of a box; `--map` takes the boxes in the same way; the docstring names the boxes and where they come from (as set in case 1085.1).
-  - `.guppi/tests/test_ratified.py`: the tests `-k map` assert the boxes of the lines in place of ✅, a ticked `read` line as `[x]` with no 🔍, the boxes of the map of the plan file taken from a `spec.md` in which a line of the same Case is ticked, a box ticked in the map alone written back at the next rebuild, and no line of the map that `TASK_LINE` matches.
-  - update `rule-spec-write` — the map has a box on each task line, taken from spec.md, and the maps of spec.md follow its boxes
-  - update `rule-spec-capture` — the maps of spec.md are rebuilt by the hooks of rule-spec-write and the scripts that tick it
-  - `.guppi/guppi/spec.py`: the paragraph of the docstring on the three writers of the file adds that the `Stop` hook of `rule-spec-write`, its hook `guppi ratified --boxes` after an edit and the scripts of the librarian's run that tick a line rebuild the map at the head of each approved document that holds one (as set in cases 1085.2 and 1085.3).
-  - update `estimate-spec-write-writes-the-map` — the Criterion replaced whole — each task line of the map stands after a box taken from spec.md
-  - 🔍 read `estimate-spec-write-writes-the-map`
+  - [x] `.guppi/guppi/ratified.py`: each line of an entry of the map stands indented under its Case after its box, `[x]` for a ticked line, `[ ] ⛔` for an open `stop:` line, `[ ] 🔍` for an open `read` line and `[ ]` for any other open line, with no ✅; the map of the plan file takes the box of each task line from the sections of the same Case in the session's `spec.md` once it stands, by `keep_boxes`, never by a second judgment of a box; `--map` takes the boxes in the same way; the docstring names the boxes and where they come from (as set in case 1085.1).
+  - [x] `.guppi/tests/test_ratified.py`: the tests `-k map` assert the boxes of the lines in place of ✅, a ticked `read` line as `[x]` with no 🔍, the boxes of the map of the plan file taken from a `spec.md` in which a line of the same Case is ticked, a box ticked in the map alone written back at the next rebuild, and no line of the map that `TASK_LINE` matches.
+  - [x] update `rule-spec-write` — the map has a box on each task line, taken from spec.md, and the maps of spec.md follow its boxes
+  - [x] update `rule-spec-capture` — the maps of spec.md are rebuilt by the hooks of rule-spec-write and the scripts that tick it
+  - [x] `.guppi/guppi/spec.py`: the paragraph of the docstring on the three writers of the file adds that the `Stop` hook of `rule-spec-write`, its hook `guppi ratified --boxes` after an edit and the scripts of the librarian's run that tick a line rebuild the map at the head of each approved document that holds one (as set in cases 1085.2 and 1085.3).
+  - [x] update `estimate-spec-write-writes-the-map` — the Criterion replaced whole — each task line of the map stands after a box taken from spec.md
+  - [x] read `estimate-spec-write-writes-the-map`
 - 🧩 **1085.2 — The maps of spec.md follow its Cases and its boxes** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
-  - `.guppi/guppi/ratified.py`: one function rebuilds the map of each approved document of a `spec.md` that holds one, from the Cases of that document, with the session folder of the file naming the case files, and adds no map to a document that has none; `stop` runs it on `spec.md` after each run that writes, places or removes a Case or a defer there; the mode `--boxes` reads the payload of `PostToolUse`, and when `tool_input.file_path` is a `spec.md` whose folder is a session folder `vault/raw/<date>/<HHMM>/`, judged by `DAY` and `SESSION` of `.guppi/guppi/generate.py`, imported, it runs that function on the file, and, for the `spec.md` of the session's own folder, rebuilds the map of the plan file; it refuses nothing, prints nothing on stdout and exits 0, and an error gives one line on stderr; the line that opens the map says that each box copies the box of its task line below and is no task of its own; the docstring names the maps of `spec.md` and the mode (as set in case 1085.2).
-  - `.guppi/tests/test_ratified.py`: tests `-k spec_map` of a `spec.md` of two approved documents with a map each, both rebuilt from their own Cases after an edit by `--boxes`; of a document with no map left with none; of the map of the plan file rebuilt after an edit of the session's `spec.md`; of a file that is no `spec.md` of a session folder left as it was; of `--boxes` exiting 0 with nothing on stdout on a payload it cannot read; and of the maps of `spec.md` rebuilt after `stop` places a Case there; `test_approved_spec_places_a_case_after_the_map` asserts that the map of `spec.md` now holds the placed Case.
-  - update `rule-hook-registry` — guppi ratified --boxes registered on PostToolUse of Edit, Write and MultiEdit
-  - `uv run --project .guppi guppi render`: `.claude/settings.json`
-  - create `estimate-spec-write-rebuilds-the-maps-of-the-spec` — Whether the map of each approved document of spec.md that holds one is rebuilt from the Cases and the boxes of that document after each edit of the file and after each write of the Stop hook into it, whether an edit of the session's own spec.md rebuilds the map of the plan file too, and whether the hook after an edit changes no other file and refuses nothing
-  - 🔍 read `estimate-spec-write-rebuilds-the-maps-of-the-spec` — Whether the map of each approved document of spec.md that holds one is rebuilt from the Cases and the boxes of that document after each edit of the file and after each write of the Stop hook into it, whether an edit of the session's own spec.md rebuilds the map of the plan file too, and whether the hook after an edit changes no other file and refuses nothing
+  - [x] `.guppi/guppi/ratified.py`: one function rebuilds the map of each approved document of a `spec.md` that holds one, from the Cases of that document, with the session folder of the file naming the case files, and adds no map to a document that has none; `stop` runs it on `spec.md` after each run that writes, places or removes a Case or a defer there; the mode `--boxes` reads the payload of `PostToolUse`, and when `tool_input.file_path` is a `spec.md` whose folder is a session folder `vault/raw/<date>/<HHMM>/`, judged by `DAY` and `SESSION` of `.guppi/guppi/generate.py`, imported, it runs that function on the file, and, for the `spec.md` of the session's own folder, rebuilds the map of the plan file; it refuses nothing, prints nothing on stdout and exits 0, and an error gives one line on stderr; the line that opens the map says that each box copies the box of its task line below and is no task of its own; the docstring names the maps of `spec.md` and the mode (as set in case 1085.2).
+  - [x] `.guppi/tests/test_ratified.py`: tests `-k spec_map` of a `spec.md` of two approved documents with a map each, both rebuilt from their own Cases after an edit by `--boxes`; of a document with no map left with none; of the map of the plan file rebuilt after an edit of the session's `spec.md`; of a file that is no `spec.md` of a session folder left as it was; of `--boxes` exiting 0 with nothing on stdout on a payload it cannot read; and of the maps of `spec.md` rebuilt after `stop` places a Case there; `test_approved_spec_places_a_case_after_the_map` asserts that the map of `spec.md` now holds the placed Case.
+  - [x] update `rule-hook-registry` — guppi ratified --boxes registered on PostToolUse of Edit, Write and MultiEdit
+  - [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+  - [x] create `estimate-spec-write-rebuilds-the-maps-of-the-spec` — Whether the map of each approved document of spec.md that holds one is rebuilt from the Cases and the boxes of that document after each edit of the file and after each write of the Stop hook into it, whether an edit of the session's own spec.md rebuilds the map of the plan file too, and whether the hook after an edit changes no other file and refuses nothing
+  - [x] read `estimate-spec-write-rebuilds-the-maps-of-the-spec` — Whether the map of each approved document of spec.md that holds one is rebuilt from the Cases and the boxes of that document after each edit of the file and after each write of the Stop hook into it, whether an edit of the session's own spec.md rebuilds the map of the plan file too, and whether the hook after an edit changes no other file and refuses nothing
 - 🧩 **1085.3 — The librarian's scripts rebuild the maps of each spec.md they tick** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
-  - `.guppi/guppi/generate.py`: `tick_read` and `tick_spec`, after they write a `spec.md`, rebuild its maps by the function of `.guppi/guppi/ratified.py` that rebuilds the maps of `spec.md`, imported inside the function, never copied (as set in case 1085.3).
-  - `.guppi/guppi/render.py`: `tick_command_lines`, after it writes a `spec.md`, rebuilds its maps by the same function, imported inside the function (as set in case 1085.3).
-  - `.guppi/guppi/sprint_close.py`: `tick`, after it writes a `spec.md`, rebuilds its maps by the same function, imported inside the function (as set in case 1085.3).
-  - `.guppi/tests/test_generate.py`: tests `-k spec_map` of `tick_read` and `tick_spec` on a `spec.md` whose approved document holds a map, the box of the ticked line ticked in the map too, and of a `spec.md` with no map left with none.
-  - `.guppi/tests/test_render.py`: a test `-k spec_map` of `tick_command_lines` on a `spec.md` whose approved document holds a map, the box of the ticked line ticked in the map too.
-  - `.guppi/tests/test_sprint_close.py`: a test `-k spec_map` of `tick` on a `spec.md` whose approved document holds a map, the box of the ticked close line ticked in the map too.
-  - create `estimate-spec-write-map-follows-the-ticks-of-the-scripts` — Whether each script of the librarian's run that ticks a line of a spec.md rebuilds the map of each approved document there that holds one, the ticked line included, and adds no map to a document without one
-  - 🔍 read `estimate-spec-write-map-follows-the-ticks-of-the-scripts` — Whether each script of the librarian's run that ticks a line of a spec.md rebuilds the map of each approved document there that holds one, the ticked line included, and adds no map to a document without one
+  - [x] `.guppi/guppi/generate.py`: `tick_read` and `tick_spec`, after they write a `spec.md`, rebuild its maps by the function of `.guppi/guppi/ratified.py` that rebuilds the maps of `spec.md`, imported inside the function, never copied (as set in case 1085.3).
+  - [x] `.guppi/guppi/render.py`: `tick_command_lines`, after it writes a `spec.md`, rebuilds its maps by the same function, imported inside the function (as set in case 1085.3).
+  - [x] `.guppi/guppi/sprint_close.py`: `tick`, after it writes a `spec.md`, rebuilds its maps by the same function, imported inside the function (as set in case 1085.3).
+  - [x] `.guppi/tests/test_generate.py`: tests `-k spec_map` of `tick_read` and `tick_spec` on a `spec.md` whose approved document holds a map, the box of the ticked line ticked in the map too, and of a `spec.md` with no map left with none.
+  - [x] `.guppi/tests/test_render.py`: a test `-k spec_map` of `tick_command_lines` on a `spec.md` whose approved document holds a map, the box of the ticked line ticked in the map too.
+  - [x] `.guppi/tests/test_sprint_close.py`: a test `-k spec_map` of `tick` on a `spec.md` whose approved document holds a map, the box of the ticked close line ticked in the map too.
+  - [x] create `estimate-spec-write-map-follows-the-ticks-of-the-scripts` — Whether each script of the librarian's run that ticks a line of a spec.md rebuilds the map of each approved document there that holds one, the ticked line included, and adds no map to a document without one
+  - [x] read `estimate-spec-write-map-follows-the-ticks-of-the-scripts` — Whether each script of the librarian's run that ticks a line of a spec.md rebuilds the map of each approved document there that holds one, the ticked line included, and adds no map to a document without one
 - 🧩 **1085.4 — VS Code shows the boxes of the plan file as the person wants them** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
-  - create `estimate-spec-write-shows-the-boxes-in-the-plan-file` — Whether VS Code draws the boxes of the map of the plan file as checkboxes at the exit of Plan Mode, and shows a box ticked once Work Mode ticks its task line in spec.md, as the person confirms
-  - 🔍 read `estimate-spec-write-shows-the-boxes-in-the-plan-file` — Whether VS Code draws the boxes of the map of the plan file as checkboxes at the exit of Plan Mode, and shows a box ticked once Work Mode ticks its task line in spec.md, as the person confirms
+  - [x] create `estimate-spec-write-shows-the-boxes-in-the-plan-file` — Whether VS Code draws the boxes of the map of the plan file as checkboxes at the exit of Plan Mode, and shows a box ticked once Work Mode ticks its task line in spec.md, as the person confirms
+  - [ ] 🔍 read `estimate-spec-write-shows-the-boxes-in-the-plan-file` — Whether VS Code draws the boxes of the map of the plan file as checkboxes at the exit of Plan Mode, and shows a box ticked once Work Mode ticks its task line in spec.md, as the person confirms
 - 🧩 **1085.5 — generate ticks the Spec, and the map follows** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
-  - update `estimate-generate-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document
-  - 🔍 read `estimate-generate-ticks-the-spec`
+  - [x] update `estimate-generate-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document
+  - [x] read `estimate-generate-ticks-the-spec`
 - 🧩 **1085.6 — render ticks the Spec, and the map follows** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
-  - update `estimate-render-harness-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document
-  - 🔍 read `estimate-render-harness-ticks-the-spec`
+  - [x] update `estimate-render-harness-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document
+  - [ ] 🔍 read `estimate-render-harness-ticks-the-spec`
 - 🧩 **1085.7 — sprint ticks the Spec, and the map follows** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
-  - update `estimate-sprint-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document; the method names the librarian's run as the event it waits for
-  - 🔍 read `estimate-sprint-ticks-the-spec`
+  - [x] update `estimate-sprint-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document; the method names the librarian's run as the event it waits for
+  - [ ] 🔍 read `estimate-sprint-ticks-the-spec`
 - 🧩 **1085.8 — glossary ticks the Spec, and the map follows** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
-  - update `estimate-glossary-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document
-  - 🔍 read `estimate-glossary-ticks-the-spec`
+  - [x] update `estimate-glossary-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document
+  - [ ] 🔍 read `estimate-glossary-ticks-the-spec`
 - 🧩 **1085.9 — An edit runs on a file that a command changed after the last edit** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
-  - create `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed` — Whether Claude Code runs an Edit of a file that a command rewrote after the last Edit of the agent, with no new Read asked for, as the hook of rule-spec-write rewrites spec.md between two ticks of Work Mode
-  - by hand: the trial of the method of `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed`, its result named in the reply that finishes the task.
-  - 🔍 read `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed` — Whether Claude Code runs an Edit of a file that a command rewrote after the last Edit of the agent, with no new Read asked for, as the hook of rule-spec-write rewrites spec.md between two ticks of Work Mode
+  - [x] create `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed` — Whether Claude Code runs an Edit of a file that a command rewrote after the last Edit of the agent, with no new Read asked for, as the hook of rule-spec-write rewrites spec.md between two ticks of Work Mode
+  - [x] by hand: the trial of the method of `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed`, its result named in the reply that finishes the task.
+  - [x] read `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed` — Whether Claude Code runs an Edit of a file that a command rewrote after the last Edit of the agent, with no new Read asked for, as the hook of rule-spec-write rewrites spec.md between two ticks of Work Mode
+- 🧩 **1086 — The first sketch in README.md is a picture under 1 MB** · `vault/raw/2026-11-27/1402/cases/case-1086.md`
+  - [x] create `estimate-sprint-plugin-first-sketch-picture-is-small` — Whether plugin/assets/GUPPI.png, the first sketch that README.md shows, is a PNG from 800 to 1200 pixels wide and under 1 000 000 bytes
+  - [x] read `estimate-sprint-plugin-first-sketch-picture-is-small` — Whether plugin/assets/GUPPI.png, the first sketch that README.md shows, is a PNG from 800 to 1200 pixels wide and under 1 000 000 bytes
 
 <!-- /map -->
 
@@ -150,9 +149,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-work-mode`
-- [ ] update `estimate-work-mode-runs-the-style-check-before-a-stop`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
+- [x] update `rule-work-mode`
+- [x] update `estimate-work-mode-runs-the-style-check-before-a-stop`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/work/SKILL.md`
 - [ ] read `estimate-work-mode-runs-the-style-check-before-a-stop`
 ```
 
@@ -243,11 +242,11 @@ update:
 ```tasks
 - [x] `.guppi/guppi/ratified.py`: each line of an entry of the map stands indented under its Case after its box, `[x]` for a ticked line, `[ ] ⛔` for an open `stop:` line, `[ ] 🔍` for an open `read` line and `[ ]` for any other open line, with no ✅; the map of the plan file takes the box of each task line from the sections of the same Case in the session's `spec.md` once it stands, by `keep_boxes`, never by a second judgment of a box; `--map` takes the boxes in the same way; the docstring names the boxes and where they come from (as set in case 1085.1).
 - [x] `.guppi/tests/test_ratified.py`: the tests `-k map` assert the boxes of the lines in place of ✅, a ticked `read` line as `[x]` with no 🔍, the boxes of the map of the plan file taken from a `spec.md` in which a line of the same Case is ticked, a box ticked in the map alone written back at the next rebuild, and no line of the map that `TASK_LINE` matches.
-- [ ] update `rule-spec-write`
-- [ ] update `rule-spec-capture`
+- [x] update `rule-spec-write`
+- [x] update `rule-spec-capture`
 - [x] `.guppi/guppi/spec.py`: the paragraph of the docstring on the three writers of the file adds that the `Stop` hook of `rule-spec-write`, its hook `guppi ratified --boxes` after an edit and the scripts of the librarian's run that tick a line rebuild the map at the head of each approved document that holds one (as set in cases 1085.2 and 1085.3).
-- [ ] update `estimate-spec-write-writes-the-map`
-- [ ] read `estimate-spec-write-writes-the-map`
+- [x] update `estimate-spec-write-writes-the-map`
+- [x] read `estimate-spec-write-writes-the-map`
 ```
 
 ### Case 1085.2 — The maps of spec.md follow its Cases and its boxes
@@ -296,10 +295,10 @@ update:
 ```tasks
 - [x] `.guppi/guppi/ratified.py`: one function rebuilds the map of each approved document of a `spec.md` that holds one, from the Cases of that document, with the session folder of the file naming the case files, and adds no map to a document that has none; `stop` runs it on `spec.md` after each run that writes, places or removes a Case or a defer there; the mode `--boxes` reads the payload of `PostToolUse`, and when `tool_input.file_path` is a `spec.md` whose folder is a session folder `vault/raw/<date>/<HHMM>/`, judged by `DAY` and `SESSION` of `.guppi/guppi/generate.py`, imported, it runs that function on the file, and, for the `spec.md` of the session's own folder, rebuilds the map of the plan file; it refuses nothing, prints nothing on stdout and exits 0, and an error gives one line on stderr; the line that opens the map says that each box copies the box of its task line below and is no task of its own; the docstring names the maps of `spec.md` and the mode (as set in case 1085.2).
 - [x] `.guppi/tests/test_ratified.py`: tests `-k spec_map` of a `spec.md` of two approved documents with a map each, both rebuilt from their own Cases after an edit by `--boxes`; of a document with no map left with none; of the map of the plan file rebuilt after an edit of the session's `spec.md`; of a file that is no `spec.md` of a session folder left as it was; of `--boxes` exiting 0 with nothing on stdout on a payload it cannot read; and of the maps of `spec.md` rebuilt after `stop` places a Case there; `test_approved_spec_places_a_case_after_the_map` asserts that the map of `spec.md` now holds the placed Case.
-- [ ] update `rule-hook-registry`
-- [ ] `uv run --project .guppi guppi render`: `.claude/settings.json`
-- [ ] create `estimate-spec-write-rebuilds-the-maps-of-the-spec`
-- [ ] read `estimate-spec-write-rebuilds-the-maps-of-the-spec`
+- [x] update `rule-hook-registry`
+- [x] `uv run --project .guppi guppi render`: `.claude/settings.json`
+- [x] create `estimate-spec-write-rebuilds-the-maps-of-the-spec`
+- [x] read `estimate-spec-write-rebuilds-the-maps-of-the-spec`
 ```
 
 ### Case 1085.3 — The librarian's scripts rebuild the maps of each spec.md they tick
@@ -341,8 +340,8 @@ create:
 - [x] `.guppi/tests/test_generate.py`: tests `-k spec_map` of `tick_read` and `tick_spec` on a `spec.md` whose approved document holds a map, the box of the ticked line ticked in the map too, and of a `spec.md` with no map left with none.
 - [x] `.guppi/tests/test_render.py`: a test `-k spec_map` of `tick_command_lines` on a `spec.md` whose approved document holds a map, the box of the ticked line ticked in the map too.
 - [x] `.guppi/tests/test_sprint_close.py`: a test `-k spec_map` of `tick` on a `spec.md` whose approved document holds a map, the box of the ticked close line ticked in the map too.
-- [ ] create `estimate-spec-write-map-follows-the-ticks-of-the-scripts`
-- [ ] read `estimate-spec-write-map-follows-the-ticks-of-the-scripts`
+- [x] create `estimate-spec-write-map-follows-the-ticks-of-the-scripts`
+- [x] read `estimate-spec-write-map-follows-the-ticks-of-the-scripts`
 ```
 
 ### Case 1085.4 — VS Code shows the boxes of the plan file as the person wants them
@@ -376,7 +375,7 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-spec-write-shows-the-boxes-in-the-plan-file`
+- [x] create `estimate-spec-write-shows-the-boxes-in-the-plan-file`
 - [ ] read `estimate-spec-write-shows-the-boxes-in-the-plan-file`
 ```
 
@@ -415,8 +414,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-generate-ticks-the-spec`
-- [ ] read `estimate-generate-ticks-the-spec`
+- [x] update `estimate-generate-ticks-the-spec`
+- [x] read `estimate-generate-ticks-the-spec`
 ```
 
 ### Case 1085.6 — render ticks the Spec, and the map follows
@@ -447,7 +446,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-render-harness-ticks-the-spec`
+- [x] update `estimate-render-harness-ticks-the-spec`
 - [ ] read `estimate-render-harness-ticks-the-spec`
 ```
 
@@ -482,7 +481,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-sprint-ticks-the-spec`
+- [x] update `estimate-sprint-ticks-the-spec`
 - [ ] read `estimate-sprint-ticks-the-spec`
 ```
 
@@ -516,7 +515,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-glossary-ticks-the-spec`
+- [x] update `estimate-glossary-ticks-the-spec`
 - [ ] read `estimate-glossary-ticks-the-spec`
 ```
 
@@ -549,9 +548,9 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed`
+- [x] create `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed`
 - [x] by hand: the trial of the method of `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed`, its result named in the reply that finishes the task.
-- [ ] read `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed`
+- [x] read `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed`
 ```
 
 ## Case 1086 — The first sketch in README.md is a picture under 1 MB
@@ -598,6 +597,6 @@ create:
 ```
 
 ```tasks
-- [ ] create `estimate-sprint-plugin-first-sketch-picture-is-small`
-- [ ] read `estimate-sprint-plugin-first-sketch-picture-is-small`
+- [x] create `estimate-sprint-plugin-first-sketch-picture-is-small`
+- [x] read `estimate-sprint-plugin-first-sketch-picture-is-small`
 ```

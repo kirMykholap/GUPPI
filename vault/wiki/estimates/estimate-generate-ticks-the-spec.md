@@ -5,7 +5,7 @@ status: passed
 target: "[[rule-page-generation]]"
 purpose: generate ticks the page line of a Case in the Spec beside its yaml, and the read line of a reading, of a deleted Estimate or of an Estimate an update sets passed or failed, across the Specs of raw/ — never a line of a later or a superseded Case
 method: uv run --project .guppi pytest .guppi/tests/test_generate.py
-checked: 2026-10-05
+checked: 2026-11-27
 origin: raw/2026-09-17/1119/ledger.md#case-226.1
 sprint: migration
 created: 2026-09-17
@@ -18,7 +18,7 @@ When:
 `uv run --project .guppi guppi generate` of `rule-page-generation` marks an entry of `materialize.yaml` `applied`. Either it applied the entry, or it found the entry to be a repeat: a `create`, `update`, `delete` or `defer` entry whose `case`, `kind` and `slug` match those of an entry of the same `materialize.yaml` already marked `applied`.
 
 Then:
-For a `create`, `update`, `delete` or `defer` entry that was applied, in the `spec.md` of the same unit, the first unticked line `` - [ ] <kind> `<slug>` `` in the section of the entry's Case becomes `- [x]`. Nothing else in the file changes.
+For a `create`, `update`, `delete` or `defer` entry that was applied, in the `spec.md` of the same unit, the first unticked line `` - [ ] <kind> `<slug>` `` in the section of the entry's Case becomes `- [x]`. Nothing else in the file changes, but the map at the head of an approved document that holds one, which `rule-spec-write` rebuilds.
 **＋** For an `estimate` entry, a `create` entry with `folded`, a `delete` entry and an `update` entry whose `set` gives `status` the value `passed` or `failed`, every unticked line `` - [ ] read `<slug>` `` of every `spec.md` under `vault/raw/` becomes `- [x]`. The Spec beside the yaml comes first, then the Specs of the other session folders, oldest first.
 **＋** In the Spec beside the yaml, for an `estimate` entry, a `delete` entry or such an `update` entry, a `read` line in the section of a Case whose first decision entry carries a `line` greater than the entry's `line` is not the entry's line, and the search goes on.
 **＋** In any Spec, a `read` line in the section of a Case whose entries are marked `superseded_by` is not the entry's line. For the Spec beside the yaml, the marks come from the run's entries. For another Spec, they come from the `materialize.yaml` beside it. With no yaml beside a Spec, nothing is skipped there.
@@ -32,7 +32,7 @@ For a `create`, `update`, `delete` or `defer` entry that was applied, in the `sp
 
 ## Result
 
-2026-10-05, at the Retro of session 2103, uv run pytest tests/test_generate.py: 114 passed, among them the tests of case 672 — an update that sets passed or failed ticks the read lines of its slug beside the yaml and in an older Spec, one that sets pending or no status ticks none, the read line of a Case ratified after it and of a superseded Case left open, a repeated one and a failed one tick none; the Spec walk is tick_read, shared with an estimate and a delete entry, which skips the archive
+2026-11-27, uv run --project .guppi pytest .guppi/tests/test_generate.py, Retro of session 1402: 157 passed; the ticks of the old Criterion stand, and the spec_map tests show the map of an approved document as the one other change of the file
 
 ## History
 
@@ -62,3 +62,5 @@ For a `create`, `update`, `delete` or `defer` entry that was applied, in the `sp
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-11-27 updated: the Criterion replaced whole — nothing else in the file changes but the map of an approved document · [[decision-case-1085.5]]
+- 2026-11-27 status: pending → passed · raw/2026-11-27/1402/ledger.md#L23

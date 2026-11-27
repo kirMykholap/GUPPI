@@ -26,6 +26,8 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - [x] Whether the milestone The plugin of the sprint page holds the merge line and then the close line alone, and Closed holds the plugin that installs, the setup and the README; read once · passed
 - [x] What Code Mode of Claude Code saves or adds in calls, tokens and seconds of the main agent on one read-only task in a clone of the project, and whether it gives the same answer · passed
 - [x] Whether the hooks of the harness answer the calls made inside Code Mode code as they answer them outside it: the refusals of guard and bashguard, the inputs that grepguard and pageread rewrite, and the PostToolUse hooks · passed
+- [x] Whether Claude Code runs an Edit of a file that a command rewrote after the last Edit of the agent, with no new Read asked for, as the hook of rule-spec-write rewrites spec.md between two ticks of Work Mode · passed
+- [x] Whether plugin/assets/GUPPI.png, the first sketch that README.md shows, is a PNG from 800 to 1200 pixels wide and under 1 000 000 bytes · passed
 
 ## Milestones
 

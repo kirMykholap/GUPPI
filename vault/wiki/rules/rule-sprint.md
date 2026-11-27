@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents the sprint's backlog from drifting from the pages it names
-status: built
+status: draft
 enforcement: check
 implementation_ref: [.guppi/guppi/sprint.py, .guppi/tests/test_sprint.py, .guppi/guppi/generate.py, .guppi/tests/test_generate.py]
 governs: vault/wiki/sprint.md
@@ -73,3 +73,4 @@ The first `## <id>` heading of the file is the sprint id `sprint_id`, `cleanup` 
 - 2026-11-25 updated: a read one-off Estimate is ticked under Done when · [[decision-case-1051]]
 - 2026-11-25 estimate estimate-sprint-ticks-a-read-one-off-estimate added · [[decision-case-1051]]
 - 2026-11-25 updated: Done when ticks only a passed Estimate, a failed one-off one left unticked · [[decision-case-1057.2]]
+- 2026-11-27 status: built → draft · cascade

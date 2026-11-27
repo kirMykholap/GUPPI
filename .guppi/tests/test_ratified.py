@@ -1838,28 +1838,50 @@ def test_map_stands_under_the_title_line_with_table_diagram_and_entries(working)
     assert "| 7 | пример | 0 | 1 |" in found
     assert "```mermaid" in found and '    c7["🧩 7 — пример"]' in found
     assert "- 🧩 **7 — пример** · `vault/raw/2026-09-09/1501/cases/case-7.md`" in found
-    assert "  - update `rule-x` — one `replace` pair — the text changed (case 7)" in found
-    assert "  - create `estimate-x-works` — X works" in found
-    assert "  - `guppi/x.py` — the code" in found
-    assert "  - 🔍 read `estimate-x-works` — X works" in found
+    assert "  - [ ] update `rule-x` — one `replace` pair — the text changed (case 7)" in found
+    assert "  - [ ] create `estimate-x-works` — X works" in found
+    assert "  - [ ] `guppi/x.py` — the code" in found
+    assert "  - [ ] 🔍 read `estimate-x-works` — X works" in found
+    assert ratified.MAP_HEAD in found  # its boxes copy the task lines, no tasks of their own
     assert plan.index(ratified.MAP_CLOSE) < plan.index("## Case 7 —")
 
 
-def test_map_signs_a_ticked_line_an_open_stop_and_an_open_read_line(working):
+def test_map_boxes_a_ticked_line_an_open_stop_and_an_open_read_line(working):
     found = ratified.case_map(MAP_CASES, None, working)
     assert "| 5 | first | 1 | 1 |" in found and "| 6 | parent | 0 | 1 |" in found
     entry = found[found.index("- 🧩 **5 — first**") + 1 :][:8]
     assert entry == [
-        "  - ✅ read `estimate-a-works` — A works",  # ticked: ✅ and no 🔍
-        "  - ⛔ stop: the person gives the file `x.png`.",
-        "  - ✅ stop: the person said yes.",
-        "  - 🔍 read `estimate-a-works` — A works",
-        "  - ✅ `guppi/a.py` — the code",
-        "  - update `rule-a` — the rule changed",
-        "  - delete `rule-old` — nothing reads it",
-        "  - create `estimate-a-works` — A works",
+        "  - [x] read `estimate-a-works` — A works",  # ticked: its box and no 🔍
+        "  - [ ] ⛔ stop: the person gives the file `x.png`.",
+        "  - [x] stop: the person said yes.",
+        "  - [ ] 🔍 read `estimate-a-works` — A works",
+        "  - [x] `guppi/a.py` — the code",
+        "  - [ ] update `rule-a` — the rule changed",
+        "  - [ ] delete `rule-old` — nothing reads it",
+        "  - [ ] create `estimate-a-works` — A works",
     ]
+    assert not any("✅" in line for line in found)
     assert "**Deferred:** 9 — put off" in found
+
+
+def test_map_takes_its_boxes_from_the_same_case_in_spec_md(working):
+    spec = MAP_CASES.replace("- [ ] update `rule-a`", "- [x] update `rule-a`").replace(
+        "- [ ] read `estimate-b-works`", "- [x] read `estimate-b-works`"
+    )
+    found = ratified.case_map(MAP_CASES, None, working, boxes=f"{STAMP}\n\n{spec}")
+    assert "  - [x] update `rule-a` — the rule changed" in found
+    assert "  - [x] read `estimate-b-works`" in found  # ticked there: no 🔍
+    assert "| 6 | parent | 0 | 0 |" in found
+    other = spec.replace("## Case 6.1 — child", "## Case 12 — other")  # another Case's line
+    found = ratified.case_map(MAP_CASES, None, working, boxes=other)
+    assert "  - [ ] 🔍 read `estimate-b-works`" in found
+
+
+def test_map_a_box_ticked_in_the_map_alone_is_written_back(working):
+    text = ratified.with_map(MAP_CASES, None, working)
+    hand = text.replace("  - [ ] update `rule-a`", "  - [x] update `rule-a`")
+    assert hand != text
+    assert ratified.with_map(hand, None, working) == text
 
 
 def test_map_diagram_one_node_per_case_and_the_edges_of_their_order(working):
@@ -1926,4 +1948,128 @@ def test_approved_spec_places_a_case_after_the_map(working):
     assert stop(working, ACK, SHOWING, ACK) == (0, "")
     text = spec.read_text(encoding="utf-8")
     assert text.index(ratified.MAP_CLOSE) < text.index("## Case 7 —") < text.index("## Deferred")
-    assert map_lines(text) == before  # the map of spec.md stays as the approval left it
+    after = map_lines(text)  # the map of spec.md now holds the placed Case (case 1085.2)
+    assert after != before and "| 7 | пример | 0 | 1 |" in after
+    assert "| 5 | first | 1 | 1 |" in after
+
+
+# --- the maps of spec.md (case 1085.2) ----------------------------------------------------
+
+SECOND_CASES = """# Spec again
+
+## Case 8 — second
+
+```tasks
+- [ ] `guppi/b.py` — more code
+- [ ] read `estimate-c-works`
+```
+"""
+
+
+def boxes_run(project, path=None, stdin=None, **fields):
+    """`--boxes` on the payload of `PostToolUse` of an `Edit` of `path`."""
+    if stdin is None:
+        fields.setdefault("session_id", SESSION)
+        payload = {"tool_name": "Edit", "tool_input": {"file_path": str(path)}, **fields}
+        stdin = json.dumps(payload)
+    out, err = io.StringIO(), io.StringIO()
+    code = ratified.run(
+        ["--boxes"], stdin=io.StringIO(stdin), stderr=err, stdout=out, project_dir=project, now=NOW
+    )
+    return code, out.getvalue(), err.getvalue()
+
+
+def two_documents(project, folder="1501"):
+    """A `spec.md` of two approved documents, each with its map."""
+    first = ratified.with_map(MAP_CASES, None, project)
+    second = ratified.with_map(SECOND_CASES, None, project)
+    spec = project / "vault" / "raw" / TODAY.isoformat() / folder / "spec.md"
+    spec.parent.mkdir(parents=True, exist_ok=True)
+    later = "<!-- approved 16:00:00 · session 44c1aae1 -->"
+    spec.write_text(f"{STAMP}\n\n{first}\n{later}\n\n{second}", encoding="utf-8")
+    return spec
+
+
+def documents(text):
+    """The approved documents of a `spec.md`, each from its stamp."""
+    parts = text.split("<!-- approved ")
+    return ["<!-- approved " + part for part in parts[1:]]
+
+
+def test_spec_map_both_documents_rebuilt_from_their_own_cases_after_an_edit(working):
+    spec = two_documents(working, folder="0900")  # a session folder of another session
+    text = spec.read_text(encoding="utf-8")
+    edited = text.replace("- [ ] `guppi/b.py` — more code", "- [x] `guppi/b.py` — more code")
+    edited = edited.replace("- [ ] update `rule-a`", "- [x] update `rule-a`")
+    spec.write_text(edited, encoding="utf-8")
+    assert boxes_run(working, spec) == (0, "", "")
+    first, second = documents(spec.read_text(encoding="utf-8"))
+    assert "  - [x] update `rule-a` — the rule changed" in map_lines(first)
+    assert "  - [x] `guppi/b.py` — more code" in map_lines(second)
+    assert "| 8 | second | 0 | 1 |" in map_lines(second)
+    assert not any("8 — second" in line for line in map_lines(first))
+    assert not any("5 — first" in line for line in map_lines(second))
+    assert split_cases(spec.read_text(encoding="utf-8")) == split_cases(edited)
+
+
+def test_spec_map_a_document_with_no_map_gets_none(working):
+    spec = approved_spec(working, f"{STAMP}\n\n{MAP_CASES}")
+    before = spec.read_text(encoding="utf-8")
+    assert boxes_run(working, spec) == (0, "", "")
+    assert spec.read_text(encoding="utf-8") == before
+    assert ratified.rebuild_spec_maps(spec, working) is False
+
+
+def test_spec_map_an_edit_of_the_sessions_spec_rebuilds_the_plan_map(working):
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    plan = plan_of(working)
+    assert "  - [ ] `guppi/x.py` — the code" in map_lines(plan.read_text(encoding="utf-8"))
+    body = ratified.without_map(plan.read_text(encoding="utf-8")).split("\n", 1)[1]
+    ticked = body.replace("- [ ] `guppi/x.py` — the code", "- [x] `guppi/x.py` — the code")
+    spec = approved_spec(working, f"{STAMP}\n\n# Spec\n{ticked}")
+    assert boxes_run(working, spec) == (0, "", "")
+    found = map_lines(plan.read_text(encoding="utf-8"))
+    assert "  - [x] `guppi/x.py` — the code" in found
+
+
+def test_spec_map_an_edit_of_another_sessions_spec_leaves_the_plan(working):
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    plan = plan_of(working)
+    before = plan.read_text(encoding="utf-8")
+    spec = two_documents(working, folder="0900")
+    assert boxes_run(working, spec) == (0, "", "")
+    assert plan.read_text(encoding="utf-8") == before
+
+
+def test_spec_map_a_file_that_is_no_spec_of_a_session_folder_is_left(working):
+    spec = two_documents(working)
+    text = spec.read_text(encoding="utf-8").replace(
+        "- [ ] update `rule-a`", "- [x] update `rule-a`"
+    )
+    for where in ("vault/raw/2026-09-09/spec.md", "notes/2026-09-09/1501/spec.md", "a/spec.txt"):
+        other = working / where
+        other.parent.mkdir(parents=True, exist_ok=True)
+        other.write_text(text, encoding="utf-8")
+        assert boxes_run(working, other) == (0, "", "")
+        assert other.read_text(encoding="utf-8") == text, where
+
+
+def test_spec_map_boxes_exits_0_with_nothing_on_stdout_on_a_payload_it_cannot_read(working):
+    code, out, err = boxes_run(working, stdin="not json")
+    assert code == 0 and out == "" and err.count("\n") == 1
+    code, out, err = boxes_run(working, stdin=json.dumps({"tool_name": "Edit"}))
+    assert (code, out, err) == (0, "", "")
+
+
+def test_spec_map_an_error_gives_one_line_and_exits_0(working, monkeypatch):
+    monkeypatch.setattr(ratified, "rebuild_spec_maps", boom)
+    code, out, err = boxes_run(working, two_documents(working))
+    assert (code, out, err) == (0, "", "ratified: not done: boom\n")
+
+
+def test_spec_map_rebuilt_after_stop_places_a_case(working):
+    spec = approved_spec(working, f"{STAMP}\n\n{ratified.with_map(MAP_CASES, None, working)}")
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    found = map_lines(spec.read_text(encoding="utf-8"))
+    assert "- 🧩 **7 — пример** · `vault/raw/2026-09-09/1501/cases/case-7.md`" in found
+    assert not any(ratified.TASK_LINE.match(line) for line in found)

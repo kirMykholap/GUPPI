@@ -20,7 +20,11 @@ The file has three writers: this hook, once per approval or per typed `/approve-
 `rule-spec-write`, which, once the file stands, writes each Case ratified after the approval
 — its sections replaced, or placed — removes a superseded Case, and writes a defer-only Case
 under `## Deferred` (cases 421.1, 441, 542); and Work Mode, which ticks the boxes of the
-`tasks` blocks.
+`tasks` blocks. Beside these three, the map at the head of each approved document that holds
+one is rebuilt from the Cases of that document by the `Stop` hook of `rule-spec-write` when it
+writes, places or removes a Case or a defer there, by its hook `guppi ratified --boxes` after
+each edit of the file by the agent, and by the scripts of the librarian's run that tick a line
+of the file (cases 1085.2, 1085.3).
 
 Written or already there, the hook then prints one JSON object on stdout —
 `{"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": <line>}}` —

@@ -759,3 +759,29 @@ def test_a_yaml_with_a_superseded_entry_counts_as_applied_whole(tmp_path):
     )
     assert unmarked.read_text(encoding="utf-8") == RENDER_SPEC
     assert failed.read_text(encoding="utf-8") == RENDER_SPEC
+
+
+# --- the maps follow the ticks (case 1085.3) ----------------------------------------------
+
+MAPPED_CASES = """# Spec
+
+## Case 5 — first
+
+```tasks
+- [ ] `uv run --project .guppi guppi render`: `out/SKILL.md`
+- [ ] read `estimate-one`
+```
+"""
+
+
+def test_spec_map_tick_command_lines_ticks_the_box_of_its_line_in_the_map(tmp_path):
+    from guppi import ratified
+
+    body = ratified.with_map(MAPPED_CASES, None, tmp_path)
+    stamp = "<!-- approved 15:20:00 · session 44c1aae1 -->"
+    spec = raw_unit(tmp_path, "2026-09-17/1119", spec=f"{stamp}\n\n{body}")
+    assert render.tick_command_lines(tmp_path, "guppi render") == 1
+    text = spec.read_text(encoding="utf-8")
+    assert "\n- [x] `uv run --project .guppi guppi render`: `out/SKILL.md`" in text
+    assert "\n  - [x] `uv run --project .guppi guppi render`: `out/SKILL.md`" in text
+    assert "\n  - [ ] 🔍 read `estimate-one`" in text

@@ -1,7 +1,9 @@
 """`guppi ratified` — the `Stop` hook of `rule-spec-write` that writes a ratified Case into
 the Spec (case 387.2). `guppi ratified --guard` — the `PreToolUse` hook of
 `rule-spec-reconcile` that refuses the agent's edit of the plan file and of its store
-(case 445.1), and of the file of a built Case under `cases/` (case 453).
+(case 445.1), and of the file of a built Case under `cases/` (case 453). `guppi ratified
+--boxes` — the `PostToolUse` hook of `rule-spec-write` that rebuilds the maps of a `spec.md`
+after the agent's edit of it (case 1085.2).
 
 The write. After a reply whose `LEDGER` block holds `- decision[case N]` lines of a kind other
 than `defer`, or lines that are all `defer` of a Case N that the same reply does not show in the
@@ -89,16 +91,32 @@ The map (case 1078.1). After each run that writes, places or removes a Case or a
 hook rebuilds the map of the plan file right under its title line, between `MAP_OPEN` and
 `MAP_CLOSE`: a table of one row per top-level Case with its open `stop:` lines and open `read`
 lines, a Mermaid diagram of the Cases in order, and an entry per Case and sub-case — 🧩, its id
-and name and the path of its case file, then each task line without its box and sub-points,
-✅ before a ticked line, ⛔ before an open `stop:` line by `prespec.STOP_LINE` and 🔍 before an
-open `read` line by `generate.READ_LINE`, an item line with the `purpose`, `change` or `impact`
-of its item and a `read` line with the `purpose` of the `create` of its Estimate — and the
-Cases under `## Deferred` by id and name. Every word is cut from the Cases; no line of the map
-opens with a box, a heading or `# `, and none is `## Deferred`, so `split_cases`, the tickers
-and `place` read the plan and `spec.md` as before. The map is rebuilt in the plan file only:
-the copy that `guppi spec` takes into `spec.md` at the approval stays as it was. `guppi
-ratified --map <file> --session <stamp>` prints the map of a file before any payload is read
-and writes nothing.
+and name and the path of its case file, then each task line without its sub-points, indented
+under the entry after its box (case 1085.1): `[x]` for a ticked line, `[ ] ⛔` for an open
+`stop:` line by `prespec.STOP_LINE`, `[ ] 🔍` for an open `read` line by `generate.READ_LINE`
+and `[ ]` for any other open line; an item line with the `purpose`, `change` or `impact` of its
+item and a `read` line with the `purpose` of the `create` of its Estimate — and the Cases
+under `## Deferred` by id and name. Once the session's `spec.md` stands, each box of the map
+of the plan file is the box of the task line with the same text in the sections of the same
+Case there, by `keep_boxes`, the one judgment of a kept box; a box ticked in the map alone is
+written back at the next rebuild. Every word is cut from the Cases; no line of the map starts
+with a box at its first character, a heading or `# `, and none is `## Deferred`, so
+`split_cases`, the tickers and `place` read the plan and `spec.md` as before. The line that
+opens the map says that each box copies the box of its task line below and is no task of its
+own. `guppi ratified --map <file> --session <stamp>` prints the map of a file, its boxes taken
+in the same way, before any payload is read, and writes nothing.
+
+The maps of `spec.md` (cases 1085.2, 1085.3). `rebuild_spec_maps` rebuilds the map at the
+head of each approved document of a `spec.md` that holds one from the Cases of that document,
+the folder of the file naming the case files, and adds no map to a document that has none.
+The `Stop` hook runs it on the session's `spec.md` after each run that writes, places or
+removes a Case or a defer there; `--boxes` runs it after the agent's `Edit`, `Write` or
+`MultiEdit` of a `spec.md` of a session folder `vault/raw/<date>/<HHMM>/`, judged by
+`generate.DAY` and `generate.SESSION`, and, for the `spec.md` of the session's own folder,
+rebuilds the map of the plan file too; it refuses nothing, prints nothing on stdout and exits
+0, an error giving one line on stderr. The tickers of the librarian's run — `tick_read` and
+`tick_spec` of `generate`, `tick_command_lines` of `render` and `tick` of `sprint_close` — call
+it after each write of a `spec.md`.
 
 The check after the write (case 414.1). Each Case written in the run, and its sub-cases, goes
 through the checks of `guppi prespec --check` — `prespec.written_findings`, imported inside
@@ -893,7 +911,12 @@ def write_parent(plan: Path, case: str, text: str, approved: Path | None = None)
 MAP_OPEN = "<!-- map: written by guppi ratified from the Cases below -->"
 MAP_CLOSE = "<!-- /map -->"
 TICKED = ("[x]", "[X]")
-CASE_SIGN, DONE, STOP_SIGN, CHECK_SIGN = "🧩", "✅", "⛔", "🔍"
+TICKED_BOX, OPEN_BOX = "[x]", "[ ]"
+CASE_SIGN, STOP_SIGN, CHECK_SIGN = "🧩", "⛔", "🔍"
+MAP_HEAD = (
+    "**Map of the Cases** — cut from the Cases below, which follow whole; each box copies the "
+    "box of its task line below and is no task of its own."
+)
 ITEM_WORDS = (
     ("create", "purpose"),
     ("update", "change"),
@@ -945,24 +968,26 @@ def item_words(lines: list[str]) -> dict[tuple[str, str], str]:
     return words
 
 
-def map_tasks(lines: list[str]) -> list[tuple[str, str, str]]:
-    """`(sign, text, words)` of each task line of a Case, its box and sub-points left out: ✅
-    for a line ticked by its box, ⛔ for an open `stop:` line by `prespec.STOP_LINE`, 🔍 for an
-    open `read` line by `generate.READ_LINE`, none otherwise; `words` the item's words, or for
-    a `read` line those of the `create` of the same Estimate. Each pattern is imported, never
-    copied (`rule-one-judgment-one-implementation`)."""
+def map_tasks(lines: list[str]) -> list[tuple[str, str, str, str]]:
+    """`(box, sign, text, words)` of each task line of a Case, its sub-points left out: `box`
+    `[x]` for a line ticked by its box and `[ ]` otherwise (case 1085.1); `sign` ⛔ for an open
+    `stop:` line by `prespec.STOP_LINE`, 🔍 for an open `read` line by `generate.READ_LINE`,
+    none otherwise; `words` the item's words, or for a `read` line those of the `create` of the
+    same Estimate. Each pattern is imported, never copied
+    (`rule-one-judgment-one-implementation`)."""
     from guppi.generate import READ_LINE  # the one judgment of a read line
     from guppi.prespec import STOP_LINE  # it imports this module at load
 
     words = item_words(lines)
-    found: list[tuple[str, str, str]] = []
+    found: list[tuple[str, str, str, str]] = []
     for line in "\n".join(tagged_blocks(lines, "tasks")).splitlines():
         match = TASK_LINE.match(line)
         if match is None:
             continue
         text = match.group(1)
-        if line[2:5] in TICKED:
-            sign = DONE
+        box = TICKED_BOX if line[2:5] in TICKED else OPEN_BOX
+        if box == TICKED_BOX:
+            sign = ""
         elif STOP_LINE.match(line):
             sign = STOP_SIGN
         elif READ_LINE.match(line):
@@ -976,7 +1001,7 @@ def map_tasks(lines: list[str]) -> list[tuple[str, str, str]]:
             said = words.get((item.group(1), item.group(2)), "")
         elif read:
             said = words.get(("create", read.group(1)), "")
-        found.append((sign, text, said))
+        found.append((box, sign, text, said))
     return found
 
 
@@ -991,12 +1016,14 @@ def map_cell(text: str) -> str:
     return text.replace("|", "\\|")
 
 
-def case_map(text: str, folder: Path | None, project_dir: Path) -> list[str]:
+def case_map(text: str, folder: Path | None, project_dir: Path, boxes: str = "") -> list[str]:
     """The lines of the map of the Cases of `text`, empty when it holds none: a table of the
     top-level Cases with their open stops and open checks, a Mermaid diagram of the Cases in
     order, an entry per Case and sub-case cut from the Case, and the Cases under `## Deferred`
-    by id and name. No line opens with a box, a heading or `# `, so `split_cases`, the tickers
-    and `place` read the text as before."""
+    by id and name. With `boxes`, the text of the session's `spec.md`, each task line takes the
+    box of the line with the same text in the sections of its Case there, by `keep_boxes`
+    (case 1085.1). No line starts with a box at its first character, a heading or `# `, so
+    `split_cases`, the tickers and `place` read the text as before."""
     from guppi.casecheck import case_file  # it imports this module
 
     cases = plan_cases(text)
@@ -1004,22 +1031,25 @@ def case_map(text: str, folder: Path | None, project_dir: Path) -> list[str]:
     later = [(c, n) for c, n, _, deferred in cases if deferred]
     if not live and not later:
         return []
-    tasks = {case: map_tasks(lines) for case, _, lines in live}
-    out = [MAP_OPEN, "", "**Map of the Cases** — cut from the Cases below, which follow whole.", ""]
+    tasks = {
+        case: map_tasks(keep_boxes(boxes, case, lines) if boxes else lines)
+        for case, _, lines in live
+    }
+    out = [MAP_OPEN, "", MAP_HEAD, ""]
     tops = [(c, n) for c, n, _ in live if "." not in c]
     if tops:
         out += ["| Case | Name | ⛔ open stops | 🔍 open checks |", "|---|---|---|---|"]
         for case, name in tops:
             family_tasks = [t for c, *_ in live if in_family(c, case) for t in tasks[c]]
-            stops = sum(1 for sign, *_ in family_tasks if sign == STOP_SIGN)
-            checks = sum(1 for sign, *_ in family_tasks if sign == CHECK_SIGN)
+            stops = sum(1 for _, sign, *_ in family_tasks if sign == STOP_SIGN)
+            checks = sum(1 for _, sign, *_ in family_tasks if sign == CHECK_SIGN)
             out.append(f"| {case} | {map_cell(name)} | {stops} | {checks} |")
         out.append("")
     if live:
         ids = {c for c, *_ in live}
         out += ["```mermaid", "flowchart TD"]
         for case, name, _ in live:
-            stop = f"{STOP_SIGN} " if any(s == STOP_SIGN for s, *_ in tasks[case]) else ""
+            stop = f"{STOP_SIGN} " if any(s == STOP_SIGN for _, s, *_ in tasks[case]) else ""
             label = map_label(f"{stop}{CASE_SIGN} {case} — {name}")
             out.append(f'    c{case.replace(".", "_")}["{label}"]')
         for before, after in pairwise(tops):
@@ -1038,10 +1068,10 @@ def case_map(text: str, folder: Path | None, project_dir: Path) -> list[str]:
             except ValueError:
                 where = f" · `{path.as_posix()}`"
         out.append(f"- {CASE_SIGN} **{case} — {name}**{where}")
-        for sign, task, said in tasks[case]:
+        for box, sign, task, said in tasks[case]:
             lead = f"{sign} " if sign else ""
             tail = f" — {said}" if said else ""
-            out.append(f"  - {lead}{task}{tail}")
+            out.append(f"  - {box} {lead}{task}{tail}")
     if later:
         out += ["", "**Deferred:** " + "; ".join(f"{case} — {name}" for case, name in later)]
     out += ["", MAP_CLOSE]
@@ -1066,12 +1096,13 @@ def without_map(text: str) -> str:
     return "\n".join(lines).rstrip("\n") + "\n"
 
 
-def with_map(text: str, folder: Path | None, project_dir: Path) -> str:
+def with_map(text: str, folder: Path | None, project_dir: Path, boxes: str = "") -> str:
     """`text` with its map rebuilt right under its title line, the first line that opens with
-    `# `, or at its head when it has none; with no map when it holds no Case."""
+    `# `, or at its head when it has none; with no map when it holds no Case. `boxes` as
+    `case_map` takes it."""
     bare = without_map(text)
     lines = bare.splitlines()
-    found = case_map(bare, folder, project_dir)
+    found = case_map(bare, folder, project_dir, boxes)
     if not found:
         return bare
     at = next((i + 1 for i, line in enumerate(lines) if line.startswith("# ")), 0)
@@ -1082,19 +1113,25 @@ def with_map(text: str, folder: Path | None, project_dir: Path) -> str:
     return "\n".join([*head, *([""] if head else []), *found, "", *rest]).rstrip("\n") + "\n"
 
 
+def session_boxes(folder: Path | None) -> str:
+    """The text of the session's `spec.md`, whose task lines give the boxes of the map of the
+    plan file once it stands (case 1085.1); empty before."""
+    return document(folder / SPEC_FILE) if folder is not None else ""
+
+
 def rebuild_map(plan: Path, folder: Path | None, project_dir: Path) -> None:
-    """The map of the plan file rebuilt from its Cases; the file written only when it
-    changed."""
+    """The map of the plan file rebuilt from its Cases, its boxes taken from the session's
+    `spec.md` once it stands; the file written only when it changed."""
     text = document(plan)
-    new = with_map(text, folder, project_dir)
+    new = with_map(text, folder, project_dir, session_boxes(folder))
     if new != text:
         write_text(plan, new)
 
 
 def print_map(path: Path, session: str, project_dir: Path, now, out, stderr) -> int:
-    """`--map <file> --session <stamp>`: the map of the Cases of `path` on `out`; no payload
-    read and no file written. A file that does not stand, or a session with no `hi`, prints
-    the reason on stderr and exits 1."""
+    """`--map <file> --session <stamp>`: the map of the Cases of `path` on `out`, its boxes
+    taken as `rebuild_map` takes them; no payload read and no file written. A file that does
+    not stand, or a session with no `hi`, prints the reason on stderr and exits 1."""
     stamp = session_stamp(session, {})
     folder = session_dir(project_dir, now, stamp)
     if folder is None:
@@ -1103,9 +1140,92 @@ def print_map(path: Path, session: str, project_dir: Path, now, out, stderr) -> 
     if not path.is_file():
         print(f"ratified: {path} does not stand — no map printed", file=stderr)
         return 1
-    found = case_map(without_map(document(path)), folder, project_dir)
+    found = case_map(without_map(document(path)), folder, project_dir, session_boxes(folder))
     out.write("\n".join(found) + ("\n" if found else ""))
     return 0
+
+
+def project_of(spec: Path) -> Path:
+    """The project folder of a `spec.md` under `vault/raw/`: the folder that holds `vault`;
+    the folder of the file when none does."""
+    for parent in spec.resolve().parents:
+        if parent.name == "vault":
+            return parent.parent
+    return spec.parent
+
+
+def rebuild_spec_maps(spec: Path, project_dir: Path | None = None) -> bool:
+    """The map at the head of each approved document of `spec` that holds one, rebuilt from
+    the Cases of that document, the folder of the file naming the case files; a document with
+    no map gets none (cases 1085.2, 1085.3). The file written only when it changed; True then.
+    The one rebuild of the maps of `spec.md`, which the hooks and the tickers call."""
+    if not spec.is_file():
+        return False
+    project_dir = project_of(spec) if project_dir is None else project_dir
+    text = spec.read_text(encoding="utf-8")
+    lines = text.split("\n")
+    starts = [i for i, line in enumerate(lines) if line.startswith(APPROVED)]
+    if not starts:
+        return False
+    bounds = [0, *starts, len(lines)]
+    out: list[str] = []
+    for start, end in pairwise(bounds):
+        part = lines[start:end]
+        before_any = start == 0 and 0 not in starts  # the text before the first stamp
+        if before_any or not any(line.strip() == MAP_OPEN for line in part):
+            out += part
+            continue
+        body = list(part)
+        tail = 0
+        while body and not body[-1]:
+            body.pop()
+            tail += 1
+        rebuilt = with_map("\n".join(body) + "\n", spec.parent, project_dir)
+        out += rebuilt.rstrip("\n").split("\n") + [""] * tail
+    new = "\n".join(out)
+    if new == text:
+        return False
+    spec.write_text(new, encoding="utf-8", newline="\n")
+    return True
+
+
+def is_session_spec(path: Path) -> bool:
+    """The `spec.md` of a session folder `vault/raw/<date>/<HHMM>/`, the date and the `HHMM`
+    judged by `generate.DAY` and `generate.SESSION`, imported, never copied."""
+    from guppi.generate import DAY, SESSION  # the one judgment of a session folder
+
+    parts = Path(str(path)).parts
+    return (
+        len(parts) >= 5
+        and parts[-1] == SPEC_FILE
+        and bool(SESSION.match(parts[-2]))
+        and bool(DAY.match(parts[-3]))
+        and parts[-4] == "raw"
+        and parts[-5] == "vault"
+    )
+
+
+def boxes(payload: dict, project_dir: Path, now) -> None:
+    """`--boxes`, the `PostToolUse` hook on the agent's edit (case 1085.2): after an edit of a
+    `spec.md` of a session folder, its maps rebuilt, and, when it is the `spec.md` of the
+    session's own folder, the map of the plan file too; any other file left as it stands."""
+    tool_input = payload.get("tool_input") or {}
+    raw = tool_input.get("file_path") if isinstance(tool_input, dict) else None
+    if not raw:
+        return
+    path = Path(str(raw))
+    if not path.is_absolute():
+        path = project_dir / path
+    if not is_session_spec(path) or not path.is_file():
+        return
+    rebuild_spec_maps(path, project_dir)
+    stamp = session_stamp(None, payload)
+    folder = session_dir(project_dir, now, stamp)
+    if folder is None or folder.resolve() != path.parent.resolve():
+        return
+    plan = plan_path(session_event_logs(project_dir, now, stamp), stamp)
+    if plan is not None and plan.is_file():
+        rebuild_map(plan, folder, project_dir)
 
 
 # --- the Cyrillic finding (cases 387.4, 445.4) ----------------------------------------
@@ -1475,7 +1595,8 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
                 if isinstance(parent, dict):  # its prose from its stored answer only (case 441.6)
                     write_parent(plan, case, str(parent.get("text") or ""), approved)
     checked = set(written)  # the check after the write reads the Cases of `write_case` only
-    if defer_only(records, reply):
+    deferring = bool(defer_only(records, reply))
+    if deferring:
         target = (
             approved if approved.is_file() else plan
         )  # once spec.md stands, a defer goes there (case 542)
@@ -1493,6 +1614,8 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
     # the superseded sections out (cases 441.7, 445.3, 722.2)
     remove_superseded(records, written, targets, session)
     removing = any(record.get("supersedes") for record in records)
+    if approved.is_file() and (written or removing or deferring):
+        rebuild_spec_maps(approved, project_dir)  # the maps of spec.md (case 1085.2)
     if plan is not None and plan.is_file() and (written or removing):
         rebuild_map(plan, folder, project_dir)  # the map under the title line (case 1078.1)
     if checked:
@@ -1511,6 +1634,11 @@ def parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="guppi ratified", description=__doc__.split("\n\n")[0])
     p.add_argument(
         "--guard", action="store_true", help="the PreToolUse hook on an edit of the plan"
+    )
+    p.add_argument(
+        "--boxes",
+        action="store_true",
+        help="the PostToolUse hook on an edit: rebuild the maps of a spec.md",
     )
     p.add_argument("--map", type=Path, help="print the map of the Cases of this file")
     p.add_argument("--session", help="the stamp of the hi: line, with --map")
@@ -1542,6 +1670,12 @@ def run(
         return 0
     if not payload:
         print("ratified: payload not readable, nothing done", file=stderr)
+        return 0
+    if args.boxes:  # refuses nothing and prints nothing on stdout (case 1085.2)
+        try:
+            boxes(payload, project_dir, now)
+        except Exception as exc:  # noqa: BLE001 — an edit is never refused for a map
+            print(f"ratified: not done: {exc}", file=stderr)
         return 0
     if args.guard:
         try:

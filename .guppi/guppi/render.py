@@ -304,6 +304,8 @@ def tick_command_lines(project_dir: Path, command: str) -> int:
     holding `command` becomes `- [x]` (cases 226.2, 235, 250.2). `render` calls it with
     `guppi render`, `sprint` with `guppi sprint`. The count of lines ticked; nothing is
     said."""
+    from guppi.ratified import rebuild_spec_maps  # the one rebuild of the maps (case 1085.3)
+
     pattern = command_line(command)
     ticked = 0
     for unit in units_with(project_dir, "materialize.yaml"):
@@ -323,6 +325,7 @@ def tick_command_lines(project_dir: Path, command: str) -> int:
                 ticked += 1
         if changed:
             spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+            rebuild_spec_maps(spec, project_dir)  # the maps follow the tick (case 1085.3)
     return ticked
 
 

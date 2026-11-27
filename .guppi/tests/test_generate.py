@@ -4120,3 +4120,54 @@ def test_a_drop_of_render_on_a_check_rule_applies(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     assert "## Render" not in page(tmp_path, "rules", "rule-leaf")
+
+
+# --- the maps follow the ticks (case 1085.3) ----------------------------------------------
+
+MAPPED_CASES = """# Spec
+
+## Case 5 — first
+
+```tasks
+- [ ] update `rule-a`
+- [ ] read `estimate-a-works`
+```
+"""
+MAPPED_STAMP = "<!-- approved 15:20:00 · session 44c1aae1 -->"
+
+
+def mapped_spec(tmp_path, with_map=True):
+    """A session's `spec.md` of one approved document, with its map or without."""
+    from guppi import ratified
+
+    body = ratified.with_map(MAPPED_CASES, None, tmp_path) if with_map else MAPPED_CASES
+    spec = tmp_path / "vault" / "raw" / "2026-09-09" / "1501" / "spec.md"
+    spec.parent.mkdir(parents=True, exist_ok=True)
+    spec.write_text(f"{MAPPED_STAMP}\n\n{body}", encoding="utf-8", newline="\n")
+    return spec
+
+
+def test_spec_map_tick_spec_ticks_the_box_of_its_line_in_the_map(tmp_path):
+    spec = mapped_spec(tmp_path)
+    assert generate.tick_spec(spec, "5", "update", "rule-a")
+    text = spec.read_text(encoding="utf-8")
+    assert "\n- [x] update `rule-a`" in text
+    assert "\n  - [x] update `rule-a`" in text
+    assert "\n  - [ ] 🔍 read `estimate-a-works`" in text
+
+
+def test_spec_map_tick_read_ticks_the_box_of_its_line_in_the_map(tmp_path):
+    spec = mapped_spec(tmp_path)
+    assert generate.tick_read([spec], "estimate-a-works")
+    text = spec.read_text(encoding="utf-8")
+    assert "\n- [x] read `estimate-a-works`" in text
+    assert "\n  - [x] read `estimate-a-works`" in text
+    assert "| 5 | first | 0 | 0 |" in text
+
+
+def test_spec_map_a_spec_with_no_map_gets_none_from_a_tick(tmp_path):
+    spec = mapped_spec(tmp_path, with_map=False)
+    assert generate.tick_spec(spec, "5", "update", "rule-a")
+    assert generate.tick_read([spec], "estimate-a-works")
+    text = spec.read_text(encoding="utf-8")
+    assert text == f"{MAPPED_STAMP}\n\n" + MAPPED_CASES.replace("- [ ]", "- [x]")

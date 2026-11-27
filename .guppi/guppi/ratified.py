@@ -85,6 +85,21 @@ So is a `defer` line of the Case whose slug names a Lesson or a Decision page, b
 `then` is read, with `materialize.DEFER_OF_A_RECORD`: neither page carries `deferred_by`, so no
 list would show the item, and nothing of the Case is written (case 865).
 
+The map (case 1078.1). After each run that writes, places or removes a Case or a defer, the
+hook rebuilds the map of the plan file right under its title line, between `MAP_OPEN` and
+`MAP_CLOSE`: a table of one row per top-level Case with its open `stop:` lines and open `read`
+lines, a Mermaid diagram of the Cases in order, and an entry per Case and sub-case — 🧩, its id
+and name and the path of its case file, then each task line without its box and sub-points,
+✅ before a ticked line, ⛔ before an open `stop:` line by `prespec.STOP_LINE` and 🔍 before an
+open `read` line by `generate.READ_LINE`, an item line with the `purpose`, `change` or `impact`
+of its item and a `read` line with the `purpose` of the `create` of its Estimate — and the
+Cases under `## Deferred` by id and name. Every word is cut from the Cases; no line of the map
+opens with a box, a heading or `# `, and none is `## Deferred`, so `split_cases`, the tickers
+and `place` read the plan and `spec.md` as before. The map is rebuilt in the plan file only:
+the copy that `guppi spec` takes into `spec.md` at the approval stays as it was. `guppi
+ratified --map <file> --session <stamp>` prints the map of a file before any payload is read
+and writes nothing.
+
 The check after the write (case 414.1). Each Case written in the run, and its sub-cases, goes
 through the checks of `guppi prespec --check` — `prespec.written_findings`, imported inside
 the function since `.guppi/guppi/prespec.py` imports this module — with the decision lines of the
@@ -165,6 +180,7 @@ import argparse
 import re
 import sys
 from datetime import datetime
+from itertools import pairwise
 from pathlib import Path
 
 import yaml
@@ -872,6 +888,226 @@ def write_parent(plan: Path, case: str, text: str, approved: Path | None = None)
         write_text(path, place(current, parent, section))
 
 
+# --- the map (case 1078.1) ----------------------------------------------------------
+
+MAP_OPEN = "<!-- map: written by guppi ratified from the Cases below -->"
+MAP_CLOSE = "<!-- /map -->"
+TICKED = ("[x]", "[X]")
+CASE_SIGN, DONE, STOP_SIGN, CHECK_SIGN = "🧩", "✅", "⛔", "🔍"
+ITEM_WORDS = (
+    ("create", "purpose"),
+    ("update", "change"),
+    ("delete", "impact"),
+    ("defer", "purpose"),
+)
+
+
+def plan_cases(text: str) -> list[tuple[str, str, list[str], bool]]:
+    """`(id, name, lines, deferred)` of each Case of `text` in the order of its first heading;
+    `deferred` when the last heading before it that is no Case heading is `## Deferred`. The
+    map of the text left out."""
+    cases = split_cases(text)
+    found: list[tuple[str, str, list[str], bool]] = []
+    seen: set[str] = set()
+    deferred = False
+    for line in without_map(text).splitlines():
+        if not HEADING.match(line):
+            continue
+        match = CASE_HEADING.match(line)
+        if match is None:
+            deferred = line.strip() == DEFERRED
+            continue
+        case = match.group(1).rstrip(":")
+        if case in seen:
+            continue
+        seen.add(case)
+        name = line.split(" — ", 1)[1].strip() if " — " in line else ""
+        found.append((case, name, cases.get(case, []), deferred))
+    return found
+
+
+def item_words(lines: list[str]) -> dict[tuple[str, str], str]:
+    """`(kind, slug)` → the words of its item in the block tagged `then` of a Case: the
+    `purpose` of a `create` or a `defer`, the `change` of an `update`, the `impact` of a
+    `delete`, each on one line."""
+    blocks = tagged_blocks(lines, "then")
+    try:
+        block = yaml.safe_load(blocks[0]) if blocks else {}
+    except yaml.YAMLError:
+        block = {}
+    words: dict[tuple[str, str], str] = {}
+    if not isinstance(block, dict):
+        return words
+    for kind, key in ITEM_WORDS:
+        for item in block.get(kind) or []:
+            if isinstance(item, dict) and item.get("slug") and item.get(key):
+                words[(kind, str(item["slug"]))] = " ".join(str(item[key]).split())
+    return words
+
+
+def map_tasks(lines: list[str]) -> list[tuple[str, str, str]]:
+    """`(sign, text, words)` of each task line of a Case, its box and sub-points left out: ✅
+    for a line ticked by its box, ⛔ for an open `stop:` line by `prespec.STOP_LINE`, 🔍 for an
+    open `read` line by `generate.READ_LINE`, none otherwise; `words` the item's words, or for
+    a `read` line those of the `create` of the same Estimate. Each pattern is imported, never
+    copied (`rule-one-judgment-one-implementation`)."""
+    from guppi.generate import READ_LINE  # the one judgment of a read line
+    from guppi.prespec import STOP_LINE  # it imports this module at load
+
+    words = item_words(lines)
+    found: list[tuple[str, str, str]] = []
+    for line in "\n".join(tagged_blocks(lines, "tasks")).splitlines():
+        match = TASK_LINE.match(line)
+        if match is None:
+            continue
+        text = match.group(1)
+        if line[2:5] in TICKED:
+            sign = DONE
+        elif STOP_LINE.match(line):
+            sign = STOP_SIGN
+        elif READ_LINE.match(line):
+            sign = CHECK_SIGN
+        else:
+            sign = ""
+        item = ITEM_LINE.match(text)
+        read = READ_LINE.match("- [ ] " + text)  # the text of a read line, whatever its box
+        said = ""
+        if item:
+            said = words.get((item.group(1), item.group(2)), "")
+        elif read:
+            said = words.get(("create", read.group(1)), "")
+        found.append((sign, text, said))
+    return found
+
+
+def map_label(text: str) -> str:
+    """A label of the Mermaid diagram: no backtick, and a quote or an angle bracket written as
+    its entity."""
+    text = text.replace("`", "").replace('"', "#quot;")
+    return text.replace("<", "#lt;").replace(">", "#gt;")
+
+
+def map_cell(text: str) -> str:
+    return text.replace("|", "\\|")
+
+
+def case_map(text: str, folder: Path | None, project_dir: Path) -> list[str]:
+    """The lines of the map of the Cases of `text`, empty when it holds none: a table of the
+    top-level Cases with their open stops and open checks, a Mermaid diagram of the Cases in
+    order, an entry per Case and sub-case cut from the Case, and the Cases under `## Deferred`
+    by id and name. No line opens with a box, a heading or `# `, so `split_cases`, the tickers
+    and `place` read the text as before."""
+    from guppi.casecheck import case_file  # it imports this module
+
+    cases = plan_cases(text)
+    live = [(c, n, lines) for c, n, lines, deferred in cases if not deferred]
+    later = [(c, n) for c, n, _, deferred in cases if deferred]
+    if not live and not later:
+        return []
+    tasks = {case: map_tasks(lines) for case, _, lines in live}
+    out = [MAP_OPEN, "", "**Map of the Cases** — cut from the Cases below, which follow whole.", ""]
+    tops = [(c, n) for c, n, _ in live if "." not in c]
+    if tops:
+        out += ["| Case | Name | ⛔ open stops | 🔍 open checks |", "|---|---|---|---|"]
+        for case, name in tops:
+            family_tasks = [t for c, *_ in live if in_family(c, case) for t in tasks[c]]
+            stops = sum(1 for sign, *_ in family_tasks if sign == STOP_SIGN)
+            checks = sum(1 for sign, *_ in family_tasks if sign == CHECK_SIGN)
+            out.append(f"| {case} | {map_cell(name)} | {stops} | {checks} |")
+        out.append("")
+    if live:
+        ids = {c for c, *_ in live}
+        out += ["```mermaid", "flowchart TD"]
+        for case, name, _ in live:
+            stop = f"{STOP_SIGN} " if any(s == STOP_SIGN for s, *_ in tasks[case]) else ""
+            label = map_label(f"{stop}{CASE_SIGN} {case} — {name}")
+            out.append(f'    c{case.replace(".", "_")}["{label}"]')
+        for before, after in pairwise(tops):
+            out.append(f"    c{before[0].replace('.', '_')} --> c{after[0].replace('.', '_')}")
+        for case, *_ in live:
+            parent = case.rsplit(".", 1)[0] if "." in case else None
+            if parent in ids:
+                out.append(f"    c{parent.replace('.', '_')} --> c{case.replace('.', '_')}")
+        out += ["```", ""]
+    for case, name, _ in live:
+        where = ""
+        if folder is not None:
+            path = case_file(folder, case.split(".", 1)[0])
+            try:
+                where = f" · `{path.relative_to(project_dir).as_posix()}`"
+            except ValueError:
+                where = f" · `{path.as_posix()}`"
+        out.append(f"- {CASE_SIGN} **{case} — {name}**{where}")
+        for sign, task, said in tasks[case]:
+            lead = f"{sign} " if sign else ""
+            tail = f" — {said}" if said else ""
+            out.append(f"  - {lead}{task}{tail}")
+    if later:
+        out += ["", "**Deferred:** " + "; ".join(f"{case} — {name}" for case, name in later)]
+    out += ["", MAP_CLOSE]
+    return out
+
+
+def without_map(text: str) -> str:
+    """`text` with no map: the lines from `MAP_OPEN` to `MAP_CLOSE` out, with the blank line
+    after them."""
+    lines = text.splitlines()
+    starts = [i for i, line in enumerate(lines) if line.strip() == MAP_OPEN]
+    if not starts:
+        return text
+    start = starts[0]
+    end = next((j for j in range(start, len(lines)) if lines[j].strip() == MAP_CLOSE), None)
+    if end is None:
+        return text
+    end += 1
+    while end < len(lines) and not lines[end].strip():
+        end += 1
+    del lines[start:end]
+    return "\n".join(lines).rstrip("\n") + "\n"
+
+
+def with_map(text: str, folder: Path | None, project_dir: Path) -> str:
+    """`text` with its map rebuilt right under its title line, the first line that opens with
+    `# `, or at its head when it has none; with no map when it holds no Case."""
+    bare = without_map(text)
+    lines = bare.splitlines()
+    found = case_map(bare, folder, project_dir)
+    if not found:
+        return bare
+    at = next((i + 1 for i, line in enumerate(lines) if line.startswith("# ")), 0)
+    head = lines[:at]
+    rest = lines[at:]
+    while rest and not rest[0].strip():
+        rest = rest[1:]
+    return "\n".join([*head, *([""] if head else []), *found, "", *rest]).rstrip("\n") + "\n"
+
+
+def rebuild_map(plan: Path, folder: Path | None, project_dir: Path) -> None:
+    """The map of the plan file rebuilt from its Cases; the file written only when it
+    changed."""
+    text = document(plan)
+    new = with_map(text, folder, project_dir)
+    if new != text:
+        write_text(plan, new)
+
+
+def print_map(path: Path, session: str, project_dir: Path, now, out, stderr) -> int:
+    """`--map <file> --session <stamp>`: the map of the Cases of `path` on `out`; no payload
+    read and no file written. A file that does not stand, or a session with no `hi`, prints
+    the reason on stderr and exits 1."""
+    stamp = session_stamp(session, {})
+    folder = session_dir(project_dir, now, stamp)
+    if folder is None:
+        print(f"ratified: no hi of session {stamp} — no map printed", file=stderr)
+        return 1
+    if not path.is_file():
+        print(f"ratified: {path} does not stand — no map printed", file=stderr)
+        return 1
+    found = case_map(without_map(document(path)), folder, project_dir)
+    out.write("\n".join(found) + ("\n" if found else ""))
+    return 0
+
+
 # --- the Cyrillic finding (cases 387.4, 445.4) ----------------------------------------
 
 
@@ -1256,6 +1492,9 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
     session = ledger_records(ledger_of(folder))
     # the superseded sections out (cases 441.7, 445.3, 722.2)
     remove_superseded(records, written, targets, session)
+    removing = any(record.get("supersedes") for record in records)
+    if plan is not None and plan.is_file() and (written or removing):
+        rebuild_map(plan, folder, project_dir)  # the map under the title line (case 1078.1)
     if checked:
         from guppi import prespec  # it imports this module at load (case 414.1)
 
@@ -1273,16 +1512,30 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument(
         "--guard", action="store_true", help="the PreToolUse hook on an edit of the plan"
     )
+    p.add_argument("--map", type=Path, help="print the map of the Cases of this file")
+    p.add_argument("--session", help="the stamp of the hi: line, with --map")
     return p
 
 
-def run(argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=None) -> int:
+def run(
+    argv, *, stdin=None, stderr=None, project_dir: Path | None = None, now=None, stdout=None
+) -> int:
     stdin = sys.stdin if stdin is None else stdin
     stderr = sys.stderr if stderr is None else stderr
+    stdout = sys.stdout if stdout is None else stdout
     project_dir = project_root() if project_dir is None else Path(project_dir)
     now = datetime.now().astimezone() if now is None else now
     try:
         args = parser().parse_args(argv)
+    except Exception as exc:  # noqa: BLE001 — no payload, no way to read its refusals (cases 554, 644.7)
+        print(f"ratified: not done: {exc}", file=stderr)
+        return 0
+    if args.map is not None:  # before any payload is read (case 1078.1)
+        if not args.session:
+            print("ratified: --map takes --session <stamp>", file=stderr)
+            return 1
+        return print_map(args.map, args.session, project_dir, now, stdout, stderr)
+    try:
         payload = read_payload(stdin)
     except Exception as exc:  # noqa: BLE001 — no payload, no way to read its refusals (cases 554, 644.7)
         print(f"ratified: not done: {exc}", file=stderr)

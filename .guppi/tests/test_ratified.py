@@ -1756,3 +1756,174 @@ def test_error_an_error_of_the_guard_exits_0_with_its_line(working, monkeypatch)
     monkeypatch.setattr(ratified, "guard_refusal", boom)
     code, err = guard(working, "Edit", plan_of(working))
     assert code == 0 and err == "ratified: not done: boom\n"
+
+
+# --- the map (case 1078.1) ---------------------------------------------------------------
+
+MAP_CASES = """# Spec
+
+## Case 5 — first
+
+> **then:**
+> First.
+
+```then
+create:
+- slug: estimate-a-works
+  ref: rule-a
+  purpose: A works
+update:
+- slug: rule-a
+  change: the rule changed
+delete:
+- slug: rule-old
+  impact: nothing reads it
+```
+
+```tasks
+- [x] read `estimate-a-works`
+- [ ] stop: the person gives the file `x.png`.
+- [x] stop: the person said yes.
+- [ ] read `estimate-a-works`
+- [x] `guppi/a.py` — the code
+- [ ] update `rule-a`
+- [ ] delete `rule-old`
+- [ ] create `estimate-a-works`
+```
+
+## Case 6 — parent
+
+> **problem:**
+> Why.
+
+### Case 6.1 — child
+
+```tasks
+- [ ] read `estimate-b-works`
+```
+
+## Deferred
+
+## Case 9 — put off
+
+```then
+defer:
+  - slug: rule-later
+    type: rule
+    purpose: Later
+```
+"""
+
+
+def map_lines(text):
+    """The lines of the map of `text`, its markers included."""
+    lines = text.splitlines()
+    start = lines.index(ratified.MAP_OPEN)
+    return lines[start : lines.index(ratified.MAP_CLOSE) + 1]
+
+
+def map_run(project, argv):
+    out, err = io.StringIO(), io.StringIO()
+    code = ratified.run(
+        argv, stdin=io.StringIO(""), stderr=err, stdout=out, project_dir=project, now=NOW
+    )
+    return code, out.getvalue(), err.getvalue()
+
+
+def test_map_stands_under_the_title_line_with_table_diagram_and_entries(working):
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    assert plan.startswith(f"# Spec — 2026-09-09, session 1501\n\n{ratified.MAP_OPEN}\n")
+    found = map_lines(plan)
+    assert "| 7 | пример | 0 | 1 |" in found
+    assert "```mermaid" in found and '    c7["🧩 7 — пример"]' in found
+    assert "- 🧩 **7 — пример** · `vault/raw/2026-09-09/1501/cases/case-7.md`" in found
+    assert "  - update `rule-x` — one `replace` pair — the text changed (case 7)" in found
+    assert "  - create `estimate-x-works` — X works" in found
+    assert "  - `guppi/x.py` — the code" in found
+    assert "  - 🔍 read `estimate-x-works` — X works" in found
+    assert plan.index(ratified.MAP_CLOSE) < plan.index("## Case 7 —")
+
+
+def test_map_signs_a_ticked_line_an_open_stop_and_an_open_read_line(working):
+    found = ratified.case_map(MAP_CASES, None, working)
+    assert "| 5 | first | 1 | 1 |" in found and "| 6 | parent | 0 | 1 |" in found
+    entry = found[found.index("- 🧩 **5 — first**") + 1 :][:8]
+    assert entry == [
+        "  - ✅ read `estimate-a-works` — A works",  # ticked: ✅ and no 🔍
+        "  - ⛔ stop: the person gives the file `x.png`.",
+        "  - ✅ stop: the person said yes.",
+        "  - 🔍 read `estimate-a-works` — A works",
+        "  - ✅ `guppi/a.py` — the code",
+        "  - update `rule-a` — the rule changed",
+        "  - delete `rule-old` — nothing reads it",
+        "  - create `estimate-a-works` — A works",
+    ]
+    assert "**Deferred:** 9 — put off" in found
+
+
+def test_map_diagram_one_node_per_case_and_the_edges_of_their_order(working):
+    found = ratified.case_map(MAP_CASES, None, working)
+    assert '    c5["⛔ 🧩 5 — first"]' in found
+    assert '    c6_1["🧩 6.1 — child"]' in found
+    assert "    c5 --> c6" in found and "    c6 --> c6_1" in found
+    assert not any(line.startswith("    c9") for line in found)  # a deferred Case: no node
+
+
+def test_map_no_line_opens_with_a_box_a_heading_or_deferred(working):
+    for line in ratified.case_map(MAP_CASES, None, working):
+        assert not ratified.TASK_LINE.match(line), line
+        assert not materialize.HEADING.match(line), line
+        assert line.strip() != ratified.DEFERRED, line
+
+
+def test_map_split_cases_reads_the_plan_as_before(working):
+    with_map = ratified.with_map(MAP_CASES, None, working)
+    assert ratified.MAP_OPEN in with_map
+    assert split_cases(with_map) == split_cases(MAP_CASES)
+    assert ratified.without_map(with_map) == MAP_CASES
+
+
+def test_map_rebuilt_after_a_write_and_after_a_removal(working):
+    stop(working, ACK, SHOWING, ACK)
+    reply = short_case(8, "rule-y") + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
+    assert stop(working, reply, reply) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    assert plan.count(ratified.MAP_OPEN) == 1
+    assert "**Deferred:** 8 — отложено" in map_lines(plan)
+    seed_old(working)
+    plan_of(working).write_text(
+        ratified.with_map(plan_of(working).read_text(encoding="utf-8"), None, working),
+        encoding="utf-8",
+    )
+    assert "| 5 | old | 0 | 0 |" in map_lines(plan_of(working).read_text(encoding="utf-8"))
+    assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")
+    found = map_lines(plan_of(working).read_text(encoding="utf-8"))
+    assert "| 7 | пример | 0 | 1 |" in found and not any("5 — old" in line for line in found)
+
+
+def test_map_mode_prints_the_same_map_and_writes_nothing(working):
+    stop(working, ACK, SHOWING, ACK)
+    plan = plan_of(working)
+    before = plan.read_text(encoding="utf-8")
+    code, out, err = map_run(working, ["--map", str(plan), "--session", SESSION[:8]])
+    assert (code, err) == (0, "")
+    assert out.splitlines() == map_lines(before)
+    assert plan.read_text(encoding="utf-8") == before
+
+
+def test_map_mode_with_no_session_or_no_file_prints_no_map(working):
+    code, out, err = map_run(working, ["--map", str(working / "none.md"), "--session", "44c1aae1"])
+    assert code == 1 and out == "" and "does not stand" in err
+    code, out, err = map_run(working, ["--map", str(plan_of(working))])
+    assert code == 1 and out == "" and "--session" in err
+
+
+def test_approved_spec_places_a_case_after_the_map(working):
+    document = ratified.with_map(MAP_CASES, None, working)
+    spec = approved_spec(working, f"{STAMP}\n\n{document}")
+    before = map_lines(spec.read_text(encoding="utf-8"))
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    text = spec.read_text(encoding="utf-8")
+    assert text.index(ratified.MAP_CLOSE) < text.index("## Case 7 —") < text.index("## Deferred")
+    assert map_lines(text) == before  # the map of spec.md stays as the approval left it

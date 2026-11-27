@@ -125,6 +125,15 @@ then builds the Case and shows it with its ledger lines for your sign-off.
 | `.guppi/` | The Python package with the command `guppi`: the hooks call it, and the librarian runs `guppi check`, `guppi generate`, `guppi render` and others. Its tests stand in `.guppi/tests/`. |
 | `plugin/` and the branch `prod` | The plugin `guppi` and its marketplace `guppi-marketplace`. CI builds a clean copy of the project, with no session data and no case references, and writes it to the branch `prod`. |
 
+## The first sketch
+
+GUPPI started from this sketch. It shows only roughly how GUPPI is built: many names and steps
+on it have changed since, and the sections above describe GUPPI as it works today.
+
+<p align="center"><a href="plugin/assets/GUPPI.png"><img src="plugin/assets/GUPPI.png" alt="The first sketch of GUPPI"></a></p>
+
+The sketch as an Excalidraw board: <https://link.excalidraw.com/l/9tRP8fIyCPi/4Jt5sJbxujf>
+
 ## Install
 
 You need [Claude Code](https://code.claude.com), git, and [uv](https://docs.astral.sh/uv/). If

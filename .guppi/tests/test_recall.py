@@ -136,6 +136,27 @@ def test_the_spec_is_the_plan_file_before_the_approval_and_spec_md_after(tmp_pat
     assert "quiet-plan" not in out
 
 
+def test_before_the_approval_the_cases_file_follows_the_plan_file(tmp_path):
+    """Before the approval the Cases wait in the Cases file beside the plan file, which holds
+    the map alone, so both are named, in that order (case 1087.14)."""
+    working_session(tmp_path, spec=False)
+    plan = tmp_path / ".claude" / "plans" / "quiet-plan.md"
+    plan.parent.mkdir(parents=True)
+    plan.write_text("# Spec — draft\n", encoding="utf-8", newline="\n")
+    cases = plan.with_name("quiet-plan.cases.md")
+    cases.write_text("## Case 7 — example\n", encoding="utf-8", newline="\n")
+    with_event_log(tmp_path, START + HI + f"- 10:35:00 {STAMP} tool Write: {plan}\n")
+    _, out = run(tmp_path)
+    lines = out.splitlines()
+    assert lines[5].endswith(".claude/plans/quiet-plan.md")
+    assert lines[6].endswith(".claude/plans/quiet-plan.cases.md")
+    assert lines[7] == "Frontier:"
+    assert "## Case 7" not in out  # the paths only
+    cases.unlink()
+    _, out = run(tmp_path)
+    assert "quiet-plan.cases.md" not in out and out.splitlines()[6] == "Frontier:"
+
+
 def test_a_payload_that_is_not_json_prints_nothing_and_exits_0(tmp_path):
     working_session(tmp_path)
     code, out = run(tmp_path, io.StringIO("not json"))

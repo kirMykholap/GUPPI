@@ -1963,3 +1963,127 @@ def test_bare_link_a_lesson_refused_for_its_link_is_not_held_for_its_mark(workin
     assert (code, err) == (2, ledger.link_message("lesson[lesson-b-l]", ["slug"]) + "\n")
     assert ledger.held_message("lesson-b-l") not in err
     assert timed(LINKED_LESSON) not in ledger_text(working)
+
+
+# --- the Cases file beside the plan file: the one reading of the Cases of the plan -------
+# (case 1087.13)
+
+CASES_STAMP = "44c1aae1"
+UNWRITTEN_CASE = (
+    "## Case 7 — example\n\n```then\nupdate:\n- slug: rule-x\n  change: the text changed\n```\n"
+)
+
+
+def planned_session(project_dir, plan_body="", cases=None):
+    """A working session after `/pre-spec`: its plan file, holding its title line and
+    `plan_body`, named by a `tool Write:` line, and the Cases file beside it holding `cases`."""
+    plans = project_dir / "home" / ".claude" / "plans"
+    plans.mkdir(parents=True, exist_ok=True)
+    plan = plans / "plan.md"
+    plan.write_text("# Spec — 2026-09-09, session 1501\n" + plan_body, encoding="utf-8")
+    if cases is not None:
+        ledger.plan_cases_file(plan).write_text(cases, encoding="utf-8")
+    log = project_dir / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    log.parent.mkdir(parents=True, exist_ok=True)
+    log.write_text(
+        f"- 15:01:00 {CASES_STAMP} session-start startup\n- 15:01:30 {CASES_STAMP} hi\n"
+        f"- 15:02:00 {CASES_STAMP} tool Write: {plan}\n- 15:03:00 {CASES_STAMP} prespec\n",
+        encoding="utf-8",
+    )
+    folder = log.parent / "1501"
+    folder.mkdir(exist_ok=True)
+    (folder / "frontier.md").write_text("# Frontier\n\n## Cases\n\n", encoding="utf-8")
+    (project_dir / "guppi.toml").write_text(
+        'documentation_lang = "en"\nchat_lang = "ru"\n', encoding="utf-8"
+    )
+    return plan
+
+
+def test_cases_file_is_named_by_the_plan_stem_beside_the_plan(tmp_path):
+    plan = tmp_path / ".claude" / "plans" / "quiet-plan.md"
+    assert ledger.plan_cases_file(plan) == plan.with_name("quiet-plan.cases.md")
+
+
+def test_cases_file_plan_cases_text_joins_the_plan_and_its_cases_file(tmp_path):
+    plan = planned_session(tmp_path)
+    assert ledger.plan_cases_text(plan) == plan.read_text(encoding="utf-8")  # none beside it
+    ledger.plan_cases_file(plan).write_text(UNWRITTEN_CASE, encoding="utf-8")
+    joined = ledger.plan_cases_text(plan)
+    assert joined.startswith("# Spec — 2026-09-09, session 1501\n")
+    assert joined.endswith(UNWRITTEN_CASE)
+    assert ledger.with_cases(plan.read_text(encoding="utf-8"), plan) == joined
+    assert ledger.with_cases("text", None) == "text"
+
+
+def check_output(project_dir, plan):
+    from guppi import prespec
+
+    out, err = io.StringIO(), io.StringIO()
+    code = prespec.run(
+        ["--check", str(plan), "--session", CASES_STAMP],
+        stdout=out,
+        stderr=err,
+        project_dir=project_dir,
+        now=NOW,
+    )
+    return code, [line for line in out.getvalue().splitlines() if not line.startswith("note:")]
+
+
+def test_cases_file_prespec_check_judges_a_case_that_stands_only_there(tmp_path):
+    in_plan = tmp_path / "a"
+    beside = tmp_path / "b"
+    expected = check_output(in_plan, planned_session(in_plan, "\n" + UNWRITTEN_CASE))
+    found = check_output(beside, planned_session(beside, cases=UNWRITTEN_CASE))
+    assert found == expected and found[0] == 1
+    assert any("case 7: item [update][rule-x] has no decision line" in f for f in found[1])
+
+
+def test_cases_file_the_exit_gate_refuses_on_a_case_that_stands_only_there(tmp_path):
+    from guppi import prespec
+
+    planned_session(tmp_path, cases=UNWRITTEN_CASE)
+    reason = prespec.gate_refusal(tmp_path, NOW, CASES_STAMP)
+    assert reason is not None and "case 7: item [update][rule-x] has no decision line" in reason
+
+
+def test_cases_file_the_retro_gate_finds_an_unwritten_item_that_stands_only_there(tmp_path):
+    from guppi import gate
+
+    planned_session(tmp_path, cases=UNWRITTEN_CASE)
+    assert gate.spec_check(tmp_path, CASES_STAMP, NOW) == ["case 7: [update][rule-x]"]
+
+
+def test_cases_file_with_no_cases_file_the_plan_file_alone_is_read(tmp_path):
+    from guppi import gate
+
+    planned_session(tmp_path, "\n" + UNWRITTEN_CASE)
+    assert gate.spec_check(tmp_path, CASES_STAMP, NOW) == ["case 7: [update][rule-x]"]
+
+
+def test_cases_file_the_check_of_a_case_file_clashes_with_a_case_that_stands_only_there(
+    tmp_path,
+):
+    """The `SubagentStop` check of a Case file reads the other Cases of the session from the
+    plan file and its Cases file: a pair of another Case there that rewrote the anchor of the
+    answer is a finding of the answer, as when that Case stood in the plan file."""
+    import test_casecheck as cc
+
+    rule = tmp_path / "vault" / "wiki" / "rules" / "rule-x.md"
+    rule.parent.mkdir(parents=True)
+    rule.write_text(cc.RULE_X, encoding="utf-8")
+    planned_session(tmp_path, cases=cc.planned(5, "the `old` text", "the rewritten text"))
+    code, err = cc.answer(tmp_path, cc.ANSWER)
+    assert code == 2 and cc.MISSES in err
+
+
+def test_cases_file_every_reader_imports_the_one_reading():
+    """`prespec`, `casecheck`, `gate`, `ratified` and `spec` read the Cases of the plan by
+    `ledger.plan_cases_text` or `ledger.with_cases`, never by a join of their own."""
+    from pathlib import Path
+
+    from guppi import casecheck, gate, prespec, ratified, spec
+
+    for module in (prespec, casecheck, gate, ratified, spec):
+        source = Path(module.__file__).read_text(encoding="utf-8")
+        assert "plan_cases_text" in source or "with_cases" in source, module.__name__
+        assert '.cases.md"' not in source and "CASES_FILE_SUFFIX" not in source, module.__name__

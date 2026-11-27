@@ -1,7 +1,8 @@
 """`guppi prespec` — the `PreToolUse ExitPlanMode` hook that holds Plan Mode open until
 `/pre-spec` has run in this session and the check of its plan finds nothing; `guppi
 prespec --check <plan> [--session ID]` — the check of that Plan Mode's artifacts against
-each other.
+each other, the Cases read from the plan file and then its Cases file by
+`ledger.plan_cases_text` (case 1087.13).
 
 The hook reads the event logs by the session's stamp (case 136.2) — the logs from today
 back to the date of this session's `session-start`, as the ledger hook reads them, so a
@@ -10,8 +11,10 @@ working one when the logs hold a `hi` of its stamp. In a working session with no
 the same stamp after that `hi`, the hook exits 2 with the reason on stderr, which Claude
 Code shows the agent and which blocks the tool; the agent runs `/pre-spec` — `guppi gate`
 writes the stamped line on the Skill call (case 136.1) — and exits Plan Mode again. With
-the line, the hook finds the plan file of the session by `ledger.plan_path` and judges it
-by `plan_findings`, the same function `--check` prints, not a copy; while it finds one,
+the line, the hook finds the plan file of the session by `ledger.plan_path` and judges the
+Cases of the plan — the plan file and then the Cases file `<plan stem>.cases.md` beside it, by
+`ledger.plan_cases_text`, the one reading `--check` takes too (case 1087.13) — by
+`plan_findings`, the same function `--check` prints, not a copy; while it finds one,
 the hook exits 2 with the findings on stderr. A `note:` line does not block, and with no
 plan file of the session the exit passes on the line alone (case 561.3). A mark
 of another stamp or `--------` does not count, and a `session-start` of another session
@@ -286,6 +289,7 @@ from guppi.ledger import (
     hi_moment,
     hi_recorded,
     is_sprint_page,
+    plan_cases_text,
     plan_path,
     session_dir,
     session_event_logs,
@@ -2432,7 +2436,8 @@ def gate_refusal(project_dir: Path, now, stamp: str) -> str | None:
     plan_file = plan_path(logs, stamp)
     if plan_file is None or not plan_file.is_file():
         return None
-    judged = plan_findings(plan_file.read_text(encoding="utf-8"), project_dir, stamp, now)
+    # the plan file and then its Cases file (case 1087.13)
+    judged = plan_findings(plan_cases_text(plan_file), project_dir, stamp, now)
     if judged is None or not judged[0]:
         return None
     head = (
@@ -2505,7 +2510,7 @@ def run(
         if not plan_file.is_file():
             print(f"prespec: no plan file at {plan_file}", file=stderr)
             return 2
-        plan = plan_file.read_text(encoding="utf-8")
+        plan = plan_cases_text(plan_file)  # the plan file and then its Cases file (case 1087.13)
         stamp = resolve_session(args.session)
         if stamp is None:
             print(NO_SESSION, file=stderr)

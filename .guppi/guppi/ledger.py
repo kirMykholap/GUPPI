@@ -677,6 +677,47 @@ def plan_path(logs: list[tuple[str, str]], stamp: str) -> Path | None:
     return last
 
 
+CASES_FILE_SUFFIX = ".cases.md"
+
+
+def plan_cases_file(plan: Path) -> Path:
+    """The Cases file beside a plan file, `<plan stem>.cases.md`: the ratified Cases and the
+    defers of the plan wait there until the approval, so that the plan file holds its title
+    line and the map alone (case 1087.1). In the texts of the harness the plan is the plan
+    file with this file."""
+    return plan.with_name(plan.stem + CASES_FILE_SUFFIX)
+
+
+def with_cases(text: str, plan: Path | None) -> str:
+    """A plan text and then the text of the Cases file beside `plan` when it stands: the one
+    join of the two texts, for a reader that holds the plan text already, such as the hook of
+    `rule-spec-capture` with `tool_response.plan` (case 1087.1). A missing Cases file, or no
+    plan, gives the text as it is."""
+    if plan is None:
+        return text
+    cases = plan_cases_file(plan)
+    try:
+        extra = cases.read_text(encoding="utf-8")
+    except OSError:
+        return text
+    if not extra.strip():
+        return text
+    if text and not text.endswith("\n"):
+        text += "\n"
+    return text + ("\n" if text and not text.endswith("\n\n") else "") + extra
+
+
+def plan_cases_text(plan: Path) -> str:
+    """The Cases of the plan: the text of the plan file, then the text of its Cases file, by
+    `with_cases` — the one reading that every reader of the Cases of the plan imports (case
+    1087.1). A plan file that cannot be read gives the Cases file alone, or an empty text."""
+    try:
+        text = plan.read_text(encoding="utf-8")
+    except OSError:
+        text = ""
+    return with_cases(text, plan)
+
+
 def session_event_log(project_dir: Path, now, stamp: str) -> str:
     """The logs of `session_event_logs`, joined."""
     return "".join(text for _, text in session_event_logs(project_dir, now, stamp))

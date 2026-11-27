@@ -14,8 +14,9 @@ folder, then one path per line: the `@` lines of `.claude/skills/hi/SKILL.md` in
 order — the list is the skill file's, never a copy here, so a file added to
 `rule-internal-context` is in it without a change — then the folder's `frontier.md` when it
 exists, then the Spec: `spec.md` of the folder, or before the approval the plan file the
-event log names last under `.claude/plans/`, as `guppi gate` finds it (case 122); then the
-line `Frontier:` and the text of `frontier.md` as it stands. Exit 0 always; an error prints
+event log names last under `.claude/plans/`, as `guppi gate` finds it (case 122), and on the
+next line the Cases file `<plan stem>.cases.md` beside it when it stands, where the Cases of
+the plan wait until the approval (case 1087.14); then the line `Frontier:` and the text of `frontier.md` as it stands. Exit 0 always; an error prints
 nothing and blocks nothing; the hook writes no file and no event line — `session-start
 compact` is `guppi event`'s. Rule page: `vault/wiki/rules/rule-compact-recall.md`.
 """
@@ -25,7 +26,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import project_root, read_payload, session_stamp
-from guppi.ledger import plan_path, session_dir, session_event_logs
+from guppi.ledger import plan_cases_file, plan_path, session_dir, session_event_logs
 
 SKILL = Path(".claude") / "skills" / "hi" / "SKILL.md"
 SOURCE = "compact"
@@ -40,16 +41,18 @@ def import_lines(skill: Path) -> list[str]:
     return [line.strip()[1:] for line in text.splitlines() if line.strip().startswith("@")]
 
 
-def spec_of(folder: Path, logs: list[tuple[str, str]], stamp: str) -> Path | None:
-    """`spec.md` of the session's folder, or the plan file the event log names last; None
-    when neither exists on disk."""
+def spec_of(folder: Path, logs: list[tuple[str, str]], stamp: str) -> list[Path]:
+    """`spec.md` of the session's folder; or, before the approval, the plan file the event log
+    names last and then the Cases file beside it when it stands, by `ledger.plan_cases_file`
+    (case 1087.14); empty when none exists on disk."""
     spec = folder / "spec.md"
     if spec.is_file():
-        return spec
+        return [spec]
     plan = plan_path(logs, stamp)
     if plan is not None and plan.is_file():
-        return plan
-    return None
+        cases = plan_cases_file(plan)
+        return [plan, cases] if cases.is_file() else [plan]
+    return []
 
 
 def relative(path: Path, project_dir: Path) -> str:
@@ -79,9 +82,7 @@ def recall(project_dir: Path, payload: dict, now) -> str:
     frontier = folder / "frontier.md"
     if frontier.is_file():
         lines.append(relative(frontier, project_dir))
-    spec = spec_of(folder, logs, stamp)
-    if spec is not None:
-        lines.append(relative(spec, project_dir))
+    lines.extend(relative(path, project_dir) for path in spec_of(folder, logs, stamp))
     if frontier.is_file():
         lines.append("Frontier:")
         lines.append(frontier.read_text(encoding="utf-8").rstrip("\n"))

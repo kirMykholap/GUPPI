@@ -20,8 +20,10 @@ time the store holds for Case N, a store that holds no time included (case 452.3
 whose file holds a Case that differs from the text the store holds under its id or that the
 store does not hold, by `casecheck.changed_file`, the one judgment the `Stop` check of a
 showing runs (case 645.5); a reply with no showing is no refusal. On a refusal nothing of
-Case N is written (case 437). Otherwise it writes the stored answer (case 437) into the plan file
-`ledger.plan_path` names, outside the repository, and into no copy (case 445.2): the heading,
+Case N is written (case 437). Otherwise it writes the stored answer (case 437) into the Cases
+file `<plan stem>.cases.md` beside the plan file `ledger.plan_path` names, by
+`ledger.plan_cases_file`, outside the repository — never into the plan file, which holds its
+title line and the map alone (case 1087.3) — and into no copy (case 445.2): the heading,
 `context`, `problem`, `recommend`, `given`, `when` and `then` as the stored answer holds them —
 a sub-case's own `recommend` under its heading (case 544.5); a `context`, `problem` or
 `recommend` it leaves out keeps the text the file held — a block tagged `then` built from the
@@ -61,8 +63,9 @@ sub-point that holds a shorter fence of the same character is read whole (case 4
 
 The removal (case 441.7). After the writes, a decision line of the reply that carries
 `{supersedes:case N}`, its own Case written in this run, removes the sections of Case N and of
-its sub-cases — or of `N.M` alone — from the plan and `spec.md` when it stands, under
-`## Deferred` too; a Case N neither holds is no refusal (case 445.3). A parent of such an `N.M`
+its sub-cases — or of `N.M` alone — from the Cases file of the plan, from the plan file
+where it holds them, and from `spec.md` when it stands (case 1087.10), under `## Deferred`
+too; a Case N none holds is no refusal (case 445.3). A parent of such an `N.M`
 leaves with it once the marks of the session's ledger and of the reply retire each of its
 sub-cases with a decision line, by `prespec.retired_whole`, imported, and the parent holds no
 decision line of its own; a parent with a line of its own stays (case 722.2). A parent whose
@@ -73,8 +76,8 @@ The defer (case 421.1). A short put-off — a Case whose lines in the reply are 
 beside the lines of other Cases or alone, and that the same reply shows in the short form, by
 `casecheck.is_short_form`, the one judgment of the `Stop` check of a showing too (case 879.1) —
 is written from that reply: the heading, `context`, `problem` and its fence tagged `then`, each `defer` line with an item of
-`slug`, `type` and `purpose`. It goes under `## Deferred` of the plan file, or of `spec.md` in
-the session's folder once that file stands (case 542), its section replaced when it stands and
+`slug`, `type` and `purpose`. It goes under `## Deferred` of the Cases file of the plan (case
+1087.8), or of `spec.md` in the session's folder once that file stands (case 542), its section replaced when it stands and
 appended otherwise; the check after the write does not run on it. A missing item,
 a key of a `defer` item that `materialize.item_keys` does not give it (case 436.3), or a
 fence tagged `then` that holds a YAML comment by `materialize.then_comments` — a `#` at the
@@ -88,7 +91,10 @@ So is a `defer` line of the Case whose slug names a Lesson or a Decision page, b
 list would show the item, and nothing of the Case is written (case 865).
 
 The map (case 1078.1). After each run that writes, places or removes a Case or a defer, the
-hook rebuilds the map of the plan file right under its title line, between `MAP_OPEN` and
+hook rebuilds the map of the plan file right under its title line, cut from the Cases of the
+plan — the plan file and then its Cases file, by `ledger.plan_cases_text`, the one reading of
+the Cases of the plan; a plan file that holds Cases of its own, written before its Cases file
+stood, keeps them (case 1087.1) — between `MAP_OPEN` and
 `MAP_CLOSE`: a table of one row per top-level Case with its open `stop:` lines and open `read`
 lines, a Mermaid diagram of the Cases in order, and an entry per Case and sub-case — 🧩, its id
 and name and the path of its case file, then each task line without its sub-points, indented
@@ -102,9 +108,11 @@ Case there, by `keep_boxes`, the one judgment of a kept box; a box ticked in the
 written back at the next rebuild. Every word is cut from the Cases; no line of the map starts
 with a box at its first character, a heading or `# `, and none is `## Deferred`, so
 `split_cases`, the tickers and `place` read the plan and `spec.md` as before. The line that
-opens the map says that each box copies the box of its task line below and is no task of its
-own. `guppi ratified --map <file> --session <stamp>` prints the map of a file, its boxes taken
-in the same way, before any payload is read, and writes nothing.
+opens a map of `spec.md` says that each box copies the box of its task line below and is no
+task of its own; the line that opens the map of the plan file, `plan_map_head`, names its
+Cases file, where those task lines stand (case 1087.2). `guppi ratified --map <file>
+--session <stamp>` prints the map of the Cases of a file and of the Cases file beside it, its
+boxes taken in the same way, before any payload is read, and writes nothing.
 
 The maps of `spec.md` (cases 1085.2, 1085.3). `rebuild_spec_maps` rebuilds the map at the
 head of each approved document of a `spec.md` that holds one from the Cases of that document,
@@ -119,7 +127,8 @@ rebuilds the map of the plan file too; it refuses nothing, prints nothing on std
 it after each write of a `spec.md`.
 
 The check after the write (case 414.1). Each Case written in the run, and its sub-cases, goes
-through the checks of `guppi prespec --check` — `prespec.written_findings`, imported inside
+over the Cases of the plan, read by `ledger.plan_cases_text` (case 1087.5), through the checks
+of `guppi prespec --check` — `prespec.written_findings`, imported inside
 the function since `.guppi/guppi/prespec.py` imports this module — with the decision lines of the
 reply added to the window's, since the ledger hook runs in parallel on the same `Stop`; the
 Frontier, the translation and the grammar of the window stay with `/pre-spec`. A finding is a
@@ -210,6 +219,8 @@ from guppi.ledger import (
     is_plan_file,
     ledger_lines,
     own_refusals,
+    plan_cases_file,
+    plan_cases_text,
     plan_path,
     reply_text,
     session_dir,
@@ -703,10 +714,11 @@ def write_case(
     keys_for=None,
     approved: Path | None = None,
 ) -> list[str]:
-    """The Case into the plan and, when `approved` — the session's `spec.md` — stands, into it
-    too, the boxes of its unchanged task lines kept (case 441.6); no copy (case 445.2). The
-    errors, empty when it was written — nothing is written when any section has an error."""
-    targets = [plan]
+    """The Case into the Cases file of the plan, `ledger.plan_cases_file`, never into the plan
+    file (case 1087.3), and, when `approved` — the session's `spec.md` — stands, into it too,
+    the boxes of its unchanged task lines kept (case 441.6); no copy (case 445.2). The errors,
+    empty when it was written — nothing is written when any section has an error."""
+    targets = [plan_cases_file(plan)]
     if approved is not None and approved.is_file():
         targets.append(approved)
     sections: list[tuple[Path, str, list[str]]] = []
@@ -878,8 +890,8 @@ def remove_superseded(
 def write_parent(plan: Path, case: str, text: str, approved: Path | None = None) -> None:
     """A sub-case's parent: its heading, `context`, `problem` and `recommend` as `text` — its
     stored answer (cases 441.6, 544.5) — holds them; its own `given`, `when`, `then` and blocks, if any,
-    kept as they stand, each block fenced by its content (case 444.2); in the plan and
-    `approved` when that stands, no copy (case 445.2)."""
+    kept as they stand, each block fenced by its content (case 444.2); in the Cases file of the
+    plan (case 1087.3) and `approved` when that stands, no copy (case 445.2)."""
     parent = case.rsplit(".", 1)[0]
     lines = split_cases(text).get(parent)
     if lines is None:
@@ -888,7 +900,7 @@ def write_parent(plan: Path, case: str, text: str, approved: Path | None = None)
     if not shown:
         return
     heading = headings(text)[parent]
-    targets = [plan]
+    targets = [plan_cases_file(plan)]
     if approved is not None and approved.is_file():
         targets.append(approved)
     for path in targets:
@@ -917,6 +929,18 @@ MAP_HEAD = (
     "**Map of the Cases** — cut from the Cases below, which follow whole; each box copies the "
     "box of its task line below and is no task of its own."
 )
+
+
+def plan_map_head(plan: Path) -> str:
+    """The line that opens the map of the plan file: it names the Cases file beside it, where
+    the Cases and their task lines stand (case 1087.1)."""
+    return (
+        "**Map of the Cases** — cut from the Cases of the Cases file "
+        f"`{plan_cases_file(plan).name}` beside this plan, which follow whole there; each box "
+        "copies the box of its task line there and is no task of its own."
+    )
+
+
 ITEM_WORDS = (
     ("create", "purpose"),
     ("update", "change"),
@@ -1016,14 +1040,17 @@ def map_cell(text: str) -> str:
     return text.replace("|", "\\|")
 
 
-def case_map(text: str, folder: Path | None, project_dir: Path, boxes: str = "") -> list[str]:
+def case_map(
+    text: str, folder: Path | None, project_dir: Path, boxes: str = "", head: str = MAP_HEAD
+) -> list[str]:
     """The lines of the map of the Cases of `text`, empty when it holds none: a table of the
     top-level Cases with their open stops and open checks, a Mermaid diagram of the Cases in
     order, an entry per Case and sub-case cut from the Case, and the Cases under `## Deferred`
     by id and name. With `boxes`, the text of the session's `spec.md`, each task line takes the
     box of the line with the same text in the sections of its Case there, by `keep_boxes`
     (case 1085.1). No line starts with a box at its first character, a heading or `# `, so
-    `split_cases`, the tickers and `place` read the text as before."""
+    `split_cases`, the tickers and `place` read the text as before. `head` is the line that
+    opens the map: `MAP_HEAD` for `spec.md`, `plan_map_head` for the plan file (case 1087.2)."""
     from guppi.casecheck import case_file  # it imports this module
 
     cases = plan_cases(text)
@@ -1035,7 +1062,7 @@ def case_map(text: str, folder: Path | None, project_dir: Path, boxes: str = "")
         case: map_tasks(keep_boxes(boxes, case, lines) if boxes else lines)
         for case, _, lines in live
     }
-    out = [MAP_OPEN, "", MAP_HEAD, ""]
+    out = [MAP_OPEN, "", head, ""]
     tops = [(c, n) for c, n, _ in live if "." not in c]
     if tops:
         out += ["| Case | Name | ⛔ open stops | 🔍 open checks |", "|---|---|---|---|"]
@@ -1096,13 +1123,34 @@ def without_map(text: str) -> str:
     return "\n".join(lines).rstrip("\n") + "\n"
 
 
-def with_map(text: str, folder: Path | None, project_dir: Path, boxes: str = "") -> str:
+def without_maps(text: str) -> str:
+    """`text` with every map out, by `without_map` one at a time: the text of a `spec.md` of
+    several approved documents, or of a Spec, judged apart from its maps, which are rebuilt
+    once the document stands (case 1087.12)."""
+    while True:
+        bare = without_map(text)
+        if bare == text:
+            return text
+        text = bare
+
+
+def with_map(
+    text: str,
+    folder: Path | None,
+    project_dir: Path,
+    boxes: str = "",
+    source: str | None = None,
+    head: str = MAP_HEAD,
+) -> str:
     """`text` with its map rebuilt right under its title line, the first line that opens with
-    `# `, or at its head when it has none; with no map when it holds no Case. `boxes` as
-    `case_map` takes it."""
+    `# `, or at its head when it has none; with no map when it holds no Case. `boxes` and
+    `head` as `case_map` takes them. The map is cut from `source` when given — for the plan
+    file, the Cases of the plan by `ledger.plan_cases_text` (case 1087.1) — and from `text`
+    otherwise."""
     bare = without_map(text)
     lines = bare.splitlines()
-    found = case_map(bare, folder, project_dir, boxes)
+    cut = bare if source is None else without_map(source)
+    found = case_map(cut, folder, project_dir, boxes, head)
     if not found:
         return bare
     at = next((i + 1 for i, line in enumerate(lines) if line.startswith("# ")), 0)
@@ -1120,16 +1168,26 @@ def session_boxes(folder: Path | None) -> str:
 
 
 def rebuild_map(plan: Path, folder: Path | None, project_dir: Path) -> None:
-    """The map of the plan file rebuilt from its Cases, its boxes taken from the session's
-    `spec.md` once it stands; the file written only when it changed."""
+    """The map of the plan file rebuilt from the Cases of the plan — the plan file and then
+    its Cases file, by `ledger.plan_cases_text` (case 1087.1) — under the line that names the
+    Cases file, its boxes taken from the session's `spec.md` once it stands; the file written
+    only when it changed."""
     text = document(plan)
-    new = with_map(text, folder, project_dir, session_boxes(folder))
+    new = with_map(
+        text,
+        folder,
+        project_dir,
+        session_boxes(folder),
+        source=plan_cases_text(plan),
+        head=plan_map_head(plan),
+    )
     if new != text:
         write_text(plan, new)
 
 
 def print_map(path: Path, session: str, project_dir: Path, now, out, stderr) -> int:
-    """`--map <file> --session <stamp>`: the map of the Cases of `path` on `out`, its boxes
+    """`--map <file> --session <stamp>`: the map of the Cases of `path` and of the Cases file
+    beside it, by `ledger.plan_cases_text` (case 1087.1), on `out`, its boxes and its head line
     taken as `rebuild_map` takes them; no payload read and no file written. A file that does
     not stand, or a session with no `hi`, prints the reason on stderr and exits 1."""
     stamp = session_stamp(session, {})
@@ -1140,7 +1198,13 @@ def print_map(path: Path, session: str, project_dir: Path, now, out, stderr) -> 
     if not path.is_file():
         print(f"ratified: {path} does not stand — no map printed", file=stderr)
         return 1
-    found = case_map(without_map(document(path)), folder, project_dir, session_boxes(folder))
+    found = case_map(
+        without_map(plan_cases_text(path)),
+        folder,
+        project_dir,
+        session_boxes(folder),
+        plan_map_head(path),
+    )
     out.write("\n".join(found) + ("\n" if found else ""))
     return 0
 
@@ -1318,7 +1382,7 @@ def guard_refusal(payload: dict) -> tuple[str, str] | None:
             return None
         return str(path), (
             f"{path} is created with its title line alone — one line that opens with `# `; "
-            f"the hooks write the Cases into it, and {CHANGE_THROUGH} (rule-spec-reconcile)"
+            f"the hooks write the map of the Cases into it, and {CHANGE_THROUGH} (rule-spec-reconcile)"
         )
     return str(path), (
         f"{path} is the plan of the session; the hooks alone write it, and {CHANGE_THROUGH} "
@@ -1597,17 +1661,19 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
     checked = set(written)  # the check after the write reads the Cases of `write_case` only
     deferring = bool(defer_only(records, reply))
     if deferring:
-        target = (
-            approved if approved.is_file() else plan
-        )  # once spec.md stands, a defer goes there (case 542)
+        # into the Cases file of the plan (case 1087.8); once spec.md stands, there (case 542)
+        target = approved if approved.is_file() else plan
         if target is None or not target.is_file():
             problems.append(
                 "no plan file of this session in the event log — create it with its title "
                 "line, then repeat the ledger lines"
             )
         else:
+            if target is plan:
+                target = plan_cases_file(plan)
             problems += write_defers(reply, records, target, keys_for, written)
-    targets = [approved] + ([plan] if plan is not None else [])
+    # spec.md, the plan file and its Cases file (case 1087.10)
+    targets = [approved] + ([plan, plan_cases_file(plan)] if plan is not None else [])
     from guppi.casecheck import ledger_of, ledger_records  # it imports this module
 
     session = ledger_records(ledger_of(folder))
@@ -1616,12 +1682,12 @@ def stop(payload: dict, project_dir: Path, now, stderr, told: list[str] | None =
     removing = any(record.get("supersedes") for record in records)
     if approved.is_file() and (written or removing or deferring):
         rebuild_spec_maps(approved, project_dir)  # the maps of spec.md (case 1085.2)
-    if plan is not None and plan.is_file() and (written or removing):
+    if plan is not None and plan.is_file() and (written or removing or deferring):
         rebuild_map(plan, folder, project_dir)  # the map under the title line (case 1078.1)
     if checked:
         from guppi import prespec  # it imports this module at load (case 414.1)
 
-        text = plan.read_text(encoding="utf-8")
+        text = plan_cases_text(plan)  # the plan file and its Cases file (case 1087.5)
         problems += prespec.written_findings(text, checked, project_dir, stamp, now, records)
     loud = untold(problems, told, payload)  # each reason once a stretch (case 644.8)
     if loud:

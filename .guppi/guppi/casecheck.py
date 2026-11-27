@@ -43,7 +43,8 @@ parent's `recommend` (`stored_family`) (case 629.4). The handling of an answer o
 alone judged with its stored parent (`stored_parents`) is gone: the check reads the whole
 file of a Case (cases 629.3, 645.2). The Cases of the answer are judged with the
 other Cases of the session by `prespec.check_same_target`, imported: each Case of the plan
-file, then each entry of the store under the number alone that the plan does not hold, its
+file and of the Cases file beside it, read by `ledger.plan_cases_text` (case 1087.13), then
+each entry of the store under the number alone that the plan does not hold, its
 section built by `ratified.case_section`; a Case of the plan built again after its
 ratification, whose entry under the number alone holds no finding and whose top-level Case
 file holds its heading, is taken as that entry holds it, in the plan's order, so the words
@@ -365,6 +366,7 @@ from guppi.ledger import (
     PREFIXES,
     PROJECT_RUN,
     opens_turn,
+    plan_cases_text,
     plan_path,
     read_records,
     refusals,
@@ -1878,7 +1880,8 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     store = read_store(plan)
     window = ledger_of(folder)
     frontier = folder / "frontier.md" if folder is not None else None
-    plan_text = plan.read_text(encoding="utf-8")  # the session's other Cases (case 629.1)
+    # the session's other Cases, in the plan file and its Cases file (cases 629.1, 1087.13)
+    plan_text = plan_cases_text(plan)
     findings: list[str] = []
     fresh: list[str] = []
     repeated = True

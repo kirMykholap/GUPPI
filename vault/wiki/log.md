@@ -13415,3 +13415,68 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-27 decisions/decision-case-1021 archived · cleanup
 - 2026-11-27 decisions/decision-case-1050 archived · cleanup
 - 2026-11-27 decisions/decision-case-1068 archived · cleanup
+- 2026-11-27 estimates/estimate-case-build-names-a-stale-line-of-another-case status: pending → passed · raw/2026-11-27/0947/ledger.md#L1 · generate
+- 2026-11-27 estimates/estimate-guppi-repository-readme-shows-the-path-of-a-decision status: pending → passed · raw/2026-11-27/0947/ledger.md#L2 · generate
+- 2026-11-27 decisions/decision-case-1076 created · raw/2026-11-27/0947/ledger.md#case-1076 · generate
+- 2026-11-27 entities/entity-guppi-repository updated: README.md shows the first sketch of GUPPI from plugin/assets/ · [[decision-case-1076]] · generate
+- 2026-11-27 estimates/estimate-guppi-repository-readme-shows-the-first-sketch created · [[decision-case-1076]] · generate
+- 2026-11-27 entities/entity-guppi-repository estimate estimate-guppi-repository-readme-shows-the-first-sketch added · [[decision-case-1076]] · generate
+- 2026-11-27 decisions/decision-case-1077 created · raw/2026-11-27/0947/ledger.md#case-1077 · generate
+- 2026-11-27 decisions/decision-case-1077.1 created · raw/2026-11-27/0947/ledger.md#case-1077.1 · generate
+- 2026-11-27 rules/rule-case-build updated: the summary names each stop task that waits for a file, data or an action of the person · [[decision-case-1077.1]] · generate
+- 2026-11-27 estimates/estimate-case-build-names-a-stop-for-the-person created · [[decision-case-1077.1]] · generate
+- 2026-11-27 estimates/estimate-case-build-names-a-stop-for-the-person status: pending → passed · raw/2026-11-27/0947/ledger.md#L27 · generate
+- 2026-11-27 rules/rule-case-build estimate estimate-case-build-names-a-stop-for-the-person added · [[decision-case-1077.1]] · generate
+- 2026-11-27 decisions/decision-case-1077.2 created · raw/2026-11-27/0947/ledger.md#case-1077.2 · generate
+- 2026-11-27 rules/rule-orchestration updated: a stop task that waits for a file, data or an action of the person stands as a line under ## Ask of the Frontier until the main agent sees the thing · [[decision-case-1077.2]] · generate
+- 2026-11-27 estimates/estimate-orchestration-keeps-a-stop-line-on-the-frontier created · [[decision-case-1077.2]] · generate
+- 2026-11-27 estimates/estimate-orchestration-keeps-a-stop-line-on-the-frontier status: pending → passed · raw/2026-11-27/0947/ledger.md#L28 · generate
+- 2026-11-27 rules/rule-orchestration estimate estimate-orchestration-keeps-a-stop-line-on-the-frontier added · [[decision-case-1077.2]] · generate
+- 2026-11-27 decisions/decision-case-1077.3 created · raw/2026-11-27/0947/ledger.md#case-1077.3 · generate
+- 2026-11-27 rules/rule-carry-over updated: /carry leaves an open line of the source stop out of the brief · [[decision-case-1077.3]] · generate
+- 2026-11-27 estimates/estimate-carry-over-writes updated: the Criterion replaced whole — an open line of the source stop stays out of the brief · [[decision-case-1077.3]] · generate
+- 2026-11-27 decisions/decision-case-1077.4 created · raw/2026-11-27/0947/ledger.md#case-1077.4 · generate
+- 2026-11-27 rules/rule-prespec updated: the report of /pre-spec names each open line of the source stop · [[decision-case-1077.4]] · generate
+- 2026-11-27 estimates/estimate-prespec-names-an-open-stop-line created · [[decision-case-1077.4]] · generate
+- 2026-11-27 estimates/estimate-prespec-names-an-open-stop-line status: pending → passed · raw/2026-11-27/0947/ledger.md#L29 · generate
+- 2026-11-27 rules/rule-prespec estimate estimate-prespec-names-an-open-stop-line added · [[decision-case-1077.4]] · generate
+- 2026-11-27 decisions/decision-case-1077.5 created · raw/2026-11-27/0947/ledger.md#case-1077.5 · generate
+- 2026-11-27 rules/rule-brief updated: the short shape of the brief leaves an open line of the source stop out of Ask the person · [[decision-case-1077.5]] · generate
+- 2026-11-27 estimates/estimate-brief-written updated: the Criterion replaced whole — the short shape of the brief leaves an open line of the source stop out of Ask the person · [[decision-case-1077.5]] · generate
+- 2026-11-27 decisions/decision-case-1078 created · raw/2026-11-27/0947/ledger.md#case-1078 · generate
+- 2026-11-27 decisions/decision-case-1078.1 created · raw/2026-11-27/0947/ledger.md#case-1078.1 · generate
+- 2026-11-27 rules/rule-spec-write updated: the Stop hook opens the plan file with a map of its Cases, and --map prints the map of a file · [[decision-case-1078.1]] · generate
+- 2026-11-27 estimates/estimate-spec-write-writes-the-map created · [[decision-case-1078.1]] · generate
+- 2026-11-27 estimates/estimate-spec-write-writes-the-map status: pending → passed · raw/2026-11-27/0947/ledger.md#L31 · generate
+- 2026-11-27 rules/rule-spec-write estimate estimate-spec-write-writes-the-map added · [[decision-case-1078.1]] · generate
+- 2026-11-27 decisions/decision-case-1078.2 created · raw/2026-11-27/0947/ledger.md#case-1078.2 · generate
+- 2026-11-27 estimates/estimate-spec-write-shows-the-map-in-the-plan-view created · [[decision-case-1078.2]] · generate
+- 2026-11-27 rules/rule-spec-write estimate estimate-spec-write-shows-the-map-in-the-plan-view added · [[decision-case-1078.2]] · generate
+- 2026-11-27 decisions/decision-case-1078.3 created · raw/2026-11-27/0947/ledger.md#case-1078.3 · generate
+- 2026-11-27 rules/rule-orchestration updated: each line of the Frontier that a reply shows stands with the sign of its kind; frontier.md keeps its form · [[decision-case-1078.3]] · generate
+- 2026-11-27 estimates/estimate-orchestration-marks-the-frontier-by-signs created · [[decision-case-1078.3]] · generate
+- 2026-11-27 estimates/estimate-orchestration-marks-the-frontier-by-signs status: pending → passed · raw/2026-11-27/0947/ledger.md#L32 · generate
+- 2026-11-27 rules/rule-orchestration estimate estimate-orchestration-marks-the-frontier-by-signs added · [[decision-case-1078.3]] · generate
+- 2026-11-27 decisions/decision-case-1078.4 created · raw/2026-11-27/0947/ledger.md#case-1078.4 · generate
+- 2026-11-27 rules/rule-skill-hi updated: the first reply of /hi shows each Frontier line with the sign of its kind; frontier.md keeps its form · [[decision-case-1078.4]] · generate
+- 2026-11-27 estimates/estimate-hi-writes-frontier updated: the Criterion replaced whole — the first reply of /hi shows each Frontier line with the sign of its kind · [[decision-case-1078.4]] · generate
+- 2026-11-27 decisions/decision-case-1079 created · raw/2026-11-27/0947/ledger.md#case-1079 · generate
+- 2026-11-27 decisions/decision-case-1079.1 created · raw/2026-11-27/0947/ledger.md#case-1079.1 · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-code-mode-cost-measured created · [[decision-case-1079.1]] · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-code-mode-cost-measured status: pending → passed · raw/2026-11-27/0947/ledger.md#L33 · generate
+- 2026-11-27 entities/entity-sprint-plugin estimate estimate-sprint-plugin-code-mode-cost-measured added · [[decision-case-1079.1]] · generate
+- 2026-11-27 decisions/decision-case-1079.2 created · raw/2026-11-27/0947/ledger.md#case-1079.2 · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-code-mode-hooks-answer-its-calls created · [[decision-case-1079.2]] · generate
+- 2026-11-27 estimates/estimate-sprint-plugin-code-mode-hooks-answer-its-calls status: pending → passed · raw/2026-11-27/0947/ledger.md#L34 · generate
+- 2026-11-27 entities/entity-sprint-plugin estimate estimate-sprint-plugin-code-mode-hooks-answer-its-calls added · [[decision-case-1079.2]] · generate
+- 2026-11-27 decisions/decision-case-1080 created · raw/2026-11-27/0947/ledger.md#case-1080 · generate
+- 2026-11-27 rules/rule-work-mode deferred · [[decision-case-1080]] · generate
+- 2026-11-27 decisions/decision-case-1081 created · raw/2026-11-27/0947/ledger.md#case-1081 · generate
+- 2026-11-27 rules/rule-spec-write deferred · [[decision-case-1081]] · generate
+- 2026-11-27 rules/rule-clean-branch updated: plugin/assets/ also holds the first sketch that README.md shows · [[decision-case-1076]] · generate
+- 2026-11-27 estimates/estimate-brief-written status: pending → passed · raw/2026-11-27/0947/ledger.md#L30 · generate
+- 2026-11-27 lessons/lesson-frontier-line-closed-in-two-edits created · raw/2026-11-27/0947/ledger.md#L35 · generate
+- 2026-11-27 insights/insight-orchestration-frontier-closer-leaves-the-box-open updated: child lesson-frontier-line-closed-in-two-edits added (synthesis); reopened from actioned, its pattern seen again after case 1069.1 · raw/2026-11-27/0947/ledger.md#L35 · generate
+- 2026-11-27 lessons/lesson-frontier-line-closed-in-two-edits updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-27/0947/ledger.md#L35 · generate
+- 2026-11-27 rules/rule-carry-over status: built → draft · cascade · generate
+- 2026-11-27 rules/rule-spec-write status: built → draft · cascade · generate

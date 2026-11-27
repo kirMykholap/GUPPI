@@ -210,7 +210,7 @@ update:
 - [x] update `entity-guppi-repository`
 - [x] create `estimate-guppi-repository-readme-shows-the-path-of-a-decision`
 - [x] `README.md`: adds a section of key terms, a section on the path of one decision with its diagram in a block tagged `mermaid`, and a section with one shortened question of a round, and keeps each section it holds today.
-- [ ] read `estimate-guppi-repository-readme-shows-the-path-of-a-decision`
+- [x] read `estimate-guppi-repository-readme-shows-the-path-of-a-decision`
 ```
 
 ## Case 1075 — The milestone The plugin keeps the merge and the close

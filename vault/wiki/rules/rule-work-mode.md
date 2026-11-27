@@ -8,6 +8,7 @@ governs: .claude/skills/work/SKILL.md
 render_mode: full
 parent: "[[rule-session]]"
 estimates: ["[[estimate-work-mode-runs-the-spec-on-a-branch-from-a-baseline]]", "[[estimate-work-mode-takes-the-work-readings]]", "[[estimate-work-mode-runs-the-style-check-before-a-stop]]"]
+deferred_by: ["[[decision-case-1080]]"]
 origin: raw/2026-09-10/ledger.md#case-29
 sprint: migration
 created: 2026-09-10
@@ -150,3 +151,4 @@ When the last task is done, run `uv run --project .guppi guppi test` in full and
 - 2026-11-26 estimate estimate-work-mode-runs-the-style-check-before-a-stop added · [[decision-case-1061]]
 - 2026-11-26 status: built → draft · cascade
 - 2026-11-26 updated: Work Mode stops on the main branch that guppi.toml names, by {{main_branch}}, or on the name that the setup Case of the Spec sets · [[decision-case-1070.4]]
+- 2026-11-27 deferred · [[decision-case-1080]]

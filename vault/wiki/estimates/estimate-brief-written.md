@@ -4,7 +4,7 @@ kind: QA
 status: passed
 target: "[[rule-brief]]"
 method: "by hand at the Retro of the session that changes it: the new Render of rule-brief in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
-checked: 2026-10-12
+checked: 2026-11-27
 origin: raw/2026-09-10/ledger.md#case-35.3
 sprint: migration
 created: 2026-09-10
@@ -24,7 +24,7 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 **＋** `Work` is what is done without a decision: every `pending` reading of Readings due by its slug but one that `Ask the person` holds, one of an Estimate whose `target` is the live sprint page `entity-sprint-<id>`, one whose `method` names the close of a sprint — the session that closes a sprint, its librarian's run or the session after it —, one whose `method` waits for an event the librarian has not seen, one that a line of `Cases` proposes to defer and one of an Estimate with `deferred_by`; the unticked boxes of the Specs but the `read` box of such a reading; a ledger line this run did not apply, a dirty tree.
 **＋** `Ask the person` holds each line of `## Ask the person` of `handoff.md` — the Estimate by slug, the mark `needs the person` and its question, as the handoff wrote them — but one whose `method` names the close of a sprint. A check of the live sprint page whose `method` names the person's answer stands there once the Retro of the session that finished its work named it in `handoff.md`.
 **＋** In the run whose `guppi sprint-close --apply` moved the sprint page, each `pending` reading whose `method` names the session after that close, or its `/hi`, stands under `Work`, or under `Ask the person` with the question its `method` names when its `method` names the person's answer.
-**＋** The brief of the skill `carry` keeps a short shape: Where things stand, Flags and Next session, without Readings due, Readings at the close and a Deferred list. In its Next session, `Work` and `Ask the person` take the open `W` and `A` lines of the session's `frontier.md`, and `Cases` is the line "none", since a deferred decision stands in `vault/wiki/backlog.md` and a sprint item on `vault/wiki/sprint.md`. `rule-brief` and `rule-carry-over` both say so.
+**＋** The brief of the skill `carry` keeps a short shape: Where things stand, Flags and Next session, without Readings due, Readings at the close and a Deferred list. In its Next session, `Work` takes the open `W` lines of the session's `frontier.md` and `Ask the person` its open `A` lines that name an Estimate, an open line of the source `stop` left out, since its `stop:` task stops `/box` in the session that runs the conserved Spec; `Cases` is the line "none", since a deferred decision stands in `vault/wiki/backlog.md` and a sprint item on `vault/wiki/sprint.md`. `rule-brief` and `rule-carry-over` both say so.
 **－** A reading left out of `Work` and `Ask the person` keeps its line under Readings due.
 **－** A reading whose `method` waits for an event — a part of it between two `;` that opens with `after`, or with `by hand, after`, and names the event before a colon — stands in Readings due alone until the librarian sees that event in `git log`, in the ledger or `handoff.md` of the session, or in the files its `method` names; then it stands under `Work`, or under `Ask the person` with the question its `method` names when its `method` names the person's answer.
 **－** A contradiction of Flags that a line of `## For the next session` of `handoff.md` already carries gets no second line in `Cases`.
@@ -32,7 +32,7 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 
 ## Result
 
-2026-10-12, by hand at the Retro of session 1604: the new Render of rule-brief in raw/2026-10-12/1604/spec.md (Case 781.5, three replace pairs) read against the Criterion — Cases gains one defer line per Debt Estimate whose reading cannot be taken but for the sprint page, the close of a sprint and an event not seen; Work leaves out an event not seen, a reading Cases proposes to defer and an Estimate with deferred_by; an event reading stands in Readings due alone until the librarian sees the event in git log, the ledger, handoff.md or the files its method names, then under Work or Ask the person.
+2026-11-27, Retro of session 0947, the new Render of rule-brief in vault/raw/2026-11-27/0947/spec.md (Case 1077.5, its replace pair) read against the new Criterion: the short shape that /carry follows puts in Ask the person only the open A lines that name an Estimate and leaves an open line of the source stop out, since its stop: task stops /box in the session that runs the conserved Spec; the pair changes only that clause, the rest of the Render as before
 
 ## History
 
@@ -68,3 +68,5 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 - 2026-10-10 updated: the Criterion replaced whole — Work and Ask the person leave out a reading that waits for a moment of the sprint, its read box included; the method reads it too · [[decision-case-772.1]]
 - 2026-10-12 updated: the Criterion replaced whole — a reading that waits for an event stays in Readings due until the librarian sees it, a reading its session did not take is a Cases line that proposes a defer, and a deferred Estimate stays out of Work · [[decision-case-781.5]]
 - 2026-10-12 status: pending → passed · raw/2026-10-12/1604/ledger.md#L25
+- 2026-11-27 updated: the Criterion replaced whole — the short shape of the brief leaves an open line of the source stop out of Ask the person · [[decision-case-1077.5]]
+- 2026-11-27 status: pending → passed · raw/2026-11-27/0947/ledger.md#L30

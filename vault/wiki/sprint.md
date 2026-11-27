@@ -24,6 +24,8 @@ GUPPI ships as a Claude Code plugin: a clean version built by CI on a branch of 
 - [ ] Whether a new install in a git project made by git init -b master has its setup Case show master as the main branch for correction, its opening Case and Work Mode take master as the main branch in the same session, and its librarian's run write main_branch = "master" into guppi.toml and master into the rendered skills that name the main branch · pending
 - [ ] Whether /retro, called by the agent at the end of /work in the Claude Code CLI, loads whatever guppi test and guppi style find, its lines Tests and Style each ending with the line that names the exit code · pending
 - [x] Whether the milestone The plugin of the sprint page holds the merge line and then the close line alone, and Closed holds the plugin that installs, the setup and the README; read once · passed
+- [x] What Code Mode of Claude Code saves or adds in calls, tokens and seconds of the main agent on one read-only task in a clone of the project, and whether it gives the same answer · passed
+- [x] Whether the hooks of the harness answer the calls made inside Code Mode code as they answer them outside it: the refusals of guard and bashguard, the inputs that grepguard and pageread rewrite, and the PostToolUse hooks · passed
 
 ## Milestones
 

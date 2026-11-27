@@ -67,9 +67,9 @@ update:
 ```tasks
 - [x] `plugin/assets/GUPPI.png`: the picture the person exported, committed as it stands, with no other copy of it left in `plugin/assets/`.
 - [x] `README.md`: a section "The first sketch" after "Main parts", with the picture, the link under it and the note.
-- [ ] update `entity-guppi-repository`
-- [ ] update `rule-clean-branch`
-- [ ] create `estimate-guppi-repository-readme-shows-the-first-sketch`
+- [x] update `entity-guppi-repository`
+- [x] update `rule-clean-branch`
+- [x] create `estimate-guppi-repository-readme-shows-the-first-sketch`
 - [ ] read `estimate-guppi-repository-readme-shows-the-first-sketch`
 ```
 
@@ -162,10 +162,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-case-build`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
-- [ ] create `estimate-case-build-names-a-stop-for-the-person`
-- [ ] read `estimate-case-build-names-a-stop-for-the-person`
+- [x] update `rule-case-build`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/case-guppi.md`
+- [x] create `estimate-case-build-names-a-stop-for-the-person`
+- [x] read `estimate-case-build-names-a-stop-for-the-person`
 ```
 
 ### Case 1077.2 — The main agent keeps a stop line on the Frontier
@@ -212,10 +212,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] create `estimate-orchestration-keeps-a-stop-line-on-the-frontier`
-- [ ] read `estimate-orchestration-keeps-a-stop-line-on-the-frontier`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] create `estimate-orchestration-keeps-a-stop-line-on-the-frontier`
+- [x] read `estimate-orchestration-keeps-a-stop-line-on-the-frontier`
 ```
 
 ### Case 1077.3 — /carry leaves a stop line out of the brief
@@ -272,9 +272,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-carry-over`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/carry/SKILL.md`
-- [ ] update `estimate-carry-over-writes`
+- [x] update `rule-carry-over`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/carry/SKILL.md`
+- [x] update `estimate-carry-over-writes`
 - [ ] read `estimate-carry-over-writes`
 ```
 
@@ -314,10 +314,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-prespec`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
-- [ ] create `estimate-prespec-names-an-open-stop-line`
-- [ ] read `estimate-prespec-names-an-open-stop-line`
+- [x] update `rule-prespec`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] create `estimate-prespec-names-an-open-stop-line`
+- [x] read `estimate-prespec-names-an-open-stop-line`
 ```
 
 ### Case 1077.5 — The frame of the brief leaves a stop line out of its short shape
@@ -369,10 +369,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-brief`
-- [ ] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
-- [ ] update `estimate-brief-written`
-- [ ] read `estimate-brief-written`
+- [x] update `rule-brief`
+- [x] `uv run --project .guppi guppi render`: `.claude/agents/librarian-guppi.md`
+- [x] update `estimate-brief-written`
+- [x] read `estimate-brief-written`
 ```
 
 ## Case 1078 — The plan file opens with a short map of its Cases
@@ -467,9 +467,9 @@ update:
 ```tasks
 - [x] `.guppi/guppi/ratified.py`: `stop` rebuilds the map under the title line of the plan file after each run that writes, places or removes a Case or a defer there; `--map <file> --session <stamp>` prints the map before any payload is read; the lines are judged by `STOP_LINE` of `.guppi/guppi/prespec.py`, imported inside the function, `READ_LINE` of `.guppi/guppi/generate.py`, and `TASK_LINE` and `ITEM_LINE` of this module, never copied, a ticked line by the box `[x]` or `[X]` of the line `TASK_LINE` matched; no line of the map is `## Deferred`; the docstring names the map and the mode.
 - [x] `.guppi/tests/test_ratified.py`: tests `-k map` of each part of the map, a ticked `read` line taking ✅ and no 🔍 among them, of a map rebuilt after a write and after a removal, of a plan whose Cases `split_cases` reads as before, and of `--map`; a test `test_approved_spec_places_a_case_after_the_map`, which places a Case with no section of its family into a `spec.md` whose approved document opens with the map, Cases under `## Deferred` included, and asserts that the Case stands before that `## Deferred` and that the map is left as it was; each test that reads the whole plan file after `stop` takes the map into account.
-- [ ] update `rule-spec-write`
-- [ ] create `estimate-spec-write-writes-the-map`
-- [ ] read `estimate-spec-write-writes-the-map`
+- [x] update `rule-spec-write`
+- [x] create `estimate-spec-write-writes-the-map`
+- [x] read `estimate-spec-write-writes-the-map`
 ```
 
 ### Case 1078.2 — The plan view shows the map as the person wants it
@@ -503,7 +503,7 @@ create:
 
 ```tasks
 - [x] stop: the main agent saves the map that the new map mode of the Stop hook prints for the plan file of this session into a Markdown file outside the repository and names its full path; the person opens it in VS Code and says how the table, the diagram and the signs look.
-- [ ] create `estimate-spec-write-shows-the-map-in-the-plan-view`
+- [x] create `estimate-spec-write-shows-the-map-in-the-plan-view`
 - [ ] read `estimate-spec-write-shows-the-map-in-the-plan-view`
 ```
 
@@ -549,10 +549,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] create `estimate-orchestration-marks-the-frontier-by-signs`
-- [ ] read `estimate-orchestration-marks-the-frontier-by-signs`
+- [x] update `rule-orchestration`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] create `estimate-orchestration-marks-the-frontier-by-signs`
+- [x] read `estimate-orchestration-marks-the-frontier-by-signs`
 ```
 
 ### Case 1078.4 — The first reply of /hi shows each Frontier line with its sign
@@ -604,9 +604,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-skill-hi`
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
-- [ ] update `estimate-hi-writes-frontier`
+- [x] update `rule-skill-hi`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/hi/SKILL.md`
+- [x] update `estimate-hi-writes-frontier`
 - [ ] read `estimate-hi-writes-frontier`
 ```
 
@@ -672,8 +672,8 @@ create:
 - [x] `git clone --branch plugin C:/PROJECTS/GUPPI C:/PROJECTS/guppi-codemode-trial`: the clone of the trial, outside the repository.
 - [x] `uv sync --project C:/PROJECTS/guppi-codemode-trial/.guppi`: the environment of the clone's hooks, built before its first session.
 - [x] stop: the person runs two sessions in the clone `C:/PROJECTS/guppi-codemode-trial`, each in a new PowerShell window opened by `cd C:/PROJECTS/guppi-codemode-trial`, answers each permission prompt at once with yes, and says in this session that both ran: first `claude --version`, which prints 2.1.323 or later; the first session by `claude --permission-mode default`, Code Mode off, the prompt `Read every Markdown file in this project and list the links that point to local files that don't exist.` and then `/exit`; the second by `$env:CLAUDE_CODE_EXPERIMENTAL_CODE_MODE = "1"` and then `claude --permission-mode default`, the answer Yes, turn on Code Mode at its first start, the line Code Mode (experimental) is on at the top of the session, the same prompt and then `/exit`.
-- [ ] create `estimate-sprint-plugin-code-mode-cost-measured`
-- [ ] read `estimate-sprint-plugin-code-mode-cost-measured`
+- [x] create `estimate-sprint-plugin-code-mode-cost-measured`
+- [x] read `estimate-sprint-plugin-code-mode-cost-measured`
 ```
 
 ### Case 1079.2 — The hooks answer the calls made from Code Mode code
@@ -713,8 +713,8 @@ create:
 
 ```tasks
 - [x] stop: the person runs the hook session in the clone `C:/PROJECTS/guppi-codemode-trial`, in a new PowerShell window, by `cd C:/PROJECTS/guppi-codemode-trial`, then `$env:CLAUDE_CODE_EXPERIMENTAL_CODE_MODE = "1"` and then `claude --permission-mode acceptEdits`, the prompt `In one piece of code, make these four tool calls and return the result of each: Edit CLAUDE.md, its first line replaced by "# trial"; Grep vault/wiki/ for "^type: decision" with output mode files_with_matches; Bash "cat <<EOF > trial.txt", one line "x" and the line "EOF"; Read vault/wiki/entities/entity-sprint-plugin.md with no offset and no limit.`, yes to each permission prompt and then `/exit`, and says in this session that it ran.
-- [ ] create `estimate-sprint-plugin-code-mode-hooks-answer-its-calls`
-- [ ] read `estimate-sprint-plugin-code-mode-hooks-answer-its-calls`
+- [x] create `estimate-sprint-plugin-code-mode-hooks-answer-its-calls`
+- [x] read `estimate-sprint-plugin-code-mode-hooks-answer-its-calls`
 ```
 
 ## Deferred

@@ -2,11 +2,12 @@
 type: rule
 kind: Leaf
 purpose: Prevents a ratified Case from entering the Spec in other words than the Case case-guppi wrote into its file, whose given, when, then, tasks and ratification the person signed and the check of rule-case-check stored
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [.guppi/guppi/ratified.py, .guppi/tests/test_ratified.py, .claude/settings.json]
 parent: "[[rule-plan-mode]]"
-estimates: ["[[estimate-spec-write-copies-the-ratified-case]]", "[[estimate-spec-write-checks-the-written-case]]", "[[estimate-spec-write-writes-a-defer]]", "[[estimate-spec-write-reaches-the-approved-spec]]", "[[estimate-spec-write-removes-a-superseded-case]]", "[[estimate-spec-write-exits-2-on-an-error]]", "[[estimate-spec-write-answers-a-refusal]]", "[[estimate-spec-write-refuses-a-changed-case-file]]", "[[estimate-spec-write-tells-each-reason-once]]", "[[estimate-spec-write-reads-a-new-tag]]", "[[estimate-spec-write-copies-a-built-defer-only-case]]"]
+estimates: ["[[estimate-spec-write-copies-the-ratified-case]]", "[[estimate-spec-write-checks-the-written-case]]", "[[estimate-spec-write-writes-a-defer]]", "[[estimate-spec-write-reaches-the-approved-spec]]", "[[estimate-spec-write-removes-a-superseded-case]]", "[[estimate-spec-write-exits-2-on-an-error]]", "[[estimate-spec-write-answers-a-refusal]]", "[[estimate-spec-write-refuses-a-changed-case-file]]", "[[estimate-spec-write-tells-each-reason-once]]", "[[estimate-spec-write-reads-a-new-tag]]", "[[estimate-spec-write-copies-a-built-defer-only-case]]", "[[estimate-spec-write-writes-the-map]]", "[[estimate-spec-write-shows-the-map-in-the-plan-view]]"]
+deferred_by: ["[[decision-case-1081]]"]
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
@@ -16,7 +17,7 @@ core: true
 
 ## Purpose
 
-Prevents a ratified Case from entering the Spec in other words than the Case `case-guppi` wrote into its file, whose `given`, `when`, `then`, `tasks` and `ratification` the person signed and the check of `rule-case-check` stored (case 645.5). `case-guppi` writes the whole Case in the documentation language, and a hook copies its stored answer (cases 437, 441; until case 387 the agent wrote each Case into the plan file itself, translated from the chat, and nobody compared the two).
+Prevents a ratified Case from entering the Spec in other words than the Case `case-guppi` wrote into its file, whose `given`, `when`, `then`, `tasks` and `ratification` the person signed and the check of `rule-case-check` stored (case 645.5). `case-guppi` writes the whole Case in the documentation language, and a hook copies its stored answer (cases 437, 441; until case 387 the agent wrote each Case into the plan file itself, translated from the chat, and nobody compared the two). The same hook opens the plan file, under its title line, with a map of the Cases it holds, rebuilt at each run that writes, places or removes a Case: a table of the top-level Cases with their stops and their checks, a Mermaid diagram of the Cases in order, and one entry per Case and sub-case whose lines take their words from the Case, with a sign before each ticked line and before each open stop and each open check; no line of the map opens with a box or a Case heading and none is `## Deferred`, so no reader of the Cases sees it and a Case placed in `spec.md` after the approval goes before the `## Deferred` of its document, never into the map, and `uv run --project .guppi guppi ratified --map <file> --session <stamp>` prints the map of a file (as set in case 1078.1).
 
 ## History
 
@@ -78,3 +79,8 @@ Prevents a ratified Case from entering the Spec in other words than the Case `ca
 - 2026-10-17 status: built → draft · cascade
 - 2026-10-26 status: draft → built · cascade
 - 2026-10-30 updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/ratified.py · [[decision-case-942.1]]
+- 2026-11-27 updated: the Stop hook opens the plan file with a map of its Cases, and --map prints the map of a file · [[decision-case-1078.1]]
+- 2026-11-27 estimate estimate-spec-write-writes-the-map added · [[decision-case-1078.1]]
+- 2026-11-27 estimate estimate-spec-write-shows-the-map-in-the-plan-view added · [[decision-case-1078.2]]
+- 2026-11-27 deferred · [[decision-case-1081]]
+- 2026-11-27 status: built → draft · cascade

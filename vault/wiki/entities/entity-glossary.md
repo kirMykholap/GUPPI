@@ -32,7 +32,7 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 | the vault query | The vault query before a `create` without `ref`, `draft` pages included (case 277.3) | [[rule-ask]] |
 | Index line, `ask-guppi` | The Grep of a category's frontmatter — `purpose`, `root_cause` or `pattern`, and `deferred_by` — one line per live page, never compared across categories; no index file (case 147.8); the search agent over these lines, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning (case 105.1) | [[rule-ask]] |
 | `/pre-spec` | The check of the ratified set against each other and the vault before the Spec is approved (case 261) | [[rule-prespec]] |
-| Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73.1) | [[rule-spec-capture]] |
+| Spec | The ratified Cases as one document, written into `raw/<date>/<hi HHMM>/spec.md`, the session's folder, under the map of Claude Code's plan when the person approves that map (case 73.1) | [[rule-spec-capture]] |
 | Vault | `vault/wiki/`: one folder per page category, each page a file named by its slug | [[rule-vault-layout]] |
 | Entity fields | `type` the category; `purpose` one line, from which the index line is built; `children` on a MOC; `estimates` on a Leaf its own checks, on a MOC the cross-cutting ones; `code_ref` paths to code, on either kind | [[rule-entities-schema]] |
 | Rule fields | `purpose` one line, what the rule prevents; `enforcement` `hook`, `check` or `render`; `implementation_ref` on `hook` and `check`; `governs` and `render_mode` on `render`; `children` ordered, on a MOC; `estimates` that the rule does what it claims | [[rule-rules-schema]] |
@@ -124,3 +124,4 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 - 2026-11-01 updated: the row of Rule: a guard refuses a case or prevents it · [[decision-case-975]]
 - 2026-11-01 updated: the cascade archives a superseded Decision that no live page names · [[decision-case-982.1]]
 - 2026-11-26 updated: the rows Librarian and Work Mode name the main branch in words · [[decision-case-1070.5]]
+- 2026-11-28 updated: the Spec is written into spec.md under the map the person approves · [[decision-case-1087.3]]

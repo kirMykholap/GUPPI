@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-sprint]]"
 purpose: sprint, once it wrote sprint.md and exits 0, ticks the guppi sprint lines of every Spec under raw/ whose yaml is applied whole
 method: "pytest .guppi/tests/test_sprint.py; by hand, after a librarian's run: the spec.md of each unit under vault/raw/ whose guppi sprint line it ticked, and any guppi sprint-close line there left as it stood"
-checked: 2026-10-04
+checked: 2026-11-27
 origin: raw/2026-09-18/2054/ledger.md#case-250.2
 sprint: migration
 created: 2026-09-18
@@ -26,7 +26,7 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 
 ## Result
 
-2026-10-04, at the /hi of session 2041: uv run pytest tests/test_sprint.py 21 passed; by hand on the librarian's run of commit c04578e2: the one task line under vault/raw/ whose first code span holds guppi sprint, raw/2026-10-04/1439/spec.md L134, went from - [ ] to - [x] in that commit; no spec.md under vault/raw/ holds a guppi sprint-close task line, so that clause was not exercised live
+2026-11-27, at the /hi of session 2214: uv run --project .guppi pytest .guppi/tests/test_sprint.py 35 passed; by hand, the librarian's run of session 1402 (commit def97898): no task line of vault/raw/2026-11-27/1402/spec.md or vault/raw/2026-11-27/0947/spec.md opens with a code span holding guppi sprint or guppi sprint-close (grep), so the run ticked none, and the diff of both Specs in that commit is ticks of task lines and the rebuilt map only; the tick clause and the sprint-close clause were not exercised live
 
 ## History
 
@@ -38,3 +38,4 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 - 2026-10-04 status: pending → passed · raw/2026-10-04/2041/ledger.md#L5
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-11-27 updated: the Criterion replaced whole — nothing else in the file changes but the map of an approved document; the method names the librarian's run as the event it waits for · [[decision-case-1085.7]]
+- 2026-11-28 status: pending → passed · raw/2026-11-27/2214/ledger.md#L2

@@ -13530,3 +13530,71 @@ instruction. The global feed; a page's own `## History` is the per-page view.
 - 2026-11-27 rules/rule-sprint status: built → draft · cascade · generate
 - 2026-11-27 decisions/decision-case-1082 archived · superseded · generate
 - 2026-11-27 decisions/decision-case-1082 archived · cleanup
+- 2026-11-28 estimates/estimate-render-harness-ticks-the-spec status: pending → passed · raw/2026-11-27/2214/ledger.md#L1 · generate
+- 2026-11-28 estimates/estimate-sprint-ticks-the-spec status: pending → passed · raw/2026-11-27/2214/ledger.md#L2 · generate
+- 2026-11-28 estimates/estimate-glossary-ticks-the-spec status: pending → passed · raw/2026-11-27/2214/ledger.md#L3 · generate
+- 2026-11-28 estimates/estimate-orchestration-leaves-the-number-to-case-guppi status: pending → passed · raw/2026-11-27/2214/ledger.md#L4 · generate
+- 2026-11-28 estimates/estimate-spec-write-shows-the-map-in-the-plan-view status: pending → passed · raw/2026-11-27/2214/ledger.md#L5 · generate
+- 2026-11-28 decisions/decision-case-1087 created · raw/2026-11-27/2214/ledger.md#case-1087 · generate
+- 2026-11-28 decisions/decision-case-1087.1 created · raw/2026-11-27/2214/ledger.md#case-1087.1 · generate
+- 2026-11-28 decisions/decision-case-1081 superseded by decision-case-1087.1 · [[decision-case-1087.1]] · generate
+- 2026-11-28 rules/rule-spec-write defer by decision-case-1081 superseded · [[decision-case-1087.1]] · generate
+- 2026-11-28 rules/rule-spec-write updated: the plan file holds its title line and the map; the Cases of the plan stand in the Cases file beside it · [[decision-case-1087.1]] · generate
+- 2026-11-28 estimates/estimate-spec-write-writes-the-map updated: the Criterion replaced whole — the plan file holds no Case, and the map is cut from the plan file and the Cases file beside it · [[decision-case-1087.1]] · generate
+- 2026-11-28 rules/rule-skill-approve-spec updated: the plan file holds the map of the Cases alone · [[decision-case-1087.1]] · generate
+- 2026-11-28 decisions/decision-case-1087.2 created · raw/2026-11-27/2214/ledger.md#case-1087.2 · generate
+- 2026-11-28 estimates/estimate-spec-write-rebuilds-the-maps-of-the-spec updated: the Criterion replaced whole — the head line of the map of the plan file names its Cases file · [[decision-case-1087.2]] · generate
+- 2026-11-28 decisions/decision-case-1087.3 created · raw/2026-11-27/2214/ledger.md#case-1087.3 · generate
+- 2026-11-28 estimates/estimate-spec-write-copies-the-ratified-case updated: the Criterion replaced whole — a ratified Case is written into the Cases file beside the plan file, never into the plan file · [[decision-case-1087.3]] · generate
+- 2026-11-28 rules/rule-orchestration updated: a Case and a defer are written into the Cases file of the plan · [[decision-case-1087.3]] · generate
+- 2026-11-28 rules/rule-case-protocol updated: the Cases of the plan stand in the Cases file beside the plan file, and the human approves the map · [[decision-case-1087.3]] · generate
+- 2026-11-28 entities/entity-glossary updated: the Spec is written into spec.md under the map the person approves · [[decision-case-1087.3]] · generate
+- 2026-11-28 decisions/decision-case-1087.4 created · raw/2026-11-27/2214/ledger.md#case-1087.4 · generate
+- 2026-11-28 estimates/estimate-spec-write-reaches-the-approved-spec updated: the Criterion replaced whole — the Case reaches spec.md beside the Cases file of the plan · [[decision-case-1087.4]] · generate
+- 2026-11-28 decisions/decision-case-1087.5 created · raw/2026-11-27/2214/ledger.md#case-1087.5 · generate
+- 2026-11-28 estimates/estimate-spec-write-checks-the-written-case updated: the Criterion replaced whole — the check after the write reads the plan file and its Cases file · [[decision-case-1087.5]] · generate
+- 2026-11-28 decisions/decision-case-1087.6 created · raw/2026-11-27/2214/ledger.md#case-1087.6 · generate
+- 2026-11-28 estimates/estimate-spec-write-answers-a-refusal updated: the Criterion replaced whole — a Case repeated after a refusal is written into the Cases file of the plan · [[decision-case-1087.6]] · generate
+- 2026-11-28 decisions/decision-case-1087.7 created · raw/2026-11-27/2214/ledger.md#case-1087.7 · generate
+- 2026-11-28 estimates/estimate-spec-write-reads-a-new-tag updated: the Criterion replaced whole — the Case with a tag line is written into the Cases file of the plan · [[decision-case-1087.7]] · generate
+- 2026-11-28 decisions/decision-case-1087.8 created · raw/2026-11-27/2214/ledger.md#case-1087.8 · generate
+- 2026-11-28 estimates/estimate-spec-write-writes-a-defer updated: the Criterion replaced whole — a short-form defer goes under ## Deferred of the Cases file before the approval · [[decision-case-1087.8]] · generate
+- 2026-11-28 decisions/decision-case-1087.9 created · raw/2026-11-27/2214/ledger.md#case-1087.9 · generate
+- 2026-11-28 estimates/estimate-spec-write-copies-a-built-defer-only-case updated: the Criterion replaced whole — a built Case of defer lines is written into the Cases file of the plan · [[decision-case-1087.9]] · generate
+- 2026-11-28 decisions/decision-case-1087.10 created · raw/2026-11-27/2214/ledger.md#case-1087.10 · generate
+- 2026-11-28 estimates/estimate-spec-write-removes-a-superseded-case updated: the Criterion replaced whole — a superseded Case leaves the Cases file of the plan · [[decision-case-1087.10]] · generate
+- 2026-11-28 decisions/decision-case-1087.11 created · raw/2026-11-27/2214/ledger.md#case-1087.11 · generate
+- 2026-11-28 estimates/estimate-orchestration-takes-back-a-ratified-case updated: the Criterion replaced whole — the short Case and the removal act on the Cases file of the plan · [[decision-case-1087.11]] · generate
+- 2026-11-28 decisions/decision-case-1087.12 created · raw/2026-11-27/2214/ledger.md#case-1087.12 · generate
+- 2026-11-28 rules/rule-spec-capture updated: the approval writes the map of the plan and then the Cases file beside it into spec.md · [[decision-case-1087.12]] · generate
+- 2026-11-28 estimates/estimate-spec-capture-appends updated: the Criterion replaced whole — the map of the plan and then its Cases file are appended · [[decision-case-1087.12]] · generate
+- 2026-11-28 decisions/decision-case-1087.13 created · raw/2026-11-27/2214/ledger.md#case-1087.13 · generate
+- 2026-11-28 estimates/estimate-spec-write-readers-take-the-cases-file created · [[decision-case-1087.13]] · generate
+- 2026-11-28 rules/rule-spec-write estimate estimate-spec-write-readers-take-the-cases-file added · [[decision-case-1087.13]] · generate
+- 2026-11-28 rules/rule-prespec-hook updated: the exit gate and --check read the Cases file beside the plan file · [[decision-case-1087.13]] · generate
+- 2026-11-28 rules/rule-prespec updated: ask-guppi gets the path of the Cases file beside the plan file · [[decision-case-1087.13]] · generate
+- 2026-11-28 decisions/decision-case-1088 created · raw/2026-11-27/2214/ledger.md#case-1088 · generate
+- 2026-11-28 rules/rule-orchestration updated: a Frontier line closes by one Edit of the whole line, its box and its closer together · [[decision-case-1088]] · generate
+- 2026-11-28 insights/insight-orchestration-frontier-closer-leaves-the-box-open updated: actioned: orchestration.md says that a Frontier line closes by one Edit of the whole line, while the hook of rule-frontier-hook refuses any other edit (case 1088) · [[decision-case-1088]] · generate
+- 2026-11-28 decisions/decision-case-1087.14 created · raw/2026-11-27/2214/ledger.md#case-1087.14 · generate
+- 2026-11-28 estimates/estimate-compact-recall-reloads updated: the Criterion replaced whole — before the approval the Cases file beside the plan file is named with it · [[decision-case-1087.14]] · generate
+- 2026-11-28 estimates/estimate-spec-write-writes-the-map status: pending → passed · raw/2026-11-27/2214/ledger.md#L30 · generate
+- 2026-11-28 estimates/estimate-spec-write-rebuilds-the-maps-of-the-spec status: pending → passed · raw/2026-11-27/2214/ledger.md#L31 · generate
+- 2026-11-28 estimates/estimate-spec-write-copies-the-ratified-case status: pending → passed · raw/2026-11-27/2214/ledger.md#L32 · generate
+- 2026-11-28 estimates/estimate-spec-write-reaches-the-approved-spec status: pending → passed · raw/2026-11-27/2214/ledger.md#L33 · generate
+- 2026-11-28 estimates/estimate-spec-write-checks-the-written-case status: pending → passed · raw/2026-11-27/2214/ledger.md#L34 · generate
+- 2026-11-28 estimates/estimate-spec-write-answers-a-refusal status: pending → passed · raw/2026-11-27/2214/ledger.md#L35 · generate
+- 2026-11-28 estimates/estimate-spec-write-reads-a-new-tag status: pending → passed · raw/2026-11-27/2214/ledger.md#L36 · generate
+- 2026-11-28 estimates/estimate-spec-write-writes-a-defer status: pending → passed · raw/2026-11-27/2214/ledger.md#L37 · generate
+- 2026-11-28 estimates/estimate-spec-write-copies-a-built-defer-only-case status: pending → passed · raw/2026-11-27/2214/ledger.md#L38 · generate
+- 2026-11-28 estimates/estimate-spec-write-removes-a-superseded-case status: pending → passed · raw/2026-11-27/2214/ledger.md#L39 · generate
+- 2026-11-28 estimates/estimate-orchestration-takes-back-a-ratified-case status: pending → passed · raw/2026-11-27/2214/ledger.md#L40 · generate
+- 2026-11-28 rules/rule-compact-recall status: built → draft · cascade · generate
+- 2026-11-28 rules/rule-glossary status: draft → built · cascade · generate
+- 2026-11-28 rules/rule-render-harness status: draft → built · cascade · generate
+- 2026-11-28 rules/rule-spec-capture status: built → draft · cascade · generate
+- 2026-11-28 rules/rule-sprint status: draft → built · cascade · generate
+- 2026-11-28 decisions/decision-case-1081 archived · superseded · generate
+- 2026-11-28 lessons/lesson-frontier-line-closed-in-two-edits archived · insight actioned · generate
+- 2026-11-28 lessons/lesson-frontier-line-closed-in-two-edits archived · cleanup
+- 2026-11-28 decisions/decision-case-1081 archived · cleanup

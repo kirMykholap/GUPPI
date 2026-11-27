@@ -1,8 +1,9 @@
 ---
 type: decision
 case: "1081"
-status: current
+status: archived
 defer: ["[[rule-spec-write]]"]
+superseded_by: ["[[decision-case-1087.1]]"]
 origin: raw/2026-11-27/0947/ledger.md#case-1081
 sprint: plugin
 created: 2026-11-27
@@ -26,3 +27,6 @@ The Stop hook writes each ratified Case whole into spec.md from the first one on
 ## History
 
 - 2026-11-27 created · raw/2026-11-27/0947/ledger.md#case-1081
+- 2026-11-28 superseded by decision-case-1087.1 · [[decision-case-1087.1]]
+- 2026-11-28 archived · superseded
+- 2026-11-28 archived · cleanup

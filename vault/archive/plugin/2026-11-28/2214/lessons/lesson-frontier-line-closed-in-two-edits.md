@@ -2,7 +2,7 @@
 type: lesson
 kind: error
 root_cause: the agent wrote the box and the closer of a Frontier line as separate edits, while frontierguard accepts a closed line only when one edit writes the box and the closer together; the handoff of session 2333 names the same refusal
-status: clustered
+status: archived
 insight: "[[insight-orchestration-frontier-closer-leaves-the-box-open]]"
 origin: raw/2026-11-27/0947/ledger.md#L35
 sprint: plugin
@@ -22,3 +22,5 @@ the agent wrote the box and the closer of a Frontier line as separate edits, whi
 
 - 2026-11-27 created · raw/2026-11-27/0947/ledger.md#L35
 - 2026-11-27 updated: clustered under insight-orchestration-frontier-closer-leaves-the-box-open (synthesis) · raw/2026-11-27/0947/ledger.md#L35
+- 2026-11-28 archived · insight actioned
+- 2026-11-28 archived · cleanup

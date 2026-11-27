@@ -4,8 +4,8 @@ kind: QA
 status: passed
 target: "[[rule-spec-write]]"
 purpose: The Stop hook writes a deferred Case into the Spec as the reply showed it
-method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer, then by hand a defer the person asks for
-checked: 2026-10-26
+method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer
+checked: 2026-11-28
 origin: raw/2026-09-25/1228/ledger.md#case-421.1
 sprint: migration
 created: 2026-09-25
@@ -18,7 +18,7 @@ When:
 The `Stop` hook `uv run --project .guppi guppi ratified` runs after a reply whose `LEDGER` block holds lines of a Case N that are all `defer` — beside the lines of other Cases or alone — and the same reply shows `## Case N —` in the short form, by `is_short_form` of `.guppi/guppi/casecheck.py`: `context`, `problem` and a fence tagged `then` with its `defer` items, no `given` and no `when`.
 
 Then:
-The hook writes that Case under `## Deferred` of the plan file while `spec.md` in the session's folder does not stand, and of that `spec.md` once it stands: the heading, `context`, `problem` and the `then` block as the reply shows them.
+The hook writes that Case under `## Deferred` of the Cases file `<plan stem>.cases.md` beside the plan file while `spec.md` in the session's folder does not stand, and of that `spec.md` once it stands: the heading, `context`, `problem` and the `then` block as the reply shows them.
 **＋** The section of Case N is replaced when it stands there, appended at the end of `## Deferred` otherwise; the heading `## Deferred` is added when the file has none.
 **＋** A `then` block without a `defer` item carrying `slug`, `type` and `purpose` for each `defer` line of the reply: exit 2 with the reason on stderr.
 **＋** A `defer` line of Case N whose slug names a Lesson or a Decision page, by `defers_a_record` of `.guppi/guppi/materialize.py`, whether its page stands or not: exit 2 with `case N: defer <slug>: a Lesson or a Decision page carries no deferred_by, so no list shows its defer — defer the rule or entity page whose change settles it` on stderr, and nothing of the Case is written.
@@ -29,10 +29,11 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 **－** A `#` inside a quoted value or inside a `|` or `>` block is text, not a comment, and is no refusal.
 **－** A `defer` of a category with no schema file, or of one whose schema rule a decision line of the session or of the reply creates or updates, is not judged by its keys (case 308.2).
 **－** The check after the write does not run on the Case.
+**－** The plan file gets no section of the Case.
 
 ## Result
 
-2026-10-26, Retro of 0118, uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer: 24 passed; by hand, the defer the person asked for at the close of Plan Mode: the Stop hook wrote Case 891 under a new heading ## Deferred of the plan file, its heading, context, problem and then block as the reply showed them, and spec.md of 0118 holds it the same
+2026-11-28, Retro of session 2214, uv run --project .guppi pytest .guppi/tests/test_ratified.py -k defer: 26 passed; against Case 1087.8: a short-form defer goes under ## Deferred of the Cases file while spec.md does not stand, and of spec.md once it stands; the plan file holds no section of it
 
 ## History
 
@@ -63,3 +64,5 @@ The hook writes that Case under `## Deferred` of the plan file while `spec.md` i
 - 2026-10-29 defer by decision-case-885 superseded · [[decision-case-902]]
 - 2026-10-29 defer by decision-case-891 superseded · [[decision-case-902]]
 - 2026-10-29 updated: the defers of decision-case-885 and decision-case-891 taken up: the by-hand reading they waited for passed on 2026-10-26 · [[decision-case-902]]
+- 2026-11-28 updated: the Criterion replaced whole — a short-form defer goes under ## Deferred of the Cases file before the approval · [[decision-case-1087.8]]
+- 2026-11-28 status: pending → passed · raw/2026-11-27/2214/ledger.md#L37

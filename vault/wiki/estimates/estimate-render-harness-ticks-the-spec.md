@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-render-harness]]"
 purpose: render, once it wrote the harness and exits 0, ticks the guppi render lines of every Spec under raw/ whose yaml is applied whole
 method: "pytest .guppi/tests/test_render.py; by hand, after a librarian's run: the spec.md of its session read against the Criterion"
-checked: 2026-09-29
+checked: 2026-11-27
 origin: raw/2026-09-17/1119/ledger.md#case-226.2
 sprint: migration
 created: 2026-09-17
@@ -25,7 +25,7 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 
 ## Result
 
-2026-09-29, tests/test_render.py 34 passed; ff62585 ticked the render lines 189, 494, 841, 881 and 970 of the 0137 Spec, and the diff of the Spec is tick flips only
+2026-11-27, at the /hi of session 2214: uv run --project .guppi pytest .guppi/tests/test_render.py 44 passed; by hand, git diff def97898^ def97898 on vault/raw/2026-11-27/1402/spec.md, the librarian's run of session 1402, whose yaml the brief gives as applied whole (21 entries applied, line 3 superseded_by 1086, none failed): the two task lines opening with a code span holding guppi render, lines 154 and 299, went from - [ ] to - [x]; every other changed line below the map is a tick of a task line, and the map at the head was rebuilt; the read line of this Estimate stays - [ ]; the seven guppi render lines of the 0947 Spec stood ticked before the run
 
 ## History
 
@@ -39,3 +39,4 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the method waits for a librarian's run, with no past moment · [[decision-case-875]]
 - 2026-11-27 updated: the Criterion replaced whole — nothing else in the file changes but the map of an approved document · [[decision-case-1085.6]]
+- 2026-11-28 status: pending → passed · raw/2026-11-27/2214/ledger.md#L1

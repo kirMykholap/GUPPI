@@ -998,6 +998,8 @@ entries:
       only the map of Case 1078; put off at the close of Plan Mode of session 0947
   exists: true
   applied: '13:50:10'
+  superseded_by:
+  - '1087.1'
 - line: 26
   text: decision[case 1076][update][rule-clean-branch]{ref:rule-clean-branch}
   case: '1076'
@@ -3055,6 +3057,8 @@ decisions:
     problem: No Case of this session moves the whole Cases from the plan file into spec.md.
   spec: vault/raw/2026-11-27/0947/spec.md
   applied: '13:50:10'
+  superseded_by:
+  - decision-case-1087.1
 - case: '1077'
   decision: decision-case-1077
   origin: raw/2026-11-27/0947/ledger.md#case-1077

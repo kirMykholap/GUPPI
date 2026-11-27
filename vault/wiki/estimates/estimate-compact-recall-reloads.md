@@ -1,10 +1,10 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-compact-recall]]"
 purpose: After a compaction of a working session the hook's header, the paths of the /hi files, the Spec and the Frontier's text stand in the context; an ordinary session and another source get nothing
-method: pytest .guppi/tests/test_recall.py on a temp project; live — a compaction of a working session, by hand, the hook's text in the context after it
+method: "uv run --project .guppi pytest .guppi/tests/test_recall.py on a temp project; by hand, after the first compaction in Plan Mode of a later session with a Cases file beside its plan file: the hook's text in the context read against the Criterion"
 checked: 2026-10-30
 origin: raw/2026-09-21/0019/ledger.md#case-287
 sprint: migration
@@ -19,9 +19,10 @@ The client compacts the context of a session, on the person's command or on its 
 
 Then:
 With a `hi` in the session's window, stdout holds a header line, "recall: the context was compacted at HH:MM:SS; the session is" followed by the session folder under the vault, such as `raw/<date>/<hi HHMM>/`, and "Read before the next reply:". Then comes one path per line: the `@` files of `.claude/skills/hi/SKILL.md` in their order, the session's `frontier.md` when it exists, and the Spec when one exists. Last come the line `Frontier:` and the text of `frontier.md` as it stands.
-**＋** The Spec is the `spec.md` of the folder, or before the approval the plan file the event log names last.
+**＋** The Spec is the `spec.md` of the folder, or before the approval the plan file the event log names last and, on the next line, the Cases file `<plan stem>.cases.md` beside it when it stands, by `plan_cases_file` of `.guppi/guppi/ledger.py`.
 **＋** The list of paths is the `@` lines of the skill file at the moment the hook fires, with no copy in the code: a file added to those lines is in the list without a change to the hook.
 **＋** The texts of the files, the Frontier apart, are not printed, only the paths; the output stays under 10,000 characters.
+**－** Before the approval, with no Cases file beside the plan file, the plan file alone is named.
 **－** Without a `hi` in the window, nothing is printed on stdout, and the exit is 0.
 **－** Another `source` gives nothing: the matcher keeps the hook from firing, and the code checks `source` itself.
 **－** Exit 0 always; an error prints nothing and blocks nothing; the hook writes no file and no event line — `session-start compact` is written by `guppi event`.
@@ -41,3 +42,4 @@ With a `hi` in the session's window, stdout holds a header line, "recall: the co
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-30 updated: the Criterion replaced whole — the example session folder is a pattern, not a folder of this repository · [[decision-case-920.1]]
 - 2026-10-30 status: pending → passed · raw/2026-10-30/0304/ledger.md#L35
+- 2026-11-28 updated: the Criterion replaced whole — before the approval the Cases file beside the plan file is named with it · [[decision-case-1087.14]]

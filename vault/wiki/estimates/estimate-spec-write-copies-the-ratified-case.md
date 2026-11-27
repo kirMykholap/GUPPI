@@ -3,9 +3,9 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-spec-write]]"
-purpose: The ratified Case enters the plan file in the words of the stored answer of case-guppi, the then block built from the sub-points, each block fenced by its content
-method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k write; the live reading by hand, the plan file after the first ratification of a session
-checked: 2026-10-05
+purpose: The ratified Case enters the Cases file beside the plan file in the words of the stored answer of case-guppi, the then block built from the sub-points, each block fenced by its content
+method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k write
+checked: 2026-11-28
 origin: raw/2026-09-23/1859/ledger.md#case-387.2
 sprint: migration
 created: 2026-09-23
@@ -18,7 +18,7 @@ When:
 The `Stop` hook `uv run --project .guppi guppi ratified` runs after a reply whose `LEDGER` block holds `- decision[case N]` lines of a kind other than `defer`; it reads `<plan>.checked.json` beside the plan file for the text stored under Case N, and the session's transcript for the `SendUserFile` calls on `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case, and for the last earlier reply that shows Case N with at least one of its sections.
 
 Then:
-The hook writes the text stored under Case N into the plan file `plan_path` finds, the section of Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `recommend`, `given`, `when` and `then` as the store holds them; a block tagged `then` built from the sub-points of `tasks`; a block tagged `tasks` of the task lines without their sub-points; `ratification` is not written.
+The hook writes the text stored under Case N into the Cases file `<plan stem>.cases.md` beside the plan file `plan_path` finds, never into the plan file, the section of Case N replaced when it stands, appended otherwise: the heading, `context`, `problem`, `recommend`, `given`, `when` and `then` as the store holds them; a block tagged `then` built from the sub-points of `tasks`; a block tagged `tasks` of the task lines without their sub-points; `ratification` is not written.
 **＋** A sub-case's own `recommend` is written under its heading, and the `context`, `problem` and `recommend` of its parent come from the text stored under the parent.
 **＋** Each of the two blocks opens and closes with a fence of backticks one longer than the longest run of backticks that opens a line inside it, three at the least, which `tagged_blocks` of `.guppi/guppi/materialize.py` reads back whole; the same fence rule holds for the blocks it writes into `raw/<date>/<hi HHMM>/spec.md` once it stands, and for the `then` block of a short-form defer under `## Deferred`.
 **＋** No `SendUserFile` call on the file of Case N made after the time the store holds for Case N: exit 2 with the reason on stderr, and nothing of Case N is written.
@@ -31,7 +31,7 @@ The hook writes the text stored under Case N into the plan file `plan_path` find
 
 ## Result
 
-2026-10-05, by hand at the Work readings of session 1343: uv run pytest -q tests/test_ratified.py -k write 61 passed; the plan file after the first ratification of the session, Case 650 (reply at 14:05:55, ledger L11–L13), read in the ask-guppi read of 15:25:20 before any later write of Case 650: the section `## Case 650` with 650.1 and 650.2 equals the case file case-guppi wrote (its Write and Edit) in heading, context, problem, recommend, given, when and then; a `then` block built from the sub-points of `tasks` (the create with ref, kind, purpose, method, tags; four old/new pairs and change; set and change on 650.2), padded backtick spans read as YAML values, a `tasks` block of task lines without sub-points, no `ratification` in the plan; fences of five backticks around lines of four in 651.2 and 651.3; not exercised: a sub-case with its own recommend and every refusal clause
+2026-11-28, Retro of session 2214, uv run --project .guppi pytest .guppi/tests/test_ratified.py -k write: 80 passed; against Case 1087.3: the stored Case is written into plan.cases.md beside the plan file, and the plan file holds no section of it
 
 ## History
 
@@ -56,3 +56,5 @@ The hook writes the text stored under Case N into the plan file `plan_path` find
 - 2026-10-15 reworded: `uv run pytest` → `uv run --project .guppi pytest` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
+- 2026-11-28 updated: the Criterion replaced whole — a ratified Case is written into the Cases file beside the plan file, never into the plan file · [[decision-case-1087.3]]
+- 2026-11-28 status: pending → passed · raw/2026-11-27/2214/ledger.md#L32

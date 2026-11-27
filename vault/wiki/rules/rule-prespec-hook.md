@@ -19,9 +19,9 @@ core: true
 Prevents a Spec from being approved before its decisions were checked against each other
 and the vault. `PreToolUse` on `ExitPlanMode`: in a working session with no `prespec`
 line of this session's stamp after its `hi`, `uv run --project .guppi guppi prespec` exits 2 with the reason, which
-blocks the approval; the `/pre-spec` call leaves the stamped line through `guppi gate`. With the line, the hook finds the plan file of the session by `plan_path` of `.guppi/guppi/ledger.py`, runs on it the judgment of `--check` — the same function, not a copy — and exits 2 with its findings on stderr while it finds one; a line that opens with `note:` does not block, and with no plan file of the session the exit passes on the line alone (case 561.3). A `prespec` of another stamp or `--------` does not count, and a foreign `session-start` resets nothing (case 136.2). An
+blocks the approval; the `/pre-spec` call leaves the stamped line through `guppi gate`. With the line, the hook finds the plan file of the session by `plan_path` of `.guppi/guppi/ledger.py`, runs on it and on the Cases file beside it the judgment of `--check` — the same function, not a copy — and exits 2 with its findings on stderr while it finds one; a line that opens with `note:` does not block, and with no plan file of the session the exit passes on the line alone (case 561.3). A `prespec` of another stamp or `--------` does not count, and a foreign `session-start` resets nothing (case 136.2). An
 ordinary session, one without `/hi`, is not gated: no governance applies there. The
-same module serves the skill: `uv run --project .guppi guppi prespec --check <plan>` compares the plan
+same module serves the skill: `uv run --project .guppi guppi prespec --check <plan>` compares the Cases of the plan file and of the Cases file beside it
 with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-spec` runs it, and the hook runs the same judgment at the exit (case 561.3; named `pretask` until case 261). What `--check` compares, the check the skill `/pre-spec` runs, is written in the module docstring of `.guppi/guppi/prespec.py`, beside its code (case 561.1).
 
 ## History
@@ -57,3 +57,4 @@ with the session's ledger lines and frontier (cases 59.1–59.3, 59.6); `/pre-sp
 - 2026-11-01 estimate estimate-prespec-hook-reports-a-wait-off-its-form added · [[decision-case-972]]
 - 2026-11-25 estimate estimate-prespec-hook-reports-a-stop-before-the-render-it-tests added · [[decision-case-1053.2]]
 - 2026-11-26 estimate estimate-prespec-hook-reports-a-method-that-reads-a-transcript added · [[decision-case-1071.2]]
+- 2026-11-28 updated: the exit gate and --check read the Cases file beside the plan file · [[decision-case-1087.13]]

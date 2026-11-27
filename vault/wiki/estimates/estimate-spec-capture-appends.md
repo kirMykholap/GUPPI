@@ -1,9 +1,9 @@
 ---
 type: estimate
 kind: QA
-status: passed
+status: pending
 target: "[[rule-spec-capture]]"
-method: "pytest in .guppi/tests/test_spec.py with piped payloads against a temp vault; by hand, at the approval of a plan in a session: the spec.md of that session read against the Criterion"
+method: "pytest in .guppi/tests/test_spec.py with piped payloads against a temp vault; by hand, after the approval of a plan in a later session: the spec.md of that session read against the Criterion"
 checked: 2026-09-27
 origin: raw/2026-09-09/ledger.md#case-20
 sprint: migration
@@ -14,10 +14,12 @@ tags: [session, hooks, harness, workflow]
 ## Criterion
 
 When:
-`ExitPlanMode` is approved, and `uv run --project .guppi guppi spec` runs on its `PostToolUse` with the plan in `tool_response.plan`.
+`ExitPlanMode` is approved, and `uv run --project .guppi guppi spec` of `.guppi/guppi/spec.py` runs on its `PostToolUse` with the plan in `tool_response.plan`.
 
 Then:
-In a session with a `hi`, the plan is appended to `raw/<hi date>/<hi HHMM>/spec.md` — a `---` separator when the file has content, the stamp `<!-- approved HH:MM:SS · session xxxxxxxx -->` and the plan text — once, even when the hook runs twice.
+In a session with a `hi`, `raw/<hi date>/<hi HHMM>/spec.md` gets, once, even when the hook runs twice: a `---` separator when the file has content, the stamp `<!-- approved HH:MM:SS · session xxxxxxxx -->`, the plan text — its title line and its map — and then the text of the Cases file `<plan stem>.cases.md` beside the plan file that `plan_path` of `.guppi/guppi/ledger.py` finds, the two joined by `with_cases` of the same module.
+**＋** The map of the new document is then rebuilt from its Cases by `rebuild_spec_maps` of `.guppi/guppi/ratified.py`, so the line that opens it says that each box copies the box of its task line below.
+**＋** With no Cases file beside the plan file, the plan text alone is appended.
 **＋** A second approval of the same session appends under `---` and its stamp.
 **＋** The hook changes nothing that stands in the file: earlier documents, the sections the `Stop` hook of `rule-spec-write` wrote and a `## Deferred` section stay as they are, and `uv run --project .guppi guppi materialize` reads their Cases.
 **－** Without a `hi` the hook exits 2 naming the session, and the file is untouched.
@@ -41,3 +43,4 @@ In a session with a `hi`, the plan is appended to `raw/<hi date>/<hi HHMM>/spec.
 - 2026-10-15 reworded: `uv run guppi` → `uv run --project .guppi guppi` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-26 updated: the part by hand of the method names its moment by its kind · [[decision-case-881.25]]
+- 2026-11-28 updated: the Criterion replaced whole — the map of the plan and then its Cases file are appended · [[decision-case-1087.12]]

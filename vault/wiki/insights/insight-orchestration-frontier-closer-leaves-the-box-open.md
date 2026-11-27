@@ -1,10 +1,10 @@
 ---
 type: insight
 pattern: the main agent closes a Frontier line by an Edit whose old_string holds only the end of the line and appends the closer there, so the box at the start of the line, which marks it closed, stays open and guppi prespec --check prints the line as open
-status: open
+status: actioned
 children: ["[[lesson-orchestration-closes-a-frontier-line-by-its-closer-alone]]", "[[lesson-frontier-closer-appended-without-ticking-the-box]]", "[[lesson-frontier-line-closed-in-two-changes-through-bash]]", "[[lesson-frontier-line-closed-in-two-edits]]"]
-severity: 1
-addressed_by: "[[decision-case-1069.1]]"
+severity: 0
+addressed_by: "[[decision-case-1088]]"
 origin: raw/2026-11-02/1548/ledger.md#L12
 sprint: plugin
 created: 2026-11-02
@@ -26,3 +26,4 @@ A suggestion, not a decision: the text of orchestration.md that sets the closers
 - 2026-11-26 updated: child lesson-frontier-line-closed-in-two-changes-through-bash added, reopened since the box and the closer were again written in two changes after case 1012 (synthesis) · raw/2026-11-26/1336/ledger.md#L14
 - 2026-11-26 updated: actioned: the hook refuses a shell command that names frontier.md, and an edit that leaves a closed box with no closer (case 1069) · [[decision-case-1069.1]]
 - 2026-11-27 updated: child lesson-frontier-line-closed-in-two-edits added (synthesis); reopened from actioned, its pattern seen again after case 1069.1 · raw/2026-11-27/0947/ledger.md#L35
+- 2026-11-28 updated: actioned: orchestration.md says that a Frontier line closes by one Edit of the whole line, while the hook of rule-frontier-hook refuses any other edit (case 1088) · [[decision-case-1088]]

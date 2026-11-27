@@ -504,7 +504,7 @@ create:
 ```tasks
 - [x] stop: the main agent saves the map that the new map mode of the Stop hook prints for the plan file of this session into a Markdown file outside the repository and names its full path; the person opens it in VS Code and says how the table, the diagram and the signs look.
 - [x] create `estimate-spec-write-shows-the-map-in-the-plan-view`
-- [ ] read `estimate-spec-write-shows-the-map-in-the-plan-view`
+- [x] read `estimate-spec-write-shows-the-map-in-the-plan-view`
 ```
 
 ### Case 1078.3 — The replies show each Frontier line with the sign of its kind

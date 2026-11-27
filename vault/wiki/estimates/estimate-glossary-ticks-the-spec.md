@@ -1,11 +1,11 @@
 ---
 type: estimate
 kind: QA
-status: pending
+status: passed
 target: "[[rule-glossary]]"
 purpose: glossary, once it wrote glossary.md and exits 0, ticks the guppi glossary lines of every Spec under raw/ whose yaml is applied whole
 method: "pytest .guppi/tests/test_glossary.py; by hand, after a librarian's run: the spec.md of its session read against the Criterion"
-checked: 2026-09-29
+checked: 2026-11-27
 origin: raw/2026-09-22/0014/ledger.md#case-306.6
 sprint: migration
 created: 2026-09-22
@@ -26,7 +26,7 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 
 ## Result
 
-2026-09-29, uv run pytest tests/test_glossary.py: 8 passed; by hand, git diff d8c1f17^ d8c1f17 on raw/2026-09-29/1432/spec.md: the line `uv run guppi glossary` (line 522) went [ ] to [x], and every other changed line is a tick of a task line; the other mentions of guppi glossary in that file are prose of Case 515 and stand unchanged; the 0137 and 1134 Specs hold no guppi glossary line
+2026-11-27, at the /hi of session 2214: uv run --project .guppi pytest .guppi/tests/test_glossary.py 8 passed; by hand, the librarian's run of session 1402 (commit def97898): no task line of vault/raw/2026-11-27/1402/spec.md or vault/raw/2026-11-27/0947/spec.md opens with a code span holding guppi glossary (grep), so the run ticked none, glossary.md unchanged, and the diff of both Specs in that commit is ticks of task lines and the rebuilt map only; the tick clause was not exercised live
 
 ## History
 
@@ -38,3 +38,4 @@ In the `spec.md` of every unit whose yaml is applied whole, every unticked task 
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-17 updated: the method waits for a librarian's run, with no past moment · [[decision-case-875]]
 - 2026-11-27 updated: the Criterion replaced whole — nothing else in the file changes but the map of an approved document · [[decision-case-1085.8]]
+- 2026-11-28 status: pending → passed · raw/2026-11-27/2214/ledger.md#L3

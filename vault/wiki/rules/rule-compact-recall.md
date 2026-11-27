@@ -2,7 +2,7 @@
 type: rule
 kind: Leaf
 purpose: Prevents a working session from going on after a compaction without the texts /hi loads, the Frontier and the Spec in its context
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [.guppi/guppi/recall.py, .guppi/guppi/cli.py, .guppi/tests/test_recall.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
@@ -31,3 +31,4 @@ Prevents a working session from going on after a compaction without the texts `/
 - 2026-10-15 reworded: `guppi/` → `.guppi/guppi/` · [[decision-case-819.1]]
 - 2026-10-15 reworded: `tests/` → `.guppi/tests/` · [[decision-case-819.1]]
 - 2026-10-30 updated: ## How it works left the Leaf, its mechanism in the docstring of .guppi/guppi/recall.py · [[decision-case-942.1]]
+- 2026-11-28 status: built → draft · cascade

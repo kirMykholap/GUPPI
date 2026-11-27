@@ -17,7 +17,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | the vault query | The vault query before a `create` without `ref`, `draft` pages included (case 277.3) | [[rule-ask]] |
 | Index line, `ask-guppi` | The Grep of a category's frontmatter — `purpose`, `root_cause` or `pattern`, and `deferred_by` — one line per live page, never compared across categories; no index file (case 147.8); the search agent over these lines, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning (case 105.1) | [[rule-ask]] |
 | `/pre-spec` | The check of the ratified set against each other and the vault before the Spec is approved (case 261) | [[rule-prespec]] |
-| Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/<hi HHMM>/spec.md`, the session's folder (case 73.1) | [[rule-spec-capture]] |
+| Spec | The ratified Cases as one document, written into `raw/<date>/<hi HHMM>/spec.md`, the session's folder, under the map of Claude Code's plan when the person approves that map (case 73.1) | [[rule-spec-capture]] |
 
 ## [[rule-harness]]
 

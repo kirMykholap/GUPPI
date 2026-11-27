@@ -8,7 +8,7 @@
 
 | Case | Name | ⛔ open stops | 🔍 open checks |
 |---|---|---|---|
-| 1087 | The plan file holds the map, and the Cases wait beside it | 0 | 14 |
+| 1087 | The plan file holds the map, and the Cases wait beside it | 0 | 3 |
 | 1088 | A Frontier line closes by one edit of the whole line | 0 | 0 |
 
 ```mermaid
@@ -48,88 +48,88 @@ flowchart TD
 
 - 🧩 **1087 — The plan file holds the map, and the Cases wait beside it** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
 - 🧩 **1087.1 — The plan file holds its title line and the map** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `rule-spec-write` — the plan file holds its title line and the map; the Cases of the plan stand in the Cases file beside it
-  - [ ] update `estimate-spec-write-writes-the-map` — the Criterion replaced whole — the plan file holds no Case, and the map is cut from the plan file and the Cases file beside it
-  - [ ] update `rule-skill-approve-spec` — the plan file holds the map of the Cases alone
+  - [x] update `rule-spec-write` — the plan file holds its title line and the map; the Cases of the plan stand in the Cases file beside it
+  - [x] update `estimate-spec-write-writes-the-map` — the Criterion replaced whole — the plan file holds no Case, and the map is cut from the plan file and the Cases file beside it
+  - [x] update `rule-skill-approve-spec` — the plan file holds the map of the Cases alone
   - [x] `.guppi/guppi/ledger.py`: `plan_cases_file(plan)`, the Cases file `<plan stem>.cases.md` beside a plan file, `with_cases(text, plan)`, a plan text and then the text of the Cases file beside `plan` when it stands, and `plan_cases_text(plan)`, which gives `with_cases` the text of the plan file: the one reading of the Cases of the plan.
   - [x] `.guppi/guppi/ratified.py`: `rebuild_map` and `print_map` cut the map from `plan_cases_text`; the map of the plan file opens with a line that names its Cases file; the reason the guard gives on a plan file created with more than its title line says the hooks write the map into it; the module docstring follows.
   - [x] `.guppi/tests/test_ratified.py`: under `-k map`, the plan file holds its title line and the map alone, the map cut from the Cases file, a plan file that holds Cases of its own read with them, the head line naming the Cases file, and `--map` on a plan file beside its Cases file.
-  - [ ] 🔍 read `estimate-spec-write-writes-the-map`
+  - [x] read `estimate-spec-write-writes-the-map`
 - 🧩 **1087.2 — The map of spec.md keeps its line, and the map of the plan file names its Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-spec-write-rebuilds-the-maps-of-the-spec` — the Criterion replaced whole — the head line of the map of the plan file names its Cases file
+  - [x] update `estimate-spec-write-rebuilds-the-maps-of-the-spec` — the Criterion replaced whole — the head line of the map of the plan file names its Cases file
   - [x] `.guppi/guppi/ratified.py`: `with_map` takes the line that opens the map by the file it writes — the line that names the Cases file for the plan file, and the line of today for each document of `spec.md` — and `rebuild_spec_maps` keeps the line of `spec.md`.
   - [x] `.guppi/tests/test_ratified.py`: under `-k spec_map`, the line that opens each map of `spec.md` and the line that opens the map of the plan file rebuilt after an edit of the session's `spec.md`.
-  - [ ] 🔍 read `estimate-spec-write-rebuilds-the-maps-of-the-spec`
+  - [x] read `estimate-spec-write-rebuilds-the-maps-of-the-spec`
 - 🧩 **1087.3 — A ratified Case is written into the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole — a ratified Case is written into the Cases file beside the plan file, never into the plan file
-  - [ ] update `rule-orchestration` — a Case and a defer are written into the Cases file of the plan
-  - [ ] update `rule-case-protocol` — the Cases of the plan stand in the Cases file beside the plan file, and the human approves the map
-  - [ ] update `entity-glossary` — the Spec is written into spec.md under the map the person approves
+  - [x] update `estimate-spec-write-copies-the-ratified-case` — the Criterion replaced whole — a ratified Case is written into the Cases file beside the plan file, never into the plan file
+  - [x] update `rule-orchestration` — a Case and a defer are written into the Cases file of the plan
+  - [x] update `rule-case-protocol` — the Cases of the plan stand in the Cases file beside the plan file, and the human approves the map
+  - [x] update `entity-glossary` — the Spec is written into spec.md under the map the person approves
   - [x] `.guppi/guppi/ratified.py`: `write_case` and `write_parent` write into the Cases file of the plan by `plan_cases_file` of `.guppi/guppi/ledger.py`, and into `spec.md` once it stands; the module docstring follows.
   - [x] `.guppi/tests/test_ratified.py`: the tests under `-k write` read the written Case in the Cases file and assert that the plan file holds no section of it.
-  - [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
-  - [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-  - [ ] `uv run --project .guppi guppi glossary`
-  - [ ] 🔍 read `estimate-spec-write-copies-the-ratified-case`
+  - [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+  - [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+  - [x] `uv run --project .guppi guppi glossary`
+  - [x] read `estimate-spec-write-copies-the-ratified-case`
 - 🧩 **1087.4 — A Case ratified after the approval reaches spec.md beside the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-spec-write-reaches-the-approved-spec` — the Criterion replaced whole — the Case reaches spec.md beside the Cases file of the plan
+  - [x] update `estimate-spec-write-reaches-the-approved-spec` — the Criterion replaced whole — the Case reaches spec.md beside the Cases file of the plan
   - [x] `.guppi/tests/test_ratified.py`: the tests under `-k approved_spec` take a Case written into the Cases file and `spec.md`, and assert that the plan file holds no section of it.
-  - [ ] 🔍 read `estimate-spec-write-reaches-the-approved-spec`
+  - [x] read `estimate-spec-write-reaches-the-approved-spec`
 - 🧩 **1087.5 — The check after the write reads the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-spec-write-checks-the-written-case` — the Criterion replaced whole — the check after the write reads the plan file and its Cases file
+  - [x] update `estimate-spec-write-checks-the-written-case` — the Criterion replaced whole — the check after the write reads the plan file and its Cases file
   - [x] `.guppi/guppi/ratified.py`: `stop` runs the check after the write on `plan_cases_text` of the plan file.
   - [x] `.guppi/tests/test_ratified.py`: the tests under `-k checks_the_written` take a Case written into the Cases file, and a finding on it.
-  - [ ] 🔍 read `estimate-spec-write-checks-the-written-case`
+  - [x] read `estimate-spec-write-checks-the-written-case`
 - 🧩 **1087.6 — A Case repeated after a refusal is written into the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-spec-write-answers-a-refusal` — the Criterion replaced whole — a Case repeated after a refusal is written into the Cases file of the plan
+  - [x] update `estimate-spec-write-answers-a-refusal` — the Criterion replaced whole — a Case repeated after a refusal is written into the Cases file of the plan
   - [x] `.guppi/tests/test_ratified.py`: the tests under `-k answers_a_refusal` read the Case in the Cases file.
-  - [ ] 🔍 read `estimate-spec-write-answers-a-refusal`
+  - [x] read `estimate-spec-write-answers-a-refusal`
 - 🧩 **1087.7 — A tag line of a Case written into the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-spec-write-reads-a-new-tag` — the Criterion replaced whole — the Case with a tag line is written into the Cases file of the plan
+  - [x] update `estimate-spec-write-reads-a-new-tag` — the Criterion replaced whole — the Case with a tag line is written into the Cases file of the plan
   - [x] `.guppi/tests/test_ratified.py`: the tests under `-k tag` read the Case in the Cases file.
-  - [ ] 🔍 read `estimate-spec-write-reads-a-new-tag`
+  - [x] read `estimate-spec-write-reads-a-new-tag`
 - 🧩 **1087.8 — A short-form defer goes under ## Deferred of the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-spec-write-writes-a-defer` — the Criterion replaced whole — a short-form defer goes under ## Deferred of the Cases file before the approval
+  - [x] update `estimate-spec-write-writes-a-defer` — the Criterion replaced whole — a short-form defer goes under ## Deferred of the Cases file before the approval
   - [x] `.guppi/guppi/ratified.py`: `stop` writes a short-form defer into the Cases file of the plan while `spec.md` does not stand; the module docstring follows.
   - [x] `.guppi/tests/test_ratified.py`: the tests under `-k defer` read the defer in the Cases file and assert that the plan file holds no section of it.
-  - [ ] 🔍 read `estimate-spec-write-writes-a-defer`
+  - [x] read `estimate-spec-write-writes-a-defer`
 - 🧩 **1087.9 — A built Case of defer lines goes into the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-spec-write-copies-a-built-defer-only-case` — the Criterion replaced whole — a built Case of defer lines is written into the Cases file of the plan
+  - [x] update `estimate-spec-write-copies-a-built-defer-only-case` — the Criterion replaced whole — a built Case of defer lines is written into the Cases file of the plan
   - [x] `.guppi/tests/test_ratified.py`: the tests under `-k built_defer` read the Case in the Cases file and assert that the plan file holds no section of it.
-  - [ ] 🔍 read `estimate-spec-write-copies-a-built-defer-only-case`
+  - [x] read `estimate-spec-write-copies-a-built-defer-only-case`
 - 🧩 **1087.10 — A superseded Case leaves the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-spec-write-removes-a-superseded-case` — the Criterion replaced whole — a superseded Case leaves the Cases file of the plan
+  - [x] update `estimate-spec-write-removes-a-superseded-case` — the Criterion replaced whole — a superseded Case leaves the Cases file of the plan
   - [x] `.guppi/guppi/ratified.py`: `remove_superseded` runs over `spec.md`, the plan file and its Cases file; the module docstring follows.
   - [x] `.guppi/tests/test_ratified.py`: the tests under `-k superseded` read the Cases file, and an older plan file that holds the superseded Case itself.
-  - [ ] 🔍 read `estimate-spec-write-removes-a-superseded-case`
+  - [x] read `estimate-spec-write-removes-a-superseded-case`
 - 🧩 **1087.11 — A Case taken back leaves the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-orchestration-takes-back-a-ratified-case` — the Criterion replaced whole — the short Case and the removal act on the Cases file of the plan
-  - [ ] 🔍 read `estimate-orchestration-takes-back-a-ratified-case`
+  - [x] update `estimate-orchestration-takes-back-a-ratified-case` — the Criterion replaced whole — the short Case and the removal act on the Cases file of the plan
+  - [x] read `estimate-orchestration-takes-back-a-ratified-case`
 - 🧩 **1087.12 — The approval writes the map and then the Cases into spec.md** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `rule-spec-capture` — the approval writes the map of the plan and then the Cases file beside it into spec.md
-  - [ ] update `estimate-spec-capture-appends` — the Criterion replaced whole — the map of the plan and then its Cases file are appended
+  - [x] update `rule-spec-capture` — the approval writes the map of the plan and then the Cases file beside it into spec.md
+  - [x] update `estimate-spec-capture-appends` — the Criterion replaced whole — the map of the plan and then its Cases file are appended
   - [x] `.guppi/guppi/spec.py`: `typed` appends `plan_cases_text` of `.guppi/guppi/ledger.py` of the plan file; `run` appends `with_cases` of the same module of the plan text of `tool_response.plan` and the plan file that `plan_path` finds, or the plan text alone where it finds none; both join no text themselves, and both rebuild the maps of `spec.md` by `rebuild_spec_maps` of `.guppi/guppi/ratified.py`; the module docstring follows.
   - [x] `.guppi/tests/test_spec.py`: an approval with a Cases file beside the plan file appends the map and then its Cases once, the map rebuilt with the line of `spec.md`; an approval with no Cases file appends the plan alone; a typed `/approve-spec` appends both.
   - [ ] 🔍 read `estimate-spec-capture-appends`
 - 🧩 **1087.13 — The checks before the approval read the Cases file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] create `estimate-spec-write-readers-take-the-cases-file` — Whether the pre-spec check, the exit gate of Plan Mode, the check of a Case file and the gate of /retro read the Cases of the plan from the plan file and its Cases file by one function, and whether /pre-spec gives ask-guppi both paths
-  - [ ] update `rule-prespec-hook` — the exit gate and --check read the Cases file beside the plan file
-  - [ ] update `rule-prespec` — ask-guppi gets the path of the Cases file beside the plan file
+  - [x] create `estimate-spec-write-readers-take-the-cases-file` — Whether the pre-spec check, the exit gate of Plan Mode, the check of a Case file and the gate of /retro read the Cases of the plan from the plan file and its Cases file by one function, and whether /pre-spec gives ask-guppi both paths
+  - [x] update `rule-prespec-hook` — the exit gate and --check read the Cases file beside the plan file
+  - [x] update `rule-prespec` — ask-guppi gets the path of the Cases file beside the plan file
   - [x] `.guppi/guppi/prespec.py`: `gate_refusal` and `run` with `--check` judge `plan_cases_text` of the plan file; the module docstring follows.
   - [x] `.guppi/guppi/casecheck.py`: the `SubagentStop` check reads the other Cases of the session by `plan_cases_text`; the module docstring follows.
   - [x] `.guppi/guppi/gate.py`: `spec_check` reads the plan by `plan_cases_text`; the module docstring follows.
   - [x] `.guppi/tests/test_ledger.py`: under `-k cases_file`, `plan_cases_text` on a plan file with and without a Cases file, and each reader — `prespec --check`, `gate_refusal`, the check of a Case file and `spec_check` — on a Case that stands only in the Cases file.
-  - [ ] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
+  - [x] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
   - [ ] 🔍 read `estimate-spec-write-readers-take-the-cases-file` — Whether the pre-spec check, the exit gate of Plan Mode, the check of a Case file and the gate of /retro read the Cases of the plan from the plan file and its Cases file by one function, and whether /pre-spec gives ask-guppi both paths
 - 🧩 **1087.14 — After a compaction, the Cases file is read back with the plan file** · `vault/raw/2026-11-27/2214/cases/case-1087.md`
-  - [ ] update `estimate-compact-recall-reloads` — the Criterion replaced whole — before the approval the Cases file beside the plan file is named with it
+  - [x] update `estimate-compact-recall-reloads` — the Criterion replaced whole — before the approval the Cases file beside the plan file is named with it
   - [x] `.guppi/guppi/recall.py`: before the approval `recall` names the plan file and then its Cases file by `plan_cases_file` of `.guppi/guppi/ledger.py` when that file stands; the module docstring follows.
   - [x] `.guppi/tests/test_recall.py`: a compaction before the approval with a Cases file beside the plan file names both paths in that order, and one with no Cases file names the plan file alone.
   - [ ] 🔍 read `estimate-compact-recall-reloads`
 - 🧩 **1088 — A Frontier line closes by one edit of the whole line** · `vault/raw/2026-11-27/2214/cases/case-1088.md`
-  - [ ] update `rule-orchestration` — a Frontier line closes by one Edit of the whole line, its box and its closer together
-  - [ ] update `insight-orchestration-frontier-closer-leaves-the-box-open` — actioned: orchestration.md says that a Frontier line closes by one Edit of the whole line, while the hook of rule-frontier-hook refuses any other edit (case 1088)
-  - [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+  - [x] update `rule-orchestration` — a Frontier line closes by one Edit of the whole line, its box and its closer together
+  - [x] update `insight-orchestration-frontier-closer-leaves-the-box-open` — actioned: orchestration.md says that a Frontier line closes by one Edit of the whole line, while the hook of rule-frontier-hook refuses any other edit (case 1088)
+  - [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 
 <!-- /map -->
 
@@ -240,13 +240,13 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-write`
-- [ ] update `estimate-spec-write-writes-the-map`
-- [ ] update `rule-skill-approve-spec`
+- [x] update `rule-spec-write`
+- [x] update `estimate-spec-write-writes-the-map`
+- [x] update `rule-skill-approve-spec`
 - [x] `.guppi/guppi/ledger.py`: `plan_cases_file(plan)`, the Cases file `<plan stem>.cases.md` beside a plan file, `with_cases(text, plan)`, a plan text and then the text of the Cases file beside `plan` when it stands, and `plan_cases_text(plan)`, which gives `with_cases` the text of the plan file: the one reading of the Cases of the plan.
 - [x] `.guppi/guppi/ratified.py`: `rebuild_map` and `print_map` cut the map from `plan_cases_text`; the map of the plan file opens with a line that names its Cases file; the reason the guard gives on a plan file created with more than its title line says the hooks write the map into it; the module docstring follows.
 - [x] `.guppi/tests/test_ratified.py`: under `-k map`, the plan file holds its title line and the map alone, the map cut from the Cases file, a plan file that holds Cases of its own read with them, the head line naming the Cases file, and `--map` on a plan file beside its Cases file.
-- [ ] read `estimate-spec-write-writes-the-map`
+- [x] read `estimate-spec-write-writes-the-map`
 ```
 
 ### Case 1087.2 — The map of spec.md keeps its line, and the map of the plan file names its Cases file
@@ -287,10 +287,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-rebuilds-the-maps-of-the-spec`
+- [x] update `estimate-spec-write-rebuilds-the-maps-of-the-spec`
 - [x] `.guppi/guppi/ratified.py`: `with_map` takes the line that opens the map by the file it writes — the line that names the Cases file for the plan file, and the line of today for each document of `spec.md` — and `rebuild_spec_maps` keeps the line of `spec.md`.
 - [x] `.guppi/tests/test_ratified.py`: under `-k spec_map`, the line that opens each map of `spec.md` and the line that opens the map of the plan file rebuilt after an edit of the session's `spec.md`.
-- [ ] read `estimate-spec-write-rebuilds-the-maps-of-the-spec`
+- [x] read `estimate-spec-write-rebuilds-the-maps-of-the-spec`
 ```
 
 ### Case 1087.3 — A ratified Case is written into the Cases file
@@ -359,16 +359,16 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-copies-the-ratified-case`
-- [ ] update `rule-orchestration`
-- [ ] update `rule-case-protocol`
-- [ ] update `entity-glossary`
+- [x] update `estimate-spec-write-copies-the-ratified-case`
+- [x] update `rule-orchestration`
+- [x] update `rule-case-protocol`
+- [x] update `entity-glossary`
 - [x] `.guppi/guppi/ratified.py`: `write_case` and `write_parent` write into the Cases file of the plan by `plan_cases_file` of `.guppi/guppi/ledger.py`, and into `spec.md` once it stands; the module docstring follows.
 - [x] `.guppi/tests/test_ratified.py`: the tests under `-k write` read the written Case in the Cases file and assert that the plan file holds no section of it.
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
-- [ ] `uv run --project .guppi guppi glossary`
-- [ ] read `estimate-spec-write-copies-the-ratified-case`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/case-schema.md`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] `uv run --project .guppi guppi glossary`
+- [x] read `estimate-spec-write-copies-the-ratified-case`
 ```
 
 ### Case 1087.4 — A Case ratified after the approval reaches spec.md beside the Cases file
@@ -410,9 +410,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-reaches-the-approved-spec`
+- [x] update `estimate-spec-write-reaches-the-approved-spec`
 - [x] `.guppi/tests/test_ratified.py`: the tests under `-k approved_spec` take a Case written into the Cases file and `spec.md`, and assert that the plan file holds no section of it.
-- [ ] read `estimate-spec-write-reaches-the-approved-spec`
+- [x] read `estimate-spec-write-reaches-the-approved-spec`
 ```
 
 ### Case 1087.5 — The check after the write reads the Cases file
@@ -456,10 +456,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-checks-the-written-case`
+- [x] update `estimate-spec-write-checks-the-written-case`
 - [x] `.guppi/guppi/ratified.py`: `stop` runs the check after the write on `plan_cases_text` of the plan file.
 - [x] `.guppi/tests/test_ratified.py`: the tests under `-k checks_the_written` take a Case written into the Cases file, and a finding on it.
-- [ ] read `estimate-spec-write-checks-the-written-case`
+- [x] read `estimate-spec-write-checks-the-written-case`
 ```
 
 ### Case 1087.6 — A Case repeated after a refusal is written into the Cases file
@@ -498,9 +498,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-answers-a-refusal`
+- [x] update `estimate-spec-write-answers-a-refusal`
 - [x] `.guppi/tests/test_ratified.py`: the tests under `-k answers_a_refusal` read the Case in the Cases file.
-- [ ] read `estimate-spec-write-answers-a-refusal`
+- [x] read `estimate-spec-write-answers-a-refusal`
 ```
 
 ### Case 1087.7 — A tag line of a Case written into the Cases file
@@ -540,9 +540,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-reads-a-new-tag`
+- [x] update `estimate-spec-write-reads-a-new-tag`
 - [x] `.guppi/tests/test_ratified.py`: the tests under `-k tag` read the Case in the Cases file.
-- [ ] read `estimate-spec-write-reads-a-new-tag`
+- [x] read `estimate-spec-write-reads-a-new-tag`
 ```
 
 ### Case 1087.8 — A short-form defer goes under ## Deferred of the Cases file
@@ -589,10 +589,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-writes-a-defer`
+- [x] update `estimate-spec-write-writes-a-defer`
 - [x] `.guppi/guppi/ratified.py`: `stop` writes a short-form defer into the Cases file of the plan while `spec.md` does not stand; the module docstring follows.
 - [x] `.guppi/tests/test_ratified.py`: the tests under `-k defer` read the defer in the Cases file and assert that the plan file holds no section of it.
-- [ ] read `estimate-spec-write-writes-a-defer`
+- [x] read `estimate-spec-write-writes-a-defer`
 ```
 
 ### Case 1087.9 — A built Case of defer lines goes into the Cases file
@@ -631,9 +631,9 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-copies-a-built-defer-only-case`
+- [x] update `estimate-spec-write-copies-a-built-defer-only-case`
 - [x] `.guppi/tests/test_ratified.py`: the tests under `-k built_defer` read the Case in the Cases file and assert that the plan file holds no section of it.
-- [ ] read `estimate-spec-write-copies-a-built-defer-only-case`
+- [x] read `estimate-spec-write-copies-a-built-defer-only-case`
 ```
 
 ### Case 1087.10 — A superseded Case leaves the Cases file
@@ -677,10 +677,10 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-spec-write-removes-a-superseded-case`
+- [x] update `estimate-spec-write-removes-a-superseded-case`
 - [x] `.guppi/guppi/ratified.py`: `remove_superseded` runs over `spec.md`, the plan file and its Cases file; the module docstring follows.
 - [x] `.guppi/tests/test_ratified.py`: the tests under `-k superseded` read the Cases file, and an older plan file that holds the superseded Case itself.
-- [ ] read `estimate-spec-write-removes-a-superseded-case`
+- [x] read `estimate-spec-write-removes-a-superseded-case`
 ```
 
 ### Case 1087.11 — A Case taken back leaves the Cases file
@@ -721,8 +721,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-orchestration-takes-back-a-ratified-case`
-- [ ] read `estimate-orchestration-takes-back-a-ratified-case`
+- [x] update `estimate-orchestration-takes-back-a-ratified-case`
+- [x] read `estimate-orchestration-takes-back-a-ratified-case`
 ```
 
 ### Case 1087.12 — The approval writes the map and then the Cases into spec.md
@@ -764,8 +764,8 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-spec-capture`
-- [ ] update `estimate-spec-capture-appends`
+- [x] update `rule-spec-capture`
+- [x] update `estimate-spec-capture-appends`
 - [x] `.guppi/guppi/spec.py`: `typed` appends `plan_cases_text` of `.guppi/guppi/ledger.py` of the plan file; `run` appends `with_cases` of the same module of the plan text of `tool_response.plan` and the plan file that `plan_path` finds, or the plan text alone where it finds none; both join no text themselves, and both rebuild the maps of `spec.md` by `rebuild_spec_maps` of `.guppi/guppi/ratified.py`; the module docstring follows.
 - [x] `.guppi/tests/test_spec.py`: an approval with a Cases file beside the plan file appends the map and then its Cases once, the map rebuilt with the line of `spec.md`; an approval with no Cases file appends the plan alone; a typed `/approve-spec` appends both.
 - [ ] read `estimate-spec-capture-appends`
@@ -819,14 +819,14 @@ update:
 ```
 
 ```tasks
-- [ ] create `estimate-spec-write-readers-take-the-cases-file`
-- [ ] update `rule-prespec-hook`
-- [ ] update `rule-prespec`
+- [x] create `estimate-spec-write-readers-take-the-cases-file`
+- [x] update `rule-prespec-hook`
+- [x] update `rule-prespec`
 - [x] `.guppi/guppi/prespec.py`: `gate_refusal` and `run` with `--check` judge `plan_cases_text` of the plan file; the module docstring follows.
 - [x] `.guppi/guppi/casecheck.py`: the `SubagentStop` check reads the other Cases of the session by `plan_cases_text`; the module docstring follows.
 - [x] `.guppi/guppi/gate.py`: `spec_check` reads the plan by `plan_cases_text`; the module docstring follows.
 - [x] `.guppi/tests/test_ledger.py`: under `-k cases_file`, `plan_cases_text` on a plan file with and without a Cases file, and each reader — `prespec --check`, `gate_refusal`, the check of a Case file and `spec_check` — on a Case that stands only in the Cases file.
-- [ ] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
+- [x] `uv run --project .guppi guppi render`: `.claude/skills/pre-spec/SKILL.md`
 - [ ] read `estimate-spec-write-readers-take-the-cases-file`
 ```
 
@@ -864,7 +864,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `estimate-compact-recall-reloads`
+- [x] update `estimate-compact-recall-reloads`
 - [x] `.guppi/guppi/recall.py`: before the approval `recall` names the plan file and then its Cases file by `plan_cases_file` of `.guppi/guppi/ledger.py` when that file stands; the module docstring follows.
 - [x] `.guppi/tests/test_recall.py`: a compaction before the approval with a Cases file beside the plan file names both paths in that order, and one with no Cases file names the plan file alone.
 - [ ] read `estimate-compact-recall-reloads`
@@ -934,7 +934,7 @@ update:
 ```
 
 ```tasks
-- [ ] update `rule-orchestration`
-- [ ] update `insight-orchestration-frontier-closer-leaves-the-box-open`
-- [ ] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
+- [x] update `rule-orchestration`
+- [x] update `insight-orchestration-frontier-closer-leaves-the-box-open`
+- [x] `uv run --project .guppi guppi render`: `vault/wiki/orchestration.md`
 ```

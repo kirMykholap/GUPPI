@@ -9,7 +9,7 @@
 | Case | Name | ⛔ open stops | 🔍 open checks |
 |---|---|---|---|
 | 1084 | The style check runs before each stop of Work Mode | 0 | 1 |
-| 1085 | The map of the plan has real boxes that follow the ticks of spec.md | 0 | 4 |
+| 1085 | The map of the plan has real boxes that follow the ticks of spec.md | 0 | 1 |
 | 1086 | The first sketch in README.md is a picture under 1 MB | 0 | 0 |
 
 ```mermaid
@@ -77,13 +77,13 @@ flowchart TD
   - [x] read `estimate-generate-ticks-the-spec`
 - 🧩 **1085.6 — render ticks the Spec, and the map follows** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
   - [x] update `estimate-render-harness-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document
-  - [ ] 🔍 read `estimate-render-harness-ticks-the-spec`
+  - [x] read `estimate-render-harness-ticks-the-spec`
 - 🧩 **1085.7 — sprint ticks the Spec, and the map follows** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
   - [x] update `estimate-sprint-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document; the method names the librarian's run as the event it waits for
-  - [ ] 🔍 read `estimate-sprint-ticks-the-spec`
+  - [x] read `estimate-sprint-ticks-the-spec`
 - 🧩 **1085.8 — glossary ticks the Spec, and the map follows** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
   - [x] update `estimate-glossary-ticks-the-spec` — the Criterion replaced whole — nothing else in the file changes but the map of an approved document
-  - [ ] 🔍 read `estimate-glossary-ticks-the-spec`
+  - [x] read `estimate-glossary-ticks-the-spec`
 - 🧩 **1085.9 — An edit runs on a file that a command changed after the last edit** · `vault/raw/2026-11-27/1402/cases/case-1085.md`
   - [x] create `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed` — Whether Claude Code runs an Edit of a file that a command rewrote after the last Edit of the agent, with no new Read asked for, as the hook of rule-spec-write rewrites spec.md between two ticks of Work Mode
   - [x] by hand: the trial of the method of `estimate-sprint-plugin-edit-takes-a-file-a-hook-changed`, its result named in the reply that finishes the task.
@@ -447,7 +447,7 @@ update:
 
 ```tasks
 - [x] update `estimate-render-harness-ticks-the-spec`
-- [ ] read `estimate-render-harness-ticks-the-spec`
+- [x] read `estimate-render-harness-ticks-the-spec`
 ```
 
 ### Case 1085.7 — sprint ticks the Spec, and the map follows
@@ -482,7 +482,7 @@ update:
 
 ```tasks
 - [x] update `estimate-sprint-ticks-the-spec`
-- [ ] read `estimate-sprint-ticks-the-spec`
+- [x] read `estimate-sprint-ticks-the-spec`
 ```
 
 ### Case 1085.8 — glossary ticks the Spec, and the map follows
@@ -516,7 +516,7 @@ update:
 
 ```tasks
 - [x] update `estimate-glossary-ticks-the-spec`
-- [ ] read `estimate-glossary-ticks-the-spec`
+- [x] read `estimate-glossary-ticks-the-spec`
 ```
 
 ### Case 1085.9 — An edit runs on a file that a command changed after the last edit

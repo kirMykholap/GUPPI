@@ -8,7 +8,7 @@ method: "by hand, after the librarian's run that renders vault/wiki/orchestratio
 checked: 2026-10-31
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, session]
 core: true
 ---
@@ -31,4 +31,4 @@ The hook refuses the call by `permissionDecision: deny`, with a reason that name
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

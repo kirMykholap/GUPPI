@@ -8,7 +8,7 @@ method: "by hand, after the librarian's run of a session whose .claude/agents/li
 checked: 2026-11-02
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, librarian]
 core: true
 ---
@@ -32,4 +32,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

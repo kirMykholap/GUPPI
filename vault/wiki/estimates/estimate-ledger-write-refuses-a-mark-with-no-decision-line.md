@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped pay
 checked: 2026-10-06
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness, ledger]
 core: true
 ---
@@ -34,4 +34,4 @@ When no decision line of Case N stands before the lesson line — in the session
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

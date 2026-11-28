@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_materialize.py, the tests of the skip
 checked: 2026-09-24
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -28,4 +28,4 @@ The unit is skipped and one line naming it is printed on stdout; no `materialize
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

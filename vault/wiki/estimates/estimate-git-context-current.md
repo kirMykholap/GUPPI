@@ -8,7 +8,7 @@ method: "by hand, after a /hi: the first turn's context and .claude/skills/hi/SK
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, harness, git]
 core: true
 ---
@@ -28,4 +28,4 @@ The context holds `Render:` with the output of `uv run --project .guppi guppi re
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

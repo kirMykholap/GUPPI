@@ -8,7 +8,7 @@ method: "by hand, after the Retro of the session that follows a session whose ap
 checked: 2026-11-02
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, case-build]
 core: true
 ---
@@ -30,4 +30,4 @@ Each step, skill or place of code that reads that output or does the same step, 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

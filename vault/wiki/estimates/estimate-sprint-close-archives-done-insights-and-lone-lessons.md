@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_sprint_close.py -k insights; by hand, the outpu
 checked: 2026-10-04
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, workflow]
 core: true
 ---
@@ -32,4 +32,4 @@ Each Insight under `vault/wiki/insights/` whose `sprint` is `<id>` and that stan
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

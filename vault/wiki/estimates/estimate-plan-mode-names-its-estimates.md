@@ -8,7 +8,7 @@ method: "by hand at the close of a session: each Case that updates a Purpose or 
 checked: 2026-09-24
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -28,4 +28,4 @@ A Case that updates a rule's `Purpose` names no Estimate for it in its `then` bl
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

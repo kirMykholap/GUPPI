@@ -28,9 +28,12 @@ markers = ["live: reads the live vault of this repository; run by -m live"]
 addopts = '-m "not live"'
 
 # The `guppi` entry point needs the project installed into the venv, which needs a build
-# backend. uv's own is a build-time requirement, fetched once, not a runtime dependency.
+# backend. uv's own is a build-time requirement, not a runtime dependency. uv builds with
+# the copy of the build tool it carries when its version is inside this range, and
+# downloads one inside the range otherwise; the upper bound keeps out a later build tool
+# with breaking changes.
 [build-system]
-requires = ["uv_build>=0.11,<0.12"]
+requires = ["uv_build>=0.11,<0.14"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]

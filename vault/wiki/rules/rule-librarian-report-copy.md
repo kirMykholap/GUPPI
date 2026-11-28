@@ -9,7 +9,7 @@ parent: "[[rule-documentation]]"
 estimates: ["[[estimate-librarian-report-copy-writes-the-file]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, librarian]
 core: true
 ---
@@ -20,4 +20,4 @@ Prevents the librarian's report from standing in no file when Claude Code refuse
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

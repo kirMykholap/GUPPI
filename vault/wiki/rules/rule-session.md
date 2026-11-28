@@ -7,7 +7,7 @@ children: ["[[rule-session-start]]", "[[rule-plan-mode]]", "[[rule-work-mode]]",
 estimates: []
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -18,4 +18,4 @@ Prevents a phase of the session from running out of its turn. A session is five 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

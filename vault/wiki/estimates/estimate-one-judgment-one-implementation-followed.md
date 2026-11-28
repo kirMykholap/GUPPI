@@ -8,7 +8,7 @@ method: render --check exit 0, then by hand the section in CLAUDE.md and the dif
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, tests]
 core: true
 ---
@@ -30,4 +30,4 @@ The pattern or the predicate lives in one module, and both sides import it.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

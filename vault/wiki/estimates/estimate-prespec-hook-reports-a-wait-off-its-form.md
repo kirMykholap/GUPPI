@@ -7,7 +7,7 @@ purpose: Whether pre-spec prints a note, with no exit code, for a method part th
 method: uv run --project .guppi pytest .guppi/tests/test_prespec.py .guppi/tests/test_lint.py -k off_form
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -33,4 +33,4 @@ A `method` with a part between two `;` that names an event before a colon behind
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

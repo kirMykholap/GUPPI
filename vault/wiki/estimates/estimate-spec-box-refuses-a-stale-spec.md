@@ -3,12 +3,12 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-spec-box]]"
-purpose: Whether guppi box --check refuses a conserved Spec whose folder lacks carry.md or its branch, a run from main, a session that ratified a Case of its own, a page of the Spec changed by a later Case, and a page the Spec creates that now stands — and passes any other
+purpose: Whether guppi box --check refuses a conserved Spec whose folder lacks carry.md or its branch, a run from the main branch that guppi.toml names or a value of that key the settings refuse, a session that ratified a Case of its own, a page of the Spec changed by a later Case, and a page the Spec creates that now stands — and passes any other
 method: uv run --project .guppi pytest .guppi/tests/test_box.py
-checked: 2026-10-13
+checked: 2026-11-26
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, git, harness]
 core: true
 ---
@@ -21,7 +21,8 @@ Someone runs `uv run --project .guppi guppi box --check <folder> --session <id>`
 Then:
 It prints one line for each reason the Spec cannot run now, and exits 1 when it prints any; with no reason it prints nothing and exits 0.
 **＋** A folder that `is_carried_over` of `.guppi/guppi/materialize.py` does not judge marked is one reason, and so is a folder for which no branch `spec/<date>-<HHMM>` exists.
-**＋** A current branch `main` is one reason: the shared branch is never `main`.
+**＋** A current branch that is the main branch, the name that `main_branch` of `.guppi/guppi/config.py` reads from `guppi.toml`, `main` where `guppi.toml` holds no key, is one reason: the shared branch is never the main branch.
+**＋** A value of the key `main_branch` of `guppi.toml` that `.guppi/guppi/config.py` refuses is one reason, naming the file and the key.
 **＋** A decision line other than a `defer` in the ledger of the session's folder is one reason, naming its Case.
 **＋** A live page named by an `update`, `delete` or `defer` item of the folder's `spec.md` is one reason when a line of its History names the Decision page of a later Case, read by `.guppi/guppi/caseid.py`: a plain id whose whole part is higher than that of every Case of that Spec with a plain id, when the Spec holds one; an id of a sprint whose number is higher than that of every Case of that Spec of the same sprint; or an id of a sprint of which the Spec holds no Case, on a History line dated on or after the date of the folder. The line names the page and that Decision page.
 **＋** A slug that a `create` item of that Spec names and a live page carries is one reason, naming the slug.
@@ -29,8 +30,8 @@ It prints one line for each reason the Spec cannot run now, and exits 1 when it 
 
 ## Result
 
-2026-10-13, passed in the repository of GUPPI.
+2026-11-26, passed in the repository of GUPPI.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

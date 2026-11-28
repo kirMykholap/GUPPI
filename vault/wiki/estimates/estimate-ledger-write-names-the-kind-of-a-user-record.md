@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_ledger.py -k kind; by h
 checked: 2026-10-02
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness, ledger]
 core: true
 ---
@@ -33,4 +33,4 @@ One function of `.guppi/guppi/ledger.py` names the kind of a `user` record of th
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

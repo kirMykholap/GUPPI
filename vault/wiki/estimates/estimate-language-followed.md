@@ -8,7 +8,7 @@ method: "by hand, after the close of a session: CLAUDE.md against the Render of 
 checked: 2026-09-28
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render, workflow]
 core: true
 ---
@@ -33,4 +33,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -11,7 +11,7 @@ parent: "[[rule-skill-hi]]"
 estimates: ["[[estimate-ledger-tail]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, harness, ledger]
 core: true
 ---
@@ -32,4 +32,4 @@ Tail: !`uv run --project .guppi guppi tail`
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

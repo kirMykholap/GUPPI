@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k dropped
 checked: 2026-10-05
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -33,4 +33,4 @@ For each number of the family of a top-level Case N in the file that has a secti
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -8,7 +8,7 @@ method: one reading by hand at a /retro in a session whose work.md Baseline hold
 checked: 2026-10-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -32,4 +32,4 @@ Retro counts each failing test and each lint finding line that `## Baseline` hol
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

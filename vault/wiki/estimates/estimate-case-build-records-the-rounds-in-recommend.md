@@ -8,7 +8,7 @@ method: "by hand, after a render of rule-case-build: the Case files of a session
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -36,4 +36,4 @@ The `recommend` of the Case is a list with one item per question of the rounds o
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

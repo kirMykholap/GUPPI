@@ -11,7 +11,7 @@ parent: "[[rule-harness]]"
 estimates: ["[[estimate-search-leaves-out-decisions-in-every-agent]]", "[[estimate-search-leaves-out-decisions-by-the-grep-hook]]", "[[estimate-search-leaves-out-decisions-refuses-ask-guppi]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, session]
 core: true
 ---
@@ -35,4 +35,4 @@ This file binds the main agent, `ask-guppi` and `case-guppi`. The librarian foll
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

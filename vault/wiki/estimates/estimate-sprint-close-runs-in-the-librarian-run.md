@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_sprint_close.py -k tick; by hand, after the li
 checked: 2026-10-10
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, workflow, librarian]
 core: true
 ---
@@ -32,4 +32,4 @@ The ledger of the session holds the decision lines of the closing Case and of th
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

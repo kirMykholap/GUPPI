@@ -5,10 +5,10 @@ status: passed
 target: "[[rule-case-check]]"
 purpose: Whether the Stop run of the Case check lets through a reply that shows a round of case-guppi after a text of the main agent's own, and the run on UserPromptSubmit tells the agent of it at the person's next message, judging only what follows the last refusal in the turn, only the first line after pre-spec, and no turn with no round
 method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k round
-checked: 2026-10-09
+checked: 2026-11-20
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -16,14 +16,14 @@ core: true
 ## Criterion
 
 When:
-A reply of the main agent shows a round of `case-guppi`, `Stop` fires and `uv run --project .guppi guppi casecheck` of `.guppi/guppi/casecheck.py` runs on it. Then the person sends a message, and `uv run --project .guppi guppi casecheck --prompt` runs on `UserPromptSubmit`, as `.claude/settings.json` registers it.
+A reply of the main agent shows a round of `case-guppi`, `Stop` fires and `guppi casecheck` of `.guppi/guppi/casecheck.py` runs on it. Then the person sends a message, and `guppi casecheck --prompt` runs on `UserPromptSubmit`, as `.claude/settings.json` registers it.
 
 Then:
-At `Stop`, `uv run --project .guppi guppi casecheck` refuses no reply for the way it opens a round of `case-guppi`, or for a text of the main agent's own before the round. Its other reasons stand.
-**＋** On `UserPromptSubmit`, `uv run --project .guppi guppi casecheck --prompt` judges the last reply of the main agent before the person's message, and the turn that reply ends. The turn holds a round when a text that `case-guppi` gave back in it is a round by `is_round` of `.guppi/guppi/casecheck.py`.
-**＋** It finds a fault when the first line of the reply that is neither blank nor the horizontal rule `---` opens neither with `❓ ` nor with a bold label that ends in a colon. While the session's event log holds no `prespec` line of this session after its `hi`, it also finds a fault when the main agent wrote text in the turn after the first round came back and before its last tool call. It judges only the texts after the reply that the last refusal of `uv run --project .guppi guppi casecheck` in the turn follows, judged by `refusals` of `.guppi/guppi/ledger.py`.
+At `Stop`, `guppi casecheck` refuses no reply for the way it opens a round of `case-guppi`, or for a text of the main agent's own before the round. Its other reasons stand.
+**＋** On `UserPromptSubmit`, `guppi casecheck --prompt` judges the last reply of the main agent before the person's message, and the turn that reply ends. The turn holds a round when a text that `case-guppi` gave back in it is a round by `is_round` of `.guppi/guppi/casecheck.py`.
+**＋** It finds a fault when the first line of the reply that is neither blank nor the horizontal rule `---` opens neither with `❓ ` nor with a bold label that ends in a colon. While the session's event log holds no `prespec` line of this session after its `hi`, it also finds a fault when the main agent wrote text in the turn after the first round came back and before its last tool call. It judges only the texts after the reply that the last refusal of `guppi casecheck` in the turn follows, judged by `refusals` of `.guppi/guppi/ledger.py`.
 **＋** On a fault it prints one line to stdout, which reaches the agent's context. The line quotes the text before the round, says that the round stands as shown and is not shown again, and tells the agent to open the next round with its Context paragraph or its first question, with nothing before it but a horizontal rule.
-**＋** `.claude/settings.json` registers `uv run --project .guppi guppi casecheck --prompt` on `UserPromptSubmit`, as `rule-hook-registry` renders it.
+**＋** `.claude/settings.json` registers `uv run --project "${CLAUDE_PROJECT_DIR}/.guppi" guppi casecheck --prompt` on `UserPromptSubmit`, as `rule-hook-registry` renders it.
 **－** A reply that opens with the horizontal rule `---` before its round gets no note for it, and neither does a reply with no rule before its round.
 **－** With no fault, in a turn with no round, and for text after the last question, it prints nothing.
 **－** It exits 0 always and never blocks the person's message. An error of its own goes to stderr.
@@ -32,8 +32,8 @@ At `Stop`, `uv run --project .guppi guppi casecheck` refuses no reply for the wa
 
 ## Result
 
-2026-10-09, passed in the repository of GUPPI.
+2026-11-20, passed in the repository of GUPPI.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

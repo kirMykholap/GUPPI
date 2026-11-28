@@ -7,7 +7,7 @@ purpose: One bad entry does not stop the run
 method: pytest in .guppi/tests/test_materialize.py, the tests of the failed and unreadable entries
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger, tests]
 core: true
 ---
@@ -42,4 +42,4 @@ stops the walk with exit 1.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

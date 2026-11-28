@@ -8,7 +8,7 @@ method: by hand in a later session — the person's messages of one session read
 checked: 2026-09-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render, workflow]
 core: true
 ---
@@ -30,4 +30,4 @@ The person raised no complaint in the session that the agent's text broke the se
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

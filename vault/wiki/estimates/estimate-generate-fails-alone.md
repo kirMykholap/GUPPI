@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_generate.py, the tests of the failed, skipped a
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger, tests]
 core: true
 ---
@@ -35,4 +35,4 @@ An entry that fails — a collision, a `ref` naming no page, a `replace` absent 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

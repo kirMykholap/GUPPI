@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_generate.py against a temp vault; the live r
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -47,4 +47,4 @@ A `create` becomes a page: `type`, the fields of the entry, `status` by category
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -9,7 +9,7 @@ parent: "[[rule-end-of-work]]"
 estimates: ["[[estimate-retro-commit-gates]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, hooks, harness, git]
 core: true
 ---
@@ -23,4 +23,4 @@ separate layer.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

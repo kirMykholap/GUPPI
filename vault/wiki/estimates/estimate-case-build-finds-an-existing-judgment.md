@@ -8,7 +8,7 @@ method: "by hand: the Render of rule-case-build in .claude/agents/case-guppi.md 
 checked: 2026-10-13
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -35,4 +35,4 @@ Before it writes the task, `case-guppi` searches `.guppi/guppi/` for the words o
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

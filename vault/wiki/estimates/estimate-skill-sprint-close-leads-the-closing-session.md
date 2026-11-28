@@ -3,12 +3,12 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-skill-sprint-close]]"
-purpose: Whether /sprint-close refuses on a branch that does not hold origin/main and in a session that ratified another Case, puts off the other Cases lines, sorts the readings and has the closing Case built with the close line, while orchestration.md no longer holds the steps of the closing session
+purpose: Whether /sprint-close refuses on a branch that does not hold the main branch of origin and in a session that ratified another Case, puts off the other Cases lines, sorts the readings and has the closing Case built with the close line, while orchestration.md no longer holds the steps of the closing session
 method: "by hand: the Render of rule-skill-sprint-close in .claude/skills/sprint-close/SKILL.md and vault/wiki/orchestration.md read against the Criterion"
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, workflow, harness]
 core: true
 ---
@@ -34,4 +34,4 @@ Writing nothing into `.git`, the main agent first runs `gh api repos/{owner}/{re
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

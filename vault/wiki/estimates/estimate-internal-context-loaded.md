@@ -8,7 +8,7 @@ method: by hand, the text of .claude/skills/hi/SKILL.md as rendered, or, at the 
 checked: 2026-10-06
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, harness]
 core: true
 ---
@@ -30,4 +30,4 @@ The text of `vault/wiki/sprint.md`, `vault/wiki/backlog.md`, `vault/wiki/brief.m
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

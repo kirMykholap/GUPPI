@@ -10,7 +10,7 @@ parent: "[[rule-claude-md]]"
 estimates: ["[[estimate-one-judgment-one-implementation-followed]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, render, tests]
 core: true
 ---
@@ -29,4 +29,4 @@ Where code judges the same text in two places — a check and a writer, a ticker
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

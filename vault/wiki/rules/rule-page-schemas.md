@@ -8,7 +8,7 @@ children: ["[[rule-entities-schema]]", "[[rule-rules-schema]]", "[[rule-estimate
 estimates: ["[[estimate-page-schemas-one-file-per-rule]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render, schema]
 core: true
 ---
@@ -19,4 +19,4 @@ Prevents the shape of a page category from living in a file nobody ratified. Eac
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

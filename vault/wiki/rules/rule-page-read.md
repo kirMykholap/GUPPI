@@ -9,7 +9,7 @@ parent: "[[rule-harness]]"
 estimates: ["[[estimate-page-read-cuts-the-history]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness]
 core: true
 ---
@@ -20,4 +20,4 @@ Prevents an agent from reading the History of a vault page it did not ask for. E
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

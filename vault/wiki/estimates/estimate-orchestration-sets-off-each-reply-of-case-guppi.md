@@ -7,7 +7,7 @@ purpose: Whether each reply of case-guppi that the main agent shows — a round,
 method: "by hand: the Render of rule-orchestration in vault/wiki/orchestration.md read against the Criterion, recorded in the estimate line"
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -29,4 +29,4 @@ A horizontal rule stands on its own line before the reply of `case-guppi`.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

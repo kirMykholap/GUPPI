@@ -2,15 +2,15 @@
 type: rule
 kind: Leaf
 purpose: Prevents a Spec whose work was not done from being applied to the vault
-status: built
+status: draft
 enforcement: render
 governs: .claude/skills/carry/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
-estimates: ["[[estimate-carry-over-writes]]"]
+estimates: []
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, render]
 core: true
 ---
@@ -41,7 +41,7 @@ stop and say: work was done, the ordinary exit applies — Work Mode, `/retro`, 
 Otherwise:
 1. Rewrite `vault/wiki/brief.md` by the frame of `rule-brief` — the text between the `rule-brief` markers of `.claude/agents/librarian-guppi.md` — in its short shape as that frame says: Where
    things stand names the conserved Spec — `vault/raw/<hi date>/<hi HHMM>/spec.md`, its
-   Cases, what is not done on it; no Readings due, no Readings at the close, no Deferred list — the conserved Spec and its targets stand in `backlog.md`; Flags say what the vault does not know about this session; Next session keeps its three lists, one line per item, a list with no item the line "none": `Cases` always the line "none" — a deferred decision reaches `/hi` through `backlog.md`, a sprint item through the sprint page; `Work` each open `W` line of `vault/raw/<hi date>/<hi HHMM>/frontier.md`; `Ask the person` each open `A` line of it, with its Estimate by slug, the mark `needs the person` and its question. `/hi` takes its Work list from Next session alone, so a line left out is lost to the next session.
+   Cases, what is not done on it; no Readings due, no Readings at the close, no Deferred list — the conserved Spec and its targets stand in `backlog.md`; Flags say what the vault does not know about this session; Next session keeps its three lists, one line per item, a list with no item the line "none": `Cases` always the line "none" — a deferred decision reaches `/hi` through `backlog.md`, a sprint item through the sprint page; `Work` each open `W` line of `vault/raw/<hi date>/<hi HHMM>/frontier.md`; `Ask the person` each open `A` line of it that names an Estimate, with its Estimate by slug, the mark `needs the person` and its question; an open line of the source `stop`, which waits for a file, data or an action of the person before a `stop:` task, stays out, since that task stops `/box` in the session that runs the Spec. `/hi` takes its Work list from Next session alone, so a line left out is lost to the next session.
 2. Write `vault/raw/<hi date>/<hi HHMM>/carry.md` with one line: `conserved — delete
    this file when the work of spec.md is done`. Its presence tells `guppi materialize` to pass the unit by, and `guppi backlog` to show the Spec under its conserved Specs. Then run `uv run --project .guppi guppi backlog`; every line on its stderr goes into the reply.
 3. Run `uv run --project .guppi guppi style`, then commit `vault/raw/`, `vault/wiki/brief.md` and `vault/wiki/backlog.md`:
@@ -54,4 +54,4 @@ materialize`, `generate`, `cleanup` or `render`; write no page under `vault/wiki
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

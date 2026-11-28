@@ -8,7 +8,7 @@ method: "uv run --project .guppi pytest .guppi/tests/test_config.py and uv run -
 checked: 2026-09-28
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render]
 core: true
 ---
@@ -33,4 +33,4 @@ Each `{{documentation_lang}}` and `{{chat_lang}}` in the `## Render` of a render
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -8,7 +8,7 @@ method: "by hand at Retro of the session that changes it: the new Render of rule
 checked: 2026-10-26
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -38,4 +38,4 @@ The main agent sends each finding in a Case, with each answer of the report that
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

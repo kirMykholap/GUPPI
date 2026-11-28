@@ -11,7 +11,7 @@ children: ["[[rule-language]]", "[[rule-agent-writing]]", "[[rule-one-judgment-o
 estimates: ["[[estimate-claude-md-rendered]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render]
 core: true
 ---
@@ -45,4 +45,4 @@ Rendered in full into `CLAUDE.md`; each child — `rule-language`, `rule-agent-w
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

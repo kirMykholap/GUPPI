@@ -7,7 +7,7 @@ purpose: "--show prints the yaml and writes nothing under raw/"
 method: pytest in .guppi/tests/test_materialize.py, the tests of the --show path
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger, tests]
 core: true
 ---
@@ -29,4 +29,4 @@ Stdout holds the yaml each date would be written with — entries, `unparsed`,
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

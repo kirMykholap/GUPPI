@@ -8,7 +8,7 @@ method: "uv run --project .guppi pytest .guppi/tests/test_onward.py; by hand at 
 checked: 2026-10-07
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, hooks, harness]
 core: true
 ---
@@ -38,4 +38,4 @@ A Case N is still out when a file `case-<N>.md` under `raw/<date>/<hi HHMM>/case
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

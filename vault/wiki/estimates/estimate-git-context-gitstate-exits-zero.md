@@ -7,7 +7,7 @@ purpose: Whether guppi gitstate prints the branch and the status in a git reposi
 method: uv run --project .guppi pytest .guppi/tests/test_gitstate.py
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, harness, git]
 core: true
 ---
@@ -28,4 +28,4 @@ In a git repository, it prints the current branch, then a line `Status:` and the
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

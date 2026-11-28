@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_lint.py, one test per defect class; the live
 checked: 2026-09-24
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -33,4 +33,4 @@ Each finding is one line `<category>/<slug>: <class>: <what>`; exit 1 on any fin
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

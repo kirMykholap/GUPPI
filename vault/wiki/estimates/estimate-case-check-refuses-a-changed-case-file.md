@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k changed
 checked: 2026-10-06
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -31,4 +31,4 @@ The hook reads the Cases of that file by `split_cases` of `.guppi/guppi/material
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

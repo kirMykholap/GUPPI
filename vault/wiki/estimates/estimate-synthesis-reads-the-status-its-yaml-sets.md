@@ -8,7 +8,7 @@ method: one reading by hand of the yaml, the Insight page and the brief after a 
 checked: 2026-10-05
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, librarian]
 core: true
 ---
@@ -31,4 +31,4 @@ A lesson entry with no `addressed_by` gives an `update` of the Insight with `chi
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -7,7 +7,7 @@ purpose: Whether guppi prespec --check prints a note, at every run and without b
 method: uv run --project .guppi pytest .guppi/tests/test_prespec.py -k defers_a_page
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -33,4 +33,4 @@ The check prints one line that opens with `note:` for each page and pair of Case
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

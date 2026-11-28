@@ -8,7 +8,7 @@ method: "by hand at the Retro of the session that changes it: the new Render of 
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, orchestration]
 core: true
 ---
@@ -30,4 +30,4 @@ Before a reply that states such a fact as its own, the main agent has read that 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

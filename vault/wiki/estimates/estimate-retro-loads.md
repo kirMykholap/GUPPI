@@ -7,7 +7,7 @@ method: by hand, the text of .claude/skills/retro/SKILL.md as rendered, or, at t
 checked: 2026-10-12
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -37,4 +37,4 @@ A reading measures the Criterion the page carries at the moment of the reading â
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

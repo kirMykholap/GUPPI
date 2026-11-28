@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_ratified.py -k changed_
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -30,4 +30,4 @@ The hook compares the Cases of that file with the entries of the store under the
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

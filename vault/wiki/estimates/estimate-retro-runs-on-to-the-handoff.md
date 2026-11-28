@@ -8,7 +8,7 @@ method: "by hand at a run from /work to the librarian: the replies of the turn, 
 checked: 2026-10-07
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -37,4 +37,4 @@ Retro asks for no approval: it sorts the boxes of `raw/<date>/<hi HHMM>/spec.md`
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

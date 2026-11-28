@@ -8,7 +8,7 @@ method: "by hand, at Retro: vault/wiki/orchestration.md read against the Criteri
 checked: 2026-11-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -52,4 +52,4 @@ The main agent dispatches `case-guppi` with the Case id, the Frontier item and i
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

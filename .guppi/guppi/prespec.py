@@ -1,7 +1,8 @@
 """`guppi prespec` — the `PreToolUse ExitPlanMode` hook that holds Plan Mode open until
 `/pre-spec` has run in this session and the check of its plan finds nothing; `guppi
 prespec --check <plan> [--session ID]` — the check of that Plan Mode's artifacts against
-each other.
+each other, the Cases read from the plan file and then its Cases file by
+`ledger.plan_cases_text`.
 
 The hook reads the event logs by the session's stamp — the logs from today
 back to the date of this session's `session-start`, as the ledger hook reads them, so a
@@ -10,8 +11,10 @@ working one when the logs hold a `hi` of its stamp. In a working session with no
 the same stamp after that `hi`, the hook exits 2 with the reason on stderr, which Claude
 Code shows the agent and which blocks the tool; the agent runs `/pre-spec` — `guppi gate`
 writes the stamped line on the Skill call — and exits Plan Mode again. With
-the line, the hook finds the plan file of the session by `ledger.plan_path` and judges it
-by `plan_findings`, the same function `--check` prints, not a copy; while it finds one,
+the line, the hook finds the plan file of the session by `ledger.plan_path` and judges the
+Cases of the plan — the plan file and then the Cases file `<plan stem>.cases.md` beside it, by
+`ledger.plan_cases_text`, the one reading `--check` takes too — by
+`plan_findings`, the same function `--check` prints, not a copy; while it finds one,
 the hook exits 2 with the findings on stderr. A `note:` line does not block, and with no
 plan file of the session the exit passes on the line alone. A mark
 of another stamp or `--------` does not count, and a `session-start` of another session
@@ -46,7 +49,8 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - the frontier `raw/<hi date>/<hi HHMM>/frontier.md`: missing, an open `[ ]`
   line under `## Cases` — an open line under `## Work` waits for Work Mode and one under
   `## Ask` for the person, and neither is a finding; a closer — the last segment after ` · ` — none of `case N`, `work`,
-  `defer`, `kept` and `defer case N`; a box that disagrees with its closer — `[x]` takes
+  `defer`, `kept` and `defer case N`, judged by `line_closer`, the judgment that
+  `closed_boxes_without_closer` shares and the hook `guppi frontierguard` imports; a box that disagrees with its closer — `[x]` takes
   only `case N` or `work`, `[-]` only `defer`, `kept` or `defer case N`;
   `defer` after a source segment — the one standing immediately before the closer — other
   than `sprint`, `kept` after one other than `backlog`; `defer case N` after the source
@@ -111,7 +115,14 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
   sprint page `entity-sprint-<id>` — the `ref` of a `create`, the target of an `update` by
   `estimate_target`, the `target` of the live page — gives neither line: the Definition of
   done of a sprint may wait for a later session of it, up to the one that closes it, judged
-  by `ledger.is_sprint_page`;
+  by `ledger.is_sprint_page`; and a `create` of an Estimate, or an
+  `update` carrying `set: {method: …}`, whose `method` reads the transcript of a session in a
+  part by hand, by `lint.reads_a_transcript`, the one predicate, which lint does not run over
+  the live pages, and whose target is no sprint page, by `ledger.is_sprint_page`; and an
+  `update` that keeps such a `method` on a live page whose `target` is no sprint page, by
+  `kept_method`, while its new Criterion, by `new_criterion`, differs from the live one line
+  by line, by `criterion_line`, empty lines aside, so that a Criterion written back word for
+  word gives none, by `kept_transcript_readings`, which `judge` runs since it holds the Cases;
 - a condition of a schema not met: a `create` whose page, as `generate` writes
   it, or an `update` whose `set` gives the value a condition starts on, leaves the page
   without a field or a section the condition requires, by `lint.unmet_conditions`, the one
@@ -155,6 +166,11 @@ the ledgers of its dates, on the `hi` date from the `hi` time on, and its folder
 - a `tasks` line that opens with the bare word `render` or `sprint`, or with the command
   outside a code span — the tickers of `render` and `sprint` match the command in the
   first code span, a line of another form stays debt;
+- a Case whose `tasks` block holds a line that opens with `stop:` after its box and a render
+  line, matched by `render.command_line`, the one matcher of the tickers, of a file that its
+  `when` or `then` names in a code span: one finding per such file, since the file changes
+  only at the librarian's run and a reading at a stop of Work Mode tests its old text; the
+  two lines under two Case headings are no such finding (`check_stop_before_render`);
 - a `replace` pair of an Estimate `update` whose `old` stands inside the page's
   `## Criterion`, by `materialize.touches_criterion`, the one predicate — a Criterion
   changes only whole;
@@ -265,6 +281,7 @@ from guppi.ledger import (
     hi_moment,
     hi_recorded,
     is_sprint_page,
+    plan_cases_text,
     plan_path,
     session_dir,
     session_event_logs,
@@ -278,6 +295,7 @@ from guppi.lint import (
     names_a_form,
     names_a_moc_form,
     names_its_event_inside_a_part,
+    reads_a_transcript,
     tied_to_a_one_off_moment,
     unknown_links,
     unmet_conditions,
@@ -618,13 +636,13 @@ def decided_on_its_page(
     slug: str, deferred: list[str], records: list[dict], case: str, *, by_defer: bool = False
 ) -> tuple[bool, list[str]]:
     """The one judgment of a backlog item taken up by Case N, run by `/pre-spec` on a
-    closed line and by the check of the answer of `case-guppi` on an open one
-   . Of `records`, only the decision lines of Case N and its sub-cases are read.
-    Returns whether a line of them other than a `defer` names the page, and each Case M of
-    the page's `deferred_by` for which no Case among them both names the page on such a line
-    and carries `{supersedes:case M}` — `generate` clears a defer only from the pages the
-    superseding Case names. With `by_defer`, the judgment of an item put off
-    again, only the `defer` lines name the page."""
+     closed line and by the check of the answer of `case-guppi` on an open one
+    . Of `records`, only the decision lines of Case N and its sub-cases are read.
+     Returns whether a line of them other than a `defer` names the page, and each Case M of
+     the page's `deferred_by` for which no Case among them both names the page on such a line
+     and carries `{supersedes:case M}` — `generate` clears a defer only from the pages the
+     superseding Case names. With `by_defer`, the judgment of an item put off
+     again, only the `defer` lines name the page."""
     ours = [r for r in records if str(r["case"]) == case or str(r["case"]).startswith(f"{case}.")]
     naming = {
         str(r["case"]) for r in ours if r["slug"] == slug and (r["kind"] == "defer") == by_defer
@@ -706,6 +724,45 @@ def open_case_items(frontier: str) -> list[str]:
     return items
 
 
+def open_box_closers(frontier: str) -> list[tuple[str, str]]:
+    """The item and the closer of each box line of a Frontier, under any heading, whose box is
+    `[ ]` while its last segment after `FRONTIER_SEPARATOR` is a closer by `CLOSERS`: a line
+    the agent closed at its end and left open at its box. The one judgment that the hook
+    `guppi frontierguard` of `.guppi/guppi/frontierguard.py` imports."""
+    found: list[tuple[str, str]] = []
+    for line in frontier.splitlines():
+        match = FRONTIER_LINE.match(line)
+        if not match or match.group(1) != " ":
+            continue
+        last = match.group(3).split(FRONTIER_SEPARATOR)[-1].strip()
+        if FRONTIER_SEPARATOR in match.group(3) and CLOSERS.match(last):
+            found.append((match.group(2), last))
+    return found
+
+
+def line_closer(rest: str) -> re.Match | None:
+    """The closer of a Frontier box line, judged on what follows its item: its last segment
+    after `FRONTIER_SEPARATOR` matched by `CLOSERS`, the whole rest for a line with no
+    separator; None when that segment is no closer. The one judgment by which
+    `check_frontier` reports a closed line with no closer and `closed_boxes_without_closer`
+    names it."""
+    return CLOSERS.match(rest.split(FRONTIER_SEPARATOR)[-1].strip())
+
+
+def closed_boxes_without_closer(frontier: str) -> list[str]:
+    """The item of each box line of a Frontier, under any heading, whose box is `[x]` or `[-]`
+    while `line_closer` finds no closer, a line with no separator included: a line the agent
+    closed at its box and not at its end. The one judgment that the hook
+    `guppi frontierguard` of `.guppi/guppi/frontierguard.py` imports beside
+    `open_box_closers`."""
+    items: list[str] = []
+    for line in frontier.splitlines():
+        match = FRONTIER_LINE.match(line)
+        if match and match.group(1) != " " and line_closer(match.group(3)) is None:
+            items.append(match.group(2))
+    return items
+
+
 def conserved_blocks(plan: str, project_dir: Path | None) -> dict[str, dict]:
     """Case id → the merged `then` block of each Case of the conserved Spec whose `spec.md`
     the title line of the plan names, the folder found by `conserved_spec_named` of
@@ -761,7 +818,8 @@ def check_frontier(
     is read: `Backlog: N items` and an indented `- near` line are not.
 
     The closer, the last segment after ` · `, is one of `case N`, `work`, `defer`, `kept`
-    and `defer case N`, and the box agrees with it both ways — `[x]`, an item ended, takes
+    and `defer case N`, judged by `line_closer`, which `closed_boxes_without_closer` shares
+    and the hook `guppi frontierguard` imports through it, and the box agrees with it both ways — `[x]`, an item ended, takes
     only `case N` or `work`; `[-]`, an item put off, only `defer`, `kept` or
     `defer case N`. The source is the segment standing immediately before the
     closer; the word inside the slug of a title is not the source. `defer` alone
@@ -793,7 +851,7 @@ def check_frontier(
         if box == " ":
             continue
         segments = [s.strip() for s in rest.split(FRONTIER_SEPARATOR)]
-        closer = CLOSERS.match(segments[-1])
+        closer = line_closer(rest)
         if closer is None:
             findings.append(
                 f"frontier: {item} is closed without case N, work, defer, kept or defer case N"
@@ -900,6 +958,46 @@ def check_tasks(cases: dict, blocks: dict, records: list[dict]) -> list[str]:
     return findings
 
 
+STOP_LINE = re.compile(r"^- \[[ xX]\] stop:")  # a task that stops Work Mode (where-to-stop.md)
+
+
+def code_spans(text: str) -> list[str]:
+    """The text inside each code span of `text`, by `lint.CODE_SPAN`, the one span pattern."""
+    return [span.strip("`") for span in CODE_SPAN.findall(text) if span.strip("`")]
+
+
+def check_stop_before_render(cases: dict) -> list[str]:
+    """A Case whose `tasks` block holds a `stop:` line and a render line of a file that its
+    `when` or `then` names in a code span: one finding per such file — the file changes only
+    at the librarian's run, so a reading at a stop of Work Mode tests its old text. A render line is matched by `render.command_line`, the one matcher of the
+    tickers; its files are the code spans after the command's span. Each Case heading is
+    judged alone, so the two lines under two headings give no finding."""
+    from guppi.render import command_line  # the one matcher of a render line
+
+    render_line = command_line("guppi render")
+    findings: list[str] = []
+    for case, lines in cases.items():
+        tasks = "\n".join(tagged_blocks(lines, "tasks")).splitlines()
+        if not any(STOP_LINE.match(line) for line in tasks):
+            continue
+        rendered: list[str] = []
+        for line in tasks:
+            matched = render_line.match(line)
+            if matched:
+                rendered += code_spans(line[matched.end() :])
+        if not rendered:
+            continue
+        sections = quoted_sections(lines, ("when", "then"))
+        named = set(code_spans("\n".join(sections.values())))
+        findings += [
+            f"case {case}: stop before the render of {path} — the file changes only at the "
+            "librarian's run, so a reading at a stop of Work Mode tests its old text"
+            for path in dict.fromkeys(rendered)
+            if path in named
+        ]
+    return findings
+
+
 def governed_paths(project_dir: Path) -> dict[str, str]:
     """`governs` path → rule slug, over the live Rule pages."""
     paths: dict[str, str] = {}
@@ -975,6 +1073,15 @@ MOMENT = (
 WAITS = "method waits for another session — a method holds only what runs in its own session"
 KEPT_WAITS = (
     "the method on the page waits for another session — set a method that runs in this session"
+)
+# a transcript reading off a sprint page
+TRANSCRIPT = (
+    "method reads the transcript of a session off a sprint page — a lasting method reads a "
+    "text that ships, and a one-off Estimate of the sprint page reads the transcript"
+)
+KEPT_TRANSCRIPT = (
+    "the method on the page reads the transcript of a session — set a method that reads a "
+    "text that ships, and read the transcript by a one-off Estimate of the sprint page"
 )
 # a defer of an Estimate with no page
 NO_DEFERRED_ESTIMATE = "no such Estimate page — defer the page it would check"
@@ -1309,7 +1416,10 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     Estimate whose target is a sprint page, by `ledger.is_sprint_page`; a part
     that opens with `after`, or with `by hand, after`, and names its event before a colon
     waits for that event and is no such finding, judged by `lint.waits_for_an_event` through
-    `lint.waits_for_another_session`. When the
+    `lint.waits_for_another_session`. Such a `method` that reads the transcript of a
+    session in a part by hand, by `lint.reads_a_transcript`, on an Estimate whose target is no
+    sprint page, is a finding too; a kept `method` that does so is judged by
+    `kept_transcript_readings`, which `judge` runs. When the
     target of the Estimate is a MOC as the plan leaves it — by `plan_kind` — a `method` that
     names neither a `make <target>`, nor the word `pytest` with a test path, nor "by hand",
     nor, on a MOC with no `parent` as the plan leaves it — by `plan_parent` and
@@ -1333,7 +1443,7 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
     def form_finding(target: str, method: str) -> str | None:
         if plan_kind(blocks, target, project_dir) == "MOC":  # the forms of a MOC
             top = has_no_parent({"parent": plan_parent(blocks, target, project_dir)})
-            return None if names_a_moc_form(method, top) else MOC_NO_FORM  #
+            return None if names_a_moc_form(method, top) else MOC_NO_FORM
         return None if names_a_form(method) else NO_FORM  # the forms of a Leaf
 
     for case, block in blocks.items():
@@ -1357,6 +1467,8 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 ref
             ):  # a method that waits, off a sprint page
                 findings.append(f"case {case}: create {slug}: {WAITS}")
+            if reads_a_transcript(str(item.get("method") or "")) and not is_sprint_page(ref):
+                findings.append(f"case {case}: create {slug}: {TRANSCRIPT}")
         for item in block.get("update") or []:
             slug = item.get("slug") if isinstance(item, dict) else None
             if not slug or category_of(slug) != "estimates":
@@ -1380,6 +1492,12 @@ def check_form(blocks: dict, project_dir: Path) -> list[str]:
                 and not is_sprint_page(estimate_target(item, project_dir))
             ):  # a method that waits, off a sprint page
                 findings.append(f"case {case}: update {slug}: {WAITS}")
+            if (
+                method is not None
+                and reads_a_transcript(str(method))
+                and not is_sprint_page(estimate_target(item, project_dir))
+            ):  # a transcript reading off a sprint page
+                findings.append(f"case {case}: update {slug}: {TRANSCRIPT}")
             if method is None and kept_method_waits(item, project_dir):  # a kept wait
                 findings.append(f"case {case}: update {slug}: {KEPT_WAITS}")
         for item in block.get("defer") or []:  # a defer that writes no page
@@ -1471,6 +1589,32 @@ def kept_method_waits(item: dict, project_dir: Path) -> bool:
     if kept is None or is_sprint_page(kept[1]):
         return False
     return waits_for_another_session(kept[0])
+
+
+def kept_transcript_readings(cases: dict, blocks: dict, project_dir: Path) -> list[str]:
+    """Each `update` of an Estimate that keeps, by `kept_method`, a `method` that reads the
+    transcript of a session in a part by hand, by `lint.reads_a_transcript`, on a live page
+    whose `target` is no sprint page, by `ledger.is_sprint_page`, while its new Criterion, by
+    `new_criterion`, differs from the live `## Criterion` line by line, each line read by
+    `criterion_line` and empty lines aside: a Criterion written back word for word, as to set
+    the Estimate `pending` again, is no new Criterion."""
+    findings: list[str] = []
+    for case, block in blocks.items():
+        for item in block.get("update") or []:
+            slug = str(item.get("slug") or "") if isinstance(item, dict) else ""
+            if category_of(slug) != "estimates":
+                continue
+            kept = kept_method(item, project_dir)
+            if kept is None or is_sprint_page(kept[1]) or not reads_a_transcript(kept[0]):
+                continue
+            written = new_criterion(item, "update", case, cases)
+            new = [line for line in map(criterion_line, written.splitlines()) if line]
+            path = wiki_root(project_dir) / "estimates" / f"{slug}.md"
+            live = read_page(path, "estimates").section("## Criterion") or ""
+            old = [line for line in map(criterion_line, live.splitlines()) if line]
+            if new != old:
+                findings.append(f"case {case}: update {slug}: {KEPT_TRANSCRIPT}")
+    return findings
 
 
 def kept_method(item: dict, project_dir: Path) -> tuple[str, str] | None:
@@ -2194,11 +2338,13 @@ def judge(
             frontier[0], frontier[1], cases, blocks, records, project_dir, plan
         )
     findings += check_tasks(cases, blocks, records)
+    findings += check_stop_before_render(cases)
     findings += check_governed(blocks, governed_paths(project_dir))
     findings += check_keys(blocks, project_dir, schema_free)
     findings += check_conditions(blocks, project_dir, schema_free)
     findings += check_required(blocks, records, project_dir, schema_free)
     findings += check_form(blocks, project_dir)
+    findings += kept_transcript_readings(cases, blocks, project_dir)
     findings += check_markers(blocks, project_dir)
     findings += check_pairs(cases, blocks, project_dir)
     findings += check_bare_links(cases, blocks, project_dir)
@@ -2267,7 +2413,8 @@ def gate_refusal(project_dir: Path, now, stamp: str) -> str | None:
     plan_file = plan_path(logs, stamp)
     if plan_file is None or not plan_file.is_file():
         return None
-    judged = plan_findings(plan_file.read_text(encoding="utf-8"), project_dir, stamp, now)
+    # the plan file and then its Cases file
+    judged = plan_findings(plan_cases_text(plan_file), project_dir, stamp, now)
     if judged is None or not judged[0]:
         return None
     head = (
@@ -2340,7 +2487,7 @@ def run(
         if not plan_file.is_file():
             print(f"prespec: no plan file at {plan_file}", file=stderr)
             return 2
-        plan = plan_file.read_text(encoding="utf-8")
+        plan = plan_cases_text(plan_file)  # the plan file and then its Cases file
         stamp = resolve_session(args.session)
         if stamp is None:
             print(NO_SESSION, file=stderr)

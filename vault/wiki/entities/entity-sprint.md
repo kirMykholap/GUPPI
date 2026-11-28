@@ -8,7 +8,7 @@ estimates: ["[[estimate-sprint-keeps-one-live-page]]"]
 rules: ["[[rule-sprint]]", "[[rule-sprint-close]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, workflow]
 core: true
 ---
@@ -19,4 +19,4 @@ The sprint as a kind. A sprint is a unit of work over the project: its Estimates
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

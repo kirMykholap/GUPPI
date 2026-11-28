@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_prespec.py -k sprint �
 checked: 2026-09-27
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, sprint]
 core: true
 ---
@@ -29,4 +29,4 @@ A line closed `[x] … · sprint · case N` needs an `update` item of `entity-sp
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

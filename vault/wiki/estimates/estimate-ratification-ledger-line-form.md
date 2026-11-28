@@ -8,7 +8,7 @@ method: "by hand, at Retro: the decision and lesson lines that carry an addresse
 checked: 2026-11-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, ledger]
 core: true
 ---
@@ -33,4 +33,4 @@ A decision line is `- decision[case N][kind][slug]` with `{ref:...}` when the ta
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

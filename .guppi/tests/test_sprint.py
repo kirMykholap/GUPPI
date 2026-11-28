@@ -4,6 +4,8 @@ it differs and writes nothing."""
 
 import io
 
+import pytest
+
 from guppi import sprint
 
 SPRINT_PAGE = """---
@@ -146,6 +148,34 @@ def test_the_file_is_written_from_the_page_with_one_tick_per_item(tmp_path):
     assert rendered(tmp_path) == EXPECTED
 
 
+def test_a_failed_one_off_estimate_stays_unticked_and_keeps_its_status(tmp_path):
+    four = (
+        'estimates: ["[[estimate-sprint-migration-lint-clean]]", '
+        '"[[estimate-sprint-migration-merges]]", "[[estimate-sprint-migration-once]]", '
+        '"[[estimate-sprint-migration-lasting]]"]'
+    )
+    estimates_line = next(
+        line for line in SPRINT_PAGE.splitlines() if line.startswith("estimates:")
+    )
+    seed(tmp_path, SPRINT_PAGE.replace(estimates_line, four))
+    folder = tmp_path / "vault" / "wiki" / "estimates"
+    once = {"type": "estimate", "status": "failed", "once": "true", "purpose": "read once"}
+    lasting = {"type": "estimate", "status": "failed", "purpose": "a lasting check"}
+    for slug, props in (("once", once), ("lasting", lasting)):
+        (folder / f"estimate-sprint-migration-{slug}.md").write_text(
+            page(props), encoding="utf-8", newline="\n"
+        )
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    done_when = text.split("**Done when**\n\n", 1)[1].split("\n\n", 1)[0].splitlines()
+    assert done_when == [
+        "- [ ] make lint exits 0 · pending",
+        "- [x] the branch merged · passed",
+        "- [ ] read once · failed",
+        "- [ ] a lasting check · failed",
+    ]
+
+
 def test_the_first_heading_keeps_the_sprint_id(tmp_path):
     from guppi.materialize import sprint_id
 
@@ -272,6 +302,51 @@ def test_hi_prints_nothing_on_an_open_heading_another_prompt_or_no_file(tmp_path
     assert hi(tmp_path, "let us go on") == (0, "", "")
     (tmp_path / "vault" / "wiki" / "sprint.md").unlink()
     assert hi(tmp_path, "/hi") == (0, "", "")
+
+
+# --- the setup line on /hi -------------
+
+SETUP_LINE = (
+    "setup: the setup of this project is not done, guppi.toml holds setup_done = false: "
+    "start the skill /setup before /sprint-open and before the Frontier"
+)
+
+
+def settings(root, line: str) -> None:
+    text = 'documentation_lang = "en"\nchat_lang = "ru"\n' + line
+    (root / "guppi.toml").write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_hi_setup_pending_prints_the_setup_line_before_the_sprint_line(tmp_path):
+    seed(tmp_path)
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(CLOSED, encoding="utf-8")
+    settings(tmp_path, "setup_done = false\n")
+    code, out, err = hi(tmp_path, "/hi")
+    assert (code, err) == (0, "")
+    first, second = out.strip().split("\n")
+    # the clean version removes the bracket of the pointer from the code
+    assert first.removesuffix(" (rule-skill-setup, case 1017.3)") == SETUP_LINE
+    assert second.startswith("sprint: no sprint is open since the close of migration")
+
+
+@pytest.mark.parametrize("line", ["setup_done = true\n", "", None])
+def test_hi_setup_done_no_key_or_no_file_prints_no_setup_line(tmp_path, line):
+    seed(tmp_path)
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(CLOSED, encoding="utf-8")
+    if line is not None:
+        settings(tmp_path, line)
+    code, out, err = hi(tmp_path, "/hi")
+    assert (code, err) == (0, "")
+    assert "setup:" not in out and out.startswith("sprint: no sprint is open")
+
+
+def test_hi_setup_pending_prints_nothing_on_an_open_heading_or_another_prompt(tmp_path):
+    seed(tmp_path)
+    settings(tmp_path, "setup_done = false\n")
+    run(tmp_path)  # the open heading
+    assert hi(tmp_path, "/hi") == (0, "", "")
+    (tmp_path / "vault" / "wiki" / "sprint.md").write_text(CLOSED, encoding="utf-8")
+    assert hi(tmp_path, "let us go on") == (0, "", "")
 
 
 def test_the_cli_knows_the_command(monkeypatch, tmp_path, capsys):

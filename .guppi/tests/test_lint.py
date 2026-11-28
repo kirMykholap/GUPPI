@@ -369,7 +369,7 @@ def test_an_origin_in_neither_place_or_in_both_is_a_finding(tmp_path):
     ]
 
 
-def test_the_shipped_origin_is_no_finding_on_a_core_page_only(tmp_path):  #
+def test_the_shipped_origin_is_no_finding_on_a_core_page_only(tmp_path):
     seed(tmp_path, rule=rule_page(origin="guppi", core="true"))
     assert run(tmp_path) == (0, [], "")
     seed(tmp_path, rule=rule_page(origin="guppi"))
@@ -621,7 +621,6 @@ def test_a_draft_page_with_every_estimate_passed_is_a_finding_only_where_ship_st
     tmp_path, monkeypatch
 ):
     # the clean version keeps the status of a page and writes only its passed Estimates
-    #
     seed(tmp_path, rule=rule_page(status="draft"))
     ship_module(monkeypatch, stands=True)
     assert own_lines(tmp_path) == ["rules/rule-x: status: draft while every Estimate is passed"]
@@ -973,6 +972,27 @@ def test_waits_the_lint_run_gives_no_finding_on_a_live_page(tmp_path):
     assert run(tmp_path) == (0, [], "")
 
 
+def test_transcript_a_reading_by_hand_that_names_a_transcript_is_accepted():
+    # the predicate pre-spec imports; a `;` splits the parts of a method
+    for method in (
+        "by hand, at Retro: the reply read in the transcript of the session",
+        "pytest tests/test_x.py; by hand: the session file under ~/.claude/projects/ read",
+    ):
+        assert lint.reads_a_transcript(method), method
+    for method in (
+        "pytest .guppi/tests/test_x.py over a temp agent transcript",
+        "pytest tests/test_x.py; by hand at the Retro of this session: the Spec read",
+        "uv run --project .guppi guppi render --check; .claude/skills/hi/SKILL.md read",
+    ):
+        assert not lint.reads_a_transcript(method), method
+
+
+def test_transcript_the_lint_run_gives_no_finding_on_a_live_page(tmp_path):
+    method = "pytest tests/test_x.py; by hand, at Retro: the reply read in the transcript"
+    seed(tmp_path, rule=rule_page(status="built"), estimate=estimate_page(method=method))
+    assert run(tmp_path) == (0, [], "")
+
+
 def test_a_moc_method_needs_a_make_target_that_exists(tmp_path):
     wiki = seed(tmp_path, rule=rule_page(status="built"))
     write(
@@ -1086,6 +1106,9 @@ def test_cli_dispatches_to_lint(tmp_path, monkeypatch, capsys):
 
     seed(tmp_path, rule=rule_page(status="draft"))
     monkeypatch.setenv("CLAUDE_PROJECT_DIR", str(tmp_path))
+    # the status finding stands only where `ship_stands`, so the test passes in the clean
+    # version too, which holds no `guppi.ship`
+    monkeypatch.setattr(lint, "ship_stands", lambda: True)
     assert cli.main(["lint"]) == 1
     assert "rules/rule-x: status" in capsys.readouterr().out
 
@@ -1133,13 +1156,13 @@ def test_a_decision_with_none_of_the_four_lists_is_a_decision_finding(tmp_path):
     ]
 
 
-def test_a_parent_decision_with_children_and_no_kind_list_is_clean(tmp_path):  #
+def test_a_parent_decision_with_children_and_no_kind_list_is_clean(tmp_path):
     wiki = seed_decisions(tmp_path, decision_page("children: ['[[decision-case-50.1]]']"))
     write(wiki / "decisions" / "decision-case-50.1.md", decision_page("defer: [rule-x]"))
     assert not [line for line in run(tmp_path)[1] if "decision:" in line]
 
 
-def test_a_parent_decision_with_neither_is_a_decision_finding(tmp_path):  #
+def test_a_parent_decision_with_neither_is_a_decision_finding(tmp_path):
     seed_decisions(tmp_path, decision_page("children: []"))
     _, lines, _ = run(tmp_path)
     assert lines == [
@@ -1147,14 +1170,14 @@ def test_a_parent_decision_with_neither_is_a_decision_finding(tmp_path):  #
     ]
 
 
-def test_a_parent_origin_is_found_by_a_line_of_a_sub_case(tmp_path):  #
+def test_a_parent_origin_is_found_by_a_line_of_a_sub_case(tmp_path):
     seed(tmp_path, rule=rule_page(origin="raw/2026-09-10/1610/ledger.md#case-9"))
     ledger = "- decision[case 9.1][update][rule-x]{ref:rule-x}\n"
     write(tmp_path / "vault" / "raw" / "2026-09-10" / "1610" / "ledger.md", ledger)
     assert run(tmp_path) == (0, [], "")
 
 
-def test_a_parent_origin_with_no_line_of_either_is_an_origin_finding(tmp_path):  #
+def test_a_parent_origin_with_no_line_of_either_is_an_origin_finding(tmp_path):
     seed(tmp_path, rule=rule_page(origin="raw/2026-09-10/1610/ledger.md#case-9"))
     ledger = "- decision[case 91][update][rule-x]{ref:rule-x}\n"
     write(tmp_path / "vault" / "raw" / "2026-09-10" / "1610" / "ledger.md", ledger)
@@ -1273,7 +1296,7 @@ def status_lines(tmp_path):
 ONCE = "target {target} is not a sprint page; once: true marks a one-time Estimate"
 
 
-def test_a_one_time_estimate_on_a_rule_is_a_status_finding(tmp_path):  #
+def test_a_one_time_estimate_on_a_rule_is_a_status_finding(tmp_path):
     seed(tmp_path, estimate=estimate_page(once="true"))
     assert status_lines(tmp_path) == [
         "estimates/estimate-x-works: status: " + ONCE.format(target="rule-x")
@@ -1292,7 +1315,7 @@ def test_a_one_time_estimate_on_a_sprint_page_or_one_without_once_has_none(tmp_p
     assert not [line for line in status_lines(tmp_path) if "once: true" in line]
 
 
-def test_an_insight_nothing_names_is_not_an_orphan_finding(tmp_path):  #
+def test_an_insight_nothing_names_is_not_an_orphan_finding(tmp_path):
     wiki = seed(tmp_path)
     write(
         wiki / "insights" / "schema.yaml",

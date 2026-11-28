@@ -10,7 +10,7 @@ parent: "[[rule-claude-md]]"
 estimates: ["[[estimate-agent-writing-followed]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render, workflow]
 core: true
 ---
@@ -32,4 +32,4 @@ and what is not done; never leave the not-done implied.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

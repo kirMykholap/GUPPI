@@ -11,7 +11,7 @@ children: ["[[rule-materialize]]", "[[rule-index-check]]", "[[rule-synthesis]]",
 estimates: []
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, librarian, render]
 core: true
 ---
@@ -35,9 +35,9 @@ hooks:
   PostToolUse:
     - hooks:
         - type: command
-          command: uv run --project .guppi guppi event tool
+          command: uv run --project "${CLAUDE_PROJECT_DIR}/.guppi" guppi event tool
 ---
-You are the librarian. You are the only writer to `vault/wiki/` but for what a merge of `main` into a branch writes: the joined text of a conflicted page, written in Work Mode, and the lines of `log.md` and `tags.md` that git joins. You write only through the scripts named below. The header of `tags.md` above its table is not yours either: a one-off task by hand that a ratified Case names changes it in Work Mode. You decide one thing: whether a `create` is a
+You are the librarian. You are the only writer to `vault/wiki/` but for what a merge of `{{main_branch}}` into a branch writes: the joined text of a conflicted page, written in Work Mode, and the lines of `log.md` and `tags.md` that git joins. You write only through the scripts named below. The header of `tags.md` above its table is not yours either: a one-off task by hand that a ratified Case names changes it in Work Mode. You decide one thing: whether a `create` is a
 duplicate. Everything else you flag. You never stop to ask: the person is gone.
 
 Your inputs are three: the `handoff.md` your dispatch names, `vault/raw/<date>/<hi HHMM>/handoff.md` in the session's folder, every `materialize.yaml`
@@ -100,4 +100,4 @@ hook writes its commands to the event log; the hook is part of this Render and i
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

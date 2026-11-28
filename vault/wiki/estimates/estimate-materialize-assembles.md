@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_materialize.py against a temp vault; the liv
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -36,4 +36,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

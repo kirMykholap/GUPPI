@@ -250,7 +250,7 @@ SECOND_ITEM = "  - slug: rule-x\n    rename: rule-y\n"
 TWICE = "case 1: item [update][rule-x] stands twice — one entry per target"
 
 
-def test_a_second_item_of_one_slug_in_one_fence_is_a_finding(tmp_path):  #
+def test_a_second_item_of_one_slug_in_one_fence_is_a_finding(tmp_path):
     plan = PLAN.replace("    change: one line\n", "    change: one line\n" + SECOND_ITEM)
     code, out, _ = check(tmp_path, plan=plan)
     assert code == 1
@@ -383,7 +383,7 @@ TWO_LINES = LINE + "- 16:00:01 decision[case 2][update][rule-x]{ref:rule-x}\n"
 TWO_BLOCKS = "- 16:00:02 decision[case 3][update][rule-x]{ref:rule-x}{supersedes:case 1}{supersedes:case 2}\n"
 
 
-def test_a_line_with_two_supersedes_blocks_covers_both_cases(tmp_path):  #
+def test_a_line_with_two_supersedes_blocks_covers_both_cases(tmp_path):
     frontier = CLEAN_FRONTIER.replace("case 1", "case 3")
     code, out, _ = check(tmp_path, ledger=TWO_LINES + TWO_BLOCKS, plan=PLAN_3, frontier=frontier)
     assert code == 0 and out == ""  # neither Case needs its item
@@ -984,7 +984,7 @@ def test_an_estimate_named_by_an_update_line_alone_has_no_task_line(tmp_path):
     assert out.splitlines() == ["case 1: estimate-x-holds has no task line"]
 
 
-def test_a_renamed_estimate_is_read_under_the_slug_of_its_rename(tmp_path):  #
+def test_a_renamed_estimate_is_read_under_the_slug_of_its_rename(tmp_path):
     ledger = LINE + "- 16:00:01 decision[case 1][update][estimate-x-holds]{ref:estimate-x-holds}\n"
     plan = PLAN.replace(
         "    change: one line\n",
@@ -1566,6 +1566,108 @@ def test_kept_method_a_new_method_a_decision_a_part_or_a_method_of_this_session_
         assert KEPT_WAITS not in out, method
 
 
+# --- a transcript reading off a sprint page ---------------------------------
+# `estimate-prespec-hook-reports-a-method-that-reads-a-transcript`
+
+TRANSCRIPT = (
+    "method reads the transcript of a session off a sprint page — a lasting method reads a "
+    "text that ships, and a one-off Estimate of the sprint page reads the transcript"
+)
+KEPT_TRANSCRIPT = (
+    "the method on the page reads the transcript of a session — set a method that reads a "
+    "text that ships, and read the transcript by a one-off Estimate of the sprint page"
+)
+TRANSCRIPT_METHOD = "pytest tests/test_x.py; by hand, at Retro: the reply read in the transcript"
+
+
+def findings_of(out):
+    return [line for line in out.splitlines() if not line.startswith("note:")]
+
+
+def test_transcript_a_create_and_an_update_that_read_one_are_findings(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_estimate(tmp_path)
+    item = NO_FORM_CREATE.replace("Run it and look", f'"{TRANSCRIPT_METHOD}"')
+    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+    assert (code, out.splitlines()) == (1, [f"case 1: create estimate-x-again: {TRANSCRIPT}"])
+    update = (
+        f'update:\n  - slug: estimate-x\n    set: {{method: "{TRANSCRIPT_METHOD}"}}\n'
+        "    change: recut\n"
+    )
+    code, out, _ = check(tmp_path, plan=create_plan(update), ledger=UPDATE_LINE)
+    assert (code, out.splitlines()) == (1, [f"case 1: update estimate-x: {TRANSCRIPT}"])
+
+
+def test_transcript_a_reading_of_an_estimate_of_a_sprint_page_is_clean(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_page(tmp_path, "entities", "entity-sprint-plugin")
+    item = NO_FORM_CREATE.replace("Run it and look", f'"{TRANSCRIPT_METHOD}"')
+    sprint_item = item.replace("ref: rule-x", "ref: entity-sprint-plugin")
+    sprint_line = CREATE_LINE.replace("{ref:rule-x}", "{ref:entity-sprint-plugin}")
+    assert check(tmp_path, plan=create_plan(sprint_item), ledger=sprint_line) == (0, "", "")
+    with_estimate(tmp_path)
+    retarget(tmp_path)
+    update = (
+        f'update:\n  - slug: estimate-x\n    set: {{method: "{TRANSCRIPT_METHOD}"}}\n'
+        "    change: recut\n"
+    )
+    assert check(tmp_path, plan=create_plan(update), ledger=UPDATE_LINE) == (0, "", "")
+
+
+def test_transcript_a_kept_reading_under_a_new_criterion_is_a_finding(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_method(tmp_path, f"'{TRANSCRIPT_METHOD}'")
+    code, out, _ = check(
+        tmp_path, plan=create_plan("update:\n" + ESTIMATE_UPDATE), ledger=UPDATE_LINE
+    )
+    assert (code, findings_of(out)) == (1, [f"case 1: update estimate-x: {KEPT_TRANSCRIPT}"])
+    written = create_plan("update:\n  - slug: estimate-x\n" + WRITTEN + "    change: recut\n")
+    _, out, _ = check(tmp_path, plan=written, ledger=UPDATE_LINE)
+    assert f"case 1: update estimate-x: {KEPT_TRANSCRIPT}" in out.splitlines()
+
+
+def test_transcript_a_criterion_written_back_word_for_word_is_clean(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_method(tmp_path, f"'{TRANSCRIPT_METHOD}'")
+    back = "    set: {status: pending}\n    sections:\n      Criterion: |\n        c\n"
+    plan = create_plan("update:\n  - slug: estimate-x\n" + back + "    change: pending again\n")
+    _, out, _ = check(tmp_path, plan=plan, ledger=UPDATE_LINE)
+    assert KEPT_TRANSCRIPT not in out
+    _, out, _ = check(tmp_path, plan=plan.replace("        c\n", "        d\n"), ledger=UPDATE_LINE)
+    assert f"case 1: update estimate-x: {KEPT_TRANSCRIPT}" in out.splitlines()
+
+
+def test_transcript_a_decision_by_the_person_is_clean(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    with_method(tmp_path, f"'{TRANSCRIPT_METHOD}'")
+    item = (
+        "  - slug: estimate-x\n    set: {status: passed}\n    sections: {Result: r}\n"
+        "    change: decided\n"
+    )
+    _, out, _ = check(tmp_path, plan=create_plan("update:\n" + item), ledger=UPDATE_LINE)
+    assert KEPT_TRANSCRIPT not in out and TRANSCRIPT not in out
+
+
+def test_transcript_a_reading_that_waits_for_another_session_gives_both_lines(tmp_path):
+    with_page(tmp_path, "rules", "rule-x")
+    method = "by hand in a later session: the transcript read"
+    item = NO_FORM_CREATE.replace("Run it and look", f'"{method}"')
+    code, out, _ = check(tmp_path, plan=create_plan(item), ledger=CREATE_LINE)
+    assert (code, out.splitlines()) == (
+        1,
+        [
+            f"case 1: create estimate-x-again: {WAITS}",
+            f"case 1: create estimate-x-again: {TRANSCRIPT}",
+        ],
+    )
+
+
+def test_transcript_prespec_imports_the_predicate_of_lint():
+    from guppi import lint
+
+    assert prespec.reads_a_transcript is lint.reads_a_transcript
+
+
 def test_the_keys_of_the_old_shape_are_a_finding_on_every_kind(tmp_path):
     # `contract` on an `update` and `estimate_slug` on a rule's `create` are keys of
     # no item, judged by `item_keys` like any other
@@ -1893,7 +1995,7 @@ def test_the_frontier_reads_cases_and_work_lines_under_their_headings(tmp_path):
     assert out.splitlines() == ["frontier: W2 closes with case 7, no Case 7 heading in the plan"]
 
 
-def test_an_open_ask_line_is_no_finding_and_a_closed_one_is_judged(tmp_path):  #
+def test_an_open_ask_line_is_no_finding_and_a_closed_one_is_judged(tmp_path):
     frontier = (
         "# Frontier\n\n## Cases\n\n- [x] C1 — the one item · brief · case 1\n\n"
         "## Work\n\n- [x] W1 — a reading · brief · work\n\n"
@@ -3233,7 +3335,6 @@ def test_tags_on_the_decision_line_alone_count_as_the_required_field(tmp_path):
     assert required(tmp_path, item, line_tags=["a"]) == []
 
 
-#
 def test_a_leaf_rule_with_no_ref_and_no_applies_to_is_a_required_field_finding(tmp_path):
     item = {"slug": "rule-z", "kind": "Leaf", "purpose": "p", "tags": ["a"]}
     assert required(tmp_path, item) == [lacks("rule-z", "parent")]
@@ -3528,7 +3629,6 @@ def test_a_pointer_finding_names_the_case_the_page_and_the_pointer(tmp_path):
 
 def test_a_pointer_is_judged_by_the_judgment_of_guppi_ship():
     # one judgment, in the module both sides import; the clean version holds no `ship`
-    #
     from guppi import pointers
 
     ship = pytest.importorskip("guppi.ship")
@@ -3635,3 +3735,67 @@ def test_an_update_that_names_a_part_has_no_new_criterion_judged_for_pointers(tm
     with_core_estimate(tmp_path)
     item = {"slug": "estimate-x-holds", "set": {"method": "pytest"}, "change": "since case 3"}
     assert estimate_pointers(tmp_path, item) == []
+
+
+# --- a stop before the render of a file the Criterion names ---------------
+# `estimate-prespec-hook-reports-a-stop-before-the-render-it-tests`
+
+SKILL = "plugin/skills/install/SKILL.md"
+RENDER_LINE = f"- [ ] `uv run --project .guppi guppi render`: `{SKILL}`\n"
+STOP_TASK = "- [ ] stop: the person installs the clean copy.\n"
+STOP_RENDER_PLAN = f"""# Plan
+
+## Case 1 — one
+
+> **when:**
+> The person types `/guppi:install` of `{SKILL}` in a project.
+
+> **then:**
+> It copies the files.
+
+```tasks
+- [ ] update `rule-x`
+{RENDER_LINE}{STOP_TASK}- [ ] read `estimate-x`
+```
+"""
+STOP_RENDER_FINDING = (
+    f"case 1: stop before the render of {SKILL} — the file changes only at the librarian's "
+    "run, so a reading at a stop of Work Mode tests its old text"
+)
+
+
+def stop_render_findings(plan):
+    from guppi.materialize import split_cases
+
+    return prespec.check_stop_before_render(split_cases(plan))
+
+
+def test_stop_before_render_a_stop_and_a_render_of_a_named_file_is_a_finding():
+    assert stop_render_findings(STOP_RENDER_PLAN) == [STOP_RENDER_FINDING]
+
+
+def test_stop_before_render_judge_gives_the_finding(tmp_path):
+    assert STOP_RENDER_FINDING in prespec.judge(STOP_RENDER_PLAN, tmp_path, [])
+
+
+def test_stop_before_render_no_stop_line_gives_none():
+    assert stop_render_findings(STOP_RENDER_PLAN.replace(STOP_TASK, "")) == []
+
+
+def test_stop_before_render_a_when_and_then_naming_no_rendered_file_give_none():
+    plan = STOP_RENDER_PLAN.replace(f"`/guppi:install` of `{SKILL}`", "`/guppi:install`")
+    assert stop_render_findings(plan) == []
+
+
+def test_stop_before_render_a_stop_with_no_render_line_gives_none():
+    assert stop_render_findings(STOP_RENDER_PLAN.replace(RENDER_LINE, "")) == []
+
+
+def test_stop_before_render_the_two_lines_under_two_sub_cases_give_none():
+    when = f"> **when:**\n> The person types `/guppi:install` of `{SKILL}`.\n"
+    plan = (
+        "# Plan\n\n## Case 1 — one\n\n### Case 1.1 — the render\n\n"
+        f"{when}\n```tasks\n{RENDER_LINE}```\n\n"
+        f"### Case 1.2 — the stop\n\n{when}\n```tasks\n{STOP_TASK}```\n"
+    )
+    assert stop_render_findings(plan) == []

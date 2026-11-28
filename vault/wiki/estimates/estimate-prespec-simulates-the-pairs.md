@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_prespec.py on a temp plan over temp pages — a
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -30,4 +30,4 @@ The `replace` and `reword` pairs of every Case of the plan are applied in entry 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

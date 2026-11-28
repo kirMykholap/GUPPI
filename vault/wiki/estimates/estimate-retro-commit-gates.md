@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_gate.py with piped payloads against a temp r
 checked: 2026-09-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, hooks, harness, git]
 core: true
 ---
@@ -33,4 +33,4 @@ A `/handoff` on a dirty tree, where `git status --porcelain` is not empty, exits
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

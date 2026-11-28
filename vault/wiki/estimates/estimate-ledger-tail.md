@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_tail.py; by hand, after a /hi: the Tail line a
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, harness, ledger]
 core: true
 ---
@@ -32,4 +32,4 @@ The script walks the date-level ledger of a date first, then its session ledgers
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

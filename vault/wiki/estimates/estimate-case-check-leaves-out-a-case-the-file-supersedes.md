@@ -7,7 +7,7 @@ purpose: Whether the check of an answer of case-guppi leaves out of the other Ca
 method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k superseded_by_the_file
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -32,4 +32,4 @@ The hook leaves Case M and its sub-cases out of the other Cases of the session, 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

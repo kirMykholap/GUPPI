@@ -7,7 +7,7 @@ purpose: Whether a tag that a newtag block of a lesson line declares reaches the
 method: uv run --project .guppi pytest .guppi/tests/test_materialize.py -k newtag
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -30,4 +30,4 @@ The `new_tags` of the `raw/<date>/<hi HHMM>/materialize.yaml` of the unit hold t
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

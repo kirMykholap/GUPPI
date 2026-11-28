@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_render.py, plus by hand at the first turn of a 
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render, hooks]
 core: true
 ---
@@ -31,4 +31,4 @@ For each governed file that differs from its render, stdout holds a unified diff
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

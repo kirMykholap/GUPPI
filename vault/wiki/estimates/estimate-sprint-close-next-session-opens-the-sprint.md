@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_ledger.py -k sprint and .guppi/tests/test_mate
 checked: 2026-10-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, workflow, ledger]
 core: true
 ---
@@ -33,4 +33,4 @@ The first line of the `Cases` of Next session in `vault/wiki/brief.md` is `open 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_glossary.py, plus one reading of the rendered g
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, librarian, session]
 core: true
 ---
@@ -31,4 +31,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

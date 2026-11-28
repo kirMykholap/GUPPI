@@ -8,7 +8,7 @@ method: "by hand at Retro of the session that changes it: the new Render of rule
 checked: 2026-11-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, ledger]
 core: true
 ---
@@ -38,4 +38,4 @@ In the same reply the agent shows the Case in the short form — `context`, `pro
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -8,7 +8,7 @@ method: "by hand at a /retro whose session ledger holds a {supersedes:case N} on
 checked: 2026-10-05
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -29,4 +29,4 @@ Retro counts no line of Case N or of any of its sub-cases as debt.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

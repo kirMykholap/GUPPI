@@ -8,7 +8,7 @@ method: "by hand, after the librarian's run that applies the update of rule-orch
 checked: 2026-11-02
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, plugin]
 core: true
 ---
@@ -29,4 +29,4 @@ Before the call, the reply holds one line worded as a condition: if the Claude C
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

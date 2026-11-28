@@ -5,9 +5,10 @@ status: passed
 target: "[[rule-spec-write]]"
 purpose: Whether the Spec hook turns a tag line of a Case file into an entry of new_tags in the then block, leaves it out of the tasks block, and refuses a tag line off the form, and whether the check of the Case file reads the line alike
 method: uv run --project .guppi pytest .guppi/tests/test_ratified.py .guppi/tests/test_casecheck.py -k tag
+checked: 2026-11-28
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -15,7 +16,7 @@ core: true
 ## Criterion
 
 When:
-The `Stop` hook `uv run --project .guppi guppi ratified` of `.guppi/guppi/ratified.py` writes into the plan file a ratified Case whose `tasks` in `raw/<date>/<hi HHMM>/cases/case-<N>.md` hold a line `` - [ ] tag `<tag>` ``.
+The `Stop` hook `uv run --project .guppi guppi ratified` of `.guppi/guppi/ratified.py` writes into the Cases file `<plan stem>.cases.md` beside the plan file a ratified Case whose `tasks` in `raw/<date>/<hi HHMM>/cases/case-<N>.md` hold a line `` - [ ] tag `<tag>` ``.
 **＋** Or the `SubagentStop` hook `uv run --project .guppi guppi casecheck --subagent` of `.guppi/guppi/casecheck.py` checks that file.
 
 Then:
@@ -28,8 +29,8 @@ A task line that opens with `tag` and the tag in its first code span, with the s
 
 ## Result
 
-2026-10-07, passed in the repository of GUPPI.
+2026-11-28, passed in the repository of GUPPI.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

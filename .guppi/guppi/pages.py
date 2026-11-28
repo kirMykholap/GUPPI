@@ -42,9 +42,29 @@ SHIPPED = "guppi"  # the `origin` and `sprint` of a page in the clean version
 # the words of a line of `guppi ship` and of a finding of `guppi lint` on a page that
 # `is_draft_core` accepts
 DRAFT_CORE = "a page with core: true that is draft"
-# a line of `## History` that set the status of a page to `built`, as the cascade of
-# `.guppi/guppi/generate.py` writes it
-SET_BUILT = re.compile(r"^- .*\bstatus: \S+ → built\b", re.MULTILINE)
+# the date a line of `## History` opens with, as `Vault.history` of `.guppi/guppi/generate.py`
+# and `mark` of `.guppi/guppi/sprint_close.py` write it; `history_cases` of `.guppi/guppi/box.py`
+# imports it
+HISTORY_DATE = re.compile(r"^- (\d{4}-\d\d-\d\d)\b")
+# a status a line of `## History` sets, `status: <before> → <after>`, as the cascade and the
+# readings of `.guppi/guppi/generate.py` and the close of `.guppi/guppi/sprint_close.py` write
+# it
+STATUS_SET = re.compile(r"\bstatus: \S+ → (\w+)\b")
+
+
+def status_lines(page: "Page") -> list[tuple[str, str]]:
+    """`(date, status)` of each status that a line of the `## History` of the page sets, in
+    the order of the History; `date` empty for a line that opens with no date. The one reader
+    of a status line of `## History` and of its date, by which `is_draft_core` and `guppi
+    backlog` of `.guppi/guppi/backlog.py` judge."""
+    found: list[tuple[str, str]] = []
+    for line in page.sections.get(HISTORY, "").splitlines():
+        if not line.startswith("- "):
+            continue
+        date = HISTORY_DATE.match(line)
+        for status in STATUS_SET.findall(line):
+            found.append((date.group(1) if date else "", status))
+    return found
 
 
 def is_core(page: "Page") -> bool:
@@ -56,7 +76,7 @@ def is_core(page: "Page") -> bool:
 def is_draft_core(page: "Page", by_slug: dict[str, "Page"]) -> bool:
     """True when the page is a rule or an entity that `is_core` accepts, whose `status` is
     `draft`, and that blocks the clean build: its `## History` holds no line that set its
-    status to `built`, by `SET_BUILT`, or one of its Estimates, looked up in `by_slug`, stands
+    status to `built`, by `status_lines`, or one of its Estimates, looked up in `by_slug`, stands
     `failed`. A page `built` before that only waits for the reading of a newer Estimate is
     not accepted. The one judgment of a draft page with `core: true`, which `guppi
     ship` of `.guppi/guppi/ship.py` imports, to write no clean version while one stands, and
@@ -67,7 +87,7 @@ def is_draft_core(page: "Page", by_slug: dict[str, "Page"]) -> bool:
         and str(page.props.get("status")) == "draft"
     ):
         return False
-    if not SET_BUILT.search(page.sections.get(HISTORY, "")):
+    if not any(status == "built" for _, status in status_lines(page)):
         return True
     value = page.props.get("estimates") or []
     estimates = [by_slug.get(str(slug)) for slug in (value if isinstance(value, list) else [value])]

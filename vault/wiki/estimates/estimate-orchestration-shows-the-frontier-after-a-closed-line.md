@@ -8,7 +8,7 @@ method: "by hand, in a later session: the first reply in Plan Mode after the fir
 checked: 2026-10-07
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -39,4 +39,4 @@ The reply ends with the heading `## Frontier` and the lines of `raw/<date>/<hi H
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

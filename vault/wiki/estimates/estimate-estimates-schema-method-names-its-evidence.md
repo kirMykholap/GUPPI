@@ -7,7 +7,7 @@ purpose: Whether each reading by hand of a method that a Spec creates or sets pe
 method: "by hand, at Retro: the method of each Estimate that a Case of the session's spec.md creates or sets pending, read against the Criterion, each fault counted in the estimate line"
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [schema, workflow]
 core: true
 ---
@@ -30,4 +30,4 @@ Each reading by hand in such a method names the place where its evidence is save
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

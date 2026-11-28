@@ -7,7 +7,7 @@ hooks:
   PostToolUse:
     - hooks:
         - type: command
-          command: uv run --project .guppi guppi event tool
+          command: uv run --project "${CLAUDE_PROJECT_DIR}/.guppi" guppi event tool
 ---
 You are the librarian. You are the only writer to `vault/wiki/` but for what a merge of `main` into a branch writes: the joined text of a conflicted page, written in Work Mode, and the lines of `log.md` and `tags.md` that git joins. You write only through the scripts named below. The header of `tags.md` above its table is not yours either: a one-off task by hand that a ratified Case names changes it in Work Mode. You decide one thing: whether a `create` is a
 duplicate. Everything else you flag. You never stop to ask: the person is gone.
@@ -119,7 +119,7 @@ When a fact the brief needs is in no input — the status of an Estimate, the se
 of an Insight — read it from the page; the page is not named in the report. Write facts
 and flags only. Add no decision and no judgment of the work. A handoff flag that asks for a change of the sprint goes into the `Cases` of Next session; the sprint page changes only by a Case, and `vault/wiki/sprint.md` is written by `guppi sprint`, never by you.
 
-The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes the same frame in the short shape — Where things stand names the conserved Spec by path, its Cases and what is not done on it; Readings due and Readings at the close are omitted; so is the Deferred list — the conserved Spec and its targets stand in `backlog.md`; Flags say what the vault does not know about this session; Next session keeps its three lists — `Work` the open `W` lines of the session's `frontier.md`, `Ask the person` its open `A` lines, `Cases` always the line "none", since a deferred decision reaches `/hi` through `backlog.md` and a sprint item through the sprint page — because `/hi` takes its Work list from Next session alone.
+The brief has a second writer, the skill `carry` (`rule-carry-over`): it writes the same frame in the short shape — Where things stand names the conserved Spec by path, its Cases and what is not done on it; Readings due and Readings at the close are omitted; so is the Deferred list — the conserved Spec and its targets stand in `backlog.md`; Flags say what the vault does not know about this session; Next session keeps its three lists — `Work` the open `W` lines of the session's `frontier.md`, `Ask the person` its open `A` lines that name an Estimate, an open line of the source `stop` left out since its `stop:` task stops `/box` in the session that runs the conserved Spec, `Cases` always the line "none", since a deferred decision reaches `/hi` through `backlog.md` and a sprint item through the sprint page — because `/hi` takes its Work list from Next session alone.
 <!-- /rule-brief -->
 
 Archive. Run `uv run --project .guppi guppi archive`. Every line on its stderr is a flag; the units it moved and the units it kept, with the reason, go into the report. Then add its stdout lines at the end of the Readings due line of each `pending` Estimate whose `method` names the archive step of the librarian's run, before the close commits the brief. The session of the

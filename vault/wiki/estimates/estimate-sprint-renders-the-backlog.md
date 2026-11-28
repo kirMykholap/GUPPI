@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_sprint.py, plus one reading of the rendered spr
 checked: 2026-09-27
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, sprint]
 core: true
 ---
@@ -33,4 +33,4 @@ The file `vault/wiki/sprint.md` holds, in order: `# Sprint`; `## <id>`; Purpose;
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

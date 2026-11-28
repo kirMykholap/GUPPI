@@ -7,7 +7,7 @@ purpose: Whether, when the Stop check of rule-case-check refuses the showing of 
 method: "by hand at Retro of the session that changes it: the new Render of rule-orchestration in the Spec, read against the Criterion, recorded in the estimate line"
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -33,4 +33,4 @@ The main agent sends the Case whose finding the refusal names, with its top-leve
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

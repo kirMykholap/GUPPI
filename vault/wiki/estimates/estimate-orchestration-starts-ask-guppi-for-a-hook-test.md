@@ -8,7 +8,7 @@ method: "by hand, after the librarian's run that renders vault/wiki/orchestratio
 checked: 2026-10-31
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -30,4 +30,4 @@ The main agent starts `ask-guppi` through the Agent tool for that test, with a p
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

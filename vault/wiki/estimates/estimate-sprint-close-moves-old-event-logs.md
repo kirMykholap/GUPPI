@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_sprint_close.py -k even
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, workflow, librarian]
 core: true
 ---
@@ -34,4 +34,4 @@ After a close whose run of `guppi cleanup` exits 0, each `vault/raw/<date>/event
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

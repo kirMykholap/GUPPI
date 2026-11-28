@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_generate.py, the tests of the cascade
 checked: 2026-11-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -33,4 +33,4 @@ An entity or rule whose live Estimates are all `passed` becomes `built`; a `buil
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -5,10 +5,10 @@ status: passed
 target: "[[rule-where-to-stop]]"
 purpose: "Whether the run from /work to the librarian stops for the person on each condition of vault/wiki/where-to-stop.md and on no other, with the text loaded by /work and a stop after the call of /retro opening with STOP:"
 method: by hand, the text of vault/wiki/where-to-stop.md as rendered and the lines of .claude/skills/work/SKILL.md and .claude/skills/box/SKILL.md that load it, or, at the Retro of the session that changes it, the new Render of rule-where-to-stop in the Spec and those lines, read against each line of the Criterion, recorded in the estimate line; a line of the Criterion that the text does not set is named
-checked: 2026-10-17
+checked: 2026-11-20
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -26,8 +26,9 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 **＋** A fork that changes a contract is a choice that no ratified Case makes, or a ratified Case that turns out wrong: by a text the agent finds wrong or too narrow, or by a finding of `uv run --project .guppi guppi prespec --check` on the plan after a Case ratified in Work Mode.
 **＋** Before a task of `raw/<date>/<hi HHMM>/spec.md` whose text opens with `stop:`, the agent stops and asks; the task runs after the person's word.
 **＋** On the branch `main` the agent stops and says so: Work Mode does not start there.
+**＋** A Spec that holds the opening Case of a sprint whose first task line runs `git switch -c <id>` is no stop on `main`: the agent runs that line first and goes on on the branch `<id>`.
 **＋** In a run of `/box`, the agent stops and asks when `uv run --project .guppi guppi box --check` prints a line, or when a `git merge --ff-only` of `/box` refuses.
-**＋** In the merge tasks that the opening Case of a sprint holds by `.claude/skills/sprint-open/SKILL.md`, the agent stops, shows what stopped it and asks when a `git` or `gh` command refuses.
+**＋** In the merge and branch tasks that the opening Case of a sprint holds by `.claude/skills/sprint-open/SKILL.md`, the agent stops, shows what stopped it and asks when a `git` or `gh` command refuses.
 **＋** When the full `uv run --project .guppi guppi test` run of `/work` after its last task finds a failing test that `## Baseline` of `raw/<date>/<hi HHMM>/work.md` does not hold, and its fix needs a choice that no ratified Case makes, the agent ends a reply with a question to the person that names the test and its failure.
 **＋** When the auto mode classifier of Claude Code refuses a tool call that the run needs, the agent ends a reply with a question to the person that gives the shell command doing what the refused call would do, for the person to type after `!` in the prompt.
 **＋** A reply that stops from the call of `/retro` until `raw/<date>/<hi HHMM>/handoff.md` stands opens with `STOP:`.
@@ -38,8 +39,8 @@ The context of `/work` holds the text of `vault/wiki/where-to-stop.md`, rendered
 
 ## Result
 
-2026-10-17, passed in the repository of GUPPI.
+2026-11-20, passed in the repository of GUPPI.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

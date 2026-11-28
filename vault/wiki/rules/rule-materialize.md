@@ -9,7 +9,7 @@ parent: "[[rule-documentation]]"
 estimates: ["[[estimate-materialize-assembles]]", "[[estimate-materialize-walks-dates]]", "[[estimate-materialize-shows]]", "[[estimate-materialize-lifts-a-lesson]]", "[[estimate-materialize-marks-exists]]", "[[estimate-materialize-fails-alone]]", "[[estimate-materialize-marks-superseded]]", "[[estimate-materialize-skips-a-carried-over-unit]]", "[[estimate-materialize-carries-addresses]]", "[[estimate-materialize-lifts-unfiltered-on-a-schema-change]]", "[[estimate-materialize-refolds-a-reading-on-a-supersede]]", "[[estimate-materialize-lifts-when-and-then]]", "[[estimate-materialize-lifts-a-create-by-the-schema]]", "[[estimate-materialize-changes-a-named-part-alone]]", "[[estimate-materialize-judges-a-fence]]", "[[estimate-materialize-marks-a-comment]]", "[[estimate-materialize-fills-the-type-from-the-category]]", "[[estimate-materialize-lifts-a-tag-of-a-lesson]]", "[[estimate-materialize-lifts-a-create-value-by-the-schema]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -30,4 +30,4 @@ ratified and its work not done. A reading — an `estimate` line — folds into 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

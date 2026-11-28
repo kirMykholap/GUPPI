@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_render.py, plus by hand on the live vault afte
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render]
 core: true
 ---
@@ -34,4 +34,4 @@ The Render of a `full` page becomes the whole file its `governs` names, without 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

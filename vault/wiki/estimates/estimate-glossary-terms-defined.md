@@ -8,7 +8,7 @@ method: one reading of the table by hand after the librarian's run, plus uv run 
 checked: 2026-09-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, harness]
 core: true
 ---
@@ -31,4 +31,4 @@ Each row names in `where` a `[[slug]]` of a live page, and that page says what t
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

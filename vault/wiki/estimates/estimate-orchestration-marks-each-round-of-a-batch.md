@@ -8,7 +8,7 @@ method: "by hand: the Render of rule-orchestration in vault/wiki/orchestration.m
 checked: 2026-10-09
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -32,4 +32,4 @@ The `**Context:**` paragraph of each first round on an item opens with a label t
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

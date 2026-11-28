@@ -294,16 +294,30 @@ def test_settle_carry_of_a_sprint_page_estimate_refused(tmp_path):
     assert snapshot(tmp_path) == before
 
 
-def test_settle_failed_sprint_page_estimate_goes_with_the_page_its_status_kept(tmp_path):
+def test_settle_failed_sprint_page_estimate_only_by_archive_unread(tmp_path):
     settle_vault(tmp_path, own_status="failed")
-    code, out, err = run(
+    before = snapshot(tmp_path)
+    code, _, err = run(
         tmp_path, "--apply", "--carry", "estimate-rule-z-a", "--carry", "estimate-rule-z-b"
     )
-    assert code == 0, err
+    assert code == 1 and snapshot(tmp_path) == before
     assert (
-        "estimate-sprint-alpha-open failed · entity-sprint-alpha · goes with the sprint page, its status kept"
-        in out
+        "estimate-sprint-alpha-open: failed, an Estimate of the sprint page: read it now or "
+        "name it by --archive-unread" in err
     )
+    assert "refused, nothing moved" in err
+    code, out, err = run(
+        tmp_path,
+        "--apply",
+        "--carry",
+        "estimate-rule-z-a",
+        "--carry",
+        "estimate-rule-z-b",
+        "--archive-unread",
+        "estimate-sprint-alpha-open",
+    )
+    assert code == 0, err
+    assert "estimate-sprint-alpha-open failed · entity-sprint-alpha · archived unread" in out
     path = (
         tmp_path
         / "vault"
@@ -539,3 +553,28 @@ def test_event_log_a_refused_close_moves_none(tmp_path):
     code, _, _ = run(tmp_path, "--apply")
     assert code == 1
     assert snapshot(tmp_path) == before
+
+
+# --- the maps follow the ticks ----------------------------------------------
+
+
+def test_spec_map_tick_ticks_the_box_of_the_close_line_in_the_map(tmp_path):
+    from guppi import ratified
+
+    cases = (
+        "# Spec\n\n## Case 5 — close\n\n```tasks\n"
+        "- [ ] `uv run --project .guppi guppi sprint-close --sprint alpha --apply`\n"
+        "- [ ] read `estimate-one`\n```\n"
+    )
+    stamp = "<!-- approved 15:20:00 · session 44c1aae1 -->"
+    seed(tmp_path, [], specs=[("2026-10-05/1200", "")])
+    spec = tmp_path / "vault" / "raw" / "2026-10-05" / "1200" / "spec.md"
+    spec.write_text(
+        f"{stamp}\n\n{ratified.with_map(cases, None, tmp_path)}", encoding="utf-8", newline="\n"
+    )
+    assert sprint_close.tick(tmp_path, "alpha") == 1
+    text = spec.read_text(encoding="utf-8")
+    close = "`uv run --project .guppi guppi sprint-close --sprint alpha --apply`"
+    assert f"\n- [x] {close}" in text
+    assert f"\n  - [x] {close}" in text
+    assert "\n  - [ ] 🔍 read `estimate-one`" in text

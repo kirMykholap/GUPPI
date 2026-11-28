@@ -360,3 +360,64 @@ def test_typed_and_hi_read_a_typed_command_by_one_judgment():
 
     for text in ("/hi", " /hi ", "/hi now", "/hi\tnow", "/hint", "hi"):
         assert event.is_hi_prompt(text) == event.is_typed(text, "/hi")
+
+
+# --- the Cases file beside the plan file ---------------------------------
+
+MAP_PLAN = (
+    "# Slice 2\n\n"
+    "<!-- map: written by guppi ratified from the Cases below -->\n\n"
+    "**Map of the Cases** — cut from the Cases of the Cases file `the-plan.cases.md` beside "
+    "this plan, which follow whole there; each box copies the box of its task line there and "
+    "is no task of its own.\n\n"
+    "| Case | Name | ⛔ open stops | 🔍 open checks |\n|---|---|---|---|\n| 7 | example | 0 | 0 |\n\n"
+    "- 🧩 **7 — example**\n  - [ ] `guppi/x.py` — the code\n\n"
+    "<!-- /map -->\n"
+)
+CASES = (
+    "## Case 7 — example\n\n> **then:**\n> Done.\n\n```tasks\n- [ ] `guppi/x.py` — the code\n```\n"
+)
+
+
+def with_cases_file(project_dir, plan=MAP_PLAN, cases=CASES):
+    plan_file = with_plan_file(project_dir, plan)
+    (plan_file.parent / "the-plan.cases.md").write_text(cases, encoding="utf-8", newline="\n")
+    return plan_file
+
+
+def test_an_approval_with_a_cases_file_appends_the_map_and_then_its_cases_once(tmp_path):
+    with_cases_file(tmp_path)
+    for _ in range(2):  # the hook runs twice: the Spec once
+        assert run(payload(plan=MAP_PLAN), tmp_path) == (0, "")
+    text = spec_text(tmp_path)
+    assert text.count("## Case 7 — example") == 1 and text.count("<!-- map:") == 1
+    assert text.index("<!-- /map -->") < text.index("## Case 7 — example")
+    assert text.startswith(STAMP + "\n\n# Slice 2\n")
+    from guppi.ratified import MAP_HEAD  # the line of spec.md, its task lines below
+
+    assert MAP_HEAD in text and "`the-plan.cases.md`" not in text
+
+
+def test_an_approval_with_no_cases_file_appends_the_plan_alone(tmp_path):
+    with_plan_file(tmp_path)
+    assert run(payload(), tmp_path) == (0, "")
+    assert spec_text(tmp_path) == STAMP + "\n\n" + PLAN
+
+
+def test_typed_approve_spec_appends_the_map_and_then_the_cases(tmp_path, monkeypatch):
+    passing_gate(monkeypatch)
+    with_cases_file(tmp_path)
+    code, _, err = run_typed(prompt(), tmp_path)
+    assert (code, err) == (0, "")
+    text = spec_text(tmp_path)
+    assert "# Slice 2" in text and text.count("## Case 7 — example") == 1
+    assert text.index("<!-- /map -->") < text.index("## Case 7 — example")
+
+
+def test_spec_joins_no_text_itself():
+    """The join of the plan and its Cases file is `ledger.with_cases` alone."""
+    from pathlib import Path
+
+    source = Path(spec.__file__).read_text(encoding="utf-8")
+    assert "with_cases(" in source and "plan_cases_text(" in source
+    assert ".cases.md" not in source.split('"""', 2)[2]

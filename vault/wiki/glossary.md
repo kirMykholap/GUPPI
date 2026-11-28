@@ -17,7 +17,7 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | the vault query | The vault query before a `create` without `ref`, `draft` pages included | [[rule-ask]] |
 | Index line, `ask-guppi` | The Grep of a category's frontmatter — `purpose`, `root_cause` or `pattern`, and `deferred_by` — one line per live page, never compared across categories; no index file; the search agent over these lines, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning | [[rule-ask]] |
 | `/pre-spec` | The check of the ratified set against each other and the vault before the Spec is approved | [[rule-prespec]] |
-| Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/<hi HHMM>/spec.md`, the session's folder | [[rule-spec-capture]] |
+| Spec | The ratified Cases as one document, written into `raw/<date>/<hi HHMM>/spec.md`, the session's folder, under the map of Claude Code's plan when the person approves that map | [[rule-spec-capture]] |
 
 ## [[rule-harness]]
 
@@ -84,9 +84,9 @@ Written by `guppi glossary` from the `## Terms` of `entity-glossary`; a term cha
 | term | meaning | where |
 |---|---|---|
 | Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | [[rule-documentation]] |
-| Librarian | Clean context; the only writer to `wiki/` but for the header of `tags.md`, which a one-off task by hand that a Case names changes, and for what a merge of `main` into a branch writes: the joined text of a conflicted page, and the lines of `log.md` and `tags.md` that git joins; reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
+| Librarian | Clean context; the only writer to `wiki/` but for the header of `tags.md`, which a one-off task by hand that a Case names changes, and for what a merge of the main branch into a branch writes: the joined text of a conflicted page, and the lines of `log.md` and `tags.md` that git joins; reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
 | Session | Five phases in one order under [[rule-session]]: Session Start, Plan Mode, Work Mode, End of Work, Documentation | [[rule-session]] |
-| Work Mode | `/work` runs the approved Spec on a branch other than `main`: a baseline of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check` first, the tasks in the order of the Spec, each box ticked, then the Work readings; it ends with `/retro` | [[rule-work-mode]] |
+| Work Mode | `/work` runs the approved Spec on a branch other than the main branch that `guppi.toml` names: a baseline of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check` first, the tasks in the order of the Spec, each box ticked, then the Work readings; it ends with `/retro` | [[rule-work-mode]] |
 
 ## [[rule-session-start]]
 

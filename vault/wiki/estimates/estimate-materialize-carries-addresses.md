@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_materialize.py on a temp ledger; the live readi
 checked: 2026-09-23
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -31,4 +31,4 @@ The lesson entry carries `addressed_by: decision-case-N` at the entry's level, s
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

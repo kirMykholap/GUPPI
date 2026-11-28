@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_materialize.py -k refol
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, librarian]
 core: true
 ---
@@ -30,4 +30,4 @@ The readings of `folded` move to the live `create` of the same slug in this unit
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

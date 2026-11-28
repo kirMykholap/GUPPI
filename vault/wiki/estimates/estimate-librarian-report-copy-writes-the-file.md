@@ -7,7 +7,7 @@ purpose: Whether the SubagentStop hook writes the last output of librarian-guppi
 method: uv run --project .guppi guppi test, which runs .guppi/tests/test_libreport.py
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, librarian]
 core: true
 ---
@@ -30,4 +30,4 @@ For `librarian-guppi`, the hook writes the last output of the agent in its `agen
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

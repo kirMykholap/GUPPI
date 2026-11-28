@@ -8,7 +8,7 @@ method: "by hand, after a librarian's run: vault/wiki/brief.md read against the 
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, librarian]
 core: true
 ---
@@ -32,4 +32,4 @@ For each `pending` Estimate whose `method` names the librarian's run, its line u
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

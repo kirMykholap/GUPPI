@@ -11,7 +11,9 @@ cannot run now and exits 1 when it prints any; with no reason it prints nothing 
 
 - the folder is not marked — `is_carried_over` of `.guppi/guppi/materialize.py`, the one judgment
   of the mark — or no branch `spec/<date>-<HHMM>` exists;
-- the current branch is `main`: the shared branch is never `main`;
+- the current branch is the main branch that `guppi.toml` names, read by `main_branch` of
+  `.guppi/guppi/config.py`, `main` where it names none: the shared branch is never the main
+  branch; a value of that key the settings refuse is one reason too;
 - the ledger window of the session, read the way `guppi prespec --check` reads it, holds a
   decision line other than a `defer`: a box session ratifies no Case of its own in this
   first part;
@@ -37,16 +39,16 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from guppi import config
 from guppi.caseid import ID as CASE_ID
 from guppi.caseid import parse, top
 from guppi.event import project_root, session_stamp
 from guppi.materialize import category_of, is_carried_over, split_cases, then_blocks
+from guppi.pages import HISTORY_DATE  # the date of a History line, held once
 
 SPEC_PATH = re.compile(r"vault/raw/(\d{4}-\d\d-\d\d)/(\d{4})/spec\.md")
 DECISION_LINK = re.compile(rf"\[\[decision-case-({CASE_ID})")  # either form
-HISTORY_DATE = re.compile(r"^- (\d{4}-\d\d-\d\d)\b")
 NAMED_KINDS = ("update", "delete", "defer")
-SHARED_NEVER = "main"
 
 
 def conserved_spec_named(plan: str, project_dir: Path) -> Path | None:
@@ -166,8 +168,13 @@ def check(project_dir: Path, folder: Path, session: str, now=None) -> list[str]:
         reasons.append(f"box: vault/raw/{unit}/ holds no carry.md — no conserved Spec")
     if not git(project_dir, "branch", "--list", branch).strip():
         reasons.append(f"box: no branch {branch}")
-    if git(project_dir, "branch", "--show-current").strip() == SHARED_NEVER:
-        reasons.append(f"box: the current branch is {SHARED_NEVER} — the shared branch never is")
+    try:
+        main = config.main_branch(project_dir)
+    except config.ConfigError as exc:
+        main = None
+        reasons.append(f"box: {exc}")
+    if main is not None and git(project_dir, "branch", "--show-current").strip() == main:
+        reasons.append(f"box: the current branch is {main} — the shared branch never is")
     for case in own_decisions(project_dir, now, session):
         reasons.append(
             f"box: case {case} of this session holds a decision line — "

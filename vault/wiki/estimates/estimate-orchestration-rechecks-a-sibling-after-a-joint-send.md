@@ -8,7 +8,7 @@ method: "by hand, after a send of two or more Cases to case-guppi at the same ti
 checked: 2026-10-28
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -32,4 +32,4 @@ The prompt or message to each `case-guppi` names each other Case of that send as
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

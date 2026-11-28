@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_orchestration.py -k def
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -32,4 +32,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

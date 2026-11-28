@@ -8,7 +8,7 @@ method: by hand, the Render of rule-skill-grill-me as the Spec of the session ho
 checked: 2026-10-09
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -40,4 +40,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

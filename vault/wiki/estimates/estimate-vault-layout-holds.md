@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_lint.py -k layout, then
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -31,4 +31,4 @@ A page whose `type` does not match its folder is a `layout` finding.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

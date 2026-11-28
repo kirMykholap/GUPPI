@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_materialize.py, the tests of the exists mark
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger, librarian]
 core: true
 ---
@@ -29,4 +29,4 @@ The entry is marked `exists` only when the `origin` of the page carries the `#ca
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

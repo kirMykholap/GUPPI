@@ -7,7 +7,7 @@ purpose: Whether the agent closes a Frontier line of a sprint or backlog item ·
 method: "by hand at Retro of the session that changes it: the new Render of rule-orchestration and of rule-skill-hi in the Spec, read against the Criterion, recorded in the estimate line"
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -33,4 +33,4 @@ The agent closes the line `[x] … · case N` only when a decision line of Case 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

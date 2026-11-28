@@ -8,7 +8,7 @@ method: "by hand at Retro of the session that replaces this Criterion: the Rende
 checked: 2026-10-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -34,4 +34,4 @@ The Cases out at the same time are one batch, and take the steps of a batch that
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

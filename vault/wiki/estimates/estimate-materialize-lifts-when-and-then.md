@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_materialize.py on a temp Spec
 checked: 2026-10-02
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -29,4 +29,4 @@ The entry's `sections.Criterion` is the `When:` and `Then:` of the Case, verbati
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -7,7 +7,7 @@ purpose: Whether the check of the file of a Case sends a note once when a pair o
 method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k shared_sentence
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -32,4 +32,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -8,7 +8,7 @@ method: "by hand, after a /hi: the first turn's context and the tool calls befor
 checked: 2026-10-16
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, harness]
 core: true
 ---
@@ -29,4 +29,4 @@ The context of the first turn holds the output of each block of the skill, in th
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

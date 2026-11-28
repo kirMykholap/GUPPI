@@ -18,7 +18,10 @@ changed code writes the new name. The codes come from that Render, never from `g
 which is its own output. A placeholder whose name is not a key, a key missing from
 `rule-guppi-config` or a code the table does not hold stops the run with nothing written,
 the page and the placeholder or key on stderr; a run in which no Render holds a placeholder
-reads no `rule-guppi-config`.
+reads no `rule-guppi-config`. A Render may write `{{main_branch}}` too: the render
+puts in the value of the key `main_branch` of that Render as it stands, judged by `branch_of`
+of `.guppi/guppi/config.py`, the judgment the code shares; a missing key or a value it refuses
+stops the run the same way, naming the page and the key.
 `--check` renders in memory, names every file that differs, exits 1 and writes nothing.
 `--sync`, the `SessionStart` hook and the `Render:` line of `/hi` after the pull, prints a
 unified diff for each file that differs — the file as it is, then the rendered text — and
@@ -113,8 +116,10 @@ def render_units(pages: list[Page]) -> dict[str, Unit]:
 
 def fill_placeholders(units: dict[str, Unit]) -> None:
     """Each `{{key}}` of a unit's text becomes the name of the language whose code the
-    Render of `rule-guppi-config` sets for the key. No placeholder, no read of that
-    page; an unknown placeholder, a missing key or an unknown code is a `RenderError`."""
+    Render of `rule-guppi-config` sets for the key, and each `{{main_branch}}` the
+    value of that key there, judged by `branch_in` of `.guppi/guppi/config.py`.
+    No placeholder, no read of that page; an unknown placeholder, a missing key, an unknown
+    code or a refused name of a branch is a `RenderError`."""
     holders = [unit for unit in units.values() if PLACEHOLDER.search(unit.text)]
     if not holders:
         return
@@ -128,15 +133,31 @@ def fill_placeholders(units: dict[str, Unit]) -> None:
         settings = config.parse(settings_unit.text, config.SETTINGS_PAGE)
     except config.ConfigError as exc:
         raise RenderError(str(exc)) from exc
+    branch: str | None = None  # read once, at the first `{{main_branch}}`
     for unit in holders:
         for key in PLACEHOLDER.findall(unit.text):
-            if key not in config.KEYS:
+            if key == config.BRANCH_KEY and branch is None:
+                try:
+                    branch = config.branch_in(settings_unit.text, config.SETTINGS_PAGE)
+                except config.ConfigError as exc:
+                    raise RenderError(f"{unit.page.slug}: {exc}") from exc
+                if branch is None:
+                    raise RenderError(
+                        f"{unit.page.slug}: placeholder {{{{{key}}}}} needs the key {key} "
+                        f"of {config.SETTINGS_PAGE}, and there is none"
+                    )
+            elif key != config.BRANCH_KEY and key not in config.KEYS:
                 raise RenderError(
                     f"{unit.page.slug}: placeholder {{{{{key}}}}} is not a key of "
                     f"{config.SETTINGS_PAGE}"
                 )
         unit.text = PLACEHOLDER.sub(
-            lambda match: config.name_of(settings[match.group(1)]), unit.text
+            lambda match, branch=branch: (
+                branch
+                if match.group(1) == config.BRANCH_KEY
+                else config.name_of(settings[match.group(1)])
+            ),
+            unit.text,
         )
 
 
@@ -282,6 +303,8 @@ def tick_command_lines(project_dir: Path, command: str) -> int:
     holding `command` becomes `- [x]`. `render` calls it with
     `guppi render`, `sprint` with `guppi sprint`. The count of lines ticked; nothing is
     said."""
+    from guppi.ratified import rebuild_spec_maps  # the one rebuild of the maps
+
     pattern = command_line(command)
     ticked = 0
     for unit in units_with(project_dir, "materialize.yaml"):
@@ -301,6 +324,7 @@ def tick_command_lines(project_dir: Path, command: str) -> int:
                 ticked += 1
         if changed:
             spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+            rebuild_spec_maps(spec, project_dir)  # the maps follow the tick
     return ticked
 
 

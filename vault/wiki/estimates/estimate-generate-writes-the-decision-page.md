@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_generate.py, the tests 
 checked: 2026-10-26
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -42,4 +42,4 @@ One page `vault/wiki/decisions/decision-case-<N>.md` is written: `case`, `status
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

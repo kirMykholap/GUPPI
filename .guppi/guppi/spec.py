@@ -1,10 +1,15 @@
 """`guppi spec` — the `PostToolUse ExitPlanMode` hook that copies the approved plan into
 the session's folder, `vault/raw/<hi date>/<hi HHMM>/spec.md`, and prints the fork.
 
-The plan arrives whole in `tool_response.plan` (measured 2026-09-09, Slice 1 probe). It is
-appended after a `---` separator when the file already has content, under a stamp line
-with the time and the session; a plan whose text is already in the file is not appended
-again. Any other tool, or a payload without a plan: nothing. The folder is named by the
+The plan arrives whole in `tool_response.plan` (measured 2026-09-09, Slice 1 probe): the
+title line and the map of the Cases, since the Cases wait in the Cases file
+`<plan stem>.cases.md` beside the plan file that `ledger.plan_path` finds. The hook appends the
+plan text and then the text of that Cases file, joined by `ledger.with_cases`, the one join of
+the two; with no Cases file, the plan text alone. The Spec is appended after a
+`---` separator when the file already has content, under a stamp line with the time and the
+session, and the maps of `spec.md` are then rebuilt by `ratified.rebuild_spec_maps`, so that
+the map of the new document opens with the line of `spec.md`; a Spec whose text is already in
+the file is not appended again. Any other tool, or a payload without a plan: nothing. The folder is named by the
 `hi` line that opens this session's window — its date, then its time as `HHMM` — found
 the way the ledger hook finds it, across the event logs of the window; the
 folder is created when missing. Without a `hi` recorded for this session the hook exits 2
@@ -13,14 +18,19 @@ with the reason, so the person is told rather than left believing the Spec was c
 Where the Claude Code CLI withholds the approval of a plan longer than it can show, the
 person leaves Plan Mode and types `/approve-spec`; `guppi spec --typed`, the same module on
 `UserPromptSubmit`, judges that prompt by `typed` and takes the plan file of the session
-in the same way, or blocks the prompt with the reason.
+and its Cases file, by `ledger.plan_cases_text`, in the same way, or blocks the prompt with
+the reason.
 
 The file has three writers: this hook, once per approval or per typed `/approve-spec`; the
 `Stop` hook of
 `rule-spec-write`, which, once the file stands, writes each Case ratified after the approval
 — its sections replaced, or placed — removes a superseded Case, and writes a defer-only Case
 under `## Deferred`; and Work Mode, which ticks the boxes of the
-`tasks` blocks.
+`tasks` blocks. Beside these three, the map at the head of each approved document that holds
+one is rebuilt from the Cases of that document by the `Stop` hook of `rule-spec-write` when it
+writes, places or removes a Case or a defer there, by its hook `guppi ratified --boxes` after
+each edit of the file by the agent, and by the scripts of the librarian's run that tick a line
+of the file.
 
 Written or already there, the hook then prints one JSON object on stdout —
 `{"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": <line>}}` —
@@ -43,7 +53,7 @@ from pathlib import Path
 
 from guppi.box import conserved_spec_named
 from guppi.event import PLAN_MODE, is_typed, project_root, read_payload, session_stamp
-from guppi.ledger import plan_path, session_dir, session_event_logs
+from guppi.ledger import plan_cases_text, plan_path, session_dir, session_event_logs, with_cases
 
 TOOL = "ExitPlanMode"
 TYPED = "--typed"
@@ -73,11 +83,14 @@ def stamp(now, session: str) -> str:
     return f"<!-- approved {now.strftime('%H:%M:%S')} · session {session} -->"
 
 
-def append_plan(path: Path, plan: str, now, session: str) -> bool:
-    """True when the plan was written; False when the file already holds its text."""
+def append_plan(path: Path, plan: str, now, session: str, bare=None) -> bool:
+    """True when the plan was written; False when the file already holds its text — judged on
+    the texts `bare` gives, such as with their maps out, since the map of a document is rebuilt
+    once it stands."""
     current = path.read_text(encoding="utf-8") if path.exists() else ""
     body = plan.strip("\n")
-    if body in current:
+    seen = body in current if bare is None else bare(body).strip("\n") in bare(current)
+    if seen:
         return False
     parts = []
     if current:
@@ -87,6 +100,19 @@ def append_plan(path: Path, plan: str, now, session: str) -> bool:
     with path.open("a", encoding="utf-8", newline="\n") as handle:
         handle.write("".join(parts))
     return True
+
+
+def capture(path: Path, plan: str, project_dir: Path, now, session: str) -> None:
+    """The Spec of the approval into `spec.md`: `plan`, the plan text and then the Cases file
+    beside the plan file as `ledger.with_cases` or `ledger.plan_cases_text` joined them, by
+    `append_plan`; then the maps of `spec.md` rebuilt by `rebuild_spec_maps` of
+    `.guppi/guppi/ratified.py`, so that the map of the new document opens with the line of
+    `spec.md`. A Spec already in the file, its map rebuilt since, is judged with
+    the maps out, by `ratified.without_maps`. This module joins no text itself."""
+    from guppi.ratified import rebuild_spec_maps, without_maps  # it imports more than this needs
+
+    if append_plan(path, plan, now, session, without_maps):
+        rebuild_spec_maps(path, project_dir)
 
 
 def fork_line(path: Path, project_dir: Path) -> str:
@@ -140,8 +166,9 @@ def typed(payload: dict, project_dir: Path, now, stdout, stderr) -> int:
     blocked — exit 2, the reason on stderr, `spec.md` as it stands — while the session is in
     Plan Mode, with no `/hi` of the session, while `gate_refusal` of `.guppi/guppi/prespec.py`,
     the judgment of the `ExitPlanMode` hook, gives a reason, and with no plan file of the
-    session by `ledger.plan_path`; otherwise the plan file is appended by `append_plan` and
-    the line of `fork_output` printed for `UserPromptSubmit`."""
+    session by `ledger.plan_path`; otherwise the plan file and its Cases file, by
+    `ledger.plan_cases_text`, are appended by `capture` and the line of `fork_output` printed
+    for `UserPromptSubmit`."""
     from guppi.prespec import gate_refusal  # prespec imports more than this hook needs
 
     if not is_typed(payload.get("prompt"), APPROVE):
@@ -165,8 +192,8 @@ def typed(payload: dict, project_dir: Path, now, stdout, stderr) -> int:
     if plan_file is None or not plan_file.is_file():
         print(f"spec: /approve-spec: no plan file of session {session}.", file=stderr)
         return 2
-    plan = plan_file.read_text(encoding="utf-8")
-    append_plan(path, plan, now, session)
+    plan = plan_cases_text(plan_file)  # the plan file and its Cases file
+    capture(path, plan, project_dir, now, session)
     print(fork_output(path, project_dir, plan, "UserPromptSubmit"), file=stdout)
     return 0
 
@@ -200,7 +227,10 @@ def run(
                 file=stderr,
             )
             return 2
-        append_plan(path, plan, now, session)
+        plan_file = plan_path(session_event_logs(project_dir, now, session), session)
+        found = plan_file if plan_file is not None and plan_file.is_file() else None
+        # the plan text and then the Cases file beside the plan file
+        capture(path, with_cases(plan, found), project_dir, now, session)
         print(fork_output(path, project_dir, plan), file=stdout)
     except Exception as exc:  # noqa: BLE001 — a hook that raises would fail the session
         print(f"spec: spec.md not written: {exc}", file=stderr)

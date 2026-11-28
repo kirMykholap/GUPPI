@@ -91,7 +91,9 @@ import yaml
 
 from guppi.caseid import ID as CASE_ID
 from guppi.event import project_root
-from guppi.ledger import is_sprint_page  # the one judgment of a sprint page
+
+# the one judgment of a sprint page and of a one-off Estimate
+from guppi.ledger import is_one_off, is_sprint_page
 from guppi.materialize import (
     PLACEHOLDER_CATEGORIES,  # the folders a placeholder may stand in
     category_of,  # the one table of prefixes
@@ -147,7 +149,6 @@ PYTEST = "pytest"
 # form of a Leaf's method
 GUPPI_COMMAND = re.compile(r"\bguppi (?:test|check|style)(?![\w-])")
 # the command that runs the whole suite, a form of the method of a MOC with no parent
-#
 GUPPI_TEST = re.compile(r"\bguppi test(?![\w-])")
 CRITERION = "## Criterion"
 RENDER = "## Render"
@@ -595,7 +596,7 @@ def check_status(page: Page, by_slug: dict[str, Page], drafts: bool = False) -> 
                 Finding(page, "status", f"target {target.slug} does not list it in estimates")
             )
         target_slug = str(page.props.get("target", ""))
-        if page.props.get("once") is True and not is_sprint_page(target_slug):
+        if is_one_off(page) and not is_sprint_page(target_slug):
             out.append(
                 Finding(
                     page,
@@ -752,6 +753,19 @@ def waits_for_another_session(method: str) -> bool:
         ANOTHER_SESSION.search(part) and not PERSON.search(part) and not waits_for_an_event(part)
         for part in method.split(CLAUSE)
     )
+
+
+TRANSCRIPT = re.compile(r"\btranscripts?\b|~/\.claude/projects\b", re.IGNORECASE)
+
+
+def reads_a_transcript(method: str) -> bool:
+    """Whether a `method` reads the transcript of a session: a part between two `;` that
+    holds `by hand`, by `is_reading`, and names the word `transcript` or the folder
+    `~/.claude/projects/`, by `TRANSCRIPT`. A part with no `by hand`, such as a test run over
+    a made-up transcript, reads none. The one predicate of this judgment, which `pre-spec`
+    imports to report such a reading off a sprint page; the lint run does not call it, so the
+    live pages give no finding by it."""
+    return any(is_reading(part) and TRANSCRIPT.search(part) for part in method.split(CLAUSE))
 
 
 def check_moment(page: Page) -> list[Finding]:

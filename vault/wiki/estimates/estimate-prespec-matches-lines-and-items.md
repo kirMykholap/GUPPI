@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_prespec.py
 checked: 2026-09-26
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -31,4 +31,4 @@ A decision line whose Case has no heading in the plan is the finding `case N: li
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

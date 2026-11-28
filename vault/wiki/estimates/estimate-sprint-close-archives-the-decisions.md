@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_sprint_close.py -k decisions; by hand, the outp
 checked: 2026-10-04
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, workflow]
 core: true
 ---
@@ -31,4 +31,4 @@ Each Decision page under `vault/wiki/decisions/` whose `sprint` is `<id>` stands
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_materialize.py
 checked: 2026-09-27
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -29,4 +29,4 @@ Only the keys the category's `schema.yaml` names as fields reach `fields` of the
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

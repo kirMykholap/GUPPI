@@ -228,7 +228,7 @@ def test_creates_yield_conformant_pages_with_backlinks_in_order(tmp_path):
     assert "## Criterion\n\nthe child works" in estimate
     # the seed is not a whole vault: its root files have no rule of their own
     findings = [f for f in lint.lint(tmp_path) if ": layout: " not in f]
-    assert findings == ["estimates/estimate-child-works: unread: pending"], findings  #
+    assert findings == ["estimates/estimate-child-works: unread: pending"], findings
     log = page(tmp_path, "", "log")
     assert (
         f"- {DATE} rules/rule-root child rule-child added · [[decision-case-1]] · generate" in log
@@ -1122,7 +1122,7 @@ def test_one_decision_page_per_case_and_supersedes_marks_the_earlier(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == ""
     one = page(tmp_path, "decisions", "decision-case-1")
-    assert props(one)["case"] == "1" and props(one)["status"] == "archived"  #
+    assert props(one)["case"] == "1" and props(one)["status"] == "archived"
     assert props(one)["superseded_by"] == ["decision-case-2"]
     assert props(one)["create"] == ["rule-root"]
     assert not {"kind", "target_slug", "targets", "update", "delete", "defer"} & set(props(one))
@@ -1691,7 +1691,7 @@ def test_a_decision_page_of_a_case_without_given_keeps_its_context(tmp_path):
     assert "## Given" not in text
 
 
-def test_a_decision_page_carries_its_recommend(tmp_path):  #
+def test_a_decision_page_carries_its_recommend(tmp_path):
     entries = [ROOT]
     decisions = records_for(entries)
     decisions[0]["case_text"]["recommend"] = "- **Which?**\n  - Recommended: (a).\n  - Answer: yes."
@@ -1755,7 +1755,7 @@ def test_a_parent_case_gets_its_page_first_with_children_and_no_context(tmp_path
     assert log.index("decision-case-9 ") < log.index("decision-case-9.1")
 
 
-def test_a_sub_case_page_carries_parent_and_no_problem(tmp_path):  #
+def test_a_sub_case_page_carries_parent_and_no_problem(tmp_path):
     entries, decisions = sub_cases({"context": "c", "problem": "p", "recommend": "r"})
     seed(tmp_path, entries=entries, decisions=decisions)
     code, _, err = run(tmp_path)
@@ -2289,7 +2289,7 @@ def test_the_decision_page_of_a_case_gone_from_the_spec_has_a_two_line_body(tmp_
     with_text = props(page(tmp_path, "decisions", "decision-case-3"))
     assert with_text["status"] == "current"
     three = page(tmp_path, "decisions", "decision-case-3")
-    assert "## Context" not in three and "## Problem\n\np\n" in three  #
+    assert "## Context" not in three and "## Problem\n\np\n" in three
 
 
 # --- the tick of the Spec beside the yaml -----------------------------------
@@ -2512,7 +2512,6 @@ def test_a_reading_ticks_the_read_line_in_every_live_spec(tmp_path):
     assert code == 0 and err == ""
     # a promise changed in two sessions leaves a read line in each, and one
     # reading is of the page — so every live Spec closes, not the first that holds a line
-    #
     assert "- [x] read `estimate-child-works`: by hand" in older.read_text(encoding="utf-8")
     assert "- [x] read `estimate-child-works`: by hand" in newer.read_text(encoding="utf-8")
     # the archive keeps its open line: the record of a task nobody performed
@@ -4120,3 +4119,54 @@ def test_a_drop_of_render_on_a_check_rule_applies(tmp_path):
     code, _, err = run(tmp_path)
     assert code == 0 and err == "", err
     assert "## Render" not in page(tmp_path, "rules", "rule-leaf")
+
+
+# --- the maps follow the ticks ----------------------------------------------
+
+MAPPED_CASES = """# Spec
+
+## Case 5 — first
+
+```tasks
+- [ ] update `rule-a`
+- [ ] read `estimate-a-works`
+```
+"""
+MAPPED_STAMP = "<!-- approved 15:20:00 · session 44c1aae1 -->"
+
+
+def mapped_spec(tmp_path, with_map=True):
+    """A session's `spec.md` of one approved document, with its map or without."""
+    from guppi import ratified
+
+    body = ratified.with_map(MAPPED_CASES, None, tmp_path) if with_map else MAPPED_CASES
+    spec = tmp_path / "vault" / "raw" / "2026-09-09" / "1501" / "spec.md"
+    spec.parent.mkdir(parents=True, exist_ok=True)
+    spec.write_text(f"{MAPPED_STAMP}\n\n{body}", encoding="utf-8", newline="\n")
+    return spec
+
+
+def test_spec_map_tick_spec_ticks_the_box_of_its_line_in_the_map(tmp_path):
+    spec = mapped_spec(tmp_path)
+    assert generate.tick_spec(spec, "5", "update", "rule-a")
+    text = spec.read_text(encoding="utf-8")
+    assert "\n- [x] update `rule-a`" in text
+    assert "\n  - [x] update `rule-a`" in text
+    assert "\n  - [ ] 🔍 read `estimate-a-works`" in text
+
+
+def test_spec_map_tick_read_ticks_the_box_of_its_line_in_the_map(tmp_path):
+    spec = mapped_spec(tmp_path)
+    assert generate.tick_read([spec], "estimate-a-works")
+    text = spec.read_text(encoding="utf-8")
+    assert "\n- [x] read `estimate-a-works`" in text
+    assert "\n  - [x] read `estimate-a-works`" in text
+    assert "| 5 | first | 0 | 0 |" in text
+
+
+def test_spec_map_a_spec_with_no_map_gets_none_from_a_tick(tmp_path):
+    spec = mapped_spec(tmp_path, with_map=False)
+    assert generate.tick_spec(spec, "5", "update", "rule-a")
+    assert generate.tick_read([spec], "estimate-a-works")
+    text = spec.read_text(encoding="utf-8")
+    assert text == f"{MAPPED_STAMP}\n\n" + MAPPED_CASES.replace("- [ ]", "- [x]")

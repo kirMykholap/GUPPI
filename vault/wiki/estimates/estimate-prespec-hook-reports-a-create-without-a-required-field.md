@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_prespec.py .guppi/tests
 checked: 2026-10-13
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, schema]
 core: true
 ---
@@ -34,4 +34,4 @@ A `create` item that lacks a field which `guppi materialize` would name under `i
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -7,7 +7,7 @@ purpose: Whether a done unit of raw/ goes to the archive folder of the sprint it
 method: uv run --project .guppi pytest .guppi/tests/test_archive.py -k sprint
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, librarian, sprint]
 core: true
 ---
@@ -28,4 +28,4 @@ The unit goes under `vault/archive/<sprint>/`, `<sprint>` being the value of the
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

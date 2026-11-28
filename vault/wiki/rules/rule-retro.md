@@ -2,15 +2,15 @@
 type: rule
 kind: Leaf
 purpose: Prevents a session from reaching the librarian on work nobody reviewed
-status: draft
+status: built
 enforcement: render
 governs: .claude/skills/retro/SKILL.md
 render_mode: full
 parent: "[[rule-end-of-work]]"
-estimates: ["[[estimate-retro-loads]]", "[[estimate-retro-runs-on-to-the-handoff]]", "[[estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]]", "[[estimate-retro-red-in-the-baseline-is-not-charged]]", "[[estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case]]"]
+estimates: ["[[estimate-retro-loads]]", "[[estimate-retro-runs-on-to-the-handoff]]", "[[estimate-retro-red-check-of-an-updated-page-is-a-handoff-note]]", "[[estimate-retro-red-in-the-baseline-is-not-charged]]", "[[estimate-retro-leaves-out-the-sub-cases-of-a-superseded-case]]", "[[estimate-retro-loads-on-a-red-command]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, render]
 core: true
 ---
@@ -50,4 +50,4 @@ When the review is done, commit the work: `uv run --project .guppi guppi style` 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

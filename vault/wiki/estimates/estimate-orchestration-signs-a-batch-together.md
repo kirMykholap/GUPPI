@@ -8,7 +8,7 @@ method: "by hand at Retro of the session that changes it: the new Render of rule
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -35,4 +35,4 @@ The main agent sends the ratified Case back to its `case-guppi` by `SendMessage`
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

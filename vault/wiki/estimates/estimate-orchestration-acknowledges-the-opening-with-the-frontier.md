@@ -7,7 +7,7 @@ purpose: Whether the Frontier is written and the readings of /hi taken before th
 method: "by hand: the Render of rule-orchestration in vault/wiki/orchestration.md read against the Criterion"
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, sprint]
 core: true
 ---
@@ -31,4 +31,4 @@ Before that reply, the agent writes `raw/<date>/<hi HHMM>/frontier.md` as `rule-
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

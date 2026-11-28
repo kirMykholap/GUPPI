@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_prespec.py on a temp plan over temp pages: a p
 checked: 2026-09-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -31,4 +31,4 @@ A `replace` pair whose `new` opens with a space or a tab while its `old` opens w
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

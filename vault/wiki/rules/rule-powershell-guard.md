@@ -9,7 +9,7 @@ parent: "[[rule-harness]]"
 estimates: ["[[estimate-powershell-guard-refuses-a-here-string-piped-into-an-interpreter]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness]
 core: true
 ---
@@ -20,4 +20,4 @@ Prevents a here-string from feeding a script to an interpreter through the Power
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

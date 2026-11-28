@@ -45,7 +45,6 @@ TOP_ID = rf"(?:{SPRINT}-)?\d+"  # the id of a top-level Case
 CASE_FILE = re.compile(rf"^case-({TOP_ID})\.md$")  # the name `case_file` gives
 DECISION_PAGE = re.compile(rf"^decision-case-({ID})\.md$")
 # the sprints opened before sprint ids came in, whose Cases keep a plain id to their close
-#
 PLAIN_SPRINTS = ("migration", "plugin")
 
 

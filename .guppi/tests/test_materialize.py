@@ -365,7 +365,7 @@ def test_an_item_with_file_and_no_slug_is_not_found(tmp_path):  # no file route
     assert "path" not in glossary and "change" not in glossary
 
 
-def test_a_slug_without_a_category_prefix_is_unknown(tmp_path):  #
+def test_a_slug_without_a_category_prefix_is_unknown(tmp_path):
     ledger = "- decision[case 8][update][claude-md]{ref:claude-md}\n"
     spec = "## Case 8 — the prompt\n\n```then\nupdate:\n  - slug: claude-md\n    change: a\n```\n"
     seed(tmp_path, ledger=ledger, spec=spec)
@@ -451,7 +451,7 @@ new_tags:
 """
 
 
-def test_a_sub_case_inherits_a_missing_given_never_when(tmp_path):  #
+def test_a_sub_case_inherits_a_missing_given_never_when(tmp_path):
     seed(tmp_path, ledger=SUB_LEDGER, spec=SUB_SPEC)
     run(tmp_path)
     decisions = {d["case"]: d for d in load(tmp_path)["decisions"]}
@@ -468,7 +468,7 @@ def test_a_sub_case_inherits_a_missing_given_never_when(tmp_path):  #
     assert third["incomplete"] == ["when"]
 
 
-def test_a_sub_case_reads_no_problem_or_recommend_from_its_parent(tmp_path):  #
+def test_a_sub_case_reads_no_problem_or_recommend_from_its_parent(tmp_path):
     own = SUB_SPEC.replace(
         "### Case 9.2 — its own given\n\n",
         "### Case 9.2 — its own given\n\n> **recommend:**\n> - **Which?**\n>   - Answer: this.\n\n",
@@ -482,7 +482,7 @@ def test_a_sub_case_reads_no_problem_or_recommend_from_its_parent(tmp_path):  #
     assert decisions["9.2"]["case_text"]["recommend"] == "- **Which?**\n  - Answer: this."
 
 
-def test_a_parent_case_gets_its_own_record_with_children(tmp_path):  #
+def test_a_parent_case_gets_its_own_record_with_children(tmp_path):
     seed(tmp_path, ledger=SUB_LEDGER, spec=SUB_SPEC)
     run(tmp_path)
     decisions = {d["case"]: d for d in load(tmp_path)["decisions"]}
@@ -500,7 +500,7 @@ def test_a_parent_case_gets_its_own_record_with_children(tmp_path):  #
     assert "parent" not in parent
 
 
-def test_a_parent_record_without_a_given_of_its_own(tmp_path):  #
+def test_a_parent_record_without_a_given_of_its_own(tmp_path):
     bare = SUB_SPEC.replace("> **given:**\n> The parent's given.\n> **＋** A second line.\n\n", "")
     seed(tmp_path, ledger=SUB_LEDGER, spec=bare)
     run(tmp_path)
@@ -509,14 +509,14 @@ def test_a_parent_record_without_a_given_of_its_own(tmp_path):  #
     assert "incomplete" not in parent
 
 
-def test_a_case_with_no_sub_cases_gets_no_parent_or_children(tmp_path):  #
+def test_a_case_with_no_sub_cases_gets_no_parent_or_children(tmp_path):
     seed(tmp_path)
     run(tmp_path)
     for record in load(tmp_path)["decisions"]:
         assert "parent" not in record and "children" not in record
 
 
-def test_new_tags_come_from_every_case_lines_or_none(tmp_path):  #
+def test_new_tags_come_from_every_case_lines_or_none(tmp_path):
     seed(tmp_path, ledger=SUB_LEDGER, spec=SUB_SPEC)
     run(tmp_path)
     assert load(tmp_path)["new_tags"] == [
@@ -1047,7 +1047,6 @@ def of_case(data, case):
 def test_the_old_estimate_keys_of_a_create_are_unknown_and_derive_no_estimate(tmp_path):
     # `method`, `estimate_slug` and `estimate_kind` on a rule's or an entity's
     # `create` are keys of no item — named under `unknown`, never a field, never an Estimate
-    #
     seed_estimates(tmp_path)
     copy_schemas(tmp_path)
     code, out, err = run(tmp_path)
@@ -1861,7 +1860,7 @@ def test_two_lines_that_retire_one_case_are_both_listed_in_ledger_order(tmp_path
     data = load(tmp_path)
     for case in ("30.1", "30.2", "30.2.1"):
         (entry,) = of_case(data, case)
-        assert entry["superseded_by"] == ["31", "32"]  #
+        assert entry["superseded_by"] == ["31", "32"]
     records = {d["case"]: d for d in data["decisions"]}
     for case in ("30", "30.1", "30.2", "30.2.1"):
         assert records[case]["superseded_by"] == ["decision-case-31", "decision-case-32"]
@@ -2275,7 +2274,7 @@ def test_the_type_and_purpose_of_a_defer_are_its_own_keys_whatever_the_target(tm
     assert "unknown" not in bare
 
 
-def test_the_keys_of_the_old_shape_on_a_rule_create_are_unknown(tmp_path):  #
+def test_the_keys_of_the_old_shape_on_a_rule_create_are_unknown(tmp_path):
     seed_schemas(tmp_path)
     spec = (tmp_path / "vault" / "raw" / DATE / "spec.md").read_text(encoding="utf-8")
     spec = spec.replace(
@@ -2607,7 +2606,7 @@ def test_a_reading_after_the_mark_does_not_fold_into_the_superseded_create(tmp_p
     assert reading["line"] == 3 and reading["status"] == "passed"
 
 
-def test_a_folded_reading_is_refolded_for_each_block_of_the_line(tmp_path):  #
+def test_a_folded_reading_is_refolded_for_each_block_of_the_line(tmp_path):
     ledger = (
         "- decision[case 29][update][rule-old]{ref:rule-old}\n"
         + CREATE_30
@@ -2646,7 +2645,7 @@ def test_item_keys_answers_for_each_kind_as_the_lift_does(tmp_path):
     assert create & {"flavour", "method", "contract", "estimate_slug", "estimate_kind"} == set()
     defer = materialize.item_keys("defer", "rules", tmp_path)
     assert {"type", "purpose", "slug"} <= defer and "old" not in defer
-    assert materialize.item_keys("create", "rules", tmp_path, {"rules"}) is None  #
+    assert materialize.item_keys("create", "rules", tmp_path, {"rules"}) is None
 
 
 # --- the one judgment of a fence: `estimate-materialize-judges-a-fence` ------
@@ -2745,12 +2744,12 @@ FENCE_WHOLE = {
 
 
 @pytest.mark.parametrize(("lines", "breaks"), list(FENCE_BREAKS.values()), ids=list(FENCE_BREAKS))
-def test_fence_breaks_flags_a_broken_fence(lines, breaks):  #
+def test_fence_breaks_flags_a_broken_fence(lines, breaks):
     assert materialize.fence_breaks("\n".join(lines)) == breaks
 
 
 @pytest.mark.parametrize("lines", list(FENCE_WHOLE.values()), ids=list(FENCE_WHOLE))
-def test_fence_breaks_passes_a_whole_fence(lines):  #
+def test_fence_breaks_passes_a_whole_fence(lines):
     assert materialize.fence_breaks("\n".join(lines)) == []
 
 

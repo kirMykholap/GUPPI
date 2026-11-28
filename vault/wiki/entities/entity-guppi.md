@@ -9,7 +9,7 @@ rules: ["[[rule-harness]]"]
 code_ref: [.guppi/guppi/, .claude/]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -20,4 +20,4 @@ GUPPI: a Claude Code harness governed by ratified decisions, and the Obsidian va
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

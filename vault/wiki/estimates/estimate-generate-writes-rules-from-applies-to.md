@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_generate.py on a temp vault; by hand, after a 
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, librarian]
 core: true
 ---
@@ -29,4 +29,4 @@ The `rules` of every live Entity is the slugs of the live rules whose `applies_t
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

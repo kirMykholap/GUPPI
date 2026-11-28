@@ -9,7 +9,7 @@ parent: "[[rule-harness]]"
 estimates: ["[[estimate-governed-files-hook-refuses]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, render]
 core: true
 ---
@@ -22,4 +22,4 @@ the next render, and what it carried was ratified for the page, not the file.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

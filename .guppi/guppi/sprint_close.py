@@ -12,10 +12,10 @@ The close of `entity-sprint-<id>` moves:
 - each Estimate named by `--archive-unread`.
 
 Each live Estimate that stands `pending` or `failed` is listed. It is settled when it is named
-by `--carry` (it stays live with its status) or by `--archive-unread` (it goes), or when the
-sprint page lists it and it stands `failed` — a reading read now that came out `failed` goes
-with the sprint page with no choice by name. An Estimate of the sprint page is never carried:
-`--carry` on it is refused. A slug named that is no listed Estimate is refused.
+by `--carry` (it stays live with its status) or by `--archive-unread` (it goes). An Estimate
+that the sprint page lists, one that stands `failed` too, is settled only when
+`--archive-unread` names it, since a failed reading is not done. An Estimate of the sprint page
+is never carried: `--carry` on it is refused. A slug named that is no listed Estimate is refused.
 
 Without `--apply` the command prints the preview — each page it would move, each page of the
 sprint it keeps and why, each listed Estimate and how it stands — and changes nothing. With
@@ -132,9 +132,8 @@ class Close:
     def settled(self, estimate: Page, own: list[str]) -> bool:
         if estimate.slug in self.unread:
             return True
-        if estimate.slug in own:
-            return str(estimate.props.get("status")) == "failed"
-        return estimate.slug in self.carry
+        # an Estimate of the sprint page is settled by --archive-unread alone
+        return estimate.slug in self.carry and estimate.slug not in own
 
     def judge_insights_and_lessons(self, pages: dict[str, list[Page]]) -> None:
         held: set[str] = set()
@@ -183,8 +182,6 @@ class Close:
                 way = "archived unread"
             elif estimate.slug in self.carry and estimate.slug not in own:
                 way = "carried into the next sprint"
-            elif estimate.slug in own and status == "failed":
-                way = "goes with the sprint page, its status kept"
             else:
                 way = "not settled"
             lines.append(f"unread: estimates/{estimate.slug} {status} · {target} · {way}")
@@ -211,6 +208,8 @@ def mark(page: Page, date: str, sprint: str) -> None:
 def tick(project_dir: Path, sprint: str) -> int:
     """Tick each unticked close line of a `spec.md` under `vault/raw/`, by the one matcher
     of the tickers; the count ticked."""
+    from guppi.ratified import rebuild_spec_maps  # the one rebuild of the maps
+
     pattern = command_line(f"guppi sprint-close --sprint {sprint} --apply")
     ticked = 0
     for unit in units_with(project_dir, "spec.md"):
@@ -224,6 +223,7 @@ def tick(project_dir: Path, sprint: str) -> int:
                 ticked += 1
         if changed:
             spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+            rebuild_spec_maps(spec, project_dir)  # the maps follow the tick
     return ticked
 
 

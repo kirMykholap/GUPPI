@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_ledger.py -k unlisted_t
 checked: 2026-10-15
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness, ledger]
 core: true
 ---
@@ -38,4 +38,4 @@ A fresh lesson line stays out of the ledger while its `{tags:...}` names somethi
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

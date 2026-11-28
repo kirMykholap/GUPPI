@@ -599,7 +599,7 @@ def test_session_dir_is_none_without_a_hi_and_survives_a_foreign_start(tmp_path)
     write_event_log(tmp_path, "- 15:01:00 44c1aae1 session-start startup\n")
     assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is None
     write_event_log(tmp_path, EVENT_LOG_WITH_HI + "- 15:03:00 deadbeef session-start startup\n")
-    assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is not None  #
+    assert ledger.session_dir(tmp_path, NOW, "44c1aae1") is not None
 
 
 # --- what a session changes, it does not measure ----------------------------
@@ -1245,7 +1245,7 @@ def kind_records():
     def user(content, **fields):
         return {"type": "user", "message": {"role": "user", "content": content}, **fields}
 
-    refusal = "Stop hook feedback:\n[" + ledger.COMMAND + "]: "
+    refusal = "Stop hook feedback:\n[command hook 1]: ledger: "
     tool = [{"type": "tool_result", "tool_use_id": "t", "content": "ok"}]
     return [
         user("go on", origin={"kind": "human"}),  # 0 the person's message
@@ -1273,13 +1273,13 @@ def test_kind_of_a_user_record_sets_the_turn_and_the_stretch(tmp_path):
     path = tmp_path / "transcript.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
     payload = {"transcript_path": str(path)}
-    assert ledger.own_refusals(payload, ledger.COMMAND) == ["first", "second"]
+    assert ledger.own_refusals(payload, ledger.COMMAND) == ["ledger: first", "ledger: second"]
     assert context.sizes(records) == (15_000, 5_000)  # from the call before the answer
     # a transcript with neither kind is read whole as the turn and as the stretch
     neither = [r for i, r in enumerate(records) if i not in (0, 3)]
     assert casecheck.turn_of_reply(neither) == neither
     path.write_text("\n".join(json.dumps(r) for r in neither) + "\n", encoding="utf-8")
-    assert ledger.own_refusals(payload, ledger.COMMAND) == ["first", "second"]
+    assert ledger.own_refusals(payload, ledger.COMMAND) == ["ledger: first", "ledger: second"]
     assert context.sizes(neither) == (15_000, 15_000)
 
 
@@ -1291,31 +1291,31 @@ def test_refusals_of_two_hooks_after_two_replies_carry_the_reply_they_follow(tmp
         content = f"Stop hook feedback:\n[{command}]: {text}"
         return {"type": "user", "isMeta": True, "message": {"content": content}}
 
-    onward = "uv run --project .guppi guppi onward"
+    onward = ledger.PROJECT_RUN + "guppi onward"
     records = [
         reply("before the person"),
-        refused(ledger.COMMAND, "earlier stretch"),
+        refused(ledger.COMMAND, "ledger: earlier stretch"),
         {"type": "user", "origin": {"kind": "human"}, "message": {"content": "go on"}},
         reply("first"),  # 0 of the stretch
-        refused(ledger.COMMAND, "a lesson"),
-        refused(onward, "to the handoff"),
+        refused(ledger.COMMAND, "ledger: a lesson"),
+        refused(onward, "onward: to the handoff"),
         reply("second"),  # 3 of the stretch
-        refused(ledger.COMMAND, "a reading"),
-        refused("uv run --project .guppi guppi onward --plan", "not this hook"),
+        refused(ledger.COMMAND, "ledger: a reading"),
+        refused(onward + " --plan", "onward --plan: not this hook"),
     ]
     path = tmp_path / "transcript.jsonl"
     path.write_text("\n".join(json.dumps(r) for r in records) + "\n", encoding="utf-8")
     payload = {"transcript_path": str(path)}
     found = ledger.refusals(payload, onward, ledger.COMMAND)
     assert found == {
-        onward: [(0, "to the handoff")],
-        ledger.COMMAND: [(0, "a lesson"), (3, "a reading")],
+        onward: [(0, "onward: to the handoff")],
+        ledger.COMMAND: [(0, "ledger: a lesson"), (3, "ledger: a reading")],
     }
-    assert ledger.own_refusals(payload, ledger.COMMAND) == ["a lesson", "a reading"]
+    assert ledger.own_refusals(payload, ledger.COMMAND) == ["ledger: a lesson", "ledger: a reading"]
     assert ledger.refusals({"transcript_path": str(tmp_path / "none.jsonl")}, onward) is None
 
 
-# --- the command with `--project .guppi` and without it -------------------------
+# --- a refusal found by the name of its hook, whatever the bracket -----------
 
 
 def stop_records(*records):
@@ -1340,29 +1340,66 @@ def stop_payload(tmp_path, *records):
 
 
 @pytest.mark.parametrize("name", ["ledger", "onward", "ratified", "casecheck"])
-def test_each_hook_finds_its_refusals_under_the_command_with_and_without_the_project(
-    tmp_path, name
-):
+def test_each_hook_finds_its_refusals_by_its_name_under_either_bracket(tmp_path, name):
     command = importlib.import_module(f"guppi.{name}").COMMAND
-    old = f"uv run guppi {name}"
-    assert command == f"uv run --project .guppi guppi {name}"
-    assert ledger.command_forms(command) == (command, old)
-    payload = stop_payload(tmp_path, "first", (old, "before"), "second", (command, "after"))
-    assert ledger.refusals(payload, command) == {command: [(0, "before"), (2, "after")]}
-    assert ledger.own_refusals(payload, command) == ["before", "after"]
-    for form in (old, command):
-        payload = stop_payload(tmp_path, "first", (form, "sent back"), "second")
+    assert command == f'uv run --project "${{CLAUDE_PROJECT_DIR}}/.guppi" guppi {name}'
+    assert ledger.hook_name(command) == name
+    before, after = f"{name}: before", f"{name}: after"
+    payload = stop_payload(
+        tmp_path, "first", ("command hook 1", before), "second", (command, after)
+    )
+    assert ledger.refusals(payload, command) == {command: [(0, before), (2, after)]}
+    assert ledger.own_refusals(payload, command) == [before, after]
+    for bracket in ("command hook 4", command):
+        payload = stop_payload(tmp_path, "first", (bracket, f"{name}: sent back"), "second")
         assert ledger.sent_back_last(payload, command) is True
 
 
-def test_a_plan_refusal_of_onward_is_its_own_in_either_form_and_not_that_of_onward(tmp_path):
+def test_a_text_of_another_hook_is_no_refusal_of_this_one(tmp_path):
+    payload = stop_payload(tmp_path, "first", ("command hook 1", "ratified: refused"))
+    assert ledger.own_refusals(payload, ledger.COMMAND) == []
+    assert ledger.sent_back_last(payload, ledger.COMMAND) is False
+    # the name stands at the head of the text after the bracket, not anywhere in it
+    payload = stop_payload(tmp_path, "first", ("command hook 1", "refused: ledger: x"))
+    assert ledger.own_refusals(payload, ledger.COMMAND) == []
+
+
+def test_the_two_runs_of_onward_are_kept_apart_by_their_names(tmp_path):
     from guppi import onward
 
-    old = "uv run guppi onward --plan"
-    assert ledger.command_forms(onward.PLAN_COMMAND) == (onward.PLAN_COMMAND, old)
-    payload = stop_payload(tmp_path, "first", (old, "go on"))
-    assert ledger.own_refusals(payload, onward.PLAN_COMMAND) == ["go on"]
-    assert ledger.own_refusals(payload, onward.COMMAND) == []
+    assert ledger.hook_name(onward.PLAN_COMMAND) == "onward --plan"
+    payload = stop_payload(
+        tmp_path,
+        "first",
+        ("command hook 5", "onward: to the handoff"),
+        ("command hook 6", "onward --plan: go on"),
+    )
+    assert ledger.own_refusals(payload, onward.COMMAND) == ["onward: to the handoff"]
+    assert ledger.own_refusals(payload, onward.PLAN_COMMAND) == ["onward --plan: go on"]
+
+
+def test_a_held_lesson_is_asked_once_under_a_numbered_bracket(working):
+    # Claude Code 2.1.317 writes `[command hook 1]` where the command stood
+    reply = ledger_block(DECISION, LESSON)
+    path = write_transcript(working, person())
+    code, err = run(payload(last_assistant_message=reply, transcript_path=path), working)
+    assert (code, err) == (2, ledger.held_message("lesson-x") + "\n")
+    held = meta_refusal("command hook 1", err.strip())
+    again = ledger_block(LESSON)
+    path = write_transcript(working, person(), transcript_line(reply), held)
+    code, err = run(payload(last_assistant_message=again, transcript_path=path), working)
+    assert (code, err) == (0, "")
+    assert ledger_text(working).splitlines() == [timed(DECISION), timed(LESSON)]
+
+
+def test_command_forms_give_the_command_and_its_form_with_the_project_folder():
+    # the forms of the registration that `.guppi/guppi/ship.py` removes
+    for name in ("ledger", "onward", "ratified", "casecheck", "onward --plan", "codewrite"):
+        command = f"{ledger.PROJECT_RUN}guppi {name}"
+        assert ledger.command_forms(command) == (
+            command,
+            f"uv run --project .guppi guppi {name}",
+        )
 
 
 def test_a_command_without_the_project_has_one_form():
@@ -1405,6 +1442,42 @@ def test_sprint_create_in_the_ledger_lets_a_later_line_through(tmp_path):
     code, err = run(payload(last_assistant_message=ledger_block(DECISION)), tmp_path)
     assert (code, err) == (0, "")
     assert ledger_text(tmp_path).endswith(f"{timed(DECISION)}\n")
+
+
+# --- the setup of a project before its first sprint --------------------------
+# `estimate-ledger-write-passes-every-line-before-the-setup`; the names hold `setup` and not
+# the word of the run `-k` of `estimate-sprint-close-next-session-opens-the-sprint`
+
+
+def settings(root, line: str) -> None:
+    text = 'documentation_lang = "en"\nchat_lang = "ru"\n' + line
+    (root / "guppi.toml").write_text(text, encoding="utf-8", newline="\n")
+
+
+def test_setup_pending_writes_a_decision_line_with_none_open(tmp_path):
+    without_sprint(tmp_path)
+    settings(tmp_path, "setup_done = false\n")
+    code, err = run(payload(last_assistant_message=ledger_block(DECISION)), tmp_path)
+    assert (code, err) == (0, "")
+    assert ledger_text(tmp_path) == f"{timed(DECISION)}\n"
+
+
+@pytest.mark.parametrize("line", ["setup_done = true\n", ""])
+def test_setup_done_or_no_key_refuses_a_decision_line_with_none_open(tmp_path, line):
+    without_sprint(tmp_path)
+    settings(tmp_path, line)
+    code, err = run(payload(last_assistant_message=ledger_block(DECISION)), tmp_path)
+    assert code == 2 and err.count("no sprint is open") == 1
+    assert not ledger_file(tmp_path).exists() or ledger_text(tmp_path) == ""
+
+
+def test_setup_pending_still_refuses_a_taken_id(tmp_path):
+    without_sprint(tmp_path)
+    settings(tmp_path, "setup_done = false\n")
+    sprint_page(tmp_path, "entity-sprint-next")
+    code, err = run(payload(last_assistant_message=ledger_block(OPENING)), tmp_path)
+    assert code == 2 and err.count(TAKEN) == 1
+    assert not ledger_file(tmp_path).exists() or ledger_text(tmp_path) == ""
 
 
 # --- a sprint id is never taken twice -----------------------------------------
@@ -1889,3 +1962,126 @@ def test_bare_link_a_lesson_refused_for_its_link_is_not_held_for_its_mark(workin
     assert (code, err) == (2, ledger.link_message("lesson[lesson-b-l]", ["slug"]) + "\n")
     assert ledger.held_message("lesson-b-l") not in err
     assert timed(LINKED_LESSON) not in ledger_text(working)
+
+
+# --- the Cases file beside the plan file: the one reading of the Cases of the plan -------
+
+CASES_STAMP = "44c1aae1"
+UNWRITTEN_CASE = (
+    "## Case 7 — example\n\n```then\nupdate:\n- slug: rule-x\n  change: the text changed\n```\n"
+)
+
+
+def planned_session(project_dir, plan_body="", cases=None):
+    """A working session after `/pre-spec`: its plan file, holding its title line and
+    `plan_body`, named by a `tool Write:` line, and the Cases file beside it holding `cases`."""
+    plans = project_dir / "home" / ".claude" / "plans"
+    plans.mkdir(parents=True, exist_ok=True)
+    plan = plans / "plan.md"
+    plan.write_text("# Spec — 2026-09-09, session 1501\n" + plan_body, encoding="utf-8")
+    if cases is not None:
+        ledger.plan_cases_file(plan).write_text(cases, encoding="utf-8")
+    log = project_dir / "vault" / "raw" / TODAY.isoformat() / "event_log.md"
+    log.parent.mkdir(parents=True, exist_ok=True)
+    log.write_text(
+        f"- 15:01:00 {CASES_STAMP} session-start startup\n- 15:01:30 {CASES_STAMP} hi\n"
+        f"- 15:02:00 {CASES_STAMP} tool Write: {plan}\n- 15:03:00 {CASES_STAMP} prespec\n",
+        encoding="utf-8",
+    )
+    folder = log.parent / "1501"
+    folder.mkdir(exist_ok=True)
+    (folder / "frontier.md").write_text("# Frontier\n\n## Cases\n\n", encoding="utf-8")
+    (project_dir / "guppi.toml").write_text(
+        'documentation_lang = "en"\nchat_lang = "ru"\n', encoding="utf-8"
+    )
+    return plan
+
+
+def test_cases_file_is_named_by_the_plan_stem_beside_the_plan(tmp_path):
+    plan = tmp_path / ".claude" / "plans" / "quiet-plan.md"
+    assert ledger.plan_cases_file(plan) == plan.with_name("quiet-plan.cases.md")
+
+
+def test_cases_file_plan_cases_text_joins_the_plan_and_its_cases_file(tmp_path):
+    plan = planned_session(tmp_path)
+    assert ledger.plan_cases_text(plan) == plan.read_text(encoding="utf-8")  # none beside it
+    ledger.plan_cases_file(plan).write_text(UNWRITTEN_CASE, encoding="utf-8")
+    joined = ledger.plan_cases_text(plan)
+    assert joined.startswith("# Spec — 2026-09-09, session 1501\n")
+    assert joined.endswith(UNWRITTEN_CASE)
+    assert ledger.with_cases(plan.read_text(encoding="utf-8"), plan) == joined
+    assert ledger.with_cases("text", None) == "text"
+
+
+def check_output(project_dir, plan):
+    from guppi import prespec
+
+    out, err = io.StringIO(), io.StringIO()
+    code = prespec.run(
+        ["--check", str(plan), "--session", CASES_STAMP],
+        stdout=out,
+        stderr=err,
+        project_dir=project_dir,
+        now=NOW,
+    )
+    return code, [line for line in out.getvalue().splitlines() if not line.startswith("note:")]
+
+
+def test_cases_file_prespec_check_judges_a_case_that_stands_only_there(tmp_path):
+    in_plan = tmp_path / "a"
+    beside = tmp_path / "b"
+    expected = check_output(in_plan, planned_session(in_plan, "\n" + UNWRITTEN_CASE))
+    found = check_output(beside, planned_session(beside, cases=UNWRITTEN_CASE))
+    assert found == expected and found[0] == 1
+    assert any("case 7: item [update][rule-x] has no decision line" in f for f in found[1])
+
+
+def test_cases_file_the_exit_gate_refuses_on_a_case_that_stands_only_there(tmp_path):
+    from guppi import prespec
+
+    planned_session(tmp_path, cases=UNWRITTEN_CASE)
+    reason = prespec.gate_refusal(tmp_path, NOW, CASES_STAMP)
+    assert reason is not None and "case 7: item [update][rule-x] has no decision line" in reason
+
+
+def test_cases_file_the_retro_gate_finds_an_unwritten_item_that_stands_only_there(tmp_path):
+    from guppi import gate
+
+    planned_session(tmp_path, cases=UNWRITTEN_CASE)
+    assert gate.spec_check(tmp_path, CASES_STAMP, NOW) == ["case 7: [update][rule-x]"]
+
+
+def test_cases_file_with_no_cases_file_the_plan_file_alone_is_read(tmp_path):
+    from guppi import gate
+
+    planned_session(tmp_path, "\n" + UNWRITTEN_CASE)
+    assert gate.spec_check(tmp_path, CASES_STAMP, NOW) == ["case 7: [update][rule-x]"]
+
+
+def test_cases_file_the_check_of_a_case_file_clashes_with_a_case_that_stands_only_there(
+    tmp_path,
+):
+    """The `SubagentStop` check of a Case file reads the other Cases of the session from the
+    plan file and its Cases file: a pair of another Case there that rewrote the anchor of the
+    answer is a finding of the answer, as when that Case stood in the plan file."""
+    import test_casecheck as cc
+
+    rule = tmp_path / "vault" / "wiki" / "rules" / "rule-x.md"
+    rule.parent.mkdir(parents=True)
+    rule.write_text(cc.RULE_X, encoding="utf-8")
+    planned_session(tmp_path, cases=cc.planned(5, "the `old` text", "the rewritten text"))
+    code, err = cc.answer(tmp_path, cc.ANSWER)
+    assert code == 2 and cc.MISSES in err
+
+
+def test_cases_file_every_reader_imports_the_one_reading():
+    """`prespec`, `casecheck`, `gate`, `ratified` and `spec` read the Cases of the plan by
+    `ledger.plan_cases_text` or `ledger.with_cases`, never by a join of their own."""
+    from pathlib import Path
+
+    from guppi import casecheck, gate, prespec, ratified, spec
+
+    for module in (prespec, casecheck, gate, ratified, spec):
+        source = Path(module.__file__).read_text(encoding="utf-8")
+        assert "plan_cases_text" in source or "with_cases" in source, module.__name__
+        assert '.cases.md"' not in source and "CASES_FILE_SUFFIX" not in source, module.__name__

@@ -8,7 +8,7 @@ estimates: ["[[estimate-glossary-terms-defined]]"]
 rules: ["[[rule-glossary]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, harness]
 core: true
 ---
@@ -32,7 +32,7 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 | the vault query | The vault query before a `create` without `ref`, `draft` pages included | [[rule-ask]] |
 | Index line, `ask-guppi` | The Grep of a category's frontmatter — `purpose`, `root_cause` or `pattern`, and `deferred_by` — one line per live page, never compared across categories; no index file; the search agent over these lines, one entry point; Estimates through the target, Decisions through `deferred_by`; the archive answered by slug alone — `free`, `live` or `archived at <path>` — never by meaning | [[rule-ask]] |
 | `/pre-spec` | The check of the ratified set against each other and the vault before the Spec is approved | [[rule-prespec]] |
-| Spec | The ratified Cases as one document, approved as Claude Code's plan, copied to `raw/<date>/<hi HHMM>/spec.md`, the session's folder | [[rule-spec-capture]] |
+| Spec | The ratified Cases as one document, written into `raw/<date>/<hi HHMM>/spec.md`, the session's folder, under the map of Claude Code's plan when the person approves that map | [[rule-spec-capture]] |
 | Vault | `vault/wiki/`: one folder per page category, each page a file named by its slug | [[rule-vault-layout]] |
 | Entity fields | `type` the category; `purpose` one line, from which the index line is built; `children` on a MOC; `estimates` on a Leaf its own checks, on a MOC the cross-cutting ones; `code_ref` paths to code, on either kind | [[rule-entities-schema]] |
 | Rule fields | `purpose` one line, what the rule prevents; `enforcement` `hook`, `check` or `render`; `implementation_ref` on `hook` and `check`; `governs` and `render_mode` on `render`; `children` ordered, on a MOC; `estimates` that the rule does what it claims | [[rule-rules-schema]] |
@@ -69,15 +69,15 @@ The terms of GUPPI: one row per term — the term, its meaning in one line, and 
 | Working files | `log.md`, the feed of page changes written by `generate` and `cleanup`; `tags.md`, the registry of tags, each from a ratified Case or from a lesson line that declares it, its header changed only by a one-off task by hand that a Case names; `raw/` and `archive/`, the working folders of a session | [[rule-vault-layout]] |
 | `raw/` | One folder per session, `raw/<date>/<HHMM>/`, with its `ledger.md` and `materialize.yaml`; `guppi archive` moves it whole to `vault/archive/<sprint>/<date>/<HHMM>/raw/` once every entry is applied; `event_log.md` stays in `raw/<date>/` | [[rule-raw-archive]] |
 | Documentation | The librarian's phase, the agent `librarian-guppi`: materialize, index check, synthesis, generate, cleanup, brief, close | [[rule-documentation]] |
-| Librarian | Clean context; the only writer to `wiki/` but for the header of `tags.md`, which a one-off task by hand that a Case names changes, and for what a merge of `main` into a branch writes: the joined text of a conflicted page, and the lines of `log.md` and `tags.md` that git joins; reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
+| Librarian | Clean context; the only writer to `wiki/` but for the header of `tags.md`, which a one-off task by hand that a Case names changes, and for what a merge of the main branch into a branch writes: the joined text of a conflicted page, and the lines of `log.md` and `tags.md` that git joins; reads handoff, yaml, indexes; one judgment, `create` to `update` on a duplicate; flags the rest | [[rule-documentation]] |
 | Session | Five phases in one order under [[rule-session]]: Session Start, Plan Mode, Work Mode, End of Work, Documentation | [[rule-session]] |
 | `/hi`, Frontier | Opens a working session and records `hi`; the open items it assembles (brief, sprint, backlog, an unfinished plan, the ledger tail) in three lists, the kind of each by its source — Cases, the Plan Mode agenda; Work, what needs no decision; and Ask, the readings only the person can answer | [[rule-skill-hi]] |
 | Ledger | The record of decisions (routing only), estimates and lessons (with text), written by the `Stop` hook into `raw/<date>/<HHMM>/ledger.md`, the session's folder | [[rule-ledger-write]] |
 | Event log | The gitignored log of tool calls and commits of the day, written by hooks | [[rule-event-log]] |
-| Work Mode | `/work` runs the approved Spec on a branch other than `main`: a baseline of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check` first, the tasks in the order of the Spec, each box ticked, then the Work readings; it ends with `/retro` | [[rule-work-mode]] |
+| Work Mode | `/work` runs the approved Spec on a branch other than the main branch that `guppi.toml` names: a baseline of `uv run --project .guppi guppi test` and `uv run --project .guppi guppi check` first, the tasks in the order of the Spec, each box ticked, then the Work readings; it ends with `/retro` | [[rule-work-mode]] |
 | Retro | `/retro`: an analysis of this session only, called by `/work` in the same turn with no stop for the person — the readings and the lessons in one reply, a commit on green, then `/handoff`, whose `handoff.md` is its report; it writes no short defer, which stands only at the close of Plan Mode, under `## Deferred` in the Spec; edits only finish ratified work; red tests are fixed or reverted into a patch in `raw/` | [[rule-retro]] |
 | Handoff | `/handoff`, gated by `guppi gate` on a dirty tree: `handoff.md` from memory, then the librarian | [[rule-handoff]] |
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

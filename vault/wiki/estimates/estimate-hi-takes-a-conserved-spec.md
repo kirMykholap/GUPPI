@@ -8,7 +8,7 @@ method: "uv run --project .guppi guppi render --check; by hand, a session whose 
 checked: 2026-10-10
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -36,4 +36,4 @@ In a session whose `/hi` found no first line `open the next sprint` in the `Case
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

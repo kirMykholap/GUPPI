@@ -22,8 +22,8 @@ the ledger when the skill needs it, and the last reply of a session has no `Stop
 The Spec is edited by a tool call in that same reply, so it is always ahead of the
 unwritten block: the hook reads the `then` items of every
 Case in the session's `spec.md` and in the plan file the session's event log names last
-under `.claude/plans/` (a `tool Write:` or `tool Edit:` line of this session's stamp), and
-the decision lines of the session's window as `guppi prespec --check` reads them. An item
+under `.claude/plans/` (a `tool Write:` or `tool Edit:` line of this session's stamp) with
+the Cases file beside it, by `ledger.plan_cases_text`, and the decision lines of the session's window as `guppi prespec --check` reads them. An item
 with no decision line of its Case refuses the call: `gate: /<skill> refused — N item(s) of
 the Spec have no ledger line (case A, case B). The text before a tool call waits for the
 next Stop: end this reply in text with the LEDGER block, then call /<skill> in the next
@@ -59,7 +59,7 @@ from datetime import datetime
 from pathlib import Path
 
 from guppi.event import append, format_line, log_path, project_root, read_payload, session_stamp
-from guppi.ledger import hi_moment, plan_path, session_dir, session_event_logs
+from guppi.ledger import hi_moment, plan_cases_text, plan_path, session_dir, session_event_logs
 from guppi.materialize import split_cases, then_blocks
 from guppi.prespec import item_has_line, item_name, items_of, session_decisions, window_lines
 
@@ -123,24 +123,26 @@ def unwritten_items(specs: list[str], records: list[dict]) -> list[str]:
 
 
 def spec_check(project_dir: Path, stamp: str, now) -> list[str]:
-    """The unwritten items of the session's `spec.md` and plan file; empty without a `hi`,
-    or when neither file exists."""
+    """The unwritten items of the session's `spec.md` and of the plan — the plan file and
+    then its Cases file, by `ledger.plan_cases_text`; empty without a `hi`, or
+    when no such file exists."""
     logs = session_event_logs(project_dir, now, stamp)
     hi = hi_moment(logs, stamp)
     folder = session_dir(project_dir, now, stamp)
     if hi is None or folder is None:
         return []
-    sources = [folder / "spec.md"]
+    specs = []
+    try:
+        spec = folder / "spec.md"
+        if spec.is_file():
+            specs.append(spec.read_text(encoding="utf-8"))
+    except OSError:
+        pass
     plan = plan_path(logs, stamp)
     if plan is not None:
-        sources.append(plan)
-    specs = []
-    for path in sources:
-        try:
-            if path.is_file():
-                specs.append(path.read_text(encoding="utf-8"))
-        except OSError:
-            continue
+        plan_text = plan_cases_text(plan)
+        if plan_text.strip():
+            specs.append(plan_text)
     if not specs:
         return []
     records = session_decisions(window_lines(project_dir, hi, now.date().isoformat()))

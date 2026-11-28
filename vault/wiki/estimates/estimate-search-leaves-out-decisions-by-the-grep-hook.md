@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_grepguard.py, then by h
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, session]
 core: true
 ---
@@ -33,4 +33,4 @@ When the searched folder — the `path` of the call, or the working directory wh
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

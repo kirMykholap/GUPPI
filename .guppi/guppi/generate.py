@@ -248,7 +248,9 @@ SECTION_ORDER = {  # no section derived from a ref field
         "Context", "Problem", "Recommend", "Given", "When", "Criterion", "Deferred", "Note",
     ],
 }  # fmt: skip
-LIBRARIAN_ONLY = "an Insight is made and retired by the librarian, never created or deleted by a decision"
+LIBRARIAN_ONLY = (
+    "an Insight is made and retired by the librarian, never created or deleted by a decision"
+)
 INITIAL_STATUS = {
     "entities": "draft",
     "rules": "draft",
@@ -351,7 +353,7 @@ TASK_LINE = re.compile(r"^- \[ \] (create|update|delete|defer) `([^`]+)`")
 READ_LINE = re.compile(r"^- \[ \] read `([^`]+)`")
 # A line of a Frontier — the box, the id, the rest — and the separator of its segments;
 # `frontier_marks` below and `prespec.check_frontier` read the lines by this one pattern
-#.
+# .
 FRONTIER_LINE = re.compile(r"^- \[([ x-])\] (\S+)(.*)$")
 FRONTIER_SEPARATOR = " · "
 DAY = re.compile(r"^\d{4}-\d\d-\d\d$")
@@ -475,8 +477,17 @@ def tick_read(
                 ticked = True
         if ticked:
             spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+            rebuild_maps(spec)
             any_ticked = True
     return any_ticked
+
+
+def rebuild_maps(spec: Path) -> None:
+    """The maps of `spec` rebuilt after a tick, by the one rebuild of `rule-spec-write`,
+    imported, never copied."""
+    from guppi.ratified import rebuild_spec_maps  # it imports this module
+
+    rebuild_spec_maps(spec)
 
 
 def closes_by_decision(entry: dict) -> bool:
@@ -561,6 +572,7 @@ def tick_spec(spec: Path, case: str, kind: str, slug: str) -> bool:
         if task and task.group(1) == kind and task.group(2) == slug:
             lines[index] = "- [x]" + line[len("- [ ]") :]
             spec.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+            rebuild_maps(spec)
             return True
     return False
 

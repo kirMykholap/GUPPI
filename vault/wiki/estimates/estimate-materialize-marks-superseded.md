@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_materialize.py, the tests of the supersedes 
 checked: 2026-10-12
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger, librarian]
 core: true
 ---
@@ -37,4 +37,4 @@ For each Case N that a block of the line names, every entry with `case: N` gets 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

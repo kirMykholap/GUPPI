@@ -8,7 +8,7 @@ method: by hand at the close of a later session, the Agent calls, the picker cal
 checked: 2026-10-02
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -30,4 +30,4 @@ The main agent launches no Explore or Plan agent: `case-guppi` builds each Case,
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

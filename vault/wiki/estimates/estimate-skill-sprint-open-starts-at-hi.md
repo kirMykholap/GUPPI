@@ -7,7 +7,7 @@ purpose: Whether the hook on /hi tells the agent to start /sprint-open when spri
 method: uv run --project .guppi pytest .guppi/tests/test_sprint.py -k hi
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, hooks, harness]
 core: true
 ---
@@ -30,4 +30,4 @@ When the prompt is `/hi`, by `is_hi_prompt` of `.guppi/guppi/event.py`, and the 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

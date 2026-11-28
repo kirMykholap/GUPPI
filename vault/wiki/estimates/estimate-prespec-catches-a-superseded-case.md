@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_prespec.py on a temp plan; by hand, after a /p
 checked: 2026-10-05
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -32,4 +32,4 @@ A `{supersedes:case N}` in the session's window while `## Case N` or `### Case N
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

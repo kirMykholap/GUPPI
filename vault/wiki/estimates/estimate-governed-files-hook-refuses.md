@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_guard.py, plus by hand in a later session: one
 checked: 2026-10-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, render]
 core: true
 ---
@@ -32,4 +32,4 @@ An `Edit`, `Write` or `MultiEdit` on a governed path exits 2. Stderr names the f
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -4,11 +4,11 @@ kind: MOC
 purpose: Prevents a working session from starting against unknown state
 status: built
 parent: "[[rule-session]]"
-children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]", "[[rule-compact-recall]]", "[[rule-skill-sprint-open]]"]
+children: ["[[rule-skill-hi]]", "[[rule-event-log]]", "[[rule-ledger-write]]", "[[rule-compact-recall]]", "[[rule-skill-sprint-open]]", "[[rule-skill-setup]]"]
 estimates: []
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, hooks]
 core: true
 ---
@@ -59,4 +59,4 @@ items outright.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

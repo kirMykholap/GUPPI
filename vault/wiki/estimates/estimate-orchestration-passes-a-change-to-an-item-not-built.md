@@ -7,7 +7,7 @@ purpose: Whether the main agent keeps the change that an Other Case line asks of
 method: by hand, at the Retro of the session that changes it, the new Render of rule-orchestration in the Spec read against the Criterion, recorded in the estimate line
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -32,4 +32,4 @@ The main agent shows the Case as it stands, asks the person no question on the l
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

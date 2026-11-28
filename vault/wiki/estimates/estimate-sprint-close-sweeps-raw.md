@@ -7,7 +7,7 @@ purpose: Whether the close of a sprint moves each finished session of raw/ to th
 method: uv run --project .guppi pytest .guppi/tests/test_sprint_close.py -k sweep
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, workflow, librarian]
 core: true
 ---
@@ -32,4 +32,4 @@ After a close whose run of `guppi cleanup` exits 0, each unit of `vault/raw/` th
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

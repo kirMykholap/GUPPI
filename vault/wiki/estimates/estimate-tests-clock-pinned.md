@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_conftest.py, plus uv run --project .guppi guppi
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [tests, harness]
 core: true
 ---
@@ -31,4 +31,4 @@ Before every test, an autouse fixture in `.guppi/tests/conftest.py` sets into ev
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

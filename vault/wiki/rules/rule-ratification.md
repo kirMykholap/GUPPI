@@ -12,7 +12,7 @@ children: ["[[rule-atomicity]]"]
 estimates: ["[[estimate-ratification-ledger-line-form]]", "[[estimate-ratification-loaded]]", "[[estimate-ratification-case-id-carries-the-sprint]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, ledger, harness]
 core: true
 ---
@@ -65,4 +65,4 @@ The harness — hooks, skills, agents, `settings.json`, `CLAUDE.md`, this file, 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

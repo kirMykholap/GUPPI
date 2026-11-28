@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_bashguard.py; the live 
 checked: 2026-10-13
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness]
 core: true
 ---
@@ -32,4 +32,4 @@ A heredoc whose body holds a backslash, whose marker line writes a file (`>` or 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

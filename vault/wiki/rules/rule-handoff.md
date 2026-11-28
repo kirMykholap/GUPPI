@@ -10,7 +10,7 @@ parent: "[[rule-end-of-work]]"
 estimates: ["[[estimate-handoff-dispatches]]", "[[estimate-handoff-holds-each-fact-once]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, render]
 core: true
 ---
@@ -48,4 +48,4 @@ Then, in a session whose `work.md` holds `## Conserved Spec` — one that `/box`
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

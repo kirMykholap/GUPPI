@@ -8,7 +8,7 @@ method: "by hand, at Retro of the session that sets this Criterion, with a tag p
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [plugin, harness]
 core: true
 ---
@@ -31,4 +31,4 @@ Before it writes anything, `/guppi:install` runs `uv --version`.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

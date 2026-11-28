@@ -7,7 +7,7 @@ purpose: A replace pair inside an Estimate's Criterion is refused before the Spe
 method: pytest .guppi/tests/test_prespec.py and .guppi/tests/test_materialize.py on a temp plan and vault
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -28,4 +28,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

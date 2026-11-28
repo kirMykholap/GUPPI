@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_prespec.py on a temp plan; by hand, after a /p
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -29,4 +29,4 @@ A `tasks` line whose text after the box opens with the word `render` or `sprint`
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

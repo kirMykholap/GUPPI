@@ -7,7 +7,7 @@ method: "by hand, after a librarian's run whose `materialize.yaml` holds at leas
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, librarian]
 core: true
 ---
@@ -34,4 +34,4 @@ The brief names the Greps of the synthesis, `^(root_cause|deferred_by):` over `v
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -7,7 +7,7 @@ purpose: A chain of more than seven ＋ lines is named without blocking the Spec
 method: pytest .guppi/tests/test_prespec.py on a temp plan
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -28,4 +28,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

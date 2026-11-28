@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_schemas.py .guppi/tests
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render, schema]
 core: true
 ---
@@ -32,4 +32,4 @@ Each category folder of `vault/wiki/` holds one `schema.yaml`, written from the 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

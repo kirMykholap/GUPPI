@@ -7,7 +7,7 @@ purpose: Whether the ledger hook refuses the create of a sprint page that has_pa
 method: "uv run --project .guppi pytest .guppi/tests/test_ledger.py -k taken_sprint; by hand: the Render of rule-skill-sprint-open in .claude/skills/sprint-open/SKILL.md read against the Criterion"
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, ledger, hooks]
 core: true
 ---
@@ -31,4 +31,4 @@ The ledger hook refuses the line when `has_page` of `.guppi/guppi/materialize.py
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

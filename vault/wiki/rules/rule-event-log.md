@@ -6,10 +6,10 @@ status: built
 enforcement: hook
 implementation_ref: [.guppi/guppi/event.py, .guppi/guppi/gate.py, .guppi/guppi/cli.py, .guppi/tests/test_gate.py, .guppi/tests/test_event.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-event-log-records]]"]
+estimates: ["[[estimate-event-log-records]]", "[[estimate-event-log-keeps-the-whole-path]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness]
 core: true
 ---
@@ -23,4 +23,4 @@ crashes. It is gitignored: debugging material, not traceability. Its governance 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

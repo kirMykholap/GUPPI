@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_pageread.py, then by ha
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness]
 core: true
 ---
@@ -33,4 +33,4 @@ When the call carries neither `offset` nor `limit` and the file holds its own `#
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -3,6 +3,7 @@
 `purpose` and the count of the sessions that put it off; `--check` names the file when it differs and writes nothing."""
 
 import io
+from pathlib import Path
 
 from guppi import backlog
 
@@ -271,6 +272,137 @@ def test_a_line_of_a_closed_sprint_leaves_once_taken_or_finished(tmp_path):
     assert text.count("the categories as data of the project") == 1  # the live note alone
     assert "- `rule-waits` — waits · put off in 0 sessions\n" in text
     assert "- a note taken by nothing · put off in 0 sessions\n" in text
+
+
+CLOSED_ON = "- 2026-10-10 status: draft → archived · the close of sprint old (sprint-close)\n"
+
+
+def archived_sprint(tmp_path, history, *slugs):
+    """An archived sprint page whose `## Backlog` names each of `slugs`, its `## History`
+    holding `history`."""
+    lines = "".join(f"- [[{slug}]] — named by the closed sprint\n" for slug in slugs)
+    text = (
+        "---\ntype: entity\nstatus: archived\n---\n\n## Backlog\n\n"
+        + lines
+        + "\n## History\n\n- 2026-09-01 created\n"
+        + history
+    )
+    path = tmp_path / "vault" / "archive" / "old" / "2026-10-10" / "1200" / "entities"
+    write(path / "entity-sprint-old.md", text)
+
+
+def rule_with_history(tmp_path, slug, *lines):
+    """A `draft` rule page whose `## History` holds `lines`."""
+    body = "## History\n\n- 2026-09-01 created\n" + "".join(f"{line}\n" for line in lines)
+    props = {"type": "rule", "status": "draft", "purpose": slug}
+    write(tmp_path / "vault" / "wiki" / "rules" / f"{slug}.md", page(props, body))
+
+
+def seed_stood(tmp_path):
+    """Four `draft` pages named by the Backlog of a closed sprint, by when they stood
+    `built` against the day of its close, 2026-10-10."""
+    seed(tmp_path)
+    rule_with_history(  # set built after the close, then draft again by a new Estimate
+        tmp_path,
+        "rule-after",
+        "- 2026-10-20 status: draft → built · cascade",
+        "- 2026-10-25 status: built → draft · cascade",
+    )
+    rule_with_history(  # set built before the close and still built on its day
+        tmp_path,
+        "rule-through",
+        "- 2026-10-01 status: draft → built · cascade",
+        "- 2026-10-14 status: built → draft · cascade",
+    )
+    rule_with_history(  # set built and draft again, both before the close
+        tmp_path,
+        "rule-before",
+        "- 2026-10-01 status: draft → built · cascade",
+        "- 2026-10-05 status: built → draft · cascade",
+    )
+    rule_with_history(tmp_path, "rule-never")  # never set built
+    return ("rule-after", "rule-through", "rule-before", "rule-never")
+
+
+def test_a_line_of_a_closed_sprint_leaves_for_good_once_its_page_stood_finished_since_the_close(
+    tmp_path,
+):
+    """A line of an archived Backlog leaves once its page stood `built`, `passed` or
+    `archived` on or after the day of the close, and a new Estimate that sets it `draft`
+    again does not bring it back; a page not finished since the close keeps its line."""
+    slugs = seed_stood(tmp_path)
+    archived_sprint(tmp_path, CLOSED_ON, *slugs)
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert "`rule-after`" not in text
+    assert "`rule-through`" not in text
+    assert "- `rule-before` — rule-before · put off in 0 sessions\n" in text
+    assert "- `rule-never` — rule-never · put off in 0 sessions\n" in text
+
+
+def test_the_day_of_the_close_is_the_last_line_that_set_the_sprint_page_archived(tmp_path):
+    """Of two lines that set the sprint page `archived`, the later one gives the day: `rule-after`, built on 2026-10-20 only, keeps its line against a close of
+    2026-10-30."""
+    slugs = seed_stood(tmp_path)
+    later = "- 2026-10-30 status: draft → archived · the close of sprint old (sprint-close)\n"
+    archived_sprint(tmp_path, CLOSED_ON + later, *slugs)
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    assert "- `rule-after` — rule-after · put off in 0 sessions\n" in text
+
+
+def test_an_archived_sprint_page_with_no_close_line_judges_by_the_status_alone(tmp_path):
+    """An archived sprint page whose History holds no line that set it `archived` gives no
+    day of the close, and keeps the line of a `draft` page once set `built`."""
+    slugs = seed_stood(tmp_path)
+    archived_sprint(tmp_path, "", *slugs)
+    assert run(tmp_path) == (0, "", "")
+    text = rendered(tmp_path)
+    for slug in slugs:
+        assert f"- `{slug}` — {slug} · put off in 0 sessions\n" in text
+
+
+def test_a_status_line_with_no_date_is_not_counted_for_the_close(tmp_path):
+    seed(tmp_path)
+    rule_with_history(tmp_path, "rule-undated", "- status: draft → built · cascade")
+    archived_sprint(tmp_path, CLOSED_ON, "rule-undated")
+    assert run(tmp_path) == (0, "", "")
+    assert "- `rule-undated` — rule-undated · put off in 0 sessions\n" in rendered(tmp_path)
+
+
+def test_the_reader_of_status_lines_reads_what_the_cascade_and_the_close_write(tmp_path):
+    """The writers of a status line — the cascade of `generate` and `mark` of `sprint_close`
+    — and its one reader, `status_lines` of `pages.py`, run over the same pages."""
+    from datetime import UTC, datetime
+
+    from guppi import generate, pages, sprint_close
+
+    wiki = tmp_path / "vault" / "wiki"
+    write(
+        wiki / "rules" / "rule-x.md",
+        "---\ntype: rule\nkind: Leaf\npurpose: Prevents x\nstatus: draft\n"
+        "estimates: [estimate-x-works]\n---\n\n## Purpose\n\nx\n\n## History\n\n- created\n",
+    )
+    write(
+        wiki / "estimates" / "estimate-x-works.md",
+        "---\ntype: estimate\nkind: QA\nstatus: passed\ntarget: rule-x\nmethod: m\n---\n\n"
+        "## Criterion\n\ncr\n\n## Result\n\nr\n\n## History\n\n- created\n",
+    )
+    now = datetime(2026, 11, 1, tzinfo=UTC)
+    vault = generate.Vault(tmp_path, "2026-11-01", "plugin", now, io.StringIO(), io.StringIO())
+    vault.cascade()
+    rule = pages.read_page(wiki / "rules" / "rule-x.md", "rules")
+    assert pages.status_lines(rule) == [("2026-11-01", "built")]
+    sprint_close.mark(rule, "2026-11-02", "plugin")
+    rule = pages.read_page(wiki / "rules" / "rule-x.md", "rules")
+    assert pages.status_lines(rule) == [("2026-11-01", "built"), ("2026-11-02", "archived")]
+
+
+def test_the_date_of_a_history_line_is_held_once():
+    from guppi import box, pages
+
+    assert box.HISTORY_DATE is pages.HISTORY_DATE
+    assert "HISTORY_DATE = " not in Path(box.__file__).read_text(encoding="utf-8")
 
 
 def test_no_sprint_page_leaves_the_other_sources(tmp_path):

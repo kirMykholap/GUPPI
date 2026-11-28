@@ -7,7 +7,7 @@ purpose: Whether the ledger hook refuses aloud a non-blank line of a LEDGER bloc
 method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped payloads and a session ledger in a temp vault
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness, ledger]
 core: true
 ---
@@ -33,4 +33,4 @@ The line is not written to the ledger.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -3,12 +3,12 @@ type: estimate
 kind: QA
 status: passed
 target: "[[rule-skill-sprint-open]]"
-purpose: Whether /sprint-open has the opening Case write the close line last, with the /merge-main line just before it only where the project holds that skill, push the closed sprint's branch and open its pull request into main after the person's word, merge it with a merge commit after its checks pass when the person is the owner, and move the work to a branch named by the new sprint, as the first tasks of Work Mode, with a stop on a refusal and no git task on main
+purpose: Whether /sprint-open has the opening Case write the close line last, with the /merge-main line just before it only where the project holds that skill, push the closed sprint's branch and open its pull request into the main branch after the person's word, merge it with a merge commit after its checks pass when the person is the owner, and move the work to a branch named by the new sprint, as the first tasks of Work Mode, with a stop on a refusal, and on the main branch make that branch by one first task with no stop
 method: "by hand: the Render of rule-skill-sprint-open, in .claude/skills/sprint-open/SKILL.md or, before the render writes that file, in the Spec that changes it, read against the Criterion"
-checked: 2026-10-29
+checked: 2026-11-20
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, git, workflow]
 core: true
 ---
@@ -24,18 +24,19 @@ The prompt of the call names the branch that `/hi` printed under `Branch:` from 
 **＋** Where `.claude/skills/merge-main/SKILL.md` stands in the project, the opening Case writes just before that close line the line ``- the merge of `main` into `<id>` — `/merge-main`, a session of its own``.
 **＋** When that branch is not `main` and the person is the owner, the opening Case holds as its first tasks, in this order, one task that opens with `stop:` and runs `git push -u origin <branch>`, `gh pr create --base main --fill`, `gh pr checks <branch> --watch` and `gh pr merge <branch> --merge`; then `git fetch origin`, `git switch main`, `git merge --ff-only origin/main`, `git switch -c <id>` and `git branch -d <branch>`, `<id>` the id of the new sprint.
 **＋** When that branch is not `main` and the person is not the owner, the opening Case holds as its first tasks one task that opens with `stop:` and runs `git push -u origin <branch>` and, when `gh pr view <branch>` shows no open pull request, `gh pr create --base main --fill`; then `git switch -c <id>` and `git branch -d <branch>`, so that the branch `<id>` starts from the closed branch and keeps its work until the owner merges it, by `/pr-review` where the project holds `.claude/skills/pr-review/SKILL.md`.
+**＋** When that branch is `main`, the opening Case holds as its first task line one line that runs `git switch -c <id>`, which opens with no `stop:`.
 **＋** Work Mode runs these tasks before any other task of the Spec, stops before the task that opens with `stop:`, on the fourth condition of `vault/wiki/where-to-stop.md`, runs it after the person's word, and runs the rest of the Spec on the branch `<id>`.
 **－** Where `.claude/skills/merge-main/SKILL.md` does not stand, the opening Case writes no line that names `/merge-main`.
 **－** The owner's pull request is merged only after its checks pass, with a merge commit and never with `--admin`, and no Case reviews it: each of its changes was ratified in its own session.
 **－** The opening Case does not merge `main` into the closed branch.
 **－** When a `git` or `gh` command of these tasks refuses, among them `gh pr checks --watch` on a red check and `gh pr merge` on a pull request that cannot be merged, the agent stops on the sixth condition of `vault/wiki/where-to-stop.md`, shows what stopped it, and goes on from where it stopped after the person's answer.
-**－** When that branch is `main`, the opening Case holds no merge, branch or deletion task: Work Mode stops on `main`, and goes on after the person makes the branch `<id>` and moves to it.
+**－** When that branch is `main`, the opening Case holds no merge or deletion task.
 **－** The opening Case puts no question on the merge or the branch to the person.
 
 ## Result
 
-2026-10-29, passed in the repository of GUPPI.
+2026-11-20, passed in the repository of GUPPI.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

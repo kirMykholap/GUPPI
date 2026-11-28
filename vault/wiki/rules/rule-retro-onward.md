@@ -9,7 +9,7 @@ parent: "[[rule-end-of-work]]"
 estimates: ["[[estimate-retro-onward-sends-the-agent-to-the-handoff]]", "[[estimate-retro-onward-exits-2-on-an-error]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, hooks, harness]
 core: true
 ---
@@ -20,4 +20,4 @@ Prevents the run from stopping between the reply that ends Retro and /handoff, w
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

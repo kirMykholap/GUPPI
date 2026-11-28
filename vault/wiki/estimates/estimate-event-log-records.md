@@ -7,7 +7,7 @@ method: pytest in .guppi/tests/test_event.py and .guppi/tests/test_gate.py with 
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness]
 core: true
 ---
@@ -31,4 +31,4 @@ After the start and one tool call, `raw/<date>/event_log.md` carries a `session-
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

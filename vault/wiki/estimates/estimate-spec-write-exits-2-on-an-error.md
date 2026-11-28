@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_ratified.py — piped p
 checked: 2026-10-05
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -34,4 +34,4 @@ The hook exits 2. Its stderr holds `ratified: not done: <error>` and the advice 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

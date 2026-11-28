@@ -8,7 +8,7 @@ method: "by hand, after a render of CLAUDE.md: uv run --project .guppi guppi ren
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render]
 core: true
 ---
@@ -30,4 +30,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

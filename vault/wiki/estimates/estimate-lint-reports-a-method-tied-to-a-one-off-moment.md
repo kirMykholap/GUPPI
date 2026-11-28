@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_lint.py .guppi/tests/te
 checked: 2026-10-03
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -34,4 +34,4 @@ A `method` that holds `by hand` and names the first of something after the rende
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -10,7 +10,7 @@ parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-skill-grill-me-asks-in-rounds]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -65,4 +65,4 @@ The session is done when the frontier is empty: every branch of the design tree 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

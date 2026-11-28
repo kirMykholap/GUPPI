@@ -8,7 +8,7 @@ method: one reading by hand at a /retro in a session whose work.md names a check
 checked: 2026-10-03
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -33,4 +33,4 @@ The agent reads `raw/<date>/<hi HHMM>/work.md` if it stands — with the Read to
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

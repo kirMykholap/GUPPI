@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_prespec.py, the tests of check_bare_links
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, tests]
 core: true
 ---
@@ -30,4 +30,4 @@ One line `case N: [[slug]] outside a code span names no page` is printed for eve
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

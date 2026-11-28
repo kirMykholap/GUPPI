@@ -9,7 +9,7 @@ parent: "[[rule-documentation]]"
 estimates: ["[[estimate-generate-writes]]", "[[estimate-generate-walks-dates]]", "[[estimate-generate-writes-the-decision-page]]", "[[estimate-generate-fails-alone]]", "[[estimate-generate-cascades]]", "[[estimate-generate-ticks-the-spec]]", "[[estimate-generate-renames]]", "[[estimate-generate-rewords]]", "[[estimate-generate-writes-rules-from-applies-to]]", "[[estimate-generate-replace-takes-the-leading-indent]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -17,7 +17,7 @@ core: true
 ## Purpose
 
 Prevents a ratified decision from ending the session without a page, or a page from
-carrying a field nobody ratified. The script is the only writer to `wiki/` but for what a merge of `main` into a branch writes: the joined text of a page that both a branch and `main` changed, which a Case signs and Work Mode writes, the script then writing the History line and the status that the Case sets, and the lines of both sides of `log.md` and `tags.md`, which git joins by their `merge=union` lines in `.gitattributes`. The header of `tags.md` above its table is not written by the script: a one-off task by hand that a ratified Case names changes it in Work Mode. It lays
+carrying a field nobody ratified. The script is the only writer to `wiki/` but for what a merge of the main branch into a branch writes: the joined text of a page that both a branch and the main branch changed, which a Case signs and Work Mode writes, the script then writing the History line and the status that the Case sets, and the lines of both sides of `log.md` and `tags.md`, which git joins by their `merge=union` lines in `.gitattributes`. The header of `tags.md` above its table is not written by the script: a one-off task by hand that a ratified Case names changes it in Work Mode. It lays
 the content of `materialize.yaml` into schema fields and invents nothing: what it writes beyond that content is computed from the pages, the Specs and the ledgers of `raw/` by the steps this page names — the cascade, the ticks of the Spec, the links of a `rename`, the words of a `reword`; no section is derived from a ref field, no Estimate from a flag, and the Criterion of an
 Estimate is replaced whole by the text its Case signed. A page is always created, even incomplete: red lint is an accurate signal of debt, a decision with no page is the ledger and the vault disagreeing silently. An exception is a `defer` with no page of anything but a rule or an entity: it writes no page and fails as an entry. A check that was never created has no reading to put off, and the short Case puts off the page it would check instead; an Insight is made only by the librarian, and the format of an Insight, a Lesson or a Decision page has no status for a stand-in page. A `defer` of a Lesson or a Decision page writes nothing and fails as an entry too, whether the page stands or not, since neither format has `deferred_by` and no list would show the item. A slug
 collision is an error, never a rename — with one exception: a `create` whose slug is a
@@ -26,4 +26,4 @@ entry never stops the run: it is marked `failed`, reported, and the rest apply. 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

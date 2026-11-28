@@ -10,14 +10,14 @@ parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-skill-approve-spec-takes-the-spec]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, plugin, render]
 core: true
 ---
 
 ## Purpose
 
-Prevents a Spec from staying unapproved where the Claude Code CLI withholds the approval of a plan longer than it can show. The CLI shows a plan whole before it offers approval and offers none for a plan above the size it can show, whatever the window, while the VS Code extension approves the same plan; GUPPI writes each ratified Case whole into the plan file, so a Spec of a few Cases could not leave Plan Mode in the CLI. There the person presses Esc at the dialog, leaves Plan Mode with Shift+Tab and types `/approve-spec`. The hook that judges that prompt and takes the plan file into `spec.md` is the hook of `rule-spec-capture`, which sets when it blocks the prompt and what it writes; this page sets the text of the skill, which tells the agent to follow the line that hook gives. The skill carries `disable-model-invocation: true`: the agent cannot start it, since the approval is the person's.
+Prevents a Spec from staying unapproved where the Claude Code CLI withholds the approval of a plan longer than it can show. The CLI shows a plan whole before it offers approval and offers none for a plan above the size it can show, whatever the window, while the VS Code extension approves the same plan; GUPPI wrote each ratified Case whole into the plan file, so a Spec of a few Cases could not leave Plan Mode in the CLI; the plan file now holds the map of the Cases alone, and the Cases stand in the Cases file beside it. There the person presses Esc at the dialog, leaves Plan Mode with Shift+Tab and types `/approve-spec`. The hook that judges that prompt and takes the plan file into `spec.md` is the hook of `rule-spec-capture`, which sets when it blocks the prompt and what it writes; this page sets the text of the skill, which tells the agent to follow the line that hook gives. The skill carries `disable-model-invocation: true`: the agent cannot start it, since the approval is the person's.
 
 ## Render
 
@@ -35,4 +35,4 @@ Follow the line of that hook in your context, as after `ExitPlanMode`: ask the p
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

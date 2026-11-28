@@ -8,7 +8,7 @@ method: .guppi/tests/test_generate.py with two dated folders; live, the libraria
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -31,4 +31,4 @@ Without `--date` every unit under `vault/raw/` with a `materialize.yaml` is appl
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

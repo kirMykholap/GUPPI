@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_materialize.py; live, t
 checked: 2026-09-24
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -29,4 +29,4 @@ The unit of the walk is a session folder `raw/<date>/<HHMM>/` holding a `ledger.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

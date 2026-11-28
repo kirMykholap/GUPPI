@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_generate.py against a temp vault; the live r
 checked: 2026-09-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, tests]
 core: true
 ---
@@ -32,4 +32,4 @@ The file of the page moves from `<old>.md` to `<new>.md` in its category folder,
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

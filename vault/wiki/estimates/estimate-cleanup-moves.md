@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_cleanup.py, plus by hand on the cleanup of a la
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -34,4 +34,4 @@ A live page with `status: archived` moves under the same file name to `vault/arc
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

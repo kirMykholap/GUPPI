@@ -7,7 +7,7 @@ purpose: Whether the ledger hook refuses a defer line of a Lesson or a Decision 
 method: uv run --project .guppi pytest .guppi/tests/test_ledger.py -k record
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness, ledger]
 core: true
 ---
@@ -31,4 +31,4 @@ A `defer` line whose slug names a Lesson or a Decision page, by `defers_a_record
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

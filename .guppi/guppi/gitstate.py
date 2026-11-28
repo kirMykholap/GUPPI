@@ -12,10 +12,10 @@ two apart.
 The block of `/hi` holds a `Render:` line too. It runs `uv run --project .guppi guppi render
 --sync` once more inside `/hi`, after the `SessionStart` hook has run it; a diff on that line
 is a Frontier item like the one of the session start. `/hi` runs no `git pull`.
-`origin` is the public repository `GUPPI` on GitHub. The local `main` follows
-`origin/main` in the opening Case of a sprint, by `git fetch origin` and `git merge --ff-only
-origin/main`. In the repository of GUPPI a sprint branch takes `main` by the
-merge Case of `/merge-main`. Rule page: `vault/wiki/rules/rule-git-context.md`.
+`origin` is the public repository `GUPPI` on GitHub. The local main branch follows
+its branch on `origin` in the opening Case of a sprint, by `git fetch origin` and `git merge
+--ff-only`, the name being the one that the key `main_branch` of `guppi.toml` sets. Where the project holds the skill `/merge-main`, a sprint branch takes the main
+branch by its merge Case. Rule page: `vault/wiki/rules/rule-git-context.md`.
 """
 
 import argparse

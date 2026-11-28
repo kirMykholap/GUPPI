@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_schemas.py -k rules on the live vault/wiki/rul
 checked: 2026-11-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render, schema]
 core: true
 ---
@@ -35,4 +35,4 @@ The file equals the Render. Lint reads from it: required `type, kind, purpose, s
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

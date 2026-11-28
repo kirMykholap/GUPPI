@@ -8,7 +8,7 @@ method: by hand on the report of a later librarian's run, against its materializ
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, librarian]
 core: true
 ---
@@ -32,4 +32,4 @@ For each `create` other than an Estimate, the librarian runs the Grep of its cat
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

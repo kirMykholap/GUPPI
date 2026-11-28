@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_schemas.py -k insights on the live vault/wiki/i
 checked: 2026-10-04
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render, schema]
 core: true
 ---
@@ -32,4 +32,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

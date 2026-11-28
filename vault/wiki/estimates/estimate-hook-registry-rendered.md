@@ -7,7 +7,7 @@ method: the JSON case of .guppi/tests/test_render.py; uv run --project .guppi gu
 checked: 2026-09-25
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, render]
 core: true
 ---
@@ -27,4 +27,4 @@ The `"hooks"` key of `.claude/settings.json` equals the Render of `rule-hook-reg
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

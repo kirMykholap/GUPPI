@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_materialize.py, the tests of the lesson entr
 checked: 2026-10-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -29,4 +29,4 @@ The entry carries `source` in its `fields`, and `generate` writes it into the pa
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

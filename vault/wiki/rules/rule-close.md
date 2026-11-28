@@ -10,7 +10,7 @@ parent: "[[rule-documentation]]"
 estimates: ["[[estimate-close-commits]]", "[[estimate-close-reports-the-run]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, git, librarian]
 core: true
 ---
@@ -29,4 +29,4 @@ Close. Run `uv run --project .guppi guppi check` and keep its output for the rep
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

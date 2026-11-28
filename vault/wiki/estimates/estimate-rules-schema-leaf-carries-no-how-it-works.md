@@ -8,7 +8,7 @@ method: "by hand at Retro of the session that changes it: a Grep for ^## How it 
 checked: 2026-10-31
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, schema]
 core: true
 ---
@@ -32,4 +32,4 @@ No Leaf page of `vault/wiki/rules/` carries a section `## How it works`.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

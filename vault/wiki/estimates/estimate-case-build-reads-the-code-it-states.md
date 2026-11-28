@@ -8,7 +8,7 @@ method: "by hand, after a /pre-spec of a session whose Cases case-guppi built wi
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, case-build]
 core: true
 ---
@@ -35,4 +35,4 @@ Before it states the claim, `case-guppi` reads whole the function that decides i
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

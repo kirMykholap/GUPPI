@@ -7,7 +7,7 @@ purpose: A session resumed or compacted on a later date than its /hi, or whose l
 method: uv run --project .guppi pytest .guppi/tests/test_ledger.py -k later_date
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, ledger]
 core: true
 ---
@@ -31,4 +31,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

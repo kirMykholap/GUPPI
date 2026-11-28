@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_casecheck.py -k problem: a sub-case with probl
 checked: 2026-09-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -29,4 +29,4 @@ A sub-case of the answer that carries a `problem` section is a finding of that s
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

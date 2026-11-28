@@ -7,7 +7,7 @@ purpose: Whether the reply that acknowledges a Case that changes a file rendered
 method: by hand, at the Retro of the session that changes it, the new Render of rule-orchestration in the Spec read against the Criterion, recorded in the estimate line
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -27,4 +27,4 @@ The paragraph `Changes:` says that the change of that file takes effect at the l
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

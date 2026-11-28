@@ -7,7 +7,7 @@ purpose: Whether the vault holds at most one live sprint page and each other spr
 method: "uv run --project .guppi pytest .guppi/tests/test_sprint.py -k two_sprint_pages; by hand, at Retro: a Glob of vault/wiki/entities/entity-sprint-*.md and of vault/archive/**/entities/entity-sprint-*.md read against the Criterion"
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [sprint, workflow]
 core: true
 ---
@@ -28,4 +28,4 @@ At most one sprint page `entity-sprint-<id>` stands under `vault/wiki/entities/`
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

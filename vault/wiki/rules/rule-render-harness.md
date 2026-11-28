@@ -9,7 +9,7 @@ parent: "[[rule-harness]]"
 estimates: ["[[estimate-render-harness-reproduces]]", "[[estimate-render-sync-reports]]", "[[estimate-render-harness-ticks-the-spec]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render]
 core: true
 ---
@@ -24,4 +24,4 @@ edited by hand, the page follows or does not, and the vault stops being the sour
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

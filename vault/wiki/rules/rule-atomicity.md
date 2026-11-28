@@ -10,7 +10,7 @@ parent: "[[rule-ratification]]"
 estimates: ["[[estimate-atomicity-rendered]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -33,4 +33,4 @@ It holds for a Case, an Entity, a Rule and an Estimate alike. Not for a Lesson: 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

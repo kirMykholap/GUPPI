@@ -4,10 +4,10 @@ kind: QA
 status: passed
 target: "[[rule-brief]]"
 method: "by hand at the Retro of the session that changes it: the new Render of rule-brief in raw/<date>/<hi HHMM>/spec.md read against the Criterion, recorded in the estimate line"
-checked: 2026-10-12
+checked: 2026-11-27
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, librarian]
 core: true
 ---
@@ -25,7 +25,7 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 **＋** `Work` is what is done without a decision: every `pending` reading of Readings due by its slug but one that `Ask the person` holds, one of an Estimate whose `target` is the live sprint page `entity-sprint-<id>`, one whose `method` names the close of a sprint — the session that closes a sprint, its librarian's run or the session after it —, one whose `method` waits for an event the librarian has not seen, one that a line of `Cases` proposes to defer and one of an Estimate with `deferred_by`; the unticked boxes of the Specs but the `read` box of such a reading; a ledger line this run did not apply, a dirty tree.
 **＋** `Ask the person` holds each line of `## Ask the person` of `handoff.md` — the Estimate by slug, the mark `needs the person` and its question, as the handoff wrote them — but one whose `method` names the close of a sprint. A check of the live sprint page whose `method` names the person's answer stands there once the Retro of the session that finished its work named it in `handoff.md`.
 **＋** In the run whose `guppi sprint-close --apply` moved the sprint page, each `pending` reading whose `method` names the session after that close, or its `/hi`, stands under `Work`, or under `Ask the person` with the question its `method` names when its `method` names the person's answer.
-**＋** The brief of the skill `carry` keeps a short shape: Where things stand, Flags and Next session, without Readings due, Readings at the close and a Deferred list. In its Next session, `Work` and `Ask the person` take the open `W` and `A` lines of the session's `frontier.md`, and `Cases` is the line "none", since a deferred decision stands in `vault/wiki/backlog.md` and a sprint item on `vault/wiki/sprint.md`. `rule-brief` and `rule-carry-over` both say so.
+**＋** The brief of the skill `carry` keeps a short shape: Where things stand, Flags and Next session, without Readings due, Readings at the close and a Deferred list. In its Next session, `Work` takes the open `W` lines of the session's `frontier.md` and `Ask the person` its open `A` lines that name an Estimate, an open line of the source `stop` left out, since its `stop:` task stops `/box` in the session that runs the conserved Spec; `Cases` is the line "none", since a deferred decision stands in `vault/wiki/backlog.md` and a sprint item on `vault/wiki/sprint.md`. `rule-brief` and `rule-carry-over` both say so.
 **－** A reading left out of `Work` and `Ask the person` keeps its line under Readings due.
 **－** A reading whose `method` waits for an event — a part of it between two `;` that opens with `after`, or with `by hand, after`, and names the event before a colon — stands in Readings due alone until the librarian sees that event in `git log`, in the ledger or `handoff.md` of the session, or in the files its `method` names; then it stands under `Work`, or under `Ask the person` with the question its `method` names when its `method` names the person's answer.
 **－** A contradiction of Flags that a line of `## For the next session` of `handoff.md` already carries gets no second line in `Cases`.
@@ -33,8 +33,8 @@ The brief holds, in order: Where things stand, Readings due, Flags, Next session
 
 ## Result
 
-2026-10-12, passed in the repository of GUPPI.
+2026-11-27, passed in the repository of GUPPI.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

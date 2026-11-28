@@ -7,7 +7,7 @@ purpose: Whether the line of a backlog item that a Case of the session defers ag
 method: "by hand at Retro of the session that changes it: the new Render of rule-orchestration and of rule-skill-hi in the Spec, read against the Criterion, recorded in the estimate line"
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -29,4 +29,4 @@ The agent closes the line of the item `[-] … · backlog · defer case N`, N th
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

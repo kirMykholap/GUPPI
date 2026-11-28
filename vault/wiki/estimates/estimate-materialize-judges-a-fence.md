@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_materialize.py -k fence
 checked: 2026-10-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, tests]
 core: true
 ---
@@ -33,4 +33,4 @@ A line opens a fence when, after at most three spaces of indent inside the block
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

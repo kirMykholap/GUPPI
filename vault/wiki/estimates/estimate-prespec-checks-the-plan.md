@@ -8,7 +8,7 @@ method: pytest .guppi/tests/test_prespec.py, the tests of --check
 checked: 2026-09-24
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, tests]
 core: true
 ---
@@ -31,4 +31,4 @@ The stamp is `--session`, else `CLAUDE_SESSION_ID`; with neither, one line on st
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

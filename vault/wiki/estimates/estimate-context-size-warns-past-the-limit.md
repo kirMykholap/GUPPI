@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_context.py -k limit; th
 checked: 2026-09-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, session]
 core: true
 ---
@@ -31,4 +31,4 @@ At N of 400 000 or more, the `UserPromptSubmit` hook prints to the agent's conte
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

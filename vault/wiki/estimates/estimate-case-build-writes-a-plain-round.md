@@ -8,7 +8,7 @@ method: "by hand, in a session after the render: one first round and one later r
 checked: 2026-10-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -36,4 +36,4 @@ The `**Context:**` of a first round gives the mechanism in plain words, with one
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

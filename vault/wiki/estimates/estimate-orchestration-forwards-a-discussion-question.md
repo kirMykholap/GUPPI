@@ -8,7 +8,7 @@ method: "by hand, at the Retro of a session that holds a question of the person 
 checked: 2026-10-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -31,4 +31,4 @@ The main agent sends the question to that `case-guppi` by `SendMessage`, verbati
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

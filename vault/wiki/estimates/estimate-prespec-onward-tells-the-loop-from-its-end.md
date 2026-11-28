@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_onward.py — piped pay
 checked: 2026-10-26
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, hooks, harness]
 core: true
 ---
@@ -35,4 +35,4 @@ When a Case is still out, as `rule-prespec-onward` judges it, the hook exits 2 a
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

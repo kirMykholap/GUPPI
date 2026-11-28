@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k unread_
 checked: 2026-10-07
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -33,4 +33,4 @@ For each match of each pair of the Cases of the file — the one match of a `rep
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

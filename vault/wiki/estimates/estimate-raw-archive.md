@@ -8,7 +8,7 @@ method: "pytest .guppi/tests/test_archive.py, plus by hand on the archive step o
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, librarian, ledger]
 core: true
 ---
@@ -35,4 +35,4 @@ A unit is a session folder `vault/raw/<date>/<HHMM>/` that holds a `ledger.md`, 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

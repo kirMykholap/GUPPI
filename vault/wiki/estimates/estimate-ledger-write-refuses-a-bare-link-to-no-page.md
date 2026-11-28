@@ -7,7 +7,7 @@ purpose: Whether the ledger hook refuses a reading or a lesson line whose text h
 method: uv run --project .guppi pytest .guppi/tests/test_ledger.py .guppi/tests/test_lint.py -k bare_link
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness, ledger]
 core: true
 ---
@@ -32,4 +32,4 @@ While the name is neither a live or archived page, nor a hub file of the wiki, n
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

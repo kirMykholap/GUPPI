@@ -16,7 +16,7 @@ import pytest
 import yaml
 
 from guppi import casecheck, materialize, ratified
-from guppi.ledger import plan_path, session_event_logs
+from guppi.ledger import plan_cases_file, plan_path, session_event_logs
 from guppi.materialize import split_cases, then_blocks
 
 TODAY = date(2026, 9, 9)
@@ -155,6 +155,22 @@ def plan_of(project):
     return project / ".claude" / "plans" / "plan.md"
 
 
+def cases_of(project):
+    """The Cases file beside the plan file, where the hook writes the Cases."""
+    return plan_cases_file(plan_of(project))
+
+
+def cases_text(project):
+    path = cases_of(project)
+    return path.read_text(encoding="utf-8") if path.is_file() else ""
+
+
+def plan_holds_no_case(project):
+    """The plan file holds its title line and the map alone."""
+    text = ratified.without_map(plan_of(project).read_text(encoding="utf-8"))
+    return split_cases(text) == {} and ratified.DEFERRED not in text
+
+
 STORED = "2026-09-09T15:20:00+00:00"  # the time `build` stores an answer at
 SENT = "2026-09-09T15:25:00.000Z"  # a sending after it
 
@@ -255,9 +271,10 @@ def copies(project):
 # --- the write ------------------------------------------------------------
 
 
-def test_write_the_ratified_case_goes_into_the_plan_and_no_copy(working):
+def test_write_the_ratified_case_goes_into_the_cases_file_and_no_copy(working):
     assert stop(working, ACK, SHOWING, ACK) == (0, "")
-    plan = plan_of(working).read_text(encoding="utf-8")
+    assert plan_holds_no_case(working)  # no section of the Case
+    plan = cases_text(working)
     lines = split_cases(plan)["7"]
     assert "## Case 7 — пример" in plan
     sections = materialize.quoted_sections(lines, ratified.SPEC_SECTIONS)
@@ -275,7 +292,12 @@ def test_write_the_ratified_case_goes_into_the_plan_and_no_copy(working):
         "- [ ] `guppi/x.py` — the code",
         "- [ ] read `estimate-x-works`",
     ]
-    assert plan.startswith("# Spec — 2026-09-09, session 1501\n")
+    assert plan.startswith("## Case 7 —")  # the Cases file holds the Cases alone
+    assert (
+        plan_of(working)
+        .read_text(encoding="utf-8")
+        .startswith("# Spec — 2026-09-09, session 1501\n")
+    )
     assert copies(working) == []  # no `.ratified.md` beside the plan
 
 
@@ -302,7 +324,7 @@ def test_write_a_block_is_fenced_by_its_content(working):
     )
     assert showing != SHOWING
     assert stop(working, ACK, showing, ACK) == (0, "")
-    plan = plan_of(working).read_text(encoding="utf-8")
+    plan = cases_text(working)
     assert "\n`````then\n" in plan and "\n```tasks\n" in plan
     lines = split_cases(plan)["7"]
     criterion = "When: a\n````\n```\nx\n```\n````\nThen: b"
@@ -318,7 +340,7 @@ def test_write_a_second_showing_replaces_the_section_and_keeps_the_prose(working
     again = SHOWING.replace("> **context:**\n> Контекст.\n\n> **problem:**\n> Проблема.\n\n", "")
     again = again.replace("The file is written.", "The file is written once.")
     assert stop(working, ACK, SHOWING, ACK, again, ACK) == (0, "")
-    plan = plan_of(working).read_text(encoding="utf-8")
+    plan = cases_text(working)
     assert plan.count("## Case 7 —") == 1
     sections = materialize.quoted_sections(split_cases(plan)["7"], ratified.SPEC_SECTIONS)
     assert sections["then"].startswith("The file is written once.")
@@ -329,7 +351,7 @@ def test_write_a_later_diff_fence_naming_the_case_does_not_stop_its_write(workin
     # a fence tagged `DIFF` is not read; the Case shown whole before it is written
     diff = "```DIFF\nCase 7 · context\n- old\n+ new\n```\n"
     assert stop(working, ACK, SHOWING, diff, ACK) == (0, "")
-    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
+    assert "## Case 7 — пример" in cases_text(working)
 
 
 # --- the approved Spec ------------------------------------------------------
@@ -377,6 +399,7 @@ def test_write_approved_spec_a_section_replaced_from_the_stored_answer(working):
         "- [x] `guppi/x.py` — the code",  # unchanged: its box kept
         "- [ ] read `estimate-x-works`",
     ]
+    assert "## Case 7 —" in cases_text(working) and plan_holds_no_case(working)
 
 
 def test_write_approved_spec_every_section_of_the_case_replaced(working):
@@ -406,6 +429,7 @@ def test_write_approved_spec_a_refused_showing_writes_nothing_there(working):
     retyped = SHOWING.replace("The file is written.", "The file is written twice.")
     code, _ = stop(working, ACK, retyped, ACK, built=False)
     assert code == 2 and "The old result." in spec.read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)  # nothing in either file
 
 
 def test_write_approved_spec_none_standing_none_written(working):
@@ -429,7 +453,7 @@ def test_write_approved_spec_a_parents_prose_from_the_store_when_shown_translate
     translated = parent.replace("Общий контекст.", "The shared context.") + sub
     ack = ACK.replace("case 7", "case 9.1")
     assert stop(working, ack, translated, ack, built=False) == (0, "")
-    for path in (plan_of(working), spec):
+    for path in (cases_of(working), spec):
         text = path.read_text(encoding="utf-8")
         held = materialize.quoted_sections(split_cases(text)["9"], ratified.SPEC_SECTIONS)
         assert held["context"] == "Общий контекст.", path
@@ -441,26 +465,43 @@ OLD_CASES = "## Case 5 — old\n\n> **then:**\n> Old.\n\n### Case 5.1 — old pa
 ACK_SUPERSEDES = ACK.replace("{ref:rule-x}\n", "{ref:rule-x}{supersedes:case 5}\n", 1)
 
 
-def seed_old(project, text=OLD_CASES):
-    plan_of(project).write_text(f"# Spec\n\n{text}", encoding="utf-8")
+def seed_old(project, text=OLD_CASES, in_plan=False):
+    """Earlier Cases in the Cases file beside the plan file, or, with `in_plan`, in an older
+    plan file that holds them itself; and in `spec.md`."""
+    if in_plan:
+        plan_of(project).write_text(f"# Spec\n\n{text}", encoding="utf-8")
+    else:
+        cases_of(project).write_text(text, encoding="utf-8")
     return approved_spec(project, f"{STAMP}\n\n# Spec\n\n{text}")
 
 
-def test_superseded_a_case_and_its_sub_cases_leave_the_plan_and_the_spec(working):
+def test_superseded_a_case_and_its_sub_cases_leave_the_cases_file_and_the_spec(working):
     spec = seed_old(working)
     assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")
-    for path in (plan_of(working), spec):
+    for path in (cases_of(working), spec):
         text = path.read_text(encoding="utf-8")
         assert "Case 5" not in text and "## Case 7 —" in text, path
         assert "\n\n\n" not in text
+    assert plan_holds_no_case(working)
     assert copies(working) == []  # no copy to remove it from
+
+
+def test_superseded_a_case_leaves_an_older_plan_file_that_holds_it(working):
+    """A plan file written before its Cases file stood holds the Case itself."""
+    spec = seed_old(working, in_plan=True)
+    assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    assert "## Case 5" not in plan and "### Case 5." not in plan
+    for path in (cases_of(working), spec):
+        text = path.read_text(encoding="utf-8")
+        assert "Case 5" not in text and "## Case 7 —" in text, path
 
 
 def test_superseded_a_sub_case_leaves_alone(working):
     seed_old(working)
     ack = ACK.replace("{ref:rule-x}\n", "{ref:rule-x}{supersedes:case 5.1}\n", 1)
     assert stop(working, ack, SHOWING, ack) == (0, "")
-    text = plan_of(working).read_text(encoding="utf-8")
+    text = cases_text(working)
     assert "### Case 5.1" not in text and "## Case 5 — old" in text and "### Case 5.2" in text
 
 
@@ -485,7 +526,7 @@ def test_superseded_the_last_sub_case_of_a_parent_takes_the_parent_with_it(worki
         working, *SUB_LINES, "decision[case 6][update][rule-c]{ref:rule-c}{supersedes:case 5.2}"
     )
     assert stop(working, ACK_5_1, SHOWING, ACK_5_1) == (0, "")
-    for path in (plan_of(working), spec):
+    for path in (cases_of(working), spec):
         text = path.read_text(encoding="utf-8")
         assert "Case 5" not in text and "## Case 7 —" in text, path
 
@@ -494,7 +535,7 @@ def test_superseded_a_sub_case_with_a_decision_line_left_keeps_the_parent(workin
     seed_old(working)
     session_ledger(working, *SUB_LINES)
     assert stop(working, ACK_5_1, SHOWING, ACK_5_1) == (0, "")
-    text = plan_of(working).read_text(encoding="utf-8")
+    text = cases_text(working)
     assert "### Case 5.1" not in text and "## Case 5 — old" in text and "### Case 5.2" in text
 
 
@@ -507,7 +548,7 @@ def test_superseded_a_parent_with_a_line_of_its_own_stays(working):
         "decision[case 6][update][rule-c]{ref:rule-c}{supersedes:case 5.2}",
     )
     assert stop(working, ACK_5_1, SHOWING, ACK_5_1) == (0, "")
-    for path in (plan_of(working), spec):
+    for path in (cases_of(working), spec):
         text = path.read_text(encoding="utf-8")
         assert "## Case 5 — old" in text and "### Case 5.1" not in text, path
 
@@ -515,7 +556,7 @@ def test_superseded_a_parent_with_a_line_of_its_own_stays(working):
 def test_superseded_a_section_under_deferred_leaves(working):
     seed_old(working, "## Deferred\n\n## Case 5 — deferred\n\n```then\ndefer: []\n```\n")
     assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")
-    assert "Case 5" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 5" not in cases_text(working)
 
 
 def test_superseded_a_case_no_file_holds_is_no_refusal(working):
@@ -525,7 +566,7 @@ def test_superseded_a_case_no_file_holds_is_no_refusal(working):
 def test_superseded_a_refused_case_removes_nothing(working):
     seed_old(working)
     code, _ = stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES, built=False)
-    assert code == 2 and "## Case 5 — old" in plan_of(working).read_text(encoding="utf-8")
+    assert code == 2 and "## Case 5 — old" in cases_text(working)
 
 
 def short_case(case, slug, purpose="Later"):
@@ -544,7 +585,7 @@ def test_write_a_defer_goes_under_deferred_of_the_plan(working):
     # the hook writes a defer-only Case from the reply that shows it
     reply = short_case(8, "rule-y") + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
     assert stop(working, reply, reply) == (0, "")
-    plan = plan_of(working).read_text(encoding="utf-8")
+    plan = cases_text(working)
     deferred = plan.split("## Deferred", 1)[1]
     assert "## Case 8 — отложено" in deferred
     lines = split_cases(plan)["8"]
@@ -556,6 +597,7 @@ def test_write_a_defer_goes_under_deferred_of_the_plan(working):
         "defer:\n  - slug: rule-y\n    type: rule\n    purpose: Later"
     ]
     assert "\n```then\n" in plan  # no fence inside, three backticks
+    assert plan_holds_no_case(working)  # under Deferred of the Cases file
 
 
 def test_write_several_defers_and_one_beside_a_ratified_case(working):
@@ -569,7 +611,7 @@ def test_write_several_defers_and_one_beside_a_ratified_case(working):
         + "```\n"
     )
     assert stop(working, reply, SHOWING, reply) == (0, "")
-    plan = plan_of(working).read_text(encoding="utf-8")
+    plan = cases_text(working)
     head, deferred = plan.split("## Deferred", 1)
     assert "## Case 7 — пример" in head
     assert deferred.index("## Case 8") < deferred.index("## Case 9")
@@ -580,7 +622,7 @@ def test_write_a_defer_shown_again_replaces_its_section(working):
     stop(working, first, first)
     again = short_case(8, "rule-y", "Later, reworded") + "```LEDGER\n" + defer_line(8, "rule-y")
     assert stop(working, again + "```\n", again + "```\n") == (0, "")
-    plan = plan_of(working).read_text(encoding="utf-8")
+    plan = cases_text(working)
     assert plan.count("## Case 8 —") == 1 and "Later, reworded" in plan
 
 
@@ -591,7 +633,7 @@ def test_write_a_defer_once_the_spec_stands_goes_into_it(working):
     reply = short_case(8, "rule-y") + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
     assert stop(working, reply, reply) == (0, "")
     assert "## Case 8" in spec.read_text(encoding="utf-8").split("## Deferred", 1)[1]
-    assert "Case 8" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 8" not in cases_text(working)
 
 
 def test_write_a_defer_not_shown_or_without_its_item_is_refused(working):
@@ -602,7 +644,7 @@ def test_write_a_defer_not_shown_or_without_its_item_is_refused(working):
     other = short_case(8, "rule-other") + bare
     code, err = stop(working, other, other)
     assert code == 2 and "no defer item with slug, type and purpose for rule-y" in err
-    assert "Case 8" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 8" not in cases_text(working)
 
 
 # --- a built Case made only of put-offs ---------------------------------------
@@ -648,7 +690,7 @@ ACK_DEFER = f"```LEDGER\n{DEFER_LINES}```\n\n## Case 7 — ratified\n\n**Changes
 
 def test_write_built_defer_case_is_copied_from_its_file(working):
     assert stop(working, ACK_DEFER, BUILT_DEFER, ACK_DEFER) == (0, "")
-    plan = plan_of(working).read_text(encoding="utf-8")
+    plan = cases_text(working)
     assert "## Deferred" not in plan and "## Case 7 — отложено целиком" in plan
     lines = split_cases(plan)["7"]
     sections = materialize.quoted_sections(lines, ratified.SPEC_SECTIONS)
@@ -658,19 +700,20 @@ def test_write_built_defer_case_is_copied_from_its_file(working):
         "defer": [{"slug": "rule-x", "type": "rule", "purpose": "Later"}]
     }
     assert ratified.tagged_blocks(lines, "tasks") == ["- [ ] defer `rule-x`"]
+    assert plan_holds_no_case(working)  # into the Cases file
 
 
 def test_write_built_defer_case_with_no_store_is_refused(working):
     code, err = stop(working, ACK_DEFER, BUILT_DEFER, ACK_DEFER, built=False)
     assert code == 2 and "case 7: not built and checked by case-guppi" in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 def test_superseded_by_a_built_defer_case_leaves_the_plan(working):
     seed_old(working)
     ack = ACK_DEFER.replace("{ref:rule-x}\n", "{ref:rule-x}{supersedes:case 5}\n", 1)
     assert stop(working, ack, BUILT_DEFER, ack) == (0, "")
-    text = plan_of(working).read_text(encoding="utf-8")
+    text = cases_text(working)
     assert "Case 5" not in text and "## Case 7 —" in text
 
 
@@ -679,7 +722,7 @@ def test_write_built_defer_case_beside_a_short_form_keeps_the_short_one_under_de
         short_case(8, "rule-y") + "```LEDGER\n" + DEFER_LINES + defer_line(8, "rule-y") + "```\n"
     )
     assert stop(working, reply, BUILT_DEFER, reply) == (0, "")
-    head, deferred = plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)
+    head, deferred = cases_text(working).split("## Deferred", 1)
     assert "## Case 7 — отложено целиком" in head and "Case 7" not in deferred
     assert "## Case 8 — отложено" in deferred
 
@@ -689,7 +732,7 @@ def test_changed_file_built_defer_case_changed_after_the_store_writes_nothing(wo
     path = file_of_7(working, BUILT_DEFER.replace("The put-off stands.", "Changed."))
     code, err = stop(working, ACK_DEFER, BUILT_DEFER, ACK_DEFER, built=False)
     assert code == 2 and f"{path} differs from the text the check stored" in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 def test_checks_the_written_case_built_defer_a_finding_exits_2(working):
@@ -713,7 +756,7 @@ def test_write_no_plan_file_in_the_event_log_is_refused(working):
 def test_write_a_case_sent_after_its_store_with_no_showing_is_written(working):
     build(working, SHOWING)
     assert stop(working, ACK, "Nothing shown.", ACK, built=False, sent=["7"]) == (0, "")
-    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
+    assert "## Case 7 — пример" in cases_text(working)
 
 
 def test_write_a_showing_of_the_ratification_alone_is_compared(working):
@@ -721,7 +764,7 @@ def test_write_a_showing_of_the_ratification_alone_is_compared(working):
     short = "## Case 7 — пример\n\nКоротко.\n\n" + SHOWING[SHOWING.index("> **ratification:**") :]
     assert stop(working, ACK, short, ACK, built=False) == (0, "")
     differs = short.replace("{ref:rule-x}", "{ref:rule-y}", 1)
-    plan_of(working).write_text("# Spec\n", encoding="utf-8")
+    cases_of(working).unlink(missing_ok=True)
     code, err = stop(working, ACK, differs, ACK, built=False)
     assert code == 2 and "case 7: its ratification differ" in err
 
@@ -730,13 +773,13 @@ def test_write_no_sending_is_refused_and_nothing_is_written(working):
     code, err = stop(working, ACK, SHOWING, ACK, sent=[])
     assert code == 2 and "case 7: no SendUserFile call on" in err
     assert str(case_path(working, "7")) in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 def test_write_a_sending_older_than_the_store_is_refused(working):
     code, err = stop(working, ACK, SHOWING, ACK, sent_at="2026-09-09T15:19:59.000Z")
     assert code == 2 and "case 7: no SendUserFile call on" in err and STORED in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 def test_write_a_store_that_holds_no_time_is_refused(working):
@@ -760,11 +803,11 @@ def test_write_a_sub_case_is_judged_by_the_file_of_its_parent(working):
     ack = ACK.replace("case 7", "case 9.1")
     assert case_path(working, "9.1").name == "case-9.md"
     assert stop(working, ack, showing, ack, sent=["9"]) == (0, "")
-    plan_of(working).write_text("# Spec\n", encoding="utf-8")
+    cases_of(working).unlink(missing_ok=True)
     other = case_path(working, "9").with_name("case-9.1.md")  # a file of the sub-case's own
     code, err = stop(working, ack, showing, ack, sent=[other])
     assert code == 2 and "case 9.1: no SendUserFile call on" in err
-    assert "Case 9.1" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 9.1" not in cases_text(working)
 
 
 def test_write_a_sub_case_shown_only_in_the_list_of_its_parent_is_written(working):
@@ -785,19 +828,19 @@ def test_write_a_sub_case_shown_only_in_the_list_of_its_parent_is_written(workin
     )
     ack = ACK.replace("case 7", "case 9.1")
     assert stop(working, ack, listed, ack, built=False, sent=["9"]) == (0, "")
-    assert "### Case 9.1" in plan_of(working).read_text(encoding="utf-8")
-    plan_of(working).write_text("# Spec\n", encoding="utf-8")
+    assert "### Case 9.1" in cases_text(working)
+    cases_of(working).unlink(missing_ok=True)
     differs = listed.replace("{ref:rule-x}", "{ref:rule-y}", 1)
     code, err = stop(working, ack, differs, ack, built=False, sent=["9"])
     assert code == 2 and "case 9.1: its ratification differ" in err
-    assert "Case 9.1" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 9.1" not in cases_text(working)
 
 
 def test_write_a_sub_point_off_the_form_is_refused_and_nothing_is_written(working):
     broken = SHOWING.replace("  - kind: `QA`", "  - kind: QA")
     code, err = stop(working, ACK, broken, ACK)
     assert code == 2 and "`kind`: the value is not one code span" in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 def test_write_a_foreign_key_of_an_update_or_a_delete_is_refused(working):
@@ -807,7 +850,7 @@ def test_write_a_foreign_key_of_an_update_or_a_delete_is_refused(working):
     )
     code, err = stop(working, ACK, wrong, ACK)
     assert code == 2 and "`replace old`: not a key of update rule-x" in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 def test_read_a_drop_under_an_update_is_a_list_of_section_names(working):
@@ -848,7 +891,6 @@ def test_write_the_keys_of_a_create_are_judged_by_its_schema(working, tmp_path):
 
 
 def test_write_a_foreign_key_of_a_defer_is_refused(working):
-    #
     schema = working / "vault" / "wiki" / "rules" / "schema.yaml"
     schema.write_text("properties:\n  required: [type, purpose]\n", encoding="utf-8")
     case = short_case("9", "rule-later").replace(
@@ -856,18 +898,17 @@ def test_write_a_foreign_key_of_a_defer_is_refused(working):
     )
     code, err = stop(working, f"```LEDGER\n{defer_line('9', 'rule-later')}```\n\n{case}")
     assert code == 2 and "`old`: not a key of defer rule-later" in err
-    assert "Case 9" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 9" not in cases_text(working)
 
 
 @pytest.mark.parametrize("purpose", ["a ## b", "a\t# b"])
 def test_write_a_defer_whose_then_block_holds_a_comment_is_refused(working, purpose):
     # YAML cuts the value of `a ## b` at the comment; PyYAML refuses the block of `a\t# b`
-    #
     reply = short_case(8, "rule-y", purpose) + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
     code, err = stop(working, reply, reply)
     assert code == 2 and "case 8: the fence tagged then holds a YAML comment" in err
     assert "put the value in quotes" in err
-    assert "Case 8" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 8" not in cases_text(working)
 
 
 @pytest.mark.parametrize("purpose", ["'a ## b'", '"a ## b"', "|\n      a\n      ## b"])
@@ -875,7 +916,7 @@ def test_write_a_defer_with_a_hash_in_quotes_or_a_block_is_written(working, purp
     # a `#` inside a quoted value or a `|` block is text, not a comment
     reply = short_case(8, "rule-y", purpose) + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
     assert stop(working, reply, reply) == (0, "")
-    assert "## b" in plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)[1]
+    assert "## b" in cases_text(working).split("## Deferred", 1)[1]
 
 
 # --- a short defer of a Lesson or a Decision page is refused ----------------------
@@ -887,8 +928,7 @@ def record_error(case, slug):
 
 
 def plan_text(working):
-    plan = plan_of(working)
-    return plan.read_text(encoding="utf-8") if plan.is_file() else ""
+    return cases_text(working)
 
 
 @pytest.mark.parametrize(
@@ -919,7 +959,7 @@ def test_write_a_short_defer_of_an_entity_beside_a_refused_one_is_written(workin
     )
     code, err = stop(working, reply, reply)
     assert code == 2 and record_error(8, "decision-case-3") in err
-    deferred = plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)[1]
+    deferred = cases_text(working).split("## Deferred", 1)[1]
     assert "## Case 9 —" in deferred and "## Case 8 —" not in deferred
 
 
@@ -949,7 +989,7 @@ def with_tags(lines=TAG_LINES):
 
 def test_tag_two_tag_lines_write_two_entries_of_new_tags_and_no_task(working):
     assert stop(working, ACK, with_tags(), ACK) == (0, "")
-    plan = plan_of(working).read_text(encoding="utf-8")
+    plan = cases_text(working)
     then = yaml.safe_load(plan.split("```then\n", 1)[1].split("\n```", 1)[0])
     assert then["new_tags"] == [
         {
@@ -993,7 +1033,7 @@ def test_tag_two_tag_lines_write_two_entries_of_new_tags_and_no_task(working):
 def test_tag_a_tag_line_off_the_form_is_refused_and_nothing_is_written(working, lines, error):
     code, err = stop(working, ACK, with_tags(lines), ACK)
     assert code == 2 and error in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 def test_tag_a_sub_point_under_a_plain_task_line_is_still_refused():
@@ -1012,7 +1052,7 @@ def test_write_the_answer_of_case_guppi_not_the_showing(working):
     retyped = SHOWING.replace("The file is written.", "The file is written twice.")
     code, err = stop(working, ACK, retyped, ACK, built=False)
     assert code == 2 and "case 7: its then differ from the answer of case-guppi" in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
     casecheck.store_of(plan_of(working)).unlink()
     code, err = stop(working, ACK, SHOWING, ACK, built=False)
     assert code == 2 and "case 7: not built and checked by case-guppi" in err
@@ -1021,7 +1061,7 @@ def test_write_the_answer_of_case_guppi_not_the_showing(working):
     path.write_text(json.dumps({"7": {"text": text, "findings": ["case 7: x"]}}), encoding="utf-8")
     code, err = stop(working, ACK, SHOWING, ACK, built=False)
     assert code == 2 and "its check found case 7: x" in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 def test_write_a_value_at_a_backtick_takes_an_outer_span_padded_by_one_space():
@@ -1055,14 +1095,14 @@ def test_write_an_unpadded_value_refuses_the_case_whole(working):
     broken = SHOWING.replace("`` the `old` text ``", "``the `old` text``")
     code, err = stop(working, ACK, broken, ACK)
     assert code == 2 and f"`old`: {ratified.UNPADDED}" in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 def test_write_nothing_outside_a_working_session_and_a_flagged_reply_writes(working, tmp_path):
     assert stop(working, ACK, SHOWING, ACK, session_id="ffffffff-0000") == (0, "")
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
-    assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")  #
-    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
+    assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")
+    assert "## Case 7 — пример" in cases_text(working)
 
 
 def test_write_a_sub_case_brings_its_parents_prose(working):
@@ -1074,7 +1114,7 @@ def test_write_a_sub_case_brings_its_parents_prose(working):
     )
     ack = ACK.replace("case 7", "case 9.1")
     assert stop(working, ack, showing, ack) == (0, "")
-    plan = plan_of(working).read_text(encoding="utf-8")
+    plan = cases_text(working)
     assert plan.index("## Case 9 — родитель") < plan.index("### Case 9.1 — ребёнок")
     parent = materialize.quoted_sections(split_cases(plan)["9"], ratified.SPEC_SECTIONS)
     assert parent == {"context": "Общий контекст.", "problem": "Вопрос."}
@@ -1107,7 +1147,7 @@ def test_write_a_sub_case_keeps_its_own_recommend_and_the_parents_from_the_store
     build(working, PARENT_9 + SUB_9_1)
     translated = PARENT_9.replace("Answer: да.", "Answer: yes.") + SUB_9_1
     assert stop(working, ACK_9_1, translated, ACK_9_1, built=False) == (0, "")
-    assert recommends(plan_of(working)) == {"9": PARENT_RECOMMEND, "9.1": "Совет."}
+    assert recommends(cases_of(working)) == {"9": PARENT_RECOMMEND, "9.1": "Совет."}
 
 
 def test_write_approved_spec_holds_recommend(working):
@@ -1126,7 +1166,7 @@ def test_write_approved_spec_a_parents_recommend_from_its_stored_answer(working)
     build(working, PARENT_9 + SUB_9_1)
     translated = PARENT_9.replace("Answer: да.", "Answer: yes.") + SUB_9_1
     assert stop(working, ACK_9_1, translated, ACK_9_1, built=False) == (0, "")
-    for path in (plan_of(working), spec):
+    for path in (cases_of(working), spec):
         assert recommends(path) == {"9": PARENT_RECOMMEND, "9.1": "Совет."}, path
 
 
@@ -1139,7 +1179,8 @@ def test_checks_the_written_case_a_finding_exits_2_and_the_case_stays(working):
     code, err = stop(working, ACK, OUT_OF_FRAME, ACK)
     assert code == 2
     assert err.startswith("ratified: ") and "case 7: guppi/y.py is not named in its given" in err
-    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
+    assert "## Case 7 — пример" in cases_text(working)  # it stays
+    assert plan_holds_no_case(working)
 
 
 def test_checks_the_written_case_a_clean_one_exits_0_on_the_lines_of_the_reply(working):
@@ -1166,7 +1207,7 @@ def test_checks_the_written_case_a_finding_of_another_case_is_not_reported(worki
 
 
 def test_checks_the_written_case_a_flagged_reply_checks_it(working):
-    code, err = stop(working, ACK, OUT_OF_FRAME, ACK, stop_hook_active=True)  #
+    code, err = stop(working, ACK, OUT_OF_FRAME, ACK, stop_hook_active=True)
     assert code == 2 and "case 7: guppi/y.py is not named in its given" in err
 
 
@@ -1184,7 +1225,7 @@ def test_changed_file_equal_to_the_store_is_written(working):
     build(working, SHOWING)
     file_of_7(working, casecheck.shown_text("## Case 7 — пример", split_cases(SHOWING)["7"]))
     assert stop(working, ACK, SHOWING, ACK, built=False) == (0, "")
-    assert "## Case 7 — пример" in plan_of(working).read_text(encoding="utf-8")
+    assert "## Case 7 — пример" in cases_text(working)
 
 
 def test_changed_file_changed_after_the_store_writes_nothing(working):
@@ -1192,7 +1233,7 @@ def test_changed_file_changed_after_the_store_writes_nothing(working):
     path = file_of_7(working, SHOWING.replace("The file is written.", "Changed."))
     code, err = stop(working, ACK, SHOWING, ACK, built=False)
     assert code == 2 and f"{path} differs from the text the check stored" in err
-    assert "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 7" not in cases_text(working)
 
 
 # --- the reply that answers a refusal ------------------------------
@@ -1201,40 +1242,50 @@ def test_changed_file_changed_after_the_store_writes_nothing(working):
 def test_answers_a_refusal_a_repeat_on_a_flagged_reply_writes_the_case(working):
     spec = approved_spec(working, f"{STAMP}\n\n# Spec\n\n## Case 5 — first\n")
     code, err = stop(working, ACK, SHOWING, ACK, sent=set())
-    assert code == 2 and "Case 7" not in plan_of(working).read_text(encoding="utf-8")
+    assert code == 2 and "Case 7" not in cases_text(working)
     told = [refusal_record(err.strip())]
     assert stop(working, ACK, SHOWING, ACK, extra=told, stop_hook_active=True) == (0, "")
-    for path in (plan_of(working), spec):
+    for path in (cases_of(working), spec):
         assert "## Case 7 — пример" in path.read_text(encoding="utf-8"), path
+    assert plan_holds_no_case(working)
+
+
+def test_answers_a_refusal_under_a_numbered_bracket_tells_it_once(working):
+    # the refusal is found by `ratified:` after the bracket, whatever it holds
+    approved_spec(working, f"{STAMP}\n\n# Spec\n\n## Case 5 — first\n")
+    code, err = stop(working, ACK, SHOWING, ACK, sent=set())
+    assert code == 2 and err.startswith("ratified:")
+    told = [refusal_record(err.strip(), command="command hook 2")]
+    assert stop(working, ACK, SHOWING, ACK, extra=told, stop_hook_active=True) == (0, "")
 
 
 def test_answers_a_refusal_a_flagged_reply_removes_a_superseded_case(working):
     spec = seed_old(working)
     assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES, stop_hook_active=True) == (0, "")
-    for path in (plan_of(working), spec):
+    for path in (cases_of(working), spec):
         assert "Case 5" not in path.read_text(encoding="utf-8"), path
 
 
 def test_write_approved_spec_a_flagged_reply_writes_into_it(working):
     spec = approved_spec(working, f"{STAMP}\n\n# Spec\n\n{SPEC_CASE_7}")
-    assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")  #
+    assert stop(working, ACK, SHOWING, ACK, stop_hook_active=True) == (0, "")
     assert "The file is written." in spec.read_text(encoding="utf-8")
 
 
 def test_superseded_a_flagged_reply_removes_the_case(working):
-    seed_old(working)  #
+    seed_old(working)
     assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES, stop_hook_active=True) == (0, "")
-    assert "Case 5" not in plan_of(working).read_text(encoding="utf-8")
+    assert "Case 5" not in cases_text(working)
 
 
 def test_write_a_defer_refused_then_fixed_on_a_flagged_reply_is_written(working):
-    bare = "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"  #
+    bare = "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
     code, err = stop(working, bare, bare)
     assert code == 2
     fixed = short_case(8, "rule-y") + bare
     told = [refusal_record(err.strip())]
     assert stop(working, fixed, fixed, extra=told, stop_hook_active=True) == (0, "")
-    assert "## Case 8" in plan_of(working).read_text(encoding="utf-8").split("## Deferred", 1)[1]
+    assert "## Case 8" in cases_text(working).split("## Deferred", 1)[1]
 
 
 OTHER_8 = (
@@ -1634,6 +1685,56 @@ def test_number_held_a_file_with_no_number_is_not_judged():
     assert casecheck.case_number(folder + "case-kir-plugin-12.1.md") is None
 
 
+# --- a number the session's ledger holds -------------------------------------
+# `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
+
+
+def ledger_holds(project, *lines):
+    path = project / "vault" / "raw" / TODAY.isoformat() / "1501" / "ledger.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    # each line with the time of writing, as the ledger hook writes it
+    text = "".join(f"- 15:20:00 {line.removeprefix('- ')}\n" for line in lines)
+    path.write_text(text, encoding="utf-8")
+
+
+def test_number_held_on_the_ledger_a_defer_line_refuses_a_new_file(working):
+    ledger_holds(working, "- decision[case 7][defer][rule-x]")
+    code, err = builder(working, "Write")
+    assert code == 2 and "build this Case as case 8" in err and "case-8.md" in err
+    assert "ledger" in err
+    assert store_data(working) is None
+    assert not case_path(working, "7").exists()
+
+
+def test_number_held_on_the_ledger_a_line_of_a_sub_case_refuses_a_new_file(working):
+    ledger_holds(working, "- decision[case 7.1][update][rule-x]{ref:rule-x}")
+    code, err = builder(working, "Write")
+    assert code == 2 and "build this Case as case 8" in err
+    assert store_data(working) is None
+
+
+def test_number_held_on_the_ledger_an_empty_file_is_refused(working):
+    ledger_holds(working, "- decision[case 7][defer][rule-x]")
+    made(working, "")
+    code, err = builder(working, "Write")
+    assert code == 2 and "case 8" in err
+    assert case_path(working, "7").read_text(encoding="utf-8") == ""
+
+
+def test_number_held_on_the_ledger_a_file_with_text_passes(working):
+    ledger_holds(working, "- decision[case 7][update][rule-x]{ref:rule-x}")
+    made(working, "## Case 7 — x\n")
+    assert passed(builder(working, "Edit"))
+
+
+def test_number_held_on_the_ledger_a_line_of_another_number_passes(working):
+    ledger_holds(
+        working, "- decision[case 70][defer][rule-x]", "- decision[case 6.1][defer][rule-x]"
+    )
+    assert passed(builder(working, "Write"))
+    assert store_data(working) == {"7": {"agent_id": "agent-a", "stored": NOW.isoformat()}}
+
+
 # --- a file named by an id of a sprint ----------------------------------------
 # `estimate-spec-reconcile-refuses-a-case-file-another-agent-holds`
 
@@ -1695,3 +1796,350 @@ def test_error_an_error_of_the_guard_exits_0_with_its_line(working, monkeypatch)
     monkeypatch.setattr(ratified, "guard_refusal", boom)
     code, err = guard(working, "Edit", plan_of(working))
     assert code == 0 and err == "ratified: not done: boom\n"
+
+
+# --- the map ---------------------------------------------------------------
+
+MAP_CASES = """# Spec
+
+## Case 5 — first
+
+> **then:**
+> First.
+
+```then
+create:
+- slug: estimate-a-works
+  ref: rule-a
+  purpose: A works
+update:
+- slug: rule-a
+  change: the rule changed
+delete:
+- slug: rule-old
+  impact: nothing reads it
+```
+
+```tasks
+- [x] read `estimate-a-works`
+- [ ] stop: the person gives the file `x.png`.
+- [x] stop: the person said yes.
+- [ ] read `estimate-a-works`
+- [x] `guppi/a.py` — the code
+- [ ] update `rule-a`
+- [ ] delete `rule-old`
+- [ ] create `estimate-a-works`
+```
+
+## Case 6 — parent
+
+> **problem:**
+> Why.
+
+### Case 6.1 — child
+
+```tasks
+- [ ] read `estimate-b-works`
+```
+
+## Deferred
+
+## Case 9 — put off
+
+```then
+defer:
+  - slug: rule-later
+    type: rule
+    purpose: Later
+```
+"""
+
+
+def map_lines(text):
+    """The lines of the map of `text`, its markers included."""
+    lines = text.splitlines()
+    start = lines.index(ratified.MAP_OPEN)
+    return lines[start : lines.index(ratified.MAP_CLOSE) + 1]
+
+
+def map_run(project, argv):
+    out, err = io.StringIO(), io.StringIO()
+    code = ratified.run(
+        argv, stdin=io.StringIO(""), stderr=err, stdout=out, project_dir=project, now=NOW
+    )
+    return code, out.getvalue(), err.getvalue()
+
+
+def test_map_stands_under_the_title_line_with_table_diagram_and_entries(working):
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    assert plan.startswith(f"# Spec — 2026-09-09, session 1501\n\n{ratified.MAP_OPEN}\n")
+    found = map_lines(plan)
+    assert "| 7 | пример | 0 | 1 |" in found
+    assert "```mermaid" in found and '    c7["🧩 7 — пример"]' in found
+    assert "- 🧩 **7 — пример** · `vault/raw/2026-09-09/1501/cases/case-7.md`" in found
+    assert "  - [ ] update `rule-x` — one `replace` pair — the text changed (case 7)" in found
+    assert "  - [ ] create `estimate-x-works` — X works" in found
+    assert "  - [ ] `guppi/x.py` — the code" in found
+    assert "  - [ ] 🔍 read `estimate-x-works` — X works" in found
+    head = ratified.plan_map_head(plan_of(working))
+    assert head in found and "`plan.cases.md`" in head  # it names the Cases file
+    assert ratified.MAP_HEAD not in found
+    assert plan_holds_no_case(working)  # title line and map alone
+    assert "## Case 7 —" in cases_text(working)
+
+
+def test_map_of_the_plan_takes_the_cases_a_plan_file_holds_of_its_own(working):
+    """A plan file that holds Cases of its own, written before its Cases file stood, keeps
+    them, and the map takes them with the Cases of the Cases file."""
+    plan_of(working).write_text(
+        "# Spec — 2026-09-09, session 1501\n\n## Case 5 — old\n\n> **then:**\n> Old.\n",
+        encoding="utf-8",
+    )
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    assert "## Case 5 — old" in plan  # kept
+    found = map_lines(plan)
+    assert "| 5 | old | 0 | 0 |" in found and "| 7 | пример | 0 | 1 |" in found
+
+
+def test_map_boxes_a_ticked_line_an_open_stop_and_an_open_read_line(working):
+    found = ratified.case_map(MAP_CASES, None, working)
+    assert "| 5 | first | 1 | 1 |" in found and "| 6 | parent | 0 | 1 |" in found
+    entry = found[found.index("- 🧩 **5 — first**") + 1 :][:8]
+    assert entry == [
+        "  - [x] read `estimate-a-works` — A works",  # ticked: its box and no 🔍
+        "  - [ ] ⛔ stop: the person gives the file `x.png`.",
+        "  - [x] stop: the person said yes.",
+        "  - [ ] 🔍 read `estimate-a-works` — A works",
+        "  - [x] `guppi/a.py` — the code",
+        "  - [ ] update `rule-a` — the rule changed",
+        "  - [ ] delete `rule-old` — nothing reads it",
+        "  - [ ] create `estimate-a-works` — A works",
+    ]
+    assert not any("✅" in line for line in found)
+    assert "**Deferred:** 9 — put off" in found
+
+
+def test_map_takes_its_boxes_from_the_same_case_in_spec_md(working):
+    spec = MAP_CASES.replace("- [ ] update `rule-a`", "- [x] update `rule-a`").replace(
+        "- [ ] read `estimate-b-works`", "- [x] read `estimate-b-works`"
+    )
+    found = ratified.case_map(MAP_CASES, None, working, boxes=f"{STAMP}\n\n{spec}")
+    assert "  - [x] update `rule-a` — the rule changed" in found
+    assert "  - [x] read `estimate-b-works`" in found  # ticked there: no 🔍
+    assert "| 6 | parent | 0 | 0 |" in found
+    other = spec.replace("## Case 6.1 — child", "## Case 12 — other")  # another Case's line
+    found = ratified.case_map(MAP_CASES, None, working, boxes=other)
+    assert "  - [ ] 🔍 read `estimate-b-works`" in found
+
+
+def test_map_a_box_ticked_in_the_map_alone_is_written_back(working):
+    text = ratified.with_map(MAP_CASES, None, working)
+    hand = text.replace("  - [ ] update `rule-a`", "  - [x] update `rule-a`")
+    assert hand != text
+    assert ratified.with_map(hand, None, working) == text
+
+
+def test_map_diagram_one_node_per_case_and_the_edges_of_their_order(working):
+    found = ratified.case_map(MAP_CASES, None, working)
+    assert '    c5["⛔ 🧩 5 — first"]' in found
+    assert '    c6_1["🧩 6.1 — child"]' in found
+    assert "    c5 --> c6" in found and "    c6 --> c6_1" in found
+    assert not any(line.startswith("    c9") for line in found)  # a deferred Case: no node
+
+
+def test_map_no_line_opens_with_a_box_a_heading_or_deferred(working):
+    for line in ratified.case_map(MAP_CASES, None, working):
+        assert not ratified.TASK_LINE.match(line), line
+        assert not materialize.HEADING.match(line), line
+        assert line.strip() != ratified.DEFERRED, line
+
+
+def test_map_split_cases_reads_the_plan_as_before(working):
+    with_map = ratified.with_map(MAP_CASES, None, working)
+    assert ratified.MAP_OPEN in with_map
+    assert split_cases(with_map) == split_cases(MAP_CASES)
+    assert ratified.without_map(with_map) == MAP_CASES
+
+
+def test_map_rebuilt_after_a_write_and_after_a_removal(working):
+    stop(working, ACK, SHOWING, ACK)
+    reply = short_case(8, "rule-y") + "```LEDGER\n" + defer_line(8, "rule-y") + "```\n"
+    assert stop(working, reply, reply) == (0, "")
+    plan = plan_of(working).read_text(encoding="utf-8")
+    assert plan.count(ratified.MAP_OPEN) == 1
+    assert "**Deferred:** 8 — отложено" in map_lines(plan)
+    seed_old(working)
+    ratified.rebuild_map(plan_of(working), None, working)
+    assert "| 5 | old | 0 | 0 |" in map_lines(plan_of(working).read_text(encoding="utf-8"))
+    assert stop(working, ACK_SUPERSEDES, SHOWING, ACK_SUPERSEDES) == (0, "")
+    found = map_lines(plan_of(working).read_text(encoding="utf-8"))
+    assert "| 7 | пример | 0 | 1 |" in found and not any("5 — old" in line for line in found)
+
+
+def test_map_mode_prints_the_same_map_and_writes_nothing(working):
+    stop(working, ACK, SHOWING, ACK)
+    plan = plan_of(working)
+    before = plan.read_text(encoding="utf-8")
+    code, out, err = map_run(working, ["--map", str(plan), "--session", SESSION[:8]])
+    assert (code, err) == (0, "")
+    assert out.splitlines() == map_lines(before)  # cut from the Cases file
+    assert "| 7 | пример | 0 | 1 |" in out.splitlines()
+    assert plan.read_text(encoding="utf-8") == before
+
+
+def test_map_mode_with_no_session_or_no_file_prints_no_map(working):
+    code, out, err = map_run(working, ["--map", str(working / "none.md"), "--session", "44c1aae1"])
+    assert code == 1 and out == "" and "does not stand" in err
+    code, out, err = map_run(working, ["--map", str(plan_of(working))])
+    assert code == 1 and out == "" and "--session" in err
+
+
+def test_approved_spec_places_a_case_after_the_map(working):
+    document = ratified.with_map(MAP_CASES, None, working)
+    spec = approved_spec(working, f"{STAMP}\n\n{document}")
+    before = map_lines(spec.read_text(encoding="utf-8"))
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    text = spec.read_text(encoding="utf-8")
+    assert text.index(ratified.MAP_CLOSE) < text.index("## Case 7 —") < text.index("## Deferred")
+    after = map_lines(text)  # the map of spec.md now holds the placed Case
+    assert after != before and "| 7 | пример | 0 | 1 |" in after
+    assert "| 5 | first | 1 | 1 |" in after
+
+
+# --- the maps of spec.md ----------------------------------------------------
+
+SECOND_CASES = """# Spec again
+
+## Case 8 — second
+
+```tasks
+- [ ] `guppi/b.py` — more code
+- [ ] read `estimate-c-works`
+```
+"""
+
+
+def boxes_run(project, path=None, stdin=None, **fields):
+    """`--boxes` on the payload of `PostToolUse` of an `Edit` of `path`."""
+    if stdin is None:
+        fields.setdefault("session_id", SESSION)
+        payload = {"tool_name": "Edit", "tool_input": {"file_path": str(path)}, **fields}
+        stdin = json.dumps(payload)
+    out, err = io.StringIO(), io.StringIO()
+    code = ratified.run(
+        ["--boxes"], stdin=io.StringIO(stdin), stderr=err, stdout=out, project_dir=project, now=NOW
+    )
+    return code, out.getvalue(), err.getvalue()
+
+
+def two_documents(project, folder="1501"):
+    """A `spec.md` of two approved documents, each with its map."""
+    first = ratified.with_map(MAP_CASES, None, project)
+    second = ratified.with_map(SECOND_CASES, None, project)
+    spec = project / "vault" / "raw" / TODAY.isoformat() / folder / "spec.md"
+    spec.parent.mkdir(parents=True, exist_ok=True)
+    later = "<!-- approved 16:00:00 · session 44c1aae1 -->"
+    spec.write_text(f"{STAMP}\n\n{first}\n{later}\n\n{second}", encoding="utf-8")
+    return spec
+
+
+def documents(text):
+    """The approved documents of a `spec.md`, each from its stamp."""
+    parts = text.split("<!-- approved ")
+    return ["<!-- approved " + part for part in parts[1:]]
+
+
+def test_spec_map_both_documents_rebuilt_from_their_own_cases_after_an_edit(working):
+    spec = two_documents(working, folder="0900")  # a session folder of another session
+    text = spec.read_text(encoding="utf-8")
+    edited = text.replace("- [ ] `guppi/b.py` — more code", "- [x] `guppi/b.py` — more code")
+    edited = edited.replace("- [ ] update `rule-a`", "- [x] update `rule-a`")
+    spec.write_text(edited, encoding="utf-8")
+    assert boxes_run(working, spec) == (0, "", "")
+    first, second = documents(spec.read_text(encoding="utf-8"))
+    assert "  - [x] update `rule-a` — the rule changed" in map_lines(first)
+    assert "  - [x] `guppi/b.py` — more code" in map_lines(second)
+    assert "| 8 | second | 0 | 1 |" in map_lines(second)
+    assert not any("8 — second" in line for line in map_lines(first))
+    assert not any("5 — first" in line for line in map_lines(second))
+    assert split_cases(spec.read_text(encoding="utf-8")) == split_cases(edited)
+
+
+def test_spec_map_a_document_with_no_map_gets_none(working):
+    spec = approved_spec(working, f"{STAMP}\n\n{MAP_CASES}")
+    before = spec.read_text(encoding="utf-8")
+    assert boxes_run(working, spec) == (0, "", "")
+    assert spec.read_text(encoding="utf-8") == before
+    assert ratified.rebuild_spec_maps(spec, working) is False
+
+
+def test_spec_map_an_edit_of_the_sessions_spec_rebuilds_the_plan_map(working):
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    plan = plan_of(working)
+    assert "  - [ ] `guppi/x.py` — the code" in map_lines(plan.read_text(encoding="utf-8"))
+    body = cases_text(working)
+    ticked = body.replace("- [ ] `guppi/x.py` — the code", "- [x] `guppi/x.py` — the code")
+    spec = approved_spec(working, f"{STAMP}\n\n# Spec\n\n{ticked}")
+    assert boxes_run(working, spec) == (0, "", "")
+    found = map_lines(plan.read_text(encoding="utf-8"))
+    assert "  - [x] `guppi/x.py` — the code" in found
+    assert found[2] == ratified.plan_map_head(plan)  # the line that names its Cases file
+
+
+def test_spec_map_the_map_of_spec_md_keeps_its_line_after_an_approval_of_the_plan_map(working):
+    """`spec.md` gets the plan text, whose map names the Cases file, and its map is rebuilt
+    with the line of `spec.md`."""
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    plan = plan_of(working)
+    joined = ratified.plan_cases_text(plan)
+    assert ratified.plan_map_head(plan) in joined
+    spec = approved_spec(working, f"{STAMP}\n\n{joined}")
+    assert ratified.rebuild_spec_maps(spec, working)
+    found = map_lines(spec.read_text(encoding="utf-8"))
+    assert found[2] == ratified.MAP_HEAD
+    assert ratified.plan_map_head(plan) not in spec.read_text(encoding="utf-8")
+
+
+def test_spec_map_an_edit_of_another_sessions_spec_leaves_the_plan(working):
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    plan = plan_of(working)
+    before = plan.read_text(encoding="utf-8")
+    spec = two_documents(working, folder="0900")
+    assert boxes_run(working, spec) == (0, "", "")
+    assert plan.read_text(encoding="utf-8") == before
+
+
+def test_spec_map_a_file_that_is_no_spec_of_a_session_folder_is_left(working):
+    spec = two_documents(working)
+    text = spec.read_text(encoding="utf-8").replace(
+        "- [ ] update `rule-a`", "- [x] update `rule-a`"
+    )
+    for where in ("vault/raw/2026-09-09/spec.md", "notes/2026-09-09/1501/spec.md", "a/spec.txt"):
+        other = working / where
+        other.parent.mkdir(parents=True, exist_ok=True)
+        other.write_text(text, encoding="utf-8")
+        assert boxes_run(working, other) == (0, "", "")
+        assert other.read_text(encoding="utf-8") == text, where
+
+
+def test_spec_map_boxes_exits_0_with_nothing_on_stdout_on_a_payload_it_cannot_read(working):
+    code, out, err = boxes_run(working, stdin="not json")
+    assert code == 0 and out == "" and err.count("\n") == 1
+    code, out, err = boxes_run(working, stdin=json.dumps({"tool_name": "Edit"}))
+    assert (code, out, err) == (0, "", "")
+
+
+def test_spec_map_an_error_gives_one_line_and_exits_0(working, monkeypatch):
+    monkeypatch.setattr(ratified, "rebuild_spec_maps", boom)
+    code, out, err = boxes_run(working, two_documents(working))
+    assert (code, out, err) == (0, "", "ratified: not done: boom\n")
+
+
+def test_spec_map_rebuilt_after_stop_places_a_case(working):
+    spec = approved_spec(working, f"{STAMP}\n\n{ratified.with_map(MAP_CASES, None, working)}")
+    assert stop(working, ACK, SHOWING, ACK) == (0, "")
+    found = map_lines(spec.read_text(encoding="utf-8"))
+    assert "- 🧩 **7 — пример** · `vault/raw/2026-09-09/1501/cases/case-7.md`" in found
+    assert not any(ratified.TASK_LINE.match(line) for line in found)

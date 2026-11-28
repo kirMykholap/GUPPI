@@ -8,7 +8,7 @@ method: "by hand, after the librarian's render of this Criterion's rule text int
 checked: 2026-11-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow]
 core: true
 ---
@@ -35,4 +35,4 @@ The prompt of the call names each Case of the session, ratified or already shown
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

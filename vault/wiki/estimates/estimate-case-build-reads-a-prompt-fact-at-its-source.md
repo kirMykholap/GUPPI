@@ -7,7 +7,7 @@ purpose: Whether case-guppi lets a fact its prompt states besides the person's w
 method: by hand, at the Retro of the session that changes it, the new Render of rule-case-build in the Spec read against the Criterion, recorded in the estimate line
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -28,4 +28,4 @@ The fact enters the Case only after `case-guppi` reads it at its source.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

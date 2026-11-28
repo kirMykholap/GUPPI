@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_generate.py on a temp v
 checked: 2026-10-16
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow, ledger]
 core: true
 ---
@@ -34,4 +34,4 @@ A pair whose `old` does not end with `/` is replaced as a whole word, with no le
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

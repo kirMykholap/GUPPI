@@ -9,7 +9,7 @@ parent: "[[rule-documentation]]"
 estimates: ["[[estimate-cleanup-moves]]", "[[estimate-cleanup-files-a-session-by-its-sprint]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -22,4 +22,4 @@ this script's: `guppi archive` moves an applied session ([[rule-raw-archive]]).
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

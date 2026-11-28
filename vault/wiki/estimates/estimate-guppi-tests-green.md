@@ -8,7 +8,7 @@ method: "by hand, after each Work Mode: uv run --project .guppi guppi test, read
 checked: 2026-09-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, tests]
 core: true
 ---
@@ -28,4 +28,4 @@ pytest reports no failed test and no error, and `uv run --project .guppi guppi t
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

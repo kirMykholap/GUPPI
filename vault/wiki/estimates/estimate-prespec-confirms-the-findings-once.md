@@ -8,7 +8,7 @@ method: "by hand, after a /pre-spec whose findings send a Case back to its case-
 checked: 2026-10-05
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -35,4 +35,4 @@ The main agent sends each `ask-guppi` run whose findings sent a Case back the Ca
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

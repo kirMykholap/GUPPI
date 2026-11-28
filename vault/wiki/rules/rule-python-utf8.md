@@ -10,7 +10,7 @@ parent: "[[rule-settings]]"
 estimates: ["[[estimate-python-utf8-output-intact]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, session]
 core: true
 ---
@@ -29,4 +29,4 @@ Prevents a Python script that a session runs on Windows from printing through th
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

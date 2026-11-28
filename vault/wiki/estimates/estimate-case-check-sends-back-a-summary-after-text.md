@@ -7,7 +7,7 @@ purpose: Whether the check of case-guppi sends back an answer that holds a Built
 method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k summary_after_text
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -31,4 +31,4 @@ An output whose first line that is not blank does not open with `**Built:**`, an
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_shellwrite.py
 checked: 2026-10-31
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -34,4 +34,4 @@ In each such file the hook turns every CRLF line ending into LF, and removes a U
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

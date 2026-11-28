@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_prespec.py
 checked: 2026-10-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -34,4 +34,4 @@ It prints one finding for each two Cases of the plan whose `update` items name o
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

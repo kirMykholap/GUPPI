@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_prespec.py -k cascade
 checked: 2026-11-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -36,4 +36,4 @@ For each `update` item of the plan whose page the cascade of `.guppi/guppi/gener
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

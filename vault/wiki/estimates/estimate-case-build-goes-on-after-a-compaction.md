@@ -8,7 +8,7 @@ method: "by hand, in the Work Mode of the session that replaces this Criterion: 
 checked: 2026-10-29
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, hooks, case-build]
 core: true
 ---
@@ -33,4 +33,4 @@ The transcript of the test helper under `~/.claude/projects/` holds a `compact_b
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

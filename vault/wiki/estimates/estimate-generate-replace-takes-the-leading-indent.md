@@ -8,7 +8,7 @@ method: "pytest in .guppi/tests/test_generate.py against a temp vault: an old th
 checked: 2026-09-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -30,4 +30,4 @@ An `old` that opens with a space or a tab matches, besides its words, every spac
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

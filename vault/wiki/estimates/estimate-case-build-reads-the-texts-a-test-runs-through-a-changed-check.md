@@ -8,7 +8,7 @@ method: by hand, the text of .claude/agents/case-guppi.md as rendered, or, at th
 checked: 2026-10-17
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [workflow, harness, tests]
 core: true
 ---
@@ -29,4 +29,4 @@ It searches `.guppi/tests/` for the tests that read a live file of `vault/` or `
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

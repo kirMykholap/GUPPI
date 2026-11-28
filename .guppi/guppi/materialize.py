@@ -61,7 +61,6 @@ can name it, and an effect on each target:
     defer     none                  a minimal placeholder page, born with `deferred_by`, for a
                                     rule or an entity only; an entry of any other kind with
                                     no page by `defer_writes_no_page` fails in `generate`
-                                   
 
 The category of a slug comes from its prefix, which pre-spec guards; a slug with no prefix is
 `unknown`. A `{supersedes:case N}` makes the earlier decision `superseded`, and
@@ -1428,9 +1427,7 @@ def decision_record(
         return record
     # `problem` stands on the parent only: a sub-case needs none
     needed = ("context",) if "." in case else ("context", "problem")
-    if any(
-        e.get("kind") != "defer" for e in entries_of_case
-    ):  # the short form of a defer
+    if any(e.get("kind") != "defer" for e in entries_of_case):  # the short form of a defer
         needed += ("given", "when")
     missing = [name for name in needed if name not in texts]
     if missing or block_errors:
@@ -1630,7 +1627,7 @@ def assemble(
     unparsed: list[dict] = data.setdefault("unparsed", [])
     # An entry another hand wrote in a shape this script cannot read — not a mapping, or a
     # mapping with none of `line`, `derived`, `librarian` — is left as it is, named once
-    #. The librarian's own entries carry `librarian` and no line.
+    # . The librarian's own entries carry `librarian` and no line.
     for entry in entries:
         if not isinstance(entry, dict) or not (
             "line" in entry or entry.get("derived") or entry.get("librarian")

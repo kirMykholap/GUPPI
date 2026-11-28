@@ -10,7 +10,7 @@ parent: "[[rule-plan-mode]]"
 estimates: ["[[estimate-skill-wait-what-re-pitches]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, workflow]
 core: true
 ---
@@ -42,4 +42,4 @@ Change no option and no recommendation. End with the open question, asked again.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

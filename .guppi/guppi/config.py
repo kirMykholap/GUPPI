@@ -13,6 +13,23 @@ The file also sets how the project tests its code and checks its style: the keys
 `.guppi/guppi/commands.py` run. `commands_of` reads the list of one key; a missing file or key
 is a `ConfigError` that names the file and the key.
 
+The key `setup_done`, `SETUP_KEY`, marks whether the setup Case of `rule-morph` has set these
+values: `guppi ship` writes `setup_done = false` into the copy a new project installs, and the
+setup Case sets it to `true`. `setup_pending` is the one judgment of it, which the ledger hook,
+the hook of `/hi` and the tests of `guppi ship` import: the setup is not done only where
+`guppi.toml` parses and holds `setup_done = false`; a missing file, a text that does not parse,
+a missing key and any other value count as done. `parse` does not read the key, so it never
+stops the render.
+
+The key `main_branch`, `BRANCH_KEY`, names the main branch of the project. `branch_of` is the
+one judgment of its value, which the render and `main_branch` both import: the value, None
+where the key is missing, and a `ConfigError` that names the source and the key for a value
+that is not a string, is empty or holds a space. The render puts the value where a Render
+writes `{{main_branch}}`, read from the Render of `rule-guppi-config`; `main_branch` reads it
+from `guppi.toml` at the root for the code, such as the check of `/box`, and gives
+`DEFAULT_BRANCH`, `main`, where the file is missing, does not parse or holds no such key, so a
+`guppi.toml` written before the key keeps working.
+
 The render reads the codes from the Render of `rule-guppi-config` by `parse`, never from
 `guppi.toml`, which is its own output; the checks read `guppi.toml` by `read_settings`.
 `outside` is the one judgment of a letter's script: the pre-spec finding of a name,
@@ -34,6 +51,9 @@ from guppi.lint import CODE_SPAN
 SETTINGS_FILE = "guppi.toml"
 SETTINGS_PAGE = "rule-guppi-config"
 KEYS = ("documentation_lang", "chat_lang")
+SETUP_KEY = "setup_done"
+BRANCH_KEY = "main_branch"
+DEFAULT_BRANCH = "main"
 
 
 @dataclass(frozen=True)
@@ -108,6 +128,56 @@ def commands_of(project_dir: Path, key: str) -> list[str]:
     if not isinstance(commands, list) or not all(isinstance(c, str) for c in commands):
         raise ConfigError(f"{SETTINGS_FILE}: {key} is not a list of commands")
     return commands
+
+
+def setup_pending(project_dir: Path) -> bool:
+    """True only where `guppi.toml` at the root parses and holds `setup_done = false`: the
+    setup Case of `rule-morph` has not run."""
+    path = Path(project_dir) / SETTINGS_FILE
+    if not path.is_file():
+        return False
+    try:
+        data = tomllib.loads(path.read_text(encoding="utf-8"))
+    except tomllib.TOMLDecodeError:
+        return False
+    return data.get(SETUP_KEY) is False
+
+
+def branch_of(data: dict, source: str) -> str | None:
+    """The value of `BRANCH_KEY` in a parsed text, None where the key is missing; a value that
+    is not a string, is empty or holds a space is a `ConfigError` that names `source` and the
+    key. The one judgment of the name of the main branch."""
+    if BRANCH_KEY not in data:
+        return None
+    value = data[BRANCH_KEY]
+    if not isinstance(value, str) or not value or any(char.isspace() for char in value):
+        raise ConfigError(f"{source}: {BRANCH_KEY} = {value!r} is not the name of a branch")
+    return value
+
+
+def branch_in(text: str, source: str) -> str | None:
+    """`branch_of` over a text of the file; a text that does not parse is a `ConfigError`
+    naming `source`."""
+    try:
+        data = tomllib.loads(text)
+    except tomllib.TOMLDecodeError as exc:
+        raise ConfigError(f"{source}: does not parse as TOML: {exc}") from exc
+    return branch_of(data, source)
+
+
+def main_branch(project_dir: Path) -> str:
+    """The name of the main branch of the project, by `branch_of` over `guppi.toml` at the
+    root: `DEFAULT_BRANCH` where the file is missing, does not parse or holds no key
+    `main_branch`; a value `branch_of` refuses raises its `ConfigError`."""
+    path = Path(project_dir) / SETTINGS_FILE
+    if not path.is_file():
+        return DEFAULT_BRANCH
+    try:
+        data = tomllib.loads(path.read_text(encoding="utf-8"))
+    except tomllib.TOMLDecodeError:
+        return DEFAULT_BRANCH
+    value = branch_of(data, SETTINGS_FILE)
+    return DEFAULT_BRANCH if value is None else value
 
 
 def name_of(code: str) -> str:

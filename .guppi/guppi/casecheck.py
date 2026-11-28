@@ -40,7 +40,8 @@ parent's `recommend` (`stored_family`). The handling of an answer of sub-cases
 alone judged with its stored parent (`stored_parents`) is gone: the check reads the whole
 file of a Case. The Cases of the answer are judged with the
 other Cases of the session by `prespec.check_same_target`, imported: each Case of the plan
-file, then each entry of the store under the number alone that the plan does not hold, its
+file and of the Cases file beside it, read by `ledger.plan_cases_text`, then
+each entry of the store under the number alone that the plan does not hold, its
 section built by `ratified.case_section`; a Case of the plan built again after its
 ratification, whose entry under the number alone holds no finding and whose top-level Case
 file holds its heading, is taken as that entry holds it, in the plan's order, so the words
@@ -137,16 +138,20 @@ and `code_ref` (`generate.REWORD_PATH_FIELDS`), and the names those paths carry;
 file name and the names it carries — the agent of `.claude/agents/<name>.md`, the skill of
 `.claude/skills/<name>/SKILL.md` with its slash, and `guppi <command>` for each command that
 `COMMANDS` of `.guppi/guppi/cli.py` maps to its module. `names_notes` searches the files under
-`vault/wiki/`, `.claude/`, `.guppi/guppi/` and `.guppi/tests/`, the Decision pages, `log.md`,
-`brief.md` and the file of the page or the file itself left out, each name as a whole word,
-and gives one note per Case and file that holds a name and that the subagent did not read:
-its path, the name it holds and, for a page, its `purpose`, `root_cause` or `pattern` line. A
-name that more than `BROAD_NAME`, 20, of the searched files hold gives instead one note per
-Case with the name and the count of those files, and no note of a file by that name; a file
-that also holds a narrower name keeps its own note for it. A
+`vault/wiki/`, `.claude/`, `.guppi/guppi/` and `.guppi/tests/`, and each file under the `cases/`
+folder of the session folder that `case_number` names, `session_case_files`, but the file that
+`case_file` names for the top-level Case of each Case of the answer, so no working note
+`note-<N>.md`; the Decision pages, `log.md`, `brief.md` and the file of the page
+or the file itself left out, each name as a whole word,
+and gives one note per Case: a first line that asks `case-guppi` to read each listed file
+whose purpose line or path speaks of what the Case changes, or to name it in `context` with
+the reason it stands, then a line per file that holds a name and that the subagent did not
+read, once, under the first name it holds — its path, that name and, for a page, its
+`purpose`, `root_cause` or `pattern` line — however many files hold a name. A
 read here, by `looked_files`, is a `Read` call of the file or a `Grep` call whose `path` is
 the file; the check of the pairs keeps its own read above. A transcript the hook cannot read
-gives no such note. The notes are sent once, as every note of `check_answer`.
+gives no such note. A file that a note stored for the Case id under `notes` already lists,
+`listed_files`, is not listed again, and no note is sent when none is left.
 
 The file. `case-guppi` writes its Case into
 `raw/<date>/<hi HHMM>/cases/case-<N>.md`, N the id of the top-level Case, named by
@@ -346,6 +351,7 @@ from guppi.ledger import (
     PREFIXES,
     PROJECT_RUN,
     opens_turn,
+    plan_cases_text,
     plan_path,
     read_records,
     refusals,
@@ -1015,7 +1021,7 @@ def other_blocks(
             continue
         again = None  # a Case built again after its ratification, as its file holds it
         if folder is not None and case_file(folder, case).is_file():
-            again = stored(case, (store or {}).get(case))  #
+            again = stored(case, (store or {}).get(case))
         blocks[case] = again if again is not None else then_blocks(lines)[0]
     for key, entry in (store or {}).items():
         key = str(key)
@@ -1164,7 +1170,14 @@ WIKI = "vault/wiki/"
 AGENT_FILE = re.compile(r"^\.claude/agents/([^/]+)\.md$")
 SKILL_FILE = re.compile(r"^\.claude/skills/([^/]+)/SKILL\.md$")
 PURPOSE_FIELDS = ("purpose", "root_cause", "pattern")  # the purpose line of a page
-BROAD_NAME = 20  # more files than this hold a broad name, which gives one note
+# The first line of the note of names after `note: case <N>: `, and a line of a file under it
+# .
+NAMES_ASK = (
+    "these files name what the Case changes and you did not read them: read each one whose "
+    "purpose line or path speaks of what the Case changes, or name it in context with the "
+    "reason it stands"
+)
+NAMES_LINE = re.compile(r"^- (\S+) names ")
 
 
 def rel_path(path) -> str:
@@ -1273,6 +1286,32 @@ def named_files(project_dir: Path) -> dict[str, str]:
     return texts
 
 
+def session_case_files(
+    folder: Path | None, project_dir: Path, answer: dict[str, dict]
+) -> dict[str, str]:
+    """The text of each file under the `cases/` folder of the session folder `folder` that
+    `case_number` names, by its path from `project_dir`, but the file that `case_file` names
+    for the top-level Case of each Case of `answer`: the other Case files of the session that
+    the note of names searches. A working note `note-<N>.md` has no such name;
+    no folder, none."""
+    if folder is None or not (folder / CASES).is_dir():
+        return {}
+    own = {path_key(case_file(folder, case)) for case in answer}
+    texts: dict[str, str] = {}
+    for path in sorted((folder / CASES).iterdir()):
+        if not path.is_file() or case_number(path) is None or path_key(path) in own:
+            continue
+        try:
+            rel = path.resolve().relative_to(project_dir.resolve()).as_posix()
+        except ValueError:
+            rel = path.as_posix()
+        try:
+            texts[rel_path(rel)] = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+    return texts
+
+
 def name_pattern(name: str) -> str:
     """A name as a whole word: no letter, digit, `_` or `-` on either side of it, a name that
     opens with `/` taking any character before it."""
@@ -1280,52 +1319,71 @@ def name_pattern(name: str) -> str:
     return before + re.escape(name) + r"(?![\w-])"
 
 
+def listed_files(store: dict | None, case: str) -> set[str]:
+    """The files that a note of names stored for the Case id under `notes` already lists, by
+    `NAMES_LINE`."""
+    held = store.get(case) if isinstance(store, dict) else None
+    kept = held.get("notes") if isinstance(held, dict) else None
+    head = f"note: case {case}: {NAMES_ASK}"
+    return {
+        match.group(1)
+        for note in (kept if isinstance(kept, list) else [])
+        if str(note).startswith(head)
+        for line in str(note).splitlines()[1:]
+        if (match := NAMES_LINE.match(line))
+    }
+
+
 def names_notes(
-    cases: dict[str, list[str]], answer: dict[str, dict], project_dir: Path, looked: set[str]
+    cases: dict[str, list[str]],
+    answer: dict[str, dict],
+    project_dir: Path,
+    looked: set[str],
+    store: dict | None = None,
+    folder: Path | None = None,
 ) -> list[str]:
-    """One note per Case and file that names a page or a file the Case changes,
-    `changed_targets`, and that the subagent did not read, `looked_files`: the path, the name
-    the file holds and the purpose line of a page, asking `case-guppi` to read the file or
-    to name it in `context` with the reason it stands. A name that more than
-    `BROAD_NAME` of the searched files hold gives one note with the name and the count, read or
-    not, and names no file. The file of the page or the file itself is left out,
-    of the notes and of the count. A note, not a finding."""
+    """One note per Case that lists each file that names a page or a file the Case changes,
+    `changed_targets`, and that the subagent did not read, `looked_files`, once, under the
+    first name it holds: its path, that name and the purpose line of a page, however many
+    files hold a name, asking `case-guppi` to read each listed file whose purpose line or path
+    speaks of what the Case changes, or to name it in `context` with the reason it stands. The files searched are those of `named_files` and, with the
+    session folder `folder`, the other Case files of the session, `session_case_files`. The file of the page or the file itself is left out, and so is a file that a note
+    stored for the Case id in `store` lists, `listed_files`; no note when none is left. A
+    note, not a finding."""
     notes: list[str] = []
     texts: dict[str, str] | None = None
     for case, block in answer.items():
-        holders: dict[str, set[str]] = {}  # each name → the searched files that hold it
+        listed = listed_files(store, case)
+        named: dict[str, str] = {}  # the file → the first name it holds, for this Case
         for own, names in changed_targets(cases.get(case, []), block, project_dir).items():
             if texts is None:
-                texts = named_files(project_dir)
+                texts = {
+                    **named_files(project_dir),
+                    **session_case_files(folder, project_dir, answer),
+                }
             for name in names:
                 if not name:
                     continue
                 pattern = re.compile(name_pattern(name))
-                held = holders.setdefault(name, set())
-                held |= {rel for rel, text in texts.items() if rel != own and pattern.search(text)}
-        broad = [name for name, held in holders.items() if len(held) > BROAD_NAME]
-        named: dict[str, str] = {}  # the file → the first narrow name it holds, for this Case
-        for name, held in holders.items():
-            if name in broad:
-                continue
-            for rel in sorted(held):
-                if rel not in named and path_key(project_dir / rel) not in looked:
-                    named[rel] = name
-        for name in broad:
-            notes.append(
-                f"note: case {case}: {len(holders[name])} files name {name}: search for the "
-                "name by a Grep, and name in context that search and why each file you do not "
-                "enter stands"
-            )
+                for rel, text in texts.items():
+                    if (
+                        rel != own
+                        and rel not in named
+                        and rel not in listed
+                        and pattern.search(text)
+                        and path_key(project_dir / rel) not in looked
+                    ):
+                        named[rel] = name
+        if not named:
+            continue
+        lines = [f"note: case {case}: {NAMES_ASK}"]
         for rel, name in named.items():
-            line = ""
+            about = ""
             if rel.startswith(WIKI) and rel.count("/") == 3:  # a page, `vault/wiki/<cat>/<slug>.md`
                 line = purpose_line(read_page(project_dir / rel, rel.split("/")[2]))
-            about = f" — {line}" if line else ""
-            notes.append(
-                f"note: case {case}: {rel} names {name}{about}: read it by Read, or by a Grep "
-                "whose path is the file, or name it in context with the reason it stands"
-            )
+                about = f" — {line}" if line else ""
+            lines.append(f"- {rel} names {name}{about}")
+        notes.append("\n".join(lines))
     return notes
 
 
@@ -1374,10 +1432,11 @@ def check_answer(
     `judge`, each hit a finding of its Case. The notes are those of
     `prespec.promise_notes` on the answer — a Criterion line not carried, a `then` line shared
     by siblings. `plan`, the text of the plan file, with `store`, adds the
-    check of the answer's Cases against the other Cases of the session, `session_clashes`; `folder`, the session folder, leaves a dropped Case out of them. `looked`, the files the subagent read by `looked_files`, adds the notes of
-    `names_notes`, one per file that names what a Case changes, by the first code span of a
-    task line for a file, and that it did not read, or one per broad name with its count;
-    with no transcript, None, no such note."""
+    check of the answer's Cases against the other Cases of the session, `session_clashes`; `folder`, the session folder, leaves a dropped Case out of them. `looked`, the files the subagent read by `looked_files`, adds the note of
+    `names_notes`, one per Case that lists each file that names what the Case changes, by the
+    first code span of a task line for a file, and that it did not read, but a file a note
+    stored in `store` for the Case id lists, and, with `folder`, the other Case files of the
+    session among the files searched; with no transcript, None, no such note."""
     cases = split_cases(text)
     heads = headings(text)
     records = ratification_records(cases)
@@ -1457,7 +1516,9 @@ def check_answer(
     cascade = cascade_notes(
         {**others, **answer}, ledger_records(list(window)) + records, project_dir, set(answer)
     )
-    names = names_notes(cases, answer, project_dir, looked) if looked is not None else []
+    names = (
+        names_notes(cases, answer, project_dir, looked, store, folder) if looked is not None else []
+    )
     notes: dict[str, list[str]] = {case: [] for case in cases}
     for note in promise_notes(spec_text, project_dir) + pair_notes + cascade + names:
         match = NOTE_CASE.match(note)
@@ -1788,7 +1849,8 @@ def subagent(payload: dict, project_dir: Path, now, stderr) -> int:
     store = read_store(plan)
     window = ledger_of(folder)
     frontier = folder / "frontier.md" if folder is not None else None
-    plan_text = plan.read_text(encoding="utf-8")  # the session's other Cases
+    # the session's other Cases, in the plan file and its Cases file
+    plan_text = plan_cases_text(plan)
     findings: list[str] = []
     fresh: list[str] = []
     repeated = True
@@ -2268,7 +2330,7 @@ def round_opening(
     )
 
 
-COMMAND = f"{PROJECT_RUN}guppi casecheck"  # the command of the `Stop` run, as its refusal names it
+COMMAND = f"{PROJECT_RUN}guppi casecheck"  # the `Stop` run; its refusal is found by its name, `casecheck:`
 LIMIT = 3  # the refusals of one Case, or of one other reason, a stretch
 REASON_CASE = re.compile(r"^(case [^:]+):")
 

@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_ledger.py — piped pay
 checked: 2026-10-30
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness, ledger]
 core: true
 ---
@@ -31,4 +31,4 @@ The hook writes every line of the `Stop` and prints no line about the lesson.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -10,7 +10,7 @@ parent: "[[rule-claude-md]]"
 estimates: ["[[estimate-language-followed]]", "[[estimate-language-spec-prose-in-english]]"]
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, render, workflow]
 core: true
 ---
@@ -30,4 +30,4 @@ manner of the text that lands in the vault — ASD-STE100 Simplified Technical E
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

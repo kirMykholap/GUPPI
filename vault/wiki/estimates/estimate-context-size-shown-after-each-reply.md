@@ -8,7 +8,7 @@ method: uv run --project .guppi pytest .guppi/tests/test_context.py; the live re
 checked: 2026-10-02
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, session]
 core: true
 ---
@@ -32,4 +32,4 @@ With no error of its own, the hook prints JSON with a `systemMessage` of one lin
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

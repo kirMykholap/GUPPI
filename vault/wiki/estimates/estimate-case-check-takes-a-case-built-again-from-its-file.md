@@ -7,7 +7,7 @@ purpose: Whether the check of the file of a Case takes another Case of the sessi
 method: uv run --project .guppi pytest .guppi/tests/test_casecheck.py -k built_again_sibling
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [hooks, harness, workflow]
 core: true
 ---
@@ -31,4 +31,4 @@ The hook takes that other Case as `<plan>.checked.json` holds it, in place of it
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

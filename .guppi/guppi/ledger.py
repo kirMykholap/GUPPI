@@ -35,10 +35,15 @@ message, so each faulty line is told once and a repeat of it stays silent; no `h
 error of its own exit 2 only when no refusal of the hook stands in the stretch. With the flag
 set and a transcript it cannot read, it writes the lines of the reply and exits 0. A refusal
 of a hook is a `user` record marked `isMeta` whose text opens with `Stop hook feedback:` and
-holds a line opening with `[<command>]: `. The command is found in either form, by
-`command_forms`: as the hooks run it, `uv run --project .guppi guppi …`, and without
-`--project .guppi`, the form a session that read its hooks before the move into `.guppi/`
-still runs, until a Case of a later session removes that form.
+holds a line that opens with a bracket and `]: `, the text after it opening with the name of
+the hook and a colon, such as `ledger:`: the name is the words of its command after ` guppi `,
+and every line a hook prints on stderr at a `Stop` opens with it. What the bracket holds is
+not read, since Claude Code 2.1.317 writes `[command hook <number>]` there where an earlier
+version wrote the command. `command_forms` gives the forms of a hook's
+registration, as the hooks run it, `uv run --project "${CLAUDE_PROJECT_DIR}/.guppi" guppi …`,
+and with `--project .guppi`, the form of the hooks rendered before; no reader of
+refusals calls it, and `.guppi/guppi/ship.py` removes the registration of `guppi codewrite` in
+each form, until a Case of a later session removes the old form.
 
 The person's message is judged once, by `user_kind`: a `user` record whose
 `origin.kind` is `human` is the person's message, one whose `origin.kind` is
@@ -182,7 +187,10 @@ written until the session's ledger or the lines of the same `Stop` hold a `creat
 line of an `entity-sprint-` slug, so the session after a close opens the next sprint first.
 Readings and lessons pass. The hook exits 2 with one stderr line per refused line only when
 it stands in the reply just finished, and the line is written at the first `Stop` after the
-`create` stands. Judged by `refused_without_sprint`, over lines read by `parse_line`.
+`create` stands. Judged by `refused_without_sprint`, over lines read by `parse_line`. While
+`guppi.toml` holds `setup_done = false`, by `setup_pending` of `.guppi/guppi/config.py`, no
+such line is refused, so that the setup Case of `rule-morph` is written before the opening
+Case of the first sprint; a taken sprint id is refused all the same.
 
 No defer of a record. A fresh `defer` decision line whose slug names a Lesson or a
 Decision page, by `defers_a_record` of `.guppi/guppi/materialize.py`, whether its page stands
@@ -208,20 +216,44 @@ BRACKET = re.compile(r"\[([^\]]*)\]")
 LEDGER_TAG = "ledger"
 PLAN_TOOLS = ("Write", "Edit", "MultiEdit")
 REFUSAL_HEAD = "Stop hook feedback:"
-PROJECT_RUN = "uv run --project .guppi "  # how each hook runs the code of `.guppi/`
-OLD_RUN = "uv run "  # the same before the move, still run by a session that read it then
+PROJECT_RUN = 'uv run --project "${CLAUDE_PROJECT_DIR}/.guppi" '  # each hook, from the project
+OLD_RUN = (
+    "uv run --project .guppi "  # the form rendered before, still run by a session that read it then
+)
 COMMAND = f"{PROJECT_RUN}guppi ledger"
+REFUSAL_LINE = re.compile(r"\n\[[^\]\n]*\]: ")  # the head of one hook's line in a refusal
 
 
 def command_forms(command: str) -> tuple[str, ...]:
-    """`command` and the same command without `--project .guppi`: the form of the hooks
-    rendered before the move of the code into `.guppi/`, which a session that read them then
-    still runs, until a Case of a later session removes it. The one judgment of
-    the forms of a hook's command, by which `refusals_in` and `sent_back_last` find a
-    refusal."""
+    """`command` and the same command with `--project .guppi`: the form of the hooks rendered
+    before their commands named the project folder, which a session that read them then still
+    runs, until a Case of a later session removes it. The one judgment of the
+    forms of a hook's registration, by which `.guppi/guppi/ship.py` removes the registration of
+    `guppi codewrite`; no reader of refusals calls it, since a refusal is found by the name of
+    its hook."""
     if command.startswith(PROJECT_RUN):
         return command, OLD_RUN + command[len(PROJECT_RUN) :]
     return (command,)
+
+
+def hook_name(command: str) -> str:
+    """The name of the hook `command`: the words of the command after ` guppi `, such as
+    `ledger` or `onward --plan`."""
+    at = command.find(" guppi ")
+    return command[at + len(" guppi ") :] if at >= 0 else command
+
+
+def own_text(text: str, command: str) -> str | None:
+    """The text of the hook `command` in the refusal `text`: what follows the first line that
+    opens with a bracket and `]: ` and whose text after it opens with the name of the hook and
+    a colon, whatever the bracket holds; None when no such line stands. The one judgment of a
+    hook's own refusal, which `refusals_in` and `sent_back_last` call."""
+    head = hook_name(command) + ":"
+    for match in REFUSAL_LINE.finditer(text):
+        rest = text[match.end() :]
+        if rest.startswith(head):
+            return rest
+    return None
 
 
 def reply_text(payload: dict) -> str:
@@ -326,8 +358,10 @@ def refusals(payload: dict, *commands: str) -> dict[str, list[tuple[int, str]]] 
     reply of the agent it follows: the index in the stretch of the last `assistant` record
     before it, -1 when none — the refusals of one end of a reply share it, and a refusal of a
     later reply has a greater one. A refusal is a `user` record marked `isMeta`
-    whose text opens with `Stop hook feedback:` and holds a line that opens with
-    `[<command>]: `; its text is what follows that prefix. None when the transcript cannot be read. The one judgment of the
+    whose text opens with `Stop hook feedback:` and holds a line that opens with a bracket and
+    `]: ` and whose text after it opens with the name of the hook and a colon, by `own_text`;
+    its text is what follows that bracket. None when
+    the transcript cannot be read. The one judgment of the
     refusals, which `guppi onward` uses for its own and for those of the ledger hook, and
     `guppi ratified`, through `own_refusals`, for its own."""
     records = stretch(payload)
@@ -336,16 +370,14 @@ def refusals(payload: dict, *commands: str) -> dict[str, list[tuple[int, str]]] 
 
 def refusals_in(records: list[dict], *commands: str) -> dict[str, list[tuple[int, str]]]:
     """The refusals of each `Stop` hook `command` among the stretch `records`, as `refusals`
-    reads them from a transcript, for a caller that holds the stretch."""
+    reads them from a transcript, for a caller that holds the stretch; a refusal is the hook's
+    own by `own_text`, by the name of the hook."""
     found: dict[str, list[tuple[int, str]]] = {command: [] for command in commands}
     for reply, text in refusal_records(records):
         for command in commands:
-            for form in command_forms(command):
-                prefix = f"[{form}]: "
-                at = text.find("\n" + prefix)
-                if at >= 0:
-                    found[command].append((reply, text[at + 1 + len(prefix) :]))
-                    break
+            own = own_text(text, command)
+            if own is not None:
+                found[command].append((reply, own))
     return found
 
 
@@ -373,7 +405,8 @@ def sent_back_last(payload: dict, command: str) -> bool | None:
     ended replies of the turn are those its refusals follow, and the last of them is the one
     `command` must have refused; no turn opens after that refusal. None when the transcript
     cannot be read. `guppi onward --plan` sends on an answer with no `LEDGER` block to a reply
-    the ledger hook sent back by it."""
+    the ledger hook sent back by it. The refusal is the hook's own by `own_text`,
+    by the name of the hook."""
     records = stretch(payload)
     if records is None:
         return None
@@ -381,10 +414,7 @@ def sent_back_last(payload: dict, command: str) -> bool | None:
     if not found:
         return False
     last = max(reply for reply, _ in found)
-    prefixes = [f"\n[{form}]: " for form in command_forms(command)]
-    if not any(
-        reply == last and any(prefix in text for prefix in prefixes) for reply, text in found
-    ):
+    if not any(reply == last and own_text(text, command) is not None for reply, text in found):
         return False
     return not any(opens_turn(record) for record in records[last + 1 :])
 
@@ -634,6 +664,46 @@ def plan_path(logs: list[tuple[str, str]], stamp: str) -> Path | None:
             if is_plan_file(candidate):
                 last = candidate
     return last
+
+
+CASES_FILE_SUFFIX = ".cases.md"
+
+
+def plan_cases_file(plan: Path) -> Path:
+    """The Cases file beside a plan file, `<plan stem>.cases.md`: the ratified Cases and the
+    defers of the plan wait there until the approval, so that the plan file holds its title
+    line and the map alone. In the texts of the harness the plan is the plan
+    file with this file."""
+    return plan.with_name(plan.stem + CASES_FILE_SUFFIX)
+
+
+def with_cases(text: str, plan: Path | None) -> str:
+    """A plan text and then the text of the Cases file beside `plan` when it stands: the one
+    join of the two texts, for a reader that holds the plan text already, such as the hook of
+    `rule-spec-capture` with `tool_response.plan`. A missing Cases file, or no
+    plan, gives the text as it is."""
+    if plan is None:
+        return text
+    cases = plan_cases_file(plan)
+    try:
+        extra = cases.read_text(encoding="utf-8")
+    except OSError:
+        return text
+    if not extra.strip():
+        return text
+    if text and not text.endswith("\n"):
+        text += "\n"
+    return text + ("\n" if text and not text.endswith("\n\n") else "") + extra
+
+
+def plan_cases_text(plan: Path) -> str:
+    """The Cases of the plan: the text of the plan file, then the text of its Cases file, by
+    `with_cases` — the one reading that every reader of the Cases of the plan imports. A plan file that cannot be read gives the Cases file alone, or an empty text."""
+    try:
+        text = plan.read_text(encoding="utf-8")
+    except OSError:
+        text = ""
+    return with_cases(text, plan)
 
 
 def session_event_log(project_dir: Path, now, stamp: str) -> str:
@@ -968,6 +1038,12 @@ def is_sprint_page(slug) -> bool:
     return text.startswith(SPRINT_PAGE) and len(text) > len(SPRINT_PAGE)
 
 
+def is_one_off(page) -> bool:
+    """Whether an Estimate page is a one-off Estimate, one whose `once` field is `true`. The
+    one judgment of a one-off Estimate, which `.guppi/guppi/lint.py` imports."""
+    return page.props.get("once") is True
+
+
 def refused_taken_sprint(project_dir: Path, fresh: list[str]) -> list[tuple[str, str]]:
     """`(line, id)` of each fresh `create` decision line of a sprint page `entity-sprint-<id>`
     whose page `has_page` of `.guppi/guppi/materialize.py` finds under `entities`, live or archived:
@@ -994,10 +1070,15 @@ def refused_without_sprint(
     """Each fresh decision line but a `defer` while no live sprint page stands, until the
     session's ledger or the lines of the same `Stop` hold a `create` decision line of an
     `entity-sprint-` slug: the session after the close of a sprint opens the next sprint
-    first. A line of `taken`, refused by `refused_taken_sprint`, opens no sprint. Readings and lessons pass. The lines are read by `parse_line` of
+    first. A line of `taken`, refused by `refused_taken_sprint`, opens no sprint. Readings and lessons pass. While `setup_pending` of `.guppi/guppi/config.py`
+    answers True, no line is refused, so that the setup Case of `rule-morph` is written before
+    the opening Case. The lines are read by `parse_line` of
     `.guppi/guppi/materialize.py`, the one parse of a ledger line."""
+    from guppi.config import setup_pending
     from guppi.materialize import parse_line
 
+    if setup_pending(project_dir):
+        return []
     entities = project_dir / "vault" / "wiki" / "entities"
     if entities.is_dir() and any(entities.glob(f"{SPRINT_PAGE}*.md")):
         return []

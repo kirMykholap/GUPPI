@@ -7,7 +7,7 @@ purpose: Whether the Render of rule-case-build gives case-guppi WebFetch among i
 method: "by hand: the Render of rule-case-build in .claude/agents/case-guppi.md read against the Criterion, recorded in the estimate line"
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness, case-build]
 core: true
 ---
@@ -30,4 +30,4 @@ Its `tools` line holds `WebFetch`.
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

@@ -139,7 +139,7 @@ def test_limit_below_it_the_prompt_hook_is_silent_and_the_line_plain(tmp_path):
     assert "past" not in message(out)
 
 
-def test_limit_at_it_both_hooks_give_a_note_not_an_order(tmp_path):  #
+def test_limit_at_it_both_hooks_give_a_note_not_an_order(tmp_path):
     records = [prompt(), call(390_000), prompt("C2"), call(400_000)]
     code, out, _ = hook(tmp_path, records, "--prompt")
     assert code == 0

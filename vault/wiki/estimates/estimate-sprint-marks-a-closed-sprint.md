@@ -7,7 +7,7 @@ purpose: Whether guppi sprint, with no live sprint page, writes sprint.md with t
 method: uv run --project .guppi pytest .guppi/tests/test_sprint.py -k closed
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [harness, sprint]
 core: true
 ---
@@ -31,4 +31,4 @@ Then:
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

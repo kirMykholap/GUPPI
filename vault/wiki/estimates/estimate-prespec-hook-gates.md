@@ -8,7 +8,7 @@ method: pytest in .guppi/tests/test_prespec.py with piped payloads against a tem
 checked: 2026-10-01
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, hooks, harness]
 core: true
 ---
@@ -35,4 +35,4 @@ With no `prespec` line of this session's stamp after its `hi`, the hook exits 2 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

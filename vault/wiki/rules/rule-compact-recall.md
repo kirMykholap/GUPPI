@@ -2,14 +2,14 @@
 type: rule
 kind: Leaf
 purpose: Prevents a working session from going on after a compaction without the texts /hi loads, the Frontier and the Spec in its context
-status: built
+status: draft
 enforcement: hook
 implementation_ref: [.guppi/guppi/recall.py, .guppi/guppi/cli.py, .guppi/tests/test_recall.py, .claude/settings.json]
 parent: "[[rule-session-start]]"
-estimates: ["[[estimate-compact-recall-reloads]]"]
+estimates: []
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, hooks, harness]
 core: true
 ---
@@ -20,4 +20,4 @@ Prevents a working session from going on after a compaction without the texts `/
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

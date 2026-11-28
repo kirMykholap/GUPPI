@@ -8,7 +8,7 @@ method: "by hand, at Retro: the reply of a stop of Work Mode under the text of v
 checked: 2026-10-31
 origin: guppi
 sprint: guppi
-created: 2026-11-03
+created: 2026-11-28
 tags: [session, workflow, harness]
 core: true
 ---
@@ -29,4 +29,4 @@ Each step of the reply writes out whole each command it asks the person to run, 
 
 ## History
 
-- 2026-11-03 shipped with GUPPI
+- 2026-11-28 shipped with GUPPI

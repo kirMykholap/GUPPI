@@ -7,6 +7,7 @@ import io
 import json
 import subprocess
 from datetime import UTC, datetime
+from pathlib import Path
 
 from guppi import gate
 
@@ -148,10 +149,13 @@ def test_a_plan_path_of_another_session_does_not_count(tmp_path):
 
 
 def test_plan_path_takes_the_last_line_under_claude_plans(tmp_path):
+    # Paths with the separator of the machine that runs the test, so that `plan_path` reads them
+    # on Windows and on the Linux runner of prod.yml alike (case 1091).
+    plans = Path("/u/.claude/plans")
     text = (
-        "- 10:30:00 19037d1c tool Write: C:\\u\\.claude\\plans\\a.md\n"
-        "- 10:31:00 19037d1c tool Edit: C:\\u\\.claude\\plans\\b.md\n"
-        "- 10:32:00 19037d1c tool Edit: C:\\u\\src\\c.py\n"
+        f"- 10:30:00 19037d1c tool Write: {plans / 'a.md'}\n"
+        f"- 10:31:00 19037d1c tool Edit: {plans / 'b.md'}\n"
+        f"- 10:32:00 19037d1c tool Edit: {Path('/u/src/c.py')}\n"
     )
     logs = [("2026-09-14", text)]
     assert gate.plan_path(logs, "19037d1c").name == "b.md"
